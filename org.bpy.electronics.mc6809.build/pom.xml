@@ -1,0 +1,53 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Identification of the project -->
+	<artifactId>org.bpy.electronics.mc6809</artifactId>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>org.bpy.electronics.mc6809</groupId>
+		<artifactId>org.bpy.electronics.mc6809.parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>./parent/pom.xml</relativePath>
+	</parent>
+	
+	<modules>
+		<module>./parent</module>
+		<module>../org.bpy.electronics.mc6809.target</module>
+		<module>../org.bpy.electronics.mc6809.language</module>
+		<module>../org.bpy.electronics.mc6809.language.tests</module>
+	</modules>
+
+	<!-- Dependency management -->
+	<dependencyManagement>
+		<dependencies>
+
+			<dependency>
+				<groupId>org.eclipse.xtext</groupId>
+				<artifactId>xtext-dev-bom</artifactId>
+				<version>${xtextVersion}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
+			<!-- Eclipse Core Resource Management -->
+			<dependency>
+				<groupId>org.eclipse.platform</groupId>
+				<artifactId>org.eclipse.core.resources</artifactId>
+				<version>3.13.800</version>
+			</dependency>
+
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-project-info-reports-plugin -->
+			<dependency>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-project-info-reports-plugin</artifactId>
+			    <version>${maven.project.info.reports.plugin}</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+	
+</project>

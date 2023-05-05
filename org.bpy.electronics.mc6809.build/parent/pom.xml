@@ -1,0 +1,589 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Identification of the module -->
+	<groupId>org.bpy.electronics.mc6809</groupId>
+	<artifactId>org.bpy.electronics.mc6809.parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<!-- Description of the organization -->
+	<organization>
+		<name>Patrick BRIAND</name>
+	</organization>
+
+	<!-- Developpers -->
+	<developers>
+		<developer>
+			<name>Patrick BRIAND</name>
+			<email>briand.patrick@free.fr</email>
+			<roles>
+				<role>project leader</role>
+				<role>developer</role>
+				<role>tester</role>
+			</roles>
+			<timezone>Europe/Paris</timezone>
+		</developer>
+	</developers>
+
+	<!-- Contributors -->
+	<contributors>
+		<contributor>
+			<name>Patrick BRIAND</name>
+			<email>briand.patrick@free.fr</email>
+			<roles>
+				<role>decision team</role>
+			</roles>
+			<timezone>Europe/Paris</timezone>
+		</contributor>
+	</contributors>
+
+	<!-- Where to download all necessary files -->
+	<repositories>
+
+		<!-- Eclipse link -->
+ 		<repository>
+			<id>Eclipse-2020-09</id>
+			<url>http://download.eclipse.org/releases/2020-09</url>
+			<layout>p2</layout>
+		</repository>
+
+		<!-- Repository for the code coverage utilities -->
+  		<repository>
+			<id>Jacoco</id>
+			<url>https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository> 
+
+		<!-- JRE repositary -->
+		<repository>
+			<id>justj</id>
+			<url>https://download.eclipse.org/justj/jres/11/updates/release/latest/</url>
+			<layout>p2</layout>
+		</repository>
+
+	</repositories>
+
+	<!-- Properties -->
+	<properties>
+
+		<!-- Eclipse target version  -->
+		<eclipse.target.version>4.17.0</eclipse.target.version>
+
+		<!-- Source encoding -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Plugins versions settings -->
+		<tycho.version>2.1.0</tycho.version>
+		<tycho.surefire.version>2.1.0</tycho.surefire.version>
+		<jacoco.version>0.8.6</jacoco.version>
+		<checkstyle.version>3.1.1</checkstyle.version>
+		<pmd.version>3.13.0</pmd.version>
+		<spotbugs.version>4.1.4</spotbugs.version>
+		<maven.project.info.reports.plugin>3.1.1</maven.project.info.reports.plugin>
+		<net.sf.version>1.2.0</net.sf.version>
+
+		<!-- Configuration files -->
+		<checkstyle.config.location>${project.build.directory}/Configurations/google_checks.xml.xml</checkstyle.config.location>
+		<pmd.config.location>file:///C:/LegacyApp/ETS-Dev/Oomph/beta/config/ets-pmd-config.xml</pmd.config.location>
+		<findbugs.config.location>file:///C:/LegacyApp/ETS-Dev/Oomph/beta/config/ets-findbug-exclude-filter.xml</findbugs.config.location>
+
+
+		<!-- Xtext version -->
+		<xtextVersion>2.23.0</xtextVersion>
+		<mwe2Version>2.11.3</mwe2Version>
+		<project.build.sourceEncoding>windows-1252</project.build.sourceEncoding>
+
+		<!-- External library versions -->
+		<itext.version>5.5.13.2</itext.version>
+		<!-- <itext.version>5.0.6</itext.version> -->
+		<apache.common.lang3.version>3.11</apache.common.lang3.version>
+
+		<!-- Version of java -->
+		<maven.compiler.source>11</maven.compiler.source>
+		<maven.compiler.target>11</maven.compiler.target>
+
+		<!-- Define overridable properties for tycho-surefire-plugin -->
+		<platformSystemProperties></platformSystemProperties>
+		<moduleProperties></moduleProperties>
+		<systemProperties></systemProperties>
+		<additionalTestArguments></additionalTestArguments>
+
+	</properties>
+
+	<!-- Report generation (used by the goal site -->
+	<reporting>
+		<plugins>
+
+			<!-- Search possible bugs in the source code -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>${spotbugs.version}</version>
+			</plugin>
+
+			<!-- Code coverage on JUnit tests -->
+ 			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+			</plugin> 
+				
+ 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${maven.project.info.reports.plugin}</version>
+				<configuration>
+					<dependencyDetailsEnabled>false</dependencyDetailsEnabled>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>scm</report>
+							<report>modules</report>
+							<report>licenses</report>
+							<report>summary</report>
+							<report>team</report>
+							<report>index</report>
+							<report>help</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin> 
+	
+			<plugin>
+		        <groupId>com.soebes.maven.plugins</groupId>
+		        <artifactId>doxygen-maven-plugin</artifactId>
+		        <version>1.1.0</version>
+		    </plugin>
+	
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-pmd-plugin</artifactId>
+		        <version>3.14.0</version>
+		    </plugin>
+	
+		</plugins>
+	</reporting>
+
+	<dependencyManagement>
+		<dependencies>
+		
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-enforcer-plugin -->
+			<dependency>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M3</version>
+			</dependency>
+	
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-install-plugin -->
+			<dependency>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-install-plugin</artifactId>
+			    <version>3.0.0-M1</version>
+			</dependency>
+	
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-deploy-plugin -->
+			<dependency>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-deploy-plugin</artifactId>
+			    <version>3.0.0-M1</version>
+			</dependency>
+	
+			<!-- https://mvnrepository.com/artifact/org.eclipse.tycho/tycho-p2-plugin -->
+			<dependency>
+    			<groupId>org.eclipse.tycho</groupId>
+    			<artifactId>tycho-p2-plugin</artifactId>
+    			<version>2.1.0</version>
+			</dependency>
+	
+			<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-resources-plugin -->
+			<dependency>
+			    <groupId>org.apache.maven.plugins</groupId>
+			    <artifactId>maven-resources-plugin</artifactId>
+			    <version>3.2.0</version>
+			</dependency>
+	
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
+				<dependency>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-clean-plugin</artifactId>
+				    <version>3.1.0</version>
+				</dependency>
+				
+			<!-- https://mvnrepository.com/artifact/org.eclipse.tycho/tycho-p2-publisher-plugin -->
+			<dependency>
+			    <groupId>org.eclipse.tycho</groupId>
+			    <artifactId>tycho-p2-publisher-plugin</artifactId>
+			    <version>2.1.0</version>
+			</dependency>	
+
+			<!-- https://mvnrepository.com/artifact/org.eclipse.tycho/tycho-p2-repository-plugin -->
+			<dependency>
+			    <groupId>org.eclipse.tycho</groupId>
+			    <artifactId>tycho-p2-repository-plugin</artifactId>
+			    <version>2.1.0</version>
+			</dependency>
+			
+			<!-- https://mvnrepository.com/artifact/com.soebes.maven.plugins.dmg/doxygen-maven-plugin -->
+			<dependency>
+    			<groupId>com.soebes.maven.plugins.dmg</groupId>
+    			<artifactId>doxygen-maven-plugin</artifactId>
+    			<version>1.0.1</version>
+			</dependency>
+	
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+
+		<!-- PLugins needed for the build -->
+		<pluginManagement>
+			<plugins>
+
+				<!-- Find bugs in java code -->
+				<plugin>
+					<groupId>com.github.spotbugs</groupId>
+					<artifactId>spotbugs-maven-plugin</artifactId>
+					<version>4.1.4</version>
+				</plugin>
+
+				<!-- generator of the site (for examples the reports -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-site-plugin</artifactId>
+					<version>3.7.1</version>
+				</plugin>
+
+				<!-- Checker de pom -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-enforcer-plugin</artifactId>
+					<version>3.0.0-M3</version>
+				</plugin>
+
+				<!--  Copies the project artifacts to the user's local repository. -->
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-install-plugin</artifactId>
+				    <version>3.0.0-M1</version>
+				</plugin>
+				
+				<!--  Uploads the project artifacts to the internal remote repository. -->
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-deploy-plugin</artifactId>
+				    <version>3.0.0-M1</version>
+				</plugin>
+				
+				<!-- Tycho P2 Metadata Plugin  -->
+				<plugin>
+					<groupId>org.eclipse.tycho</groupId>
+	    			<artifactId>tycho-p2-plugin</artifactId>
+	    			<version>2.1.0</version>
+				</plugin>
+
+				<!-- The Resources Plugin handles the copying of project resources to the output directory -->	
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-resources-plugin</artifactId>
+				    <version>3.2.0</version>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-clean-plugin -->
+				<plugin>
+				    <groupId>org.apache.maven.plugins</groupId>
+				    <artifactId>maven-clean-plugin</artifactId>
+				    <version>3.1.0</version>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.eclipse.tycho/tycho-p2-publisher-plugin -->
+				<plugin>
+				    <groupId>org.eclipse.tycho</groupId>
+				    <artifactId>tycho-p2-publisher-plugin</artifactId>
+				    <version>2.1.0</version>
+				</plugin>
+
+				<!-- https://mvnrepository.com/artifact/org.eclipse.tycho/tycho-p2-repository-plugin -->
+				<plugin>
+				    <groupId>org.eclipse.tycho</groupId>
+				    <artifactId>tycho-p2-repository-plugin</artifactId>
+				    <version>2.1.0</version>
+				</plugin>
+
+				<plugin>
+          			<groupId>org.apache.maven.plugins</groupId>
+          			<artifactId>maven-pmd-plugin</artifactId>
+          			<version>3.14.0</version>
+        		</plugin>
+
+        		<plugin>
+   					<groupId>com.soebes.maven.plugins</groupId>
+    				<artifactId>doxygen-maven-plugin</artifactId>
+    				<version>1.1.0</version>
+    				<configuration>
+    					<callerGraph>true</callerGraph>
+    					<callGraph>true</callGraph>
+    					<input>src</input>
+    					<recursive>true</recursive>
+    					
+    					<haveDot>true</haveDot>
+    					<dotPath>D:\Programmes\Graphiz\release\bin</dotPath>
+    					<classDiagrams>true</classDiagrams>
+    					<collaborationGraph>true</collaborationGraph>
+    					<includedByGraph>true</includedByGraph>
+    					<includeGraph>true</includeGraph>
+    					<generateTreeview>true</generateTreeview>
+    				</configuration>
+           		</plugin>
+
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+
+			<!--  Allow to check the maven configuration -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<executions>
+				
+					<!--  check  plugins version -->
+					<execution>
+						<id>enforce-versions</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requirePluginVersions>
+									<message>Définissez plugin.version !</message>
+								</requirePluginVersions>
+							</rules>
+						</configuration>
+					</execution>
+					
+					<!-- This rule checks that there are no duplicate dependencies declared in the POM of the project.  -->
+					<execution>
+			            <id>no-duplicate-declared-dependencies</id>
+			            <goals>
+			              <goal>enforce</goal>
+			            </goals>
+			            <configuration>
+			            	<rules>
+			            		<banDuplicatePomDependencyVersions></banDuplicatePomDependencyVersions>
+<!-- 				            	<reactorModuleConvergence>
+    	              				<message>The reactor is not valid</message>
+        	          				<ignoreModuleDependencies>true</ignoreModuleDependencies>
+				                </reactorModuleConvergence>
+ -->			            	</rules>
+			            </configuration>
+			          </execution>
+				</executions>
+			</plugin>
+
+			<!-- Creates a jar-based plugin and attaches it as an artifact -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<archive>
+						<!-- which indicates whether the generated archive will contain the 
+							pom.xml and pom.properties file -->
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<!-- Permet d'ajouter les fonctionalité de creation de plugins eclipse -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+			<!-- Goal to create a JAR-package containing all the source files of a 
+				osgi project. -->
+			<!-- lifecycle phase: prepare-package -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-source-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>plugin-source</id>
+						<goals>
+							<goal>plugin-source</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<!-- Create the javadoc based API reference for this bundle -->
+			<!-- lifecycle phase: process-classes -->
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-document-bundle-plugin</artifactId>
+				<version>${tycho.version}</version>
+			</plugin>
+
+			<!-- Compiles application sources with eclipse plugin dependencies -->
+			<!-- lifecycle phase: compile -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+				<version>${tycho.version}</version>
+			</plugin>
+
+			<!--  Definition of the Eclipse platform for the applciation -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<executionEnvironment>JavaSE-11</executionEnvironment>
+					<resolver>p2</resolver>
+					<pomDependencies>consider</pomDependencies>
+					<target>
+						<artifact>
+							<groupId>org.bpy.electronics.mc6809</groupId>
+							<artifactId>Eclipse-2020-09</artifactId>
+							<version>${eclipse.target.version}</version>
+						</artifact>
+					</target>
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
+			</plugin>
+
+			<!-- The JaCoCo Maven plug-in provides the JaCoCo runtime agent to your 
+				tests and allows basic report creation. -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.eclipse.tycho</groupId>
+						<artifactId>target-platform-configuration</artifactId>
+						<version>${tycho.version}</version>
+					</dependency>
+				</dependencies>
+				<executions>
+					<execution>
+						<id>coverage-initialize</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>coverage-report</id>
+						<phase>port-integration-test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+					
+					<execution>
+						<id>coverage-check</id>
+						<goals>
+							<goal>check</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<rule>
+									<element>CLASS</element>
+									<limits>
+										<limit>
+											<counter>LINE</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0%</minimum>
+										</limit>
+									</limits>
+								</rule>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin> 
+
+			<!-- SpotBugs looks for bugs in Java programs. It is based on the concept 
+				of bug patterns. -->
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>4.1.4</version>
+				<goals>
+					<goal>spotbugs:spotbugs</goal>
+				</goals>
+			</plugin>
+
+			<!-- FindBugs looks for bugs in Java programs. It is based on the concept 
+				of bug patterns. A bug pattern is a code idiom that is often an error. Bug 
+				patterns arise for a variety of reasons: -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>findbugs-maven-plugin</artifactId>
+				<version>3.0.1</version>
+				<configuration>
+					<excludeFilterFile>${findbugs.config.location}</excludeFilterFile>
+				</configuration>
+			</plugin>
+
+
+			<!-- -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>${maven.project.info.reports.plugin}</version>
+			</plugin>
+
+			<!-- The Checkstyle Plugin generates a report regarding the code style 
+				used by the developers. For more information about Checkstyle -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>${checkstyle.version}</version>
+				<configuration>
+					<configLocation>${checkstyle.config.location}</configLocation>
+				</configuration>
+			</plugin>
+			
+      		<plugin>
+        		<groupId>org.apache.maven.plugins</groupId>
+        		<artifactId>maven-pmd-plugin</artifactId>
+        		<version>3.14.0</version>
+      		</plugin>
+
+			<plugin>
+				<groupId>com.soebes.maven.plugins</groupId>
+   				<artifactId>doxygen-maven-plugin</artifactId>
+  				<version>1.1.0</version>
+    			<executions>
+    				<execution>
+            			<id>report</id>
+            			<phase>site</phase>
+            			<goals>
+              				<goal>report</goal>
+            			</goals>
+          			</execution>
+    			</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>
