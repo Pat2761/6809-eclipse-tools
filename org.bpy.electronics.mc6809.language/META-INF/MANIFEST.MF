@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.bpy.electronics.mc6809.language
+Bundle-ManifestVersion: 2
+Bundle-Name: org.bpy.electronics.mc6809.language
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.bpy.electronics.mc6809.language; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.eclipse.xtext,
+ org.eclipse.xtext.xbase,
+ org.eclipse.equinox.common;bundle-version="3.16.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-11
