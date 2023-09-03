@@ -1,0 +1,17 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>Eclipse-2021-09</artifactId>
+	<version>4.21.0</version>
+	<packaging>eclipse-target-definition</packaging>
+	
+ 	<parent>
+		<groupId>org.bpy.electronics.mc6809</groupId>
+		<artifactId>org.bpy.electronics.mc6809.parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../org.bpy.electronics.mc6809.build/parent/pom.xml</relativePath>
+	</parent>
+	
+</project>

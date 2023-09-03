@@ -1,0 +1,142 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<!-- Identification of the module -->
+	<groupId>org.bpy.electronics.mc6809</groupId>
+	<artifactId>org.bpy.electronics.mc6809.parent</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<!-- Description of the organization -->
+	<organization>
+		<name>Patrick BRIAND</name>
+	</organization>
+
+	<!-- Developpers -->
+	<developers>
+		<developer>
+			<name>Patrick BRIAND</name>
+			<email>briand.patrick@free.fr</email>
+			<roles>
+				<role>project leader</role>
+				<role>developer</role>
+				<role>tester</role>
+			</roles>
+			<timezone>Europe/Paris</timezone>
+		</developer>
+	</developers>
+
+	<!-- Contributors -->
+	<contributors>
+		<contributor>
+			<name>Patrick BRIAND</name>
+			<email>briand.patrick@free.fr</email>
+			<roles>
+				<role>decision team</role>
+			</roles>
+			<timezone>Europe/Paris</timezone>
+		</contributor>
+	</contributors>
+
+	<!-- Where to download all necessary files -->
+	<repositories>
+
+		<!-- Eclipse link -->
+ 		<repository>
+			<id>Eclipse-2021-09</id>
+			<url>http://download.eclipse.org/releases/2021-09</url>
+			<layout>p2</layout>
+		</repository>
+
+		<!-- Repository for the code coverage utilities -->
+<!--   		<repository>
+			<id>Jacoco</id>
+			<url>https://mvnrepository.com/artifact/org.jacoco/jacoco-maven-plugin</url>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>  -->
+
+		<!-- JRE repositary -->
+<!-- 		<repository>
+			<id>justj</id>
+			<url>https://download.eclipse.org/justj/jres/11/updates/release/latest/</url>
+			<layout>p2</layout>
+		</repository> -->
+
+	</repositories>
+
+	<!-- Properties -->
+	<properties>
+
+		<!-- Eclipse target version  -->
+		<eclipse.target.version>4.21.0</eclipse.target.version>
+
+		<!-- Source encoding -->
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Plugins versions settings -->
+		<tycho.version>3.0.1</tycho.version>
+		<tycho.surefire.version>3.0.1</tycho.surefire.version>
+
+	</properties>
+
+	<!-- Report generation (used by the goal site -->
+	<reporting>
+		<plugins>
+		</plugins>
+	</reporting>
+
+	<dependencyManagement>
+		<dependencies>
+		
+			<!-- https://mvnrepository.com/artifact/org.eclipse.tycho/tycho-p2-publisher-plugin -->
+			<dependency>
+			    <groupId>org.eclipse.tycho</groupId>
+			    <artifactId>tycho-p2-publisher-plugin</artifactId>
+			    <version>${tycho.version}</version>
+			</dependency>	
+		
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+
+		<!-- PLugins needed for the build -->
+		<pluginManagement>
+			<plugins>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+
+			<!-- Creates a jar-based plugin and attaches it as an artifact -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-packaging-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<archive>
+						<!-- which indicates whether the generated archive will contain the 
+							pom.xml and pom.properties file -->
+						<addMavenDescriptor>false</addMavenDescriptor>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<!-- Permet d'ajouter les fonctionalité de creation de plugins eclipse -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<extensions>true</extensions>
+			</plugin>
+
+		</plugins>
+	</build>
+</project>

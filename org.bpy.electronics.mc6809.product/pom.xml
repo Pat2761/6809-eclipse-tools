@@ -1,0 +1,84 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>org.bpy.electronics.mc6809.product</artifactId>
+	<packaging>eclipse-repository</packaging>
+
+	<parent>
+		<groupId>org.bpy.electronics.mc6809</groupId>
+		<artifactId>org.bpy.electronics.mc6809.parent</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+		<relativePath>../org.bpy.electronics.mc6809.build/parent/pom.xml</relativePath>
+	</parent>
+
+	<build>
+		<plugins>
+			<plugin>
+				<!--  For create a product  -->
+				<!-- https://www.eclipse.org/tycho/sitedocs/tycho-p2/tycho-p2-director-plugin/plugin-info.html -->
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-p2-director-plugin</artifactId>
+				<version>${tycho.version}</version>
+				<executions>
+					<execution>
+						<id>materialize-products</id>
+						<goals>
+							<!-- Creates product installations for the products
+							defined in the project. -->
+							<goal>materialize-products</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+			<plugin>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<version>1.7</version>
+				<executions>
+					<!--  copy the JRE in the product folder -->
+<!--					<execution>
+						<id>Add-Jre-11</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<copy
+									toDir="${project.build.directory}/products/org.bpy.score.product/win32/win32/x86_64/jre">
+									<fileset
+										dir="../org.bpy.score.feature/win32-64/jre" />
+								</copy>
+								<zip
+									basedir="${project.build.directory}/products/org.bpy.score.product/win32/win32/x86_64"
+									destfile="${project.build.directory}/products/ScoreKepperTool_${project.version}.zip"
+									excludes="p2/,artifacts.xml,eclipsec.exe,launcher.exe" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>Unzip-Application</id>
+						<phase>pre-integration-test</phase>
+						<configuration>
+							<target>
+								<delete
+									dir="E:/Perso/Dev/Download/perso/projet/StatcrewDelivery/European Scoring Tool For Baseball/eclipse" />
+								<unzip
+									src="${project.build.directory}/products/ScoreKepperTool_${project.version}.zip"
+									dest="E:/Perso/Dev/Download/perso/projet/StatcrewDelivery/European Scoring Tool For Baseball/eclipse" />
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+-->
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>
