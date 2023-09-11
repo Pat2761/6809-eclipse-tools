@@ -18,4 +18,4 @@ Require-Bundle: javax.inject;bundle-version="0.0.0",
 Automatic-Module-Name: org.bpy.electronics.mc6809.rcp
 Import-Package: javax.annotation;version="0.0.0"
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-16
+Bundle-RequiredExecutionEnvironment: JavaSE-17

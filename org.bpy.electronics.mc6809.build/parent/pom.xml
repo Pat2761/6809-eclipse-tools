@@ -45,8 +45,8 @@
 
 		<!-- Eclipse link -->
  		<repository>
-			<id>Eclipse-2021-09</id>
-			<url>http://download.eclipse.org/releases/2021-09</url>
+			<id>Eclipse-2022-09</id>
+			<url>http://download.eclipse.org/releases/2022-09</url>
 			<layout>p2</layout>
 		</repository>
 
@@ -75,7 +75,7 @@
 	<properties>
 
 		<!-- Eclipse target version  -->
-		<eclipse.target.version>4.21.0</eclipse.target.version>
+		<eclipse.target.version>4.25.0</eclipse.target.version>
 
 		<!-- Source encoding -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -135,6 +135,32 @@
 				<artifactId>tycho-maven-plugin</artifactId>
 				<version>${tycho.version}</version>
 				<extensions>true</extensions>
+			</plugin>
+
+			<!--  Definition of the Eclipse platform for the applciation -->
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
+				<version>${tycho.version}</version>
+				<configuration>
+					<executionEnvironment>JavaSE-17</executionEnvironment>
+					<resolver>p2</resolver>
+					<pomDependencies>consider</pomDependencies>
+					<target>
+						<artifact>
+							<groupId>org.bpy.electronics.mc6809</groupId>
+							<artifactId>Eclipse-2022-09</artifactId>
+							<version>${eclipse.target.version}</version>
+						</artifact>
+					</target>
+					<environments>
+						<environment>
+							<os>win32</os>
+							<ws>win32</ws>
+							<arch>x86_64</arch>
+						</environment>
+					</environments>
+				</configuration>
 			</plugin>
 
 		</plugins>
