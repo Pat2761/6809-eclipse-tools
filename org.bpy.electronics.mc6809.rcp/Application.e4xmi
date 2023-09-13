@@ -11,6 +11,7 @@
             <children xsi:type="advanced:Placeholder" xmi:id="_YpblEFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.editorss" ref="_4YNgcFIyEe6eVsmWy5WKeQ"/>
             <children xsi:type="basic:PartStack" xmi:id="_cJa6AFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheetMStack" containerData="3400" selectedElement="_idjxkFIzEe6eVsmWy5WKeQ">
               <children xsi:type="advanced:Placeholder" xmi:id="_idjxkFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheet" ref="_-3zaEFIyEe6eVsmWy5WKeQ"/>
+              <children xsi:type="advanced:Placeholder" xmi:id="_9ti9sFJDEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.console.ConsoleView" ref="_tid2MFJDEe6NsMlOQk5rKQ"/>
             </children>
           </children>
         </children>
@@ -41,6 +42,7 @@
       </menus>
       <toolbar xmi:id="_FYguAFIzEe6eVsmWy5WKeQ" elementId="org.bpy.electronics.mc6809.rcp.toolbar.0"/>
     </sharedElements>
+    <sharedElements xsi:type="basic:Part" xmi:id="_tid2MFJDEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.console.ConsoleView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Console" iconURI="platform:/plugin/org.eclipse.ui.console//icons/full/cview16/console_view.gif"/>
   </children>
   <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.quitCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.openCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -58,6 +60,7 @@
   </rootContext>
   <descriptors xmi:id="_NEFIAFIyEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources//icons/full/eview16/resource_persp.gif" category="org.eclipse.e4.primaryNavigationStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
   <descriptors xmi:id="_rMtTAFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheet" label="Properties" iconURI="platform:/plugin/org.eclipse.ui.views//icons/full/eview16/prop_ps.gif" allowMultiple="true" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
+  <descriptors xmi:id="_eiFAMFJDEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.console.ConsoleView" label="Console" iconURI="platform:/plugin/org.eclipse.ui.console//icons/full/cview16/console_view.gif" allowMultiple="true" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
   <commands xmi:id="_6wlLfMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
   <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand"/>
   <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
