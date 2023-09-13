@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.window.main" label="MC6809 Eclipse Toolkit" width="500" height="400">
-    <children xsi:type="basic:PartSashContainer" xmi:id="_6wlLksgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.partsashcontainer.sample">
-      <children xsi:type="basic:PartStack" xmi:id="_6wlLk8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.partstack.sample">
-        <children xsi:type="basic:Part" xmi:id="_6wlLlMgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.part.sample" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.parts.SamplePart" label="Sample Part" iconURI="platform:/plugin/org.bpy.electronics.mc6809.rcp/icons/home.png"/>
+<application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.window.main" label="MC6809 Eclipse Toolkit" width="800" height="600">
+    <children xsi:type="advanced:PerspectiveStack" xmi:id="_68UgIFIrEe6eVsmWy5WKeQ" elementId="org.bpy.electronics.mc6809.rcp.perspectivestack.0">
+      <children xsi:type="advanced:Perspective" xmi:id="_8QPmIFIrEe6eVsmWy5WKeQ" elementId="6809.perspective" selectedElement="_H9jIoFCpEe6JtMa2YiVEcg" label="MC6809">
+        <children xsi:type="basic:PartSashContainer" xmi:id="_H9jIoFCpEe6JtMa2YiVEcg" elementId="org.bpy.electronics.mc6809.rcp.partsashcontainer.0" containerData="8000" horizontal="true">
+          <children xsi:type="basic:PartStack" xmi:id="_twmokFIyEe6eVsmWy5WKeQ" elementId="org.bpy.electronics.mc6809.rcp.partstack.0" containerData="3400">
+            <children xsi:type="advanced:Placeholder" xmi:id="_vtVbAFIyEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.navigator.ProjectExplorer" ref="_uw5FEFIrEe6eVsmWy5WKeQ"/>
+          </children>
+          <children xsi:type="basic:PartSashContainer" xmi:id="_zuwCAFIyEe6eVsmWy5WKeQ" elementId="">
+            <children xsi:type="advanced:Placeholder" xmi:id="_YpblEFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.editorss" ref="_4YNgcFIyEe6eVsmWy5WKeQ"/>
+            <children xsi:type="basic:PartStack" xmi:id="_cJa6AFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheetMStack" containerData="3400" selectedElement="_idjxkFIzEe6eVsmWy5WKeQ">
+              <children xsi:type="advanced:Placeholder" xmi:id="_idjxkFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheet" ref="_-3zaEFIyEe6eVsmWy5WKeQ"/>
+            </children>
+          </children>
+        </children>
       </children>
     </children>
     <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">
@@ -16,12 +26,21 @@
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
       </children>
     </mainMenu>
-    <trimBars xmi:id="_6wlLlcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.trimbar.top">
-      <children xsi:type="menu:ToolBar" xmi:id="_6wlLlsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.toolbar">
-        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLmMgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.trimbar.top.save" iconURI="platform:/plugin/org.bpy.electronics.mc6809.rcp/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledToolItem" xmi:id="_6wlLl8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.trimbar.top.open" iconURI="platform:/plugin/org.bpy.electronics.mc6809.rcp/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-      </children>
-    </trimBars>
+    <sharedElements xsi:type="basic:Part" xmi:id="_uw5FEFIrEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources//icons/full/eview16/resource_persp.gif">
+      <menus xmi:id="_Pt5NcFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.navigator.ProjectExplorer">
+        <tags>ViewMenu</tags>
+      </menus>
+      <menus xsi:type="menu:PopupMenu" xmi:id="_Uf6K8FIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.navigator.ProjectExplorer#PopupMenu"/>
+    </sharedElements>
+    <sharedElements xsi:type="advanced:Area" xmi:id="_4YNgcFIyEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.editorss">
+      <children xsi:type="basic:PartStack" xmi:id="_7kOwgFIyEe6eVsmWy5WKeQ" elementId="org.eclipse.e4.primaryDataStack"/>
+    </sharedElements>
+    <sharedElements xsi:type="basic:Part" xmi:id="_-3zaEFIyEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheet" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Properties" iconURI="platform:/plugin/org.eclipse.ui.views//icons/full/eview16/prop_ps.gif" closeable="true">
+      <menus xmi:id="_JjYzAFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheet">
+        <tags>ViewMenu</tags>
+      </menus>
+      <toolbar xmi:id="_FYguAFIzEe6eVsmWy5WKeQ" elementId="org.bpy.electronics.mc6809.rcp.toolbar.0"/>
+    </sharedElements>
   </children>
   <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.quitCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.openCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -37,6 +56,8 @@
     <children xmi:id="_6wlLesgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.window" name="In Windows"/>
     <children xmi:id="_6wlLe8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialog" name="In Dialogs"/>
   </rootContext>
+  <descriptors xmi:id="_NEFIAFIyEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.navigator.ProjectExplorer" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui.navigator.resources//icons/full/eview16/resource_persp.gif" category="org.eclipse.e4.primaryNavigationStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
+  <descriptors xmi:id="_rMtTAFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheet" label="Properties" iconURI="platform:/plugin/org.eclipse.ui.views//icons/full/eview16/prop_ps.gif" allowMultiple="true" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
   <commands xmi:id="_6wlLfMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
   <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand"/>
   <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>

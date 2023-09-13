@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.4"?>
 <plugin>
+   <extension
+         id="application"
+         point="org.eclipse.core.runtime.applications">
+      <application>
+         <run
+               class="org.bpy.electronics.mc6809.rcp.Application">
+         </run>
+      </application>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.bpy.electronics.mc6809.rcp.Perspective"
+            id="6809.perspective"
+            name="MC6809">
+      </perspective>
+   </extension>
 
    <extension
          id="product"
          point="org.eclipse.core.runtime.products">
       <product
-            application="org.eclipse.e4.ui.workbench.swt.E4Application"
-            name="org.bpy.electronics.mc6809.rcp">
+            application="org.bpy.electronics.mc6809.rcp.application"
+            name="MC6809 Toolkit">
          <property
                name="appName"
-               value="org.bpy.electronics.mc6809.rcp">
+               value="MC6809 Toolkit">
+         </property>
+         <property
+               name="applicationXMI"
+               value="org.bpy.electronics.mc6809.rcp/Application.e4xmi">
          </property>
       </product>
    </extension>
