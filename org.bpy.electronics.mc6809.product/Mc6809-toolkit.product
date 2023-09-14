@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="org.bpy.electronics.mc6809.rcp" uid="Mc6809-toolkit" id="org.bpy.electronics.mc6809.rcp.product" application="org.eclipse.e4.ui.workbench.swt.E4Application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true" autoIncludeRequirements="true">
+<product name="org.bpy.electronics.mc6809.rcp" uid="Mc6809-toolkit" id="org.bpy.electronics.mc6809.rcp.product" application="org.bpy.electronics.mc6809.rcp.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true" autoIncludeRequirements="true">
 
    <configIni use="default">
    </configIni>
 
    <launcherArgs>
-      <vmArgs>-Dorg.eclipse.swt.graphics.Resource.reportNonDisposed=true
-      </vmArgs>
+      <programArgs>-clearPersistedState
+      </programArgs>
       <vmArgsMac>-XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
       </vmArgsMac>
    </launcherArgs>
 
    <windowImages/>
-
 
    <launcher name="MC6809-toolkit">
       <win useIco="false">
@@ -39,7 +38,6 @@
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.i18n"/>
       <plugin id="org.apache.batik.util"/>
-      <plugin id="org.apache.commons.io"/>
       <plugin id="org.apache.commons.jxpath"/>
       <plugin id="org.apache.commons.logging"/>
       <plugin id="org.apache.felix.gogo.command"/>
@@ -165,6 +163,8 @@
       <plugin id="org.apache.felix.scr" autoStart="true" startLevel="1" />
       <plugin id="org.eclipse.core.runtime" autoStart="true" startLevel="0" />
       <plugin id="org.eclipse.equinox.common" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.event" autoStart="true" startLevel="2" />
+      <plugin id="org.eclipse.equinox.simpleconfigurator" autoStart="true" startLevel="1" />
       <plugin id="org.eclipse.osgi" autoStart="true" startLevel="1" />
    </configurations>
 

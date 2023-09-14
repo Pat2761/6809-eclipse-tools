@@ -24,10 +24,10 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="org.bpy.electronics.mc6809.rcp.application"
-            name="MC6809 Toolkit">
+            name="org.bpy.electronics.mc6809.rcp">
          <property
                name="appName"
-               value="MC6809 Toolkit">
+               value="org.bpy.electronics.mc6809.rcp">
          </property>
          <property
                name="applicationXMI"

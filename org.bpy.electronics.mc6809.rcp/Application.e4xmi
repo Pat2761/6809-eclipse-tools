@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <application:Application xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:advanced="http://www.eclipse.org/ui/2010/UIModel/application/ui/advanced" xmlns:application="http://www.eclipse.org/ui/2010/UIModel/application" xmlns:basic="http://www.eclipse.org/ui/2010/UIModel/application/ui/basic" xmlns:menu="http://www.eclipse.org/ui/2010/UIModel/application/ui/menu" xmi:id="_6wlLcMgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.application" bindingContexts="_6wlLecgZEeSyMNYR5xypkQ">
-  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.window.main" label="MC6809 Eclipse Toolkit" width="800" height="600">
+  <children xsi:type="basic:TrimmedWindow" xmi:id="_6wlLccgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.window.main" label="MC6809 Eclipse Toolkit" width="1600" height="1200">
     <children xsi:type="advanced:PerspectiveStack" xmi:id="_68UgIFIrEe6eVsmWy5WKeQ" elementId="org.bpy.electronics.mc6809.rcp.perspectivestack.0">
-      <children xsi:type="advanced:Perspective" xmi:id="_8QPmIFIrEe6eVsmWy5WKeQ" elementId="6809.perspective" selectedElement="_H9jIoFCpEe6JtMa2YiVEcg" label="MC6809">
+      <children xsi:type="advanced:Perspective" xmi:id="_8QPmIFIrEe6eVsmWy5WKeQ" elementId="6809.perspective" selectedElement="_H9jIoFCpEe6JtMa2YiVEcg" label="MC6809 Edition">
         <children xsi:type="basic:PartSashContainer" xmi:id="_H9jIoFCpEe6JtMa2YiVEcg" elementId="org.bpy.electronics.mc6809.rcp.partsashcontainer.0" containerData="8000" horizontal="true">
-          <children xsi:type="basic:PartStack" xmi:id="_twmokFIyEe6eVsmWy5WKeQ" elementId="org.bpy.electronics.mc6809.rcp.partstack.0" containerData="3400">
+          <children xsi:type="basic:PartStack" xmi:id="_twmokFIyEe6eVsmWy5WKeQ" elementId="org.bpy.electronics.mc6809.rcp.partstack.0" containerData="2000">
             <children xsi:type="advanced:Placeholder" xmi:id="_vtVbAFIyEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.navigator.ProjectExplorer" ref="_uw5FEFIrEe6eVsmWy5WKeQ"/>
           </children>
-          <children xsi:type="basic:PartSashContainer" xmi:id="_zuwCAFIyEe6eVsmWy5WKeQ" elementId="">
+          <children xsi:type="basic:PartSashContainer" xmi:id="_zuwCAFIyEe6eVsmWy5WKeQ" elementId="" containerData="8000">
             <children xsi:type="advanced:Placeholder" xmi:id="_YpblEFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.editorss" ref="_4YNgcFIyEe6eVsmWy5WKeQ"/>
             <children xsi:type="basic:PartStack" xmi:id="_cJa6AFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheetMStack" containerData="3400" selectedElement="_idjxkFIzEe6eVsmWy5WKeQ">
               <children xsi:type="advanced:Placeholder" xmi:id="_idjxkFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheet" ref="_-3zaEFIyEe6eVsmWy5WKeQ"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_9ti9sFJDEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.console.ConsoleView" ref="_tid2MFJDEe6NsMlOQk5rKQ"/>
               <children xsi:type="advanced:Placeholder" xmi:id="_lr-6wFJGEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.views.ProblemView" ref="_a5m9UFJGEe6NsMlOQk5rKQ"/>
             </children>
+          </children>
+          <children xsi:type="basic:PartStack" xmi:id="_kVTvYFLNEe6XGazS2-TUJQ" elementId="org.bpy.electronics.mc6809.rcp.partstack.1" containerData="2000">
+            <children xsi:type="advanced:Placeholder" xmi:id="_e8NuUFLOEe6XGazS2-TUJQ" elementId="org.eclipse.ui.views.ContentOutline" ref="_XpOB0FLOEe6XGazS2-TUJQ"/>
           </children>
         </children>
       </children>
@@ -45,6 +48,7 @@
     </sharedElements>
     <sharedElements xsi:type="basic:Part" xmi:id="_tid2MFJDEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.console.ConsoleView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Console" iconURI="platform:/plugin/org.eclipse.ui.console/icons/full/cview16/console_view.png"/>
     <sharedElements xsi:type="basic:Part" xmi:id="_a5m9UFJGEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui/icons/full/eview16/problems_view.png"/>
+    <sharedElements xsi:type="basic:Part" xmi:id="_XpOB0FLOEe6XGazS2-TUJQ" elementId="org.eclipse.ui.views.ContentOutline" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Outline" iconURI="platform:/plugin/org.eclipse.ui.views/icons/full/eview16/outline_co.png"/>
   </children>
   <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.quitCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.openCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -64,6 +68,7 @@
   <descriptors xmi:id="_rMtTAFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.views.PropertySheet" label="Properties" iconURI="platform:/plugin/org.eclipse.ui/icons/full/eview16/prop_ps.png" allowMultiple="true" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
   <descriptors xmi:id="_eiFAMFJDEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.console.ConsoleView" label="Console" iconURI="platform:/plugin/org.eclipse.ui.console/icons/full/cview16/console_view.png" allowMultiple="true" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
   <descriptors xmi:id="_viFvIFJEEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.views.ProblemView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui/icons/full/eview16/problems_view.png" allowMultiple="true" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
+  <descriptors xmi:id="_ERNEQFLOEe6XGazS2-TUJQ" elementId="org.eclipse.ui.views.ContentOutline" label="Outline" iconURI="platform:/plugin/org.eclipse.ui.views/icons/full/eview16/outline_co.png" allowMultiple="true" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
   <commands xmi:id="_6wlLfMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
   <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand"/>
   <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="MC6809 Toolkit" id="org.bpy.electronics.mc6809.rcp.product" application="org.bpy.electronics.mc6809.rcp.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true" autoIncludeRequirements="true">
+<product name="MC6809 Toolkit" uid="Mc6809-toolkit" id="org.bpy.electronics.mc6809.rcp.product" application="org.bpy.electronics.mc6809.rcp.application" version="1.0.0.qualifier" useFeatures="false" includeLaunchers="true" autoIncludeRequirements="true">
 
    <configIni use="default">
    </configIni>
