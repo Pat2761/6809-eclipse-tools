@@ -19,12 +19,8 @@
 		<module>../org.bpy.electronics.mc6809.target</module>  
 		<module>../org.bpy.electronics.mc6809.rcp</module>
 		<module>../org.bpy.electronics.mc6809.feature</module>
+		<module>../org.bpy.electronics.mc6809.assembler</module>
 	</modules>
 
-	<!-- Dependency management -->
-	<dependencyManagement>
-		<dependencies>
-		</dependencies>
-	</dependencyManagement>
 	
 </project>

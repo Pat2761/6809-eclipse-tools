@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="windows-1252"?>
+<?eclipse version="3.0"?>
+<plugin>
+	<extension point="org.eclipse.emf.ecore.generated_package">
+		<package
+			uri = "http://www.bpy.org/electronics/mc6809/assembler/Assembler"
+			class = "org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage"
+			genModel = "model/generated/Assembler.genmodel" />
+	</extension>
+</plugin>

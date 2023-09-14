@@ -1,0 +1,9 @@
+grammar org.bpy.electronics.mc6809.assembler.Assembler with org.eclipse.xtext.common.Terminals
+
+generate assembler "http://www.bpy.org/electronics/mc6809/assembler/Assembler"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
