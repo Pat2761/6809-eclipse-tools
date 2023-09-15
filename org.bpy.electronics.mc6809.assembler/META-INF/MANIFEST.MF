@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Automatic-Module-Name: org.bpy.electronics.mc6809.assembler
 Bundle-ManifestVersion: 2
 Bundle-Name: org.bpy.electronics.mc6809.assembler
-Bundle-Vendor: My Company
+Bundle-Vendor: Patrick BRIAND
 Bundle-Version: 1.0.0.qualifier
 Bundle-SymbolicName: org.bpy.electronics.mc6809.assembler; singleton:=true
 Bundle-ActivationPolicy: lazy
@@ -15,15 +15,15 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Export-Package: org.bpy.electronics.mc6809.assembler.assembler.impl,
- org.bpy.electronics.mc6809.assembler.services,
- org.bpy.electronics.mc6809.assembler.serializer,
- org.bpy.electronics.mc6809.assembler.validation,
- org.bpy.electronics.mc6809.assembler.scoping,
+Export-Package: org.bpy.electronics.mc6809.assembler,
  org.bpy.electronics.mc6809.assembler.assembler,
- org.bpy.electronics.mc6809.assembler,
+ org.bpy.electronics.mc6809.assembler.assembler.impl,
  org.bpy.electronics.mc6809.assembler.assembler.util,
- org.bpy.electronics.mc6809.assembler.parser.antlr.internal,
+ org.bpy.electronics.mc6809.assembler.generator,
  org.bpy.electronics.mc6809.assembler.parser.antlr,
- org.bpy.electronics.mc6809.assembler.generator
+ org.bpy.electronics.mc6809.assembler.parser.antlr.internal,
+ org.bpy.electronics.mc6809.assembler.scoping,
+ org.bpy.electronics.mc6809.assembler.serializer,
+ org.bpy.electronics.mc6809.assembler.services,
+ org.bpy.electronics.mc6809.assembler.validation
 Import-Package: org.apache.log4j

@@ -14,13 +14,26 @@
 		<relativePath>./parent/pom.xml</relativePath>
 	</parent>
 	
+	<dependencies>
+	
+		<dependency>
+			<groupId>org.bpy.electronics.mc6809</groupId>
+			<artifactId>org.bpy.electronics.mc6809.assembler</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+
+	</dependencies>
+	
 	<modules>
 		<module>./parent</module>
 		<module>../org.bpy.electronics.mc6809.target</module>  
 		<module>../org.bpy.electronics.mc6809.rcp</module>
 		<module>../org.bpy.electronics.mc6809.feature</module>
 		<module>../org.bpy.electronics.mc6809.assembler</module>
+		<module>../org.bpy.electronics.mc6809.assembler.ide</module>
+		<module>../org.bpy.electronics.mc6809.assembler.tests</module>
+		<module>../org.bpy.electronics.mc6809.assembler.ui</module>
+		<module>../org.bpy.electronics.mc6809.assembler.ui.tests</module>
 	</modules>
-
 	
 </project>

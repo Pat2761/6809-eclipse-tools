@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.bpy.electronics.mc6809.assembler.ui.tests
+Bundle-ManifestVersion: 2
+Bundle-Name: org.bpy.electronics.mc6809.assembler.ui.tests
+Bundle-Vendor: Patrick BRIAND
+Bundle-Version: 1.0.0.qualifier
+Bundle-SymbolicName: org.bpy.electronics.mc6809.assembler.ui.tests; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: org.bpy.electronics.mc6809.assembler.ui,
+ org.junit;bundle-version="4.12.0",
+ org.eclipse.xtext.testing,
+ org.eclipse.xtext.xbase.testing,
+ org.eclipse.xtext.junit4,
+ org.eclipse.xtext.xbase.junit,
+ org.eclipse.core.runtime,
+ org.eclipse.xtext.ui.testing,
+ org.eclipse.ui.workbench;resolution:=optional
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Export-Package: org.bpy.electronics.mc6809.assembler.ui.tests;x-internal=true
