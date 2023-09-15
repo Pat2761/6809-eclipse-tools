@@ -23,9 +23,11 @@
     </children>
     <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">
       <children xsi:type="menu:Menu" xmi:id="_6wlLisgZEeSyMNYR5xypkQ" elementId="file" label="File">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_XnOzAFO5Ee6ggawT6I3rHw" elementId="org.bpy.electronics.mc6809.rcp.file.new" label="New" command="_z9CncFO4Ee6ggawT6I3rHw"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.file.open" label="Open" iconURI="platform:/plugin/org.bpy.electronics.mc6809.rcp/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjMgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.save" label="Save" iconURI="platform:/plugin/org.bpy.electronics.mc6809.rcp/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.quit" label="Quit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_6dDbAFO8Ee6ggawT6I3rHw" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.0"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.quit" label="Exit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
@@ -50,10 +52,11 @@
     <sharedElements xsi:type="basic:Part" xmi:id="_a5m9UFJGEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.views.ProblemView" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui/icons/full/eview16/problems_view.png"/>
     <sharedElements xsi:type="basic:Part" xmi:id="_XpOB0FLOEe6XGazS2-TUJQ" elementId="org.eclipse.ui.views.ContentOutline" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Outline" iconURI="platform:/plugin/org.eclipse.ui.views/icons/full/eview16/outline_co.png"/>
   </children>
+  <handlers xmi:id="_v3NagFO4Ee6ggawT6I3rHw" elementId="org.bpy.electronics.mc6809.rcp.handler.new" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.INewWizard" command="_z9CncFO4Ee6ggawT6I3rHw"/>
   <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.quitCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.openCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.saveCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.aboutCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.AboutHandler" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.aboutCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.AboutHandler" command="_z9CncFO4Ee6ggawT6I3rHw"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -69,6 +72,7 @@
   <descriptors xmi:id="_eiFAMFJDEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.console.ConsoleView" label="Console" iconURI="platform:/plugin/org.eclipse.ui.console/icons/full/cview16/console_view.png" allowMultiple="true" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
   <descriptors xmi:id="_viFvIFJEEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.views.ProblemView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui/icons/full/eview16/problems_view.png" allowMultiple="true" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
   <descriptors xmi:id="_ERNEQFLOEe6XGazS2-TUJQ" elementId="org.eclipse.ui.views.ContentOutline" label="Outline" iconURI="platform:/plugin/org.eclipse.ui.views/icons/full/eview16/outline_co.png" allowMultiple="true" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
+  <commands xmi:id="_z9CncFO4Ee6ggawT6I3rHw" elementId="org.eclipse.ui.newWizard" commandName="New" description="Open the New item wizard"/>
   <commands xmi:id="_6wlLfMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
   <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand"/>
   <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>

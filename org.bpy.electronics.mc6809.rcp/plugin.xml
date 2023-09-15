@@ -35,5 +35,15 @@
          </property>
       </product>
    </extension>
+   <extension
+         id="org.bpy.electronics.6809.project"
+         name="6809 project"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.bpy.electronics.mc6809.rcp.project.ProjectNature">
+         </run>
+      </runtime>
+   </extension>
 
 </plugin>

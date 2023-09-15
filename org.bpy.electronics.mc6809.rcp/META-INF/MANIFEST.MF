@@ -20,8 +20,11 @@ Require-Bundle: javax.inject;bundle-version="0.0.0",
  org.eclipse.ui.navigator.resources;bundle-version="3.8.400",
  org.eclipse.ui.ide;bundle-version="3.19.100",
  org.eclipse.ui.views;bundle-version="3.11.200",
- org.eclipse.ui.console;bundle-version="3.11.300"
+ org.eclipse.ui.console;bundle-version="3.11.300",
+ org.eclipse.ui.workbench;bundle-version="3.126.0.v20220823-0718",
+ org.eclipse.core.resources
 Automatic-Module-Name: org.bpy.electronics.mc6809.rcp
 Import-Package: javax.annotation;version="0.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-17
+
