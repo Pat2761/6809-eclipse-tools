@@ -25,8 +25,24 @@
       <children xsi:type="menu:Menu" xmi:id="_6wlLisgZEeSyMNYR5xypkQ" elementId="file" label="File">
         <children xsi:type="menu:HandledMenuItem" xmi:id="_XnOzAFO5Ee6ggawT6I3rHw" elementId="org.bpy.electronics.mc6809.rcp.file.new" label="New" command="_z9CncFO4Ee6ggawT6I3rHw"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.file.open" label="Open" iconURI="platform:/plugin/org.bpy.electronics.mc6809.rcp/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjMgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.save" label="Save" iconURI="platform:/plugin/org.bpy.electronics.mc6809.rcp/icons/save_edit.png" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_G6wHMFSAEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.openprojectfromfilesystem" label="Open project from file system" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/etool16/importdir_wiz.png" command="_RGBd0FR_Ee6TPtBXK_y6xg"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_J_yTkFSCEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.recentfiles" label="Recent files" command="_C32nkFSCEe6TPtBXK_y6xg"/>
         <children xsi:type="menu:MenuSeparator" xmi:id="_6dDbAFO8Ee6ggawT6I3rHw" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.0"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_M4BPgFSDEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.closeeditor" label="Close editor" command="__LVdEFSCEe6TPtBXK_y6xg"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_wv7uAFSDEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.closealleditors" label="Close all editors" command="_l-KNgFSDEe6TPtBXK_y6xg"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_5G6nEFSDEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.1"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_NxicAFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.save" label="Save" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/save_edit.png" command="_GbbKEFSEEe6TPtBXK_y6xg"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_gan3AFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.saveas" label="Save as" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/saveas_edit.png" command="_X6uSgFSEEe6TPtBXK_y6xg"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_yz1qAFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.saveall" label="Save all" iconURI="platform:/plugin/org.eclipse.ui/icons/full/dtool16/saveall_edit.png" command="_tjOsAFSEEe6TPtBXK_y6xg"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_EIPxEFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.3"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_FGpTAFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.rename" label="Rename" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/editor_area.png" command="_56eVgFSEEe6TPtBXK_y6xg"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_c15WkFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.refresh" label="Refresh" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/elcl16/refresh_nav.png" command="_XPiLAFSFEe6TPtBXK_y6xg"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_WQN4gFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.2"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_x9bJ8FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.import" label="Import" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/import_wiz.png" command="_ro6e8FSFEe6TPtBXK_y6xg"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_9_Ou8FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.export" label="Export" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/etool16/export_wiz.png" command="_4_tg8FSFEe6TPtBXK_y6xg"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_qfnUkFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.4"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_OcFi8FSGEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.properties" label="Properties" command="_KWe_gFSGEe6TPtBXK_y6xg"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_JeUocFSGEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.5"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.quit" label="Exit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
       </children>
       <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
@@ -53,14 +69,25 @@
     <sharedElements xsi:type="basic:Part" xmi:id="_XpOB0FLOEe6XGazS2-TUJQ" elementId="org.eclipse.ui.views.ContentOutline" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Outline" iconURI="platform:/plugin/org.eclipse.ui.views/icons/full/eview16/outline_co.png"/>
   </children>
   <handlers xmi:id="_v3NagFO4Ee6ggawT6I3rHw" elementId="org.bpy.electronics.mc6809.rcp.handler.new" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.INewWizard" command="_z9CncFO4Ee6ggawT6I3rHw"/>
-  <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.quitCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLgcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.openCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.OpenHandler" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-  <handlers xmi:id="_6wlLhMgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.saveCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.SaveHandler" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+  <handlers xmi:id="_v8jtIFR_Ee6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.openprojectfromfilesystem" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_RGBd0FR_Ee6TPtBXK_y6xg"/>
+  <handlers xmi:id="_SnizkFSCEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.recentfiles" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_C32nkFSCEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_F-XQEFSDEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.closeeditor" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="__LVdEFSCEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_qIXkIFSDEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.closealleditors" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_l-KNgFSDEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_6wlLfcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.quitCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.QuitHandler" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
   <handlers xmi:id="_6wlLh8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handler.aboutCommand" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.AboutHandler" command="_z9CncFO4Ee6ggawT6I3rHw"/>
+  <handlers xmi:id="_JouzkFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.save" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_GbbKEFSEEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_cZXBAFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.saveas" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_X6uSgFSEEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_wSyCgFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.saveall" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_tjOsAFSEEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_783rEFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.rename" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_56eVgFSEEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_ZeCp8FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.Refresh" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_XPiLAFSFEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_utS18FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.import" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_ro6e8FSFEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_7PADAFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.0" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_4_tg8FSFEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_Lv0xAFSGEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.1" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_KWe_gFSGEe6TPtBXK_y6xg"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-    <bindings xmi:id="_6wlLhcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.keybinding.m1s" keySequence="M1+S" command="_6wlLg8gZEeSyMNYR5xypkQ"/>
+    <bindings xmi:id="_6wlLhcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.keybinding.m1s" keySequence="M1+S"/>
     <bindings xmi:id="_6wlLiMgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.keybinding.m1a" keySequence="M1+A" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
   </bindingTables>
   <rootContext xmi:id="_6wlLecgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.contexts.dialogAndWindow" name="In Dialog and Windows">
@@ -73,10 +100,21 @@
   <descriptors xmi:id="_viFvIFJEEe6NsMlOQk5rKQ" elementId="org.eclipse.ui.views.ProblemView" label="Problems" iconURI="platform:/plugin/org.eclipse.ui/icons/full/eview16/problems_view.png" allowMultiple="true" category="org.eclipse.e4.secondaryDataStack" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
   <descriptors xmi:id="_ERNEQFLOEe6XGazS2-TUJQ" elementId="org.eclipse.ui.views.ContentOutline" label="Outline" iconURI="platform:/plugin/org.eclipse.ui.views/icons/full/eview16/outline_co.png" allowMultiple="true" closeable="true" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView"/>
   <commands xmi:id="_z9CncFO4Ee6ggawT6I3rHw" elementId="org.eclipse.ui.newWizard" commandName="New" description="Open the New item wizard"/>
+  <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand" description="Open a file"/>
+  <commands xmi:id="_RGBd0FR_Ee6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.openProjectFromFileSystem" commandName="Open Projects from file system" description="Open a project from the file system"/>
+  <commands xmi:id="_C32nkFSCEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.recentfiles" commandName="Recent file" description="Open a recent file"/>
   <commands xmi:id="_6wlLfMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.exit" commandName="quitCommand"/>
-  <commands xmi:id="_6wlLgMgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.open" commandName="openCommand"/>
-  <commands xmi:id="_6wlLg8gZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.file.save" commandName="saveCommand"/>
   <commands xmi:id="_6wlLhsgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.help.aboutAction" commandName="aboutCommand"/>
+  <commands xmi:id="__LVdEFSCEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.closeeditor" commandName="Close editor" description="Close the current editor"/>
+  <commands xmi:id="_l-KNgFSDEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.closealleditors" commandName="Close all editors" description="Close all open editors"/>
+  <commands xmi:id="_GbbKEFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.save" commandName="Save" description="Save an editor content"/>
+  <commands xmi:id="_X6uSgFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.saveas" commandName="Save as" description="Save an editor under an another name"/>
+  <commands xmi:id="_tjOsAFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.saveall" commandName="Save all" description="Save all modified editors"/>
+  <commands xmi:id="_56eVgFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.rename" commandName="Rename" description="Rrename a file"/>
+  <commands xmi:id="_XPiLAFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.refresh" commandName="Refresh"/>
+  <commands xmi:id="_ro6e8FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.import" commandName="Import" description="Import something"/>
+  <commands xmi:id="_4_tg8FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.export" commandName="export" description="Export something"/>
+  <commands xmi:id="_KWe_gFSGEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.properties" commandName="Properties"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
