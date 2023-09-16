@@ -45,7 +45,38 @@
         <children xsi:type="menu:MenuSeparator" xmi:id="_JeUocFSGEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.5"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.quit" label="Exit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
       </children>
+      <children xsi:type="menu:Menu" xmi:id="_Q_aj4FSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menu.edit" label="Edit">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_bA7FEFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.undo" label="Undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" command="_VhqAAFSdEe6mOd8G26vrew"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_qdAYkFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.redo" label="Redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" command="_mMygkFSdEe6mOd8G26vrew"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_uk0igFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.6"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_8OdoAFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.cut" label="Cut" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/cut_edit.png" command="_xvPQEFSdEe6mOd8G26vrew"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_GEt7cFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.copy" label="Copy" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/copy_edit.png" command="_BE-rAFSeEe6mOd8G26vrew"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_P9f-cFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.paste" label="Paste" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/paste_edit.png" command="_LAWvAFSeEe6mOd8G26vrew"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_VkPkgFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.7"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_bQPeAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.delete" label="Delete" iconURI="platform:/plugin/org.eclipse.ui/icons/full/obj16/delete_obj.png" command="_WYMxAFSeEe6mOd8G26vrew"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_lqIqAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.selectall" label="Select all" command="_gy2yAFSeEe6mOd8G26vrew"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_pH2HAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.8"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_xvmnAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.findreplace" label="Find/Replace" command="_p68-8FSeEe6mOd8G26vrew"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_Nuc3gFSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menu.search" label="Search">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_h01W8FSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.search" label="Search" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/etool16/search_src.png" command="_cFkHAFSfEe6mOd8G26vrew"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_u6io8FSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.searchfile" label="Search file" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/help_search.png" command="_pKCp8FSfEe6mOd8G26vrew"/>
+      </children>
+      <children xsi:type="menu:Menu" xmi:id="_M35NgFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menu.window" label="Window">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_WLXkAFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.showview" label="Show view" command="_RB2FcFSgEe6mOd8G26vrew"/>
+        <children xsi:type="menu:Menu" xmi:id="_bUG_cFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menu.perspective" label="Perspective">
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_0pghcFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.openperspective" label="Open perspective" command="_tvJ-cFSgEe6mOd8G26vrew"/>
+          <children xsi:type="menu:MenuSeparator" xmi:id="_AZ60cFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.10"/>
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_loNsgFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.resetperspective" label="Reset perspective" command="_gHCi8FSgEe6mOd8G26vrew"/>
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_Idvg8FShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.closeperspective" label="Close perspective" command="_DMcmcFShEe6mOd8G26vrew"/>
+          <children xsi:type="menu:HandledMenuItem" xmi:id="_SDTF8FShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.closeallperspectives" label="Close all perspectives" command="_M0mMcFShEe6mOd8G26vrew"/>
+        </children>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_XrBjcFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.11"/>
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_dm0McFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.preferences" label="Preferences" command="_Yzb9AFShEe6mOd8G26vrew"/>
+      </children>
       <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
+        <children xsi:type="menu:HandledMenuItem" xmi:id="_DLnVcFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.helpcontent" label="Help content" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/help_contents.png" command="_7238gFSfEe6mOd8G26vrew"/>
+        <children xsi:type="menu:MenuSeparator" xmi:id="_LEAOAFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.9"/>
         <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
       </children>
     </mainMenu>
@@ -82,8 +113,25 @@
   <handlers xmi:id="_783rEFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.rename" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_56eVgFSEEe6TPtBXK_y6xg"/>
   <handlers xmi:id="_ZeCp8FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.Refresh" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_XPiLAFSFEe6TPtBXK_y6xg"/>
   <handlers xmi:id="_utS18FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.import" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_ro6e8FSFEe6TPtBXK_y6xg"/>
-  <handlers xmi:id="_7PADAFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.0" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_4_tg8FSFEe6TPtBXK_y6xg"/>
-  <handlers xmi:id="_Lv0xAFSGEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.1" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_KWe_gFSGEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_7PADAFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.export" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_4_tg8FSFEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_Lv0xAFSGEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handler.properties" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_KWe_gFSGEe6TPtBXK_y6xg"/>
+  <handlers xmi:id="_X6oCgFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.undo" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_VhqAAFSdEe6mOd8G26vrew"/>
+  <handlers xmi:id="_nxkGAFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.redo" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_mMygkFSdEe6mOd8G26vrew"/>
+  <handlers xmi:id="_zzNS8FSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.cut" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_xvPQEFSdEe6mOd8G26vrew"/>
+  <handlers xmi:id="_C4t5gFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.copy" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_BE-rAFSeEe6mOd8G26vrew"/>
+  <handlers xmi:id="_Mx4XAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.paste" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_LAWvAFSeEe6mOd8G26vrew"/>
+  <handlers xmi:id="_XvU8AFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.delete" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_WYMxAFSeEe6mOd8G26vrew"/>
+  <handlers xmi:id="_ippUgFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.selectall" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_gy2yAFSeEe6mOd8G26vrew"/>
+  <handlers xmi:id="_sfOSgFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.findreplace" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_p68-8FSeEe6mOd8G26vrew"/>
+  <handlers xmi:id="_dMmAgFSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.search" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_cFkHAFSfEe6mOd8G26vrew"/>
+  <handlers xmi:id="_qaTX8FSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.searchfile" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_pKCp8FSfEe6mOd8G26vrew"/>
+  <handlers xmi:id="__gB0gFSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.helpcontent" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_7238gFSfEe6mOd8G26vrew"/>
+  <handlers xmi:id="_Sc8xgFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.showview" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_RB2FcFSgEe6mOd8G26vrew"/>
+  <handlers xmi:id="_iKgPgFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.resetperspective" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_gHCi8FSgEe6mOd8G26vrew"/>
+  <handlers xmi:id="_w9dtgFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.openperspective" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_tvJ-cFSgEe6mOd8G26vrew"/>
+  <handlers xmi:id="_E6T2cFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.closeperspective" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_DMcmcFShEe6mOd8G26vrew"/>
+  <handlers xmi:id="_OmgO8FShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.closeallperspectives" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_M0mMcFShEe6mOd8G26vrew"/>
+  <handlers xmi:id="_aPwKAFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handler.preferences" contributionURI="bundleclass://org.bpy.electronics.mc6809.rcp/org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler" command="_Yzb9AFShEe6mOd8G26vrew"/>
   <bindingTables xmi:id="_6wlLfsgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.bindingtable" bindingContext="_6wlLecgZEeSyMNYR5xypkQ">
     <bindings xmi:id="_6wlLf8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.keybinding.m1q" keySequence="M1+Q" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
     <bindings xmi:id="_6wlLgsgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.keybinding.m1o" keySequence="M1+O" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
@@ -115,6 +163,23 @@
   <commands xmi:id="_ro6e8FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.import" commandName="Import" description="Import something"/>
   <commands xmi:id="_4_tg8FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.export" commandName="export" description="Export something"/>
   <commands xmi:id="_KWe_gFSGEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.command.properties" commandName="Properties"/>
+  <commands xmi:id="_VhqAAFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.undo" commandName="Undo" description="for undo something"/>
+  <commands xmi:id="_mMygkFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.redo" commandName="Redo"/>
+  <commands xmi:id="_xvPQEFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.cut" commandName="Cut"/>
+  <commands xmi:id="_BE-rAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.copy" commandName="Copy"/>
+  <commands xmi:id="_LAWvAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.paste" commandName="Paste"/>
+  <commands xmi:id="_WYMxAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.delete" commandName="Delete"/>
+  <commands xmi:id="_gy2yAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.selectall" commandName="Select All"/>
+  <commands xmi:id="_p68-8FSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.findreplce" commandName="Find/Replace"/>
+  <commands xmi:id="_cFkHAFSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.search" commandName="Search"/>
+  <commands xmi:id="_pKCp8FSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.searchfile" commandName="Search file"/>
+  <commands xmi:id="_7238gFSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.helpcontent" commandName="Help content"/>
+  <commands xmi:id="_RB2FcFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.showview" commandName="Show view"/>
+  <commands xmi:id="_gHCi8FSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.resetperspective" commandName="Reset perspective"/>
+  <commands xmi:id="_tvJ-cFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.openperspective" commandName="Open perspective"/>
+  <commands xmi:id="_DMcmcFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.closeperspective" commandName="Close perspective"/>
+  <commands xmi:id="_M0mMcFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.closeallperspectives" commandName="Close all perspectives"/>
+  <commands xmi:id="_Yzb9AFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.preferences" commandName="Preferences"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
