@@ -6,8 +6,9 @@ package org.bpy.electronics.mc6809.assembler.serializer;
 import com.google.inject.Inject;
 import java.util.Set;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.Greeting;
+import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.services.AssemblerGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -33,11 +34,14 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == AssemblerPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case AssemblerPackage.GREETING:
-				sequence_Greeting(context, (Greeting) semanticObject); 
+			case AssemblerPackage.COMMENT_LINE:
+				sequence_CommentLine(context, (CommentLine) semanticObject); 
 				return; 
 			case AssemblerPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
+				return; 
+			case AssemblerPackage.SOURCE_LINE:
+				sequence_SourceLine(context, (SourceLine) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -47,19 +51,19 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Greeting returns Greeting
+	 *     CommentLine returns CommentLine
 	 *
 	 * Constraint:
-	 *     name=ID
+	 *     comment=SL_COMMENT
 	 * </pre>
 	 */
-	protected void sequence_Greeting(ISerializationContext context, Greeting semanticObject) {
+	protected void sequence_CommentLine(ISerializationContext context, CommentLine semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.GREETING__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.GREETING__NAME));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.COMMENT_LINE__COMMENT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.COMMENT_LINE__COMMENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getGreetingAccess().getNameIDTerminalRuleCall_1_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getCommentLineAccess().getCommentSL_COMMENTTerminalRuleCall_1_0(), semanticObject.getComment());
 		feeder.finish();
 	}
 	
@@ -70,10 +74,24 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Model returns Model
 	 *
 	 * Constraint:
-	 *     greetings+=Greeting+
+	 *     sourceLines+=SourceLine+
 	 * </pre>
 	 */
 	protected void sequence_Model(ISerializationContext context, Model semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SourceLine returns SourceLine
+	 *
+	 * Constraint:
+	 *     (emptyLine=EmptyLine | commentLine=CommentLine)
+	 * </pre>
+	 */
+	protected void sequence_SourceLine(ISerializationContext context, SourceLine semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

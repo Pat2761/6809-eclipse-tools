@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	</head>
+	<body>
+		<h4 id="equ-directive">EQU Directive</h4>
+		<p>The EQU directive is the equivalent of #define in C language. It allows you to define a predefined value for a label which will be used in the assembly code. It thus allows a value to be defined only once which can be used several times elsewhere. This avoids code errors by modifying this value wherever it is used.</p>
+		<p>Here is an example of using the EQU directive</p>
+		<pre><code>Mylabel      EQU    18</code></pre>
+		<p>In this case, each time we refer to myLabel, the essambler will replace it with the value 18.</p>
+	</body>
+</html>

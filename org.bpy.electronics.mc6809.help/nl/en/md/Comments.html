@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	</head>
+	<body>
+		<h3 id="the-comments">The comments</h3>
+		<p>In an assembly file, comments have no impact on the generated code. On the other hand, they are very useful for understanding the assembly code that has been written. In classic assembler, there are two common forms of comments.</p>
+		<ul>
+			<li>The first form allows the different blocks of assembly instructions to be separated and describes the function of these blocks. generally, they constitute an entire line of assembly code. In this case the line must start with a ';' as in the following example</li>
+		</ul>
+		<pre><code>; ---------------------------------------------------
+; this is an example
+; ---------------------------------------------------</code></pre>
+		<ul>
+			<li>The second form is a comment which is placed at the end of an instruction or directive. As in the first case, the comment begins with a ';'.</li>
+		</ul>
+		<pre><code>Label      EQU     18     ; so label is equal to 18</code></pre>
+		<ul>
+			<li>The last form is not strictly speaking a comment, but a way to make the assembly code more readable. This is the empty line which also allows you to separate the different parts of the assembly code.</li>
+		</ul>
+		<pre><code>Label      EQU     18     </code></pre>
+		<pre><code>Label2     EQU     19 
+
+</code></pre>
+	</body>
+</html>

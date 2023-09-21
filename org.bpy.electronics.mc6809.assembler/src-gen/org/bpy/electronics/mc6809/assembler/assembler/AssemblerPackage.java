@@ -68,13 +68,13 @@ public interface AssemblerPackage extends EPackage
   int MODEL = 0;
 
   /**
-   * The feature id for the '<em><b>Greetings</b></em>' containment reference list.
+   * The feature id for the '<em><b>Source Lines</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MODEL__GREETINGS = 0;
+  int MODEL__SOURCE_LINES = 0;
 
   /**
    * The number of structural features of the '<em>Model</em>' class.
@@ -86,32 +86,69 @@ public interface AssemblerPackage extends EPackage
   int MODEL_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.GreetingImpl <em>Greeting</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl <em>Source Line</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.GreetingImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getGreeting()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSourceLine()
    * @generated
    */
-  int GREETING = 1;
+  int SOURCE_LINE = 1;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' attribute.
+   * The feature id for the '<em><b>Empty Line</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GREETING__NAME = 0;
+  int SOURCE_LINE__EMPTY_LINE = 0;
 
   /**
-   * The number of structural features of the '<em>Greeting</em>' class.
+   * The feature id for the '<em><b>Comment Line</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int GREETING_FEATURE_COUNT = 1;
+  int SOURCE_LINE__COMMENT_LINE = 1;
+
+  /**
+   * The number of structural features of the '<em>Source Line</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SOURCE_LINE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommentLineImpl <em>Comment Line</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CommentLineImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCommentLine()
+   * @generated
+   */
+  int COMMENT_LINE = 2;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMENT_LINE__COMMENT = 0;
+
+  /**
+   * The number of structural features of the '<em>Comment Line</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMENT_LINE_FEATURE_COUNT = 1;
 
 
   /**
@@ -125,36 +162,68 @@ public interface AssemblerPackage extends EPackage
   EClass getModel();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.bpy.electronics.mc6809.assembler.assembler.Model#getGreetings <em>Greetings</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.bpy.electronics.mc6809.assembler.assembler.Model#getSourceLines <em>Source Lines</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Greetings</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Model#getGreetings()
+   * @return the meta object for the containment reference list '<em>Source Lines</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Model#getSourceLines()
    * @see #getModel()
    * @generated
    */
-  EReference getModel_Greetings();
+  EReference getModel_SourceLines();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Greeting <em>Greeting</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine <em>Source Line</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Greeting</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Greeting
+   * @return the meta object for class '<em>Source Line</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SourceLine
    * @generated
    */
-  EClass getGreeting();
+  EClass getSourceLine();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.Greeting#getName <em>Name</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getEmptyLine <em>Empty Line</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Greeting#getName()
-   * @see #getGreeting()
+   * @return the meta object for the attribute '<em>Empty Line</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getEmptyLine()
+   * @see #getSourceLine()
    * @generated
    */
-  EAttribute getGreeting_Name();
+  EAttribute getSourceLine_EmptyLine();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getCommentLine <em>Comment Line</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Comment Line</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getCommentLine()
+   * @see #getSourceLine()
+   * @generated
+   */
+  EReference getSourceLine_CommentLine();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.CommentLine <em>Comment Line</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Comment Line</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CommentLine
+   * @generated
+   */
+  EClass getCommentLine();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.CommentLine#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CommentLine#getComment()
+   * @see #getCommentLine()
+   * @generated
+   */
+  EAttribute getCommentLine_Comment();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -190,30 +259,56 @@ public interface AssemblerPackage extends EPackage
     EClass MODEL = eINSTANCE.getModel();
 
     /**
-     * The meta object literal for the '<em><b>Greetings</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Source Lines</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference MODEL__GREETINGS = eINSTANCE.getModel_Greetings();
+    EReference MODEL__SOURCE_LINES = eINSTANCE.getModel_SourceLines();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.GreetingImpl <em>Greeting</em>}' class.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl <em>Source Line</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.GreetingImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getGreeting()
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSourceLine()
      * @generated
      */
-    EClass GREETING = eINSTANCE.getGreeting();
+    EClass SOURCE_LINE = eINSTANCE.getSourceLine();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Empty Line</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute GREETING__NAME = eINSTANCE.getGreeting_Name();
+    EAttribute SOURCE_LINE__EMPTY_LINE = eINSTANCE.getSourceLine_EmptyLine();
+
+    /**
+     * The meta object literal for the '<em><b>Comment Line</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SOURCE_LINE__COMMENT_LINE = eINSTANCE.getSourceLine_CommentLine();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommentLineImpl <em>Comment Line</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CommentLineImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCommentLine()
+     * @generated
+     */
+    EClass COMMENT_LINE = eINSTANCE.getCommentLine();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COMMENT_LINE__COMMENT = eINSTANCE.getCommentLine_Comment();
 
   }
 

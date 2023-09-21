@@ -6,15 +6,14 @@ package org.bpy.electronics.mc6809.assembler.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
+import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
-import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.common.services.TerminalsGrammarAccess;
 import org.eclipse.xtext.service.AbstractElementFinder;
 import org.eclipse.xtext.service.GrammarProvider;
 
@@ -23,62 +22,116 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Model");
-		private final Assignment cGreetingsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cGreetingsGreetingParserRuleCall_0 = (RuleCall)cGreetingsAssignment.eContents().get(0);
+		private final Assignment cSourceLinesAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cSourceLinesSourceLineParserRuleCall_0 = (RuleCall)cSourceLinesAssignment.eContents().get(0);
 		
 		//Model:
-		//    greetings+=Greeting*;
+		//    sourceLines += SourceLine*
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//greetings+=Greeting*
-		public Assignment getGreetingsAssignment() { return cGreetingsAssignment; }
+		//sourceLines += SourceLine*
+		public Assignment getSourceLinesAssignment() { return cSourceLinesAssignment; }
 		
-		//Greeting
-		public RuleCall getGreetingsGreetingParserRuleCall_0() { return cGreetingsGreetingParserRuleCall_0; }
+		//SourceLine
+		public RuleCall getSourceLinesSourceLineParserRuleCall_0() { return cSourceLinesSourceLineParserRuleCall_0; }
 	}
-	public class GreetingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Greeting");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cHelloKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cExclamationMarkKeyword_2 = (Keyword)cGroup.eContents().get(2);
+	public class SourceLineElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SourceLine");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cEmptyLineAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cEmptyLineEmptyLineParserRuleCall_0_0 = (RuleCall)cEmptyLineAssignment_0.eContents().get(0);
+		private final Assignment cCommentLineAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cCommentLineCommentLineParserRuleCall_1_0 = (RuleCall)cCommentLineAssignment_1.eContents().get(0);
 		
-		//Greeting:
-		//    'Hello' name=ID '!';
+		//SourceLine:
+		//    emptyLine = EmptyLine |
+		//    commentLine = CommentLine
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Hello' name=ID '!'
+		//emptyLine = EmptyLine |
+		//commentLine = CommentLine
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//emptyLine = EmptyLine
+		public Assignment getEmptyLineAssignment_0() { return cEmptyLineAssignment_0; }
+		
+		//EmptyLine
+		public RuleCall getEmptyLineEmptyLineParserRuleCall_0_0() { return cEmptyLineEmptyLineParserRuleCall_0_0; }
+		
+		//commentLine = CommentLine
+		public Assignment getCommentLineAssignment_1() { return cCommentLineAssignment_1; }
+		
+		//CommentLine
+		public RuleCall getCommentLineCommentLineParserRuleCall_1_0() { return cCommentLineCommentLineParserRuleCall_1_0; }
+	}
+	public class CommentLineElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CommentLine");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final Assignment cCommentAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cCommentSL_COMMENTTerminalRuleCall_1_0 = (RuleCall)cCommentAssignment_1.eContents().get(0);
+		
+		//CommentLine :
+		//    WS? comment = SL_COMMENT
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//WS? comment = SL_COMMENT
 		public Group getGroup() { return cGroup; }
 		
-		//'Hello'
-		public Keyword getHelloKeyword_0() { return cHelloKeyword_0; }
+		//WS?
+		public RuleCall getWSTerminalRuleCall_0() { return cWSTerminalRuleCall_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//comment = SL_COMMENT
+		public Assignment getCommentAssignment_1() { return cCommentAssignment_1; }
 		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		//SL_COMMENT
+		public RuleCall getCommentSL_COMMENTTerminalRuleCall_1_0() { return cCommentSL_COMMENTTerminalRuleCall_1_0; }
+	}
+	public class EmptyLineElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.EmptyLine");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cCRTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
-		//'!'
-		public Keyword getExclamationMarkKeyword_2() { return cExclamationMarkKeyword_2; }
+		//EmptyLine:
+		//    WS? CR
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//WS? CR
+		public Group getGroup() { return cGroup; }
+		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_0() { return cWSTerminalRuleCall_0; }
+		
+		//CR
+		public RuleCall getCRTerminalRuleCall_1() { return cCRTerminalRuleCall_1; }
 	}
 	
 	
 	private final ModelElements pModel;
-	private final GreetingElements pGreeting;
+	private final SourceLineElements pSourceLine;
+	private final CommentLineElements pCommentLine;
+	private final EmptyLineElements pEmptyLine;
+	private final TerminalRule tSL_COMMENT;
+	private final TerminalRule tCR;
+	private final TerminalRule tWS;
 	
 	private final Grammar grammar;
-	
-	private final TerminalsGrammarAccess gaTerminals;
 
 	@Inject
-	public AssemblerGrammarAccess(GrammarProvider grammarProvider,
-			TerminalsGrammarAccess gaTerminals) {
+	public AssemblerGrammarAccess(GrammarProvider grammarProvider) {
 		this.grammar = internalFindGrammar(grammarProvider);
-		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
-		this.pGreeting = new GreetingElements();
+		this.pSourceLine = new SourceLineElements();
+		this.pCommentLine = new CommentLineElements();
+		this.pEmptyLine = new EmptyLineElements();
+		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SL_COMMENT");
+		this.tCR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CR");
+		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.WS");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -102,14 +155,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return grammar;
 	}
 	
-	
-	public TerminalsGrammarAccess getTerminalsGrammarAccess() {
-		return gaTerminals;
-	}
 
 	
 	//Model:
-	//    greetings+=Greeting*;
+	//    sourceLines += SourceLine*
+	//;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
@@ -118,51 +168,52 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getModelAccess().getRule();
 	}
 	
-	//Greeting:
-	//    'Hello' name=ID '!';
-	public GreetingElements getGreetingAccess() {
-		return pGreeting;
+	//SourceLine:
+	//    emptyLine = EmptyLine |
+	//    commentLine = CommentLine
+	//;
+	public SourceLineElements getSourceLineAccess() {
+		return pSourceLine;
 	}
 	
-	public ParserRule getGreetingRule() {
-		return getGreetingAccess().getRule();
+	public ParserRule getSourceLineRule() {
+		return getSourceLineAccess().getRule();
 	}
 	
-	//terminal ID: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
-	public TerminalRule getIDRule() {
-		return gaTerminals.getIDRule();
+	//CommentLine :
+	//    WS? comment = SL_COMMENT
+	//;
+	public CommentLineElements getCommentLineAccess() {
+		return pCommentLine;
 	}
 	
-	//terminal INT returns ecore::EInt: ('0'..'9')+;
-	public TerminalRule getINTRule() {
-		return gaTerminals.getINTRule();
+	public ParserRule getCommentLineRule() {
+		return getCommentLineAccess().getRule();
 	}
 	
-	//terminal STRING:
-	//            '"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' |
-	//            "'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
-	//        ;
-	public TerminalRule getSTRINGRule() {
-		return gaTerminals.getSTRINGRule();
+	//EmptyLine:
+	//    WS? CR
+	//;
+	public EmptyLineElements getEmptyLineAccess() {
+		return pEmptyLine;
 	}
 	
-	//terminal ML_COMMENT : '/*' -> '*/';
-	public TerminalRule getML_COMMENTRule() {
-		return gaTerminals.getML_COMMENTRule();
+	public ParserRule getEmptyLineRule() {
+		return getEmptyLineAccess().getRule();
 	}
 	
-	//terminal SL_COMMENT : '//' !('\n'|'\r')* ('\r'? '\n')?;
+	//terminal SL_COMMENT	: ';' .* CR;
 	public TerminalRule getSL_COMMENTRule() {
-		return gaTerminals.getSL_COMMENTRule();
+		return tSL_COMMENT;
 	}
 	
-	//terminal WS         : (' '|'\t'|'\r'|'\n')+;
+	//terminal CR         : ('\r'? '\n');
+	public TerminalRule getCRRule() {
+		return tCR;
+	}
+	
+	//terminal WS			: (' '|'\t')+;
 	public TerminalRule getWSRule() {
-		return gaTerminals.getWSRule();
-	}
-	
-	//terminal ANY_OTHER: .;
-	public TerminalRule getANY_OTHERRule() {
-		return gaTerminals.getANY_OTHERRule();
+		return tWS;
 	}
 }

@@ -31,9 +31,13 @@ public class AssemblerParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, AssemblerGrammarAccess grammarAccess) {
-			builder.put(grammarAccess.getGreetingAccess().getGroup(), "rule__Greeting__Group__0");
-			builder.put(grammarAccess.getModelAccess().getGreetingsAssignment(), "rule__Model__GreetingsAssignment");
-			builder.put(grammarAccess.getGreetingAccess().getNameAssignment_1(), "rule__Greeting__NameAssignment_1");
+			builder.put(grammarAccess.getSourceLineAccess().getAlternatives(), "rule__SourceLine__Alternatives");
+			builder.put(grammarAccess.getCommentLineAccess().getGroup(), "rule__CommentLine__Group__0");
+			builder.put(grammarAccess.getEmptyLineAccess().getGroup(), "rule__EmptyLine__Group__0");
+			builder.put(grammarAccess.getModelAccess().getSourceLinesAssignment(), "rule__Model__SourceLinesAssignment");
+			builder.put(grammarAccess.getSourceLineAccess().getEmptyLineAssignment_0(), "rule__SourceLine__EmptyLineAssignment_0");
+			builder.put(grammarAccess.getSourceLineAccess().getCommentLineAssignment_1(), "rule__SourceLine__CommentLineAssignment_1");
+			builder.put(grammarAccess.getCommentLineAccess().getCommentAssignment_1(), "rule__CommentLine__CommentAssignment_1");
 		}
 	}
 	
@@ -57,7 +61,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 
 	@Override
 	protected String[] getInitialHiddenTokens() {
-		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
+		return new String[] {  };
 	}
 
 	public AssemblerGrammarAccess getGrammarAccess() {

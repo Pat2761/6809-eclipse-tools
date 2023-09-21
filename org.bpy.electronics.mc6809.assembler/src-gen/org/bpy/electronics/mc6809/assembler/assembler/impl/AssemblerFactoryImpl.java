@@ -66,7 +66,8 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
     switch (eClass.getClassifierID())
     {
       case AssemblerPackage.MODEL: return createModel();
-      case AssemblerPackage.GREETING: return createGreeting();
+      case AssemblerPackage.SOURCE_LINE: return createSourceLine();
+      case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -90,10 +91,22 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public Greeting createGreeting()
+  public SourceLine createSourceLine()
   {
-    GreetingImpl greeting = new GreetingImpl();
-    return greeting;
+    SourceLineImpl sourceLine = new SourceLineImpl();
+    return sourceLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CommentLine createCommentLine()
+  {
+    CommentLineImpl commentLine = new CommentLineImpl();
+    return commentLine;
   }
 
   /**

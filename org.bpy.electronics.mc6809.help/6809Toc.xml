@@ -2,5 +2,18 @@
 <?NLS TYPE="org.eclipse.help.toc"?>
 
 <toc label="MC6809 Toolkit User Guider" topic="html/toc.html">
-	<link toc="maintoc.xml" />
+ <topic href="nl/en/md/ToBeWrite.html" label="The assembler">
+    <topic href="nl/en/md/ToBeWrite.html" label="Introduction">
+    </topic>
+    <topic href="nl/en/md/ToBeWrite.html" label="Language">
+       <topic href="nl/en/md/Comments.html" label="Comments">
+       </topic>
+       <topic href="nl/en/md/Directives.html" label="Directives">
+          <topic href="nl/en/md/Directives/equ.html" label="Equ directive">
+          </topic>
+       </topic>
+       <topic href="nl/en/md/ToBeWrite.html" label="Instructions">
+       </topic>
+    </topic>
+ </topic>
 </toc>

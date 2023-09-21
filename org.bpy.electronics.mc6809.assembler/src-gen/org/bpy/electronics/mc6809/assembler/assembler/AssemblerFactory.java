@@ -33,13 +33,22 @@ public interface AssemblerFactory extends EFactory
   Model createModel();
 
   /**
-   * Returns a new object of class '<em>Greeting</em>'.
+   * Returns a new object of class '<em>Source Line</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Greeting</em>'.
+   * @return a new object of class '<em>Source Line</em>'.
    * @generated
    */
-  Greeting createGreeting();
+  SourceLine createSourceLine();
+
+  /**
+   * Returns a new object of class '<em>Comment Line</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Comment Line</em>'.
+   * @generated
+   */
+  CommentLine createCommentLine();
 
   /**
    * Returns the package supported by this factory.

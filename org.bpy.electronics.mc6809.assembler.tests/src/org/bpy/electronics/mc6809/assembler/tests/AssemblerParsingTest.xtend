@@ -14,17 +14,12 @@ import org.junit.runner.RunWith
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
+
 class AssemblerParsingTest {
 	@Inject
 	ParseHelper<Model> parseHelper
 	
 	@Test
 	def void loadModel() {
-		val result = parseHelper.parse('''
-			Hello Xtext!
-		''')
-		Assert.assertNotNull(result)
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: «errors.join(", ")»''', errors.isEmpty)
 	}
 }

@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.Model#getGreetings <em>Greetings</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.Model#getSourceLines <em>Source Lines</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getModel()
@@ -26,15 +26,15 @@ import org.eclipse.emf.ecore.EObject;
 public interface Model extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Greetings</b></em>' containment reference list.
-   * The list contents are of type {@link org.bpy.electronics.mc6809.assembler.assembler.Greeting}.
+   * Returns the value of the '<em><b>Source Lines</b></em>' containment reference list.
+   * The list contents are of type {@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Greetings</em>' containment reference list.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getModel_Greetings()
+   * @return the value of the '<em>Source Lines</em>' containment reference list.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getModel_SourceLines()
    * @model containment="true"
    * @generated
    */
-  EList<Greeting> getGreetings();
+  EList<SourceLine> getSourceLines();
 
 } // Model

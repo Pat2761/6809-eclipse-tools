@@ -4,7 +4,7 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="maintoc.xml">
+            file="6809_assembler.xml">
       </toc>
       <toc
             file="6809Toc.xml"

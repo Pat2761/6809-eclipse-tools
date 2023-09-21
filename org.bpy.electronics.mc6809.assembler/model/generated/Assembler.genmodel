@@ -7,10 +7,14 @@
   <genPackages prefix="Assembler" basePackage="org.bpy.electronics.mc6809.assembler"
       disposableProviderFactory="true" fileExtensions="as9" ecorePackage="Assembler.ecore#/">
     <genClasses ecoreClass="Assembler.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Model/greetings"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Model/sourceLines"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//Greeting">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//Greeting/name"/>
+    <genClasses ecoreClass="Assembler.ecore#//SourceLine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SourceLine/emptyLine"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SourceLine/commentLine"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//CommentLine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CommentLine/comment"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

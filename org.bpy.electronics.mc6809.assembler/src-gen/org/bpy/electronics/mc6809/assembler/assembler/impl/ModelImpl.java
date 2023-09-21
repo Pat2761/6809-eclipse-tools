@@ -6,8 +6,8 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 import java.util.Collection;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.Greeting;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -29,7 +29,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ModelImpl#getGreetings <em>Greetings</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ModelImpl#getSourceLines <em>Source Lines</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,14 +37,14 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getGreetings() <em>Greetings</em>}' containment reference list.
+   * The cached value of the '{@link #getSourceLines() <em>Source Lines</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGreetings()
+   * @see #getSourceLines()
    * @generated
    * @ordered
    */
-  protected EList<Greeting> greetings;
+  protected EList<SourceLine> sourceLines;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,13 +73,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * @generated
    */
   @Override
-  public EList<Greeting> getGreetings()
+  public EList<SourceLine> getSourceLines()
   {
-    if (greetings == null)
+    if (sourceLines == null)
     {
-      greetings = new EObjectContainmentEList<Greeting>(Greeting.class, this, AssemblerPackage.MODEL__GREETINGS);
+      sourceLines = new EObjectContainmentEList<SourceLine>(SourceLine.class, this, AssemblerPackage.MODEL__SOURCE_LINES);
     }
-    return greetings;
+    return sourceLines;
   }
 
   /**
@@ -92,8 +92,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case AssemblerPackage.MODEL__GREETINGS:
-        return ((InternalEList<?>)getGreetings()).basicRemove(otherEnd, msgs);
+      case AssemblerPackage.MODEL__SOURCE_LINES:
+        return ((InternalEList<?>)getSourceLines()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -108,8 +108,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case AssemblerPackage.MODEL__GREETINGS:
-        return getGreetings();
+      case AssemblerPackage.MODEL__SOURCE_LINES:
+        return getSourceLines();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -125,9 +125,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case AssemblerPackage.MODEL__GREETINGS:
-        getGreetings().clear();
-        getGreetings().addAll((Collection<? extends Greeting>)newValue);
+      case AssemblerPackage.MODEL__SOURCE_LINES:
+        getSourceLines().clear();
+        getSourceLines().addAll((Collection<? extends SourceLine>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -143,8 +143,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case AssemblerPackage.MODEL__GREETINGS:
-        getGreetings().clear();
+      case AssemblerPackage.MODEL__SOURCE_LINES:
+        getSourceLines().clear();
         return;
     }
     super.eUnset(featureID);
@@ -160,8 +160,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case AssemblerPackage.MODEL__GREETINGS:
-        return greetings != null && !greetings.isEmpty();
+      case AssemblerPackage.MODEL__SOURCE_LINES:
+        return sourceLines != null && !sourceLines.isEmpty();
     }
     return super.eIsSet(featureID);
   }

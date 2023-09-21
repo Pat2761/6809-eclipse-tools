@@ -78,33 +78,33 @@ ruleModel returns [EObject current=null]
 	(
 		(
 			{
-				newCompositeNode(grammarAccess.getModelAccess().getGreetingsGreetingParserRuleCall_0());
+				newCompositeNode(grammarAccess.getModelAccess().getSourceLinesSourceLineParserRuleCall_0());
 			}
-			lv_greetings_0_0=ruleGreeting
+			lv_sourceLines_0_0=ruleSourceLine
 			{
 				if ($current==null) {
 					$current = createModelElementForParent(grammarAccess.getModelRule());
 				}
 				add(
 					$current,
-					"greetings",
-					lv_greetings_0_0,
-					"org.bpy.electronics.mc6809.assembler.Assembler.Greeting");
+					"sourceLines",
+					lv_sourceLines_0_0,
+					"org.bpy.electronics.mc6809.assembler.Assembler.SourceLine");
 				afterParserOrEnumRuleCall();
 			}
 		)
 	)*
 ;
 
-// Entry rule entryRuleGreeting
-entryRuleGreeting returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getGreetingRule()); }
-	iv_ruleGreeting=ruleGreeting
-	{ $current=$iv_ruleGreeting.current; }
+// Entry rule entryRuleSourceLine
+entryRuleSourceLine returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSourceLineRule()); }
+	iv_ruleSourceLine=ruleSourceLine
+	{ $current=$iv_ruleSourceLine.current; }
 	EOF;
 
-// Rule Greeting
-ruleGreeting returns [EObject current=null]
+// Rule SourceLine
+ruleSourceLine returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -112,45 +112,128 @@ ruleGreeting returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		otherlv_0='Hello'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getGreetingAccess().getHelloKeyword_0());
-		}
 		(
 			(
-				lv_name_1_0=RULE_ID
 				{
-					newLeafNode(lv_name_1_0, grammarAccess.getGreetingAccess().getNameIDTerminalRuleCall_1_0());
+					newCompositeNode(grammarAccess.getSourceLineAccess().getEmptyLineEmptyLineParserRuleCall_0_0());
 				}
+				lv_emptyLine_0_0=ruleEmptyLine
 				{
 					if ($current==null) {
-						$current = createModelElement(grammarAccess.getGreetingRule());
+						$current = createModelElementForParent(grammarAccess.getSourceLineRule());
 					}
-					setWithLastConsumed(
+					set(
 						$current,
-						"name",
-						lv_name_1_0,
-						"org.eclipse.xtext.common.Terminals.ID");
+						"emptyLine",
+						lv_emptyLine_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.EmptyLine");
+					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_2='!'
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSourceLineAccess().getCommentLineCommentLineParserRuleCall_1_0());
+				}
+				lv_commentLine_1_0=ruleCommentLine
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSourceLineRule());
+					}
+					set(
+						$current,
+						"commentLine",
+						lv_commentLine_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.CommentLine");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleCommentLine
+entryRuleCommentLine returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getCommentLineRule()); }
+	iv_ruleCommentLine=ruleCommentLine
+	{ $current=$iv_ruleCommentLine.current; }
+	EOF;
+
+// Rule CommentLine
+ruleCommentLine returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			this_WS_0=RULE_WS
+			{
+				newLeafNode(this_WS_0, grammarAccess.getCommentLineAccess().getWSTerminalRuleCall_0());
+			}
+		)?
+		(
+			(
+				lv_comment_1_0=RULE_SL_COMMENT
+				{
+					newLeafNode(lv_comment_1_0, grammarAccess.getCommentLineAccess().getCommentSL_COMMENTTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getCommentLineRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"comment",
+						lv_comment_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.SL_COMMENT");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleEmptyLine
+entryRuleEmptyLine returns [String current=null]:
+	{ newCompositeNode(grammarAccess.getEmptyLineRule()); }
+	iv_ruleEmptyLine=ruleEmptyLine
+	{ $current=$iv_ruleEmptyLine.current.getText(); }
+	EOF;
+
+// Rule EmptyLine
+ruleEmptyLine returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			this_WS_0=RULE_WS
+			{
+				$current.merge(this_WS_0);
+			}
+			{
+				newLeafNode(this_WS_0, grammarAccess.getEmptyLineAccess().getWSTerminalRuleCall_0());
+			}
+		)?
+		this_CR_1=RULE_CR
 		{
-			newLeafNode(otherlv_2, grammarAccess.getGreetingAccess().getExclamationMarkKeyword_2());
+			$current.merge(this_CR_1);
+		}
+		{
+			newLeafNode(this_CR_1, grammarAccess.getEmptyLineAccess().getCRTerminalRuleCall_1());
 		}
 	)
 ;
 
-RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+RULE_SL_COMMENT : ';' .* RULE_CR;
 
-RULE_INT : ('0'..'9')+;
+RULE_CR : '\r'? '\n';
 
-RULE_STRING : ('"' ('\\' .|~(('\\'|'"')))* '"'|'\'' ('\\' .|~(('\\'|'\'')))* '\'');
-
-RULE_ML_COMMENT : '/*' ( options {greedy=false;} : . )*'*/';
-
-RULE_SL_COMMENT : '//' ~(('\n'|'\r'))* ('\r'? '\n')?;
-
-RULE_WS : (' '|'\t'|'\r'|'\n')+;
-
-RULE_ANY_OTHER : .;
+RULE_WS : (' '|'\t')+;

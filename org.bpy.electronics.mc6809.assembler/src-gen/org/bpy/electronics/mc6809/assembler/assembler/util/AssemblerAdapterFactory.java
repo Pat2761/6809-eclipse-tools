@@ -81,9 +81,14 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createModelAdapter();
       }
       @Override
-      public Adapter caseGreeting(Greeting object)
+      public Adapter caseSourceLine(SourceLine object)
       {
-        return createGreetingAdapter();
+        return createSourceLineAdapter();
+      }
+      @Override
+      public Adapter caseCommentLine(CommentLine object)
+      {
+        return createCommentLineAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -123,16 +128,31 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Greeting <em>Greeting</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine <em>Source Line</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Greeting
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SourceLine
    * @generated
    */
-  public Adapter createGreetingAdapter()
+  public Adapter createSourceLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.CommentLine <em>Comment Line</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CommentLine
+   * @generated
+   */
+  public Adapter createCommentLineAdapter()
   {
     return null;
   }
