@@ -9,8 +9,29 @@ Model:
 ;
 	
 SourceLine:
+	assemblyLine = AssemblyLine | 
 	emptyLine = EmptyLine |
 	commentLine = CommentLine 
+;
+
+AssemblyLine:
+		(labelField = LabelField)? 
+		WS 
+		(command= Directive /* | command = Operation*/)
+		WS? 
+		(SL_COMMENT | CR) 
+;
+
+Directive : 
+	directive = EquDirective 
+;
+
+EquDirective:
+	'EQU' WS constant=SpecifiedValue
+;
+
+LabelField:
+	label = LABEL 
 ;
 
 CommentLine : 
@@ -21,6 +42,84 @@ EmptyLine:
 	WS? CR 
 ;
 
+SpecifiedValue:
+	{SpecifiedValue} value=Expression?
+;
+
+Expression:
+	addition=Addition
+;
+
+Addition returns Expression:
+	values+=Multiplication ('+' values+=Multiplication)*
+;
+
+Multiplication returns Expression:
+	values+=Division ('*' values+=Division)* 
+;
+
+Division returns Expressions:
+	values+=Soustraction ('/' values+=Soustraction)*
+;
+
+Soustraction returns Expression:
+	values+=Primary ('-' values+=Primary)*
+;
+
+Primary returns Expression:
+	expressionValue= ExpressionValue |
+	'(' expressionValue=Addition ')'
+;
+
+ExpressionValue:
+	expressionValue=BinaryeValue | 
+	expressionValue=OctalValue |
+	expressionValue=DecimelValue |
+	expressionValue=HexadecimalValue |
+	expressionValue=LabelValue |
+	expressionValue=AsciiValue |
+	expressionValue=ActualPosition
+;
+
+ActualPosition:
+	actualPosition = '*'
+;
+
+BinaryeValue:
+	(isNegative?='-')?
+	binaryValue = BINARY
+;
+
+OctalValue:
+	(isNegative?='-')?
+	octalValue=OCTAL
+;
+
+DecimelValue:
+	isNegative ?= '-'?
+	decimalValue=DECIMAL
+;
+
+HexadecimalValue:
+	isNegative ?= '-'?
+	hexadeciamlValue=HEXADECIMAL
+;
+
+AsciiValue:
+	asciiValue = ASCII
+;
+
+LabelValue:
+	label=LABEL
+;
+
+terminal HEXADECIMAL : '$' ('A'..'F'|'0'..'9')+ ;
+terminal BINARY : '%' ('0'..'1')+ ;
+terminal DECIMAL : ('0'..'9')+;
+terminal ASCII : '\''.+(WS | CR |'\'');
+terminal OCTAL: '@' ('0'..'7')+;
+
+terminal LABEL      : ('A'..'Z')('a'..'z' | 'A'..'Z' | '0'..'9' | '_' )+; 
 
 terminal SL_COMMENT	: ';' .* CR;
 terminal CR         : ('\r'? '\n');

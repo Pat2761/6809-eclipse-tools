@@ -87,10 +87,115 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.ASSEMBLY_LINE:
+      {
+        AssemblyLine assemblyLine = (AssemblyLine)theEObject;
+        T result = caseAssemblyLine(assemblyLine);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.DIRECTIVE:
+      {
+        Directive directive = (Directive)theEObject;
+        T result = caseDirective(directive);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.EQU_DIRECTIVE:
+      {
+        EquDirective equDirective = (EquDirective)theEObject;
+        T result = caseEquDirective(equDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.LABEL_FIELD:
+      {
+        LabelField labelField = (LabelField)theEObject;
+        T result = caseLabelField(labelField);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.COMMENT_LINE:
       {
         CommentLine commentLine = (CommentLine)theEObject;
         T result = caseCommentLine(commentLine);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.SPECIFIED_VALUE:
+      {
+        SpecifiedValue specifiedValue = (SpecifiedValue)theEObject;
+        T result = caseSpecifiedValue(specifiedValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.EXPRESSION:
+      {
+        Expression expression = (Expression)theEObject;
+        T result = caseExpression(expression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.EXPRESSIONS:
+      {
+        Expressions expressions = (Expressions)theEObject;
+        T result = caseExpressions(expressions);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.EXPRESSION_VALUE:
+      {
+        ExpressionValue expressionValue = (ExpressionValue)theEObject;
+        T result = caseExpressionValue(expressionValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.ACTUAL_POSITION:
+      {
+        ActualPosition actualPosition = (ActualPosition)theEObject;
+        T result = caseActualPosition(actualPosition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.BINARYE_VALUE:
+      {
+        BinaryeValue binaryeValue = (BinaryeValue)theEObject;
+        T result = caseBinaryeValue(binaryeValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.OCTAL_VALUE:
+      {
+        OctalValue octalValue = (OctalValue)theEObject;
+        T result = caseOctalValue(octalValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.DECIMEL_VALUE:
+      {
+        DecimelValue decimelValue = (DecimelValue)theEObject;
+        T result = caseDecimelValue(decimelValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.HEXADECIMAL_VALUE:
+      {
+        HexadecimalValue hexadecimalValue = (HexadecimalValue)theEObject;
+        T result = caseHexadecimalValue(hexadecimalValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.ASCII_VALUE:
+      {
+        AsciiValue asciiValue = (AsciiValue)theEObject;
+        T result = caseAsciiValue(asciiValue);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.LABEL_VALUE:
+      {
+        LabelValue labelValue = (LabelValue)theEObject;
+        T result = caseLabelValue(labelValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -131,6 +236,70 @@ public class AssemblerSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Assembly Line</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Assembly Line</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAssemblyLine(AssemblyLine object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDirective(Directive object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Equ Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Equ Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseEquDirective(EquDirective object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Label Field</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Label Field</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLabelField(LabelField object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Comment Line</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -142,6 +311,182 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCommentLine(CommentLine object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Specified Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Specified Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSpecifiedValue(SpecifiedValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpression(Expression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expressions</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expressions</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpressions(Expressions object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expression Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expression Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpressionValue(ExpressionValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Actual Position</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Actual Position</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseActualPosition(ActualPosition object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Binarye Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Binarye Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseBinaryeValue(BinaryeValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Octal Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Octal Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOctalValue(OctalValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Decimel Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Decimel Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDecimelValue(DecimelValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Hexadecimal Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Hexadecimal Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseHexadecimalValue(HexadecimalValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Ascii Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Ascii Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAsciiValue(AsciiValue object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Label Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Label Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseLabelValue(LabelValue object)
   {
     return null;
   }

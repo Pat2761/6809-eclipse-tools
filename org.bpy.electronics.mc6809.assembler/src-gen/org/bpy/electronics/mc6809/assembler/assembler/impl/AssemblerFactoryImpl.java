@@ -67,7 +67,22 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
     {
       case AssemblerPackage.MODEL: return createModel();
       case AssemblerPackage.SOURCE_LINE: return createSourceLine();
+      case AssemblerPackage.ASSEMBLY_LINE: return createAssemblyLine();
+      case AssemblerPackage.DIRECTIVE: return createDirective();
+      case AssemblerPackage.EQU_DIRECTIVE: return createEquDirective();
+      case AssemblerPackage.LABEL_FIELD: return createLabelField();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
+      case AssemblerPackage.SPECIFIED_VALUE: return createSpecifiedValue();
+      case AssemblerPackage.EXPRESSION: return createExpression();
+      case AssemblerPackage.EXPRESSIONS: return createExpressions();
+      case AssemblerPackage.EXPRESSION_VALUE: return createExpressionValue();
+      case AssemblerPackage.ACTUAL_POSITION: return createActualPosition();
+      case AssemblerPackage.BINARYE_VALUE: return createBinaryeValue();
+      case AssemblerPackage.OCTAL_VALUE: return createOctalValue();
+      case AssemblerPackage.DECIMEL_VALUE: return createDecimelValue();
+      case AssemblerPackage.HEXADECIMAL_VALUE: return createHexadecimalValue();
+      case AssemblerPackage.ASCII_VALUE: return createAsciiValue();
+      case AssemblerPackage.LABEL_VALUE: return createLabelValue();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -103,10 +118,190 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
+  public AssemblyLine createAssemblyLine()
+  {
+    AssemblyLineImpl assemblyLine = new AssemblyLineImpl();
+    return assemblyLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Directive createDirective()
+  {
+    DirectiveImpl directive = new DirectiveImpl();
+    return directive;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EquDirective createEquDirective()
+  {
+    EquDirectiveImpl equDirective = new EquDirectiveImpl();
+    return equDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LabelField createLabelField()
+  {
+    LabelFieldImpl labelField = new LabelFieldImpl();
+    return labelField;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public CommentLine createCommentLine()
   {
     CommentLineImpl commentLine = new CommentLineImpl();
     return commentLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SpecifiedValue createSpecifiedValue()
+  {
+    SpecifiedValueImpl specifiedValue = new SpecifiedValueImpl();
+    return specifiedValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Expression createExpression()
+  {
+    ExpressionImpl expression = new ExpressionImpl();
+    return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Expressions createExpressions()
+  {
+    ExpressionsImpl expressions = new ExpressionsImpl();
+    return expressions;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ExpressionValue createExpressionValue()
+  {
+    ExpressionValueImpl expressionValue = new ExpressionValueImpl();
+    return expressionValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ActualPosition createActualPosition()
+  {
+    ActualPositionImpl actualPosition = new ActualPositionImpl();
+    return actualPosition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public BinaryeValue createBinaryeValue()
+  {
+    BinaryeValueImpl binaryeValue = new BinaryeValueImpl();
+    return binaryeValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public OctalValue createOctalValue()
+  {
+    OctalValueImpl octalValue = new OctalValueImpl();
+    return octalValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DecimelValue createDecimelValue()
+  {
+    DecimelValueImpl decimelValue = new DecimelValueImpl();
+    return decimelValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public HexadecimalValue createHexadecimalValue()
+  {
+    HexadecimalValueImpl hexadecimalValue = new HexadecimalValueImpl();
+    return hexadecimalValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AsciiValue createAsciiValue()
+  {
+    AsciiValueImpl asciiValue = new AsciiValueImpl();
+    return asciiValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LabelValue createLabelValue()
+  {
+    LabelValueImpl labelValue = new LabelValueImpl();
+    return labelValue;
   }
 
   /**

@@ -42,6 +42,42 @@ public interface AssemblerFactory extends EFactory
   SourceLine createSourceLine();
 
   /**
+   * Returns a new object of class '<em>Assembly Line</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Assembly Line</em>'.
+   * @generated
+   */
+  AssemblyLine createAssemblyLine();
+
+  /**
+   * Returns a new object of class '<em>Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Directive</em>'.
+   * @generated
+   */
+  Directive createDirective();
+
+  /**
+   * Returns a new object of class '<em>Equ Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Equ Directive</em>'.
+   * @generated
+   */
+  EquDirective createEquDirective();
+
+  /**
+   * Returns a new object of class '<em>Label Field</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Label Field</em>'.
+   * @generated
+   */
+  LabelField createLabelField();
+
+  /**
    * Returns a new object of class '<em>Comment Line</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -49,6 +85,105 @@ public interface AssemblerFactory extends EFactory
    * @generated
    */
   CommentLine createCommentLine();
+
+  /**
+   * Returns a new object of class '<em>Specified Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Specified Value</em>'.
+   * @generated
+   */
+  SpecifiedValue createSpecifiedValue();
+
+  /**
+   * Returns a new object of class '<em>Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expression</em>'.
+   * @generated
+   */
+  Expression createExpression();
+
+  /**
+   * Returns a new object of class '<em>Expressions</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expressions</em>'.
+   * @generated
+   */
+  Expressions createExpressions();
+
+  /**
+   * Returns a new object of class '<em>Expression Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expression Value</em>'.
+   * @generated
+   */
+  ExpressionValue createExpressionValue();
+
+  /**
+   * Returns a new object of class '<em>Actual Position</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Actual Position</em>'.
+   * @generated
+   */
+  ActualPosition createActualPosition();
+
+  /**
+   * Returns a new object of class '<em>Binarye Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Binarye Value</em>'.
+   * @generated
+   */
+  BinaryeValue createBinaryeValue();
+
+  /**
+   * Returns a new object of class '<em>Octal Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Octal Value</em>'.
+   * @generated
+   */
+  OctalValue createOctalValue();
+
+  /**
+   * Returns a new object of class '<em>Decimel Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Decimel Value</em>'.
+   * @generated
+   */
+  DecimelValue createDecimelValue();
+
+  /**
+   * Returns a new object of class '<em>Hexadecimal Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Hexadecimal Value</em>'.
+   * @generated
+   */
+  HexadecimalValue createHexadecimalValue();
+
+  /**
+   * Returns a new object of class '<em>Ascii Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Ascii Value</em>'.
+   * @generated
+   */
+  AsciiValue createAsciiValue();
+
+  /**
+   * Returns a new object of class '<em>Label Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Label Value</em>'.
+   * @generated
+   */
+  LabelValue createLabelValue();
 
   /**
    * Returns the package supported by this factory.

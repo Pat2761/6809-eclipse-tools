@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	</head>
+	<body>
+		<h3 id="constants-values">Constants values</h3>
+		<p>The constants are constructed as follow</p>
+		<ol>
+			<li>' followed by ascii characters </li>
+			<li>$ followed by hexadecimal constant, letters A..F can be lower case or upper case
+				<br/>
+			</li>
+			<li>@ followed by octal constant</li>
+			<li>% followed by binary constant </li>
+			<li>digit decimal value </li>
+		</ol>
+		<p>examples</p>
+		<pre><code>'A				; char constant
+'a				; char constant
+'abcdefg    ; a string
+$F2        	; is 242 decimal
+$12ea       ; is 4842 décimal
+%10110	      ; is $16
+255				; is $FF
+@73         : is 59 decimal </code></pre>
+	</body>
+</html>

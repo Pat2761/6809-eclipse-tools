@@ -5,10 +5,25 @@ package org.bpy.electronics.mc6809.assembler.serializer;
 
 import com.google.inject.Inject;
 import java.util.Set;
+import org.bpy.electronics.mc6809.assembler.assembler.ActualPosition;
+import org.bpy.electronics.mc6809.assembler.assembler.AsciiValue;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine;
+import org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
+import org.bpy.electronics.mc6809.assembler.assembler.DecimelValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Directive;
+import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Expressions;
+import org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelField;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue;
 import org.bpy.electronics.mc6809.assembler.services.AssemblerGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -34,19 +49,165 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == AssemblerPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case AssemblerPackage.ACTUAL_POSITION:
+				sequence_ActualPosition(context, (ActualPosition) semanticObject); 
+				return; 
+			case AssemblerPackage.ASCII_VALUE:
+				sequence_AsciiValue(context, (AsciiValue) semanticObject); 
+				return; 
+			case AssemblerPackage.ASSEMBLY_LINE:
+				sequence_AssemblyLine(context, (AssemblyLine) semanticObject); 
+				return; 
+			case AssemblerPackage.BINARYE_VALUE:
+				sequence_BinaryeValue(context, (BinaryeValue) semanticObject); 
+				return; 
 			case AssemblerPackage.COMMENT_LINE:
 				sequence_CommentLine(context, (CommentLine) semanticObject); 
+				return; 
+			case AssemblerPackage.DECIMEL_VALUE:
+				sequence_DecimelValue(context, (DecimelValue) semanticObject); 
+				return; 
+			case AssemblerPackage.DIRECTIVE:
+				sequence_Directive(context, (Directive) semanticObject); 
+				return; 
+			case AssemblerPackage.EQU_DIRECTIVE:
+				sequence_EquDirective(context, (EquDirective) semanticObject); 
+				return; 
+			case AssemblerPackage.EXPRESSION:
+				if (rule == grammarAccess.getAdditionRule()) {
+					sequence_Addition(context, (Expression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getExpressionRule()) {
+					sequence_Expression(context, (Expression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getMultiplicationRule()) {
+					sequence_Multiplication(context, (Expression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getPrimaryRule()) {
+					sequence_Primary(context, (Expression) semanticObject); 
+					return; 
+				}
+				else if (rule == grammarAccess.getSoustractionRule()) {
+					sequence_Soustraction(context, (Expression) semanticObject); 
+					return; 
+				}
+				else break;
+			case AssemblerPackage.EXPRESSION_VALUE:
+				sequence_ExpressionValue(context, (ExpressionValue) semanticObject); 
+				return; 
+			case AssemblerPackage.EXPRESSIONS:
+				sequence_Division(context, (Expressions) semanticObject); 
+				return; 
+			case AssemblerPackage.HEXADECIMAL_VALUE:
+				sequence_HexadecimalValue(context, (HexadecimalValue) semanticObject); 
+				return; 
+			case AssemblerPackage.LABEL_FIELD:
+				sequence_LabelField(context, (LabelField) semanticObject); 
+				return; 
+			case AssemblerPackage.LABEL_VALUE:
+				sequence_LabelValue(context, (LabelValue) semanticObject); 
 				return; 
 			case AssemblerPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
 				return; 
+			case AssemblerPackage.OCTAL_VALUE:
+				sequence_OctalValue(context, (OctalValue) semanticObject); 
+				return; 
 			case AssemblerPackage.SOURCE_LINE:
 				sequence_SourceLine(context, (SourceLine) semanticObject); 
+				return; 
+			case AssemblerPackage.SPECIFIED_VALUE:
+				sequence_SpecifiedValue(context, (SpecifiedValue) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ActualPosition returns ActualPosition
+	 *
+	 * Constraint:
+	 *     actualPosition='*'
+	 * </pre>
+	 */
+	protected void sequence_ActualPosition(ISerializationContext context, ActualPosition semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ACTUAL_POSITION__ACTUAL_POSITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ACTUAL_POSITION__ACTUAL_POSITION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getActualPositionAccess().getActualPositionAsteriskKeyword_0(), semanticObject.getActualPosition());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Addition returns Expression
+	 *
+	 * Constraint:
+	 *     (values+=Multiplication values+=Multiplication*)
+	 * </pre>
+	 */
+	protected void sequence_Addition(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     AsciiValue returns AsciiValue
+	 *
+	 * Constraint:
+	 *     asciiValue=ASCII
+	 * </pre>
+	 */
+	protected void sequence_AsciiValue(ISerializationContext context, AsciiValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ASCII_VALUE__ASCII_VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ASCII_VALUE__ASCII_VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAsciiValueAccess().getAsciiValueASCIITerminalRuleCall_0(), semanticObject.getAsciiValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     AssemblyLine returns AssemblyLine
+	 *
+	 * Constraint:
+	 *     (labelField=LabelField? command=Directive)
+	 * </pre>
+	 */
+	protected void sequence_AssemblyLine(ISerializationContext context, AssemblyLine semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     BinaryeValue returns BinaryeValue
+	 *
+	 * Constraint:
+	 *     (isNegative?='-'? binaryValue=BINARY)
+	 * </pre>
+	 */
+	protected void sequence_BinaryeValue(ISerializationContext context, BinaryeValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * <pre>
@@ -71,6 +232,170 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     DecimelValue returns DecimelValue
+	 *
+	 * Constraint:
+	 *     (isNegative?='-'? decimalValue=DECIMAL)
+	 * </pre>
+	 */
+	protected void sequence_DecimelValue(ISerializationContext context, DecimelValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Directive returns Directive
+	 *
+	 * Constraint:
+	 *     directive=EquDirective
+	 * </pre>
+	 */
+	protected void sequence_Directive(ISerializationContext context, Directive semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DIRECTIVE__DIRECTIVE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DIRECTIVE__DIRECTIVE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDirectiveAccess().getDirectiveEquDirectiveParserRuleCall_0(), semanticObject.getDirective());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Division returns Expressions
+	 *
+	 * Constraint:
+	 *     (values+=Soustraction values+=Soustraction*)
+	 * </pre>
+	 */
+	protected void sequence_Division(ISerializationContext context, Expressions semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     EquDirective returns EquDirective
+	 *
+	 * Constraint:
+	 *     constant=SpecifiedValue
+	 * </pre>
+	 */
+	protected void sequence_EquDirective(ISerializationContext context, EquDirective semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EQU_DIRECTIVE__CONSTANT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EQU_DIRECTIVE__CONSTANT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getEquDirectiveAccess().getConstantSpecifiedValueParserRuleCall_2_0(), semanticObject.getConstant());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ExpressionValue returns ExpressionValue
+	 *
+	 * Constraint:
+	 *     (
+	 *         expressionValue=BinaryeValue | 
+	 *         expressionValue=OctalValue | 
+	 *         expressionValue=DecimelValue | 
+	 *         expressionValue=HexadecimalValue | 
+	 *         expressionValue=LabelValue | 
+	 *         expressionValue=AsciiValue | 
+	 *         expressionValue=ActualPosition
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_ExpressionValue(ISerializationContext context, ExpressionValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Expression returns Expression
+	 *
+	 * Constraint:
+	 *     addition=Addition
+	 * </pre>
+	 */
+	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__ADDITION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__ADDITION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getExpressionAccess().getAdditionAdditionParserRuleCall_0(), semanticObject.getAddition());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     HexadecimalValue returns HexadecimalValue
+	 *
+	 * Constraint:
+	 *     (isNegative?='-'? hexadeciamlValue=HEXADECIMAL)
+	 * </pre>
+	 */
+	protected void sequence_HexadecimalValue(ISerializationContext context, HexadecimalValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     LabelField returns LabelField
+	 *
+	 * Constraint:
+	 *     label=LABEL
+	 * </pre>
+	 */
+	protected void sequence_LabelField(ISerializationContext context, LabelField semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.LABEL_FIELD__LABEL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.LABEL_FIELD__LABEL));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLabelFieldAccess().getLabelLABELTerminalRuleCall_0(), semanticObject.getLabel());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     LabelValue returns LabelValue
+	 *
+	 * Constraint:
+	 *     label=LABEL
+	 * </pre>
+	 */
+	protected void sequence_LabelValue(ISerializationContext context, LabelValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.LABEL_VALUE__LABEL) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.LABEL_VALUE__LABEL));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getLabelValueAccess().getLabelLABELTerminalRuleCall_0(), semanticObject.getLabel());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Model returns Model
 	 *
 	 * Constraint:
@@ -85,13 +410,83 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     Multiplication returns Expression
+	 *
+	 * Constraint:
+	 *     (values+=Division values+=Division*)
+	 * </pre>
+	 */
+	protected void sequence_Multiplication(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     OctalValue returns OctalValue
+	 *
+	 * Constraint:
+	 *     (isNegative?='-'? octalValue=OCTAL)
+	 * </pre>
+	 */
+	protected void sequence_OctalValue(ISerializationContext context, OctalValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Primary returns Expression
+	 *
+	 * Constraint:
+	 *     (expressionValue=ExpressionValue | expressionValue=Addition)
+	 * </pre>
+	 */
+	protected void sequence_Primary(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     SourceLine returns SourceLine
 	 *
 	 * Constraint:
-	 *     (emptyLine=EmptyLine | commentLine=CommentLine)
+	 *     (assemblyLine=AssemblyLine | emptyLine=EmptyLine | commentLine=CommentLine)
 	 * </pre>
 	 */
 	protected void sequence_SourceLine(ISerializationContext context, SourceLine semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Soustraction returns Expression
+	 *
+	 * Constraint:
+	 *     (values+=Primary values+=Primary*)
+	 * </pre>
+	 */
+	protected void sequence_Soustraction(ISerializationContext context, Expression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SpecifiedValue returns SpecifiedValue
+	 *
+	 * Constraint:
+	 *     value=Expression?
+	 * </pre>
+	 */
+	protected void sequence_SpecifiedValue(ISerializationContext context, SpecifiedValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

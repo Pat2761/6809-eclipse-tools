@@ -3,11 +3,26 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
+import org.bpy.electronics.mc6809.assembler.assembler.ActualPosition;
+import org.bpy.electronics.mc6809.assembler.assembler.AsciiValue;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerFactory;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine;
+import org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
+import org.bpy.electronics.mc6809.assembler.assembler.DecimelValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Directive;
+import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Expressions;
+import org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelField;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -43,7 +58,112 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass assemblyLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass directiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass equDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass labelFieldEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass commentLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass specifiedValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass expressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass expressionsEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass expressionValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass actualPositionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass binaryeValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass octalValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass decimelValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass hexadecimalValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass asciiValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass labelValueEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -146,9 +266,20 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EReference getSourceLine_AssemblyLine()
+  {
+    return (EReference)sourceLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EAttribute getSourceLine_EmptyLine()
   {
-    return (EAttribute)sourceLineEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)sourceLineEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -159,7 +290,106 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getSourceLine_CommentLine()
   {
-    return (EReference)sourceLineEClass.getEStructuralFeatures().get(1);
+    return (EReference)sourceLineEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAssemblyLine()
+  {
+    return assemblyLineEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAssemblyLine_LabelField()
+  {
+    return (EReference)assemblyLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAssemblyLine_Command()
+  {
+    return (EReference)assemblyLineEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDirective()
+  {
+    return directiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDirective_Directive()
+  {
+    return (EReference)directiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getEquDirective()
+  {
+    return equDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEquDirective_Constant()
+  {
+    return (EReference)equDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLabelField()
+  {
+    return labelFieldEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLabelField_Label()
+  {
+    return (EAttribute)labelFieldEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -182,6 +412,314 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EAttribute getCommentLine_Comment()
   {
     return (EAttribute)commentLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSpecifiedValue()
+  {
+    return specifiedValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSpecifiedValue_Value()
+  {
+    return (EReference)specifiedValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getExpression()
+  {
+    return expressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExpression_Addition()
+  {
+    return (EReference)expressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExpression_Values()
+  {
+    return (EReference)expressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExpression_ExpressionValue()
+  {
+    return (EReference)expressionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getExpressions()
+  {
+    return expressionsEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExpressions_Values()
+  {
+    return (EReference)expressionsEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getExpressionValue()
+  {
+    return expressionValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExpressionValue_ExpressionValue()
+  {
+    return (EReference)expressionValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getActualPosition()
+  {
+    return actualPositionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getActualPosition_ActualPosition()
+  {
+    return (EAttribute)actualPositionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getBinaryeValue()
+  {
+    return binaryeValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getBinaryeValue_IsNegative()
+  {
+    return (EAttribute)binaryeValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getBinaryeValue_BinaryValue()
+  {
+    return (EAttribute)binaryeValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getOctalValue()
+  {
+    return octalValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getOctalValue_IsNegative()
+  {
+    return (EAttribute)octalValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getOctalValue_OctalValue()
+  {
+    return (EAttribute)octalValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDecimelValue()
+  {
+    return decimelValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDecimelValue_IsNegative()
+  {
+    return (EAttribute)decimelValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDecimelValue_DecimalValue()
+  {
+    return (EAttribute)decimelValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getHexadecimalValue()
+  {
+    return hexadecimalValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getHexadecimalValue_IsNegative()
+  {
+    return (EAttribute)hexadecimalValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getHexadecimalValue_HexadeciamlValue()
+  {
+    return (EAttribute)hexadecimalValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAsciiValue()
+  {
+    return asciiValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAsciiValue_AsciiValue()
+  {
+    return (EAttribute)asciiValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLabelValue()
+  {
+    return labelValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLabelValue_Label()
+  {
+    return (EAttribute)labelValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -219,11 +757,64 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(modelEClass, MODEL__SOURCE_LINES);
 
     sourceLineEClass = createEClass(SOURCE_LINE);
+    createEReference(sourceLineEClass, SOURCE_LINE__ASSEMBLY_LINE);
     createEAttribute(sourceLineEClass, SOURCE_LINE__EMPTY_LINE);
     createEReference(sourceLineEClass, SOURCE_LINE__COMMENT_LINE);
 
+    assemblyLineEClass = createEClass(ASSEMBLY_LINE);
+    createEReference(assemblyLineEClass, ASSEMBLY_LINE__LABEL_FIELD);
+    createEReference(assemblyLineEClass, ASSEMBLY_LINE__COMMAND);
+
+    directiveEClass = createEClass(DIRECTIVE);
+    createEReference(directiveEClass, DIRECTIVE__DIRECTIVE);
+
+    equDirectiveEClass = createEClass(EQU_DIRECTIVE);
+    createEReference(equDirectiveEClass, EQU_DIRECTIVE__CONSTANT);
+
+    labelFieldEClass = createEClass(LABEL_FIELD);
+    createEAttribute(labelFieldEClass, LABEL_FIELD__LABEL);
+
     commentLineEClass = createEClass(COMMENT_LINE);
     createEAttribute(commentLineEClass, COMMENT_LINE__COMMENT);
+
+    specifiedValueEClass = createEClass(SPECIFIED_VALUE);
+    createEReference(specifiedValueEClass, SPECIFIED_VALUE__VALUE);
+
+    expressionEClass = createEClass(EXPRESSION);
+    createEReference(expressionEClass, EXPRESSION__ADDITION);
+    createEReference(expressionEClass, EXPRESSION__VALUES);
+    createEReference(expressionEClass, EXPRESSION__EXPRESSION_VALUE);
+
+    expressionsEClass = createEClass(EXPRESSIONS);
+    createEReference(expressionsEClass, EXPRESSIONS__VALUES);
+
+    expressionValueEClass = createEClass(EXPRESSION_VALUE);
+    createEReference(expressionValueEClass, EXPRESSION_VALUE__EXPRESSION_VALUE);
+
+    actualPositionEClass = createEClass(ACTUAL_POSITION);
+    createEAttribute(actualPositionEClass, ACTUAL_POSITION__ACTUAL_POSITION);
+
+    binaryeValueEClass = createEClass(BINARYE_VALUE);
+    createEAttribute(binaryeValueEClass, BINARYE_VALUE__IS_NEGATIVE);
+    createEAttribute(binaryeValueEClass, BINARYE_VALUE__BINARY_VALUE);
+
+    octalValueEClass = createEClass(OCTAL_VALUE);
+    createEAttribute(octalValueEClass, OCTAL_VALUE__IS_NEGATIVE);
+    createEAttribute(octalValueEClass, OCTAL_VALUE__OCTAL_VALUE);
+
+    decimelValueEClass = createEClass(DECIMEL_VALUE);
+    createEAttribute(decimelValueEClass, DECIMEL_VALUE__IS_NEGATIVE);
+    createEAttribute(decimelValueEClass, DECIMEL_VALUE__DECIMAL_VALUE);
+
+    hexadecimalValueEClass = createEClass(HEXADECIMAL_VALUE);
+    createEAttribute(hexadecimalValueEClass, HEXADECIMAL_VALUE__IS_NEGATIVE);
+    createEAttribute(hexadecimalValueEClass, HEXADECIMAL_VALUE__HEXADECIAML_VALUE);
+
+    asciiValueEClass = createEClass(ASCII_VALUE);
+    createEAttribute(asciiValueEClass, ASCII_VALUE__ASCII_VALUE);
+
+    labelValueEClass = createEClass(LABEL_VALUE);
+    createEAttribute(labelValueEClass, LABEL_VALUE__LABEL);
   }
 
   /**
@@ -261,11 +852,64 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getModel_SourceLines(), this.getSourceLine(), null, "sourceLines", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sourceLineEClass, SourceLine.class, "SourceLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSourceLine_AssemblyLine(), this.getAssemblyLine(), null, "assemblyLine", null, 0, 1, SourceLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSourceLine_EmptyLine(), ecorePackage.getEString(), "emptyLine", null, 0, 1, SourceLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSourceLine_CommentLine(), this.getCommentLine(), null, "commentLine", null, 0, 1, SourceLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(assemblyLineEClass, AssemblyLine.class, "AssemblyLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAssemblyLine_LabelField(), this.getLabelField(), null, "labelField", null, 0, 1, AssemblyLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAssemblyLine_Command(), this.getDirective(), null, "command", null, 0, 1, AssemblyLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(directiveEClass, Directive.class, "Directive", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDirective_Directive(), this.getEquDirective(), null, "directive", null, 0, 1, Directive.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(equDirectiveEClass, EquDirective.class, "EquDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEquDirective_Constant(), this.getSpecifiedValue(), null, "constant", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(labelFieldEClass, LabelField.class, "LabelField", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLabelField_Label(), ecorePackage.getEString(), "label", null, 0, 1, LabelField.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(commentLineEClass, CommentLine.class, "CommentLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCommentLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, CommentLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(specifiedValueEClass, SpecifiedValue.class, "SpecifiedValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSpecifiedValue_Value(), this.getExpression(), null, "value", null, 0, 1, SpecifiedValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExpression_Addition(), this.getExpression(), null, "addition", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExpression_Values(), ecorePackage.getEObject(), null, "values", null, 0, -1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExpression_ExpressionValue(), ecorePackage.getEObject(), null, "expressionValue", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(expressionsEClass, Expressions.class, "Expressions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExpressions_Values(), this.getExpression(), null, "values", null, 0, -1, Expressions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(expressionValueEClass, ExpressionValue.class, "ExpressionValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExpressionValue_ExpressionValue(), ecorePackage.getEObject(), null, "expressionValue", null, 0, 1, ExpressionValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(actualPositionEClass, ActualPosition.class, "ActualPosition", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getActualPosition_ActualPosition(), ecorePackage.getEString(), "actualPosition", null, 0, 1, ActualPosition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(binaryeValueEClass, BinaryeValue.class, "BinaryeValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getBinaryeValue_IsNegative(), ecorePackage.getEBoolean(), "isNegative", null, 0, 1, BinaryeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getBinaryeValue_BinaryValue(), ecorePackage.getEString(), "binaryValue", null, 0, 1, BinaryeValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(octalValueEClass, OctalValue.class, "OctalValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getOctalValue_IsNegative(), ecorePackage.getEBoolean(), "isNegative", null, 0, 1, OctalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getOctalValue_OctalValue(), ecorePackage.getEString(), "octalValue", null, 0, 1, OctalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(decimelValueEClass, DecimelValue.class, "DecimelValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDecimelValue_IsNegative(), ecorePackage.getEBoolean(), "isNegative", null, 0, 1, DecimelValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDecimelValue_DecimalValue(), ecorePackage.getEString(), "decimalValue", null, 0, 1, DecimelValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(hexadecimalValueEClass, HexadecimalValue.class, "HexadecimalValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getHexadecimalValue_IsNegative(), ecorePackage.getEBoolean(), "isNegative", null, 0, 1, HexadecimalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getHexadecimalValue_HexadeciamlValue(), ecorePackage.getEString(), "hexadeciamlValue", null, 0, 1, HexadecimalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(asciiValueEClass, AsciiValue.class, "AsciiValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAsciiValue_AsciiValue(), ecorePackage.getEString(), "asciiValue", null, 0, 1, AsciiValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(labelValueEClass, LabelValue.class, "LabelValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLabelValue_Label(), ecorePackage.getEString(), "label", null, 0, 1, LabelValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

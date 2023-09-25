@@ -11,6 +11,7 @@ import org.eclipse.xtext.IGrammarAccess;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.nodemodel.INode;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.AbstractElementAlias;
+import org.eclipse.xtext.serializer.analysis.GrammarAlias.AlternativeAlias;
 import org.eclipse.xtext.serializer.analysis.GrammarAlias.TokenAlias;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynNavigable;
 import org.eclipse.xtext.serializer.analysis.ISyntacticSequencerPDAProvider.ISynTransition;
@@ -20,19 +21,45 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AssemblerGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_AssemblyLine_CRTerminalRuleCall_4_1_or_SL_COMMENTTerminalRuleCall_4_0;
+	protected AbstractElementAlias match_AssemblyLine_WSTerminalRuleCall_3_q;
 	protected AbstractElementAlias match_CommentLine_WSTerminalRuleCall_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AssemblerGrammarAccess) access;
+		match_AssemblyLine_CRTerminalRuleCall_4_1_or_SL_COMMENTTerminalRuleCall_4_0 = new AlternativeAlias(false, false, new TokenAlias(false, false, grammarAccess.getAssemblyLineAccess().getCRTerminalRuleCall_4_1()), new TokenAlias(false, false, grammarAccess.getAssemblyLineAccess().getSL_COMMENTTerminalRuleCall_4_0()));
+		match_AssemblyLine_WSTerminalRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getAssemblyLineAccess().getWSTerminalRuleCall_3());
 		match_CommentLine_WSTerminalRuleCall_0_q = new TokenAlias(false, true, grammarAccess.getCommentLineAccess().getWSTerminalRuleCall_0());
 	}
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getWSRule())
+		if (ruleCall.getRule() == grammarAccess.getCRRule())
+			return getCRToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getSL_COMMENTRule())
+			return getSL_COMMENTToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getWSRule())
 			return getWSToken(semanticObject, ruleCall, node);
 		return "";
+	}
+	
+	/**
+	 * terminal CR         : ('\r'? '\n');
+	 */
+	protected String getCRToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return "\n";
+	}
+	
+	/**
+	 * terminal SL_COMMENT	: ';' .* CR;
+	 */
+	protected String getSL_COMMENTToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ";\n";
 	}
 	
 	/**
@@ -50,12 +77,44 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_CommentLine_WSTerminalRuleCall_0_q.equals(syntax))
+			if (match_AssemblyLine_CRTerminalRuleCall_4_1_or_SL_COMMENTTerminalRuleCall_4_0.equals(syntax))
+				emit_AssemblyLine_CRTerminalRuleCall_4_1_or_SL_COMMENTTerminalRuleCall_4_0(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AssemblyLine_WSTerminalRuleCall_3_q.equals(syntax))
+				emit_AssemblyLine_WSTerminalRuleCall_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_CommentLine_WSTerminalRuleCall_0_q.equals(syntax))
 				emit_CommentLine_WSTerminalRuleCall_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
 
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     SL_COMMENT | CR
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     command=Directive WS? (ambiguity) (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_AssemblyLine_CRTerminalRuleCall_4_1_or_SL_COMMENTTerminalRuleCall_4_0(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     command=Directive (ambiguity) (SL_COMMENT | CR) (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_AssemblyLine_WSTerminalRuleCall_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * <pre>
 	 * Ambiguous syntax:

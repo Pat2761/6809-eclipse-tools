@@ -6,11 +6,13 @@ package org.bpy.electronics.mc6809.assembler.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
+import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
+import org.eclipse.xtext.Keyword;
 import org.eclipse.xtext.ParserRule;
 import org.eclipse.xtext.RuleCall;
 import org.eclipse.xtext.TerminalRule;
@@ -39,32 +41,158 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	public class SourceLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SourceLine");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cEmptyLineAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cEmptyLineEmptyLineParserRuleCall_0_0 = (RuleCall)cEmptyLineAssignment_0.eContents().get(0);
-		private final Assignment cCommentLineAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cCommentLineCommentLineParserRuleCall_1_0 = (RuleCall)cCommentLineAssignment_1.eContents().get(0);
+		private final Assignment cAssemblyLineAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cAssemblyLineAssemblyLineParserRuleCall_0_0 = (RuleCall)cAssemblyLineAssignment_0.eContents().get(0);
+		private final Assignment cEmptyLineAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cEmptyLineEmptyLineParserRuleCall_1_0 = (RuleCall)cEmptyLineAssignment_1.eContents().get(0);
+		private final Assignment cCommentLineAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cCommentLineCommentLineParserRuleCall_2_0 = (RuleCall)cCommentLineAssignment_2.eContents().get(0);
 		
 		//SourceLine:
+		//    assemblyLine = AssemblyLine |
 		//    emptyLine = EmptyLine |
 		//    commentLine = CommentLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//assemblyLine = AssemblyLine |
 		//emptyLine = EmptyLine |
 		//commentLine = CommentLine
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
+		//assemblyLine = AssemblyLine
+		public Assignment getAssemblyLineAssignment_0() { return cAssemblyLineAssignment_0; }
+		
+		//AssemblyLine
+		public RuleCall getAssemblyLineAssemblyLineParserRuleCall_0_0() { return cAssemblyLineAssemblyLineParserRuleCall_0_0; }
+		
 		//emptyLine = EmptyLine
-		public Assignment getEmptyLineAssignment_0() { return cEmptyLineAssignment_0; }
+		public Assignment getEmptyLineAssignment_1() { return cEmptyLineAssignment_1; }
 		
 		//EmptyLine
-		public RuleCall getEmptyLineEmptyLineParserRuleCall_0_0() { return cEmptyLineEmptyLineParserRuleCall_0_0; }
+		public RuleCall getEmptyLineEmptyLineParserRuleCall_1_0() { return cEmptyLineEmptyLineParserRuleCall_1_0; }
 		
 		//commentLine = CommentLine
-		public Assignment getCommentLineAssignment_1() { return cCommentLineAssignment_1; }
+		public Assignment getCommentLineAssignment_2() { return cCommentLineAssignment_2; }
 		
 		//CommentLine
-		public RuleCall getCommentLineCommentLineParserRuleCall_1_0() { return cCommentLineCommentLineParserRuleCall_1_0; }
+		public RuleCall getCommentLineCommentLineParserRuleCall_2_0() { return cCommentLineCommentLineParserRuleCall_2_0; }
+	}
+	public class AssemblyLineElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AssemblyLine");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cLabelFieldAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cLabelFieldLabelFieldParserRuleCall_0_0 = (RuleCall)cLabelFieldAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cCommandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cCommandDirectiveParserRuleCall_2_0 = (RuleCall)cCommandAssignment_2.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
+		private final RuleCall cSL_COMMENTTerminalRuleCall_4_0 = (RuleCall)cAlternatives_4.eContents().get(0);
+		private final RuleCall cCRTerminalRuleCall_4_1 = (RuleCall)cAlternatives_4.eContents().get(1);
+		
+		//AssemblyLine:
+		//        (labelField = LabelField)?
+		//        WS
+		//        (command= Directive /* | command = Operation*/)
+		//        WS?
+		//        (SL_COMMENT | CR)
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(labelField = LabelField)?
+		//WS
+		//(command= Directive /* | command = Operation*/)
+		//WS?
+		//(SL_COMMENT | CR)
+		public Group getGroup() { return cGroup; }
+		
+		//(labelField = LabelField)?
+		public Assignment getLabelFieldAssignment_0() { return cLabelFieldAssignment_0; }
+		
+		//LabelField
+		public RuleCall getLabelFieldLabelFieldParserRuleCall_0_0() { return cLabelFieldLabelFieldParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(command= Directive /* | command = Operation*/)
+		public Assignment getCommandAssignment_2() { return cCommandAssignment_2; }
+		
+		//Directive
+		public RuleCall getCommandDirectiveParserRuleCall_2_0() { return cCommandDirectiveParserRuleCall_2_0; }
+		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
+		
+		//(SL_COMMENT | CR)
+		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		
+		//SL_COMMENT
+		public RuleCall getSL_COMMENTTerminalRuleCall_4_0() { return cSL_COMMENTTerminalRuleCall_4_0; }
+		
+		//CR
+		public RuleCall getCRTerminalRuleCall_4_1() { return cCRTerminalRuleCall_4_1; }
+	}
+	public class DirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Directive");
+		private final Assignment cDirectiveAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cDirectiveEquDirectiveParserRuleCall_0 = (RuleCall)cDirectiveAssignment.eContents().get(0);
+		
+		//Directive :
+		//    directive = EquDirective
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//directive = EquDirective
+		public Assignment getDirectiveAssignment() { return cDirectiveAssignment; }
+		
+		//EquDirective
+		public RuleCall getDirectiveEquDirectiveParserRuleCall_0() { return cDirectiveEquDirectiveParserRuleCall_0; }
+	}
+	public class EquDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.EquDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cEQUKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cConstantAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cConstantSpecifiedValueParserRuleCall_2_0 = (RuleCall)cConstantAssignment_2.eContents().get(0);
+		
+		//EquDirective:
+		//    'EQU' WS constant=SpecifiedValue
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'EQU' WS constant=SpecifiedValue
+		public Group getGroup() { return cGroup; }
+		
+		//'EQU'
+		public Keyword getEQUKeyword_0() { return cEQUKeyword_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//constant=SpecifiedValue
+		public Assignment getConstantAssignment_2() { return cConstantAssignment_2; }
+		
+		//SpecifiedValue
+		public RuleCall getConstantSpecifiedValueParserRuleCall_2_0() { return cConstantSpecifiedValueParserRuleCall_2_0; }
+	}
+	public class LabelFieldElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LabelField");
+		private final Assignment cLabelAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cLabelLABELTerminalRuleCall_0 = (RuleCall)cLabelAssignment.eContents().get(0);
+		
+		//LabelField:
+		//    label = LABEL
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//label = LABEL
+		public Assignment getLabelAssignment() { return cLabelAssignment; }
+		
+		//LABEL
+		public RuleCall getLabelLABELTerminalRuleCall_0() { return cLabelLABELTerminalRuleCall_0; }
 	}
 	public class CommentLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CommentLine");
@@ -110,12 +238,511 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//CR
 		public RuleCall getCRTerminalRuleCall_1() { return cCRTerminalRuleCall_1; }
 	}
+	public class SpecifiedValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SpecifiedValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cSpecifiedValueAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueExpressionParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//SpecifiedValue:
+		//    {SpecifiedValue} value=Expression?
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{SpecifiedValue} value=Expression?
+		public Group getGroup() { return cGroup; }
+		
+		//{SpecifiedValue}
+		public Action getSpecifiedValueAction_0() { return cSpecifiedValueAction_0; }
+		
+		//value=Expression?
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
+		//Expression
+		public RuleCall getValueExpressionParserRuleCall_1_0() { return cValueExpressionParserRuleCall_1_0; }
+	}
+	public class ExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Expression");
+		private final Assignment cAdditionAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cAdditionAdditionParserRuleCall_0 = (RuleCall)cAdditionAssignment.eContents().get(0);
+		
+		//Expression:
+		//    addition=Addition
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//addition=Addition
+		public Assignment getAdditionAssignment() { return cAdditionAssignment; }
+		
+		//Addition
+		public RuleCall getAdditionAdditionParserRuleCall_0() { return cAdditionAdditionParserRuleCall_0; }
+	}
+	public class AdditionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Addition");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cValuesAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cValuesMultiplicationParserRuleCall_0_0 = (RuleCall)cValuesAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cPlusSignKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cValuesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cValuesMultiplicationParserRuleCall_1_1_0 = (RuleCall)cValuesAssignment_1_1.eContents().get(0);
+		
+		//Addition returns Expression:
+		//    values+=Multiplication ('+' values+=Multiplication)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//values+=Multiplication ('+' values+=Multiplication)*
+		public Group getGroup() { return cGroup; }
+		
+		//values+=Multiplication
+		public Assignment getValuesAssignment_0() { return cValuesAssignment_0; }
+		
+		//Multiplication
+		public RuleCall getValuesMultiplicationParserRuleCall_0_0() { return cValuesMultiplicationParserRuleCall_0_0; }
+		
+		//('+' values+=Multiplication)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'+'
+		public Keyword getPlusSignKeyword_1_0() { return cPlusSignKeyword_1_0; }
+		
+		//values+=Multiplication
+		public Assignment getValuesAssignment_1_1() { return cValuesAssignment_1_1; }
+		
+		//Multiplication
+		public RuleCall getValuesMultiplicationParserRuleCall_1_1_0() { return cValuesMultiplicationParserRuleCall_1_1_0; }
+	}
+	public class MultiplicationElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Multiplication");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cValuesAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cValuesDivisionParserRuleCall_0_0 = (RuleCall)cValuesAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cAsteriskKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cValuesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cValuesDivisionParserRuleCall_1_1_0 = (RuleCall)cValuesAssignment_1_1.eContents().get(0);
+		
+		//Multiplication returns Expression:
+		//    values+=Division ('*' values+=Division)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//values+=Division ('*' values+=Division)*
+		public Group getGroup() { return cGroup; }
+		
+		//values+=Division
+		public Assignment getValuesAssignment_0() { return cValuesAssignment_0; }
+		
+		//Division
+		public RuleCall getValuesDivisionParserRuleCall_0_0() { return cValuesDivisionParserRuleCall_0_0; }
+		
+		//('*' values+=Division)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'*'
+		public Keyword getAsteriskKeyword_1_0() { return cAsteriskKeyword_1_0; }
+		
+		//values+=Division
+		public Assignment getValuesAssignment_1_1() { return cValuesAssignment_1_1; }
+		
+		//Division
+		public RuleCall getValuesDivisionParserRuleCall_1_1_0() { return cValuesDivisionParserRuleCall_1_1_0; }
+	}
+	public class DivisionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Division");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cValuesAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cValuesSoustractionParserRuleCall_0_0 = (RuleCall)cValuesAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cSolidusKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cValuesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cValuesSoustractionParserRuleCall_1_1_0 = (RuleCall)cValuesAssignment_1_1.eContents().get(0);
+		
+		//Division returns Expressions:
+		//    values+=Soustraction ('/' values+=Soustraction)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//values+=Soustraction ('/' values+=Soustraction)*
+		public Group getGroup() { return cGroup; }
+		
+		//values+=Soustraction
+		public Assignment getValuesAssignment_0() { return cValuesAssignment_0; }
+		
+		//Soustraction
+		public RuleCall getValuesSoustractionParserRuleCall_0_0() { return cValuesSoustractionParserRuleCall_0_0; }
+		
+		//('/' values+=Soustraction)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'/'
+		public Keyword getSolidusKeyword_1_0() { return cSolidusKeyword_1_0; }
+		
+		//values+=Soustraction
+		public Assignment getValuesAssignment_1_1() { return cValuesAssignment_1_1; }
+		
+		//Soustraction
+		public RuleCall getValuesSoustractionParserRuleCall_1_1_0() { return cValuesSoustractionParserRuleCall_1_1_0; }
+	}
+	public class SoustractionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Soustraction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cValuesAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cValuesPrimaryParserRuleCall_0_0 = (RuleCall)cValuesAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cHyphenMinusKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cValuesAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cValuesPrimaryParserRuleCall_1_1_0 = (RuleCall)cValuesAssignment_1_1.eContents().get(0);
+		
+		//Soustraction returns Expression:
+		//    values+=Primary ('-' values+=Primary)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//values+=Primary ('-' values+=Primary)*
+		public Group getGroup() { return cGroup; }
+		
+		//values+=Primary
+		public Assignment getValuesAssignment_0() { return cValuesAssignment_0; }
+		
+		//Primary
+		public RuleCall getValuesPrimaryParserRuleCall_0_0() { return cValuesPrimaryParserRuleCall_0_0; }
+		
+		//('-' values+=Primary)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'-'
+		public Keyword getHyphenMinusKeyword_1_0() { return cHyphenMinusKeyword_1_0; }
+		
+		//values+=Primary
+		public Assignment getValuesAssignment_1_1() { return cValuesAssignment_1_1; }
+		
+		//Primary
+		public RuleCall getValuesPrimaryParserRuleCall_1_1_0() { return cValuesPrimaryParserRuleCall_1_1_0; }
+	}
+	public class PrimaryElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Primary");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cExpressionValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cExpressionValueExpressionValueParserRuleCall_0_0 = (RuleCall)cExpressionValueAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cExpressionValueAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cExpressionValueAdditionParserRuleCall_1_1_0 = (RuleCall)cExpressionValueAssignment_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		
+		//Primary returns Expression:
+		//    expressionValue= ExpressionValue |
+		//    '(' expressionValue=Addition ')'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//expressionValue= ExpressionValue |
+		//'(' expressionValue=Addition ')'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//expressionValue= ExpressionValue
+		public Assignment getExpressionValueAssignment_0() { return cExpressionValueAssignment_0; }
+		
+		//ExpressionValue
+		public RuleCall getExpressionValueExpressionValueParserRuleCall_0_0() { return cExpressionValueExpressionValueParserRuleCall_0_0; }
+		
+		//'(' expressionValue=Addition ')'
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//'('
+		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
+		
+		//expressionValue=Addition
+		public Assignment getExpressionValueAssignment_1_1() { return cExpressionValueAssignment_1_1; }
+		
+		//Addition
+		public RuleCall getExpressionValueAdditionParserRuleCall_1_1_0() { return cExpressionValueAdditionParserRuleCall_1_1_0; }
+		
+		//')'
+		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
+	}
+	public class ExpressionValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ExpressionValue");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cExpressionValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cExpressionValueBinaryeValueParserRuleCall_0_0 = (RuleCall)cExpressionValueAssignment_0.eContents().get(0);
+		private final Assignment cExpressionValueAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cExpressionValueOctalValueParserRuleCall_1_0 = (RuleCall)cExpressionValueAssignment_1.eContents().get(0);
+		private final Assignment cExpressionValueAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cExpressionValueDecimelValueParserRuleCall_2_0 = (RuleCall)cExpressionValueAssignment_2.eContents().get(0);
+		private final Assignment cExpressionValueAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cExpressionValueHexadecimalValueParserRuleCall_3_0 = (RuleCall)cExpressionValueAssignment_3.eContents().get(0);
+		private final Assignment cExpressionValueAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cExpressionValueLabelValueParserRuleCall_4_0 = (RuleCall)cExpressionValueAssignment_4.eContents().get(0);
+		private final Assignment cExpressionValueAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
+		private final RuleCall cExpressionValueAsciiValueParserRuleCall_5_0 = (RuleCall)cExpressionValueAssignment_5.eContents().get(0);
+		private final Assignment cExpressionValueAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
+		private final RuleCall cExpressionValueActualPositionParserRuleCall_6_0 = (RuleCall)cExpressionValueAssignment_6.eContents().get(0);
+		
+		//ExpressionValue:
+		//    expressionValue=BinaryeValue |
+		//    expressionValue=OctalValue |
+		//    expressionValue=DecimelValue |
+		//    expressionValue=HexadecimalValue |
+		//    expressionValue=LabelValue |
+		//    expressionValue=AsciiValue |
+		//    expressionValue=ActualPosition
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//expressionValue=BinaryeValue |
+		//expressionValue=OctalValue |
+		//expressionValue=DecimelValue |
+		//expressionValue=HexadecimalValue |
+		//expressionValue=LabelValue |
+		//expressionValue=AsciiValue |
+		//expressionValue=ActualPosition
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//expressionValue=BinaryeValue
+		public Assignment getExpressionValueAssignment_0() { return cExpressionValueAssignment_0; }
+		
+		//BinaryeValue
+		public RuleCall getExpressionValueBinaryeValueParserRuleCall_0_0() { return cExpressionValueBinaryeValueParserRuleCall_0_0; }
+		
+		//expressionValue=OctalValue
+		public Assignment getExpressionValueAssignment_1() { return cExpressionValueAssignment_1; }
+		
+		//OctalValue
+		public RuleCall getExpressionValueOctalValueParserRuleCall_1_0() { return cExpressionValueOctalValueParserRuleCall_1_0; }
+		
+		//expressionValue=DecimelValue
+		public Assignment getExpressionValueAssignment_2() { return cExpressionValueAssignment_2; }
+		
+		//DecimelValue
+		public RuleCall getExpressionValueDecimelValueParserRuleCall_2_0() { return cExpressionValueDecimelValueParserRuleCall_2_0; }
+		
+		//expressionValue=HexadecimalValue
+		public Assignment getExpressionValueAssignment_3() { return cExpressionValueAssignment_3; }
+		
+		//HexadecimalValue
+		public RuleCall getExpressionValueHexadecimalValueParserRuleCall_3_0() { return cExpressionValueHexadecimalValueParserRuleCall_3_0; }
+		
+		//expressionValue=LabelValue
+		public Assignment getExpressionValueAssignment_4() { return cExpressionValueAssignment_4; }
+		
+		//LabelValue
+		public RuleCall getExpressionValueLabelValueParserRuleCall_4_0() { return cExpressionValueLabelValueParserRuleCall_4_0; }
+		
+		//expressionValue=AsciiValue
+		public Assignment getExpressionValueAssignment_5() { return cExpressionValueAssignment_5; }
+		
+		//AsciiValue
+		public RuleCall getExpressionValueAsciiValueParserRuleCall_5_0() { return cExpressionValueAsciiValueParserRuleCall_5_0; }
+		
+		//expressionValue=ActualPosition
+		public Assignment getExpressionValueAssignment_6() { return cExpressionValueAssignment_6; }
+		
+		//ActualPosition
+		public RuleCall getExpressionValueActualPositionParserRuleCall_6_0() { return cExpressionValueActualPositionParserRuleCall_6_0; }
+	}
+	public class ActualPositionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ActualPosition");
+		private final Assignment cActualPositionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cActualPositionAsteriskKeyword_0 = (Keyword)cActualPositionAssignment.eContents().get(0);
+		
+		//ActualPosition:
+		//    actualPosition = '*'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//actualPosition = '*'
+		public Assignment getActualPositionAssignment() { return cActualPositionAssignment; }
+		
+		//'*'
+		public Keyword getActualPositionAsteriskKeyword_0() { return cActualPositionAsteriskKeyword_0; }
+	}
+	public class BinaryeValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.BinaryeValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cIsNegativeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsNegativeHyphenMinusKeyword_0_0 = (Keyword)cIsNegativeAssignment_0.eContents().get(0);
+		private final Assignment cBinaryValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cBinaryValueBINARYTerminalRuleCall_1_0 = (RuleCall)cBinaryValueAssignment_1.eContents().get(0);
+		
+		//BinaryeValue:
+		//    (isNegative?='-')?
+		//    binaryValue = BINARY
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(isNegative?='-')?
+		//binaryValue = BINARY
+		public Group getGroup() { return cGroup; }
+		
+		//(isNegative?='-')?
+		public Assignment getIsNegativeAssignment_0() { return cIsNegativeAssignment_0; }
+		
+		//'-'
+		public Keyword getIsNegativeHyphenMinusKeyword_0_0() { return cIsNegativeHyphenMinusKeyword_0_0; }
+		
+		//binaryValue = BINARY
+		public Assignment getBinaryValueAssignment_1() { return cBinaryValueAssignment_1; }
+		
+		//BINARY
+		public RuleCall getBinaryValueBINARYTerminalRuleCall_1_0() { return cBinaryValueBINARYTerminalRuleCall_1_0; }
+	}
+	public class OctalValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OctalValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cIsNegativeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsNegativeHyphenMinusKeyword_0_0 = (Keyword)cIsNegativeAssignment_0.eContents().get(0);
+		private final Assignment cOctalValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOctalValueOCTALTerminalRuleCall_1_0 = (RuleCall)cOctalValueAssignment_1.eContents().get(0);
+		
+		//OctalValue:
+		//    (isNegative?='-')?
+		//    octalValue=OCTAL
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(isNegative?='-')?
+		//octalValue=OCTAL
+		public Group getGroup() { return cGroup; }
+		
+		//(isNegative?='-')?
+		public Assignment getIsNegativeAssignment_0() { return cIsNegativeAssignment_0; }
+		
+		//'-'
+		public Keyword getIsNegativeHyphenMinusKeyword_0_0() { return cIsNegativeHyphenMinusKeyword_0_0; }
+		
+		//octalValue=OCTAL
+		public Assignment getOctalValueAssignment_1() { return cOctalValueAssignment_1; }
+		
+		//OCTAL
+		public RuleCall getOctalValueOCTALTerminalRuleCall_1_0() { return cOctalValueOCTALTerminalRuleCall_1_0; }
+	}
+	public class DecimelValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DecimelValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cIsNegativeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsNegativeHyphenMinusKeyword_0_0 = (Keyword)cIsNegativeAssignment_0.eContents().get(0);
+		private final Assignment cDecimalValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDecimalValueDECIMALTerminalRuleCall_1_0 = (RuleCall)cDecimalValueAssignment_1.eContents().get(0);
+		
+		//DecimelValue:
+		//    isNegative ?= '-'?
+		//    decimalValue=DECIMAL
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//isNegative ?= '-'?
+		//decimalValue=DECIMAL
+		public Group getGroup() { return cGroup; }
+		
+		//isNegative ?= '-'?
+		public Assignment getIsNegativeAssignment_0() { return cIsNegativeAssignment_0; }
+		
+		//'-'
+		public Keyword getIsNegativeHyphenMinusKeyword_0_0() { return cIsNegativeHyphenMinusKeyword_0_0; }
+		
+		//decimalValue=DECIMAL
+		public Assignment getDecimalValueAssignment_1() { return cDecimalValueAssignment_1; }
+		
+		//DECIMAL
+		public RuleCall getDecimalValueDECIMALTerminalRuleCall_1_0() { return cDecimalValueDECIMALTerminalRuleCall_1_0; }
+	}
+	public class HexadecimalValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.HexadecimalValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cIsNegativeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsNegativeHyphenMinusKeyword_0_0 = (Keyword)cIsNegativeAssignment_0.eContents().get(0);
+		private final Assignment cHexadeciamlValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cHexadeciamlValueHEXADECIMALTerminalRuleCall_1_0 = (RuleCall)cHexadeciamlValueAssignment_1.eContents().get(0);
+		
+		//HexadecimalValue:
+		//    isNegative ?= '-'?
+		//    hexadeciamlValue=HEXADECIMAL
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//isNegative ?= '-'?
+		//hexadeciamlValue=HEXADECIMAL
+		public Group getGroup() { return cGroup; }
+		
+		//isNegative ?= '-'?
+		public Assignment getIsNegativeAssignment_0() { return cIsNegativeAssignment_0; }
+		
+		//'-'
+		public Keyword getIsNegativeHyphenMinusKeyword_0_0() { return cIsNegativeHyphenMinusKeyword_0_0; }
+		
+		//hexadeciamlValue=HEXADECIMAL
+		public Assignment getHexadeciamlValueAssignment_1() { return cHexadeciamlValueAssignment_1; }
+		
+		//HEXADECIMAL
+		public RuleCall getHexadeciamlValueHEXADECIMALTerminalRuleCall_1_0() { return cHexadeciamlValueHEXADECIMALTerminalRuleCall_1_0; }
+	}
+	public class AsciiValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AsciiValue");
+		private final Assignment cAsciiValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cAsciiValueASCIITerminalRuleCall_0 = (RuleCall)cAsciiValueAssignment.eContents().get(0);
+		
+		//AsciiValue:
+		//    asciiValue = ASCII
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//asciiValue = ASCII
+		public Assignment getAsciiValueAssignment() { return cAsciiValueAssignment; }
+		
+		//ASCII
+		public RuleCall getAsciiValueASCIITerminalRuleCall_0() { return cAsciiValueASCIITerminalRuleCall_0; }
+	}
+	public class LabelValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LabelValue");
+		private final Assignment cLabelAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cLabelLABELTerminalRuleCall_0 = (RuleCall)cLabelAssignment.eContents().get(0);
+		
+		//LabelValue:
+		//    label=LABEL
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//label=LABEL
+		public Assignment getLabelAssignment() { return cLabelAssignment; }
+		
+		//LABEL
+		public RuleCall getLabelLABELTerminalRuleCall_0() { return cLabelLABELTerminalRuleCall_0; }
+	}
 	
 	
 	private final ModelElements pModel;
 	private final SourceLineElements pSourceLine;
+	private final AssemblyLineElements pAssemblyLine;
+	private final DirectiveElements pDirective;
+	private final EquDirectiveElements pEquDirective;
+	private final LabelFieldElements pLabelField;
 	private final CommentLineElements pCommentLine;
 	private final EmptyLineElements pEmptyLine;
+	private final SpecifiedValueElements pSpecifiedValue;
+	private final ExpressionElements pExpression;
+	private final AdditionElements pAddition;
+	private final MultiplicationElements pMultiplication;
+	private final DivisionElements pDivision;
+	private final SoustractionElements pSoustraction;
+	private final PrimaryElements pPrimary;
+	private final ExpressionValueElements pExpressionValue;
+	private final ActualPositionElements pActualPosition;
+	private final BinaryeValueElements pBinaryeValue;
+	private final OctalValueElements pOctalValue;
+	private final DecimelValueElements pDecimelValue;
+	private final HexadecimalValueElements pHexadecimalValue;
+	private final AsciiValueElements pAsciiValue;
+	private final LabelValueElements pLabelValue;
+	private final TerminalRule tHEXADECIMAL;
+	private final TerminalRule tBINARY;
+	private final TerminalRule tDECIMAL;
+	private final TerminalRule tASCII;
+	private final TerminalRule tOCTAL;
+	private final TerminalRule tLABEL;
 	private final TerminalRule tSL_COMMENT;
 	private final TerminalRule tCR;
 	private final TerminalRule tWS;
@@ -127,8 +754,33 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.pModel = new ModelElements();
 		this.pSourceLine = new SourceLineElements();
+		this.pAssemblyLine = new AssemblyLineElements();
+		this.pDirective = new DirectiveElements();
+		this.pEquDirective = new EquDirectiveElements();
+		this.pLabelField = new LabelFieldElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pEmptyLine = new EmptyLineElements();
+		this.pSpecifiedValue = new SpecifiedValueElements();
+		this.pExpression = new ExpressionElements();
+		this.pAddition = new AdditionElements();
+		this.pMultiplication = new MultiplicationElements();
+		this.pDivision = new DivisionElements();
+		this.pSoustraction = new SoustractionElements();
+		this.pPrimary = new PrimaryElements();
+		this.pExpressionValue = new ExpressionValueElements();
+		this.pActualPosition = new ActualPositionElements();
+		this.pBinaryeValue = new BinaryeValueElements();
+		this.pOctalValue = new OctalValueElements();
+		this.pDecimelValue = new DecimelValueElements();
+		this.pHexadecimalValue = new HexadecimalValueElements();
+		this.pAsciiValue = new AsciiValueElements();
+		this.pLabelValue = new LabelValueElements();
+		this.tHEXADECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.HEXADECIMAL");
+		this.tBINARY = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.BINARY");
+		this.tDECIMAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DECIMAL");
+		this.tASCII = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ASCII");
+		this.tOCTAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OCTAL");
+		this.tLABEL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LABEL");
 		this.tSL_COMMENT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SL_COMMENT");
 		this.tCR = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CR");
 		this.tWS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.WS");
@@ -169,6 +821,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//SourceLine:
+	//    assemblyLine = AssemblyLine |
 	//    emptyLine = EmptyLine |
 	//    commentLine = CommentLine
 	//;
@@ -178,6 +831,54 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getSourceLineRule() {
 		return getSourceLineAccess().getRule();
+	}
+	
+	//AssemblyLine:
+	//        (labelField = LabelField)?
+	//        WS
+	//        (command= Directive /* | command = Operation*/)
+	//        WS?
+	//        (SL_COMMENT | CR)
+	//;
+	public AssemblyLineElements getAssemblyLineAccess() {
+		return pAssemblyLine;
+	}
+	
+	public ParserRule getAssemblyLineRule() {
+		return getAssemblyLineAccess().getRule();
+	}
+	
+	//Directive :
+	//    directive = EquDirective
+	//;
+	public DirectiveElements getDirectiveAccess() {
+		return pDirective;
+	}
+	
+	public ParserRule getDirectiveRule() {
+		return getDirectiveAccess().getRule();
+	}
+	
+	//EquDirective:
+	//    'EQU' WS constant=SpecifiedValue
+	//;
+	public EquDirectiveElements getEquDirectiveAccess() {
+		return pEquDirective;
+	}
+	
+	public ParserRule getEquDirectiveRule() {
+		return getEquDirectiveAccess().getRule();
+	}
+	
+	//LabelField:
+	//    label = LABEL
+	//;
+	public LabelFieldElements getLabelFieldAccess() {
+		return pLabelField;
+	}
+	
+	public ParserRule getLabelFieldRule() {
+		return getLabelFieldAccess().getRule();
 	}
 	
 	//CommentLine :
@@ -200,6 +901,212 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getEmptyLineRule() {
 		return getEmptyLineAccess().getRule();
+	}
+	
+	//SpecifiedValue:
+	//    {SpecifiedValue} value=Expression?
+	//;
+	public SpecifiedValueElements getSpecifiedValueAccess() {
+		return pSpecifiedValue;
+	}
+	
+	public ParserRule getSpecifiedValueRule() {
+		return getSpecifiedValueAccess().getRule();
+	}
+	
+	//Expression:
+	//    addition=Addition
+	//;
+	public ExpressionElements getExpressionAccess() {
+		return pExpression;
+	}
+	
+	public ParserRule getExpressionRule() {
+		return getExpressionAccess().getRule();
+	}
+	
+	//Addition returns Expression:
+	//    values+=Multiplication ('+' values+=Multiplication)*
+	//;
+	public AdditionElements getAdditionAccess() {
+		return pAddition;
+	}
+	
+	public ParserRule getAdditionRule() {
+		return getAdditionAccess().getRule();
+	}
+	
+	//Multiplication returns Expression:
+	//    values+=Division ('*' values+=Division)*
+	//;
+	public MultiplicationElements getMultiplicationAccess() {
+		return pMultiplication;
+	}
+	
+	public ParserRule getMultiplicationRule() {
+		return getMultiplicationAccess().getRule();
+	}
+	
+	//Division returns Expressions:
+	//    values+=Soustraction ('/' values+=Soustraction)*
+	//;
+	public DivisionElements getDivisionAccess() {
+		return pDivision;
+	}
+	
+	public ParserRule getDivisionRule() {
+		return getDivisionAccess().getRule();
+	}
+	
+	//Soustraction returns Expression:
+	//    values+=Primary ('-' values+=Primary)*
+	//;
+	public SoustractionElements getSoustractionAccess() {
+		return pSoustraction;
+	}
+	
+	public ParserRule getSoustractionRule() {
+		return getSoustractionAccess().getRule();
+	}
+	
+	//Primary returns Expression:
+	//    expressionValue= ExpressionValue |
+	//    '(' expressionValue=Addition ')'
+	//;
+	public PrimaryElements getPrimaryAccess() {
+		return pPrimary;
+	}
+	
+	public ParserRule getPrimaryRule() {
+		return getPrimaryAccess().getRule();
+	}
+	
+	//ExpressionValue:
+	//    expressionValue=BinaryeValue |
+	//    expressionValue=OctalValue |
+	//    expressionValue=DecimelValue |
+	//    expressionValue=HexadecimalValue |
+	//    expressionValue=LabelValue |
+	//    expressionValue=AsciiValue |
+	//    expressionValue=ActualPosition
+	//;
+	public ExpressionValueElements getExpressionValueAccess() {
+		return pExpressionValue;
+	}
+	
+	public ParserRule getExpressionValueRule() {
+		return getExpressionValueAccess().getRule();
+	}
+	
+	//ActualPosition:
+	//    actualPosition = '*'
+	//;
+	public ActualPositionElements getActualPositionAccess() {
+		return pActualPosition;
+	}
+	
+	public ParserRule getActualPositionRule() {
+		return getActualPositionAccess().getRule();
+	}
+	
+	//BinaryeValue:
+	//    (isNegative?='-')?
+	//    binaryValue = BINARY
+	//;
+	public BinaryeValueElements getBinaryeValueAccess() {
+		return pBinaryeValue;
+	}
+	
+	public ParserRule getBinaryeValueRule() {
+		return getBinaryeValueAccess().getRule();
+	}
+	
+	//OctalValue:
+	//    (isNegative?='-')?
+	//    octalValue=OCTAL
+	//;
+	public OctalValueElements getOctalValueAccess() {
+		return pOctalValue;
+	}
+	
+	public ParserRule getOctalValueRule() {
+		return getOctalValueAccess().getRule();
+	}
+	
+	//DecimelValue:
+	//    isNegative ?= '-'?
+	//    decimalValue=DECIMAL
+	//;
+	public DecimelValueElements getDecimelValueAccess() {
+		return pDecimelValue;
+	}
+	
+	public ParserRule getDecimelValueRule() {
+		return getDecimelValueAccess().getRule();
+	}
+	
+	//HexadecimalValue:
+	//    isNegative ?= '-'?
+	//    hexadeciamlValue=HEXADECIMAL
+	//;
+	public HexadecimalValueElements getHexadecimalValueAccess() {
+		return pHexadecimalValue;
+	}
+	
+	public ParserRule getHexadecimalValueRule() {
+		return getHexadecimalValueAccess().getRule();
+	}
+	
+	//AsciiValue:
+	//    asciiValue = ASCII
+	//;
+	public AsciiValueElements getAsciiValueAccess() {
+		return pAsciiValue;
+	}
+	
+	public ParserRule getAsciiValueRule() {
+		return getAsciiValueAccess().getRule();
+	}
+	
+	//LabelValue:
+	//    label=LABEL
+	//;
+	public LabelValueElements getLabelValueAccess() {
+		return pLabelValue;
+	}
+	
+	public ParserRule getLabelValueRule() {
+		return getLabelValueAccess().getRule();
+	}
+	
+	//terminal HEXADECIMAL : '$' ('A'..'F'|'0'..'9')+ ;
+	public TerminalRule getHEXADECIMALRule() {
+		return tHEXADECIMAL;
+	}
+	
+	//terminal BINARY : '%' ('0'..'1')+ ;
+	public TerminalRule getBINARYRule() {
+		return tBINARY;
+	}
+	
+	//terminal DECIMAL : ('0'..'9')+;
+	public TerminalRule getDECIMALRule() {
+		return tDECIMAL;
+	}
+	
+	//terminal ASCII : '\''.+(WS | CR |'\'');
+	public TerminalRule getASCIIRule() {
+		return tASCII;
+	}
+	
+	//terminal OCTAL: '@' ('0'..'7')+;
+	public TerminalRule getOCTALRule() {
+		return tOCTAL;
+	}
+	
+	//terminal LABEL      : ('A'..'Z')('a'..'z' | 'A'..'Z' | '0'..'9' | '_' | '.' | '@' )+;
+	public TerminalRule getLABELRule() {
+		return tLABEL;
 	}
 	
 	//terminal SL_COMMENT	: ';' .* CR;

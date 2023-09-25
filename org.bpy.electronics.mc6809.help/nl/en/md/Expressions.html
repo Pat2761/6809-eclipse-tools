@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='utf-8' ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	</head>
+	<body>
+		<h3 id="expressions">Expressions</h3>
+		<p>Expressions may consist of symbols, constants or the character '
+			<em>' (denoting the current value of the program counter) joined together by one of the operators: +-</em>/%&amp;|^. The operators are the same as in C. The entire expression is treated as one Operand field so no white space is permitted in the expression.
+		</p>
+		<p>Expression Operators</p>
+		<ol>
+			<li>+ add</li>
+			<li>- subtract</li>
+			<li>* multiply</li>
+			<li>/ divide</li>
+			<li>% remainder after division</li>
+			<li>&amp; bitwise and</li>
+			<li>| bitwise or</li>
+			<li>^ bitwise exclusive-or</li>
+		</ol>
+		<p>Expression may used parenthesis for specify the priority of the operation like this</p>
+		<pre><code>Const     EQU     2
+Label     EQU     (10+Const)/2</code></pre>
+	</body>
+</html>

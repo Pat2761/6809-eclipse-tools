@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getAssemblyLine <em>Assembly Line</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getEmptyLine <em>Empty Line</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getCommentLine <em>Comment Line</em>}</li>
  * </ul>
@@ -24,6 +25,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface SourceLine extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Assembly Line</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Assembly Line</em>' containment reference.
+   * @see #setAssemblyLine(AssemblyLine)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSourceLine_AssemblyLine()
+   * @model containment="true"
+   * @generated
+   */
+  AssemblyLine getAssemblyLine();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getAssemblyLine <em>Assembly Line</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Assembly Line</em>' containment reference.
+   * @see #getAssemblyLine()
+   * @generated
+   */
+  void setAssemblyLine(AssemblyLine value);
+
   /**
    * Returns the value of the '<em><b>Empty Line</b></em>' attribute.
    * <!-- begin-user-doc -->
