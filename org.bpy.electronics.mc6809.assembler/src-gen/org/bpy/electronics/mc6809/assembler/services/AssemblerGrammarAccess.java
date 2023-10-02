@@ -1104,7 +1104,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return tOCTAL;
 	}
 	
-	//terminal LABEL      : ('A'..'Z')('a'..'z' | 'A'..'Z' | '0'..'9' | '_' | '.' | '@' )+;
+	//terminal LABEL      : ('A'..'Z')('a'..'z' | 'A'..'Z' | '0'..'9' | '_' )+;
 	public TerminalRule getLABELRule() {
 		return tLABEL;
 	}

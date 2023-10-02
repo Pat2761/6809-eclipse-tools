@@ -2481,7 +2481,7 @@ RULE_ASCII : '\'' .+ (RULE_WS|RULE_CR|'\'');
 
 RULE_OCTAL : '@' ('0'..'7')+;
 
-RULE_LABEL : 'A'..'Z' ('a'..'z'|'A'..'Z'|'0'..'9'|'_'|'.'|'@')+;
+RULE_LABEL : 'A'..'Z' ('a'..'z'|'A'..'Z'|'0'..'9'|'_')+;
 
 RULE_SL_COMMENT : ';' .* RULE_CR;
 

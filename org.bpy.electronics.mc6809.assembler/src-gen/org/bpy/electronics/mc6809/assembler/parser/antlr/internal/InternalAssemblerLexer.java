@@ -510,18 +510,18 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_LABEL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:1324:12: ( 'A' .. 'Z' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '.' | '@' )+ )
-            // InternalAssembler.g:1324:14: 'A' .. 'Z' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '.' | '@' )+
+            // InternalAssembler.g:1324:12: ( 'A' .. 'Z' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+ )
+            // InternalAssembler.g:1324:14: 'A' .. 'Z' ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+
             {
             matchRange('A','Z'); 
-            // InternalAssembler.g:1324:23: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' | '.' | '@' )+
+            // InternalAssembler.g:1324:23: ( 'a' .. 'z' | 'A' .. 'Z' | '0' .. '9' | '_' )+
             int cnt7=0;
             loop7:
             do {
                 int alt7=2;
                 int LA7_0 = input.LA(1);
 
-                if ( (LA7_0=='.'||(LA7_0>='0' && LA7_0<='9')||(LA7_0>='@' && LA7_0<='Z')||LA7_0=='_'||(LA7_0>='a' && LA7_0<='z')) ) {
+                if ( ((LA7_0>='0' && LA7_0<='9')||(LA7_0>='A' && LA7_0<='Z')||LA7_0=='_'||(LA7_0>='a' && LA7_0<='z')) ) {
                     alt7=1;
                 }
 
@@ -530,7 +530,7 @@ public class InternalAssemblerLexer extends Lexer {
             	case 1 :
             	    // InternalAssembler.g:
             	    {
-            	    if ( input.LA(1)=='.'||(input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='@' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
+            	    if ( (input.LA(1)>='0' && input.LA(1)<='9')||(input.LA(1)>='A' && input.LA(1)<='Z')||input.LA(1)=='_'||(input.LA(1)>='a' && input.LA(1)<='z') ) {
             	        input.consume();
 
             	    }
@@ -839,7 +839,7 @@ public class InternalAssemblerLexer extends Lexer {
     static final String DFA11_eofS =
         "\24\uffff";
     static final String DFA11_minS =
-        "\1\11\1\56\17\uffff\1\125\1\56\1\uffff";
+        "\1\11\1\60\17\uffff\1\125\1\60\1\uffff";
     static final String DFA11_maxS =
         "\1\132\1\172\17\uffff\1\125\1\172\1\uffff";
     static final String DFA11_acceptS =
@@ -848,7 +848,7 @@ public class InternalAssemblerLexer extends Lexer {
         "\24\uffff}>";
     static final String[] DFA11_transitionS = {
             "\1\20\1\17\2\uffff\1\17\22\uffff\1\20\3\uffff\1\10\1\11\1\uffff\1\13\1\6\1\7\1\3\1\2\1\uffff\1\5\1\uffff\1\4\12\12\1\uffff\1\16\4\uffff\1\14\4\15\1\1\25\15",
-            "\1\15\1\uffff\12\15\6\uffff\21\15\1\21\11\15\4\uffff\1\15\1\uffff\32\15",
+            "\12\15\7\uffff\20\15\1\21\11\15\4\uffff\1\15\1\uffff\32\15",
             "",
             "",
             "",
@@ -865,7 +865,7 @@ public class InternalAssemblerLexer extends Lexer {
             "",
             "",
             "\1\22",
-            "\1\15\1\uffff\12\15\6\uffff\33\15\4\uffff\1\15\1\uffff\32\15",
+            "\12\15\7\uffff\32\15\4\uffff\1\15\1\uffff\32\15",
             ""
     };
 
