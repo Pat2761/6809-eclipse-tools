@@ -14,7 +14,10 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getConstant <em>Constant</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getName <em>Name</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getEquDirective()
@@ -24,25 +27,91 @@ import org.eclipse.emf.ecore.EObject;
 public interface EquDirective extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Constant</b></em>' containment reference.
+   * Returns the value of the '<em><b>Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Constant</em>' containment reference.
-   * @see #setConstant(SpecifiedValue)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getEquDirective_Constant()
+   * @return the value of the '<em>Name</em>' containment reference.
+   * @see #setName(Identifier)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getEquDirective_Name()
    * @model containment="true"
    * @generated
    */
-  SpecifiedValue getConstant();
+  Identifier getName();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getConstant <em>Constant</em>}' containment reference.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getName <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Constant</em>' containment reference.
-   * @see #getConstant()
+   * @param value the new value of the '<em>Name</em>' containment reference.
+   * @see #getName()
    * @generated
    */
-  void setConstant(SpecifiedValue value);
+  void setName(Identifier value);
+
+  /**
+   * Returns the value of the '<em><b>Directive</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Directive</em>' attribute.
+   * @see #setDirective(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getEquDirective_Directive()
+   * @model
+   * @generated
+   */
+  String getDirective();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getDirective <em>Directive</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Directive</em>' attribute.
+   * @see #getDirective()
+   * @generated
+   */
+  void setDirective(String value);
+
+  /**
+   * Returns the value of the '<em><b>Operand</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Operand</em>' containment reference.
+   * @see #setOperand(Operand)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getEquDirective_Operand()
+   * @model containment="true"
+   * @generated
+   */
+  Operand getOperand();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getOperand <em>Operand</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Operand</em>' containment reference.
+   * @see #getOperand()
+   * @generated
+   */
+  void setOperand(Operand value);
+
+  /**
+   * Returns the value of the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Comment</em>' attribute.
+   * @see #setComment(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getEquDirective_Comment()
+   * @model
+   * @generated
+   */
+  String getComment();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getComment <em>Comment</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Comment</em>' attribute.
+   * @see #getComment()
+   * @generated
+   */
+  void setComment(String value);
 
 } // EquDirective

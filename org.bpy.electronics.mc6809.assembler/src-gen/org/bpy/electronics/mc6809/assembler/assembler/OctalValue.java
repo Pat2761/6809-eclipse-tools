@@ -14,8 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OctalValue#isIsNegative <em>Is Negative</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OctalValue#getOctalValue <em>Octal Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OctalValue#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOctalValue()
@@ -25,47 +24,25 @@ import org.eclipse.emf.ecore.EObject;
 public interface OctalValue extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Is Negative</b></em>' attribute.
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Is Negative</em>' attribute.
-   * @see #setIsNegative(boolean)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOctalValue_IsNegative()
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOctalValue_Value()
    * @model
    * @generated
    */
-  boolean isIsNegative();
+  String getValue();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.OctalValue#isIsNegative <em>Is Negative</em>}' attribute.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.OctalValue#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Is Negative</em>' attribute.
-   * @see #isIsNegative()
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see #getValue()
    * @generated
    */
-  void setIsNegative(boolean value);
-
-  /**
-   * Returns the value of the '<em><b>Octal Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Octal Value</em>' attribute.
-   * @see #setOctalValue(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOctalValue_OctalValue()
-   * @model
-   * @generated
-   */
-  String getOctalValue();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.OctalValue#getOctalValue <em>Octal Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Octal Value</em>' attribute.
-   * @see #getOctalValue()
-   * @generated
-   */
-  void setOctalValue(String value);
+  void setValue(String value);
 
 } // OctalValue

@@ -10,64 +10,83 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Model/sourceLines"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SourceLine">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SourceLine/assemblyLine"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SourceLine/emptyLine"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SourceLine/commentLine"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SourceLine/lineContent"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//AssemblyLine">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AssemblyLine/labelField"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AssemblyLine/command"/>
-    </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//Directive">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Directive/directive"/>
-    </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//EquDirective">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//EquDirective/constant"/>
-    </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//LabelField">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelField/label"/>
+    <genClasses ecoreClass="Assembler.ecore#//BlankLine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BlankLine/blankLine"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//CommentLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CommentLine/comment"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//SpecifiedValue">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SpecifiedValue/value"/>
+    <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//EquDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//EquDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EquDirective/directive"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//EquDirective/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EquDirective/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//Operand">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Operand/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//Expression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/addition"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/values"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/expressionValue"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/value"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/left"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//Expressions">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expressions/values"/>
+    <genClasses ecoreClass="Assembler.ecore#//Identifier">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//Identifier/value"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//ExpressionValue">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ExpressionValue/expressionValue"/>
+    <genClasses ecoreClass="Assembler.ecore#//StringValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//StringValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//ActualPosition">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ActualPosition/actualPosition"/>
+    <genClasses ecoreClass="Assembler.ecore#//DecimalValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DecimalValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//BinaryeValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BinaryeValue/isNegative"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BinaryeValue/binaryValue"/>
+    <genClasses ecoreClass="Assembler.ecore#//HexaDecimalValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//HexaDecimalValue/value"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//OctalValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OctalValue/isNegative"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OctalValue/octalValue"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OctalValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//DecimelValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DecimelValue/isNegative"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DecimelValue/decimalValue"/>
+    <genClasses ecoreClass="Assembler.ecore#//BinaryValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BinaryValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//HexadecimalValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//HexadecimalValue/isNegative"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//HexadecimalValue/hexadeciamlValue"/>
+    <genClasses ecoreClass="Assembler.ecore#//CharacterValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CharacterValue/value"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//AsciiValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AsciiValue/asciiValue"/>
+    <genClasses ecoreClass="Assembler.ecore#//Multiplication">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//Multiplication/operation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Multiplication/right"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//LabelValue">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelValue/label"/>
+    <genClasses ecoreClass="Assembler.ecore#//Division">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//Division/opretation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Division/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//Modulo">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//Modulo/opretation"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Modulo/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//Addition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Addition/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//Substraction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Substraction/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//LeftShift">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LeftShift/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//RigthShift">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RigthShift/Negate"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//Negate">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Negate/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//And">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//And/right"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//Or">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Or/right"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

@@ -3,8 +3,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
-import org.bpy.electronics.mc6809.assembler.assembler.ActualPosition;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -15,45 +15,45 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Actual Position</b></em>'.
+ * An implementation of the model object '<em><b>Decimal Value</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ActualPositionImpl#getActualPosition <em>Actual Position</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DecimalValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ActualPositionImpl extends MinimalEObjectImpl.Container implements ActualPosition
+public class DecimalValueImpl extends MinimalEObjectImpl.Container implements DecimalValue
 {
   /**
-   * The default value of the '{@link #getActualPosition() <em>Actual Position</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getActualPosition()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final String ACTUAL_POSITION_EDEFAULT = null;
+  protected static final int VALUE_EDEFAULT = 0;
 
   /**
-   * The cached value of the '{@link #getActualPosition() <em>Actual Position</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getActualPosition()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected String actualPosition = ACTUAL_POSITION_EDEFAULT;
+  protected int value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ActualPositionImpl()
+  protected DecimalValueImpl()
   {
     super();
   }
@@ -66,7 +66,7 @@ public class ActualPositionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ACTUAL_POSITION;
+    return AssemblerPackage.Literals.DECIMAL_VALUE;
   }
 
   /**
@@ -75,9 +75,9 @@ public class ActualPositionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public String getActualPosition()
+  public int getValue()
   {
-    return actualPosition;
+    return value;
   }
 
   /**
@@ -86,12 +86,12 @@ public class ActualPositionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public void setActualPosition(String newActualPosition)
+  public void setValue(int newValue)
   {
-    String oldActualPosition = actualPosition;
-    actualPosition = newActualPosition;
+    int oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ACTUAL_POSITION__ACTUAL_POSITION, oldActualPosition, actualPosition));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.DECIMAL_VALUE__VALUE, oldValue, value));
   }
 
   /**
@@ -104,8 +104,8 @@ public class ActualPositionImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.ACTUAL_POSITION__ACTUAL_POSITION:
-        return getActualPosition();
+      case AssemblerPackage.DECIMAL_VALUE__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +120,8 @@ public class ActualPositionImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.ACTUAL_POSITION__ACTUAL_POSITION:
-        setActualPosition((String)newValue);
+      case AssemblerPackage.DECIMAL_VALUE__VALUE:
+        setValue((Integer)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +137,8 @@ public class ActualPositionImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.ACTUAL_POSITION__ACTUAL_POSITION:
-        setActualPosition(ACTUAL_POSITION_EDEFAULT);
+      case AssemblerPackage.DECIMAL_VALUE__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +154,8 @@ public class ActualPositionImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.ACTUAL_POSITION__ACTUAL_POSITION:
-        return ACTUAL_POSITION_EDEFAULT == null ? actualPosition != null : !ACTUAL_POSITION_EDEFAULT.equals(actualPosition);
+      case AssemblerPackage.DECIMAL_VALUE__VALUE:
+        return value != VALUE_EDEFAULT;
     }
     return super.eIsSet(featureID);
   }
@@ -171,10 +171,10 @@ public class ActualPositionImpl extends MinimalEObjectImpl.Container implements 
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (actualPosition: ");
-    result.append(actualPosition);
+    result.append(" (value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }
 
-} //ActualPositionImpl
+} //DecimalValueImpl

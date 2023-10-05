@@ -3,8 +3,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
-import org.bpy.electronics.mc6809.assembler.assembler.AsciiValue;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -15,45 +15,45 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Ascii Value</b></em>'.
+ * An implementation of the model object '<em><b>Binary Value</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AsciiValueImpl#getAsciiValue <em>Ascii Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class AsciiValueImpl extends MinimalEObjectImpl.Container implements AsciiValue
+public class BinaryValueImpl extends MinimalEObjectImpl.Container implements BinaryValue
 {
   /**
-   * The default value of the '{@link #getAsciiValue() <em>Ascii Value</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAsciiValue()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final String ASCII_VALUE_EDEFAULT = null;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getAsciiValue() <em>Ascii Value</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAsciiValue()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected String asciiValue = ASCII_VALUE_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected AsciiValueImpl()
+  protected BinaryValueImpl()
   {
     super();
   }
@@ -66,7 +66,7 @@ public class AsciiValueImpl extends MinimalEObjectImpl.Container implements Asci
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ASCII_VALUE;
+    return AssemblerPackage.Literals.BINARY_VALUE;
   }
 
   /**
@@ -75,9 +75,9 @@ public class AsciiValueImpl extends MinimalEObjectImpl.Container implements Asci
    * @generated
    */
   @Override
-  public String getAsciiValue()
+  public String getValue()
   {
-    return asciiValue;
+    return value;
   }
 
   /**
@@ -86,12 +86,12 @@ public class AsciiValueImpl extends MinimalEObjectImpl.Container implements Asci
    * @generated
    */
   @Override
-  public void setAsciiValue(String newAsciiValue)
+  public void setValue(String newValue)
   {
-    String oldAsciiValue = asciiValue;
-    asciiValue = newAsciiValue;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ASCII_VALUE__ASCII_VALUE, oldAsciiValue, asciiValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.BINARY_VALUE__VALUE, oldValue, value));
   }
 
   /**
@@ -104,8 +104,8 @@ public class AsciiValueImpl extends MinimalEObjectImpl.Container implements Asci
   {
     switch (featureID)
     {
-      case AssemblerPackage.ASCII_VALUE__ASCII_VALUE:
-        return getAsciiValue();
+      case AssemblerPackage.BINARY_VALUE__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +120,8 @@ public class AsciiValueImpl extends MinimalEObjectImpl.Container implements Asci
   {
     switch (featureID)
     {
-      case AssemblerPackage.ASCII_VALUE__ASCII_VALUE:
-        setAsciiValue((String)newValue);
+      case AssemblerPackage.BINARY_VALUE__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +137,8 @@ public class AsciiValueImpl extends MinimalEObjectImpl.Container implements Asci
   {
     switch (featureID)
     {
-      case AssemblerPackage.ASCII_VALUE__ASCII_VALUE:
-        setAsciiValue(ASCII_VALUE_EDEFAULT);
+      case AssemblerPackage.BINARY_VALUE__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +154,8 @@ public class AsciiValueImpl extends MinimalEObjectImpl.Container implements Asci
   {
     switch (featureID)
     {
-      case AssemblerPackage.ASCII_VALUE__ASCII_VALUE:
-        return ASCII_VALUE_EDEFAULT == null ? asciiValue != null : !ASCII_VALUE_EDEFAULT.equals(asciiValue);
+      case AssemblerPackage.BINARY_VALUE__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
@@ -171,10 +171,10 @@ public class AsciiValueImpl extends MinimalEObjectImpl.Container implements Asci
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (asciiValue: ");
-    result.append(asciiValue);
+    result.append(" (value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }
 
-} //AsciiValueImpl
+} //BinaryValueImpl

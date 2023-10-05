@@ -42,40 +42,13 @@ public interface AssemblerFactory extends EFactory
   SourceLine createSourceLine();
 
   /**
-   * Returns a new object of class '<em>Assembly Line</em>'.
+   * Returns a new object of class '<em>Blank Line</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Assembly Line</em>'.
+   * @return a new object of class '<em>Blank Line</em>'.
    * @generated
    */
-  AssemblyLine createAssemblyLine();
-
-  /**
-   * Returns a new object of class '<em>Directive</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Directive</em>'.
-   * @generated
-   */
-  Directive createDirective();
-
-  /**
-   * Returns a new object of class '<em>Equ Directive</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Equ Directive</em>'.
-   * @generated
-   */
-  EquDirective createEquDirective();
-
-  /**
-   * Returns a new object of class '<em>Label Field</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Label Field</em>'.
-   * @generated
-   */
-  LabelField createLabelField();
+  BlankLine createBlankLine();
 
   /**
    * Returns a new object of class '<em>Comment Line</em>'.
@@ -87,13 +60,31 @@ public interface AssemblerFactory extends EFactory
   CommentLine createCommentLine();
 
   /**
-   * Returns a new object of class '<em>Specified Value</em>'.
+   * Returns a new object of class '<em>Directive Line</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Specified Value</em>'.
+   * @return a new object of class '<em>Directive Line</em>'.
    * @generated
    */
-  SpecifiedValue createSpecifiedValue();
+  DirectiveLine createDirectiveLine();
+
+  /**
+   * Returns a new object of class '<em>Equ Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Equ Directive</em>'.
+   * @generated
+   */
+  EquDirective createEquDirective();
+
+  /**
+   * Returns a new object of class '<em>Operand</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Operand</em>'.
+   * @generated
+   */
+  Operand createOperand();
 
   /**
    * Returns a new object of class '<em>Expression</em>'.
@@ -105,40 +96,40 @@ public interface AssemblerFactory extends EFactory
   Expression createExpression();
 
   /**
-   * Returns a new object of class '<em>Expressions</em>'.
+   * Returns a new object of class '<em>Identifier</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expressions</em>'.
+   * @return a new object of class '<em>Identifier</em>'.
    * @generated
    */
-  Expressions createExpressions();
+  Identifier createIdentifier();
 
   /**
-   * Returns a new object of class '<em>Expression Value</em>'.
+   * Returns a new object of class '<em>String Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Expression Value</em>'.
+   * @return a new object of class '<em>String Value</em>'.
    * @generated
    */
-  ExpressionValue createExpressionValue();
+  StringValue createStringValue();
 
   /**
-   * Returns a new object of class '<em>Actual Position</em>'.
+   * Returns a new object of class '<em>Decimal Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Actual Position</em>'.
+   * @return a new object of class '<em>Decimal Value</em>'.
    * @generated
    */
-  ActualPosition createActualPosition();
+  DecimalValue createDecimalValue();
 
   /**
-   * Returns a new object of class '<em>Binarye Value</em>'.
+   * Returns a new object of class '<em>Hexa Decimal Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Binarye Value</em>'.
+   * @return a new object of class '<em>Hexa Decimal Value</em>'.
    * @generated
    */
-  BinaryeValue createBinaryeValue();
+  HexaDecimalValue createHexaDecimalValue();
 
   /**
    * Returns a new object of class '<em>Octal Value</em>'.
@@ -150,40 +141,112 @@ public interface AssemblerFactory extends EFactory
   OctalValue createOctalValue();
 
   /**
-   * Returns a new object of class '<em>Decimel Value</em>'.
+   * Returns a new object of class '<em>Binary Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Decimel Value</em>'.
+   * @return a new object of class '<em>Binary Value</em>'.
    * @generated
    */
-  DecimelValue createDecimelValue();
+  BinaryValue createBinaryValue();
 
   /**
-   * Returns a new object of class '<em>Hexadecimal Value</em>'.
+   * Returns a new object of class '<em>Character Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Hexadecimal Value</em>'.
+   * @return a new object of class '<em>Character Value</em>'.
    * @generated
    */
-  HexadecimalValue createHexadecimalValue();
+  CharacterValue createCharacterValue();
 
   /**
-   * Returns a new object of class '<em>Ascii Value</em>'.
+   * Returns a new object of class '<em>Multiplication</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Ascii Value</em>'.
+   * @return a new object of class '<em>Multiplication</em>'.
    * @generated
    */
-  AsciiValue createAsciiValue();
+  Multiplication createMultiplication();
 
   /**
-   * Returns a new object of class '<em>Label Value</em>'.
+   * Returns a new object of class '<em>Division</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Label Value</em>'.
+   * @return a new object of class '<em>Division</em>'.
    * @generated
    */
-  LabelValue createLabelValue();
+  Division createDivision();
+
+  /**
+   * Returns a new object of class '<em>Modulo</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Modulo</em>'.
+   * @generated
+   */
+  Modulo createModulo();
+
+  /**
+   * Returns a new object of class '<em>Addition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Addition</em>'.
+   * @generated
+   */
+  Addition createAddition();
+
+  /**
+   * Returns a new object of class '<em>Substraction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Substraction</em>'.
+   * @generated
+   */
+  Substraction createSubstraction();
+
+  /**
+   * Returns a new object of class '<em>Left Shift</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Left Shift</em>'.
+   * @generated
+   */
+  LeftShift createLeftShift();
+
+  /**
+   * Returns a new object of class '<em>Rigth Shift</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rigth Shift</em>'.
+   * @generated
+   */
+  RigthShift createRigthShift();
+
+  /**
+   * Returns a new object of class '<em>Negate</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Negate</em>'.
+   * @generated
+   */
+  Negate createNegate();
+
+  /**
+   * Returns a new object of class '<em>And</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>And</em>'.
+   * @generated
+   */
+  And createAnd();
+
+  /**
+   * Returns a new object of class '<em>Or</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Or</em>'.
+   * @generated
+   */
+  Or createOr();
 
   /**
    * Returns the package supported by this factory.

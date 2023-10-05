@@ -5,25 +5,32 @@ package org.bpy.electronics.mc6809.assembler.serializer;
 
 import com.google.inject.Inject;
 import java.util.Set;
-import org.bpy.electronics.mc6809.assembler.assembler.ActualPosition;
-import org.bpy.electronics.mc6809.assembler.assembler.AsciiValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Addition;
+import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine;
-import org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue;
+import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
+import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
+import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
-import org.bpy.electronics.mc6809.assembler.assembler.DecimelValue;
-import org.bpy.electronics.mc6809.assembler.assembler.Directive;
+import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
-import org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue;
-import org.bpy.electronics.mc6809.assembler.assembler.Expressions;
-import org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue;
-import org.bpy.electronics.mc6809.assembler.assembler.LabelField;
-import org.bpy.electronics.mc6809.assembler.assembler.LabelValue;
+import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Identifier;
+import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
+import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
+import org.bpy.electronics.mc6809.assembler.assembler.Negate;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Operand;
+import org.bpy.electronics.mc6809.assembler.assembler.Or;
+import org.bpy.electronics.mc6809.assembler.assembler.RigthShift;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
-import org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue;
+import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.services.AssemblerGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -49,78 +56,80 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == AssemblerPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
-			case AssemblerPackage.ACTUAL_POSITION:
-				sequence_ActualPosition(context, (ActualPosition) semanticObject); 
+			case AssemblerPackage.ADDITION:
+				sequence_Addition(context, (Addition) semanticObject); 
 				return; 
-			case AssemblerPackage.ASCII_VALUE:
-				sequence_AsciiValue(context, (AsciiValue) semanticObject); 
+			case AssemblerPackage.AND:
+				sequence_And(context, (And) semanticObject); 
 				return; 
-			case AssemblerPackage.ASSEMBLY_LINE:
-				sequence_AssemblyLine(context, (AssemblyLine) semanticObject); 
+			case AssemblerPackage.BINARY_VALUE:
+				sequence_BinaryValue(context, (BinaryValue) semanticObject); 
 				return; 
-			case AssemblerPackage.BINARYE_VALUE:
-				sequence_BinaryeValue(context, (BinaryeValue) semanticObject); 
+			case AssemblerPackage.BLANK_LINE:
+				sequence_BlankLine(context, (BlankLine) semanticObject); 
+				return; 
+			case AssemblerPackage.CHARACTER_VALUE:
+				sequence_CharacterValue(context, (CharacterValue) semanticObject); 
 				return; 
 			case AssemblerPackage.COMMENT_LINE:
 				sequence_CommentLine(context, (CommentLine) semanticObject); 
 				return; 
-			case AssemblerPackage.DECIMEL_VALUE:
-				sequence_DecimelValue(context, (DecimelValue) semanticObject); 
+			case AssemblerPackage.DECIMAL_VALUE:
+				sequence_DecimalValue(context, (DecimalValue) semanticObject); 
 				return; 
-			case AssemblerPackage.DIRECTIVE:
-				sequence_Directive(context, (Directive) semanticObject); 
+			case AssemblerPackage.DIRECTIVE_LINE:
+				sequence_DirectiveLine(context, (DirectiveLine) semanticObject); 
+				return; 
+			case AssemblerPackage.DIVISION:
+				sequence_Division(context, (Division) semanticObject); 
 				return; 
 			case AssemblerPackage.EQU_DIRECTIVE:
 				sequence_EquDirective(context, (EquDirective) semanticObject); 
 				return; 
 			case AssemblerPackage.EXPRESSION:
-				if (rule == grammarAccess.getAdditionRule()) {
-					sequence_Addition(context, (Expression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getExpressionRule()) {
-					sequence_Expression(context, (Expression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getMultiplicationRule()) {
-					sequence_Multiplication(context, (Expression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getPrimaryRule()) {
-					sequence_Primary(context, (Expression) semanticObject); 
-					return; 
-				}
-				else if (rule == grammarAccess.getSoustractionRule()) {
-					sequence_Soustraction(context, (Expression) semanticObject); 
-					return; 
-				}
-				else break;
-			case AssemblerPackage.EXPRESSION_VALUE:
-				sequence_ExpressionValue(context, (ExpressionValue) semanticObject); 
+				sequence_Primary(context, (Expression) semanticObject); 
 				return; 
-			case AssemblerPackage.EXPRESSIONS:
-				sequence_Division(context, (Expressions) semanticObject); 
+			case AssemblerPackage.HEXA_DECIMAL_VALUE:
+				sequence_HexaDecimalValue(context, (HexaDecimalValue) semanticObject); 
 				return; 
-			case AssemblerPackage.HEXADECIMAL_VALUE:
-				sequence_HexadecimalValue(context, (HexadecimalValue) semanticObject); 
+			case AssemblerPackage.IDENTIFIER:
+				sequence_Identifier(context, (Identifier) semanticObject); 
 				return; 
-			case AssemblerPackage.LABEL_FIELD:
-				sequence_LabelField(context, (LabelField) semanticObject); 
-				return; 
-			case AssemblerPackage.LABEL_VALUE:
-				sequence_LabelValue(context, (LabelValue) semanticObject); 
+			case AssemblerPackage.LEFT_SHIFT:
+				sequence_LeftShift(context, (LeftShift) semanticObject); 
 				return; 
 			case AssemblerPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
 				return; 
+			case AssemblerPackage.MODULO:
+				sequence_Modulo(context, (Modulo) semanticObject); 
+				return; 
+			case AssemblerPackage.MULTIPLICATION:
+				sequence_Multiplication(context, (Multiplication) semanticObject); 
+				return; 
+			case AssemblerPackage.NEGATE:
+				sequence_Negate(context, (Negate) semanticObject); 
+				return; 
 			case AssemblerPackage.OCTAL_VALUE:
 				sequence_OctalValue(context, (OctalValue) semanticObject); 
+				return; 
+			case AssemblerPackage.OPERAND:
+				sequence_Operand(context, (Operand) semanticObject); 
+				return; 
+			case AssemblerPackage.OR:
+				sequence_Or_Xor(context, (Or) semanticObject); 
+				return; 
+			case AssemblerPackage.RIGTH_SHIFT:
+				sequence_RigthShift(context, (RigthShift) semanticObject); 
 				return; 
 			case AssemblerPackage.SOURCE_LINE:
 				sequence_SourceLine(context, (SourceLine) semanticObject); 
 				return; 
-			case AssemblerPackage.SPECIFIED_VALUE:
-				sequence_SpecifiedValue(context, (SpecifiedValue) semanticObject); 
+			case AssemblerPackage.STRING_VALUE:
+				sequence_StringValue(context, (StringValue) semanticObject); 
+				return; 
+			case AssemblerPackage.SUBSTRACTION:
+				sequence_Substraction(context, (Substraction) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -130,19 +139,44 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     ActualPosition returns ActualPosition
+	 *     Multiplication returns Addition
+	 *     Multiplication.Multiplication_1_0 returns Addition
+	 *     Division returns Addition
+	 *     Division.Division_1_0 returns Addition
+	 *     Modulo returns Addition
+	 *     Modulo.Modulo_1_0 returns Addition
+	 *     Addition returns Addition
+	 *     Addition.Addition_1_0 returns Addition
+	 *     Substraction returns Addition
+	 *     Substraction.Substraction_1_0 returns Addition
+	 *     LeftShift returns Addition
+	 *     LeftShift.LeftShift_1_0 returns Addition
+	 *     RigthShift returns Addition
+	 *     RigthShift.RigthShift_1_0 returns Addition
+	 *     Negate returns Addition
+	 *     Negate.Negate_1_0 returns Addition
+	 *     And returns Addition
+	 *     And.And_1_0 returns Addition
+	 *     Or returns Addition
+	 *     Or.Or_1_0 returns Addition
+	 *     Xor returns Addition
+	 *     Xor.Or_1_0 returns Addition
+	 *     Primary returns Addition
 	 *
 	 * Constraint:
-	 *     actualPosition='*'
+	 *     (left=Addition_Addition_1_0 right=Substraction)
 	 * </pre>
 	 */
-	protected void sequence_ActualPosition(ISerializationContext context, ActualPosition semanticObject) {
+	protected void sequence_Addition(ISerializationContext context, Addition semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ACTUAL_POSITION__ACTUAL_POSITION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ACTUAL_POSITION__ACTUAL_POSITION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ADDITION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ADDITION__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getActualPositionAccess().getActualPositionAsteriskKeyword_0(), semanticObject.getActualPosition());
+		feeder.accept(grammarAccess.getAdditionAccess().getAdditionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getAdditionAccess().getRightSubstractionParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -150,33 +184,44 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Addition returns Expression
+	 *     Multiplication returns And
+	 *     Multiplication.Multiplication_1_0 returns And
+	 *     Division returns And
+	 *     Division.Division_1_0 returns And
+	 *     Modulo returns And
+	 *     Modulo.Modulo_1_0 returns And
+	 *     Addition returns And
+	 *     Addition.Addition_1_0 returns And
+	 *     Substraction returns And
+	 *     Substraction.Substraction_1_0 returns And
+	 *     LeftShift returns And
+	 *     LeftShift.LeftShift_1_0 returns And
+	 *     RigthShift returns And
+	 *     RigthShift.RigthShift_1_0 returns And
+	 *     Negate returns And
+	 *     Negate.Negate_1_0 returns And
+	 *     And returns And
+	 *     And.And_1_0 returns And
+	 *     Or returns And
+	 *     Or.Or_1_0 returns And
+	 *     Xor returns And
+	 *     Xor.Or_1_0 returns And
+	 *     Primary returns And
 	 *
 	 * Constraint:
-	 *     (values+=Multiplication values+=Multiplication*)
+	 *     (left=And_And_1_0 right=Or)
 	 * </pre>
 	 */
-	protected void sequence_Addition(ISerializationContext context, Expression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     AsciiValue returns AsciiValue
-	 *
-	 * Constraint:
-	 *     asciiValue=ASCII
-	 * </pre>
-	 */
-	protected void sequence_AsciiValue(ISerializationContext context, AsciiValue semanticObject) {
+	protected void sequence_And(ISerializationContext context, And semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ASCII_VALUE__ASCII_VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ASCII_VALUE__ASCII_VALUE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.AND__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.AND__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAsciiValueAccess().getAsciiValueASCIITerminalRuleCall_0(), semanticObject.getAsciiValue());
+		feeder.accept(grammarAccess.getAndAccess().getAndLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getAndAccess().getRightOrParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -184,13 +229,33 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     AssemblyLine returns AssemblyLine
+	 *     BinaryValue returns BinaryValue
 	 *
 	 * Constraint:
-	 *     (labelField=LabelField? command=Directive)
+	 *     value=BINARY
 	 * </pre>
 	 */
-	protected void sequence_AssemblyLine(ISerializationContext context, AssemblyLine semanticObject) {
+	protected void sequence_BinaryValue(ISerializationContext context, BinaryValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.BINARY_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.BINARY_VALUE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getBinaryValueAccess().getValueBINARYTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     BlankLine returns BlankLine
+	 *
+	 * Constraint:
+	 *     blankLine=WS?
+	 * </pre>
+	 */
+	protected void sequence_BlankLine(ISerializationContext context, BlankLine semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -198,14 +263,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     BinaryeValue returns BinaryeValue
+	 *     CharacterValue returns CharacterValue
 	 *
 	 * Constraint:
-	 *     (isNegative?='-'? binaryValue=BINARY)
+	 *     value=CHARACTER
 	 * </pre>
 	 */
-	protected void sequence_BinaryeValue(ISerializationContext context, BinaryeValue semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_CharacterValue(ISerializationContext context, CharacterValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.CHARACTER_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.CHARACTER_VALUE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCharacterValueAccess().getValueCHARACTERTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	
@@ -215,7 +286,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     CommentLine returns CommentLine
 	 *
 	 * Constraint:
-	 *     comment=SL_COMMENT
+	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE
 	 * </pre>
 	 */
 	protected void sequence_CommentLine(ISerializationContext context, CommentLine semanticObject) {
@@ -224,7 +295,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.COMMENT_LINE__COMMENT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCommentLineAccess().getCommentSL_COMMENTTerminalRuleCall_1_0(), semanticObject.getComment());
+		feeder.accept(grammarAccess.getCommentLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_0_0(), semanticObject.getComment());
 		feeder.finish();
 	}
 	
@@ -232,33 +303,39 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     DecimelValue returns DecimelValue
+	 *     DecimalValue returns DecimalValue
 	 *
 	 * Constraint:
-	 *     (isNegative?='-'? decimalValue=DECIMAL)
+	 *     value=INT
 	 * </pre>
 	 */
-	protected void sequence_DecimelValue(ISerializationContext context, DecimelValue semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_DecimalValue(ISerializationContext context, DecimalValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DECIMAL_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DECIMAL_VALUE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDecimalValueAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Directive returns Directive
+	 *     DirectiveLine returns DirectiveLine
 	 *
 	 * Constraint:
 	 *     directive=EquDirective
 	 * </pre>
 	 */
-	protected void sequence_Directive(ISerializationContext context, Directive semanticObject) {
+	protected void sequence_DirectiveLine(ISerializationContext context, DirectiveLine semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DIRECTIVE__DIRECTIVE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DIRECTIVE__DIRECTIVE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DIRECTIVE_LINE__DIRECTIVE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DIRECTIVE_LINE__DIRECTIVE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDirectiveAccess().getDirectiveEquDirectiveParserRuleCall_0(), semanticObject.getDirective());
+		feeder.accept(grammarAccess.getDirectiveLineAccess().getDirectiveEquDirectiveParserRuleCall_0(), semanticObject.getDirective());
 		feeder.finish();
 	}
 	
@@ -266,14 +343,48 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Division returns Expressions
+	 *     Multiplication returns Division
+	 *     Multiplication.Multiplication_1_0 returns Division
+	 *     Division returns Division
+	 *     Division.Division_1_0 returns Division
+	 *     Modulo returns Division
+	 *     Modulo.Modulo_1_0 returns Division
+	 *     Addition returns Division
+	 *     Addition.Addition_1_0 returns Division
+	 *     Substraction returns Division
+	 *     Substraction.Substraction_1_0 returns Division
+	 *     LeftShift returns Division
+	 *     LeftShift.LeftShift_1_0 returns Division
+	 *     RigthShift returns Division
+	 *     RigthShift.RigthShift_1_0 returns Division
+	 *     Negate returns Division
+	 *     Negate.Negate_1_0 returns Division
+	 *     And returns Division
+	 *     And.And_1_0 returns Division
+	 *     Or returns Division
+	 *     Or.Or_1_0 returns Division
+	 *     Xor returns Division
+	 *     Xor.Or_1_0 returns Division
+	 *     Primary returns Division
 	 *
 	 * Constraint:
-	 *     (values+=Soustraction values+=Soustraction*)
+	 *     (left=Division_Division_1_0 opretation='/' right=Modulo)
 	 * </pre>
 	 */
-	protected void sequence_Division(ISerializationContext context, Expressions semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_Division(ISerializationContext context, Division semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DIVISION__OPRETATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DIVISION__OPRETATION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DIVISION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DIVISION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDivisionAccess().getDivisionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getDivisionAccess().getOpretationSolidusKeyword_1_1_0(), semanticObject.getOpretation());
+		feeder.accept(grammarAccess.getDivisionAccess().getRightModuloParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	
@@ -283,38 +394,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     EquDirective returns EquDirective
 	 *
 	 * Constraint:
-	 *     constant=SpecifiedValue
+	 *     (name=Identifier? directive='EQU' operand=Operand? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
 	 * </pre>
 	 */
 	protected void sequence_EquDirective(ISerializationContext context, EquDirective semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EQU_DIRECTIVE__CONSTANT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EQU_DIRECTIVE__CONSTANT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getEquDirectiveAccess().getConstantSpecifiedValueParserRuleCall_2_0(), semanticObject.getConstant());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     ExpressionValue returns ExpressionValue
-	 *
-	 * Constraint:
-	 *     (
-	 *         expressionValue=BinaryeValue | 
-	 *         expressionValue=OctalValue | 
-	 *         expressionValue=DecimelValue | 
-	 *         expressionValue=HexadecimalValue | 
-	 *         expressionValue=LabelValue | 
-	 *         expressionValue=AsciiValue | 
-	 *         expressionValue=ActualPosition
-	 *     )
-	 * </pre>
-	 */
-	protected void sequence_ExpressionValue(ISerializationContext context, ExpressionValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -322,19 +405,19 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Expression returns Expression
+	 *     HexaDecimalValue returns HexaDecimalValue
 	 *
 	 * Constraint:
-	 *     addition=Addition
+	 *     value=HEXA
 	 * </pre>
 	 */
-	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
+	protected void sequence_HexaDecimalValue(ISerializationContext context, HexaDecimalValue semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__ADDITION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__ADDITION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.HEXA_DECIMAL_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.HEXA_DECIMAL_VALUE__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getExpressionAccess().getAdditionAdditionParserRuleCall_0(), semanticObject.getAddition());
+		feeder.accept(grammarAccess.getHexaDecimalValueAccess().getValueHEXATerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -342,33 +425,19 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     HexadecimalValue returns HexadecimalValue
+	 *     Identifier returns Identifier
 	 *
 	 * Constraint:
-	 *     (isNegative?='-'? hexadeciamlValue=HEXADECIMAL)
+	 *     value=ID
 	 * </pre>
 	 */
-	protected void sequence_HexadecimalValue(ISerializationContext context, HexadecimalValue semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     LabelField returns LabelField
-	 *
-	 * Constraint:
-	 *     label=LABEL
-	 * </pre>
-	 */
-	protected void sequence_LabelField(ISerializationContext context, LabelField semanticObject) {
+	protected void sequence_Identifier(ISerializationContext context, Identifier semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.LABEL_FIELD__LABEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.LABEL_FIELD__LABEL));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.IDENTIFIER__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.IDENTIFIER__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getLabelFieldAccess().getLabelLABELTerminalRuleCall_0(), semanticObject.getLabel());
+		feeder.accept(grammarAccess.getIdentifierAccess().getValueIDTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -376,19 +445,44 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     LabelValue returns LabelValue
+	 *     Multiplication returns LeftShift
+	 *     Multiplication.Multiplication_1_0 returns LeftShift
+	 *     Division returns LeftShift
+	 *     Division.Division_1_0 returns LeftShift
+	 *     Modulo returns LeftShift
+	 *     Modulo.Modulo_1_0 returns LeftShift
+	 *     Addition returns LeftShift
+	 *     Addition.Addition_1_0 returns LeftShift
+	 *     Substraction returns LeftShift
+	 *     Substraction.Substraction_1_0 returns LeftShift
+	 *     LeftShift returns LeftShift
+	 *     LeftShift.LeftShift_1_0 returns LeftShift
+	 *     RigthShift returns LeftShift
+	 *     RigthShift.RigthShift_1_0 returns LeftShift
+	 *     Negate returns LeftShift
+	 *     Negate.Negate_1_0 returns LeftShift
+	 *     And returns LeftShift
+	 *     And.And_1_0 returns LeftShift
+	 *     Or returns LeftShift
+	 *     Or.Or_1_0 returns LeftShift
+	 *     Xor returns LeftShift
+	 *     Xor.Or_1_0 returns LeftShift
+	 *     Primary returns LeftShift
 	 *
 	 * Constraint:
-	 *     label=LABEL
+	 *     (left=LeftShift_LeftShift_1_0 right=RigthShift)
 	 * </pre>
 	 */
-	protected void sequence_LabelValue(ISerializationContext context, LabelValue semanticObject) {
+	protected void sequence_LeftShift(ISerializationContext context, LeftShift semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.LABEL_VALUE__LABEL) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.LABEL_VALUE__LABEL));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.LEFT_SHIFT__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.LEFT_SHIFT__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getLabelValueAccess().getLabelLABELTerminalRuleCall_0(), semanticObject.getLabel());
+		feeder.accept(grammarAccess.getLeftShiftAccess().getLeftShiftLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getLeftShiftAccess().getRightRigthShiftParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -410,14 +504,141 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Multiplication returns Expression
+	 *     Multiplication returns Modulo
+	 *     Multiplication.Multiplication_1_0 returns Modulo
+	 *     Division returns Modulo
+	 *     Division.Division_1_0 returns Modulo
+	 *     Modulo returns Modulo
+	 *     Modulo.Modulo_1_0 returns Modulo
+	 *     Addition returns Modulo
+	 *     Addition.Addition_1_0 returns Modulo
+	 *     Substraction returns Modulo
+	 *     Substraction.Substraction_1_0 returns Modulo
+	 *     LeftShift returns Modulo
+	 *     LeftShift.LeftShift_1_0 returns Modulo
+	 *     RigthShift returns Modulo
+	 *     RigthShift.RigthShift_1_0 returns Modulo
+	 *     Negate returns Modulo
+	 *     Negate.Negate_1_0 returns Modulo
+	 *     And returns Modulo
+	 *     And.And_1_0 returns Modulo
+	 *     Or returns Modulo
+	 *     Or.Or_1_0 returns Modulo
+	 *     Xor returns Modulo
+	 *     Xor.Or_1_0 returns Modulo
+	 *     Primary returns Modulo
 	 *
 	 * Constraint:
-	 *     (values+=Division values+=Division*)
+	 *     (left=Modulo_Modulo_1_0 opretation='%' right=Addition)
 	 * </pre>
 	 */
-	protected void sequence_Multiplication(ISerializationContext context, Expression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_Modulo(ISerializationContext context, Modulo semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MODULO__OPRETATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MODULO__OPRETATION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MODULO__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MODULO__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getModuloAccess().getModuloLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getModuloAccess().getOpretationPercentSignKeyword_1_1_0(), semanticObject.getOpretation());
+		feeder.accept(grammarAccess.getModuloAccess().getRightAdditionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Multiplication returns Multiplication
+	 *     Multiplication.Multiplication_1_0 returns Multiplication
+	 *     Division returns Multiplication
+	 *     Division.Division_1_0 returns Multiplication
+	 *     Modulo returns Multiplication
+	 *     Modulo.Modulo_1_0 returns Multiplication
+	 *     Addition returns Multiplication
+	 *     Addition.Addition_1_0 returns Multiplication
+	 *     Substraction returns Multiplication
+	 *     Substraction.Substraction_1_0 returns Multiplication
+	 *     LeftShift returns Multiplication
+	 *     LeftShift.LeftShift_1_0 returns Multiplication
+	 *     RigthShift returns Multiplication
+	 *     RigthShift.RigthShift_1_0 returns Multiplication
+	 *     Negate returns Multiplication
+	 *     Negate.Negate_1_0 returns Multiplication
+	 *     And returns Multiplication
+	 *     And.And_1_0 returns Multiplication
+	 *     Or returns Multiplication
+	 *     Or.Or_1_0 returns Multiplication
+	 *     Xor returns Multiplication
+	 *     Xor.Or_1_0 returns Multiplication
+	 *     Primary returns Multiplication
+	 *
+	 * Constraint:
+	 *     (left=Multiplication_Multiplication_1_0 operation='*' right=Division)
+	 * </pre>
+	 */
+	protected void sequence_Multiplication(ISerializationContext context, Multiplication semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MULTIPLICATION__OPERATION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MULTIPLICATION__OPERATION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MULTIPLICATION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MULTIPLICATION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMultiplicationAccess().getMultiplicationLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getMultiplicationAccess().getOperationAsteriskKeyword_1_1_0(), semanticObject.getOperation());
+		feeder.accept(grammarAccess.getMultiplicationAccess().getRightDivisionParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Multiplication returns Negate
+	 *     Multiplication.Multiplication_1_0 returns Negate
+	 *     Division returns Negate
+	 *     Division.Division_1_0 returns Negate
+	 *     Modulo returns Negate
+	 *     Modulo.Modulo_1_0 returns Negate
+	 *     Addition returns Negate
+	 *     Addition.Addition_1_0 returns Negate
+	 *     Substraction returns Negate
+	 *     Substraction.Substraction_1_0 returns Negate
+	 *     LeftShift returns Negate
+	 *     LeftShift.LeftShift_1_0 returns Negate
+	 *     RigthShift returns Negate
+	 *     RigthShift.RigthShift_1_0 returns Negate
+	 *     Negate returns Negate
+	 *     Negate.Negate_1_0 returns Negate
+	 *     And returns Negate
+	 *     And.And_1_0 returns Negate
+	 *     Or returns Negate
+	 *     Or.Or_1_0 returns Negate
+	 *     Xor returns Negate
+	 *     Xor.Or_1_0 returns Negate
+	 *     Primary returns Negate
+	 *
+	 * Constraint:
+	 *     (left=Negate_Negate_1_0 right=And)
+	 * </pre>
+	 */
+	protected void sequence_Negate(ISerializationContext context, Negate semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.NEGATE__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.NEGATE__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNegateAccess().getNegateLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getNegateAccess().getRightAndParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	
@@ -427,10 +648,30 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     OctalValue returns OctalValue
 	 *
 	 * Constraint:
-	 *     (isNegative?='-'? octalValue=OCTAL)
+	 *     value=OCTAL
 	 * </pre>
 	 */
 	protected void sequence_OctalValue(ISerializationContext context, OctalValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.OCTAL_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.OCTAL_VALUE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOctalValueAccess().getValueOCTALTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Operand returns Operand
+	 *
+	 * Constraint:
+	 *     (operand=Multiplication | operand=StringValue)
+	 * </pre>
+	 */
+	protected void sequence_Operand(ISerializationContext context, Operand semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -438,10 +679,75 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     Multiplication returns Or
+	 *     Multiplication.Multiplication_1_0 returns Or
+	 *     Division returns Or
+	 *     Division.Division_1_0 returns Or
+	 *     Modulo returns Or
+	 *     Modulo.Modulo_1_0 returns Or
+	 *     Addition returns Or
+	 *     Addition.Addition_1_0 returns Or
+	 *     Substraction returns Or
+	 *     Substraction.Substraction_1_0 returns Or
+	 *     LeftShift returns Or
+	 *     LeftShift.LeftShift_1_0 returns Or
+	 *     RigthShift returns Or
+	 *     RigthShift.RigthShift_1_0 returns Or
+	 *     Negate returns Or
+	 *     Negate.Negate_1_0 returns Or
+	 *     And returns Or
+	 *     And.And_1_0 returns Or
+	 *     Or returns Or
+	 *     Or.Or_1_0 returns Or
+	 *     Xor returns Or
+	 *     Xor.Or_1_0 returns Or
+	 *     Primary returns Or
+	 *
+	 * Constraint:
+	 *     ((left=Or_Or_1_0 right=Xor) | (left=Xor_Or_1_0 right=Primary))
+	 * </pre>
+	 */
+	protected void sequence_Or_Xor(ISerializationContext context, Or semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Multiplication returns Expression
+	 *     Multiplication.Multiplication_1_0 returns Expression
+	 *     Division returns Expression
+	 *     Division.Division_1_0 returns Expression
+	 *     Modulo returns Expression
+	 *     Modulo.Modulo_1_0 returns Expression
+	 *     Addition returns Expression
+	 *     Addition.Addition_1_0 returns Expression
+	 *     Substraction returns Expression
+	 *     Substraction.Substraction_1_0 returns Expression
+	 *     LeftShift returns Expression
+	 *     LeftShift.LeftShift_1_0 returns Expression
+	 *     RigthShift returns Expression
+	 *     RigthShift.RigthShift_1_0 returns Expression
+	 *     Negate returns Expression
+	 *     Negate.Negate_1_0 returns Expression
+	 *     And returns Expression
+	 *     And.And_1_0 returns Expression
+	 *     Or returns Expression
+	 *     Or.Or_1_0 returns Expression
+	 *     Xor returns Expression
+	 *     Xor.Or_1_0 returns Expression
 	 *     Primary returns Expression
 	 *
 	 * Constraint:
-	 *     (expressionValue=ExpressionValue | expressionValue=Addition)
+	 *     (
+	 *         value=DecimalValue | 
+	 *         value=HexaDecimalValue | 
+	 *         value=OctalValue | 
+	 *         value=BinaryValue | 
+	 *         value=CharacterValue | 
+	 *         value=Identifier
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_Primary(ISerializationContext context, Expression semanticObject) {
@@ -452,10 +758,55 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     Multiplication returns RigthShift
+	 *     Multiplication.Multiplication_1_0 returns RigthShift
+	 *     Division returns RigthShift
+	 *     Division.Division_1_0 returns RigthShift
+	 *     Modulo returns RigthShift
+	 *     Modulo.Modulo_1_0 returns RigthShift
+	 *     Addition returns RigthShift
+	 *     Addition.Addition_1_0 returns RigthShift
+	 *     Substraction returns RigthShift
+	 *     Substraction.Substraction_1_0 returns RigthShift
+	 *     LeftShift returns RigthShift
+	 *     LeftShift.LeftShift_1_0 returns RigthShift
+	 *     RigthShift returns RigthShift
+	 *     RigthShift.RigthShift_1_0 returns RigthShift
+	 *     Negate returns RigthShift
+	 *     Negate.Negate_1_0 returns RigthShift
+	 *     And returns RigthShift
+	 *     And.And_1_0 returns RigthShift
+	 *     Or returns RigthShift
+	 *     Or.Or_1_0 returns RigthShift
+	 *     Xor returns RigthShift
+	 *     Xor.Or_1_0 returns RigthShift
+	 *     Primary returns RigthShift
+	 *
+	 * Constraint:
+	 *     (left=RigthShift_RigthShift_1_0 Negate=Primary)
+	 * </pre>
+	 */
+	protected void sequence_RigthShift(ISerializationContext context, RigthShift semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RIGTH_SHIFT__NEGATE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RIGTH_SHIFT__NEGATE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRigthShiftAccess().getRigthShiftLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getRigthShiftAccess().getNegatePrimaryParserRuleCall_1_2_0(), semanticObject.getNegate());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     SourceLine returns SourceLine
 	 *
 	 * Constraint:
-	 *     (assemblyLine=AssemblyLine | emptyLine=EmptyLine | commentLine=CommentLine)
+	 *     (lineContent=BlankLine | lineContent=CommentLine | lineContent=DirectiveLine)
 	 * </pre>
 	 */
 	protected void sequence_SourceLine(ISerializationContext context, SourceLine semanticObject) {
@@ -466,28 +817,65 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Soustraction returns Expression
+	 *     StringValue returns StringValue
 	 *
 	 * Constraint:
-	 *     (values+=Primary values+=Primary*)
+	 *     value=STRING
 	 * </pre>
 	 */
-	protected void sequence_Soustraction(ISerializationContext context, Expression semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_StringValue(ISerializationContext context, StringValue semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.STRING_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.STRING_VALUE__VALUE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.finish();
 	}
 	
 	
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     SpecifiedValue returns SpecifiedValue
+	 *     Multiplication returns Substraction
+	 *     Multiplication.Multiplication_1_0 returns Substraction
+	 *     Division returns Substraction
+	 *     Division.Division_1_0 returns Substraction
+	 *     Modulo returns Substraction
+	 *     Modulo.Modulo_1_0 returns Substraction
+	 *     Addition returns Substraction
+	 *     Addition.Addition_1_0 returns Substraction
+	 *     Substraction returns Substraction
+	 *     Substraction.Substraction_1_0 returns Substraction
+	 *     LeftShift returns Substraction
+	 *     LeftShift.LeftShift_1_0 returns Substraction
+	 *     RigthShift returns Substraction
+	 *     RigthShift.RigthShift_1_0 returns Substraction
+	 *     Negate returns Substraction
+	 *     Negate.Negate_1_0 returns Substraction
+	 *     And returns Substraction
+	 *     And.And_1_0 returns Substraction
+	 *     Or returns Substraction
+	 *     Or.Or_1_0 returns Substraction
+	 *     Xor returns Substraction
+	 *     Xor.Or_1_0 returns Substraction
+	 *     Primary returns Substraction
 	 *
 	 * Constraint:
-	 *     value=Expression?
+	 *     (left=Substraction_Substraction_1_0 right=LeftShift)
 	 * </pre>
 	 */
-	protected void sequence_SpecifiedValue(ISerializationContext context, SpecifiedValue semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_Substraction(ISerializationContext context, Substraction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SUBSTRACTION__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SUBSTRACTION__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSubstractionAccess().getSubstractionLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getSubstractionAccess().getRightLeftShiftParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	

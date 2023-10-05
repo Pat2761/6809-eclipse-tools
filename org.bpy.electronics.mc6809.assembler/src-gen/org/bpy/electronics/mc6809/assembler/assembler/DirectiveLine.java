@@ -7,21 +7,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Directive</b></em>'.
+ * A representation of the model object '<em><b>Directive Line</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.Directive#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getDirective <em>Directive</em>}</li>
  * </ul>
  *
- * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getDirective()
+ * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getDirectiveLine()
  * @model
  * @generated
  */
-public interface Directive extends EObject
+public interface DirectiveLine extends EObject
 {
   /**
    * Returns the value of the '<em><b>Directive</b></em>' containment reference.
@@ -29,14 +29,14 @@ public interface Directive extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Directive</em>' containment reference.
    * @see #setDirective(EquDirective)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getDirective_Directive()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getDirectiveLine_Directive()
    * @model containment="true"
    * @generated
    */
   EquDirective getDirective();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.Directive#getDirective <em>Directive</em>}' containment reference.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getDirective <em>Directive</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Directive</em>' containment reference.
@@ -45,4 +45,4 @@ public interface Directive extends EObject
    */
   void setDirective(EquDirective value);
 
-} // Directive
+} // DirectiveLine

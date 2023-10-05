@@ -9,118 +9,145 @@ Model:
 ;
 	
 SourceLine:
-	assemblyLine = AssemblyLine | 
-	emptyLine = EmptyLine |
-	commentLine = CommentLine 
+	(
+		  (lineContent = BlankLine)
+		| (lineContent = CommentLine) 
+		| (lineContent = DirectiveLine)
+	) 
 ;
 
-AssemblyLine:
-		(labelField = LabelField)? 
-		WS 
-		(command= Directive /* | command = Operation*/)
-		WS? 
-		(SL_COMMENT | CR) 
+BlankLine:
+	{BlankLine} (blankLine = WS)? EndOfLine  
 ;
 
-Directive : 
-	directive = EquDirective 
+CommentLine:
+	comment = ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine 
+;
+
+DirectiveLine:
+	directive = EquDirective
 ;
 
 EquDirective:
-	'EQU' WS constant=SpecifiedValue
+	(name = Identifier)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine	
 ;
 
-LabelField:
-	label = LABEL 
-;
+/*
+ * Equate directive:
+ * EQU is the equate or define directive used to define names
+ * 
+ * example:
+ * LAST         EQU 		5000
+ * LAST			EQU 		FINAL
+ * ST1			EQU 		START+1	
+ * 
+ */
+//EquDirective:
+//	{EquDirective} 'EQU'
+//;
 
-CommentLine : 
-	WS? comment = SL_COMMENT 
-;
-
-EmptyLine:
-	WS? CR 
-;
-
-SpecifiedValue:
-	{SpecifiedValue} value=Expression?
-;
-
-Expression:
-	addition=Addition
-;
-
-Addition returns Expression:
-	values+=Multiplication ('+' values+=Multiplication)*
+Operand:
+		(operand = Multiplication)
+	| 	(operand = StringValue)
 ;
 
 Multiplication returns Expression:
-	values+=Division ('*' values+=Division)* 
+  	Division ({Multiplication.left=current} operation='*' right=Division)*
 ;
 
-Division returns Expressions:
-	values+=Soustraction ('/' values+=Soustraction)*
+Division returns Expression:
+  	Modulo ({Division.left=current} opretation='/' right=Modulo)*
 ;
 
-Soustraction returns Expression:
-	values+=Primary ('-' values+=Primary)*
+Modulo returns Expression:
+	Addition ({Modulo.left=current} opretation='%' right=Addition)*
+;
+
+Addition returns Expression:
+  Substraction ({Addition.left=current} '+' right=Substraction)*
+;
+
+Substraction returns Expression:
+  LeftShift ({Substraction.left=current} '-' right=LeftShift)*
+;
+  
+LeftShift returns Expression:
+	RigthShift ({LeftShift.left=current} '<<' right=RigthShift)*
+;
+
+RigthShift returns Expression:
+	Negate ({RigthShift.left=current} '>>' Negate=Primary)*
+;
+
+Negate returns Expression:
+	And ({Negate.left=current} '~' right=And)*
+;
+
+And returns Expression:
+	Or ({And.left=current} '&&' right=Or)*
+;
+
+Or returns Expression:
+	Xor ({Or.left=current} '||' right=Xor)*
+;
+
+Xor returns Expression:
+	Primary ({Or.left=current} '^' right=Primary)*
 ;
 
 Primary returns Expression:
-	expressionValue= ExpressionValue |
-	'(' expressionValue=Addition ')'
+   	 	value=DecimalValue
+  	|	value=HexaDecimalValue
+  	|	value=OctalValue
+  	|   value=BinaryValue
+  	|   value=CharacterValue
+   	|	value=Identifier
+  	|  '(' Multiplication ')'
+ ;
+
+Identifier:
+	value = ID
 ;
 
-ExpressionValue:
-	expressionValue=BinaryeValue | 
-	expressionValue=OctalValue |
-	expressionValue=DecimelValue |
-	expressionValue=HexadecimalValue |
-	expressionValue=LabelValue |
-	expressionValue=AsciiValue |
-	expressionValue=ActualPosition
+StringValue:
+	value = STRING
 ;
 
-ActualPosition:
-	actualPosition = '*'
+DecimalValue:
+	value = INT
 ;
 
-BinaryeValue:
-	(isNegative?='-')?
-	binaryValue = BINARY
+HexaDecimalValue:
+	value = HEXA
 ;
 
 OctalValue:
-	(isNegative?='-')?
-	octalValue=OCTAL
+	value = OCTAL
 ;
 
-DecimelValue:
-	isNegative ?= '-'?
-	decimalValue=DECIMAL
+BinaryValue:
+	value = BINARY
 ;
 
-HexadecimalValue:
-	isNegative ?= '-'?
-	hexadeciamlValue=HEXADECIMAL
+CharacterValue:
+	value = CHARACTER
 ;
 
-AsciiValue:
-	asciiValue = ASCII
-;
+terminal ID									: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+terminal HEXA 								: '$' ('0'..'9'|'a'..'f'|'A'..'F')+;
+terminal BINARY 							: '!' ('0'..'1')+;
+terminal OCTAL 								: '@' ('0'..'7')+;
+terminal CHARACTER							: '\'' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') ) '\'';
+terminal INT returns ecore::EInt			: ('0'..'9')+;
 
-LabelValue:
-	label=LABEL
-;
+EndOfLine: CR | END_OF_FILE;
 
-terminal HEXADECIMAL : '$' ('A'..'F'|'0'..'9')+ ;
-terminal BINARY : '%' ('0'..'1')+ ;
-terminal DECIMAL : ('0'..'9')+;
-terminal ASCII : '\''.+(WS | CR |'\'');
-terminal OCTAL: '@' ('0'..'7')+;
-
-terminal LABEL      : ('A'..'Z')('a'..'z' | 'A'..'Z' | '0'..'9' | '_' )+; 
-
-terminal SL_COMMENT	: ';' .* CR;
-terminal CR         : ('\r'? '\n');
-terminal WS			: (' '|'\t')+;
+terminal STRING:
+			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' |
+			"'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+		;		
+		
+terminal ANY_EXCEPT_COMMENT_END_OF_LINE  	: ';' !('\n' | '\r')*;
+terminal WS         						: (' '|'\t')+;
+terminal CR          						: '\r'? '\n';
+terminal END_OF_FILE 						: EOF;		

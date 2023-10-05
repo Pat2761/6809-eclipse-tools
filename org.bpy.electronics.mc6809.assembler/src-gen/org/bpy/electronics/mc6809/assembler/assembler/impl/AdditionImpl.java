@@ -3,9 +3,9 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
+import org.bpy.electronics.mc6809.assembler.assembler.Addition;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.Directive;
-import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,39 +14,38 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Directive</b></em>'.
+ * An implementation of the model object '<em><b>Addition</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveImpl#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdditionImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class DirectiveImpl extends MinimalEObjectImpl.Container implements Directive
+public class AdditionImpl extends ExpressionImpl implements Addition
 {
   /**
-   * The cached value of the '{@link #getDirective() <em>Directive</em>}' containment reference.
+   * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getDirective()
+   * @see #getRight()
    * @generated
    * @ordered
    */
-  protected EquDirective directive;
+  protected Expression right;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected DirectiveImpl()
+  protected AdditionImpl()
   {
     super();
   }
@@ -59,7 +58,7 @@ public class DirectiveImpl extends MinimalEObjectImpl.Container implements Direc
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.DIRECTIVE;
+    return AssemblerPackage.Literals.ADDITION;
   }
 
   /**
@@ -68,9 +67,9 @@ public class DirectiveImpl extends MinimalEObjectImpl.Container implements Direc
    * @generated
    */
   @Override
-  public EquDirective getDirective()
+  public Expression getRight()
   {
-    return directive;
+    return right;
   }
 
   /**
@@ -78,13 +77,13 @@ public class DirectiveImpl extends MinimalEObjectImpl.Container implements Direc
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetDirective(EquDirective newDirective, NotificationChain msgs)
+  public NotificationChain basicSetRight(Expression newRight, NotificationChain msgs)
   {
-    EquDirective oldDirective = directive;
-    directive = newDirective;
+    Expression oldRight = right;
+    right = newRight;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.DIRECTIVE__DIRECTIVE, oldDirective, newDirective);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.ADDITION__RIGHT, oldRight, newRight);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -96,20 +95,20 @@ public class DirectiveImpl extends MinimalEObjectImpl.Container implements Direc
    * @generated
    */
   @Override
-  public void setDirective(EquDirective newDirective)
+  public void setRight(Expression newRight)
   {
-    if (newDirective != directive)
+    if (newRight != right)
     {
       NotificationChain msgs = null;
-      if (directive != null)
-        msgs = ((InternalEObject)directive).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.DIRECTIVE__DIRECTIVE, null, msgs);
-      if (newDirective != null)
-        msgs = ((InternalEObject)newDirective).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.DIRECTIVE__DIRECTIVE, null, msgs);
-      msgs = basicSetDirective(newDirective, msgs);
+      if (right != null)
+        msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.ADDITION__RIGHT, null, msgs);
+      if (newRight != null)
+        msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.ADDITION__RIGHT, null, msgs);
+      msgs = basicSetRight(newRight, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.DIRECTIVE__DIRECTIVE, newDirective, newDirective));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ADDITION__RIGHT, newRight, newRight));
   }
 
   /**
@@ -122,8 +121,8 @@ public class DirectiveImpl extends MinimalEObjectImpl.Container implements Direc
   {
     switch (featureID)
     {
-      case AssemblerPackage.DIRECTIVE__DIRECTIVE:
-        return basicSetDirective(null, msgs);
+      case AssemblerPackage.ADDITION__RIGHT:
+        return basicSetRight(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -138,8 +137,8 @@ public class DirectiveImpl extends MinimalEObjectImpl.Container implements Direc
   {
     switch (featureID)
     {
-      case AssemblerPackage.DIRECTIVE__DIRECTIVE:
-        return getDirective();
+      case AssemblerPackage.ADDITION__RIGHT:
+        return getRight();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -154,8 +153,8 @@ public class DirectiveImpl extends MinimalEObjectImpl.Container implements Direc
   {
     switch (featureID)
     {
-      case AssemblerPackage.DIRECTIVE__DIRECTIVE:
-        setDirective((EquDirective)newValue);
+      case AssemblerPackage.ADDITION__RIGHT:
+        setRight((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -171,8 +170,8 @@ public class DirectiveImpl extends MinimalEObjectImpl.Container implements Direc
   {
     switch (featureID)
     {
-      case AssemblerPackage.DIRECTIVE__DIRECTIVE:
-        setDirective((EquDirective)null);
+      case AssemblerPackage.ADDITION__RIGHT:
+        setRight((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -188,10 +187,10 @@ public class DirectiveImpl extends MinimalEObjectImpl.Container implements Direc
   {
     switch (featureID)
     {
-      case AssemblerPackage.DIRECTIVE__DIRECTIVE:
-        return directive != null;
+      case AssemblerPackage.ADDITION__RIGHT:
+        return right != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //DirectiveImpl
+} //AdditionImpl

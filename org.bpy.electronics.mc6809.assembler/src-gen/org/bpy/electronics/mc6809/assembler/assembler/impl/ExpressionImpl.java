@@ -3,15 +3,11 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
-import java.util.Collection;
-
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -19,9 +15,6 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
-
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -31,9 +24,8 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl#getAddition <em>Addition</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl#getValues <em>Values</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl#getExpressionValue <em>Expression Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl#getLeft <em>Left</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,34 +33,24 @@ import org.eclipse.emf.ecore.util.InternalEList;
 public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expression
 {
   /**
-   * The cached value of the '{@link #getAddition() <em>Addition</em>}' containment reference.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAddition()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected Expression addition;
+  protected EObject value;
 
   /**
-   * The cached value of the '{@link #getValues() <em>Values</em>}' containment reference list.
+   * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValues()
+   * @see #getLeft()
    * @generated
    * @ordered
    */
-  protected EList<EObject> values;
-
-  /**
-   * The cached value of the '{@link #getExpressionValue() <em>Expression Value</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExpressionValue()
-   * @generated
-   * @ordered
-   */
-  protected EObject expressionValue;
+  protected Expression left;
 
   /**
    * <!-- begin-user-doc -->
@@ -97,9 +79,9 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * @generated
    */
   @Override
-  public Expression getAddition()
+  public EObject getValue()
   {
-    return addition;
+    return value;
   }
 
   /**
@@ -107,13 +89,13 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAddition(Expression newAddition, NotificationChain msgs)
+  public NotificationChain basicSetValue(EObject newValue, NotificationChain msgs)
   {
-    Expression oldAddition = addition;
-    addition = newAddition;
+    EObject oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXPRESSION__ADDITION, oldAddition, newAddition);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXPRESSION__VALUE, oldValue, newValue);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -125,20 +107,20 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * @generated
    */
   @Override
-  public void setAddition(Expression newAddition)
+  public void setValue(EObject newValue)
   {
-    if (newAddition != addition)
+    if (newValue != value)
     {
       NotificationChain msgs = null;
-      if (addition != null)
-        msgs = ((InternalEObject)addition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXPRESSION__ADDITION, null, msgs);
-      if (newAddition != null)
-        msgs = ((InternalEObject)newAddition).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXPRESSION__ADDITION, null, msgs);
-      msgs = basicSetAddition(newAddition, msgs);
+      if (value != null)
+        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXPRESSION__VALUE, null, msgs);
+      if (newValue != null)
+        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXPRESSION__VALUE, null, msgs);
+      msgs = basicSetValue(newValue, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXPRESSION__ADDITION, newAddition, newAddition));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXPRESSION__VALUE, newValue, newValue));
   }
 
   /**
@@ -147,13 +129,9 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * @generated
    */
   @Override
-  public EList<EObject> getValues()
+  public Expression getLeft()
   {
-    if (values == null)
-    {
-      values = new EObjectContainmentEList<EObject>(EObject.class, this, AssemblerPackage.EXPRESSION__VALUES);
-    }
-    return values;
+    return left;
   }
 
   /**
@@ -161,24 +139,13 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  @Override
-  public EObject getExpressionValue()
+  public NotificationChain basicSetLeft(Expression newLeft, NotificationChain msgs)
   {
-    return expressionValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetExpressionValue(EObject newExpressionValue, NotificationChain msgs)
-  {
-    EObject oldExpressionValue = expressionValue;
-    expressionValue = newExpressionValue;
+    Expression oldLeft = left;
+    left = newLeft;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXPRESSION__EXPRESSION_VALUE, oldExpressionValue, newExpressionValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXPRESSION__LEFT, oldLeft, newLeft);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -190,20 +157,20 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * @generated
    */
   @Override
-  public void setExpressionValue(EObject newExpressionValue)
+  public void setLeft(Expression newLeft)
   {
-    if (newExpressionValue != expressionValue)
+    if (newLeft != left)
     {
       NotificationChain msgs = null;
-      if (expressionValue != null)
-        msgs = ((InternalEObject)expressionValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXPRESSION__EXPRESSION_VALUE, null, msgs);
-      if (newExpressionValue != null)
-        msgs = ((InternalEObject)newExpressionValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXPRESSION__EXPRESSION_VALUE, null, msgs);
-      msgs = basicSetExpressionValue(newExpressionValue, msgs);
+      if (left != null)
+        msgs = ((InternalEObject)left).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXPRESSION__LEFT, null, msgs);
+      if (newLeft != null)
+        msgs = ((InternalEObject)newLeft).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXPRESSION__LEFT, null, msgs);
+      msgs = basicSetLeft(newLeft, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXPRESSION__EXPRESSION_VALUE, newExpressionValue, newExpressionValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXPRESSION__LEFT, newLeft, newLeft));
   }
 
   /**
@@ -216,12 +183,10 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case AssemblerPackage.EXPRESSION__ADDITION:
-        return basicSetAddition(null, msgs);
-      case AssemblerPackage.EXPRESSION__VALUES:
-        return ((InternalEList<?>)getValues()).basicRemove(otherEnd, msgs);
-      case AssemblerPackage.EXPRESSION__EXPRESSION_VALUE:
-        return basicSetExpressionValue(null, msgs);
+      case AssemblerPackage.EXPRESSION__VALUE:
+        return basicSetValue(null, msgs);
+      case AssemblerPackage.EXPRESSION__LEFT:
+        return basicSetLeft(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -236,12 +201,10 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case AssemblerPackage.EXPRESSION__ADDITION:
-        return getAddition();
-      case AssemblerPackage.EXPRESSION__VALUES:
-        return getValues();
-      case AssemblerPackage.EXPRESSION__EXPRESSION_VALUE:
-        return getExpressionValue();
+      case AssemblerPackage.EXPRESSION__VALUE:
+        return getValue();
+      case AssemblerPackage.EXPRESSION__LEFT:
+        return getLeft();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -251,21 +214,16 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case AssemblerPackage.EXPRESSION__ADDITION:
-        setAddition((Expression)newValue);
+      case AssemblerPackage.EXPRESSION__VALUE:
+        setValue((EObject)newValue);
         return;
-      case AssemblerPackage.EXPRESSION__VALUES:
-        getValues().clear();
-        getValues().addAll((Collection<? extends EObject>)newValue);
-        return;
-      case AssemblerPackage.EXPRESSION__EXPRESSION_VALUE:
-        setExpressionValue((EObject)newValue);
+      case AssemblerPackage.EXPRESSION__LEFT:
+        setLeft((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -281,14 +239,11 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case AssemblerPackage.EXPRESSION__ADDITION:
-        setAddition((Expression)null);
+      case AssemblerPackage.EXPRESSION__VALUE:
+        setValue((EObject)null);
         return;
-      case AssemblerPackage.EXPRESSION__VALUES:
-        getValues().clear();
-        return;
-      case AssemblerPackage.EXPRESSION__EXPRESSION_VALUE:
-        setExpressionValue((EObject)null);
+      case AssemblerPackage.EXPRESSION__LEFT:
+        setLeft((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -304,12 +259,10 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case AssemblerPackage.EXPRESSION__ADDITION:
-        return addition != null;
-      case AssemblerPackage.EXPRESSION__VALUES:
-        return values != null && !values.isEmpty();
-      case AssemblerPackage.EXPRESSION__EXPRESSION_VALUE:
-        return expressionValue != null;
+      case AssemblerPackage.EXPRESSION__VALUE:
+        return value != null;
+      case AssemblerPackage.EXPRESSION__LEFT:
+        return left != null;
     }
     return super.eIsSet(featureID);
   }

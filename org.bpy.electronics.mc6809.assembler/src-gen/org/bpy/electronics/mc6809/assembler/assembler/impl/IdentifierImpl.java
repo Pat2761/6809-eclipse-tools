@@ -4,7 +4,7 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.LabelValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Identifier;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -15,45 +15,45 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Label Value</b></em>'.
+ * An implementation of the model object '<em><b>Identifier</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelValueImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LabelValueImpl extends MinimalEObjectImpl.Container implements LabelValue
+public class IdentifierImpl extends MinimalEObjectImpl.Container implements Identifier
 {
   /**
-   * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLabel()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final String LABEL_EDEFAULT = null;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLabel()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected String label = LABEL_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected LabelValueImpl()
+  protected IdentifierImpl()
   {
     super();
   }
@@ -66,7 +66,7 @@ public class LabelValueImpl extends MinimalEObjectImpl.Container implements Labe
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.LABEL_VALUE;
+    return AssemblerPackage.Literals.IDENTIFIER;
   }
 
   /**
@@ -75,9 +75,9 @@ public class LabelValueImpl extends MinimalEObjectImpl.Container implements Labe
    * @generated
    */
   @Override
-  public String getLabel()
+  public String getValue()
   {
-    return label;
+    return value;
   }
 
   /**
@@ -86,12 +86,12 @@ public class LabelValueImpl extends MinimalEObjectImpl.Container implements Labe
    * @generated
    */
   @Override
-  public void setLabel(String newLabel)
+  public void setValue(String newValue)
   {
-    String oldLabel = label;
-    label = newLabel;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.LABEL_VALUE__LABEL, oldLabel, label));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.IDENTIFIER__VALUE, oldValue, value));
   }
 
   /**
@@ -104,8 +104,8 @@ public class LabelValueImpl extends MinimalEObjectImpl.Container implements Labe
   {
     switch (featureID)
     {
-      case AssemblerPackage.LABEL_VALUE__LABEL:
-        return getLabel();
+      case AssemblerPackage.IDENTIFIER__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +120,8 @@ public class LabelValueImpl extends MinimalEObjectImpl.Container implements Labe
   {
     switch (featureID)
     {
-      case AssemblerPackage.LABEL_VALUE__LABEL:
-        setLabel((String)newValue);
+      case AssemblerPackage.IDENTIFIER__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +137,8 @@ public class LabelValueImpl extends MinimalEObjectImpl.Container implements Labe
   {
     switch (featureID)
     {
-      case AssemblerPackage.LABEL_VALUE__LABEL:
-        setLabel(LABEL_EDEFAULT);
+      case AssemblerPackage.IDENTIFIER__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +154,8 @@ public class LabelValueImpl extends MinimalEObjectImpl.Container implements Labe
   {
     switch (featureID)
     {
-      case AssemblerPackage.LABEL_VALUE__LABEL:
-        return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+      case AssemblerPackage.IDENTIFIER__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
@@ -171,10 +171,10 @@ public class LabelValueImpl extends MinimalEObjectImpl.Container implements Labe
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (label: ");
-    result.append(label);
+    result.append(" (value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }
 
-} //LabelValueImpl
+} //IdentifierImpl

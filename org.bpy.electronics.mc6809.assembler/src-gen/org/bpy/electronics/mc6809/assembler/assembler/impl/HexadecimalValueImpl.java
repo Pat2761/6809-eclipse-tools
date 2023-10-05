@@ -4,7 +4,7 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -15,66 +15,45 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Hexadecimal Value</b></em>'.
+ * An implementation of the model object '<em><b>Hexa Decimal Value</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.HexadecimalValueImpl#isIsNegative <em>Is Negative</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.HexadecimalValueImpl#getHexadeciamlValue <em>Hexadeciaml Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.HexaDecimalValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class HexadecimalValueImpl extends MinimalEObjectImpl.Container implements HexadecimalValue
+public class HexaDecimalValueImpl extends MinimalEObjectImpl.Container implements HexaDecimalValue
 {
   /**
-   * The default value of the '{@link #isIsNegative() <em>Is Negative</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsNegative()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final boolean IS_NEGATIVE_EDEFAULT = false;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isIsNegative() <em>Is Negative</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsNegative()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected boolean isNegative = IS_NEGATIVE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getHexadeciamlValue() <em>Hexadeciaml Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getHexadeciamlValue()
-   * @generated
-   * @ordered
-   */
-  protected static final String HEXADECIAML_VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getHexadeciamlValue() <em>Hexadeciaml Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getHexadeciamlValue()
-   * @generated
-   * @ordered
-   */
-  protected String hexadeciamlValue = HEXADECIAML_VALUE_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected HexadecimalValueImpl()
+  protected HexaDecimalValueImpl()
   {
     super();
   }
@@ -87,7 +66,7 @@ public class HexadecimalValueImpl extends MinimalEObjectImpl.Container implement
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.HEXADECIMAL_VALUE;
+    return AssemblerPackage.Literals.HEXA_DECIMAL_VALUE;
   }
 
   /**
@@ -96,9 +75,9 @@ public class HexadecimalValueImpl extends MinimalEObjectImpl.Container implement
    * @generated
    */
   @Override
-  public boolean isIsNegative()
+  public String getValue()
   {
-    return isNegative;
+    return value;
   }
 
   /**
@@ -107,37 +86,12 @@ public class HexadecimalValueImpl extends MinimalEObjectImpl.Container implement
    * @generated
    */
   @Override
-  public void setIsNegative(boolean newIsNegative)
+  public void setValue(String newValue)
   {
-    boolean oldIsNegative = isNegative;
-    isNegative = newIsNegative;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.HEXADECIMAL_VALUE__IS_NEGATIVE, oldIsNegative, isNegative));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getHexadeciamlValue()
-  {
-    return hexadeciamlValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setHexadeciamlValue(String newHexadeciamlValue)
-  {
-    String oldHexadeciamlValue = hexadeciamlValue;
-    hexadeciamlValue = newHexadeciamlValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.HEXADECIMAL_VALUE__HEXADECIAML_VALUE, oldHexadeciamlValue, hexadeciamlValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.HEXA_DECIMAL_VALUE__VALUE, oldValue, value));
   }
 
   /**
@@ -150,10 +104,8 @@ public class HexadecimalValueImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case AssemblerPackage.HEXADECIMAL_VALUE__IS_NEGATIVE:
-        return isIsNegative();
-      case AssemblerPackage.HEXADECIMAL_VALUE__HEXADECIAML_VALUE:
-        return getHexadeciamlValue();
+      case AssemblerPackage.HEXA_DECIMAL_VALUE__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -168,11 +120,8 @@ public class HexadecimalValueImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case AssemblerPackage.HEXADECIMAL_VALUE__IS_NEGATIVE:
-        setIsNegative((Boolean)newValue);
-        return;
-      case AssemblerPackage.HEXADECIMAL_VALUE__HEXADECIAML_VALUE:
-        setHexadeciamlValue((String)newValue);
+      case AssemblerPackage.HEXA_DECIMAL_VALUE__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -188,11 +137,8 @@ public class HexadecimalValueImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case AssemblerPackage.HEXADECIMAL_VALUE__IS_NEGATIVE:
-        setIsNegative(IS_NEGATIVE_EDEFAULT);
-        return;
-      case AssemblerPackage.HEXADECIMAL_VALUE__HEXADECIAML_VALUE:
-        setHexadeciamlValue(HEXADECIAML_VALUE_EDEFAULT);
+      case AssemblerPackage.HEXA_DECIMAL_VALUE__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -208,10 +154,8 @@ public class HexadecimalValueImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case AssemblerPackage.HEXADECIMAL_VALUE__IS_NEGATIVE:
-        return isNegative != IS_NEGATIVE_EDEFAULT;
-      case AssemblerPackage.HEXADECIMAL_VALUE__HEXADECIAML_VALUE:
-        return HEXADECIAML_VALUE_EDEFAULT == null ? hexadeciamlValue != null : !HEXADECIAML_VALUE_EDEFAULT.equals(hexadeciamlValue);
+      case AssemblerPackage.HEXA_DECIMAL_VALUE__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
@@ -227,12 +171,10 @@ public class HexadecimalValueImpl extends MinimalEObjectImpl.Container implement
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (isNegative: ");
-    result.append(isNegative);
-    result.append(", hexadeciamlValue: ");
-    result.append(hexadeciamlValue);
+    result.append(" (value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }
 
-} //HexadecimalValueImpl
+} //HexaDecimalValueImpl

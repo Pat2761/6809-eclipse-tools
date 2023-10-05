@@ -67,22 +67,29 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
     {
       case AssemblerPackage.MODEL: return createModel();
       case AssemblerPackage.SOURCE_LINE: return createSourceLine();
-      case AssemblerPackage.ASSEMBLY_LINE: return createAssemblyLine();
-      case AssemblerPackage.DIRECTIVE: return createDirective();
-      case AssemblerPackage.EQU_DIRECTIVE: return createEquDirective();
-      case AssemblerPackage.LABEL_FIELD: return createLabelField();
+      case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
-      case AssemblerPackage.SPECIFIED_VALUE: return createSpecifiedValue();
+      case AssemblerPackage.DIRECTIVE_LINE: return createDirectiveLine();
+      case AssemblerPackage.EQU_DIRECTIVE: return createEquDirective();
+      case AssemblerPackage.OPERAND: return createOperand();
       case AssemblerPackage.EXPRESSION: return createExpression();
-      case AssemblerPackage.EXPRESSIONS: return createExpressions();
-      case AssemblerPackage.EXPRESSION_VALUE: return createExpressionValue();
-      case AssemblerPackage.ACTUAL_POSITION: return createActualPosition();
-      case AssemblerPackage.BINARYE_VALUE: return createBinaryeValue();
+      case AssemblerPackage.IDENTIFIER: return createIdentifier();
+      case AssemblerPackage.STRING_VALUE: return createStringValue();
+      case AssemblerPackage.DECIMAL_VALUE: return createDecimalValue();
+      case AssemblerPackage.HEXA_DECIMAL_VALUE: return createHexaDecimalValue();
       case AssemblerPackage.OCTAL_VALUE: return createOctalValue();
-      case AssemblerPackage.DECIMEL_VALUE: return createDecimelValue();
-      case AssemblerPackage.HEXADECIMAL_VALUE: return createHexadecimalValue();
-      case AssemblerPackage.ASCII_VALUE: return createAsciiValue();
-      case AssemblerPackage.LABEL_VALUE: return createLabelValue();
+      case AssemblerPackage.BINARY_VALUE: return createBinaryValue();
+      case AssemblerPackage.CHARACTER_VALUE: return createCharacterValue();
+      case AssemblerPackage.MULTIPLICATION: return createMultiplication();
+      case AssemblerPackage.DIVISION: return createDivision();
+      case AssemblerPackage.MODULO: return createModulo();
+      case AssemblerPackage.ADDITION: return createAddition();
+      case AssemblerPackage.SUBSTRACTION: return createSubstraction();
+      case AssemblerPackage.LEFT_SHIFT: return createLeftShift();
+      case AssemblerPackage.RIGTH_SHIFT: return createRigthShift();
+      case AssemblerPackage.NEGATE: return createNegate();
+      case AssemblerPackage.AND: return createAnd();
+      case AssemblerPackage.OR: return createOr();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -118,46 +125,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public AssemblyLine createAssemblyLine()
+  public BlankLine createBlankLine()
   {
-    AssemblyLineImpl assemblyLine = new AssemblyLineImpl();
-    return assemblyLine;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Directive createDirective()
-  {
-    DirectiveImpl directive = new DirectiveImpl();
-    return directive;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EquDirective createEquDirective()
-  {
-    EquDirectiveImpl equDirective = new EquDirectiveImpl();
-    return equDirective;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public LabelField createLabelField()
-  {
-    LabelFieldImpl labelField = new LabelFieldImpl();
-    return labelField;
+    BlankLineImpl blankLine = new BlankLineImpl();
+    return blankLine;
   }
 
   /**
@@ -178,10 +149,34 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public SpecifiedValue createSpecifiedValue()
+  public DirectiveLine createDirectiveLine()
   {
-    SpecifiedValueImpl specifiedValue = new SpecifiedValueImpl();
-    return specifiedValue;
+    DirectiveLineImpl directiveLine = new DirectiveLineImpl();
+    return directiveLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EquDirective createEquDirective()
+  {
+    EquDirectiveImpl equDirective = new EquDirectiveImpl();
+    return equDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Operand createOperand()
+  {
+    OperandImpl operand = new OperandImpl();
+    return operand;
   }
 
   /**
@@ -202,10 +197,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public Expressions createExpressions()
+  public Identifier createIdentifier()
   {
-    ExpressionsImpl expressions = new ExpressionsImpl();
-    return expressions;
+    IdentifierImpl identifier = new IdentifierImpl();
+    return identifier;
   }
 
   /**
@@ -214,10 +209,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public ExpressionValue createExpressionValue()
+  public StringValue createStringValue()
   {
-    ExpressionValueImpl expressionValue = new ExpressionValueImpl();
-    return expressionValue;
+    StringValueImpl stringValue = new StringValueImpl();
+    return stringValue;
   }
 
   /**
@@ -226,10 +221,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public ActualPosition createActualPosition()
+  public DecimalValue createDecimalValue()
   {
-    ActualPositionImpl actualPosition = new ActualPositionImpl();
-    return actualPosition;
+    DecimalValueImpl decimalValue = new DecimalValueImpl();
+    return decimalValue;
   }
 
   /**
@@ -238,10 +233,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public BinaryeValue createBinaryeValue()
+  public HexaDecimalValue createHexaDecimalValue()
   {
-    BinaryeValueImpl binaryeValue = new BinaryeValueImpl();
-    return binaryeValue;
+    HexaDecimalValueImpl hexaDecimalValue = new HexaDecimalValueImpl();
+    return hexaDecimalValue;
   }
 
   /**
@@ -262,10 +257,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public DecimelValue createDecimelValue()
+  public BinaryValue createBinaryValue()
   {
-    DecimelValueImpl decimelValue = new DecimelValueImpl();
-    return decimelValue;
+    BinaryValueImpl binaryValue = new BinaryValueImpl();
+    return binaryValue;
   }
 
   /**
@@ -274,10 +269,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public HexadecimalValue createHexadecimalValue()
+  public CharacterValue createCharacterValue()
   {
-    HexadecimalValueImpl hexadecimalValue = new HexadecimalValueImpl();
-    return hexadecimalValue;
+    CharacterValueImpl characterValue = new CharacterValueImpl();
+    return characterValue;
   }
 
   /**
@@ -286,10 +281,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public AsciiValue createAsciiValue()
+  public Multiplication createMultiplication()
   {
-    AsciiValueImpl asciiValue = new AsciiValueImpl();
-    return asciiValue;
+    MultiplicationImpl multiplication = new MultiplicationImpl();
+    return multiplication;
   }
 
   /**
@@ -298,10 +293,106 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public LabelValue createLabelValue()
+  public Division createDivision()
   {
-    LabelValueImpl labelValue = new LabelValueImpl();
-    return labelValue;
+    DivisionImpl division = new DivisionImpl();
+    return division;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Modulo createModulo()
+  {
+    ModuloImpl modulo = new ModuloImpl();
+    return modulo;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Addition createAddition()
+  {
+    AdditionImpl addition = new AdditionImpl();
+    return addition;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Substraction createSubstraction()
+  {
+    SubstractionImpl substraction = new SubstractionImpl();
+    return substraction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LeftShift createLeftShift()
+  {
+    LeftShiftImpl leftShift = new LeftShiftImpl();
+    return leftShift;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RigthShift createRigthShift()
+  {
+    RigthShiftImpl rigthShift = new RigthShiftImpl();
+    return rigthShift;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Negate createNegate()
+  {
+    NegateImpl negate = new NegateImpl();
+    return negate;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public And createAnd()
+  {
+    AndImpl and = new AndImpl();
+    return and;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Or createOr()
+  {
+    OrImpl or = new OrImpl();
+    return or;
   }
 
   /**

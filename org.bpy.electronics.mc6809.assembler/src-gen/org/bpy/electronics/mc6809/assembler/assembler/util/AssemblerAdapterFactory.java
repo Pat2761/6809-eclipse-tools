@@ -86,24 +86,9 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createSourceLineAdapter();
       }
       @Override
-      public Adapter caseAssemblyLine(AssemblyLine object)
+      public Adapter caseBlankLine(BlankLine object)
       {
-        return createAssemblyLineAdapter();
-      }
-      @Override
-      public Adapter caseDirective(Directive object)
-      {
-        return createDirectiveAdapter();
-      }
-      @Override
-      public Adapter caseEquDirective(EquDirective object)
-      {
-        return createEquDirectiveAdapter();
-      }
-      @Override
-      public Adapter caseLabelField(LabelField object)
-      {
-        return createLabelFieldAdapter();
+        return createBlankLineAdapter();
       }
       @Override
       public Adapter caseCommentLine(CommentLine object)
@@ -111,9 +96,19 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createCommentLineAdapter();
       }
       @Override
-      public Adapter caseSpecifiedValue(SpecifiedValue object)
+      public Adapter caseDirectiveLine(DirectiveLine object)
       {
-        return createSpecifiedValueAdapter();
+        return createDirectiveLineAdapter();
+      }
+      @Override
+      public Adapter caseEquDirective(EquDirective object)
+      {
+        return createEquDirectiveAdapter();
+      }
+      @Override
+      public Adapter caseOperand(Operand object)
+      {
+        return createOperandAdapter();
       }
       @Override
       public Adapter caseExpression(Expression object)
@@ -121,24 +116,24 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
-      public Adapter caseExpressions(Expressions object)
+      public Adapter caseIdentifier(Identifier object)
       {
-        return createExpressionsAdapter();
+        return createIdentifierAdapter();
       }
       @Override
-      public Adapter caseExpressionValue(ExpressionValue object)
+      public Adapter caseStringValue(StringValue object)
       {
-        return createExpressionValueAdapter();
+        return createStringValueAdapter();
       }
       @Override
-      public Adapter caseActualPosition(ActualPosition object)
+      public Adapter caseDecimalValue(DecimalValue object)
       {
-        return createActualPositionAdapter();
+        return createDecimalValueAdapter();
       }
       @Override
-      public Adapter caseBinaryeValue(BinaryeValue object)
+      public Adapter caseHexaDecimalValue(HexaDecimalValue object)
       {
-        return createBinaryeValueAdapter();
+        return createHexaDecimalValueAdapter();
       }
       @Override
       public Adapter caseOctalValue(OctalValue object)
@@ -146,24 +141,64 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createOctalValueAdapter();
       }
       @Override
-      public Adapter caseDecimelValue(DecimelValue object)
+      public Adapter caseBinaryValue(BinaryValue object)
       {
-        return createDecimelValueAdapter();
+        return createBinaryValueAdapter();
       }
       @Override
-      public Adapter caseHexadecimalValue(HexadecimalValue object)
+      public Adapter caseCharacterValue(CharacterValue object)
       {
-        return createHexadecimalValueAdapter();
+        return createCharacterValueAdapter();
       }
       @Override
-      public Adapter caseAsciiValue(AsciiValue object)
+      public Adapter caseMultiplication(Multiplication object)
       {
-        return createAsciiValueAdapter();
+        return createMultiplicationAdapter();
       }
       @Override
-      public Adapter caseLabelValue(LabelValue object)
+      public Adapter caseDivision(Division object)
       {
-        return createLabelValueAdapter();
+        return createDivisionAdapter();
+      }
+      @Override
+      public Adapter caseModulo(Modulo object)
+      {
+        return createModuloAdapter();
+      }
+      @Override
+      public Adapter caseAddition(Addition object)
+      {
+        return createAdditionAdapter();
+      }
+      @Override
+      public Adapter caseSubstraction(Substraction object)
+      {
+        return createSubstractionAdapter();
+      }
+      @Override
+      public Adapter caseLeftShift(LeftShift object)
+      {
+        return createLeftShiftAdapter();
+      }
+      @Override
+      public Adapter caseRigthShift(RigthShift object)
+      {
+        return createRigthShiftAdapter();
+      }
+      @Override
+      public Adapter caseNegate(Negate object)
+      {
+        return createNegateAdapter();
+      }
+      @Override
+      public Adapter caseAnd(And object)
+      {
+        return createAndAdapter();
+      }
+      @Override
+      public Adapter caseOr(Or object)
+      {
+        return createOrAdapter();
       }
       @Override
       public Adapter defaultCase(EObject object)
@@ -218,61 +253,16 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine <em>Assembly Line</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.BlankLine <em>Blank Line</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BlankLine
    * @generated
    */
-  public Adapter createAssemblyLineAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Directive <em>Directive</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Directive
-   * @generated
-   */
-  public Adapter createDirectiveAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective <em>Equ Directive</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective
-   * @generated
-   */
-  public Adapter createEquDirectiveAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelField <em>Label Field</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelField
-   * @generated
-   */
-  public Adapter createLabelFieldAdapter()
+  public Adapter createBlankLineAdapter()
   {
     return null;
   }
@@ -293,16 +283,46 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue <em>Specified Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine <em>Directive Line</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
    * @generated
    */
-  public Adapter createSpecifiedValueAdapter()
+  public Adapter createDirectiveLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective <em>Equ Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective
+   * @generated
+   */
+  public Adapter createEquDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Operand <em>Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Operand
+   * @generated
+   */
+  public Adapter createOperandAdapter()
   {
     return null;
   }
@@ -323,61 +343,61 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Expressions <em>Expressions</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Identifier <em>Identifier</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Expressions
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Identifier
    * @generated
    */
-  public Adapter createExpressionsAdapter()
+  public Adapter createIdentifierAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue <em>Expression Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.StringValue <em>String Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue
+   * @see org.bpy.electronics.mc6809.assembler.assembler.StringValue
    * @generated
    */
-  public Adapter createExpressionValueAdapter()
+  public Adapter createStringValueAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ActualPosition <em>Actual Position</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimalValue <em>Decimal Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.ActualPosition
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DecimalValue
    * @generated
    */
-  public Adapter createActualPositionAdapter()
+  public Adapter createDecimalValueAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue <em>Binarye Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue <em>Hexa Decimal Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue
+   * @see org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue
    * @generated
    */
-  public Adapter createBinaryeValueAdapter()
+  public Adapter createHexaDecimalValueAdapter()
   {
     return null;
   }
@@ -398,61 +418,181 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimelValue <em>Decimel Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.BinaryValue <em>Binary Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.DecimelValue
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BinaryValue
    * @generated
    */
-  public Adapter createDecimelValueAdapter()
+  public Adapter createBinaryValueAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue <em>Hexadecimal Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.CharacterValue <em>Character Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CharacterValue
    * @generated
    */
-  public Adapter createHexadecimalValueAdapter()
+  public Adapter createCharacterValueAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.AsciiValue <em>Ascii Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Multiplication <em>Multiplication</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AsciiValue
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Multiplication
    * @generated
    */
-  public Adapter createAsciiValueAdapter()
+  public Adapter createMultiplicationAdapter()
   {
     return null;
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelValue <em>Label Value</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Division <em>Division</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelValue
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Division
    * @generated
    */
-  public Adapter createLabelValueAdapter()
+  public Adapter createDivisionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Modulo <em>Modulo</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Modulo
+   * @generated
+   */
+  public Adapter createModuloAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Addition <em>Addition</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Addition
+   * @generated
+   */
+  public Adapter createAdditionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Substraction <em>Substraction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Substraction
+   * @generated
+   */
+  public Adapter createSubstractionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.LeftShift <em>Left Shift</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LeftShift
+   * @generated
+   */
+  public Adapter createLeftShiftAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RigthShift <em>Rigth Shift</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RigthShift
+   * @generated
+   */
+  public Adapter createRigthShiftAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Negate <em>Negate</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Negate
+   * @generated
+   */
+  public Adapter createNegateAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.And <em>And</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.And
+   * @generated
+   */
+  public Adapter createAndAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Or <em>Or</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Or
+   * @generated
+   */
+  public Adapter createOrAdapter()
   {
     return null;
   }

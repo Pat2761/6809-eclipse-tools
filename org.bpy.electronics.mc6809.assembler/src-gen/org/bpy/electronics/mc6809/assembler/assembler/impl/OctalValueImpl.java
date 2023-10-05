@@ -21,8 +21,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OctalValueImpl#isIsNegative <em>Is Negative</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OctalValueImpl#getOctalValue <em>Octal Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OctalValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -30,44 +29,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class OctalValueImpl extends MinimalEObjectImpl.Container implements OctalValue
 {
   /**
-   * The default value of the '{@link #isIsNegative() <em>Is Negative</em>}' attribute.
+   * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsNegative()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected static final boolean IS_NEGATIVE_EDEFAULT = false;
+  protected static final String VALUE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #isIsNegative() <em>Is Negative</em>}' attribute.
+   * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #isIsNegative()
+   * @see #getValue()
    * @generated
    * @ordered
    */
-  protected boolean isNegative = IS_NEGATIVE_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getOctalValue() <em>Octal Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOctalValue()
-   * @generated
-   * @ordered
-   */
-  protected static final String OCTAL_VALUE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getOctalValue() <em>Octal Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getOctalValue()
-   * @generated
-   * @ordered
-   */
-  protected String octalValue = OCTAL_VALUE_EDEFAULT;
+  protected String value = VALUE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -96,9 +75,9 @@ public class OctalValueImpl extends MinimalEObjectImpl.Container implements Octa
    * @generated
    */
   @Override
-  public boolean isIsNegative()
+  public String getValue()
   {
-    return isNegative;
+    return value;
   }
 
   /**
@@ -107,37 +86,12 @@ public class OctalValueImpl extends MinimalEObjectImpl.Container implements Octa
    * @generated
    */
   @Override
-  public void setIsNegative(boolean newIsNegative)
+  public void setValue(String newValue)
   {
-    boolean oldIsNegative = isNegative;
-    isNegative = newIsNegative;
+    String oldValue = value;
+    value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OCTAL_VALUE__IS_NEGATIVE, oldIsNegative, isNegative));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getOctalValue()
-  {
-    return octalValue;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setOctalValue(String newOctalValue)
-  {
-    String oldOctalValue = octalValue;
-    octalValue = newOctalValue;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OCTAL_VALUE__OCTAL_VALUE, oldOctalValue, octalValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OCTAL_VALUE__VALUE, oldValue, value));
   }
 
   /**
@@ -150,10 +104,8 @@ public class OctalValueImpl extends MinimalEObjectImpl.Container implements Octa
   {
     switch (featureID)
     {
-      case AssemblerPackage.OCTAL_VALUE__IS_NEGATIVE:
-        return isIsNegative();
-      case AssemblerPackage.OCTAL_VALUE__OCTAL_VALUE:
-        return getOctalValue();
+      case AssemblerPackage.OCTAL_VALUE__VALUE:
+        return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -168,11 +120,8 @@ public class OctalValueImpl extends MinimalEObjectImpl.Container implements Octa
   {
     switch (featureID)
     {
-      case AssemblerPackage.OCTAL_VALUE__IS_NEGATIVE:
-        setIsNegative((Boolean)newValue);
-        return;
-      case AssemblerPackage.OCTAL_VALUE__OCTAL_VALUE:
-        setOctalValue((String)newValue);
+      case AssemblerPackage.OCTAL_VALUE__VALUE:
+        setValue((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -188,11 +137,8 @@ public class OctalValueImpl extends MinimalEObjectImpl.Container implements Octa
   {
     switch (featureID)
     {
-      case AssemblerPackage.OCTAL_VALUE__IS_NEGATIVE:
-        setIsNegative(IS_NEGATIVE_EDEFAULT);
-        return;
-      case AssemblerPackage.OCTAL_VALUE__OCTAL_VALUE:
-        setOctalValue(OCTAL_VALUE_EDEFAULT);
+      case AssemblerPackage.OCTAL_VALUE__VALUE:
+        setValue(VALUE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -208,10 +154,8 @@ public class OctalValueImpl extends MinimalEObjectImpl.Container implements Octa
   {
     switch (featureID)
     {
-      case AssemblerPackage.OCTAL_VALUE__IS_NEGATIVE:
-        return isNegative != IS_NEGATIVE_EDEFAULT;
-      case AssemblerPackage.OCTAL_VALUE__OCTAL_VALUE:
-        return OCTAL_VALUE_EDEFAULT == null ? octalValue != null : !OCTAL_VALUE_EDEFAULT.equals(octalValue);
+      case AssemblerPackage.OCTAL_VALUE__VALUE:
+        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
   }
@@ -227,10 +171,8 @@ public class OctalValueImpl extends MinimalEObjectImpl.Container implements Octa
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (isNegative: ");
-    result.append(isNegative);
-    result.append(", octalValue: ");
-    result.append(octalValue);
+    result.append(" (value: ");
+    result.append(value);
     result.append(')');
     return result.toString();
   }

@@ -4,7 +4,7 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.LabelField;
+import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -15,45 +15,45 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Label Field</b></em>'.
+ * An implementation of the model object '<em><b>Blank Line</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelFieldImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl#getBlankLine <em>Blank Line</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LabelFieldImpl extends MinimalEObjectImpl.Container implements LabelField
+public class BlankLineImpl extends MinimalEObjectImpl.Container implements BlankLine
 {
   /**
-   * The default value of the '{@link #getLabel() <em>Label</em>}' attribute.
+   * The default value of the '{@link #getBlankLine() <em>Blank Line</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLabel()
+   * @see #getBlankLine()
    * @generated
    * @ordered
    */
-  protected static final String LABEL_EDEFAULT = null;
+  protected static final String BLANK_LINE_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getLabel() <em>Label</em>}' attribute.
+   * The cached value of the '{@link #getBlankLine() <em>Blank Line</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getLabel()
+   * @see #getBlankLine()
    * @generated
    * @ordered
    */
-  protected String label = LABEL_EDEFAULT;
+  protected String blankLine = BLANK_LINE_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected LabelFieldImpl()
+  protected BlankLineImpl()
   {
     super();
   }
@@ -66,7 +66,7 @@ public class LabelFieldImpl extends MinimalEObjectImpl.Container implements Labe
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.LABEL_FIELD;
+    return AssemblerPackage.Literals.BLANK_LINE;
   }
 
   /**
@@ -75,9 +75,9 @@ public class LabelFieldImpl extends MinimalEObjectImpl.Container implements Labe
    * @generated
    */
   @Override
-  public String getLabel()
+  public String getBlankLine()
   {
-    return label;
+    return blankLine;
   }
 
   /**
@@ -86,12 +86,12 @@ public class LabelFieldImpl extends MinimalEObjectImpl.Container implements Labe
    * @generated
    */
   @Override
-  public void setLabel(String newLabel)
+  public void setBlankLine(String newBlankLine)
   {
-    String oldLabel = label;
-    label = newLabel;
+    String oldBlankLine = blankLine;
+    blankLine = newBlankLine;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.LABEL_FIELD__LABEL, oldLabel, label));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.BLANK_LINE__BLANK_LINE, oldBlankLine, blankLine));
   }
 
   /**
@@ -104,8 +104,8 @@ public class LabelFieldImpl extends MinimalEObjectImpl.Container implements Labe
   {
     switch (featureID)
     {
-      case AssemblerPackage.LABEL_FIELD__LABEL:
-        return getLabel();
+      case AssemblerPackage.BLANK_LINE__BLANK_LINE:
+        return getBlankLine();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -120,8 +120,8 @@ public class LabelFieldImpl extends MinimalEObjectImpl.Container implements Labe
   {
     switch (featureID)
     {
-      case AssemblerPackage.LABEL_FIELD__LABEL:
-        setLabel((String)newValue);
+      case AssemblerPackage.BLANK_LINE__BLANK_LINE:
+        setBlankLine((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,8 +137,8 @@ public class LabelFieldImpl extends MinimalEObjectImpl.Container implements Labe
   {
     switch (featureID)
     {
-      case AssemblerPackage.LABEL_FIELD__LABEL:
-        setLabel(LABEL_EDEFAULT);
+      case AssemblerPackage.BLANK_LINE__BLANK_LINE:
+        setBlankLine(BLANK_LINE_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -154,8 +154,8 @@ public class LabelFieldImpl extends MinimalEObjectImpl.Container implements Labe
   {
     switch (featureID)
     {
-      case AssemblerPackage.LABEL_FIELD__LABEL:
-        return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
+      case AssemblerPackage.BLANK_LINE__BLANK_LINE:
+        return BLANK_LINE_EDEFAULT == null ? blankLine != null : !BLANK_LINE_EDEFAULT.equals(blankLine);
     }
     return super.eIsSet(featureID);
   }
@@ -171,10 +171,10 @@ public class LabelFieldImpl extends MinimalEObjectImpl.Container implements Labe
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (label: ");
-    result.append(label);
+    result.append(" (blankLine: ");
+    result.append(blankLine);
     result.append(')');
     return result.toString();
   }
 
-} //LabelFieldImpl
+} //BlankLineImpl

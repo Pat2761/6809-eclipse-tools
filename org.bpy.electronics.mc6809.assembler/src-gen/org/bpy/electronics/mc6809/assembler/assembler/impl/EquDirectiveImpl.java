@@ -5,7 +5,8 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Identifier;
+import org.bpy.electronics.mc6809.assembler.assembler.Operand;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -24,7 +25,10 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl#getConstant <em>Constant</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
@@ -32,14 +36,64 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements EquDirective
 {
   /**
-   * The cached value of the '{@link #getConstant() <em>Constant</em>}' containment reference.
+   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getConstant()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected SpecifiedValue constant;
+  protected Identifier name;
+
+  /**
+   * The default value of the '{@link #getDirective() <em>Directive</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirective()
+   * @generated
+   * @ordered
+   */
+  protected static final String DIRECTIVE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getDirective() <em>Directive</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getDirective()
+   * @generated
+   * @ordered
+   */
+  protected String directive = DIRECTIVE_EDEFAULT;
+
+  /**
+   * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getOperand()
+   * @generated
+   * @ordered
+   */
+  protected Operand operand;
+
+  /**
+   * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComment()
+   * @generated
+   * @ordered
+   */
+  protected static final String COMMENT_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComment()
+   * @generated
+   * @ordered
+   */
+  protected String comment = COMMENT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -68,9 +122,9 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * @generated
    */
   @Override
-  public SpecifiedValue getConstant()
+  public Identifier getName()
   {
-    return constant;
+    return name;
   }
 
   /**
@@ -78,13 +132,13 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetConstant(SpecifiedValue newConstant, NotificationChain msgs)
+  public NotificationChain basicSetName(Identifier newName, NotificationChain msgs)
   {
-    SpecifiedValue oldConstant = constant;
-    constant = newConstant;
+    Identifier oldName = name;
+    name = newName;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__CONSTANT, oldConstant, newConstant);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__NAME, oldName, newName);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -96,20 +150,120 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * @generated
    */
   @Override
-  public void setConstant(SpecifiedValue newConstant)
+  public void setName(Identifier newName)
   {
-    if (newConstant != constant)
+    if (newName != name)
     {
       NotificationChain msgs = null;
-      if (constant != null)
-        msgs = ((InternalEObject)constant).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EQU_DIRECTIVE__CONSTANT, null, msgs);
-      if (newConstant != null)
-        msgs = ((InternalEObject)newConstant).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EQU_DIRECTIVE__CONSTANT, null, msgs);
-      msgs = basicSetConstant(newConstant, msgs);
+      if (name != null)
+        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EQU_DIRECTIVE__NAME, null, msgs);
+      if (newName != null)
+        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EQU_DIRECTIVE__NAME, null, msgs);
+      msgs = basicSetName(newName, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__CONSTANT, newConstant, newConstant));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__NAME, newName, newName));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getDirective()
+  {
+    return directive;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setDirective(String newDirective)
+  {
+    String oldDirective = directive;
+    directive = newDirective;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE, oldDirective, directive));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Operand getOperand()
+  {
+    return operand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetOperand(Operand newOperand, NotificationChain msgs)
+  {
+    Operand oldOperand = operand;
+    operand = newOperand;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__OPERAND, oldOperand, newOperand);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setOperand(Operand newOperand)
+  {
+    if (newOperand != operand)
+    {
+      NotificationChain msgs = null;
+      if (operand != null)
+        msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EQU_DIRECTIVE__OPERAND, null, msgs);
+      if (newOperand != null)
+        msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EQU_DIRECTIVE__OPERAND, null, msgs);
+      msgs = basicSetOperand(newOperand, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__OPERAND, newOperand, newOperand));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getComment()
+  {
+    return comment;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setComment(String newComment)
+  {
+    String oldComment = comment;
+    comment = newComment;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__COMMENT, oldComment, comment));
   }
 
   /**
@@ -122,8 +276,10 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   {
     switch (featureID)
     {
-      case AssemblerPackage.EQU_DIRECTIVE__CONSTANT:
-        return basicSetConstant(null, msgs);
+      case AssemblerPackage.EQU_DIRECTIVE__NAME:
+        return basicSetName(null, msgs);
+      case AssemblerPackage.EQU_DIRECTIVE__OPERAND:
+        return basicSetOperand(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -138,8 +294,14 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   {
     switch (featureID)
     {
-      case AssemblerPackage.EQU_DIRECTIVE__CONSTANT:
-        return getConstant();
+      case AssemblerPackage.EQU_DIRECTIVE__NAME:
+        return getName();
+      case AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE:
+        return getDirective();
+      case AssemblerPackage.EQU_DIRECTIVE__OPERAND:
+        return getOperand();
+      case AssemblerPackage.EQU_DIRECTIVE__COMMENT:
+        return getComment();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -154,8 +316,17 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   {
     switch (featureID)
     {
-      case AssemblerPackage.EQU_DIRECTIVE__CONSTANT:
-        setConstant((SpecifiedValue)newValue);
+      case AssemblerPackage.EQU_DIRECTIVE__NAME:
+        setName((Identifier)newValue);
+        return;
+      case AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE:
+        setDirective((String)newValue);
+        return;
+      case AssemblerPackage.EQU_DIRECTIVE__OPERAND:
+        setOperand((Operand)newValue);
+        return;
+      case AssemblerPackage.EQU_DIRECTIVE__COMMENT:
+        setComment((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -171,8 +342,17 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   {
     switch (featureID)
     {
-      case AssemblerPackage.EQU_DIRECTIVE__CONSTANT:
-        setConstant((SpecifiedValue)null);
+      case AssemblerPackage.EQU_DIRECTIVE__NAME:
+        setName((Identifier)null);
+        return;
+      case AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE:
+        setDirective(DIRECTIVE_EDEFAULT);
+        return;
+      case AssemblerPackage.EQU_DIRECTIVE__OPERAND:
+        setOperand((Operand)null);
+        return;
+      case AssemblerPackage.EQU_DIRECTIVE__COMMENT:
+        setComment(COMMENT_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -188,10 +368,35 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   {
     switch (featureID)
     {
-      case AssemblerPackage.EQU_DIRECTIVE__CONSTANT:
-        return constant != null;
+      case AssemblerPackage.EQU_DIRECTIVE__NAME:
+        return name != null;
+      case AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE:
+        return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
+      case AssemblerPackage.EQU_DIRECTIVE__OPERAND:
+        return operand != null;
+      case AssemblerPackage.EQU_DIRECTIVE__COMMENT:
+        return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (directive: ");
+    result.append(directive);
+    result.append(", comment: ");
+    result.append(comment);
+    result.append(')');
+    return result.toString();
   }
 
 } //EquDirectiveImpl

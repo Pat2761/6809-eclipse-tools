@@ -3,8 +3,6 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -16,9 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getAddition <em>Addition</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getValues <em>Values</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getExpressionValue <em>Expression Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getValue <em>Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getLeft <em>Left</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getExpression()
@@ -28,60 +25,47 @@ import org.eclipse.emf.ecore.EObject;
 public interface Expression extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Addition</b></em>' containment reference.
+   * Returns the value of the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Addition</em>' containment reference.
-   * @see #setAddition(Expression)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getExpression_Addition()
+   * @return the value of the '<em>Value</em>' containment reference.
+   * @see #setValue(EObject)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getExpression_Value()
    * @model containment="true"
    * @generated
    */
-  Expression getAddition();
+  EObject getValue();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getAddition <em>Addition</em>}' containment reference.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getValue <em>Value</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Addition</em>' containment reference.
-   * @see #getAddition()
+   * @param value the new value of the '<em>Value</em>' containment reference.
+   * @see #getValue()
    * @generated
    */
-  void setAddition(Expression value);
+  void setValue(EObject value);
 
   /**
-   * Returns the value of the '<em><b>Values</b></em>' containment reference list.
-   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
+   * Returns the value of the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Values</em>' containment reference list.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getExpression_Values()
+   * @return the value of the '<em>Left</em>' containment reference.
+   * @see #setLeft(Expression)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getExpression_Left()
    * @model containment="true"
    * @generated
    */
-  EList<EObject> getValues();
+  Expression getLeft();
 
   /**
-   * Returns the value of the '<em><b>Expression Value</b></em>' containment reference.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getLeft <em>Left</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Expression Value</em>' containment reference.
-   * @see #setExpressionValue(EObject)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getExpression_ExpressionValue()
-   * @model containment="true"
+   * @param value the new value of the '<em>Left</em>' containment reference.
+   * @see #getLeft()
    * @generated
    */
-  EObject getExpressionValue();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getExpressionValue <em>Expression Value</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expression Value</em>' containment reference.
-   * @see #getExpressionValue()
-   * @generated
-   */
-  void setExpressionValue(EObject value);
-
+  void setLeft(Expression value);
 
 } // Expression

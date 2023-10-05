@@ -4,13 +4,13 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -18,35 +18,35 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Expression Value</b></em>'.
+ * An implementation of the model object '<em><b>Directive Line</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionValueImpl#getExpressionValue <em>Expression Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl#getDirective <em>Directive</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ExpressionValueImpl extends MinimalEObjectImpl.Container implements ExpressionValue
+public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements DirectiveLine
 {
   /**
-   * The cached value of the '{@link #getExpressionValue() <em>Expression Value</em>}' containment reference.
+   * The cached value of the '{@link #getDirective() <em>Directive</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getExpressionValue()
+   * @see #getDirective()
    * @generated
    * @ordered
    */
-  protected EObject expressionValue;
+  protected EquDirective directive;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ExpressionValueImpl()
+  protected DirectiveLineImpl()
   {
     super();
   }
@@ -59,7 +59,7 @@ public class ExpressionValueImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.EXPRESSION_VALUE;
+    return AssemblerPackage.Literals.DIRECTIVE_LINE;
   }
 
   /**
@@ -68,9 +68,9 @@ public class ExpressionValueImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public EObject getExpressionValue()
+  public EquDirective getDirective()
   {
-    return expressionValue;
+    return directive;
   }
 
   /**
@@ -78,13 +78,13 @@ public class ExpressionValueImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetExpressionValue(EObject newExpressionValue, NotificationChain msgs)
+  public NotificationChain basicSetDirective(EquDirective newDirective, NotificationChain msgs)
   {
-    EObject oldExpressionValue = expressionValue;
-    expressionValue = newExpressionValue;
+    EquDirective oldDirective = directive;
+    directive = newDirective;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXPRESSION_VALUE__EXPRESSION_VALUE, oldExpressionValue, newExpressionValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE, oldDirective, newDirective);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -96,20 +96,20 @@ public class ExpressionValueImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public void setExpressionValue(EObject newExpressionValue)
+  public void setDirective(EquDirective newDirective)
   {
-    if (newExpressionValue != expressionValue)
+    if (newDirective != directive)
     {
       NotificationChain msgs = null;
-      if (expressionValue != null)
-        msgs = ((InternalEObject)expressionValue).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXPRESSION_VALUE__EXPRESSION_VALUE, null, msgs);
-      if (newExpressionValue != null)
-        msgs = ((InternalEObject)newExpressionValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EXPRESSION_VALUE__EXPRESSION_VALUE, null, msgs);
-      msgs = basicSetExpressionValue(newExpressionValue, msgs);
+      if (directive != null)
+        msgs = ((InternalEObject)directive).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE, null, msgs);
+      if (newDirective != null)
+        msgs = ((InternalEObject)newDirective).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE, null, msgs);
+      msgs = basicSetDirective(newDirective, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EXPRESSION_VALUE__EXPRESSION_VALUE, newExpressionValue, newExpressionValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE, newDirective, newDirective));
   }
 
   /**
@@ -122,8 +122,8 @@ public class ExpressionValueImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case AssemblerPackage.EXPRESSION_VALUE__EXPRESSION_VALUE:
-        return basicSetExpressionValue(null, msgs);
+      case AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE:
+        return basicSetDirective(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -138,8 +138,8 @@ public class ExpressionValueImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case AssemblerPackage.EXPRESSION_VALUE__EXPRESSION_VALUE:
-        return getExpressionValue();
+      case AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE:
+        return getDirective();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -154,8 +154,8 @@ public class ExpressionValueImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case AssemblerPackage.EXPRESSION_VALUE__EXPRESSION_VALUE:
-        setExpressionValue((EObject)newValue);
+      case AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE:
+        setDirective((EquDirective)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -171,8 +171,8 @@ public class ExpressionValueImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case AssemblerPackage.EXPRESSION_VALUE__EXPRESSION_VALUE:
-        setExpressionValue((EObject)null);
+      case AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE:
+        setDirective((EquDirective)null);
         return;
     }
     super.eUnset(featureID);
@@ -188,10 +188,10 @@ public class ExpressionValueImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case AssemblerPackage.EXPRESSION_VALUE__EXPRESSION_VALUE:
-        return expressionValue != null;
+      case AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE:
+        return directive != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //ExpressionValueImpl
+} //DirectiveLineImpl

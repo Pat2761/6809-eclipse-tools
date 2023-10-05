@@ -14,9 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getAssemblyLine <em>Assembly Line</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getEmptyLine <em>Empty Line</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getCommentLine <em>Comment Line</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getLineContent <em>Line Content</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSourceLine()
@@ -26,69 +24,25 @@ import org.eclipse.emf.ecore.EObject;
 public interface SourceLine extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Assembly Line</b></em>' containment reference.
+   * Returns the value of the '<em><b>Line Content</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Assembly Line</em>' containment reference.
-   * @see #setAssemblyLine(AssemblyLine)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSourceLine_AssemblyLine()
+   * @return the value of the '<em>Line Content</em>' containment reference.
+   * @see #setLineContent(EObject)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSourceLine_LineContent()
    * @model containment="true"
    * @generated
    */
-  AssemblyLine getAssemblyLine();
+  EObject getLineContent();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getAssemblyLine <em>Assembly Line</em>}' containment reference.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getLineContent <em>Line Content</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Assembly Line</em>' containment reference.
-   * @see #getAssemblyLine()
+   * @param value the new value of the '<em>Line Content</em>' containment reference.
+   * @see #getLineContent()
    * @generated
    */
-  void setAssemblyLine(AssemblyLine value);
-
-  /**
-   * Returns the value of the '<em><b>Empty Line</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Empty Line</em>' attribute.
-   * @see #setEmptyLine(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSourceLine_EmptyLine()
-   * @model
-   * @generated
-   */
-  String getEmptyLine();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getEmptyLine <em>Empty Line</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Empty Line</em>' attribute.
-   * @see #getEmptyLine()
-   * @generated
-   */
-  void setEmptyLine(String value);
-
-  /**
-   * Returns the value of the '<em><b>Comment Line</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Comment Line</em>' containment reference.
-   * @see #setCommentLine(CommentLine)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSourceLine_CommentLine()
-   * @model containment="true"
-   * @generated
-   */
-  CommentLine getCommentLine();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getCommentLine <em>Comment Line</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Comment Line</em>' containment reference.
-   * @see #getCommentLine()
-   * @generated
-   */
-  void setCommentLine(CommentLine value);
+  void setLineContent(EObject value);
 
 } // SourceLine

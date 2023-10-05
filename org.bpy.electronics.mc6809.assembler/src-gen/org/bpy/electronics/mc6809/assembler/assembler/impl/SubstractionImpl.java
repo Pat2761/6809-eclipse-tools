@@ -5,7 +5,7 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
-import org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -14,39 +14,38 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Specified Value</b></em>'.
+ * An implementation of the model object '<em><b>Substraction</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpecifiedValueImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SubstractionImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class SpecifiedValueImpl extends MinimalEObjectImpl.Container implements SpecifiedValue
+public class SubstractionImpl extends ExpressionImpl implements Substraction
 {
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+   * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getValue()
+   * @see #getRight()
    * @generated
    * @ordered
    */
-  protected Expression value;
+  protected Expression right;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected SpecifiedValueImpl()
+  protected SubstractionImpl()
   {
     super();
   }
@@ -59,7 +58,7 @@ public class SpecifiedValueImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.SPECIFIED_VALUE;
+    return AssemblerPackage.Literals.SUBSTRACTION;
   }
 
   /**
@@ -68,9 +67,9 @@ public class SpecifiedValueImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public Expression getValue()
+  public Expression getRight()
   {
-    return value;
+    return right;
   }
 
   /**
@@ -78,13 +77,13 @@ public class SpecifiedValueImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetValue(Expression newValue, NotificationChain msgs)
+  public NotificationChain basicSetRight(Expression newRight, NotificationChain msgs)
   {
-    Expression oldValue = value;
-    value = newValue;
+    Expression oldRight = right;
+    right = newRight;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.SPECIFIED_VALUE__VALUE, oldValue, newValue);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.SUBSTRACTION__RIGHT, oldRight, newRight);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -96,20 +95,20 @@ public class SpecifiedValueImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public void setValue(Expression newValue)
+  public void setRight(Expression newRight)
   {
-    if (newValue != value)
+    if (newRight != right)
     {
       NotificationChain msgs = null;
-      if (value != null)
-        msgs = ((InternalEObject)value).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SPECIFIED_VALUE__VALUE, null, msgs);
-      if (newValue != null)
-        msgs = ((InternalEObject)newValue).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SPECIFIED_VALUE__VALUE, null, msgs);
-      msgs = basicSetValue(newValue, msgs);
+      if (right != null)
+        msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SUBSTRACTION__RIGHT, null, msgs);
+      if (newRight != null)
+        msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SUBSTRACTION__RIGHT, null, msgs);
+      msgs = basicSetRight(newRight, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SPECIFIED_VALUE__VALUE, newValue, newValue));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SUBSTRACTION__RIGHT, newRight, newRight));
   }
 
   /**
@@ -122,8 +121,8 @@ public class SpecifiedValueImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.SPECIFIED_VALUE__VALUE:
-        return basicSetValue(null, msgs);
+      case AssemblerPackage.SUBSTRACTION__RIGHT:
+        return basicSetRight(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -138,8 +137,8 @@ public class SpecifiedValueImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.SPECIFIED_VALUE__VALUE:
-        return getValue();
+      case AssemblerPackage.SUBSTRACTION__RIGHT:
+        return getRight();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -154,8 +153,8 @@ public class SpecifiedValueImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.SPECIFIED_VALUE__VALUE:
-        setValue((Expression)newValue);
+      case AssemblerPackage.SUBSTRACTION__RIGHT:
+        setRight((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -171,8 +170,8 @@ public class SpecifiedValueImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.SPECIFIED_VALUE__VALUE:
-        setValue((Expression)null);
+      case AssemblerPackage.SUBSTRACTION__RIGHT:
+        setRight((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -188,10 +187,10 @@ public class SpecifiedValueImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.SPECIFIED_VALUE__VALUE:
-        return value != null;
+      case AssemblerPackage.SUBSTRACTION__RIGHT:
+        return right != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //SpecifiedValueImpl
+} //SubstractionImpl

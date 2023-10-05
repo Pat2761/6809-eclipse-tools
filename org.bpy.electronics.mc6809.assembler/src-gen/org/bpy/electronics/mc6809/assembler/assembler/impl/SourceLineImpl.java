@@ -4,14 +4,13 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine;
-import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -25,9 +24,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl#getAssemblyLine <em>Assembly Line</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl#getEmptyLine <em>Empty Line</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl#getCommentLine <em>Comment Line</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl#getLineContent <em>Line Content</em>}</li>
  * </ul>
  *
  * @generated
@@ -35,44 +32,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class SourceLineImpl extends MinimalEObjectImpl.Container implements SourceLine
 {
   /**
-   * The cached value of the '{@link #getAssemblyLine() <em>Assembly Line</em>}' containment reference.
+   * The cached value of the '{@link #getLineContent() <em>Line Content</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAssemblyLine()
+   * @see #getLineContent()
    * @generated
    * @ordered
    */
-  protected AssemblyLine assemblyLine;
-
-  /**
-   * The default value of the '{@link #getEmptyLine() <em>Empty Line</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEmptyLine()
-   * @generated
-   * @ordered
-   */
-  protected static final String EMPTY_LINE_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getEmptyLine() <em>Empty Line</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getEmptyLine()
-   * @generated
-   * @ordered
-   */
-  protected String emptyLine = EMPTY_LINE_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getCommentLine() <em>Comment Line</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCommentLine()
-   * @generated
-   * @ordered
-   */
-  protected CommentLine commentLine;
+  protected EObject lineContent;
 
   /**
    * <!-- begin-user-doc -->
@@ -101,9 +68,9 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
    * @generated
    */
   @Override
-  public AssemblyLine getAssemblyLine()
+  public EObject getLineContent()
   {
-    return assemblyLine;
+    return lineContent;
   }
 
   /**
@@ -111,13 +78,13 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAssemblyLine(AssemblyLine newAssemblyLine, NotificationChain msgs)
+  public NotificationChain basicSetLineContent(EObject newLineContent, NotificationChain msgs)
   {
-    AssemblyLine oldAssemblyLine = assemblyLine;
-    assemblyLine = newAssemblyLine;
+    EObject oldLineContent = lineContent;
+    lineContent = newLineContent;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.SOURCE_LINE__ASSEMBLY_LINE, oldAssemblyLine, newAssemblyLine);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.SOURCE_LINE__LINE_CONTENT, oldLineContent, newLineContent);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -129,95 +96,20 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
    * @generated
    */
   @Override
-  public void setAssemblyLine(AssemblyLine newAssemblyLine)
+  public void setLineContent(EObject newLineContent)
   {
-    if (newAssemblyLine != assemblyLine)
+    if (newLineContent != lineContent)
     {
       NotificationChain msgs = null;
-      if (assemblyLine != null)
-        msgs = ((InternalEObject)assemblyLine).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SOURCE_LINE__ASSEMBLY_LINE, null, msgs);
-      if (newAssemblyLine != null)
-        msgs = ((InternalEObject)newAssemblyLine).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SOURCE_LINE__ASSEMBLY_LINE, null, msgs);
-      msgs = basicSetAssemblyLine(newAssemblyLine, msgs);
+      if (lineContent != null)
+        msgs = ((InternalEObject)lineContent).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SOURCE_LINE__LINE_CONTENT, null, msgs);
+      if (newLineContent != null)
+        msgs = ((InternalEObject)newLineContent).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SOURCE_LINE__LINE_CONTENT, null, msgs);
+      msgs = basicSetLineContent(newLineContent, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SOURCE_LINE__ASSEMBLY_LINE, newAssemblyLine, newAssemblyLine));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String getEmptyLine()
-  {
-    return emptyLine;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setEmptyLine(String newEmptyLine)
-  {
-    String oldEmptyLine = emptyLine;
-    emptyLine = newEmptyLine;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SOURCE_LINE__EMPTY_LINE, oldEmptyLine, emptyLine));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public CommentLine getCommentLine()
-  {
-    return commentLine;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetCommentLine(CommentLine newCommentLine, NotificationChain msgs)
-  {
-    CommentLine oldCommentLine = commentLine;
-    commentLine = newCommentLine;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.SOURCE_LINE__COMMENT_LINE, oldCommentLine, newCommentLine);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setCommentLine(CommentLine newCommentLine)
-  {
-    if (newCommentLine != commentLine)
-    {
-      NotificationChain msgs = null;
-      if (commentLine != null)
-        msgs = ((InternalEObject)commentLine).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SOURCE_LINE__COMMENT_LINE, null, msgs);
-      if (newCommentLine != null)
-        msgs = ((InternalEObject)newCommentLine).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SOURCE_LINE__COMMENT_LINE, null, msgs);
-      msgs = basicSetCommentLine(newCommentLine, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SOURCE_LINE__COMMENT_LINE, newCommentLine, newCommentLine));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SOURCE_LINE__LINE_CONTENT, newLineContent, newLineContent));
   }
 
   /**
@@ -230,10 +122,8 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
   {
     switch (featureID)
     {
-      case AssemblerPackage.SOURCE_LINE__ASSEMBLY_LINE:
-        return basicSetAssemblyLine(null, msgs);
-      case AssemblerPackage.SOURCE_LINE__COMMENT_LINE:
-        return basicSetCommentLine(null, msgs);
+      case AssemblerPackage.SOURCE_LINE__LINE_CONTENT:
+        return basicSetLineContent(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -248,12 +138,8 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
   {
     switch (featureID)
     {
-      case AssemblerPackage.SOURCE_LINE__ASSEMBLY_LINE:
-        return getAssemblyLine();
-      case AssemblerPackage.SOURCE_LINE__EMPTY_LINE:
-        return getEmptyLine();
-      case AssemblerPackage.SOURCE_LINE__COMMENT_LINE:
-        return getCommentLine();
+      case AssemblerPackage.SOURCE_LINE__LINE_CONTENT:
+        return getLineContent();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -268,14 +154,8 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
   {
     switch (featureID)
     {
-      case AssemblerPackage.SOURCE_LINE__ASSEMBLY_LINE:
-        setAssemblyLine((AssemblyLine)newValue);
-        return;
-      case AssemblerPackage.SOURCE_LINE__EMPTY_LINE:
-        setEmptyLine((String)newValue);
-        return;
-      case AssemblerPackage.SOURCE_LINE__COMMENT_LINE:
-        setCommentLine((CommentLine)newValue);
+      case AssemblerPackage.SOURCE_LINE__LINE_CONTENT:
+        setLineContent((EObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -291,14 +171,8 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
   {
     switch (featureID)
     {
-      case AssemblerPackage.SOURCE_LINE__ASSEMBLY_LINE:
-        setAssemblyLine((AssemblyLine)null);
-        return;
-      case AssemblerPackage.SOURCE_LINE__EMPTY_LINE:
-        setEmptyLine(EMPTY_LINE_EDEFAULT);
-        return;
-      case AssemblerPackage.SOURCE_LINE__COMMENT_LINE:
-        setCommentLine((CommentLine)null);
+      case AssemblerPackage.SOURCE_LINE__LINE_CONTENT:
+        setLineContent((EObject)null);
         return;
     }
     super.eUnset(featureID);
@@ -314,31 +188,10 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
   {
     switch (featureID)
     {
-      case AssemblerPackage.SOURCE_LINE__ASSEMBLY_LINE:
-        return assemblyLine != null;
-      case AssemblerPackage.SOURCE_LINE__EMPTY_LINE:
-        return EMPTY_LINE_EDEFAULT == null ? emptyLine != null : !EMPTY_LINE_EDEFAULT.equals(emptyLine);
-      case AssemblerPackage.SOURCE_LINE__COMMENT_LINE:
-        return commentLine != null;
+      case AssemblerPackage.SOURCE_LINE__LINE_CONTENT:
+        return lineContent != null;
     }
     return super.eIsSet(featureID);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public String toString()
-  {
-    if (eIsProxy()) return super.toString();
-
-    StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (emptyLine: ");
-    result.append(emptyLine);
-    result.append(')');
-    return result.toString();
   }
 
 } //SourceLineImpl

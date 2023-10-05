@@ -7,65 +7,42 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Hexadecimal Value</b></em>'.
+ * A representation of the model object '<em><b>Hexa Decimal Value</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue#isIsNegative <em>Is Negative</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue#getHexadeciamlValue <em>Hexadeciaml Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue#getValue <em>Value</em>}</li>
  * </ul>
  *
- * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getHexadecimalValue()
+ * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getHexaDecimalValue()
  * @model
  * @generated
  */
-public interface HexadecimalValue extends EObject
+public interface HexaDecimalValue extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Is Negative</b></em>' attribute.
+   * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Is Negative</em>' attribute.
-   * @see #setIsNegative(boolean)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getHexadecimalValue_IsNegative()
+   * @return the value of the '<em>Value</em>' attribute.
+   * @see #setValue(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getHexaDecimalValue_Value()
    * @model
    * @generated
    */
-  boolean isIsNegative();
+  String getValue();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue#isIsNegative <em>Is Negative</em>}' attribute.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue#getValue <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Is Negative</em>' attribute.
-   * @see #isIsNegative()
+   * @param value the new value of the '<em>Value</em>' attribute.
+   * @see #getValue()
    * @generated
    */
-  void setIsNegative(boolean value);
+  void setValue(String value);
 
-  /**
-   * Returns the value of the '<em><b>Hexadeciaml Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Hexadeciaml Value</em>' attribute.
-   * @see #setHexadeciamlValue(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getHexadecimalValue_HexadeciamlValue()
-   * @model
-   * @generated
-   */
-  String getHexadeciamlValue();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue#getHexadeciamlValue <em>Hexadeciaml Value</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Hexadeciaml Value</em>' attribute.
-   * @see #getHexadeciamlValue()
-   * @generated
-   */
-  void setHexadeciamlValue(String value);
-
-} // HexadecimalValue
+} // HexaDecimalValue

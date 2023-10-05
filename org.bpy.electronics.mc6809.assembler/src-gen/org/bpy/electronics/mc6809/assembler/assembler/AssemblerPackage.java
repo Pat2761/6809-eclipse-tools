@@ -96,31 +96,13 @@ public interface AssemblerPackage extends EPackage
   int SOURCE_LINE = 1;
 
   /**
-   * The feature id for the '<em><b>Assembly Line</b></em>' containment reference.
+   * The feature id for the '<em><b>Line Content</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SOURCE_LINE__ASSEMBLY_LINE = 0;
-
-  /**
-   * The feature id for the '<em><b>Empty Line</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SOURCE_LINE__EMPTY_LINE = 1;
-
-  /**
-   * The feature id for the '<em><b>Comment Line</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SOURCE_LINE__COMMENT_LINE = 2;
+  int SOURCE_LINE__LINE_CONTENT = 0;
 
   /**
    * The number of structural features of the '<em>Source Line</em>' class.
@@ -129,128 +111,35 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SOURCE_LINE_FEATURE_COUNT = 3;
+  int SOURCE_LINE_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblyLineImpl <em>Assembly Line</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl <em>Blank Line</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblyLineImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAssemblyLine()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBlankLine()
    * @generated
    */
-  int ASSEMBLY_LINE = 2;
+  int BLANK_LINE = 2;
 
   /**
-   * The feature id for the '<em><b>Label Field</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASSEMBLY_LINE__LABEL_FIELD = 0;
-
-  /**
-   * The feature id for the '<em><b>Command</b></em>' containment reference.
+   * The feature id for the '<em><b>Blank Line</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASSEMBLY_LINE__COMMAND = 1;
+  int BLANK_LINE__BLANK_LINE = 0;
 
   /**
-   * The number of structural features of the '<em>Assembly Line</em>' class.
+   * The number of structural features of the '<em>Blank Line</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASSEMBLY_LINE_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveImpl <em>Directive</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirective()
-   * @generated
-   */
-  int DIRECTIVE = 3;
-
-  /**
-   * The feature id for the '<em><b>Directive</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DIRECTIVE__DIRECTIVE = 0;
-
-  /**
-   * The number of structural features of the '<em>Directive</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DIRECTIVE_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl <em>Equ Directive</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEquDirective()
-   * @generated
-   */
-  int EQU_DIRECTIVE = 4;
-
-  /**
-   * The feature id for the '<em><b>Constant</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EQU_DIRECTIVE__CONSTANT = 0;
-
-  /**
-   * The number of structural features of the '<em>Equ Directive</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EQU_DIRECTIVE_FEATURE_COUNT = 1;
-
-  /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelFieldImpl <em>Label Field</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LabelFieldImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLabelField()
-   * @generated
-   */
-  int LABEL_FIELD = 5;
-
-  /**
-   * The feature id for the '<em><b>Label</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LABEL_FIELD__LABEL = 0;
-
-  /**
-   * The number of structural features of the '<em>Label Field</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LABEL_FIELD_FEATURE_COUNT = 1;
+  int BLANK_LINE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommentLineImpl <em>Comment Line</em>}' class.
@@ -260,7 +149,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCommentLine()
    * @generated
    */
-  int COMMENT_LINE = 6;
+  int COMMENT_LINE = 3;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -281,32 +170,115 @@ public interface AssemblerPackage extends EPackage
   int COMMENT_LINE_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpecifiedValueImpl <em>Specified Value</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl <em>Directive Line</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SpecifiedValueImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSpecifiedValue()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectiveLine()
    * @generated
    */
-  int SPECIFIED_VALUE = 7;
+  int DIRECTIVE_LINE = 4;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * The feature id for the '<em><b>Directive</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPECIFIED_VALUE__VALUE = 0;
+  int DIRECTIVE_LINE__DIRECTIVE = 0;
 
   /**
-   * The number of structural features of the '<em>Specified Value</em>' class.
+   * The number of structural features of the '<em>Directive Line</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPECIFIED_VALUE_FEATURE_COUNT = 1;
+  int DIRECTIVE_LINE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl <em>Equ Directive</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEquDirective()
+   * @generated
+   */
+  int EQU_DIRECTIVE = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQU_DIRECTIVE__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Directive</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQU_DIRECTIVE__DIRECTIVE = 1;
+
+  /**
+   * The feature id for the '<em><b>Operand</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQU_DIRECTIVE__OPERAND = 2;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQU_DIRECTIVE__COMMENT = 3;
+
+  /**
+   * The number of structural features of the '<em>Equ Directive</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQU_DIRECTIVE_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OperandImpl <em>Operand</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OperandImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOperand()
+   * @generated
+   */
+  int OPERAND = 6;
+
+  /**
+   * The feature id for the '<em><b>Operand</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPERAND__OPERAND = 0;
+
+  /**
+   * The number of structural features of the '<em>Operand</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPERAND_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -316,34 +288,25 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 8;
+  int EXPRESSION = 7;
 
   /**
-   * The feature id for the '<em><b>Addition</b></em>' containment reference.
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSION__ADDITION = 0;
+  int EXPRESSION__VALUE = 0;
 
   /**
-   * The feature id for the '<em><b>Values</b></em>' containment reference list.
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSION__VALUES = 1;
-
-  /**
-   * The feature id for the '<em><b>Expression Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPRESSION__EXPRESSION_VALUE = 2;
+  int EXPRESSION__LEFT = 1;
 
   /**
    * The number of structural features of the '<em>Expression</em>' class.
@@ -352,128 +315,119 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPRESSION_FEATURE_COUNT = 3;
+  int EXPRESSION_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionsImpl <em>Expressions</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierImpl <em>Identifier</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionsImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpressions()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifier()
    * @generated
    */
-  int EXPRESSIONS = 9;
+  int IDENTIFIER = 8;
 
   /**
-   * The feature id for the '<em><b>Values</b></em>' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPRESSIONS__VALUES = 0;
-
-  /**
-   * The number of structural features of the '<em>Expressions</em>' class.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSIONS_FEATURE_COUNT = 1;
+  int IDENTIFIER__VALUE = 0;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionValueImpl <em>Expression Value</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionValueImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpressionValue()
-   * @generated
-   */
-  int EXPRESSION_VALUE = 10;
-
-  /**
-   * The feature id for the '<em><b>Expression Value</b></em>' containment reference.
+   * The number of structural features of the '<em>Identifier</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSION_VALUE__EXPRESSION_VALUE = 0;
+  int IDENTIFIER_FEATURE_COUNT = 1;
 
   /**
-   * The number of structural features of the '<em>Expression Value</em>' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StringValueImpl <em>String Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.StringValueImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStringValue()
+   * @generated
+   */
+  int STRING_VALUE = 9;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPRESSION_VALUE_FEATURE_COUNT = 1;
+  int STRING_VALUE__VALUE = 0;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ActualPositionImpl <em>Actual Position</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ActualPositionImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getActualPosition()
-   * @generated
-   */
-  int ACTUAL_POSITION = 11;
-
-  /**
-   * The feature id for the '<em><b>Actual Position</b></em>' attribute.
+   * The number of structural features of the '<em>String Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ACTUAL_POSITION__ACTUAL_POSITION = 0;
+  int STRING_VALUE_FEATURE_COUNT = 1;
 
   /**
-   * The number of structural features of the '<em>Actual Position</em>' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DecimalValueImpl <em>Decimal Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DecimalValueImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecimalValue()
+   * @generated
+   */
+  int DECIMAL_VALUE = 10;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ACTUAL_POSITION_FEATURE_COUNT = 1;
+  int DECIMAL_VALUE__VALUE = 0;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryeValueImpl <em>Binarye Value</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryeValueImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBinaryeValue()
-   * @generated
-   */
-  int BINARYE_VALUE = 12;
-
-  /**
-   * The feature id for the '<em><b>Is Negative</b></em>' attribute.
+   * The number of structural features of the '<em>Decimal Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BINARYE_VALUE__IS_NEGATIVE = 0;
+  int DECIMAL_VALUE_FEATURE_COUNT = 1;
 
   /**
-   * The feature id for the '<em><b>Binary Value</b></em>' attribute.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.HexaDecimalValueImpl <em>Hexa Decimal Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.HexaDecimalValueImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getHexaDecimalValue()
+   * @generated
+   */
+  int HEXA_DECIMAL_VALUE = 11;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BINARYE_VALUE__BINARY_VALUE = 1;
+  int HEXA_DECIMAL_VALUE__VALUE = 0;
 
   /**
-   * The number of structural features of the '<em>Binarye Value</em>' class.
+   * The number of structural features of the '<em>Hexa Decimal Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BINARYE_VALUE_FEATURE_COUNT = 2;
+  int HEXA_DECIMAL_VALUE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OctalValueImpl <em>Octal Value</em>}' class.
@@ -483,25 +437,16 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOctalValue()
    * @generated
    */
-  int OCTAL_VALUE = 13;
+  int OCTAL_VALUE = 12;
 
   /**
-   * The feature id for the '<em><b>Is Negative</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OCTAL_VALUE__IS_NEGATIVE = 0;
-
-  /**
-   * The feature id for the '<em><b>Octal Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OCTAL_VALUE__OCTAL_VALUE = 1;
+  int OCTAL_VALUE__VALUE = 0;
 
   /**
    * The number of structural features of the '<em>Octal Value</em>' class.
@@ -510,137 +455,550 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int OCTAL_VALUE_FEATURE_COUNT = 2;
+  int OCTAL_VALUE_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DecimelValueImpl <em>Decimel Value</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryValueImpl <em>Binary Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DecimelValueImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecimelValue()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryValueImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBinaryValue()
    * @generated
    */
-  int DECIMEL_VALUE = 14;
+  int BINARY_VALUE = 13;
 
   /**
-   * The feature id for the '<em><b>Is Negative</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int DECIMEL_VALUE__IS_NEGATIVE = 0;
-
-  /**
-   * The feature id for the '<em><b>Decimal Value</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECIMEL_VALUE__DECIMAL_VALUE = 1;
+  int BINARY_VALUE__VALUE = 0;
 
   /**
-   * The number of structural features of the '<em>Decimel Value</em>' class.
+   * The number of structural features of the '<em>Binary Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECIMEL_VALUE_FEATURE_COUNT = 2;
+  int BINARY_VALUE_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.HexadecimalValueImpl <em>Hexadecimal Value</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CharacterValueImpl <em>Character Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.HexadecimalValueImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getHexadecimalValue()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CharacterValueImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCharacterValue()
    * @generated
    */
-  int HEXADECIMAL_VALUE = 15;
+  int CHARACTER_VALUE = 14;
 
   /**
-   * The feature id for the '<em><b>Is Negative</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int HEXADECIMAL_VALUE__IS_NEGATIVE = 0;
-
-  /**
-   * The feature id for the '<em><b>Hexadeciaml Value</b></em>' attribute.
+   * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HEXADECIMAL_VALUE__HEXADECIAML_VALUE = 1;
+  int CHARACTER_VALUE__VALUE = 0;
 
   /**
-   * The number of structural features of the '<em>Hexadecimal Value</em>' class.
+   * The number of structural features of the '<em>Character Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int HEXADECIMAL_VALUE_FEATURE_COUNT = 2;
+  int CHARACTER_VALUE_FEATURE_COUNT = 1;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AsciiValueImpl <em>Ascii Value</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MultiplicationImpl <em>Multiplication</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AsciiValueImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAsciiValue()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.MultiplicationImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMultiplication()
    * @generated
    */
-  int ASCII_VALUE = 16;
+  int MULTIPLICATION = 15;
 
   /**
-   * The feature id for the '<em><b>Ascii Value</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASCII_VALUE__ASCII_VALUE = 0;
-
-  /**
-   * The number of structural features of the '<em>Ascii Value</em>' class.
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASCII_VALUE_FEATURE_COUNT = 1;
+  int MULTIPLICATION__VALUE = EXPRESSION__VALUE;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelValueImpl <em>Label Value</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LabelValueImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLabelValue()
-   * @generated
-   */
-  int LABEL_VALUE = 17;
-
-  /**
-   * The feature id for the '<em><b>Label</b></em>' attribute.
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LABEL_VALUE__LABEL = 0;
+  int MULTIPLICATION__LEFT = EXPRESSION__LEFT;
 
   /**
-   * The number of structural features of the '<em>Label Value</em>' class.
+   * The feature id for the '<em><b>Operation</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LABEL_VALUE_FEATURE_COUNT = 1;
+  int MULTIPLICATION__OPERATION = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULTIPLICATION__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Multiplication</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MULTIPLICATION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DivisionImpl <em>Division</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DivisionImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDivision()
+   * @generated
+   */
+  int DIVISION = 16;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIVISION__VALUE = EXPRESSION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIVISION__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Opretation</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIVISION__OPRETATION = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIVISION__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Division</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIVISION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ModuloImpl <em>Modulo</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ModuloImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getModulo()
+   * @generated
+   */
+  int MODULO = 17;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODULO__VALUE = EXPRESSION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODULO__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Opretation</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODULO__OPRETATION = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODULO__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The number of structural features of the '<em>Modulo</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MODULO_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdditionImpl <em>Addition</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AdditionImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddition()
+   * @generated
+   */
+  int ADDITION = 18;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION__VALUE = EXPRESSION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION__RIGHT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Addition</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDITION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SubstractionImpl <em>Substraction</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SubstractionImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubstraction()
+   * @generated
+   */
+  int SUBSTRACTION = 19;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBSTRACTION__VALUE = EXPRESSION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBSTRACTION__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBSTRACTION__RIGHT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Substraction</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBSTRACTION_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LeftShiftImpl <em>Left Shift</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LeftShiftImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeftShift()
+   * @generated
+   */
+  int LEFT_SHIFT = 20;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LEFT_SHIFT__VALUE = EXPRESSION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LEFT_SHIFT__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LEFT_SHIFT__RIGHT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Left Shift</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LEFT_SHIFT_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RigthShiftImpl <em>Rigth Shift</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RigthShiftImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRigthShift()
+   * @generated
+   */
+  int RIGTH_SHIFT = 21;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RIGTH_SHIFT__VALUE = EXPRESSION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RIGTH_SHIFT__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Negate</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RIGTH_SHIFT__NEGATE = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Rigth Shift</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RIGTH_SHIFT_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NegateImpl <em>Negate</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.NegateImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNegate()
+   * @generated
+   */
+  int NEGATE = 22;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEGATE__VALUE = EXPRESSION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEGATE__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEGATE__RIGHT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Negate</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEGATE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndImpl <em>And</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AndImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAnd()
+   * @generated
+   */
+  int AND = 23;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND__VALUE = EXPRESSION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND__RIGHT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>And</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrImpl <em>Or</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OrImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOr()
+   * @generated
+   */
+  int OR = 24;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR__VALUE = EXPRESSION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR__RIGHT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Or</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
 
   /**
@@ -675,132 +1033,36 @@ public interface AssemblerPackage extends EPackage
   EClass getSourceLine();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getAssemblyLine <em>Assembly Line</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getLineContent <em>Line Content</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Assembly Line</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getAssemblyLine()
+   * @return the meta object for the containment reference '<em>Line Content</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getLineContent()
    * @see #getSourceLine()
    * @generated
    */
-  EReference getSourceLine_AssemblyLine();
+  EReference getSourceLine_LineContent();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getEmptyLine <em>Empty Line</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.BlankLine <em>Blank Line</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Empty Line</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getEmptyLine()
-   * @see #getSourceLine()
+   * @return the meta object for class '<em>Blank Line</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BlankLine
    * @generated
    */
-  EAttribute getSourceLine_EmptyLine();
+  EClass getBlankLine();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getCommentLine <em>Comment Line</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BlankLine#getBlankLine <em>Blank Line</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Comment Line</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getCommentLine()
-   * @see #getSourceLine()
+   * @return the meta object for the attribute '<em>Blank Line</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BlankLine#getBlankLine()
+   * @see #getBlankLine()
    * @generated
    */
-  EReference getSourceLine_CommentLine();
-
-  /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine <em>Assembly Line</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Assembly Line</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine
-   * @generated
-   */
-  EClass getAssemblyLine();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine#getLabelField <em>Label Field</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Label Field</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine#getLabelField()
-   * @see #getAssemblyLine()
-   * @generated
-   */
-  EReference getAssemblyLine_LabelField();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine#getCommand <em>Command</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Command</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblyLine#getCommand()
-   * @see #getAssemblyLine()
-   * @generated
-   */
-  EReference getAssemblyLine_Command();
-
-  /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Directive <em>Directive</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Directive</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Directive
-   * @generated
-   */
-  EClass getDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Directive#getDirective <em>Directive</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Directive</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Directive#getDirective()
-   * @see #getDirective()
-   * @generated
-   */
-  EReference getDirective_Directive();
-
-  /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective <em>Equ Directive</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Equ Directive</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective
-   * @generated
-   */
-  EClass getEquDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getConstant <em>Constant</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Constant</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getConstant()
-   * @see #getEquDirective()
-   * @generated
-   */
-  EReference getEquDirective_Constant();
-
-  /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelField <em>Label Field</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Label Field</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelField
-   * @generated
-   */
-  EClass getLabelField();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelField#getLabel <em>Label</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Label</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelField#getLabel()
-   * @see #getLabelField()
-   * @generated
-   */
-  EAttribute getLabelField_Label();
+  EAttribute getBlankLine_BlankLine();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.CommentLine <em>Comment Line</em>}'.
@@ -824,25 +1086,100 @@ public interface AssemblerPackage extends EPackage
   EAttribute getCommentLine_Comment();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue <em>Specified Value</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine <em>Directive Line</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Specified Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue
+   * @return the meta object for class '<em>Directive Line</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
    * @generated
    */
-  EClass getSpecifiedValue();
+  EClass getDirectiveLine();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue#getValue <em>Value</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getDirective <em>Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SpecifiedValue#getValue()
-   * @see #getSpecifiedValue()
+   * @return the meta object for the containment reference '<em>Directive</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getDirective()
+   * @see #getDirectiveLine()
    * @generated
    */
-  EReference getSpecifiedValue_Value();
+  EReference getDirectiveLine_Directive();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective <em>Equ Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Equ Directive</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective
+   * @generated
+   */
+  EClass getEquDirective();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getName()
+   * @see #getEquDirective()
+   * @generated
+   */
+  EReference getEquDirective_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getDirective <em>Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Directive</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getDirective()
+   * @see #getEquDirective()
+   * @generated
+   */
+  EAttribute getEquDirective_Directive();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getOperand <em>Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getOperand()
+   * @see #getEquDirective()
+   * @generated
+   */
+  EReference getEquDirective_Operand();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getComment()
+   * @see #getEquDirective()
+   * @generated
+   */
+  EAttribute getEquDirective_Comment();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Operand <em>Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Operand
+   * @generated
+   */
+  EClass getOperand();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Operand#getOperand <em>Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Operand#getOperand()
+   * @see #getOperand()
+   * @generated
+   */
+  EReference getOperand_Operand();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression <em>Expression</em>}'.
@@ -855,132 +1192,110 @@ public interface AssemblerPackage extends EPackage
   EClass getExpression();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getAddition <em>Addition</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Addition</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Expression#getAddition()
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Expression#getValue()
    * @see #getExpression()
    * @generated
    */
-  EReference getExpression_Addition();
+  EReference getExpression_Value();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getValues <em>Values</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getLeft <em>Left</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Values</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Expression#getValues()
+   * @return the meta object for the containment reference '<em>Left</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Expression#getLeft()
    * @see #getExpression()
    * @generated
    */
-  EReference getExpression_Values();
+  EReference getExpression_Left();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression#getExpressionValue <em>Expression Value</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Identifier <em>Identifier</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expression Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Expression#getExpressionValue()
-   * @see #getExpression()
+   * @return the meta object for class '<em>Identifier</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Identifier
    * @generated
    */
-  EReference getExpression_ExpressionValue();
+  EClass getIdentifier();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Expressions <em>Expressions</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.Identifier#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expressions</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Expressions
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Identifier#getValue()
+   * @see #getIdentifier()
    * @generated
    */
-  EClass getExpressions();
+  EAttribute getIdentifier_Value();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.bpy.electronics.mc6809.assembler.assembler.Expressions#getValues <em>Values</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.StringValue <em>String Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Values</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Expressions#getValues()
-   * @see #getExpressions()
+   * @return the meta object for class '<em>String Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.StringValue
    * @generated
    */
-  EReference getExpressions_Values();
+  EClass getStringValue();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue <em>Expression Value</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.StringValue#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Expression Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.StringValue#getValue()
+   * @see #getStringValue()
    * @generated
    */
-  EClass getExpressionValue();
+  EAttribute getStringValue_Value();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue#getExpressionValue <em>Expression Value</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimalValue <em>Decimal Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expression Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue#getExpressionValue()
-   * @see #getExpressionValue()
+   * @return the meta object for class '<em>Decimal Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DecimalValue
    * @generated
    */
-  EReference getExpressionValue_ExpressionValue();
+  EClass getDecimalValue();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.ActualPosition <em>Actual Position</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimalValue#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Actual Position</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.ActualPosition
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DecimalValue#getValue()
+   * @see #getDecimalValue()
    * @generated
    */
-  EClass getActualPosition();
+  EAttribute getDecimalValue_Value();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.ActualPosition#getActualPosition <em>Actual Position</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue <em>Hexa Decimal Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Actual Position</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.ActualPosition#getActualPosition()
-   * @see #getActualPosition()
+   * @return the meta object for class '<em>Hexa Decimal Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue
    * @generated
    */
-  EAttribute getActualPosition_ActualPosition();
+  EClass getHexaDecimalValue();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue <em>Binarye Value</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Binarye Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue#getValue()
+   * @see #getHexaDecimalValue()
    * @generated
    */
-  EClass getBinaryeValue();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue#isIsNegative <em>Is Negative</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Negative</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue#isIsNegative()
-   * @see #getBinaryeValue()
-   * @generated
-   */
-  EAttribute getBinaryeValue_IsNegative();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue#getBinaryValue <em>Binary Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Binary Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.BinaryeValue#getBinaryValue()
-   * @see #getBinaryeValue()
-   * @generated
-   */
-  EAttribute getBinaryeValue_BinaryValue();
+  EAttribute getHexaDecimalValue_Value();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.OctalValue <em>Octal Value</em>}'.
@@ -993,132 +1308,300 @@ public interface AssemblerPackage extends EPackage
   EClass getOctalValue();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OctalValue#isIsNegative <em>Is Negative</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OctalValue#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Negative</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OctalValue#isIsNegative()
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OctalValue#getValue()
    * @see #getOctalValue()
    * @generated
    */
-  EAttribute getOctalValue_IsNegative();
+  EAttribute getOctalValue_Value();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OctalValue#getOctalValue <em>Octal Value</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.BinaryValue <em>Binary Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Octal Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OctalValue#getOctalValue()
-   * @see #getOctalValue()
+   * @return the meta object for class '<em>Binary Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BinaryValue
    * @generated
    */
-  EAttribute getOctalValue_OctalValue();
+  EClass getBinaryValue();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimelValue <em>Decimel Value</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BinaryValue#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Decimel Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.DecimelValue
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BinaryValue#getValue()
+   * @see #getBinaryValue()
    * @generated
    */
-  EClass getDecimelValue();
+  EAttribute getBinaryValue_Value();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimelValue#isIsNegative <em>Is Negative</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.CharacterValue <em>Character Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Negative</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.DecimelValue#isIsNegative()
-   * @see #getDecimelValue()
+   * @return the meta object for class '<em>Character Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CharacterValue
    * @generated
    */
-  EAttribute getDecimelValue_IsNegative();
+  EClass getCharacterValue();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimelValue#getDecimalValue <em>Decimal Value</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.CharacterValue#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Decimal Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.DecimelValue#getDecimalValue()
-   * @see #getDecimelValue()
+   * @return the meta object for the attribute '<em>Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CharacterValue#getValue()
+   * @see #getCharacterValue()
    * @generated
    */
-  EAttribute getDecimelValue_DecimalValue();
+  EAttribute getCharacterValue_Value();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue <em>Hexadecimal Value</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Multiplication <em>Multiplication</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Hexadecimal Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue
+   * @return the meta object for class '<em>Multiplication</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Multiplication
    * @generated
    */
-  EClass getHexadecimalValue();
+  EClass getMultiplication();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue#isIsNegative <em>Is Negative</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.Multiplication#getOperation <em>Operation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Is Negative</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue#isIsNegative()
-   * @see #getHexadecimalValue()
+   * @return the meta object for the attribute '<em>Operation</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Multiplication#getOperation()
+   * @see #getMultiplication()
    * @generated
    */
-  EAttribute getHexadecimalValue_IsNegative();
+  EAttribute getMultiplication_Operation();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue#getHexadeciamlValue <em>Hexadeciaml Value</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Multiplication#getRight <em>Right</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Hexadeciaml Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.HexadecimalValue#getHexadeciamlValue()
-   * @see #getHexadecimalValue()
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Multiplication#getRight()
+   * @see #getMultiplication()
    * @generated
    */
-  EAttribute getHexadecimalValue_HexadeciamlValue();
+  EReference getMultiplication_Right();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AsciiValue <em>Ascii Value</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Division <em>Division</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Ascii Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AsciiValue
+   * @return the meta object for class '<em>Division</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Division
    * @generated
    */
-  EClass getAsciiValue();
+  EClass getDivision();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AsciiValue#getAsciiValue <em>Ascii Value</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.Division#getOpretation <em>Opretation</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Ascii Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AsciiValue#getAsciiValue()
-   * @see #getAsciiValue()
+   * @return the meta object for the attribute '<em>Opretation</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Division#getOpretation()
+   * @see #getDivision()
    * @generated
    */
-  EAttribute getAsciiValue_AsciiValue();
+  EAttribute getDivision_Opretation();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelValue <em>Label Value</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Division#getRight <em>Right</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Label Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelValue
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Division#getRight()
+   * @see #getDivision()
    * @generated
    */
-  EClass getLabelValue();
+  EReference getDivision_Right();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelValue#getLabel <em>Label</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Modulo <em>Modulo</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Label</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelValue#getLabel()
-   * @see #getLabelValue()
+   * @return the meta object for class '<em>Modulo</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Modulo
    * @generated
    */
-  EAttribute getLabelValue_Label();
+  EClass getModulo();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.Modulo#getOpretation <em>Opretation</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Opretation</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Modulo#getOpretation()
+   * @see #getModulo()
+   * @generated
+   */
+  EAttribute getModulo_Opretation();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Modulo#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Modulo#getRight()
+   * @see #getModulo()
+   * @generated
+   */
+  EReference getModulo_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Addition <em>Addition</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Addition</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Addition
+   * @generated
+   */
+  EClass getAddition();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Addition#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Addition#getRight()
+   * @see #getAddition()
+   * @generated
+   */
+  EReference getAddition_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Substraction <em>Substraction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Substraction</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Substraction
+   * @generated
+   */
+  EClass getSubstraction();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Substraction#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Substraction#getRight()
+   * @see #getSubstraction()
+   * @generated
+   */
+  EReference getSubstraction_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.LeftShift <em>Left Shift</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Left Shift</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LeftShift
+   * @generated
+   */
+  EClass getLeftShift();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.LeftShift#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LeftShift#getRight()
+   * @see #getLeftShift()
+   * @generated
+   */
+  EReference getLeftShift_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.RigthShift <em>Rigth Shift</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Rigth Shift</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RigthShift
+   * @generated
+   */
+  EClass getRigthShift();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RigthShift#getNegate <em>Negate</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Negate</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RigthShift#getNegate()
+   * @see #getRigthShift()
+   * @generated
+   */
+  EReference getRigthShift_Negate();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Negate <em>Negate</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Negate</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Negate
+   * @generated
+   */
+  EClass getNegate();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Negate#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Negate#getRight()
+   * @see #getNegate()
+   * @generated
+   */
+  EReference getNegate_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.And <em>And</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>And</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.And
+   * @generated
+   */
+  EClass getAnd();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.And#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.And#getRight()
+   * @see #getAnd()
+   * @generated
+   */
+  EReference getAnd_Right();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Or <em>Or</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Or</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Or
+   * @generated
+   */
+  EClass getOr();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Or#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Or#getRight()
+   * @see #getOr()
+   * @generated
+   */
+  EReference getOr_Right();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -1172,108 +1655,30 @@ public interface AssemblerPackage extends EPackage
     EClass SOURCE_LINE = eINSTANCE.getSourceLine();
 
     /**
-     * The meta object literal for the '<em><b>Assembly Line</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Line Content</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SOURCE_LINE__ASSEMBLY_LINE = eINSTANCE.getSourceLine_AssemblyLine();
+    EReference SOURCE_LINE__LINE_CONTENT = eINSTANCE.getSourceLine_LineContent();
 
     /**
-     * The meta object literal for the '<em><b>Empty Line</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl <em>Blank Line</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBlankLine()
      * @generated
      */
-    EAttribute SOURCE_LINE__EMPTY_LINE = eINSTANCE.getSourceLine_EmptyLine();
+    EClass BLANK_LINE = eINSTANCE.getBlankLine();
 
     /**
-     * The meta object literal for the '<em><b>Comment Line</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Blank Line</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SOURCE_LINE__COMMENT_LINE = eINSTANCE.getSourceLine_CommentLine();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblyLineImpl <em>Assembly Line</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblyLineImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAssemblyLine()
-     * @generated
-     */
-    EClass ASSEMBLY_LINE = eINSTANCE.getAssemblyLine();
-
-    /**
-     * The meta object literal for the '<em><b>Label Field</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ASSEMBLY_LINE__LABEL_FIELD = eINSTANCE.getAssemblyLine_LabelField();
-
-    /**
-     * The meta object literal for the '<em><b>Command</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ASSEMBLY_LINE__COMMAND = eINSTANCE.getAssemblyLine_Command();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveImpl <em>Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirective()
-     * @generated
-     */
-    EClass DIRECTIVE = eINSTANCE.getDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DIRECTIVE__DIRECTIVE = eINSTANCE.getDirective_Directive();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl <em>Equ Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEquDirective()
-     * @generated
-     */
-    EClass EQU_DIRECTIVE = eINSTANCE.getEquDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Constant</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EQU_DIRECTIVE__CONSTANT = eINSTANCE.getEquDirective_Constant();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelFieldImpl <em>Label Field</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LabelFieldImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLabelField()
-     * @generated
-     */
-    EClass LABEL_FIELD = eINSTANCE.getLabelField();
-
-    /**
-     * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LABEL_FIELD__LABEL = eINSTANCE.getLabelField_Label();
+    EAttribute BLANK_LINE__BLANK_LINE = eINSTANCE.getBlankLine_BlankLine();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommentLineImpl <em>Comment Line</em>}' class.
@@ -1294,22 +1699,82 @@ public interface AssemblerPackage extends EPackage
     EAttribute COMMENT_LINE__COMMENT = eINSTANCE.getCommentLine_Comment();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpecifiedValueImpl <em>Specified Value</em>}' class.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl <em>Directive Line</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SpecifiedValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSpecifiedValue()
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectiveLine()
      * @generated
      */
-    EClass SPECIFIED_VALUE = eINSTANCE.getSpecifiedValue();
+    EClass DIRECTIVE_LINE = eINSTANCE.getDirectiveLine();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Directive</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference SPECIFIED_VALUE__VALUE = eINSTANCE.getSpecifiedValue_Value();
+    EReference DIRECTIVE_LINE__DIRECTIVE = eINSTANCE.getDirectiveLine_Directive();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl <em>Equ Directive</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEquDirective()
+     * @generated
+     */
+    EClass EQU_DIRECTIVE = eINSTANCE.getEquDirective();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EQU_DIRECTIVE__NAME = eINSTANCE.getEquDirective_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EQU_DIRECTIVE__DIRECTIVE = eINSTANCE.getEquDirective_Directive();
+
+    /**
+     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EQU_DIRECTIVE__OPERAND = eINSTANCE.getEquDirective_Operand();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EQU_DIRECTIVE__COMMENT = eINSTANCE.getEquDirective_Comment();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OperandImpl <em>Operand</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OperandImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOperand()
+     * @generated
+     */
+    EClass OPERAND = eINSTANCE.getOperand();
+
+    /**
+     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OPERAND__OPERAND = eINSTANCE.getOperand_Operand();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -1322,108 +1787,92 @@ public interface AssemblerPackage extends EPackage
     EClass EXPRESSION = eINSTANCE.getExpression();
 
     /**
-     * The meta object literal for the '<em><b>Addition</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPRESSION__ADDITION = eINSTANCE.getExpression_Addition();
+    EReference EXPRESSION__VALUE = eINSTANCE.getExpression_Value();
 
     /**
-     * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference EXPRESSION__VALUES = eINSTANCE.getExpression_Values();
+    EReference EXPRESSION__LEFT = eINSTANCE.getExpression_Left();
 
     /**
-     * The meta object literal for the '<em><b>Expression Value</b></em>' containment reference feature.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierImpl <em>Identifier</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifier()
      * @generated
      */
-    EReference EXPRESSION__EXPRESSION_VALUE = eINSTANCE.getExpression_ExpressionValue();
+    EClass IDENTIFIER = eINSTANCE.getIdentifier();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionsImpl <em>Expressions</em>}' class.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionsImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpressions()
      * @generated
      */
-    EClass EXPRESSIONS = eINSTANCE.getExpressions();
+    EAttribute IDENTIFIER__VALUE = eINSTANCE.getIdentifier_Value();
 
     /**
-     * The meta object literal for the '<em><b>Values</b></em>' containment reference list feature.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StringValueImpl <em>String Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.StringValueImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStringValue()
      * @generated
      */
-    EReference EXPRESSIONS__VALUES = eINSTANCE.getExpressions_Values();
+    EClass STRING_VALUE = eINSTANCE.getStringValue();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionValueImpl <em>Expression Value</em>}' class.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpressionValue()
      * @generated
      */
-    EClass EXPRESSION_VALUE = eINSTANCE.getExpressionValue();
+    EAttribute STRING_VALUE__VALUE = eINSTANCE.getStringValue_Value();
 
     /**
-     * The meta object literal for the '<em><b>Expression Value</b></em>' containment reference feature.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DecimalValueImpl <em>Decimal Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DecimalValueImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecimalValue()
      * @generated
      */
-    EReference EXPRESSION_VALUE__EXPRESSION_VALUE = eINSTANCE.getExpressionValue_ExpressionValue();
+    EClass DECIMAL_VALUE = eINSTANCE.getDecimalValue();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ActualPositionImpl <em>Actual Position</em>}' class.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ActualPositionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getActualPosition()
      * @generated
      */
-    EClass ACTUAL_POSITION = eINSTANCE.getActualPosition();
+    EAttribute DECIMAL_VALUE__VALUE = eINSTANCE.getDecimalValue_Value();
 
     /**
-     * The meta object literal for the '<em><b>Actual Position</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.HexaDecimalValueImpl <em>Hexa Decimal Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.HexaDecimalValueImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getHexaDecimalValue()
      * @generated
      */
-    EAttribute ACTUAL_POSITION__ACTUAL_POSITION = eINSTANCE.getActualPosition_ActualPosition();
+    EClass HEXA_DECIMAL_VALUE = eINSTANCE.getHexaDecimalValue();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryeValueImpl <em>Binarye Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryeValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBinaryeValue()
-     * @generated
-     */
-    EClass BINARYE_VALUE = eINSTANCE.getBinaryeValue();
-
-    /**
-     * The meta object literal for the '<em><b>Is Negative</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute BINARYE_VALUE__IS_NEGATIVE = eINSTANCE.getBinaryeValue_IsNegative();
-
-    /**
-     * The meta object literal for the '<em><b>Binary Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BINARYE_VALUE__BINARY_VALUE = eINSTANCE.getBinaryeValue_BinaryValue();
+    EAttribute HEXA_DECIMAL_VALUE__VALUE = eINSTANCE.getHexaDecimalValue_Value();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OctalValueImpl <em>Octal Value</em>}' class.
@@ -1436,108 +1885,252 @@ public interface AssemblerPackage extends EPackage
     EClass OCTAL_VALUE = eINSTANCE.getOctalValue();
 
     /**
-     * The meta object literal for the '<em><b>Is Negative</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute OCTAL_VALUE__IS_NEGATIVE = eINSTANCE.getOctalValue_IsNegative();
+    EAttribute OCTAL_VALUE__VALUE = eINSTANCE.getOctalValue_Value();
 
     /**
-     * The meta object literal for the '<em><b>Octal Value</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryValueImpl <em>Binary Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryValueImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBinaryValue()
      * @generated
      */
-    EAttribute OCTAL_VALUE__OCTAL_VALUE = eINSTANCE.getOctalValue_OctalValue();
+    EClass BINARY_VALUE = eINSTANCE.getBinaryValue();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DecimelValueImpl <em>Decimel Value</em>}' class.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DecimelValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecimelValue()
      * @generated
      */
-    EClass DECIMEL_VALUE = eINSTANCE.getDecimelValue();
+    EAttribute BINARY_VALUE__VALUE = eINSTANCE.getBinaryValue_Value();
 
     /**
-     * The meta object literal for the '<em><b>Is Negative</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CharacterValueImpl <em>Character Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CharacterValueImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCharacterValue()
      * @generated
      */
-    EAttribute DECIMEL_VALUE__IS_NEGATIVE = eINSTANCE.getDecimelValue_IsNegative();
+    EClass CHARACTER_VALUE = eINSTANCE.getCharacterValue();
 
     /**
-     * The meta object literal for the '<em><b>Decimal Value</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute DECIMEL_VALUE__DECIMAL_VALUE = eINSTANCE.getDecimelValue_DecimalValue();
+    EAttribute CHARACTER_VALUE__VALUE = eINSTANCE.getCharacterValue_Value();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.HexadecimalValueImpl <em>Hexadecimal Value</em>}' class.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MultiplicationImpl <em>Multiplication</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.HexadecimalValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getHexadecimalValue()
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.MultiplicationImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMultiplication()
      * @generated
      */
-    EClass HEXADECIMAL_VALUE = eINSTANCE.getHexadecimalValue();
+    EClass MULTIPLICATION = eINSTANCE.getMultiplication();
 
     /**
-     * The meta object literal for the '<em><b>Is Negative</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Operation</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute HEXADECIMAL_VALUE__IS_NEGATIVE = eINSTANCE.getHexadecimalValue_IsNegative();
+    EAttribute MULTIPLICATION__OPERATION = eINSTANCE.getMultiplication_Operation();
 
     /**
-     * The meta object literal for the '<em><b>Hexadeciaml Value</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute HEXADECIMAL_VALUE__HEXADECIAML_VALUE = eINSTANCE.getHexadecimalValue_HexadeciamlValue();
+    EReference MULTIPLICATION__RIGHT = eINSTANCE.getMultiplication_Right();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AsciiValueImpl <em>Ascii Value</em>}' class.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DivisionImpl <em>Division</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AsciiValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAsciiValue()
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DivisionImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDivision()
      * @generated
      */
-    EClass ASCII_VALUE = eINSTANCE.getAsciiValue();
+    EClass DIVISION = eINSTANCE.getDivision();
 
     /**
-     * The meta object literal for the '<em><b>Ascii Value</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Opretation</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ASCII_VALUE__ASCII_VALUE = eINSTANCE.getAsciiValue_AsciiValue();
+    EAttribute DIVISION__OPRETATION = eINSTANCE.getDivision_Opretation();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelValueImpl <em>Label Value</em>}' class.
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LabelValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLabelValue()
      * @generated
      */
-    EClass LABEL_VALUE = eINSTANCE.getLabelValue();
+    EReference DIVISION__RIGHT = eINSTANCE.getDivision_Right();
 
     /**
-     * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ModuloImpl <em>Modulo</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ModuloImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getModulo()
+     * @generated
+     */
+    EClass MODULO = eINSTANCE.getModulo();
+
+    /**
+     * The meta object literal for the '<em><b>Opretation</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute LABEL_VALUE__LABEL = eINSTANCE.getLabelValue_Label();
+    EAttribute MODULO__OPRETATION = eINSTANCE.getModulo_Opretation();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference MODULO__RIGHT = eINSTANCE.getModulo_Right();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdditionImpl <em>Addition</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AdditionImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddition()
+     * @generated
+     */
+    EClass ADDITION = eINSTANCE.getAddition();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ADDITION__RIGHT = eINSTANCE.getAddition_Right();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SubstractionImpl <em>Substraction</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SubstractionImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubstraction()
+     * @generated
+     */
+    EClass SUBSTRACTION = eINSTANCE.getSubstraction();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference SUBSTRACTION__RIGHT = eINSTANCE.getSubstraction_Right();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LeftShiftImpl <em>Left Shift</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LeftShiftImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeftShift()
+     * @generated
+     */
+    EClass LEFT_SHIFT = eINSTANCE.getLeftShift();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LEFT_SHIFT__RIGHT = eINSTANCE.getLeftShift_Right();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RigthShiftImpl <em>Rigth Shift</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RigthShiftImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRigthShift()
+     * @generated
+     */
+    EClass RIGTH_SHIFT = eINSTANCE.getRigthShift();
+
+    /**
+     * The meta object literal for the '<em><b>Negate</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RIGTH_SHIFT__NEGATE = eINSTANCE.getRigthShift_Negate();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NegateImpl <em>Negate</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.NegateImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNegate()
+     * @generated
+     */
+    EClass NEGATE = eINSTANCE.getNegate();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NEGATE__RIGHT = eINSTANCE.getNegate_Right();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndImpl <em>And</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AndImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAnd()
+     * @generated
+     */
+    EClass AND = eINSTANCE.getAnd();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AND__RIGHT = eINSTANCE.getAnd_Right();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrImpl <em>Or</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OrImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOr()
+     * @generated
+     */
+    EClass OR = eINSTANCE.getOr();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference OR__RIGHT = eINSTANCE.getOr_Right();
 
   }
 
