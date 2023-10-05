@@ -27,6 +27,9 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cSourceLinesAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cSourceLinesSourceLineParserRuleCall_0 = (RuleCall)cSourceLinesAssignment.eContents().get(0);
 		
+		///*
+		// * Entry point of an as9 file
+		// */
 		//Model:
 		//    sourceLines += SourceLine*
 		//;
@@ -48,6 +51,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cLineContentAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cLineContentDirectiveLineParserRuleCall_2_0 = (RuleCall)cLineContentAssignment_2.eContents().get(0);
 		
+		///*
+		// * Description of an assembler line.
+		// * an assembleur may be a comment, a blank line, a directive or an 6809 instruction
+		// */
 		//SourceLine:
 		//    (
 		//          (lineContent = BlankLine)
@@ -90,6 +97,9 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cBlankLineWSTerminalRuleCall_1_0 = (RuleCall)cBlankLineAssignment_1.eContents().get(0);
 		private final RuleCall cEndOfLineParserRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		
+		///*
+		// * Blanck line is an empty line or a set of space or tabs followed by a end of line
+		// */
 		//BlankLine:
 		//    {BlankLine} (blankLine = WS)? EndOfLine
 		//;
@@ -117,6 +127,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_0_0 = (RuleCall)cCommentAssignment_0.eContents().get(0);
 		private final RuleCall cEndOfLineParserRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		
+		///*
+		// * definition of a comment line
+		// * A comment line start with a ; following by anything and finish with a end of line
+		// */
 		//CommentLine:
 		//    comment = ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
 		//;
@@ -139,6 +153,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cDirectiveEquDirectiveParserRuleCall_0 = (RuleCall)cDirectiveAssignment.eContents().get(0);
 		
+		///*
+		// * Definition of the list possible directives
+		// *     EQU
+		// */
 		//DirectiveLine:
 		//    directive = EquDirective
 		//;
@@ -166,6 +184,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0 = (RuleCall)cCommentAssignment_6.eContents().get(0);
 		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
 		
+		///*
+		// * Description of an EQU directive
+		// * An EQU directive must have a label, following by EQU, an operand, and optionnaly a comment
+		// */
 		//EquDirective:
 		//    (name = Identifier)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
 		//;
@@ -218,19 +240,6 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cOperandAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cOperandStringValueParserRuleCall_1_0 = (RuleCall)cOperandAssignment_1.eContents().get(0);
 		
-		///*
-		// * Equate directive:
-		// * EQU is the equate or define directive used to define names
-		// *
-		// * example:
-		// * LAST         EQU         5000
-		// * LAST            EQU         FINAL
-		// * ST1            EQU         START+1
-		// *
-		// */
-		////EquDirective:
-		////    {EquDirective} 'EQU'
-		////;
 		//Operand:
 		//        (operand = Multiplication)
 		//    |     (operand = StringValue)
@@ -988,6 +997,9 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 
 	
+	///*
+	// * Entry point of an as9 file
+	// */
 	//Model:
 	//    sourceLines += SourceLine*
 	//;
@@ -999,6 +1011,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getModelAccess().getRule();
 	}
 	
+	///*
+	// * Description of an assembler line.
+	// * an assembleur may be a comment, a blank line, a directive or an 6809 instruction
+	// */
 	//SourceLine:
 	//    (
 	//          (lineContent = BlankLine)
@@ -1014,6 +1030,9 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getSourceLineAccess().getRule();
 	}
 	
+	///*
+	// * Blanck line is an empty line or a set of space or tabs followed by a end of line
+	// */
 	//BlankLine:
 	//    {BlankLine} (blankLine = WS)? EndOfLine
 	//;
@@ -1025,6 +1044,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getBlankLineAccess().getRule();
 	}
 	
+	///*
+	// * definition of a comment line
+	// * A comment line start with a ; following by anything and finish with a end of line
+	// */
 	//CommentLine:
 	//    comment = ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
 	//;
@@ -1036,6 +1059,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getCommentLineAccess().getRule();
 	}
 	
+	///*
+	// * Definition of the list possible directives
+	// *     EQU
+	// */
 	//DirectiveLine:
 	//    directive = EquDirective
 	//;
@@ -1047,6 +1074,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getDirectiveLineAccess().getRule();
 	}
 	
+	///*
+	// * Description of an EQU directive
+	// * An EQU directive must have a label, following by EQU, an operand, and optionnaly a comment
+	// */
 	//EquDirective:
 	//    (name = Identifier)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
 	//;
@@ -1058,19 +1089,6 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getEquDirectiveAccess().getRule();
 	}
 	
-	///*
-	// * Equate directive:
-	// * EQU is the equate or define directive used to define names
-	// *
-	// * example:
-	// * LAST         EQU         5000
-	// * LAST            EQU         FINAL
-	// * ST1            EQU         START+1
-	// *
-	// */
-	////EquDirective:
-	////    {EquDirective} 'EQU'
-	////;
 	//Operand:
 	//        (operand = Multiplication)
 	//    |     (operand = StringValue)
@@ -1308,7 +1326,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return tHEXA;
 	}
 	
-	//terminal BINARY 							: '!' ('0'..'1')+;
+	//terminal BINARY 							: '%' ('0'..'1')+;
 	public TerminalRule getBINARYRule() {
 		return tBINARY;
 	}

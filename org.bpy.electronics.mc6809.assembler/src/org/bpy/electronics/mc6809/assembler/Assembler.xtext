@@ -1,13 +1,38 @@
+/*
+ * European Scoring Tool For Baseball
+ * Copyright (C) 2023  Patrick BRIAND
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 grammar org.bpy.electronics.mc6809.assembler.Assembler // with org.eclipse.xtext.common.Terminals
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
 generate assembler "http://www.bpy.org/electronics/mc6809/assembler/Assembler"
 
+/*
+ * Entry point of an as9 file
+ */
 Model:
 	sourceLines += SourceLine*
 ;
 	
+/*
+ * Description of an assembler line.
+ * an assembleur may be a comment, a blank line, a directive or an 6809 instruction
+ */	
 SourceLine:
 	(
 		  (lineContent = BlankLine)
@@ -16,35 +41,37 @@ SourceLine:
 	) 
 ;
 
+/*
+ * Blanck line is an empty line or a set of space or tabs followed by a end of line
+ */
 BlankLine:
 	{BlankLine} (blankLine = WS)? EndOfLine  
 ;
 
+/*
+ * definition of a comment line
+ * A comment line start with a ; following by anything and finish with a end of line 
+ */
 CommentLine:
 	comment = ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine 
 ;
 
+/*
+ * Definition of the list possible directives
+ * 	EQU  
+ */
 DirectiveLine:
 	directive = EquDirective
 ;
 
+/*
+ * Description of an EQU directive
+ * An EQU directive must have a label, following by EQU, an operand, and optionnaly a comment  
+ */
 EquDirective:
 	(name = Identifier)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine	
 ;
 
-/*
- * Equate directive:
- * EQU is the equate or define directive used to define names
- * 
- * example:
- * LAST         EQU 		5000
- * LAST			EQU 		FINAL
- * ST1			EQU 		START+1	
- * 
- */
-//EquDirective:
-//	{EquDirective} 'EQU'
-//;
 
 Operand:
 		(operand = Multiplication)
@@ -135,7 +162,7 @@ CharacterValue:
 
 terminal ID									: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 terminal HEXA 								: '$' ('0'..'9'|'a'..'f'|'A'..'F')+;
-terminal BINARY 							: '!' ('0'..'1')+;
+terminal BINARY 							: '%' ('0'..'1')+;
 terminal OCTAL 								: '@' ('0'..'7')+;
 terminal CHARACTER							: '\'' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') ) '\'';
 terminal INT returns ecore::EInt			: ('0'..'9')+;

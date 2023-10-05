@@ -479,10 +479,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_BINARY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:3384:13: ( '!' ( '0' .. '1' )+ )
-            // InternalAssembler.g:3384:15: '!' ( '0' .. '1' )+
+            // InternalAssembler.g:3384:13: ( '%' ( '0' .. '1' )+ )
+            // InternalAssembler.g:3384:15: '%' ( '0' .. '1' )+
             {
-            match('!'); 
+            match('%'); 
             // InternalAssembler.g:3384:19: ( '0' .. '1' )+
             int cnt4=0;
             loop4:
@@ -1186,19 +1186,19 @@ public class InternalAssemblerLexer extends Lexer {
 
     protected DFA14 dfa14 = new DFA14(this);
     static final String DFA14_eotS =
-        "\1\31\7\uffff\1\32\2\uffff\1\17\17\uffff\1\17\2\uffff\1\25\1\43\4\uffff";
+        "\1\30\7\uffff\1\31\2\uffff\1\17\2\uffff\1\33\13\uffff\1\17\4\uffff\1\24\1\44\4\uffff";
     static final String DFA14_eofS =
-        "\44\uffff";
+        "\45\uffff";
     static final String DFA14_minS =
-        "\1\11\7\uffff\1\101\2\uffff\1\121\7\uffff\1\0\7\uffff\1\125\2\0\1\47\1\60\1\0\3\uffff";
+        "\1\11\7\uffff\1\101\2\uffff\1\121\2\uffff\1\60\3\uffff\1\0\7\uffff\1\125\2\uffff\2\0\1\47\1\60\1\0\3\uffff";
     static final String DFA14_maxS =
-        "\1\176\7\uffff\1\172\2\uffff\1\121\7\uffff\1\uffff\7\uffff\1\125\2\uffff\1\47\1\172\1\uffff\3\uffff";
+        "\1\176\7\uffff\1\172\2\uffff\1\121\2\uffff\1\61\3\uffff\1\uffff\7\uffff\1\125\2\uffff\2\uffff\1\47\1\172\1\uffff\3\uffff";
     static final String DFA14_acceptS =
-        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\uffff\1\11\1\12\1\uffff\1\14\1\15\1\16\1\17\1\20\1\21\1\22\1\uffff\1\24\1\25\1\26\1\27\1\30\1\31\1\10\6\uffff\2\23\1\13";
+        "\1\uffff\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\uffff\1\11\1\12\1\uffff\1\14\1\15\1\uffff\1\17\1\20\1\22\1\uffff\1\24\1\25\1\26\1\27\1\30\1\31\1\10\1\uffff\1\16\1\21\5\uffff\2\23\1\13";
     static final String DFA14_specialS =
-        "\23\uffff\1\1\10\uffff\1\3\1\2\2\uffff\1\0\3\uffff}>";
+        "\22\uffff\1\1\12\uffff\1\3\1\2\2\uffff\1\0\3\uffff}>";
     static final String[] DFA14_transitionS = {
-            "\1\27\1\30\2\uffff\1\30\22\uffff\1\27\1\21\1\25\1\uffff\1\20\1\16\1\6\1\23\1\11\1\12\1\14\1\1\1\uffff\1\2\1\uffff\1\15\12\24\1\uffff\1\26\1\3\1\uffff\1\4\1\uffff\1\22\4\17\1\13\25\17\3\uffff\1\10\1\17\1\uffff\32\17\1\uffff\1\7\1\uffff\1\5",
+            "\1\26\1\27\2\uffff\1\27\22\uffff\1\26\1\uffff\1\24\1\uffff\1\20\1\16\1\6\1\22\1\11\1\12\1\14\1\1\1\uffff\1\2\1\uffff\1\15\12\23\1\uffff\1\25\1\3\1\uffff\1\4\1\uffff\1\21\4\17\1\13\25\17\3\uffff\1\10\1\17\1\uffff\32\17\1\uffff\1\7\1\uffff\1\5",
             "",
             "",
             "",
@@ -1209,7 +1209,14 @@ public class InternalAssemblerLexer extends Lexer {
             "\32\17\4\uffff\1\17\1\uffff\32\17",
             "",
             "",
-            "\1\33",
+            "\1\32",
+            "",
+            "",
+            "\2\34",
+            "",
+            "",
+            "",
+            "\42\36\1\24\4\36\1\37\64\36\1\35\uffa3\36",
             "",
             "",
             "",
@@ -1217,20 +1224,14 @@ public class InternalAssemblerLexer extends Lexer {
             "",
             "",
             "",
-            "\42\35\1\25\4\35\1\36\64\35\1\34\uffa3\35",
+            "\1\40",
             "",
             "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\37",
-            "\0\40",
-            "\47\25\1\41\uffd8\25",
-            "\1\42",
+            "\0\41",
+            "\47\24\1\42\uffd8\24",
+            "\1\43",
             "\12\17\7\uffff\32\17\4\uffff\1\17\1\uffff\32\17",
-            "\47\25\1\41\uffd8\25",
+            "\47\24\1\42\uffd8\24",
             "",
             "",
             ""
@@ -1273,44 +1274,44 @@ public class InternalAssemblerLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA14_32 = input.LA(1);
+                        int LA14_33 = input.LA(1);
 
                         s = -1;
-                        if ( (LA14_32=='\'') ) {s = 33;}
+                        if ( (LA14_33=='\'') ) {s = 34;}
 
-                        else if ( ((LA14_32>='\u0000' && LA14_32<='&')||(LA14_32>='(' && LA14_32<='\uFFFF')) ) {s = 21;}
+                        else if ( ((LA14_33>='\u0000' && LA14_33<='&')||(LA14_33>='(' && LA14_33<='\uFFFF')) ) {s = 20;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA14_19 = input.LA(1);
+                        int LA14_18 = input.LA(1);
 
                         s = -1;
-                        if ( (LA14_19=='\\') ) {s = 28;}
+                        if ( (LA14_18=='\\') ) {s = 29;}
 
-                        else if ( ((LA14_19>='\u0000' && LA14_19<='!')||(LA14_19>='#' && LA14_19<='&')||(LA14_19>='(' && LA14_19<='[')||(LA14_19>=']' && LA14_19<='\uFFFF')) ) {s = 29;}
+                        else if ( ((LA14_18>='\u0000' && LA14_18<='!')||(LA14_18>='#' && LA14_18<='&')||(LA14_18>='(' && LA14_18<='[')||(LA14_18>=']' && LA14_18<='\uFFFF')) ) {s = 30;}
 
-                        else if ( (LA14_19=='\'') ) {s = 30;}
+                        else if ( (LA14_18=='\'') ) {s = 31;}
 
-                        else if ( (LA14_19=='\"') ) {s = 21;}
+                        else if ( (LA14_18=='\"') ) {s = 20;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA14_29 = input.LA(1);
+                        int LA14_30 = input.LA(1);
 
                         s = -1;
-                        if ( (LA14_29=='\'') ) {s = 33;}
+                        if ( (LA14_30=='\'') ) {s = 34;}
 
-                        else if ( ((LA14_29>='\u0000' && LA14_29<='&')||(LA14_29>='(' && LA14_29<='\uFFFF')) ) {s = 21;}
+                        else if ( ((LA14_30>='\u0000' && LA14_30<='&')||(LA14_30>='(' && LA14_30<='\uFFFF')) ) {s = 20;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA14_28 = input.LA(1);
+                        int LA14_29 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA14_28>='\u0000' && LA14_28<='\uFFFF')) ) {s = 32;}
+                        if ( ((LA14_29>='\u0000' && LA14_29<='\uFFFF')) ) {s = 33;}
 
                         if ( s>=0 ) return s;
                         break;
