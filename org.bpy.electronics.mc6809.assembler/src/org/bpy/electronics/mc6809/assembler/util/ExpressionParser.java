@@ -18,6 +18,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.util;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -28,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
+import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -38,10 +41,14 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class ExpressionParser {
 	
+	/** Memorize the EQU values */
+	private static Map<String, Integer> equValues; 
+	
 	/**
 	 * Add a private constructor to hide the implicit public one.
 	 */
 	private ExpressionParser() {
+		equValues = new HashMap<>();
 	}
 
 	/** Looger of the class */
@@ -56,7 +63,14 @@ public class ExpressionParser {
 	public static int parse(EquDirective equDirective) {
 		if (equDirective.getOperand() != null && equDirective.getOperand().getOperand() != null) {
 			EObject operand = equDirective.getOperand().getOperand();
-			return resolveExpression((Expression)operand);
+			int equValue = resolveExpression((Expression)operand);
+			
+			if (equValues == null) {
+				equValues = new HashMap<>();
+			}
+			
+			equValues.put(equDirective.getName().getValue(), equValue);
+			return equValue;
 		} else {
 			return -1;
 		}
@@ -65,7 +79,7 @@ public class ExpressionParser {
 	/**
 	 * resolve an expression object 
 	 * 
-	 * @param expression reference ont he expression
+	 * @param expression reference on the expression
 	 * @return value of the expression
 	 */
 	public static int resolveExpression(Expression expression) {
@@ -84,6 +98,9 @@ public class ExpressionParser {
 			
 			} else if( expression.getValue() instanceof BinaryValue) {
 				return (resolveBinaryValue((BinaryValue)expression.getValue()));
+
+			} else if( expression.getValue() instanceof OctalValue) {
+				return (resolveOctalValue((OctalValue)expression.getValue()));
 			}
 			
 			logger.log(Level.SEVERE, "{0} isn''t managed in this version" ,expression.getValue().getClass().getSimpleName());
@@ -92,9 +109,25 @@ public class ExpressionParser {
 	}
 	
 	/**
+	 * Convert an octal value expression into a decimal value
+	 * 
+	 * @param value Octal value to convert
+	 * @return decimal value of the binary expression
+	 */
+	private static int resolveOctalValue(OctalValue value) {
+		String strValue = value.getValue().replaceFirst("\\@", "");
+		try {
+			return Integer.parseInt(strValue, 8);
+		} catch (NumberFormatException ex) {
+			logger.log(Level.SEVERE, ex.getMessage());
+		}
+ 		return -1;
+	}
+
+	/**
 	 * Convert an binary value expression into a decimal value
 	 * 
-	 * @param hexaDecimalValue binary value to convert
+	 * @param binaryValue binary value to convert
 	 * @return decimal value of the binary expression
 	 */
 	private static int resolveBinaryValue(BinaryValue binaryValue) {
