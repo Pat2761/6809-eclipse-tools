@@ -29,6 +29,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.eclipse.emf.ecore.EObject;
@@ -101,6 +102,9 @@ public class ExpressionParser {
 
 			} else if( expression.getValue() instanceof OctalValue) {
 				return (resolveOctalValue((OctalValue)expression.getValue()));
+
+			} else if( expression.getValue() instanceof IdentifierValue) {
+				return (resolveIdentifierValue((IdentifierValue)expression.getValue()));
 			}
 			
 			logger.log(Level.SEVERE, "{0} isn''t managed in this version" ,expression.getValue().getClass().getSimpleName());
@@ -108,6 +112,15 @@ public class ExpressionParser {
 		}
 	}
 	
+	private static int resolveIdentifierValue(IdentifierValue value) {
+		if (equValues.containsKey(value.getValue())) {
+			return equValues.get(value.getValue());
+		} else {
+			logger.log(Level.SEVERE, "Can''t resolve {0} value", value.getValue());
+		}
+		return 0;
+	}
+
 	/**
 	 * Convert an octal value expression into a decimal value
 	 * 

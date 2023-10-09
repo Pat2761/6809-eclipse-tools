@@ -524,25 +524,25 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-// Entry rule entryRuleIdentifier
-entryRuleIdentifier
+// Entry rule entryRuleIdentifierValue
+entryRuleIdentifierValue
 :
-{ before(grammarAccess.getIdentifierRule()); }
-	 ruleIdentifier
-{ after(grammarAccess.getIdentifierRule()); } 
+{ before(grammarAccess.getIdentifierValueRule()); }
+	 ruleIdentifierValue
+{ after(grammarAccess.getIdentifierValueRule()); } 
 	 EOF 
 ;
 
-// Rule Identifier
-ruleIdentifier 
+// Rule IdentifierValue
+ruleIdentifierValue 
 	@init {
 		int stackSize = keepStackSize();
 	}
 	:
 	(
-		{ before(grammarAccess.getIdentifierAccess().getValueAssignment()); }
-		(rule__Identifier__ValueAssignment)
-		{ after(grammarAccess.getIdentifierAccess().getValueAssignment()); }
+		{ before(grammarAccess.getIdentifierValueAccess().getValueAssignment()); }
+		(rule__IdentifierValue__ValueAssignment)
+		{ after(grammarAccess.getIdentifierValueAccess().getValueAssignment()); }
 	)
 ;
 finally {
@@ -2872,9 +2872,9 @@ rule__EquDirective__NameAssignment_0
 	}
 :
 	(
-		{ before(grammarAccess.getEquDirectiveAccess().getNameIdentifierParserRuleCall_0_0()); }
-		ruleIdentifier
-		{ after(grammarAccess.getEquDirectiveAccess().getNameIdentifierParserRuleCall_0_0()); }
+		{ before(grammarAccess.getEquDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0()); }
+		ruleIdentifierValue
+		{ after(grammarAccess.getEquDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0()); }
 	)
 ;
 finally {
@@ -3263,24 +3263,24 @@ rule__Primary__ValueAssignment_5
 	}
 :
 	(
-		{ before(grammarAccess.getPrimaryAccess().getValueIdentifierParserRuleCall_5_0()); }
-		ruleIdentifier
-		{ after(grammarAccess.getPrimaryAccess().getValueIdentifierParserRuleCall_5_0()); }
+		{ before(grammarAccess.getPrimaryAccess().getValueIdentifierValueParserRuleCall_5_0()); }
+		ruleIdentifierValue
+		{ after(grammarAccess.getPrimaryAccess().getValueIdentifierValueParserRuleCall_5_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Identifier__ValueAssignment
+rule__IdentifierValue__ValueAssignment
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getIdentifierAccess().getValueIDTerminalRuleCall_0()); }
+		{ before(grammarAccess.getIdentifierValueAccess().getValueIDTerminalRuleCall_0()); }
 		RULE_ID
-		{ after(grammarAccess.getIdentifierAccess().getValueIDTerminalRuleCall_0()); }
+		{ after(grammarAccess.getIdentifierValueAccess().getValueIDTerminalRuleCall_0()); }
 	)
 ;
 finally {
@@ -3385,7 +3385,7 @@ RULE_BINARY : '%' ('0'..'1')+;
 
 RULE_OCTAL : '@' ('0'..'7')+;
 
-RULE_CHARACTER : '\'' ('\\' .|~(('\\'|'"')));
+RULE_CHARACTER : '\'' ('\\' .|~(('\\'|'"'))) '\'';
 
 RULE_INT : ('0'..'9')+;
 

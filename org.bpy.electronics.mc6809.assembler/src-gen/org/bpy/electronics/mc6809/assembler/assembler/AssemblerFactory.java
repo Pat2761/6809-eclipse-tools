@@ -96,13 +96,13 @@ public interface AssemblerFactory extends EFactory
   Expression createExpression();
 
   /**
-   * Returns a new object of class '<em>Identifier</em>'.
+   * Returns a new object of class '<em>Identifier Value</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Identifier</em>'.
+   * @return a new object of class '<em>Identifier Value</em>'.
    * @generated
    */
-  Identifier createIdentifier();
+  IdentifierValue createIdentifierValue();
 
   /**
    * Returns a new object of class '<em>String Value</em>'.

@@ -129,10 +129,10 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case AssemblerPackage.IDENTIFIER:
+      case AssemblerPackage.IDENTIFIER_VALUE:
       {
-        Identifier identifier = (Identifier)theEObject;
-        T result = caseIdentifier(identifier);
+        IdentifierValue identifierValue = (IdentifierValue)theEObject;
+        T result = caseIdentifierValue(identifierValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -391,17 +391,17 @@ public class AssemblerSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Identifier</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Identifier Value</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Identifier</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Identifier Value</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseIdentifier(Identifier object)
+  public T caseIdentifierValue(IdentifierValue object)
   {
     return null;
   }

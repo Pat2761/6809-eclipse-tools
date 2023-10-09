@@ -94,7 +94,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimaryAccess().getValueAssignment_3(), "rule__Primary__ValueAssignment_3");
 			builder.put(grammarAccess.getPrimaryAccess().getValueAssignment_4(), "rule__Primary__ValueAssignment_4");
 			builder.put(grammarAccess.getPrimaryAccess().getValueAssignment_5(), "rule__Primary__ValueAssignment_5");
-			builder.put(grammarAccess.getIdentifierAccess().getValueAssignment(), "rule__Identifier__ValueAssignment");
+			builder.put(grammarAccess.getIdentifierValueAccess().getValueAssignment(), "rule__IdentifierValue__ValueAssignment");
 			builder.put(grammarAccess.getStringValueAccess().getValueAssignment(), "rule__StringValue__ValueAssignment");
 			builder.put(grammarAccess.getDecimalValueAccess().getValueAssignment(), "rule__DecimalValue__ValueAssignment");
 			builder.put(grammarAccess.getHexaDecimalValueAccess().getValueAssignment(), "rule__HexaDecimalValue__ValueAssignment");

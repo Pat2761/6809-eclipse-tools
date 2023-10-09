@@ -318,14 +318,14 @@ public interface AssemblerPackage extends EPackage
   int EXPRESSION_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierImpl <em>Identifier</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierValueImpl <em>Identifier Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifier()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierValueImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifierValue()
    * @generated
    */
-  int IDENTIFIER = 8;
+  int IDENTIFIER_VALUE = 8;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -334,16 +334,16 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int IDENTIFIER__VALUE = 0;
+  int IDENTIFIER_VALUE__VALUE = 0;
 
   /**
-   * The number of structural features of the '<em>Identifier</em>' class.
+   * The number of structural features of the '<em>Identifier Value</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int IDENTIFIER_FEATURE_COUNT = 1;
+  int IDENTIFIER_VALUE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StringValueImpl <em>String Value</em>}' class.
@@ -1214,25 +1214,25 @@ public interface AssemblerPackage extends EPackage
   EReference getExpression_Left();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Identifier <em>Identifier</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue <em>Identifier Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Identifier</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Identifier
+   * @return the meta object for class '<em>Identifier Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue
    * @generated
    */
-  EClass getIdentifier();
+  EClass getIdentifierValue();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.Identifier#getValue <em>Value</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Value</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Identifier#getValue()
-   * @see #getIdentifier()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue#getValue()
+   * @see #getIdentifierValue()
    * @generated
    */
-  EAttribute getIdentifier_Value();
+  EAttribute getIdentifierValue_Value();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.StringValue <em>String Value</em>}'.
@@ -1803,14 +1803,14 @@ public interface AssemblerPackage extends EPackage
     EReference EXPRESSION__LEFT = eINSTANCE.getExpression_Left();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierImpl <em>Identifier</em>}' class.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierValueImpl <em>Identifier Value</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifier()
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierValueImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifierValue()
      * @generated
      */
-    EClass IDENTIFIER = eINSTANCE.getIdentifier();
+    EClass IDENTIFIER_VALUE = eINSTANCE.getIdentifierValue();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
@@ -1818,7 +1818,7 @@ public interface AssemblerPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute IDENTIFIER__VALUE = eINSTANCE.getIdentifier_Value();
+    EAttribute IDENTIFIER_VALUE__VALUE = eINSTANCE.getIdentifierValue_Value();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StringValueImpl <em>String Value</em>}' class.

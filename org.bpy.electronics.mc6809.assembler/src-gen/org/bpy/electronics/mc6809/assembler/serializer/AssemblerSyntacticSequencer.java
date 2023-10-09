@@ -102,7 +102,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) value=CharacterValue
 	 *     (rule start) (ambiguity) value=DecimalValue
 	 *     (rule start) (ambiguity) value=HexaDecimalValue
-	 *     (rule start) (ambiguity) value=Identifier
+	 *     (rule start) (ambiguity) value=IdentifierValue
 	 *     (rule start) (ambiguity) value=OctalValue
 	 *     (rule start) (ambiguity) {Addition.left=}
 	 *     (rule start) (ambiguity) {And.left=}

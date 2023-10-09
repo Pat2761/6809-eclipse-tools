@@ -4,7 +4,7 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.Identifier;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -15,18 +15,18 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Identifier</b></em>'.
+ * An implementation of the model object '<em><b>Identifier Value</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class IdentifierImpl extends MinimalEObjectImpl.Container implements Identifier
+public class IdentifierValueImpl extends MinimalEObjectImpl.Container implements IdentifierValue
 {
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -53,7 +53,7 @@ public class IdentifierImpl extends MinimalEObjectImpl.Container implements Iden
    * <!-- end-user-doc -->
    * @generated
    */
-  protected IdentifierImpl()
+  protected IdentifierValueImpl()
   {
     super();
   }
@@ -66,7 +66,7 @@ public class IdentifierImpl extends MinimalEObjectImpl.Container implements Iden
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.IDENTIFIER;
+    return AssemblerPackage.Literals.IDENTIFIER_VALUE;
   }
 
   /**
@@ -91,7 +91,7 @@ public class IdentifierImpl extends MinimalEObjectImpl.Container implements Iden
     String oldValue = value;
     value = newValue;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.IDENTIFIER__VALUE, oldValue, value));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.IDENTIFIER_VALUE__VALUE, oldValue, value));
   }
 
   /**
@@ -104,7 +104,7 @@ public class IdentifierImpl extends MinimalEObjectImpl.Container implements Iden
   {
     switch (featureID)
     {
-      case AssemblerPackage.IDENTIFIER__VALUE:
+      case AssemblerPackage.IDENTIFIER_VALUE__VALUE:
         return getValue();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -120,7 +120,7 @@ public class IdentifierImpl extends MinimalEObjectImpl.Container implements Iden
   {
     switch (featureID)
     {
-      case AssemblerPackage.IDENTIFIER__VALUE:
+      case AssemblerPackage.IDENTIFIER_VALUE__VALUE:
         setValue((String)newValue);
         return;
     }
@@ -137,7 +137,7 @@ public class IdentifierImpl extends MinimalEObjectImpl.Container implements Iden
   {
     switch (featureID)
     {
-      case AssemblerPackage.IDENTIFIER__VALUE:
+      case AssemblerPackage.IDENTIFIER_VALUE__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
     }
@@ -154,7 +154,7 @@ public class IdentifierImpl extends MinimalEObjectImpl.Container implements Iden
   {
     switch (featureID)
     {
-      case AssemblerPackage.IDENTIFIER__VALUE:
+      case AssemblerPackage.IDENTIFIER_VALUE__VALUE:
         return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
     }
     return super.eIsSet(featureID);
@@ -177,4 +177,4 @@ public class IdentifierImpl extends MinimalEObjectImpl.Container implements Iden
     return result.toString();
   }
 
-} //IdentifierImpl
+} //IdentifierValueImpl

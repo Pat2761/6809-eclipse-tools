@@ -5,7 +5,7 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.Identifier;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Operand;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -43,7 +43,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * @generated
    * @ordered
    */
-  protected Identifier name;
+  protected IdentifierValue name;
 
   /**
    * The default value of the '{@link #getDirective() <em>Directive</em>}' attribute.
@@ -122,7 +122,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * @generated
    */
   @Override
-  public Identifier getName()
+  public IdentifierValue getName()
   {
     return name;
   }
@@ -132,9 +132,9 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetName(Identifier newName, NotificationChain msgs)
+  public NotificationChain basicSetName(IdentifierValue newName, NotificationChain msgs)
   {
-    Identifier oldName = name;
+    IdentifierValue oldName = name;
     name = newName;
     if (eNotificationRequired())
     {
@@ -150,7 +150,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * @generated
    */
   @Override
-  public void setName(Identifier newName)
+  public void setName(IdentifierValue newName)
   {
     if (newName != name)
     {
@@ -317,7 +317,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
     switch (featureID)
     {
       case AssemblerPackage.EQU_DIRECTIVE__NAME:
-        setName((Identifier)newValue);
+        setName((IdentifierValue)newValue);
         return;
       case AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
@@ -343,7 +343,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
     switch (featureID)
     {
       case AssemblerPackage.EQU_DIRECTIVE__NAME:
-        setName((Identifier)null);
+        setName((IdentifierValue)null);
         return;
       case AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);

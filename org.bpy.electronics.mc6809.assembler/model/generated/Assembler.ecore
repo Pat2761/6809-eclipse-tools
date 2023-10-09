@@ -21,7 +21,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="EquDirective">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//Identifier"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="directive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//Operand"
@@ -38,7 +38,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expression"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Identifier">
+  <eClassifiers xsi:type="ecore:EClass" name="IdentifierValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="StringValue">

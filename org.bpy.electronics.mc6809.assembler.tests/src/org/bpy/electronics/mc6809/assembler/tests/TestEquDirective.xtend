@@ -258,6 +258,36 @@ class TestEquDirective {
 	}
 	
 	/**
+	 * Check EQU directive with a simple identifier defined by an anothoer EQU
+	 */
+	@Test 
+	def void testWithIdentifierValue() {
+		val result = parseHelper.parse('''
+		Five       EQU    5         ; Five = 5
+		Result     EQU    Five*2    ; so 10
+		''')
+		Assert.assertNotNull(result)
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+
+		val line0 = result.sourceLines.get(0)
+		val directiveLine0 = line0.lineContent as DirectiveLine
+		val equDirective0 = directiveLine0.directive as EquDirective
+		ExpressionParser.parse(equDirective0)
+		
+		val line1 = result.sourceLines.get(1)
+		Assert.assertTrue("Must be a directive line", line1.lineContent instanceof DirectiveLine)
+		
+		val directiveLine1 = line1.lineContent as DirectiveLine
+		Assert.assertEquals("",1,1)
+		Assert.assertTrue("Must be an EQU directive line", directiveLine1.directive instanceof EquDirective)
+		
+		val equDirective1 = directiveLine1.directive as EquDirective
+	 	Assert.assertEquals("Label must be set to Label1", "Result" , CommandUtil.getLabel(equDirective1))	
+		Assert.assertEquals("Operand must be equals to 10", 10, ExpressionParser.parse(equDirective1))		
+	}
+
+	/**
 	 * Check EQU directive with a simple octal value
 	 */
 //	@Test 

@@ -18,7 +18,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
-import org.bpy.electronics.mc6809.assembler.assembler.Identifier;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
@@ -92,8 +92,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.HEXA_DECIMAL_VALUE:
 				sequence_HexaDecimalValue(context, (HexaDecimalValue) semanticObject); 
 				return; 
-			case AssemblerPackage.IDENTIFIER:
-				sequence_Identifier(context, (Identifier) semanticObject); 
+			case AssemblerPackage.IDENTIFIER_VALUE:
+				sequence_IdentifierValue(context, (IdentifierValue) semanticObject); 
 				return; 
 			case AssemblerPackage.LEFT_SHIFT:
 				sequence_LeftShift(context, (LeftShift) semanticObject); 
@@ -394,7 +394,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     EquDirective returns EquDirective
 	 *
 	 * Constraint:
-	 *     (name=Identifier? directive='EQU' operand=Operand? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (name=IdentifierValue? directive='EQU' operand=Operand? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
 	 * </pre>
 	 */
 	protected void sequence_EquDirective(ISerializationContext context, EquDirective semanticObject) {
@@ -425,19 +425,19 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Identifier returns Identifier
+	 *     IdentifierValue returns IdentifierValue
 	 *
 	 * Constraint:
 	 *     value=ID
 	 * </pre>
 	 */
-	protected void sequence_Identifier(ISerializationContext context, Identifier semanticObject) {
+	protected void sequence_IdentifierValue(ISerializationContext context, IdentifierValue semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.IDENTIFIER__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.IDENTIFIER__VALUE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.IDENTIFIER_VALUE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.IDENTIFIER_VALUE__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getIdentifierAccess().getValueIDTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getIdentifierValueAccess().getValueIDTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -746,7 +746,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         value=OctalValue | 
 	 *         value=BinaryValue | 
 	 *         value=CharacterValue | 
-	 *         value=Identifier
+	 *         value=IdentifierValue
 	 *     )
 	 * </pre>
 	 */

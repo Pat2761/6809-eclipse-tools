@@ -825,7 +825,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEquDirective"
-    // InternalAssembler.g:316:1: ruleEquDirective returns [EObject current=null] : ( ( (lv_name_0_0= ruleIdentifier ) )? this_WS_1= RULE_WS ( (lv_directive_2_0= 'EQU' ) ) this_WS_3= RULE_WS ( (lv_operand_4_0= ruleOperand ) )? (this_WS_5= RULE_WS )? ( (lv_comment_6_0= RULE_ANY_EXCEPT_COMMENT_END_OF_LINE ) )? ruleEndOfLine ) ;
+    // InternalAssembler.g:316:1: ruleEquDirective returns [EObject current=null] : ( ( (lv_name_0_0= ruleIdentifierValue ) )? this_WS_1= RULE_WS ( (lv_directive_2_0= 'EQU' ) ) this_WS_3= RULE_WS ( (lv_operand_4_0= ruleOperand ) )? (this_WS_5= RULE_WS )? ( (lv_comment_6_0= RULE_ANY_EXCEPT_COMMENT_END_OF_LINE ) )? ruleEndOfLine ) ;
     public final EObject ruleEquDirective() throws RecognitionException {
         EObject current = null;
 
@@ -843,13 +843,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:322:2: ( ( ( (lv_name_0_0= ruleIdentifier ) )? this_WS_1= RULE_WS ( (lv_directive_2_0= 'EQU' ) ) this_WS_3= RULE_WS ( (lv_operand_4_0= ruleOperand ) )? (this_WS_5= RULE_WS )? ( (lv_comment_6_0= RULE_ANY_EXCEPT_COMMENT_END_OF_LINE ) )? ruleEndOfLine ) )
-            // InternalAssembler.g:323:2: ( ( (lv_name_0_0= ruleIdentifier ) )? this_WS_1= RULE_WS ( (lv_directive_2_0= 'EQU' ) ) this_WS_3= RULE_WS ( (lv_operand_4_0= ruleOperand ) )? (this_WS_5= RULE_WS )? ( (lv_comment_6_0= RULE_ANY_EXCEPT_COMMENT_END_OF_LINE ) )? ruleEndOfLine )
+            // InternalAssembler.g:322:2: ( ( ( (lv_name_0_0= ruleIdentifierValue ) )? this_WS_1= RULE_WS ( (lv_directive_2_0= 'EQU' ) ) this_WS_3= RULE_WS ( (lv_operand_4_0= ruleOperand ) )? (this_WS_5= RULE_WS )? ( (lv_comment_6_0= RULE_ANY_EXCEPT_COMMENT_END_OF_LINE ) )? ruleEndOfLine ) )
+            // InternalAssembler.g:323:2: ( ( (lv_name_0_0= ruleIdentifierValue ) )? this_WS_1= RULE_WS ( (lv_directive_2_0= 'EQU' ) ) this_WS_3= RULE_WS ( (lv_operand_4_0= ruleOperand ) )? (this_WS_5= RULE_WS )? ( (lv_comment_6_0= RULE_ANY_EXCEPT_COMMENT_END_OF_LINE ) )? ruleEndOfLine )
             {
-            // InternalAssembler.g:323:2: ( ( (lv_name_0_0= ruleIdentifier ) )? this_WS_1= RULE_WS ( (lv_directive_2_0= 'EQU' ) ) this_WS_3= RULE_WS ( (lv_operand_4_0= ruleOperand ) )? (this_WS_5= RULE_WS )? ( (lv_comment_6_0= RULE_ANY_EXCEPT_COMMENT_END_OF_LINE ) )? ruleEndOfLine )
-            // InternalAssembler.g:324:3: ( (lv_name_0_0= ruleIdentifier ) )? this_WS_1= RULE_WS ( (lv_directive_2_0= 'EQU' ) ) this_WS_3= RULE_WS ( (lv_operand_4_0= ruleOperand ) )? (this_WS_5= RULE_WS )? ( (lv_comment_6_0= RULE_ANY_EXCEPT_COMMENT_END_OF_LINE ) )? ruleEndOfLine
+            // InternalAssembler.g:323:2: ( ( (lv_name_0_0= ruleIdentifierValue ) )? this_WS_1= RULE_WS ( (lv_directive_2_0= 'EQU' ) ) this_WS_3= RULE_WS ( (lv_operand_4_0= ruleOperand ) )? (this_WS_5= RULE_WS )? ( (lv_comment_6_0= RULE_ANY_EXCEPT_COMMENT_END_OF_LINE ) )? ruleEndOfLine )
+            // InternalAssembler.g:324:3: ( (lv_name_0_0= ruleIdentifierValue ) )? this_WS_1= RULE_WS ( (lv_directive_2_0= 'EQU' ) ) this_WS_3= RULE_WS ( (lv_operand_4_0= ruleOperand ) )? (this_WS_5= RULE_WS )? ( (lv_comment_6_0= RULE_ANY_EXCEPT_COMMENT_END_OF_LINE ) )? ruleEndOfLine
             {
-            // InternalAssembler.g:324:3: ( (lv_name_0_0= ruleIdentifier ) )?
+            // InternalAssembler.g:324:3: ( (lv_name_0_0= ruleIdentifierValue ) )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -858,16 +858,16 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             }
             switch (alt4) {
                 case 1 :
-                    // InternalAssembler.g:325:4: (lv_name_0_0= ruleIdentifier )
+                    // InternalAssembler.g:325:4: (lv_name_0_0= ruleIdentifierValue )
                     {
-                    // InternalAssembler.g:325:4: (lv_name_0_0= ruleIdentifier )
-                    // InternalAssembler.g:326:5: lv_name_0_0= ruleIdentifier
+                    // InternalAssembler.g:325:4: (lv_name_0_0= ruleIdentifierValue )
+                    // InternalAssembler.g:326:5: lv_name_0_0= ruleIdentifierValue
                     {
 
-                    					newCompositeNode(grammarAccess.getEquDirectiveAccess().getNameIdentifierParserRuleCall_0_0());
+                    					newCompositeNode(grammarAccess.getEquDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
                     				
                     pushFollow(FOLLOW_5);
-                    lv_name_0_0=ruleIdentifier();
+                    lv_name_0_0=ruleIdentifierValue();
 
                     state._fsp--;
 
@@ -879,7 +879,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     						current,
                     						"name",
                     						lv_name_0_0,
-                    						"org.bpy.electronics.mc6809.assembler.Assembler.Identifier");
+                    						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
                     					afterParserOrEnumRuleCall();
                     				
 
@@ -3082,7 +3082,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimary"
-    // InternalAssembler.g:1163:1: rulePrimary returns [EObject current=null] : ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifier ) ) | (otherlv_6= '(' this_Multiplication_7= ruleMultiplication otherlv_8= ')' ) ) ;
+    // InternalAssembler.g:1163:1: rulePrimary returns [EObject current=null] : ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | (otherlv_6= '(' this_Multiplication_7= ruleMultiplication otherlv_8= ')' ) ) ;
     public final EObject rulePrimary() throws RecognitionException {
         EObject current = null;
 
@@ -3107,10 +3107,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:1169:2: ( ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifier ) ) | (otherlv_6= '(' this_Multiplication_7= ruleMultiplication otherlv_8= ')' ) ) )
-            // InternalAssembler.g:1170:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifier ) ) | (otherlv_6= '(' this_Multiplication_7= ruleMultiplication otherlv_8= ')' ) )
+            // InternalAssembler.g:1169:2: ( ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | (otherlv_6= '(' this_Multiplication_7= ruleMultiplication otherlv_8= ')' ) ) )
+            // InternalAssembler.g:1170:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | (otherlv_6= '(' this_Multiplication_7= ruleMultiplication otherlv_8= ')' ) )
             {
-            // InternalAssembler.g:1170:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifier ) ) | (otherlv_6= '(' this_Multiplication_7= ruleMultiplication otherlv_8= ')' ) )
+            // InternalAssembler.g:1170:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | (otherlv_6= '(' this_Multiplication_7= ruleMultiplication otherlv_8= ')' ) )
             int alt20=7;
             switch ( input.LA(1) ) {
             case RULE_INT:
@@ -3342,19 +3342,19 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalAssembler.g:1271:3: ( (lv_value_5_0= ruleIdentifier ) )
+                    // InternalAssembler.g:1271:3: ( (lv_value_5_0= ruleIdentifierValue ) )
                     {
-                    // InternalAssembler.g:1271:3: ( (lv_value_5_0= ruleIdentifier ) )
-                    // InternalAssembler.g:1272:4: (lv_value_5_0= ruleIdentifier )
+                    // InternalAssembler.g:1271:3: ( (lv_value_5_0= ruleIdentifierValue ) )
+                    // InternalAssembler.g:1272:4: (lv_value_5_0= ruleIdentifierValue )
                     {
-                    // InternalAssembler.g:1272:4: (lv_value_5_0= ruleIdentifier )
-                    // InternalAssembler.g:1273:5: lv_value_5_0= ruleIdentifier
+                    // InternalAssembler.g:1272:4: (lv_value_5_0= ruleIdentifierValue )
+                    // InternalAssembler.g:1273:5: lv_value_5_0= ruleIdentifierValue
                     {
 
-                    					newCompositeNode(grammarAccess.getPrimaryAccess().getValueIdentifierParserRuleCall_5_0());
+                    					newCompositeNode(grammarAccess.getPrimaryAccess().getValueIdentifierValueParserRuleCall_5_0());
                     				
                     pushFollow(FOLLOW_2);
-                    lv_value_5_0=ruleIdentifier();
+                    lv_value_5_0=ruleIdentifierValue();
 
                     state._fsp--;
 
@@ -3366,7 +3366,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     						current,
                     						"value",
                     						lv_value_5_0,
-                    						"org.bpy.electronics.mc6809.assembler.Assembler.Identifier");
+                    						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
                     					afterParserOrEnumRuleCall();
                     				
 
@@ -3432,25 +3432,25 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
     // $ANTLR end "rulePrimary"
 
 
-    // $ANTLR start "entryRuleIdentifier"
-    // InternalAssembler.g:1313:1: entryRuleIdentifier returns [EObject current=null] : iv_ruleIdentifier= ruleIdentifier EOF ;
-    public final EObject entryRuleIdentifier() throws RecognitionException {
+    // $ANTLR start "entryRuleIdentifierValue"
+    // InternalAssembler.g:1313:1: entryRuleIdentifierValue returns [EObject current=null] : iv_ruleIdentifierValue= ruleIdentifierValue EOF ;
+    public final EObject entryRuleIdentifierValue() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleIdentifier = null;
+        EObject iv_ruleIdentifierValue = null;
 
 
         try {
-            // InternalAssembler.g:1313:51: (iv_ruleIdentifier= ruleIdentifier EOF )
-            // InternalAssembler.g:1314:2: iv_ruleIdentifier= ruleIdentifier EOF
+            // InternalAssembler.g:1313:56: (iv_ruleIdentifierValue= ruleIdentifierValue EOF )
+            // InternalAssembler.g:1314:2: iv_ruleIdentifierValue= ruleIdentifierValue EOF
             {
-             newCompositeNode(grammarAccess.getIdentifierRule()); 
+             newCompositeNode(grammarAccess.getIdentifierValueRule()); 
             pushFollow(FOLLOW_1);
-            iv_ruleIdentifier=ruleIdentifier();
+            iv_ruleIdentifierValue=ruleIdentifierValue();
 
             state._fsp--;
 
-             current =iv_ruleIdentifier; 
+             current =iv_ruleIdentifierValue; 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -3465,12 +3465,12 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleIdentifier"
+    // $ANTLR end "entryRuleIdentifierValue"
 
 
-    // $ANTLR start "ruleIdentifier"
-    // InternalAssembler.g:1320:1: ruleIdentifier returns [EObject current=null] : ( (lv_value_0_0= RULE_ID ) ) ;
-    public final EObject ruleIdentifier() throws RecognitionException {
+    // $ANTLR start "ruleIdentifierValue"
+    // InternalAssembler.g:1320:1: ruleIdentifierValue returns [EObject current=null] : ( (lv_value_0_0= RULE_ID ) ) ;
+    public final EObject ruleIdentifierValue() throws RecognitionException {
         EObject current = null;
 
         Token lv_value_0_0=null;
@@ -3490,11 +3490,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             {
             lv_value_0_0=(Token)match(input,RULE_ID,FOLLOW_2); 
 
-            				newLeafNode(lv_value_0_0, grammarAccess.getIdentifierAccess().getValueIDTerminalRuleCall_0());
+            				newLeafNode(lv_value_0_0, grammarAccess.getIdentifierValueAccess().getValueIDTerminalRuleCall_0());
             			
 
             				if (current==null) {
-            					current = createModelElement(grammarAccess.getIdentifierRule());
+            					current = createModelElement(grammarAccess.getIdentifierValueRule());
             				}
             				setWithLastConsumed(
             					current,
@@ -3524,7 +3524,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleIdentifier"
+    // $ANTLR end "ruleIdentifierValue"
 
 
     // $ANTLR start "entryRuleStringValue"

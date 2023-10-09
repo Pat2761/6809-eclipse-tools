@@ -31,12 +31,12 @@ public interface EquDirective extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' containment reference.
-   * @see #setName(Identifier)
+   * @see #setName(IdentifierValue)
    * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getEquDirective_Name()
    * @model containment="true"
    * @generated
    */
-  Identifier getName();
+  IdentifierValue getName();
 
   /**
    * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getName <em>Name</em>}' containment reference.
@@ -46,7 +46,7 @@ public interface EquDirective extends EObject
    * @see #getName()
    * @generated
    */
-  void setName(Identifier value);
+  void setName(IdentifierValue value);
 
   /**
    * Returns the value of the '<em><b>Directive</b></em>' attribute.

@@ -116,9 +116,9 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createExpressionAdapter();
       }
       @Override
-      public Adapter caseIdentifier(Identifier object)
+      public Adapter caseIdentifierValue(IdentifierValue object)
       {
-        return createIdentifierAdapter();
+        return createIdentifierValueAdapter();
       }
       @Override
       public Adapter caseStringValue(StringValue object)
@@ -343,16 +343,16 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Identifier <em>Identifier</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue <em>Identifier Value</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Identifier
+   * @see org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue
    * @generated
    */
-  public Adapter createIdentifierAdapter()
+  public Adapter createIdentifierValueAdapter()
   {
     return null;
   }

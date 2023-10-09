@@ -34,8 +34,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/value"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/left"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//Identifier">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//Identifier/value"/>
+    <genClasses ecoreClass="Assembler.ecore#//IdentifierValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//IdentifierValue/value"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//StringValue">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//StringValue/value"/>

@@ -1567,20 +1567,20 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rulePrimary"
 
 
-    // $ANTLR start "entryRuleIdentifier"
-    // InternalAssembler.g:528:1: entryRuleIdentifier : ruleIdentifier EOF ;
-    public final void entryRuleIdentifier() throws RecognitionException {
+    // $ANTLR start "entryRuleIdentifierValue"
+    // InternalAssembler.g:528:1: entryRuleIdentifierValue : ruleIdentifierValue EOF ;
+    public final void entryRuleIdentifierValue() throws RecognitionException {
         try {
-            // InternalAssembler.g:529:1: ( ruleIdentifier EOF )
-            // InternalAssembler.g:530:1: ruleIdentifier EOF
+            // InternalAssembler.g:529:1: ( ruleIdentifierValue EOF )
+            // InternalAssembler.g:530:1: ruleIdentifierValue EOF
             {
-             before(grammarAccess.getIdentifierRule()); 
+             before(grammarAccess.getIdentifierValueRule()); 
             pushFollow(FOLLOW_1);
-            ruleIdentifier();
+            ruleIdentifierValue();
 
             state._fsp--;
 
-             after(grammarAccess.getIdentifierRule()); 
+             after(grammarAccess.getIdentifierValueRule()); 
             match(input,EOF,FOLLOW_2); 
 
             }
@@ -1594,35 +1594,35 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "entryRuleIdentifier"
+    // $ANTLR end "entryRuleIdentifierValue"
 
 
-    // $ANTLR start "ruleIdentifier"
-    // InternalAssembler.g:537:1: ruleIdentifier : ( ( rule__Identifier__ValueAssignment ) ) ;
-    public final void ruleIdentifier() throws RecognitionException {
+    // $ANTLR start "ruleIdentifierValue"
+    // InternalAssembler.g:537:1: ruleIdentifierValue : ( ( rule__IdentifierValue__ValueAssignment ) ) ;
+    public final void ruleIdentifierValue() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:541:2: ( ( ( rule__Identifier__ValueAssignment ) ) )
-            // InternalAssembler.g:542:2: ( ( rule__Identifier__ValueAssignment ) )
+            // InternalAssembler.g:541:2: ( ( ( rule__IdentifierValue__ValueAssignment ) ) )
+            // InternalAssembler.g:542:2: ( ( rule__IdentifierValue__ValueAssignment ) )
             {
-            // InternalAssembler.g:542:2: ( ( rule__Identifier__ValueAssignment ) )
-            // InternalAssembler.g:543:3: ( rule__Identifier__ValueAssignment )
+            // InternalAssembler.g:542:2: ( ( rule__IdentifierValue__ValueAssignment ) )
+            // InternalAssembler.g:543:3: ( rule__IdentifierValue__ValueAssignment )
             {
-             before(grammarAccess.getIdentifierAccess().getValueAssignment()); 
-            // InternalAssembler.g:544:3: ( rule__Identifier__ValueAssignment )
-            // InternalAssembler.g:544:4: rule__Identifier__ValueAssignment
+             before(grammarAccess.getIdentifierValueAccess().getValueAssignment()); 
+            // InternalAssembler.g:544:3: ( rule__IdentifierValue__ValueAssignment )
+            // InternalAssembler.g:544:4: rule__IdentifierValue__ValueAssignment
             {
             pushFollow(FOLLOW_2);
-            rule__Identifier__ValueAssignment();
+            rule__IdentifierValue__ValueAssignment();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getIdentifierAccess().getValueAssignment()); 
+             after(grammarAccess.getIdentifierValueAccess().getValueAssignment()); 
 
             }
 
@@ -1641,7 +1641,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "ruleIdentifier"
+    // $ANTLR end "ruleIdentifierValue"
 
 
     // $ANTLR start "entryRuleStringValue"
@@ -8838,25 +8838,25 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__EquDirective__NameAssignment_0"
-    // InternalAssembler.g:2869:1: rule__EquDirective__NameAssignment_0 : ( ruleIdentifier ) ;
+    // InternalAssembler.g:2869:1: rule__EquDirective__NameAssignment_0 : ( ruleIdentifierValue ) ;
     public final void rule__EquDirective__NameAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:2873:1: ( ( ruleIdentifier ) )
-            // InternalAssembler.g:2874:2: ( ruleIdentifier )
+            // InternalAssembler.g:2873:1: ( ( ruleIdentifierValue ) )
+            // InternalAssembler.g:2874:2: ( ruleIdentifierValue )
             {
-            // InternalAssembler.g:2874:2: ( ruleIdentifier )
-            // InternalAssembler.g:2875:3: ruleIdentifier
+            // InternalAssembler.g:2874:2: ( ruleIdentifierValue )
+            // InternalAssembler.g:2875:3: ruleIdentifierValue
             {
-             before(grammarAccess.getEquDirectiveAccess().getNameIdentifierParserRuleCall_0_0()); 
+             before(grammarAccess.getEquDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0()); 
             pushFollow(FOLLOW_2);
-            ruleIdentifier();
+            ruleIdentifierValue();
 
             state._fsp--;
 
-             after(grammarAccess.getEquDirectiveAccess().getNameIdentifierParserRuleCall_0_0()); 
+             after(grammarAccess.getEquDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0()); 
 
             }
 
@@ -9875,25 +9875,25 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__Primary__ValueAssignment_5"
-    // InternalAssembler.g:3260:1: rule__Primary__ValueAssignment_5 : ( ruleIdentifier ) ;
+    // InternalAssembler.g:3260:1: rule__Primary__ValueAssignment_5 : ( ruleIdentifierValue ) ;
     public final void rule__Primary__ValueAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:3264:1: ( ( ruleIdentifier ) )
-            // InternalAssembler.g:3265:2: ( ruleIdentifier )
+            // InternalAssembler.g:3264:1: ( ( ruleIdentifierValue ) )
+            // InternalAssembler.g:3265:2: ( ruleIdentifierValue )
             {
-            // InternalAssembler.g:3265:2: ( ruleIdentifier )
-            // InternalAssembler.g:3266:3: ruleIdentifier
+            // InternalAssembler.g:3265:2: ( ruleIdentifierValue )
+            // InternalAssembler.g:3266:3: ruleIdentifierValue
             {
-             before(grammarAccess.getPrimaryAccess().getValueIdentifierParserRuleCall_5_0()); 
+             before(grammarAccess.getPrimaryAccess().getValueIdentifierValueParserRuleCall_5_0()); 
             pushFollow(FOLLOW_2);
-            ruleIdentifier();
+            ruleIdentifierValue();
 
             state._fsp--;
 
-             after(grammarAccess.getPrimaryAccess().getValueIdentifierParserRuleCall_5_0()); 
+             after(grammarAccess.getPrimaryAccess().getValueIdentifierValueParserRuleCall_5_0()); 
 
             }
 
@@ -9915,9 +9915,9 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__Primary__ValueAssignment_5"
 
 
-    // $ANTLR start "rule__Identifier__ValueAssignment"
-    // InternalAssembler.g:3275:1: rule__Identifier__ValueAssignment : ( RULE_ID ) ;
-    public final void rule__Identifier__ValueAssignment() throws RecognitionException {
+    // $ANTLR start "rule__IdentifierValue__ValueAssignment"
+    // InternalAssembler.g:3275:1: rule__IdentifierValue__ValueAssignment : ( RULE_ID ) ;
+    public final void rule__IdentifierValue__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -9928,9 +9928,9 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             // InternalAssembler.g:3280:2: ( RULE_ID )
             // InternalAssembler.g:3281:3: RULE_ID
             {
-             before(grammarAccess.getIdentifierAccess().getValueIDTerminalRuleCall_0()); 
+             before(grammarAccess.getIdentifierValueAccess().getValueIDTerminalRuleCall_0()); 
             match(input,RULE_ID,FOLLOW_2); 
-             after(grammarAccess.getIdentifierAccess().getValueIDTerminalRuleCall_0()); 
+             after(grammarAccess.getIdentifierValueAccess().getValueIDTerminalRuleCall_0()); 
 
             }
 
@@ -9949,7 +9949,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__Identifier__ValueAssignment"
+    // $ANTLR end "rule__IdentifierValue__ValueAssignment"
 
 
     // $ANTLR start "rule__StringValue__ValueAssignment"

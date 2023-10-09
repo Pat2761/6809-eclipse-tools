@@ -315,4 +315,44 @@ public class TestEquDirective {
       throw Exceptions.sneakyThrow(_e);
     }
   }
+
+  /**
+   * Check EQU directive with a simple identifier defined by an anothoer EQU
+   */
+  @Test
+  public void testWithIdentifierValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Five       EQU    5         ; Five = 5");
+      _builder.newLine();
+      _builder.append("Result     EQU    Five*2    ; so 10");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line0 = result.getSourceLines().get(0);
+      EObject _lineContent = line0.getLineContent();
+      final DirectiveLine directiveLine0 = ((DirectiveLine) _lineContent);
+      EquDirective _directive = directiveLine0.getDirective();
+      final EquDirective equDirective0 = ((EquDirective) _directive);
+      ExpressionParser.parse(equDirective0);
+      final SourceLine line1 = result.getSourceLines().get(1);
+      EObject _lineContent_1 = line1.getLineContent();
+      Assert.assertTrue("Must be a directive line", (_lineContent_1 instanceof DirectiveLine));
+      EObject _lineContent_2 = line1.getLineContent();
+      final DirectiveLine directiveLine1 = ((DirectiveLine) _lineContent_2);
+      Assert.assertEquals("", 1, 1);
+      EquDirective _directive_1 = directiveLine1.getDirective();
+      Assert.assertTrue("Must be an EQU directive line", (_directive_1 instanceof EquDirective));
+      EquDirective _directive_2 = directiveLine1.getDirective();
+      final EquDirective equDirective1 = ((EquDirective) _directive_2);
+      Assert.assertEquals("Label must be set to Label1", "Result", CommandUtil.getLabel(equDirective1));
+      Assert.assertEquals("Operand must be equals to 10", 10, ExpressionParser.parse(equDirective1));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
 }

@@ -172,7 +172,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.EquDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final Keyword cDirectiveEQUKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
@@ -189,18 +189,18 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * An EQU directive must have a label, following by EQU, an operand, and optionnaly a comment
 		// */
 		//EquDirective:
-		//    (name = Identifier)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
+		//    (name = IdentifierValue)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = Identifier)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
+		//(name = IdentifierValue)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = Identifier)?
+		//(name = IdentifierValue)?
 		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
 		
-		//Identifier
-		public RuleCall getNameIdentifierParserRuleCall_0_0() { return cNameIdentifierParserRuleCall_0_0; }
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
@@ -684,7 +684,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cValueAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
 		private final RuleCall cValueCharacterValueParserRuleCall_4_0 = (RuleCall)cValueAssignment_4.eContents().get(0);
 		private final Assignment cValueAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
-		private final RuleCall cValueIdentifierParserRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
+		private final RuleCall cValueIdentifierValueParserRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
 		private final Group cGroup_6 = (Group)cAlternatives.eContents().get(6);
 		private final Keyword cLeftParenthesisKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
 		private final RuleCall cMultiplicationParserRuleCall_6_1 = (RuleCall)cGroup_6.eContents().get(1);
@@ -696,7 +696,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//      |    value=OctalValue
 		//      |   value=BinaryValue
 		//      |   value=CharacterValue
-		//       |    value=Identifier
+		//       |    value=IdentifierValue
 		//      |  '(' Multiplication ')'
 		// ;
 		@Override public ParserRule getRule() { return rule; }
@@ -706,7 +706,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//|    value=OctalValue
 		//|   value=BinaryValue
 		//|   value=CharacterValue
-		// |    value=Identifier
+		// |    value=IdentifierValue
 		//|  '(' Multiplication ')'
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
@@ -740,11 +740,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//CharacterValue
 		public RuleCall getValueCharacterValueParserRuleCall_4_0() { return cValueCharacterValueParserRuleCall_4_0; }
 		
-		//value=Identifier
+		//value=IdentifierValue
 		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
 		
-		//Identifier
-		public RuleCall getValueIdentifierParserRuleCall_5_0() { return cValueIdentifierParserRuleCall_5_0; }
+		//IdentifierValue
+		public RuleCall getValueIdentifierValueParserRuleCall_5_0() { return cValueIdentifierValueParserRuleCall_5_0; }
 		
 		//'(' Multiplication ')'
 		public Group getGroup_6() { return cGroup_6; }
@@ -758,12 +758,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//')'
 		public Keyword getRightParenthesisKeyword_6_2() { return cRightParenthesisKeyword_6_2; }
 	}
-	public class IdentifierElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Identifier");
+	public class IdentifierValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cValueIDTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
 		
-		//Identifier:
+		//IdentifierValue:
 		//    value = ID
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -909,7 +909,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final OrElements pOr;
 	private final XorElements pXor;
 	private final PrimaryElements pPrimary;
-	private final IdentifierElements pIdentifier;
+	private final IdentifierValueElements pIdentifierValue;
 	private final StringValueElements pStringValue;
 	private final DecimalValueElements pDecimalValue;
 	private final HexaDecimalValueElements pHexaDecimalValue;
@@ -953,7 +953,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pOr = new OrElements();
 		this.pXor = new XorElements();
 		this.pPrimary = new PrimaryElements();
-		this.pIdentifier = new IdentifierElements();
+		this.pIdentifierValue = new IdentifierValueElements();
 		this.pStringValue = new StringValueElements();
 		this.pDecimalValue = new DecimalValueElements();
 		this.pHexaDecimalValue = new HexaDecimalValueElements();
@@ -1079,7 +1079,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * An EQU directive must have a label, following by EQU, an operand, and optionnaly a comment
 	// */
 	//EquDirective:
-	//    (name = Identifier)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
+	//    (name = IdentifierValue)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
 	//;
 	public EquDirectiveElements getEquDirectiveAccess() {
 		return pEquDirective;
@@ -1228,7 +1228,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//      |    value=OctalValue
 	//      |   value=BinaryValue
 	//      |   value=CharacterValue
-	//       |    value=Identifier
+	//       |    value=IdentifierValue
 	//      |  '(' Multiplication ')'
 	// ;
 	public PrimaryElements getPrimaryAccess() {
@@ -1239,15 +1239,15 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getPrimaryAccess().getRule();
 	}
 	
-	//Identifier:
+	//IdentifierValue:
 	//    value = ID
 	//;
-	public IdentifierElements getIdentifierAccess() {
-		return pIdentifier;
+	public IdentifierValueElements getIdentifierValueAccess() {
+		return pIdentifierValue;
 	}
 	
-	public ParserRule getIdentifierRule() {
-		return getIdentifierAccess().getRule();
+	public ParserRule getIdentifierValueRule() {
+		return getIdentifierValueAccess().getRule();
 	}
 	
 	//StringValue:
@@ -1336,7 +1336,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return tOCTAL;
 	}
 	
-	//terminal CHARACTER							: '\'' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') ) ;
+	//terminal CHARACTER							: '\'' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') ) '\'';
 	public TerminalRule getCHARACTERRule() {
 		return tCHARACTER;
 	}

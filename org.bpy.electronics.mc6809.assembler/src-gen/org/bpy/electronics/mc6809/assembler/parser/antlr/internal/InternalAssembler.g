@@ -324,9 +324,9 @@ ruleEquDirective returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getEquDirectiveAccess().getNameIdentifierParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getEquDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
 				}
-				lv_name_0_0=ruleIdentifier
+				lv_name_0_0=ruleIdentifierValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getEquDirectiveRule());
@@ -335,7 +335,7 @@ ruleEquDirective returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.Identifier");
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1271,9 +1271,9 @@ rulePrimary returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getPrimaryAccess().getValueIdentifierParserRuleCall_5_0());
+					newCompositeNode(grammarAccess.getPrimaryAccess().getValueIdentifierValueParserRuleCall_5_0());
 				}
-				lv_value_5_0=ruleIdentifier
+				lv_value_5_0=ruleIdentifierValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getPrimaryRule());
@@ -1282,7 +1282,7 @@ rulePrimary returns [EObject current=null]
 						$current,
 						"value",
 						lv_value_5_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.Identifier");
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1309,15 +1309,15 @@ rulePrimary returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleIdentifier
-entryRuleIdentifier returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getIdentifierRule()); }
-	iv_ruleIdentifier=ruleIdentifier
-	{ $current=$iv_ruleIdentifier.current; }
+// Entry rule entryRuleIdentifierValue
+entryRuleIdentifierValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIdentifierValueRule()); }
+	iv_ruleIdentifierValue=ruleIdentifierValue
+	{ $current=$iv_ruleIdentifierValue.current; }
 	EOF;
 
-// Rule Identifier
-ruleIdentifier returns [EObject current=null]
+// Rule IdentifierValue
+ruleIdentifierValue returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -1328,11 +1328,11 @@ ruleIdentifier returns [EObject current=null]
 		(
 			lv_value_0_0=RULE_ID
 			{
-				newLeafNode(lv_value_0_0, grammarAccess.getIdentifierAccess().getValueIDTerminalRuleCall_0());
+				newLeafNode(lv_value_0_0, grammarAccess.getIdentifierValueAccess().getValueIDTerminalRuleCall_0());
 			}
 			{
 				if ($current==null) {
-					$current = createModelElement(grammarAccess.getIdentifierRule());
+					$current = createModelElement(grammarAccess.getIdentifierValueRule());
 				}
 				setWithLastConsumed(
 					$current,
@@ -1596,7 +1596,7 @@ RULE_BINARY : '%' ('0'..'1')+;
 
 RULE_OCTAL : '@' ('0'..'7')+;
 
-RULE_CHARACTER : '\'' ('\\' .|~(('\\'|'"')));
+RULE_CHARACTER : '\'' ('\\' .|~(('\\'|'"'))) '\'';
 
 RULE_INT : ('0'..'9')+;
 

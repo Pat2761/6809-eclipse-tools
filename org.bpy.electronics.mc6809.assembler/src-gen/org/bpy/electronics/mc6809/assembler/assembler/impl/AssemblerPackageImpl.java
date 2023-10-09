@@ -17,7 +17,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
-import org.bpy.electronics.mc6809.assembler.assembler.Identifier;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
@@ -107,7 +107,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass identifierEClass = null;
+  private EClass identifierValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -509,9 +509,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EClass getIdentifier()
+  public EClass getIdentifierValue()
   {
-    return identifierEClass;
+    return identifierValueEClass;
   }
 
   /**
@@ -520,9 +520,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getIdentifier_Value()
+  public EAttribute getIdentifierValue_Value()
   {
-    return (EAttribute)identifierEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)identifierValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -969,8 +969,8 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(expressionEClass, EXPRESSION__VALUE);
     createEReference(expressionEClass, EXPRESSION__LEFT);
 
-    identifierEClass = createEClass(IDENTIFIER);
-    createEAttribute(identifierEClass, IDENTIFIER__VALUE);
+    identifierValueEClass = createEClass(IDENTIFIER_VALUE);
+    createEAttribute(identifierValueEClass, IDENTIFIER_VALUE__VALUE);
 
     stringValueEClass = createEClass(STRING_VALUE);
     createEAttribute(stringValueEClass, STRING_VALUE__VALUE);
@@ -1081,7 +1081,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getDirectiveLine_Directive(), this.getEquDirective(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(equDirectiveEClass, EquDirective.class, "EquDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEquDirective_Name(), this.getIdentifier(), null, "name", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEquDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEquDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEquDirective_Operand(), this.getOperand(), null, "operand", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEquDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1093,8 +1093,8 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getExpression_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExpression_Left(), this.getExpression(), null, "left", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(identifierEClass, Identifier.class, "Identifier", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getIdentifier_Value(), ecorePackage.getEString(), "value", null, 0, 1, Identifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(identifierValueEClass, IdentifierValue.class, "IdentifierValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIdentifierValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, IdentifierValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(stringValueEClass, StringValue.class, "StringValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getStringValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

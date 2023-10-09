@@ -73,7 +73,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.EQU_DIRECTIVE: return createEquDirective();
       case AssemblerPackage.OPERAND: return createOperand();
       case AssemblerPackage.EXPRESSION: return createExpression();
-      case AssemblerPackage.IDENTIFIER: return createIdentifier();
+      case AssemblerPackage.IDENTIFIER_VALUE: return createIdentifierValue();
       case AssemblerPackage.STRING_VALUE: return createStringValue();
       case AssemblerPackage.DECIMAL_VALUE: return createDecimalValue();
       case AssemblerPackage.HEXA_DECIMAL_VALUE: return createHexaDecimalValue();
@@ -197,10 +197,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public Identifier createIdentifier()
+  public IdentifierValue createIdentifierValue()
   {
-    IdentifierImpl identifier = new IdentifierImpl();
-    return identifier;
+    IdentifierValueImpl identifierValue = new IdentifierValueImpl();
+    return identifierValue;
   }
 
   /**
