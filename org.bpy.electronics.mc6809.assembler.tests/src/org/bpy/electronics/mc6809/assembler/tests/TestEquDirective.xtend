@@ -30,14 +30,16 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil
+import org.eclipse.xtext.testing.validation.ValidationTestHelper
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
 
 class TestEquDirective {
-	@Inject
-	ParseHelper<Model> parseHelper
-	
+	@Inject ParseHelper<Model> parseHelper
+	@Inject extension ValidationTestHelper
 	
 	/**
 	 * Check EQU directive with a simple decimal value
@@ -48,6 +50,7 @@ class TestEquDirective {
 		Label1       EQU    1234 
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
@@ -61,16 +64,42 @@ class TestEquDirective {
 	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
 		Assert.assertEquals("Operand must be equals to 1234", 1234, ExpressionParser.parse(equDirective))		
 	}
+
+	/**
+	 * Check EQU directive with a simple negative decimal value
+	 */
+	@Test 
+	def void testWithNegativeDecimalValue() {
+		val result = parseHelper.parse('''
+		Label1       EQU    -25 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(0)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+		
+		val equDirective = directiveLine.directive as EquDirective
+	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
+		Assert.assertEquals("Operand must be equals to -25", -25, ExpressionParser.parse(equDirective))		
+	}
 	
 	@Test
 	/**
 	 * Check EQU directive with an addition of two decimal values 
 	 */
 	def void testWithAdditionOfTwoDecimalValue() {
+		
 		val result = parseHelper.parse('''
 		Label1       EQU    12+24		 
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
@@ -95,6 +124,7 @@ class TestEquDirective {
 		Label1       EQU    12+24+5		 
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
@@ -119,6 +149,7 @@ class TestEquDirective {
 		Label1       EQU    (12+24)*5		 
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
@@ -142,6 +173,7 @@ class TestEquDirective {
 		Label1       EQU    $FF00		 
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
@@ -165,6 +197,7 @@ class TestEquDirective {
 		Label1       EQU    $A7+$25		 
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
@@ -188,6 +221,7 @@ class TestEquDirective {
 		Label1       EQU    125*$A		 
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
@@ -211,6 +245,7 @@ class TestEquDirective {
 		Label1       EQU    %10010011		 
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
@@ -234,6 +269,7 @@ class TestEquDirective {
 		Label1       EQU    @1234 
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
@@ -258,6 +294,7 @@ class TestEquDirective {
 		Result     EQU    Five*2    ; so 10
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 
@@ -286,6 +323,7 @@ class TestEquDirective {
 		Label1       EQU    'A 
 		''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
@@ -298,5 +336,66 @@ class TestEquDirective {
 		val equDirective = directiveLine.directive as EquDirective
 	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
 		Assert.assertEquals("Operand must be equals to 65", 65, ExpressionParser.parse(equDirective))		
+	}
+
+	/**
+	 * Check EQU directive with a value which is upper to 65535
+	 */
+	@Test 
+	def void testWithHighestLimit() {
+		val result = parseHelper.parse('''
+		Label1       EQU    65535 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check EQU directive with a value which is upper to 65535
+	 */
+	@Test 
+	def void testWithTooHighValue() {
+		val result = parseHelper.parse('''
+		Label1       EQU    65536 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::INVALID_RANGE,"EQU value can't exceed 65535 (16 bits value)")
+	}
+
+	/**
+	 * Check EQU directive with a value which is lower than -32768
+	 */
+	@Test 
+	def void testWithTooLowValue() {
+		val result = parseHelper.parse('''
+		Label1       EQU    -32769 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::INVALID_RANGE,"EQU value can't be lower than -32768 (16 bits value)")
+	}
+
+	/**
+	 * Check EQU directive with a value which is lower than -32768
+	 */
+	@Test 
+	def void testWithLowestNegativeValue() {
+		val result = parseHelper.parse('''
+		Label1       EQU    -32768 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check EQU directive with a missing label
+	 */
+	@Test 
+	def void testWithMissingLabel() {
+		val result = parseHelper.parse('''
+		; test EQU without label
+		 	    EQU    100 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::MISSING_LABEL,"EQU directive must have a label")
 	}
 }

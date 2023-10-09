@@ -165,7 +165,7 @@ terminal HEXA 								: '$' ('0'..'9'|'a'..'f'|'A'..'F')+;
 terminal BINARY 							: '%' ('0'..'1')+;
 terminal OCTAL 								: '@' ('0'..'7')+;
 terminal CHARACTER							: '\'' ('\u0020'..'\u007F');
-terminal INT returns ecore::EInt			: ('0'..'9')+;
+terminal INT returns ecore::EInt			: '-'? ('0'..'9')+;
 
 EndOfLine: CR | END_OF_FILE;
 

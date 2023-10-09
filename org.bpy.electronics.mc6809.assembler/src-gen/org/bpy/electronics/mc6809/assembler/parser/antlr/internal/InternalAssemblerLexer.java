@@ -600,24 +600,42 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:1601:10: ( ( '0' .. '9' )+ )
-            // InternalAssembler.g:1601:12: ( '0' .. '9' )+
+            // InternalAssembler.g:1601:10: ( ( '-' )? ( '0' .. '9' )+ )
+            // InternalAssembler.g:1601:12: ( '-' )? ( '0' .. '9' )+
             {
-            // InternalAssembler.g:1601:12: ( '0' .. '9' )+
-            int cnt6=0;
-            loop6:
-            do {
-                int alt6=2;
-                int LA6_0 = input.LA(1);
+            // InternalAssembler.g:1601:12: ( '-' )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
 
-                if ( ((LA6_0>='0' && LA6_0<='9')) ) {
-                    alt6=1;
+            if ( (LA6_0=='-') ) {
+                alt6=1;
+            }
+            switch (alt6) {
+                case 1 :
+                    // InternalAssembler.g:1601:12: '-'
+                    {
+                    match('-'); 
+
+                    }
+                    break;
+
+            }
+
+            // InternalAssembler.g:1601:17: ( '0' .. '9' )+
+            int cnt7=0;
+            loop7:
+            do {
+                int alt7=2;
+                int LA7_0 = input.LA(1);
+
+                if ( ((LA7_0>='0' && LA7_0<='9')) ) {
+                    alt7=1;
                 }
 
 
-                switch (alt6) {
+                switch (alt7) {
             	case 1 :
-            	    // InternalAssembler.g:1601:13: '0' .. '9'
+            	    // InternalAssembler.g:1601:18: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -625,12 +643,12 @@ public class InternalAssemblerLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt6 >= 1 ) break loop6;
+            	    if ( cnt7 >= 1 ) break loop7;
                         EarlyExitException eee =
-                            new EarlyExitException(6, input);
+                            new EarlyExitException(7, input);
                         throw eee;
                 }
-                cnt6++;
+                cnt7++;
             } while (true);
 
 
@@ -654,20 +672,20 @@ public class InternalAssemblerLexer extends Lexer {
             {
             match('\"'); 
             // InternalAssembler.g:1603:19: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
-            loop7:
+            loop8:
             do {
-                int alt7=3;
-                int LA7_0 = input.LA(1);
+                int alt8=3;
+                int LA8_0 = input.LA(1);
 
-                if ( (LA7_0=='\\') ) {
-                    alt7=1;
+                if ( (LA8_0=='\\') ) {
+                    alt8=1;
                 }
-                else if ( ((LA7_0>='\u0000' && LA7_0<='!')||(LA7_0>='#' && LA7_0<='[')||(LA7_0>=']' && LA7_0<='\uFFFF')) ) {
-                    alt7=2;
+                else if ( ((LA8_0>='\u0000' && LA8_0<='!')||(LA8_0>='#' && LA8_0<='[')||(LA8_0>=']' && LA8_0<='\uFFFF')) ) {
+                    alt8=2;
                 }
 
 
-                switch (alt7) {
+                switch (alt8) {
             	case 1 :
             	    // InternalAssembler.g:1603:20: '\\\\' .
             	    {
@@ -680,59 +698,6 @@ public class InternalAssemblerLexer extends Lexer {
             	    // InternalAssembler.g:1603:27: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
-            	        input.consume();
-
-            	    }
-            	    else {
-            	        MismatchedSetException mse = new MismatchedSetException(null,input);
-            	        recover(mse);
-            	        throw mse;}
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop7;
-                }
-            } while (true);
-
-
-            }
-
-            state.type = _type;
-            state.channel = _channel;
-        }
-        finally {
-        }
-    }
-    // $ANTLR end "RULE_STRING"
-
-    // $ANTLR start "RULE_ANY_EXCEPT_COMMENT_END_OF_LINE"
-    public final void mRULE_ANY_EXCEPT_COMMENT_END_OF_LINE() throws RecognitionException {
-        try {
-            int _type = RULE_ANY_EXCEPT_COMMENT_END_OF_LINE;
-            int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:1605:37: ( ';' (~ ( ( '\\n' | '\\r' ) ) )* )
-            // InternalAssembler.g:1605:39: ';' (~ ( ( '\\n' | '\\r' ) ) )*
-            {
-            match(';'); 
-            // InternalAssembler.g:1605:43: (~ ( ( '\\n' | '\\r' ) ) )*
-            loop8:
-            do {
-                int alt8=2;
-                int LA8_0 = input.LA(1);
-
-                if ( ((LA8_0>='\u0000' && LA8_0<='\t')||(LA8_0>='\u000B' && LA8_0<='\f')||(LA8_0>='\u000E' && LA8_0<='\uFFFF')) ) {
-                    alt8=1;
-                }
-
-
-                switch (alt8) {
-            	case 1 :
-            	    // InternalAssembler.g:1605:43: ~ ( ( '\\n' | '\\r' ) )
-            	    {
-            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
 
             	    }
@@ -759,6 +724,59 @@ public class InternalAssemblerLexer extends Lexer {
         finally {
         }
     }
+    // $ANTLR end "RULE_STRING"
+
+    // $ANTLR start "RULE_ANY_EXCEPT_COMMENT_END_OF_LINE"
+    public final void mRULE_ANY_EXCEPT_COMMENT_END_OF_LINE() throws RecognitionException {
+        try {
+            int _type = RULE_ANY_EXCEPT_COMMENT_END_OF_LINE;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalAssembler.g:1605:37: ( ';' (~ ( ( '\\n' | '\\r' ) ) )* )
+            // InternalAssembler.g:1605:39: ';' (~ ( ( '\\n' | '\\r' ) ) )*
+            {
+            match(';'); 
+            // InternalAssembler.g:1605:43: (~ ( ( '\\n' | '\\r' ) ) )*
+            loop9:
+            do {
+                int alt9=2;
+                int LA9_0 = input.LA(1);
+
+                if ( ((LA9_0>='\u0000' && LA9_0<='\t')||(LA9_0>='\u000B' && LA9_0<='\f')||(LA9_0>='\u000E' && LA9_0<='\uFFFF')) ) {
+                    alt9=1;
+                }
+
+
+                switch (alt9) {
+            	case 1 :
+            	    // InternalAssembler.g:1605:43: ~ ( ( '\\n' | '\\r' ) )
+            	    {
+            	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
+            	        input.consume();
+
+            	    }
+            	    else {
+            	        MismatchedSetException mse = new MismatchedSetException(null,input);
+            	        recover(mse);
+            	        throw mse;}
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop9;
+                }
+            } while (true);
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
     // $ANTLR end "RULE_ANY_EXCEPT_COMMENT_END_OF_LINE"
 
     // $ANTLR start "RULE_WS"
@@ -770,18 +788,18 @@ public class InternalAssemblerLexer extends Lexer {
             // InternalAssembler.g:1607:11: ( ' ' | '\\t' )+
             {
             // InternalAssembler.g:1607:11: ( ' ' | '\\t' )+
-            int cnt9=0;
-            loop9:
+            int cnt10=0;
+            loop10:
             do {
-                int alt9=2;
-                int LA9_0 = input.LA(1);
+                int alt10=2;
+                int LA10_0 = input.LA(1);
 
-                if ( (LA9_0=='\t'||LA9_0==' ') ) {
-                    alt9=1;
+                if ( (LA10_0=='\t'||LA10_0==' ') ) {
+                    alt10=1;
                 }
 
 
-                switch (alt9) {
+                switch (alt10) {
             	case 1 :
             	    // InternalAssembler.g:
             	    {
@@ -799,12 +817,12 @@ public class InternalAssemblerLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt9 >= 1 ) break loop9;
+            	    if ( cnt10 >= 1 ) break loop10;
                         EarlyExitException eee =
-                            new EarlyExitException(9, input);
+                            new EarlyExitException(10, input);
                         throw eee;
                 }
-                cnt9++;
+                cnt10++;
             } while (true);
 
 
@@ -827,13 +845,13 @@ public class InternalAssemblerLexer extends Lexer {
             // InternalAssembler.g:1609:11: ( '\\r' )? '\\n'
             {
             // InternalAssembler.g:1609:11: ( '\\r' )?
-            int alt10=2;
-            int LA10_0 = input.LA(1);
+            int alt11=2;
+            int LA11_0 = input.LA(1);
 
-            if ( (LA10_0=='\r') ) {
-                alt10=1;
+            if ( (LA11_0=='\r') ) {
+                alt11=1;
             }
-            switch (alt10) {
+            switch (alt11) {
                 case 1 :
                     // InternalAssembler.g:1609:11: '\\r'
                     {
@@ -878,9 +896,9 @@ public class InternalAssemblerLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // InternalAssembler.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | RULE_ID | RULE_HEXA | RULE_BINARY | RULE_OCTAL | RULE_CHARACTER | RULE_INT | RULE_STRING | RULE_ANY_EXCEPT_COMMENT_END_OF_LINE | RULE_WS | RULE_CR | RULE_END_OF_FILE )
-        int alt11=25;
-        alt11 = dfa11.predict(input);
-        switch (alt11) {
+        int alt12=25;
+        alt12 = dfa12.predict(input);
+        switch (alt12) {
             case 1 :
                 // InternalAssembler.g:1:10: T__15
                 {
@@ -1062,27 +1080,27 @@ public class InternalAssemblerLexer extends Lexer {
     }
 
 
-    protected DFA11 dfa11 = new DFA11(this);
-    static final String DFA11_eotS =
-        "\1\30\1\17\2\uffff\1\32\7\uffff\1\34\14\uffff\1\17\3\uffff\1\36\1\uffff";
-    static final String DFA11_eofS =
-        "\37\uffff";
-    static final String DFA11_minS =
-        "\1\11\1\121\2\uffff\1\60\7\uffff\1\101\14\uffff\1\125\3\uffff\1\60\1\uffff";
-    static final String DFA11_maxS =
-        "\1\176\1\121\2\uffff\1\61\7\uffff\1\172\14\uffff\1\125\3\uffff\1\172\1\uffff";
-    static final String DFA11_acceptS =
-        "\2\uffff\1\2\1\3\1\uffff\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\uffff\1\15\1\16\1\17\1\20\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31\1\uffff\1\4\1\21\1\14\1\uffff\1\1";
-    static final String DFA11_specialS =
-        "\37\uffff}>";
-    static final String[] DFA11_transitionS = {
+    protected DFA12 dfa12 = new DFA12(this);
+    static final String DFA12_eotS =
+        "\1\30\1\17\2\uffff\1\32\1\uffff\1\34\5\uffff\1\35\14\uffff\1\17\4\uffff\1\37\1\uffff";
+    static final String DFA12_eofS =
+        "\40\uffff";
+    static final String DFA12_minS =
+        "\1\11\1\121\2\uffff\1\60\1\uffff\1\60\5\uffff\1\101\14\uffff\1\125\4\uffff\1\60\1\uffff";
+    static final String DFA12_maxS =
+        "\1\176\1\121\2\uffff\1\61\1\uffff\1\71\5\uffff\1\172\14\uffff\1\125\4\uffff\1\172\1\uffff";
+    static final String DFA12_acceptS =
+        "\2\uffff\1\2\1\3\1\uffff\1\5\1\uffff\1\7\1\10\1\11\1\12\1\13\1\uffff\1\15\1\16\1\17\1\20\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31\1\uffff\1\4\1\21\1\6\1\14\1\uffff\1\1";
+    static final String DFA12_specialS =
+        "\40\uffff}>";
+    static final String[] DFA12_transitionS = {
             "\1\26\1\27\2\uffff\1\27\22\uffff\1\26\1\uffff\1\24\1\uffff\1\20\1\4\1\12\1\22\1\15\1\16\1\2\1\5\1\uffff\1\6\1\uffff\1\3\12\23\1\uffff\1\25\1\7\1\uffff\1\10\1\uffff\1\21\4\17\1\1\25\17\3\uffff\1\14\1\17\1\uffff\32\17\1\uffff\1\13\1\uffff\1\11",
             "\1\31",
             "",
             "",
             "\2\33",
             "",
-            "",
+            "\12\23",
             "",
             "",
             "",
@@ -1101,7 +1119,8 @@ public class InternalAssemblerLexer extends Lexer {
             "",
             "",
             "",
-            "\1\35",
+            "\1\36",
+            "",
             "",
             "",
             "",
@@ -1109,34 +1128,34 @@ public class InternalAssemblerLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA11_eot = DFA.unpackEncodedString(DFA11_eotS);
-    static final short[] DFA11_eof = DFA.unpackEncodedString(DFA11_eofS);
-    static final char[] DFA11_min = DFA.unpackEncodedStringToUnsignedChars(DFA11_minS);
-    static final char[] DFA11_max = DFA.unpackEncodedStringToUnsignedChars(DFA11_maxS);
-    static final short[] DFA11_accept = DFA.unpackEncodedString(DFA11_acceptS);
-    static final short[] DFA11_special = DFA.unpackEncodedString(DFA11_specialS);
-    static final short[][] DFA11_transition;
+    static final short[] DFA12_eot = DFA.unpackEncodedString(DFA12_eotS);
+    static final short[] DFA12_eof = DFA.unpackEncodedString(DFA12_eofS);
+    static final char[] DFA12_min = DFA.unpackEncodedStringToUnsignedChars(DFA12_minS);
+    static final char[] DFA12_max = DFA.unpackEncodedStringToUnsignedChars(DFA12_maxS);
+    static final short[] DFA12_accept = DFA.unpackEncodedString(DFA12_acceptS);
+    static final short[] DFA12_special = DFA.unpackEncodedString(DFA12_specialS);
+    static final short[][] DFA12_transition;
 
     static {
-        int numStates = DFA11_transitionS.length;
-        DFA11_transition = new short[numStates][];
+        int numStates = DFA12_transitionS.length;
+        DFA12_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA11_transition[i] = DFA.unpackEncodedString(DFA11_transitionS[i]);
+            DFA12_transition[i] = DFA.unpackEncodedString(DFA12_transitionS[i]);
         }
     }
 
-    class DFA11 extends DFA {
+    class DFA12 extends DFA {
 
-        public DFA11(BaseRecognizer recognizer) {
+        public DFA12(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 11;
-            this.eot = DFA11_eot;
-            this.eof = DFA11_eof;
-            this.min = DFA11_min;
-            this.max = DFA11_max;
-            this.accept = DFA11_accept;
-            this.special = DFA11_special;
-            this.transition = DFA11_transition;
+            this.decisionNumber = 12;
+            this.eot = DFA12_eot;
+            this.eof = DFA12_eof;
+            this.min = DFA12_min;
+            this.max = DFA12_max;
+            this.accept = DFA12_accept;
+            this.special = DFA12_special;
+            this.transition = DFA12_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | RULE_ID | RULE_HEXA | RULE_BINARY | RULE_OCTAL | RULE_CHARACTER | RULE_INT | RULE_STRING | RULE_ANY_EXCEPT_COMMENT_END_OF_LINE | RULE_WS | RULE_CR | RULE_END_OF_FILE );";

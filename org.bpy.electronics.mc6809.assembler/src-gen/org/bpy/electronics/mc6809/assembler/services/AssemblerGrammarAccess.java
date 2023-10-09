@@ -1341,7 +1341,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return tCHARACTER;
 	}
 	
-	//terminal INT returns ecore::EInt			: ('0'..'9')+;
+	//terminal INT returns ecore::EInt			: '-'? ('0'..'9')+;
 	public TerminalRule getINTRule() {
 		return tINT;
 	}
