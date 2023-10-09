@@ -33,6 +33,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -90,6 +91,9 @@ public class ExpressionParser {
 			
 		} else if (expression instanceof Addition) { 	
 			return resolveExpression((Addition)expression);
+			
+		} else if (expression instanceof Substraction) { 	
+			return resolveExpression((Substraction)expression);
 			
 		} else {
 			if (expression.getValue() instanceof DecimalValue) {
@@ -226,5 +230,24 @@ public class ExpressionParser {
 			right = resolveExpression(addition.getRight());
 		}
 		return left+right;
+	}
+
+	/**
+	 * resolve an subtraction expression
+	 * 
+	 * @param substraction reference on the addition expression
+	 * @return  a decimal value of the addition
+	 */
+	public static int resolveExpression(Substraction substraction) {
+		int left=1;
+		int right=1;
+		
+		if (substraction.getLeft() != null) {
+			left = resolveExpression(substraction.getLeft());
+		}
+		if (substraction.getRight() != null) {
+			right = resolveExpression(substraction.getRight());
+		}
+		return left-right;
 	}
 }

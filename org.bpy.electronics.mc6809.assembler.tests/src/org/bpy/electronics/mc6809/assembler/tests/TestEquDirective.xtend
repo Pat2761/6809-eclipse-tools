@@ -113,7 +113,6 @@ class TestEquDirective {
 	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
 		Assert.assertEquals("Operand must be equals to 36", 36, ExpressionParser.parse(equDirective))		
 	}
-
 	
 	@Test
 	/**
@@ -398,4 +397,30 @@ class TestEquDirective {
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::MISSING_LABEL,"EQU directive must have a label")
 	}
+	
+	@Test
+	/**
+	 * Check EQU directive with an substraction of two decimal values 
+	 */
+	def void testWithSubstractionOfTwoDecimalValue() {
+		
+		val result = parseHelper.parse('''
+		Label1       EQU    32-(15)		 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(0)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+		
+		val equDirective = directiveLine.directive as EquDirective
+	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
+		Assert.assertEquals("Operand must be equals to 17", 17, ExpressionParser.parse(equDirective))		
+	}
+
 }
