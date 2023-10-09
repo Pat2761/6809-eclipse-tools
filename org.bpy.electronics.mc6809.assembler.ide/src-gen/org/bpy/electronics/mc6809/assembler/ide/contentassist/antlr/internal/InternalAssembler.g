@@ -3385,11 +3385,11 @@ RULE_BINARY : '%' ('0'..'1')+;
 
 RULE_OCTAL : '@' ('0'..'7')+;
 
-RULE_CHARACTER : '\'' ('\\' .|~(('\\'|'"'))) '\'';
+RULE_CHARACTER : '\'' ' '..'\u007F';
 
 RULE_INT : ('0'..'9')+;
 
-RULE_STRING : ('"' ('\\' .|~(('\\'|'"')))* '"'|'\'' ('\\' .|~(('\\'|'\'')))* '\'');
+RULE_STRING : '"' ('\\' .|~(('\\'|'"')))*;
 
 RULE_ANY_EXCEPT_COMMENT_END_OF_LINE : ';' ~(('\n'|'\r'))*;
 

@@ -63,7 +63,6 @@ public class TestEquDirective {
       Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
-      Assert.assertEquals("", 1, 1);
       EquDirective _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an EQU directive line", (_directive instanceof EquDirective));
       EquDirective _directive_1 = directiveLine.getDirective();
@@ -92,7 +91,6 @@ public class TestEquDirective {
       Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
-      Assert.assertEquals("", 1, 1);
       EquDirective _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an EQU directive line", (_directive instanceof EquDirective));
       EquDirective _directive_1 = directiveLine.getDirective();
@@ -121,7 +119,6 @@ public class TestEquDirective {
       Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
-      Assert.assertEquals("", 1, 1);
       EquDirective _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an EQU directive line", (_directive instanceof EquDirective));
       EquDirective _directive_1 = directiveLine.getDirective();
@@ -150,7 +147,6 @@ public class TestEquDirective {
       Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
-      Assert.assertEquals("", 1, 1);
       EquDirective _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an EQU directive line", (_directive instanceof EquDirective));
       EquDirective _directive_1 = directiveLine.getDirective();
@@ -179,7 +175,6 @@ public class TestEquDirective {
       Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
-      Assert.assertEquals("", 1, 1);
       EquDirective _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an EQU directive line", (_directive instanceof EquDirective));
       EquDirective _directive_1 = directiveLine.getDirective();
@@ -208,7 +203,6 @@ public class TestEquDirective {
       Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
-      Assert.assertEquals("", 1, 1);
       EquDirective _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an EQU directive line", (_directive instanceof EquDirective));
       EquDirective _directive_1 = directiveLine.getDirective();
@@ -240,7 +234,6 @@ public class TestEquDirective {
       Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
-      Assert.assertEquals("", 1, 1);
       EquDirective _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an EQU directive line", (_directive instanceof EquDirective));
       EquDirective _directive_1 = directiveLine.getDirective();
@@ -272,7 +265,6 @@ public class TestEquDirective {
       Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
-      Assert.assertEquals("", 1, 1);
       EquDirective _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an EQU directive line", (_directive instanceof EquDirective));
       EquDirective _directive_1 = directiveLine.getDirective();
@@ -304,7 +296,6 @@ public class TestEquDirective {
       Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
-      Assert.assertEquals("", 1, 1);
       EquDirective _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an EQU directive line", (_directive instanceof EquDirective));
       EquDirective _directive_1 = directiveLine.getDirective();
@@ -344,13 +335,43 @@ public class TestEquDirective {
       Assert.assertTrue("Must be a directive line", (_lineContent_1 instanceof DirectiveLine));
       EObject _lineContent_2 = line1.getLineContent();
       final DirectiveLine directiveLine1 = ((DirectiveLine) _lineContent_2);
-      Assert.assertEquals("", 1, 1);
       EquDirective _directive_1 = directiveLine1.getDirective();
       Assert.assertTrue("Must be an EQU directive line", (_directive_1 instanceof EquDirective));
       EquDirective _directive_2 = directiveLine1.getDirective();
       final EquDirective equDirective1 = ((EquDirective) _directive_2);
       Assert.assertEquals("Label must be set to Label1", "Result", CommandUtil.getLabel(equDirective1));
       Assert.assertEquals("Operand must be equals to 10", 10, ExpressionParser.parse(equDirective1));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check EQU directive with a simple octal value
+   */
+  @Test
+  public void testWithCharacterValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Label1       EQU    \'A ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(0);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
+      EquDirective _directive = directiveLine.getDirective();
+      Assert.assertTrue("Must be an EQU directive line", (_directive instanceof EquDirective));
+      EquDirective _directive_1 = directiveLine.getDirective();
+      final EquDirective equDirective = ((EquDirective) _directive_1);
+      Assert.assertEquals("Label must be set to Label1", "Label1", CommandUtil.getLabel(equDirective));
+      Assert.assertEquals("Operand must be equals to 65", 65, ExpressionParser.parse(equDirective));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

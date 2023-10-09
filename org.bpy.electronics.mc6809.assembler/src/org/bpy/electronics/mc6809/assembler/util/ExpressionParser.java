@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.assembler.Addition;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
+import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
@@ -105,6 +106,9 @@ public class ExpressionParser {
 
 			} else if( expression.getValue() instanceof IdentifierValue) {
 				return (resolveIdentifierValue((IdentifierValue)expression.getValue()));
+
+			} else if( expression.getValue() instanceof CharacterValue) {
+				return (resolveCharacterValue((CharacterValue)expression.getValue()));
 			}
 			
 			logger.log(Level.SEVERE, "{0} isn''t managed in this version" ,expression.getValue().getClass().getSimpleName());
@@ -112,6 +116,23 @@ public class ExpressionParser {
 		}
 	}
 	
+	/**
+	 * Convert an character value expression into a decimal value
+	 * 
+	 * @param value Character value to convert
+	 * @return decimal value of the binary expression
+	 */
+	private static int resolveCharacterValue(CharacterValue value) {
+		char strValue = value.getValue().replaceFirst("\\'", "").charAt(0);
+		return (int) strValue;
+	}
+
+	/**
+	 * Convert an identifier value expression into a decimal value
+	 * 
+	 * @param value Identifier value to convert
+	 * @return decimal value of the binary expression
+	 */
 	private static int resolveIdentifierValue(IdentifierValue value) {
 		if (equValues.containsKey(value.getValue())) {
 			return equValues.get(value.getValue());

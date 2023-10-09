@@ -55,7 +55,6 @@ class TestEquDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertEquals("",1,1)
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
 		
 		val equDirective = directiveLine.directive as EquDirective
@@ -79,7 +78,6 @@ class TestEquDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertEquals("",1,1)
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
 		
 		val equDirective = directiveLine.directive as EquDirective
@@ -104,7 +102,6 @@ class TestEquDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertEquals("",1,1)
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
 		
 		val equDirective = directiveLine.directive as EquDirective
@@ -129,7 +126,6 @@ class TestEquDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertEquals("",1,1)
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
 		
 		val equDirective = directiveLine.directive as EquDirective
@@ -153,7 +149,6 @@ class TestEquDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertEquals("",1,1)
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
 		
 		val equDirective = directiveLine.directive as EquDirective
@@ -177,7 +172,6 @@ class TestEquDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertEquals("",1,1)
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
 		
 		val equDirective = directiveLine.directive as EquDirective
@@ -201,7 +195,6 @@ class TestEquDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertEquals("",1,1)
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
 		
 		val equDirective = directiveLine.directive as EquDirective
@@ -225,7 +218,6 @@ class TestEquDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertEquals("",1,1)
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
 		
 		val equDirective = directiveLine.directive as EquDirective
@@ -249,7 +241,6 @@ class TestEquDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertEquals("",1,1)
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
 		
 		val equDirective = directiveLine.directive as EquDirective
@@ -279,7 +270,6 @@ class TestEquDirective {
 		Assert.assertTrue("Must be a directive line", line1.lineContent instanceof DirectiveLine)
 		
 		val directiveLine1 = line1.lineContent as DirectiveLine
-		Assert.assertEquals("",1,1)
 		Assert.assertTrue("Must be an EQU directive line", directiveLine1.directive instanceof EquDirective)
 		
 		val equDirective1 = directiveLine1.directive as EquDirective
@@ -290,24 +280,23 @@ class TestEquDirective {
 	/**
 	 * Check EQU directive with a simple octal value
 	 */
-//	@Test 
-//	def void testWithCharacterValue() {
-//		val result = parseHelper.parse('''
-//		Label1       EQU    'A 
-//		''')
-//		Assert.assertNotNull(result)
-//		val errors = result.eResource.errors
-//		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
-//		
-//		val line = result.sourceLines.get(0)
-//		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-//		
-//		val directiveLine = line.lineContent as DirectiveLine
-//		Assert.assertEquals("",1,1)
-//		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-//		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 65", 65, ExpressionParser.parse(equDirective))		
-//	}
+	@Test 
+	def void testWithCharacterValue() {
+		val result = parseHelper.parse('''
+		Label1       EQU    'A 
+		''')
+		Assert.assertNotNull(result)
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(0)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+		
+		val equDirective = directiveLine.directive as EquDirective
+	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
+		Assert.assertEquals("Operand must be equals to 65", 65, ExpressionParser.parse(equDirective))		
+	}
 }

@@ -1336,7 +1336,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return tOCTAL;
 	}
 	
-	//terminal CHARACTER							: '\'' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') ) '\'';
+	//terminal CHARACTER							: '\'' ('\u0020'..'\u007F');
 	public TerminalRule getCHARACTERRule() {
 		return tCHARACTER;
 	}
@@ -1356,8 +1356,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//terminal STRING:
-	//            '"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' |
-	//            "'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+	//            '"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )*
 	//        ;
 	public TerminalRule getSTRINGRule() {
 		return tSTRING;

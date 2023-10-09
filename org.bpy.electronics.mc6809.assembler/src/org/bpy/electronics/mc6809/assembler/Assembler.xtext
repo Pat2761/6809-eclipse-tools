@@ -164,14 +164,13 @@ terminal ID									: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9
 terminal HEXA 								: '$' ('0'..'9'|'a'..'f'|'A'..'F')+;
 terminal BINARY 							: '%' ('0'..'1')+;
 terminal OCTAL 								: '@' ('0'..'7')+;
-terminal CHARACTER							: '\'' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') ) '\'';
+terminal CHARACTER							: '\'' ('\u0020'..'\u007F');
 terminal INT returns ecore::EInt			: ('0'..'9')+;
 
 EndOfLine: CR | END_OF_FILE;
 
 terminal STRING:
-			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' |
-			"'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"
+			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* 
 		;		
 		
 terminal ANY_EXCEPT_COMMENT_END_OF_LINE  	: ';' !('\n' | '\r')*;
