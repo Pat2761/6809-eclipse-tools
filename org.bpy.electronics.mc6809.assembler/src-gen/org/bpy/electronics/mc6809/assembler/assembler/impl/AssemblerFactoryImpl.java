@@ -90,6 +90,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.NEGATE: return createNegate();
       case AssemblerPackage.AND: return createAnd();
       case AssemblerPackage.OR: return createOr();
+      case AssemblerPackage.XOR: return createXor();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -393,6 +394,18 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     OrImpl or = new OrImpl();
     return or;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Xor createXor()
+  {
+    XorImpl xor = new XorImpl();
+    return xor;
   }
 
   /**

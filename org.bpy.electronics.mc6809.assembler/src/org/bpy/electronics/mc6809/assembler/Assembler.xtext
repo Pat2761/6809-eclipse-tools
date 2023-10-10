@@ -119,7 +119,7 @@ Or returns Expression:
 ;
 
 Xor returns Expression:
-	Primary ({Or.left=current} '^' right=Primary)*
+	Primary ({Xor.left=current} '^' right=Primary)*
 ;
 
 Primary returns Expression:

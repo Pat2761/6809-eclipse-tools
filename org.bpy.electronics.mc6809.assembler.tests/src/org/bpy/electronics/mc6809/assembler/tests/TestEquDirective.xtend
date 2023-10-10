@@ -425,7 +425,7 @@ class TestEquDirective {
 
 	@Test
 	/**
-	 * Check EQU directive with an substraction of two decimal values 
+	 * Check EQU directive with an modulo of two decimal values 
 	 */
 	def void testWithModuloOfTwoDecimalValue() {
 		
@@ -446,5 +446,80 @@ class TestEquDirective {
 		val equDirective = directiveLine.directive as EquDirective
 	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
 		Assert.assertEquals("Operand must be equals to 1", 1, ExpressionParser.parse(equDirective))		
+	}
+
+	@Test
+	/**
+	 * Check EQU directive with a logical AND of two hexadecimal values 
+	 */
+	def void testWithLogicalAndOfTwoDecimalValue() {
+		
+		val result = parseHelper.parse('''
+		Label1       EQU    $FFFF&&$FF		 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(0)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+		
+		val equDirective = directiveLine.directive as EquDirective
+	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
+		Assert.assertEquals("Operand must be equals to 255", 255, ExpressionParser.parse(equDirective))		
+	}
+
+	@Test
+	/**
+	 * Check EQU directive with a logical Or of two hexadecimal values 
+	 */
+	def void testWithLogicalOrOfTwoDecimalValue() {
+		
+		val result = parseHelper.parse('''
+		Label1       EQU    $FF00||$FF		 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(0)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+		
+		val equDirective = directiveLine.directive as EquDirective
+	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
+		Assert.assertEquals("Operand must be equals to 65535", 65535, ExpressionParser.parse(equDirective))		
+	}
+
+	@Test
+	/**
+	 * Check EQU directive with a logical XOr of two hexadecimal values 
+	 */
+	def void testWithLogicalXOrOfTwoDecimalValue() {
+		
+		val result = parseHelper.parse('''
+		Label1       EQU    0b01010101^0b00001111		 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(0)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+		
+		val equDirective = directiveLine.directive as EquDirective
+	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
+		Assert.assertEquals("Operand must be equals to 90", 90, ExpressionParser.parse(equDirective))		
 	}
 }

@@ -2618,9 +2618,9 @@ rule__Xor__Group_1__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getXorAccess().getOrLeftAction_1_0()); }
+	{ before(grammarAccess.getXorAccess().getXorLeftAction_1_0()); }
 	()
-	{ after(grammarAccess.getXorAccess().getOrLeftAction_1_0()); }
+	{ after(grammarAccess.getXorAccess().getXorLeftAction_1_0()); }
 )
 ;
 finally {

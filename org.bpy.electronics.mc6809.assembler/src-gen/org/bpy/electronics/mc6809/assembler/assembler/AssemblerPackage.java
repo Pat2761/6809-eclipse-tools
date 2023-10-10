@@ -1009,6 +1009,52 @@ public interface AssemblerPackage extends EPackage
    */
   int OR_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
 
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.XorImpl <em>Xor</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.XorImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getXor()
+   * @generated
+   */
+  int XOR = 25;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int XOR__VALUE = EXPRESSION__VALUE;
+
+  /**
+   * The feature id for the '<em><b>Left</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int XOR__LEFT = EXPRESSION__LEFT;
+
+  /**
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int XOR__RIGHT = EXPRESSION_FEATURE_COUNT + 0;
+
+  /**
+   * The number of structural features of the '<em>Xor</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int XOR_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Model <em>Model</em>}'.
@@ -1624,6 +1670,27 @@ public interface AssemblerPackage extends EPackage
   EReference getOr_Right();
 
   /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Xor <em>Xor</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Xor</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Xor
+   * @generated
+   */
+  EClass getXor();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Xor#getRight <em>Right</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Xor#getRight()
+   * @see #getXor()
+   * @generated
+   */
+  EReference getXor_Right();
+
+  /**
    * Returns the factory that creates the instances of the model.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -2159,6 +2226,24 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EReference OR__RIGHT = eINSTANCE.getOr_Right();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.XorImpl <em>Xor</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.XorImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getXor()
+     * @generated
+     */
+    EClass XOR = eINSTANCE.getXor();
+
+    /**
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference XOR__RIGHT = eINSTANCE.getXor_Right();
 
   }
 

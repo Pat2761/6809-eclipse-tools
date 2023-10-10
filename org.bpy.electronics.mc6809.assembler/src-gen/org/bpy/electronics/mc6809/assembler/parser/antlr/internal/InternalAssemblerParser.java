@@ -3292,7 +3292,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getXorAccess().getOrLeftAction_1_0(),
+            	      						grammarAccess.getXorAccess().getXorLeftAction_1_0(),
             	      						current);
             	      				
             	    }

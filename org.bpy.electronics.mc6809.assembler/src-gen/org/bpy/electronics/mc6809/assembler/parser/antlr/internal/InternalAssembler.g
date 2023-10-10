@@ -1124,7 +1124,7 @@ ruleXor returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElementAndSet(
-						grammarAccess.getXorAccess().getOrLeftAction_1_0(),
+						grammarAccess.getXorAccess().getXorLeftAction_1_0(),
 						$current);
 				}
 			)

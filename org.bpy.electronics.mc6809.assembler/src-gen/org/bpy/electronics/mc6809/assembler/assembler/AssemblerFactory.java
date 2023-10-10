@@ -249,6 +249,15 @@ public interface AssemblerFactory extends EFactory
   Or createOr();
 
   /**
+   * Returns a new object of class '<em>Xor</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Xor</em>'.
+   * @generated
+   */
+  Xor createXor();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

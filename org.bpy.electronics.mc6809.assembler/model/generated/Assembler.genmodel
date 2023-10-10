@@ -89,5 +89,8 @@
     <genClasses ecoreClass="Assembler.ecore#//Or">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Or/right"/>
     </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//Xor">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Xor/right"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>

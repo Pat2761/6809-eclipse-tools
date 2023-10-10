@@ -31,6 +31,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RigthShift;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
+import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.bpy.electronics.mc6809.assembler.services.AssemblerGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -117,7 +118,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				sequence_Operand(context, (Operand) semanticObject); 
 				return; 
 			case AssemblerPackage.OR:
-				sequence_Or_Xor(context, (Or) semanticObject); 
+				sequence_Or(context, (Or) semanticObject); 
 				return; 
 			case AssemblerPackage.RIGTH_SHIFT:
 				sequence_RigthShift(context, (RigthShift) semanticObject); 
@@ -130,6 +131,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.SUBSTRACTION:
 				sequence_Substraction(context, (Substraction) semanticObject); 
+				return; 
+			case AssemblerPackage.XOR:
+				sequence_Xor(context, (Xor) semanticObject); 
 				return; 
 			}
 		if (errorAcceptor != null)
@@ -160,7 +164,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns Addition
 	 *     Or.Or_1_0 returns Addition
 	 *     Xor returns Addition
-	 *     Xor.Or_1_0 returns Addition
+	 *     Xor.Xor_1_0 returns Addition
 	 *     Primary returns Addition
 	 *
 	 * Constraint:
@@ -205,7 +209,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns And
 	 *     Or.Or_1_0 returns And
 	 *     Xor returns And
-	 *     Xor.Or_1_0 returns And
+	 *     Xor.Xor_1_0 returns And
 	 *     Primary returns And
 	 *
 	 * Constraint:
@@ -358,7 +362,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns Division
 	 *     Or.Or_1_0 returns Division
 	 *     Xor returns Division
-	 *     Xor.Or_1_0 returns Division
+	 *     Xor.Xor_1_0 returns Division
 	 *     Primary returns Division
 	 *
 	 * Constraint:
@@ -460,7 +464,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns LeftShift
 	 *     Or.Or_1_0 returns LeftShift
 	 *     Xor returns LeftShift
-	 *     Xor.Or_1_0 returns LeftShift
+	 *     Xor.Xor_1_0 returns LeftShift
 	 *     Primary returns LeftShift
 	 *
 	 * Constraint:
@@ -519,7 +523,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns Modulo
 	 *     Or.Or_1_0 returns Modulo
 	 *     Xor returns Modulo
-	 *     Xor.Or_1_0 returns Modulo
+	 *     Xor.Xor_1_0 returns Modulo
 	 *     Primary returns Modulo
 	 *
 	 * Constraint:
@@ -567,7 +571,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns Multiplication
 	 *     Or.Or_1_0 returns Multiplication
 	 *     Xor returns Multiplication
-	 *     Xor.Or_1_0 returns Multiplication
+	 *     Xor.Xor_1_0 returns Multiplication
 	 *     Primary returns Multiplication
 	 *
 	 * Constraint:
@@ -615,7 +619,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns Negate
 	 *     Or.Or_1_0 returns Negate
 	 *     Xor returns Negate
-	 *     Xor.Or_1_0 returns Negate
+	 *     Xor.Xor_1_0 returns Negate
 	 *     Primary returns Negate
 	 *
 	 * Constraint:
@@ -694,15 +698,24 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns Or
 	 *     Or.Or_1_0 returns Or
 	 *     Xor returns Or
-	 *     Xor.Or_1_0 returns Or
+	 *     Xor.Xor_1_0 returns Or
 	 *     Primary returns Or
 	 *
 	 * Constraint:
-	 *     ((left=Or_Or_1_0 right=Xor) | (left=Xor_Or_1_0 right=Primary))
+	 *     (left=Or_Or_1_0 right=Xor)
 	 * </pre>
 	 */
-	protected void sequence_Or_Xor(ISerializationContext context, Or semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+	protected void sequence_Or(ISerializationContext context, Or semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.OR__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.OR__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getOrAccess().getOrLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getOrAccess().getRightXorParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
 	}
 	
 	
@@ -730,7 +743,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns Expression
 	 *     Or.Or_1_0 returns Expression
 	 *     Xor returns Expression
-	 *     Xor.Or_1_0 returns Expression
+	 *     Xor.Xor_1_0 returns Expression
 	 *     Primary returns Expression
 	 *
 	 * Constraint:
@@ -773,7 +786,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns RigthShift
 	 *     Or.Or_1_0 returns RigthShift
 	 *     Xor returns RigthShift
-	 *     Xor.Or_1_0 returns RigthShift
+	 *     Xor.Xor_1_0 returns RigthShift
 	 *     Primary returns RigthShift
 	 *
 	 * Constraint:
@@ -852,7 +865,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Or returns Substraction
 	 *     Or.Or_1_0 returns Substraction
 	 *     Xor returns Substraction
-	 *     Xor.Or_1_0 returns Substraction
+	 *     Xor.Xor_1_0 returns Substraction
 	 *     Primary returns Substraction
 	 *
 	 * Constraint:
@@ -869,6 +882,51 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSubstractionAccess().getSubstractionLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getSubstractionAccess().getRightLeftShiftParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Multiplication returns Xor
+	 *     Multiplication.Multiplication_1_0 returns Xor
+	 *     Division returns Xor
+	 *     Division.Division_1_0 returns Xor
+	 *     Modulo returns Xor
+	 *     Modulo.Modulo_1_0 returns Xor
+	 *     Addition returns Xor
+	 *     Addition.Addition_1_0 returns Xor
+	 *     Substraction returns Xor
+	 *     Substraction.Substraction_1_0 returns Xor
+	 *     LeftShift returns Xor
+	 *     LeftShift.LeftShift_1_0 returns Xor
+	 *     RigthShift returns Xor
+	 *     RigthShift.RigthShift_1_0 returns Xor
+	 *     Negate returns Xor
+	 *     Negate.Negate_1_0 returns Xor
+	 *     And returns Xor
+	 *     And.And_1_0 returns Xor
+	 *     Or returns Xor
+	 *     Or.Or_1_0 returns Xor
+	 *     Xor returns Xor
+	 *     Xor.Xor_1_0 returns Xor
+	 *     Primary returns Xor
+	 *
+	 * Constraint:
+	 *     (left=Xor_Xor_1_0 right=Primary)
+	 * </pre>
+	 */
+	protected void sequence_Xor(ISerializationContext context, Xor semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.XOR__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.XOR__RIGHT));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getXorAccess().getXorLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getXorAccess().getRightPrimaryParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	

@@ -8701,7 +8701,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             // InternalAssembler.g:2621:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getXorAccess().getOrLeftAction_1_0()); 
+               before(grammarAccess.getXorAccess().getXorLeftAction_1_0()); 
             }
             // InternalAssembler.g:2622:2: ()
             // InternalAssembler.g:2622:3: 
@@ -8709,7 +8709,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getXorAccess().getOrLeftAction_1_0()); 
+               after(grammarAccess.getXorAccess().getXorLeftAction_1_0()); 
             }
 
             }

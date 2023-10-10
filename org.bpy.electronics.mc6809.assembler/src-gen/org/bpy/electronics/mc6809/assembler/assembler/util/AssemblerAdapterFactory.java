@@ -201,6 +201,11 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createOrAdapter();
       }
       @Override
+      public Adapter caseXor(Xor object)
+      {
+        return createXorAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -593,6 +598,21 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createOrAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Xor <em>Xor</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Xor
+   * @generated
+   */
+  public Adapter createXorAdapter()
   {
     return null;
   }

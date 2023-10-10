@@ -30,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RigthShift;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
+import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -220,6 +221,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass orEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass xorEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -927,6 +935,28 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EClass getXor()
+  {
+    return xorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getXor_Right()
+  {
+    return (EReference)xorEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public AssemblerFactory getAssemblerFactory()
   {
     return (AssemblerFactory)getEFactoryInstance();
@@ -1034,6 +1064,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     orEClass = createEClass(OR);
     createEReference(orEClass, OR__RIGHT);
+
+    xorEClass = createEClass(XOR);
+    createEReference(xorEClass, XOR__RIGHT);
   }
 
   /**
@@ -1075,6 +1108,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     negateEClass.getESuperTypes().add(this.getExpression());
     andEClass.getESuperTypes().add(this.getExpression());
     orEClass.getESuperTypes().add(this.getExpression());
+    xorEClass.getESuperTypes().add(this.getExpression());
 
     // Initialize classes and features; add operations and parameters
     initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1159,6 +1193,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(orEClass, Or.class, "Or", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getOr_Right(), this.getExpression(), null, "right", null, 0, 1, Or.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(xorEClass, Xor.class, "Xor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getXor_Right(), this.getExpression(), null, "right", null, 0, 1, Xor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

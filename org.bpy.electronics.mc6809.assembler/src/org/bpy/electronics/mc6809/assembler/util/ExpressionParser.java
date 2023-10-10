@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.assembler.Addition;
+import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
@@ -34,7 +35,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
+import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -99,6 +102,15 @@ public class ExpressionParser {
 			
 		} else if (expression instanceof Modulo) { 	
 			return resolveExpression((Modulo)expression);
+			
+		} else if (expression instanceof And) { 	
+			return resolveExpression((And)expression);
+			
+		} else if (expression instanceof Or) { 	
+			return resolveExpression((Or)expression);
+			
+		} else if (expression instanceof Xor) { 	
+			return resolveExpression((Xor)expression);
 			
 		} else {
 			if (expression.getValue() instanceof DecimalValue) {
@@ -281,5 +293,62 @@ public class ExpressionParser {
 			right = resolveExpression(modulo.getRight());
 		}
 		return left%right;
+	}
+
+	/**
+	 * resolve an AND expression
+	 * 
+	 * @param and reference on the addition expression
+	 * @return  a decimal value of the logical AND
+	 */
+	public static int resolveExpression(And and) {
+		int left=0xFFFF;
+		int right=0xFFFF;
+		
+		if (and.getLeft() != null) {
+			left = resolveExpression(and.getLeft());
+		}
+		if (and.getRight() != null) {
+			right = resolveExpression(and.getRight());
+		}
+		return left&right;
+	}
+
+	/**
+	 * resolve an OR expression
+	 * 
+	 * @param or reference on the addition expression
+	 * @return  a decimal value of the logical AND
+	 */
+	public static int resolveExpression(Or or) {
+		int left=0;
+		int right=0;
+		
+		if (or.getLeft() != null) {
+			left = resolveExpression(or.getLeft());
+		}
+		if (or.getRight() != null) {
+			right = resolveExpression(or.getRight());
+		}
+		return left|right;
+	}
+
+	/**
+	 * resolve an XOR expression
+	 * 
+	 * @param or reference on the exclusive OR expression
+	 * @return  a decimal value of the logical XOR
+	 */
+	public static int resolveExpression(Xor xor) {
+		int left=0;
+		int right=0;
+		
+		if (xor.getLeft() != null) {
+			left = resolveExpression(xor.getLeft());
+		}
+		if (xor.getRight() != null) {
+			right = resolveExpression(xor.getRight());
+		}
+		return left^right;
 	}
 }

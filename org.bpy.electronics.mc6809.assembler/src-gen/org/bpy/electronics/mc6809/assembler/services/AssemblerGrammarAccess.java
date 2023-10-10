@@ -639,27 +639,27 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cPrimaryParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cOrLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Action cXorLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cCircumflexAccentKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cRightPrimaryParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
 		//Xor returns Expression:
-		//    Primary ({Or.left=current} '^' right=Primary)*
+		//    Primary ({Xor.left=current} '^' right=Primary)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//Primary ({Or.left=current} '^' right=Primary)*
+		//Primary ({Xor.left=current} '^' right=Primary)*
 		public Group getGroup() { return cGroup; }
 		
 		//Primary
 		public RuleCall getPrimaryParserRuleCall_0() { return cPrimaryParserRuleCall_0; }
 		
-		//({Or.left=current} '^' right=Primary)*
+		//({Xor.left=current} '^' right=Primary)*
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//{Or.left=current}
-		public Action getOrLeftAction_1_0() { return cOrLeftAction_1_0; }
+		//{Xor.left=current}
+		public Action getXorLeftAction_1_0() { return cXorLeftAction_1_0; }
 		
 		//'^'
 		public Keyword getCircumflexAccentKeyword_1_1() { return cCircumflexAccentKeyword_1_1; }
@@ -1224,7 +1224,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//Xor returns Expression:
-	//    Primary ({Or.left=current} '^' right=Primary)*
+	//    Primary ({Xor.left=current} '^' right=Primary)*
 	//;
 	public XorElements getXorAccess() {
 		return pXor;
