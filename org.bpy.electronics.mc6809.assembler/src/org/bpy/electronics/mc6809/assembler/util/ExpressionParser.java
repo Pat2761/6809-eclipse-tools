@@ -34,6 +34,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
+import org.bpy.electronics.mc6809.assembler.assembler.Not;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
@@ -111,6 +112,9 @@ public class ExpressionParser {
 			
 		} else if (expression instanceof Xor) { 	
 			return resolveExpression((Xor)expression);
+			
+		} else if (expression instanceof Not) { 	
+			return resolveExpression((Not)expression);
 			
 		} else {
 			if (expression.getValue() instanceof DecimalValue) {
@@ -350,5 +354,24 @@ public class ExpressionParser {
 			right = resolveExpression(xor.getRight());
 		}
 		return left^right;
+	}
+
+	/**
+	 * resolve an NOT expression
+	 * 
+	 * @param or reference on the exclusive NOT expression
+	 * @return  a decimal value of the logical NOT
+	 */
+	public static int resolveExpression(Not not) {
+		
+		int notValue = 0;
+		int r=0; 
+		
+		if (not.getValue() != null) {
+			notValue = resolveExpression((Expression)not.getValue());
+			notValue = ~notValue;
+			notValue = notValue & 0xFFFF;
+		}
+		return notValue;
 	}
 }

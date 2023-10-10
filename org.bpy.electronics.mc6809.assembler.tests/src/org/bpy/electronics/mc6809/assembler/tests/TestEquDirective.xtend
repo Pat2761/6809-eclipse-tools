@@ -452,7 +452,7 @@ class TestEquDirective {
 	/**
 	 * Check EQU directive with a logical AND of two hexadecimal values 
 	 */
-	def void testWithLogicalAndOfTwoDecimalValue() {
+	def void testWithLogicalAndOfTwoHexaDecimalValue() {
 		
 		val result = parseHelper.parse('''
 		Label1       EQU    $FFFF&&$FF		 
@@ -477,7 +477,7 @@ class TestEquDirective {
 	/**
 	 * Check EQU directive with a logical Or of two hexadecimal values 
 	 */
-	def void testWithLogicalOrOfTwoDecimalValue() {
+	def void testWithLogicalOrOfTwoHexaDecimalValue() {
 		
 		val result = parseHelper.parse('''
 		Label1       EQU    $FF00||$FF		 
@@ -502,7 +502,7 @@ class TestEquDirective {
 	/**
 	 * Check EQU directive with a logical XOr of two hexadecimal values 
 	 */
-	def void testWithLogicalXOrOfTwoDecimalValue() {
+	def void testWithLogicalXOrOfTwoBinaryValue() {
 		
 		val result = parseHelper.parse('''
 		Label1       EQU    0b01010101^0b00001111		 
@@ -521,5 +521,30 @@ class TestEquDirective {
 		val equDirective = directiveLine.directive as EquDirective
 	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
 		Assert.assertEquals("Operand must be equals to 90", 90, ExpressionParser.parse(equDirective))		
+	}
+
+	@Test
+	/**
+	 * Check EQU directive with a nagate of an hexadecimal values 
+	 */
+	def void testWithNegateOfHexaDecimalValue() {
+		
+		val result = parseHelper.parse('''
+		Label1       EQU    !$AA		 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(0)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+		
+		val equDirective = directiveLine.directive as EquDirective
+	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
+		Assert.assertEquals("Operand must be equals to 65365", 65365, ExpressionParser.parse(equDirective))		
 	}
 }
