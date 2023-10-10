@@ -27,7 +27,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Not;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Operand;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
-import org.bpy.electronics.mc6809.assembler.assembler.RigthShift;
+import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
@@ -120,8 +120,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.OR:
 				sequence_Or(context, (Or) semanticObject); 
 				return; 
-			case AssemblerPackage.RIGTH_SHIFT:
-				sequence_RigthShift(context, (RigthShift) semanticObject); 
+			case AssemblerPackage.RIGHT_SHIFT:
+				sequence_RightShift(context, (RightShift) semanticObject); 
 				return; 
 			case AssemblerPackage.SOURCE_LINE:
 				sequence_SourceLine(context, (SourceLine) semanticObject); 
@@ -155,8 +155,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns Addition
 	 *     LeftShift returns Addition
 	 *     LeftShift.LeftShift_1_0 returns Addition
-	 *     RigthShift returns Addition
-	 *     RigthShift.RigthShift_1_0 returns Addition
+	 *     RightShift returns Addition
+	 *     RightShift.RightShift_1_0 returns Addition
 	 *     And returns Addition
 	 *     And.And_1_0 returns Addition
 	 *     Or returns Addition
@@ -198,8 +198,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns And
 	 *     LeftShift returns And
 	 *     LeftShift.LeftShift_1_0 returns And
-	 *     RigthShift returns And
-	 *     RigthShift.RigthShift_1_0 returns And
+	 *     RightShift returns And
+	 *     RightShift.RightShift_1_0 returns And
 	 *     And returns And
 	 *     And.And_1_0 returns And
 	 *     Or returns And
@@ -349,8 +349,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns Division
 	 *     LeftShift returns Division
 	 *     LeftShift.LeftShift_1_0 returns Division
-	 *     RigthShift returns Division
-	 *     RigthShift.RigthShift_1_0 returns Division
+	 *     RightShift returns Division
+	 *     RightShift.RightShift_1_0 returns Division
 	 *     And returns Division
 	 *     And.And_1_0 returns Division
 	 *     Or returns Division
@@ -449,8 +449,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns LeftShift
 	 *     LeftShift returns LeftShift
 	 *     LeftShift.LeftShift_1_0 returns LeftShift
-	 *     RigthShift returns LeftShift
-	 *     RigthShift.RigthShift_1_0 returns LeftShift
+	 *     RightShift returns LeftShift
+	 *     RightShift.RightShift_1_0 returns LeftShift
 	 *     And returns LeftShift
 	 *     And.And_1_0 returns LeftShift
 	 *     Or returns LeftShift
@@ -460,7 +460,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Primary returns LeftShift
 	 *
 	 * Constraint:
-	 *     (left=LeftShift_LeftShift_1_0 right=RigthShift)
+	 *     (left=LeftShift_LeftShift_1_0 right=RightShift)
 	 * </pre>
 	 */
 	protected void sequence_LeftShift(ISerializationContext context, LeftShift semanticObject) {
@@ -472,7 +472,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLeftShiftAccess().getLeftShiftLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getLeftShiftAccess().getRightRigthShiftParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.accept(grammarAccess.getLeftShiftAccess().getRightRightShiftParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -506,8 +506,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns Modulo
 	 *     LeftShift returns Modulo
 	 *     LeftShift.LeftShift_1_0 returns Modulo
-	 *     RigthShift returns Modulo
-	 *     RigthShift.RigthShift_1_0 returns Modulo
+	 *     RightShift returns Modulo
+	 *     RightShift.RightShift_1_0 returns Modulo
 	 *     And returns Modulo
 	 *     And.And_1_0 returns Modulo
 	 *     Or returns Modulo
@@ -552,8 +552,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns Multiplication
 	 *     LeftShift returns Multiplication
 	 *     LeftShift.LeftShift_1_0 returns Multiplication
-	 *     RigthShift returns Multiplication
-	 *     RigthShift.RigthShift_1_0 returns Multiplication
+	 *     RightShift returns Multiplication
+	 *     RightShift.RightShift_1_0 returns Multiplication
 	 *     And returns Multiplication
 	 *     And.And_1_0 returns Multiplication
 	 *     Or returns Multiplication
@@ -632,8 +632,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns Or
 	 *     LeftShift returns Or
 	 *     LeftShift.LeftShift_1_0 returns Or
-	 *     RigthShift returns Or
-	 *     RigthShift.RigthShift_1_0 returns Or
+	 *     RightShift returns Or
+	 *     RightShift.RightShift_1_0 returns Or
 	 *     And returns Or
 	 *     And.And_1_0 returns Or
 	 *     Or returns Or
@@ -675,8 +675,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns Expression
 	 *     LeftShift returns Expression
 	 *     LeftShift.LeftShift_1_0 returns Expression
-	 *     RigthShift returns Expression
-	 *     RigthShift.RigthShift_1_0 returns Expression
+	 *     RightShift returns Expression
+	 *     RightShift.RightShift_1_0 returns Expression
 	 *     And returns Expression
 	 *     And.And_1_0 returns Expression
 	 *     Or returns Expression
@@ -716,8 +716,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns Not
 	 *     LeftShift returns Not
 	 *     LeftShift.LeftShift_1_0 returns Not
-	 *     RigthShift returns Not
-	 *     RigthShift.RigthShift_1_0 returns Not
+	 *     RightShift returns Not
+	 *     RightShift.RightShift_1_0 returns Not
 	 *     And returns Not
 	 *     And.And_1_0 returns Not
 	 *     Or returns Not
@@ -744,42 +744,42 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Multiplication returns RigthShift
-	 *     Multiplication.Multiplication_1_0 returns RigthShift
-	 *     Division returns RigthShift
-	 *     Division.Division_1_0 returns RigthShift
-	 *     Modulo returns RigthShift
-	 *     Modulo.Modulo_1_0 returns RigthShift
-	 *     Addition returns RigthShift
-	 *     Addition.Addition_1_0 returns RigthShift
-	 *     Substraction returns RigthShift
-	 *     Substraction.Substraction_1_0 returns RigthShift
-	 *     LeftShift returns RigthShift
-	 *     LeftShift.LeftShift_1_0 returns RigthShift
-	 *     RigthShift returns RigthShift
-	 *     RigthShift.RigthShift_1_0 returns RigthShift
-	 *     And returns RigthShift
-	 *     And.And_1_0 returns RigthShift
-	 *     Or returns RigthShift
-	 *     Or.Or_1_0 returns RigthShift
-	 *     Xor returns RigthShift
-	 *     Xor.Xor_1_0 returns RigthShift
-	 *     Primary returns RigthShift
+	 *     Multiplication returns RightShift
+	 *     Multiplication.Multiplication_1_0 returns RightShift
+	 *     Division returns RightShift
+	 *     Division.Division_1_0 returns RightShift
+	 *     Modulo returns RightShift
+	 *     Modulo.Modulo_1_0 returns RightShift
+	 *     Addition returns RightShift
+	 *     Addition.Addition_1_0 returns RightShift
+	 *     Substraction returns RightShift
+	 *     Substraction.Substraction_1_0 returns RightShift
+	 *     LeftShift returns RightShift
+	 *     LeftShift.LeftShift_1_0 returns RightShift
+	 *     RightShift returns RightShift
+	 *     RightShift.RightShift_1_0 returns RightShift
+	 *     And returns RightShift
+	 *     And.And_1_0 returns RightShift
+	 *     Or returns RightShift
+	 *     Or.Or_1_0 returns RightShift
+	 *     Xor returns RightShift
+	 *     Xor.Xor_1_0 returns RightShift
+	 *     Primary returns RightShift
 	 *
 	 * Constraint:
-	 *     (left=RigthShift_RigthShift_1_0 And=Primary)
+	 *     (left=RightShift_RightShift_1_0 right=And)
 	 * </pre>
 	 */
-	protected void sequence_RigthShift(ISerializationContext context, RigthShift semanticObject) {
+	protected void sequence_RightShift(ISerializationContext context, RightShift semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RIGTH_SHIFT__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RIGTH_SHIFT__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RIGTH_SHIFT__AND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RIGTH_SHIFT__AND));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RIGHT_SHIFT__LEFT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RIGHT_SHIFT__LEFT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RIGHT_SHIFT__RIGHT) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RIGHT_SHIFT__RIGHT));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRigthShiftAccess().getRigthShiftLeftAction_1_0(), semanticObject.getLeft());
-		feeder.accept(grammarAccess.getRigthShiftAccess().getAndPrimaryParserRuleCall_1_2_0(), semanticObject.getAnd());
+		feeder.accept(grammarAccess.getRightShiftAccess().getRightShiftLeftAction_1_0(), semanticObject.getLeft());
+		feeder.accept(grammarAccess.getRightShiftAccess().getRightAndParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
 	}
 	
@@ -833,8 +833,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns Substraction
 	 *     LeftShift returns Substraction
 	 *     LeftShift.LeftShift_1_0 returns Substraction
-	 *     RigthShift returns Substraction
-	 *     RigthShift.RigthShift_1_0 returns Substraction
+	 *     RightShift returns Substraction
+	 *     RightShift.RightShift_1_0 returns Substraction
 	 *     And returns Substraction
 	 *     And.And_1_0 returns Substraction
 	 *     Or returns Substraction
@@ -876,8 +876,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Substraction.Substraction_1_0 returns Xor
 	 *     LeftShift returns Xor
 	 *     LeftShift.LeftShift_1_0 returns Xor
-	 *     RigthShift returns Xor
-	 *     RigthShift.RigthShift_1_0 returns Xor
+	 *     RightShift returns Xor
+	 *     RightShift.RightShift_1_0 returns Xor
 	 *     And returns Xor
 	 *     And.And_1_0 returns Xor
 	 *     Or returns Xor

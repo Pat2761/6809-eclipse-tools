@@ -2340,12 +2340,12 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleLeftShift"
-    // InternalAssembler.g:812:1: ruleLeftShift returns [EObject current=null] : (this_RigthShift_0= ruleRigthShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRigthShift ) ) )* ) ;
+    // InternalAssembler.g:812:1: ruleLeftShift returns [EObject current=null] : (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* ) ;
     public final EObject ruleLeftShift() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_2=null;
-        EObject this_RigthShift_0 = null;
+        EObject this_RightShift_0 = null;
 
         EObject lv_right_3_0 = null;
 
@@ -2354,29 +2354,29 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:818:2: ( (this_RigthShift_0= ruleRigthShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRigthShift ) ) )* ) )
-            // InternalAssembler.g:819:2: (this_RigthShift_0= ruleRigthShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRigthShift ) ) )* )
+            // InternalAssembler.g:818:2: ( (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* ) )
+            // InternalAssembler.g:819:2: (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* )
             {
-            // InternalAssembler.g:819:2: (this_RigthShift_0= ruleRigthShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRigthShift ) ) )* )
-            // InternalAssembler.g:820:3: this_RigthShift_0= ruleRigthShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRigthShift ) ) )*
+            // InternalAssembler.g:819:2: (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* )
+            // InternalAssembler.g:820:3: this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )*
             {
             if ( state.backtracking==0 ) {
 
-              			newCompositeNode(grammarAccess.getLeftShiftAccess().getRigthShiftParserRuleCall_0());
+              			newCompositeNode(grammarAccess.getLeftShiftAccess().getRightShiftParserRuleCall_0());
               		
             }
             pushFollow(FOLLOW_15);
-            this_RigthShift_0=ruleRigthShift();
+            this_RightShift_0=ruleRightShift();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			current = this_RigthShift_0;
+              			current = this_RightShift_0;
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAssembler.g:828:3: ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRigthShift ) ) )*
+            // InternalAssembler.g:828:3: ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )*
             loop14:
             do {
                 int alt14=2;
@@ -2389,7 +2389,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
                 switch (alt14) {
             	case 1 :
-            	    // InternalAssembler.g:829:4: () otherlv_2= '<<' ( (lv_right_3_0= ruleRigthShift ) )
+            	    // InternalAssembler.g:829:4: () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) )
             	    {
             	    // InternalAssembler.g:829:4: ()
             	    // InternalAssembler.g:830:5: 
@@ -2410,19 +2410,19 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      				newLeafNode(otherlv_2, grammarAccess.getLeftShiftAccess().getLessThanSignLessThanSignKeyword_1_1());
             	      			
             	    }
-            	    // InternalAssembler.g:840:4: ( (lv_right_3_0= ruleRigthShift ) )
-            	    // InternalAssembler.g:841:5: (lv_right_3_0= ruleRigthShift )
+            	    // InternalAssembler.g:840:4: ( (lv_right_3_0= ruleRightShift ) )
+            	    // InternalAssembler.g:841:5: (lv_right_3_0= ruleRightShift )
             	    {
-            	    // InternalAssembler.g:841:5: (lv_right_3_0= ruleRigthShift )
-            	    // InternalAssembler.g:842:6: lv_right_3_0= ruleRigthShift
+            	    // InternalAssembler.g:841:5: (lv_right_3_0= ruleRightShift )
+            	    // InternalAssembler.g:842:6: lv_right_3_0= ruleRightShift
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      						newCompositeNode(grammarAccess.getLeftShiftAccess().getRightRigthShiftParserRuleCall_1_2_0());
+            	      						newCompositeNode(grammarAccess.getLeftShiftAccess().getRightRightShiftParserRuleCall_1_2_0());
             	      					
             	    }
             	    pushFollow(FOLLOW_15);
-            	    lv_right_3_0=ruleRigthShift();
+            	    lv_right_3_0=ruleRightShift();
 
             	    state._fsp--;
             	    if (state.failed) return current;
@@ -2435,7 +2435,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      							current,
             	      							"right",
             	      							lv_right_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.RigthShift");
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.RightShift");
             	      						afterParserOrEnumRuleCall();
             	      					
             	    }
@@ -2478,28 +2478,28 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
     // $ANTLR end "ruleLeftShift"
 
 
-    // $ANTLR start "entryRuleRigthShift"
-    // InternalAssembler.g:864:1: entryRuleRigthShift returns [EObject current=null] : iv_ruleRigthShift= ruleRigthShift EOF ;
-    public final EObject entryRuleRigthShift() throws RecognitionException {
+    // $ANTLR start "entryRuleRightShift"
+    // InternalAssembler.g:864:1: entryRuleRightShift returns [EObject current=null] : iv_ruleRightShift= ruleRightShift EOF ;
+    public final EObject entryRuleRightShift() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleRigthShift = null;
+        EObject iv_ruleRightShift = null;
 
 
         try {
-            // InternalAssembler.g:864:51: (iv_ruleRigthShift= ruleRigthShift EOF )
-            // InternalAssembler.g:865:2: iv_ruleRigthShift= ruleRigthShift EOF
+            // InternalAssembler.g:864:51: (iv_ruleRightShift= ruleRightShift EOF )
+            // InternalAssembler.g:865:2: iv_ruleRightShift= ruleRightShift EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getRigthShiftRule()); 
+               newCompositeNode(grammarAccess.getRightShiftRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleRigthShift=ruleRigthShift();
+            iv_ruleRightShift=ruleRightShift();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleRigthShift; 
+               current =iv_ruleRightShift; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -2515,33 +2515,33 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleRigthShift"
+    // $ANTLR end "entryRuleRightShift"
 
 
-    // $ANTLR start "ruleRigthShift"
-    // InternalAssembler.g:871:1: ruleRigthShift returns [EObject current=null] : (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_And_3_0= rulePrimary ) ) )* ) ;
-    public final EObject ruleRigthShift() throws RecognitionException {
+    // $ANTLR start "ruleRightShift"
+    // InternalAssembler.g:871:1: ruleRightShift returns [EObject current=null] : (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* ) ;
+    public final EObject ruleRightShift() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_2=null;
         EObject this_And_0 = null;
 
-        EObject lv_And_3_0 = null;
+        EObject lv_right_3_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalAssembler.g:877:2: ( (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_And_3_0= rulePrimary ) ) )* ) )
-            // InternalAssembler.g:878:2: (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_And_3_0= rulePrimary ) ) )* )
+            // InternalAssembler.g:877:2: ( (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* ) )
+            // InternalAssembler.g:878:2: (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* )
             {
-            // InternalAssembler.g:878:2: (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_And_3_0= rulePrimary ) ) )* )
-            // InternalAssembler.g:879:3: this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_And_3_0= rulePrimary ) ) )*
+            // InternalAssembler.g:878:2: (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* )
+            // InternalAssembler.g:879:3: this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )*
             {
             if ( state.backtracking==0 ) {
 
-              			newCompositeNode(grammarAccess.getRigthShiftAccess().getAndParserRuleCall_0());
+              			newCompositeNode(grammarAccess.getRightShiftAccess().getAndParserRuleCall_0());
               		
             }
             pushFollow(FOLLOW_16);
@@ -2555,7 +2555,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAssembler.g:887:3: ( () otherlv_2= '>>' ( (lv_And_3_0= rulePrimary ) ) )*
+            // InternalAssembler.g:887:3: ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )*
             loop15:
             do {
                 int alt15=2;
@@ -2568,7 +2568,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
                 switch (alt15) {
             	case 1 :
-            	    // InternalAssembler.g:888:4: () otherlv_2= '>>' ( (lv_And_3_0= rulePrimary ) )
+            	    // InternalAssembler.g:888:4: () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) )
             	    {
             	    // InternalAssembler.g:888:4: ()
             	    // InternalAssembler.g:889:5: 
@@ -2576,7 +2576,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	    if ( state.backtracking==0 ) {
 
             	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getRigthShiftAccess().getRigthShiftLeftAction_1_0(),
+            	      						grammarAccess.getRightShiftAccess().getRightShiftLeftAction_1_0(),
             	      						current);
             	      				
             	    }
@@ -2586,35 +2586,35 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	    otherlv_2=(Token)match(input,22,FOLLOW_10); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      				newLeafNode(otherlv_2, grammarAccess.getRigthShiftAccess().getGreaterThanSignGreaterThanSignKeyword_1_1());
+            	      				newLeafNode(otherlv_2, grammarAccess.getRightShiftAccess().getGreaterThanSignGreaterThanSignKeyword_1_1());
             	      			
             	    }
-            	    // InternalAssembler.g:899:4: ( (lv_And_3_0= rulePrimary ) )
-            	    // InternalAssembler.g:900:5: (lv_And_3_0= rulePrimary )
+            	    // InternalAssembler.g:899:4: ( (lv_right_3_0= ruleAnd ) )
+            	    // InternalAssembler.g:900:5: (lv_right_3_0= ruleAnd )
             	    {
-            	    // InternalAssembler.g:900:5: (lv_And_3_0= rulePrimary )
-            	    // InternalAssembler.g:901:6: lv_And_3_0= rulePrimary
+            	    // InternalAssembler.g:900:5: (lv_right_3_0= ruleAnd )
+            	    // InternalAssembler.g:901:6: lv_right_3_0= ruleAnd
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      						newCompositeNode(grammarAccess.getRigthShiftAccess().getAndPrimaryParserRuleCall_1_2_0());
+            	      						newCompositeNode(grammarAccess.getRightShiftAccess().getRightAndParserRuleCall_1_2_0());
             	      					
             	    }
             	    pushFollow(FOLLOW_16);
-            	    lv_And_3_0=rulePrimary();
+            	    lv_right_3_0=ruleAnd();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      						if (current==null) {
-            	      							current = createModelElementForParent(grammarAccess.getRigthShiftRule());
+            	      							current = createModelElementForParent(grammarAccess.getRightShiftRule());
             	      						}
             	      						set(
             	      							current,
-            	      							"And",
-            	      							lv_And_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Primary");
+            	      							"right",
+            	      							lv_right_3_0,
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.And");
             	      						afterParserOrEnumRuleCall();
             	      					
             	    }
@@ -2654,7 +2654,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleRigthShift"
+    // $ANTLR end "ruleRightShift"
 
 
     // $ANTLR start "entryRuleAnd"

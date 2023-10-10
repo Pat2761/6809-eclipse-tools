@@ -5,7 +5,7 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
-import org.bpy.electronics.mc6809.assembler.assembler.RigthShift;
+import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -17,19 +17,19 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Rigth Shift</b></em>'.
+ * An implementation of the model object '<em><b>Right Shift</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RigthShiftImpl#getLeft <em>Left</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RigthShiftImpl#getAnd <em>And</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RightShiftImpl#getLeft <em>Left</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RightShiftImpl#getRight <em>Right</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class RigthShiftImpl extends ExpressionImpl implements RigthShift
+public class RightShiftImpl extends ExpressionImpl implements RightShift
 {
   /**
    * The cached value of the '{@link #getLeft() <em>Left</em>}' containment reference.
@@ -42,21 +42,21 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
   protected Expression left;
 
   /**
-   * The cached value of the '{@link #getAnd() <em>And</em>}' containment reference.
+   * The cached value of the '{@link #getRight() <em>Right</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getAnd()
+   * @see #getRight()
    * @generated
    * @ordered
    */
-  protected Expression and;
+  protected Expression right;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected RigthShiftImpl()
+  protected RightShiftImpl()
   {
     super();
   }
@@ -69,7 +69,7 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.RIGTH_SHIFT;
+    return AssemblerPackage.Literals.RIGHT_SHIFT;
   }
 
   /**
@@ -94,7 +94,7 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
     left = newLeft;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.RIGTH_SHIFT__LEFT, oldLeft, newLeft);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.RIGHT_SHIFT__LEFT, oldLeft, newLeft);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -112,14 +112,14 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
     {
       NotificationChain msgs = null;
       if (left != null)
-        msgs = ((InternalEObject)left).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.RIGTH_SHIFT__LEFT, null, msgs);
+        msgs = ((InternalEObject)left).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.RIGHT_SHIFT__LEFT, null, msgs);
       if (newLeft != null)
-        msgs = ((InternalEObject)newLeft).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.RIGTH_SHIFT__LEFT, null, msgs);
+        msgs = ((InternalEObject)newLeft).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.RIGHT_SHIFT__LEFT, null, msgs);
       msgs = basicSetLeft(newLeft, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.RIGTH_SHIFT__LEFT, newLeft, newLeft));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.RIGHT_SHIFT__LEFT, newLeft, newLeft));
   }
 
   /**
@@ -128,9 +128,9 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
    * @generated
    */
   @Override
-  public Expression getAnd()
+  public Expression getRight()
   {
-    return and;
+    return right;
   }
 
   /**
@@ -138,13 +138,13 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetAnd(Expression newAnd, NotificationChain msgs)
+  public NotificationChain basicSetRight(Expression newRight, NotificationChain msgs)
   {
-    Expression oldAnd = and;
-    and = newAnd;
+    Expression oldRight = right;
+    right = newRight;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.RIGTH_SHIFT__AND, oldAnd, newAnd);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.RIGHT_SHIFT__RIGHT, oldRight, newRight);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -156,20 +156,20 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
    * @generated
    */
   @Override
-  public void setAnd(Expression newAnd)
+  public void setRight(Expression newRight)
   {
-    if (newAnd != and)
+    if (newRight != right)
     {
       NotificationChain msgs = null;
-      if (and != null)
-        msgs = ((InternalEObject)and).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.RIGTH_SHIFT__AND, null, msgs);
-      if (newAnd != null)
-        msgs = ((InternalEObject)newAnd).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.RIGTH_SHIFT__AND, null, msgs);
-      msgs = basicSetAnd(newAnd, msgs);
+      if (right != null)
+        msgs = ((InternalEObject)right).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.RIGHT_SHIFT__RIGHT, null, msgs);
+      if (newRight != null)
+        msgs = ((InternalEObject)newRight).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.RIGHT_SHIFT__RIGHT, null, msgs);
+      msgs = basicSetRight(newRight, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.RIGTH_SHIFT__AND, newAnd, newAnd));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.RIGHT_SHIFT__RIGHT, newRight, newRight));
   }
 
   /**
@@ -182,10 +182,10 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
   {
     switch (featureID)
     {
-      case AssemblerPackage.RIGTH_SHIFT__LEFT:
+      case AssemblerPackage.RIGHT_SHIFT__LEFT:
         return basicSetLeft(null, msgs);
-      case AssemblerPackage.RIGTH_SHIFT__AND:
-        return basicSetAnd(null, msgs);
+      case AssemblerPackage.RIGHT_SHIFT__RIGHT:
+        return basicSetRight(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -200,10 +200,10 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
   {
     switch (featureID)
     {
-      case AssemblerPackage.RIGTH_SHIFT__LEFT:
+      case AssemblerPackage.RIGHT_SHIFT__LEFT:
         return getLeft();
-      case AssemblerPackage.RIGTH_SHIFT__AND:
-        return getAnd();
+      case AssemblerPackage.RIGHT_SHIFT__RIGHT:
+        return getRight();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -218,11 +218,11 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
   {
     switch (featureID)
     {
-      case AssemblerPackage.RIGTH_SHIFT__LEFT:
+      case AssemblerPackage.RIGHT_SHIFT__LEFT:
         setLeft((Expression)newValue);
         return;
-      case AssemblerPackage.RIGTH_SHIFT__AND:
-        setAnd((Expression)newValue);
+      case AssemblerPackage.RIGHT_SHIFT__RIGHT:
+        setRight((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -238,11 +238,11 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
   {
     switch (featureID)
     {
-      case AssemblerPackage.RIGTH_SHIFT__LEFT:
+      case AssemblerPackage.RIGHT_SHIFT__LEFT:
         setLeft((Expression)null);
         return;
-      case AssemblerPackage.RIGTH_SHIFT__AND:
-        setAnd((Expression)null);
+      case AssemblerPackage.RIGHT_SHIFT__RIGHT:
+        setRight((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -258,12 +258,12 @@ public class RigthShiftImpl extends ExpressionImpl implements RigthShift
   {
     switch (featureID)
     {
-      case AssemblerPackage.RIGTH_SHIFT__LEFT:
+      case AssemblerPackage.RIGHT_SHIFT__LEFT:
         return left != null;
-      case AssemblerPackage.RIGTH_SHIFT__AND:
-        return and != null;
+      case AssemblerPackage.RIGHT_SHIFT__RIGHT:
+        return right != null;
     }
     return super.eIsSet(featureID);
   }
 
-} //RigthShiftImpl
+} //RightShiftImpl

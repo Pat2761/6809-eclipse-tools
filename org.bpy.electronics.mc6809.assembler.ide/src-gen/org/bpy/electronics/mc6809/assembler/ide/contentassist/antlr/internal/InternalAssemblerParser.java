@@ -1210,23 +1210,23 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
     // $ANTLR end "ruleLeftShift"
 
 
-    // $ANTLR start "entryRuleRigthShift"
-    // InternalAssembler.g:379:1: entryRuleRigthShift : ruleRigthShift EOF ;
-    public final void entryRuleRigthShift() throws RecognitionException {
+    // $ANTLR start "entryRuleRightShift"
+    // InternalAssembler.g:379:1: entryRuleRightShift : ruleRightShift EOF ;
+    public final void entryRuleRightShift() throws RecognitionException {
         try {
-            // InternalAssembler.g:380:1: ( ruleRigthShift EOF )
-            // InternalAssembler.g:381:1: ruleRigthShift EOF
+            // InternalAssembler.g:380:1: ( ruleRightShift EOF )
+            // InternalAssembler.g:381:1: ruleRightShift EOF
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRigthShiftRule()); 
+               before(grammarAccess.getRightShiftRule()); 
             }
             pushFollow(FOLLOW_1);
-            ruleRigthShift();
+            ruleRightShift();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRigthShiftRule()); 
+               after(grammarAccess.getRightShiftRule()); 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return ;
 
@@ -1241,30 +1241,30 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "entryRuleRigthShift"
+    // $ANTLR end "entryRuleRightShift"
 
 
-    // $ANTLR start "ruleRigthShift"
-    // InternalAssembler.g:388:1: ruleRigthShift : ( ( rule__RigthShift__Group__0 ) ) ;
-    public final void ruleRigthShift() throws RecognitionException {
+    // $ANTLR start "ruleRightShift"
+    // InternalAssembler.g:388:1: ruleRightShift : ( ( rule__RightShift__Group__0 ) ) ;
+    public final void ruleRightShift() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:392:2: ( ( ( rule__RigthShift__Group__0 ) ) )
-            // InternalAssembler.g:393:2: ( ( rule__RigthShift__Group__0 ) )
+            // InternalAssembler.g:392:2: ( ( ( rule__RightShift__Group__0 ) ) )
+            // InternalAssembler.g:393:2: ( ( rule__RightShift__Group__0 ) )
             {
-            // InternalAssembler.g:393:2: ( ( rule__RigthShift__Group__0 ) )
-            // InternalAssembler.g:394:3: ( rule__RigthShift__Group__0 )
+            // InternalAssembler.g:393:2: ( ( rule__RightShift__Group__0 ) )
+            // InternalAssembler.g:394:3: ( rule__RightShift__Group__0 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRigthShiftAccess().getGroup()); 
+               before(grammarAccess.getRightShiftAccess().getGroup()); 
             }
-            // InternalAssembler.g:395:3: ( rule__RigthShift__Group__0 )
-            // InternalAssembler.g:395:4: rule__RigthShift__Group__0
+            // InternalAssembler.g:395:3: ( rule__RightShift__Group__0 )
+            // InternalAssembler.g:395:4: rule__RightShift__Group__0
             {
             pushFollow(FOLLOW_2);
-            rule__RigthShift__Group__0();
+            rule__RightShift__Group__0();
 
             state._fsp--;
             if (state.failed) return ;
@@ -1272,7 +1272,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRigthShiftAccess().getGroup()); 
+               after(grammarAccess.getRightShiftAccess().getGroup()); 
             }
 
             }
@@ -1292,7 +1292,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "ruleRigthShift"
+    // $ANTLR end "ruleRightShift"
 
 
     // $ANTLR start "entryRuleAnd"
@@ -6317,28 +6317,28 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__LeftShift__Group__0__Impl"
-    // InternalAssembler.g:1867:1: rule__LeftShift__Group__0__Impl : ( ruleRigthShift ) ;
+    // InternalAssembler.g:1867:1: rule__LeftShift__Group__0__Impl : ( ruleRightShift ) ;
     public final void rule__LeftShift__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:1871:1: ( ( ruleRigthShift ) )
-            // InternalAssembler.g:1872:1: ( ruleRigthShift )
+            // InternalAssembler.g:1871:1: ( ( ruleRightShift ) )
+            // InternalAssembler.g:1872:1: ( ruleRightShift )
             {
-            // InternalAssembler.g:1872:1: ( ruleRigthShift )
-            // InternalAssembler.g:1873:2: ruleRigthShift
+            // InternalAssembler.g:1872:1: ( ruleRightShift )
+            // InternalAssembler.g:1873:2: ruleRightShift
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLeftShiftAccess().getRigthShiftParserRuleCall_0()); 
+               before(grammarAccess.getLeftShiftAccess().getRightShiftParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleRigthShift();
+            ruleRightShift();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLeftShiftAccess().getRigthShiftParserRuleCall_0()); 
+               after(grammarAccess.getLeftShiftAccess().getRightShiftParserRuleCall_0()); 
             }
 
             }
@@ -6705,23 +6705,23 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__LeftShift__Group_1__2__Impl"
 
 
-    // $ANTLR start "rule__RigthShift__Group__0"
-    // InternalAssembler.g:1990:1: rule__RigthShift__Group__0 : rule__RigthShift__Group__0__Impl rule__RigthShift__Group__1 ;
-    public final void rule__RigthShift__Group__0() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__Group__0"
+    // InternalAssembler.g:1990:1: rule__RightShift__Group__0 : rule__RightShift__Group__0__Impl rule__RightShift__Group__1 ;
+    public final void rule__RightShift__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:1994:1: ( rule__RigthShift__Group__0__Impl rule__RigthShift__Group__1 )
-            // InternalAssembler.g:1995:2: rule__RigthShift__Group__0__Impl rule__RigthShift__Group__1
+            // InternalAssembler.g:1994:1: ( rule__RightShift__Group__0__Impl rule__RightShift__Group__1 )
+            // InternalAssembler.g:1995:2: rule__RightShift__Group__0__Impl rule__RightShift__Group__1
             {
             pushFollow(FOLLOW_22);
-            rule__RigthShift__Group__0__Impl();
+            rule__RightShift__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RigthShift__Group__1();
+            rule__RightShift__Group__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -6740,12 +6740,12 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__Group__0"
+    // $ANTLR end "rule__RightShift__Group__0"
 
 
-    // $ANTLR start "rule__RigthShift__Group__0__Impl"
-    // InternalAssembler.g:2002:1: rule__RigthShift__Group__0__Impl : ( ruleAnd ) ;
-    public final void rule__RigthShift__Group__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__Group__0__Impl"
+    // InternalAssembler.g:2002:1: rule__RightShift__Group__0__Impl : ( ruleAnd ) ;
+    public final void rule__RightShift__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -6757,7 +6757,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             // InternalAssembler.g:2008:2: ruleAnd
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRigthShiftAccess().getAndParserRuleCall_0()); 
+               before(grammarAccess.getRightShiftAccess().getAndParserRuleCall_0()); 
             }
             pushFollow(FOLLOW_2);
             ruleAnd();
@@ -6765,7 +6765,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRigthShiftAccess().getAndParserRuleCall_0()); 
+               after(grammarAccess.getRightShiftAccess().getAndParserRuleCall_0()); 
             }
 
             }
@@ -6785,21 +6785,21 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__Group__0__Impl"
+    // $ANTLR end "rule__RightShift__Group__0__Impl"
 
 
-    // $ANTLR start "rule__RigthShift__Group__1"
-    // InternalAssembler.g:2017:1: rule__RigthShift__Group__1 : rule__RigthShift__Group__1__Impl ;
-    public final void rule__RigthShift__Group__1() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__Group__1"
+    // InternalAssembler.g:2017:1: rule__RightShift__Group__1 : rule__RightShift__Group__1__Impl ;
+    public final void rule__RightShift__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:2021:1: ( rule__RigthShift__Group__1__Impl )
-            // InternalAssembler.g:2022:2: rule__RigthShift__Group__1__Impl
+            // InternalAssembler.g:2021:1: ( rule__RightShift__Group__1__Impl )
+            // InternalAssembler.g:2022:2: rule__RightShift__Group__1__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__RigthShift__Group__1__Impl();
+            rule__RightShift__Group__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -6818,26 +6818,26 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__Group__1"
+    // $ANTLR end "rule__RightShift__Group__1"
 
 
-    // $ANTLR start "rule__RigthShift__Group__1__Impl"
-    // InternalAssembler.g:2028:1: rule__RigthShift__Group__1__Impl : ( ( rule__RigthShift__Group_1__0 )* ) ;
-    public final void rule__RigthShift__Group__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__Group__1__Impl"
+    // InternalAssembler.g:2028:1: rule__RightShift__Group__1__Impl : ( ( rule__RightShift__Group_1__0 )* ) ;
+    public final void rule__RightShift__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:2032:1: ( ( ( rule__RigthShift__Group_1__0 )* ) )
-            // InternalAssembler.g:2033:1: ( ( rule__RigthShift__Group_1__0 )* )
+            // InternalAssembler.g:2032:1: ( ( ( rule__RightShift__Group_1__0 )* ) )
+            // InternalAssembler.g:2033:1: ( ( rule__RightShift__Group_1__0 )* )
             {
-            // InternalAssembler.g:2033:1: ( ( rule__RigthShift__Group_1__0 )* )
-            // InternalAssembler.g:2034:2: ( rule__RigthShift__Group_1__0 )*
+            // InternalAssembler.g:2033:1: ( ( rule__RightShift__Group_1__0 )* )
+            // InternalAssembler.g:2034:2: ( rule__RightShift__Group_1__0 )*
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRigthShiftAccess().getGroup_1()); 
+               before(grammarAccess.getRightShiftAccess().getGroup_1()); 
             }
-            // InternalAssembler.g:2035:2: ( rule__RigthShift__Group_1__0 )*
+            // InternalAssembler.g:2035:2: ( rule__RightShift__Group_1__0 )*
             loop17:
             do {
                 int alt17=2;
@@ -6850,10 +6850,10 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
 
                 switch (alt17) {
             	case 1 :
-            	    // InternalAssembler.g:2035:3: rule__RigthShift__Group_1__0
+            	    // InternalAssembler.g:2035:3: rule__RightShift__Group_1__0
             	    {
             	    pushFollow(FOLLOW_23);
-            	    rule__RigthShift__Group_1__0();
+            	    rule__RightShift__Group_1__0();
 
             	    state._fsp--;
             	    if (state.failed) return ;
@@ -6867,7 +6867,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             } while (true);
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRigthShiftAccess().getGroup_1()); 
+               after(grammarAccess.getRightShiftAccess().getGroup_1()); 
             }
 
             }
@@ -6887,26 +6887,26 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__Group__1__Impl"
+    // $ANTLR end "rule__RightShift__Group__1__Impl"
 
 
-    // $ANTLR start "rule__RigthShift__Group_1__0"
-    // InternalAssembler.g:2044:1: rule__RigthShift__Group_1__0 : rule__RigthShift__Group_1__0__Impl rule__RigthShift__Group_1__1 ;
-    public final void rule__RigthShift__Group_1__0() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__Group_1__0"
+    // InternalAssembler.g:2044:1: rule__RightShift__Group_1__0 : rule__RightShift__Group_1__0__Impl rule__RightShift__Group_1__1 ;
+    public final void rule__RightShift__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:2048:1: ( rule__RigthShift__Group_1__0__Impl rule__RigthShift__Group_1__1 )
-            // InternalAssembler.g:2049:2: rule__RigthShift__Group_1__0__Impl rule__RigthShift__Group_1__1
+            // InternalAssembler.g:2048:1: ( rule__RightShift__Group_1__0__Impl rule__RightShift__Group_1__1 )
+            // InternalAssembler.g:2049:2: rule__RightShift__Group_1__0__Impl rule__RightShift__Group_1__1
             {
             pushFollow(FOLLOW_22);
-            rule__RigthShift__Group_1__0__Impl();
+            rule__RightShift__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RigthShift__Group_1__1();
+            rule__RightShift__Group_1__1();
 
             state._fsp--;
             if (state.failed) return ;
@@ -6925,12 +6925,12 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__Group_1__0"
+    // $ANTLR end "rule__RightShift__Group_1__0"
 
 
-    // $ANTLR start "rule__RigthShift__Group_1__0__Impl"
-    // InternalAssembler.g:2056:1: rule__RigthShift__Group_1__0__Impl : ( () ) ;
-    public final void rule__RigthShift__Group_1__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__Group_1__0__Impl"
+    // InternalAssembler.g:2056:1: rule__RightShift__Group_1__0__Impl : ( () ) ;
+    public final void rule__RightShift__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -6942,7 +6942,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             // InternalAssembler.g:2062:2: ()
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRigthShiftAccess().getRigthShiftLeftAction_1_0()); 
+               before(grammarAccess.getRightShiftAccess().getRightShiftLeftAction_1_0()); 
             }
             // InternalAssembler.g:2063:2: ()
             // InternalAssembler.g:2063:3: 
@@ -6950,7 +6950,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRigthShiftAccess().getRigthShiftLeftAction_1_0()); 
+               after(grammarAccess.getRightShiftAccess().getRightShiftLeftAction_1_0()); 
             }
 
             }
@@ -6966,26 +6966,26 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__Group_1__0__Impl"
+    // $ANTLR end "rule__RightShift__Group_1__0__Impl"
 
 
-    // $ANTLR start "rule__RigthShift__Group_1__1"
-    // InternalAssembler.g:2071:1: rule__RigthShift__Group_1__1 : rule__RigthShift__Group_1__1__Impl rule__RigthShift__Group_1__2 ;
-    public final void rule__RigthShift__Group_1__1() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__Group_1__1"
+    // InternalAssembler.g:2071:1: rule__RightShift__Group_1__1 : rule__RightShift__Group_1__1__Impl rule__RightShift__Group_1__2 ;
+    public final void rule__RightShift__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:2075:1: ( rule__RigthShift__Group_1__1__Impl rule__RigthShift__Group_1__2 )
-            // InternalAssembler.g:2076:2: rule__RigthShift__Group_1__1__Impl rule__RigthShift__Group_1__2
+            // InternalAssembler.g:2075:1: ( rule__RightShift__Group_1__1__Impl rule__RightShift__Group_1__2 )
+            // InternalAssembler.g:2076:2: rule__RightShift__Group_1__1__Impl rule__RightShift__Group_1__2
             {
             pushFollow(FOLLOW_11);
-            rule__RigthShift__Group_1__1__Impl();
+            rule__RightShift__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
             pushFollow(FOLLOW_2);
-            rule__RigthShift__Group_1__2();
+            rule__RightShift__Group_1__2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -7004,12 +7004,12 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__Group_1__1"
+    // $ANTLR end "rule__RightShift__Group_1__1"
 
 
-    // $ANTLR start "rule__RigthShift__Group_1__1__Impl"
-    // InternalAssembler.g:2083:1: rule__RigthShift__Group_1__1__Impl : ( '>>' ) ;
-    public final void rule__RigthShift__Group_1__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__Group_1__1__Impl"
+    // InternalAssembler.g:2083:1: rule__RightShift__Group_1__1__Impl : ( '>>' ) ;
+    public final void rule__RightShift__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -7021,11 +7021,11 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             // InternalAssembler.g:2089:2: '>>'
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRigthShiftAccess().getGreaterThanSignGreaterThanSignKeyword_1_1()); 
+               before(grammarAccess.getRightShiftAccess().getGreaterThanSignGreaterThanSignKeyword_1_1()); 
             }
             match(input,18,FOLLOW_2); if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRigthShiftAccess().getGreaterThanSignGreaterThanSignKeyword_1_1()); 
+               after(grammarAccess.getRightShiftAccess().getGreaterThanSignGreaterThanSignKeyword_1_1()); 
             }
 
             }
@@ -7045,21 +7045,21 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__Group_1__1__Impl"
+    // $ANTLR end "rule__RightShift__Group_1__1__Impl"
 
 
-    // $ANTLR start "rule__RigthShift__Group_1__2"
-    // InternalAssembler.g:2098:1: rule__RigthShift__Group_1__2 : rule__RigthShift__Group_1__2__Impl ;
-    public final void rule__RigthShift__Group_1__2() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__Group_1__2"
+    // InternalAssembler.g:2098:1: rule__RightShift__Group_1__2 : rule__RightShift__Group_1__2__Impl ;
+    public final void rule__RightShift__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:2102:1: ( rule__RigthShift__Group_1__2__Impl )
-            // InternalAssembler.g:2103:2: rule__RigthShift__Group_1__2__Impl
+            // InternalAssembler.g:2102:1: ( rule__RightShift__Group_1__2__Impl )
+            // InternalAssembler.g:2103:2: rule__RightShift__Group_1__2__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__RigthShift__Group_1__2__Impl();
+            rule__RightShift__Group_1__2__Impl();
 
             state._fsp--;
             if (state.failed) return ;
@@ -7078,30 +7078,30 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__Group_1__2"
+    // $ANTLR end "rule__RightShift__Group_1__2"
 
 
-    // $ANTLR start "rule__RigthShift__Group_1__2__Impl"
-    // InternalAssembler.g:2109:1: rule__RigthShift__Group_1__2__Impl : ( ( rule__RigthShift__AndAssignment_1_2 ) ) ;
-    public final void rule__RigthShift__Group_1__2__Impl() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__Group_1__2__Impl"
+    // InternalAssembler.g:2109:1: rule__RightShift__Group_1__2__Impl : ( ( rule__RightShift__RightAssignment_1_2 ) ) ;
+    public final void rule__RightShift__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:2113:1: ( ( ( rule__RigthShift__AndAssignment_1_2 ) ) )
-            // InternalAssembler.g:2114:1: ( ( rule__RigthShift__AndAssignment_1_2 ) )
+            // InternalAssembler.g:2113:1: ( ( ( rule__RightShift__RightAssignment_1_2 ) ) )
+            // InternalAssembler.g:2114:1: ( ( rule__RightShift__RightAssignment_1_2 ) )
             {
-            // InternalAssembler.g:2114:1: ( ( rule__RigthShift__AndAssignment_1_2 ) )
-            // InternalAssembler.g:2115:2: ( rule__RigthShift__AndAssignment_1_2 )
+            // InternalAssembler.g:2114:1: ( ( rule__RightShift__RightAssignment_1_2 ) )
+            // InternalAssembler.g:2115:2: ( rule__RightShift__RightAssignment_1_2 )
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRigthShiftAccess().getAndAssignment_1_2()); 
+               before(grammarAccess.getRightShiftAccess().getRightAssignment_1_2()); 
             }
-            // InternalAssembler.g:2116:2: ( rule__RigthShift__AndAssignment_1_2 )
-            // InternalAssembler.g:2116:3: rule__RigthShift__AndAssignment_1_2
+            // InternalAssembler.g:2116:2: ( rule__RightShift__RightAssignment_1_2 )
+            // InternalAssembler.g:2116:3: rule__RightShift__RightAssignment_1_2
             {
             pushFollow(FOLLOW_2);
-            rule__RigthShift__AndAssignment_1_2();
+            rule__RightShift__RightAssignment_1_2();
 
             state._fsp--;
             if (state.failed) return ;
@@ -7109,7 +7109,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
             }
 
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRigthShiftAccess().getAndAssignment_1_2()); 
+               after(grammarAccess.getRightShiftAccess().getRightAssignment_1_2()); 
             }
 
             }
@@ -7129,7 +7129,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__Group_1__2__Impl"
+    // $ANTLR end "rule__RightShift__Group_1__2__Impl"
 
 
     // $ANTLR start "rule__And__Group__0"
@@ -10041,28 +10041,28 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
 
 
     // $ANTLR start "rule__LeftShift__RightAssignment_1_2"
-    // InternalAssembler.g:3077:1: rule__LeftShift__RightAssignment_1_2 : ( ruleRigthShift ) ;
+    // InternalAssembler.g:3077:1: rule__LeftShift__RightAssignment_1_2 : ( ruleRightShift ) ;
     public final void rule__LeftShift__RightAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:3081:1: ( ( ruleRigthShift ) )
-            // InternalAssembler.g:3082:2: ( ruleRigthShift )
+            // InternalAssembler.g:3081:1: ( ( ruleRightShift ) )
+            // InternalAssembler.g:3082:2: ( ruleRightShift )
             {
-            // InternalAssembler.g:3082:2: ( ruleRigthShift )
-            // InternalAssembler.g:3083:3: ruleRigthShift
+            // InternalAssembler.g:3082:2: ( ruleRightShift )
+            // InternalAssembler.g:3083:3: ruleRightShift
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getLeftShiftAccess().getRightRigthShiftParserRuleCall_1_2_0()); 
+               before(grammarAccess.getLeftShiftAccess().getRightRightShiftParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
-            ruleRigthShift();
+            ruleRightShift();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getLeftShiftAccess().getRightRigthShiftParserRuleCall_1_2_0()); 
+               after(grammarAccess.getLeftShiftAccess().getRightRightShiftParserRuleCall_1_2_0()); 
             }
 
             }
@@ -10085,29 +10085,29 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
     // $ANTLR end "rule__LeftShift__RightAssignment_1_2"
 
 
-    // $ANTLR start "rule__RigthShift__AndAssignment_1_2"
-    // InternalAssembler.g:3092:1: rule__RigthShift__AndAssignment_1_2 : ( rulePrimary ) ;
-    public final void rule__RigthShift__AndAssignment_1_2() throws RecognitionException {
+    // $ANTLR start "rule__RightShift__RightAssignment_1_2"
+    // InternalAssembler.g:3092:1: rule__RightShift__RightAssignment_1_2 : ( ruleAnd ) ;
+    public final void rule__RightShift__RightAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalAssembler.g:3096:1: ( ( rulePrimary ) )
-            // InternalAssembler.g:3097:2: ( rulePrimary )
+            // InternalAssembler.g:3096:1: ( ( ruleAnd ) )
+            // InternalAssembler.g:3097:2: ( ruleAnd )
             {
-            // InternalAssembler.g:3097:2: ( rulePrimary )
-            // InternalAssembler.g:3098:3: rulePrimary
+            // InternalAssembler.g:3097:2: ( ruleAnd )
+            // InternalAssembler.g:3098:3: ruleAnd
             {
             if ( state.backtracking==0 ) {
-               before(grammarAccess.getRigthShiftAccess().getAndPrimaryParserRuleCall_1_2_0()); 
+               before(grammarAccess.getRightShiftAccess().getRightAndParserRuleCall_1_2_0()); 
             }
             pushFollow(FOLLOW_2);
-            rulePrimary();
+            ruleAnd();
 
             state._fsp--;
             if (state.failed) return ;
             if ( state.backtracking==0 ) {
-               after(grammarAccess.getRigthShiftAccess().getAndPrimaryParserRuleCall_1_2_0()); 
+               after(grammarAccess.getRightShiftAccess().getRightAndParserRuleCall_1_2_0()); 
             }
 
             }
@@ -10127,7 +10127,7 @@ public class InternalAssemblerParser extends AbstractInternalContentAssistParser
         }
         return ;
     }
-    // $ANTLR end "rule__RigthShift__AndAssignment_1_2"
+    // $ANTLR end "rule__RightShift__RightAssignment_1_2"
 
 
     // $ANTLR start "rule__And__RightAssignment_1_2"

@@ -82,9 +82,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LeftShift/left"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LeftShift/right"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//RigthShift">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RigthShift/left"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RigthShift/And"/>
+    <genClasses ecoreClass="Assembler.ecore#//RightShift">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RightShift/left"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RightShift/right"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//And">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//And/left"/>

@@ -50,8 +50,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSubstractionAccess().getGroup_1(), "rule__Substraction__Group_1__0");
 			builder.put(grammarAccess.getLeftShiftAccess().getGroup(), "rule__LeftShift__Group__0");
 			builder.put(grammarAccess.getLeftShiftAccess().getGroup_1(), "rule__LeftShift__Group_1__0");
-			builder.put(grammarAccess.getRigthShiftAccess().getGroup(), "rule__RigthShift__Group__0");
-			builder.put(grammarAccess.getRigthShiftAccess().getGroup_1(), "rule__RigthShift__Group_1__0");
+			builder.put(grammarAccess.getRightShiftAccess().getGroup(), "rule__RightShift__Group__0");
+			builder.put(grammarAccess.getRightShiftAccess().getGroup_1(), "rule__RightShift__Group_1__0");
 			builder.put(grammarAccess.getAndAccess().getGroup(), "rule__And__Group__0");
 			builder.put(grammarAccess.getAndAccess().getGroup_1(), "rule__And__Group_1__0");
 			builder.put(grammarAccess.getOrAccess().getGroup(), "rule__Or__Group__0");
@@ -83,7 +83,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAdditionAccess().getRightAssignment_1_2(), "rule__Addition__RightAssignment_1_2");
 			builder.put(grammarAccess.getSubstractionAccess().getRightAssignment_1_2(), "rule__Substraction__RightAssignment_1_2");
 			builder.put(grammarAccess.getLeftShiftAccess().getRightAssignment_1_2(), "rule__LeftShift__RightAssignment_1_2");
-			builder.put(grammarAccess.getRigthShiftAccess().getAndAssignment_1_2(), "rule__RigthShift__AndAssignment_1_2");
+			builder.put(grammarAccess.getRightShiftAccess().getRightAssignment_1_2(), "rule__RightShift__RightAssignment_1_2");
 			builder.put(grammarAccess.getAndAccess().getRightAssignment_1_2(), "rule__And__RightAssignment_1_2");
 			builder.put(grammarAccess.getOrAccess().getRightAssignment_1_2(), "rule__Or__RightAssignment_1_2");
 			builder.put(grammarAccess.getXorAccess().getRightAssignment_1_2(), "rule__Xor__RightAssignment_1_2");

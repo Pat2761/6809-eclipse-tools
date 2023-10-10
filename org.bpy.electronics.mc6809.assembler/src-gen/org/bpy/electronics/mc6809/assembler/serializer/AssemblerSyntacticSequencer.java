@@ -112,7 +112,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {Modulo.left=}
 	 *     (rule start) (ambiguity) {Multiplication.left=}
 	 *     (rule start) (ambiguity) {Or.left=}
-	 *     (rule start) (ambiguity) {RigthShift.left=}
+	 *     (rule start) (ambiguity) {RightShift.left=}
 	 *     (rule start) (ambiguity) {Substraction.left=}
 	 *     (rule start) (ambiguity) {Xor.left=}
 	 
@@ -135,7 +135,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     (rule start) (ambiguity) {Modulo.left=}
 	 *     (rule start) (ambiguity) {Multiplication.left=}
 	 *     (rule start) (ambiguity) {Or.left=}
-	 *     (rule start) (ambiguity) {RigthShift.left=}
+	 *     (rule start) (ambiguity) {RightShift.left=}
 	 *     (rule start) (ambiguity) {Substraction.left=}
 	 *     (rule start) (ambiguity) {Xor.left=}
 	 

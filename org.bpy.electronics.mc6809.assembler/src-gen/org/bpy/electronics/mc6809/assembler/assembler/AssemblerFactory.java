@@ -213,13 +213,13 @@ public interface AssemblerFactory extends EFactory
   LeftShift createLeftShift();
 
   /**
-   * Returns a new object of class '<em>Rigth Shift</em>'.
+   * Returns a new object of class '<em>Right Shift</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Rigth Shift</em>'.
+   * @return a new object of class '<em>Right Shift</em>'.
    * @generated
    */
-  RigthShift createRigthShift();
+  RightShift createRightShift();
 
   /**
    * Returns a new object of class '<em>And</em>'.

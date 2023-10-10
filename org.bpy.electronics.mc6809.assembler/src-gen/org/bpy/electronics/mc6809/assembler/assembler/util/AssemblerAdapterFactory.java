@@ -181,9 +181,9 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createLeftShiftAdapter();
       }
       @Override
-      public Adapter caseRigthShift(RigthShift object)
+      public Adapter caseRightShift(RightShift object)
       {
-        return createRigthShiftAdapter();
+        return createRightShiftAdapter();
       }
       @Override
       public Adapter caseAnd(And object)
@@ -543,16 +543,16 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RigthShift <em>Rigth Shift</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RightShift <em>Right Shift</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.RigthShift
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RightShift
    * @generated
    */
-  public Adapter createRigthShiftAdapter()
+  public Adapter createRightShiftAdapter()
   {
     return null;
   }

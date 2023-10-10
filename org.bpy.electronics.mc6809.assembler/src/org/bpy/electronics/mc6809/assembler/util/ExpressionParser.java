@@ -32,11 +32,13 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
+import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.Not;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
+import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.eclipse.emf.ecore.EObject;
@@ -115,6 +117,12 @@ public class ExpressionParser {
 			
 		} else if (expression instanceof Not) { 	
 			return resolveExpression((Not)expression);
+			
+		} else if (expression instanceof LeftShift) { 	
+			return resolveExpression((LeftShift)expression);
+			
+		} else if (expression instanceof RightShift) { 	
+			return resolveExpression((RightShift)expression);
 			
 		} else {
 			if (expression.getValue() instanceof DecimalValue) {
@@ -340,7 +348,7 @@ public class ExpressionParser {
 	/**
 	 * resolve an XOR expression
 	 * 
-	 * @param or reference on the exclusive OR expression
+	 * @param xor reference on the exclusive OR expression
 	 * @return  a decimal value of the logical XOR
 	 */
 	public static int resolveExpression(Xor xor) {
@@ -359,7 +367,7 @@ public class ExpressionParser {
 	/**
 	 * resolve an NOT expression
 	 * 
-	 * @param or reference on the exclusive NOT expression
+	 * @param not reference on the exclusive NOT expression
 	 * @return  a decimal value of the logical NOT
 	 */
 	public static int resolveExpression(Not not) {
@@ -373,5 +381,43 @@ public class ExpressionParser {
 			notValue = notValue & 0xFFFF;
 		}
 		return notValue;
+	}
+
+	/**
+	 * resolve a left shift expression
+	 * 
+	 * @param leftShift reference on the left shift expression
+	 * @return  a decimal value of the logical left shift
+	 */
+	public static int resolveExpression(LeftShift leftShift) {
+		int left=0;
+		int right=1;
+		
+		if (leftShift.getLeft() != null) {
+			left = resolveExpression(leftShift.getLeft());
+		}
+		if (leftShift.getRight() != null) {
+			right = resolveExpression(leftShift.getRight());
+		}
+		return (left<<right)&0xFFFF;
+	}
+
+	/**
+	 * resolve a right shift expression
+	 * 
+	 * @param leftShift reference on the left shift expression
+	 * @return  a decimal value of the logical left shift
+	 */
+	public static int resolveExpression(RightShift rightShift) {
+		int left=0;
+		int right=1;
+		
+		if (rightShift.getLeft() != null) {
+			left = resolveExpression(rightShift.getLeft());
+		}
+		if (rightShift.getRight() != null) {
+			right = resolveExpression(rightShift.getRight());
+		}
+		return left>>right;
 	}
 }

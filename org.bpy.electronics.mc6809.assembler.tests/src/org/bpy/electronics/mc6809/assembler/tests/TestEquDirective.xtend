@@ -547,4 +547,54 @@ class TestEquDirective {
 	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
 		Assert.assertEquals("Operand must be equals to 65365", 65365, ExpressionParser.parse(equDirective))		
 	}
+
+	@Test
+	/**
+	 * Check EQU directive with a left shift of a values 
+	 */
+	def void testWithLeftShiftValue() {
+		
+		val result = parseHelper.parse('''
+		Label1       EQU    20<<2		 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(0)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+		
+		val equDirective = directiveLine.directive as EquDirective
+	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
+		Assert.assertEquals("Operand must be equals to 80", 80, ExpressionParser.parse(equDirective))		
+	}
+
+	@Test
+	/**
+	 * Check EQU directive with a right shift of a values 
+	 */
+	def void testWithRightShiftValue() {
+		
+		val result = parseHelper.parse('''
+		Label1       EQU    88>>2		 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(0)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+		
+		val equDirective = directiveLine.directive as EquDirective
+	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
+		Assert.assertEquals("Operand must be equals to 22", 22, ExpressionParser.parse(equDirective))		
+	}
 }

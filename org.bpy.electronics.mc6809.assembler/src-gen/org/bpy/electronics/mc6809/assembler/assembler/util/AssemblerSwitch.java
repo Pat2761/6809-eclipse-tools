@@ -226,11 +226,11 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case AssemblerPackage.RIGTH_SHIFT:
+      case AssemblerPackage.RIGHT_SHIFT:
       {
-        RigthShift rigthShift = (RigthShift)theEObject;
-        T result = caseRigthShift(rigthShift);
-        if (result == null) result = caseExpression(rigthShift);
+        RightShift rightShift = (RightShift)theEObject;
+        T result = caseRightShift(rightShift);
+        if (result == null) result = caseExpression(rightShift);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -607,17 +607,17 @@ public class AssemblerSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Rigth Shift</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Right Shift</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Rigth Shift</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Right Shift</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseRigthShift(RigthShift object)
+  public T caseRightShift(RightShift object)
   {
     return null;
   }

@@ -86,7 +86,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.ADDITION: return createAddition();
       case AssemblerPackage.SUBSTRACTION: return createSubstraction();
       case AssemblerPackage.LEFT_SHIFT: return createLeftShift();
-      case AssemblerPackage.RIGTH_SHIFT: return createRigthShift();
+      case AssemblerPackage.RIGHT_SHIFT: return createRightShift();
       case AssemblerPackage.AND: return createAnd();
       case AssemblerPackage.OR: return createOr();
       case AssemblerPackage.XOR: return createXor();
@@ -354,10 +354,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public RigthShift createRigthShift()
+  public RightShift createRightShift()
   {
-    RigthShiftImpl rigthShift = new RigthShiftImpl();
-    return rigthShift;
+    RightShiftImpl rightShift = new RightShiftImpl();
+    return rightShift;
   }
 
   /**

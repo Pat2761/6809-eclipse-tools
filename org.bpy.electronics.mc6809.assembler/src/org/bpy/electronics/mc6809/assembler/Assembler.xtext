@@ -99,11 +99,11 @@ Substraction returns Expression:
 ;
   
 LeftShift returns Expression:
-	RigthShift ({LeftShift.left=current} '<<' right=RigthShift)*
+	RightShift ({LeftShift.left=current} '<<' right=RightShift)*
 ;
 
-RigthShift returns Expression:
-	And ({RigthShift.left=current} '>>' And=Primary)*
+RightShift returns Expression:
+	And ({RightShift.left=current} '>>' right=And)*
 ;
 
 And returns Expression:

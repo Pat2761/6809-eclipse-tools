@@ -818,11 +818,11 @@ ruleLeftShift returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getLeftShiftAccess().getRigthShiftParserRuleCall_0());
+			newCompositeNode(grammarAccess.getLeftShiftAccess().getRightShiftParserRuleCall_0());
 		}
-		this_RigthShift_0=ruleRigthShift
+		this_RightShift_0=ruleRightShift
 		{
-			$current = $this_RigthShift_0.current;
+			$current = $this_RightShift_0.current;
 			afterParserOrEnumRuleCall();
 		}
 		(
@@ -840,9 +840,9 @@ ruleLeftShift returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getLeftShiftAccess().getRightRigthShiftParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getLeftShiftAccess().getRightRightShiftParserRuleCall_1_2_0());
 					}
-					lv_right_3_0=ruleRigthShift
+					lv_right_3_0=ruleRightShift
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getLeftShiftRule());
@@ -851,7 +851,7 @@ ruleLeftShift returns [EObject current=null]
 							$current,
 							"right",
 							lv_right_3_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.RigthShift");
+							"org.bpy.electronics.mc6809.assembler.Assembler.RightShift");
 						afterParserOrEnumRuleCall();
 					}
 				)
@@ -860,15 +860,15 @@ ruleLeftShift returns [EObject current=null]
 	)
 ;
 
-// Entry rule entryRuleRigthShift
-entryRuleRigthShift returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getRigthShiftRule()); }
-	iv_ruleRigthShift=ruleRigthShift
-	{ $current=$iv_ruleRigthShift.current; }
+// Entry rule entryRuleRightShift
+entryRuleRightShift returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRightShiftRule()); }
+	iv_ruleRightShift=ruleRightShift
+	{ $current=$iv_ruleRightShift.current; }
 	EOF;
 
-// Rule RigthShift
-ruleRigthShift returns [EObject current=null]
+// Rule RightShift
+ruleRightShift returns [EObject current=null]
 @init {
 	enterRule();
 }
@@ -877,7 +877,7 @@ ruleRigthShift returns [EObject current=null]
 }:
 	(
 		{
-			newCompositeNode(grammarAccess.getRigthShiftAccess().getAndParserRuleCall_0());
+			newCompositeNode(grammarAccess.getRightShiftAccess().getAndParserRuleCall_0());
 		}
 		this_And_0=ruleAnd
 		{
@@ -888,29 +888,29 @@ ruleRigthShift returns [EObject current=null]
 			(
 				{
 					$current = forceCreateModelElementAndSet(
-						grammarAccess.getRigthShiftAccess().getRigthShiftLeftAction_1_0(),
+						grammarAccess.getRightShiftAccess().getRightShiftLeftAction_1_0(),
 						$current);
 				}
 			)
 			otherlv_2='>>'
 			{
-				newLeafNode(otherlv_2, grammarAccess.getRigthShiftAccess().getGreaterThanSignGreaterThanSignKeyword_1_1());
+				newLeafNode(otherlv_2, grammarAccess.getRightShiftAccess().getGreaterThanSignGreaterThanSignKeyword_1_1());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getRigthShiftAccess().getAndPrimaryParserRuleCall_1_2_0());
+						newCompositeNode(grammarAccess.getRightShiftAccess().getRightAndParserRuleCall_1_2_0());
 					}
-					lv_And_3_0=rulePrimary
+					lv_right_3_0=ruleAnd
 					{
 						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getRigthShiftRule());
+							$current = createModelElementForParent(grammarAccess.getRightShiftRule());
 						}
 						set(
 							$current,
-							"And",
-							lv_And_3_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.Primary");
+							"right",
+							lv_right_3_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.And");
 						afterParserOrEnumRuleCall();
 					}
 				)

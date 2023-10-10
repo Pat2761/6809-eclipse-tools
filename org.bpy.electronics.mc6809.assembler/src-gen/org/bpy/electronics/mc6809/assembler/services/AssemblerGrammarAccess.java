@@ -457,25 +457,25 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	public class LeftShiftElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LeftShift");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final RuleCall cRigthShiftParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
+		private final RuleCall cRightShiftParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final Action cLeftShiftLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cLessThanSignLessThanSignKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cRightRigthShiftParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
+		private final RuleCall cRightRightShiftParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
 		//LeftShift returns Expression:
-		//    RigthShift ({LeftShift.left=current} '<<' right=RigthShift)*
+		//    RightShift ({LeftShift.left=current} '<<' right=RightShift)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//RigthShift ({LeftShift.left=current} '<<' right=RigthShift)*
+		//RightShift ({LeftShift.left=current} '<<' right=RightShift)*
 		public Group getGroup() { return cGroup; }
 		
-		//RigthShift
-		public RuleCall getRigthShiftParserRuleCall_0() { return cRigthShiftParserRuleCall_0; }
+		//RightShift
+		public RuleCall getRightShiftParserRuleCall_0() { return cRightShiftParserRuleCall_0; }
 		
-		//({LeftShift.left=current} '<<' right=RigthShift)*
+		//({LeftShift.left=current} '<<' right=RightShift)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{LeftShift.left=current}
@@ -484,47 +484,47 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'<<'
 		public Keyword getLessThanSignLessThanSignKeyword_1_1() { return cLessThanSignLessThanSignKeyword_1_1; }
 		
-		//right=RigthShift
+		//right=RightShift
 		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
 		
-		//RigthShift
-		public RuleCall getRightRigthShiftParserRuleCall_1_2_0() { return cRightRigthShiftParserRuleCall_1_2_0; }
+		//RightShift
+		public RuleCall getRightRightShiftParserRuleCall_1_2_0() { return cRightRightShiftParserRuleCall_1_2_0; }
 	}
-	public class RigthShiftElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RigthShift");
+	public class RightShiftElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RightShift");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final RuleCall cAndParserRuleCall_0 = (RuleCall)cGroup.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Action cRigthShiftLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
+		private final Action cRightShiftLeftAction_1_0 = (Action)cGroup_1.eContents().get(0);
 		private final Keyword cGreaterThanSignGreaterThanSignKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cAndAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cAndPrimaryParserRuleCall_1_2_0 = (RuleCall)cAndAssignment_1_2.eContents().get(0);
+		private final Assignment cRightAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final RuleCall cRightAndParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
-		//RigthShift returns Expression:
-		//    And ({RigthShift.left=current} '>>' And=Primary)*
+		//RightShift returns Expression:
+		//    And ({RightShift.left=current} '>>' right=And)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//And ({RigthShift.left=current} '>>' And=Primary)*
+		//And ({RightShift.left=current} '>>' right=And)*
 		public Group getGroup() { return cGroup; }
 		
 		//And
 		public RuleCall getAndParserRuleCall_0() { return cAndParserRuleCall_0; }
 		
-		//({RigthShift.left=current} '>>' And=Primary)*
+		//({RightShift.left=current} '>>' right=And)*
 		public Group getGroup_1() { return cGroup_1; }
 		
-		//{RigthShift.left=current}
-		public Action getRigthShiftLeftAction_1_0() { return cRigthShiftLeftAction_1_0; }
+		//{RightShift.left=current}
+		public Action getRightShiftLeftAction_1_0() { return cRightShiftLeftAction_1_0; }
 		
 		//'>>'
 		public Keyword getGreaterThanSignGreaterThanSignKeyword_1_1() { return cGreaterThanSignGreaterThanSignKeyword_1_1; }
 		
-		//And=Primary
-		public Assignment getAndAssignment_1_2() { return cAndAssignment_1_2; }
+		//right=And
+		public Assignment getRightAssignment_1_2() { return cRightAssignment_1_2; }
 		
-		//Primary
-		public RuleCall getAndPrimaryParserRuleCall_1_2_0() { return cAndPrimaryParserRuleCall_1_2_0; }
+		//And
+		public RuleCall getRightAndParserRuleCall_1_2_0() { return cRightAndParserRuleCall_1_2_0; }
 	}
 	public class AndElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.And");
@@ -901,7 +901,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final AdditionElements pAddition;
 	private final SubstractionElements pSubstraction;
 	private final LeftShiftElements pLeftShift;
-	private final RigthShiftElements pRigthShift;
+	private final RightShiftElements pRightShift;
 	private final AndElements pAnd;
 	private final OrElements pOr;
 	private final XorElements pXor;
@@ -944,7 +944,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pAddition = new AdditionElements();
 		this.pSubstraction = new SubstractionElements();
 		this.pLeftShift = new LeftShiftElements();
-		this.pRigthShift = new RigthShiftElements();
+		this.pRightShift = new RightShiftElements();
 		this.pAnd = new AndElements();
 		this.pOr = new OrElements();
 		this.pXor = new XorElements();
@@ -1153,7 +1153,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//LeftShift returns Expression:
-	//    RigthShift ({LeftShift.left=current} '<<' right=RigthShift)*
+	//    RightShift ({LeftShift.left=current} '<<' right=RightShift)*
 	//;
 	public LeftShiftElements getLeftShiftAccess() {
 		return pLeftShift;
@@ -1163,15 +1163,15 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getLeftShiftAccess().getRule();
 	}
 	
-	//RigthShift returns Expression:
-	//    And ({RigthShift.left=current} '>>' And=Primary)*
+	//RightShift returns Expression:
+	//    And ({RightShift.left=current} '>>' right=And)*
 	//;
-	public RigthShiftElements getRigthShiftAccess() {
-		return pRigthShift;
+	public RightShiftElements getRightShiftAccess() {
+		return pRightShift;
 	}
 	
-	public ParserRule getRigthShiftRule() {
-		return getRigthShiftAccess().getRule();
+	public ParserRule getRightShiftRule() {
+		return getRightShiftAccess().getRule();
 	}
 	
 	//And returns Expression:

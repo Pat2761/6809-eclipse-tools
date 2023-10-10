@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Not;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Operand;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
-import org.bpy.electronics.mc6809.assembler.assembler.RigthShift;
+import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
@@ -199,7 +199,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass rigthShiftEClass = null;
+  private EClass rightShiftEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -902,9 +902,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EClass getRigthShift()
+  public EClass getRightShift()
   {
-    return rigthShiftEClass;
+    return rightShiftEClass;
   }
 
   /**
@@ -913,9 +913,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getRigthShift_Left()
+  public EReference getRightShift_Left()
   {
-    return (EReference)rigthShiftEClass.getEStructuralFeatures().get(0);
+    return (EReference)rightShiftEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -924,9 +924,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getRigthShift_And()
+  public EReference getRightShift_Right()
   {
-    return (EReference)rigthShiftEClass.getEStructuralFeatures().get(1);
+    return (EReference)rightShiftEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1146,9 +1146,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(leftShiftEClass, LEFT_SHIFT__LEFT);
     createEReference(leftShiftEClass, LEFT_SHIFT__RIGHT);
 
-    rigthShiftEClass = createEClass(RIGTH_SHIFT);
-    createEReference(rigthShiftEClass, RIGTH_SHIFT__LEFT);
-    createEReference(rigthShiftEClass, RIGTH_SHIFT__AND);
+    rightShiftEClass = createEClass(RIGHT_SHIFT);
+    createEReference(rightShiftEClass, RIGHT_SHIFT__LEFT);
+    createEReference(rightShiftEClass, RIGHT_SHIFT__RIGHT);
 
     andEClass = createEClass(AND);
     createEReference(andEClass, AND__LEFT);
@@ -1200,7 +1200,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     additionEClass.getESuperTypes().add(this.getExpression());
     substractionEClass.getESuperTypes().add(this.getExpression());
     leftShiftEClass.getESuperTypes().add(this.getExpression());
-    rigthShiftEClass.getESuperTypes().add(this.getExpression());
+    rightShiftEClass.getESuperTypes().add(this.getExpression());
     andEClass.getESuperTypes().add(this.getExpression());
     orEClass.getESuperTypes().add(this.getExpression());
     xorEClass.getESuperTypes().add(this.getExpression());
@@ -1283,9 +1283,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getLeftShift_Left(), this.getExpression(), null, "left", null, 0, 1, LeftShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLeftShift_Right(), this.getExpression(), null, "right", null, 0, 1, LeftShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(rigthShiftEClass, RigthShift.class, "RigthShift", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRigthShift_Left(), this.getExpression(), null, "left", null, 0, 1, RigthShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRigthShift_And(), this.getExpression(), null, "And", null, 0, 1, RigthShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(rightShiftEClass, RightShift.class, "RightShift", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRightShift_Left(), this.getExpression(), null, "left", null, 0, 1, RightShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRightShift_Right(), this.getExpression(), null, "right", null, 0, 1, RightShift.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(andEClass, And.class, "And", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAnd_Left(), this.getExpression(), null, "left", null, 0, 1, And.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

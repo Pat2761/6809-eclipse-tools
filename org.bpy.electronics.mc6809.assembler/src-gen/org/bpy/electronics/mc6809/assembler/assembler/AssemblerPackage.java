@@ -817,14 +817,14 @@ public interface AssemblerPackage extends EPackage
   int LEFT_SHIFT_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RigthShiftImpl <em>Rigth Shift</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RightShiftImpl <em>Right Shift</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RigthShiftImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRigthShift()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RightShiftImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRightShift()
    * @generated
    */
-  int RIGTH_SHIFT = 21;
+  int RIGHT_SHIFT = 21;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -833,7 +833,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RIGTH_SHIFT__VALUE = EXPRESSION__VALUE;
+  int RIGHT_SHIFT__VALUE = EXPRESSION__VALUE;
 
   /**
    * The feature id for the '<em><b>Left</b></em>' containment reference.
@@ -842,25 +842,25 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RIGTH_SHIFT__LEFT = EXPRESSION_FEATURE_COUNT + 0;
+  int RIGHT_SHIFT__LEFT = EXPRESSION_FEATURE_COUNT + 0;
 
   /**
-   * The feature id for the '<em><b>And</b></em>' containment reference.
+   * The feature id for the '<em><b>Right</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RIGTH_SHIFT__AND = EXPRESSION_FEATURE_COUNT + 1;
+  int RIGHT_SHIFT__RIGHT = EXPRESSION_FEATURE_COUNT + 1;
 
   /**
-   * The number of structural features of the '<em>Rigth Shift</em>' class.
+   * The number of structural features of the '<em>Right Shift</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RIGTH_SHIFT_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
+  int RIGHT_SHIFT_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndImpl <em>And</em>}' class.
@@ -1614,36 +1614,36 @@ public interface AssemblerPackage extends EPackage
   EReference getLeftShift_Right();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.RigthShift <em>Rigth Shift</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.RightShift <em>Right Shift</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Rigth Shift</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.RigthShift
+   * @return the meta object for class '<em>Right Shift</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RightShift
    * @generated
    */
-  EClass getRigthShift();
+  EClass getRightShift();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RigthShift#getLeft <em>Left</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RightShift#getLeft <em>Left</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Left</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.RigthShift#getLeft()
-   * @see #getRigthShift()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RightShift#getLeft()
+   * @see #getRightShift()
    * @generated
    */
-  EReference getRigthShift_Left();
+  EReference getRightShift_Left();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RigthShift#getAnd <em>And</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RightShift#getRight <em>Right</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>And</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.RigthShift#getAnd()
-   * @see #getRigthShift()
+   * @return the meta object for the containment reference '<em>Right</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RightShift#getRight()
+   * @see #getRightShift()
    * @generated
    */
-  EReference getRigthShift_And();
+  EReference getRightShift_Right();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.And <em>And</em>}'.
@@ -2257,14 +2257,14 @@ public interface AssemblerPackage extends EPackage
     EReference LEFT_SHIFT__RIGHT = eINSTANCE.getLeftShift_Right();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RigthShiftImpl <em>Rigth Shift</em>}' class.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RightShiftImpl <em>Right Shift</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RigthShiftImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRigthShift()
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RightShiftImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRightShift()
      * @generated
      */
-    EClass RIGTH_SHIFT = eINSTANCE.getRigthShift();
+    EClass RIGHT_SHIFT = eINSTANCE.getRightShift();
 
     /**
      * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
@@ -2272,15 +2272,15 @@ public interface AssemblerPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RIGTH_SHIFT__LEFT = eINSTANCE.getRigthShift_Left();
+    EReference RIGHT_SHIFT__LEFT = eINSTANCE.getRightShift_Left();
 
     /**
-     * The meta object literal for the '<em><b>And</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference RIGTH_SHIFT__AND = eINSTANCE.getRigthShift_And();
+    EReference RIGHT_SHIFT__RIGHT = eINSTANCE.getRightShift_Right();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndImpl <em>And</em>}' class.
