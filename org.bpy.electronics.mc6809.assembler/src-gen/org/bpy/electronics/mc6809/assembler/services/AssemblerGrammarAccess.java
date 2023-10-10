@@ -393,7 +393,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cRightSubstractionParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
 		//Addition returns Expression:
-		//  Substraction ({Addition.left=current} '+' right=Substraction)*
+		//    Substraction ({Addition.left=current} '+' right=Substraction)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -429,23 +429,23 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cRightLeftShiftParserRuleCall_1_2_0 = (RuleCall)cRightAssignment_1_2.eContents().get(0);
 		
 		//Substraction returns Expression:
-		//  LeftShift ({Substraction.left=current} '-' right=LeftShift)*
+		//    LeftShift ({Substraction.left=current} -> '-' right=LeftShift)*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//LeftShift ({Substraction.left=current} '-' right=LeftShift)*
+		//LeftShift ({Substraction.left=current} -> '-' right=LeftShift)*
 		public Group getGroup() { return cGroup; }
 		
 		//LeftShift
 		public RuleCall getLeftShiftParserRuleCall_0() { return cLeftShiftParserRuleCall_0; }
 		
-		//({Substraction.left=current} '-' right=LeftShift)*
+		//({Substraction.left=current} -> '-' right=LeftShift)*
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//{Substraction.left=current}
 		public Action getSubstractionLeftAction_1_0() { return cSubstractionLeftAction_1_0; }
 		
-		//'-'
+		//-> '-'
 		public Keyword getHyphenMinusKeyword_1_1() { return cHyphenMinusKeyword_1_1; }
 		
 		//right=LeftShift
@@ -792,19 +792,31 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	public class DecimalValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DecimalValue");
-		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cValueINTTerminalRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cIsNegativeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsNegativeHyphenMinusKeyword_0_0 = (Keyword)cIsNegativeAssignment_0.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueINTTerminalRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
 		
 		//DecimalValue:
-		//    value = INT
+		//    isNegative?='-'? value = INT
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
+		//isNegative?='-'? value = INT
+		public Group getGroup() { return cGroup; }
+		
+		//isNegative?='-'?
+		public Assignment getIsNegativeAssignment_0() { return cIsNegativeAssignment_0; }
+		
+		//'-'
+		public Keyword getIsNegativeHyphenMinusKeyword_0_0() { return cIsNegativeHyphenMinusKeyword_0_0; }
+		
 		//value = INT
-		public Assignment getValueAssignment() { return cValueAssignment; }
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
 		
 		//INT
-		public RuleCall getValueINTTerminalRuleCall_0() { return cValueINTTerminalRuleCall_0; }
+		public RuleCall getValueINTTerminalRuleCall_1_0() { return cValueINTTerminalRuleCall_1_0; }
 	}
 	public class HexaDecimalValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.HexaDecimalValue");
@@ -918,10 +930,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final CharacterValueElements pCharacterValue;
 	private final TerminalRule tID;
 	private final TerminalRule tHEXA;
-	private final TerminalRule tBINARY;
-	private final TerminalRule tOCTAL;
-	private final TerminalRule tCHARACTER;
 	private final TerminalRule tINT;
+	private final TerminalRule tOCTAL;
+	private final TerminalRule tBINARY;
+	private final TerminalRule tCHARACTER;
 	private final EndOfLineElements pEndOfLine;
 	private final TerminalRule tSTRING;
 	private final TerminalRule tANY_EXCEPT_COMMENT_END_OF_LINE;
@@ -962,10 +974,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pCharacterValue = new CharacterValueElements();
 		this.tID = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ID");
 		this.tHEXA = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.HEXA");
-		this.tBINARY = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.BINARY");
-		this.tOCTAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OCTAL");
-		this.tCHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CHARACTER");
 		this.tINT = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.INT");
+		this.tOCTAL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OCTAL");
+		this.tBINARY = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.BINARY");
+		this.tCHARACTER = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CHARACTER");
 		this.pEndOfLine = new EndOfLineElements();
 		this.tSTRING = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.STRING");
 		this.tANY_EXCEPT_COMMENT_END_OF_LINE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
@@ -1135,7 +1147,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//Addition returns Expression:
-	//  Substraction ({Addition.left=current} '+' right=Substraction)*
+	//    Substraction ({Addition.left=current} '+' right=Substraction)*
 	//;
 	public AdditionElements getAdditionAccess() {
 		return pAddition;
@@ -1146,7 +1158,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//Substraction returns Expression:
-	//  LeftShift ({Substraction.left=current} '-' right=LeftShift)*
+	//    LeftShift ({Substraction.left=current} -> '-' right=LeftShift)*
 	//;
 	public SubstractionElements getSubstractionAccess() {
 		return pSubstraction;
@@ -1262,7 +1274,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//DecimalValue:
-	//    value = INT
+	//    isNegative?='-'? value = INT
 	//;
 	public DecimalValueElements getDecimalValueAccess() {
 		return pDecimalValue;
@@ -1326,24 +1338,24 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return tHEXA;
 	}
 	
-	//terminal BINARY 							: '%' ('0'..'1')+;
-	public TerminalRule getBINARYRule() {
-		return tBINARY;
+	//terminal INT returns ecore::EInt			: ('0'..'9')+;
+	public TerminalRule getINTRule() {
+		return tINT;
 	}
 	
-	//terminal OCTAL 								: '@' ('0'..'7')+;
+	//terminal OCTAL 								: '@'('0'..'7')+;
 	public TerminalRule getOCTALRule() {
 		return tOCTAL;
+	}
+	
+	//terminal BINARY 							: '0''b'('0'..'1')+;
+	public TerminalRule getBINARYRule() {
+		return tBINARY;
 	}
 	
 	//terminal CHARACTER							: '\'' ('\u0020'..'\u007F');
 	public TerminalRule getCHARACTERRule() {
 		return tCHARACTER;
-	}
-	
-	//terminal INT returns ecore::EInt			: '-'? ('0'..'9')+;
-	public TerminalRule getINTRule() {
-		return tINT;
 	}
 	
 	//EndOfLine: CR | END_OF_FILE;

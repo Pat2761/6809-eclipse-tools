@@ -5,6 +5,7 @@ grammar InternalAssembler;
 
 options {
 	superClass=AbstractInternalContentAssistParser;
+	backtrack=true;
 }
 
 @lexer::header {
@@ -590,9 +591,9 @@ ruleDecimalValue
 	}
 	:
 	(
-		{ before(grammarAccess.getDecimalValueAccess().getValueAssignment()); }
-		(rule__DecimalValue__ValueAssignment)
-		{ after(grammarAccess.getDecimalValueAccess().getValueAssignment()); }
+		{ before(grammarAccess.getDecimalValueAccess().getGroup()); }
+		(rule__DecimalValue__Group__0)
+		{ after(grammarAccess.getDecimalValueAccess().getGroup()); }
 	)
 ;
 finally {
@@ -1835,7 +1836,7 @@ rule__Substraction__Group_1__1__Impl
 :
 (
 	{ before(grammarAccess.getSubstractionAccess().getHyphenMinusKeyword_1_1()); }
-	'-'
+	('-')
 	{ after(grammarAccess.getSubstractionAccess().getHyphenMinusKeyword_1_1()); }
 )
 ;
@@ -2761,6 +2762,60 @@ finally {
 }
 
 
+rule__DecimalValue__Group__0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__DecimalValue__Group__0__Impl
+	rule__DecimalValue__Group__1
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DecimalValue__Group__0__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getDecimalValueAccess().getIsNegativeAssignment_0()); }
+	(rule__DecimalValue__IsNegativeAssignment_0)?
+	{ after(grammarAccess.getDecimalValueAccess().getIsNegativeAssignment_0()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DecimalValue__Group__1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__DecimalValue__Group__1__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DecimalValue__Group__1__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getDecimalValueAccess().getValueAssignment_1()); }
+	(rule__DecimalValue__ValueAssignment_1)
+	{ after(grammarAccess.getDecimalValueAccess().getValueAssignment_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+
 rule__Model__SourceLinesAssignment
 	@init {
 		int stackSize = keepStackSize();
@@ -3302,15 +3357,34 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__DecimalValue__ValueAssignment
+rule__DecimalValue__IsNegativeAssignment_0
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getDecimalValueAccess().getValueINTTerminalRuleCall_0()); }
+		{ before(grammarAccess.getDecimalValueAccess().getIsNegativeHyphenMinusKeyword_0_0()); }
+		(
+			{ before(grammarAccess.getDecimalValueAccess().getIsNegativeHyphenMinusKeyword_0_0()); }
+			'-'
+			{ after(grammarAccess.getDecimalValueAccess().getIsNegativeHyphenMinusKeyword_0_0()); }
+		)
+		{ after(grammarAccess.getDecimalValueAccess().getIsNegativeHyphenMinusKeyword_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DecimalValue__ValueAssignment_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getDecimalValueAccess().getValueINTTerminalRuleCall_1_0()); }
 		RULE_INT
-		{ after(grammarAccess.getDecimalValueAccess().getValueINTTerminalRuleCall_0()); }
+		{ after(grammarAccess.getDecimalValueAccess().getValueINTTerminalRuleCall_1_0()); }
 	)
 ;
 finally {
@@ -3381,13 +3455,13 @@ RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_HEXA : '$' ('0'..'9'|'a'..'f'|'A'..'F')+;
 
-RULE_BINARY : '%' ('0'..'1')+;
+RULE_INT : ('0'..'9')+;
 
 RULE_OCTAL : '@' ('0'..'7')+;
 
-RULE_CHARACTER : '\'' ' '..'\u007F';
+RULE_BINARY : '0' 'b' ('0'..'1')+;
 
-RULE_INT : '-'? ('0'..'9')+;
+RULE_CHARACTER : '\'' ' '..'\u007F';
 
 RULE_STRING : '"' ('\\' .|~(('\\'|'"')))*;
 

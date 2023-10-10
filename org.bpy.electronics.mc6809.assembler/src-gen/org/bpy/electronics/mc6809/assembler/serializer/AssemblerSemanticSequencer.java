@@ -306,17 +306,11 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     DecimalValue returns DecimalValue
 	 *
 	 * Constraint:
-	 *     value=INT
+	 *     (isNegative?='-'? value=INT)
 	 * </pre>
 	 */
 	protected void sequence_DecimalValue(ISerializationContext context, DecimalValue semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DECIMAL_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DECIMAL_VALUE__VALUE));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDecimalValueAccess().getValueINTTerminalRuleCall_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

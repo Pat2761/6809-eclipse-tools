@@ -61,6 +61,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getXorAccess().getGroup(), "rule__Xor__Group__0");
 			builder.put(grammarAccess.getXorAccess().getGroup_1(), "rule__Xor__Group_1__0");
 			builder.put(grammarAccess.getPrimaryAccess().getGroup_6(), "rule__Primary__Group_6__0");
+			builder.put(grammarAccess.getDecimalValueAccess().getGroup(), "rule__DecimalValue__Group__0");
 			builder.put(grammarAccess.getModelAccess().getSourceLinesAssignment(), "rule__Model__SourceLinesAssignment");
 			builder.put(grammarAccess.getSourceLineAccess().getLineContentAssignment_0(), "rule__SourceLine__LineContentAssignment_0");
 			builder.put(grammarAccess.getSourceLineAccess().getLineContentAssignment_1(), "rule__SourceLine__LineContentAssignment_1");
@@ -96,7 +97,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimaryAccess().getValueAssignment_5(), "rule__Primary__ValueAssignment_5");
 			builder.put(grammarAccess.getIdentifierValueAccess().getValueAssignment(), "rule__IdentifierValue__ValueAssignment");
 			builder.put(grammarAccess.getStringValueAccess().getValueAssignment(), "rule__StringValue__ValueAssignment");
-			builder.put(grammarAccess.getDecimalValueAccess().getValueAssignment(), "rule__DecimalValue__ValueAssignment");
+			builder.put(grammarAccess.getDecimalValueAccess().getIsNegativeAssignment_0(), "rule__DecimalValue__IsNegativeAssignment_0");
+			builder.put(grammarAccess.getDecimalValueAccess().getValueAssignment_1(), "rule__DecimalValue__ValueAssignment_1");
 			builder.put(grammarAccess.getHexaDecimalValueAccess().getValueAssignment(), "rule__HexaDecimalValue__ValueAssignment");
 			builder.put(grammarAccess.getOctalValueAccess().getValueAssignment(), "rule__OctalValue__ValueAssignment");
 			builder.put(grammarAccess.getBinaryValueAccess().getValueAssignment(), "rule__BinaryValue__ValueAssignment");

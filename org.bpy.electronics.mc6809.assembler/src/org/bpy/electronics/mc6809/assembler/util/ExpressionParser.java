@@ -31,6 +31,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
@@ -86,6 +87,7 @@ public class ExpressionParser {
 	 * @return value of the expression
 	 */
 	public static int resolveExpression(Expression expression) {
+		
 		if (expression instanceof Multiplication) {
 			return resolveExpression((Multiplication)expression);
 			
@@ -95,9 +97,12 @@ public class ExpressionParser {
 		} else if (expression instanceof Substraction) { 	
 			return resolveExpression((Substraction)expression);
 			
+		} else if (expression instanceof Modulo) { 	
+			return resolveExpression((Modulo)expression);
+			
 		} else {
 			if (expression.getValue() instanceof DecimalValue) {
-				return ((DecimalValue)expression.getValue()).getValue();
+				return (resolveDecimalValue((DecimalValue)expression.getValue()));
 			
 			} else if( expression.getValue() instanceof HexaDecimalValue) {
 				return (resolveHexadecimalValue((HexaDecimalValue)expression.getValue()));
@@ -120,6 +125,14 @@ public class ExpressionParser {
 		}
 	}
 	
+	private static int resolveDecimalValue(DecimalValue value) {
+		int sign = 1;
+		if (value.isIsNegative()) {
+			sign = -1;
+		}
+		return value.getValue()*sign;
+	}
+
 	/**
 	 * Convert an character value expression into a decimal value
 	 * 
@@ -169,7 +182,7 @@ public class ExpressionParser {
 	 * @return decimal value of the binary expression
 	 */
 	private static int resolveBinaryValue(BinaryValue binaryValue) {
-		String strValue = binaryValue.getValue().replaceFirst("\\%", "");
+		String strValue = binaryValue.getValue().replaceFirst("0b", "");
 		try {
 			return Integer.parseInt(strValue, 2);
 		} catch (NumberFormatException ex) {
@@ -239,8 +252,8 @@ public class ExpressionParser {
 	 * @return  a decimal value of the addition
 	 */
 	public static int resolveExpression(Substraction substraction) {
-		int left=1;
-		int right=1;
+		int left=0;
+		int right=0;
 		
 		if (substraction.getLeft() != null) {
 			left = resolveExpression(substraction.getLeft());
@@ -249,5 +262,24 @@ public class ExpressionParser {
 			right = resolveExpression(substraction.getRight());
 		}
 		return left-right;
+	}
+
+	/**
+	 * resolve an modulo expression
+	 * 
+	 * @param modulo reference on the addition expression
+	 * @return  a decimal value of the addition
+	 */
+	public static int resolveExpression(Modulo modulo) {
+		int left=0;
+		int right=0;
+		
+		if (modulo.getLeft() != null) {
+			left = resolveExpression(modulo.getLeft());
+		}
+		if (modulo.getRight() != null) {
+			right = resolveExpression(modulo.getRight());
+		}
+		return left%right;
 	}
 }

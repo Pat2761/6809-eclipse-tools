@@ -384,13 +384,22 @@ public interface AssemblerPackage extends EPackage
   int DECIMAL_VALUE = 10;
 
   /**
+   * The feature id for the '<em><b>Is Negative</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DECIMAL_VALUE__IS_NEGATIVE = 0;
+
+  /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DECIMAL_VALUE__VALUE = 0;
+  int DECIMAL_VALUE__VALUE = 1;
 
   /**
    * The number of structural features of the '<em>Decimal Value</em>' class.
@@ -399,7 +408,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DECIMAL_VALUE_FEATURE_COUNT = 1;
+  int DECIMAL_VALUE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.HexaDecimalValueImpl <em>Hexa Decimal Value</em>}' class.
@@ -1266,6 +1275,17 @@ public interface AssemblerPackage extends EPackage
   EClass getDecimalValue();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimalValue#isIsNegative <em>Is Negative</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Negative</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DecimalValue#isIsNegative()
+   * @see #getDecimalValue()
+   * @generated
+   */
+  EAttribute getDecimalValue_IsNegative();
+
+  /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimalValue#getValue <em>Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1847,6 +1867,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass DECIMAL_VALUE = eINSTANCE.getDecimalValue();
+
+    /**
+     * The meta object literal for the '<em><b>Is Negative</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DECIMAL_VALUE__IS_NEGATIVE = eINSTANCE.getDecimalValue_IsNegative();
 
     /**
      * The meta object literal for the '<em><b>Value</b></em>' attribute feature.

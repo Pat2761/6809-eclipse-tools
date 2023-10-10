@@ -771,10 +771,13 @@ ruleSubstraction returns [EObject current=null]
 						$current);
 				}
 			)
-			otherlv_2='-'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getSubstractionAccess().getHyphenMinusKeyword_1_1());
-			}
+			(
+				('-')=>
+				otherlv_2='-'
+				{
+					newLeafNode(otherlv_2, grammarAccess.getSubstractionAccess().getHyphenMinusKeyword_1_1());
+				}
+			)
 			(
 				(
 					{
@@ -1396,20 +1399,36 @@ ruleDecimalValue returns [EObject current=null]
 }:
 	(
 		(
-			lv_value_0_0=RULE_INT
-			{
-				newLeafNode(lv_value_0_0, grammarAccess.getDecimalValueAccess().getValueINTTerminalRuleCall_0());
-			}
-			{
-				if ($current==null) {
-					$current = createModelElement(grammarAccess.getDecimalValueRule());
+			(
+				lv_isNegative_0_0='-'
+				{
+					newLeafNode(lv_isNegative_0_0, grammarAccess.getDecimalValueAccess().getIsNegativeHyphenMinusKeyword_0_0());
 				}
-				setWithLastConsumed(
-					$current,
-					"value",
-					lv_value_0_0,
-					"org.bpy.electronics.mc6809.assembler.Assembler.INT");
-			}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDecimalValueRule());
+					}
+					setWithLastConsumed($current, "isNegative", lv_isNegative_0_0 != null, "-");
+				}
+			)
+		)?
+		(
+			(
+				lv_value_1_0=RULE_INT
+				{
+					newLeafNode(lv_value_1_0, grammarAccess.getDecimalValueAccess().getValueINTTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDecimalValueRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"value",
+						lv_value_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.INT");
+				}
+			)
 		)
 	)
 ;
@@ -1592,13 +1611,13 @@ RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 
 RULE_HEXA : '$' ('0'..'9'|'a'..'f'|'A'..'F')+;
 
-RULE_BINARY : '%' ('0'..'1')+;
+RULE_INT : ('0'..'9')+;
 
 RULE_OCTAL : '@' ('0'..'7')+;
 
-RULE_CHARACTER : '\'' ' '..'\u007F';
+RULE_BINARY : '0' 'b' ('0'..'1')+;
 
-RULE_INT : '-'? ('0'..'9')+;
+RULE_CHARACTER : '\'' ' '..'\u007F';
 
 RULE_STRING : '"' ('\\' .|~(('\\'|'"')))*;
 

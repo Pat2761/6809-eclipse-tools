@@ -41,6 +41,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//StringValue/value"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//DecimalValue">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DecimalValue/isNegative"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DecimalValue/value"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//HexaDecimalValue">

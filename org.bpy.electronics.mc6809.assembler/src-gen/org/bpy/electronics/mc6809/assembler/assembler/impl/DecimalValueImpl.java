@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DecimalValueImpl#isIsNegative <em>Is Negative</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DecimalValueImpl#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -28,6 +29,26 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class DecimalValueImpl extends MinimalEObjectImpl.Container implements DecimalValue
 {
+  /**
+   * The default value of the '{@link #isIsNegative() <em>Is Negative</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isIsNegative()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean IS_NEGATIVE_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isIsNegative() <em>Is Negative</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isIsNegative()
+   * @generated
+   * @ordered
+   */
+  protected boolean isNegative = IS_NEGATIVE_EDEFAULT;
+
   /**
    * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -75,6 +96,31 @@ public class DecimalValueImpl extends MinimalEObjectImpl.Container implements De
    * @generated
    */
   @Override
+  public boolean isIsNegative()
+  {
+    return isNegative;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setIsNegative(boolean newIsNegative)
+  {
+    boolean oldIsNegative = isNegative;
+    isNegative = newIsNegative;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.DECIMAL_VALUE__IS_NEGATIVE, oldIsNegative, isNegative));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public int getValue()
   {
     return value;
@@ -104,6 +150,8 @@ public class DecimalValueImpl extends MinimalEObjectImpl.Container implements De
   {
     switch (featureID)
     {
+      case AssemblerPackage.DECIMAL_VALUE__IS_NEGATIVE:
+        return isIsNegative();
       case AssemblerPackage.DECIMAL_VALUE__VALUE:
         return getValue();
     }
@@ -120,6 +168,9 @@ public class DecimalValueImpl extends MinimalEObjectImpl.Container implements De
   {
     switch (featureID)
     {
+      case AssemblerPackage.DECIMAL_VALUE__IS_NEGATIVE:
+        setIsNegative((Boolean)newValue);
+        return;
       case AssemblerPackage.DECIMAL_VALUE__VALUE:
         setValue((Integer)newValue);
         return;
@@ -137,6 +188,9 @@ public class DecimalValueImpl extends MinimalEObjectImpl.Container implements De
   {
     switch (featureID)
     {
+      case AssemblerPackage.DECIMAL_VALUE__IS_NEGATIVE:
+        setIsNegative(IS_NEGATIVE_EDEFAULT);
+        return;
       case AssemblerPackage.DECIMAL_VALUE__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
@@ -154,6 +208,8 @@ public class DecimalValueImpl extends MinimalEObjectImpl.Container implements De
   {
     switch (featureID)
     {
+      case AssemblerPackage.DECIMAL_VALUE__IS_NEGATIVE:
+        return isNegative != IS_NEGATIVE_EDEFAULT;
       case AssemblerPackage.DECIMAL_VALUE__VALUE:
         return value != VALUE_EDEFAULT;
     }
@@ -171,7 +227,9 @@ public class DecimalValueImpl extends MinimalEObjectImpl.Container implements De
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (value: ");
+    result.append(" (isNegative: ");
+    result.append(isNegative);
+    result.append(", value: ");
     result.append(value);
     result.append(')');
     return result.toString();

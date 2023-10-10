@@ -564,9 +564,20 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getDecimalValue_Value()
+  public EAttribute getDecimalValue_IsNegative()
   {
     return (EAttribute)decimalValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDecimalValue_Value()
+  {
+    return (EAttribute)decimalValueEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -976,6 +987,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEAttribute(stringValueEClass, STRING_VALUE__VALUE);
 
     decimalValueEClass = createEClass(DECIMAL_VALUE);
+    createEAttribute(decimalValueEClass, DECIMAL_VALUE__IS_NEGATIVE);
     createEAttribute(decimalValueEClass, DECIMAL_VALUE__VALUE);
 
     hexaDecimalValueEClass = createEClass(HEXA_DECIMAL_VALUE);
@@ -1100,6 +1112,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getStringValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, StringValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(decimalValueEClass, DecimalValue.class, "DecimalValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getDecimalValue_IsNegative(), ecorePackage.getEBoolean(), "isNegative", null, 0, 1, DecimalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDecimalValue_Value(), ecorePackage.getEInt(), "value", null, 0, 1, DecimalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(hexaDecimalValueEClass, HexaDecimalValue.class, "HexaDecimalValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.DecimalValue#isIsNegative <em>Is Negative</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.DecimalValue#getValue <em>Value</em>}</li>
  * </ul>
  *
@@ -23,6 +24,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface DecimalValue extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Is Negative</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Is Negative</em>' attribute.
+   * @see #setIsNegative(boolean)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getDecimalValue_IsNegative()
+   * @model
+   * @generated
+   */
+  boolean isIsNegative();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimalValue#isIsNegative <em>Is Negative</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Is Negative</em>' attribute.
+   * @see #isIsNegative()
+   * @generated
+   */
+  void setIsNegative(boolean value);
+
   /**
    * Returns the value of the '<em><b>Value</b></em>' attribute.
    * <!-- begin-user-doc -->

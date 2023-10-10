@@ -91,11 +91,11 @@ Modulo returns Expression:
 ;
 
 Addition returns Expression:
-  Substraction ({Addition.left=current} '+' right=Substraction)*
+    Substraction ({Addition.left=current} '+' right=Substraction)*
 ;
 
 Substraction returns Expression:
-  LeftShift ({Substraction.left=current} '-' right=LeftShift)*
+    LeftShift ({Substraction.left=current} -> '-' right=LeftShift)*
 ;
   
 LeftShift returns Expression:
@@ -141,7 +141,7 @@ StringValue:
 ;
 
 DecimalValue:
-	value = INT
+	isNegative?='-'? value = INT
 ;
 
 HexaDecimalValue:
@@ -162,17 +162,17 @@ CharacterValue:
 
 terminal ID									: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 terminal HEXA 								: '$' ('0'..'9'|'a'..'f'|'A'..'F')+;
-terminal BINARY 							: '%' ('0'..'1')+;
-terminal OCTAL 								: '@' ('0'..'7')+;
-terminal CHARACTER							: '\'' ('\u0020'..'\u007F');
 terminal INT returns ecore::EInt			: ('0'..'9')+;
+terminal OCTAL 								: '@'('0'..'7')+;
+terminal BINARY 							: '0''b'('0'..'1')+;
+terminal CHARACTER							: '\'' ('\u0020'..'\u007F');
 
 EndOfLine: CR | END_OF_FILE;
 
 terminal STRING:
 			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* 
 		;		
-		
+	
 terminal ANY_EXCEPT_COMMENT_END_OF_LINE  	: ';' !('\n' | '\r')*;
 terminal WS         						: (' '|'\t')+;
 terminal CR          						: '\r'? '\n';
