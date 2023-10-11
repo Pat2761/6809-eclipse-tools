@@ -61,7 +61,12 @@ CommentLine:
  * 	EQU  
  */
 DirectiveLine:
-	directive = EquDirective
+	   directive = EquDirective
+	|  directive = OrgDirective
+;
+
+OrgDirective:
+	(name = IdentifierValue)? WS (directive = 'ORG') WS (operand = Expression)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine	
 ;
 
 /*
@@ -69,14 +74,12 @@ DirectiveLine:
  * An EQU directive must have a label, following by EQU, an operand, and optionnaly a comment  
  */
 EquDirective:
-	(name = IdentifierValue)? WS (directive = 'EQU') WS (operand = Operand)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine	
+	(name = IdentifierValue)? WS (directive = 'EQU') WS (operand = Expression)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine	
 ;
 
 
-Operand:
-		(operand = Multiplication)
-	| 	(operand = StringValue)
-;
+Expression:
+		operand = Multiplication;
 
 Multiplication returns Expression:
   	Division ({Multiplication.left=current} operation='*' right=Division)*

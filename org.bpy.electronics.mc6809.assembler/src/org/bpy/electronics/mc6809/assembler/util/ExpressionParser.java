@@ -38,6 +38,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.Not;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
+import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
@@ -80,6 +81,23 @@ public class ExpressionParser {
 			}
 			
 			equValues.put(equDirective.getName().getValue(), equValue);
+			return equValue;
+		} else {
+			return -1;
+		}
+	}
+
+	/** 
+	 *  Parse the operand of an ORG directive.
+	 *  
+	 *  @param orgDirective reference on the ORG directive
+	 *  @return value of the operand 
+	 */
+	public static int parse(OrgDirective orgDirective) {
+		if (orgDirective.getOperand() != null && orgDirective.getOperand().getOperand() != null) {
+			EObject operand = orgDirective.getOperand().getOperand();
+			int equValue = resolveExpression((Expression)operand);
+			
 			return equValue;
 		} else {
 			return -1;

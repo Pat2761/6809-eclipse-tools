@@ -2,6 +2,7 @@ package org.bpy.electronics.mc6809.assembler.validation;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.xtext.validation.Check;
 
@@ -56,4 +57,33 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 		}
 	}
 
+	@Check
+	/**
+	 * An ORG directive can't be negative
+	 * 
+	 * @param orgDirective reference on the ORG directive
+	 */
+	public void checkInvalidNegativeValue(OrgDirective orgDirective) {
+		int equValue = ExpressionParser.parse(orgDirective);
+		if (equValue < 0) {
+			error("ORG value can't be negative",
+					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		}
+	}
+
+	@Check
+	/**
+	 * An ORG directive with a value > 0xFFFF
+	 * 
+	 * @param orgDirective reference on the ORG directive
+	 */
+	public void checkInvalidpositiveValue(OrgDirective orgDirective) {
+		int equValue = ExpressionParser.parse(orgDirective);
+		if (equValue > 0xFFFF) {
+			error("ORG value maximum value is $FFFF",
+					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		}
+	}
 }
