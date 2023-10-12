@@ -100,7 +100,7 @@ public class ExpressionParser {
 			
 			return equValue;
 		} else {
-			return -1;
+			return 0;
 		}
 	}
 	

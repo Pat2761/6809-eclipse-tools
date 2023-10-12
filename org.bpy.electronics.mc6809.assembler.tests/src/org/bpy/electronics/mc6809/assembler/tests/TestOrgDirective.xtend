@@ -68,6 +68,30 @@ class TestOrgDirective {
 	}
 	
 	/**
+	 * Check EQU directive with no value , return 0
+	 */
+	@Test 
+	def void testOrgWithNoValueValue() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    ; Without value 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(1)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an ORG directive line", directiveLine.directive instanceof OrgDirective)
+		
+		val orgDirective = directiveLine.directive as OrgDirective
+	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective))	
+		Assert.assertEquals("Operand must be equals to 0", 0, ExpressionParser.parse(orgDirective))		
+	}
+	/**
 	 * Check ORG directive with a simple identifier defined by an anothoer EQU
 	 */
 	@Test 
@@ -151,7 +175,8 @@ class TestOrgDirective {
 	@Test 
 	def void testWithLowestValue() {
 		val result = parseHelper.parse('''
-		Label1       ORG    0 
+		; -----------------------------------------
+		        ORG    0 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -163,7 +188,8 @@ class TestOrgDirective {
 	@Test 
 	def void testWithUpperLimitValue() {
 		val result = parseHelper.parse('''
-		Label1       ORG    $FFFF 
+		; -----------------------------------------
+		       ORG    $FFFF 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -175,9 +201,23 @@ class TestOrgDirective {
 	@Test 
 	def void testWithToHighLimitValue() {
 		val result = parseHelper.parse('''
-		Label1       ORG    $FFFF+1 
+		; -----------------------------------------
+		       ORG    $FFFF+1 
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.orgDirective,DirectiveValidator::INVALID_RANGE,"ORG value maximum value is $FFFF")
+	}
+
+	/**
+	 * Check ORG directive with the too high limit
+	 */
+	@Test 
+	def void testUnexpectedLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		OrgLabel       ORG    $FFFF+1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.orgDirective,DirectiveValidator::UNEXPECTED_LABEL,"Label isn't not allow for ORG directive")
 	}
 }

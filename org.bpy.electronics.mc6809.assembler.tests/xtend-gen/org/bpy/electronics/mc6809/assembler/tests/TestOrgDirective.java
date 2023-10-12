@@ -88,6 +88,41 @@ public class TestOrgDirective {
   }
 
   /**
+   * Check EQU directive with no value , return 0
+   */
+  @Test
+  public void testOrgWithNoValueValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    ; Without value ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(1);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
+      EObject _directive = directiveLine.getDirective();
+      Assert.assertTrue("Must be an ORG directive line", (_directive instanceof OrgDirective));
+      EObject _directive_1 = directiveLine.getDirective();
+      final OrgDirective orgDirective = ((OrgDirective) _directive_1);
+      Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective));
+      Assert.assertEquals("Operand must be equals to 0", 0, ExpressionParser.parse(orgDirective));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
    * Check ORG directive with a simple identifier defined by an anothoer EQU
    */
   @Test
@@ -203,7 +238,10 @@ public class TestOrgDirective {
   public void testWithLowestValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Label1       ORG    0 ");
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("ORG    0 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -220,7 +258,10 @@ public class TestOrgDirective {
   public void testWithUpperLimitValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Label1       ORG    $FFFF ");
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("       ");
+      _builder.append("ORG    $FFFF ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -237,11 +278,33 @@ public class TestOrgDirective {
   public void testWithToHighLimitValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Label1       ORG    $FFFF+1 ");
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("       ");
+      _builder.append("ORG    $FFFF+1 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), DirectiveValidator.INVALID_RANGE, "ORG value maximum value is $FFFF");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check ORG directive with the too high limit
+   */
+  @Test
+  public void testUnexpectedLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("OrgLabel       ORG    $FFFF+1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), DirectiveValidator.UNEXPECTED_LABEL, "Label isn\'t not allow for ORG directive");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

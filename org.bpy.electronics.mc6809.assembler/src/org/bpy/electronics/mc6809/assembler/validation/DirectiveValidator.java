@@ -3,6 +3,7 @@ package org.bpy.electronics.mc6809.assembler.validation;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.xtext.validation.Check;
 
@@ -10,6 +11,7 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 
 	public static final String INVALID_RANGE = "invalidRange";
 	public static final String MISSING_LABEL = "missingLabel";
+	public static final String UNEXPECTED_LABEL = "unexpectedLabel";
 
 	@Check
 	/**
@@ -54,6 +56,21 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			error("EQU directive must have a label)",
 					AssemblerPackage.Literals.EQU_DIRECTIVE__NAME,
 					MISSING_LABEL);
+		}
+	}
+
+	@Check
+	/**
+	 * An ORG directive can't be negative
+	 * 
+	 * @param orgDirective reference on the ORG directive
+	 */
+	public void checkLabelPresence(OrgDirective orgDirective) {
+		String label = CommandUtil.getLabel(orgDirective);
+		if (label != null) {
+			error("Label isn't not allow for ORG directive",
+					AssemblerPackage.Literals.ORG_DIRECTIVE__NAME,
+					UNEXPECTED_LABEL);
 		}
 	}
 
