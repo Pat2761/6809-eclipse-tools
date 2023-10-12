@@ -3,6 +3,7 @@ package org.bpy.electronics.mc6809.assembler.util;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 
 public class CommandUtil {
 
@@ -29,6 +30,20 @@ public class CommandUtil {
 	public static String getLabel(OrgDirective orgDirective) {
 		if ( orgDirective.getName() != null) {
 			return orgDirective.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+	
+	/**
+	 * Return the label associated to an RMB directive.
+	 * 
+	 * @param rmbDirective reference on the RMB directive
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(RmbDirective rmbDirective) {
+		if ( rmbDirective.getName() != null) {
+			return rmbDirective.getName().getValue();
 		} else {
 			return null;
 		}

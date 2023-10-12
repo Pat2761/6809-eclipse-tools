@@ -101,6 +101,11 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createDirectiveLineAdapter();
       }
       @Override
+      public Adapter caseRmbDirective(RmbDirective object)
+      {
+        return createRmbDirectiveAdapter();
+      }
+      @Override
       public Adapter caseEndDirective(EndDirective object)
       {
         return createEndDirectiveAdapter();
@@ -303,6 +308,21 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDirectiveLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RmbDirective <em>Rmb Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RmbDirective
+   * @generated
+   */
+  public Adapter createRmbDirectiveAdapter()
   {
     return null;
   }

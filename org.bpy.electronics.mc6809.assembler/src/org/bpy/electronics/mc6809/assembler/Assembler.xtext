@@ -64,6 +64,23 @@ DirectiveLine:
 	   directive = EquDirective
 	|  directive = OrgDirective
 	|  directive = EndDirective
+	|  directive = RmbDirective
+;
+
+/*
+ *  RMB
+ * 
+ * The RMB or Reserve Memory Bytes directive is used to reserve areas of memory for data storage.
+ * The number of bytes specified by the expression in the operand are skipped during assembly. 
+ * No code is produced in those memory location and therefore the contents are undefined at run time.
+ *  The proper useage is shown here:
+ * 
+ * [<label>] RMB <expression>
+ *
+ * The label is optional, and the expression is a 16 bit quantity.
+ */
+RmbDirective:
+	(name = IdentifierValue)? WS (directive = 'RMB') (WS (operand = Expression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
 ;
 
 /*

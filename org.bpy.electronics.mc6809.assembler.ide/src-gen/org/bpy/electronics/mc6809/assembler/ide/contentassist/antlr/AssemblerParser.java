@@ -37,6 +37,9 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEndOfLineAccess().getAlternatives(), "rule__EndOfLine__Alternatives");
 			builder.put(grammarAccess.getBlankLineAccess().getGroup(), "rule__BlankLine__Group__0");
 			builder.put(grammarAccess.getCommentLineAccess().getGroup(), "rule__CommentLine__Group__0");
+			builder.put(grammarAccess.getRmbDirectiveAccess().getGroup(), "rule__RmbDirective__Group__0");
+			builder.put(grammarAccess.getRmbDirectiveAccess().getGroup_3(), "rule__RmbDirective__Group_3__0");
+			builder.put(grammarAccess.getRmbDirectiveAccess().getGroup_4(), "rule__RmbDirective__Group_4__0");
 			builder.put(grammarAccess.getEndDirectiveAccess().getGroup(), "rule__EndDirective__Group__0");
 			builder.put(grammarAccess.getEndDirectiveAccess().getGroup_3(), "rule__EndDirective__Group_3__0");
 			builder.put(grammarAccess.getEndDirectiveAccess().getGroup_4(), "rule__EndDirective__Group_4__0");
@@ -76,6 +79,11 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_0(), "rule__DirectiveLine__DirectiveAssignment_0");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_1(), "rule__DirectiveLine__DirectiveAssignment_1");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2(), "rule__DirectiveLine__DirectiveAssignment_2");
+			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_3(), "rule__DirectiveLine__DirectiveAssignment_3");
+			builder.put(grammarAccess.getRmbDirectiveAccess().getNameAssignment_0(), "rule__RmbDirective__NameAssignment_0");
+			builder.put(grammarAccess.getRmbDirectiveAccess().getDirectiveAssignment_2(), "rule__RmbDirective__DirectiveAssignment_2");
+			builder.put(grammarAccess.getRmbDirectiveAccess().getOperandAssignment_3_1(), "rule__RmbDirective__OperandAssignment_3_1");
+			builder.put(grammarAccess.getRmbDirectiveAccess().getCommentAssignment_4_1(), "rule__RmbDirective__CommentAssignment_4_1");
 			builder.put(grammarAccess.getEndDirectiveAccess().getNameAssignment_0(), "rule__EndDirective__NameAssignment_0");
 			builder.put(grammarAccess.getEndDirectiveAccess().getDirectiveAssignment_2(), "rule__EndDirective__DirectiveAssignment_2");
 			builder.put(grammarAccess.getEndDirectiveAccess().getOperandAssignment_3_1(), "rule__EndDirective__OperandAssignment_3_1");

@@ -25,6 +25,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_OrgDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_7_0_a;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_7_0_p;
+	protected AbstractElementAlias match_RmbDirective_WSTerminalRuleCall_5_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
@@ -34,6 +35,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_OrgDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_5());
 		match_Primary_LeftParenthesisKeyword_7_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_7_0());
 		match_Primary_LeftParenthesisKeyword_7_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_7_0());
+		match_RmbDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getRmbDirectiveAccess().getWSTerminalRuleCall_5());
 	}
 	
 	@Override
@@ -79,6 +81,8 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_Primary_LeftParenthesisKeyword_7_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_7_0_p.equals(syntax))
 				emit_Primary_LeftParenthesisKeyword_7_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_RmbDirective_WSTerminalRuleCall_5_q.equals(syntax))
+				emit_RmbDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -182,6 +186,22 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * </pre>
 	 */
 	protected void emit_Primary_LeftParenthesisKeyword_7_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
+	 *     directive='RMB' (ambiguity) EndOfLine (rule end)
+	 *     operand=Expression (ambiguity) EndOfLine (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_RmbDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

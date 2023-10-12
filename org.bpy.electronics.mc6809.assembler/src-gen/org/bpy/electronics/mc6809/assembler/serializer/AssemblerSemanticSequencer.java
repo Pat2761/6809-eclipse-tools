@@ -29,6 +29,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
+import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
@@ -153,6 +154,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.RIGHT_SHIFT:
 				sequence_RightShift(context, (RightShift) semanticObject); 
+				return; 
+			case AssemblerPackage.RMB_DIRECTIVE:
+				sequence_RmbDirective(context, (RmbDirective) semanticObject); 
 				return; 
 			case AssemblerPackage.SOURCE_LINE:
 				sequence_SourceLine(context, (SourceLine) semanticObject); 
@@ -351,7 +355,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     DirectiveLine returns DirectiveLine
 	 *
 	 * Constraint:
-	 *     (directive=EquDirective | directive=OrgDirective | directive=EndDirective)
+	 *     (directive=EquDirective | directive=OrgDirective | directive=EndDirective | directive=RmbDirective)
 	 * </pre>
 	 */
 	protected void sequence_DirectiveLine(ISerializationContext context, DirectiveLine semanticObject) {
@@ -840,6 +844,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		feeder.accept(grammarAccess.getRightShiftAccess().getRightShiftLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getRightShiftAccess().getRightAndParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     RmbDirective returns RmbDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? directive='RMB' operand=Expression? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_RmbDirective(ISerializationContext context, RmbDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

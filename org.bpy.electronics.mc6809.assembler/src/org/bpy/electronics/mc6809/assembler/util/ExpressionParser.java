@@ -28,6 +28,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
@@ -41,6 +42,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
+import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.eclipse.emf.ecore.EObject;
@@ -121,6 +123,23 @@ public class ExpressionParser {
 			return 0;
 		}
 	}
+
+	/** 
+	 *  Parse the operand of an RMB directive.
+	 *  
+	 *  @param rmbDirective reference on the RMB directive
+	 *  @return value of the operand 
+	 */
+	public static int parse(RmbDirective rmbDirective) {
+		if (rmbDirective.getOperand() != null && rmbDirective.getOperand().getOperand() != null) {
+			EObject operand = rmbDirective.getOperand().getOperand();
+			int equValue = resolveExpression((Expression)operand);
+			
+			return equValue;
+		} else {
+			return 0;
+		}
+	}
 	
 	/**
 	 * resolve an expression object 
@@ -133,6 +152,9 @@ public class ExpressionParser {
 		if (expression instanceof Multiplication) {
 			return resolveExpression((Multiplication)expression);
 			
+		} else if (expression instanceof Division) {
+				return resolveExpression((Division)expression);
+				
 		} else if (expression instanceof Addition) { 	
 			return resolveExpression((Addition)expression);
 			
@@ -284,6 +306,25 @@ public class ExpressionParser {
 			right = resolveExpression(multiplication.getRight());
 		}
 		return left*right;
+	}
+
+	/**
+	 * resolve an division expression 
+	 * 
+	 * @param division reference on the division expression
+	 * @return a decimal value of the division
+	 */
+	public static int resolveExpression(Division division) {
+		int left=1;
+		int right=1;
+		
+		if (division.getLeft() != null) {
+			left = resolveExpression(division.getLeft());
+		}
+		if (division.getRight() != null) {
+			right = resolveExpression(division.getRight());
+		}
+		return left/right;
 	}
 
 	/**

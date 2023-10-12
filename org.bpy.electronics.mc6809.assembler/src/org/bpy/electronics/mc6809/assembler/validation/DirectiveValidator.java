@@ -4,6 +4,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.xtext.validation.Check;
@@ -97,4 +98,24 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 		}
 	}
 
+
+	@Check
+	/**
+	 * Check the RMB directive limits (1-FFFF)
+	 * 
+	 * @param rmbDirective reference on the RMB directive
+	 */
+	public void checkRmdConstraints(RmbDirective rmbDirective) {
+		
+		int rmbValue = ExpressionParser.parse(rmbDirective);
+		if (rmbValue > 0xFFFF) {
+			error("RMB value maximum value is $FFFF",
+					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else if (rmbValue < 1) {
+			error("RMB value can't lower than 1",
+					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		}
+	}
 }

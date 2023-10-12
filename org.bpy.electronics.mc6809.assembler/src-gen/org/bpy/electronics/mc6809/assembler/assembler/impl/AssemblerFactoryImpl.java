@@ -70,6 +70,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.DIRECTIVE_LINE: return createDirectiveLine();
+      case AssemblerPackage.RMB_DIRECTIVE: return createRmbDirective();
       case AssemblerPackage.END_DIRECTIVE: return createEndDirective();
       case AssemblerPackage.ORG_DIRECTIVE: return createOrgDirective();
       case AssemblerPackage.EQU_DIRECTIVE: return createEquDirective();
@@ -155,6 +156,18 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     DirectiveLineImpl directiveLine = new DirectiveLineImpl();
     return directiveLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RmbDirective createRmbDirective()
+  {
+    RmbDirectiveImpl rmbDirective = new RmbDirectiveImpl();
+    return rmbDirective;
   }
 
   /**
