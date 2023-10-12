@@ -63,6 +63,22 @@ CommentLine:
 DirectiveLine:
 	   directive = EquDirective
 	|  directive = OrgDirective
+	|  directive = EndDirective
+;
+
+/*
+ * The END pseudo-op is used to signal the assembler that the end of the source input has occurred. 
+ * This terminates whatever pass is currently being executed. No label is allowed and no code is generated. 
+ * An expression may be given (as shown below) as the transfer address to be placed in a binary file. 
+ * It is optional, and if supplied when no binary file is being produced, will be ignored.
+ *
+ *  END [<expression>]
+ *
+ * Note that an end statement is not strictly required, 
+ * but is the only means of getting a transfer address appended to a binary output file.  
+ */
+EndDirective:
+	(name = IdentifierValue)? WS (directive = 'END') (WS (operand = Expression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
 ;
 
 /*
@@ -73,7 +89,7 @@ DirectiveLine:
  *	No label may be placed on an ORG statement and no code is produced. If no ORG statement appears in the source, an origin of 0000 is assumed. 
  */
 OrgDirective:
-	(name = IdentifierValue)? WS (directive = 'ORG') WS (operand = Expression)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine	
+	(name = IdentifierValue)? WS (directive = 'ORG') (WS (operand = Expression))? (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))? WS? EndOfLine		
 ;
 
 /*

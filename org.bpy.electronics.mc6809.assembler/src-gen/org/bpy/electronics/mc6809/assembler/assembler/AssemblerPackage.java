@@ -198,6 +198,61 @@ public interface AssemblerPackage extends EPackage
   int DIRECTIVE_LINE_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EndDirectiveImpl <em>End Directive</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.EndDirectiveImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEndDirective()
+   * @generated
+   */
+  int END_DIRECTIVE = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int END_DIRECTIVE__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Directive</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int END_DIRECTIVE__DIRECTIVE = 1;
+
+  /**
+   * The feature id for the '<em><b>Operand</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int END_DIRECTIVE__OPERAND = 2;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int END_DIRECTIVE__COMMENT = 3;
+
+  /**
+   * The number of structural features of the '<em>End Directive</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int END_DIRECTIVE_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl <em>Org Directive</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -205,7 +260,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrgDirective()
    * @generated
    */
-  int ORG_DIRECTIVE = 5;
+  int ORG_DIRECTIVE = 6;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -260,7 +315,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEquDirective()
    * @generated
    */
-  int EQU_DIRECTIVE = 6;
+  int EQU_DIRECTIVE = 7;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -315,7 +370,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 7;
+  int EXPRESSION = 8;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -352,7 +407,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifierValue()
    * @generated
    */
-  int IDENTIFIER_VALUE = 8;
+  int IDENTIFIER_VALUE = 9;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -380,7 +435,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStringValue()
    * @generated
    */
-  int STRING_VALUE = 9;
+  int STRING_VALUE = 10;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -408,7 +463,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecimalValue()
    * @generated
    */
-  int DECIMAL_VALUE = 10;
+  int DECIMAL_VALUE = 11;
 
   /**
    * The feature id for the '<em><b>Is Negative</b></em>' attribute.
@@ -445,7 +500,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getHexaDecimalValue()
    * @generated
    */
-  int HEXA_DECIMAL_VALUE = 11;
+  int HEXA_DECIMAL_VALUE = 12;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -473,7 +528,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOctalValue()
    * @generated
    */
-  int OCTAL_VALUE = 12;
+  int OCTAL_VALUE = 13;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -501,7 +556,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBinaryValue()
    * @generated
    */
-  int BINARY_VALUE = 13;
+  int BINARY_VALUE = 14;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -529,7 +584,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCharacterValue()
    * @generated
    */
-  int CHARACTER_VALUE = 14;
+  int CHARACTER_VALUE = 15;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -557,7 +612,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 15;
+  int MULTIPLICATION = 16;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -621,7 +676,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDivision()
    * @generated
    */
-  int DIVISION = 16;
+  int DIVISION = 17;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -685,7 +740,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getModulo()
    * @generated
    */
-  int MODULO = 17;
+  int MODULO = 18;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -749,7 +804,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 18;
+  int ADDITION = 19;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -804,7 +859,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubstraction()
    * @generated
    */
-  int SUBSTRACTION = 19;
+  int SUBSTRACTION = 20;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -859,7 +914,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeftShift()
    * @generated
    */
-  int LEFT_SHIFT = 20;
+  int LEFT_SHIFT = 21;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -914,7 +969,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRightShift()
    * @generated
    */
-  int RIGHT_SHIFT = 21;
+  int RIGHT_SHIFT = 22;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -969,7 +1024,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAnd()
    * @generated
    */
-  int AND = 22;
+  int AND = 23;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1024,7 +1079,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOr()
    * @generated
    */
-  int OR = 23;
+  int OR = 24;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1079,7 +1134,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getXor()
    * @generated
    */
-  int XOR = 24;
+  int XOR = 25;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1134,7 +1189,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNot()
    * @generated
    */
-  int NOT = 25;
+  int NOT = 26;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1268,6 +1323,60 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EReference getDirectiveLine_Directive();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective <em>End Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>End Directive</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EndDirective
+   * @generated
+   */
+  EClass getEndDirective();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getName()
+   * @see #getEndDirective()
+   * @generated
+   */
+  EReference getEndDirective_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getDirective <em>Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Directive</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getDirective()
+   * @see #getEndDirective()
+   * @generated
+   */
+  EAttribute getEndDirective_Directive();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getOperand <em>Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getOperand()
+   * @see #getEndDirective()
+   * @generated
+   */
+  EReference getEndDirective_Operand();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getComment()
+   * @see #getEndDirective()
+   * @generated
+   */
+  EAttribute getEndDirective_Comment();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.OrgDirective <em>Org Directive</em>}'.
@@ -2042,6 +2151,48 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EReference DIRECTIVE_LINE__DIRECTIVE = eINSTANCE.getDirectiveLine_Directive();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EndDirectiveImpl <em>End Directive</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.EndDirectiveImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEndDirective()
+     * @generated
+     */
+    EClass END_DIRECTIVE = eINSTANCE.getEndDirective();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference END_DIRECTIVE__NAME = eINSTANCE.getEndDirective_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute END_DIRECTIVE__DIRECTIVE = eINSTANCE.getEndDirective_Directive();
+
+    /**
+     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference END_DIRECTIVE__OPERAND = eINSTANCE.getEndDirective_Operand();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute END_DIRECTIVE__COMMENT = eINSTANCE.getEndDirective_Comment();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl <em>Org Directive</em>}' class.

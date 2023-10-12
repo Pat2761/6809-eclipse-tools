@@ -15,6 +15,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
+import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
@@ -83,6 +84,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.DIVISION:
 				sequence_Division(context, (Division) semanticObject); 
+				return; 
+			case AssemblerPackage.END_DIRECTIVE:
+				sequence_EndDirective(context, (EndDirective) semanticObject); 
 				return; 
 			case AssemblerPackage.EQU_DIRECTIVE:
 				sequence_EquDirective(context, (EquDirective) semanticObject); 
@@ -347,7 +351,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     DirectiveLine returns DirectiveLine
 	 *
 	 * Constraint:
-	 *     (directive=EquDirective | directive=OrgDirective)
+	 *     (directive=EquDirective | directive=OrgDirective | directive=EndDirective)
 	 * </pre>
 	 */
 	protected void sequence_DirectiveLine(ISerializationContext context, DirectiveLine semanticObject) {
@@ -398,6 +402,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		feeder.accept(grammarAccess.getDivisionAccess().getOpretationSolidusKeyword_1_1_0(), semanticObject.getOpretation());
 		feeder.accept(grammarAccess.getDivisionAccess().getRightModuloParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     EndDirective returns EndDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? directive='END' operand=Expression? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_EndDirective(ISerializationContext context, EndDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

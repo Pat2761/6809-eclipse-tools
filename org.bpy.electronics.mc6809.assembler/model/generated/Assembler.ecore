@@ -20,6 +20,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="directive" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="EndDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrgDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
         containment="true"/>

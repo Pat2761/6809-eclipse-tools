@@ -1,6 +1,7 @@
 package org.bpy.electronics.mc6809.assembler.validation;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -17,72 +18,51 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	/**
 	 * The 6809 is a 16 bits microprocessor, so value must be contains in 16 bits
 	 * The Limit of a positive value is  65535
-	 * 
-	 * @param equDirective reference on the EQU directive
-	 */
-	public void checkUpperRange(EquDirective equDirective) {
-		int equValue = ExpressionParser.parse(equDirective);
-		if (equValue > 65535) {
-			error("EQU value can't exceed 65535 (16 bits value)",
-					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
-					INVALID_RANGE);
-		}
-	}
-
-	@Check
-	/**
-	 * The 6809 is a 16 bits microprocessor, so value must be contains in 16 bits
 	 * The limit of a negative value is -32768
-	 * 
-	 * @param equDirective reference on the EQU directive
-	 */
-	public void checkLowerRange(EquDirective equDirective) {
-		int equValue = ExpressionParser.parse(equDirective);
-		if (equValue < -32768) {
-			error("EQU value can't be lower than -32768 (16 bits value)",
-					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
-					INVALID_RANGE);
-		}
-	}
-
-	@Check
-	/**
 	 * An EQU directive must have a label
 	 * 
 	 * @param equDirective reference on the EQU directive
 	 */
-	public void checkMissingLabel(EquDirective equDirective) {
+	public void checkEquConstraints(EquDirective equDirective) {
 		if (equDirective.getName() == null) {
 			error("EQU directive must have a label)",
 					AssemblerPackage.Literals.EQU_DIRECTIVE__NAME,
 					MISSING_LABEL);
 		}
+
+		int equValue = ExpressionParser.parse(equDirective);
+		if (equValue > 65535) {
+			error("EQU value can't exceed 65535 (16 bits value)",
+					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else 	if (equValue < -32768) {
+			error("EQU value can't be lower than -32768 (16 bits value)",
+					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} 
 	}
 
 	@Check
 	/**
-	 * An ORG directive can't be negative
+	 * Check the ORG directive limits (0-FFFF)
+	 * ORG can't have a label
 	 * 
 	 * @param orgDirective reference on the ORG directive
 	 */
-	public void checkLabelPresence(OrgDirective orgDirective) {
+	public void checkOrgConstraints(OrgDirective orgDirective) {
 		String label = CommandUtil.getLabel(orgDirective);
 		if (label != null) {
 			error("Label isn't not allow for ORG directive",
 					AssemblerPackage.Literals.ORG_DIRECTIVE__NAME,
 					UNEXPECTED_LABEL);
 		}
-	}
 
-	@Check
-	/**
-	 * An ORG directive can't be negative
-	 * 
-	 * @param orgDirective reference on the ORG directive
-	 */
-	public void checkInvalidNegativeValue(OrgDirective orgDirective) {
-		int equValue = ExpressionParser.parse(orgDirective);
-		if (equValue < 0) {
+		int orgValue = ExpressionParser.parse(orgDirective);
+		if (orgValue > 0xFFFF) {
+			error("ORG value maximum value is $FFFF",
+					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else if (orgValue < 0) {
 			error("ORG value can't be negative",
 					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
@@ -91,16 +71,30 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 
 	@Check
 	/**
-	 * An ORG directive with a value > 0xFFFF
+	 * An END directive can't have a label
+	 * Check the END directive limits (0-FFFF)
 	 * 
-	 * @param orgDirective reference on the ORG directive
+	 * @param endDirective reference on the END directive
 	 */
-	public void checkInvalidpositiveValue(OrgDirective orgDirective) {
-		int equValue = ExpressionParser.parse(orgDirective);
+	public void checkEndConstraints(EndDirective endDirective) {
+		
+		String label = CommandUtil.getLabel(endDirective);
+		if (label != null) {
+			error("Label isn't not allow for END directive",
+					AssemblerPackage.Literals.END_DIRECTIVE__NAME,
+					UNEXPECTED_LABEL);
+		}
+
+		int equValue = ExpressionParser.parse(endDirective);
 		if (equValue > 0xFFFF) {
-			error("ORG value maximum value is $FFFF",
-					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
+			error("END value maximum value is $FFFF",
+					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else if (equValue < 0) {
+			error("END value can't be negative",
+					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
 		}
 	}
+
 }

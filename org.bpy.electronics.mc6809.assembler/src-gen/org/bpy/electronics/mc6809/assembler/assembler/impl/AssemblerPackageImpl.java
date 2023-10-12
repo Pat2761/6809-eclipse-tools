@@ -14,6 +14,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
+import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
@@ -81,6 +82,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass directiveLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass endDirectiveEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -399,6 +407,61 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EReference getDirectiveLine_Directive()
   {
     return (EReference)directiveLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getEndDirective()
+  {
+    return endDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEndDirective_Name()
+  {
+    return (EReference)endDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getEndDirective_Directive()
+  {
+    return (EAttribute)endDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getEndDirective_Operand()
+  {
+    return (EReference)endDirectiveEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getEndDirective_Comment()
+  {
+    return (EAttribute)endDirectiveEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1129,6 +1192,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__DIRECTIVE);
 
+    endDirectiveEClass = createEClass(END_DIRECTIVE);
+    createEReference(endDirectiveEClass, END_DIRECTIVE__NAME);
+    createEAttribute(endDirectiveEClass, END_DIRECTIVE__DIRECTIVE);
+    createEReference(endDirectiveEClass, END_DIRECTIVE__OPERAND);
+    createEAttribute(endDirectiveEClass, END_DIRECTIVE__COMMENT);
+
     orgDirectiveEClass = createEClass(ORG_DIRECTIVE);
     createEReference(orgDirectiveEClass, ORG_DIRECTIVE__NAME);
     createEAttribute(orgDirectiveEClass, ORG_DIRECTIVE__DIRECTIVE);
@@ -1269,6 +1338,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDirectiveLine_Directive(), ecorePackage.getEObject(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(endDirectiveEClass, EndDirective.class, "EndDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getEndDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, EndDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEndDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, EndDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getEndDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, EndDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEndDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, EndDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orgDirectiveEClass, OrgDirective.class, "OrgDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getOrgDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, OrgDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

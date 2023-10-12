@@ -28,6 +28,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
@@ -96,6 +97,23 @@ public class ExpressionParser {
 	public static int parse(OrgDirective orgDirective) {
 		if (orgDirective.getOperand() != null && orgDirective.getOperand().getOperand() != null) {
 			EObject operand = orgDirective.getOperand().getOperand();
+			int equValue = resolveExpression((Expression)operand);
+			
+			return equValue;
+		} else {
+			return 0;
+		}
+	}
+
+	/** 
+	 *  Parse the operand of an END directive.
+	 *  
+	 *  @param endDirective reference on the END directive
+	 *  @return value of the operand 
+	 */
+	public static int parse(EndDirective endDirective) {
+		if (endDirective.getOperand() != null && endDirective.getOperand().getOperand() != null) {
+			EObject operand = endDirective.getOperand().getOperand();
 			int equValue = resolveExpression((Expression)operand);
 			
 			return equValue;

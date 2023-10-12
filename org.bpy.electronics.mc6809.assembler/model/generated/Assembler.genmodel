@@ -21,6 +21,12 @@
     <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
     </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//EndDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//EndDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EndDirective/directive"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//EndDirective/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EndDirective/comment"/>
+    </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//OrgDirective">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OrgDirective/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrgDirective/directive"/>

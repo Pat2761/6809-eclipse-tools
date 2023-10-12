@@ -155,6 +155,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cDirectiveEquDirectiveParserRuleCall_0_0 = (RuleCall)cDirectiveAssignment_0.eContents().get(0);
 		private final Assignment cDirectiveAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cDirectiveOrgDirectiveParserRuleCall_1_0 = (RuleCall)cDirectiveAssignment_1.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cDirectiveEndDirectiveParserRuleCall_2_0 = (RuleCall)cDirectiveAssignment_2.eContents().get(0);
 		
 		///*
 		// * Definition of the list possible directives
@@ -163,11 +165,13 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//DirectiveLine:
 		//       directive = EquDirective
 		//    |  directive = OrgDirective
+		//    |  directive = EndDirective
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//   directive = EquDirective
 		//|  directive = OrgDirective
+		//|  directive = EndDirective
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//directive = EquDirective
@@ -181,6 +185,95 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//OrgDirective
 		public RuleCall getDirectiveOrgDirectiveParserRuleCall_1_0() { return cDirectiveOrgDirectiveParserRuleCall_1_0; }
+		
+		//directive = EndDirective
+		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		
+		//EndDirective
+		public RuleCall getDirectiveEndDirectiveParserRuleCall_2_0() { return cDirectiveEndDirectiveParserRuleCall_2_0; }
+	}
+	public class EndDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.EndDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cDirectiveENDKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cOperandAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_3_1_0 = (RuleCall)cOperandAssignment_3_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		
+		///*
+		// * The END pseudo-op is used to signal the assembler that the end of the source input has occurred.
+		// * This terminates whatever pass is currently being executed. No label is allowed and no code is generated.
+		// * An expression may be given (as shown below) as the transfer address to be placed in a binary file.
+		// * It is optional, and if supplied when no binary file is being produced, will be ignored.
+		// *
+		// *  END [<expression>]
+		// *
+		// * Note that an end statement is not strictly required,
+		// * but is the only means of getting a transfer address appended to a binary output file.
+		// */
+		//EndDirective:
+		//    (name = IdentifierValue)? WS (directive = 'END') (WS (operand = Expression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS (directive = 'END') (WS (operand = Expression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+		public Group getGroup() { return cGroup; }
+		
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(directive = 'END')
+		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		
+		//'END'
+		public Keyword getDirectiveENDKeyword_2_0() { return cDirectiveENDKeyword_2_0; }
+		
+		//(WS (operand = Expression))?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		
+		//(operand = Expression)
+		public Assignment getOperandAssignment_3_1() { return cOperandAssignment_3_1; }
+		
+		//Expression
+		public RuleCall getOperandExpressionParserRuleCall_3_1_0() { return cOperandExpressionParserRuleCall_3_1_0; }
+		
+		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
+		
+		//comment=ANY_EXCEPT_COMMENT_END_OF_LINE
+		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
+		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
 	}
 	public class OrgDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OrgDirective");
@@ -190,20 +283,30 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final Keyword cDirectiveORGKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Assignment cOperandAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOperandExpressionParserRuleCall_4_0 = (RuleCall)cOperandAssignment_4.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cOperandAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_3_1_0 = (RuleCall)cOperandAssignment_3_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final Assignment cCommentAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0 = (RuleCall)cCommentAssignment_6.eContents().get(0);
-		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		
+		///*
+		// *  The ORG statement is used to set a new code 'Origin'. This simply means that a new address is set into the location Counter (or program counter) so that subsequent code will be placed at the new location. The form is as follows:
+		// *
+		// *         ORG <expression>
+		// *
+		// *    No label may be placed on an ORG statement and no code is produced. If no ORG statement appears in the source, an origin of 0000 is assumed.
+		// */
 		//OrgDirective:
-		//    (name = IdentifierValue)? WS (directive = 'ORG') WS (operand = Expression)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
+		//    (name = IdentifierValue)? WS (directive = 'ORG') (WS (operand = Expression))? (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))? WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'ORG') WS (operand = Expression)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
+		//(name = IdentifierValue)? WS (directive = 'ORG') (WS (operand = Expression))? (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))? WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
 		//(name = IdentifierValue)?
@@ -221,26 +324,35 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'ORG'
 		public Keyword getDirectiveORGKeyword_2_0() { return cDirectiveORGKeyword_2_0; }
 		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
+		//(WS (operand = Expression))?
+		public Group getGroup_3() { return cGroup_3; }
 		
-		//(operand = Expression)?
-		public Assignment getOperandAssignment_4() { return cOperandAssignment_4; }
+		//WS
+		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		
+		//(operand = Expression)
+		public Assignment getOperandAssignment_3_1() { return cOperandAssignment_3_1; }
 		
 		//Expression
-		public RuleCall getOperandExpressionParserRuleCall_4_0() { return cOperandExpressionParserRuleCall_4_0; }
+		public RuleCall getOperandExpressionParserRuleCall_3_1_0() { return cOperandExpressionParserRuleCall_3_1_0; }
+		
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
+		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
 		
 		//WS?
 		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
 		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Assignment getCommentAssignment_6() { return cCommentAssignment_6; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0; }
-		
 		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
+		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
 	}
 	public class EquDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.EquDirective");
@@ -952,6 +1064,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final DirectiveLineElements pDirectiveLine;
+	private final EndDirectiveElements pEndDirective;
 	private final OrgDirectiveElements pOrgDirective;
 	private final EquDirectiveElements pEquDirective;
 	private final ExpressionElements pExpression;
@@ -996,6 +1109,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pDirectiveLine = new DirectiveLineElements();
+		this.pEndDirective = new EndDirectiveElements();
 		this.pOrgDirective = new OrgDirectiveElements();
 		this.pEquDirective = new EquDirectiveElements();
 		this.pExpression = new ExpressionElements();
@@ -1123,6 +1237,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//DirectiveLine:
 	//       directive = EquDirective
 	//    |  directive = OrgDirective
+	//    |  directive = EndDirective
 	//;
 	public DirectiveLineElements getDirectiveLineAccess() {
 		return pDirectiveLine;
@@ -1132,8 +1247,37 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		return getDirectiveLineAccess().getRule();
 	}
 	
+	///*
+	// * The END pseudo-op is used to signal the assembler that the end of the source input has occurred.
+	// * This terminates whatever pass is currently being executed. No label is allowed and no code is generated.
+	// * An expression may be given (as shown below) as the transfer address to be placed in a binary file.
+	// * It is optional, and if supplied when no binary file is being produced, will be ignored.
+	// *
+	// *  END [<expression>]
+	// *
+	// * Note that an end statement is not strictly required,
+	// * but is the only means of getting a transfer address appended to a binary output file.
+	// */
+	//EndDirective:
+	//    (name = IdentifierValue)? WS (directive = 'END') (WS (operand = Expression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+	//;
+	public EndDirectiveElements getEndDirectiveAccess() {
+		return pEndDirective;
+	}
+	
+	public ParserRule getEndDirectiveRule() {
+		return getEndDirectiveAccess().getRule();
+	}
+	
+	///*
+	// *  The ORG statement is used to set a new code 'Origin'. This simply means that a new address is set into the location Counter (or program counter) so that subsequent code will be placed at the new location. The form is as follows:
+	// *
+	// *         ORG <expression>
+	// *
+	// *    No label may be placed on an ORG statement and no code is produced. If no ORG statement appears in the source, an origin of 0000 is assumed.
+	// */
 	//OrgDirective:
-	//    (name = IdentifierValue)? WS (directive = 'ORG') WS (operand = Expression)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine
+	//    (name = IdentifierValue)? WS (directive = 'ORG') (WS (operand = Expression))? (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))? WS? EndOfLine
 	//;
 	public OrgDirectiveElements getOrgDirectiveAccess() {
 		return pOrgDirective;
