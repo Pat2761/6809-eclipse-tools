@@ -34,8 +34,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
-import org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
@@ -73,9 +73,32 @@ public class ExpressionParser {
 	private static Logger logger = Logger.getLogger("ExpressionParser");
 
 	/** 
-	 *  Parse the operand of an EQU directive.
+	 *  Parse the operand of an FDB directive.
 	 *  
-	 *  @param equDirective reference on the EQU directive
+	 *  @param fdbDirective reference on the FDB directive
+	 *  @return value of the operand 
+	 */
+	public static List<Integer> parse(FdbDirective fdbDirective) {
+		List<Integer> values = new ArrayList<>(); 
+		
+		if (fdbDirective.getOperand() != null && fdbDirective.getOperand().getExpressions() != null) {
+			
+			for ( Expression expression : fdbDirective.getOperand().getExpressions()) {
+				if (expression != null) {
+					int fcbValue = resolveExpression(expression.getOperand());
+					values.add(fcbValue);
+				} else {
+					values.add(0);
+				}
+			}
+		}
+		return values;	
+	}
+
+	/** 
+	 *  Parse the operand of an FCB directive.
+	 *  
+	 *  @param fcbDirective reference on the FCB directive
 	 *  @return value of the operand 
 	 */
 	public static List<Integer> parse(FcbDirective fcbDirective) {
@@ -83,9 +106,9 @@ public class ExpressionParser {
 		
 		if (fcbDirective.getOperand() != null && fcbDirective.getOperand().getExpressions() != null) {
 			
-			for ( ExpressionValue expressionValue : fcbDirective.getOperand().getExpressions()) {
-				if (expressionValue.getValue() != null) {
-					int fcbValue = resolveExpression(expressionValue.getValue().getOperand());
+			for ( Expression expression : fcbDirective.getOperand().getExpressions()) {
+				if (expression != null) {
+					int fcbValue = resolveExpression(expression.getOperand());
 					values.add(fcbValue);
 				} else {
 					values.add(0);

@@ -21,7 +21,7 @@ import com.google.inject.Inject;
 import java.util.List;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
-import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -44,7 +44,7 @@ import org.junit.runner.RunWith;
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 @SuppressWarnings("all")
-public class TestFcbDirective {
+public class TestFdbDirective {
   @Inject
   private ParseHelper<Model> parseHelper;
 
@@ -53,10 +53,10 @@ public class TestFcbDirective {
   private ValidationTestHelper _validationTestHelper;
 
   /**
-   * Check FCB directive with a simple value
+   * Check FDB directive with a simple value
    */
   @Test
-  public void testFcbWithDecimalValue() {
+  public void testFdbWithDecimalValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -65,7 +65,7 @@ public class TestFcbDirective {
       _builder.append("ORG    $8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("FCB    12 ");
+      _builder.append("FDB    1234 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -80,23 +80,23 @@ public class TestFcbDirective {
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
-      Assert.assertTrue("Must be an FCB directive line", (_directive instanceof FcbDirective));
+      Assert.assertTrue("Must be an FDB directive line", (_directive instanceof FdbDirective));
       EObject _directive_1 = directiveLine.getDirective();
-      final FcbDirective fcbDirective = ((FcbDirective) _directive_1);
-      Assert.assertNull("Label must be null", CommandUtil.getLabel(fcbDirective));
-      final List<Integer> values = ExpressionParser.parse(fcbDirective);
+      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
+      Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective));
+      final List<Integer> values = ExpressionParser.parse(fdbDirective);
       Assert.assertEquals("Only one value defined", 1, values.size());
-      Assert.assertEquals("First value must be set to 12", 12, (values.get(0)).intValue());
+      Assert.assertEquals("First value must be set to 1234", 1234, (values.get(0)).intValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check FCB directive with two values
+   * Check FDB directive with two values
    */
   @Test
-  public void testFcbWithTwoValues() {
+  public void testFDBWithTwoValues() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -105,7 +105,7 @@ public class TestFcbDirective {
       _builder.append("ORG    $8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("FCB    $FF,\'A ");
+      _builder.append("FDB    $FF,125+4000 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -120,24 +120,24 @@ public class TestFcbDirective {
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
-      Assert.assertTrue("Must be an FCB directive line", (_directive instanceof FcbDirective));
+      Assert.assertTrue("Must be an FDB directive line", (_directive instanceof FdbDirective));
       EObject _directive_1 = directiveLine.getDirective();
-      final FcbDirective fcbDirective = ((FcbDirective) _directive_1);
-      Assert.assertNull("Label must be null", CommandUtil.getLabel(fcbDirective));
-      final List<Integer> values = ExpressionParser.parse(fcbDirective);
+      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
+      Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective));
+      final List<Integer> values = ExpressionParser.parse(fdbDirective);
       Assert.assertEquals("Only two value defined", 2, values.size());
       Assert.assertEquals("Value 1 must be set to 255", 255, (values.get(0)).intValue());
-      Assert.assertEquals("Value 2 must be set to 65", 65, (values.get(1)).intValue());
+      Assert.assertEquals("Value 2 must be set to 4125", 4125, (values.get(1)).intValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check FCB directive with three values
+   * Check FDB directive with three values
    */
   @Test
-  public void testFcbWithThreeValues() {
+  public void testFdbWithThreeValues() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -146,7 +146,7 @@ public class TestFcbDirective {
       _builder.append("ORG    $8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("FCB    1,0,3 ");
+      _builder.append("FDB    1,0,3 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -161,11 +161,11 @@ public class TestFcbDirective {
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
-      Assert.assertTrue("Must be an FCB directive line", (_directive instanceof FcbDirective));
+      Assert.assertTrue("Must be an FDB directive line", (_directive instanceof FdbDirective));
       EObject _directive_1 = directiveLine.getDirective();
-      final FcbDirective fcbDirective = ((FcbDirective) _directive_1);
-      Assert.assertNull("Label must be null", CommandUtil.getLabel(fcbDirective));
-      final List<Integer> values = ExpressionParser.parse(fcbDirective);
+      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
+      Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective));
+      final List<Integer> values = ExpressionParser.parse(fdbDirective);
       Assert.assertEquals("Only three value defined", 3, values.size());
       Assert.assertEquals("Value 1 must be set to 1", 1, (values.get(0)).intValue());
       Assert.assertEquals("Value 2 must be set to 0", 0, (values.get(1)).intValue());
@@ -176,10 +176,10 @@ public class TestFcbDirective {
   }
 
   /**
-   * Check FCB directive with three values
+   * Check FDB directive with three values
    */
   @Test
-  public void testFcbWithThreeValuesWithComment() {
+  public void testFdbWithThreeValuesWithComment() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -188,7 +188,7 @@ public class TestFcbDirective {
       _builder.append("ORG    $8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("FCB    1,0,3      ; Set 1,0,3");
+      _builder.append("FDB    1,0,3      ; Set 1,0,3");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -203,11 +203,11 @@ public class TestFcbDirective {
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
-      Assert.assertTrue("Must be an FCB directive line", (_directive instanceof FcbDirective));
+      Assert.assertTrue("Must be an FDB directive line", (_directive instanceof FdbDirective));
       EObject _directive_1 = directiveLine.getDirective();
-      final FcbDirective fcbDirective = ((FcbDirective) _directive_1);
-      Assert.assertNull("Label must be null", CommandUtil.getLabel(fcbDirective));
-      final List<Integer> values = ExpressionParser.parse(fcbDirective);
+      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
+      Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective));
+      final List<Integer> values = ExpressionParser.parse(fdbDirective);
       Assert.assertEquals("Only three value defined", 3, values.size());
       Assert.assertEquals("Value 1 must be set to 1", 1, (values.get(0)).intValue());
       Assert.assertEquals("Value 2 must be set to 0", 0, (values.get(1)).intValue());
@@ -218,10 +218,10 @@ public class TestFcbDirective {
   }
 
   /**
-   * Check FCB directive with three values
+   * Check FDB directive with three values
    */
   @Test
-  public void testFcbWithThreeValuesWithCommentAndLabel() {
+  public void testRmbWithThreeValuesWithCommentAndLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -229,7 +229,7 @@ public class TestFcbDirective {
       _builder.append("\t       ");
       _builder.append("ORG    $8000");
       _builder.newLine();
-      _builder.append("FcbL       FCB    1,0,3      ; Set 1,0,3");
+      _builder.append("FcbL       FDB    1,0,3      ; Set 1,0,3");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -244,11 +244,11 @@ public class TestFcbDirective {
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
-      Assert.assertTrue("Must be an FCB directive line", (_directive instanceof FcbDirective));
+      Assert.assertTrue("Must be an FCB directive line", (_directive instanceof FdbDirective));
       EObject _directive_1 = directiveLine.getDirective();
-      final FcbDirective fcbDirective = ((FcbDirective) _directive_1);
-      Assert.assertEquals("Label must be equald to ", "FcbL", CommandUtil.getLabel(fcbDirective));
-      final List<Integer> values = ExpressionParser.parse(fcbDirective);
+      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
+      Assert.assertEquals("Label must be equal to ", "FcbL", CommandUtil.getLabel(fdbDirective));
+      final List<Integer> values = ExpressionParser.parse(fdbDirective);
       Assert.assertEquals("Only three value defined", 3, values.size());
       Assert.assertEquals("Value 1 must be set to 1", 1, (values.get(0)).intValue());
       Assert.assertEquals("Value 2 must be set to 0", 0, (values.get(1)).intValue());
@@ -259,10 +259,10 @@ public class TestFcbDirective {
   }
 
   /**
-   * Check FCB directive with three values
+   * Check FDB directive with three values
    */
   @Test
-  public void testFcbWithThreeValuesWithLabel() {
+  public void testFdbWithThreeValuesWithLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -270,7 +270,7 @@ public class TestFcbDirective {
       _builder.append("\t       ");
       _builder.append("ORG    $8000");
       _builder.newLine();
-      _builder.append("FcbL       FCB    1,0,3      ");
+      _builder.append("FcbL       FDB    1,0,3      ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -285,11 +285,11 @@ public class TestFcbDirective {
       EObject _lineContent_1 = line.getLineContent();
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
-      Assert.assertTrue("Must be an FCB directive line", (_directive instanceof FcbDirective));
+      Assert.assertTrue("Must be an FDB directive line", (_directive instanceof FdbDirective));
       EObject _directive_1 = directiveLine.getDirective();
-      final FcbDirective fcbDirective = ((FcbDirective) _directive_1);
-      Assert.assertEquals("Label must be equals to FcbL", "FcbL", CommandUtil.getLabel(fcbDirective));
-      final List<Integer> values = ExpressionParser.parse(fcbDirective);
+      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
+      Assert.assertEquals("Label must be equals to FcbL", "FcbL", CommandUtil.getLabel(fdbDirective));
+      final List<Integer> values = ExpressionParser.parse(fdbDirective);
       Assert.assertEquals("Only three value defined", 3, values.size());
       Assert.assertEquals("Value 1 must be set to 1", 1, (values.get(0)).intValue());
       Assert.assertEquals("Value 2 must be set to 0", 0, (values.get(1)).intValue());
@@ -300,27 +300,27 @@ public class TestFcbDirective {
   }
 
   /**
-   * Check FCB directive with a bad negative value
+   * Check FDB directive with a bad negative value
    */
   @Test
-  public void testFCBWithBadNegativeValue() {
+  public void testFDBWithBadNegativeValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("\t         ");
       _builder.append("ORG    $8000");
       _builder.newLine();
-      _builder.append("Label1       FCB    10,0,-128,40 ");
+      _builder.append("Label1       FDB    10,0,-32769,40 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getFcbDirective(), DirectiveValidator.INVALID_RANGE, "FCB value can\'t lower than -127 at location 3");
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), DirectiveValidator.INVALID_RANGE, "FDB value can\'t lower than -32768 at location 3");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check FCB directive with a limit negative value
+   * Check FDB directive with a limit negative value
    */
   @Test
   public void testFCBWithLimitNegativeValue() {
@@ -329,7 +329,7 @@ public class TestFcbDirective {
       _builder.append("\t         ");
       _builder.append("ORG    $8000");
       _builder.newLine();
-      _builder.append("Label1       FCB    10,-127,128,40 ");
+      _builder.append("Label1       FDB    10,-32768,128,40 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -340,36 +340,36 @@ public class TestFcbDirective {
   }
 
   /**
-   * Check FCB directive with a bad positive value
+   * Check FDB directive with a bad positive value
    */
   @Test
-  public void testFCBWithBadPositiveValue() {
+  public void testFDBWithBadPositiveValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("\t         ");
       _builder.append("ORG    $8000");
       _builder.newLine();
-      _builder.append("Label1       FCB    256,0,128,40 ");
+      _builder.append("Label1       FDB    65536,0,128,40 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getFcbDirective(), DirectiveValidator.INVALID_RANGE, "FCB value maximum value is $FF at location 1");
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), DirectiveValidator.INVALID_RANGE, "FDB value maximum value is 65535 at location 1");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check FCB directive with a limit positive value
+   * Check FDB directive with a limit positive value
    */
   @Test
-  public void testFCBWithLimitPositiveValue() {
+  public void testFDBWithLimitPositiveValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("\t         ");
       _builder.append("ORG    $8000");
       _builder.newLine();
-      _builder.append("Label1       FCB    10,127,128,255 ");
+      _builder.append("Label1       FDB    10,127,128,65535 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);

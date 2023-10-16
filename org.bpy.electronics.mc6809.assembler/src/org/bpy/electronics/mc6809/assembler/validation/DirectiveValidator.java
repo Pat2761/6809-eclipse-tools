@@ -6,6 +6,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -124,9 +125,9 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	@Check
 	/**
 	 * Check the FCB constraints
-	 * Values must be defined in the range [-127..255<]
+	 * Values must be defined in the range [-127..255]
 	 * 
-	 * @param rmbDirective reference on the RMB directive
+	 * @param fcbDirective reference on the FCB directive
 	 */
 	public void checkFcbConstraints(FcbDirective fcbDirective) {
 		
@@ -138,8 +139,33 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
 						INVALID_RANGE);
 			} else if (rmbValue < -127) {
-				error("RMB value can't lower than -127 at location " + location,
+				error("FCB value can't lower than -127 at location " + location,
 						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
+						INVALID_RANGE);
+			}
+			location++;
+		}
+	}
+
+	@Check
+	/**
+	 * Check the FDB constraints
+	 * Values must be defined in the range [-32768..65535]
+	 * 
+	 * @param fdbDirective reference on the FDB directive
+	 */
+	public void checkFdbConstraints(FdbDirective fdbDirective) {
+		
+		List<Integer> rmbValues = ExpressionParser.parse(fdbDirective);
+		int location = 1;
+		for (Integer rmbValue : rmbValues) {
+			if (rmbValue > 65535) {
+				error("FDB value maximum value is 65535 at location " + location ,
+						AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND,
+						INVALID_RANGE);
+			} else if (rmbValue < -32768) {
+				error("FDB value can't lower than -32768 at location " + location,
+						AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND,
 						INVALID_RANGE);
 			}
 			location++;

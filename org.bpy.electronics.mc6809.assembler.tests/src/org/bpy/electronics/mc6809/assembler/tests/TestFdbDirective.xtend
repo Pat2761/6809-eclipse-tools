@@ -30,26 +30,26 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
-import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
 
-class TestFcbDirective {
+class TestFdbDirective {
 	@Inject ParseHelper<Model> parseHelper
 	@Inject extension ValidationTestHelper
 	
 	/**
-	 * Check FCB directive with a simple value
+	 * Check FDB directive with a simple value
 	 */
 	@Test 
-	def void testFcbWithDecimalValue() {
+	def void testFdbWithDecimalValue() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-			       FCB    12 
+			       FDB    1234 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -60,24 +60,24 @@ class TestFcbDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an FCB directive line", directiveLine.directive instanceof FcbDirective)
+		Assert.assertTrue("Must be an FDB directive line", directiveLine.directive instanceof FdbDirective)
 		
-		val fcbDirective = directiveLine.directive as FcbDirective
-	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(fcbDirective))	
-	 	val values = ExpressionParser.parse(fcbDirective)
+		val fdbDirective = directiveLine.directive as FdbDirective
+	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective))	
+	 	val values = ExpressionParser.parse(fdbDirective)
 	 	Assert.assertEquals("Only one value defined", 1, values.size())	
-		Assert.assertEquals("First value must be set to 12", 12, values.get(0))
+		Assert.assertEquals("First value must be set to 1234", 1234, values.get(0))
 	}
 
 	/**
-	 * Check FCB directive with two values
+	 * Check FDB directive with two values
 	 */
 	@Test 
-	def void testFcbWithTwoValues() {
+	def void testFDBWithTwoValues() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-			       FCB    $FF,'A 
+			       FDB    $FF,125+4000 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -88,25 +88,25 @@ class TestFcbDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an FCB directive line", directiveLine.directive instanceof FcbDirective)
+		Assert.assertTrue("Must be an FDB directive line", directiveLine.directive instanceof FdbDirective)
 		
-		val fcbDirective = directiveLine.directive as FcbDirective
-	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(fcbDirective))	
-	 	val values = ExpressionParser.parse(fcbDirective)
+		val fdbDirective = directiveLine.directive as FdbDirective
+	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective))	
+	 	val values = ExpressionParser.parse(fdbDirective)
 	 	Assert.assertEquals("Only two value defined", 2, values.size())	
 		Assert.assertEquals("Value 1 must be set to 255", 255, values.get(0))
-		Assert.assertEquals("Value 2 must be set to 65", 65, values.get(1))
+		Assert.assertEquals("Value 2 must be set to 4125", 4125, values.get(1))
 	}
 
 	/**
-	 * Check FCB directive with three values
+	 * Check FDB directive with three values
 	 */
 	@Test 
-	def void testFcbWithThreeValues() {
+	def void testFdbWithThreeValues() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-			       FCB    1,0,3 
+			       FDB    1,0,3 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -117,11 +117,11 @@ class TestFcbDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an FCB directive line", directiveLine.directive instanceof FcbDirective)
+		Assert.assertTrue("Must be an FDB directive line", directiveLine.directive instanceof FdbDirective)
 		
-		val fcbDirective = directiveLine.directive as FcbDirective
-	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(fcbDirective))	
-	 	val values = ExpressionParser.parse(fcbDirective)
+		val fdbDirective = directiveLine.directive as FdbDirective
+	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective))	
+	 	val values = ExpressionParser.parse(fdbDirective)
 	 	Assert.assertEquals("Only three value defined", 3, values.size())	
 		Assert.assertEquals("Value 1 must be set to 1", 1, values.get(0))
 		Assert.assertEquals("Value 2 must be set to 0", 0, values.get(1))
@@ -129,14 +129,14 @@ class TestFcbDirective {
 	}
 
 	/**
-	 * Check FCB directive with three values
+	 * Check FDB directive with three values
 	 */
 	@Test 
-	def void testFcbWithThreeValuesWithComment() {
+	def void testFdbWithThreeValuesWithComment() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-			       FCB    1,0,3      ; Set 1,0,3
+			       FDB    1,0,3      ; Set 1,0,3
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -147,11 +147,11 @@ class TestFcbDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an FCB directive line", directiveLine.directive instanceof FcbDirective)
+		Assert.assertTrue("Must be an FDB directive line", directiveLine.directive instanceof FdbDirective)
 		
-		val fcbDirective = directiveLine.directive as FcbDirective
-	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(fcbDirective))	
-	 	val values = ExpressionParser.parse(fcbDirective)
+		val fdbDirective = directiveLine.directive as FdbDirective
+	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective))	
+	 	val values = ExpressionParser.parse(fdbDirective)
 	 	Assert.assertEquals("Only three value defined", 3, values.size())	
 		Assert.assertEquals("Value 1 must be set to 1", 1, values.get(0))
 		Assert.assertEquals("Value 2 must be set to 0", 0, values.get(1))
@@ -159,14 +159,14 @@ class TestFcbDirective {
 	}
 
 	/**
-	 * Check FCB directive with three values
+	 * Check FDB directive with three values
 	 */
 	@Test 
-	def void testFcbWithThreeValuesWithCommentAndLabel() {
+	def void testRmbWithThreeValuesWithCommentAndLabel() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-		FcbL       FCB    1,0,3      ; Set 1,0,3
+		FcbL       FDB    1,0,3      ; Set 1,0,3
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -177,11 +177,11 @@ class TestFcbDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an FCB directive line", directiveLine.directive instanceof FcbDirective)
+		Assert.assertTrue("Must be an FCB directive line", directiveLine.directive instanceof FdbDirective)
 		
-		val fcbDirective = directiveLine.directive as FcbDirective
-	 	Assert.assertEquals("Label must be equald to ", "FcbL", CommandUtil.getLabel(fcbDirective))	
-	 	val values = ExpressionParser.parse(fcbDirective)
+		val fdbDirective = directiveLine.directive as FdbDirective
+	 	Assert.assertEquals("Label must be equal to ", "FcbL", CommandUtil.getLabel(fdbDirective))	
+	 	val values = ExpressionParser.parse(fdbDirective)
 	 	Assert.assertEquals("Only three value defined", 3, values.size())	
 		Assert.assertEquals("Value 1 must be set to 1", 1, values.get(0))
 		Assert.assertEquals("Value 2 must be set to 0", 0, values.get(1))
@@ -189,14 +189,14 @@ class TestFcbDirective {
 	}
 
 	/**
-	 * Check FCB directive with three values
+	 * Check FDB directive with three values
 	 */
 	@Test 
-	def void testFcbWithThreeValuesWithLabel() {
+	def void testFdbWithThreeValuesWithLabel() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-		FcbL       FCB    1,0,3      
+		FcbL       FDB    1,0,3      
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -207,11 +207,11 @@ class TestFcbDirective {
 		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
 		
 		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an FCB directive line", directiveLine.directive instanceof FcbDirective)
+		Assert.assertTrue("Must be an FDB directive line", directiveLine.directive instanceof FdbDirective)
 		
-		val fcbDirective = directiveLine.directive as FcbDirective
-	 	Assert.assertEquals("Label must be equals to FcbL", "FcbL", CommandUtil.getLabel(fcbDirective))	
-	 	val values = ExpressionParser.parse(fcbDirective)
+		val fdbDirective = directiveLine.directive as FdbDirective
+	 	Assert.assertEquals("Label must be equals to FcbL", "FcbL", CommandUtil.getLabel(fdbDirective))	
+	 	val values = ExpressionParser.parse(fdbDirective)
 	 	Assert.assertEquals("Only three value defined", 3, values.size())	
 		Assert.assertEquals("Value 1 must be set to 1", 1, values.get(0))
 		Assert.assertEquals("Value 2 must be set to 0", 0, values.get(1))
@@ -219,51 +219,51 @@ class TestFcbDirective {
 	}
 
 	/**
-	 * Check FCB directive with a bad negative value
+	 * Check FDB directive with a bad negative value
 	 */
 	@Test 
-	def void testFCBWithBadNegativeValue() {
+	def void testFDBWithBadNegativeValue() {
 		val result = parseHelper.parse('''
 			         ORG    $8000
-		Label1       FCB    10,0,-128,40 
+		Label1       FDB    10,0,-32769,40 
 		''')
 		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.fcbDirective,DirectiveValidator::INVALID_RANGE,"FCB value can't lower than -127 at location 3")
+		result.assertError(AssemblerPackage.eINSTANCE.fdbDirective,DirectiveValidator::INVALID_RANGE,"FDB value can't lower than -32768 at location 3")
 	}
 
 	/**
-	 * Check FCB directive with a limit negative value
+	 * Check FDB directive with a limit negative value
 	 */
 	@Test 
 	def void testFCBWithLimitNegativeValue() {
 		val result = parseHelper.parse('''
 			         ORG    $8000
-		Label1       FCB    10,-127,128,40 
+		Label1       FDB    10,-32768,128,40 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 	}
 	/**
-	 * Check FCB directive with a bad positive value
+	 * Check FDB directive with a bad positive value
 	 */
 	@Test 
-	def void testFCBWithBadPositiveValue() {
+	def void testFDBWithBadPositiveValue() {
 		val result = parseHelper.parse('''
 			         ORG    $8000
-		Label1       FCB    256,0,128,40 
+		Label1       FDB    65536,0,128,40 
 		''')
 		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.fcbDirective,DirectiveValidator::INVALID_RANGE,"FCB value maximum value is $FF at location 1")
+		result.assertError(AssemblerPackage.eINSTANCE.fdbDirective,DirectiveValidator::INVALID_RANGE,"FDB value maximum value is 65535 at location 1")
 	}
 
 	/**
-	 * Check FCB directive with a limit positive value
+	 * Check FDB directive with a limit positive value
 	 */
 	@Test 
-	def void testFCBWithLimitPositiveValue() {
+	def void testFDBWithLimitPositiveValue() {
 		val result = parseHelper.parse('''
 			         ORG    $8000
-		Label1       FCB    10,127,128,255 
+		Label1       FDB    10,127,128,65535 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors

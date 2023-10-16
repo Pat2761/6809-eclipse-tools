@@ -20,6 +20,14 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="directive" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FdbDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//ListOfExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FcbDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
         containment="true"/>
@@ -62,11 +70,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ListOfExpression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="expressions" upperBound="-1"
-        eType="#//ExpressionValue" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ExpressionValue">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="value" eType="#//Expression"
-        containment="true"/>
+        eType="#//Expression" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//Expression"

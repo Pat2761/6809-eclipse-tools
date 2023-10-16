@@ -66,7 +66,24 @@ DirectiveLine:
 	|  directive = EndDirective
 	|  directive = RmbDirective
 	|  directive = FcbDirective
+	|  directive = FdbDirective
 ;
+/*
+ *  FDB
+ *
+ * The FDB or Form Double Byte directive is used to setup 16 bit quantities in memory.
+ * It is exactly like the FCB directive except that 16 bit quantities are evaluated 
+ * and stored in memory for each expression given. 
+ * The form of the statement is:
+ *
+ * [<label>] FDB <expr. 1>,<expr. 2>,...,<expr. n>
+ * 
+ * Again, the label field is optional. 
+ */
+FdbDirective:
+	(name = IdentifierValue)? WS (directive = 'FDB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
+;
+
 
 /*
  *  The FCB or Form Constant Byte directive is used to set associated memory bytes 
@@ -135,11 +152,7 @@ EquDirective:
 ;
 
 ListOfExpression:
-	expressions+=ExpressionValue (',' expressions+=ExpressionValue)*
-;
-
-ExpressionValue:
-	{ExpressionValue}value = Expression? 
+	expressions+=Expression (',' expressions+=Expression)*
 ;
 
 Expression:

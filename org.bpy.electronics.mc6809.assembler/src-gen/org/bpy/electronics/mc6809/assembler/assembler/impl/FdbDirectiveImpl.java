@@ -4,9 +4,9 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
+import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -19,21 +19,21 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Equ Directive</b></em>'.
+ * An implementation of the model object '<em><b>Fdb Directive</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl#getDirective <em>Directive</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl#getOperand <em>Operand</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl#getComment <em>Comment</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FdbDirectiveImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FdbDirectiveImpl#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FdbDirectiveImpl#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FdbDirectiveImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements EquDirective
+public class FdbDirectiveImpl extends MinimalEObjectImpl.Container implements FdbDirective
 {
   /**
    * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
@@ -73,7 +73,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * @generated
    * @ordered
    */
-  protected Expression operand;
+  protected ListOfExpression operand;
 
   /**
    * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
@@ -100,7 +100,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * <!-- end-user-doc -->
    * @generated
    */
-  protected EquDirectiveImpl()
+  protected FdbDirectiveImpl()
   {
     super();
   }
@@ -113,7 +113,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.EQU_DIRECTIVE;
+    return AssemblerPackage.Literals.FDB_DIRECTIVE;
   }
 
   /**
@@ -138,7 +138,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
     name = newName;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__NAME, oldName, newName);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.FDB_DIRECTIVE__NAME, oldName, newName);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -156,14 +156,14 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
     {
       NotificationChain msgs = null;
       if (name != null)
-        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EQU_DIRECTIVE__NAME, null, msgs);
+        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.FDB_DIRECTIVE__NAME, null, msgs);
       if (newName != null)
-        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EQU_DIRECTIVE__NAME, null, msgs);
+        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.FDB_DIRECTIVE__NAME, null, msgs);
       msgs = basicSetName(newName, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__NAME, newName, newName));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FDB_DIRECTIVE__NAME, newName, newName));
   }
 
   /**
@@ -188,7 +188,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
     String oldDirective = directive;
     directive = newDirective;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE, oldDirective, directive));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FDB_DIRECTIVE__DIRECTIVE, oldDirective, directive));
   }
 
   /**
@@ -197,7 +197,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * @generated
    */
   @Override
-  public Expression getOperand()
+  public ListOfExpression getOperand()
   {
     return operand;
   }
@@ -207,13 +207,13 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOperand(Expression newOperand, NotificationChain msgs)
+  public NotificationChain basicSetOperand(ListOfExpression newOperand, NotificationChain msgs)
   {
-    Expression oldOperand = operand;
+    ListOfExpression oldOperand = operand;
     operand = newOperand;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__OPERAND, oldOperand, newOperand);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.FDB_DIRECTIVE__OPERAND, oldOperand, newOperand);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -225,20 +225,20 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
    * @generated
    */
   @Override
-  public void setOperand(Expression newOperand)
+  public void setOperand(ListOfExpression newOperand)
   {
     if (newOperand != operand)
     {
       NotificationChain msgs = null;
       if (operand != null)
-        msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EQU_DIRECTIVE__OPERAND, null, msgs);
+        msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.FDB_DIRECTIVE__OPERAND, null, msgs);
       if (newOperand != null)
-        msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.EQU_DIRECTIVE__OPERAND, null, msgs);
+        msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.FDB_DIRECTIVE__OPERAND, null, msgs);
       msgs = basicSetOperand(newOperand, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__OPERAND, newOperand, newOperand));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FDB_DIRECTIVE__OPERAND, newOperand, newOperand));
   }
 
   /**
@@ -263,7 +263,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
     String oldComment = comment;
     comment = newComment;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.EQU_DIRECTIVE__COMMENT, oldComment, comment));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FDB_DIRECTIVE__COMMENT, oldComment, comment));
   }
 
   /**
@@ -276,9 +276,9 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   {
     switch (featureID)
     {
-      case AssemblerPackage.EQU_DIRECTIVE__NAME:
+      case AssemblerPackage.FDB_DIRECTIVE__NAME:
         return basicSetName(null, msgs);
-      case AssemblerPackage.EQU_DIRECTIVE__OPERAND:
+      case AssemblerPackage.FDB_DIRECTIVE__OPERAND:
         return basicSetOperand(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -294,13 +294,13 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   {
     switch (featureID)
     {
-      case AssemblerPackage.EQU_DIRECTIVE__NAME:
+      case AssemblerPackage.FDB_DIRECTIVE__NAME:
         return getName();
-      case AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE:
+      case AssemblerPackage.FDB_DIRECTIVE__DIRECTIVE:
         return getDirective();
-      case AssemblerPackage.EQU_DIRECTIVE__OPERAND:
+      case AssemblerPackage.FDB_DIRECTIVE__OPERAND:
         return getOperand();
-      case AssemblerPackage.EQU_DIRECTIVE__COMMENT:
+      case AssemblerPackage.FDB_DIRECTIVE__COMMENT:
         return getComment();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -316,16 +316,16 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   {
     switch (featureID)
     {
-      case AssemblerPackage.EQU_DIRECTIVE__NAME:
+      case AssemblerPackage.FDB_DIRECTIVE__NAME:
         setName((IdentifierValue)newValue);
         return;
-      case AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE:
+      case AssemblerPackage.FDB_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
         return;
-      case AssemblerPackage.EQU_DIRECTIVE__OPERAND:
-        setOperand((Expression)newValue);
+      case AssemblerPackage.FDB_DIRECTIVE__OPERAND:
+        setOperand((ListOfExpression)newValue);
         return;
-      case AssemblerPackage.EQU_DIRECTIVE__COMMENT:
+      case AssemblerPackage.FDB_DIRECTIVE__COMMENT:
         setComment((String)newValue);
         return;
     }
@@ -342,16 +342,16 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   {
     switch (featureID)
     {
-      case AssemblerPackage.EQU_DIRECTIVE__NAME:
+      case AssemblerPackage.FDB_DIRECTIVE__NAME:
         setName((IdentifierValue)null);
         return;
-      case AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE:
+      case AssemblerPackage.FDB_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
-      case AssemblerPackage.EQU_DIRECTIVE__OPERAND:
-        setOperand((Expression)null);
+      case AssemblerPackage.FDB_DIRECTIVE__OPERAND:
+        setOperand((ListOfExpression)null);
         return;
-      case AssemblerPackage.EQU_DIRECTIVE__COMMENT:
+      case AssemblerPackage.FDB_DIRECTIVE__COMMENT:
         setComment(COMMENT_EDEFAULT);
         return;
     }
@@ -368,13 +368,13 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   {
     switch (featureID)
     {
-      case AssemblerPackage.EQU_DIRECTIVE__NAME:
+      case AssemblerPackage.FDB_DIRECTIVE__NAME:
         return name != null;
-      case AssemblerPackage.EQU_DIRECTIVE__DIRECTIVE:
+      case AssemblerPackage.FDB_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
-      case AssemblerPackage.EQU_DIRECTIVE__OPERAND:
+      case AssemblerPackage.FDB_DIRECTIVE__OPERAND:
         return operand != null;
-      case AssemblerPackage.EQU_DIRECTIVE__COMMENT:
+      case AssemblerPackage.FDB_DIRECTIVE__COMMENT:
         return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }
     return super.eIsSet(featureID);
@@ -399,4 +399,4 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
     return result.toString();
   }
 
-} //EquDirectiveImpl
+} //FdbDirectiveImpl
