@@ -101,6 +101,11 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createDirectiveLineAdapter();
       }
       @Override
+      public Adapter caseFcbDirective(FcbDirective object)
+      {
+        return createFcbDirectiveAdapter();
+      }
+      @Override
       public Adapter caseRmbDirective(RmbDirective object)
       {
         return createRmbDirectiveAdapter();
@@ -119,6 +124,16 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
       public Adapter caseEquDirective(EquDirective object)
       {
         return createEquDirectiveAdapter();
+      }
+      @Override
+      public Adapter caseListOfExpression(ListOfExpression object)
+      {
+        return createListOfExpressionAdapter();
+      }
+      @Override
+      public Adapter caseExpressionValue(ExpressionValue object)
+      {
+        return createExpressionValueAdapter();
       }
       @Override
       public Adapter caseExpression(Expression object)
@@ -313,6 +328,21 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.FcbDirective <em>Fcb Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.FcbDirective
+   * @generated
+   */
+  public Adapter createFcbDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
    * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RmbDirective <em>Rmb Directive</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
@@ -368,6 +398,36 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createEquDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression <em>List Of Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression
+   * @generated
+   */
+  public Adapter createListOfExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue <em>Expression Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue
+   * @generated
+   */
+  public Adapter createExpressionValueAdapter()
   {
     return null;
   }

@@ -18,7 +18,9 @@
  */
 package org.bpy.electronics.mc6809.assembler.util;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,6 +34,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue;
+import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
@@ -67,6 +71,29 @@ public class ExpressionParser {
 
 	/** Looger of the class */
 	private static Logger logger = Logger.getLogger("ExpressionParser");
+
+	/** 
+	 *  Parse the operand of an EQU directive.
+	 *  
+	 *  @param equDirective reference on the EQU directive
+	 *  @return value of the operand 
+	 */
+	public static List<Integer> parse(FcbDirective fcbDirective) {
+		List<Integer> values = new ArrayList<>(); 
+		
+		if (fcbDirective.getOperand() != null && fcbDirective.getOperand().getExpressions() != null) {
+			
+			for ( ExpressionValue expressionValue : fcbDirective.getOperand().getExpressions()) {
+				if (expressionValue.getValue() != null) {
+					int fcbValue = resolveExpression(expressionValue.getValue().getOperand());
+					values.add(fcbValue);
+				} else {
+					values.add(0);
+				}
+			}
+		}
+		return values;	
+	}
 
 	/** 
 	 *  Parse the operand of an EQU directive.

@@ -18,9 +18,12 @@ import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue;
+import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
+import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
@@ -122,6 +125,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 					return; 
 				}
 				else break;
+			case AssemblerPackage.EXPRESSION_VALUE:
+				sequence_ExpressionValue(context, (ExpressionValue) semanticObject); 
+				return; 
+			case AssemblerPackage.FCB_DIRECTIVE:
+				sequence_FcbDirective(context, (FcbDirective) semanticObject); 
+				return; 
 			case AssemblerPackage.HEXA_DECIMAL_VALUE:
 				sequence_HexaDecimalValue(context, (HexaDecimalValue) semanticObject); 
 				return; 
@@ -130,6 +139,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.LEFT_SHIFT:
 				sequence_LeftShift(context, (LeftShift) semanticObject); 
+				return; 
+			case AssemblerPackage.LIST_OF_EXPRESSION:
+				sequence_ListOfExpression(context, (ListOfExpression) semanticObject); 
 				return; 
 			case AssemblerPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
@@ -355,7 +367,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     DirectiveLine returns DirectiveLine
 	 *
 	 * Constraint:
-	 *     (directive=EquDirective | directive=OrgDirective | directive=EndDirective | directive=RmbDirective)
+	 *     (directive=EquDirective | directive=OrgDirective | directive=EndDirective | directive=RmbDirective | directive=FcbDirective)
 	 * </pre>
 	 */
 	protected void sequence_DirectiveLine(ISerializationContext context, DirectiveLine semanticObject) {
@@ -440,6 +452,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     ExpressionValue returns ExpressionValue
+	 *
+	 * Constraint:
+	 *     value=Expression?
+	 * </pre>
+	 */
+	protected void sequence_ExpressionValue(ISerializationContext context, ExpressionValue semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Expression returns Expression
 	 *
 	 * Constraint:
@@ -454,6 +480,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExpressionAccess().getOperandMultiplicationParserRuleCall_0(), semanticObject.getOperand());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FcbDirective returns FcbDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? directive='FCB' operand=ListOfExpression? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_FcbDirective(ISerializationContext context, FcbDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -537,6 +577,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		feeder.accept(grammarAccess.getLeftShiftAccess().getLeftShiftLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getLeftShiftAccess().getRightRightShiftParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ListOfExpression returns ListOfExpression
+	 *
+	 * Constraint:
+	 *     (expressions+=ExpressionValue expressions+=ExpressionValue*)
+	 * </pre>
+	 */
+	protected void sequence_ListOfExpression(ISerializationContext context, ListOfExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

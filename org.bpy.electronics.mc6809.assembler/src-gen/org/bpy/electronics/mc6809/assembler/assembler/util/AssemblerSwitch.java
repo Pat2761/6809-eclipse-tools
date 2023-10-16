@@ -108,6 +108,13 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.FCB_DIRECTIVE:
+      {
+        FcbDirective fcbDirective = (FcbDirective)theEObject;
+        T result = caseFcbDirective(fcbDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.RMB_DIRECTIVE:
       {
         RmbDirective rmbDirective = (RmbDirective)theEObject;
@@ -133,6 +140,20 @@ public class AssemblerSwitch<T> extends Switch<T>
       {
         EquDirective equDirective = (EquDirective)theEObject;
         T result = caseEquDirective(equDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.LIST_OF_EXPRESSION:
+      {
+        ListOfExpression listOfExpression = (ListOfExpression)theEObject;
+        T result = caseListOfExpression(listOfExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.EXPRESSION_VALUE:
+      {
+        ExpressionValue expressionValue = (ExpressionValue)theEObject;
+        T result = caseExpressionValue(expressionValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -365,6 +386,22 @@ public class AssemblerSwitch<T> extends Switch<T>
   }
 
   /**
+   * Returns the result of interpreting the object as an instance of '<em>Fcb Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Fcb Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseFcbDirective(FcbDirective object)
+  {
+    return null;
+  }
+
+  /**
    * Returns the result of interpreting the object as an instance of '<em>Rmb Directive</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
@@ -424,6 +461,38 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseEquDirective(EquDirective object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>List Of Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>List Of Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseListOfExpression(ListOfExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Expression Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Expression Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExpressionValue(ExpressionValue object)
   {
     return null;
   }

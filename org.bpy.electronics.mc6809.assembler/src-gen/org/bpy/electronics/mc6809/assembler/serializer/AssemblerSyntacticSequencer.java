@@ -22,6 +22,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AssemblerGrammarAccess grammarAccess;
 	protected AbstractElementAlias match_EndDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_EquDirective_WSTerminalRuleCall_5_q;
+	protected AbstractElementAlias match_FcbDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_OrgDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_7_0_a;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_7_0_p;
@@ -32,6 +33,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 		grammarAccess = (AssemblerGrammarAccess) access;
 		match_EndDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_5());
 		match_EquDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_5());
+		match_FcbDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getFcbDirectiveAccess().getWSTerminalRuleCall_5());
 		match_OrgDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_5());
 		match_Primary_LeftParenthesisKeyword_7_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_7_0());
 		match_Primary_LeftParenthesisKeyword_7_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_7_0());
@@ -75,6 +77,8 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_EndDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EquDirective_WSTerminalRuleCall_5_q.equals(syntax))
 				emit_EquDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FcbDirective_WSTerminalRuleCall_5_q.equals(syntax))
+				emit_FcbDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_OrgDirective_WSTerminalRuleCall_5_q.equals(syntax))
 				emit_OrgDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_7_0_a.equals(syntax))
@@ -117,6 +121,22 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * </pre>
 	 */
 	protected void emit_EquDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
+	 *     directive='FCB' (ambiguity) EndOfLine (rule end)
+	 *     operand=ListOfExpression (ambiguity) EndOfLine (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_FcbDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

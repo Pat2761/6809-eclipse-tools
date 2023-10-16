@@ -69,6 +69,15 @@ public interface AssemblerFactory extends EFactory
   DirectiveLine createDirectiveLine();
 
   /**
+   * Returns a new object of class '<em>Fcb Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Fcb Directive</em>'.
+   * @generated
+   */
+  FcbDirective createFcbDirective();
+
+  /**
    * Returns a new object of class '<em>Rmb Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -103,6 +112,24 @@ public interface AssemblerFactory extends EFactory
    * @generated
    */
   EquDirective createEquDirective();
+
+  /**
+   * Returns a new object of class '<em>List Of Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>List Of Expression</em>'.
+   * @generated
+   */
+  ListOfExpression createListOfExpression();
+
+  /**
+   * Returns a new object of class '<em>Expression Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Expression Value</em>'.
+   * @generated
+   */
+  ExpressionValue createExpressionValue();
 
   /**
    * Returns a new object of class '<em>Expression</em>'.

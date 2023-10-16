@@ -21,6 +21,12 @@
     <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
     </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//FcbDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//FcbDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FcbDirective/directive"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//FcbDirective/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FcbDirective/comment"/>
+    </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//RmbDirective">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RmbDirective/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RmbDirective/directive"/>
@@ -44,6 +50,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EquDirective/directive"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//EquDirective/operand"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EquDirective/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//ListOfExpression">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ListOfExpression/expressions"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//ExpressionValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ExpressionValue/value"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//Expression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/operand"/>

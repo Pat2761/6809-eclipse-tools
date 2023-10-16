@@ -1,8 +1,11 @@
 package org.bpy.electronics.mc6809.assembler.validation;
 
+import java.util.List;
+
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -98,7 +101,6 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 		}
 	}
 
-
 	@Check
 	/**
 	 * Check the RMB directive limits (1-FFFF)
@@ -116,6 +118,31 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			error("RMB value can't lower than 1",
 					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
+		}
+	}
+
+	@Check
+	/**
+	 * Check the FCB constraints
+	 * Values must be defined in the range [-127..255<]
+	 * 
+	 * @param rmbDirective reference on the RMB directive
+	 */
+	public void checkFcbConstraints(FcbDirective fcbDirective) {
+		
+		List<Integer> rmbValues = ExpressionParser.parse(fcbDirective);
+		int location = 1;
+		for (Integer rmbValue : rmbValues) {
+			if (rmbValue > 255) {
+				error("FCB value maximum value is $FF at location " + location ,
+						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
+						INVALID_RANGE);
+			} else if (rmbValue < -127) {
+				error("RMB value can't lower than -127 at location " + location,
+						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
+						INVALID_RANGE);
+			}
+			location++;
 		}
 	}
 }

@@ -17,9 +17,12 @@ import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.ExpressionValue;
+import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
+import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
@@ -89,6 +92,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * <!-- end-user-doc -->
    * @generated
    */
+  private EClass fcbDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   private EClass rmbDirectiveEClass = null;
 
   /**
@@ -111,6 +121,20 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass equDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass listOfExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass expressionValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -423,6 +447,61 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EClass getFcbDirective()
+  {
+    return fcbDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFcbDirective_Name()
+  {
+    return (EReference)fcbDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFcbDirective_Directive()
+  {
+    return (EAttribute)fcbDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFcbDirective_Operand()
+  {
+    return (EReference)fcbDirectiveEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFcbDirective_Comment()
+  {
+    return (EAttribute)fcbDirectiveEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getRmbDirective()
   {
     return rmbDirectiveEClass;
@@ -635,6 +714,50 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EAttribute getEquDirective_Comment()
   {
     return (EAttribute)equDirectiveEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getListOfExpression()
+  {
+    return listOfExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getListOfExpression_Expressions()
+  {
+    return (EReference)listOfExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getExpressionValue()
+  {
+    return expressionValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExpressionValue_Value()
+  {
+    return (EReference)expressionValueEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1255,6 +1378,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__DIRECTIVE);
 
+    fcbDirectiveEClass = createEClass(FCB_DIRECTIVE);
+    createEReference(fcbDirectiveEClass, FCB_DIRECTIVE__NAME);
+    createEAttribute(fcbDirectiveEClass, FCB_DIRECTIVE__DIRECTIVE);
+    createEReference(fcbDirectiveEClass, FCB_DIRECTIVE__OPERAND);
+    createEAttribute(fcbDirectiveEClass, FCB_DIRECTIVE__COMMENT);
+
     rmbDirectiveEClass = createEClass(RMB_DIRECTIVE);
     createEReference(rmbDirectiveEClass, RMB_DIRECTIVE__NAME);
     createEAttribute(rmbDirectiveEClass, RMB_DIRECTIVE__DIRECTIVE);
@@ -1278,6 +1407,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEAttribute(equDirectiveEClass, EQU_DIRECTIVE__DIRECTIVE);
     createEReference(equDirectiveEClass, EQU_DIRECTIVE__OPERAND);
     createEAttribute(equDirectiveEClass, EQU_DIRECTIVE__COMMENT);
+
+    listOfExpressionEClass = createEClass(LIST_OF_EXPRESSION);
+    createEReference(listOfExpressionEClass, LIST_OF_EXPRESSION__EXPRESSIONS);
+
+    expressionValueEClass = createEClass(EXPRESSION_VALUE);
+    createEReference(expressionValueEClass, EXPRESSION_VALUE__VALUE);
 
     expressionEClass = createEClass(EXPRESSION);
     createEReference(expressionEClass, EXPRESSION__OPERAND);
@@ -1408,6 +1543,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDirectiveLine_Directive(), ecorePackage.getEObject(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(fcbDirectiveEClass, FcbDirective.class, "FcbDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFcbDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, FcbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFcbDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, FcbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFcbDirective_Operand(), this.getListOfExpression(), null, "operand", null, 0, 1, FcbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFcbDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FcbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(rmbDirectiveEClass, RmbDirective.class, "RmbDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getRmbDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, RmbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRmbDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, RmbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1431,6 +1572,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getEquDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEquDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEquDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(listOfExpressionEClass, ListOfExpression.class, "ListOfExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getListOfExpression_Expressions(), this.getExpressionValue(), null, "expressions", null, 0, -1, ListOfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(expressionValueEClass, ExpressionValue.class, "ExpressionValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExpressionValue_Value(), this.getExpression(), null, "value", null, 0, 1, ExpressionValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExpression_Operand(), this.getExpression(), null, "operand", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

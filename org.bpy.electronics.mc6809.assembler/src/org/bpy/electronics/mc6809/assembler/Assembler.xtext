@@ -65,6 +65,23 @@ DirectiveLine:
 	|  directive = OrgDirective
 	|  directive = EndDirective
 	|  directive = RmbDirective
+	|  directive = FcbDirective
+;
+
+/*
+ *  The FCB or Form Constant Byte directive is used to set associated memory bytes 
+ * to some value as determined by the operand. 
+ * FCB may be used to set any number of bytes as shown below:
+ *
+ * [<label>] FCB <expr. 1>,<expr. 2>,....<expr. n>
+ *
+ * Where <expr. x> stands for some expression. 
+ * Each expression given (separated by commas) is evaluated to 8 bits 
+ * and the resulting quantities are stored in successive memory locations. 
+ * The label is optional. 
+ */
+FcbDirective:
+	(name = IdentifierValue)? WS (directive = 'FCB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
 ;
 
 /*
@@ -117,6 +134,13 @@ EquDirective:
 	(name = IdentifierValue)? WS (directive = 'EQU') WS (operand = Expression)? WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? EndOfLine	
 ;
 
+ListOfExpression:
+	expressions+=ExpressionValue (',' expressions+=ExpressionValue)*
+;
+
+ExpressionValue:
+	{ExpressionValue}value = Expression? 
+;
 
 Expression:
 		operand = Multiplication;

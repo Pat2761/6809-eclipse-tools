@@ -159,6 +159,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cDirectiveEndDirectiveParserRuleCall_2_0 = (RuleCall)cDirectiveAssignment_2.eContents().get(0);
 		private final Assignment cDirectiveAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cDirectiveRmbDirectiveParserRuleCall_3_0 = (RuleCall)cDirectiveAssignment_3.eContents().get(0);
+		private final Assignment cDirectiveAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cDirectiveFcbDirectiveParserRuleCall_4_0 = (RuleCall)cDirectiveAssignment_4.eContents().get(0);
 		
 		///*
 		// * Definition of the list possible directives
@@ -169,6 +171,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    |  directive = OrgDirective
 		//    |  directive = EndDirective
 		//    |  directive = RmbDirective
+		//    |  directive = FcbDirective
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -176,6 +179,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//|  directive = OrgDirective
 		//|  directive = EndDirective
 		//|  directive = RmbDirective
+		//|  directive = FcbDirective
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//directive = EquDirective
@@ -201,6 +205,96 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//RmbDirective
 		public RuleCall getDirectiveRmbDirectiveParserRuleCall_3_0() { return cDirectiveRmbDirectiveParserRuleCall_3_0; }
+		
+		//directive = FcbDirective
+		public Assignment getDirectiveAssignment_4() { return cDirectiveAssignment_4; }
+		
+		//FcbDirective
+		public RuleCall getDirectiveFcbDirectiveParserRuleCall_4_0() { return cDirectiveFcbDirectiveParserRuleCall_4_0; }
+	}
+	public class FcbDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.FcbDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cDirectiveFCBKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cOperandAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cOperandListOfExpressionParserRuleCall_3_1_0 = (RuleCall)cOperandAssignment_3_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		
+		///*
+		// *  The FCB or Form Constant Byte directive is used to set associated memory bytes
+		// * to some value as determined by the operand.
+		// * FCB may be used to set any number of bytes as shown below:
+		// *
+		// * [<label>] FCB <expr. 1>,<expr. 2>,....<expr. n>
+		// *
+		// * Where <expr. x> stands for some expression.
+		// * Each expression given (separated by commas) is evaluated to 8 bits
+		// * and the resulting quantities are stored in successive memory locations.
+		// * The label is optional.
+		// */
+		//FcbDirective:
+		//    (name = IdentifierValue)? WS (directive = 'FCB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS (directive = 'FCB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+		public Group getGroup() { return cGroup; }
+		
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(directive = 'FCB')
+		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		
+		//'FCB'
+		public Keyword getDirectiveFCBKeyword_2_0() { return cDirectiveFCBKeyword_2_0; }
+		
+		//(WS (operand = ListOfExpression))?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		
+		//(operand = ListOfExpression)
+		public Assignment getOperandAssignment_3_1() { return cOperandAssignment_3_1; }
+		
+		//ListOfExpression
+		public RuleCall getOperandListOfExpressionParserRuleCall_3_1_0() { return cOperandListOfExpressionParserRuleCall_3_1_0; }
+		
+		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
+		
+		//comment=ANY_EXCEPT_COMMENT_END_OF_LINE
+		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
+		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
 	}
 	public class RmbDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RmbDirective");
@@ -511,6 +605,66 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
+	}
+	public class ListOfExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ListOfExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cExpressionsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cExpressionsExpressionValueParserRuleCall_0_0 = (RuleCall)cExpressionsAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
+		private final Assignment cExpressionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cExpressionsExpressionValueParserRuleCall_1_1_0 = (RuleCall)cExpressionsAssignment_1_1.eContents().get(0);
+		
+		//ListOfExpression:
+		//    expressions+=ExpressionValue (',' expressions+=ExpressionValue)*
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//expressions+=ExpressionValue (',' expressions+=ExpressionValue)*
+		public Group getGroup() { return cGroup; }
+		
+		//expressions+=ExpressionValue
+		public Assignment getExpressionsAssignment_0() { return cExpressionsAssignment_0; }
+		
+		//ExpressionValue
+		public RuleCall getExpressionsExpressionValueParserRuleCall_0_0() { return cExpressionsExpressionValueParserRuleCall_0_0; }
+		
+		//(',' expressions+=ExpressionValue)*
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//','
+		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+		
+		//expressions+=ExpressionValue
+		public Assignment getExpressionsAssignment_1_1() { return cExpressionsAssignment_1_1; }
+		
+		//ExpressionValue
+		public RuleCall getExpressionsExpressionValueParserRuleCall_1_1_0() { return cExpressionsExpressionValueParserRuleCall_1_1_0; }
+	}
+	public class ExpressionValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ExpressionValue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cExpressionValueAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cValueExpressionParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		
+		//ExpressionValue:
+		//    {ExpressionValue}value = Expression?
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{ExpressionValue}value = Expression?
+		public Group getGroup() { return cGroup; }
+		
+		//{ExpressionValue}
+		public Action getExpressionValueAction_0() { return cExpressionValueAction_0; }
+		
+		//value = Expression?
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
+		//Expression
+		public RuleCall getValueExpressionParserRuleCall_1_0() { return cValueExpressionParserRuleCall_1_0; }
 	}
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Expression");
@@ -1158,10 +1312,13 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final DirectiveLineElements pDirectiveLine;
+	private final FcbDirectiveElements pFcbDirective;
 	private final RmbDirectiveElements pRmbDirective;
 	private final EndDirectiveElements pEndDirective;
 	private final OrgDirectiveElements pOrgDirective;
 	private final EquDirectiveElements pEquDirective;
+	private final ListOfExpressionElements pListOfExpression;
+	private final ExpressionValueElements pExpressionValue;
 	private final ExpressionElements pExpression;
 	private final MultiplicationElements pMultiplication;
 	private final DivisionElements pDivision;
@@ -1204,10 +1361,13 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pDirectiveLine = new DirectiveLineElements();
+		this.pFcbDirective = new FcbDirectiveElements();
 		this.pRmbDirective = new RmbDirectiveElements();
 		this.pEndDirective = new EndDirectiveElements();
 		this.pOrgDirective = new OrgDirectiveElements();
 		this.pEquDirective = new EquDirectiveElements();
+		this.pListOfExpression = new ListOfExpressionElements();
+		this.pExpressionValue = new ExpressionValueElements();
 		this.pExpression = new ExpressionElements();
 		this.pMultiplication = new MultiplicationElements();
 		this.pDivision = new DivisionElements();
@@ -1335,6 +1495,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    |  directive = OrgDirective
 	//    |  directive = EndDirective
 	//    |  directive = RmbDirective
+	//    |  directive = FcbDirective
 	//;
 	public DirectiveLineElements getDirectiveLineAccess() {
 		return pDirectiveLine;
@@ -1342,6 +1503,29 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getDirectiveLineRule() {
 		return getDirectiveLineAccess().getRule();
+	}
+	
+	///*
+	// *  The FCB or Form Constant Byte directive is used to set associated memory bytes
+	// * to some value as determined by the operand.
+	// * FCB may be used to set any number of bytes as shown below:
+	// *
+	// * [<label>] FCB <expr. 1>,<expr. 2>,....<expr. n>
+	// *
+	// * Where <expr. x> stands for some expression.
+	// * Each expression given (separated by commas) is evaluated to 8 bits
+	// * and the resulting quantities are stored in successive memory locations.
+	// * The label is optional.
+	// */
+	//FcbDirective:
+	//    (name = IdentifierValue)? WS (directive = 'FCB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+	//;
+	public FcbDirectiveElements getFcbDirectiveAccess() {
+		return pFcbDirective;
+	}
+	
+	public ParserRule getFcbDirectiveRule() {
+		return getFcbDirectiveAccess().getRule();
 	}
 	
 	///*
@@ -1420,6 +1604,28 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getEquDirectiveRule() {
 		return getEquDirectiveAccess().getRule();
+	}
+	
+	//ListOfExpression:
+	//    expressions+=ExpressionValue (',' expressions+=ExpressionValue)*
+	//;
+	public ListOfExpressionElements getListOfExpressionAccess() {
+		return pListOfExpression;
+	}
+	
+	public ParserRule getListOfExpressionRule() {
+		return getListOfExpressionAccess().getRule();
+	}
+	
+	//ExpressionValue:
+	//    {ExpressionValue}value = Expression?
+	//;
+	public ExpressionValueElements getExpressionValueAccess() {
+		return pExpressionValue;
+	}
+	
+	public ParserRule getExpressionValueRule() {
+		return getExpressionValueAccess().getRule();
 	}
 	
 	//Expression:

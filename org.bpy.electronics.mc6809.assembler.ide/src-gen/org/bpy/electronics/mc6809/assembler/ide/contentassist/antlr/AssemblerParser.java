@@ -37,6 +37,9 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEndOfLineAccess().getAlternatives(), "rule__EndOfLine__Alternatives");
 			builder.put(grammarAccess.getBlankLineAccess().getGroup(), "rule__BlankLine__Group__0");
 			builder.put(grammarAccess.getCommentLineAccess().getGroup(), "rule__CommentLine__Group__0");
+			builder.put(grammarAccess.getFcbDirectiveAccess().getGroup(), "rule__FcbDirective__Group__0");
+			builder.put(grammarAccess.getFcbDirectiveAccess().getGroup_3(), "rule__FcbDirective__Group_3__0");
+			builder.put(grammarAccess.getFcbDirectiveAccess().getGroup_4(), "rule__FcbDirective__Group_4__0");
 			builder.put(grammarAccess.getRmbDirectiveAccess().getGroup(), "rule__RmbDirective__Group__0");
 			builder.put(grammarAccess.getRmbDirectiveAccess().getGroup_3(), "rule__RmbDirective__Group_3__0");
 			builder.put(grammarAccess.getRmbDirectiveAccess().getGroup_4(), "rule__RmbDirective__Group_4__0");
@@ -47,6 +50,9 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOrgDirectiveAccess().getGroup_3(), "rule__OrgDirective__Group_3__0");
 			builder.put(grammarAccess.getOrgDirectiveAccess().getGroup_4(), "rule__OrgDirective__Group_4__0");
 			builder.put(grammarAccess.getEquDirectiveAccess().getGroup(), "rule__EquDirective__Group__0");
+			builder.put(grammarAccess.getListOfExpressionAccess().getGroup(), "rule__ListOfExpression__Group__0");
+			builder.put(grammarAccess.getListOfExpressionAccess().getGroup_1(), "rule__ListOfExpression__Group_1__0");
+			builder.put(grammarAccess.getExpressionValueAccess().getGroup(), "rule__ExpressionValue__Group__0");
 			builder.put(grammarAccess.getMultiplicationAccess().getGroup(), "rule__Multiplication__Group__0");
 			builder.put(grammarAccess.getMultiplicationAccess().getGroup_1(), "rule__Multiplication__Group_1__0");
 			builder.put(grammarAccess.getDivisionAccess().getGroup(), "rule__Division__Group__0");
@@ -80,6 +86,11 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_1(), "rule__DirectiveLine__DirectiveAssignment_1");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2(), "rule__DirectiveLine__DirectiveAssignment_2");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_3(), "rule__DirectiveLine__DirectiveAssignment_3");
+			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_4(), "rule__DirectiveLine__DirectiveAssignment_4");
+			builder.put(grammarAccess.getFcbDirectiveAccess().getNameAssignment_0(), "rule__FcbDirective__NameAssignment_0");
+			builder.put(grammarAccess.getFcbDirectiveAccess().getDirectiveAssignment_2(), "rule__FcbDirective__DirectiveAssignment_2");
+			builder.put(grammarAccess.getFcbDirectiveAccess().getOperandAssignment_3_1(), "rule__FcbDirective__OperandAssignment_3_1");
+			builder.put(grammarAccess.getFcbDirectiveAccess().getCommentAssignment_4_1(), "rule__FcbDirective__CommentAssignment_4_1");
 			builder.put(grammarAccess.getRmbDirectiveAccess().getNameAssignment_0(), "rule__RmbDirective__NameAssignment_0");
 			builder.put(grammarAccess.getRmbDirectiveAccess().getDirectiveAssignment_2(), "rule__RmbDirective__DirectiveAssignment_2");
 			builder.put(grammarAccess.getRmbDirectiveAccess().getOperandAssignment_3_1(), "rule__RmbDirective__OperandAssignment_3_1");
@@ -96,6 +107,9 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEquDirectiveAccess().getDirectiveAssignment_2(), "rule__EquDirective__DirectiveAssignment_2");
 			builder.put(grammarAccess.getEquDirectiveAccess().getOperandAssignment_4(), "rule__EquDirective__OperandAssignment_4");
 			builder.put(grammarAccess.getEquDirectiveAccess().getCommentAssignment_6(), "rule__EquDirective__CommentAssignment_6");
+			builder.put(grammarAccess.getListOfExpressionAccess().getExpressionsAssignment_0(), "rule__ListOfExpression__ExpressionsAssignment_0");
+			builder.put(grammarAccess.getListOfExpressionAccess().getExpressionsAssignment_1_1(), "rule__ListOfExpression__ExpressionsAssignment_1_1");
+			builder.put(grammarAccess.getExpressionValueAccess().getValueAssignment_1(), "rule__ExpressionValue__ValueAssignment_1");
 			builder.put(grammarAccess.getExpressionAccess().getOperandAssignment(), "rule__Expression__OperandAssignment");
 			builder.put(grammarAccess.getMultiplicationAccess().getOperationAssignment_1_1(), "rule__Multiplication__OperationAssignment_1_1");
 			builder.put(grammarAccess.getMultiplicationAccess().getRightAssignment_1_2(), "rule__Multiplication__RightAssignment_1_2");
