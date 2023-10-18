@@ -7,6 +7,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Addition;
 import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerFactory;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblyOption;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
@@ -18,6 +19,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
@@ -28,10 +30,13 @@ import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
+import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Not;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
@@ -42,6 +47,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -89,6 +95,34 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass directiveLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass namDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass pagDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass optDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass failDirectiveEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -294,6 +328,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   private EClass notEClass = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum assemblyOptionEEnum = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -463,6 +504,215 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EReference getDirectiveLine_Directive()
   {
     return (EReference)directiveLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getNamDirective()
+  {
+    return namDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getNamDirective_Name()
+  {
+    return (EReference)namDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getNamDirective_Directive()
+  {
+    return (EAttribute)namDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getNamDirective_Operand()
+  {
+    return (EReference)namDirectiveEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getNamDirective_Comment()
+  {
+    return (EAttribute)namDirectiveEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getPagDirective()
+  {
+    return pagDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getPagDirective_Name()
+  {
+    return (EReference)pagDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getPagDirective_Directive()
+  {
+    return (EAttribute)pagDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getPagDirective_Operand()
+  {
+    return (EReference)pagDirectiveEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getPagDirective_Comment()
+  {
+    return (EAttribute)pagDirectiveEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getOptDirective()
+  {
+    return optDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getOptDirective_Name()
+  {
+    return (EReference)optDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getOptDirective_Directive()
+  {
+    return (EAttribute)optDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getOptDirective_Options()
+  {
+    return (EAttribute)optDirectiveEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getOptDirective_Comment()
+  {
+    return (EAttribute)optDirectiveEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFailDirective()
+  {
+    return failDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFailDirective_Name()
+  {
+    return (EReference)failDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFailDirective_Directive()
+  {
+    return (EAttribute)failDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFailDirective_Comment()
+  {
+    return (EAttribute)failDirectiveEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1626,6 +1876,17 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EEnum getAssemblyOption()
+  {
+    return assemblyOptionEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public AssemblerFactory getAssemblerFactory()
   {
     return (AssemblerFactory)getEFactoryInstance();
@@ -1665,6 +1926,29 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__DIRECTIVE);
+
+    namDirectiveEClass = createEClass(NAM_DIRECTIVE);
+    createEReference(namDirectiveEClass, NAM_DIRECTIVE__NAME);
+    createEAttribute(namDirectiveEClass, NAM_DIRECTIVE__DIRECTIVE);
+    createEReference(namDirectiveEClass, NAM_DIRECTIVE__OPERAND);
+    createEAttribute(namDirectiveEClass, NAM_DIRECTIVE__COMMENT);
+
+    pagDirectiveEClass = createEClass(PAG_DIRECTIVE);
+    createEReference(pagDirectiveEClass, PAG_DIRECTIVE__NAME);
+    createEAttribute(pagDirectiveEClass, PAG_DIRECTIVE__DIRECTIVE);
+    createEReference(pagDirectiveEClass, PAG_DIRECTIVE__OPERAND);
+    createEAttribute(pagDirectiveEClass, PAG_DIRECTIVE__COMMENT);
+
+    optDirectiveEClass = createEClass(OPT_DIRECTIVE);
+    createEReference(optDirectiveEClass, OPT_DIRECTIVE__NAME);
+    createEAttribute(optDirectiveEClass, OPT_DIRECTIVE__DIRECTIVE);
+    createEAttribute(optDirectiveEClass, OPT_DIRECTIVE__OPTIONS);
+    createEAttribute(optDirectiveEClass, OPT_DIRECTIVE__COMMENT);
+
+    failDirectiveEClass = createEClass(FAIL_DIRECTIVE);
+    createEReference(failDirectiveEClass, FAIL_DIRECTIVE__NAME);
+    createEAttribute(failDirectiveEClass, FAIL_DIRECTIVE__DIRECTIVE);
+    createEAttribute(failDirectiveEClass, FAIL_DIRECTIVE__COMMENT);
 
     setDirectiveEClass = createEClass(SET_DIRECTIVE);
     createEReference(setDirectiveEClass, SET_DIRECTIVE__NAME);
@@ -1799,6 +2083,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(xorEClass, XOR__RIGHT);
 
     notEClass = createEClass(NOT);
+
+    // Create enums
+    assemblyOptionEEnum = createEEnum(ASSEMBLY_OPTION);
   }
 
   /**
@@ -1857,6 +2144,29 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDirectiveLine_Directive(), ecorePackage.getEObject(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(namDirectiveEClass, NamDirective.class, "NamDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNamDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, NamDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNamDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, NamDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getNamDirective_Operand(), this.getIdentifierValue(), null, "operand", null, 0, 1, NamDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getNamDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, NamDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(pagDirectiveEClass, PagDirective.class, "PagDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getPagDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, PagDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPagDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, PagDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getPagDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, PagDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getPagDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, PagDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(optDirectiveEClass, OptDirective.class, "OptDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getOptDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, OptDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getOptDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, OptDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getOptDirective_Options(), this.getAssemblyOption(), "options", null, 0, -1, OptDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getOptDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, OptDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(failDirectiveEClass, FailDirective.class, "FailDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFailDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, FailDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFailDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, FailDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFailDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FailDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(setDirectiveEClass, SetDirective.class, "SetDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSetDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1991,6 +2301,17 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getXor_Right(), this.getExpression(), null, "right", null, 0, 1, Xor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(notEClass, Not.class, "Not", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+    // Initialize enums and add enum literals
+    initEEnum(assemblyOptionEEnum, AssemblyOption.class, "AssemblyOption");
+    addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.PAG);
+    addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.NOP);
+    addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.CON);
+    addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.NOC);
+    addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.MAC);
+    addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.NOM);
+    addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.EXP);
+    addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.NOE);
 
     // Create resource
     createResource(eNS_URI);

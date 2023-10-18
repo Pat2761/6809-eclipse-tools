@@ -23,10 +23,13 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	protected AbstractElementAlias match_BszDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_EndDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_EquDirective_WSTerminalRuleCall_5_q;
+	protected AbstractElementAlias match_FailDirective_WSTerminalRuleCall_3_0_q;
 	protected AbstractElementAlias match_FcbDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_FdbDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_FillDirective_WSTerminalRuleCall_4_q;
+	protected AbstractElementAlias match_OptDirective_WSTerminalRuleCall_4_0_q;
 	protected AbstractElementAlias match_OrgDirective_WSTerminalRuleCall_4_q;
+	protected AbstractElementAlias match_PagDirective_WSTerminalRuleCall_3_0_q;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_7_0_a;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_7_0_p;
 	protected AbstractElementAlias match_RmbDirective_WSTerminalRuleCall_5_q;
@@ -38,10 +41,13 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 		match_BszDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getBszDirectiveAccess().getWSTerminalRuleCall_5());
 		match_EndDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_5());
 		match_EquDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_5());
+		match_FailDirective_WSTerminalRuleCall_3_0_q = new TokenAlias(false, true, grammarAccess.getFailDirectiveAccess().getWSTerminalRuleCall_3_0());
 		match_FcbDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getFcbDirectiveAccess().getWSTerminalRuleCall_5());
 		match_FdbDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getFdbDirectiveAccess().getWSTerminalRuleCall_5());
 		match_FillDirective_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getFillDirectiveAccess().getWSTerminalRuleCall_4());
+		match_OptDirective_WSTerminalRuleCall_4_0_q = new TokenAlias(false, true, grammarAccess.getOptDirectiveAccess().getWSTerminalRuleCall_4_0());
 		match_OrgDirective_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_4());
+		match_PagDirective_WSTerminalRuleCall_3_0_q = new TokenAlias(false, true, grammarAccess.getPagDirectiveAccess().getWSTerminalRuleCall_3_0());
 		match_Primary_LeftParenthesisKeyword_7_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_7_0());
 		match_Primary_LeftParenthesisKeyword_7_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_7_0());
 		match_RmbDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getRmbDirectiveAccess().getWSTerminalRuleCall_5());
@@ -87,14 +93,20 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 				emit_EndDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EquDirective_WSTerminalRuleCall_5_q.equals(syntax))
 				emit_EquDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_FailDirective_WSTerminalRuleCall_3_0_q.equals(syntax))
+				emit_FailDirective_WSTerminalRuleCall_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FcbDirective_WSTerminalRuleCall_5_q.equals(syntax))
 				emit_FcbDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FdbDirective_WSTerminalRuleCall_5_q.equals(syntax))
 				emit_FdbDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FillDirective_WSTerminalRuleCall_4_q.equals(syntax))
 				emit_FillDirective_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_OptDirective_WSTerminalRuleCall_4_0_q.equals(syntax))
+				emit_OptDirective_WSTerminalRuleCall_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_OrgDirective_WSTerminalRuleCall_4_q.equals(syntax))
 				emit_OrgDirective_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_PagDirective_WSTerminalRuleCall_3_0_q.equals(syntax))
+				emit_PagDirective_WSTerminalRuleCall_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_7_0_a.equals(syntax))
 				emit_Primary_LeftParenthesisKeyword_7_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_7_0_p.equals(syntax))
@@ -162,6 +174,20 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     WS?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     directive='FAIL' (ambiguity) EndOfLine (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_FailDirective_WSTerminalRuleCall_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS?
+	 *
+	 * This ambiguous syntax occurs at:
 	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
 	 *     directive='FCB' (ambiguity) EndOfLine (rule end)
 	 *     operand=ListOfExpression (ambiguity) EndOfLine (rule end)
@@ -209,6 +235,21 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     WS?
 	 *
 	 * This ambiguous syntax occurs at:
+	 *     directive='OPT' (ambiguity) EndOfLine (rule end)
+	 *     options+=AssemblyOption (ambiguity) EndOfLine (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_OptDirective_WSTerminalRuleCall_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS?
+	 *
+	 * This ambiguous syntax occurs at:
 	 *     directive='ORG' (ambiguity) EndOfLine (rule end)
 	 *     directive='ORG' (ambiguity) comment=ANY_EXCEPT_COMMENT_END_OF_LINE
 	 *     isRelativeToPC?='*' (ambiguity) EndOfLine (rule end)
@@ -219,6 +260,21 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * </pre>
 	 */
 	protected void emit_OrgDirective_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     directive='PAG' (ambiguity) EndOfLine (rule end)
+	 *     directive='PAG' (ambiguity) WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE
+	 
+	 * </pre>
+	 */
+	protected void emit_PagDirective_WSTerminalRuleCall_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

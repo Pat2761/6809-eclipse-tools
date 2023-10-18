@@ -41,7 +41,7 @@ import org.junit.runner.RunWith;
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 @SuppressWarnings("all")
-public class TestFILLDirective {
+public class TestFillDirective {
   @Inject
   private ParseHelper<Model> parseHelper;
 

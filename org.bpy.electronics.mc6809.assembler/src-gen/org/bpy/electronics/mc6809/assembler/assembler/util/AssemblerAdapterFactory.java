@@ -101,6 +101,26 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createDirectiveLineAdapter();
       }
       @Override
+      public Adapter caseNamDirective(NamDirective object)
+      {
+        return createNamDirectiveAdapter();
+      }
+      @Override
+      public Adapter casePagDirective(PagDirective object)
+      {
+        return createPagDirectiveAdapter();
+      }
+      @Override
+      public Adapter caseOptDirective(OptDirective object)
+      {
+        return createOptDirectiveAdapter();
+      }
+      @Override
+      public Adapter caseFailDirective(FailDirective object)
+      {
+        return createFailDirectiveAdapter();
+      }
+      @Override
       public Adapter caseSetDirective(SetDirective object)
       {
         return createSetDirectiveAdapter();
@@ -338,6 +358,66 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDirectiveLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.NamDirective <em>Nam Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.NamDirective
+   * @generated
+   */
+  public Adapter createNamDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.PagDirective <em>Pag Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.PagDirective
+   * @generated
+   */
+  public Adapter createPagDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.OptDirective <em>Opt Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OptDirective
+   * @generated
+   */
+  public Adapter createOptDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.FailDirective <em>Fail Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.FailDirective
+   * @generated
+   */
+  public Adapter createFailDirectiveAdapter()
   {
     return null;
   }

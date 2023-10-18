@@ -6,6 +6,16 @@
     complianceLevel="8.0" copyrightFields="false" runtimeVersion="2.20">
   <genPackages prefix="Assembler" basePackage="org.bpy.electronics.mc6809.assembler"
       disposableProviderFactory="true" fileExtensions="as9" ecorePackage="Assembler.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Assembler.ecore#//AssemblyOption">
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/PAG"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/NOP"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/CON"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/NOC"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/MAC"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/NOM"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/EXP"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/NOE"/>
+    </genEnums>
     <genClasses ecoreClass="Assembler.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Model/sourceLines"/>
     </genClasses>
@@ -20,6 +30,29 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//NamDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//NamDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//NamDirective/directive"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//NamDirective/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//NamDirective/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//PagDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PagDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PagDirective/directive"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PagDirective/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PagDirective/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//OptDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OptDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OptDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OptDirective/options"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OptDirective/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//FailDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//FailDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FailDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FailDirective/comment"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SetDirective">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SetDirective/name"/>

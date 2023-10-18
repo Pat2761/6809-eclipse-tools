@@ -69,6 +69,42 @@ public interface AssemblerFactory extends EFactory
   DirectiveLine createDirectiveLine();
 
   /**
+   * Returns a new object of class '<em>Nam Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Nam Directive</em>'.
+   * @generated
+   */
+  NamDirective createNamDirective();
+
+  /**
+   * Returns a new object of class '<em>Pag Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Pag Directive</em>'.
+   * @generated
+   */
+  PagDirective createPagDirective();
+
+  /**
+   * Returns a new object of class '<em>Opt Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Opt Directive</em>'.
+   * @generated
+   */
+  OptDirective createOptDirective();
+
+  /**
+   * Returns a new object of class '<em>Fail Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Fail Directive</em>'.
+   * @generated
+   */
+  FailDirective createFailDirective();
+
+  /**
    * Returns a new object of class '<em>Set Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

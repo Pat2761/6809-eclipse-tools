@@ -19,6 +19,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
@@ -29,10 +30,13 @@ import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
+import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Not;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
@@ -131,6 +135,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 					return; 
 				}
 				else break;
+			case AssemblerPackage.FAIL_DIRECTIVE:
+				sequence_FailDirective(context, (FailDirective) semanticObject); 
+				return; 
 			case AssemblerPackage.FCB_DIRECTIVE:
 				sequence_FcbDirective(context, (FcbDirective) semanticObject); 
 				return; 
@@ -161,17 +168,26 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.MULTIPLICATION:
 				sequence_Multiplication(context, (Multiplication) semanticObject); 
 				return; 
+			case AssemblerPackage.NAM_DIRECTIVE:
+				sequence_NamDirective(context, (NamDirective) semanticObject); 
+				return; 
 			case AssemblerPackage.NOT:
 				sequence_Primary(context, (Not) semanticObject); 
 				return; 
 			case AssemblerPackage.OCTAL_VALUE:
 				sequence_OctalValue(context, (OctalValue) semanticObject); 
 				return; 
+			case AssemblerPackage.OPT_DIRECTIVE:
+				sequence_OptDirective(context, (OptDirective) semanticObject); 
+				return; 
 			case AssemblerPackage.OR:
 				sequence_Or(context, (Or) semanticObject); 
 				return; 
 			case AssemblerPackage.ORG_DIRECTIVE:
 				sequence_OrgDirective(context, (OrgDirective) semanticObject); 
+				return; 
+			case AssemblerPackage.PAG_DIRECTIVE:
+				sequence_PagDirective(context, (PagDirective) semanticObject); 
 				return; 
 			case AssemblerPackage.RIGHT_SHIFT:
 				sequence_RightShift(context, (RightShift) semanticObject); 
@@ -398,7 +414,11 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         directive=OrgDirective | 
 	 *         directive=BszDirective | 
 	 *         directive=EndDirective | 
+	 *         directive=FailDirective | 
 	 *         directive=FillDirective | 
+	 *         directive=OptDirective | 
+	 *         directive=PagDirective | 
+	 *         directive=NamDirective | 
 	 *         directive=SetDirective | 
 	 *         directive=RmbDirective | 
 	 *         directive=FcbDirective | 
@@ -507,6 +527,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExpressionAccess().getOperandMultiplicationParserRuleCall_0(), semanticObject.getOperand());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FailDirective returns FailDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? directive='FAIL' comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_FailDirective(ISerializationContext context, FailDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -758,6 +792,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     NamDirective returns NamDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? (directive='NAM' | directive='TTL') operand=IdentifierValue comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_NamDirective(ISerializationContext context, NamDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     OctalValue returns OctalValue
 	 *
 	 * Constraint:
@@ -772,6 +820,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getOctalValueAccess().getValueOCTALTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     OptDirective returns OptDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? directive='OPT' (options+=AssemblyOption options+=AssemblyOption*)? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_OptDirective(ISerializationContext context, OptDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -833,6 +895,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * </pre>
 	 */
 	protected void sequence_OrgDirective(ISerializationContext context, OrgDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     PagDirective returns PagDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? directive='PAG' operand=Expression? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_PagDirective(ISerializationContext context, PagDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

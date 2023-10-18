@@ -9,6 +9,8 @@ import java.util.List;
 import org.eclipse.xtext.Action;
 import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.EnumLiteralDeclaration;
+import org.eclipse.xtext.EnumRule;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
 import org.eclipse.xtext.Group;
@@ -160,15 +162,23 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cDirectiveEndDirectiveParserRuleCall_3_0 = (RuleCall)cDirectiveAssignment_3.eContents().get(0);
 		private final Assignment cDirectiveAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
-		private final RuleCall cDirectiveFillDirectiveParserRuleCall_4_0 = (RuleCall)cDirectiveAssignment_4.eContents().get(0);
+		private final RuleCall cDirectiveFailDirectiveParserRuleCall_4_0 = (RuleCall)cDirectiveAssignment_4.eContents().get(0);
 		private final Assignment cDirectiveAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
-		private final RuleCall cDirectiveSetDirectiveParserRuleCall_5_0 = (RuleCall)cDirectiveAssignment_5.eContents().get(0);
+		private final RuleCall cDirectiveFillDirectiveParserRuleCall_5_0 = (RuleCall)cDirectiveAssignment_5.eContents().get(0);
 		private final Assignment cDirectiveAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
-		private final RuleCall cDirectiveRmbDirectiveParserRuleCall_6_0 = (RuleCall)cDirectiveAssignment_6.eContents().get(0);
+		private final RuleCall cDirectiveOptDirectiveParserRuleCall_6_0 = (RuleCall)cDirectiveAssignment_6.eContents().get(0);
 		private final Assignment cDirectiveAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
-		private final RuleCall cDirectiveFcbDirectiveParserRuleCall_7_0 = (RuleCall)cDirectiveAssignment_7.eContents().get(0);
+		private final RuleCall cDirectivePagDirectiveParserRuleCall_7_0 = (RuleCall)cDirectiveAssignment_7.eContents().get(0);
 		private final Assignment cDirectiveAssignment_8 = (Assignment)cAlternatives.eContents().get(8);
-		private final RuleCall cDirectiveFdbDirectiveParserRuleCall_8_0 = (RuleCall)cDirectiveAssignment_8.eContents().get(0);
+		private final RuleCall cDirectiveNamDirectiveParserRuleCall_8_0 = (RuleCall)cDirectiveAssignment_8.eContents().get(0);
+		private final Assignment cDirectiveAssignment_9 = (Assignment)cAlternatives.eContents().get(9);
+		private final RuleCall cDirectiveSetDirectiveParserRuleCall_9_0 = (RuleCall)cDirectiveAssignment_9.eContents().get(0);
+		private final Assignment cDirectiveAssignment_10 = (Assignment)cAlternatives.eContents().get(10);
+		private final RuleCall cDirectiveRmbDirectiveParserRuleCall_10_0 = (RuleCall)cDirectiveAssignment_10.eContents().get(0);
+		private final Assignment cDirectiveAssignment_11 = (Assignment)cAlternatives.eContents().get(11);
+		private final RuleCall cDirectiveFcbDirectiveParserRuleCall_11_0 = (RuleCall)cDirectiveAssignment_11.eContents().get(0);
+		private final Assignment cDirectiveAssignment_12 = (Assignment)cAlternatives.eContents().get(12);
+		private final RuleCall cDirectiveFdbDirectiveParserRuleCall_12_0 = (RuleCall)cDirectiveAssignment_12.eContents().get(0);
 		
 		///*
 		// * Definition of the list possible directives
@@ -179,7 +189,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    |  directive = OrgDirective
 		//    |  directive = BszDirective
 		//    |  directive = EndDirective
+		//    |  directive = FailDirective
 		//    |  directive = FillDirective
+		//    |  directive = OptDirective
+		//    |  directive = PagDirective
+		//    |  directive = NamDirective
 		//    |  directive = SetDirective
 		//    |  directive = RmbDirective
 		//    |  directive = FcbDirective
@@ -191,7 +205,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//|  directive = OrgDirective
 		//|  directive = BszDirective
 		//|  directive = EndDirective
+		//|  directive = FailDirective
 		//|  directive = FillDirective
+		//|  directive = OptDirective
+		//|  directive = PagDirective
+		//|  directive = NamDirective
 		//|  directive = SetDirective
 		//|  directive = RmbDirective
 		//|  directive = FcbDirective
@@ -222,35 +240,432 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//EndDirective
 		public RuleCall getDirectiveEndDirectiveParserRuleCall_3_0() { return cDirectiveEndDirectiveParserRuleCall_3_0; }
 		
-		//directive = FillDirective
+		//directive = FailDirective
 		public Assignment getDirectiveAssignment_4() { return cDirectiveAssignment_4; }
 		
-		//FillDirective
-		public RuleCall getDirectiveFillDirectiveParserRuleCall_4_0() { return cDirectiveFillDirectiveParserRuleCall_4_0; }
+		//FailDirective
+		public RuleCall getDirectiveFailDirectiveParserRuleCall_4_0() { return cDirectiveFailDirectiveParserRuleCall_4_0; }
 		
-		//directive = SetDirective
+		//directive = FillDirective
 		public Assignment getDirectiveAssignment_5() { return cDirectiveAssignment_5; }
 		
-		//SetDirective
-		public RuleCall getDirectiveSetDirectiveParserRuleCall_5_0() { return cDirectiveSetDirectiveParserRuleCall_5_0; }
+		//FillDirective
+		public RuleCall getDirectiveFillDirectiveParserRuleCall_5_0() { return cDirectiveFillDirectiveParserRuleCall_5_0; }
 		
-		//directive = RmbDirective
+		//directive = OptDirective
 		public Assignment getDirectiveAssignment_6() { return cDirectiveAssignment_6; }
 		
-		//RmbDirective
-		public RuleCall getDirectiveRmbDirectiveParserRuleCall_6_0() { return cDirectiveRmbDirectiveParserRuleCall_6_0; }
+		//OptDirective
+		public RuleCall getDirectiveOptDirectiveParserRuleCall_6_0() { return cDirectiveOptDirectiveParserRuleCall_6_0; }
 		
-		//directive = FcbDirective
+		//directive = PagDirective
 		public Assignment getDirectiveAssignment_7() { return cDirectiveAssignment_7; }
 		
-		//FcbDirective
-		public RuleCall getDirectiveFcbDirectiveParserRuleCall_7_0() { return cDirectiveFcbDirectiveParserRuleCall_7_0; }
+		//PagDirective
+		public RuleCall getDirectivePagDirectiveParserRuleCall_7_0() { return cDirectivePagDirectiveParserRuleCall_7_0; }
 		
-		//directive = FdbDirective
+		//directive = NamDirective
 		public Assignment getDirectiveAssignment_8() { return cDirectiveAssignment_8; }
 		
+		//NamDirective
+		public RuleCall getDirectiveNamDirectiveParserRuleCall_8_0() { return cDirectiveNamDirectiveParserRuleCall_8_0; }
+		
+		//directive = SetDirective
+		public Assignment getDirectiveAssignment_9() { return cDirectiveAssignment_9; }
+		
+		//SetDirective
+		public RuleCall getDirectiveSetDirectiveParserRuleCall_9_0() { return cDirectiveSetDirectiveParserRuleCall_9_0; }
+		
+		//directive = RmbDirective
+		public Assignment getDirectiveAssignment_10() { return cDirectiveAssignment_10; }
+		
+		//RmbDirective
+		public RuleCall getDirectiveRmbDirectiveParserRuleCall_10_0() { return cDirectiveRmbDirectiveParserRuleCall_10_0; }
+		
+		//directive = FcbDirective
+		public Assignment getDirectiveAssignment_11() { return cDirectiveAssignment_11; }
+		
+		//FcbDirective
+		public RuleCall getDirectiveFcbDirectiveParserRuleCall_11_0() { return cDirectiveFcbDirectiveParserRuleCall_11_0; }
+		
+		//directive = FdbDirective
+		public Assignment getDirectiveAssignment_12() { return cDirectiveAssignment_12; }
+		
 		//FdbDirective
-		public RuleCall getDirectiveFdbDirectiveParserRuleCall_8_0() { return cDirectiveFdbDirectiveParserRuleCall_8_0; }
+		public RuleCall getDirectiveFdbDirectiveParserRuleCall_12_0() { return cDirectiveFdbDirectiveParserRuleCall_12_0; }
+	}
+	public class NamDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.NamDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cDirectiveAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final Keyword cDirectiveNAMKeyword_2_0_0 = (Keyword)cDirectiveAssignment_2_0.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cDirectiveTTLKeyword_2_1_0 = (Keyword)cDirectiveAssignment_2_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Assignment cOperandAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cOperandIdentifierValueParserRuleCall_4_0 = (RuleCall)cOperandAssignment_4.eContents().get(0);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final RuleCall cWSTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
+		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0 = (RuleCall)cCommentAssignment_5_1.eContents().get(0);
+		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		
+		///*
+		// *  TTL or NAM
+		// *
+		// * The TTL or NAM directive allows the user to specify a title or name to the program being assembled.
+		// * This title is then printed in the header at the top of each output listing page if the page option is
+		// * selected. If the page option is not selected, this directive is ignored. The proper form is:
+		// *
+		// * TTL <text for the title>
+		// * or
+		// * NAM <text for the title>
+		// *
+		// * All the text following the TTL or NAM directive (excluding leading spaces) is placed in the title buffer.
+		// * Up to 32 characters are allowed with any excess being ignored. It is possible to have any number of TTL
+		// * or NAM directives in a source program. The latest one encountered will always be the one used for printing
+		// * at the top of the following page(s).
+		// */
+		//NamDirective:
+		//    (name = IdentifierValue)? WS (directive = 'NAM'|directive = 'TTL')
+		//    WS (operand=IdentifierValue)
+		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS (directive = 'NAM'|directive = 'TTL')
+		//WS (operand=IdentifierValue)
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//EndOfLine
+		public Group getGroup() { return cGroup; }
+		
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(directive = 'NAM'|directive = 'TTL')
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//directive = 'NAM'
+		public Assignment getDirectiveAssignment_2_0() { return cDirectiveAssignment_2_0; }
+		
+		//'NAM'
+		public Keyword getDirectiveNAMKeyword_2_0_0() { return cDirectiveNAMKeyword_2_0_0; }
+		
+		//directive = 'TTL'
+		public Assignment getDirectiveAssignment_2_1() { return cDirectiveAssignment_2_1; }
+		
+		//'TTL'
+		public Keyword getDirectiveTTLKeyword_2_1_0() { return cDirectiveTTLKeyword_2_1_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
+		
+		//(operand=IdentifierValue)
+		public Assignment getOperandAssignment_4() { return cOperandAssignment_4; }
+		
+		//IdentifierValue
+		public RuleCall getOperandIdentifierValueParserRuleCall_4_0() { return cOperandIdentifierValueParserRuleCall_4_0; }
+		
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_5_0() { return cWSTerminalRuleCall_5_0; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
+		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
+	}
+	public class PagDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.PagDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cDirectivePAGKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cOperandAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_3_1_0 = (RuleCall)cOperandAssignment_3_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
+		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		
+		///*
+		// *  PAG
+		// *
+		// * The PAG directive causes a page eject in the output listing and prints a header at the top of the new page.
+		// * Note that the 'PAG' option must have been previously selected in order for this directive to take effect.
+		// * It is possible to assign a new number to the new page by specifying such in the operand field. If no page
+		// * number is specified, the next consecutive number will be used. No label is allowed and no code is produced.
+		// *  The PAG operator itself will not appear in the listing unless some sort of error is encountered.
+		// * The proper form is:
+		// *
+		// * PAG [<expression>]
+		// *
+		// * Where the expression is optional. The first page of a listing does not have the header printed on it and
+		// * is considered to be page 0. The intention here is that all options, title, and subtitle may be setup and
+		// * followed by a PAG directive to start the assembled listing at the top of page 1 without the option, title,
+		// * or subtitle instructions being in the way.
+		// */
+		//PagDirective:
+		//    (name = IdentifierValue)? WS (directive = 'PAG')
+		//    (WS (operand=Expression)?)?
+		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS (directive = 'PAG')
+		//(WS (operand=Expression)?)?
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//EndOfLine
+		public Group getGroup() { return cGroup; }
+		
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(directive = 'PAG')
+		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		
+		//'PAG'
+		public Keyword getDirectivePAGKeyword_2_0() { return cDirectivePAGKeyword_2_0; }
+		
+		//(WS (operand=Expression)?)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		
+		//(operand=Expression)?
+		public Assignment getOperandAssignment_3_1() { return cOperandAssignment_3_1; }
+		
+		//Expression
+		public RuleCall getOperandExpressionParserRuleCall_3_1_0() { return cOperandExpressionParserRuleCall_3_1_0; }
+		
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
+		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class OptDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OptDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cDirectiveOPTKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cOptionsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cOptionsAssemblyOptionEnumRuleCall_3_1_0 = (RuleCall)cOptionsAssignment_3_1.eContents().get(0);
+		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
+		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
+		private final Assignment cOptionsAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
+		private final RuleCall cOptionsAssemblyOptionEnumRuleCall_3_2_1_0 = (RuleCall)cOptionsAssignment_3_2_1.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
+		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
+		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		
+		///*
+		// * OPT
+		// *
+		// *  The OPT or Option directive allows the user to choose from several different assembly options which are available to him.
+		// *  These options are generally related to the format of the output listing and object code. The options which
+		// *  may be set with this command are listed below. There are several options not listed here which may be set
+		// *  from the FLEX command line. See the appropriate section earlier in the manual for these options. The proper
+		// * form of this instruction is:
+		// *
+		// * OPT <option 1>,<option 2>,...,<option n>
+		// *
+		// * Note that any number of options may be given on one line if separated by commas. No label is allowed and no
+		// * spaces may be embedded in the option list. The options are all set during pass one only although the
+		// * instruction is parsed in pass two as well for error reporting purposes. If contradicting options are
+		// * specified, the last one appearing takes precedence. If a particular option is not specified, the default
+		// * case for that option takes effect. The default cases are signified below by an asterisk.
+		// *
+		// * The allowable options are:
+		// *
+		// * PAG enable page formatting and numbering
+		// * NOP* disable pagination
+		// *
+		// * CON print conditionally skipped code
+		// * NOC* suppress conditional code printing
+		// *
+		// * MAC* print macro calling lines
+		// * NOM suppress printing of macro calls
+		// *
+		// * EXP print macro expansion lines
+		// * NOE* Suppress macro expansion printing
+		// *
+		// * * denotes default option and is not part of option name
+		// */
+		//OptDirective:
+		//    (name = IdentifierValue)? WS (directive = 'OPT')
+		//    (WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
+		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+		//    EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS (directive = 'OPT')
+		//(WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+		//EndOfLine
+		public Group getGroup() { return cGroup; }
+		
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(directive = 'OPT')
+		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		
+		//'OPT'
+		public Keyword getDirectiveOPTKeyword_2_0() { return cDirectiveOPTKeyword_2_0; }
+		
+		//(WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		
+		//options+=AssemblyOption
+		public Assignment getOptionsAssignment_3_1() { return cOptionsAssignment_3_1; }
+		
+		//AssemblyOption
+		public RuleCall getOptionsAssemblyOptionEnumRuleCall_3_1_0() { return cOptionsAssemblyOptionEnumRuleCall_3_1_0; }
+		
+		//( ',' options+=AssemblyOption)*
+		public Group getGroup_3_2() { return cGroup_3_2; }
+		
+		//','
+		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
+		
+		//options+=AssemblyOption
+		public Assignment getOptionsAssignment_3_2_1() { return cOptionsAssignment_3_2_1; }
+		
+		//AssemblyOption
+		public RuleCall getOptionsAssemblyOptionEnumRuleCall_3_2_1_0() { return cOptionsAssemblyOptionEnumRuleCall_3_2_1_0; }
+		
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class FailDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.FailDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cDirectiveFAILKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
+		private final RuleCall cEndOfLineParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		
+		///*
+		// * FAIL
+		// *
+		// *
+		// */
+		//FailDirective:
+		//    (name = IdentifierValue)? WS (directive = 'FAIL')
+		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+		//    EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS (directive = 'FAIL')
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+		//EndOfLine
+		public Group getGroup() { return cGroup; }
+		
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(directive = 'FAIL')
+		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		
+		//'FAIL'
+		public Keyword getDirectiveFAILKeyword_2_0() { return cDirectiveFAILKeyword_2_0; }
+		
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_4() { return cEndOfLineParserRuleCall_4; }
 	}
 	public class SetDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SetDirective");
@@ -578,11 +993,17 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * Again, the label field is optional.
 		// */
 		//FdbDirective:
-		//    (name = IdentifierValue)? WS (directive = 'FDB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+		//    (name = IdentifierValue)? WS (directive = 'FDB')
+		//    (WS (operand = ListOfExpression))?
+		//    (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'FDB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+		//(name = IdentifierValue)? WS (directive = 'FDB')
+		//(WS (operand = ListOfExpression))?
+		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
 		//(name = IdentifierValue)?
@@ -1833,12 +2254,107 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		public RuleCall getEND_OF_FILETerminalRuleCall_1() { return cEND_OF_FILETerminalRuleCall_1; }
 	}
 	
+	public class AssemblyOptionElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AssemblyOption");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cPAGEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cPAGPAGKeyword_0_0 = (Keyword)cPAGEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cNOPEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cNOPNOPKeyword_1_0 = (Keyword)cNOPEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cCONEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cCONCONKeyword_2_0 = (Keyword)cCONEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cNOCEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cNOCNOCKeyword_3_0 = (Keyword)cNOCEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cMACEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cMACMACKeyword_4_0 = (Keyword)cMACEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cNOMEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cNOMNOMKeyword_5_0 = (Keyword)cNOMEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cEXPEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cEXPEXPKeyword_6_0 = (Keyword)cEXPEnumLiteralDeclaration_6.eContents().get(0);
+		private final EnumLiteralDeclaration cNOEEnumLiteralDeclaration_7 = (EnumLiteralDeclaration)cAlternatives.eContents().get(7);
+		private final Keyword cNOENOEKeyword_7_0 = (Keyword)cNOEEnumLiteralDeclaration_7.eContents().get(0);
+		
+		//enum AssemblyOption:
+		//    PAG= 'PAG' |
+		//    NOP= 'NOP' |
+		//    CON= 'CON' |
+		//    NOC= 'NOC' |
+		//    MAC= 'MAC' |
+		//    NOM= 'NOM' |
+		//    EXP= 'EXP' |
+		//    NOE= 'NOE'
+		//    ;
+		public EnumRule getRule() { return rule; }
+		
+		//PAG= 'PAG' |
+		//NOP= 'NOP' |
+		//CON= 'CON' |
+		//NOC= 'NOC' |
+		//MAC= 'MAC' |
+		//NOM= 'NOM' |
+		//EXP= 'EXP' |
+		//NOE= 'NOE'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//PAG= 'PAG'
+		public EnumLiteralDeclaration getPAGEnumLiteralDeclaration_0() { return cPAGEnumLiteralDeclaration_0; }
+		
+		//'PAG'
+		public Keyword getPAGPAGKeyword_0_0() { return cPAGPAGKeyword_0_0; }
+		
+		//NOP= 'NOP'
+		public EnumLiteralDeclaration getNOPEnumLiteralDeclaration_1() { return cNOPEnumLiteralDeclaration_1; }
+		
+		//'NOP'
+		public Keyword getNOPNOPKeyword_1_0() { return cNOPNOPKeyword_1_0; }
+		
+		//CON= 'CON'
+		public EnumLiteralDeclaration getCONEnumLiteralDeclaration_2() { return cCONEnumLiteralDeclaration_2; }
+		
+		//'CON'
+		public Keyword getCONCONKeyword_2_0() { return cCONCONKeyword_2_0; }
+		
+		//NOC= 'NOC'
+		public EnumLiteralDeclaration getNOCEnumLiteralDeclaration_3() { return cNOCEnumLiteralDeclaration_3; }
+		
+		//'NOC'
+		public Keyword getNOCNOCKeyword_3_0() { return cNOCNOCKeyword_3_0; }
+		
+		//MAC= 'MAC'
+		public EnumLiteralDeclaration getMACEnumLiteralDeclaration_4() { return cMACEnumLiteralDeclaration_4; }
+		
+		//'MAC'
+		public Keyword getMACMACKeyword_4_0() { return cMACMACKeyword_4_0; }
+		
+		//NOM= 'NOM'
+		public EnumLiteralDeclaration getNOMEnumLiteralDeclaration_5() { return cNOMEnumLiteralDeclaration_5; }
+		
+		//'NOM'
+		public Keyword getNOMNOMKeyword_5_0() { return cNOMNOMKeyword_5_0; }
+		
+		//EXP= 'EXP'
+		public EnumLiteralDeclaration getEXPEnumLiteralDeclaration_6() { return cEXPEnumLiteralDeclaration_6; }
+		
+		//'EXP'
+		public Keyword getEXPEXPKeyword_6_0() { return cEXPEXPKeyword_6_0; }
+		
+		//NOE= 'NOE'
+		public EnumLiteralDeclaration getNOEEnumLiteralDeclaration_7() { return cNOEEnumLiteralDeclaration_7; }
+		
+		//'NOE'
+		public Keyword getNOENOEKeyword_7_0() { return cNOENOEKeyword_7_0; }
+	}
 	
 	private final ModelElements pModel;
 	private final SourceLineElements pSourceLine;
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final DirectiveLineElements pDirectiveLine;
+	private final NamDirectiveElements pNamDirective;
+	private final PagDirectiveElements pPagDirective;
+	private final OptDirectiveElements pOptDirective;
+	private final AssemblyOptionElements eAssemblyOption;
+	private final FailDirectiveElements pFailDirective;
 	private final SetDirectiveElements pSetDirective;
 	private final FillDirectiveElements pFillDirective;
 	private final BszDirectiveElements pBszDirective;
@@ -1891,6 +2407,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pDirectiveLine = new DirectiveLineElements();
+		this.pNamDirective = new NamDirectiveElements();
+		this.pPagDirective = new PagDirectiveElements();
+		this.pOptDirective = new OptDirectiveElements();
+		this.eAssemblyOption = new AssemblyOptionElements();
+		this.pFailDirective = new FailDirectiveElements();
 		this.pSetDirective = new SetDirectiveElements();
 		this.pFillDirective = new FillDirectiveElements();
 		this.pBszDirective = new BszDirectiveElements();
@@ -2028,7 +2549,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    |  directive = OrgDirective
 	//    |  directive = BszDirective
 	//    |  directive = EndDirective
+	//    |  directive = FailDirective
 	//    |  directive = FillDirective
+	//    |  directive = OptDirective
+	//    |  directive = PagDirective
+	//    |  directive = NamDirective
 	//    |  directive = SetDirective
 	//    |  directive = RmbDirective
 	//    |  directive = FcbDirective
@@ -2040,6 +2565,150 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getDirectiveLineRule() {
 		return getDirectiveLineAccess().getRule();
+	}
+	
+	///*
+	// *  TTL or NAM
+	// *
+	// * The TTL or NAM directive allows the user to specify a title or name to the program being assembled.
+	// * This title is then printed in the header at the top of each output listing page if the page option is
+	// * selected. If the page option is not selected, this directive is ignored. The proper form is:
+	// *
+	// * TTL <text for the title>
+	// * or
+	// * NAM <text for the title>
+	// *
+	// * All the text following the TTL or NAM directive (excluding leading spaces) is placed in the title buffer.
+	// * Up to 32 characters are allowed with any excess being ignored. It is possible to have any number of TTL
+	// * or NAM directives in a source program. The latest one encountered will always be the one used for printing
+	// * at the top of the following page(s).
+	// */
+	//NamDirective:
+	//    (name = IdentifierValue)? WS (directive = 'NAM'|directive = 'TTL')
+	//    WS (operand=IdentifierValue)
+	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    EndOfLine
+	//;
+	public NamDirectiveElements getNamDirectiveAccess() {
+		return pNamDirective;
+	}
+	
+	public ParserRule getNamDirectiveRule() {
+		return getNamDirectiveAccess().getRule();
+	}
+	
+	///*
+	// *  PAG
+	// *
+	// * The PAG directive causes a page eject in the output listing and prints a header at the top of the new page.
+	// * Note that the 'PAG' option must have been previously selected in order for this directive to take effect.
+	// * It is possible to assign a new number to the new page by specifying such in the operand field. If no page
+	// * number is specified, the next consecutive number will be used. No label is allowed and no code is produced.
+	// *  The PAG operator itself will not appear in the listing unless some sort of error is encountered.
+	// * The proper form is:
+	// *
+	// * PAG [<expression>]
+	// *
+	// * Where the expression is optional. The first page of a listing does not have the header printed on it and
+	// * is considered to be page 0. The intention here is that all options, title, and subtitle may be setup and
+	// * followed by a PAG directive to start the assembled listing at the top of page 1 without the option, title,
+	// * or subtitle instructions being in the way.
+	// */
+	//PagDirective:
+	//    (name = IdentifierValue)? WS (directive = 'PAG')
+	//    (WS (operand=Expression)?)?
+	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    EndOfLine
+	//;
+	public PagDirectiveElements getPagDirectiveAccess() {
+		return pPagDirective;
+	}
+	
+	public ParserRule getPagDirectiveRule() {
+		return getPagDirectiveAccess().getRule();
+	}
+	
+	///*
+	// * OPT
+	// *
+	// *  The OPT or Option directive allows the user to choose from several different assembly options which are available to him.
+	// *  These options are generally related to the format of the output listing and object code. The options which
+	// *  may be set with this command are listed below. There are several options not listed here which may be set
+	// *  from the FLEX command line. See the appropriate section earlier in the manual for these options. The proper
+	// * form of this instruction is:
+	// *
+	// * OPT <option 1>,<option 2>,...,<option n>
+	// *
+	// * Note that any number of options may be given on one line if separated by commas. No label is allowed and no
+	// * spaces may be embedded in the option list. The options are all set during pass one only although the
+	// * instruction is parsed in pass two as well for error reporting purposes. If contradicting options are
+	// * specified, the last one appearing takes precedence. If a particular option is not specified, the default
+	// * case for that option takes effect. The default cases are signified below by an asterisk.
+	// *
+	// * The allowable options are:
+	// *
+	// * PAG enable page formatting and numbering
+	// * NOP* disable pagination
+	// *
+	// * CON print conditionally skipped code
+	// * NOC* suppress conditional code printing
+	// *
+	// * MAC* print macro calling lines
+	// * NOM suppress printing of macro calls
+	// *
+	// * EXP print macro expansion lines
+	// * NOE* Suppress macro expansion printing
+	// *
+	// * * denotes default option and is not part of option name
+	// */
+	//OptDirective:
+	//    (name = IdentifierValue)? WS (directive = 'OPT')
+	//    (WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
+	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+	//    EndOfLine
+	//;
+	public OptDirectiveElements getOptDirectiveAccess() {
+		return pOptDirective;
+	}
+	
+	public ParserRule getOptDirectiveRule() {
+		return getOptDirectiveAccess().getRule();
+	}
+	
+	//enum AssemblyOption:
+	//    PAG= 'PAG' |
+	//    NOP= 'NOP' |
+	//    CON= 'CON' |
+	//    NOC= 'NOC' |
+	//    MAC= 'MAC' |
+	//    NOM= 'NOM' |
+	//    EXP= 'EXP' |
+	//    NOE= 'NOE'
+	//    ;
+	public AssemblyOptionElements getAssemblyOptionAccess() {
+		return eAssemblyOption;
+	}
+	
+	public EnumRule getAssemblyOptionRule() {
+		return getAssemblyOptionAccess().getRule();
+	}
+	
+	///*
+	// * FAIL
+	// *
+	// *
+	// */
+	//FailDirective:
+	//    (name = IdentifierValue)? WS (directive = 'FAIL')
+	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+	//    EndOfLine
+	//;
+	public FailDirectiveElements getFailDirectiveAccess() {
+		return pFailDirective;
+	}
+	
+	public ParserRule getFailDirectiveRule() {
+		return getFailDirectiveAccess().getRule();
 	}
 	
 	///*
@@ -2124,7 +2793,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Again, the label field is optional.
 	// */
 	//FdbDirective:
-	//    (name = IdentifierValue)? WS (directive = 'FDB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+	//    (name = IdentifierValue)? WS (directive = 'FDB')
+	//    (WS (operand = ListOfExpression))?
+	//    (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+	//    WS? EndOfLine
 	//;
 	public FdbDirectiveElements getFdbDirectiveAccess() {
 		return pFdbDirective;

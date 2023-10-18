@@ -27,15 +27,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model
 import org.junit.Test
 import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
-import org.bpy.electronics.mc6809.assembler.util.CommandUtil
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
-import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
-import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
-import org.bpy.electronics.mc6809.assembler.assembler.EndDirective
-import org.bpy.electronics.mc6809.assembler.assembler.EquDirective
-import org.bpy.electronics.mc6809.assembler.assembler.BszDirective
-import org.bpy.electronics.mc6809.assembler.assembler.FillDirective
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective
 
 @RunWith(XtextRunner)

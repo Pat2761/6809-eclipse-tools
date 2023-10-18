@@ -3,11 +3,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.tests;
 
-import com.google.inject.Inject;
-import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
-import org.eclipse.xtext.testing.util.ParseHelper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -15,9 +12,6 @@ import org.junit.runner.RunWith;
 @InjectWith(AssemblerInjectorProvider.class)
 @SuppressWarnings("all")
 public class AssemblerParsingTest {
-  @Inject
-  private ParseHelper<Model> parseHelper;
-
   @Test
   public void loadModel() {
   }

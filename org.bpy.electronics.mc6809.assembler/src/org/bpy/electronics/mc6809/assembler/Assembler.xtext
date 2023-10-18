@@ -65,13 +65,127 @@ DirectiveLine:
 	|  directive = OrgDirective
 	|  directive = BszDirective
 	|  directive = EndDirective
+	|  directive = FailDirective
 	|  directive = FillDirective
+	|  directive = OptDirective
+	|  directive = PagDirective
+	|  directive = NamDirective
 	|  directive = SetDirective
 
 
 	|  directive = RmbDirective
 	|  directive = FcbDirective
 	|  directive = FdbDirective
+;
+
+/*
+ *  TTL or NAM
+ *
+ * The TTL or NAM directive allows the user to specify a title or name to the program being assembled. 
+ * This title is then printed in the header at the top of each output listing page if the page option is 
+ * selected. If the page option is not selected, this directive is ignored. The proper form is:
+ *
+ * TTL <text for the title>
+ * or
+ * NAM <text for the title>
+ * 
+ * All the text following the TTL or NAM directive (excluding leading spaces) is placed in the title buffer. 
+ * Up to 32 characters are allowed with any excess being ignored. It is possible to have any number of TTL 
+ * or NAM directives in a source program. The latest one encountered will always be the one used for printing 
+ * at the top of the following page(s).
+ */
+NamDirective:
+	(name = IdentifierValue)? WS (directive = 'NAM'|directive = 'TTL') 
+	WS (operand=IdentifierValue)
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))? 
+	EndOfLine	
+;
+
+/*
+ *  PAG
+ *
+ * The PAG directive causes a page eject in the output listing and prints a header at the top of the new page. 
+ * Note that the 'PAG' option must have been previously selected in order for this directive to take effect. 
+ * It is possible to assign a new number to the new page by specifying such in the operand field. If no page 
+ * number is specified, the next consecutive number will be used. No label is allowed and no code is produced.
+ *  The PAG operator itself will not appear in the listing unless some sort of error is encountered. 
+ * The proper form is:
+ *
+ * PAG [<expression>]
+ *
+ * Where the expression is optional. The first page of a listing does not have the header printed on it and 
+ * is considered to be page 0. The intention here is that all options, title, and subtitle may be setup and  
+ * followed by a PAG directive to start the assembled listing at the top of page 1 without the option, title, 
+ * or subtitle instructions being in the way. 
+ */
+PagDirective:
+	(name = IdentifierValue)? WS (directive = 'PAG') 
+	(WS (operand=Expression)?)?
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))? 
+	EndOfLine	
+;
+
+/*
+ * OPT
+ * 
+ *  The OPT or Option directive allows the user to choose from several different assembly options which are available to him.
+ *  These options are generally related to the format of the output listing and object code. The options which
+ *  may be set with this command are listed below. There are several options not listed here which may be set
+ *  from the FLEX command line. See the appropriate section earlier in the manual for these options. The proper 
+ * form of this instruction is:
+ * 
+ * OPT <option 1>,<option 2>,...,<option n>
+ *
+ * Note that any number of options may be given on one line if separated by commas. No label is allowed and no 
+ * spaces may be embedded in the option list. The options are all set during pass one only although the 
+ * instruction is parsed in pass two as well for error reporting purposes. If contradicting options are 
+ * specified, the last one appearing takes precedence. If a particular option is not specified, the default 
+ * case for that option takes effect. The default cases are signified below by an asterisk.
+ *
+ * The allowable options are:
+ * 
+ * PAG enable page formatting and numbering
+ * NOP* disable pagination
+ *
+ * CON print conditionally skipped code
+ * NOC* suppress conditional code printing
+ *
+ * MAC* print macro calling lines
+ * NOM suppress printing of macro calls
+ *
+ * EXP print macro expansion lines
+ * NOE* Suppress macro expansion printing
+ *
+ * * denotes default option and is not part of option name 
+ */
+OptDirective:
+	(name = IdentifierValue)? WS (directive = 'OPT')
+	(WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)? 
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+	EndOfLine	
+	
+;
+
+enum AssemblyOption:
+	PAG= 'PAG' |
+	NOP= 'NOP' |
+	CON= 'CON' |
+	NOC= 'NOC' |
+	MAC= 'MAC' |
+	NOM= 'NOM' |
+	EXP= 'EXP' |
+	NOE= 'NOE' 
+	;
+
+/*
+ * FAIL
+ * 
+ * 
+ */
+FailDirective:
+	(name = IdentifierValue)? WS (directive = 'FAIL') 
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+	EndOfLine	
 ;
 
 /*
@@ -136,7 +250,10 @@ BszDirective:
  * Again, the label field is optional. 
  */
 FdbDirective:
-	(name = IdentifierValue)? WS (directive = 'FDB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
+	(name = IdentifierValue)? WS (directive = 'FDB') 
+	(WS (operand = ListOfExpression))? 
+	(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
+	WS? EndOfLine	
 ;
 
 

@@ -6,6 +6,7 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 import org.bpy.electronics.mc6809.assembler.assembler.*;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -70,6 +71,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.DIRECTIVE_LINE: return createDirectiveLine();
+      case AssemblerPackage.NAM_DIRECTIVE: return createNamDirective();
+      case AssemblerPackage.PAG_DIRECTIVE: return createPagDirective();
+      case AssemblerPackage.OPT_DIRECTIVE: return createOptDirective();
+      case AssemblerPackage.FAIL_DIRECTIVE: return createFailDirective();
       case AssemblerPackage.SET_DIRECTIVE: return createSetDirective();
       case AssemblerPackage.FILL_DIRECTIVE: return createFillDirective();
       case AssemblerPackage.BSZ_DIRECTIVE: return createBszDirective();
@@ -101,6 +106,40 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.NOT: return createNot();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Object createFromString(EDataType eDataType, String initialValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case AssemblerPackage.ASSEMBLY_OPTION:
+        return createAssemblyOptionFromString(eDataType, initialValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+    }
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String convertToString(EDataType eDataType, Object instanceValue)
+  {
+    switch (eDataType.getClassifierID())
+    {
+      case AssemblerPackage.ASSEMBLY_OPTION:
+        return convertAssemblyOptionToString(eDataType, instanceValue);
+      default:
+        throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
   }
 
@@ -162,6 +201,54 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     DirectiveLineImpl directiveLine = new DirectiveLineImpl();
     return directiveLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NamDirective createNamDirective()
+  {
+    NamDirectiveImpl namDirective = new NamDirectiveImpl();
+    return namDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public PagDirective createPagDirective()
+  {
+    PagDirectiveImpl pagDirective = new PagDirectiveImpl();
+    return pagDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public OptDirective createOptDirective()
+  {
+    OptDirectiveImpl optDirective = new OptDirectiveImpl();
+    return optDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FailDirective createFailDirective()
+  {
+    FailDirectiveImpl failDirective = new FailDirectiveImpl();
+    return failDirective;
   }
 
   /**
@@ -510,6 +597,28 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     NotImpl not = new NotImpl();
     return not;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public AssemblyOption createAssemblyOptionFromString(EDataType eDataType, String initialValue)
+  {
+    AssemblyOption result = AssemblyOption.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertAssemblyOptionToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
   }
 
   /**
