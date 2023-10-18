@@ -259,7 +259,7 @@ public class ExpressionParser {
 	
 	private static int resolveDecimalValue(DecimalValue value) {
 		int sign = 1;
-		if (value.isIsNegative()) {
+		if (value.getSign()!=null && value.getSign().equals("-")) {
 			sign = -1;
 		}
 		return value.getValue()*sign;
