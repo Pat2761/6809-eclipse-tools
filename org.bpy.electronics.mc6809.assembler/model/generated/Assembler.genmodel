@@ -21,6 +21,13 @@
     <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
     </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//SetDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SetDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SetDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SetDirective/isRelativeToPC"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SetDirective/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SetDirective/comment"/>
+    </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//FillDirective">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//FillDirective/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FillDirective/directive"/>

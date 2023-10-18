@@ -162,11 +162,13 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
 		private final RuleCall cDirectiveFillDirectiveParserRuleCall_4_0 = (RuleCall)cDirectiveAssignment_4.eContents().get(0);
 		private final Assignment cDirectiveAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
-		private final RuleCall cDirectiveRmbDirectiveParserRuleCall_5_0 = (RuleCall)cDirectiveAssignment_5.eContents().get(0);
+		private final RuleCall cDirectiveSetDirectiveParserRuleCall_5_0 = (RuleCall)cDirectiveAssignment_5.eContents().get(0);
 		private final Assignment cDirectiveAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
-		private final RuleCall cDirectiveFcbDirectiveParserRuleCall_6_0 = (RuleCall)cDirectiveAssignment_6.eContents().get(0);
+		private final RuleCall cDirectiveRmbDirectiveParserRuleCall_6_0 = (RuleCall)cDirectiveAssignment_6.eContents().get(0);
 		private final Assignment cDirectiveAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
-		private final RuleCall cDirectiveFdbDirectiveParserRuleCall_7_0 = (RuleCall)cDirectiveAssignment_7.eContents().get(0);
+		private final RuleCall cDirectiveFcbDirectiveParserRuleCall_7_0 = (RuleCall)cDirectiveAssignment_7.eContents().get(0);
+		private final Assignment cDirectiveAssignment_8 = (Assignment)cAlternatives.eContents().get(8);
+		private final RuleCall cDirectiveFdbDirectiveParserRuleCall_8_0 = (RuleCall)cDirectiveAssignment_8.eContents().get(0);
 		
 		///*
 		// * Definition of the list possible directives
@@ -178,6 +180,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    |  directive = BszDirective
 		//    |  directive = EndDirective
 		//    |  directive = FillDirective
+		//    |  directive = SetDirective
 		//    |  directive = RmbDirective
 		//    |  directive = FcbDirective
 		//    |  directive = FdbDirective
@@ -189,6 +192,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//|  directive = BszDirective
 		//|  directive = EndDirective
 		//|  directive = FillDirective
+		//|  directive = SetDirective
 		//|  directive = RmbDirective
 		//|  directive = FcbDirective
 		//|  directive = FdbDirective
@@ -224,23 +228,141 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//FillDirective
 		public RuleCall getDirectiveFillDirectiveParserRuleCall_4_0() { return cDirectiveFillDirectiveParserRuleCall_4_0; }
 		
-		//directive = RmbDirective
+		//directive = SetDirective
 		public Assignment getDirectiveAssignment_5() { return cDirectiveAssignment_5; }
 		
-		//RmbDirective
-		public RuleCall getDirectiveRmbDirectiveParserRuleCall_5_0() { return cDirectiveRmbDirectiveParserRuleCall_5_0; }
+		//SetDirective
+		public RuleCall getDirectiveSetDirectiveParserRuleCall_5_0() { return cDirectiveSetDirectiveParserRuleCall_5_0; }
 		
-		//directive = FcbDirective
+		//directive = RmbDirective
 		public Assignment getDirectiveAssignment_6() { return cDirectiveAssignment_6; }
 		
-		//FcbDirective
-		public RuleCall getDirectiveFcbDirectiveParserRuleCall_6_0() { return cDirectiveFcbDirectiveParserRuleCall_6_0; }
+		//RmbDirective
+		public RuleCall getDirectiveRmbDirectiveParserRuleCall_6_0() { return cDirectiveRmbDirectiveParserRuleCall_6_0; }
 		
-		//directive = FdbDirective
+		//directive = FcbDirective
 		public Assignment getDirectiveAssignment_7() { return cDirectiveAssignment_7; }
 		
+		//FcbDirective
+		public RuleCall getDirectiveFcbDirectiveParserRuleCall_7_0() { return cDirectiveFcbDirectiveParserRuleCall_7_0; }
+		
+		//directive = FdbDirective
+		public Assignment getDirectiveAssignment_8() { return cDirectiveAssignment_8; }
+		
 		//FdbDirective
-		public RuleCall getDirectiveFdbDirectiveParserRuleCall_7_0() { return cDirectiveFdbDirectiveParserRuleCall_7_0; }
+		public RuleCall getDirectiveFdbDirectiveParserRuleCall_8_0() { return cDirectiveFdbDirectiveParserRuleCall_8_0; }
+	}
+	public class SetDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SetDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cDirectiveSETKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
+		private final Group cGroup_4_0 = (Group)cAlternatives_4.eContents().get(0);
+		private final Assignment cIsRelativeToPCAssignment_4_0_0 = (Assignment)cGroup_4_0.eContents().get(0);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_4_0_0_0 = (Keyword)cIsRelativeToPCAssignment_4_0_0.eContents().get(0);
+		private final Assignment cOperandAssignment_4_0_1 = (Assignment)cGroup_4_0.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_4_0_1_0 = (RuleCall)cOperandAssignment_4_0_1.eContents().get(0);
+		private final Assignment cIsRelativeToPCAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_4_1_0 = (Keyword)cIsRelativeToPCAssignment_4_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Assignment cCommentAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0 = (RuleCall)cCommentAssignment_6.eContents().get(0);
+		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		
+		///*
+		// * SET
+		// *
+		// * The SET directive is used to set a symbol to the value of some expression, much as an EQU directive.
+		// * The difference is that a symbol may be SET several times within the source (to different values) while
+		// * a symbol may be Equated only once.
+		// * If a symbol is SET to several values within the source, the current value of the symbol will be
+		// * the value last SET. The statement form is:
+		// *
+		// * <label> SET <expression>
+		// *
+		// * The label is strictly required and no code is generated.
+		// */
+		//SetDirective:
+		//    (name = IdentifierValue)? WS (directive = 'SET')
+		//    WS (
+		//        ( isRelativeToPC?='*'? operand=Expression) |
+		//        ( isRelativeToPC?='*' )
+		//        )
+		//    WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+		//    EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS (directive = 'SET')
+		//WS (
+		//    ( isRelativeToPC?='*'? operand=Expression) |
+		//    ( isRelativeToPC?='*' )
+		//    )
+		//WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+		//EndOfLine
+		public Group getGroup() { return cGroup; }
+		
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(directive = 'SET')
+		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		
+		//'SET'
+		public Keyword getDirectiveSETKeyword_2_0() { return cDirectiveSETKeyword_2_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
+		
+		//(
+		//       ( isRelativeToPC?='*'? operand=Expression) |
+		//       ( isRelativeToPC?='*' )
+		//       )
+		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		
+		//( isRelativeToPC?='*'? operand=Expression)
+		public Group getGroup_4_0() { return cGroup_4_0; }
+		
+		//isRelativeToPC?='*'?
+		public Assignment getIsRelativeToPCAssignment_4_0_0() { return cIsRelativeToPCAssignment_4_0_0; }
+		
+		//'*'
+		public Keyword getIsRelativeToPCAsteriskKeyword_4_0_0_0() { return cIsRelativeToPCAsteriskKeyword_4_0_0_0; }
+		
+		//operand=Expression
+		public Assignment getOperandAssignment_4_0_1() { return cOperandAssignment_4_0_1; }
+		
+		//Expression
+		public RuleCall getOperandExpressionParserRuleCall_4_0_1_0() { return cOperandExpressionParserRuleCall_4_0_1_0; }
+		
+		//( isRelativeToPC?='*' )
+		public Assignment getIsRelativeToPCAssignment_4_1() { return cIsRelativeToPCAssignment_4_1; }
+		
+		//'*'
+		public Keyword getIsRelativeToPCAsteriskKeyword_4_1_0() { return cIsRelativeToPCAsteriskKeyword_4_1_0; }
+		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+		public Assignment getCommentAssignment_6() { return cCommentAssignment_6; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
 	}
 	public class FillDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.FillDirective");
@@ -1717,6 +1839,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final DirectiveLineElements pDirectiveLine;
+	private final SetDirectiveElements pSetDirective;
 	private final FillDirectiveElements pFillDirective;
 	private final BszDirectiveElements pBszDirective;
 	private final FdbDirectiveElements pFdbDirective;
@@ -1768,6 +1891,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pDirectiveLine = new DirectiveLineElements();
+		this.pSetDirective = new SetDirectiveElements();
 		this.pFillDirective = new FillDirectiveElements();
 		this.pBszDirective = new BszDirectiveElements();
 		this.pFdbDirective = new FdbDirectiveElements();
@@ -1905,6 +2029,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    |  directive = BszDirective
 	//    |  directive = EndDirective
 	//    |  directive = FillDirective
+	//    |  directive = SetDirective
 	//    |  directive = RmbDirective
 	//    |  directive = FcbDirective
 	//    |  directive = FdbDirective
@@ -1915,6 +2040,36 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getDirectiveLineRule() {
 		return getDirectiveLineAccess().getRule();
+	}
+	
+	///*
+	// * SET
+	// *
+	// * The SET directive is used to set a symbol to the value of some expression, much as an EQU directive.
+	// * The difference is that a symbol may be SET several times within the source (to different values) while
+	// * a symbol may be Equated only once.
+	// * If a symbol is SET to several values within the source, the current value of the symbol will be
+	// * the value last SET. The statement form is:
+	// *
+	// * <label> SET <expression>
+	// *
+	// * The label is strictly required and no code is generated.
+	// */
+	//SetDirective:
+	//    (name = IdentifierValue)? WS (directive = 'SET')
+	//    WS (
+	//        ( isRelativeToPC?='*'? operand=Expression) |
+	//        ( isRelativeToPC?='*' )
+	//        )
+	//    WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
+	//    EndOfLine
+	//;
+	public SetDirectiveElements getSetDirectiveAccess() {
+		return pSetDirective;
+	}
+	
+	public ParserRule getSetDirectiveRule() {
+		return getSetDirectiveAccess().getRule();
 	}
 	
 	///*

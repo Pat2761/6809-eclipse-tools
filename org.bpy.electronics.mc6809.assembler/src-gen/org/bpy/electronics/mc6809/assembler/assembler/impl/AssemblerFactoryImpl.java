@@ -70,6 +70,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.DIRECTIVE_LINE: return createDirectiveLine();
+      case AssemblerPackage.SET_DIRECTIVE: return createSetDirective();
       case AssemblerPackage.FILL_DIRECTIVE: return createFillDirective();
       case AssemblerPackage.BSZ_DIRECTIVE: return createBszDirective();
       case AssemblerPackage.FDB_DIRECTIVE: return createFdbDirective();
@@ -161,6 +162,18 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     DirectiveLineImpl directiveLine = new DirectiveLineImpl();
     return directiveLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SetDirective createSetDirective()
+  {
+    SetDirectiveImpl setDirective = new SetDirectiveImpl();
+    return setDirective;
   }
 
   /**

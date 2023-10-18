@@ -34,6 +34,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
@@ -88,6 +89,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass directiveLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass setDirectiveEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -455,6 +463,72 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EReference getDirectiveLine_Directive()
   {
     return (EReference)directiveLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSetDirective()
+  {
+    return setDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSetDirective_Name()
+  {
+    return (EReference)setDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSetDirective_Directive()
+  {
+    return (EAttribute)setDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSetDirective_IsRelativeToPC()
+  {
+    return (EAttribute)setDirectiveEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSetDirective_Operand()
+  {
+    return (EReference)setDirectiveEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSetDirective_Comment()
+  {
+    return (EAttribute)setDirectiveEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1592,6 +1666,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__DIRECTIVE);
 
+    setDirectiveEClass = createEClass(SET_DIRECTIVE);
+    createEReference(setDirectiveEClass, SET_DIRECTIVE__NAME);
+    createEAttribute(setDirectiveEClass, SET_DIRECTIVE__DIRECTIVE);
+    createEAttribute(setDirectiveEClass, SET_DIRECTIVE__IS_RELATIVE_TO_PC);
+    createEReference(setDirectiveEClass, SET_DIRECTIVE__OPERAND);
+    createEAttribute(setDirectiveEClass, SET_DIRECTIVE__COMMENT);
+
     fillDirectiveEClass = createEClass(FILL_DIRECTIVE);
     createEReference(fillDirectiveEClass, FILL_DIRECTIVE__NAME);
     createEAttribute(fillDirectiveEClass, FILL_DIRECTIVE__DIRECTIVE);
@@ -1776,6 +1857,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDirectiveLine_Directive(), ecorePackage.getEObject(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(setDirectiveEClass, SetDirective.class, "SetDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSetDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSetDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSetDirective_IsRelativeToPC(), ecorePackage.getEBoolean(), "isRelativeToPC", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSetDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSetDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fillDirectiveEClass, FillDirective.class, "FillDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getFillDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, FillDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

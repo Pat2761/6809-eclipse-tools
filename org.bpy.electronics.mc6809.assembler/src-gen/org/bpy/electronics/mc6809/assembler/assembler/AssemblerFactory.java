@@ -69,6 +69,15 @@ public interface AssemblerFactory extends EFactory
   DirectiveLine createDirectiveLine();
 
   /**
+   * Returns a new object of class '<em>Set Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Set Directive</em>'.
+   * @generated
+   */
+  SetDirective createSetDirective();
+
+  /**
    * Returns a new object of class '<em>Fill Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

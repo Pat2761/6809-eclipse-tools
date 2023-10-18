@@ -66,9 +66,35 @@ DirectiveLine:
 	|  directive = BszDirective
 	|  directive = EndDirective
 	|  directive = FillDirective
+	|  directive = SetDirective
+
+
 	|  directive = RmbDirective
 	|  directive = FcbDirective
 	|  directive = FdbDirective
+;
+
+/*
+ * SET
+ * 
+ * The SET directive is used to set a symbol to the value of some expression, much as an EQU directive.
+ * The difference is that a symbol may be SET several times within the source (to different values) while 
+ * a symbol may be Equated only once. 
+ * If a symbol is SET to several values within the source, the current value of the symbol will be 
+ * the value last SET. The statement form is:
+ *
+ * <label> SET <expression>
+ *
+ * The label is strictly required and no code is generated.  
+ */
+SetDirective:
+	(name = IdentifierValue)? WS (directive = 'SET') 
+	WS ( 
+		( isRelativeToPC?='*'? operand=Expression) |
+		( isRelativeToPC?='*' )
+		)
+	WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
+	EndOfLine	
 ;
 
 /*

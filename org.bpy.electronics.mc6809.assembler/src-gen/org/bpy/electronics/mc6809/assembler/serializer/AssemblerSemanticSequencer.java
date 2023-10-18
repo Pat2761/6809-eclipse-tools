@@ -35,6 +35,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
@@ -177,6 +178,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.RMB_DIRECTIVE:
 				sequence_RmbDirective(context, (RmbDirective) semanticObject); 
+				return; 
+			case AssemblerPackage.SET_DIRECTIVE:
+				sequence_SetDirective(context, (SetDirective) semanticObject); 
 				return; 
 			case AssemblerPackage.SOURCE_LINE:
 				sequence_SourceLine(context, (SourceLine) semanticObject); 
@@ -395,6 +399,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         directive=BszDirective | 
 	 *         directive=EndDirective | 
 	 *         directive=FillDirective | 
+	 *         directive=SetDirective | 
 	 *         directive=RmbDirective | 
 	 *         directive=FcbDirective | 
 	 *         directive=FdbDirective
@@ -966,6 +971,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * </pre>
 	 */
 	protected void sequence_RmbDirective(ISerializationContext context, RmbDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SetDirective returns SetDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? directive='SET' ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*') comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_SetDirective(ISerializationContext context, SetDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

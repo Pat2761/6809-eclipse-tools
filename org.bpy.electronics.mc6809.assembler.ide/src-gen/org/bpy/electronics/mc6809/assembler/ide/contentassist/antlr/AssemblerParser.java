@@ -33,6 +33,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, AssemblerGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getSourceLineAccess().getAlternatives(), "rule__SourceLine__Alternatives");
 			builder.put(grammarAccess.getDirectiveLineAccess().getAlternatives(), "rule__DirectiveLine__Alternatives");
+			builder.put(grammarAccess.getSetDirectiveAccess().getAlternatives_4(), "rule__SetDirective__Alternatives_4");
 			builder.put(grammarAccess.getEndDirectiveAccess().getAlternatives_3_1(), "rule__EndDirective__Alternatives_3_1");
 			builder.put(grammarAccess.getOrgDirectiveAccess().getAlternatives_3_1(), "rule__OrgDirective__Alternatives_3_1");
 			builder.put(grammarAccess.getEquDirectiveAccess().getAlternatives_4(), "rule__EquDirective__Alternatives_4");
@@ -41,6 +42,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEndOfLineAccess().getAlternatives(), "rule__EndOfLine__Alternatives");
 			builder.put(grammarAccess.getBlankLineAccess().getGroup(), "rule__BlankLine__Group__0");
 			builder.put(grammarAccess.getCommentLineAccess().getGroup(), "rule__CommentLine__Group__0");
+			builder.put(grammarAccess.getSetDirectiveAccess().getGroup(), "rule__SetDirective__Group__0");
+			builder.put(grammarAccess.getSetDirectiveAccess().getGroup_4_0(), "rule__SetDirective__Group_4_0__0");
 			builder.put(grammarAccess.getFillDirectiveAccess().getGroup(), "rule__FillDirective__Group__0");
 			builder.put(grammarAccess.getFillDirectiveAccess().getGroup_1(), "rule__FillDirective__Group_1__0");
 			builder.put(grammarAccess.getFillDirectiveAccess().getGroup_2(), "rule__FillDirective__Group_2__0");
@@ -106,6 +109,13 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_5(), "rule__DirectiveLine__DirectiveAssignment_5");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_6(), "rule__DirectiveLine__DirectiveAssignment_6");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_7(), "rule__DirectiveLine__DirectiveAssignment_7");
+			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_8(), "rule__DirectiveLine__DirectiveAssignment_8");
+			builder.put(grammarAccess.getSetDirectiveAccess().getNameAssignment_0(), "rule__SetDirective__NameAssignment_0");
+			builder.put(grammarAccess.getSetDirectiveAccess().getDirectiveAssignment_2(), "rule__SetDirective__DirectiveAssignment_2");
+			builder.put(grammarAccess.getSetDirectiveAccess().getIsRelativeToPCAssignment_4_0_0(), "rule__SetDirective__IsRelativeToPCAssignment_4_0_0");
+			builder.put(grammarAccess.getSetDirectiveAccess().getOperandAssignment_4_0_1(), "rule__SetDirective__OperandAssignment_4_0_1");
+			builder.put(grammarAccess.getSetDirectiveAccess().getIsRelativeToPCAssignment_4_1(), "rule__SetDirective__IsRelativeToPCAssignment_4_1");
+			builder.put(grammarAccess.getSetDirectiveAccess().getCommentAssignment_6(), "rule__SetDirective__CommentAssignment_6");
 			builder.put(grammarAccess.getFillDirectiveAccess().getNameAssignment_0(), "rule__FillDirective__NameAssignment_0");
 			builder.put(grammarAccess.getFillDirectiveAccess().getDirectiveAssignment_1_1(), "rule__FillDirective__DirectiveAssignment_1_1");
 			builder.put(grammarAccess.getFillDirectiveAccess().getValueAssignment_2_1(), "rule__FillDirective__ValueAssignment_2_1");
