@@ -69,6 +69,33 @@ public interface AssemblerFactory extends EFactory
   DirectiveLine createDirectiveLine();
 
   /**
+   * Returns a new object of class '<em>Fcc Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Fcc Directive</em>'.
+   * @generated
+   */
+  FccDirective createFccDirective();
+
+  /**
+   * Returns a new object of class '<em>Reg Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Reg Directive</em>'.
+   * @generated
+   */
+  RegDirective createRegDirective();
+
+  /**
+   * Returns a new object of class '<em>Spc Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Spc Directive</em>'.
+   * @generated
+   */
+  SpcDirective createSpcDirective();
+
+  /**
    * Returns a new object of class '<em>Nam Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

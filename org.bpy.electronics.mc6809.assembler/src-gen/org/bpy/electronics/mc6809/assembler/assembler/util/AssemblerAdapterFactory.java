@@ -101,6 +101,21 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createDirectiveLineAdapter();
       }
       @Override
+      public Adapter caseFccDirective(FccDirective object)
+      {
+        return createFccDirectiveAdapter();
+      }
+      @Override
+      public Adapter caseRegDirective(RegDirective object)
+      {
+        return createRegDirectiveAdapter();
+      }
+      @Override
+      public Adapter caseSpcDirective(SpcDirective object)
+      {
+        return createSpcDirectiveAdapter();
+      }
+      @Override
       public Adapter caseNamDirective(NamDirective object)
       {
         return createNamDirectiveAdapter();
@@ -358,6 +373,51 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDirectiveLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective <em>Fcc Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.FccDirective
+   * @generated
+   */
+  public Adapter createFccDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RegDirective <em>Reg Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RegDirective
+   * @generated
+   */
+  public Adapter createRegDirectiveAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.SpcDirective <em>Spc Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SpcDirective
+   * @generated
+   */
+  public Adapter createSpcDirectiveAdapter()
   {
     return null;
   }

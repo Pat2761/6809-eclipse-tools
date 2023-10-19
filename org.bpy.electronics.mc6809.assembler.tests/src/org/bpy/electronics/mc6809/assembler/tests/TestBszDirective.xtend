@@ -64,6 +64,32 @@ class TestBszDirective {
 //	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
 //		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
+
+	/**
+	 * Check ZMB directive with a simple decimal value
+	 */
+	@Test 
+	def void testZMBWithDecimalValue() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+			       ZMB    100 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(2)
+		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+		
+		val directiveLine = line.lineContent as DirectiveLine
+		Assert.assertTrue("Must be an BSZ directive line", directiveLine.directive instanceof BszDirective)
+		
+//		val endDirective = directiveLine.directive as EndDirective
+//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
+//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
+	}
 	
 
 	/**

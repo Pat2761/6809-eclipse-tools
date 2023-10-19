@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-grammar org.bpy.electronics.mc6809.assembler.Assembler // with org.eclipse.xtext.common.Terminals
+grammar org.bpy.electronics.mc6809.assembler.Assembler  //with org.eclipse.xtext.common.Terminals
 
 import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 
@@ -58,7 +58,6 @@ CommentLine:
 
 /*
  * Definition of the list possible directives
- * 	EQU  
  */
 DirectiveLine:
 	   directive = EquDirective
@@ -71,11 +70,100 @@ DirectiveLine:
 	|  directive = PagDirective
 	|  directive = NamDirective
 	|  directive = SetDirective
-
-
-	|  directive = RmbDirective
+	|  directive = SpcDirective
+	|  directive = RegDirective
 	|  directive = FcbDirective
 	|  directive = FdbDirective
+	|  directive = FccDirective
+	|  directive = RmbDirective
+;
+
+/*
+ * The FCC or Form Constant Character directive allows the programmer to specify a string of ASCII characters
+ * delimited by some non-alphanumeric character such as a single quote. All the characters in the string will 
+ * be converted to their respective ASCII values and stored in memory, one byte per character. Some valid 
+ * examples follow:
+ *
+ * LABEL1 FCC 'THIS IS AN FCC STRING'
+ * LABEL2 FCC .SO IS THIS.
+ * FCC /LABELS ARE NOT REQUIRED./
+ * 
+ * There is another method of using FCC which is a deviation from the standard Motorola definition of this
+ * directive. This allows you to place certain expressions on the same line as the standard FCC delimited 
+ * string. The items are separated by commas and are evaluated to 8 bit results. In some respects this is like
+ * the FCB directive. The difference is that in the FCC directive, expressions must begin with a letter, 
+ * number or dollar-sign whereas in the FCB directive any valid expression will work. For example, %10101111 
+ * would be a valid expression for an FCB but not for an FCC since the percent-sign would look like a delimiter
+ * and the assembler would attempt to produce 8 bytes of data from the 8 ASCII characters which follow
+ * (an FCC string). The dollar-sign is an exception to allow hex values such as $0D (carriage return) to be
+ * inserted along with strings. Some examples follow:
+ * 
+ * INTRO FCC 'THIS STRING HAS CR & LF',$D,$A
+ * FCC 'STRING 1',0,'STRING 2'
+ * FCC $04,LABEL,/DELIMITED STRING/
+ *
+ * Note that more than one delimited string may be placed on a line as in the second example.
+ */
+FccDirective:
+	(name = IdentifierValue)? WS (directive = 'FCC')
+	(WS string=STRING) 
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
+;
+
+/*
+ *  REG
+ *
+ * The REG directive allows the user to setup a list of registers for use by the push and pull instructions.
+ * This list is represented by a value and the value is equated to the label supplied. In this respect, 
+ * the REG directive is similar to the EQU directive. The correct form of the REG directive is:
+ *
+ * <label> REG <register list>
+ * 
+ * As an example, suppose a program has a large number of occurences of the following instructions:
+ *
+ * PSHS A,B,Y,U,DP
+ * PULS A,B,Y,U,DP
+ *
+ * To make things more convenient and less error prone the REG directive could be used as shown here:
+ * 
+ * RLIST2 REG A,B,Y,U,DP
+ *
+ * Now all the pushes and pulls referred to above could be accomplished with the statements:
+ * 
+ * PSHS #RLIST2
+ * PULS #RLIST2
+ *
+ * Of course, the register list may still be typed out on push and pull instructions or an immediate value
+ * (with the desired bit pattern) may be specified.
+ */
+RegDirective:
+	(name = IdentifierValue)? WS (directive = 'REG')
+	(WS options+=Register ( ',' options+=Register)*)? 
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
+	EndOfLine	
+;
+
+/*
+ *  SPC
+ *
+ * The SPC or Space directive causes the specified number of spaces (line feeds) to be inserted into the output
+ *  listing. The general form is:
+ *  
+ * SPC [<space count>[,<keep count>]]
+ *
+ * The space count can be any number from 0 to 255. If the page option is selected, SPC will not cause spacing
+ * past the top of a new page. The <keep count> is optional and is the number of lines which the user wishes
+ * to keep together on a page. If there are not enough lines left on the current page, a page eject is performed.
+ * If there are <keep count> lines left on the page (after printing <space count> spaces), output will continue
+ *  on the current page. If the page option is not selected, the <keep count> will be ignored. If no operand
+ *  is given (ie. just the directive SPC), the assembler will default to one blank line in the output listing. 
+ */
+SpcDirective:
+	(name = IdentifierValue)? WS (directive = 'SPC') 
+	(WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))? 
+	WS? EndOfLine	
 ;
 
 /*
@@ -166,17 +254,6 @@ OptDirective:
 	
 ;
 
-enum AssemblyOption:
-	PAG= 'PAG' |
-	NOP= 'NOP' |
-	CON= 'CON' |
-	NOC= 'NOC' |
-	MAC= 'MAC' |
-	NOM= 'NOM' |
-	EXP= 'EXP' |
-	NOE= 'NOE' 
-	;
-
 /*
  * FAIL
  * 
@@ -231,7 +308,7 @@ FillDirective:
  * The operand define the number on byte to reserve
  */
 BszDirective:
-	(name = IdentifierValue)? WS (directive = 'BSZ') 
+	(name = IdentifierValue)? WS (directive = ('BSZ'|'ZMB')) 
 	(WS operand=Expression) 
 	(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
 ;
@@ -426,6 +503,31 @@ CharacterValue:
 	value = CHARACTER
 ;
 
+enum AssemblyOption:
+	PAG= 'PAG' |
+	NOP= 'NOP' |
+	CON= 'CON' |
+	NOC= 'NOC' |
+	MAC= 'MAC' |
+	NOM= 'NOM' |
+	EXP= 'EXP' |
+	NOE= 'NOE' 
+	;
+
+enum Register:
+	A = 'A'    |
+	B = 'B'	   |
+	D = 'D'	   |
+	X = 'X'	   |
+	Y = 'Y'	   |
+	U = 'U'	   |
+	S = 'S'	   |
+	DP = 'DP'  |
+	CC = 'CC'  |
+	PC = 'PC'  
+;
+
+
 terminal ID									: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 terminal HEXA 								: '$' ('0'..'9'|'a'..'f'|'A'..'F')+;
 terminal INT returns ecore::EInt			: ('0'..'9')+;
@@ -436,7 +538,7 @@ terminal CHARACTER							: '\'' ('\u0020'..'\u007F');
 EndOfLine: CR | END_OF_FILE;
 
 terminal STRING:
-			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* 
+			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' 
 		;		
 	
 terminal ANY_EXCEPT_COMMENT_END_OF_LINE  	: ';' !('\n' | '\r')*;

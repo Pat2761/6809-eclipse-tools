@@ -20,6 +20,31 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="directive" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="FccDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="string" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="options" unique="false"
+        upperBound="-1" eType="#//Register"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="SpcDirective">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="directive" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="spaceCount" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="keepCount" eType="#//Expression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NamDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
         containment="true"/>
@@ -43,16 +68,6 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="options" unique="false"
         upperBound="-1" eType="#//AssemblyOption"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="AssemblyOption">
-    <eLiterals name="PAG" literal="PAG"/>
-    <eLiterals name="NOP" value="1" literal="NOP"/>
-    <eLiterals name="CON" value="2" literal="CON"/>
-    <eLiterals name="NOC" value="3" literal="NOC"/>
-    <eLiterals name="MAC" value="4" literal="MAC"/>
-    <eLiterals name="NOM" value="5" literal="NOM"/>
-    <eLiterals name="EXP" value="6" literal="EXP"/>
-    <eLiterals name="NOE" value="7" literal="NOE"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="FailDirective">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
@@ -170,6 +185,28 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="CharacterValue">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="AssemblyOption">
+    <eLiterals name="PAG" literal="PAG"/>
+    <eLiterals name="NOP" value="1" literal="NOP"/>
+    <eLiterals name="CON" value="2" literal="CON"/>
+    <eLiterals name="NOC" value="3" literal="NOC"/>
+    <eLiterals name="MAC" value="4" literal="MAC"/>
+    <eLiterals name="NOM" value="5" literal="NOM"/>
+    <eLiterals name="EXP" value="6" literal="EXP"/>
+    <eLiterals name="NOE" value="7" literal="NOE"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="Register">
+    <eLiterals name="A" literal="A"/>
+    <eLiterals name="B" value="1" literal="B"/>
+    <eLiterals name="D" value="2" literal="D"/>
+    <eLiterals name="X" value="3" literal="X"/>
+    <eLiterals name="Y" value="4" literal="Y"/>
+    <eLiterals name="U" value="5" literal="U"/>
+    <eLiterals name="S" value="6" literal="S"/>
+    <eLiterals name="DP" value="7" literal="DP"/>
+    <eLiterals name="CC" value="8" literal="CC"/>
+    <eLiterals name="PC" value="9" literal="PC"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Multiplication" eSuperTypes="#//Expression">
     <eStructuralFeatures xsi:type="ecore:EReference" name="left" eType="#//Expression"

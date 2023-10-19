@@ -16,6 +16,18 @@
       <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/EXP"/>
       <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/NOE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="Assembler.ecore#//Register">
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//Register/A"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//Register/B"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//Register/D"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//Register/X"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//Register/Y"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//Register/U"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//Register/S"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//Register/DP"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//Register/CC"/>
+      <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//Register/PC"/>
+    </genEnums>
     <genClasses ecoreClass="Assembler.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Model/sourceLines"/>
     </genClasses>
@@ -30,6 +42,25 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//FccDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//FccDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FccDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FccDirective/string"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FccDirective/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//RegDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RegDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RegDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RegDirective/options"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RegDirective/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//SpcDirective">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SpcDirective/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SpcDirective/directive"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SpcDirective/spaceCount"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SpcDirective/keepCount"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SpcDirective/comment"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//NamDirective">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//NamDirective/name"/>

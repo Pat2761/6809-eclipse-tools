@@ -21,6 +21,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
@@ -37,10 +38,13 @@ import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
@@ -95,6 +99,27 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass directiveLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass fccDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass regDirectiveEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass spcDirectiveEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -335,6 +360,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   private EEnum assemblyOptionEEnum = null;
 
   /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EEnum registerEEnum = null;
+
+  /**
    * Creates an instance of the model <b>Package</b>, registered with
    * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
    * package URI value.
@@ -504,6 +536,182 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EReference getDirectiveLine_Directive()
   {
     return (EReference)directiveLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getFccDirective()
+  {
+    return fccDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getFccDirective_Name()
+  {
+    return (EReference)fccDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFccDirective_Directive()
+  {
+    return (EAttribute)fccDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFccDirective_String()
+  {
+    return (EAttribute)fccDirectiveEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getFccDirective_Comment()
+  {
+    return (EAttribute)fccDirectiveEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRegDirective()
+  {
+    return regDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRegDirective_Name()
+  {
+    return (EReference)regDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRegDirective_Directive()
+  {
+    return (EAttribute)regDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRegDirective_Options()
+  {
+    return (EAttribute)regDirectiveEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRegDirective_Comment()
+  {
+    return (EAttribute)regDirectiveEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getSpcDirective()
+  {
+    return spcDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSpcDirective_Name()
+  {
+    return (EReference)spcDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSpcDirective_Directive()
+  {
+    return (EAttribute)spcDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSpcDirective_SpaceCount()
+  {
+    return (EReference)spcDirectiveEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSpcDirective_KeepCount()
+  {
+    return (EReference)spcDirectiveEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSpcDirective_Comment()
+  {
+    return (EAttribute)spcDirectiveEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1887,6 +2095,17 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EEnum getRegister()
+  {
+    return registerEEnum;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public AssemblerFactory getAssemblerFactory()
   {
     return (AssemblerFactory)getEFactoryInstance();
@@ -1926,6 +2145,25 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__DIRECTIVE);
+
+    fccDirectiveEClass = createEClass(FCC_DIRECTIVE);
+    createEReference(fccDirectiveEClass, FCC_DIRECTIVE__NAME);
+    createEAttribute(fccDirectiveEClass, FCC_DIRECTIVE__DIRECTIVE);
+    createEAttribute(fccDirectiveEClass, FCC_DIRECTIVE__STRING);
+    createEAttribute(fccDirectiveEClass, FCC_DIRECTIVE__COMMENT);
+
+    regDirectiveEClass = createEClass(REG_DIRECTIVE);
+    createEReference(regDirectiveEClass, REG_DIRECTIVE__NAME);
+    createEAttribute(regDirectiveEClass, REG_DIRECTIVE__DIRECTIVE);
+    createEAttribute(regDirectiveEClass, REG_DIRECTIVE__OPTIONS);
+    createEAttribute(regDirectiveEClass, REG_DIRECTIVE__COMMENT);
+
+    spcDirectiveEClass = createEClass(SPC_DIRECTIVE);
+    createEReference(spcDirectiveEClass, SPC_DIRECTIVE__NAME);
+    createEAttribute(spcDirectiveEClass, SPC_DIRECTIVE__DIRECTIVE);
+    createEReference(spcDirectiveEClass, SPC_DIRECTIVE__SPACE_COUNT);
+    createEReference(spcDirectiveEClass, SPC_DIRECTIVE__KEEP_COUNT);
+    createEAttribute(spcDirectiveEClass, SPC_DIRECTIVE__COMMENT);
 
     namDirectiveEClass = createEClass(NAM_DIRECTIVE);
     createEReference(namDirectiveEClass, NAM_DIRECTIVE__NAME);
@@ -2086,6 +2324,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     // Create enums
     assemblyOptionEEnum = createEEnum(ASSEMBLY_OPTION);
+    registerEEnum = createEEnum(REGISTER);
   }
 
   /**
@@ -2144,6 +2383,25 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDirectiveLine_Directive(), ecorePackage.getEObject(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(fccDirectiveEClass, FccDirective.class, "FccDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getFccDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFccDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFccDirective_String(), ecorePackage.getEString(), "string", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getFccDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(regDirectiveEClass, RegDirective.class, "RegDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRegDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, RegDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRegDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, RegDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRegDirective_Options(), this.getRegister(), "options", null, 0, -1, RegDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRegDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, RegDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(spcDirectiveEClass, SpcDirective.class, "SpcDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getSpcDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, SpcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSpcDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, SpcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpcDirective_SpaceCount(), this.getExpression(), null, "spaceCount", null, 0, 1, SpcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSpcDirective_KeepCount(), this.getExpression(), null, "keepCount", null, 0, 1, SpcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getSpcDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, SpcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(namDirectiveEClass, NamDirective.class, "NamDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getNamDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, NamDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2312,6 +2570,18 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.NOM);
     addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.EXP);
     addEEnumLiteral(assemblyOptionEEnum, AssemblyOption.NOE);
+
+    initEEnum(registerEEnum, Register.class, "Register");
+    addEEnumLiteral(registerEEnum, Register.A);
+    addEEnumLiteral(registerEEnum, Register.B);
+    addEEnumLiteral(registerEEnum, Register.D);
+    addEEnumLiteral(registerEEnum, Register.X);
+    addEEnumLiteral(registerEEnum, Register.Y);
+    addEEnumLiteral(registerEEnum, Register.U);
+    addEEnumLiteral(registerEEnum, Register.S);
+    addEEnumLiteral(registerEEnum, Register.DP);
+    addEEnumLiteral(registerEEnum, Register.CC);
+    addEEnumLiteral(registerEEnum, Register.PC);
 
     // Create resource
     createResource(eNS_URI);

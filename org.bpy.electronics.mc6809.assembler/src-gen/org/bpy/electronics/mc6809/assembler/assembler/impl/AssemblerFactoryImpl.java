@@ -71,6 +71,9 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.DIRECTIVE_LINE: return createDirectiveLine();
+      case AssemblerPackage.FCC_DIRECTIVE: return createFccDirective();
+      case AssemblerPackage.REG_DIRECTIVE: return createRegDirective();
+      case AssemblerPackage.SPC_DIRECTIVE: return createSpcDirective();
       case AssemblerPackage.NAM_DIRECTIVE: return createNamDirective();
       case AssemblerPackage.PAG_DIRECTIVE: return createPagDirective();
       case AssemblerPackage.OPT_DIRECTIVE: return createOptDirective();
@@ -121,6 +124,8 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
     {
       case AssemblerPackage.ASSEMBLY_OPTION:
         return createAssemblyOptionFromString(eDataType, initialValue);
+      case AssemblerPackage.REGISTER:
+        return createRegisterFromString(eDataType, initialValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -138,6 +143,8 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
     {
       case AssemblerPackage.ASSEMBLY_OPTION:
         return convertAssemblyOptionToString(eDataType, instanceValue);
+      case AssemblerPackage.REGISTER:
+        return convertRegisterToString(eDataType, instanceValue);
       default:
         throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
     }
@@ -201,6 +208,42 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     DirectiveLineImpl directiveLine = new DirectiveLineImpl();
     return directiveLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public FccDirective createFccDirective()
+  {
+    FccDirectiveImpl fccDirective = new FccDirectiveImpl();
+    return fccDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RegDirective createRegDirective()
+  {
+    RegDirectiveImpl regDirective = new RegDirectiveImpl();
+    return regDirective;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SpcDirective createSpcDirective()
+  {
+    SpcDirectiveImpl spcDirective = new SpcDirectiveImpl();
+    return spcDirective;
   }
 
   /**
@@ -617,6 +660,28 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   public String convertAssemblyOptionToString(EDataType eDataType, Object instanceValue)
+  {
+    return instanceValue == null ? null : instanceValue.toString();
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Register createRegisterFromString(EDataType eDataType, String initialValue)
+  {
+    Register result = Register.get(initialValue);
+    if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+    return result;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String convertRegisterToString(EDataType eDataType, Object instanceValue)
   {
     return instanceValue == null ? null : instanceValue.toString();
   }

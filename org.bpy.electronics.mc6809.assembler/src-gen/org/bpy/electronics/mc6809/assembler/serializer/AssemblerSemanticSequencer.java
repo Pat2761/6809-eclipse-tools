@@ -21,6 +21,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
@@ -37,10 +38,12 @@ import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
@@ -141,6 +144,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.FCB_DIRECTIVE:
 				sequence_FcbDirective(context, (FcbDirective) semanticObject); 
 				return; 
+			case AssemblerPackage.FCC_DIRECTIVE:
+				sequence_FccDirective(context, (FccDirective) semanticObject); 
+				return; 
 			case AssemblerPackage.FDB_DIRECTIVE:
 				sequence_FdbDirective(context, (FdbDirective) semanticObject); 
 				return; 
@@ -189,6 +195,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.PAG_DIRECTIVE:
 				sequence_PagDirective(context, (PagDirective) semanticObject); 
 				return; 
+			case AssemblerPackage.REG_DIRECTIVE:
+				sequence_RegDirective(context, (RegDirective) semanticObject); 
+				return; 
 			case AssemblerPackage.RIGHT_SHIFT:
 				sequence_RightShift(context, (RightShift) semanticObject); 
 				return; 
@@ -200,6 +209,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.SOURCE_LINE:
 				sequence_SourceLine(context, (SourceLine) semanticObject); 
+				return; 
+			case AssemblerPackage.SPC_DIRECTIVE:
+				sequence_SpcDirective(context, (SpcDirective) semanticObject); 
 				return; 
 			case AssemblerPackage.STRING_VALUE:
 				sequence_StringValue(context, (StringValue) semanticObject); 
@@ -341,7 +353,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BszDirective returns BszDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='BSZ' operand=Expression comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (name=IdentifierValue? (directive='BSZ' | directive='ZMB') operand=Expression comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
 	 * </pre>
 	 */
 	protected void sequence_BszDirective(ISerializationContext context, BszDirective semanticObject) {
@@ -420,9 +432,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         directive=PagDirective | 
 	 *         directive=NamDirective | 
 	 *         directive=SetDirective | 
-	 *         directive=RmbDirective | 
+	 *         directive=SpcDirective | 
+	 *         directive=RegDirective | 
 	 *         directive=FcbDirective | 
-	 *         directive=FdbDirective
+	 *         directive=FdbDirective | 
+	 *         directive=FccDirective | 
+	 *         directive=RmbDirective
 	 *     )
 	 * </pre>
 	 */
@@ -554,6 +569,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * </pre>
 	 */
 	protected void sequence_FcbDirective(ISerializationContext context, FcbDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     FccDirective returns FccDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? directive='FCC' string=STRING comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_FccDirective(ISerializationContext context, FccDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -997,6 +1026,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     RegDirective returns RegDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? directive='REG' (options+=Register options+=Register*)? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_RegDirective(ISerializationContext context, RegDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Multiplication returns RightShift
 	 *     Multiplication.Multiplication_1_0 returns RightShift
 	 *     Division returns RightShift
@@ -1075,6 +1118,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * </pre>
 	 */
 	protected void sequence_SourceLine(ISerializationContext context, SourceLine semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SpcDirective returns SpcDirective
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? directive='SPC' (spaceCount=Expression keepCount=Expression?)? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_SpcDirective(ISerializationContext context, SpcDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
