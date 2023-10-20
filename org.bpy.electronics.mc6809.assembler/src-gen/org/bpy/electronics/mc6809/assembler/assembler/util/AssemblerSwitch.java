@@ -101,6 +101,118 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.INSTRUCTION_LINE:
+      {
+        InstructionLine instructionLine = (InstructionLine)theEObject;
+        T result = caseInstructionLine(instructionLine);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.ADC_INSTRUCTION:
+      {
+        AdcInstruction adcInstruction = (AdcInstruction)theEObject;
+        T result = caseAdcInstruction(adcInstruction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.ABX_INSTRUCTION:
+      {
+        AbxInstruction abxInstruction = (AbxInstruction)theEObject;
+        T result = caseAbxInstruction(abxInstruction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.EXTENDED_INDIRECT_OPERAND:
+      {
+        ExtendedIndirectOperand extendedIndirectOperand = (ExtendedIndirectOperand)theEObject;
+        T result = caseExtendedIndirectOperand(extendedIndirectOperand);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.EXTENDED_OPERAND:
+      {
+        ExtendedOperand extendedOperand = (ExtendedOperand)theEObject;
+        T result = caseExtendedOperand(extendedOperand);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.DIRECT_OPERAND:
+      {
+        DirectOperand directOperand = (DirectOperand)theEObject;
+        T result = caseDirectOperand(directOperand);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.IMMEDIAT_OPERAND:
+      {
+        ImmediatOperand immediatOperand = (ImmediatOperand)theEObject;
+        T result = caseImmediatOperand(immediatOperand);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.INDEXED_OPERAND:
+      {
+        IndexedOperand indexedOperand = (IndexedOperand)theEObject;
+        T result = caseIndexedOperand(indexedOperand);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.CONSTANT_INDEXED_MODE:
+      {
+        ConstantIndexedMode constantIndexedMode = (ConstantIndexedMode)theEObject;
+        T result = caseConstantIndexedMode(constantIndexedMode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.CONSTANT_INDEXED_MOVING_INDIRECT_MODE:
+      {
+        ConstantIndexedMovingIndirectMode constantIndexedMovingIndirectMode = (ConstantIndexedMovingIndirectMode)theEObject;
+        T result = caseConstantIndexedMovingIndirectMode(constantIndexedMovingIndirectMode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.ACCUMULATOR_MOVING_MODE:
+      {
+        AccumulatorMovingMode accumulatorMovingMode = (AccumulatorMovingMode)theEObject;
+        T result = caseAccumulatorMovingMode(accumulatorMovingMode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.ACCUMULATOR_MOVING_INDIRECT_MODE:
+      {
+        AccumulatorMovingIndirectMode accumulatorMovingIndirectMode = (AccumulatorMovingIndirectMode)theEObject;
+        T result = caseAccumulatorMovingIndirectMode(accumulatorMovingIndirectMode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.AUTO_INC_DEC_MODE:
+      {
+        AutoIncDecMode autoIncDecMode = (AutoIncDecMode)theEObject;
+        T result = caseAutoIncDecMode(autoIncDecMode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.AUTO_INC_DEC_INDIRECT_MODE:
+      {
+        AutoIncDecIndirectMode autoIncDecIndirectMode = (AutoIncDecIndirectMode)theEObject;
+        T result = caseAutoIncDecIndirectMode(autoIncDecIndirectMode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.RELATIF_TO_PC_MODE:
+      {
+        RelatifToPCMode relatifToPCMode = (RelatifToPCMode)theEObject;
+        T result = caseRelatifToPCMode(relatifToPCMode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.RELATIF_TO_PC_INDIRECT_MODE:
+      {
+        RelatifToPCIndirectMode relatifToPCIndirectMode = (RelatifToPCIndirectMode)theEObject;
+        T result = caseRelatifToPCIndirectMode(relatifToPCIndirectMode);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.DIRECTIVE_LINE:
       {
         DirectiveLine directiveLine = (DirectiveLine)theEObject;
@@ -231,6 +343,13 @@ public class AssemblerSwitch<T> extends Switch<T>
       {
         Expression expression = (Expression)theEObject;
         T result = caseExpression(expression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.NUMERICAL_VALUE:
+      {
+        NumericalValue numericalValue = (NumericalValue)theEObject;
+        T result = caseNumericalValue(numericalValue);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -435,6 +554,262 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseCommentLine(CommentLine object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Instruction Line</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Instruction Line</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseInstructionLine(InstructionLine object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Adc Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Adc Instruction</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAdcInstruction(AdcInstruction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Abx Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Abx Instruction</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAbxInstruction(AbxInstruction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Extended Indirect Operand</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Extended Indirect Operand</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExtendedIndirectOperand(ExtendedIndirectOperand object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Extended Operand</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Extended Operand</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseExtendedOperand(ExtendedOperand object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Direct Operand</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Direct Operand</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseDirectOperand(DirectOperand object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Immediat Operand</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Immediat Operand</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseImmediatOperand(ImmediatOperand object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Indexed Operand</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Indexed Operand</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIndexedOperand(IndexedOperand object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Constant Indexed Mode</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Constant Indexed Mode</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConstantIndexedMode(ConstantIndexedMode object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Constant Indexed Moving Indirect Mode</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Constant Indexed Moving Indirect Mode</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConstantIndexedMovingIndirectMode(ConstantIndexedMovingIndirectMode object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Accumulator Moving Mode</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Accumulator Moving Mode</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAccumulatorMovingMode(AccumulatorMovingMode object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Accumulator Moving Indirect Mode</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Accumulator Moving Indirect Mode</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAccumulatorMovingIndirectMode(AccumulatorMovingIndirectMode object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Auto Inc Dec Mode</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Auto Inc Dec Mode</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAutoIncDecMode(AutoIncDecMode object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Auto Inc Dec Indirect Mode</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Auto Inc Dec Indirect Mode</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseAutoIncDecIndirectMode(AutoIncDecIndirectMode object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Relatif To PC Mode</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Relatif To PC Mode</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRelatifToPCMode(RelatifToPCMode object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Relatif To PC Indirect Mode</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Relatif To PC Indirect Mode</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseRelatifToPCIndirectMode(RelatifToPCIndirectMode object)
   {
     return null;
   }
@@ -739,6 +1114,22 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExpression(Expression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Numerical Value</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Numerical Value</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseNumericalValue(NumericalValue object)
   {
     return null;
   }

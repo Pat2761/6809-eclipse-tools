@@ -172,6 +172,26 @@ ruleSourceLine returns [EObject current=null]
 				}
 			)
 		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSourceLineAccess().getLineContentInstructionLineParserRuleCall_3_0());
+				}
+				lv_lineContent_3_0=ruleInstructionLine
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSourceLineRule());
+					}
+					set(
+						$current,
+						"lineContent",
+						lv_lineContent_3_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.InstructionLine");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 
@@ -266,6 +286,1668 @@ ruleCommentLine returns [EObject current=null]
 		ruleEndOfLine
 		{
 			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleInstructionLine
+entryRuleInstructionLine returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getInstructionLineRule()); }
+	iv_ruleInstructionLine=ruleInstructionLine
+	{ $current=$iv_ruleInstructionLine.current; }
+	EOF;
+
+// Rule InstructionLine
+ruleInstructionLine returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAbxInstructionParserRuleCall_0_0());
+				}
+				lv_instruction_0_0=ruleAbxInstruction
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+					}
+					set(
+						$current,
+						"instruction",
+						lv_instruction_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.AbxInstruction");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAdcInstructionParserRuleCall_1_0());
+				}
+				lv_instruction_1_0=ruleAdcInstruction
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+					}
+					set(
+						$current,
+						"instruction",
+						lv_instruction_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.AdcInstruction");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleAdcInstruction
+entryRuleAdcInstruction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAdcInstructionRule()); }
+	iv_ruleAdcInstruction=ruleAdcInstruction
+	{ $current=$iv_ruleAdcInstruction.current; }
+	EOF;
+
+// Rule AdcInstruction
+ruleAdcInstruction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAdcInstructionAccess().getNameIdentifierValueParserRuleCall_0_0());
+				}
+				lv_name_0_0=ruleIdentifierValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
+					}
+					set(
+						$current,
+						"name",
+						lv_name_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		this_WS_1=RULE_WS
+		{
+			newLeafNode(this_WS_1, grammarAccess.getAdcInstructionAccess().getWSTerminalRuleCall_1());
+		}
+		(
+			(
+				(
+					lv_instruction_2_1='ADCA'
+					{
+						newLeafNode(lv_instruction_2_1, grammarAccess.getAdcInstructionAccess().getInstructionADCAKeyword_2_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAdcInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_2_1, null);
+					}
+					    |
+					lv_instruction_2_2='ADCB'
+					{
+						newLeafNode(lv_instruction_2_2, grammarAccess.getAdcInstructionAccess().getInstructionADCBKeyword_2_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAdcInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_2_2, null);
+					}
+				)
+			)
+		)
+		this_WS_3=RULE_WS
+		{
+			newLeafNode(this_WS_3, grammarAccess.getAdcInstructionAccess().getWSTerminalRuleCall_3());
+		}
+		(
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandImmediatOperandParserRuleCall_4_0_0());
+					}
+					lv_operand_4_1=ruleImmediatOperand
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
+						}
+						set(
+							$current,
+							"operand",
+							lv_operand_4_1,
+							"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandDirectOperandParserRuleCall_4_0_1());
+					}
+					lv_operand_4_2=ruleDirectOperand
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
+						}
+						set(
+							$current,
+							"operand",
+							lv_operand_4_2,
+							"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandIndexedOperandParserRuleCall_4_0_2());
+					}
+					lv_operand_4_3=ruleIndexedOperand
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
+						}
+						set(
+							$current,
+							"operand",
+							lv_operand_4_3,
+							"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandExtendedOperandParserRuleCall_4_0_3());
+					}
+					lv_operand_4_4=ruleExtendedOperand
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
+						}
+						set(
+							$current,
+							"operand",
+							lv_operand_4_4,
+							"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+						afterParserOrEnumRuleCall();
+					}
+					    |
+					{
+						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_4_0_4());
+					}
+					lv_operand_4_5=ruleExtendedIndirectOperand
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
+						}
+						set(
+							$current,
+							"operand",
+							lv_operand_4_5,
+							"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)
+		(
+			this_WS_5=RULE_WS
+			{
+				newLeafNode(this_WS_5, grammarAccess.getAdcInstructionAccess().getWSTerminalRuleCall_5_0());
+			}
+			(
+				(
+					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					{
+						newLeafNode(lv_comment_6_0, grammarAccess.getAdcInstructionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAdcInstructionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"comment",
+							lv_comment_6_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
+					}
+				)
+			)
+		)?
+		(
+			this_WS_7=RULE_WS
+			{
+				newLeafNode(this_WS_7, grammarAccess.getAdcInstructionAccess().getWSTerminalRuleCall_6());
+			}
+		)?
+		{
+			newCompositeNode(grammarAccess.getAdcInstructionAccess().getEndOfLineParserRuleCall_7());
+		}
+		ruleEndOfLine
+		{
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleAbxInstruction
+entryRuleAbxInstruction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAbxInstructionRule()); }
+	iv_ruleAbxInstruction=ruleAbxInstruction
+	{ $current=$iv_ruleAbxInstruction.current; }
+	EOF;
+
+// Rule AbxInstruction
+ruleAbxInstruction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAbxInstructionAccess().getNameIdentifierValueParserRuleCall_0_0());
+				}
+				lv_name_0_0=ruleIdentifierValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAbxInstructionRule());
+					}
+					set(
+						$current,
+						"name",
+						lv_name_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		this_WS_1=RULE_WS
+		{
+			newLeafNode(this_WS_1, grammarAccess.getAbxInstructionAccess().getWSTerminalRuleCall_1());
+		}
+		(
+			(
+				lv_instruction_2_0='ABX'
+				{
+					newLeafNode(lv_instruction_2_0, grammarAccess.getAbxInstructionAccess().getInstructionABXKeyword_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getAbxInstructionRule());
+					}
+					setWithLastConsumed($current, "instruction", lv_instruction_2_0, "ABX");
+				}
+			)
+		)
+		(
+			this_WS_3=RULE_WS
+			{
+				newLeafNode(this_WS_3, grammarAccess.getAbxInstructionAccess().getWSTerminalRuleCall_3_0());
+			}
+			(
+				(
+					lv_comment_4_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					{
+						newLeafNode(lv_comment_4_0, grammarAccess.getAbxInstructionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAbxInstructionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"comment",
+							lv_comment_4_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
+					}
+				)
+			)
+		)?
+		(
+			this_WS_5=RULE_WS
+			{
+				newLeafNode(this_WS_5, grammarAccess.getAbxInstructionAccess().getWSTerminalRuleCall_4());
+			}
+		)?
+		{
+			newCompositeNode(grammarAccess.getAbxInstructionAccess().getEndOfLineParserRuleCall_5());
+		}
+		ruleEndOfLine
+		{
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleExtendedIndirectOperand
+entryRuleExtendedIndirectOperand returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getExtendedIndirectOperandRule()); }
+	iv_ruleExtendedIndirectOperand=ruleExtendedIndirectOperand
+	{ $current=$iv_ruleExtendedIndirectOperand.current; }
+	EOF;
+
+// Rule ExtendedIndirectOperand
+ruleExtendedIndirectOperand returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='['
+		{
+			newLeafNode(otherlv_0, grammarAccess.getExtendedIndirectOperandAccess().getLeftSquareBracketKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getExtendedIndirectOperandAccess().getOperandExpressionParserRuleCall_1_0());
+				}
+				lv_operand_1_0=ruleExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getExtendedIndirectOperandRule());
+					}
+					set(
+						$current,
+						"operand",
+						lv_operand_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_2=']'
+		{
+			newLeafNode(otherlv_2, grammarAccess.getExtendedIndirectOperandAccess().getRightSquareBracketKeyword_2());
+		}
+	)
+;
+
+// Entry rule entryRuleExtendedOperand
+entryRuleExtendedOperand returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getExtendedOperandRule()); }
+	iv_ruleExtendedOperand=ruleExtendedOperand
+	{ $current=$iv_ruleExtendedOperand.current; }
+	EOF;
+
+// Rule ExtendedOperand
+ruleExtendedOperand returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			otherlv_0='>'
+			{
+				newLeafNode(otherlv_0, grammarAccess.getExtendedOperandAccess().getGreaterThanSignKeyword_0());
+			}
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getExtendedOperandAccess().getOperandExpressionParserRuleCall_1_0());
+				}
+				lv_operand_1_0=ruleExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getExtendedOperandRule());
+					}
+					set(
+						$current,
+						"operand",
+						lv_operand_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleDirectOperand
+entryRuleDirectOperand returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getDirectOperandRule()); }
+	iv_ruleDirectOperand=ruleDirectOperand
+	{ $current=$iv_ruleDirectOperand.current; }
+	EOF;
+
+// Rule DirectOperand
+ruleDirectOperand returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='<'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getDirectOperandAccess().getLessThanSignKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getDirectOperandAccess().getOperandExpressionParserRuleCall_1_0());
+				}
+				lv_operand_1_0=ruleExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getDirectOperandRule());
+					}
+					set(
+						$current,
+						"operand",
+						lv_operand_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleImmediatOperand
+entryRuleImmediatOperand returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getImmediatOperandRule()); }
+	iv_ruleImmediatOperand=ruleImmediatOperand
+	{ $current=$iv_ruleImmediatOperand.current; }
+	EOF;
+
+// Rule ImmediatOperand
+ruleImmediatOperand returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='#'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getImmediatOperandAccess().getNumberSignKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getImmediatOperandAccess().getOperandExpressionParserRuleCall_1_0());
+				}
+				lv_operand_1_0=ruleExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getImmediatOperandRule());
+					}
+					set(
+						$current,
+						"operand",
+						lv_operand_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleIndexedOperand
+entryRuleIndexedOperand returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getIndexedOperandRule()); }
+	iv_ruleIndexedOperand=ruleIndexedOperand
+	{ $current=$iv_ruleIndexedOperand.current; }
+	EOF;
+
+// Rule IndexedOperand
+ruleIndexedOperand returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIndexedOperandAccess().getModeAutoIncDecModeParserRuleCall_0_0());
+				}
+				lv_mode_0_0=ruleAutoIncDecMode
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIndexedOperandRule());
+					}
+					set(
+						$current,
+						"mode",
+						lv_mode_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.AutoIncDecMode");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIndexedOperandAccess().getModeConstantIndexedModeParserRuleCall_1_0());
+				}
+				lv_mode_1_0=ruleConstantIndexedMode
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIndexedOperandRule());
+					}
+					set(
+						$current,
+						"mode",
+						lv_mode_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.ConstantIndexedMode");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIndexedOperandAccess().getModeAccumulatorMovingModeParserRuleCall_2_0());
+				}
+				lv_mode_2_0=ruleAccumulatorMovingMode
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIndexedOperandRule());
+					}
+					set(
+						$current,
+						"mode",
+						lv_mode_2_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.AccumulatorMovingMode");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIndexedOperandAccess().getModeRelatifToPCModeParserRuleCall_3_0());
+				}
+				lv_mode_3_0=ruleRelatifToPCMode
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIndexedOperandRule());
+					}
+					set(
+						$current,
+						"mode",
+						lv_mode_3_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.RelatifToPCMode");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIndexedOperandAccess().getModeConstantIndexedMovingIndirectModeParserRuleCall_4_0());
+				}
+				lv_mode_4_0=ruleConstantIndexedMovingIndirectMode
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIndexedOperandRule());
+					}
+					set(
+						$current,
+						"mode",
+						lv_mode_4_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.ConstantIndexedMovingIndirectMode");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIndexedOperandAccess().getModeAutoIncDecIndirectModeParserRuleCall_5_0());
+				}
+				lv_mode_5_0=ruleAutoIncDecIndirectMode
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIndexedOperandRule());
+					}
+					set(
+						$current,
+						"mode",
+						lv_mode_5_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.AutoIncDecIndirectMode");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIndexedOperandAccess().getModeAccumulatorMovingIndirectModeParserRuleCall_6_0());
+				}
+				lv_mode_6_0=ruleAccumulatorMovingIndirectMode
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIndexedOperandRule());
+					}
+					set(
+						$current,
+						"mode",
+						lv_mode_6_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.AccumulatorMovingIndirectMode");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getIndexedOperandAccess().getModeRelatifToPCIndirectModeParserRuleCall_7_0());
+				}
+				lv_mode_7_0=ruleRelatifToPCIndirectMode
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getIndexedOperandRule());
+					}
+					set(
+						$current,
+						"mode",
+						lv_mode_7_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.RelatifToPCIndirectMode");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleConstantIndexedMode
+entryRuleConstantIndexedMode returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConstantIndexedModeRule()); }
+	iv_ruleConstantIndexedMode=ruleConstantIndexedMode
+	{ $current=$iv_ruleConstantIndexedMode.current; }
+	EOF;
+
+// Rule ConstantIndexedMode
+ruleConstantIndexedMode returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getConstantIndexedModeAccess().getDeplacementNumericalValueParserRuleCall_0_0());
+				}
+				lv_deplacement_0_0=ruleNumericalValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConstantIndexedModeRule());
+					}
+					set(
+						$current,
+						"deplacement",
+						lv_deplacement_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.NumericalValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_1=','
+		{
+			newLeafNode(otherlv_1, grammarAccess.getConstantIndexedModeAccess().getCommaKeyword_1());
+		}
+		(
+			(
+				(
+					lv_register_2_1='S'
+					{
+						newLeafNode(lv_register_2_1, grammarAccess.getConstantIndexedModeAccess().getRegisterSKeyword_2_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantIndexedModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_2_1, null);
+					}
+					    |
+					lv_register_2_2='U'
+					{
+						newLeafNode(lv_register_2_2, grammarAccess.getConstantIndexedModeAccess().getRegisterUKeyword_2_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantIndexedModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_2_2, null);
+					}
+					    |
+					lv_register_2_3='X'
+					{
+						newLeafNode(lv_register_2_3, grammarAccess.getConstantIndexedModeAccess().getRegisterXKeyword_2_0_2());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantIndexedModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_2_3, null);
+					}
+					    |
+					lv_register_2_4='Y'
+					{
+						newLeafNode(lv_register_2_4, grammarAccess.getConstantIndexedModeAccess().getRegisterYKeyword_2_0_3());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantIndexedModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_2_4, null);
+					}
+				)
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleConstantIndexedMovingIndirectMode
+entryRuleConstantIndexedMovingIndirectMode returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getConstantIndexedMovingIndirectModeRule()); }
+	iv_ruleConstantIndexedMovingIndirectMode=ruleConstantIndexedMovingIndirectMode
+	{ $current=$iv_ruleConstantIndexedMovingIndirectMode.current; }
+	EOF;
+
+// Rule ConstantIndexedMovingIndirectMode
+ruleConstantIndexedMovingIndirectMode returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='['
+		{
+			newLeafNode(otherlv_0, grammarAccess.getConstantIndexedMovingIndirectModeAccess().getLeftSquareBracketKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getConstantIndexedMovingIndirectModeAccess().getDeplacementNumericalValueParserRuleCall_1_0());
+				}
+				lv_deplacement_1_0=ruleNumericalValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getConstantIndexedMovingIndirectModeRule());
+					}
+					set(
+						$current,
+						"deplacement",
+						lv_deplacement_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.NumericalValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_2=','
+		{
+			newLeafNode(otherlv_2, grammarAccess.getConstantIndexedMovingIndirectModeAccess().getCommaKeyword_2());
+		}
+		(
+			(
+				(
+					lv_register_3_1='S'
+					{
+						newLeafNode(lv_register_3_1, grammarAccess.getConstantIndexedMovingIndirectModeAccess().getRegisterSKeyword_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantIndexedMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_3_1, null);
+					}
+					    |
+					lv_register_3_2='U'
+					{
+						newLeafNode(lv_register_3_2, grammarAccess.getConstantIndexedMovingIndirectModeAccess().getRegisterUKeyword_3_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantIndexedMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_3_2, null);
+					}
+					    |
+					lv_register_3_3='X'
+					{
+						newLeafNode(lv_register_3_3, grammarAccess.getConstantIndexedMovingIndirectModeAccess().getRegisterXKeyword_3_0_2());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantIndexedMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_3_3, null);
+					}
+					    |
+					lv_register_3_4='Y'
+					{
+						newLeafNode(lv_register_3_4, grammarAccess.getConstantIndexedMovingIndirectModeAccess().getRegisterYKeyword_3_0_3());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getConstantIndexedMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_3_4, null);
+					}
+				)
+			)
+		)
+		otherlv_4=']'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getConstantIndexedMovingIndirectModeAccess().getRightSquareBracketKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleAccumulatorMovingMode
+entryRuleAccumulatorMovingMode returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAccumulatorMovingModeRule()); }
+	iv_ruleAccumulatorMovingMode=ruleAccumulatorMovingMode
+	{ $current=$iv_ruleAccumulatorMovingMode.current; }
+	EOF;
+
+// Rule AccumulatorMovingMode
+ruleAccumulatorMovingMode returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				(
+					lv_deplacement_0_1='A'
+					{
+						newLeafNode(lv_deplacement_0_1, grammarAccess.getAccumulatorMovingModeAccess().getDeplacementAKeyword_0_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingModeRule());
+						}
+						setWithLastConsumed($current, "deplacement", lv_deplacement_0_1, null);
+					}
+					    |
+					lv_deplacement_0_2='B'
+					{
+						newLeafNode(lv_deplacement_0_2, grammarAccess.getAccumulatorMovingModeAccess().getDeplacementBKeyword_0_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingModeRule());
+						}
+						setWithLastConsumed($current, "deplacement", lv_deplacement_0_2, null);
+					}
+					    |
+					lv_deplacement_0_3='D'
+					{
+						newLeafNode(lv_deplacement_0_3, grammarAccess.getAccumulatorMovingModeAccess().getDeplacementDKeyword_0_0_2());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingModeRule());
+						}
+						setWithLastConsumed($current, "deplacement", lv_deplacement_0_3, null);
+					}
+				)
+			)
+		)
+		otherlv_1=','
+		{
+			newLeafNode(otherlv_1, grammarAccess.getAccumulatorMovingModeAccess().getCommaKeyword_1());
+		}
+		(
+			(
+				(
+					lv_register_2_1='S'
+					{
+						newLeafNode(lv_register_2_1, grammarAccess.getAccumulatorMovingModeAccess().getRegisterSKeyword_2_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_2_1, null);
+					}
+					    |
+					lv_register_2_2='U'
+					{
+						newLeafNode(lv_register_2_2, grammarAccess.getAccumulatorMovingModeAccess().getRegisterUKeyword_2_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_2_2, null);
+					}
+					    |
+					lv_register_2_3='X'
+					{
+						newLeafNode(lv_register_2_3, grammarAccess.getAccumulatorMovingModeAccess().getRegisterXKeyword_2_0_2());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_2_3, null);
+					}
+					    |
+					lv_register_2_4='Y'
+					{
+						newLeafNode(lv_register_2_4, grammarAccess.getAccumulatorMovingModeAccess().getRegisterYKeyword_2_0_3());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_2_4, null);
+					}
+				)
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleAccumulatorMovingIndirectMode
+entryRuleAccumulatorMovingIndirectMode returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAccumulatorMovingIndirectModeRule()); }
+	iv_ruleAccumulatorMovingIndirectMode=ruleAccumulatorMovingIndirectMode
+	{ $current=$iv_ruleAccumulatorMovingIndirectMode.current; }
+	EOF;
+
+// Rule AccumulatorMovingIndirectMode
+ruleAccumulatorMovingIndirectMode returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='['
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAccumulatorMovingIndirectModeAccess().getLeftSquareBracketKeyword_0());
+		}
+		(
+			(
+				(
+					lv_deplacement_1_1='A'
+					{
+						newLeafNode(lv_deplacement_1_1, grammarAccess.getAccumulatorMovingIndirectModeAccess().getDeplacementAKeyword_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "deplacement", lv_deplacement_1_1, null);
+					}
+					    |
+					lv_deplacement_1_2='B'
+					{
+						newLeafNode(lv_deplacement_1_2, grammarAccess.getAccumulatorMovingIndirectModeAccess().getDeplacementBKeyword_1_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "deplacement", lv_deplacement_1_2, null);
+					}
+					    |
+					lv_deplacement_1_3='D'
+					{
+						newLeafNode(lv_deplacement_1_3, grammarAccess.getAccumulatorMovingIndirectModeAccess().getDeplacementDKeyword_1_0_2());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "deplacement", lv_deplacement_1_3, null);
+					}
+				)
+			)
+		)
+		otherlv_2=','
+		{
+			newLeafNode(otherlv_2, grammarAccess.getAccumulatorMovingIndirectModeAccess().getCommaKeyword_2());
+		}
+		(
+			(
+				(
+					lv_register_3_1='S'
+					{
+						newLeafNode(lv_register_3_1, grammarAccess.getAccumulatorMovingIndirectModeAccess().getRegisterSKeyword_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_3_1, null);
+					}
+					    |
+					lv_register_3_2='U'
+					{
+						newLeafNode(lv_register_3_2, grammarAccess.getAccumulatorMovingIndirectModeAccess().getRegisterUKeyword_3_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_3_2, null);
+					}
+					    |
+					lv_register_3_3='X'
+					{
+						newLeafNode(lv_register_3_3, grammarAccess.getAccumulatorMovingIndirectModeAccess().getRegisterXKeyword_3_0_2());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_3_3, null);
+					}
+					    |
+					lv_register_3_4='Y'
+					{
+						newLeafNode(lv_register_3_4, grammarAccess.getAccumulatorMovingIndirectModeAccess().getRegisterYKeyword_3_0_3());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAccumulatorMovingIndirectModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_3_4, null);
+					}
+				)
+			)
+		)
+		otherlv_4=']'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getAccumulatorMovingIndirectModeAccess().getRightSquareBracketKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleAutoIncDecMode
+entryRuleAutoIncDecMode returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAutoIncDecModeRule()); }
+	iv_ruleAutoIncDecMode=ruleAutoIncDecMode
+	{ $current=$iv_ruleAutoIncDecMode.current; }
+	EOF;
+
+// Rule AutoIncDecMode
+ruleAutoIncDecMode returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAutoIncDecModeAccess().getDeplacementNumericalValueParserRuleCall_0_0());
+				}
+				lv_deplacement_0_0=ruleNumericalValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAutoIncDecModeRule());
+					}
+					set(
+						$current,
+						"deplacement",
+						lv_deplacement_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.NumericalValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_1=','
+		{
+			newLeafNode(otherlv_1, grammarAccess.getAutoIncDecModeAccess().getCommaKeyword_1());
+		}
+		(
+			(
+				(
+					(
+						(
+							lv_decrement_2_0='-'
+							{
+								newLeafNode(lv_decrement_2_0, grammarAccess.getAutoIncDecModeAccess().getDecrementHyphenMinusKeyword_2_0_0_0_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "decrement", lv_decrement_2_0, "-");
+							}
+						)
+					)
+					    |
+					(
+						(
+							lv_decrement_3_0='--'
+							{
+								newLeafNode(lv_decrement_3_0, grammarAccess.getAutoIncDecModeAccess().getDecrementHyphenMinusHyphenMinusKeyword_2_0_0_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "decrement", lv_decrement_3_0, "--");
+							}
+						)
+					)
+				)
+				(
+					(
+						(
+							lv_register_4_1='S'
+							{
+								newLeafNode(lv_register_4_1, grammarAccess.getAutoIncDecModeAccess().getRegisterSKeyword_2_0_1_0_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_4_1, null);
+							}
+							    |
+							lv_register_4_2='U'
+							{
+								newLeafNode(lv_register_4_2, grammarAccess.getAutoIncDecModeAccess().getRegisterUKeyword_2_0_1_0_1());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_4_2, null);
+							}
+							    |
+							lv_register_4_3='X'
+							{
+								newLeafNode(lv_register_4_3, grammarAccess.getAutoIncDecModeAccess().getRegisterXKeyword_2_0_1_0_2());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_4_3, null);
+							}
+							    |
+							lv_register_4_4='Y'
+							{
+								newLeafNode(lv_register_4_4, grammarAccess.getAutoIncDecModeAccess().getRegisterYKeyword_2_0_1_0_3());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_4_4, null);
+							}
+						)
+					)
+				)
+			)
+			    |
+			(
+				(
+					(
+						(
+							lv_register_5_1='S'
+							{
+								newLeafNode(lv_register_5_1, grammarAccess.getAutoIncDecModeAccess().getRegisterSKeyword_2_1_0_0_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_5_1, null);
+							}
+							    |
+							lv_register_5_2='U'
+							{
+								newLeafNode(lv_register_5_2, grammarAccess.getAutoIncDecModeAccess().getRegisterUKeyword_2_1_0_0_1());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_5_2, null);
+							}
+							    |
+							lv_register_5_3='X'
+							{
+								newLeafNode(lv_register_5_3, grammarAccess.getAutoIncDecModeAccess().getRegisterXKeyword_2_1_0_0_2());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_5_3, null);
+							}
+							    |
+							lv_register_5_4='Y'
+							{
+								newLeafNode(lv_register_5_4, grammarAccess.getAutoIncDecModeAccess().getRegisterYKeyword_2_1_0_0_3());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_5_4, null);
+							}
+						)
+					)
+				)
+				(
+					(
+						(
+							lv_increment_6_0='+'
+							{
+								newLeafNode(lv_increment_6_0, grammarAccess.getAutoIncDecModeAccess().getIncrementPlusSignKeyword_2_1_1_0_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "increment", lv_increment_6_0, "+");
+							}
+						)
+					)
+					    |
+					(
+						(
+							lv_increment_7_0='++'
+							{
+								newLeafNode(lv_increment_7_0, grammarAccess.getAutoIncDecModeAccess().getIncrementPlusSignPlusSignKeyword_2_1_1_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
+								}
+								setWithLastConsumed($current, "increment", lv_increment_7_0, "++");
+							}
+						)
+					)
+				)
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleAutoIncDecIndirectMode
+entryRuleAutoIncDecIndirectMode returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getAutoIncDecIndirectModeRule()); }
+	iv_ruleAutoIncDecIndirectMode=ruleAutoIncDecIndirectMode
+	{ $current=$iv_ruleAutoIncDecIndirectMode.current; }
+	EOF;
+
+// Rule AutoIncDecIndirectMode
+ruleAutoIncDecIndirectMode returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='['
+		{
+			newLeafNode(otherlv_0, grammarAccess.getAutoIncDecIndirectModeAccess().getLeftSquareBracketKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getAutoIncDecIndirectModeAccess().getDeplacementNumericalValueParserRuleCall_1_0());
+				}
+				lv_deplacement_1_0=ruleNumericalValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getAutoIncDecIndirectModeRule());
+					}
+					set(
+						$current,
+						"deplacement",
+						lv_deplacement_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.NumericalValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_2=','
+		{
+			newLeafNode(otherlv_2, grammarAccess.getAutoIncDecIndirectModeAccess().getCommaKeyword_2());
+		}
+		(
+			(
+				(
+					(
+						(
+							lv_decrement_3_0='-'
+							{
+								newLeafNode(lv_decrement_3_0, grammarAccess.getAutoIncDecIndirectModeAccess().getDecrementHyphenMinusKeyword_3_0_0_0_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "decrement", lv_decrement_3_0, "-");
+							}
+						)
+					)
+					    |
+					(
+						(
+							lv_decrement_4_0='--'
+							{
+								newLeafNode(lv_decrement_4_0, grammarAccess.getAutoIncDecIndirectModeAccess().getDecrementHyphenMinusHyphenMinusKeyword_3_0_0_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "decrement", lv_decrement_4_0, "--");
+							}
+						)
+					)
+				)
+				(
+					(
+						(
+							lv_register_5_1='S'
+							{
+								newLeafNode(lv_register_5_1, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterSKeyword_3_0_1_0_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_5_1, null);
+							}
+							    |
+							lv_register_5_2='U'
+							{
+								newLeafNode(lv_register_5_2, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterUKeyword_3_0_1_0_1());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_5_2, null);
+							}
+							    |
+							lv_register_5_3='X'
+							{
+								newLeafNode(lv_register_5_3, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterXKeyword_3_0_1_0_2());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_5_3, null);
+							}
+							    |
+							lv_register_5_4='Y'
+							{
+								newLeafNode(lv_register_5_4, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterYKeyword_3_0_1_0_3());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_5_4, null);
+							}
+						)
+					)
+				)
+			)
+			    |
+			(
+				(
+					(
+						(
+							lv_register_6_1='S'
+							{
+								newLeafNode(lv_register_6_1, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterSKeyword_3_1_0_0_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_6_1, null);
+							}
+							    |
+							lv_register_6_2='U'
+							{
+								newLeafNode(lv_register_6_2, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterUKeyword_3_1_0_0_1());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_6_2, null);
+							}
+							    |
+							lv_register_6_3='X'
+							{
+								newLeafNode(lv_register_6_3, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterXKeyword_3_1_0_0_2());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_6_3, null);
+							}
+							    |
+							lv_register_6_4='Y'
+							{
+								newLeafNode(lv_register_6_4, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterYKeyword_3_1_0_0_3());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "register", lv_register_6_4, null);
+							}
+						)
+					)
+				)
+				(
+					(
+						(
+							lv_increment_7_0='+'
+							{
+								newLeafNode(lv_increment_7_0, grammarAccess.getAutoIncDecIndirectModeAccess().getIncrementPlusSignKeyword_3_1_1_0_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "increment", lv_increment_7_0, "+");
+							}
+						)
+					)
+					    |
+					(
+						(
+							lv_increment_8_0='++'
+							{
+								newLeafNode(lv_increment_8_0, grammarAccess.getAutoIncDecIndirectModeAccess().getIncrementPlusSignPlusSignKeyword_3_1_1_1_0());
+							}
+							{
+								if ($current==null) {
+									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
+								}
+								setWithLastConsumed($current, "increment", lv_increment_8_0, "++");
+							}
+						)
+					)
+				)
+			)
+		)
+		otherlv_9=']'
+		{
+			newLeafNode(otherlv_9, grammarAccess.getAutoIncDecIndirectModeAccess().getRightSquareBracketKeyword_4());
+		}
+	)
+;
+
+// Entry rule entryRuleRelatifToPCMode
+entryRuleRelatifToPCMode returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRelatifToPCModeRule()); }
+	iv_ruleRelatifToPCMode=ruleRelatifToPCMode
+	{ $current=$iv_ruleRelatifToPCMode.current; }
+	EOF;
+
+// Rule RelatifToPCMode
+ruleRelatifToPCMode returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRelatifToPCModeAccess().getDeplacementNumericalValueParserRuleCall_0_0());
+				}
+				lv_deplacement_0_0=ruleNumericalValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRelatifToPCModeRule());
+					}
+					set(
+						$current,
+						"deplacement",
+						lv_deplacement_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.NumericalValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_1=','
+		{
+			newLeafNode(otherlv_1, grammarAccess.getRelatifToPCModeAccess().getCommaKeyword_1());
+		}
+		(
+			(
+				lv_register_2_0='PCR'
+				{
+					newLeafNode(lv_register_2_0, grammarAccess.getRelatifToPCModeAccess().getRegisterPCRKeyword_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRelatifToPCModeRule());
+					}
+					setWithLastConsumed($current, "register", lv_register_2_0, "PCR");
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleRelatifToPCIndirectMode
+entryRuleRelatifToPCIndirectMode returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRelatifToPCIndirectModeRule()); }
+	iv_ruleRelatifToPCIndirectMode=ruleRelatifToPCIndirectMode
+	{ $current=$iv_ruleRelatifToPCIndirectMode.current; }
+	EOF;
+
+// Rule RelatifToPCIndirectMode
+ruleRelatifToPCIndirectMode returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='['
+		{
+			newLeafNode(otherlv_0, grammarAccess.getRelatifToPCIndirectModeAccess().getLeftSquareBracketKeyword_0());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRelatifToPCIndirectModeAccess().getDeplacementNumericalValueParserRuleCall_1_0());
+				}
+				lv_deplacement_1_0=ruleNumericalValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getRelatifToPCIndirectModeRule());
+					}
+					set(
+						$current,
+						"deplacement",
+						lv_deplacement_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.NumericalValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		otherlv_2=','
+		{
+			newLeafNode(otherlv_2, grammarAccess.getRelatifToPCIndirectModeAccess().getCommaKeyword_2());
+		}
+		(
+			(
+				lv_register_3_0='PCR'
+				{
+					newLeafNode(lv_register_3_0, grammarAccess.getRelatifToPCIndirectModeAccess().getRegisterPCRKeyword_3_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRelatifToPCIndirectModeRule());
+					}
+					setWithLastConsumed($current, "register", lv_register_3_0, "PCR");
+				}
+			)
+		)
+		otherlv_4=']'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getRelatifToPCIndirectModeAccess().getRightSquareBracketKeyword_4());
 		}
 	)
 ;
@@ -3602,6 +5284,144 @@ rulePrimary returns [EObject current=null]
 			{
 				newLeafNode(otherlv_11, grammarAccess.getPrimaryAccess().getRightParenthesisKeyword_7_2());
 			}
+		)
+	)
+;
+
+// Entry rule entryRuleNumericalValue
+entryRuleNumericalValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getNumericalValueRule()); }
+	iv_ruleNumericalValue=ruleNumericalValue
+	{ $current=$iv_ruleNumericalValue.current; }
+	EOF;
+
+// Rule NumericalValue
+ruleNumericalValue returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getNumericalValueAccess().getValueDecimalValueParserRuleCall_0_0());
+				}
+				lv_value_0_0=ruleDecimalValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getNumericalValueRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.DecimalValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getNumericalValueAccess().getValueHexaDecimalValueParserRuleCall_1_0());
+				}
+				lv_value_1_0=ruleHexaDecimalValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getNumericalValueRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.HexaDecimalValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getNumericalValueAccess().getValueOctalValueParserRuleCall_2_0());
+				}
+				lv_value_2_0=ruleOctalValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getNumericalValueRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_2_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.OctalValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getNumericalValueAccess().getValueBinaryValueParserRuleCall_3_0());
+				}
+				lv_value_3_0=ruleBinaryValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getNumericalValueRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_3_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.BinaryValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getNumericalValueAccess().getValueCharacterValueParserRuleCall_4_0());
+				}
+				lv_value_4_0=ruleCharacterValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getNumericalValueRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_4_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.CharacterValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getNumericalValueAccess().getValueIdentifierValueParserRuleCall_5_0());
+				}
+				lv_value_5_0=ruleIdentifierValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getNumericalValueRule());
+					}
+					set(
+						$current,
+						"value",
+						lv_value_5_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
 		)
 	)
 ;

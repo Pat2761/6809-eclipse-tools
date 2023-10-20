@@ -60,6 +60,150 @@ public interface AssemblerFactory extends EFactory
   CommentLine createCommentLine();
 
   /**
+   * Returns a new object of class '<em>Instruction Line</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Instruction Line</em>'.
+   * @generated
+   */
+  InstructionLine createInstructionLine();
+
+  /**
+   * Returns a new object of class '<em>Adc Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Adc Instruction</em>'.
+   * @generated
+   */
+  AdcInstruction createAdcInstruction();
+
+  /**
+   * Returns a new object of class '<em>Abx Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Abx Instruction</em>'.
+   * @generated
+   */
+  AbxInstruction createAbxInstruction();
+
+  /**
+   * Returns a new object of class '<em>Extended Indirect Operand</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Extended Indirect Operand</em>'.
+   * @generated
+   */
+  ExtendedIndirectOperand createExtendedIndirectOperand();
+
+  /**
+   * Returns a new object of class '<em>Extended Operand</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Extended Operand</em>'.
+   * @generated
+   */
+  ExtendedOperand createExtendedOperand();
+
+  /**
+   * Returns a new object of class '<em>Direct Operand</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Direct Operand</em>'.
+   * @generated
+   */
+  DirectOperand createDirectOperand();
+
+  /**
+   * Returns a new object of class '<em>Immediat Operand</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Immediat Operand</em>'.
+   * @generated
+   */
+  ImmediatOperand createImmediatOperand();
+
+  /**
+   * Returns a new object of class '<em>Indexed Operand</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Indexed Operand</em>'.
+   * @generated
+   */
+  IndexedOperand createIndexedOperand();
+
+  /**
+   * Returns a new object of class '<em>Constant Indexed Mode</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Constant Indexed Mode</em>'.
+   * @generated
+   */
+  ConstantIndexedMode createConstantIndexedMode();
+
+  /**
+   * Returns a new object of class '<em>Constant Indexed Moving Indirect Mode</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Constant Indexed Moving Indirect Mode</em>'.
+   * @generated
+   */
+  ConstantIndexedMovingIndirectMode createConstantIndexedMovingIndirectMode();
+
+  /**
+   * Returns a new object of class '<em>Accumulator Moving Mode</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Accumulator Moving Mode</em>'.
+   * @generated
+   */
+  AccumulatorMovingMode createAccumulatorMovingMode();
+
+  /**
+   * Returns a new object of class '<em>Accumulator Moving Indirect Mode</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Accumulator Moving Indirect Mode</em>'.
+   * @generated
+   */
+  AccumulatorMovingIndirectMode createAccumulatorMovingIndirectMode();
+
+  /**
+   * Returns a new object of class '<em>Auto Inc Dec Mode</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Auto Inc Dec Mode</em>'.
+   * @generated
+   */
+  AutoIncDecMode createAutoIncDecMode();
+
+  /**
+   * Returns a new object of class '<em>Auto Inc Dec Indirect Mode</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Auto Inc Dec Indirect Mode</em>'.
+   * @generated
+   */
+  AutoIncDecIndirectMode createAutoIncDecIndirectMode();
+
+  /**
+   * Returns a new object of class '<em>Relatif To PC Mode</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relatif To PC Mode</em>'.
+   * @generated
+   */
+  RelatifToPCMode createRelatifToPCMode();
+
+  /**
+   * Returns a new object of class '<em>Relatif To PC Indirect Mode</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Relatif To PC Indirect Mode</em>'.
+   * @generated
+   */
+  RelatifToPCIndirectMode createRelatifToPCIndirectMode();
+
+  /**
    * Returns a new object of class '<em>Directive Line</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -229,6 +373,15 @@ public interface AssemblerFactory extends EFactory
    * @generated
    */
   Expression createExpression();
+
+  /**
+   * Returns a new object of class '<em>Numerical Value</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Numerical Value</em>'.
+   * @generated
+   */
+  NumericalValue createNumericalValue();
 
   /**
    * Returns a new object of class '<em>Identifier Value</em>'.

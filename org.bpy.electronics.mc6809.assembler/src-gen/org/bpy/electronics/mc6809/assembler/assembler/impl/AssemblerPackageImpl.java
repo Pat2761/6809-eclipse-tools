@@ -3,22 +3,33 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Addition;
 import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerFactory;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblyOption;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
@@ -26,6 +37,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
+import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -33,6 +47,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Not;
+import org.bpy.electronics.mc6809.assembler.assembler.NumericalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
@@ -40,6 +55,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
@@ -92,6 +109,118 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass commentLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass instructionLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass adcInstructionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass abxInstructionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass extendedIndirectOperandEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass extendedOperandEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass directOperandEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass immediatOperandEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass indexedOperandEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass constantIndexedModeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass constantIndexedMovingIndirectModeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass accumulatorMovingModeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass accumulatorMovingIndirectModeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass autoIncDecModeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass autoIncDecIndirectModeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass relatifToPCModeEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass relatifToPCIndirectModeEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -225,6 +354,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass expressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass numericalValueEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -514,6 +650,545 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EAttribute getCommentLine_Comment()
   {
     return (EAttribute)commentLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getInstructionLine()
+  {
+    return instructionLineEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getInstructionLine_Instruction()
+  {
+    return (EReference)instructionLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAdcInstruction()
+  {
+    return adcInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAdcInstruction_Name()
+  {
+    return (EReference)adcInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAdcInstruction_Instruction()
+  {
+    return (EAttribute)adcInstructionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAdcInstruction_Operand()
+  {
+    return (EReference)adcInstructionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAdcInstruction_Comment()
+  {
+    return (EAttribute)adcInstructionEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAbxInstruction()
+  {
+    return abxInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAbxInstruction_Name()
+  {
+    return (EReference)abxInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAbxInstruction_Instruction()
+  {
+    return (EAttribute)abxInstructionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAbxInstruction_Comment()
+  {
+    return (EAttribute)abxInstructionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getExtendedIndirectOperand()
+  {
+    return extendedIndirectOperandEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExtendedIndirectOperand_Operand()
+  {
+    return (EReference)extendedIndirectOperandEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getExtendedOperand()
+  {
+    return extendedOperandEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getExtendedOperand_Operand()
+  {
+    return (EReference)extendedOperandEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getDirectOperand()
+  {
+    return directOperandEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDirectOperand_Operand()
+  {
+    return (EReference)directOperandEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getImmediatOperand()
+  {
+    return immediatOperandEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getImmediatOperand_Operand()
+  {
+    return (EReference)immediatOperandEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getIndexedOperand()
+  {
+    return indexedOperandEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getIndexedOperand_Mode()
+  {
+    return (EReference)indexedOperandEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getConstantIndexedMode()
+  {
+    return constantIndexedModeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getConstantIndexedMode_Deplacement()
+  {
+    return (EReference)constantIndexedModeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getConstantIndexedMode_Register()
+  {
+    return (EAttribute)constantIndexedModeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getConstantIndexedMovingIndirectMode()
+  {
+    return constantIndexedMovingIndirectModeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getConstantIndexedMovingIndirectMode_Deplacement()
+  {
+    return (EReference)constantIndexedMovingIndirectModeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getConstantIndexedMovingIndirectMode_Register()
+  {
+    return (EAttribute)constantIndexedMovingIndirectModeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAccumulatorMovingMode()
+  {
+    return accumulatorMovingModeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAccumulatorMovingMode_Deplacement()
+  {
+    return (EAttribute)accumulatorMovingModeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAccumulatorMovingMode_Register()
+  {
+    return (EAttribute)accumulatorMovingModeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAccumulatorMovingIndirectMode()
+  {
+    return accumulatorMovingIndirectModeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAccumulatorMovingIndirectMode_Deplacement()
+  {
+    return (EAttribute)accumulatorMovingIndirectModeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAccumulatorMovingIndirectMode_Register()
+  {
+    return (EAttribute)accumulatorMovingIndirectModeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAutoIncDecMode()
+  {
+    return autoIncDecModeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAutoIncDecMode_Deplacement()
+  {
+    return (EReference)autoIncDecModeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAutoIncDecMode_Decrement()
+  {
+    return (EAttribute)autoIncDecModeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAutoIncDecMode_Register()
+  {
+    return (EAttribute)autoIncDecModeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAutoIncDecMode_Increment()
+  {
+    return (EAttribute)autoIncDecModeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAutoIncDecIndirectMode()
+  {
+    return autoIncDecIndirectModeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAutoIncDecIndirectMode_Deplacement()
+  {
+    return (EReference)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAutoIncDecIndirectMode_Decrement()
+  {
+    return (EAttribute)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAutoIncDecIndirectMode_Register()
+  {
+    return (EAttribute)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAutoIncDecIndirectMode_Increment()
+  {
+    return (EAttribute)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(3);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRelatifToPCMode()
+  {
+    return relatifToPCModeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRelatifToPCMode_Deplacement()
+  {
+    return (EReference)relatifToPCModeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRelatifToPCMode_Register()
+  {
+    return (EAttribute)relatifToPCModeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRelatifToPCIndirectMode()
+  {
+    return relatifToPCIndirectModeEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRelatifToPCIndirectMode_Deplacement()
+  {
+    return (EReference)relatifToPCIndirectModeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRelatifToPCIndirectMode_Register()
+  {
+    return (EAttribute)relatifToPCIndirectModeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1545,6 +2220,28 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EClass getNumericalValue()
+  {
+    return numericalValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getNumericalValue_Value()
+  {
+    return (EReference)numericalValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getIdentifierValue()
   {
     return identifierValueEClass;
@@ -2143,6 +2840,71 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     commentLineEClass = createEClass(COMMENT_LINE);
     createEAttribute(commentLineEClass, COMMENT_LINE__COMMENT);
 
+    instructionLineEClass = createEClass(INSTRUCTION_LINE);
+    createEReference(instructionLineEClass, INSTRUCTION_LINE__INSTRUCTION);
+
+    adcInstructionEClass = createEClass(ADC_INSTRUCTION);
+    createEReference(adcInstructionEClass, ADC_INSTRUCTION__NAME);
+    createEAttribute(adcInstructionEClass, ADC_INSTRUCTION__INSTRUCTION);
+    createEReference(adcInstructionEClass, ADC_INSTRUCTION__OPERAND);
+    createEAttribute(adcInstructionEClass, ADC_INSTRUCTION__COMMENT);
+
+    abxInstructionEClass = createEClass(ABX_INSTRUCTION);
+    createEReference(abxInstructionEClass, ABX_INSTRUCTION__NAME);
+    createEAttribute(abxInstructionEClass, ABX_INSTRUCTION__INSTRUCTION);
+    createEAttribute(abxInstructionEClass, ABX_INSTRUCTION__COMMENT);
+
+    extendedIndirectOperandEClass = createEClass(EXTENDED_INDIRECT_OPERAND);
+    createEReference(extendedIndirectOperandEClass, EXTENDED_INDIRECT_OPERAND__OPERAND);
+
+    extendedOperandEClass = createEClass(EXTENDED_OPERAND);
+    createEReference(extendedOperandEClass, EXTENDED_OPERAND__OPERAND);
+
+    directOperandEClass = createEClass(DIRECT_OPERAND);
+    createEReference(directOperandEClass, DIRECT_OPERAND__OPERAND);
+
+    immediatOperandEClass = createEClass(IMMEDIAT_OPERAND);
+    createEReference(immediatOperandEClass, IMMEDIAT_OPERAND__OPERAND);
+
+    indexedOperandEClass = createEClass(INDEXED_OPERAND);
+    createEReference(indexedOperandEClass, INDEXED_OPERAND__MODE);
+
+    constantIndexedModeEClass = createEClass(CONSTANT_INDEXED_MODE);
+    createEReference(constantIndexedModeEClass, CONSTANT_INDEXED_MODE__DEPLACEMENT);
+    createEAttribute(constantIndexedModeEClass, CONSTANT_INDEXED_MODE__REGISTER);
+
+    constantIndexedMovingIndirectModeEClass = createEClass(CONSTANT_INDEXED_MOVING_INDIRECT_MODE);
+    createEReference(constantIndexedMovingIndirectModeEClass, CONSTANT_INDEXED_MOVING_INDIRECT_MODE__DEPLACEMENT);
+    createEAttribute(constantIndexedMovingIndirectModeEClass, CONSTANT_INDEXED_MOVING_INDIRECT_MODE__REGISTER);
+
+    accumulatorMovingModeEClass = createEClass(ACCUMULATOR_MOVING_MODE);
+    createEAttribute(accumulatorMovingModeEClass, ACCUMULATOR_MOVING_MODE__DEPLACEMENT);
+    createEAttribute(accumulatorMovingModeEClass, ACCUMULATOR_MOVING_MODE__REGISTER);
+
+    accumulatorMovingIndirectModeEClass = createEClass(ACCUMULATOR_MOVING_INDIRECT_MODE);
+    createEAttribute(accumulatorMovingIndirectModeEClass, ACCUMULATOR_MOVING_INDIRECT_MODE__DEPLACEMENT);
+    createEAttribute(accumulatorMovingIndirectModeEClass, ACCUMULATOR_MOVING_INDIRECT_MODE__REGISTER);
+
+    autoIncDecModeEClass = createEClass(AUTO_INC_DEC_MODE);
+    createEReference(autoIncDecModeEClass, AUTO_INC_DEC_MODE__DEPLACEMENT);
+    createEAttribute(autoIncDecModeEClass, AUTO_INC_DEC_MODE__DECREMENT);
+    createEAttribute(autoIncDecModeEClass, AUTO_INC_DEC_MODE__REGISTER);
+    createEAttribute(autoIncDecModeEClass, AUTO_INC_DEC_MODE__INCREMENT);
+
+    autoIncDecIndirectModeEClass = createEClass(AUTO_INC_DEC_INDIRECT_MODE);
+    createEReference(autoIncDecIndirectModeEClass, AUTO_INC_DEC_INDIRECT_MODE__DEPLACEMENT);
+    createEAttribute(autoIncDecIndirectModeEClass, AUTO_INC_DEC_INDIRECT_MODE__DECREMENT);
+    createEAttribute(autoIncDecIndirectModeEClass, AUTO_INC_DEC_INDIRECT_MODE__REGISTER);
+    createEAttribute(autoIncDecIndirectModeEClass, AUTO_INC_DEC_INDIRECT_MODE__INCREMENT);
+
+    relatifToPCModeEClass = createEClass(RELATIF_TO_PC_MODE);
+    createEReference(relatifToPCModeEClass, RELATIF_TO_PC_MODE__DEPLACEMENT);
+    createEAttribute(relatifToPCModeEClass, RELATIF_TO_PC_MODE__REGISTER);
+
+    relatifToPCIndirectModeEClass = createEClass(RELATIF_TO_PC_INDIRECT_MODE);
+    createEReference(relatifToPCIndirectModeEClass, RELATIF_TO_PC_INDIRECT_MODE__DEPLACEMENT);
+    createEAttribute(relatifToPCIndirectModeEClass, RELATIF_TO_PC_INDIRECT_MODE__REGISTER);
+
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__DIRECTIVE);
 
@@ -2254,6 +3016,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     expressionEClass = createEClass(EXPRESSION);
     createEReference(expressionEClass, EXPRESSION__OPERAND);
     createEReference(expressionEClass, EXPRESSION__VALUE);
+
+    numericalValueEClass = createEClass(NUMERICAL_VALUE);
+    createEReference(numericalValueEClass, NUMERICAL_VALUE__VALUE);
 
     identifierValueEClass = createEClass(IDENTIFIER_VALUE);
     createEAttribute(identifierValueEClass, IDENTIFIER_VALUE__VALUE);
@@ -2381,6 +3146,71 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEClass(commentLineEClass, CommentLine.class, "CommentLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCommentLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, CommentLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
+    initEClass(instructionLineEClass, InstructionLine.class, "InstructionLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getInstructionLine_Instruction(), ecorePackage.getEObject(), null, "instruction", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(adcInstructionEClass, AdcInstruction.class, "AdcInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAdcInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AdcInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAdcInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AdcInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAdcInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, AdcInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAdcInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AdcInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(abxInstructionEClass, AbxInstruction.class, "AbxInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAbxInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AbxInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAbxInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AbxInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAbxInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AbxInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(extendedIndirectOperandEClass, ExtendedIndirectOperand.class, "ExtendedIndirectOperand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExtendedIndirectOperand_Operand(), this.getExpression(), null, "operand", null, 0, 1, ExtendedIndirectOperand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(extendedOperandEClass, ExtendedOperand.class, "ExtendedOperand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getExtendedOperand_Operand(), this.getExpression(), null, "operand", null, 0, 1, ExtendedOperand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(directOperandEClass, DirectOperand.class, "DirectOperand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDirectOperand_Operand(), this.getExpression(), null, "operand", null, 0, 1, DirectOperand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(immediatOperandEClass, ImmediatOperand.class, "ImmediatOperand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getImmediatOperand_Operand(), this.getExpression(), null, "operand", null, 0, 1, ImmediatOperand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(indexedOperandEClass, IndexedOperand.class, "IndexedOperand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getIndexedOperand_Mode(), ecorePackage.getEObject(), null, "mode", null, 0, 1, IndexedOperand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(constantIndexedModeEClass, ConstantIndexedMode.class, "ConstantIndexedMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConstantIndexedMode_Deplacement(), this.getNumericalValue(), null, "deplacement", null, 0, 1, ConstantIndexedMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConstantIndexedMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, ConstantIndexedMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(constantIndexedMovingIndirectModeEClass, ConstantIndexedMovingIndirectMode.class, "ConstantIndexedMovingIndirectMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getConstantIndexedMovingIndirectMode_Deplacement(), this.getNumericalValue(), null, "deplacement", null, 0, 1, ConstantIndexedMovingIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getConstantIndexedMovingIndirectMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, ConstantIndexedMovingIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(accumulatorMovingModeEClass, AccumulatorMovingMode.class, "AccumulatorMovingMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAccumulatorMovingMode_Deplacement(), ecorePackage.getEString(), "deplacement", null, 0, 1, AccumulatorMovingMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAccumulatorMovingMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, AccumulatorMovingMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(accumulatorMovingIndirectModeEClass, AccumulatorMovingIndirectMode.class, "AccumulatorMovingIndirectMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getAccumulatorMovingIndirectMode_Deplacement(), ecorePackage.getEString(), "deplacement", null, 0, 1, AccumulatorMovingIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAccumulatorMovingIndirectMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, AccumulatorMovingIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(autoIncDecModeEClass, AutoIncDecMode.class, "AutoIncDecMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAutoIncDecMode_Deplacement(), this.getNumericalValue(), null, "deplacement", null, 0, 1, AutoIncDecMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAutoIncDecMode_Decrement(), ecorePackage.getEString(), "decrement", null, 0, 1, AutoIncDecMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAutoIncDecMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, AutoIncDecMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAutoIncDecMode_Increment(), ecorePackage.getEString(), "increment", null, 0, 1, AutoIncDecMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(autoIncDecIndirectModeEClass, AutoIncDecIndirectMode.class, "AutoIncDecIndirectMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAutoIncDecIndirectMode_Deplacement(), this.getNumericalValue(), null, "deplacement", null, 0, 1, AutoIncDecIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAutoIncDecIndirectMode_Decrement(), ecorePackage.getEString(), "decrement", null, 0, 1, AutoIncDecIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAutoIncDecIndirectMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, AutoIncDecIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAutoIncDecIndirectMode_Increment(), ecorePackage.getEString(), "increment", null, 0, 1, AutoIncDecIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(relatifToPCModeEClass, RelatifToPCMode.class, "RelatifToPCMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRelatifToPCMode_Deplacement(), this.getNumericalValue(), null, "deplacement", null, 0, 1, RelatifToPCMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelatifToPCMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, RelatifToPCMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(relatifToPCIndirectModeEClass, RelatifToPCIndirectMode.class, "RelatifToPCIndirectMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getRelatifToPCIndirectMode_Deplacement(), this.getNumericalValue(), null, "deplacement", null, 0, 1, RelatifToPCIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelatifToPCIndirectMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, RelatifToPCIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDirectiveLine_Directive(), ecorePackage.getEObject(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -2492,6 +3322,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExpression_Operand(), this.getExpression(), null, "operand", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExpression_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(numericalValueEClass, NumericalValue.class, "NumericalValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getNumericalValue_Value(), ecorePackage.getEObject(), null, "value", null, 0, 1, NumericalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(identifierValueEClass, IdentifierValue.class, "IdentifierValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getIdentifierValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, IdentifierValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

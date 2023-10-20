@@ -52,6 +52,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cLineContentCommentLineParserRuleCall_1_0 = (RuleCall)cLineContentAssignment_1.eContents().get(0);
 		private final Assignment cLineContentAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cLineContentDirectiveLineParserRuleCall_2_0 = (RuleCall)cLineContentAssignment_2.eContents().get(0);
+		private final Assignment cLineContentAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cLineContentInstructionLineParserRuleCall_3_0 = (RuleCall)cLineContentAssignment_3.eContents().get(0);
 		
 		///*
 		// * Description of an assembler line.
@@ -62,6 +64,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//          (lineContent = BlankLine)
 		//        | (lineContent = CommentLine)
 		//        | (lineContent = DirectiveLine)
+		//        | (lineContent = InstructionLine)
 		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -70,6 +73,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//      (lineContent = BlankLine)
 		//    | (lineContent = CommentLine)
 		//    | (lineContent = DirectiveLine)
+		//    | (lineContent = InstructionLine)
 		//)
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
@@ -90,6 +94,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//DirectiveLine
 		public RuleCall getLineContentDirectiveLineParserRuleCall_2_0() { return cLineContentDirectiveLineParserRuleCall_2_0; }
+		
+		//(lineContent = InstructionLine)
+		public Assignment getLineContentAssignment_3() { return cLineContentAssignment_3; }
+		
+		//InstructionLine
+		public RuleCall getLineContentInstructionLineParserRuleCall_3_0() { return cLineContentInstructionLineParserRuleCall_3_0; }
 	}
 	public class BlankLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.BlankLine");
@@ -150,6 +160,1094 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_1() { return cEndOfLineParserRuleCall_1; }
 	}
+	public class InstructionLineElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.InstructionLine");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cInstructionAbxInstructionParserRuleCall_0_0 = (RuleCall)cInstructionAssignment_0.eContents().get(0);
+		private final Assignment cInstructionAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cInstructionAdcInstructionParserRuleCall_1_0 = (RuleCall)cInstructionAssignment_1.eContents().get(0);
+		
+		///*
+		// * Definition of the list possible instructions
+		// */
+		//InstructionLine:
+		//    instruction = AbxInstruction |
+		//    instruction = AdcInstruction
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = AbxInstruction |
+		//instruction = AdcInstruction
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//instruction = AbxInstruction
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//AbxInstruction
+		public RuleCall getInstructionAbxInstructionParserRuleCall_0_0() { return cInstructionAbxInstructionParserRuleCall_0_0; }
+		
+		//instruction = AdcInstruction
+		public Assignment getInstructionAssignment_1() { return cInstructionAssignment_1; }
+		
+		//AdcInstruction
+		public RuleCall getInstructionAdcInstructionParserRuleCall_1_0() { return cInstructionAdcInstructionParserRuleCall_1_0; }
+	}
+	public class AdcInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AdcInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cInstructionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cInstructionAlternatives_2_0 = (Alternatives)cInstructionAssignment_2.eContents().get(0);
+		private final Keyword cInstructionADCAKeyword_2_0_0 = (Keyword)cInstructionAlternatives_2_0.eContents().get(0);
+		private final Keyword cInstructionADCBKeyword_2_0_1 = (Keyword)cInstructionAlternatives_2_0.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Assignment cOperandAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Alternatives cOperandAlternatives_4_0 = (Alternatives)cOperandAssignment_4.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_4_0_0 = (RuleCall)cOperandAlternatives_4_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_4_0_1 = (RuleCall)cOperandAlternatives_4_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_4_0_2 = (RuleCall)cOperandAlternatives_4_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_4_0_3 = (RuleCall)cOperandAlternatives_4_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_4_0_4 = (RuleCall)cOperandAlternatives_4_0.eContents().get(4);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final RuleCall cWSTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
+		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0 = (RuleCall)cCommentAssignment_5_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		
+		///*
+		// * ADC
+		// *
+		// * Add with Carry into Register
+		// * Source Form        : ADCA P; ADCB P
+		// * Operation        : R'*-R + M + C
+		// * Condition Codes    : H - The Half-Carry flag is set if a carry into bit 4 occurred; cleared otherwise.
+		// *                       N - The Negative flag is set equal to the new value of bit 7 of the accumulator.
+		// *                       Z - The Zero flag is set if the new accumulator value is zero; cleared otherwise.
+		// *                    V - The Overflow flag is set if an overflow occurred; cleared otherwise.
+		// *                       C - The Carry flag is set if a carry out of bit 7 occurred; cleared otherwise.
+		// * Description        : Add the 8-bit unsigned value in accumulator B into index register X.
+		// * Addressing Mode    : Inherent
+		// */
+		//AdcInstruction:
+		//    (name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))
+		//    WS operand = (
+		//        ImmediatOperand |
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    WS? EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))
+		//WS operand = (
+		//    ImmediatOperand |
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//WS? EndOfLine
+		public Group getGroup() { return cGroup; }
+		
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(instruction = ('ADCA' | 'ADCB'))
+		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
+		
+		//('ADCA' | 'ADCB')
+		public Alternatives getInstructionAlternatives_2_0() { return cInstructionAlternatives_2_0; }
+		
+		//'ADCA'
+		public Keyword getInstructionADCAKeyword_2_0_0() { return cInstructionADCAKeyword_2_0_0; }
+		
+		//'ADCB'
+		public Keyword getInstructionADCBKeyword_2_0_1() { return cInstructionADCBKeyword_2_0_1; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
+		
+		//operand = (
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Assignment getOperandAssignment_4() { return cOperandAssignment_4; }
+		
+		//(
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_4_0() { return cOperandAlternatives_4_0; }
+		
+		//ImmediatOperand
+		public RuleCall getOperandImmediatOperandParserRuleCall_4_0_0() { return cOperandImmediatOperandParserRuleCall_4_0_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_4_0_1() { return cOperandDirectOperandParserRuleCall_4_0_1; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_4_0_2() { return cOperandIndexedOperandParserRuleCall_4_0_2; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_4_0_3() { return cOperandExtendedOperandParserRuleCall_4_0_3; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_4_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_4_0_4; }
+		
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_5_0() { return cWSTerminalRuleCall_5_0; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
+		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0; }
+		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_6() { return cWSTerminalRuleCall_6; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
+	}
+	public class AbxInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AbxInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cInstructionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cInstructionABXKeyword_2_0 = (Keyword)cInstructionAssignment_2.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		
+		///*
+		// * ABX
+		// *
+		// * Add Accumulator B into Index Register X
+		// * Source Form        : ABX
+		// * Operation        : IX'— IX + ACCB
+		// * Condition Codes    : Not affected.
+		// * Description        : Add the 8-bit unsigned value in accumulator B into index register X.
+		// * Addressing Mode    : Inherent
+		// */
+		//AbxInstruction:
+		//    (name = IdentifierValue)? WS (instruction = 'ABX')
+		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    WS? EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS (instruction = 'ABX')
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//WS? EndOfLine
+		public Group getGroup() { return cGroup; }
+		
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(instruction = 'ABX')
+		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
+		
+		//'ABX'
+		public Keyword getInstructionABXKeyword_2_0() { return cInstructionABXKeyword_2_0; }
+		
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
+		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
+		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class ExtendedIndirectOperandElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_1_0 = (RuleCall)cOperandAssignment_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		
+		///*
+		// * Extended Indirect
+		// *
+		// * In Extended Indirect addressing, the 16-bit value following the opcode is used to point to
+		// * two bytes in memory which are used as the effective address.
+		// *
+		// * Example:
+		// * LDA [$A012] loads A from the address stored at locations $A012 and $A013
+		// */
+		//ExtendedIndirectOperand:
+		//    '[' operand=Expression ']'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'[' operand=Expression ']'
+		public Group getGroup() { return cGroup; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		
+		//operand=Expression
+		public Assignment getOperandAssignment_1() { return cOperandAssignment_1; }
+		
+		//Expression
+		public RuleCall getOperandExpressionParserRuleCall_1_0() { return cOperandExpressionParserRuleCall_1_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_2() { return cRightSquareBracketKeyword_2; }
+	}
+	public class ExtendedOperandElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cGreaterThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_1_0 = (RuleCall)cOperandAssignment_1.eContents().get(0);
+		
+		///*
+		// * Extended
+		// *
+		// * In Extended addressing, the two bytes (16-bits) following the opcode are used as an absolute
+		// * memory address value.
+		// *
+		// * Example:
+		// * LDA $1000 load A from memory location 1000 hex
+		// */
+		//ExtendedOperand:
+		//    ('>'?) operand=Expression
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//('>'?) operand=Expression
+		public Group getGroup() { return cGroup; }
+		
+		//('>'?)
+		public Keyword getGreaterThanSignKeyword_0() { return cGreaterThanSignKeyword_0; }
+		
+		//operand=Expression
+		public Assignment getOperandAssignment_1() { return cOperandAssignment_1; }
+		
+		//Expression
+		public RuleCall getOperandExpressionParserRuleCall_1_0() { return cOperandExpressionParserRuleCall_1_0; }
+	}
+	public class DirectOperandElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLessThanSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_1_0 = (RuleCall)cOperandAssignment_1.eContents().get(0);
+		
+		////
+		////IndexedOperand:
+		////
+		////;
+		///*
+		// * Direct
+		// * In Direct addressing, the single byte (8-bits) following the opcode is used as a pointer into
+		// * a 256-byte window or "page" of memory. The page used for this purpose is the one currently
+		// * found in the Direct Page register. Thus, the effective address is a concatenation of the
+		// * Direct Page register as the most significant half and the byte following the opcode as the
+		// * least significant half.
+		// *
+		// * Example:
+		// * LDA $22 load A from memory location $XX22 where XX represents the contents of the DP register
+		// */
+		//DirectOperand:
+		//    '<' operand=Expression
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'<' operand=Expression
+		public Group getGroup() { return cGroup; }
+		
+		//'<'
+		public Keyword getLessThanSignKeyword_0() { return cLessThanSignKeyword_0; }
+		
+		//operand=Expression
+		public Assignment getOperandAssignment_1() { return cOperandAssignment_1; }
+		
+		//Expression
+		public RuleCall getOperandExpressionParserRuleCall_1_0() { return cOperandExpressionParserRuleCall_1_0; }
+	}
+	public class ImmediatOperandElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cNumberSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_1_0 = (RuleCall)cOperandAssignment_1.eContents().get(0);
+		
+		///*
+		// * Immediate
+		// * In Immediate addressing the byte or bytes following the opcode are the information being
+		// * addressed. These byte or bytes are specified as part of the instruction.
+		// *
+		// * Example:
+		// * LDA #8 load immediate value (8) into A
+		// */
+		//ImmediatOperand:
+		//    '#' operand=Expression
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'#' operand=Expression
+		public Group getGroup() { return cGroup; }
+		
+		//'#'
+		public Keyword getNumberSignKeyword_0() { return cNumberSignKeyword_0; }
+		
+		//operand=Expression
+		public Assignment getOperandAssignment_1() { return cOperandAssignment_1; }
+		
+		//Expression
+		public RuleCall getOperandExpressionParserRuleCall_1_0() { return cOperandExpressionParserRuleCall_1_0; }
+	}
+	public class IndexedOperandElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cModeAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cModeAutoIncDecModeParserRuleCall_0_0 = (RuleCall)cModeAssignment_0.eContents().get(0);
+		private final Assignment cModeAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cModeConstantIndexedModeParserRuleCall_1_0 = (RuleCall)cModeAssignment_1.eContents().get(0);
+		private final Assignment cModeAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cModeAccumulatorMovingModeParserRuleCall_2_0 = (RuleCall)cModeAssignment_2.eContents().get(0);
+		private final Assignment cModeAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cModeRelatifToPCModeParserRuleCall_3_0 = (RuleCall)cModeAssignment_3.eContents().get(0);
+		private final Assignment cModeAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cModeConstantIndexedMovingIndirectModeParserRuleCall_4_0 = (RuleCall)cModeAssignment_4.eContents().get(0);
+		private final Assignment cModeAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
+		private final RuleCall cModeAutoIncDecIndirectModeParserRuleCall_5_0 = (RuleCall)cModeAssignment_5.eContents().get(0);
+		private final Assignment cModeAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
+		private final RuleCall cModeAccumulatorMovingIndirectModeParserRuleCall_6_0 = (RuleCall)cModeAssignment_6.eContents().get(0);
+		private final Assignment cModeAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
+		private final RuleCall cModeRelatifToPCIndirectModeParserRuleCall_7_0 = (RuleCall)cModeAssignment_7.eContents().get(0);
+		
+		//IndexedOperand:
+		//    mode=AutoIncDecMode  |
+		//    mode=ConstantIndexedMode |
+		//    mode=AccumulatorMovingMode |
+		//    mode=RelatifToPCMode |
+		//    mode=ConstantIndexedMovingIndirectMode |
+		//    mode=AutoIncDecIndirectMode  |
+		//    mode=AccumulatorMovingIndirectMode |
+		//    mode=RelatifToPCIndirectMode
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//mode=AutoIncDecMode  |
+		//mode=ConstantIndexedMode |
+		//mode=AccumulatorMovingMode |
+		//mode=RelatifToPCMode |
+		//mode=ConstantIndexedMovingIndirectMode |
+		//mode=AutoIncDecIndirectMode  |
+		//mode=AccumulatorMovingIndirectMode |
+		//mode=RelatifToPCIndirectMode
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//mode=AutoIncDecMode
+		public Assignment getModeAssignment_0() { return cModeAssignment_0; }
+		
+		//AutoIncDecMode
+		public RuleCall getModeAutoIncDecModeParserRuleCall_0_0() { return cModeAutoIncDecModeParserRuleCall_0_0; }
+		
+		//mode=ConstantIndexedMode
+		public Assignment getModeAssignment_1() { return cModeAssignment_1; }
+		
+		//ConstantIndexedMode
+		public RuleCall getModeConstantIndexedModeParserRuleCall_1_0() { return cModeConstantIndexedModeParserRuleCall_1_0; }
+		
+		//mode=AccumulatorMovingMode
+		public Assignment getModeAssignment_2() { return cModeAssignment_2; }
+		
+		//AccumulatorMovingMode
+		public RuleCall getModeAccumulatorMovingModeParserRuleCall_2_0() { return cModeAccumulatorMovingModeParserRuleCall_2_0; }
+		
+		//mode=RelatifToPCMode
+		public Assignment getModeAssignment_3() { return cModeAssignment_3; }
+		
+		//RelatifToPCMode
+		public RuleCall getModeRelatifToPCModeParserRuleCall_3_0() { return cModeRelatifToPCModeParserRuleCall_3_0; }
+		
+		//mode=ConstantIndexedMovingIndirectMode
+		public Assignment getModeAssignment_4() { return cModeAssignment_4; }
+		
+		//ConstantIndexedMovingIndirectMode
+		public RuleCall getModeConstantIndexedMovingIndirectModeParserRuleCall_4_0() { return cModeConstantIndexedMovingIndirectModeParserRuleCall_4_0; }
+		
+		//mode=AutoIncDecIndirectMode
+		public Assignment getModeAssignment_5() { return cModeAssignment_5; }
+		
+		//AutoIncDecIndirectMode
+		public RuleCall getModeAutoIncDecIndirectModeParserRuleCall_5_0() { return cModeAutoIncDecIndirectModeParserRuleCall_5_0; }
+		
+		//mode=AccumulatorMovingIndirectMode
+		public Assignment getModeAssignment_6() { return cModeAssignment_6; }
+		
+		//AccumulatorMovingIndirectMode
+		public RuleCall getModeAccumulatorMovingIndirectModeParserRuleCall_6_0() { return cModeAccumulatorMovingIndirectModeParserRuleCall_6_0; }
+		
+		//mode=RelatifToPCIndirectMode
+		public Assignment getModeAssignment_7() { return cModeAssignment_7; }
+		
+		//RelatifToPCIndirectMode
+		public RuleCall getModeRelatifToPCIndirectModeParserRuleCall_7_0() { return cModeRelatifToPCIndirectModeParserRuleCall_7_0; }
+	}
+	public class ConstantIndexedModeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ConstantIndexedMode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDeplacementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDeplacementNumericalValueParserRuleCall_0_0 = (RuleCall)cDeplacementAssignment_0.eContents().get(0);
+		private final Keyword cCommaKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cRegisterAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cRegisterAlternatives_2_0 = (Alternatives)cRegisterAssignment_2.eContents().get(0);
+		private final Keyword cRegisterSKeyword_2_0_0 = (Keyword)cRegisterAlternatives_2_0.eContents().get(0);
+		private final Keyword cRegisterUKeyword_2_0_1 = (Keyword)cRegisterAlternatives_2_0.eContents().get(1);
+		private final Keyword cRegisterXKeyword_2_0_2 = (Keyword)cRegisterAlternatives_2_0.eContents().get(2);
+		private final Keyword cRegisterYKeyword_2_0_3 = (Keyword)cRegisterAlternatives_2_0.eContents().get(3);
+		
+		//ConstantIndexedMode:
+		//    deplacement=NumericalValue?
+		//    ','
+		//    register=('S' | 'U' | 'X' | 'Y')
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//deplacement=NumericalValue?
+		//','
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Group getGroup() { return cGroup; }
+		
+		//deplacement=NumericalValue?
+		public Assignment getDeplacementAssignment_0() { return cDeplacementAssignment_0; }
+		
+		//NumericalValue
+		public RuleCall getDeplacementNumericalValueParserRuleCall_0_0() { return cDeplacementNumericalValueParserRuleCall_0_0; }
+		
+		//','
+		public Keyword getCommaKeyword_1() { return cCommaKeyword_1; }
+		
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Assignment getRegisterAssignment_2() { return cRegisterAssignment_2; }
+		
+		//('S' | 'U' | 'X' | 'Y')
+		public Alternatives getRegisterAlternatives_2_0() { return cRegisterAlternatives_2_0; }
+		
+		//'S'
+		public Keyword getRegisterSKeyword_2_0_0() { return cRegisterSKeyword_2_0_0; }
+		
+		//'U'
+		public Keyword getRegisterUKeyword_2_0_1() { return cRegisterUKeyword_2_0_1; }
+		
+		//'X'
+		public Keyword getRegisterXKeyword_2_0_2() { return cRegisterXKeyword_2_0_2; }
+		
+		//'Y'
+		public Keyword getRegisterYKeyword_2_0_3() { return cRegisterYKeyword_2_0_3; }
+	}
+	public class ConstantIndexedMovingIndirectModeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ConstantIndexedMovingIndirectMode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cDeplacementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDeplacementNumericalValueParserRuleCall_1_0 = (RuleCall)cDeplacementAssignment_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cRegisterAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Alternatives cRegisterAlternatives_3_0 = (Alternatives)cRegisterAssignment_3.eContents().get(0);
+		private final Keyword cRegisterSKeyword_3_0_0 = (Keyword)cRegisterAlternatives_3_0.eContents().get(0);
+		private final Keyword cRegisterUKeyword_3_0_1 = (Keyword)cRegisterAlternatives_3_0.eContents().get(1);
+		private final Keyword cRegisterXKeyword_3_0_2 = (Keyword)cRegisterAlternatives_3_0.eContents().get(2);
+		private final Keyword cRegisterYKeyword_3_0_3 = (Keyword)cRegisterAlternatives_3_0.eContents().get(3);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//ConstantIndexedMovingIndirectMode:
+		//    '['
+		//    deplacement=NumericalValue?
+		//    ','
+		//    register=('S' | 'U' | 'X' | 'Y')
+		//    ']'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'['
+		//deplacement=NumericalValue?
+		//','
+		//register=('S' | 'U' | 'X' | 'Y')
+		//']'
+		public Group getGroup() { return cGroup; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		
+		//deplacement=NumericalValue?
+		public Assignment getDeplacementAssignment_1() { return cDeplacementAssignment_1; }
+		
+		//NumericalValue
+		public RuleCall getDeplacementNumericalValueParserRuleCall_1_0() { return cDeplacementNumericalValueParserRuleCall_1_0; }
+		
+		//','
+		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+		
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Assignment getRegisterAssignment_3() { return cRegisterAssignment_3; }
+		
+		//('S' | 'U' | 'X' | 'Y')
+		public Alternatives getRegisterAlternatives_3_0() { return cRegisterAlternatives_3_0; }
+		
+		//'S'
+		public Keyword getRegisterSKeyword_3_0_0() { return cRegisterSKeyword_3_0_0; }
+		
+		//'U'
+		public Keyword getRegisterUKeyword_3_0_1() { return cRegisterUKeyword_3_0_1; }
+		
+		//'X'
+		public Keyword getRegisterXKeyword_3_0_2() { return cRegisterXKeyword_3_0_2; }
+		
+		//'Y'
+		public Keyword getRegisterYKeyword_3_0_3() { return cRegisterYKeyword_3_0_3; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+	}
+	public class AccumulatorMovingModeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AccumulatorMovingMode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDeplacementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cDeplacementAlternatives_0_0 = (Alternatives)cDeplacementAssignment_0.eContents().get(0);
+		private final Keyword cDeplacementAKeyword_0_0_0 = (Keyword)cDeplacementAlternatives_0_0.eContents().get(0);
+		private final Keyword cDeplacementBKeyword_0_0_1 = (Keyword)cDeplacementAlternatives_0_0.eContents().get(1);
+		private final Keyword cDeplacementDKeyword_0_0_2 = (Keyword)cDeplacementAlternatives_0_0.eContents().get(2);
+		private final Keyword cCommaKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cRegisterAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cRegisterAlternatives_2_0 = (Alternatives)cRegisterAssignment_2.eContents().get(0);
+		private final Keyword cRegisterSKeyword_2_0_0 = (Keyword)cRegisterAlternatives_2_0.eContents().get(0);
+		private final Keyword cRegisterUKeyword_2_0_1 = (Keyword)cRegisterAlternatives_2_0.eContents().get(1);
+		private final Keyword cRegisterXKeyword_2_0_2 = (Keyword)cRegisterAlternatives_2_0.eContents().get(2);
+		private final Keyword cRegisterYKeyword_2_0_3 = (Keyword)cRegisterAlternatives_2_0.eContents().get(3);
+		
+		//AccumulatorMovingMode:
+		//    deplacement=('A' | 'B' | 'D')
+		//    ','
+		//    register=('S' | 'U' | 'X' | 'Y')
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//deplacement=('A' | 'B' | 'D')
+		//','
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Group getGroup() { return cGroup; }
+		
+		//deplacement=('A' | 'B' | 'D')
+		public Assignment getDeplacementAssignment_0() { return cDeplacementAssignment_0; }
+		
+		//('A' | 'B' | 'D')
+		public Alternatives getDeplacementAlternatives_0_0() { return cDeplacementAlternatives_0_0; }
+		
+		//'A'
+		public Keyword getDeplacementAKeyword_0_0_0() { return cDeplacementAKeyword_0_0_0; }
+		
+		//'B'
+		public Keyword getDeplacementBKeyword_0_0_1() { return cDeplacementBKeyword_0_0_1; }
+		
+		//'D'
+		public Keyword getDeplacementDKeyword_0_0_2() { return cDeplacementDKeyword_0_0_2; }
+		
+		//','
+		public Keyword getCommaKeyword_1() { return cCommaKeyword_1; }
+		
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Assignment getRegisterAssignment_2() { return cRegisterAssignment_2; }
+		
+		//('S' | 'U' | 'X' | 'Y')
+		public Alternatives getRegisterAlternatives_2_0() { return cRegisterAlternatives_2_0; }
+		
+		//'S'
+		public Keyword getRegisterSKeyword_2_0_0() { return cRegisterSKeyword_2_0_0; }
+		
+		//'U'
+		public Keyword getRegisterUKeyword_2_0_1() { return cRegisterUKeyword_2_0_1; }
+		
+		//'X'
+		public Keyword getRegisterXKeyword_2_0_2() { return cRegisterXKeyword_2_0_2; }
+		
+		//'Y'
+		public Keyword getRegisterYKeyword_2_0_3() { return cRegisterYKeyword_2_0_3; }
+	}
+	public class AccumulatorMovingIndirectModeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AccumulatorMovingIndirectMode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cDeplacementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Alternatives cDeplacementAlternatives_1_0 = (Alternatives)cDeplacementAssignment_1.eContents().get(0);
+		private final Keyword cDeplacementAKeyword_1_0_0 = (Keyword)cDeplacementAlternatives_1_0.eContents().get(0);
+		private final Keyword cDeplacementBKeyword_1_0_1 = (Keyword)cDeplacementAlternatives_1_0.eContents().get(1);
+		private final Keyword cDeplacementDKeyword_1_0_2 = (Keyword)cDeplacementAlternatives_1_0.eContents().get(2);
+		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cRegisterAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Alternatives cRegisterAlternatives_3_0 = (Alternatives)cRegisterAssignment_3.eContents().get(0);
+		private final Keyword cRegisterSKeyword_3_0_0 = (Keyword)cRegisterAlternatives_3_0.eContents().get(0);
+		private final Keyword cRegisterUKeyword_3_0_1 = (Keyword)cRegisterAlternatives_3_0.eContents().get(1);
+		private final Keyword cRegisterXKeyword_3_0_2 = (Keyword)cRegisterAlternatives_3_0.eContents().get(2);
+		private final Keyword cRegisterYKeyword_3_0_3 = (Keyword)cRegisterAlternatives_3_0.eContents().get(3);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//AccumulatorMovingIndirectMode:
+		//    '['
+		//    deplacement=('A' | 'B' | 'D')
+		//    ','
+		//    register=('S' | 'U' | 'X' | 'Y')
+		//    ']'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'['
+		//deplacement=('A' | 'B' | 'D')
+		//','
+		//register=('S' | 'U' | 'X' | 'Y')
+		//']'
+		public Group getGroup() { return cGroup; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		
+		//deplacement=('A' | 'B' | 'D')
+		public Assignment getDeplacementAssignment_1() { return cDeplacementAssignment_1; }
+		
+		//('A' | 'B' | 'D')
+		public Alternatives getDeplacementAlternatives_1_0() { return cDeplacementAlternatives_1_0; }
+		
+		//'A'
+		public Keyword getDeplacementAKeyword_1_0_0() { return cDeplacementAKeyword_1_0_0; }
+		
+		//'B'
+		public Keyword getDeplacementBKeyword_1_0_1() { return cDeplacementBKeyword_1_0_1; }
+		
+		//'D'
+		public Keyword getDeplacementDKeyword_1_0_2() { return cDeplacementDKeyword_1_0_2; }
+		
+		//','
+		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+		
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Assignment getRegisterAssignment_3() { return cRegisterAssignment_3; }
+		
+		//('S' | 'U' | 'X' | 'Y')
+		public Alternatives getRegisterAlternatives_3_0() { return cRegisterAlternatives_3_0; }
+		
+		//'S'
+		public Keyword getRegisterSKeyword_3_0_0() { return cRegisterSKeyword_3_0_0; }
+		
+		//'U'
+		public Keyword getRegisterUKeyword_3_0_1() { return cRegisterUKeyword_3_0_1; }
+		
+		//'X'
+		public Keyword getRegisterXKeyword_3_0_2() { return cRegisterXKeyword_3_0_2; }
+		
+		//'Y'
+		public Keyword getRegisterYKeyword_3_0_3() { return cRegisterYKeyword_3_0_3; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+	}
+	public class AutoIncDecModeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AutoIncDecMode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDeplacementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDeplacementNumericalValueParserRuleCall_0_0 = (RuleCall)cDeplacementAssignment_0.eContents().get(0);
+		private final Keyword cCommaKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Alternatives cAlternatives_2_0_0 = (Alternatives)cGroup_2_0.eContents().get(0);
+		private final Assignment cDecrementAssignment_2_0_0_0 = (Assignment)cAlternatives_2_0_0.eContents().get(0);
+		private final Keyword cDecrementHyphenMinusKeyword_2_0_0_0_0 = (Keyword)cDecrementAssignment_2_0_0_0.eContents().get(0);
+		private final Assignment cDecrementAssignment_2_0_0_1 = (Assignment)cAlternatives_2_0_0.eContents().get(1);
+		private final Keyword cDecrementHyphenMinusHyphenMinusKeyword_2_0_0_1_0 = (Keyword)cDecrementAssignment_2_0_0_1.eContents().get(0);
+		private final Assignment cRegisterAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
+		private final Alternatives cRegisterAlternatives_2_0_1_0 = (Alternatives)cRegisterAssignment_2_0_1.eContents().get(0);
+		private final Keyword cRegisterSKeyword_2_0_1_0_0 = (Keyword)cRegisterAlternatives_2_0_1_0.eContents().get(0);
+		private final Keyword cRegisterUKeyword_2_0_1_0_1 = (Keyword)cRegisterAlternatives_2_0_1_0.eContents().get(1);
+		private final Keyword cRegisterXKeyword_2_0_1_0_2 = (Keyword)cRegisterAlternatives_2_0_1_0.eContents().get(2);
+		private final Keyword cRegisterYKeyword_2_0_1_0_3 = (Keyword)cRegisterAlternatives_2_0_1_0.eContents().get(3);
+		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
+		private final Assignment cRegisterAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
+		private final Alternatives cRegisterAlternatives_2_1_0_0 = (Alternatives)cRegisterAssignment_2_1_0.eContents().get(0);
+		private final Keyword cRegisterSKeyword_2_1_0_0_0 = (Keyword)cRegisterAlternatives_2_1_0_0.eContents().get(0);
+		private final Keyword cRegisterUKeyword_2_1_0_0_1 = (Keyword)cRegisterAlternatives_2_1_0_0.eContents().get(1);
+		private final Keyword cRegisterXKeyword_2_1_0_0_2 = (Keyword)cRegisterAlternatives_2_1_0_0.eContents().get(2);
+		private final Keyword cRegisterYKeyword_2_1_0_0_3 = (Keyword)cRegisterAlternatives_2_1_0_0.eContents().get(3);
+		private final Alternatives cAlternatives_2_1_1 = (Alternatives)cGroup_2_1.eContents().get(1);
+		private final Assignment cIncrementAssignment_2_1_1_0 = (Assignment)cAlternatives_2_1_1.eContents().get(0);
+		private final Keyword cIncrementPlusSignKeyword_2_1_1_0_0 = (Keyword)cIncrementAssignment_2_1_1_0.eContents().get(0);
+		private final Assignment cIncrementAssignment_2_1_1_1 = (Assignment)cAlternatives_2_1_1.eContents().get(1);
+		private final Keyword cIncrementPlusSignPlusSignKeyword_2_1_1_1_0 = (Keyword)cIncrementAssignment_2_1_1_1.eContents().get(0);
+		
+		//AutoIncDecMode:
+		//    deplacement=NumericalValue?
+		//    ','
+		//    ((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+		//     register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//deplacement=NumericalValue?
+		//','
+		//((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+		// register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		public Group getGroup() { return cGroup; }
+		
+		//deplacement=NumericalValue?
+		public Assignment getDeplacementAssignment_0() { return cDeplacementAssignment_0; }
+		
+		//NumericalValue
+		public RuleCall getDeplacementNumericalValueParserRuleCall_0_0() { return cDeplacementNumericalValueParserRuleCall_0_0; }
+		
+		//','
+		public Keyword getCommaKeyword_1() { return cCommaKeyword_1; }
+		
+		//((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+		// register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//(decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y')
+		public Group getGroup_2_0() { return cGroup_2_0; }
+		
+		//(decrement='-' | decrement='--')
+		public Alternatives getAlternatives_2_0_0() { return cAlternatives_2_0_0; }
+		
+		//decrement='-'
+		public Assignment getDecrementAssignment_2_0_0_0() { return cDecrementAssignment_2_0_0_0; }
+		
+		//'-'
+		public Keyword getDecrementHyphenMinusKeyword_2_0_0_0_0() { return cDecrementHyphenMinusKeyword_2_0_0_0_0; }
+		
+		//decrement='--'
+		public Assignment getDecrementAssignment_2_0_0_1() { return cDecrementAssignment_2_0_0_1; }
+		
+		//'--'
+		public Keyword getDecrementHyphenMinusHyphenMinusKeyword_2_0_0_1_0() { return cDecrementHyphenMinusHyphenMinusKeyword_2_0_0_1_0; }
+		
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Assignment getRegisterAssignment_2_0_1() { return cRegisterAssignment_2_0_1; }
+		
+		//('S' | 'U' | 'X' | 'Y')
+		public Alternatives getRegisterAlternatives_2_0_1_0() { return cRegisterAlternatives_2_0_1_0; }
+		
+		//'S'
+		public Keyword getRegisterSKeyword_2_0_1_0_0() { return cRegisterSKeyword_2_0_1_0_0; }
+		
+		//'U'
+		public Keyword getRegisterUKeyword_2_0_1_0_1() { return cRegisterUKeyword_2_0_1_0_1; }
+		
+		//'X'
+		public Keyword getRegisterXKeyword_2_0_1_0_2() { return cRegisterXKeyword_2_0_1_0_2; }
+		
+		//'Y'
+		public Keyword getRegisterYKeyword_2_0_1_0_3() { return cRegisterYKeyword_2_0_1_0_3; }
+		
+		//register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++')
+		public Group getGroup_2_1() { return cGroup_2_1; }
+		
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Assignment getRegisterAssignment_2_1_0() { return cRegisterAssignment_2_1_0; }
+		
+		//('S' | 'U' | 'X' | 'Y')
+		public Alternatives getRegisterAlternatives_2_1_0_0() { return cRegisterAlternatives_2_1_0_0; }
+		
+		//'S'
+		public Keyword getRegisterSKeyword_2_1_0_0_0() { return cRegisterSKeyword_2_1_0_0_0; }
+		
+		//'U'
+		public Keyword getRegisterUKeyword_2_1_0_0_1() { return cRegisterUKeyword_2_1_0_0_1; }
+		
+		//'X'
+		public Keyword getRegisterXKeyword_2_1_0_0_2() { return cRegisterXKeyword_2_1_0_0_2; }
+		
+		//'Y'
+		public Keyword getRegisterYKeyword_2_1_0_0_3() { return cRegisterYKeyword_2_1_0_0_3; }
+		
+		//(increment='+' | increment='++')
+		public Alternatives getAlternatives_2_1_1() { return cAlternatives_2_1_1; }
+		
+		//increment='+'
+		public Assignment getIncrementAssignment_2_1_1_0() { return cIncrementAssignment_2_1_1_0; }
+		
+		//'+'
+		public Keyword getIncrementPlusSignKeyword_2_1_1_0_0() { return cIncrementPlusSignKeyword_2_1_1_0_0; }
+		
+		//increment='++'
+		public Assignment getIncrementAssignment_2_1_1_1() { return cIncrementAssignment_2_1_1_1; }
+		
+		//'++'
+		public Keyword getIncrementPlusSignPlusSignKeyword_2_1_1_1_0() { return cIncrementPlusSignPlusSignKeyword_2_1_1_1_0; }
+	}
+	public class AutoIncDecIndirectModeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AutoIncDecIndirectMode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cDeplacementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDeplacementNumericalValueParserRuleCall_1_0 = (RuleCall)cDeplacementAssignment_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
+		private final Alternatives cAlternatives_3_0_0 = (Alternatives)cGroup_3_0.eContents().get(0);
+		private final Assignment cDecrementAssignment_3_0_0_0 = (Assignment)cAlternatives_3_0_0.eContents().get(0);
+		private final Keyword cDecrementHyphenMinusKeyword_3_0_0_0_0 = (Keyword)cDecrementAssignment_3_0_0_0.eContents().get(0);
+		private final Assignment cDecrementAssignment_3_0_0_1 = (Assignment)cAlternatives_3_0_0.eContents().get(1);
+		private final Keyword cDecrementHyphenMinusHyphenMinusKeyword_3_0_0_1_0 = (Keyword)cDecrementAssignment_3_0_0_1.eContents().get(0);
+		private final Assignment cRegisterAssignment_3_0_1 = (Assignment)cGroup_3_0.eContents().get(1);
+		private final Alternatives cRegisterAlternatives_3_0_1_0 = (Alternatives)cRegisterAssignment_3_0_1.eContents().get(0);
+		private final Keyword cRegisterSKeyword_3_0_1_0_0 = (Keyword)cRegisterAlternatives_3_0_1_0.eContents().get(0);
+		private final Keyword cRegisterUKeyword_3_0_1_0_1 = (Keyword)cRegisterAlternatives_3_0_1_0.eContents().get(1);
+		private final Keyword cRegisterXKeyword_3_0_1_0_2 = (Keyword)cRegisterAlternatives_3_0_1_0.eContents().get(2);
+		private final Keyword cRegisterYKeyword_3_0_1_0_3 = (Keyword)cRegisterAlternatives_3_0_1_0.eContents().get(3);
+		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
+		private final Assignment cRegisterAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
+		private final Alternatives cRegisterAlternatives_3_1_0_0 = (Alternatives)cRegisterAssignment_3_1_0.eContents().get(0);
+		private final Keyword cRegisterSKeyword_3_1_0_0_0 = (Keyword)cRegisterAlternatives_3_1_0_0.eContents().get(0);
+		private final Keyword cRegisterUKeyword_3_1_0_0_1 = (Keyword)cRegisterAlternatives_3_1_0_0.eContents().get(1);
+		private final Keyword cRegisterXKeyword_3_1_0_0_2 = (Keyword)cRegisterAlternatives_3_1_0_0.eContents().get(2);
+		private final Keyword cRegisterYKeyword_3_1_0_0_3 = (Keyword)cRegisterAlternatives_3_1_0_0.eContents().get(3);
+		private final Alternatives cAlternatives_3_1_1 = (Alternatives)cGroup_3_1.eContents().get(1);
+		private final Assignment cIncrementAssignment_3_1_1_0 = (Assignment)cAlternatives_3_1_1.eContents().get(0);
+		private final Keyword cIncrementPlusSignKeyword_3_1_1_0_0 = (Keyword)cIncrementAssignment_3_1_1_0.eContents().get(0);
+		private final Assignment cIncrementAssignment_3_1_1_1 = (Assignment)cAlternatives_3_1_1.eContents().get(1);
+		private final Keyword cIncrementPlusSignPlusSignKeyword_3_1_1_1_0 = (Keyword)cIncrementAssignment_3_1_1_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//AutoIncDecIndirectMode:
+		//    '['
+		//    deplacement=NumericalValue?
+		//    ','
+		//    ((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+		//     register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		//    ']'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'['
+		//deplacement=NumericalValue?
+		//','
+		//((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+		// register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		//']'
+		public Group getGroup() { return cGroup; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		
+		//deplacement=NumericalValue?
+		public Assignment getDeplacementAssignment_1() { return cDeplacementAssignment_1; }
+		
+		//NumericalValue
+		public RuleCall getDeplacementNumericalValueParserRuleCall_1_0() { return cDeplacementNumericalValueParserRuleCall_1_0; }
+		
+		//','
+		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+		
+		//((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+		// register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//(decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y')
+		public Group getGroup_3_0() { return cGroup_3_0; }
+		
+		//(decrement='-' | decrement='--')
+		public Alternatives getAlternatives_3_0_0() { return cAlternatives_3_0_0; }
+		
+		//decrement='-'
+		public Assignment getDecrementAssignment_3_0_0_0() { return cDecrementAssignment_3_0_0_0; }
+		
+		//'-'
+		public Keyword getDecrementHyphenMinusKeyword_3_0_0_0_0() { return cDecrementHyphenMinusKeyword_3_0_0_0_0; }
+		
+		//decrement='--'
+		public Assignment getDecrementAssignment_3_0_0_1() { return cDecrementAssignment_3_0_0_1; }
+		
+		//'--'
+		public Keyword getDecrementHyphenMinusHyphenMinusKeyword_3_0_0_1_0() { return cDecrementHyphenMinusHyphenMinusKeyword_3_0_0_1_0; }
+		
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Assignment getRegisterAssignment_3_0_1() { return cRegisterAssignment_3_0_1; }
+		
+		//('S' | 'U' | 'X' | 'Y')
+		public Alternatives getRegisterAlternatives_3_0_1_0() { return cRegisterAlternatives_3_0_1_0; }
+		
+		//'S'
+		public Keyword getRegisterSKeyword_3_0_1_0_0() { return cRegisterSKeyword_3_0_1_0_0; }
+		
+		//'U'
+		public Keyword getRegisterUKeyword_3_0_1_0_1() { return cRegisterUKeyword_3_0_1_0_1; }
+		
+		//'X'
+		public Keyword getRegisterXKeyword_3_0_1_0_2() { return cRegisterXKeyword_3_0_1_0_2; }
+		
+		//'Y'
+		public Keyword getRegisterYKeyword_3_0_1_0_3() { return cRegisterYKeyword_3_0_1_0_3; }
+		
+		//register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++')
+		public Group getGroup_3_1() { return cGroup_3_1; }
+		
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Assignment getRegisterAssignment_3_1_0() { return cRegisterAssignment_3_1_0; }
+		
+		//('S' | 'U' | 'X' | 'Y')
+		public Alternatives getRegisterAlternatives_3_1_0_0() { return cRegisterAlternatives_3_1_0_0; }
+		
+		//'S'
+		public Keyword getRegisterSKeyword_3_1_0_0_0() { return cRegisterSKeyword_3_1_0_0_0; }
+		
+		//'U'
+		public Keyword getRegisterUKeyword_3_1_0_0_1() { return cRegisterUKeyword_3_1_0_0_1; }
+		
+		//'X'
+		public Keyword getRegisterXKeyword_3_1_0_0_2() { return cRegisterXKeyword_3_1_0_0_2; }
+		
+		//'Y'
+		public Keyword getRegisterYKeyword_3_1_0_0_3() { return cRegisterYKeyword_3_1_0_0_3; }
+		
+		//(increment='+' | increment='++')
+		public Alternatives getAlternatives_3_1_1() { return cAlternatives_3_1_1; }
+		
+		//increment='+'
+		public Assignment getIncrementAssignment_3_1_1_0() { return cIncrementAssignment_3_1_1_0; }
+		
+		//'+'
+		public Keyword getIncrementPlusSignKeyword_3_1_1_0_0() { return cIncrementPlusSignKeyword_3_1_1_0_0; }
+		
+		//increment='++'
+		public Assignment getIncrementAssignment_3_1_1_1() { return cIncrementAssignment_3_1_1_1; }
+		
+		//'++'
+		public Keyword getIncrementPlusSignPlusSignKeyword_3_1_1_1_0() { return cIncrementPlusSignPlusSignKeyword_3_1_1_1_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+	}
+	public class RelatifToPCModeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RelatifToPCMode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDeplacementAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cDeplacementNumericalValueParserRuleCall_0_0 = (RuleCall)cDeplacementAssignment_0.eContents().get(0);
+		private final Keyword cCommaKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cRegisterAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cRegisterPCRKeyword_2_0 = (Keyword)cRegisterAssignment_2.eContents().get(0);
+		
+		//RelatifToPCMode:
+		//    deplacement=NumericalValue?
+		//    ','
+		//    (register='PCR' )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//deplacement=NumericalValue?
+		//','
+		//(register='PCR' )
+		public Group getGroup() { return cGroup; }
+		
+		//deplacement=NumericalValue?
+		public Assignment getDeplacementAssignment_0() { return cDeplacementAssignment_0; }
+		
+		//NumericalValue
+		public RuleCall getDeplacementNumericalValueParserRuleCall_0_0() { return cDeplacementNumericalValueParserRuleCall_0_0; }
+		
+		//','
+		public Keyword getCommaKeyword_1() { return cCommaKeyword_1; }
+		
+		//(register='PCR' )
+		public Assignment getRegisterAssignment_2() { return cRegisterAssignment_2; }
+		
+		//'PCR'
+		public Keyword getRegisterPCRKeyword_2_0() { return cRegisterPCRKeyword_2_0; }
+	}
+	public class RelatifToPCIndirectModeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RelatifToPCIndirectMode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cDeplacementAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cDeplacementNumericalValueParserRuleCall_1_0 = (RuleCall)cDeplacementAssignment_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cRegisterAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final Keyword cRegisterPCRKeyword_3_0 = (Keyword)cRegisterAssignment_3.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		
+		//RelatifToPCIndirectMode:
+		//    '['
+		//    deplacement=NumericalValue?
+		//    ','
+		//    (register='PCR' )
+		//    ']'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'['
+		//deplacement=NumericalValue?
+		//','
+		//(register='PCR' )
+		//']'
+		public Group getGroup() { return cGroup; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
+		
+		//deplacement=NumericalValue?
+		public Assignment getDeplacementAssignment_1() { return cDeplacementAssignment_1; }
+		
+		//NumericalValue
+		public RuleCall getDeplacementNumericalValueParserRuleCall_1_0() { return cDeplacementNumericalValueParserRuleCall_1_0; }
+		
+		//','
+		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
+		
+		//(register='PCR' )
+		public Assignment getRegisterAssignment_3() { return cRegisterAssignment_3; }
+		
+		//'PCR'
+		public Keyword getRegisterPCRKeyword_3_0() { return cRegisterPCRKeyword_3_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+	}
 	public class DirectiveLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DirectiveLine");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
@@ -188,7 +1286,6 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		///*
 		// * Definition of the list possible directives
-		// *     EQU
 		// */
 		//DirectiveLine:
 		//       directive = EquDirective
@@ -2470,6 +3567,76 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//')'
 		public Keyword getRightParenthesisKeyword_7_2() { return cRightParenthesisKeyword_7_2; }
 	}
+	public class NumericalValueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.NumericalValue");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cValueAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final RuleCall cValueDecimalValueParserRuleCall_0_0 = (RuleCall)cValueAssignment_0.eContents().get(0);
+		private final Assignment cValueAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
+		private final RuleCall cValueHexaDecimalValueParserRuleCall_1_0 = (RuleCall)cValueAssignment_1.eContents().get(0);
+		private final Assignment cValueAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cValueOctalValueParserRuleCall_2_0 = (RuleCall)cValueAssignment_2.eContents().get(0);
+		private final Assignment cValueAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
+		private final RuleCall cValueBinaryValueParserRuleCall_3_0 = (RuleCall)cValueAssignment_3.eContents().get(0);
+		private final Assignment cValueAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
+		private final RuleCall cValueCharacterValueParserRuleCall_4_0 = (RuleCall)cValueAssignment_4.eContents().get(0);
+		private final Assignment cValueAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
+		private final RuleCall cValueIdentifierValueParserRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
+		
+		//NumericalValue:
+		//            value=DecimalValue
+		//      |    value=HexaDecimalValue
+		//      |    value=OctalValue
+		//      |   value=BinaryValue
+		//      |   value=CharacterValue
+		//       |    value=IdentifierValue
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//      value=DecimalValue
+		//|    value=HexaDecimalValue
+		//|    value=OctalValue
+		//|   value=BinaryValue
+		//|   value=CharacterValue
+		// |    value=IdentifierValue
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//value=DecimalValue
+		public Assignment getValueAssignment_0() { return cValueAssignment_0; }
+		
+		//DecimalValue
+		public RuleCall getValueDecimalValueParserRuleCall_0_0() { return cValueDecimalValueParserRuleCall_0_0; }
+		
+		//value=HexaDecimalValue
+		public Assignment getValueAssignment_1() { return cValueAssignment_1; }
+		
+		//HexaDecimalValue
+		public RuleCall getValueHexaDecimalValueParserRuleCall_1_0() { return cValueHexaDecimalValueParserRuleCall_1_0; }
+		
+		//value=OctalValue
+		public Assignment getValueAssignment_2() { return cValueAssignment_2; }
+		
+		//OctalValue
+		public RuleCall getValueOctalValueParserRuleCall_2_0() { return cValueOctalValueParserRuleCall_2_0; }
+		
+		//value=BinaryValue
+		public Assignment getValueAssignment_3() { return cValueAssignment_3; }
+		
+		//BinaryValue
+		public RuleCall getValueBinaryValueParserRuleCall_3_0() { return cValueBinaryValueParserRuleCall_3_0; }
+		
+		//value=CharacterValue
+		public Assignment getValueAssignment_4() { return cValueAssignment_4; }
+		
+		//CharacterValue
+		public RuleCall getValueCharacterValueParserRuleCall_4_0() { return cValueCharacterValueParserRuleCall_4_0; }
+		
+		//value=IdentifierValue
+		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
+		
+		//IdentifierValue
+		public RuleCall getValueIdentifierValueParserRuleCall_5_0() { return cValueIdentifierValueParserRuleCall_5_0; }
+	}
 	public class IdentifierValueElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
 		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
@@ -2826,6 +3993,22 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final SourceLineElements pSourceLine;
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
+	private final InstructionLineElements pInstructionLine;
+	private final AdcInstructionElements pAdcInstruction;
+	private final AbxInstructionElements pAbxInstruction;
+	private final ExtendedIndirectOperandElements pExtendedIndirectOperand;
+	private final ExtendedOperandElements pExtendedOperand;
+	private final DirectOperandElements pDirectOperand;
+	private final ImmediatOperandElements pImmediatOperand;
+	private final IndexedOperandElements pIndexedOperand;
+	private final ConstantIndexedModeElements pConstantIndexedMode;
+	private final ConstantIndexedMovingIndirectModeElements pConstantIndexedMovingIndirectMode;
+	private final AccumulatorMovingModeElements pAccumulatorMovingMode;
+	private final AccumulatorMovingIndirectModeElements pAccumulatorMovingIndirectMode;
+	private final AutoIncDecModeElements pAutoIncDecMode;
+	private final AutoIncDecIndirectModeElements pAutoIncDecIndirectMode;
+	private final RelatifToPCModeElements pRelatifToPCMode;
+	private final RelatifToPCIndirectModeElements pRelatifToPCIndirectMode;
 	private final DirectiveLineElements pDirectiveLine;
 	private final FccDirectiveElements pFccDirective;
 	private final RegDirectiveElements pRegDirective;
@@ -2856,6 +4039,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final OrElements pOr;
 	private final XorElements pXor;
 	private final PrimaryElements pPrimary;
+	private final NumericalValueElements pNumericalValue;
 	private final IdentifierValueElements pIdentifierValue;
 	private final StringValueElements pStringValue;
 	private final DecimalValueElements pDecimalValue;
@@ -2887,6 +4071,22 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pSourceLine = new SourceLineElements();
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
+		this.pInstructionLine = new InstructionLineElements();
+		this.pAdcInstruction = new AdcInstructionElements();
+		this.pAbxInstruction = new AbxInstructionElements();
+		this.pExtendedIndirectOperand = new ExtendedIndirectOperandElements();
+		this.pExtendedOperand = new ExtendedOperandElements();
+		this.pDirectOperand = new DirectOperandElements();
+		this.pImmediatOperand = new ImmediatOperandElements();
+		this.pIndexedOperand = new IndexedOperandElements();
+		this.pConstantIndexedMode = new ConstantIndexedModeElements();
+		this.pConstantIndexedMovingIndirectMode = new ConstantIndexedMovingIndirectModeElements();
+		this.pAccumulatorMovingMode = new AccumulatorMovingModeElements();
+		this.pAccumulatorMovingIndirectMode = new AccumulatorMovingIndirectModeElements();
+		this.pAutoIncDecMode = new AutoIncDecModeElements();
+		this.pAutoIncDecIndirectMode = new AutoIncDecIndirectModeElements();
+		this.pRelatifToPCMode = new RelatifToPCModeElements();
+		this.pRelatifToPCIndirectMode = new RelatifToPCIndirectModeElements();
 		this.pDirectiveLine = new DirectiveLineElements();
 		this.pFccDirective = new FccDirectiveElements();
 		this.pRegDirective = new RegDirectiveElements();
@@ -2917,6 +4117,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pOr = new OrElements();
 		this.pXor = new XorElements();
 		this.pPrimary = new PrimaryElements();
+		this.pNumericalValue = new NumericalValueElements();
 		this.pIdentifierValue = new IdentifierValueElements();
 		this.pStringValue = new StringValueElements();
 		this.pDecimalValue = new DecimalValueElements();
@@ -2986,6 +4187,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//          (lineContent = BlankLine)
 	//        | (lineContent = CommentLine)
 	//        | (lineContent = DirectiveLine)
+	//        | (lineContent = InstructionLine)
 	//    )
 	//;
 	public SourceLineElements getSourceLineAccess() {
@@ -3026,8 +4228,296 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	///*
+	// * Definition of the list possible instructions
+	// */
+	//InstructionLine:
+	//    instruction = AbxInstruction |
+	//    instruction = AdcInstruction
+	//;
+	public InstructionLineElements getInstructionLineAccess() {
+		return pInstructionLine;
+	}
+	
+	public ParserRule getInstructionLineRule() {
+		return getInstructionLineAccess().getRule();
+	}
+	
+	///*
+	// * ADC
+	// *
+	// * Add with Carry into Register
+	// * Source Form        : ADCA P; ADCB P
+	// * Operation        : R'*-R + M + C
+	// * Condition Codes    : H - The Half-Carry flag is set if a carry into bit 4 occurred; cleared otherwise.
+	// *                       N - The Negative flag is set equal to the new value of bit 7 of the accumulator.
+	// *                       Z - The Zero flag is set if the new accumulator value is zero; cleared otherwise.
+	// *                    V - The Overflow flag is set if an overflow occurred; cleared otherwise.
+	// *                       C - The Carry flag is set if a carry out of bit 7 occurred; cleared otherwise.
+	// * Description        : Add the 8-bit unsigned value in accumulator B into index register X.
+	// * Addressing Mode    : Inherent
+	// */
+	//AdcInstruction:
+	//    (name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))
+	//    WS operand = (
+	//        ImmediatOperand |
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
+	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    WS? EndOfLine
+	//;
+	public AdcInstructionElements getAdcInstructionAccess() {
+		return pAdcInstruction;
+	}
+	
+	public ParserRule getAdcInstructionRule() {
+		return getAdcInstructionAccess().getRule();
+	}
+	
+	///*
+	// * ABX
+	// *
+	// * Add Accumulator B into Index Register X
+	// * Source Form        : ABX
+	// * Operation        : IX'— IX + ACCB
+	// * Condition Codes    : Not affected.
+	// * Description        : Add the 8-bit unsigned value in accumulator B into index register X.
+	// * Addressing Mode    : Inherent
+	// */
+	//AbxInstruction:
+	//    (name = IdentifierValue)? WS (instruction = 'ABX')
+	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    WS? EndOfLine
+	//;
+	public AbxInstructionElements getAbxInstructionAccess() {
+		return pAbxInstruction;
+	}
+	
+	public ParserRule getAbxInstructionRule() {
+		return getAbxInstructionAccess().getRule();
+	}
+	
+	///*
+	// * Extended Indirect
+	// *
+	// * In Extended Indirect addressing, the 16-bit value following the opcode is used to point to
+	// * two bytes in memory which are used as the effective address.
+	// *
+	// * Example:
+	// * LDA [$A012] loads A from the address stored at locations $A012 and $A013
+	// */
+	//ExtendedIndirectOperand:
+	//    '[' operand=Expression ']'
+	//;
+	public ExtendedIndirectOperandElements getExtendedIndirectOperandAccess() {
+		return pExtendedIndirectOperand;
+	}
+	
+	public ParserRule getExtendedIndirectOperandRule() {
+		return getExtendedIndirectOperandAccess().getRule();
+	}
+	
+	///*
+	// * Extended
+	// *
+	// * In Extended addressing, the two bytes (16-bits) following the opcode are used as an absolute
+	// * memory address value.
+	// *
+	// * Example:
+	// * LDA $1000 load A from memory location 1000 hex
+	// */
+	//ExtendedOperand:
+	//    ('>'?) operand=Expression
+	//;
+	public ExtendedOperandElements getExtendedOperandAccess() {
+		return pExtendedOperand;
+	}
+	
+	public ParserRule getExtendedOperandRule() {
+		return getExtendedOperandAccess().getRule();
+	}
+	
+	////
+	////IndexedOperand:
+	////
+	////;
+	///*
+	// * Direct
+	// * In Direct addressing, the single byte (8-bits) following the opcode is used as a pointer into
+	// * a 256-byte window or "page" of memory. The page used for this purpose is the one currently
+	// * found in the Direct Page register. Thus, the effective address is a concatenation of the
+	// * Direct Page register as the most significant half and the byte following the opcode as the
+	// * least significant half.
+	// *
+	// * Example:
+	// * LDA $22 load A from memory location $XX22 where XX represents the contents of the DP register
+	// */
+	//DirectOperand:
+	//    '<' operand=Expression
+	//;
+	public DirectOperandElements getDirectOperandAccess() {
+		return pDirectOperand;
+	}
+	
+	public ParserRule getDirectOperandRule() {
+		return getDirectOperandAccess().getRule();
+	}
+	
+	///*
+	// * Immediate
+	// * In Immediate addressing the byte or bytes following the opcode are the information being
+	// * addressed. These byte or bytes are specified as part of the instruction.
+	// *
+	// * Example:
+	// * LDA #8 load immediate value (8) into A
+	// */
+	//ImmediatOperand:
+	//    '#' operand=Expression
+	//;
+	public ImmediatOperandElements getImmediatOperandAccess() {
+		return pImmediatOperand;
+	}
+	
+	public ParserRule getImmediatOperandRule() {
+		return getImmediatOperandAccess().getRule();
+	}
+	
+	//IndexedOperand:
+	//    mode=AutoIncDecMode  |
+	//    mode=ConstantIndexedMode |
+	//    mode=AccumulatorMovingMode |
+	//    mode=RelatifToPCMode |
+	//    mode=ConstantIndexedMovingIndirectMode |
+	//    mode=AutoIncDecIndirectMode  |
+	//    mode=AccumulatorMovingIndirectMode |
+	//    mode=RelatifToPCIndirectMode
+	//;
+	public IndexedOperandElements getIndexedOperandAccess() {
+		return pIndexedOperand;
+	}
+	
+	public ParserRule getIndexedOperandRule() {
+		return getIndexedOperandAccess().getRule();
+	}
+	
+	//ConstantIndexedMode:
+	//    deplacement=NumericalValue?
+	//    ','
+	//    register=('S' | 'U' | 'X' | 'Y')
+	//;
+	public ConstantIndexedModeElements getConstantIndexedModeAccess() {
+		return pConstantIndexedMode;
+	}
+	
+	public ParserRule getConstantIndexedModeRule() {
+		return getConstantIndexedModeAccess().getRule();
+	}
+	
+	//ConstantIndexedMovingIndirectMode:
+	//    '['
+	//    deplacement=NumericalValue?
+	//    ','
+	//    register=('S' | 'U' | 'X' | 'Y')
+	//    ']'
+	//;
+	public ConstantIndexedMovingIndirectModeElements getConstantIndexedMovingIndirectModeAccess() {
+		return pConstantIndexedMovingIndirectMode;
+	}
+	
+	public ParserRule getConstantIndexedMovingIndirectModeRule() {
+		return getConstantIndexedMovingIndirectModeAccess().getRule();
+	}
+	
+	//AccumulatorMovingMode:
+	//    deplacement=('A' | 'B' | 'D')
+	//    ','
+	//    register=('S' | 'U' | 'X' | 'Y')
+	//;
+	public AccumulatorMovingModeElements getAccumulatorMovingModeAccess() {
+		return pAccumulatorMovingMode;
+	}
+	
+	public ParserRule getAccumulatorMovingModeRule() {
+		return getAccumulatorMovingModeAccess().getRule();
+	}
+	
+	//AccumulatorMovingIndirectMode:
+	//    '['
+	//    deplacement=('A' | 'B' | 'D')
+	//    ','
+	//    register=('S' | 'U' | 'X' | 'Y')
+	//    ']'
+	//;
+	public AccumulatorMovingIndirectModeElements getAccumulatorMovingIndirectModeAccess() {
+		return pAccumulatorMovingIndirectMode;
+	}
+	
+	public ParserRule getAccumulatorMovingIndirectModeRule() {
+		return getAccumulatorMovingIndirectModeAccess().getRule();
+	}
+	
+	//AutoIncDecMode:
+	//    deplacement=NumericalValue?
+	//    ','
+	//    ((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+	//     register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+	//;
+	public AutoIncDecModeElements getAutoIncDecModeAccess() {
+		return pAutoIncDecMode;
+	}
+	
+	public ParserRule getAutoIncDecModeRule() {
+		return getAutoIncDecModeAccess().getRule();
+	}
+	
+	//AutoIncDecIndirectMode:
+	//    '['
+	//    deplacement=NumericalValue?
+	//    ','
+	//    ((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+	//     register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+	//    ']'
+	//;
+	public AutoIncDecIndirectModeElements getAutoIncDecIndirectModeAccess() {
+		return pAutoIncDecIndirectMode;
+	}
+	
+	public ParserRule getAutoIncDecIndirectModeRule() {
+		return getAutoIncDecIndirectModeAccess().getRule();
+	}
+	
+	//RelatifToPCMode:
+	//    deplacement=NumericalValue?
+	//    ','
+	//    (register='PCR' )
+	//;
+	public RelatifToPCModeElements getRelatifToPCModeAccess() {
+		return pRelatifToPCMode;
+	}
+	
+	public ParserRule getRelatifToPCModeRule() {
+		return getRelatifToPCModeAccess().getRule();
+	}
+	
+	//RelatifToPCIndirectMode:
+	//    '['
+	//    deplacement=NumericalValue?
+	//    ','
+	//    (register='PCR' )
+	//    ']'
+	//;
+	public RelatifToPCIndirectModeElements getRelatifToPCIndirectModeAccess() {
+		return pRelatifToPCIndirectMode;
+	}
+	
+	public ParserRule getRelatifToPCIndirectModeRule() {
+		return getRelatifToPCIndirectModeAccess().getRule();
+	}
+	
+	///*
 	// * Definition of the list possible directives
-	// *     EQU
 	// */
 	//DirectiveLine:
 	//       directive = EquDirective
@@ -3650,6 +5140,22 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getPrimaryRule() {
 		return getPrimaryAccess().getRule();
+	}
+	
+	//NumericalValue:
+	//            value=DecimalValue
+	//      |    value=HexaDecimalValue
+	//      |    value=OctalValue
+	//      |   value=BinaryValue
+	//      |   value=CharacterValue
+	//       |    value=IdentifierValue
+	//;
+	public NumericalValueElements getNumericalValueAccess() {
+		return pNumericalValue;
+	}
+	
+	public ParserRule getNumericalValueRule() {
+		return getNumericalValueAccess().getRule();
 	}
 	
 	//IdentifierValue:

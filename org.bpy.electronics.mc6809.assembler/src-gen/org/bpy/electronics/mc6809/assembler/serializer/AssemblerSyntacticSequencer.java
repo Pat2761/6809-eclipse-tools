@@ -20,9 +20,12 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AssemblerGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_AbxInstruction_WSTerminalRuleCall_4_q;
+	protected AbstractElementAlias match_AdcInstruction_WSTerminalRuleCall_6_q;
 	protected AbstractElementAlias match_BszDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_EndDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_EquDirective_WSTerminalRuleCall_5_q;
+	protected AbstractElementAlias match_ExtendedOperand_GreaterThanSignKeyword_0_q;
 	protected AbstractElementAlias match_FailDirective_WSTerminalRuleCall_3_0_q;
 	protected AbstractElementAlias match_FcbDirective_WSTerminalRuleCall_5_q;
 	protected AbstractElementAlias match_FccDirective_WSTerminalRuleCall_5_q;
@@ -41,9 +44,12 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AssemblerGrammarAccess) access;
+		match_AbxInstruction_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getAbxInstructionAccess().getWSTerminalRuleCall_4());
+		match_AdcInstruction_WSTerminalRuleCall_6_q = new TokenAlias(false, true, grammarAccess.getAdcInstructionAccess().getWSTerminalRuleCall_6());
 		match_BszDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getBszDirectiveAccess().getWSTerminalRuleCall_5());
 		match_EndDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_5());
 		match_EquDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_5());
+		match_ExtendedOperand_GreaterThanSignKeyword_0_q = new TokenAlias(false, true, grammarAccess.getExtendedOperandAccess().getGreaterThanSignKeyword_0());
 		match_FailDirective_WSTerminalRuleCall_3_0_q = new TokenAlias(false, true, grammarAccess.getFailDirectiveAccess().getWSTerminalRuleCall_3_0());
 		match_FcbDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getFcbDirectiveAccess().getWSTerminalRuleCall_5());
 		match_FccDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getFccDirectiveAccess().getWSTerminalRuleCall_5());
@@ -93,12 +99,18 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_BszDirective_WSTerminalRuleCall_5_q.equals(syntax))
+			if (match_AbxInstruction_WSTerminalRuleCall_4_q.equals(syntax))
+				emit_AbxInstruction_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_AdcInstruction_WSTerminalRuleCall_6_q.equals(syntax))
+				emit_AdcInstruction_WSTerminalRuleCall_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_BszDirective_WSTerminalRuleCall_5_q.equals(syntax))
 				emit_BszDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EndDirective_WSTerminalRuleCall_5_q.equals(syntax))
 				emit_EndDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_EquDirective_WSTerminalRuleCall_5_q.equals(syntax))
 				emit_EquDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_ExtendedOperand_GreaterThanSignKeyword_0_q.equals(syntax))
+				emit_ExtendedOperand_GreaterThanSignKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FailDirective_WSTerminalRuleCall_3_0_q.equals(syntax))
 				emit_FailDirective_WSTerminalRuleCall_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_FcbDirective_WSTerminalRuleCall_5_q.equals(syntax))
@@ -131,6 +143,40 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
+	 *     instruction='ABX' (ambiguity) EndOfLine (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_AbxInstruction_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
+	 *     operand=DirectOperand (ambiguity) EndOfLine (rule end)
+	 *     operand=ExtendedIndirectOperand (ambiguity) EndOfLine (rule end)
+	 *     operand=ExtendedOperand (ambiguity) EndOfLine (rule end)
+	 *     operand=ImmediatOperand (ambiguity) EndOfLine (rule end)
+	 *     operand=IndexedOperand (ambiguity) EndOfLine (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_AdcInstruction_WSTerminalRuleCall_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * <pre>
 	 * Ambiguous syntax:
@@ -177,6 +223,20 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * </pre>
 	 */
 	protected void emit_EquDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     '&gt;'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) operand=Expression
+	 
+	 * </pre>
+	 */
+	protected void emit_ExtendedOperand_GreaterThanSignKeyword_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

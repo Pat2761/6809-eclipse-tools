@@ -70,6 +70,22 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.SOURCE_LINE: return createSourceLine();
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
+      case AssemblerPackage.INSTRUCTION_LINE: return createInstructionLine();
+      case AssemblerPackage.ADC_INSTRUCTION: return createAdcInstruction();
+      case AssemblerPackage.ABX_INSTRUCTION: return createAbxInstruction();
+      case AssemblerPackage.EXTENDED_INDIRECT_OPERAND: return createExtendedIndirectOperand();
+      case AssemblerPackage.EXTENDED_OPERAND: return createExtendedOperand();
+      case AssemblerPackage.DIRECT_OPERAND: return createDirectOperand();
+      case AssemblerPackage.IMMEDIAT_OPERAND: return createImmediatOperand();
+      case AssemblerPackage.INDEXED_OPERAND: return createIndexedOperand();
+      case AssemblerPackage.CONSTANT_INDEXED_MODE: return createConstantIndexedMode();
+      case AssemblerPackage.CONSTANT_INDEXED_MOVING_INDIRECT_MODE: return createConstantIndexedMovingIndirectMode();
+      case AssemblerPackage.ACCUMULATOR_MOVING_MODE: return createAccumulatorMovingMode();
+      case AssemblerPackage.ACCUMULATOR_MOVING_INDIRECT_MODE: return createAccumulatorMovingIndirectMode();
+      case AssemblerPackage.AUTO_INC_DEC_MODE: return createAutoIncDecMode();
+      case AssemblerPackage.AUTO_INC_DEC_INDIRECT_MODE: return createAutoIncDecIndirectMode();
+      case AssemblerPackage.RELATIF_TO_PC_MODE: return createRelatifToPCMode();
+      case AssemblerPackage.RELATIF_TO_PC_INDIRECT_MODE: return createRelatifToPCIndirectMode();
       case AssemblerPackage.DIRECTIVE_LINE: return createDirectiveLine();
       case AssemblerPackage.FCC_DIRECTIVE: return createFccDirective();
       case AssemblerPackage.REG_DIRECTIVE: return createRegDirective();
@@ -89,6 +105,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.EQU_DIRECTIVE: return createEquDirective();
       case AssemblerPackage.LIST_OF_EXPRESSION: return createListOfExpression();
       case AssemblerPackage.EXPRESSION: return createExpression();
+      case AssemblerPackage.NUMERICAL_VALUE: return createNumericalValue();
       case AssemblerPackage.IDENTIFIER_VALUE: return createIdentifierValue();
       case AssemblerPackage.STRING_VALUE: return createStringValue();
       case AssemblerPackage.DECIMAL_VALUE: return createDecimalValue();
@@ -196,6 +213,198 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     CommentLineImpl commentLine = new CommentLineImpl();
     return commentLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public InstructionLine createInstructionLine()
+  {
+    InstructionLineImpl instructionLine = new InstructionLineImpl();
+    return instructionLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AdcInstruction createAdcInstruction()
+  {
+    AdcInstructionImpl adcInstruction = new AdcInstructionImpl();
+    return adcInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AbxInstruction createAbxInstruction()
+  {
+    AbxInstructionImpl abxInstruction = new AbxInstructionImpl();
+    return abxInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ExtendedIndirectOperand createExtendedIndirectOperand()
+  {
+    ExtendedIndirectOperandImpl extendedIndirectOperand = new ExtendedIndirectOperandImpl();
+    return extendedIndirectOperand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ExtendedOperand createExtendedOperand()
+  {
+    ExtendedOperandImpl extendedOperand = new ExtendedOperandImpl();
+    return extendedOperand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DirectOperand createDirectOperand()
+  {
+    DirectOperandImpl directOperand = new DirectOperandImpl();
+    return directOperand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ImmediatOperand createImmediatOperand()
+  {
+    ImmediatOperandImpl immediatOperand = new ImmediatOperandImpl();
+    return immediatOperand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public IndexedOperand createIndexedOperand()
+  {
+    IndexedOperandImpl indexedOperand = new IndexedOperandImpl();
+    return indexedOperand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ConstantIndexedMode createConstantIndexedMode()
+  {
+    ConstantIndexedModeImpl constantIndexedMode = new ConstantIndexedModeImpl();
+    return constantIndexedMode;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ConstantIndexedMovingIndirectMode createConstantIndexedMovingIndirectMode()
+  {
+    ConstantIndexedMovingIndirectModeImpl constantIndexedMovingIndirectMode = new ConstantIndexedMovingIndirectModeImpl();
+    return constantIndexedMovingIndirectMode;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AccumulatorMovingMode createAccumulatorMovingMode()
+  {
+    AccumulatorMovingModeImpl accumulatorMovingMode = new AccumulatorMovingModeImpl();
+    return accumulatorMovingMode;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AccumulatorMovingIndirectMode createAccumulatorMovingIndirectMode()
+  {
+    AccumulatorMovingIndirectModeImpl accumulatorMovingIndirectMode = new AccumulatorMovingIndirectModeImpl();
+    return accumulatorMovingIndirectMode;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AutoIncDecMode createAutoIncDecMode()
+  {
+    AutoIncDecModeImpl autoIncDecMode = new AutoIncDecModeImpl();
+    return autoIncDecMode;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AutoIncDecIndirectMode createAutoIncDecIndirectMode()
+  {
+    AutoIncDecIndirectModeImpl autoIncDecIndirectMode = new AutoIncDecIndirectModeImpl();
+    return autoIncDecIndirectMode;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RelatifToPCMode createRelatifToPCMode()
+  {
+    RelatifToPCModeImpl relatifToPCMode = new RelatifToPCModeImpl();
+    return relatifToPCMode;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RelatifToPCIndirectMode createRelatifToPCIndirectMode()
+  {
+    RelatifToPCIndirectModeImpl relatifToPCIndirectMode = new RelatifToPCIndirectModeImpl();
+    return relatifToPCIndirectMode;
   }
 
   /**
@@ -424,6 +633,18 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     ExpressionImpl expression = new ExpressionImpl();
     return expression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NumericalValue createNumericalValue()
+  {
+    NumericalValueImpl numericalValue = new NumericalValueImpl();
+    return numericalValue;
   }
 
   /**

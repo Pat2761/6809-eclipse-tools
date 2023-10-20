@@ -5,20 +5,31 @@ package org.bpy.electronics.mc6809.assembler.serializer;
 
 import com.google.inject.Inject;
 import java.util.Set;
+import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Addition;
 import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
@@ -26,6 +37,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
+import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -33,12 +47,15 @@ import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Not;
+import org.bpy.electronics.mc6809.assembler.assembler.NumericalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
@@ -72,11 +89,29 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		Set<Parameter> parameters = context.getEnabledBooleanParameters();
 		if (epackage == AssemblerPackage.eINSTANCE)
 			switch (semanticObject.eClass().getClassifierID()) {
+			case AssemblerPackage.ABX_INSTRUCTION:
+				sequence_AbxInstruction(context, (AbxInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.ACCUMULATOR_MOVING_INDIRECT_MODE:
+				sequence_AccumulatorMovingIndirectMode(context, (AccumulatorMovingIndirectMode) semanticObject); 
+				return; 
+			case AssemblerPackage.ACCUMULATOR_MOVING_MODE:
+				sequence_AccumulatorMovingMode(context, (AccumulatorMovingMode) semanticObject); 
+				return; 
+			case AssemblerPackage.ADC_INSTRUCTION:
+				sequence_AdcInstruction(context, (AdcInstruction) semanticObject); 
+				return; 
 			case AssemblerPackage.ADDITION:
 				sequence_Addition(context, (Addition) semanticObject); 
 				return; 
 			case AssemblerPackage.AND:
 				sequence_And(context, (And) semanticObject); 
+				return; 
+			case AssemblerPackage.AUTO_INC_DEC_INDIRECT_MODE:
+				sequence_AutoIncDecIndirectMode(context, (AutoIncDecIndirectMode) semanticObject); 
+				return; 
+			case AssemblerPackage.AUTO_INC_DEC_MODE:
+				sequence_AutoIncDecMode(context, (AutoIncDecMode) semanticObject); 
 				return; 
 			case AssemblerPackage.BINARY_VALUE:
 				sequence_BinaryValue(context, (BinaryValue) semanticObject); 
@@ -93,8 +128,17 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.COMMENT_LINE:
 				sequence_CommentLine(context, (CommentLine) semanticObject); 
 				return; 
+			case AssemblerPackage.CONSTANT_INDEXED_MODE:
+				sequence_ConstantIndexedMode(context, (ConstantIndexedMode) semanticObject); 
+				return; 
+			case AssemblerPackage.CONSTANT_INDEXED_MOVING_INDIRECT_MODE:
+				sequence_ConstantIndexedMovingIndirectMode(context, (ConstantIndexedMovingIndirectMode) semanticObject); 
+				return; 
 			case AssemblerPackage.DECIMAL_VALUE:
 				sequence_DecimalValue(context, (DecimalValue) semanticObject); 
+				return; 
+			case AssemblerPackage.DIRECT_OPERAND:
+				sequence_DirectOperand(context, (DirectOperand) semanticObject); 
 				return; 
 			case AssemblerPackage.DIRECTIVE_LINE:
 				sequence_DirectiveLine(context, (DirectiveLine) semanticObject); 
@@ -138,6 +182,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 					return; 
 				}
 				else break;
+			case AssemblerPackage.EXTENDED_INDIRECT_OPERAND:
+				sequence_ExtendedIndirectOperand(context, (ExtendedIndirectOperand) semanticObject); 
+				return; 
+			case AssemblerPackage.EXTENDED_OPERAND:
+				sequence_ExtendedOperand(context, (ExtendedOperand) semanticObject); 
+				return; 
 			case AssemblerPackage.FAIL_DIRECTIVE:
 				sequence_FailDirective(context, (FailDirective) semanticObject); 
 				return; 
@@ -158,6 +208,15 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.IDENTIFIER_VALUE:
 				sequence_IdentifierValue(context, (IdentifierValue) semanticObject); 
+				return; 
+			case AssemblerPackage.IMMEDIAT_OPERAND:
+				sequence_ImmediatOperand(context, (ImmediatOperand) semanticObject); 
+				return; 
+			case AssemblerPackage.INDEXED_OPERAND:
+				sequence_IndexedOperand(context, (IndexedOperand) semanticObject); 
+				return; 
+			case AssemblerPackage.INSTRUCTION_LINE:
+				sequence_InstructionLine(context, (InstructionLine) semanticObject); 
 				return; 
 			case AssemblerPackage.LEFT_SHIFT:
 				sequence_LeftShift(context, (LeftShift) semanticObject); 
@@ -180,6 +239,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.NOT:
 				sequence_Primary(context, (Not) semanticObject); 
 				return; 
+			case AssemblerPackage.NUMERICAL_VALUE:
+				sequence_NumericalValue(context, (NumericalValue) semanticObject); 
+				return; 
 			case AssemblerPackage.OCTAL_VALUE:
 				sequence_OctalValue(context, (OctalValue) semanticObject); 
 				return; 
@@ -197,6 +259,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.REG_DIRECTIVE:
 				sequence_RegDirective(context, (RegDirective) semanticObject); 
+				return; 
+			case AssemblerPackage.RELATIF_TO_PC_INDIRECT_MODE:
+				sequence_RelatifToPCIndirectMode(context, (RelatifToPCIndirectMode) semanticObject); 
+				return; 
+			case AssemblerPackage.RELATIF_TO_PC_MODE:
+				sequence_RelatifToPCMode(context, (RelatifToPCMode) semanticObject); 
 				return; 
 			case AssemblerPackage.RIGHT_SHIFT:
 				sequence_RightShift(context, (RightShift) semanticObject); 
@@ -226,6 +294,67 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		if (errorAcceptor != null)
 			errorAcceptor.accept(diagnosticProvider.createInvalidContextOrTypeDiagnostic(semanticObject, context));
 	}
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     AbxInstruction returns AbxInstruction
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? instruction='ABX' comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_AbxInstruction(ISerializationContext context, AbxInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     AccumulatorMovingIndirectMode returns AccumulatorMovingIndirectMode
+	 *
+	 * Constraint:
+	 *     ((deplacement='A' | deplacement='B' | deplacement='D') (register='S' | register='U' | register='X' | register='Y'))
+	 * </pre>
+	 */
+	protected void sequence_AccumulatorMovingIndirectMode(ISerializationContext context, AccumulatorMovingIndirectMode semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     AccumulatorMovingMode returns AccumulatorMovingMode
+	 *
+	 * Constraint:
+	 *     ((deplacement='A' | deplacement='B' | deplacement='D') (register='S' | register='U' | register='X' | register='Y'))
+	 * </pre>
+	 */
+	protected void sequence_AccumulatorMovingMode(ISerializationContext context, AccumulatorMovingMode semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     AdcInstruction returns AdcInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         name=IdentifierValue? 
+	 *         (instruction='ADCA' | instruction='ADCB') 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand) 
+	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_AdcInstruction(ISerializationContext context, AdcInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
 	
 	/**
 	 * <pre>
@@ -310,6 +439,46 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		feeder.accept(grammarAccess.getAndAccess().getAndLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getAndAccess().getRightOrParserRuleCall_1_2_0(), semanticObject.getRight());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     AutoIncDecIndirectMode returns AutoIncDecIndirectMode
+	 *
+	 * Constraint:
+	 *     (
+	 *         deplacement=NumericalValue? 
+	 *         (
+	 *             ((decrement='-' | decrement='--') (register='S' | register='U' | register='X' | register='Y')) | 
+	 *             ((register='S' | register='U' | register='X' | register='Y') (increment='+' | increment='++'))
+	 *         )
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_AutoIncDecIndirectMode(ISerializationContext context, AutoIncDecIndirectMode semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     AutoIncDecMode returns AutoIncDecMode
+	 *
+	 * Constraint:
+	 *     (
+	 *         deplacement=NumericalValue? 
+	 *         (
+	 *             ((decrement='-' | decrement='--') (register='S' | register='U' | register='X' | register='Y')) | 
+	 *             ((register='S' | register='U' | register='X' | register='Y') (increment='+' | increment='++'))
+	 *         )
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_AutoIncDecMode(ISerializationContext context, AutoIncDecMode semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -404,6 +573,34 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     ConstantIndexedMode returns ConstantIndexedMode
+	 *
+	 * Constraint:
+	 *     (deplacement=NumericalValue? (register='S' | register='U' | register='X' | register='Y'))
+	 * </pre>
+	 */
+	protected void sequence_ConstantIndexedMode(ISerializationContext context, ConstantIndexedMode semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ConstantIndexedMovingIndirectMode returns ConstantIndexedMovingIndirectMode
+	 *
+	 * Constraint:
+	 *     (deplacement=NumericalValue? (register='S' | register='U' | register='X' | register='Y'))
+	 * </pre>
+	 */
+	protected void sequence_ConstantIndexedMovingIndirectMode(ISerializationContext context, ConstantIndexedMovingIndirectMode semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     DecimalValue returns DecimalValue
 	 *
 	 * Constraint:
@@ -412,6 +609,26 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_DecimalValue(ISerializationContext context, DecimalValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     DirectOperand returns DirectOperand
+	 *
+	 * Constraint:
+	 *     operand=Expression
+	 * </pre>
+	 */
+	protected void sequence_DirectOperand(ISerializationContext context, DirectOperand semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DIRECT_OPERAND__OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DIRECT_OPERAND__OPERAND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDirectOperandAccess().getOperandExpressionParserRuleCall_1_0(), semanticObject.getOperand());
+		feeder.finish();
 	}
 	
 	
@@ -548,6 +765,46 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     ExtendedIndirectOperand returns ExtendedIndirectOperand
+	 *
+	 * Constraint:
+	 *     operand=Expression
+	 * </pre>
+	 */
+	protected void sequence_ExtendedIndirectOperand(ISerializationContext context, ExtendedIndirectOperand semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXTENDED_INDIRECT_OPERAND__OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXTENDED_INDIRECT_OPERAND__OPERAND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getExtendedIndirectOperandAccess().getOperandExpressionParserRuleCall_1_0(), semanticObject.getOperand());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ExtendedOperand returns ExtendedOperand
+	 *
+	 * Constraint:
+	 *     operand=Expression
+	 * </pre>
+	 */
+	protected void sequence_ExtendedOperand(ISerializationContext context, ExtendedOperand semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXTENDED_OPERAND__OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXTENDED_OPERAND__OPERAND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getExtendedOperandAccess().getOperandExpressionParserRuleCall_1_0(), semanticObject.getOperand());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     FailDirective returns FailDirective
 	 *
 	 * Constraint:
@@ -652,6 +909,63 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getIdentifierValueAccess().getValueIDTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ImmediatOperand returns ImmediatOperand
+	 *
+	 * Constraint:
+	 *     operand=Expression
+	 * </pre>
+	 */
+	protected void sequence_ImmediatOperand(ISerializationContext context, ImmediatOperand semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.IMMEDIAT_OPERAND__OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.IMMEDIAT_OPERAND__OPERAND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getImmediatOperandAccess().getOperandExpressionParserRuleCall_1_0(), semanticObject.getOperand());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     IndexedOperand returns IndexedOperand
+	 *
+	 * Constraint:
+	 *     (
+	 *         mode=AutoIncDecMode | 
+	 *         mode=ConstantIndexedMode | 
+	 *         mode=AccumulatorMovingMode | 
+	 *         mode=RelatifToPCMode | 
+	 *         mode=ConstantIndexedMovingIndirectMode | 
+	 *         mode=AutoIncDecIndirectMode | 
+	 *         mode=AccumulatorMovingIndirectMode | 
+	 *         mode=RelatifToPCIndirectMode
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_IndexedOperand(ISerializationContext context, IndexedOperand semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     InstructionLine returns InstructionLine
+	 *
+	 * Constraint:
+	 *     (instruction=AbxInstruction | instruction=AdcInstruction)
+	 * </pre>
+	 */
+	protected void sequence_InstructionLine(ISerializationContext context, InstructionLine semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -828,6 +1142,27 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * </pre>
 	 */
 	protected void sequence_NamDirective(ISerializationContext context, NamDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     NumericalValue returns NumericalValue
+	 *
+	 * Constraint:
+	 *     (
+	 *         value=DecimalValue | 
+	 *         value=HexaDecimalValue | 
+	 *         value=OctalValue | 
+	 *         value=BinaryValue | 
+	 *         value=CharacterValue | 
+	 *         value=IdentifierValue
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_NumericalValue(ISerializationContext context, NumericalValue semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1040,6 +1375,34 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     RelatifToPCIndirectMode returns RelatifToPCIndirectMode
+	 *
+	 * Constraint:
+	 *     (deplacement=NumericalValue? register='PCR')
+	 * </pre>
+	 */
+	protected void sequence_RelatifToPCIndirectMode(ISerializationContext context, RelatifToPCIndirectMode semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     RelatifToPCMode returns RelatifToPCMode
+	 *
+	 * Constraint:
+	 *     (deplacement=NumericalValue? register='PCR')
+	 * </pre>
+	 */
+	protected void sequence_RelatifToPCMode(ISerializationContext context, RelatifToPCMode semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Multiplication returns RightShift
 	 *     Multiplication.Multiplication_1_0 returns RightShift
 	 *     Division returns RightShift
@@ -1114,7 +1477,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     SourceLine returns SourceLine
 	 *
 	 * Constraint:
-	 *     (lineContent=BlankLine | lineContent=CommentLine | lineContent=DirectiveLine)
+	 *     (lineContent=BlankLine | lineContent=CommentLine | lineContent=DirectiveLine | lineContent=InstructionLine)
 	 * </pre>
 	 */
 	protected void sequence_SourceLine(ISerializationContext context, SourceLine semanticObject) {

@@ -38,6 +38,7 @@ SourceLine:
 		  (lineContent = BlankLine)
 		| (lineContent = CommentLine) 
 		| (lineContent = DirectiveLine)
+		| (lineContent = InstructionLine)
 	) 
 ;
 
@@ -54,6 +55,183 @@ BlankLine:
  */
 CommentLine:
 	comment = ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine 
+;
+
+/*
+ * Definition of the list possible instructions
+ */
+InstructionLine:
+	instruction = AbxInstruction |
+	instruction = AdcInstruction
+;
+
+/*
+ * ADC
+ * 
+ * Add with Carry into Register
+ * Source Form		: ADCA P; ADCB P
+ * Operation		: R'*-R + M + C
+ * Condition Codes	: H - The Half-Carry flag is set if a carry into bit 4 occurred; cleared otherwise.
+ * 					  N - The Negative flag is set equal to the new value of bit 7 of the accumulator.
+ * 					  Z - The Zero flag is set if the new accumulator value is zero; cleared otherwise.
+ *                    V - The Overflow flag is set if an overflow occurred; cleared otherwise.
+ * 					  C - The Carry flag is set if a carry out of bit 7 occurred; cleared otherwise.
+ * Description		: Add the 8-bit unsigned value in accumulator B into index register X.
+ * Addressing Mode	: Inherent 
+ */
+AdcInstruction:
+	(name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))
+	WS operand = ( 
+		ImmediatOperand | 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
+;
+
+/*
+ * ABX
+ * 
+ * Add Accumulator B into Index Register X
+ * Source Form		: ABX
+ * Operation		: IX'— IX + ACCB
+ * Condition Codes	: Not affected.
+ * Description		: Add the 8-bit unsigned value in accumulator B into index register X.
+ * Addressing Mode	: Inherent 
+ */
+AbxInstruction:
+	(name = IdentifierValue)? WS (instruction = 'ABX')
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
+;
+
+/*
+ * Extended Indirect
+ *
+ * In Extended Indirect addressing, the 16-bit value following the opcode is used to point to 
+ * two bytes in memory which are used as the effective address.
+ * 
+ * Example:
+ * LDA [$A012] loads A from the address stored at locations $A012 and $A013 
+ */
+ExtendedIndirectOperand:
+	'[' operand=Expression ']'
+;
+
+/*
+ * Extended
+ * 
+ * In Extended addressing, the two bytes (16-bits) following the opcode are used as an absolute
+ * memory address value.
+ * 
+ * Example:
+ * LDA $1000 load A from memory location 1000 hex  
+ */
+ExtendedOperand:
+	('>'?) operand=Expression
+;
+//
+//IndexedOperand:
+//	
+//;
+
+/*
+ * Direct
+ * In Direct addressing, the single byte (8-bits) following the opcode is used as a pointer into
+ * a 256-byte window or "page" of memory. The page used for this purpose is the one currently
+ * found in the Direct Page register. Thus, the effective address is a concatenation of the
+ * Direct Page register as the most significant half and the byte following the opcode as the 
+ * least significant half.
+ *
+ * Example:
+ * LDA $22 load A from memory location $XX22 where XX represents the contents of the DP register  
+ */
+DirectOperand:
+	'<' operand=Expression
+;
+
+/*
+ * Immediate
+ * In Immediate addressing the byte or bytes following the opcode are the information being
+ * addressed. These byte or bytes are specified as part of the instruction.
+ *
+ * Example:
+ * LDA #8 load immediate value (8) into A 
+ */
+ImmediatOperand:
+	'#' operand=Expression 
+;
+
+IndexedOperand:
+	mode=AutoIncDecMode  | 
+	mode=ConstantIndexedMode | 
+	mode=AccumulatorMovingMode | 
+	mode=RelatifToPCMode |
+	mode=ConstantIndexedMovingIndirectMode | 
+	mode=AutoIncDecIndirectMode  | 
+	mode=AccumulatorMovingIndirectMode |		
+	mode=RelatifToPCIndirectMode
+;
+
+ConstantIndexedMode:
+	deplacement=NumericalValue?
+	',' 
+	register=('S' | 'U' | 'X' | 'Y')
+;
+
+ConstantIndexedMovingIndirectMode:
+	'['
+	deplacement=NumericalValue? 
+	',' 
+	register=('S' | 'U' | 'X' | 'Y')
+	']'
+;
+
+AccumulatorMovingMode:
+	deplacement=('A' | 'B' | 'D') 
+	','
+	register=('S' | 'U' | 'X' | 'Y')
+;
+
+AccumulatorMovingIndirectMode:
+	'['
+	deplacement=('A' | 'B' | 'D') 
+	','
+	register=('S' | 'U' | 'X' | 'Y')
+	']'
+;
+
+AutoIncDecMode:
+	deplacement=NumericalValue?
+	',' 
+	((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+	 register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+;
+
+AutoIncDecIndirectMode:
+	'['
+	deplacement=NumericalValue?
+	',' 
+	((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+	 register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+	']'
+;
+
+RelatifToPCMode:
+	deplacement=NumericalValue?
+	',' 
+	(register='PCR' )
+;
+
+RelatifToPCIndirectMode:
+	'['
+	deplacement=NumericalValue? 
+	',' 
+	(register='PCR' )
+	']'
 ;
 
 /*
@@ -474,6 +652,15 @@ Primary returns Expression:
    	|   {Not} '!' value=Primary
   	|  '(' Multiplication ')'
  ;
+
+NumericalValue:
+   	 	value=DecimalValue
+  	|	value=HexaDecimalValue
+  	|	value=OctalValue
+  	|   value=BinaryValue
+  	|   value=CharacterValue
+   	|	value=IdentifierValue
+;
 
 IdentifierValue:
 	value = ID

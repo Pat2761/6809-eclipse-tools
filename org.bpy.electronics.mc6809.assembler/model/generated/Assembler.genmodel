@@ -40,6 +40,71 @@
     <genClasses ecoreClass="Assembler.ecore#//CommentLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CommentLine/comment"/>
     </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//InstructionLine">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/instruction"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//AdcInstruction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AdcInstruction/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AdcInstruction/instruction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AdcInstruction/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AdcInstruction/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//AbxInstruction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AbxInstruction/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AbxInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AbxInstruction/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//ExtendedIndirectOperand">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ExtendedIndirectOperand/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//ExtendedOperand">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ExtendedOperand/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//DirectOperand">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectOperand/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//ImmediatOperand">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ImmediatOperand/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//IndexedOperand">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//IndexedOperand/mode"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//ConstantIndexedMode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ConstantIndexedMode/deplacement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ConstantIndexedMode/register"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//ConstantIndexedMovingIndirectMode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ConstantIndexedMovingIndirectMode/deplacement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ConstantIndexedMovingIndirectMode/register"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//AccumulatorMovingMode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AccumulatorMovingMode/deplacement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AccumulatorMovingMode/register"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//AccumulatorMovingIndirectMode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AccumulatorMovingIndirectMode/deplacement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AccumulatorMovingIndirectMode/register"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//AutoIncDecMode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AutoIncDecMode/deplacement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecMode/decrement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecMode/register"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecMode/increment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//AutoIncDecIndirectMode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AutoIncDecIndirectMode/deplacement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecIndirectMode/decrement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecIndirectMode/register"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecIndirectMode/increment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//RelatifToPCMode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RelatifToPCMode/deplacement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RelatifToPCMode/register"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//RelatifToPCIndirectMode">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RelatifToPCIndirectMode/deplacement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RelatifToPCIndirectMode/register"/>
+    </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
     </genClasses>
@@ -151,6 +216,9 @@
     <genClasses ecoreClass="Assembler.ecore#//Expression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/operand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/value"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//NumericalValue">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//NumericalValue/value"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//IdentifierValue">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//IdentifierValue/value"/>

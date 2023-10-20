@@ -171,6 +171,607 @@ public interface AssemblerPackage extends EPackage
   int COMMENT_LINE_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl <em>Instruction Line</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getInstructionLine()
+   * @generated
+   */
+  int INSTRUCTION_LINE = 4;
+
+  /**
+   * The feature id for the '<em><b>Instruction</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION_LINE__INSTRUCTION = 0;
+
+  /**
+   * The number of structural features of the '<em>Instruction Line</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION_LINE_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdcInstructionImpl <em>Adc Instruction</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AdcInstructionImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAdcInstruction()
+   * @generated
+   */
+  int ADC_INSTRUCTION = 5;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADC_INSTRUCTION__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Instruction</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADC_INSTRUCTION__INSTRUCTION = 1;
+
+  /**
+   * The feature id for the '<em><b>Operand</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADC_INSTRUCTION__OPERAND = 2;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADC_INSTRUCTION__COMMENT = 3;
+
+  /**
+   * The number of structural features of the '<em>Adc Instruction</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADC_INSTRUCTION_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AbxInstructionImpl <em>Abx Instruction</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AbxInstructionImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAbxInstruction()
+   * @generated
+   */
+  int ABX_INSTRUCTION = 6;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABX_INSTRUCTION__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Instruction</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABX_INSTRUCTION__INSTRUCTION = 1;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABX_INSTRUCTION__COMMENT = 2;
+
+  /**
+   * The number of structural features of the '<em>Abx Instruction</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABX_INSTRUCTION_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedIndirectOperandImpl <em>Extended Indirect Operand</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedIndirectOperandImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExtendedIndirectOperand()
+   * @generated
+   */
+  int EXTENDED_INDIRECT_OPERAND = 7;
+
+  /**
+   * The feature id for the '<em><b>Operand</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTENDED_INDIRECT_OPERAND__OPERAND = 0;
+
+  /**
+   * The number of structural features of the '<em>Extended Indirect Operand</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTENDED_INDIRECT_OPERAND_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedOperandImpl <em>Extended Operand</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedOperandImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExtendedOperand()
+   * @generated
+   */
+  int EXTENDED_OPERAND = 8;
+
+  /**
+   * The feature id for the '<em><b>Operand</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTENDED_OPERAND__OPERAND = 0;
+
+  /**
+   * The number of structural features of the '<em>Extended Operand</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXTENDED_OPERAND_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectOperandImpl <em>Direct Operand</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DirectOperandImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectOperand()
+   * @generated
+   */
+  int DIRECT_OPERAND = 9;
+
+  /**
+   * The feature id for the '<em><b>Operand</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIRECT_OPERAND__OPERAND = 0;
+
+  /**
+   * The number of structural features of the '<em>Direct Operand</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIRECT_OPERAND_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ImmediatOperandImpl <em>Immediat Operand</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ImmediatOperandImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getImmediatOperand()
+   * @generated
+   */
+  int IMMEDIAT_OPERAND = 10;
+
+  /**
+   * The feature id for the '<em><b>Operand</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMMEDIAT_OPERAND__OPERAND = 0;
+
+  /**
+   * The number of structural features of the '<em>Immediat Operand</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int IMMEDIAT_OPERAND_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IndexedOperandImpl <em>Indexed Operand</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IndexedOperandImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIndexedOperand()
+   * @generated
+   */
+  int INDEXED_OPERAND = 11;
+
+  /**
+   * The feature id for the '<em><b>Mode</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEXED_OPERAND__MODE = 0;
+
+  /**
+   * The number of structural features of the '<em>Indexed Operand</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INDEXED_OPERAND_FEATURE_COUNT = 1;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedModeImpl <em>Constant Indexed Mode</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedModeImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getConstantIndexedMode()
+   * @generated
+   */
+  int CONSTANT_INDEXED_MODE = 12;
+
+  /**
+   * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT_INDEXED_MODE__DEPLACEMENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Register</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT_INDEXED_MODE__REGISTER = 1;
+
+  /**
+   * The number of structural features of the '<em>Constant Indexed Mode</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT_INDEXED_MODE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedMovingIndirectModeImpl <em>Constant Indexed Moving Indirect Mode</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedMovingIndirectModeImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getConstantIndexedMovingIndirectMode()
+   * @generated
+   */
+  int CONSTANT_INDEXED_MOVING_INDIRECT_MODE = 13;
+
+  /**
+   * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT_INDEXED_MOVING_INDIRECT_MODE__DEPLACEMENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Register</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT_INDEXED_MOVING_INDIRECT_MODE__REGISTER = 1;
+
+  /**
+   * The number of structural features of the '<em>Constant Indexed Moving Indirect Mode</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONSTANT_INDEXED_MOVING_INDIRECT_MODE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingModeImpl <em>Accumulator Moving Mode</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingModeImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAccumulatorMovingMode()
+   * @generated
+   */
+  int ACCUMULATOR_MOVING_MODE = 14;
+
+  /**
+   * The feature id for the '<em><b>Deplacement</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACCUMULATOR_MOVING_MODE__DEPLACEMENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Register</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACCUMULATOR_MOVING_MODE__REGISTER = 1;
+
+  /**
+   * The number of structural features of the '<em>Accumulator Moving Mode</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACCUMULATOR_MOVING_MODE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingIndirectModeImpl <em>Accumulator Moving Indirect Mode</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingIndirectModeImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAccumulatorMovingIndirectMode()
+   * @generated
+   */
+  int ACCUMULATOR_MOVING_INDIRECT_MODE = 15;
+
+  /**
+   * The feature id for the '<em><b>Deplacement</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACCUMULATOR_MOVING_INDIRECT_MODE__DEPLACEMENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Register</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACCUMULATOR_MOVING_INDIRECT_MODE__REGISTER = 1;
+
+  /**
+   * The number of structural features of the '<em>Accumulator Moving Indirect Mode</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ACCUMULATOR_MOVING_INDIRECT_MODE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecModeImpl <em>Auto Inc Dec Mode</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecModeImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAutoIncDecMode()
+   * @generated
+   */
+  int AUTO_INC_DEC_MODE = 16;
+
+  /**
+   * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AUTO_INC_DEC_MODE__DEPLACEMENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Decrement</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AUTO_INC_DEC_MODE__DECREMENT = 1;
+
+  /**
+   * The feature id for the '<em><b>Register</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AUTO_INC_DEC_MODE__REGISTER = 2;
+
+  /**
+   * The feature id for the '<em><b>Increment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AUTO_INC_DEC_MODE__INCREMENT = 3;
+
+  /**
+   * The number of structural features of the '<em>Auto Inc Dec Mode</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AUTO_INC_DEC_MODE_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecIndirectModeImpl <em>Auto Inc Dec Indirect Mode</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecIndirectModeImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAutoIncDecIndirectMode()
+   * @generated
+   */
+  int AUTO_INC_DEC_INDIRECT_MODE = 17;
+
+  /**
+   * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AUTO_INC_DEC_INDIRECT_MODE__DEPLACEMENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Decrement</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AUTO_INC_DEC_INDIRECT_MODE__DECREMENT = 1;
+
+  /**
+   * The feature id for the '<em><b>Register</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AUTO_INC_DEC_INDIRECT_MODE__REGISTER = 2;
+
+  /**
+   * The feature id for the '<em><b>Increment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AUTO_INC_DEC_INDIRECT_MODE__INCREMENT = 3;
+
+  /**
+   * The number of structural features of the '<em>Auto Inc Dec Indirect Mode</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AUTO_INC_DEC_INDIRECT_MODE_FEATURE_COUNT = 4;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCModeImpl <em>Relatif To PC Mode</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCModeImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelatifToPCMode()
+   * @generated
+   */
+  int RELATIF_TO_PC_MODE = 18;
+
+  /**
+   * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIF_TO_PC_MODE__DEPLACEMENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Register</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIF_TO_PC_MODE__REGISTER = 1;
+
+  /**
+   * The number of structural features of the '<em>Relatif To PC Mode</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIF_TO_PC_MODE_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCIndirectModeImpl <em>Relatif To PC Indirect Mode</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCIndirectModeImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelatifToPCIndirectMode()
+   * @generated
+   */
+  int RELATIF_TO_PC_INDIRECT_MODE = 19;
+
+  /**
+   * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIF_TO_PC_INDIRECT_MODE__DEPLACEMENT = 0;
+
+  /**
+   * The feature id for the '<em><b>Register</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIF_TO_PC_INDIRECT_MODE__REGISTER = 1;
+
+  /**
+   * The number of structural features of the '<em>Relatif To PC Indirect Mode</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIF_TO_PC_INDIRECT_MODE_FEATURE_COUNT = 2;
+
+  /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl <em>Directive Line</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -178,7 +779,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectiveLine()
    * @generated
    */
-  int DIRECTIVE_LINE = 4;
+  int DIRECTIVE_LINE = 20;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' containment reference.
@@ -206,7 +807,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFccDirective()
    * @generated
    */
-  int FCC_DIRECTIVE = 5;
+  int FCC_DIRECTIVE = 21;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -261,7 +862,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRegDirective()
    * @generated
    */
-  int REG_DIRECTIVE = 6;
+  int REG_DIRECTIVE = 22;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -316,7 +917,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSpcDirective()
    * @generated
    */
-  int SPC_DIRECTIVE = 7;
+  int SPC_DIRECTIVE = 23;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -380,7 +981,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNamDirective()
    * @generated
    */
-  int NAM_DIRECTIVE = 8;
+  int NAM_DIRECTIVE = 24;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -435,7 +1036,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPagDirective()
    * @generated
    */
-  int PAG_DIRECTIVE = 9;
+  int PAG_DIRECTIVE = 25;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -490,7 +1091,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOptDirective()
    * @generated
    */
-  int OPT_DIRECTIVE = 10;
+  int OPT_DIRECTIVE = 26;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -545,7 +1146,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFailDirective()
    * @generated
    */
-  int FAIL_DIRECTIVE = 11;
+  int FAIL_DIRECTIVE = 27;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -591,7 +1192,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSetDirective()
    * @generated
    */
-  int SET_DIRECTIVE = 12;
+  int SET_DIRECTIVE = 28;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -655,7 +1256,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFillDirective()
    * @generated
    */
-  int FILL_DIRECTIVE = 13;
+  int FILL_DIRECTIVE = 29;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -719,7 +1320,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBszDirective()
    * @generated
    */
-  int BSZ_DIRECTIVE = 14;
+  int BSZ_DIRECTIVE = 30;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -774,7 +1375,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFdbDirective()
    * @generated
    */
-  int FDB_DIRECTIVE = 15;
+  int FDB_DIRECTIVE = 31;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -829,7 +1430,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFcbDirective()
    * @generated
    */
-  int FCB_DIRECTIVE = 16;
+  int FCB_DIRECTIVE = 32;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -884,7 +1485,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRmbDirective()
    * @generated
    */
-  int RMB_DIRECTIVE = 17;
+  int RMB_DIRECTIVE = 33;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -948,7 +1549,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEndDirective()
    * @generated
    */
-  int END_DIRECTIVE = 18;
+  int END_DIRECTIVE = 34;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -1012,7 +1613,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrgDirective()
    * @generated
    */
-  int ORG_DIRECTIVE = 19;
+  int ORG_DIRECTIVE = 35;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -1076,7 +1677,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEquDirective()
    * @generated
    */
-  int EQU_DIRECTIVE = 20;
+  int EQU_DIRECTIVE = 36;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -1140,7 +1741,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getListOfExpression()
    * @generated
    */
-  int LIST_OF_EXPRESSION = 21;
+  int LIST_OF_EXPRESSION = 37;
 
   /**
    * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
@@ -1168,7 +1769,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 22;
+  int EXPRESSION = 38;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1198,6 +1799,34 @@ public interface AssemblerPackage extends EPackage
   int EXPRESSION_FEATURE_COUNT = 2;
 
   /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NumericalValueImpl <em>Numerical Value</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.NumericalValueImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNumericalValue()
+   * @generated
+   */
+  int NUMERICAL_VALUE = 39;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NUMERICAL_VALUE__VALUE = 0;
+
+  /**
+   * The number of structural features of the '<em>Numerical Value</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NUMERICAL_VALUE_FEATURE_COUNT = 1;
+
+  /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierValueImpl <em>Identifier Value</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -1205,7 +1834,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifierValue()
    * @generated
    */
-  int IDENTIFIER_VALUE = 23;
+  int IDENTIFIER_VALUE = 40;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1233,7 +1862,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStringValue()
    * @generated
    */
-  int STRING_VALUE = 24;
+  int STRING_VALUE = 41;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1261,7 +1890,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecimalValue()
    * @generated
    */
-  int DECIMAL_VALUE = 25;
+  int DECIMAL_VALUE = 42;
 
   /**
    * The feature id for the '<em><b>Sign</b></em>' attribute.
@@ -1298,7 +1927,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getHexaDecimalValue()
    * @generated
    */
-  int HEXA_DECIMAL_VALUE = 26;
+  int HEXA_DECIMAL_VALUE = 43;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1326,7 +1955,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOctalValue()
    * @generated
    */
-  int OCTAL_VALUE = 27;
+  int OCTAL_VALUE = 44;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1354,7 +1983,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBinaryValue()
    * @generated
    */
-  int BINARY_VALUE = 28;
+  int BINARY_VALUE = 45;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1382,7 +2011,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCharacterValue()
    * @generated
    */
-  int CHARACTER_VALUE = 29;
+  int CHARACTER_VALUE = 46;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -1410,7 +2039,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 30;
+  int MULTIPLICATION = 47;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1474,7 +2103,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDivision()
    * @generated
    */
-  int DIVISION = 31;
+  int DIVISION = 48;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1538,7 +2167,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getModulo()
    * @generated
    */
-  int MODULO = 32;
+  int MODULO = 49;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1602,7 +2231,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 33;
+  int ADDITION = 50;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1657,7 +2286,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubstraction()
    * @generated
    */
-  int SUBSTRACTION = 34;
+  int SUBSTRACTION = 51;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1712,7 +2341,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeftShift()
    * @generated
    */
-  int LEFT_SHIFT = 35;
+  int LEFT_SHIFT = 52;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1767,7 +2396,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRightShift()
    * @generated
    */
-  int RIGHT_SHIFT = 36;
+  int RIGHT_SHIFT = 53;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1822,7 +2451,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAnd()
    * @generated
    */
-  int AND = 37;
+  int AND = 54;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1877,7 +2506,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOr()
    * @generated
    */
-  int OR = 38;
+  int OR = 55;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1932,7 +2561,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getXor()
    * @generated
    */
-  int XOR = 39;
+  int XOR = 56;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1987,7 +2616,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNot()
    * @generated
    */
-  int NOT = 40;
+  int NOT = 57;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -2024,7 +2653,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAssemblyOption()
    * @generated
    */
-  int ASSEMBLY_OPTION = 41;
+  int ASSEMBLY_OPTION = 58;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.Register <em>Register</em>}' enum.
@@ -2034,7 +2663,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRegister()
    * @generated
    */
-  int REGISTER = 42;
+  int REGISTER = 59;
 
 
   /**
@@ -2120,6 +2749,529 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getCommentLine_Comment();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine <em>Instruction Line</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Instruction Line</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
+   * @generated
+   */
+  EClass getInstructionLine();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getInstruction <em>Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Instruction</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getInstruction()
+   * @see #getInstructionLine()
+   * @generated
+   */
+  EReference getInstructionLine_Instruction();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction <em>Adc Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Adc Instruction</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction
+   * @generated
+   */
+  EClass getAdcInstruction();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getName()
+   * @see #getAdcInstruction()
+   * @generated
+   */
+  EReference getAdcInstruction_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getInstruction <em>Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Instruction</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getInstruction()
+   * @see #getAdcInstruction()
+   * @generated
+   */
+  EAttribute getAdcInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getOperand <em>Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getOperand()
+   * @see #getAdcInstruction()
+   * @generated
+   */
+  EReference getAdcInstruction_Operand();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getComment()
+   * @see #getAdcInstruction()
+   * @generated
+   */
+  EAttribute getAdcInstruction_Comment();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction <em>Abx Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Abx Instruction</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction
+   * @generated
+   */
+  EClass getAbxInstruction();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getName()
+   * @see #getAbxInstruction()
+   * @generated
+   */
+  EReference getAbxInstruction_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getInstruction <em>Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Instruction</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getInstruction()
+   * @see #getAbxInstruction()
+   * @generated
+   */
+  EAttribute getAbxInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getComment()
+   * @see #getAbxInstruction()
+   * @generated
+   */
+  EAttribute getAbxInstruction_Comment();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand <em>Extended Indirect Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Extended Indirect Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand
+   * @generated
+   */
+  EClass getExtendedIndirectOperand();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand#getOperand <em>Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand#getOperand()
+   * @see #getExtendedIndirectOperand()
+   * @generated
+   */
+  EReference getExtendedIndirectOperand_Operand();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand <em>Extended Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Extended Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand
+   * @generated
+   */
+  EClass getExtendedOperand();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand#getOperand <em>Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand#getOperand()
+   * @see #getExtendedOperand()
+   * @generated
+   */
+  EReference getExtendedOperand_Operand();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectOperand <em>Direct Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Direct Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectOperand
+   * @generated
+   */
+  EClass getDirectOperand();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectOperand#getOperand <em>Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectOperand#getOperand()
+   * @see #getDirectOperand()
+   * @generated
+   */
+  EReference getDirectOperand_Operand();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand <em>Immediat Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Immediat Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand
+   * @generated
+   */
+  EClass getImmediatOperand();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand#getOperand <em>Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand#getOperand()
+   * @see #getImmediatOperand()
+   * @generated
+   */
+  EReference getImmediatOperand_Operand();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand <em>Indexed Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Indexed Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand
+   * @generated
+   */
+  EClass getIndexedOperand();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand#getMode <em>Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Mode</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand#getMode()
+   * @see #getIndexedOperand()
+   * @generated
+   */
+  EReference getIndexedOperand_Mode();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode <em>Constant Indexed Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Constant Indexed Mode</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode
+   * @generated
+   */
+  EClass getConstantIndexedMode();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode#getDeplacement <em>Deplacement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Deplacement</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode#getDeplacement()
+   * @see #getConstantIndexedMode()
+   * @generated
+   */
+  EReference getConstantIndexedMode_Deplacement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode#getRegister <em>Register</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Register</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode#getRegister()
+   * @see #getConstantIndexedMode()
+   * @generated
+   */
+  EAttribute getConstantIndexedMode_Register();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode <em>Constant Indexed Moving Indirect Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Constant Indexed Moving Indirect Mode</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode
+   * @generated
+   */
+  EClass getConstantIndexedMovingIndirectMode();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode#getDeplacement <em>Deplacement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Deplacement</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode#getDeplacement()
+   * @see #getConstantIndexedMovingIndirectMode()
+   * @generated
+   */
+  EReference getConstantIndexedMovingIndirectMode_Deplacement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode#getRegister <em>Register</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Register</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode#getRegister()
+   * @see #getConstantIndexedMovingIndirectMode()
+   * @generated
+   */
+  EAttribute getConstantIndexedMovingIndirectMode_Register();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode <em>Accumulator Moving Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Accumulator Moving Mode</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode
+   * @generated
+   */
+  EClass getAccumulatorMovingMode();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode#getDeplacement <em>Deplacement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Deplacement</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode#getDeplacement()
+   * @see #getAccumulatorMovingMode()
+   * @generated
+   */
+  EAttribute getAccumulatorMovingMode_Deplacement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode#getRegister <em>Register</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Register</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode#getRegister()
+   * @see #getAccumulatorMovingMode()
+   * @generated
+   */
+  EAttribute getAccumulatorMovingMode_Register();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode <em>Accumulator Moving Indirect Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Accumulator Moving Indirect Mode</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode
+   * @generated
+   */
+  EClass getAccumulatorMovingIndirectMode();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode#getDeplacement <em>Deplacement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Deplacement</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode#getDeplacement()
+   * @see #getAccumulatorMovingIndirectMode()
+   * @generated
+   */
+  EAttribute getAccumulatorMovingIndirectMode_Deplacement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode#getRegister <em>Register</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Register</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode#getRegister()
+   * @see #getAccumulatorMovingIndirectMode()
+   * @generated
+   */
+  EAttribute getAccumulatorMovingIndirectMode_Register();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode <em>Auto Inc Dec Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Auto Inc Dec Mode</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode
+   * @generated
+   */
+  EClass getAutoIncDecMode();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getDeplacement <em>Deplacement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Deplacement</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getDeplacement()
+   * @see #getAutoIncDecMode()
+   * @generated
+   */
+  EReference getAutoIncDecMode_Deplacement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getDecrement <em>Decrement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Decrement</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getDecrement()
+   * @see #getAutoIncDecMode()
+   * @generated
+   */
+  EAttribute getAutoIncDecMode_Decrement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getRegister <em>Register</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Register</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getRegister()
+   * @see #getAutoIncDecMode()
+   * @generated
+   */
+  EAttribute getAutoIncDecMode_Register();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getIncrement <em>Increment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Increment</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getIncrement()
+   * @see #getAutoIncDecMode()
+   * @generated
+   */
+  EAttribute getAutoIncDecMode_Increment();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode <em>Auto Inc Dec Indirect Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Auto Inc Dec Indirect Mode</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode
+   * @generated
+   */
+  EClass getAutoIncDecIndirectMode();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getDeplacement <em>Deplacement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Deplacement</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getDeplacement()
+   * @see #getAutoIncDecIndirectMode()
+   * @generated
+   */
+  EReference getAutoIncDecIndirectMode_Deplacement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getDecrement <em>Decrement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Decrement</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getDecrement()
+   * @see #getAutoIncDecIndirectMode()
+   * @generated
+   */
+  EAttribute getAutoIncDecIndirectMode_Decrement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getRegister <em>Register</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Register</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getRegister()
+   * @see #getAutoIncDecIndirectMode()
+   * @generated
+   */
+  EAttribute getAutoIncDecIndirectMode_Register();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getIncrement <em>Increment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Increment</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getIncrement()
+   * @see #getAutoIncDecIndirectMode()
+   * @generated
+   */
+  EAttribute getAutoIncDecIndirectMode_Increment();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode <em>Relatif To PC Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Relatif To PC Mode</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode
+   * @generated
+   */
+  EClass getRelatifToPCMode();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode#getDeplacement <em>Deplacement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Deplacement</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode#getDeplacement()
+   * @see #getRelatifToPCMode()
+   * @generated
+   */
+  EReference getRelatifToPCMode_Deplacement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode#getRegister <em>Register</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Register</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode#getRegister()
+   * @see #getRelatifToPCMode()
+   * @generated
+   */
+  EAttribute getRelatifToPCMode_Register();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode <em>Relatif To PC Indirect Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Relatif To PC Indirect Mode</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode
+   * @generated
+   */
+  EClass getRelatifToPCIndirectMode();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode#getDeplacement <em>Deplacement</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Deplacement</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode#getDeplacement()
+   * @see #getRelatifToPCIndirectMode()
+   * @generated
+   */
+  EReference getRelatifToPCIndirectMode_Deplacement();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode#getRegister <em>Register</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Register</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode#getRegister()
+   * @see #getRelatifToPCIndirectMode()
+   * @generated
+   */
+  EAttribute getRelatifToPCIndirectMode_Register();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine <em>Directive Line</em>}'.
@@ -3126,6 +4278,27 @@ public interface AssemblerPackage extends EPackage
   EReference getExpression_Value();
 
   /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.NumericalValue <em>Numerical Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Numerical Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.NumericalValue
+   * @generated
+   */
+  EClass getNumericalValue();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.NumericalValue#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.NumericalValue#getValue()
+   * @see #getNumericalValue()
+   * @generated
+   */
+  EReference getNumericalValue_Value();
+
+  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue <em>Identifier Value</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3760,6 +4933,430 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute COMMENT_LINE__COMMENT = eINSTANCE.getCommentLine_Comment();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl <em>Instruction Line</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getInstructionLine()
+     * @generated
+     */
+    EClass INSTRUCTION_LINE = eINSTANCE.getInstructionLine();
+
+    /**
+     * The meta object literal for the '<em><b>Instruction</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSTRUCTION_LINE__INSTRUCTION = eINSTANCE.getInstructionLine_Instruction();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdcInstructionImpl <em>Adc Instruction</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AdcInstructionImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAdcInstruction()
+     * @generated
+     */
+    EClass ADC_INSTRUCTION = eINSTANCE.getAdcInstruction();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ADC_INSTRUCTION__NAME = eINSTANCE.getAdcInstruction_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ADC_INSTRUCTION__INSTRUCTION = eINSTANCE.getAdcInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ADC_INSTRUCTION__OPERAND = eINSTANCE.getAdcInstruction_Operand();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ADC_INSTRUCTION__COMMENT = eINSTANCE.getAdcInstruction_Comment();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AbxInstructionImpl <em>Abx Instruction</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AbxInstructionImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAbxInstruction()
+     * @generated
+     */
+    EClass ABX_INSTRUCTION = eINSTANCE.getAbxInstruction();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ABX_INSTRUCTION__NAME = eINSTANCE.getAbxInstruction_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABX_INSTRUCTION__INSTRUCTION = eINSTANCE.getAbxInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ABX_INSTRUCTION__COMMENT = eINSTANCE.getAbxInstruction_Comment();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedIndirectOperandImpl <em>Extended Indirect Operand</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedIndirectOperandImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExtendedIndirectOperand()
+     * @generated
+     */
+    EClass EXTENDED_INDIRECT_OPERAND = eINSTANCE.getExtendedIndirectOperand();
+
+    /**
+     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXTENDED_INDIRECT_OPERAND__OPERAND = eINSTANCE.getExtendedIndirectOperand_Operand();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedOperandImpl <em>Extended Operand</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedOperandImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExtendedOperand()
+     * @generated
+     */
+    EClass EXTENDED_OPERAND = eINSTANCE.getExtendedOperand();
+
+    /**
+     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference EXTENDED_OPERAND__OPERAND = eINSTANCE.getExtendedOperand_Operand();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectOperandImpl <em>Direct Operand</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DirectOperandImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectOperand()
+     * @generated
+     */
+    EClass DIRECT_OPERAND = eINSTANCE.getDirectOperand();
+
+    /**
+     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DIRECT_OPERAND__OPERAND = eINSTANCE.getDirectOperand_Operand();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ImmediatOperandImpl <em>Immediat Operand</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ImmediatOperandImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getImmediatOperand()
+     * @generated
+     */
+    EClass IMMEDIAT_OPERAND = eINSTANCE.getImmediatOperand();
+
+    /**
+     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference IMMEDIAT_OPERAND__OPERAND = eINSTANCE.getImmediatOperand_Operand();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IndexedOperandImpl <em>Indexed Operand</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IndexedOperandImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIndexedOperand()
+     * @generated
+     */
+    EClass INDEXED_OPERAND = eINSTANCE.getIndexedOperand();
+
+    /**
+     * The meta object literal for the '<em><b>Mode</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INDEXED_OPERAND__MODE = eINSTANCE.getIndexedOperand_Mode();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedModeImpl <em>Constant Indexed Mode</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedModeImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getConstantIndexedMode()
+     * @generated
+     */
+    EClass CONSTANT_INDEXED_MODE = eINSTANCE.getConstantIndexedMode();
+
+    /**
+     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONSTANT_INDEXED_MODE__DEPLACEMENT = eINSTANCE.getConstantIndexedMode_Deplacement();
+
+    /**
+     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONSTANT_INDEXED_MODE__REGISTER = eINSTANCE.getConstantIndexedMode_Register();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedMovingIndirectModeImpl <em>Constant Indexed Moving Indirect Mode</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedMovingIndirectModeImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getConstantIndexedMovingIndirectMode()
+     * @generated
+     */
+    EClass CONSTANT_INDEXED_MOVING_INDIRECT_MODE = eINSTANCE.getConstantIndexedMovingIndirectMode();
+
+    /**
+     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONSTANT_INDEXED_MOVING_INDIRECT_MODE__DEPLACEMENT = eINSTANCE.getConstantIndexedMovingIndirectMode_Deplacement();
+
+    /**
+     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONSTANT_INDEXED_MOVING_INDIRECT_MODE__REGISTER = eINSTANCE.getConstantIndexedMovingIndirectMode_Register();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingModeImpl <em>Accumulator Moving Mode</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingModeImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAccumulatorMovingMode()
+     * @generated
+     */
+    EClass ACCUMULATOR_MOVING_MODE = eINSTANCE.getAccumulatorMovingMode();
+
+    /**
+     * The meta object literal for the '<em><b>Deplacement</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACCUMULATOR_MOVING_MODE__DEPLACEMENT = eINSTANCE.getAccumulatorMovingMode_Deplacement();
+
+    /**
+     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACCUMULATOR_MOVING_MODE__REGISTER = eINSTANCE.getAccumulatorMovingMode_Register();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingIndirectModeImpl <em>Accumulator Moving Indirect Mode</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingIndirectModeImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAccumulatorMovingIndirectMode()
+     * @generated
+     */
+    EClass ACCUMULATOR_MOVING_INDIRECT_MODE = eINSTANCE.getAccumulatorMovingIndirectMode();
+
+    /**
+     * The meta object literal for the '<em><b>Deplacement</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACCUMULATOR_MOVING_INDIRECT_MODE__DEPLACEMENT = eINSTANCE.getAccumulatorMovingIndirectMode_Deplacement();
+
+    /**
+     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ACCUMULATOR_MOVING_INDIRECT_MODE__REGISTER = eINSTANCE.getAccumulatorMovingIndirectMode_Register();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecModeImpl <em>Auto Inc Dec Mode</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecModeImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAutoIncDecMode()
+     * @generated
+     */
+    EClass AUTO_INC_DEC_MODE = eINSTANCE.getAutoIncDecMode();
+
+    /**
+     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AUTO_INC_DEC_MODE__DEPLACEMENT = eINSTANCE.getAutoIncDecMode_Deplacement();
+
+    /**
+     * The meta object literal for the '<em><b>Decrement</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute AUTO_INC_DEC_MODE__DECREMENT = eINSTANCE.getAutoIncDecMode_Decrement();
+
+    /**
+     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute AUTO_INC_DEC_MODE__REGISTER = eINSTANCE.getAutoIncDecMode_Register();
+
+    /**
+     * The meta object literal for the '<em><b>Increment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute AUTO_INC_DEC_MODE__INCREMENT = eINSTANCE.getAutoIncDecMode_Increment();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecIndirectModeImpl <em>Auto Inc Dec Indirect Mode</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecIndirectModeImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAutoIncDecIndirectMode()
+     * @generated
+     */
+    EClass AUTO_INC_DEC_INDIRECT_MODE = eINSTANCE.getAutoIncDecIndirectMode();
+
+    /**
+     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference AUTO_INC_DEC_INDIRECT_MODE__DEPLACEMENT = eINSTANCE.getAutoIncDecIndirectMode_Deplacement();
+
+    /**
+     * The meta object literal for the '<em><b>Decrement</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute AUTO_INC_DEC_INDIRECT_MODE__DECREMENT = eINSTANCE.getAutoIncDecIndirectMode_Decrement();
+
+    /**
+     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute AUTO_INC_DEC_INDIRECT_MODE__REGISTER = eINSTANCE.getAutoIncDecIndirectMode_Register();
+
+    /**
+     * The meta object literal for the '<em><b>Increment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute AUTO_INC_DEC_INDIRECT_MODE__INCREMENT = eINSTANCE.getAutoIncDecIndirectMode_Increment();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCModeImpl <em>Relatif To PC Mode</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCModeImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelatifToPCMode()
+     * @generated
+     */
+    EClass RELATIF_TO_PC_MODE = eINSTANCE.getRelatifToPCMode();
+
+    /**
+     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATIF_TO_PC_MODE__DEPLACEMENT = eINSTANCE.getRelatifToPCMode_Deplacement();
+
+    /**
+     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATIF_TO_PC_MODE__REGISTER = eINSTANCE.getRelatifToPCMode_Register();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCIndirectModeImpl <em>Relatif To PC Indirect Mode</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCIndirectModeImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelatifToPCIndirectMode()
+     * @generated
+     */
+    EClass RELATIF_TO_PC_INDIRECT_MODE = eINSTANCE.getRelatifToPCIndirectMode();
+
+    /**
+     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATIF_TO_PC_INDIRECT_MODE__DEPLACEMENT = eINSTANCE.getRelatifToPCIndirectMode_Deplacement();
+
+    /**
+     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATIF_TO_PC_INDIRECT_MODE__REGISTER = eINSTANCE.getRelatifToPCIndirectMode_Register();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl <em>Directive Line</em>}' class.
@@ -4542,6 +6139,24 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EReference EXPRESSION__VALUE = eINSTANCE.getExpression_Value();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NumericalValueImpl <em>Numerical Value</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.NumericalValueImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNumericalValue()
+     * @generated
+     */
+    EClass NUMERICAL_VALUE = eINSTANCE.getNumericalValue();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference NUMERICAL_VALUE__VALUE = eINSTANCE.getNumericalValue_Value();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierValueImpl <em>Identifier Value</em>}' class.

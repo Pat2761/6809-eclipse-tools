@@ -96,6 +96,86 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createCommentLineAdapter();
       }
       @Override
+      public Adapter caseInstructionLine(InstructionLine object)
+      {
+        return createInstructionLineAdapter();
+      }
+      @Override
+      public Adapter caseAdcInstruction(AdcInstruction object)
+      {
+        return createAdcInstructionAdapter();
+      }
+      @Override
+      public Adapter caseAbxInstruction(AbxInstruction object)
+      {
+        return createAbxInstructionAdapter();
+      }
+      @Override
+      public Adapter caseExtendedIndirectOperand(ExtendedIndirectOperand object)
+      {
+        return createExtendedIndirectOperandAdapter();
+      }
+      @Override
+      public Adapter caseExtendedOperand(ExtendedOperand object)
+      {
+        return createExtendedOperandAdapter();
+      }
+      @Override
+      public Adapter caseDirectOperand(DirectOperand object)
+      {
+        return createDirectOperandAdapter();
+      }
+      @Override
+      public Adapter caseImmediatOperand(ImmediatOperand object)
+      {
+        return createImmediatOperandAdapter();
+      }
+      @Override
+      public Adapter caseIndexedOperand(IndexedOperand object)
+      {
+        return createIndexedOperandAdapter();
+      }
+      @Override
+      public Adapter caseConstantIndexedMode(ConstantIndexedMode object)
+      {
+        return createConstantIndexedModeAdapter();
+      }
+      @Override
+      public Adapter caseConstantIndexedMovingIndirectMode(ConstantIndexedMovingIndirectMode object)
+      {
+        return createConstantIndexedMovingIndirectModeAdapter();
+      }
+      @Override
+      public Adapter caseAccumulatorMovingMode(AccumulatorMovingMode object)
+      {
+        return createAccumulatorMovingModeAdapter();
+      }
+      @Override
+      public Adapter caseAccumulatorMovingIndirectMode(AccumulatorMovingIndirectMode object)
+      {
+        return createAccumulatorMovingIndirectModeAdapter();
+      }
+      @Override
+      public Adapter caseAutoIncDecMode(AutoIncDecMode object)
+      {
+        return createAutoIncDecModeAdapter();
+      }
+      @Override
+      public Adapter caseAutoIncDecIndirectMode(AutoIncDecIndirectMode object)
+      {
+        return createAutoIncDecIndirectModeAdapter();
+      }
+      @Override
+      public Adapter caseRelatifToPCMode(RelatifToPCMode object)
+      {
+        return createRelatifToPCModeAdapter();
+      }
+      @Override
+      public Adapter caseRelatifToPCIndirectMode(RelatifToPCIndirectMode object)
+      {
+        return createRelatifToPCIndirectModeAdapter();
+      }
+      @Override
       public Adapter caseDirectiveLine(DirectiveLine object)
       {
         return createDirectiveLineAdapter();
@@ -189,6 +269,11 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
       public Adapter caseExpression(Expression object)
       {
         return createExpressionAdapter();
+      }
+      @Override
+      public Adapter caseNumericalValue(NumericalValue object)
+      {
+        return createNumericalValueAdapter();
       }
       @Override
       public Adapter caseIdentifierValue(IdentifierValue object)
@@ -358,6 +443,246 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createCommentLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine <em>Instruction Line</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
+   * @generated
+   */
+  public Adapter createInstructionLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction <em>Adc Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction
+   * @generated
+   */
+  public Adapter createAdcInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction <em>Abx Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction
+   * @generated
+   */
+  public Adapter createAbxInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand <em>Extended Indirect Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand
+   * @generated
+   */
+  public Adapter createExtendedIndirectOperandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand <em>Extended Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand
+   * @generated
+   */
+  public Adapter createExtendedOperandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectOperand <em>Direct Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectOperand
+   * @generated
+   */
+  public Adapter createDirectOperandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand <em>Immediat Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand
+   * @generated
+   */
+  public Adapter createImmediatOperandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand <em>Indexed Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand
+   * @generated
+   */
+  public Adapter createIndexedOperandAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode <em>Constant Indexed Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode
+   * @generated
+   */
+  public Adapter createConstantIndexedModeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode <em>Constant Indexed Moving Indirect Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode
+   * @generated
+   */
+  public Adapter createConstantIndexedMovingIndirectModeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode <em>Accumulator Moving Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode
+   * @generated
+   */
+  public Adapter createAccumulatorMovingModeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode <em>Accumulator Moving Indirect Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode
+   * @generated
+   */
+  public Adapter createAccumulatorMovingIndirectModeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode <em>Auto Inc Dec Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode
+   * @generated
+   */
+  public Adapter createAutoIncDecModeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode <em>Auto Inc Dec Indirect Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode
+   * @generated
+   */
+  public Adapter createAutoIncDecIndirectModeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode <em>Relatif To PC Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode
+   * @generated
+   */
+  public Adapter createRelatifToPCModeAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode <em>Relatif To PC Indirect Mode</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode
+   * @generated
+   */
+  public Adapter createRelatifToPCIndirectModeAdapter()
   {
     return null;
   }
@@ -643,6 +968,21 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.NumericalValue <em>Numerical Value</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.NumericalValue
+   * @generated
+   */
+  public Adapter createNumericalValueAdapter()
   {
     return null;
   }
