@@ -48,7 +48,7 @@ public class TestADDInstruction {
    * Check ADDA immediat
    */
   @Test
-  public void testADDAImemdiatAddressingMode() {
+  public void testADDAImmediatAddressingMode() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");

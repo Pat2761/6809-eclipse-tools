@@ -61,9 +61,169 @@ CommentLine:
  * Definition of the list possible instructions
  */
 InstructionLine:
-	instruction = AbxInstruction |
-	instruction = AdcInstruction |
-	instruction = AddInstruction
+	instruction = AbxInstruction            |
+	instruction = AdcInstruction            |
+	instruction = AddInstruction            |
+	instruction = AdddInstruction           |
+	instruction = AndInstruction            |
+	instruction = AndCCInstruction          |
+	instruction = AslInstruction			|  
+	instruction = AsrInstruction  
+;
+
+/*
+ * ASR
+ * 
+ * Arithmetic Shift Right
+ * Source Form		: ASR Q, ASLA; ASLB 
+ * Operation		: 
+ * Condition Codes	: H - Undefined
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Not affected
+ * 					  C - Loaded with bit seven of the original operand.
+ * Description		: Shifts all bits of the operand one place to the right. Bit seven is held constant. Bit zero is shifted into the C (carry) bit.
+ * Addressing Mode	: Inherent
+ * 					  Extended
+ *                    Direct
+ *                    Indexed
+ */
+AsrInstruction:
+	(name = IdentifierValue)? WS 
+	   (
+	   	    (
+	   	    	instruction = ('ASRA' | 'ASRB')
+	   	    )
+	   	 |  
+	   	    (
+	   	 	 	instruction = ('ASR')
+				WS operand = ( 
+					DirectOperand  |
+					IndexedOperand | 
+					ExtendedOperand |
+					ExtendedIndirectOperand 
+				)
+	   		)   
+	   )
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
+;
+
+/*
+ * ASL
+ * 
+ * Arithmetic Shift Left
+ * Source Form		: ASL Q, ASLA; ASLB 
+ * Operation		: 
+ * Condition Codes	: H - Undefined
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Loaded with the result of the exclusive OR of bits six and seven of the original operand.
+ * 					  C - Loaded with bit seven of the original operand.
+ * Description		: Shifts all bits of the operand one place to the left. Bit zero is loaded with a zero. Bit seven is 
+ *                    shifted into the C (carry) bit.
+ * Addressing Mode	: Inherent
+ */
+AslInstruction:
+	(name = IdentifierValue)? WS 
+	   (
+	   	    (
+	   	    	instruction = ('ASLA' | 'ASLB')
+	   	    )
+	   	 |  
+	   	    (
+	   	 	 	instruction = ('ASL')
+				WS operand = ( 
+					DirectOperand  |
+					IndexedOperand | 
+					ExtendedOperand |
+					ExtendedIndirectOperand 
+				)
+	   		)   
+	   )
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
+;
+
+/*
+ * ANDCC
+ * 
+ * Logical AND Immediate Memory into Condition Code Register
+ * Source Form		: ANDOG #xx
+ * Operation		: R'— R A Ml
+ * Condition Codes	: Affected according to the operation.
+ * Description		: PPerforms a logical AND between the condition code register and the Immediate byte specified In 
+ *                    the instruction and places the result in the condition code register.
+ * Addressing Mode	: Immediate
+ */
+AndCCInstruction:
+	(name = IdentifierValue)? WS (instruction = ('ANDCC'))
+	WS operand = ( 
+		ImmediatOperand  
+	)
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
+;
+
+/*
+ * AND
+ * 
+ * Logical AND Memory into Register
+ * Source Form		: ANDA P; ANDB P
+ * Operation		: R'— RAM
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Always cleared.
+ * 					  C - Not affected.
+ * Description		: Performs the logical AND operation between the contents of an accumulator and the contents
+ * 					  of memory location M and the result is stored in the accumulator.
+ * Addressing Mode	: Immediate
+ *                    Extended
+ *                    Direct
+ *                    Indexed 
+ */
+AndInstruction:
+	(name = IdentifierValue)? WS (instruction = ('ANDA' | 'ANDB'))
+	WS operand = ( 
+		ImmediatOperand | 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
+;
+
+/*
+ * ADDD
+ * 
+ * Add Memory into Register
+ * Source Form		: ADDD P
+ * Operation		: R'— R + M:M + 1
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Set if an overflow is generated; cleared otherwise,
+ * 					  C - Set if a carry is generated; cleared otherwise.
+ * Description		: Adds the 16-bit memory value into the 16-bit accumulator
+ * Addressing Mode	: Immediate
+ *                    Extended
+ *                    Direct
+ *                    Indexed 
+ */
+AdddInstruction:
+	(name = IdentifierValue)? WS (instruction = ('ADDD'))
+	WS operand = ( 
+		ImmediatOperand | 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
 ;
 
 /*
@@ -78,7 +238,7 @@ InstructionLine:
  *                    V - Set if an overflow is generated; cleared otherwise,
  * 					  C - Set if a carry is generated; cleared otherwise.
  * Description		: Adds the memory byte into an 8-bit accumulator.
- * Addressing Mode	: Immediat
+ * Addressing Mode	: Immediate
  *                    Extended
  *                    Direct
  *                    Indexed 
@@ -108,7 +268,7 @@ AddInstruction:
  *                    V - The Overflow flag is set if an overflow occurred; cleared otherwise.
  * 					  C - The Carry flag is set if a carry out of bit 7 occurred; cleared otherwise.
  * Description		: Add the 8-bit unsigned value in accumulator B into index register X.
- * Addressing Mode	: Immediat
+ * Addressing Mode	: Immediate
  *                    Extended
  *                    Direct
  *                    Indexed 

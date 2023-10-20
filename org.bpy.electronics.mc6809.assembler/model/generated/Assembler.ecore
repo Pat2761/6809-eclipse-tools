@@ -20,6 +20,46 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AsrInstruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AslInstruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AndCCInstruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//ImmediatOperand"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AndInstruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AdddInstruction">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AddInstruction">
     <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
         containment="true"/>

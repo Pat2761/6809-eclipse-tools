@@ -39,7 +39,7 @@ class TestADDInstruction {
 	 * Check ADDA immediat 
 	 */
 	@Test 
-	def void testADDAImemdiatAddressingMode() {
+	def void testADDAImmediatAddressingMode() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    		$8000
