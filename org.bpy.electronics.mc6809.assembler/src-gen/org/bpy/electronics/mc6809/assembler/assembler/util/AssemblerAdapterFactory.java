@@ -101,6 +101,11 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createInstructionLineAdapter();
       }
       @Override
+      public Adapter caseAddInstruction(AddInstruction object)
+      {
+        return createAddInstructionAdapter();
+      }
+      @Override
       public Adapter caseAdcInstruction(AdcInstruction object)
       {
         return createAdcInstructionAdapter();
@@ -458,6 +463,21 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInstructionLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.AddInstruction <em>Add Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AddInstruction
+   * @generated
+   */
+  public Adapter createAddInstructionAdapter()
   {
     return null;
   }

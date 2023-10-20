@@ -62,7 +62,38 @@ CommentLine:
  */
 InstructionLine:
 	instruction = AbxInstruction |
-	instruction = AdcInstruction
+	instruction = AdcInstruction |
+	instruction = AddInstruction
+;
+
+/*
+ * ADD
+ * 
+ * Add Memory into Register
+ * Source Form		: ADDA P; ADDB P
+ * Operation		: R'— R + M
+ * Condition Codes	: H - Set if a half-carry is generated; cleared otherwise,
+ * 					  N - Set if the result Is negative; cleared otherwise,
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Set if an overflow is generated; cleared otherwise,
+ * 					  C - Set if a carry is generated; cleared otherwise.
+ * Description		: Adds the memory byte into an 8-bit accumulator.
+ * Addressing Mode	: Immediat
+ *                    Extended
+ *                    Direct
+ *                    Indexed 
+ */
+AddInstruction:
+	(name = IdentifierValue)? WS (instruction = ('ADDA' | 'ADDB'))
+	WS operand = ( 
+		ImmediatOperand | 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
 ;
 
 /*
@@ -77,7 +108,10 @@ InstructionLine:
  *                    V - The Overflow flag is set if an overflow occurred; cleared otherwise.
  * 					  C - The Carry flag is set if a carry out of bit 7 occurred; cleared otherwise.
  * Description		: Add the 8-bit unsigned value in accumulator B into index register X.
- * Addressing Mode	: Inherent 
+ * Addressing Mode	: Immediat
+ *                    Extended
+ *                    Direct
+ *                    Indexed 
  */
 AdcInstruction:
 	(name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))

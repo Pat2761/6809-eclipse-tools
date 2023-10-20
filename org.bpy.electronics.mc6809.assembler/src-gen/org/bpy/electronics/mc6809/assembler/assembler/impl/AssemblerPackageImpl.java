@@ -7,6 +7,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Addition;
 import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerFactory;
@@ -116,6 +117,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass instructionLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass addInstructionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -672,6 +680,61 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EReference getInstructionLine_Instruction()
   {
     return (EReference)instructionLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getAddInstruction()
+  {
+    return addInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAddInstruction_Name()
+  {
+    return (EReference)addInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAddInstruction_Instruction()
+  {
+    return (EAttribute)addInstructionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getAddInstruction_Operand()
+  {
+    return (EReference)addInstructionEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getAddInstruction_Comment()
+  {
+    return (EAttribute)addInstructionEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -2843,6 +2906,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     instructionLineEClass = createEClass(INSTRUCTION_LINE);
     createEReference(instructionLineEClass, INSTRUCTION_LINE__INSTRUCTION);
 
+    addInstructionEClass = createEClass(ADD_INSTRUCTION);
+    createEReference(addInstructionEClass, ADD_INSTRUCTION__NAME);
+    createEAttribute(addInstructionEClass, ADD_INSTRUCTION__INSTRUCTION);
+    createEReference(addInstructionEClass, ADD_INSTRUCTION__OPERAND);
+    createEAttribute(addInstructionEClass, ADD_INSTRUCTION__COMMENT);
+
     adcInstructionEClass = createEClass(ADC_INSTRUCTION);
     createEReference(adcInstructionEClass, ADC_INSTRUCTION__NAME);
     createEAttribute(adcInstructionEClass, ADC_INSTRUCTION__INSTRUCTION);
@@ -3148,6 +3217,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(instructionLineEClass, InstructionLine.class, "InstructionLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInstructionLine_Instruction(), ecorePackage.getEObject(), null, "instruction", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(addInstructionEClass, AddInstruction.class, "AddInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getAddInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAddInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getAddInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, AddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getAddInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(adcInstructionEClass, AdcInstruction.class, "AdcInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getAdcInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AdcInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

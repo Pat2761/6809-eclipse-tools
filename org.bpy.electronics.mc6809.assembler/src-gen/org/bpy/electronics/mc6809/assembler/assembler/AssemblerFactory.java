@@ -69,6 +69,15 @@ public interface AssemblerFactory extends EFactory
   InstructionLine createInstructionLine();
 
   /**
+   * Returns a new object of class '<em>Add Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Add Instruction</em>'.
+   * @generated
+   */
+  AddInstruction createAddInstruction();
+
+  /**
    * Returns a new object of class '<em>Adc Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

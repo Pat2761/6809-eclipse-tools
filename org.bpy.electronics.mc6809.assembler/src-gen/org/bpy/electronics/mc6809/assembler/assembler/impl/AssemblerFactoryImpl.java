@@ -71,6 +71,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.INSTRUCTION_LINE: return createInstructionLine();
+      case AssemblerPackage.ADD_INSTRUCTION: return createAddInstruction();
       case AssemblerPackage.ADC_INSTRUCTION: return createAdcInstruction();
       case AssemblerPackage.ABX_INSTRUCTION: return createAbxInstruction();
       case AssemblerPackage.EXTENDED_INDIRECT_OPERAND: return createExtendedIndirectOperand();
@@ -225,6 +226,18 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     InstructionLineImpl instructionLine = new InstructionLineImpl();
     return instructionLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public AddInstruction createAddInstruction()
+  {
+    AddInstructionImpl addInstruction = new AddInstructionImpl();
+    return addInstruction;
   }
 
   /**

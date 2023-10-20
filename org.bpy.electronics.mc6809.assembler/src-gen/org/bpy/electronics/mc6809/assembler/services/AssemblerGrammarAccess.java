@@ -167,18 +167,22 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cInstructionAbxInstructionParserRuleCall_0_0 = (RuleCall)cInstructionAssignment_0.eContents().get(0);
 		private final Assignment cInstructionAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cInstructionAdcInstructionParserRuleCall_1_0 = (RuleCall)cInstructionAssignment_1.eContents().get(0);
+		private final Assignment cInstructionAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
+		private final RuleCall cInstructionAddInstructionParserRuleCall_2_0 = (RuleCall)cInstructionAssignment_2.eContents().get(0);
 		
 		///*
 		// * Definition of the list possible instructions
 		// */
 		//InstructionLine:
 		//    instruction = AbxInstruction |
-		//    instruction = AdcInstruction
+		//    instruction = AdcInstruction |
+		//    instruction = AddInstruction
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//instruction = AbxInstruction |
-		//instruction = AdcInstruction
+		//instruction = AdcInstruction |
+		//instruction = AddInstruction
 		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//instruction = AbxInstruction
@@ -192,6 +196,155 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//AdcInstruction
 		public RuleCall getInstructionAdcInstructionParserRuleCall_1_0() { return cInstructionAdcInstructionParserRuleCall_1_0; }
+		
+		//instruction = AddInstruction
+		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
+		
+		//AddInstruction
+		public RuleCall getInstructionAddInstructionParserRuleCall_2_0() { return cInstructionAddInstructionParserRuleCall_2_0; }
+	}
+	public class AddInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AddInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cInstructionAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cInstructionAlternatives_2_0 = (Alternatives)cInstructionAssignment_2.eContents().get(0);
+		private final Keyword cInstructionADDAKeyword_2_0_0 = (Keyword)cInstructionAlternatives_2_0.eContents().get(0);
+		private final Keyword cInstructionADDBKeyword_2_0_1 = (Keyword)cInstructionAlternatives_2_0.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final Assignment cOperandAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final Alternatives cOperandAlternatives_4_0 = (Alternatives)cOperandAssignment_4.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_4_0_0 = (RuleCall)cOperandAlternatives_4_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_4_0_1 = (RuleCall)cOperandAlternatives_4_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_4_0_2 = (RuleCall)cOperandAlternatives_4_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_4_0_3 = (RuleCall)cOperandAlternatives_4_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_4_0_4 = (RuleCall)cOperandAlternatives_4_0.eContents().get(4);
+		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
+		private final RuleCall cWSTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
+		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0 = (RuleCall)cCommentAssignment_5_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		
+		///*
+		// * ADD
+		// *
+		// * Add Memory into Register
+		// * Source Form        : ADDA P; ADDB P
+		// * Operation        : R'— R + M
+		// * Condition Codes    : H - Set if a half-carry is generated; cleared otherwise,
+		// *                       N - Set if the result Is negative; cleared otherwise,
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Set if an overflow is generated; cleared otherwise,
+		// *                       C - Set if a carry is generated; cleared otherwise.
+		// * Description        : Adds the memory byte into an 8-bit accumulator.
+		// * Addressing Mode    : Immediat
+		// *                    Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//AddInstruction:
+		//    (name = IdentifierValue)? WS (instruction = ('ADDA' | 'ADDB'))
+		//    WS operand = (
+		//        ImmediatOperand |
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    WS? EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS (instruction = ('ADDA' | 'ADDB'))
+		//WS operand = (
+		//    ImmediatOperand |
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//WS? EndOfLine
+		public Group getGroup() { return cGroup; }
+		
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(instruction = ('ADDA' | 'ADDB'))
+		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
+		
+		//('ADDA' | 'ADDB')
+		public Alternatives getInstructionAlternatives_2_0() { return cInstructionAlternatives_2_0; }
+		
+		//'ADDA'
+		public Keyword getInstructionADDAKeyword_2_0_0() { return cInstructionADDAKeyword_2_0_0; }
+		
+		//'ADDB'
+		public Keyword getInstructionADDBKeyword_2_0_1() { return cInstructionADDBKeyword_2_0_1; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
+		
+		//operand = (
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Assignment getOperandAssignment_4() { return cOperandAssignment_4; }
+		
+		//(
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_4_0() { return cOperandAlternatives_4_0; }
+		
+		//ImmediatOperand
+		public RuleCall getOperandImmediatOperandParserRuleCall_4_0_0() { return cOperandImmediatOperandParserRuleCall_4_0_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_4_0_1() { return cOperandDirectOperandParserRuleCall_4_0_1; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_4_0_2() { return cOperandIndexedOperandParserRuleCall_4_0_2; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_4_0_3() { return cOperandExtendedOperandParserRuleCall_4_0_3; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_4_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_4_0_4; }
+		
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		public Group getGroup_5() { return cGroup_5; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_5_0() { return cWSTerminalRuleCall_5_0; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
+		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0; }
+		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_6() { return cWSTerminalRuleCall_6; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
 	}
 	public class AdcInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AdcInstruction");
@@ -230,7 +383,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// *                    V - The Overflow flag is set if an overflow occurred; cleared otherwise.
 		// *                       C - The Carry flag is set if a carry out of bit 7 occurred; cleared otherwise.
 		// * Description        : Add the 8-bit unsigned value in accumulator B into index register X.
-		// * Addressing Mode    : Inherent
+		// * Addressing Mode    : Immediat
+		// *                    Extended
+		// *                    Direct
+		// *                    Indexed
 		// */
 		//AdcInstruction:
 		//    (name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))
@@ -3994,6 +4150,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final InstructionLineElements pInstructionLine;
+	private final AddInstructionElements pAddInstruction;
 	private final AdcInstructionElements pAdcInstruction;
 	private final AbxInstructionElements pAbxInstruction;
 	private final ExtendedIndirectOperandElements pExtendedIndirectOperand;
@@ -4072,6 +4229,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pInstructionLine = new InstructionLineElements();
+		this.pAddInstruction = new AddInstructionElements();
 		this.pAdcInstruction = new AdcInstructionElements();
 		this.pAbxInstruction = new AbxInstructionElements();
 		this.pExtendedIndirectOperand = new ExtendedIndirectOperandElements();
@@ -4232,7 +4390,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//InstructionLine:
 	//    instruction = AbxInstruction |
-	//    instruction = AdcInstruction
+	//    instruction = AdcInstruction |
+	//    instruction = AddInstruction
 	//;
 	public InstructionLineElements getInstructionLineAccess() {
 		return pInstructionLine;
@@ -4240,6 +4399,43 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getInstructionLineRule() {
 		return getInstructionLineAccess().getRule();
+	}
+	
+	///*
+	// * ADD
+	// *
+	// * Add Memory into Register
+	// * Source Form        : ADDA P; ADDB P
+	// * Operation        : R'— R + M
+	// * Condition Codes    : H - Set if a half-carry is generated; cleared otherwise,
+	// *                       N - Set if the result Is negative; cleared otherwise,
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Set if an overflow is generated; cleared otherwise,
+	// *                       C - Set if a carry is generated; cleared otherwise.
+	// * Description        : Adds the memory byte into an 8-bit accumulator.
+	// * Addressing Mode    : Immediat
+	// *                    Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//AddInstruction:
+	//    (name = IdentifierValue)? WS (instruction = ('ADDA' | 'ADDB'))
+	//    WS operand = (
+	//        ImmediatOperand |
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
+	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    WS? EndOfLine
+	//;
+	public AddInstructionElements getAddInstructionAccess() {
+		return pAddInstruction;
+	}
+	
+	public ParserRule getAddInstructionRule() {
+		return getAddInstructionAccess().getRule();
 	}
 	
 	///*
@@ -4254,7 +4450,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// *                    V - The Overflow flag is set if an overflow occurred; cleared otherwise.
 	// *                       C - The Carry flag is set if a carry out of bit 7 occurred; cleared otherwise.
 	// * Description        : Add the 8-bit unsigned value in accumulator B into index register X.
-	// * Addressing Mode    : Inherent
+	// * Addressing Mode    : Immediat
+	// *                    Extended
+	// *                    Direct
+	// *                    Indexed
 	// */
 	//AdcInstruction:
 	//    (name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))

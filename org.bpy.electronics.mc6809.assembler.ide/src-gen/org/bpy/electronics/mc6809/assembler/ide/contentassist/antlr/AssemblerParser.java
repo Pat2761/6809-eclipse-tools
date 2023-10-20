@@ -33,6 +33,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, AssemblerGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getSourceLineAccess().getAlternatives(), "rule__SourceLine__Alternatives");
 			builder.put(grammarAccess.getInstructionLineAccess().getAlternatives(), "rule__InstructionLine__Alternatives");
+			builder.put(grammarAccess.getAddInstructionAccess().getInstructionAlternatives_2_0(), "rule__AddInstruction__InstructionAlternatives_2_0");
+			builder.put(grammarAccess.getAddInstructionAccess().getOperandAlternatives_4_0(), "rule__AddInstruction__OperandAlternatives_4_0");
 			builder.put(grammarAccess.getAdcInstructionAccess().getInstructionAlternatives_2_0(), "rule__AdcInstruction__InstructionAlternatives_2_0");
 			builder.put(grammarAccess.getAdcInstructionAccess().getOperandAlternatives_4_0(), "rule__AdcInstruction__OperandAlternatives_4_0");
 			builder.put(grammarAccess.getIndexedOperandAccess().getAlternatives(), "rule__IndexedOperand__Alternatives");
@@ -67,6 +69,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRegisterAccess().getAlternatives(), "rule__Register__Alternatives");
 			builder.put(grammarAccess.getBlankLineAccess().getGroup(), "rule__BlankLine__Group__0");
 			builder.put(grammarAccess.getCommentLineAccess().getGroup(), "rule__CommentLine__Group__0");
+			builder.put(grammarAccess.getAddInstructionAccess().getGroup(), "rule__AddInstruction__Group__0");
+			builder.put(grammarAccess.getAddInstructionAccess().getGroup_5(), "rule__AddInstruction__Group_5__0");
 			builder.put(grammarAccess.getAdcInstructionAccess().getGroup(), "rule__AdcInstruction__Group__0");
 			builder.put(grammarAccess.getAdcInstructionAccess().getGroup_5(), "rule__AdcInstruction__Group_5__0");
 			builder.put(grammarAccess.getAbxInstructionAccess().getGroup(), "rule__AbxInstruction__Group__0");
@@ -171,6 +175,11 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCommentLineAccess().getCommentAssignment_0(), "rule__CommentLine__CommentAssignment_0");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_0(), "rule__InstructionLine__InstructionAssignment_0");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_1(), "rule__InstructionLine__InstructionAssignment_1");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2(), "rule__InstructionLine__InstructionAssignment_2");
+			builder.put(grammarAccess.getAddInstructionAccess().getNameAssignment_0(), "rule__AddInstruction__NameAssignment_0");
+			builder.put(grammarAccess.getAddInstructionAccess().getInstructionAssignment_2(), "rule__AddInstruction__InstructionAssignment_2");
+			builder.put(grammarAccess.getAddInstructionAccess().getOperandAssignment_4(), "rule__AddInstruction__OperandAssignment_4");
+			builder.put(grammarAccess.getAddInstructionAccess().getCommentAssignment_5_1(), "rule__AddInstruction__CommentAssignment_5_1");
 			builder.put(grammarAccess.getAdcInstructionAccess().getNameAssignment_0(), "rule__AdcInstruction__NameAssignment_0");
 			builder.put(grammarAccess.getAdcInstructionAccess().getInstructionAssignment_2(), "rule__AdcInstruction__InstructionAssignment_2");
 			builder.put(grammarAccess.getAdcInstructionAccess().getOperandAssignment_4(), "rule__AdcInstruction__OperandAssignment_4");

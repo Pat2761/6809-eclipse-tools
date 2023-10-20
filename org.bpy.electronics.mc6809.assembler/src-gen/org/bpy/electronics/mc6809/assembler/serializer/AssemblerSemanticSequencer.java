@@ -9,6 +9,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Addition;
 import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
@@ -100,6 +101,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.ADC_INSTRUCTION:
 				sequence_AdcInstruction(context, (AdcInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.ADD_INSTRUCTION:
+				sequence_AddInstruction(context, (AddInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.ADDITION:
 				sequence_Addition(context, (Addition) semanticObject); 
@@ -352,6 +356,25 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * </pre>
 	 */
 	protected void sequence_AdcInstruction(ISerializationContext context, AdcInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     AddInstruction returns AddInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         name=IdentifierValue? 
+	 *         (instruction='ADDA' | instruction='ADDB') 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand) 
+	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_AddInstruction(ISerializationContext context, AddInstruction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -961,7 +984,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     InstructionLine returns InstructionLine
 	 *
 	 * Constraint:
-	 *     (instruction=AbxInstruction | instruction=AdcInstruction)
+	 *     (instruction=AbxInstruction | instruction=AdcInstruction | instruction=AddInstruction)
 	 * </pre>
 	 */
 	protected void sequence_InstructionLine(ISerializationContext context, InstructionLine semanticObject) {

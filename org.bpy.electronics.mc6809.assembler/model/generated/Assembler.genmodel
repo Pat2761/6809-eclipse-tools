@@ -43,6 +43,12 @@
     <genClasses ecoreClass="Assembler.ecore#//InstructionLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/instruction"/>
     </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//AddInstruction">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AddInstruction/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AddInstruction/instruction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AddInstruction/operand"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AddInstruction/comment"/>
+    </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AdcInstruction">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AdcInstruction/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AdcInstruction/instruction"/>
