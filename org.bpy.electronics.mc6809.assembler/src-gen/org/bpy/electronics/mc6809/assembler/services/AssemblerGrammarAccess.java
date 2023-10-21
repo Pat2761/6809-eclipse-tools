@@ -162,28 +162,56 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	public class InstructionLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.InstructionLine");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cInstructionAbxInstructionParserRuleCall_0_0 = (RuleCall)cInstructionAssignment_0.eContents().get(0);
-		private final Assignment cInstructionAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cInstructionAdcInstructionParserRuleCall_1_0 = (RuleCall)cInstructionAssignment_1.eContents().get(0);
-		private final Assignment cInstructionAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cInstructionAddInstructionParserRuleCall_2_0 = (RuleCall)cInstructionAssignment_2.eContents().get(0);
-		private final Assignment cInstructionAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cInstructionAdddInstructionParserRuleCall_3_0 = (RuleCall)cInstructionAssignment_3.eContents().get(0);
-		private final Assignment cInstructionAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
-		private final RuleCall cInstructionAndInstructionParserRuleCall_4_0 = (RuleCall)cInstructionAssignment_4.eContents().get(0);
-		private final Assignment cInstructionAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
-		private final RuleCall cInstructionAndCCInstructionParserRuleCall_5_0 = (RuleCall)cInstructionAssignment_5.eContents().get(0);
-		private final Assignment cInstructionAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
-		private final RuleCall cInstructionAslInstructionParserRuleCall_6_0 = (RuleCall)cInstructionAssignment_6.eContents().get(0);
-		private final Assignment cInstructionAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
-		private final RuleCall cInstructionAsrInstructionParserRuleCall_7_0 = (RuleCall)cInstructionAssignment_7.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cInstructionAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cInstructionAbxInstructionParserRuleCall_2_0_0 = (RuleCall)cInstructionAssignment_2_0.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cInstructionAdcInstructionParserRuleCall_2_1_0 = (RuleCall)cInstructionAssignment_2_1.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
+		private final RuleCall cInstructionAddInstructionParserRuleCall_2_2_0 = (RuleCall)cInstructionAssignment_2_2.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_3 = (Assignment)cAlternatives_2.eContents().get(3);
+		private final RuleCall cInstructionAdddInstructionParserRuleCall_2_3_0 = (RuleCall)cInstructionAssignment_2_3.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_4 = (Assignment)cAlternatives_2.eContents().get(4);
+		private final RuleCall cInstructionAndInstructionParserRuleCall_2_4_0 = (RuleCall)cInstructionAssignment_2_4.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_5 = (Assignment)cAlternatives_2.eContents().get(5);
+		private final RuleCall cInstructionAndCCInstructionParserRuleCall_2_5_0 = (RuleCall)cInstructionAssignment_2_5.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_6 = (Assignment)cAlternatives_2.eContents().get(6);
+		private final RuleCall cInstructionAslInstructionParserRuleCall_2_6_0 = (RuleCall)cInstructionAssignment_2_6.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_7 = (Assignment)cAlternatives_2.eContents().get(7);
+		private final RuleCall cInstructionAsrInstructionParserRuleCall_2_7_0 = (RuleCall)cInstructionAssignment_2_7.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		///*
 		// * Definition of the list possible instructions
 		// */
 		//InstructionLine:
+		//    (name = IdentifierValue)? WS
+		//    (
+		//        instruction = AbxInstruction            |
+		//        instruction = AdcInstruction            |
+		//        instruction = AddInstruction            |
+		//        instruction = AdddInstruction           |
+		//        instruction = AndInstruction            |
+		//        instruction = AndCCInstruction          |
+		//        instruction = AslInstruction            |
+		//        instruction = AsrInstruction
+		//    )
+		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    WS? EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS
+		//(
 		//    instruction = AbxInstruction            |
 		//    instruction = AdcInstruction            |
 		//    instruction = AddInstruction            |
@@ -192,94 +220,115 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = AndCCInstruction          |
 		//    instruction = AslInstruction            |
 		//    instruction = AsrInstruction
-		//;
-		@Override public ParserRule getRule() { return rule; }
+		//)
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//WS? EndOfLine
+		public Group getGroup() { return cGroup; }
 		
-		//instruction = AbxInstruction            |
-		//instruction = AdcInstruction            |
-		//instruction = AddInstruction            |
-		//instruction = AdddInstruction           |
-		//instruction = AndInstruction            |
-		//instruction = AndCCInstruction          |
-		//instruction = AslInstruction            |
-		//instruction = AsrInstruction
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(
+		//    instruction = AbxInstruction            |
+		//    instruction = AdcInstruction            |
+		//    instruction = AddInstruction            |
+		//    instruction = AdddInstruction           |
+		//    instruction = AndInstruction            |
+		//    instruction = AndCCInstruction          |
+		//    instruction = AslInstruction            |
+		//    instruction = AsrInstruction
+		//)
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//instruction = AbxInstruction
-		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		public Assignment getInstructionAssignment_2_0() { return cInstructionAssignment_2_0; }
 		
 		//AbxInstruction
-		public RuleCall getInstructionAbxInstructionParserRuleCall_0_0() { return cInstructionAbxInstructionParserRuleCall_0_0; }
+		public RuleCall getInstructionAbxInstructionParserRuleCall_2_0_0() { return cInstructionAbxInstructionParserRuleCall_2_0_0; }
 		
 		//instruction = AdcInstruction
-		public Assignment getInstructionAssignment_1() { return cInstructionAssignment_1; }
+		public Assignment getInstructionAssignment_2_1() { return cInstructionAssignment_2_1; }
 		
 		//AdcInstruction
-		public RuleCall getInstructionAdcInstructionParserRuleCall_1_0() { return cInstructionAdcInstructionParserRuleCall_1_0; }
+		public RuleCall getInstructionAdcInstructionParserRuleCall_2_1_0() { return cInstructionAdcInstructionParserRuleCall_2_1_0; }
 		
 		//instruction = AddInstruction
-		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
+		public Assignment getInstructionAssignment_2_2() { return cInstructionAssignment_2_2; }
 		
 		//AddInstruction
-		public RuleCall getInstructionAddInstructionParserRuleCall_2_0() { return cInstructionAddInstructionParserRuleCall_2_0; }
+		public RuleCall getInstructionAddInstructionParserRuleCall_2_2_0() { return cInstructionAddInstructionParserRuleCall_2_2_0; }
 		
 		//instruction = AdddInstruction
-		public Assignment getInstructionAssignment_3() { return cInstructionAssignment_3; }
+		public Assignment getInstructionAssignment_2_3() { return cInstructionAssignment_2_3; }
 		
 		//AdddInstruction
-		public RuleCall getInstructionAdddInstructionParserRuleCall_3_0() { return cInstructionAdddInstructionParserRuleCall_3_0; }
+		public RuleCall getInstructionAdddInstructionParserRuleCall_2_3_0() { return cInstructionAdddInstructionParserRuleCall_2_3_0; }
 		
 		//instruction = AndInstruction
-		public Assignment getInstructionAssignment_4() { return cInstructionAssignment_4; }
+		public Assignment getInstructionAssignment_2_4() { return cInstructionAssignment_2_4; }
 		
 		//AndInstruction
-		public RuleCall getInstructionAndInstructionParserRuleCall_4_0() { return cInstructionAndInstructionParserRuleCall_4_0; }
+		public RuleCall getInstructionAndInstructionParserRuleCall_2_4_0() { return cInstructionAndInstructionParserRuleCall_2_4_0; }
 		
 		//instruction = AndCCInstruction
-		public Assignment getInstructionAssignment_5() { return cInstructionAssignment_5; }
+		public Assignment getInstructionAssignment_2_5() { return cInstructionAssignment_2_5; }
 		
 		//AndCCInstruction
-		public RuleCall getInstructionAndCCInstructionParserRuleCall_5_0() { return cInstructionAndCCInstructionParserRuleCall_5_0; }
+		public RuleCall getInstructionAndCCInstructionParserRuleCall_2_5_0() { return cInstructionAndCCInstructionParserRuleCall_2_5_0; }
 		
 		//instruction = AslInstruction
-		public Assignment getInstructionAssignment_6() { return cInstructionAssignment_6; }
+		public Assignment getInstructionAssignment_2_6() { return cInstructionAssignment_2_6; }
 		
 		//AslInstruction
-		public RuleCall getInstructionAslInstructionParserRuleCall_6_0() { return cInstructionAslInstructionParserRuleCall_6_0; }
+		public RuleCall getInstructionAslInstructionParserRuleCall_2_6_0() { return cInstructionAslInstructionParserRuleCall_2_6_0; }
 		
 		//instruction = AsrInstruction
-		public Assignment getInstructionAssignment_7() { return cInstructionAssignment_7; }
+		public Assignment getInstructionAssignment_2_7() { return cInstructionAssignment_2_7; }
 		
 		//AsrInstruction
-		public RuleCall getInstructionAsrInstructionParserRuleCall_7_0() { return cInstructionAsrInstructionParserRuleCall_7_0; }
+		public RuleCall getInstructionAsrInstructionParserRuleCall_2_7_0() { return cInstructionAsrInstructionParserRuleCall_2_7_0; }
+		
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
+		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
+		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
 	}
 	public class AsrInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AsrInstruction");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cInstructionAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final Alternatives cInstructionAlternatives_2_0_0 = (Alternatives)cInstructionAssignment_2_0.eContents().get(0);
-		private final Keyword cInstructionASRAKeyword_2_0_0_0 = (Keyword)cInstructionAlternatives_2_0_0.eContents().get(0);
-		private final Keyword cInstructionASRBKeyword_2_0_0_1 = (Keyword)cInstructionAlternatives_2_0_0.eContents().get(1);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Assignment cInstructionAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final Keyword cInstructionASRKeyword_2_1_0_0 = (Keyword)cInstructionAssignment_2_1_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_2_1_1 = (RuleCall)cGroup_2_1.eContents().get(1);
-		private final Assignment cOperandAssignment_2_1_2 = (Assignment)cGroup_2_1.eContents().get(2);
-		private final Alternatives cOperandAlternatives_2_1_2_0 = (Alternatives)cOperandAssignment_2_1_2.eContents().get(0);
-		private final RuleCall cOperandDirectOperandParserRuleCall_2_1_2_0_0 = (RuleCall)cOperandAlternatives_2_1_2_0.eContents().get(0);
-		private final RuleCall cOperandIndexedOperandParserRuleCall_2_1_2_0_1 = (RuleCall)cOperandAlternatives_2_1_2_0.eContents().get(1);
-		private final RuleCall cOperandExtendedOperandParserRuleCall_2_1_2_0_2 = (RuleCall)cOperandAlternatives_2_1_2_0.eContents().get(2);
-		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_1_2_0_3 = (RuleCall)cOperandAlternatives_2_1_2_0.eContents().get(3);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionASRAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionASRBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionASRKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
 		
 		///*
 		// * ASR
@@ -299,180 +348,116 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// *                    Indexed
 		// */
 		//AsrInstruction:
-		//    (name = IdentifierValue)? WS
-		//       (
-		//               (
-		//                   instruction = ('ASRA' | 'ASRB')
-		//               )
-		//            |
-		//               (
-		//                     instruction = ('ASR')
-		//                WS operand = (
-		//                    DirectOperand  |
-		//                    IndexedOperand |
-		//                    ExtendedOperand |
-		//                    ExtendedIndirectOperand
-		//                )
-		//               )
-		//       )
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
+		//    (
+		//        instruction = ('ASRA' | 'ASRB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('ASR')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
-		
-		//(name = IdentifierValue)? WS
-		//   (
-		//           (
-		//               instruction = ('ASRA' | 'ASRB')
-		//           )
-		//        |
-		//           (
-		//                 instruction = ('ASR')
-		//            WS operand = (
-		//                DirectOperand  |
-		//                IndexedOperand |
-		//                ExtendedOperand |
-		//                ExtendedIndirectOperand
-		//            )
-		//           )
-		//   )
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
-		public Group getGroup() { return cGroup; }
-		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(
-		//        (
-		//            instruction = ('ASRA' | 'ASRB')
-		//        )
-		//     |
-		//        (
-		//              instruction = ('ASR')
-		//         WS operand = (
-		//             DirectOperand  |
-		//             IndexedOperand |
-		//             ExtendedOperand |
-		//             ExtendedIndirectOperand
-		//         )
-		//        )
-		//)
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//(
 		//    instruction = ('ASRA' | 'ASRB')
 		//)
-		public Assignment getInstructionAssignment_2_0() { return cInstructionAssignment_2_0; }
+		//|
+		//(
+		//     instruction = ('ASR')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//    instruction = ('ASRA' | 'ASRB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
 		
 		//('ASRA' | 'ASRB')
-		public Alternatives getInstructionAlternatives_2_0_0() { return cInstructionAlternatives_2_0_0; }
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
 		
 		//'ASRA'
-		public Keyword getInstructionASRAKeyword_2_0_0_0() { return cInstructionASRAKeyword_2_0_0_0; }
+		public Keyword getInstructionASRAKeyword_0_0_0() { return cInstructionASRAKeyword_0_0_0; }
 		
 		//'ASRB'
-		public Keyword getInstructionASRBKeyword_2_0_0_1() { return cInstructionASRBKeyword_2_0_0_1; }
+		public Keyword getInstructionASRBKeyword_0_0_1() { return cInstructionASRBKeyword_0_0_1; }
 		
 		//(
-		//      instruction = ('ASR')
-		// WS operand = (
-		//     DirectOperand  |
-		//     IndexedOperand |
-		//     ExtendedOperand |
-		//     ExtendedIndirectOperand
-		// )
+		//     instruction = ('ASR')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
 		//)
-		public Group getGroup_2_1() { return cGroup_2_1; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//instruction = ('ASR')
-		public Assignment getInstructionAssignment_2_1_0() { return cInstructionAssignment_2_1_0; }
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
 		
 		//('ASR')
-		public Keyword getInstructionASRKeyword_2_1_0_0() { return cInstructionASRKeyword_2_1_0_0; }
+		public Keyword getInstructionASRKeyword_1_0_0() { return cInstructionASRKeyword_1_0_0; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_2_1_1() { return cWSTerminalRuleCall_2_1_1; }
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
 		
 		//operand = (
-		//                   DirectOperand  |
-		//                   IndexedOperand |
-		//                   ExtendedOperand |
-		//                   ExtendedIndirectOperand
-		//               )
-		public Assignment getOperandAssignment_2_1_2() { return cOperandAssignment_2_1_2; }
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
 		
 		//(
-		//                   DirectOperand  |
-		//                   IndexedOperand |
-		//                   ExtendedOperand |
-		//                   ExtendedIndirectOperand
-		//               )
-		public Alternatives getOperandAlternatives_2_1_2_0() { return cOperandAlternatives_2_1_2_0; }
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
 		
 		//DirectOperand
-		public RuleCall getOperandDirectOperandParserRuleCall_2_1_2_0_0() { return cOperandDirectOperandParserRuleCall_2_1_2_0_0; }
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
 		
 		//IndexedOperand
-		public RuleCall getOperandIndexedOperandParserRuleCall_2_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_2_1_2_0_1; }
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
 		
 		//ExtendedOperand
-		public RuleCall getOperandExtendedOperandParserRuleCall_2_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_2_1_2_0_2; }
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
 		
 		//ExtendedIndirectOperand
-		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_2_1_2_0_3; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
 	}
 	public class AslInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AslInstruction");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cInstructionAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final Alternatives cInstructionAlternatives_2_0_0 = (Alternatives)cInstructionAssignment_2_0.eContents().get(0);
-		private final Keyword cInstructionASLAKeyword_2_0_0_0 = (Keyword)cInstructionAlternatives_2_0_0.eContents().get(0);
-		private final Keyword cInstructionASLBKeyword_2_0_0_1 = (Keyword)cInstructionAlternatives_2_0_0.eContents().get(1);
-		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
-		private final Assignment cInstructionAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
-		private final Keyword cInstructionASLKeyword_2_1_0_0 = (Keyword)cInstructionAssignment_2_1_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_2_1_1 = (RuleCall)cGroup_2_1.eContents().get(1);
-		private final Assignment cOperandAssignment_2_1_2 = (Assignment)cGroup_2_1.eContents().get(2);
-		private final Alternatives cOperandAlternatives_2_1_2_0 = (Alternatives)cOperandAssignment_2_1_2.eContents().get(0);
-		private final RuleCall cOperandDirectOperandParserRuleCall_2_1_2_0_0 = (RuleCall)cOperandAlternatives_2_1_2_0.eContents().get(0);
-		private final RuleCall cOperandIndexedOperandParserRuleCall_2_1_2_0_1 = (RuleCall)cOperandAlternatives_2_1_2_0.eContents().get(1);
-		private final RuleCall cOperandExtendedOperandParserRuleCall_2_1_2_0_2 = (RuleCall)cOperandAlternatives_2_1_2_0.eContents().get(2);
-		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_1_2_0_3 = (RuleCall)cOperandAlternatives_2_1_2_0.eContents().get(3);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionASLAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionASLBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionASLKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
 		
 		///*
 		// * ASL
@@ -490,170 +475,107 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * Addressing Mode    : Inherent
 		// */
 		//AslInstruction:
-		//    (name = IdentifierValue)? WS
-		//       (
-		//               (
-		//                   instruction = ('ASLA' | 'ASLB')
-		//               )
-		//            |
-		//               (
-		//                     instruction = ('ASL')
-		//                WS operand = (
-		//                    DirectOperand  |
-		//                    IndexedOperand |
-		//                    ExtendedOperand |
-		//                    ExtendedIndirectOperand
-		//                )
-		//               )
-		//       )
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
+		//    (
+		//       instruction = ('ASLA' | 'ASLB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('ASL')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS
-		//   (
-		//           (
-		//               instruction = ('ASLA' | 'ASLB')
-		//           )
-		//        |
-		//           (
-		//                 instruction = ('ASL')
-		//            WS operand = (
-		//                DirectOperand  |
-		//                IndexedOperand |
-		//                ExtendedOperand |
-		//                ExtendedIndirectOperand
-		//            )
-		//           )
-		//   )
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
-		public Group getGroup() { return cGroup; }
-		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		//(
+		//   instruction = ('ASLA' | 'ASLB')
+		//)
+		//|
+		//(
+		//     instruction = ('ASL')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
 		
 		//(
-		//        (
-		//            instruction = ('ASLA' | 'ASLB')
-		//        )
-		//     |
-		//        (
-		//              instruction = ('ASL')
-		//         WS operand = (
-		//             DirectOperand  |
-		//             IndexedOperand |
-		//             ExtendedOperand |
-		//             ExtendedIndirectOperand
-		//         )
-		//        )
+		//   instruction = ('ASLA' | 'ASLB')
 		//)
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
-		
-		//(
-		//    instruction = ('ASLA' | 'ASLB')
-		//)
-		public Assignment getInstructionAssignment_2_0() { return cInstructionAssignment_2_0; }
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
 		
 		//('ASLA' | 'ASLB')
-		public Alternatives getInstructionAlternatives_2_0_0() { return cInstructionAlternatives_2_0_0; }
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
 		
 		//'ASLA'
-		public Keyword getInstructionASLAKeyword_2_0_0_0() { return cInstructionASLAKeyword_2_0_0_0; }
+		public Keyword getInstructionASLAKeyword_0_0_0() { return cInstructionASLAKeyword_0_0_0; }
 		
 		//'ASLB'
-		public Keyword getInstructionASLBKeyword_2_0_0_1() { return cInstructionASLBKeyword_2_0_0_1; }
+		public Keyword getInstructionASLBKeyword_0_0_1() { return cInstructionASLBKeyword_0_0_1; }
 		
 		//(
-		//      instruction = ('ASL')
-		// WS operand = (
-		//     DirectOperand  |
-		//     IndexedOperand |
-		//     ExtendedOperand |
-		//     ExtendedIndirectOperand
-		// )
+		//     instruction = ('ASL')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
 		//)
-		public Group getGroup_2_1() { return cGroup_2_1; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//instruction = ('ASL')
-		public Assignment getInstructionAssignment_2_1_0() { return cInstructionAssignment_2_1_0; }
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
 		
 		//('ASL')
-		public Keyword getInstructionASLKeyword_2_1_0_0() { return cInstructionASLKeyword_2_1_0_0; }
+		public Keyword getInstructionASLKeyword_1_0_0() { return cInstructionASLKeyword_1_0_0; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_2_1_1() { return cWSTerminalRuleCall_2_1_1; }
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
 		
 		//operand = (
-		//                   DirectOperand  |
-		//                   IndexedOperand |
-		//                   ExtendedOperand |
-		//                   ExtendedIndirectOperand
-		//               )
-		public Assignment getOperandAssignment_2_1_2() { return cOperandAssignment_2_1_2; }
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
 		
 		//(
-		//                   DirectOperand  |
-		//                   IndexedOperand |
-		//                   ExtendedOperand |
-		//                   ExtendedIndirectOperand
-		//               )
-		public Alternatives getOperandAlternatives_2_1_2_0() { return cOperandAlternatives_2_1_2_0; }
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
 		
 		//DirectOperand
-		public RuleCall getOperandDirectOperandParserRuleCall_2_1_2_0_0() { return cOperandDirectOperandParserRuleCall_2_1_2_0_0; }
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
 		
 		//IndexedOperand
-		public RuleCall getOperandIndexedOperandParserRuleCall_2_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_2_1_2_0_1; }
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
 		
 		//ExtendedOperand
-		public RuleCall getOperandExtendedOperandParserRuleCall_2_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_2_1_2_0_2; }
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
 		
 		//ExtendedIndirectOperand
-		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_2_1_2_0_3; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
 	}
 	public class AndCCInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AndCCInstruction");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cInstructionANDCCKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cInstructionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cInstructionANDCCKeyword_2_0 = (Keyword)cInstructionAssignment_2.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Assignment cOperandAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOperandImmediatOperandParserRuleCall_4_0 = (RuleCall)cOperandAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final RuleCall cWSTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0 = (RuleCall)cCommentAssignment_5_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
-		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
 		
 		///*
 		// * ANDCC
@@ -667,93 +589,53 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * Addressing Mode    : Immediate
 		// */
 		//AndCCInstruction:
-		//    (name = IdentifierValue)? WS (instruction = ('ANDCC'))
+		//    instruction = ('ANDCC')
 		//    WS operand = (
 		//        ImmediatOperand
 		//    )
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (instruction = ('ANDCC'))
+		//instruction = ('ANDCC')
 		//WS operand = (
 		//    ImmediatOperand
 		//)
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//instruction = ('ANDCC')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		//('ANDCC')
+		public Keyword getInstructionANDCCKeyword_0_0() { return cInstructionANDCCKeyword_0_0; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
 		
-		//(instruction = ('ANDCC'))
-		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
-		
-		//('ANDCC')
-		public Keyword getInstructionANDCCKeyword_2_0() { return cInstructionANDCCKeyword_2_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
-		
 		//operand = (
 		//       ImmediatOperand
 		//   )
-		public Assignment getOperandAssignment_4() { return cOperandAssignment_4; }
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
 		//(
 		//       ImmediatOperand
 		//   )
-		public RuleCall getOperandImmediatOperandParserRuleCall_4_0() { return cOperandImmediatOperandParserRuleCall_4_0; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_5_0() { return cWSTerminalRuleCall_5_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_6() { return cWSTerminalRuleCall_6; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0() { return cOperandImmediatOperandParserRuleCall_2_0; }
 	}
 	public class AndInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AndInstruction");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionANDAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionANDBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cInstructionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Alternatives cInstructionAlternatives_2_0 = (Alternatives)cInstructionAssignment_2.eContents().get(0);
-		private final Keyword cInstructionANDAKeyword_2_0_0 = (Keyword)cInstructionAlternatives_2_0.eContents().get(0);
-		private final Keyword cInstructionANDBKeyword_2_0_1 = (Keyword)cInstructionAlternatives_2_0.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Assignment cOperandAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final Alternatives cOperandAlternatives_4_0 = (Alternatives)cOperandAssignment_4.eContents().get(0);
-		private final RuleCall cOperandImmediatOperandParserRuleCall_4_0_0 = (RuleCall)cOperandAlternatives_4_0.eContents().get(0);
-		private final RuleCall cOperandDirectOperandParserRuleCall_4_0_1 = (RuleCall)cOperandAlternatives_4_0.eContents().get(1);
-		private final RuleCall cOperandIndexedOperandParserRuleCall_4_0_2 = (RuleCall)cOperandAlternatives_4_0.eContents().get(2);
-		private final RuleCall cOperandExtendedOperandParserRuleCall_4_0_3 = (RuleCall)cOperandAlternatives_4_0.eContents().get(3);
-		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_4_0_4 = (RuleCall)cOperandAlternatives_4_0.eContents().get(4);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final RuleCall cWSTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0 = (RuleCall)cCommentAssignment_5_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
-		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
 		
 		///*
 		// * AND
@@ -774,7 +656,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// *                    Indexed
 		// */
 		//AndInstruction:
-		//    (name = IdentifierValue)? WS (instruction = ('ANDA' | 'ANDB'))
+		//    instruction = ('ANDA' | 'ANDB')
 		//    WS operand = (
 		//        ImmediatOperand |
 		//        DirectOperand  |
@@ -782,12 +664,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        ExtendedOperand |
 		//        ExtendedIndirectOperand
 		//    )
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (instruction = ('ANDA' | 'ANDB'))
+		//instruction = ('ANDA' | 'ANDB')
 		//WS operand = (
 		//    ImmediatOperand |
 		//    DirectOperand  |
@@ -795,33 +675,22 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    ExtendedOperand |
 		//    ExtendedIndirectOperand
 		//)
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//instruction = ('ANDA' | 'ANDB')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		//('ANDA' | 'ANDB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'ANDA'
+		public Keyword getInstructionANDAKeyword_0_0_0() { return cInstructionANDAKeyword_0_0_0; }
+		
+		//'ANDB'
+		public Keyword getInstructionANDBKeyword_0_0_1() { return cInstructionANDBKeyword_0_0_1; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(instruction = ('ANDA' | 'ANDB'))
-		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
-		
-		//('ANDA' | 'ANDB')
-		public Alternatives getInstructionAlternatives_2_0() { return cInstructionAlternatives_2_0; }
-		
-		//'ANDA'
-		public Keyword getInstructionANDAKeyword_2_0_0() { return cInstructionANDAKeyword_2_0_0; }
-		
-		//'ANDB'
-		public Keyword getInstructionANDBKeyword_2_0_1() { return cInstructionANDBKeyword_2_0_1; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
 		
 		//operand = (
 		//       ImmediatOperand |
@@ -830,7 +699,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//       ExtendedOperand |
 		//       ExtendedIndirectOperand
 		//   )
-		public Assignment getOperandAssignment_4() { return cOperandAssignment_4; }
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
 		//(
 		//       ImmediatOperand |
@@ -839,63 +708,36 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//       ExtendedOperand |
 		//       ExtendedIndirectOperand
 		//   )
-		public Alternatives getOperandAlternatives_4_0() { return cOperandAlternatives_4_0; }
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
 		
 		//ImmediatOperand
-		public RuleCall getOperandImmediatOperandParserRuleCall_4_0_0() { return cOperandImmediatOperandParserRuleCall_4_0_0; }
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
 		
 		//DirectOperand
-		public RuleCall getOperandDirectOperandParserRuleCall_4_0_1() { return cOperandDirectOperandParserRuleCall_4_0_1; }
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
 		
 		//IndexedOperand
-		public RuleCall getOperandIndexedOperandParserRuleCall_4_0_2() { return cOperandIndexedOperandParserRuleCall_4_0_2; }
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
 		
 		//ExtendedOperand
-		public RuleCall getOperandExtendedOperandParserRuleCall_4_0_3() { return cOperandExtendedOperandParserRuleCall_4_0_3; }
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
 		
 		//ExtendedIndirectOperand
-		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_4_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_4_0_4; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_5_0() { return cWSTerminalRuleCall_5_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_6() { return cWSTerminalRuleCall_6; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
 	}
 	public class AdddInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AdddInstruction");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cInstructionADDDKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cInstructionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cInstructionADDDKeyword_2_0 = (Keyword)cInstructionAssignment_2.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Assignment cOperandAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final Alternatives cOperandAlternatives_4_0 = (Alternatives)cOperandAssignment_4.eContents().get(0);
-		private final RuleCall cOperandImmediatOperandParserRuleCall_4_0_0 = (RuleCall)cOperandAlternatives_4_0.eContents().get(0);
-		private final RuleCall cOperandDirectOperandParserRuleCall_4_0_1 = (RuleCall)cOperandAlternatives_4_0.eContents().get(1);
-		private final RuleCall cOperandIndexedOperandParserRuleCall_4_0_2 = (RuleCall)cOperandAlternatives_4_0.eContents().get(2);
-		private final RuleCall cOperandExtendedOperandParserRuleCall_4_0_3 = (RuleCall)cOperandAlternatives_4_0.eContents().get(3);
-		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_4_0_4 = (RuleCall)cOperandAlternatives_4_0.eContents().get(4);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final RuleCall cWSTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0 = (RuleCall)cCommentAssignment_5_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
-		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
 		
 		///*
 		// * ADDD
@@ -915,7 +757,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// *                    Indexed
 		// */
 		//AdddInstruction:
-		//    (name = IdentifierValue)? WS (instruction = ('ADDD'))
+		//    instruction = ('ADDD')
 		//    WS operand = (
 		//        ImmediatOperand |
 		//        DirectOperand  |
@@ -923,12 +765,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        ExtendedOperand |
 		//        ExtendedIndirectOperand
 		//    )
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (instruction = ('ADDD'))
+		//instruction = ('ADDD')
 		//WS operand = (
 		//    ImmediatOperand |
 		//    DirectOperand  |
@@ -936,27 +776,16 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    ExtendedOperand |
 		//    ExtendedIndirectOperand
 		//)
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//instruction = ('ADDD')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		//('ADDD')
+		public Keyword getInstructionADDDKeyword_0_0() { return cInstructionADDDKeyword_0_0; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(instruction = ('ADDD'))
-		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
-		
-		//('ADDD')
-		public Keyword getInstructionADDDKeyword_2_0() { return cInstructionADDDKeyword_2_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
 		
 		//operand = (
 		//       ImmediatOperand |
@@ -965,7 +794,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//       ExtendedOperand |
 		//       ExtendedIndirectOperand
 		//   )
-		public Assignment getOperandAssignment_4() { return cOperandAssignment_4; }
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
 		//(
 		//       ImmediatOperand |
@@ -974,65 +803,38 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//       ExtendedOperand |
 		//       ExtendedIndirectOperand
 		//   )
-		public Alternatives getOperandAlternatives_4_0() { return cOperandAlternatives_4_0; }
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
 		
 		//ImmediatOperand
-		public RuleCall getOperandImmediatOperandParserRuleCall_4_0_0() { return cOperandImmediatOperandParserRuleCall_4_0_0; }
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
 		
 		//DirectOperand
-		public RuleCall getOperandDirectOperandParserRuleCall_4_0_1() { return cOperandDirectOperandParserRuleCall_4_0_1; }
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
 		
 		//IndexedOperand
-		public RuleCall getOperandIndexedOperandParserRuleCall_4_0_2() { return cOperandIndexedOperandParserRuleCall_4_0_2; }
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
 		
 		//ExtendedOperand
-		public RuleCall getOperandExtendedOperandParserRuleCall_4_0_3() { return cOperandExtendedOperandParserRuleCall_4_0_3; }
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
 		
 		//ExtendedIndirectOperand
-		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_4_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_4_0_4; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_5_0() { return cWSTerminalRuleCall_5_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_6() { return cWSTerminalRuleCall_6; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
 	}
 	public class AddInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AddInstruction");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionADDAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionADDBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cInstructionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Alternatives cInstructionAlternatives_2_0 = (Alternatives)cInstructionAssignment_2.eContents().get(0);
-		private final Keyword cInstructionADDAKeyword_2_0_0 = (Keyword)cInstructionAlternatives_2_0.eContents().get(0);
-		private final Keyword cInstructionADDBKeyword_2_0_1 = (Keyword)cInstructionAlternatives_2_0.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Assignment cOperandAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final Alternatives cOperandAlternatives_4_0 = (Alternatives)cOperandAssignment_4.eContents().get(0);
-		private final RuleCall cOperandImmediatOperandParserRuleCall_4_0_0 = (RuleCall)cOperandAlternatives_4_0.eContents().get(0);
-		private final RuleCall cOperandDirectOperandParserRuleCall_4_0_1 = (RuleCall)cOperandAlternatives_4_0.eContents().get(1);
-		private final RuleCall cOperandIndexedOperandParserRuleCall_4_0_2 = (RuleCall)cOperandAlternatives_4_0.eContents().get(2);
-		private final RuleCall cOperandExtendedOperandParserRuleCall_4_0_3 = (RuleCall)cOperandAlternatives_4_0.eContents().get(3);
-		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_4_0_4 = (RuleCall)cOperandAlternatives_4_0.eContents().get(4);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final RuleCall cWSTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0 = (RuleCall)cCommentAssignment_5_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
-		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
 		
 		///*
 		// * ADD
@@ -1052,7 +854,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// *                    Indexed
 		// */
 		//AddInstruction:
-		//    (name = IdentifierValue)? WS (instruction = ('ADDA' | 'ADDB'))
+		//    instruction = ('ADDA' | 'ADDB')
 		//    WS operand = (
 		//        ImmediatOperand |
 		//        DirectOperand  |
@@ -1060,12 +862,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        ExtendedOperand |
 		//        ExtendedIndirectOperand
 		//    )
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (instruction = ('ADDA' | 'ADDB'))
+		//instruction = ('ADDA' | 'ADDB')
 		//WS operand = (
 		//    ImmediatOperand |
 		//    DirectOperand  |
@@ -1073,33 +873,22 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    ExtendedOperand |
 		//    ExtendedIndirectOperand
 		//)
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//instruction = ('ADDA' | 'ADDB')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		//('ADDA' | 'ADDB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'ADDA'
+		public Keyword getInstructionADDAKeyword_0_0_0() { return cInstructionADDAKeyword_0_0_0; }
+		
+		//'ADDB'
+		public Keyword getInstructionADDBKeyword_0_0_1() { return cInstructionADDBKeyword_0_0_1; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(instruction = ('ADDA' | 'ADDB'))
-		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
-		
-		//('ADDA' | 'ADDB')
-		public Alternatives getInstructionAlternatives_2_0() { return cInstructionAlternatives_2_0; }
-		
-		//'ADDA'
-		public Keyword getInstructionADDAKeyword_2_0_0() { return cInstructionADDAKeyword_2_0_0; }
-		
-		//'ADDB'
-		public Keyword getInstructionADDBKeyword_2_0_1() { return cInstructionADDBKeyword_2_0_1; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
 		
 		//operand = (
 		//       ImmediatOperand |
@@ -1108,7 +897,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//       ExtendedOperand |
 		//       ExtendedIndirectOperand
 		//   )
-		public Assignment getOperandAssignment_4() { return cOperandAssignment_4; }
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
 		//(
 		//       ImmediatOperand |
@@ -1117,65 +906,38 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//       ExtendedOperand |
 		//       ExtendedIndirectOperand
 		//   )
-		public Alternatives getOperandAlternatives_4_0() { return cOperandAlternatives_4_0; }
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
 		
 		//ImmediatOperand
-		public RuleCall getOperandImmediatOperandParserRuleCall_4_0_0() { return cOperandImmediatOperandParserRuleCall_4_0_0; }
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
 		
 		//DirectOperand
-		public RuleCall getOperandDirectOperandParserRuleCall_4_0_1() { return cOperandDirectOperandParserRuleCall_4_0_1; }
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
 		
 		//IndexedOperand
-		public RuleCall getOperandIndexedOperandParserRuleCall_4_0_2() { return cOperandIndexedOperandParserRuleCall_4_0_2; }
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
 		
 		//ExtendedOperand
-		public RuleCall getOperandExtendedOperandParserRuleCall_4_0_3() { return cOperandExtendedOperandParserRuleCall_4_0_3; }
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
 		
 		//ExtendedIndirectOperand
-		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_4_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_4_0_4; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_5_0() { return cWSTerminalRuleCall_5_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_6() { return cWSTerminalRuleCall_6; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
 	}
 	public class AdcInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AdcInstruction");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionADCAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionADCBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cInstructionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Alternatives cInstructionAlternatives_2_0 = (Alternatives)cInstructionAssignment_2.eContents().get(0);
-		private final Keyword cInstructionADCAKeyword_2_0_0 = (Keyword)cInstructionAlternatives_2_0.eContents().get(0);
-		private final Keyword cInstructionADCBKeyword_2_0_1 = (Keyword)cInstructionAlternatives_2_0.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Assignment cOperandAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final Alternatives cOperandAlternatives_4_0 = (Alternatives)cOperandAssignment_4.eContents().get(0);
-		private final RuleCall cOperandImmediatOperandParserRuleCall_4_0_0 = (RuleCall)cOperandAlternatives_4_0.eContents().get(0);
-		private final RuleCall cOperandDirectOperandParserRuleCall_4_0_1 = (RuleCall)cOperandAlternatives_4_0.eContents().get(1);
-		private final RuleCall cOperandIndexedOperandParserRuleCall_4_0_2 = (RuleCall)cOperandAlternatives_4_0.eContents().get(2);
-		private final RuleCall cOperandExtendedOperandParserRuleCall_4_0_3 = (RuleCall)cOperandAlternatives_4_0.eContents().get(3);
-		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_4_0_4 = (RuleCall)cOperandAlternatives_4_0.eContents().get(4);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final RuleCall cWSTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0 = (RuleCall)cCommentAssignment_5_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
-		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
 		
 		///*
 		// * ADC
@@ -1195,7 +957,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// *                    Indexed
 		// */
 		//AdcInstruction:
-		//    (name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))
+		//    instruction = ('ADCA' | 'ADCB')
 		//    WS operand = (
 		//        ImmediatOperand |
 		//        DirectOperand  |
@@ -1203,12 +965,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        ExtendedOperand |
 		//        ExtendedIndirectOperand
 		//    )
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))
+		//instruction = ('ADCA' | 'ADCB')
 		//WS operand = (
 		//    ImmediatOperand |
 		//    DirectOperand  |
@@ -1216,33 +976,22 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    ExtendedOperand |
 		//    ExtendedIndirectOperand
 		//)
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//instruction = ('ADCA' | 'ADCB')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		//('ADCA' | 'ADCB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'ADCA'
+		public Keyword getInstructionADCAKeyword_0_0_0() { return cInstructionADCAKeyword_0_0_0; }
+		
+		//'ADCB'
+		public Keyword getInstructionADCBKeyword_0_0_1() { return cInstructionADCBKeyword_0_0_1; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(instruction = ('ADCA' | 'ADCB'))
-		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
-		
-		//('ADCA' | 'ADCB')
-		public Alternatives getInstructionAlternatives_2_0() { return cInstructionAlternatives_2_0; }
-		
-		//'ADCA'
-		public Keyword getInstructionADCAKeyword_2_0_0() { return cInstructionADCAKeyword_2_0_0; }
-		
-		//'ADCB'
-		public Keyword getInstructionADCBKeyword_2_0_1() { return cInstructionADCBKeyword_2_0_1; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
 		
 		//operand = (
 		//       ImmediatOperand |
@@ -1251,7 +1000,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//       ExtendedOperand |
 		//       ExtendedIndirectOperand
 		//   )
-		public Assignment getOperandAssignment_4() { return cOperandAssignment_4; }
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
 		//(
 		//       ImmediatOperand |
@@ -1260,55 +1009,27 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//       ExtendedOperand |
 		//       ExtendedIndirectOperand
 		//   )
-		public Alternatives getOperandAlternatives_4_0() { return cOperandAlternatives_4_0; }
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
 		
 		//ImmediatOperand
-		public RuleCall getOperandImmediatOperandParserRuleCall_4_0_0() { return cOperandImmediatOperandParserRuleCall_4_0_0; }
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
 		
 		//DirectOperand
-		public RuleCall getOperandDirectOperandParserRuleCall_4_0_1() { return cOperandDirectOperandParserRuleCall_4_0_1; }
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
 		
 		//IndexedOperand
-		public RuleCall getOperandIndexedOperandParserRuleCall_4_0_2() { return cOperandIndexedOperandParserRuleCall_4_0_2; }
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
 		
 		//ExtendedOperand
-		public RuleCall getOperandExtendedOperandParserRuleCall_4_0_3() { return cOperandExtendedOperandParserRuleCall_4_0_3; }
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
 		
 		//ExtendedIndirectOperand
-		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_4_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_4_0_4; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_5_0() { return cWSTerminalRuleCall_5_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_6() { return cWSTerminalRuleCall_6; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
 	}
 	public class AbxInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AbxInstruction");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cInstructionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cInstructionABXKeyword_2_0 = (Keyword)cInstructionAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionABXKeyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
 		
 		///*
 		// * ABX
@@ -1321,49 +1042,15 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * Addressing Mode    : Inherent
 		// */
 		//AbxInstruction:
-		//    (name = IdentifierValue)? WS (instruction = 'ABX')
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
+		//    instruction = 'ABX'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (instruction = 'ABX')
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
-		public Group getGroup() { return cGroup; }
-		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(instruction = 'ABX')
-		public Assignment getInstructionAssignment_2() { return cInstructionAssignment_2; }
+		//instruction = 'ABX'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
 		
 		//'ABX'
-		public Keyword getInstructionABXKeyword_2_0() { return cInstructionABXKeyword_2_0; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+		public Keyword getInstructionABXKeyword_0() { return cInstructionABXKeyword_0; }
 	}
 	public class ExtendedIndirectOperandElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
@@ -2212,45 +1899,81 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	public class DirectiveLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DirectiveLine");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cDirectiveAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final RuleCall cDirectiveEquDirectiveParserRuleCall_0_0 = (RuleCall)cDirectiveAssignment_0.eContents().get(0);
-		private final Assignment cDirectiveAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cDirectiveOrgDirectiveParserRuleCall_1_0 = (RuleCall)cDirectiveAssignment_1.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
-		private final RuleCall cDirectiveBszDirectiveParserRuleCall_2_0 = (RuleCall)cDirectiveAssignment_2.eContents().get(0);
-		private final Assignment cDirectiveAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
-		private final RuleCall cDirectiveEndDirectiveParserRuleCall_3_0 = (RuleCall)cDirectiveAssignment_3.eContents().get(0);
-		private final Assignment cDirectiveAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
-		private final RuleCall cDirectiveFailDirectiveParserRuleCall_4_0 = (RuleCall)cDirectiveAssignment_4.eContents().get(0);
-		private final Assignment cDirectiveAssignment_5 = (Assignment)cAlternatives.eContents().get(5);
-		private final RuleCall cDirectiveFillDirectiveParserRuleCall_5_0 = (RuleCall)cDirectiveAssignment_5.eContents().get(0);
-		private final Assignment cDirectiveAssignment_6 = (Assignment)cAlternatives.eContents().get(6);
-		private final RuleCall cDirectiveOptDirectiveParserRuleCall_6_0 = (RuleCall)cDirectiveAssignment_6.eContents().get(0);
-		private final Assignment cDirectiveAssignment_7 = (Assignment)cAlternatives.eContents().get(7);
-		private final RuleCall cDirectivePagDirectiveParserRuleCall_7_0 = (RuleCall)cDirectiveAssignment_7.eContents().get(0);
-		private final Assignment cDirectiveAssignment_8 = (Assignment)cAlternatives.eContents().get(8);
-		private final RuleCall cDirectiveNamDirectiveParserRuleCall_8_0 = (RuleCall)cDirectiveAssignment_8.eContents().get(0);
-		private final Assignment cDirectiveAssignment_9 = (Assignment)cAlternatives.eContents().get(9);
-		private final RuleCall cDirectiveSetDirectiveParserRuleCall_9_0 = (RuleCall)cDirectiveAssignment_9.eContents().get(0);
-		private final Assignment cDirectiveAssignment_10 = (Assignment)cAlternatives.eContents().get(10);
-		private final RuleCall cDirectiveSpcDirectiveParserRuleCall_10_0 = (RuleCall)cDirectiveAssignment_10.eContents().get(0);
-		private final Assignment cDirectiveAssignment_11 = (Assignment)cAlternatives.eContents().get(11);
-		private final RuleCall cDirectiveRegDirectiveParserRuleCall_11_0 = (RuleCall)cDirectiveAssignment_11.eContents().get(0);
-		private final Assignment cDirectiveAssignment_12 = (Assignment)cAlternatives.eContents().get(12);
-		private final RuleCall cDirectiveFcbDirectiveParserRuleCall_12_0 = (RuleCall)cDirectiveAssignment_12.eContents().get(0);
-		private final Assignment cDirectiveAssignment_13 = (Assignment)cAlternatives.eContents().get(13);
-		private final RuleCall cDirectiveFdbDirectiveParserRuleCall_13_0 = (RuleCall)cDirectiveAssignment_13.eContents().get(0);
-		private final Assignment cDirectiveAssignment_14 = (Assignment)cAlternatives.eContents().get(14);
-		private final RuleCall cDirectiveFccDirectiveParserRuleCall_14_0 = (RuleCall)cDirectiveAssignment_14.eContents().get(0);
-		private final Assignment cDirectiveAssignment_15 = (Assignment)cAlternatives.eContents().get(15);
-		private final RuleCall cDirectiveRmbDirectiveParserRuleCall_15_0 = (RuleCall)cDirectiveAssignment_15.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cDirectiveAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final RuleCall cDirectiveEquDirectiveParserRuleCall_2_0_0 = (RuleCall)cDirectiveAssignment_2_0.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final RuleCall cDirectiveOrgDirectiveParserRuleCall_2_1_0 = (RuleCall)cDirectiveAssignment_2_1.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
+		private final RuleCall cDirectiveBszDirectiveParserRuleCall_2_2_0 = (RuleCall)cDirectiveAssignment_2_2.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_3 = (Assignment)cAlternatives_2.eContents().get(3);
+		private final RuleCall cDirectiveEndDirectiveParserRuleCall_2_3_0 = (RuleCall)cDirectiveAssignment_2_3.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_4 = (Assignment)cAlternatives_2.eContents().get(4);
+		private final RuleCall cDirectiveFailDirectiveParserRuleCall_2_4_0 = (RuleCall)cDirectiveAssignment_2_4.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_5 = (Assignment)cAlternatives_2.eContents().get(5);
+		private final RuleCall cDirectiveFillDirectiveParserRuleCall_2_5_0 = (RuleCall)cDirectiveAssignment_2_5.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_6 = (Assignment)cAlternatives_2.eContents().get(6);
+		private final RuleCall cDirectiveOptDirectiveParserRuleCall_2_6_0 = (RuleCall)cDirectiveAssignment_2_6.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_7 = (Assignment)cAlternatives_2.eContents().get(7);
+		private final RuleCall cDirectivePagDirectiveParserRuleCall_2_7_0 = (RuleCall)cDirectiveAssignment_2_7.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_8 = (Assignment)cAlternatives_2.eContents().get(8);
+		private final RuleCall cDirectiveNamDirectiveParserRuleCall_2_8_0 = (RuleCall)cDirectiveAssignment_2_8.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_9 = (Assignment)cAlternatives_2.eContents().get(9);
+		private final RuleCall cDirectiveSetDirectiveParserRuleCall_2_9_0 = (RuleCall)cDirectiveAssignment_2_9.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_10 = (Assignment)cAlternatives_2.eContents().get(10);
+		private final RuleCall cDirectiveSpcDirectiveParserRuleCall_2_10_0 = (RuleCall)cDirectiveAssignment_2_10.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_11 = (Assignment)cAlternatives_2.eContents().get(11);
+		private final RuleCall cDirectiveRegDirectiveParserRuleCall_2_11_0 = (RuleCall)cDirectiveAssignment_2_11.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_12 = (Assignment)cAlternatives_2.eContents().get(12);
+		private final RuleCall cDirectiveFcbDirectiveParserRuleCall_2_12_0 = (RuleCall)cDirectiveAssignment_2_12.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_13 = (Assignment)cAlternatives_2.eContents().get(13);
+		private final RuleCall cDirectiveFdbDirectiveParserRuleCall_2_13_0 = (RuleCall)cDirectiveAssignment_2_13.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_14 = (Assignment)cAlternatives_2.eContents().get(14);
+		private final RuleCall cDirectiveFccDirectiveParserRuleCall_2_14_0 = (RuleCall)cDirectiveAssignment_2_14.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_15 = (Assignment)cAlternatives_2.eContents().get(15);
+		private final RuleCall cDirectiveRmbDirectiveParserRuleCall_2_15_0 = (RuleCall)cDirectiveAssignment_2_15.eContents().get(0);
+		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		///*
 		// * Definition of the list possible directives
 		// */
 		//DirectiveLine:
-		//       directive = EquDirective
+		//    (name = IdentifierValue)? WS
+		//    (
+		//            directive = EquDirective
+		//        |  directive = OrgDirective
+		//        |  directive = BszDirective
+		//        |  directive = EndDirective
+		//        |  directive = FailDirective
+		//        |  directive = FillDirective
+		//        |  directive = OptDirective
+		//        |  directive = PagDirective
+		//        |  directive = NamDirective
+		//        |  directive = SetDirective
+		//        |  directive = SpcDirective
+		//        |  directive = RegDirective
+		//        |  directive = FcbDirective
+		//        |  directive = FdbDirective
+		//        |  directive = FccDirective
+		//        |  directive = RmbDirective
+		//    )
+		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    WS? EndOfLine
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(name = IdentifierValue)? WS
+		//(
+		//        directive = EquDirective
 		//    |  directive = OrgDirective
 		//    |  directive = BszDirective
 		//    |  directive = EndDirective
@@ -2266,141 +1989,163 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    |  directive = FdbDirective
 		//    |  directive = FccDirective
 		//    |  directive = RmbDirective
-		//;
-		@Override public ParserRule getRule() { return rule; }
+		//)
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//WS? EndOfLine
+		public Group getGroup() { return cGroup; }
 		
-		//   directive = EquDirective
-		//|  directive = OrgDirective
-		//|  directive = BszDirective
-		//|  directive = EndDirective
-		//|  directive = FailDirective
-		//|  directive = FillDirective
-		//|  directive = OptDirective
-		//|  directive = PagDirective
-		//|  directive = NamDirective
-		//|  directive = SetDirective
-		//|  directive = SpcDirective
-		//|  directive = RegDirective
-		//|  directive = FcbDirective
-		//|  directive = FdbDirective
-		//|  directive = FccDirective
-		//|  directive = RmbDirective
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//(name = IdentifierValue)?
+		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//(
+		//        directive = EquDirective
+		//    |  directive = OrgDirective
+		//    |  directive = BszDirective
+		//    |  directive = EndDirective
+		//    |  directive = FailDirective
+		//    |  directive = FillDirective
+		//    |  directive = OptDirective
+		//    |  directive = PagDirective
+		//    |  directive = NamDirective
+		//    |  directive = SetDirective
+		//    |  directive = SpcDirective
+		//    |  directive = RegDirective
+		//    |  directive = FcbDirective
+		//    |  directive = FdbDirective
+		//    |  directive = FccDirective
+		//    |  directive = RmbDirective
+		//)
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//directive = EquDirective
-		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
+		public Assignment getDirectiveAssignment_2_0() { return cDirectiveAssignment_2_0; }
 		
 		//EquDirective
-		public RuleCall getDirectiveEquDirectiveParserRuleCall_0_0() { return cDirectiveEquDirectiveParserRuleCall_0_0; }
+		public RuleCall getDirectiveEquDirectiveParserRuleCall_2_0_0() { return cDirectiveEquDirectiveParserRuleCall_2_0_0; }
 		
 		//directive = OrgDirective
-		public Assignment getDirectiveAssignment_1() { return cDirectiveAssignment_1; }
+		public Assignment getDirectiveAssignment_2_1() { return cDirectiveAssignment_2_1; }
 		
 		//OrgDirective
-		public RuleCall getDirectiveOrgDirectiveParserRuleCall_1_0() { return cDirectiveOrgDirectiveParserRuleCall_1_0; }
+		public RuleCall getDirectiveOrgDirectiveParserRuleCall_2_1_0() { return cDirectiveOrgDirectiveParserRuleCall_2_1_0; }
 		
 		//directive = BszDirective
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		public Assignment getDirectiveAssignment_2_2() { return cDirectiveAssignment_2_2; }
 		
 		//BszDirective
-		public RuleCall getDirectiveBszDirectiveParserRuleCall_2_0() { return cDirectiveBszDirectiveParserRuleCall_2_0; }
+		public RuleCall getDirectiveBszDirectiveParserRuleCall_2_2_0() { return cDirectiveBszDirectiveParserRuleCall_2_2_0; }
 		
 		//directive = EndDirective
-		public Assignment getDirectiveAssignment_3() { return cDirectiveAssignment_3; }
+		public Assignment getDirectiveAssignment_2_3() { return cDirectiveAssignment_2_3; }
 		
 		//EndDirective
-		public RuleCall getDirectiveEndDirectiveParserRuleCall_3_0() { return cDirectiveEndDirectiveParserRuleCall_3_0; }
+		public RuleCall getDirectiveEndDirectiveParserRuleCall_2_3_0() { return cDirectiveEndDirectiveParserRuleCall_2_3_0; }
 		
 		//directive = FailDirective
-		public Assignment getDirectiveAssignment_4() { return cDirectiveAssignment_4; }
+		public Assignment getDirectiveAssignment_2_4() { return cDirectiveAssignment_2_4; }
 		
 		//FailDirective
-		public RuleCall getDirectiveFailDirectiveParserRuleCall_4_0() { return cDirectiveFailDirectiveParserRuleCall_4_0; }
+		public RuleCall getDirectiveFailDirectiveParserRuleCall_2_4_0() { return cDirectiveFailDirectiveParserRuleCall_2_4_0; }
 		
 		//directive = FillDirective
-		public Assignment getDirectiveAssignment_5() { return cDirectiveAssignment_5; }
+		public Assignment getDirectiveAssignment_2_5() { return cDirectiveAssignment_2_5; }
 		
 		//FillDirective
-		public RuleCall getDirectiveFillDirectiveParserRuleCall_5_0() { return cDirectiveFillDirectiveParserRuleCall_5_0; }
+		public RuleCall getDirectiveFillDirectiveParserRuleCall_2_5_0() { return cDirectiveFillDirectiveParserRuleCall_2_5_0; }
 		
 		//directive = OptDirective
-		public Assignment getDirectiveAssignment_6() { return cDirectiveAssignment_6; }
+		public Assignment getDirectiveAssignment_2_6() { return cDirectiveAssignment_2_6; }
 		
 		//OptDirective
-		public RuleCall getDirectiveOptDirectiveParserRuleCall_6_0() { return cDirectiveOptDirectiveParserRuleCall_6_0; }
+		public RuleCall getDirectiveOptDirectiveParserRuleCall_2_6_0() { return cDirectiveOptDirectiveParserRuleCall_2_6_0; }
 		
 		//directive = PagDirective
-		public Assignment getDirectiveAssignment_7() { return cDirectiveAssignment_7; }
+		public Assignment getDirectiveAssignment_2_7() { return cDirectiveAssignment_2_7; }
 		
 		//PagDirective
-		public RuleCall getDirectivePagDirectiveParserRuleCall_7_0() { return cDirectivePagDirectiveParserRuleCall_7_0; }
+		public RuleCall getDirectivePagDirectiveParserRuleCall_2_7_0() { return cDirectivePagDirectiveParserRuleCall_2_7_0; }
 		
 		//directive = NamDirective
-		public Assignment getDirectiveAssignment_8() { return cDirectiveAssignment_8; }
+		public Assignment getDirectiveAssignment_2_8() { return cDirectiveAssignment_2_8; }
 		
 		//NamDirective
-		public RuleCall getDirectiveNamDirectiveParserRuleCall_8_0() { return cDirectiveNamDirectiveParserRuleCall_8_0; }
+		public RuleCall getDirectiveNamDirectiveParserRuleCall_2_8_0() { return cDirectiveNamDirectiveParserRuleCall_2_8_0; }
 		
 		//directive = SetDirective
-		public Assignment getDirectiveAssignment_9() { return cDirectiveAssignment_9; }
+		public Assignment getDirectiveAssignment_2_9() { return cDirectiveAssignment_2_9; }
 		
 		//SetDirective
-		public RuleCall getDirectiveSetDirectiveParserRuleCall_9_0() { return cDirectiveSetDirectiveParserRuleCall_9_0; }
+		public RuleCall getDirectiveSetDirectiveParserRuleCall_2_9_0() { return cDirectiveSetDirectiveParserRuleCall_2_9_0; }
 		
 		//directive = SpcDirective
-		public Assignment getDirectiveAssignment_10() { return cDirectiveAssignment_10; }
+		public Assignment getDirectiveAssignment_2_10() { return cDirectiveAssignment_2_10; }
 		
 		//SpcDirective
-		public RuleCall getDirectiveSpcDirectiveParserRuleCall_10_0() { return cDirectiveSpcDirectiveParserRuleCall_10_0; }
+		public RuleCall getDirectiveSpcDirectiveParserRuleCall_2_10_0() { return cDirectiveSpcDirectiveParserRuleCall_2_10_0; }
 		
 		//directive = RegDirective
-		public Assignment getDirectiveAssignment_11() { return cDirectiveAssignment_11; }
+		public Assignment getDirectiveAssignment_2_11() { return cDirectiveAssignment_2_11; }
 		
 		//RegDirective
-		public RuleCall getDirectiveRegDirectiveParserRuleCall_11_0() { return cDirectiveRegDirectiveParserRuleCall_11_0; }
+		public RuleCall getDirectiveRegDirectiveParserRuleCall_2_11_0() { return cDirectiveRegDirectiveParserRuleCall_2_11_0; }
 		
 		//directive = FcbDirective
-		public Assignment getDirectiveAssignment_12() { return cDirectiveAssignment_12; }
+		public Assignment getDirectiveAssignment_2_12() { return cDirectiveAssignment_2_12; }
 		
 		//FcbDirective
-		public RuleCall getDirectiveFcbDirectiveParserRuleCall_12_0() { return cDirectiveFcbDirectiveParserRuleCall_12_0; }
+		public RuleCall getDirectiveFcbDirectiveParserRuleCall_2_12_0() { return cDirectiveFcbDirectiveParserRuleCall_2_12_0; }
 		
 		//directive = FdbDirective
-		public Assignment getDirectiveAssignment_13() { return cDirectiveAssignment_13; }
+		public Assignment getDirectiveAssignment_2_13() { return cDirectiveAssignment_2_13; }
 		
 		//FdbDirective
-		public RuleCall getDirectiveFdbDirectiveParserRuleCall_13_0() { return cDirectiveFdbDirectiveParserRuleCall_13_0; }
+		public RuleCall getDirectiveFdbDirectiveParserRuleCall_2_13_0() { return cDirectiveFdbDirectiveParserRuleCall_2_13_0; }
 		
 		//directive = FccDirective
-		public Assignment getDirectiveAssignment_14() { return cDirectiveAssignment_14; }
+		public Assignment getDirectiveAssignment_2_14() { return cDirectiveAssignment_2_14; }
 		
 		//FccDirective
-		public RuleCall getDirectiveFccDirectiveParserRuleCall_14_0() { return cDirectiveFccDirectiveParserRuleCall_14_0; }
+		public RuleCall getDirectiveFccDirectiveParserRuleCall_2_14_0() { return cDirectiveFccDirectiveParserRuleCall_2_14_0; }
 		
 		//directive = RmbDirective
-		public Assignment getDirectiveAssignment_15() { return cDirectiveAssignment_15; }
+		public Assignment getDirectiveAssignment_2_15() { return cDirectiveAssignment_2_15; }
 		
 		//RmbDirective
-		public RuleCall getDirectiveRmbDirectiveParserRuleCall_15_0() { return cDirectiveRmbDirectiveParserRuleCall_15_0; }
+		public RuleCall getDirectiveRmbDirectiveParserRuleCall_2_15_0() { return cDirectiveRmbDirectiveParserRuleCall_2_15_0; }
+		
+		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		public Group getGroup_3() { return cGroup_3; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		
+		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
+		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
+		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
 	}
 	public class FccDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.FccDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveFCCKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cStringAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cStringSTRINGTerminalRuleCall_3_1_0 = (RuleCall)cStringAssignment_3_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveFCCKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cStringAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cStringSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cStringAssignment_1_1.eContents().get(0);
 		
 		///*
 		// * The FCC or Form Constant Character directive allows the programmer to specify a string of ASCII characters
@@ -2429,85 +2174,46 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * Note that more than one delimited string may be placed on a line as in the second example.
 		// */
 		//FccDirective:
-		//    (name = IdentifierValue)? WS (directive = 'FCC')
+		//    directive = 'FCC'
 		//    (WS string=STRING)
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'FCC')
+		//directive = 'FCC'
 		//(WS string=STRING)
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'FCC')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = 'FCC'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//'FCC'
-		public Keyword getDirectiveFCCKeyword_2_0() { return cDirectiveFCCKeyword_2_0; }
+		public Keyword getDirectiveFCCKeyword_0_0() { return cDirectiveFCCKeyword_0_0; }
 		
 		//(WS string=STRING)
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
 		//string=STRING
-		public Assignment getStringAssignment_3_1() { return cStringAssignment_3_1; }
+		public Assignment getStringAssignment_1_1() { return cStringAssignment_1_1; }
 		
 		//STRING
-		public RuleCall getStringSTRINGTerminalRuleCall_3_1_0() { return cStringSTRINGTerminalRuleCall_3_1_0; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
+		public RuleCall getStringSTRINGTerminalRuleCall_1_1_0() { return cStringSTRINGTerminalRuleCall_1_1_0; }
 	}
 	public class RegDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RegDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveREGKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cOptionsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cOptionsRegisterEnumRuleCall_3_1_0 = (RuleCall)cOptionsAssignment_3_1.eContents().get(0);
-		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
-		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
-		private final Assignment cOptionsAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cOptionsRegisterEnumRuleCall_3_2_1_0 = (RuleCall)cOptionsAssignment_3_2_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
-		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveREGKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cOptionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOptionsRegisterEnumRuleCall_1_1_0 = (RuleCall)cOptionsAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cOptionsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cOptionsRegisterEnumRuleCall_1_2_1_0 = (RuleCall)cOptionsAssignment_1_2_1.eContents().get(0);
 		
 		///*
 		// *  REG
@@ -2536,95 +2242,58 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * (with the desired bit pattern) may be specified.
 		// */
 		//RegDirective:
-		//    (name = IdentifierValue)? WS (directive = 'REG')
+		//    (directive = 'REG')
 		//    (WS options+=Register ( ',' options+=Register)*)?
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-		//    EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'REG')
+		//(directive = 'REG')
 		//(WS options+=Register ( ',' options+=Register)*)?
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-		//EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
 		//(directive = 'REG')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//'REG'
-		public Keyword getDirectiveREGKeyword_2_0() { return cDirectiveREGKeyword_2_0; }
+		public Keyword getDirectiveREGKeyword_0_0() { return cDirectiveREGKeyword_0_0; }
 		
 		//(WS options+=Register ( ',' options+=Register)*)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
 		//options+=Register
-		public Assignment getOptionsAssignment_3_1() { return cOptionsAssignment_3_1; }
+		public Assignment getOptionsAssignment_1_1() { return cOptionsAssignment_1_1; }
 		
 		//Register
-		public RuleCall getOptionsRegisterEnumRuleCall_3_1_0() { return cOptionsRegisterEnumRuleCall_3_1_0; }
+		public RuleCall getOptionsRegisterEnumRuleCall_1_1_0() { return cOptionsRegisterEnumRuleCall_1_1_0; }
 		
 		//( ',' options+=Register)*
-		public Group getGroup_3_2() { return cGroup_3_2; }
+		public Group getGroup_1_2() { return cGroup_1_2; }
 		
 		//','
-		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
+		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
 		
 		//options+=Register
-		public Assignment getOptionsAssignment_3_2_1() { return cOptionsAssignment_3_2_1; }
+		public Assignment getOptionsAssignment_1_2_1() { return cOptionsAssignment_1_2_1; }
 		
 		//Register
-		public RuleCall getOptionsRegisterEnumRuleCall_3_2_1_0() { return cOptionsRegisterEnumRuleCall_3_2_1_0; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+		public RuleCall getOptionsRegisterEnumRuleCall_1_2_1_0() { return cOptionsRegisterEnumRuleCall_1_2_1_0; }
 	}
 	public class SpcDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SpcDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveSPCKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cSpaceCountAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cSpaceCountExpressionParserRuleCall_3_1_0 = (RuleCall)cSpaceCountAssignment_3_1.eContents().get(0);
-		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
-		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
-		private final Assignment cKeepCountAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cKeepCountExpressionParserRuleCall_3_2_1_0 = (RuleCall)cKeepCountAssignment_3_2_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveSPCKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cSpaceCountAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cSpaceCountExpressionParserRuleCall_1_1_0 = (RuleCall)cSpaceCountAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cKeepCountAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cKeepCountExpressionParserRuleCall_1_2_1_0 = (RuleCall)cKeepCountAssignment_1_2_1.eContents().get(0);
 		
 		///*
 		// *  SPC
@@ -2642,95 +2311,56 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// *  is given (ie. just the directive SPC), the assembler will default to one blank line in the output listing.
 		// */
 		//SpcDirective:
-		//    (name = IdentifierValue)? WS (directive = 'SPC')
+		//    directive = 'SPC'
 		//    (WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'SPC')
+		//directive = 'SPC'
 		//(WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'SPC')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = 'SPC'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//'SPC'
-		public Keyword getDirectiveSPCKeyword_2_0() { return cDirectiveSPCKeyword_2_0; }
+		public Keyword getDirectiveSPCKeyword_0_0() { return cDirectiveSPCKeyword_0_0; }
 		
 		//(WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
 		//(spaceCount=Expression)
-		public Assignment getSpaceCountAssignment_3_1() { return cSpaceCountAssignment_3_1; }
+		public Assignment getSpaceCountAssignment_1_1() { return cSpaceCountAssignment_1_1; }
 		
 		//Expression
-		public RuleCall getSpaceCountExpressionParserRuleCall_3_1_0() { return cSpaceCountExpressionParserRuleCall_3_1_0; }
+		public RuleCall getSpaceCountExpressionParserRuleCall_1_1_0() { return cSpaceCountExpressionParserRuleCall_1_1_0; }
 		
 		//( ',' keepCount=Expression)?
-		public Group getGroup_3_2() { return cGroup_3_2; }
+		public Group getGroup_1_2() { return cGroup_1_2; }
 		
 		//','
-		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
+		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
 		
 		//keepCount=Expression
-		public Assignment getKeepCountAssignment_3_2_1() { return cKeepCountAssignment_3_2_1; }
+		public Assignment getKeepCountAssignment_1_2_1() { return cKeepCountAssignment_1_2_1; }
 		
 		//Expression
-		public RuleCall getKeepCountExpressionParserRuleCall_3_2_1_0() { return cKeepCountExpressionParserRuleCall_3_2_1_0; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
+		public RuleCall getKeepCountExpressionParserRuleCall_1_2_1_0() { return cKeepCountExpressionParserRuleCall_1_2_1_0; }
 	}
 	public class NamDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.NamDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Alternatives cAlternatives_0 = (Alternatives)cGroup.eContents().get(0);
+		private final Assignment cDirectiveAssignment_0_0 = (Assignment)cAlternatives_0.eContents().get(0);
+		private final Keyword cDirectiveNAMKeyword_0_0_0 = (Keyword)cDirectiveAssignment_0_0.eContents().get(0);
+		private final Assignment cDirectiveAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
+		private final Keyword cDirectiveTTLKeyword_0_1_0 = (Keyword)cDirectiveAssignment_0_1.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cDirectiveAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final Keyword cDirectiveNAMKeyword_2_0_0 = (Keyword)cDirectiveAssignment_2_0.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final Keyword cDirectiveTTLKeyword_2_1_0 = (Keyword)cDirectiveAssignment_2_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Assignment cOperandAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cOperandIdentifierValueParserRuleCall_4_0 = (RuleCall)cOperandAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final RuleCall cWSTerminalRuleCall_5_0 = (RuleCall)cGroup_5.eContents().get(0);
-		private final Assignment cCommentAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0 = (RuleCall)cCommentAssignment_5_1.eContents().get(0);
-		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOperandIdentifierValueParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
 		
 		///*
 		// *  TTL or NAM
@@ -2749,84 +2379,48 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * at the top of the following page(s).
 		// */
 		//NamDirective:
-		//    (name = IdentifierValue)? WS (directive = 'NAM'|directive = 'TTL')
+		//    (directive = 'NAM'|directive = 'TTL')
 		//    WS (operand=IdentifierValue)
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'NAM'|directive = 'TTL')
+		//(directive = 'NAM'|directive = 'TTL')
 		//WS (operand=IdentifierValue)
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//(directive = 'NAM'|directive = 'TTL')
+		public Alternatives getAlternatives_0() { return cAlternatives_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		//directive = 'NAM'
+		public Assignment getDirectiveAssignment_0_0() { return cDirectiveAssignment_0_0; }
+		
+		//'NAM'
+		public Keyword getDirectiveNAMKeyword_0_0_0() { return cDirectiveNAMKeyword_0_0_0; }
+		
+		//directive = 'TTL'
+		public Assignment getDirectiveAssignment_0_1() { return cDirectiveAssignment_0_1; }
+		
+		//'TTL'
+		public Keyword getDirectiveTTLKeyword_0_1_0() { return cDirectiveTTLKeyword_0_1_0; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
 		
-		//(directive = 'NAM'|directive = 'TTL')
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
-		
-		//directive = 'NAM'
-		public Assignment getDirectiveAssignment_2_0() { return cDirectiveAssignment_2_0; }
-		
-		//'NAM'
-		public Keyword getDirectiveNAMKeyword_2_0_0() { return cDirectiveNAMKeyword_2_0_0; }
-		
-		//directive = 'TTL'
-		public Assignment getDirectiveAssignment_2_1() { return cDirectiveAssignment_2_1; }
-		
-		//'TTL'
-		public Keyword getDirectiveTTLKeyword_2_1_0() { return cDirectiveTTLKeyword_2_1_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
-		
 		//(operand=IdentifierValue)
-		public Assignment getOperandAssignment_4() { return cOperandAssignment_4; }
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
 		//IdentifierValue
-		public RuleCall getOperandIdentifierValueParserRuleCall_4_0() { return cOperandIdentifierValueParserRuleCall_4_0; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_5_0() { return cWSTerminalRuleCall_5_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_5_1() { return cCommentAssignment_5_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
+		public RuleCall getOperandIdentifierValueParserRuleCall_2_0() { return cOperandIdentifierValueParserRuleCall_2_0; }
 	}
 	public class PagDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.PagDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectivePAGKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cOperandAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cOperandExpressionParserRuleCall_3_1_0 = (RuleCall)cOperandAssignment_3_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
-		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectivePAGKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		
 		///*
 		// *  PAG
@@ -2846,82 +2440,46 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * or subtitle instructions being in the way.
 		// */
 		//PagDirective:
-		//    (name = IdentifierValue)? WS (directive = 'PAG')
-		//    (WS (operand=Expression)?)?
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    EndOfLine
+		//    directive = 'PAG'
+		//    (WS (operand=Expression))?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'PAG')
-		//(WS (operand=Expression)?)?
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//EndOfLine
+		//directive = 'PAG'
+		//(WS (operand=Expression))?
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'PAG')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = 'PAG'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//'PAG'
-		public Keyword getDirectivePAGKeyword_2_0() { return cDirectivePAGKeyword_2_0; }
+		public Keyword getDirectivePAGKeyword_0_0() { return cDirectivePAGKeyword_0_0; }
 		
-		//(WS (operand=Expression)?)?
-		public Group getGroup_3() { return cGroup_3; }
+		//(WS (operand=Expression))?
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
-		//(operand=Expression)?
-		public Assignment getOperandAssignment_3_1() { return cOperandAssignment_3_1; }
+		//(operand=Expression)
+		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
 		
 		//Expression
-		public RuleCall getOperandExpressionParserRuleCall_3_1_0() { return cOperandExpressionParserRuleCall_3_1_0; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+		public RuleCall getOperandExpressionParserRuleCall_1_1_0() { return cOperandExpressionParserRuleCall_1_1_0; }
 	}
 	public class OptDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OptDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveOPTKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cOptionsAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cOptionsAssemblyOptionEnumRuleCall_3_1_0 = (RuleCall)cOptionsAssignment_3_1.eContents().get(0);
-		private final Group cGroup_3_2 = (Group)cGroup_3.eContents().get(2);
-		private final Keyword cCommaKeyword_3_2_0 = (Keyword)cGroup_3_2.eContents().get(0);
-		private final Assignment cOptionsAssignment_3_2_1 = (Assignment)cGroup_3_2.eContents().get(1);
-		private final RuleCall cOptionsAssemblyOptionEnumRuleCall_3_2_1_0 = (RuleCall)cOptionsAssignment_3_2_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
-		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveOPTKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cOptionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOptionsAssemblyOptionEnumRuleCall_1_1_0 = (RuleCall)cOptionsAssignment_1_1.eContents().get(0);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cOptionsAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final RuleCall cOptionsAssemblyOptionEnumRuleCall_1_2_1_0 = (RuleCall)cOptionsAssignment_1_2_1.eContents().get(0);
 		
 		///*
 		// * OPT
@@ -2957,86 +2515,49 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * * denotes default option and is not part of option name
 		// */
 		//OptDirective:
-		//    (name = IdentifierValue)? WS (directive = 'OPT')
+		//    directive = 'OPT'
 		//    (WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-		//    EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'OPT')
+		//directive = 'OPT'
 		//(WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-		//EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'OPT')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = 'OPT'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//'OPT'
-		public Keyword getDirectiveOPTKeyword_2_0() { return cDirectiveOPTKeyword_2_0; }
+		public Keyword getDirectiveOPTKeyword_0_0() { return cDirectiveOPTKeyword_0_0; }
 		
 		//(WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
 		//options+=AssemblyOption
-		public Assignment getOptionsAssignment_3_1() { return cOptionsAssignment_3_1; }
+		public Assignment getOptionsAssignment_1_1() { return cOptionsAssignment_1_1; }
 		
 		//AssemblyOption
-		public RuleCall getOptionsAssemblyOptionEnumRuleCall_3_1_0() { return cOptionsAssemblyOptionEnumRuleCall_3_1_0; }
+		public RuleCall getOptionsAssemblyOptionEnumRuleCall_1_1_0() { return cOptionsAssemblyOptionEnumRuleCall_1_1_0; }
 		
 		//( ',' options+=AssemblyOption)*
-		public Group getGroup_3_2() { return cGroup_3_2; }
+		public Group getGroup_1_2() { return cGroup_1_2; }
 		
 		//','
-		public Keyword getCommaKeyword_3_2_0() { return cCommaKeyword_3_2_0; }
+		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
 		
 		//options+=AssemblyOption
-		public Assignment getOptionsAssignment_3_2_1() { return cOptionsAssignment_3_2_1; }
+		public Assignment getOptionsAssignment_1_2_1() { return cOptionsAssignment_1_2_1; }
 		
 		//AssemblyOption
-		public RuleCall getOptionsAssemblyOptionEnumRuleCall_3_2_1_0() { return cOptionsAssemblyOptionEnumRuleCall_3_2_1_0; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+		public RuleCall getOptionsAssemblyOptionEnumRuleCall_1_2_1_0() { return cOptionsAssemblyOptionEnumRuleCall_1_2_1_0; }
 	}
 	public class FailDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.FailDirective");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveFAILKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
-		private final RuleCall cEndOfLineParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
+		private final Assignment cDirectiveAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cDirectiveFAILKeyword_0 = (Keyword)cDirectiveAssignment.eContents().get(0);
 		
 		///*
 		// * FAIL
@@ -3044,68 +2565,30 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// *
 		// */
 		//FailDirective:
-		//    (name = IdentifierValue)? WS (directive = 'FAIL')
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-		//    EndOfLine
+		//    directive = 'FAIL'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'FAIL')
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-		//EndOfLine
-		public Group getGroup() { return cGroup; }
-		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'FAIL')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = 'FAIL'
+		public Assignment getDirectiveAssignment() { return cDirectiveAssignment; }
 		
 		//'FAIL'
-		public Keyword getDirectiveFAILKeyword_2_0() { return cDirectiveFAILKeyword_2_0; }
-		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_4() { return cEndOfLineParserRuleCall_4; }
+		public Keyword getDirectiveFAILKeyword_0() { return cDirectiveFAILKeyword_0; }
 	}
 	public class SetDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SetDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveSETKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveSETKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
-		private final Group cGroup_4_0 = (Group)cAlternatives_4.eContents().get(0);
-		private final Assignment cIsRelativeToPCAssignment_4_0_0 = (Assignment)cGroup_4_0.eContents().get(0);
-		private final Keyword cIsRelativeToPCAsteriskKeyword_4_0_0_0 = (Keyword)cIsRelativeToPCAssignment_4_0_0.eContents().get(0);
-		private final Assignment cOperandAssignment_4_0_1 = (Assignment)cGroup_4_0.eContents().get(1);
-		private final RuleCall cOperandExpressionParserRuleCall_4_0_1_0 = (RuleCall)cOperandAssignment_4_0_1.eContents().get(0);
-		private final Assignment cIsRelativeToPCAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
-		private final Keyword cIsRelativeToPCAsteriskKeyword_4_1_0 = (Keyword)cIsRelativeToPCAssignment_4_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final Assignment cCommentAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0 = (RuleCall)cCommentAssignment_6.eContents().get(0);
-		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Assignment cIsRelativeToPCAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_2_0_0_0 = (Keyword)cIsRelativeToPCAssignment_2_0_0.eContents().get(0);
+		private final Assignment cOperandAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_2_0_1_0 = (RuleCall)cOperandAssignment_2_0_1.eContents().get(0);
+		private final Assignment cIsRelativeToPCAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_2_1_0 = (Keyword)cIsRelativeToPCAssignment_2_1.eContents().get(0);
 		
 		///*
 		// * SET
@@ -3121,104 +2604,69 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * The label is strictly required and no code is generated.
 		// */
 		//SetDirective:
-		//    (name = IdentifierValue)? WS (directive = 'SET')
+		//    directive = 'SET'
 		//    WS (
 		//        ( isRelativeToPC?='*'? operand=Expression) |
 		//        ( isRelativeToPC?='*' )
 		//        )
-		//    WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		//    EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'SET')
+		//directive = 'SET'
 		//WS (
 		//    ( isRelativeToPC?='*'? operand=Expression) |
 		//    ( isRelativeToPC?='*' )
 		//    )
-		//WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		//EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//directive = 'SET'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		//'SET'
+		public Keyword getDirectiveSETKeyword_0_0() { return cDirectiveSETKeyword_0_0; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'SET')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
-		
-		//'SET'
-		public Keyword getDirectiveSETKeyword_2_0() { return cDirectiveSETKeyword_2_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
 		
 		//(
 		//       ( isRelativeToPC?='*'? operand=Expression) |
 		//       ( isRelativeToPC?='*' )
 		//       )
-		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//( isRelativeToPC?='*'? operand=Expression)
-		public Group getGroup_4_0() { return cGroup_4_0; }
+		public Group getGroup_2_0() { return cGroup_2_0; }
 		
 		//isRelativeToPC?='*'?
-		public Assignment getIsRelativeToPCAssignment_4_0_0() { return cIsRelativeToPCAssignment_4_0_0; }
+		public Assignment getIsRelativeToPCAssignment_2_0_0() { return cIsRelativeToPCAssignment_2_0_0; }
 		
 		//'*'
-		public Keyword getIsRelativeToPCAsteriskKeyword_4_0_0_0() { return cIsRelativeToPCAsteriskKeyword_4_0_0_0; }
+		public Keyword getIsRelativeToPCAsteriskKeyword_2_0_0_0() { return cIsRelativeToPCAsteriskKeyword_2_0_0_0; }
 		
 		//operand=Expression
-		public Assignment getOperandAssignment_4_0_1() { return cOperandAssignment_4_0_1; }
+		public Assignment getOperandAssignment_2_0_1() { return cOperandAssignment_2_0_1; }
 		
 		//Expression
-		public RuleCall getOperandExpressionParserRuleCall_4_0_1_0() { return cOperandExpressionParserRuleCall_4_0_1_0; }
+		public RuleCall getOperandExpressionParserRuleCall_2_0_1_0() { return cOperandExpressionParserRuleCall_2_0_1_0; }
 		
 		//( isRelativeToPC?='*' )
-		public Assignment getIsRelativeToPCAssignment_4_1() { return cIsRelativeToPCAssignment_4_1; }
+		public Assignment getIsRelativeToPCAssignment_2_1() { return cIsRelativeToPCAssignment_2_1; }
 		
 		//'*'
-		public Keyword getIsRelativeToPCAsteriskKeyword_4_1_0() { return cIsRelativeToPCAsteriskKeyword_4_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Assignment getCommentAssignment_6() { return cCommentAssignment_6; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
+		public Keyword getIsRelativeToPCAsteriskKeyword_2_1_0() { return cIsRelativeToPCAsteriskKeyword_2_1_0; }
 	}
 	public class FillDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.FillDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveFILLKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Assignment cDirectiveAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final Keyword cDirectiveFILLKeyword_1_1_0 = (Keyword)cDirectiveAssignment_1_1.eContents().get(0);
-		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
-		private final RuleCall cWSTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
-		private final Assignment cValueAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final RuleCall cValueExpressionParserRuleCall_2_1_0 = (RuleCall)cValueAssignment_2_1.eContents().get(0);
-		private final Keyword cCommaKeyword_2_2 = (Keyword)cGroup_2.eContents().get(2);
-		private final Assignment cNumberAssignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
-		private final RuleCall cNumberExpressionParserRuleCall_2_3_0 = (RuleCall)cNumberAssignment_2_3.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Assignment cValueAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cValueExpressionParserRuleCall_1_1_0 = (RuleCall)cValueAssignment_1_1.eContents().get(0);
+		private final Keyword cCommaKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
+		private final Assignment cNumberAssignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
+		private final RuleCall cNumberExpressionParserRuleCall_1_3_0 = (RuleCall)cNumberAssignment_1_3.eContents().get(0);
 		
 		///*
 		// * FILL
@@ -3227,96 +2675,53 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * the first value define the value to set, the seconfd value define the number of byte to set
 		// */
 		//FillDirective:
-		//    (name = IdentifierValue)?
-		//    (WS (directive = 'FILL'))
+		//    directive = 'FILL'
 		//    (WS value=Expression ',' number=Expression)
-		//    (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)?
-		//(WS (directive = 'FILL'))
+		//directive = 'FILL'
 		//(WS value=Expression ',' number=Expression)
-		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//directive = 'FILL'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		//'FILL'
+		public Keyword getDirectiveFILLKeyword_0_0() { return cDirectiveFILLKeyword_0_0; }
 		
-		//(WS (directive = 'FILL'))
+		//(WS value=Expression ',' number=Expression)
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
-		//(directive = 'FILL')
-		public Assignment getDirectiveAssignment_1_1() { return cDirectiveAssignment_1_1; }
-		
-		//'FILL'
-		public Keyword getDirectiveFILLKeyword_1_1_0() { return cDirectiveFILLKeyword_1_1_0; }
-		
-		//(WS value=Expression ',' number=Expression)
-		public Group getGroup_2() { return cGroup_2; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_2_0() { return cWSTerminalRuleCall_2_0; }
-		
 		//value=Expression
-		public Assignment getValueAssignment_2_1() { return cValueAssignment_2_1; }
+		public Assignment getValueAssignment_1_1() { return cValueAssignment_1_1; }
 		
 		//Expression
-		public RuleCall getValueExpressionParserRuleCall_2_1_0() { return cValueExpressionParserRuleCall_2_1_0; }
+		public RuleCall getValueExpressionParserRuleCall_1_1_0() { return cValueExpressionParserRuleCall_1_1_0; }
 		
 		//','
-		public Keyword getCommaKeyword_2_2() { return cCommaKeyword_2_2; }
+		public Keyword getCommaKeyword_1_2() { return cCommaKeyword_1_2; }
 		
 		//number=Expression
-		public Assignment getNumberAssignment_2_3() { return cNumberAssignment_2_3; }
+		public Assignment getNumberAssignment_1_3() { return cNumberAssignment_1_3; }
 		
 		//Expression
-		public RuleCall getNumberExpressionParserRuleCall_2_3_0() { return cNumberExpressionParserRuleCall_2_3_0; }
-		
-		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Group getGroup_3() { return cGroup_3; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
-		
-		//comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+		public RuleCall getNumberExpressionParserRuleCall_1_3_0() { return cNumberExpressionParserRuleCall_1_3_0; }
 	}
 	public class BszDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.BszDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Alternatives cDirectiveAlternatives_2_0 = (Alternatives)cDirectiveAssignment_2.eContents().get(0);
-		private final Keyword cDirectiveBSZKeyword_2_0_0 = (Keyword)cDirectiveAlternatives_2_0.eContents().get(0);
-		private final Keyword cDirectiveZMBKeyword_2_0_1 = (Keyword)cDirectiveAlternatives_2_0.eContents().get(1);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cOperandAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cOperandExpressionParserRuleCall_3_1_0 = (RuleCall)cOperandAssignment_3_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cDirectiveAlternatives_0_0 = (Alternatives)cDirectiveAssignment_0.eContents().get(0);
+		private final Keyword cDirectiveBSZKeyword_0_0_0 = (Keyword)cDirectiveAlternatives_0_0.eContents().get(0);
+		private final Keyword cDirectiveZMBKeyword_0_0_1 = (Keyword)cDirectiveAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		
 		///*
 		// * BSZ
@@ -3325,86 +2730,48 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * The operand define the number on byte to reserve
 		// */
 		//BszDirective:
-		//    (name = IdentifierValue)? WS (directive = ('BSZ'|'ZMB'))
+		//    directive = ('BSZ'|'ZMB')
 		//    (WS operand=Expression)
-		//    (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = ('BSZ'|'ZMB'))
+		//directive = ('BSZ'|'ZMB')
 		//(WS operand=Expression)
-		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = ('BSZ'|'ZMB'))
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = ('BSZ'|'ZMB')
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//('BSZ'|'ZMB')
-		public Alternatives getDirectiveAlternatives_2_0() { return cDirectiveAlternatives_2_0; }
+		public Alternatives getDirectiveAlternatives_0_0() { return cDirectiveAlternatives_0_0; }
 		
 		//'BSZ'
-		public Keyword getDirectiveBSZKeyword_2_0_0() { return cDirectiveBSZKeyword_2_0_0; }
+		public Keyword getDirectiveBSZKeyword_0_0_0() { return cDirectiveBSZKeyword_0_0_0; }
 		
 		//'ZMB'
-		public Keyword getDirectiveZMBKeyword_2_0_1() { return cDirectiveZMBKeyword_2_0_1; }
+		public Keyword getDirectiveZMBKeyword_0_0_1() { return cDirectiveZMBKeyword_0_0_1; }
 		
 		//(WS operand=Expression)
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
 		//operand=Expression
-		public Assignment getOperandAssignment_3_1() { return cOperandAssignment_3_1; }
+		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
 		
 		//Expression
-		public RuleCall getOperandExpressionParserRuleCall_3_1_0() { return cOperandExpressionParserRuleCall_3_1_0; }
-		
-		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
-		
-		//comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
+		public RuleCall getOperandExpressionParserRuleCall_1_1_0() { return cOperandExpressionParserRuleCall_1_1_0; }
 	}
 	public class FdbDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.FdbDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveFDBKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cOperandAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cOperandListOfExpressionParserRuleCall_3_1_0 = (RuleCall)cOperandAssignment_3_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveFDBKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOperandListOfExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		
 		///*
 		// *  FDB
@@ -3419,82 +2786,42 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * Again, the label field is optional.
 		// */
 		//FdbDirective:
-		//    (name = IdentifierValue)? WS (directive = 'FDB')
+		//    directive = 'FDB'
 		//    (WS (operand = ListOfExpression))?
-		//    (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'FDB')
+		//directive = 'FDB'
 		//(WS (operand = ListOfExpression))?
-		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'FDB')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = 'FDB'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//'FDB'
-		public Keyword getDirectiveFDBKeyword_2_0() { return cDirectiveFDBKeyword_2_0; }
+		public Keyword getDirectiveFDBKeyword_0_0() { return cDirectiveFDBKeyword_0_0; }
 		
 		//(WS (operand = ListOfExpression))?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
 		//(operand = ListOfExpression)
-		public Assignment getOperandAssignment_3_1() { return cOperandAssignment_3_1; }
+		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
 		
 		//ListOfExpression
-		public RuleCall getOperandListOfExpressionParserRuleCall_3_1_0() { return cOperandListOfExpressionParserRuleCall_3_1_0; }
-		
-		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
-		
-		//comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
+		public RuleCall getOperandListOfExpressionParserRuleCall_1_1_0() { return cOperandListOfExpressionParserRuleCall_1_1_0; }
 	}
 	public class FcbDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.FcbDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveFCBKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cOperandAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cOperandListOfExpressionParserRuleCall_3_1_0 = (RuleCall)cOperandAssignment_3_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveFCBKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOperandListOfExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		
 		///*
 		// *  The FCB or Form Constant Byte directive is used to set associated memory bytes
@@ -3509,79 +2836,45 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * The label is optional.
 		// */
 		//FcbDirective:
-		//    (name = IdentifierValue)? WS (directive = 'FCB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+		//    directive = 'FCB'
+		//    (WS (operand = ListOfExpression))?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'FCB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+		//directive = 'FCB'
+		//(WS (operand = ListOfExpression))?
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'FCB')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = 'FCB'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//'FCB'
-		public Keyword getDirectiveFCBKeyword_2_0() { return cDirectiveFCBKeyword_2_0; }
+		public Keyword getDirectiveFCBKeyword_0_0() { return cDirectiveFCBKeyword_0_0; }
 		
 		//(WS (operand = ListOfExpression))?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
 		//(operand = ListOfExpression)
-		public Assignment getOperandAssignment_3_1() { return cOperandAssignment_3_1; }
+		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
 		
 		//ListOfExpression
-		public RuleCall getOperandListOfExpressionParserRuleCall_3_1_0() { return cOperandListOfExpressionParserRuleCall_3_1_0; }
-		
-		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
-		
-		//comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
+		public RuleCall getOperandListOfExpressionParserRuleCall_1_1_0() { return cOperandListOfExpressionParserRuleCall_1_1_0; }
 	}
 	public class RmbDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RmbDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveRMBKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Group cGroup_3_1 = (Group)cGroup_3.eContents().get(1);
-		private final Assignment cIsRelativeToPCAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
-		private final Keyword cIsRelativeToPCAsteriskKeyword_3_1_0_0 = (Keyword)cIsRelativeToPCAssignment_3_1_0.eContents().get(0);
-		private final Assignment cOperandAssignment_3_1_1 = (Assignment)cGroup_3_1.eContents().get(1);
-		private final RuleCall cOperandExpressionParserRuleCall_3_1_1_0 = (RuleCall)cOperandAssignment_3_1_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveRMBKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
+		private final Assignment cIsRelativeToPCAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_1_1_0_0 = (Keyword)cIsRelativeToPCAssignment_1_1_0.eContents().get(0);
+		private final Assignment cOperandAssignment_1_1_1 = (Assignment)cGroup_1_1.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_1_1_1_0 = (RuleCall)cOperandAssignment_1_1_1.eContents().get(0);
 		
 		///*
 		// *  RMB
@@ -3596,91 +2889,57 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * The label is optional, and the expression is a 16 bit quantity.
 		// */
 		//RmbDirective:
-		//    (name = IdentifierValue)? WS (directive = 'RMB') (WS (isRelativeToPC?='*'? operand = Expression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+		//    directive = 'RMB'
+		//    (WS (isRelativeToPC?='*'? operand = Expression))?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'RMB') (WS (isRelativeToPC?='*'? operand = Expression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+		//directive = 'RMB'
+		//(WS (isRelativeToPC?='*'? operand = Expression))?
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'RMB')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = 'RMB'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//'RMB'
-		public Keyword getDirectiveRMBKeyword_2_0() { return cDirectiveRMBKeyword_2_0; }
+		public Keyword getDirectiveRMBKeyword_0_0() { return cDirectiveRMBKeyword_0_0; }
 		
 		//(WS (isRelativeToPC?='*'? operand = Expression))?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
 		//(isRelativeToPC?='*'? operand = Expression)
-		public Group getGroup_3_1() { return cGroup_3_1; }
+		public Group getGroup_1_1() { return cGroup_1_1; }
 		
 		//isRelativeToPC?='*'?
-		public Assignment getIsRelativeToPCAssignment_3_1_0() { return cIsRelativeToPCAssignment_3_1_0; }
+		public Assignment getIsRelativeToPCAssignment_1_1_0() { return cIsRelativeToPCAssignment_1_1_0; }
 		
 		//'*'
-		public Keyword getIsRelativeToPCAsteriskKeyword_3_1_0_0() { return cIsRelativeToPCAsteriskKeyword_3_1_0_0; }
+		public Keyword getIsRelativeToPCAsteriskKeyword_1_1_0_0() { return cIsRelativeToPCAsteriskKeyword_1_1_0_0; }
 		
 		//operand = Expression
-		public Assignment getOperandAssignment_3_1_1() { return cOperandAssignment_3_1_1; }
+		public Assignment getOperandAssignment_1_1_1() { return cOperandAssignment_1_1_1; }
 		
 		//Expression
-		public RuleCall getOperandExpressionParserRuleCall_3_1_1_0() { return cOperandExpressionParserRuleCall_3_1_1_0; }
-		
-		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
-		
-		//comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
+		public RuleCall getOperandExpressionParserRuleCall_1_1_1_0() { return cOperandExpressionParserRuleCall_1_1_1_0; }
 	}
 	public class EndDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.EndDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveENDKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Alternatives cAlternatives_3_1 = (Alternatives)cGroup_3.eContents().get(1);
-		private final Group cGroup_3_1_0 = (Group)cAlternatives_3_1.eContents().get(0);
-		private final Assignment cIsRelativeToPCAssignment_3_1_0_0 = (Assignment)cGroup_3_1_0.eContents().get(0);
-		private final Keyword cIsRelativeToPCAsteriskKeyword_3_1_0_0_0 = (Keyword)cIsRelativeToPCAssignment_3_1_0_0.eContents().get(0);
-		private final Assignment cOperandAssignment_3_1_0_1 = (Assignment)cGroup_3_1_0.eContents().get(1);
-		private final RuleCall cOperandExpressionParserRuleCall_3_1_0_1_0 = (RuleCall)cOperandAssignment_3_1_0_1.eContents().get(0);
-		private final Assignment cIsRelativeToPCAssignment_3_1_1 = (Assignment)cAlternatives_3_1.eContents().get(1);
-		private final Keyword cIsRelativeToPCAsteriskKeyword_3_1_1_0 = (Keyword)cIsRelativeToPCAssignment_3_1_1.eContents().get(0);
-		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
-		private final RuleCall cWSTerminalRuleCall_4_0 = (RuleCall)cGroup_4.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveENDKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final Group cGroup_1_1_0 = (Group)cAlternatives_1_1.eContents().get(0);
+		private final Assignment cIsRelativeToPCAssignment_1_1_0_0 = (Assignment)cGroup_1_1_0.eContents().get(0);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_1_1_0_0_0 = (Keyword)cIsRelativeToPCAssignment_1_1_0_0.eContents().get(0);
+		private final Assignment cOperandAssignment_1_1_0_1 = (Assignment)cGroup_1_1_0.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_1_1_0_1_0 = (RuleCall)cOperandAssignment_1_1_0_1.eContents().get(0);
+		private final Assignment cIsRelativeToPCAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_1_1_1_0 = (Keyword)cIsRelativeToPCAssignment_1_1_1.eContents().get(0);
 		
 		///*
 		// * The END pseudo-op is used to signal the assembler that the end of the source input has occurred.
@@ -3694,114 +2953,78 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * but is the only means of getting a transfer address appended to a binary output file.
 		// */
 		//EndDirective:
-		//    (name = IdentifierValue)? WS (directive = 'END')
+		//    directive = 'END'
 		//    (WS (
 		//        ( isRelativeToPC?='*'? operand=Expression) |
 		//        ( isRelativeToPC?='*' )
 		//        ))?
-		//    (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'END')
+		//directive = 'END'
 		//(WS (
 		//    ( isRelativeToPC?='*'? operand=Expression) |
 		//    ( isRelativeToPC?='*' )
 		//    ))?
-		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'END')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = 'END'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//'END'
-		public Keyword getDirectiveENDKeyword_2_0() { return cDirectiveENDKeyword_2_0; }
+		public Keyword getDirectiveENDKeyword_0_0() { return cDirectiveENDKeyword_0_0; }
 		
 		//(WS (
 		//    ( isRelativeToPC?='*'? operand=Expression) |
 		//    ( isRelativeToPC?='*' )
 		//    ))?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
 		//(
 		//       ( isRelativeToPC?='*'? operand=Expression) |
 		//       ( isRelativeToPC?='*' )
 		//       )
-		public Alternatives getAlternatives_3_1() { return cAlternatives_3_1; }
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
 		//( isRelativeToPC?='*'? operand=Expression)
-		public Group getGroup_3_1_0() { return cGroup_3_1_0; }
+		public Group getGroup_1_1_0() { return cGroup_1_1_0; }
 		
 		//isRelativeToPC?='*'?
-		public Assignment getIsRelativeToPCAssignment_3_1_0_0() { return cIsRelativeToPCAssignment_3_1_0_0; }
+		public Assignment getIsRelativeToPCAssignment_1_1_0_0() { return cIsRelativeToPCAssignment_1_1_0_0; }
 		
 		//'*'
-		public Keyword getIsRelativeToPCAsteriskKeyword_3_1_0_0_0() { return cIsRelativeToPCAsteriskKeyword_3_1_0_0_0; }
+		public Keyword getIsRelativeToPCAsteriskKeyword_1_1_0_0_0() { return cIsRelativeToPCAsteriskKeyword_1_1_0_0_0; }
 		
 		//operand=Expression
-		public Assignment getOperandAssignment_3_1_0_1() { return cOperandAssignment_3_1_0_1; }
+		public Assignment getOperandAssignment_1_1_0_1() { return cOperandAssignment_1_1_0_1; }
 		
 		//Expression
-		public RuleCall getOperandExpressionParserRuleCall_3_1_0_1_0() { return cOperandExpressionParserRuleCall_3_1_0_1_0; }
+		public RuleCall getOperandExpressionParserRuleCall_1_1_0_1_0() { return cOperandExpressionParserRuleCall_1_1_0_1_0; }
 		
 		//( isRelativeToPC?='*' )
-		public Assignment getIsRelativeToPCAssignment_3_1_1() { return cIsRelativeToPCAssignment_3_1_1; }
+		public Assignment getIsRelativeToPCAssignment_1_1_1() { return cIsRelativeToPCAssignment_1_1_1; }
 		
 		//'*'
-		public Keyword getIsRelativeToPCAsteriskKeyword_3_1_1_0() { return cIsRelativeToPCAsteriskKeyword_3_1_1_0; }
-		
-		//(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Group getGroup_4() { return cGroup_4; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_4_0() { return cWSTerminalRuleCall_4_0; }
-		
-		//comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
+		public Keyword getIsRelativeToPCAsteriskKeyword_1_1_1_0() { return cIsRelativeToPCAsteriskKeyword_1_1_1_0; }
 	}
 	public class OrgDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OrgDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveORGKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Alternatives cAlternatives_3_1 = (Alternatives)cGroup_3.eContents().get(1);
-		private final Group cGroup_3_1_0 = (Group)cAlternatives_3_1.eContents().get(0);
-		private final Assignment cIsRelativeToPCAssignment_3_1_0_0 = (Assignment)cGroup_3_1_0.eContents().get(0);
-		private final Keyword cIsRelativeToPCAsteriskKeyword_3_1_0_0_0 = (Keyword)cIsRelativeToPCAssignment_3_1_0_0.eContents().get(0);
-		private final Assignment cOperandAssignment_3_1_0_1 = (Assignment)cGroup_3_1_0.eContents().get(1);
-		private final RuleCall cOperandExpressionParserRuleCall_3_1_0_1_0 = (RuleCall)cOperandAssignment_3_1_0_1.eContents().get(0);
-		private final Assignment cIsRelativeToPCAssignment_3_1_1 = (Assignment)cAlternatives_3_1.eContents().get(1);
-		private final Keyword cIsRelativeToPCAsteriskKeyword_3_1_1_0 = (Keyword)cIsRelativeToPCAssignment_3_1_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final Assignment cCommentAssignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_0 = (RuleCall)cCommentAssignment_5.eContents().get(0);
-		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveORGKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
+		private final Group cGroup_1_1_0 = (Group)cAlternatives_1_1.eContents().get(0);
+		private final Assignment cIsRelativeToPCAssignment_1_1_0_0 = (Assignment)cGroup_1_1_0.eContents().get(0);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_1_1_0_0_0 = (Keyword)cIsRelativeToPCAssignment_1_1_0_0.eContents().get(0);
+		private final Assignment cOperandAssignment_1_1_0_1 = (Assignment)cGroup_1_1_0.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_1_1_0_1_0 = (RuleCall)cOperandAssignment_1_1_0_1.eContents().get(0);
+		private final Assignment cIsRelativeToPCAssignment_1_1_1 = (Assignment)cAlternatives_1_1.eContents().get(1);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_1_1_1_0 = (Keyword)cIsRelativeToPCAssignment_1_1_1.eContents().get(0);
 		
 		///*
 		// *  The ORG statement is used to set a new code 'Origin'. This simply means that a new address is set into the location Counter (or program counter) so that subsequent code will be placed at the new location. The form is as follows:
@@ -3811,190 +3034,133 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// *    No label may be placed on an ORG statement and no code is produced. If no ORG statement appears in the source, an origin of 0000 is assumed.
 		// */
 		//OrgDirective:
-		//    (name = IdentifierValue)? WS (directive = 'ORG')
+		//    directive = 'ORG'
 		//    (WS (
 		//        (isRelativeToPC?='*'? operand=Expression) |
 		//        (isRelativeToPC?='*' )
 		//        ))?
-		//    WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		//    EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'ORG')
+		//directive = 'ORG'
 		//(WS (
 		//    (isRelativeToPC?='*'? operand=Expression) |
 		//    (isRelativeToPC?='*' )
 		//    ))?
-		//WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		//EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
-		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'ORG')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
+		//directive = 'ORG'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
 		//'ORG'
-		public Keyword getDirectiveORGKeyword_2_0() { return cDirectiveORGKeyword_2_0; }
+		public Keyword getDirectiveORGKeyword_0_0() { return cDirectiveORGKeyword_0_0; }
 		
 		//(WS (
 		//    (isRelativeToPC?='*'? operand=Expression) |
 		//    (isRelativeToPC?='*' )
 		//    ))?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
 		//(
 		//       (isRelativeToPC?='*'? operand=Expression) |
 		//       (isRelativeToPC?='*' )
 		//       )
-		public Alternatives getAlternatives_3_1() { return cAlternatives_3_1; }
+		public Alternatives getAlternatives_1_1() { return cAlternatives_1_1; }
 		
 		//(isRelativeToPC?='*'? operand=Expression)
-		public Group getGroup_3_1_0() { return cGroup_3_1_0; }
+		public Group getGroup_1_1_0() { return cGroup_1_1_0; }
 		
 		//isRelativeToPC?='*'?
-		public Assignment getIsRelativeToPCAssignment_3_1_0_0() { return cIsRelativeToPCAssignment_3_1_0_0; }
+		public Assignment getIsRelativeToPCAssignment_1_1_0_0() { return cIsRelativeToPCAssignment_1_1_0_0; }
 		
 		//'*'
-		public Keyword getIsRelativeToPCAsteriskKeyword_3_1_0_0_0() { return cIsRelativeToPCAsteriskKeyword_3_1_0_0_0; }
+		public Keyword getIsRelativeToPCAsteriskKeyword_1_1_0_0_0() { return cIsRelativeToPCAsteriskKeyword_1_1_0_0_0; }
 		
 		//operand=Expression
-		public Assignment getOperandAssignment_3_1_0_1() { return cOperandAssignment_3_1_0_1; }
+		public Assignment getOperandAssignment_1_1_0_1() { return cOperandAssignment_1_1_0_1; }
 		
 		//Expression
-		public RuleCall getOperandExpressionParserRuleCall_3_1_0_1_0() { return cOperandExpressionParserRuleCall_3_1_0_1_0; }
+		public RuleCall getOperandExpressionParserRuleCall_1_1_0_1_0() { return cOperandExpressionParserRuleCall_1_1_0_1_0; }
 		
 		//(isRelativeToPC?='*' )
-		public Assignment getIsRelativeToPCAssignment_3_1_1() { return cIsRelativeToPCAssignment_3_1_1; }
+		public Assignment getIsRelativeToPCAssignment_1_1_1() { return cIsRelativeToPCAssignment_1_1_1; }
 		
 		//'*'
-		public Keyword getIsRelativeToPCAsteriskKeyword_3_1_1_0() { return cIsRelativeToPCAsteriskKeyword_3_1_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Assignment getCommentAssignment_5() { return cCommentAssignment_5; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_0; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
+		public Keyword getIsRelativeToPCAsteriskKeyword_1_1_1_0() { return cIsRelativeToPCAsteriskKeyword_1_1_1_0; }
 	}
 	public class EquDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.EquDirective");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveEQUKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Assignment cDirectiveAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cDirectiveEQUKeyword_2_0 = (Keyword)cDirectiveAssignment_2.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
-		private final Alternatives cAlternatives_4 = (Alternatives)cGroup.eContents().get(4);
-		private final Group cGroup_4_0 = (Group)cAlternatives_4.eContents().get(0);
-		private final Assignment cIsRelativeToPCAssignment_4_0_0 = (Assignment)cGroup_4_0.eContents().get(0);
-		private final Keyword cIsRelativeToPCAsteriskKeyword_4_0_0_0 = (Keyword)cIsRelativeToPCAssignment_4_0_0.eContents().get(0);
-		private final Assignment cOperandAssignment_4_0_1 = (Assignment)cGroup_4_0.eContents().get(1);
-		private final RuleCall cOperandExpressionParserRuleCall_4_0_1_0 = (RuleCall)cOperandAssignment_4_0_1.eContents().get(0);
-		private final Assignment cIsRelativeToPCAssignment_4_1 = (Assignment)cAlternatives_4.eContents().get(1);
-		private final Keyword cIsRelativeToPCAsteriskKeyword_4_1_0 = (Keyword)cIsRelativeToPCAssignment_4_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
-		private final Assignment cCommentAssignment_6 = (Assignment)cGroup.eContents().get(6);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0 = (RuleCall)cCommentAssignment_6.eContents().get(0);
-		private final RuleCall cEndOfLineParserRuleCall_7 = (RuleCall)cGroup.eContents().get(7);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Assignment cIsRelativeToPCAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_2_0_0_0 = (Keyword)cIsRelativeToPCAssignment_2_0_0.eContents().get(0);
+		private final Assignment cOperandAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_2_0_1_0 = (RuleCall)cOperandAssignment_2_0_1.eContents().get(0);
+		private final Assignment cIsRelativeToPCAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cIsRelativeToPCAsteriskKeyword_2_1_0 = (Keyword)cIsRelativeToPCAssignment_2_1.eContents().get(0);
 		
 		///*
 		// * Description of an EQU directive
 		// * An EQU directive must have a label, following by EQU, an operand, and optionnaly a comment
 		// */
 		//EquDirective:
-		//    (name = IdentifierValue)? WS (directive = 'EQU')
+		//    directive = 'EQU'
 		//    WS (
 		//        ( isRelativeToPC?='*'? operand=Expression) |
 		//        ( isRelativeToPC?='*' )
 		//        )
-		//    WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		//    EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS (directive = 'EQU')
+		//directive = 'EQU'
 		//WS (
 		//    ( isRelativeToPC?='*'? operand=Expression) |
 		//    ( isRelativeToPC?='*' )
 		//    )
-		//WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		//EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//directive = 'EQU'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
+		//'EQU'
+		public Keyword getDirectiveEQUKeyword_0_0() { return cDirectiveEQUKeyword_0_0; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
-		
-		//(directive = 'EQU')
-		public Assignment getDirectiveAssignment_2() { return cDirectiveAssignment_2; }
-		
-		//'EQU'
-		public Keyword getDirectiveEQUKeyword_2_0() { return cDirectiveEQUKeyword_2_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
 		
 		//(
 		//       ( isRelativeToPC?='*'? operand=Expression) |
 		//       ( isRelativeToPC?='*' )
 		//       )
-		public Alternatives getAlternatives_4() { return cAlternatives_4; }
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
 		//( isRelativeToPC?='*'? operand=Expression)
-		public Group getGroup_4_0() { return cGroup_4_0; }
+		public Group getGroup_2_0() { return cGroup_2_0; }
 		
 		//isRelativeToPC?='*'?
-		public Assignment getIsRelativeToPCAssignment_4_0_0() { return cIsRelativeToPCAssignment_4_0_0; }
+		public Assignment getIsRelativeToPCAssignment_2_0_0() { return cIsRelativeToPCAssignment_2_0_0; }
 		
 		//'*'
-		public Keyword getIsRelativeToPCAsteriskKeyword_4_0_0_0() { return cIsRelativeToPCAsteriskKeyword_4_0_0_0; }
+		public Keyword getIsRelativeToPCAsteriskKeyword_2_0_0_0() { return cIsRelativeToPCAsteriskKeyword_2_0_0_0; }
 		
 		//operand=Expression
-		public Assignment getOperandAssignment_4_0_1() { return cOperandAssignment_4_0_1; }
+		public Assignment getOperandAssignment_2_0_1() { return cOperandAssignment_2_0_1; }
 		
 		//Expression
-		public RuleCall getOperandExpressionParserRuleCall_4_0_1_0() { return cOperandExpressionParserRuleCall_4_0_1_0; }
+		public RuleCall getOperandExpressionParserRuleCall_2_0_1_0() { return cOperandExpressionParserRuleCall_2_0_1_0; }
 		
 		//( isRelativeToPC?='*' )
-		public Assignment getIsRelativeToPCAssignment_4_1() { return cIsRelativeToPCAssignment_4_1; }
+		public Assignment getIsRelativeToPCAssignment_2_1() { return cIsRelativeToPCAssignment_2_1; }
 		
 		//'*'
-		public Keyword getIsRelativeToPCAsteriskKeyword_4_1_0() { return cIsRelativeToPCAsteriskKeyword_4_1_0; }
-		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
-		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-		public Assignment getCommentAssignment_6() { return cCommentAssignment_6; }
-		
-		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0; }
-		
-		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_7() { return cEndOfLineParserRuleCall_7; }
+		public Keyword getIsRelativeToPCAsteriskKeyword_2_1_0() { return cIsRelativeToPCAsteriskKeyword_2_1_0; }
 	}
 	public class ListOfExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ListOfExpression");
@@ -5205,14 +4371,19 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Definition of the list possible instructions
 	// */
 	//InstructionLine:
-	//    instruction = AbxInstruction            |
-	//    instruction = AdcInstruction            |
-	//    instruction = AddInstruction            |
-	//    instruction = AdddInstruction           |
-	//    instruction = AndInstruction            |
-	//    instruction = AndCCInstruction          |
-	//    instruction = AslInstruction            |
-	//    instruction = AsrInstruction
+	//    (name = IdentifierValue)? WS
+	//    (
+	//        instruction = AbxInstruction            |
+	//        instruction = AdcInstruction            |
+	//        instruction = AddInstruction            |
+	//        instruction = AdddInstruction           |
+	//        instruction = AndInstruction            |
+	//        instruction = AndCCInstruction          |
+	//        instruction = AslInstruction            |
+	//        instruction = AsrInstruction
+	//    )
+	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    WS? EndOfLine
 	//;
 	public InstructionLineElements getInstructionLineAccess() {
 		return pInstructionLine;
@@ -5240,24 +4411,19 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// *                    Indexed
 	// */
 	//AsrInstruction:
-	//    (name = IdentifierValue)? WS
-	//       (
-	//               (
-	//                   instruction = ('ASRA' | 'ASRB')
-	//               )
-	//            |
-	//               (
-	//                     instruction = ('ASR')
-	//                WS operand = (
-	//                    DirectOperand  |
-	//                    IndexedOperand |
-	//                    ExtendedOperand |
-	//                    ExtendedIndirectOperand
-	//                )
-	//               )
-	//       )
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
+	//    (
+	//        instruction = ('ASRA' | 'ASRB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('ASR')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
 	//;
 	public AsrInstructionElements getAsrInstructionAccess() {
 		return pAsrInstruction;
@@ -5283,24 +4449,19 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Addressing Mode    : Inherent
 	// */
 	//AslInstruction:
-	//    (name = IdentifierValue)? WS
-	//       (
-	//               (
-	//                   instruction = ('ASLA' | 'ASLB')
-	//               )
-	//            |
-	//               (
-	//                     instruction = ('ASL')
-	//                WS operand = (
-	//                    DirectOperand  |
-	//                    IndexedOperand |
-	//                    ExtendedOperand |
-	//                    ExtendedIndirectOperand
-	//                )
-	//               )
-	//       )
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
+	//    (
+	//       instruction = ('ASLA' | 'ASLB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('ASL')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
 	//;
 	public AslInstructionElements getAslInstructionAccess() {
 		return pAslInstruction;
@@ -5322,12 +4483,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Addressing Mode    : Immediate
 	// */
 	//AndCCInstruction:
-	//    (name = IdentifierValue)? WS (instruction = ('ANDCC'))
+	//    instruction = ('ANDCC')
 	//    WS operand = (
 	//        ImmediatOperand
 	//    )
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
 	//;
 	public AndCCInstructionElements getAndCCInstructionAccess() {
 		return pAndCCInstruction;
@@ -5356,7 +4515,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// *                    Indexed
 	// */
 	//AndInstruction:
-	//    (name = IdentifierValue)? WS (instruction = ('ANDA' | 'ANDB'))
+	//    instruction = ('ANDA' | 'ANDB')
 	//    WS operand = (
 	//        ImmediatOperand |
 	//        DirectOperand  |
@@ -5364,8 +4523,6 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        ExtendedOperand |
 	//        ExtendedIndirectOperand
 	//    )
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
 	//;
 	public AndInstructionElements getAndInstructionAccess() {
 		return pAndInstruction;
@@ -5393,7 +4550,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// *                    Indexed
 	// */
 	//AdddInstruction:
-	//    (name = IdentifierValue)? WS (instruction = ('ADDD'))
+	//    instruction = ('ADDD')
 	//    WS operand = (
 	//        ImmediatOperand |
 	//        DirectOperand  |
@@ -5401,8 +4558,6 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        ExtendedOperand |
 	//        ExtendedIndirectOperand
 	//    )
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
 	//;
 	public AdddInstructionElements getAdddInstructionAccess() {
 		return pAdddInstruction;
@@ -5430,7 +4585,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// *                    Indexed
 	// */
 	//AddInstruction:
-	//    (name = IdentifierValue)? WS (instruction = ('ADDA' | 'ADDB'))
+	//    instruction = ('ADDA' | 'ADDB')
 	//    WS operand = (
 	//        ImmediatOperand |
 	//        DirectOperand  |
@@ -5438,8 +4593,6 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        ExtendedOperand |
 	//        ExtendedIndirectOperand
 	//    )
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
 	//;
 	public AddInstructionElements getAddInstructionAccess() {
 		return pAddInstruction;
@@ -5467,7 +4620,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// *                    Indexed
 	// */
 	//AdcInstruction:
-	//    (name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))
+	//    instruction = ('ADCA' | 'ADCB')
 	//    WS operand = (
 	//        ImmediatOperand |
 	//        DirectOperand  |
@@ -5475,8 +4628,6 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        ExtendedOperand |
 	//        ExtendedIndirectOperand
 	//    )
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
 	//;
 	public AdcInstructionElements getAdcInstructionAccess() {
 		return pAdcInstruction;
@@ -5497,9 +4648,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Addressing Mode    : Inherent
 	// */
 	//AbxInstruction:
-	//    (name = IdentifierValue)? WS (instruction = 'ABX')
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
+	//    instruction = 'ABX'
 	//;
 	public AbxInstructionElements getAbxInstructionAccess() {
 		return pAbxInstruction;
@@ -5730,22 +4879,27 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Definition of the list possible directives
 	// */
 	//DirectiveLine:
-	//       directive = EquDirective
-	//    |  directive = OrgDirective
-	//    |  directive = BszDirective
-	//    |  directive = EndDirective
-	//    |  directive = FailDirective
-	//    |  directive = FillDirective
-	//    |  directive = OptDirective
-	//    |  directive = PagDirective
-	//    |  directive = NamDirective
-	//    |  directive = SetDirective
-	//    |  directive = SpcDirective
-	//    |  directive = RegDirective
-	//    |  directive = FcbDirective
-	//    |  directive = FdbDirective
-	//    |  directive = FccDirective
-	//    |  directive = RmbDirective
+	//    (name = IdentifierValue)? WS
+	//    (
+	//            directive = EquDirective
+	//        |  directive = OrgDirective
+	//        |  directive = BszDirective
+	//        |  directive = EndDirective
+	//        |  directive = FailDirective
+	//        |  directive = FillDirective
+	//        |  directive = OptDirective
+	//        |  directive = PagDirective
+	//        |  directive = NamDirective
+	//        |  directive = SetDirective
+	//        |  directive = SpcDirective
+	//        |  directive = RegDirective
+	//        |  directive = FcbDirective
+	//        |  directive = FdbDirective
+	//        |  directive = FccDirective
+	//        |  directive = RmbDirective
+	//    )
+	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    WS? EndOfLine
 	//;
 	public DirectiveLineElements getDirectiveLineAccess() {
 		return pDirectiveLine;
@@ -5782,10 +4936,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Note that more than one delimited string may be placed on a line as in the second example.
 	// */
 	//FccDirective:
-	//    (name = IdentifierValue)? WS (directive = 'FCC')
+	//    directive = 'FCC'
 	//    (WS string=STRING)
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
 	//;
 	public FccDirectiveElements getFccDirectiveAccess() {
 		return pFccDirective;
@@ -5822,10 +4974,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * (with the desired bit pattern) may be specified.
 	// */
 	//RegDirective:
-	//    (name = IdentifierValue)? WS (directive = 'REG')
+	//    (directive = 'REG')
 	//    (WS options+=Register ( ',' options+=Register)*)?
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-	//    EndOfLine
 	//;
 	public RegDirectiveElements getRegDirectiveAccess() {
 		return pRegDirective;
@@ -5851,10 +5001,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// *  is given (ie. just the directive SPC), the assembler will default to one blank line in the output listing.
 	// */
 	//SpcDirective:
-	//    (name = IdentifierValue)? WS (directive = 'SPC')
+	//    directive = 'SPC'
 	//    (WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
 	//;
 	public SpcDirectiveElements getSpcDirectiveAccess() {
 		return pSpcDirective;
@@ -5881,10 +5029,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * at the top of the following page(s).
 	// */
 	//NamDirective:
-	//    (name = IdentifierValue)? WS (directive = 'NAM'|directive = 'TTL')
+	//    (directive = 'NAM'|directive = 'TTL')
 	//    WS (operand=IdentifierValue)
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    EndOfLine
 	//;
 	public NamDirectiveElements getNamDirectiveAccess() {
 		return pNamDirective;
@@ -5912,10 +5058,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * or subtitle instructions being in the way.
 	// */
 	//PagDirective:
-	//    (name = IdentifierValue)? WS (directive = 'PAG')
-	//    (WS (operand=Expression)?)?
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    EndOfLine
+	//    directive = 'PAG'
+	//    (WS (operand=Expression))?
 	//;
 	public PagDirectiveElements getPagDirectiveAccess() {
 		return pPagDirective;
@@ -5959,10 +5103,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * * denotes default option and is not part of option name
 	// */
 	//OptDirective:
-	//    (name = IdentifierValue)? WS (directive = 'OPT')
+	//    directive = 'OPT'
 	//    (WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-	//    EndOfLine
 	//;
 	public OptDirectiveElements getOptDirectiveAccess() {
 		return pOptDirective;
@@ -5978,9 +5120,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// *
 	// */
 	//FailDirective:
-	//    (name = IdentifierValue)? WS (directive = 'FAIL')
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-	//    EndOfLine
+	//    directive = 'FAIL'
 	//;
 	public FailDirectiveElements getFailDirectiveAccess() {
 		return pFailDirective;
@@ -6004,13 +5144,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * The label is strictly required and no code is generated.
 	// */
 	//SetDirective:
-	//    (name = IdentifierValue)? WS (directive = 'SET')
+	//    directive = 'SET'
 	//    WS (
 	//        ( isRelativeToPC?='*'? operand=Expression) |
 	//        ( isRelativeToPC?='*' )
 	//        )
-	//    WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-	//    EndOfLine
 	//;
 	public SetDirectiveElements getSetDirectiveAccess() {
 		return pSetDirective;
@@ -6027,10 +5165,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * the first value define the value to set, the seconfd value define the number of byte to set
 	// */
 	//FillDirective:
-	//    (name = IdentifierValue)?
-	//    (WS (directive = 'FILL'))
+	//    directive = 'FILL'
 	//    (WS value=Expression ',' number=Expression)
-	//    (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
 	//;
 	public FillDirectiveElements getFillDirectiveAccess() {
 		return pFillDirective;
@@ -6047,9 +5183,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * The operand define the number on byte to reserve
 	// */
 	//BszDirective:
-	//    (name = IdentifierValue)? WS (directive = ('BSZ'|'ZMB'))
+	//    directive = ('BSZ'|'ZMB')
 	//    (WS operand=Expression)
-	//    (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
 	//;
 	public BszDirectiveElements getBszDirectiveAccess() {
 		return pBszDirective;
@@ -6072,10 +5207,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Again, the label field is optional.
 	// */
 	//FdbDirective:
-	//    (name = IdentifierValue)? WS (directive = 'FDB')
+	//    directive = 'FDB'
 	//    (WS (operand = ListOfExpression))?
-	//    (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-	//    WS? EndOfLine
 	//;
 	public FdbDirectiveElements getFdbDirectiveAccess() {
 		return pFdbDirective;
@@ -6098,7 +5231,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * The label is optional.
 	// */
 	//FcbDirective:
-	//    (name = IdentifierValue)? WS (directive = 'FCB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+	//    directive = 'FCB'
+	//    (WS (operand = ListOfExpression))?
 	//;
 	public FcbDirectiveElements getFcbDirectiveAccess() {
 		return pFcbDirective;
@@ -6121,7 +5255,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * The label is optional, and the expression is a 16 bit quantity.
 	// */
 	//RmbDirective:
-	//    (name = IdentifierValue)? WS (directive = 'RMB') (WS (isRelativeToPC?='*'? operand = Expression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
+	//    directive = 'RMB'
+	//    (WS (isRelativeToPC?='*'? operand = Expression))?
 	//;
 	public RmbDirectiveElements getRmbDirectiveAccess() {
 		return pRmbDirective;
@@ -6143,12 +5278,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * but is the only means of getting a transfer address appended to a binary output file.
 	// */
 	//EndDirective:
-	//    (name = IdentifierValue)? WS (directive = 'END')
+	//    directive = 'END'
 	//    (WS (
 	//        ( isRelativeToPC?='*'? operand=Expression) |
 	//        ( isRelativeToPC?='*' )
 	//        ))?
-	//    (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine
 	//;
 	public EndDirectiveElements getEndDirectiveAccess() {
 		return pEndDirective;
@@ -6166,13 +5300,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// *    No label may be placed on an ORG statement and no code is produced. If no ORG statement appears in the source, an origin of 0000 is assumed.
 	// */
 	//OrgDirective:
-	//    (name = IdentifierValue)? WS (directive = 'ORG')
+	//    directive = 'ORG'
 	//    (WS (
 	//        (isRelativeToPC?='*'? operand=Expression) |
 	//        (isRelativeToPC?='*' )
 	//        ))?
-	//    WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-	//    EndOfLine
 	//;
 	public OrgDirectiveElements getOrgDirectiveAccess() {
 		return pOrgDirective;
@@ -6187,13 +5319,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * An EQU directive must have a label, following by EQU, an operand, and optionnaly a comment
 	// */
 	//EquDirective:
-	//    (name = IdentifierValue)? WS (directive = 'EQU')
+	//    directive = 'EQU'
 	//    WS (
 	//        ( isRelativeToPC?='*'? operand=Expression) |
 	//        ( isRelativeToPC?='*' )
 	//        )
-	//    WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
-	//    EndOfLine
 	//;
 	public EquDirectiveElements getEquDirectiveAccess() {
 		return pEquDirective;

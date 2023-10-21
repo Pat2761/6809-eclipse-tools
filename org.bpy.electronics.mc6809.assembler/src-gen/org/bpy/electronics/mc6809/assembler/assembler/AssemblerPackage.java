@@ -181,13 +181,31 @@ public interface AssemblerPackage extends EPackage
   int INSTRUCTION_LINE = 4;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION_LINE__NAME = 0;
+
+  /**
    * The feature id for the '<em><b>Instruction</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INSTRUCTION_LINE__INSTRUCTION = 0;
+  int INSTRUCTION_LINE__INSTRUCTION = 1;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION_LINE__COMMENT = 2;
 
   /**
    * The number of structural features of the '<em>Instruction Line</em>' class.
@@ -196,7 +214,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION_LINE_FEATURE_COUNT = 1;
+  int INSTRUCTION_LINE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AsrInstructionImpl <em>Asr Instruction</em>}' class.
@@ -209,22 +227,13 @@ public interface AssemblerPackage extends EPackage
   int ASR_INSTRUCTION = 5;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASR_INSTRUCTION__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASR_INSTRUCTION__INSTRUCTION = 1;
+  int ASR_INSTRUCTION__INSTRUCTION = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -233,16 +242,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASR_INSTRUCTION__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASR_INSTRUCTION__COMMENT = 3;
+  int ASR_INSTRUCTION__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>Asr Instruction</em>' class.
@@ -251,7 +251,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASR_INSTRUCTION_FEATURE_COUNT = 4;
+  int ASR_INSTRUCTION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AslInstructionImpl <em>Asl Instruction</em>}' class.
@@ -264,22 +264,13 @@ public interface AssemblerPackage extends EPackage
   int ASL_INSTRUCTION = 6;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASL_INSTRUCTION__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASL_INSTRUCTION__INSTRUCTION = 1;
+  int ASL_INSTRUCTION__INSTRUCTION = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -288,16 +279,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASL_INSTRUCTION__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ASL_INSTRUCTION__COMMENT = 3;
+  int ASL_INSTRUCTION__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>Asl Instruction</em>' class.
@@ -306,7 +288,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASL_INSTRUCTION_FEATURE_COUNT = 4;
+  int ASL_INSTRUCTION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndCCInstructionImpl <em>And CC Instruction</em>}' class.
@@ -319,22 +301,13 @@ public interface AssemblerPackage extends EPackage
   int AND_CC_INSTRUCTION = 7;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_CC_INSTRUCTION__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AND_CC_INSTRUCTION__INSTRUCTION = 1;
+  int AND_CC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -343,16 +316,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AND_CC_INSTRUCTION__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_CC_INSTRUCTION__COMMENT = 3;
+  int AND_CC_INSTRUCTION__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>And CC Instruction</em>' class.
@@ -361,7 +325,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AND_CC_INSTRUCTION_FEATURE_COUNT = 4;
+  int AND_CC_INSTRUCTION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndInstructionImpl <em>And Instruction</em>}' class.
@@ -374,22 +338,13 @@ public interface AssemblerPackage extends EPackage
   int AND_INSTRUCTION = 8;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_INSTRUCTION__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AND_INSTRUCTION__INSTRUCTION = 1;
+  int AND_INSTRUCTION__INSTRUCTION = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -398,16 +353,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AND_INSTRUCTION__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AND_INSTRUCTION__COMMENT = 3;
+  int AND_INSTRUCTION__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>And Instruction</em>' class.
@@ -416,7 +362,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AND_INSTRUCTION_FEATURE_COUNT = 4;
+  int AND_INSTRUCTION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdddInstructionImpl <em>Addd Instruction</em>}' class.
@@ -429,22 +375,13 @@ public interface AssemblerPackage extends EPackage
   int ADDD_INSTRUCTION = 9;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADDD_INSTRUCTION__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ADDD_INSTRUCTION__INSTRUCTION = 1;
+  int ADDD_INSTRUCTION__INSTRUCTION = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -453,16 +390,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDD_INSTRUCTION__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADDD_INSTRUCTION__COMMENT = 3;
+  int ADDD_INSTRUCTION__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>Addd Instruction</em>' class.
@@ -471,7 +399,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDD_INSTRUCTION_FEATURE_COUNT = 4;
+  int ADDD_INSTRUCTION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AddInstructionImpl <em>Add Instruction</em>}' class.
@@ -484,22 +412,13 @@ public interface AssemblerPackage extends EPackage
   int ADD_INSTRUCTION = 10;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADD_INSTRUCTION__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ADD_INSTRUCTION__INSTRUCTION = 1;
+  int ADD_INSTRUCTION__INSTRUCTION = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -508,16 +427,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADD_INSTRUCTION__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADD_INSTRUCTION__COMMENT = 3;
+  int ADD_INSTRUCTION__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>Add Instruction</em>' class.
@@ -526,7 +436,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADD_INSTRUCTION_FEATURE_COUNT = 4;
+  int ADD_INSTRUCTION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdcInstructionImpl <em>Adc Instruction</em>}' class.
@@ -539,22 +449,13 @@ public interface AssemblerPackage extends EPackage
   int ADC_INSTRUCTION = 11;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADC_INSTRUCTION__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ADC_INSTRUCTION__INSTRUCTION = 1;
+  int ADC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -563,16 +464,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADC_INSTRUCTION__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ADC_INSTRUCTION__COMMENT = 3;
+  int ADC_INSTRUCTION__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>Adc Instruction</em>' class.
@@ -581,7 +473,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADC_INSTRUCTION_FEATURE_COUNT = 4;
+  int ADC_INSTRUCTION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AbxInstructionImpl <em>Abx Instruction</em>}' class.
@@ -594,31 +486,13 @@ public interface AssemblerPackage extends EPackage
   int ABX_INSTRUCTION = 12;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ABX_INSTRUCTION__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ABX_INSTRUCTION__INSTRUCTION = 1;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ABX_INSTRUCTION__COMMENT = 2;
+  int ABX_INSTRUCTION__INSTRUCTION = 0;
 
   /**
    * The number of structural features of the '<em>Abx Instruction</em>' class.
@@ -627,7 +501,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ABX_INSTRUCTION_FEATURE_COUNT = 3;
+  int ABX_INSTRUCTION_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedIndirectOperandImpl <em>Extended Indirect Operand</em>}' class.
@@ -1112,13 +986,31 @@ public interface AssemblerPackage extends EPackage
   int DIRECTIVE_LINE = 26;
 
   /**
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIRECTIVE_LINE__NAME = 0;
+
+  /**
    * The feature id for the '<em><b>Directive</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DIRECTIVE_LINE__DIRECTIVE = 0;
+  int DIRECTIVE_LINE__DIRECTIVE = 1;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIRECTIVE_LINE__COMMENT = 2;
 
   /**
    * The number of structural features of the '<em>Directive Line</em>' class.
@@ -1127,7 +1019,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DIRECTIVE_LINE_FEATURE_COUNT = 1;
+  int DIRECTIVE_LINE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl <em>Fcc Directive</em>}' class.
@@ -1140,22 +1032,13 @@ public interface AssemblerPackage extends EPackage
   int FCC_DIRECTIVE = 27;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FCC_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FCC_DIRECTIVE__DIRECTIVE = 1;
+  int FCC_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>String</b></em>' attribute.
@@ -1164,16 +1047,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FCC_DIRECTIVE__STRING = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FCC_DIRECTIVE__COMMENT = 3;
+  int FCC_DIRECTIVE__STRING = 1;
 
   /**
    * The number of structural features of the '<em>Fcc Directive</em>' class.
@@ -1182,7 +1056,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FCC_DIRECTIVE_FEATURE_COUNT = 4;
+  int FCC_DIRECTIVE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RegDirectiveImpl <em>Reg Directive</em>}' class.
@@ -1195,22 +1069,13 @@ public interface AssemblerPackage extends EPackage
   int REG_DIRECTIVE = 28;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REG_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REG_DIRECTIVE__DIRECTIVE = 1;
+  int REG_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Options</b></em>' attribute list.
@@ -1219,16 +1084,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REG_DIRECTIVE__OPTIONS = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int REG_DIRECTIVE__COMMENT = 3;
+  int REG_DIRECTIVE__OPTIONS = 1;
 
   /**
    * The number of structural features of the '<em>Reg Directive</em>' class.
@@ -1237,7 +1093,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REG_DIRECTIVE_FEATURE_COUNT = 4;
+  int REG_DIRECTIVE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl <em>Spc Directive</em>}' class.
@@ -1250,22 +1106,13 @@ public interface AssemblerPackage extends EPackage
   int SPC_DIRECTIVE = 29;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SPC_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPC_DIRECTIVE__DIRECTIVE = 1;
+  int SPC_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Space Count</b></em>' containment reference.
@@ -1274,7 +1121,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPC_DIRECTIVE__SPACE_COUNT = 2;
+  int SPC_DIRECTIVE__SPACE_COUNT = 1;
 
   /**
    * The feature id for the '<em><b>Keep Count</b></em>' containment reference.
@@ -1283,16 +1130,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPC_DIRECTIVE__KEEP_COUNT = 3;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SPC_DIRECTIVE__COMMENT = 4;
+  int SPC_DIRECTIVE__KEEP_COUNT = 2;
 
   /**
    * The number of structural features of the '<em>Spc Directive</em>' class.
@@ -1301,7 +1139,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPC_DIRECTIVE_FEATURE_COUNT = 5;
+  int SPC_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NamDirectiveImpl <em>Nam Directive</em>}' class.
@@ -1314,22 +1152,13 @@ public interface AssemblerPackage extends EPackage
   int NAM_DIRECTIVE = 30;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NAM_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NAM_DIRECTIVE__DIRECTIVE = 1;
+  int NAM_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1338,16 +1167,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NAM_DIRECTIVE__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int NAM_DIRECTIVE__COMMENT = 3;
+  int NAM_DIRECTIVE__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>Nam Directive</em>' class.
@@ -1356,7 +1176,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NAM_DIRECTIVE_FEATURE_COUNT = 4;
+  int NAM_DIRECTIVE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PagDirectiveImpl <em>Pag Directive</em>}' class.
@@ -1369,22 +1189,13 @@ public interface AssemblerPackage extends EPackage
   int PAG_DIRECTIVE = 31;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PAG_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PAG_DIRECTIVE__DIRECTIVE = 1;
+  int PAG_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1393,16 +1204,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PAG_DIRECTIVE__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int PAG_DIRECTIVE__COMMENT = 3;
+  int PAG_DIRECTIVE__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>Pag Directive</em>' class.
@@ -1411,7 +1213,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PAG_DIRECTIVE_FEATURE_COUNT = 4;
+  int PAG_DIRECTIVE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl <em>Opt Directive</em>}' class.
@@ -1424,22 +1226,13 @@ public interface AssemblerPackage extends EPackage
   int OPT_DIRECTIVE = 32;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OPT_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OPT_DIRECTIVE__DIRECTIVE = 1;
+  int OPT_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Options</b></em>' attribute list.
@@ -1448,16 +1241,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int OPT_DIRECTIVE__OPTIONS = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OPT_DIRECTIVE__COMMENT = 3;
+  int OPT_DIRECTIVE__OPTIONS = 1;
 
   /**
    * The number of structural features of the '<em>Opt Directive</em>' class.
@@ -1466,7 +1250,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int OPT_DIRECTIVE_FEATURE_COUNT = 4;
+  int OPT_DIRECTIVE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FailDirectiveImpl <em>Fail Directive</em>}' class.
@@ -1479,31 +1263,13 @@ public interface AssemblerPackage extends EPackage
   int FAIL_DIRECTIVE = 33;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FAIL_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FAIL_DIRECTIVE__DIRECTIVE = 1;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FAIL_DIRECTIVE__COMMENT = 2;
+  int FAIL_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The number of structural features of the '<em>Fail Directive</em>' class.
@@ -1512,7 +1278,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FAIL_DIRECTIVE_FEATURE_COUNT = 3;
+  int FAIL_DIRECTIVE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SetDirectiveImpl <em>Set Directive</em>}' class.
@@ -1525,22 +1291,13 @@ public interface AssemblerPackage extends EPackage
   int SET_DIRECTIVE = 34;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SET_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SET_DIRECTIVE__DIRECTIVE = 1;
+  int SET_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Is Relative To PC</b></em>' attribute.
@@ -1549,7 +1306,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SET_DIRECTIVE__IS_RELATIVE_TO_PC = 2;
+  int SET_DIRECTIVE__IS_RELATIVE_TO_PC = 1;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1558,16 +1315,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SET_DIRECTIVE__OPERAND = 3;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SET_DIRECTIVE__COMMENT = 4;
+  int SET_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Set Directive</em>' class.
@@ -1576,7 +1324,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SET_DIRECTIVE_FEATURE_COUNT = 5;
+  int SET_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FillDirectiveImpl <em>Fill Directive</em>}' class.
@@ -1589,22 +1337,13 @@ public interface AssemblerPackage extends EPackage
   int FILL_DIRECTIVE = 35;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FILL_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FILL_DIRECTIVE__DIRECTIVE = 1;
+  int FILL_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -1613,7 +1352,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FILL_DIRECTIVE__VALUE = 2;
+  int FILL_DIRECTIVE__VALUE = 1;
 
   /**
    * The feature id for the '<em><b>Number</b></em>' containment reference.
@@ -1622,16 +1361,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FILL_DIRECTIVE__NUMBER = 3;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FILL_DIRECTIVE__COMMENT = 4;
+  int FILL_DIRECTIVE__NUMBER = 2;
 
   /**
    * The number of structural features of the '<em>Fill Directive</em>' class.
@@ -1640,7 +1370,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FILL_DIRECTIVE_FEATURE_COUNT = 5;
+  int FILL_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BszDirectiveImpl <em>Bsz Directive</em>}' class.
@@ -1653,22 +1383,13 @@ public interface AssemblerPackage extends EPackage
   int BSZ_DIRECTIVE = 36;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BSZ_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BSZ_DIRECTIVE__DIRECTIVE = 1;
+  int BSZ_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1677,16 +1398,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BSZ_DIRECTIVE__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int BSZ_DIRECTIVE__COMMENT = 3;
+  int BSZ_DIRECTIVE__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>Bsz Directive</em>' class.
@@ -1695,7 +1407,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BSZ_DIRECTIVE_FEATURE_COUNT = 4;
+  int BSZ_DIRECTIVE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FdbDirectiveImpl <em>Fdb Directive</em>}' class.
@@ -1708,22 +1420,13 @@ public interface AssemblerPackage extends EPackage
   int FDB_DIRECTIVE = 37;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FDB_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FDB_DIRECTIVE__DIRECTIVE = 1;
+  int FDB_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1732,16 +1435,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FDB_DIRECTIVE__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FDB_DIRECTIVE__COMMENT = 3;
+  int FDB_DIRECTIVE__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>Fdb Directive</em>' class.
@@ -1750,7 +1444,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FDB_DIRECTIVE_FEATURE_COUNT = 4;
+  int FDB_DIRECTIVE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FcbDirectiveImpl <em>Fcb Directive</em>}' class.
@@ -1763,22 +1457,13 @@ public interface AssemblerPackage extends EPackage
   int FCB_DIRECTIVE = 38;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FCB_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FCB_DIRECTIVE__DIRECTIVE = 1;
+  int FCB_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1787,16 +1472,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FCB_DIRECTIVE__OPERAND = 2;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int FCB_DIRECTIVE__COMMENT = 3;
+  int FCB_DIRECTIVE__OPERAND = 1;
 
   /**
    * The number of structural features of the '<em>Fcb Directive</em>' class.
@@ -1805,7 +1481,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FCB_DIRECTIVE_FEATURE_COUNT = 4;
+  int FCB_DIRECTIVE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RmbDirectiveImpl <em>Rmb Directive</em>}' class.
@@ -1818,22 +1494,13 @@ public interface AssemblerPackage extends EPackage
   int RMB_DIRECTIVE = 39;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RMB_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RMB_DIRECTIVE__DIRECTIVE = 1;
+  int RMB_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Is Relative To PC</b></em>' attribute.
@@ -1842,7 +1509,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RMB_DIRECTIVE__IS_RELATIVE_TO_PC = 2;
+  int RMB_DIRECTIVE__IS_RELATIVE_TO_PC = 1;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1851,16 +1518,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RMB_DIRECTIVE__OPERAND = 3;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int RMB_DIRECTIVE__COMMENT = 4;
+  int RMB_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Rmb Directive</em>' class.
@@ -1869,7 +1527,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RMB_DIRECTIVE_FEATURE_COUNT = 5;
+  int RMB_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EndDirectiveImpl <em>End Directive</em>}' class.
@@ -1882,22 +1540,13 @@ public interface AssemblerPackage extends EPackage
   int END_DIRECTIVE = 40;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int END_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int END_DIRECTIVE__DIRECTIVE = 1;
+  int END_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Is Relative To PC</b></em>' attribute.
@@ -1906,7 +1555,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int END_DIRECTIVE__IS_RELATIVE_TO_PC = 2;
+  int END_DIRECTIVE__IS_RELATIVE_TO_PC = 1;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1915,16 +1564,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int END_DIRECTIVE__OPERAND = 3;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int END_DIRECTIVE__COMMENT = 4;
+  int END_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>End Directive</em>' class.
@@ -1933,7 +1573,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int END_DIRECTIVE_FEATURE_COUNT = 5;
+  int END_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl <em>Org Directive</em>}' class.
@@ -1946,22 +1586,13 @@ public interface AssemblerPackage extends EPackage
   int ORG_DIRECTIVE = 41;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ORG_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ORG_DIRECTIVE__DIRECTIVE = 1;
+  int ORG_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Is Relative To PC</b></em>' attribute.
@@ -1970,7 +1601,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ORG_DIRECTIVE__IS_RELATIVE_TO_PC = 2;
+  int ORG_DIRECTIVE__IS_RELATIVE_TO_PC = 1;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -1979,16 +1610,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ORG_DIRECTIVE__OPERAND = 3;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ORG_DIRECTIVE__COMMENT = 4;
+  int ORG_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Org Directive</em>' class.
@@ -1997,7 +1619,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ORG_DIRECTIVE_FEATURE_COUNT = 5;
+  int ORG_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl <em>Equ Directive</em>}' class.
@@ -2010,22 +1632,13 @@ public interface AssemblerPackage extends EPackage
   int EQU_DIRECTIVE = 42;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EQU_DIRECTIVE__NAME = 0;
-
-  /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EQU_DIRECTIVE__DIRECTIVE = 1;
+  int EQU_DIRECTIVE__DIRECTIVE = 0;
 
   /**
    * The feature id for the '<em><b>Is Relative To PC</b></em>' attribute.
@@ -2034,7 +1647,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EQU_DIRECTIVE__IS_RELATIVE_TO_PC = 2;
+  int EQU_DIRECTIVE__IS_RELATIVE_TO_PC = 1;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -2043,16 +1656,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EQU_DIRECTIVE__OPERAND = 3;
-
-  /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EQU_DIRECTIVE__COMMENT = 4;
+  int EQU_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Equ Directive</em>' class.
@@ -2061,7 +1665,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EQU_DIRECTIVE_FEATURE_COUNT = 5;
+  int EQU_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ListOfExpressionImpl <em>List Of Expression</em>}' class.
@@ -3091,6 +2695,17 @@ public interface AssemblerPackage extends EPackage
   EClass getInstructionLine();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getName()
+   * @see #getInstructionLine()
+   * @generated
+   */
+  EReference getInstructionLine_Name();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getInstruction <em>Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3102,6 +2717,17 @@ public interface AssemblerPackage extends EPackage
   EReference getInstructionLine_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getComment()
+   * @see #getInstructionLine()
+   * @generated
+   */
+  EAttribute getInstructionLine_Comment();
+
+  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction <em>Asr Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3110,17 +2736,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getAsrInstruction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction#getName()
-   * @see #getAsrInstruction()
-   * @generated
-   */
-  EReference getAsrInstruction_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction#getInstruction <em>Instruction</em>}'.
@@ -3145,17 +2760,6 @@ public interface AssemblerPackage extends EPackage
   EReference getAsrInstruction_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction#getComment()
-   * @see #getAsrInstruction()
-   * @generated
-   */
-  EAttribute getAsrInstruction_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AslInstruction <em>Asl Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3164,17 +2768,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getAslInstruction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AslInstruction#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AslInstruction#getName()
-   * @see #getAslInstruction()
-   * @generated
-   */
-  EReference getAslInstruction_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AslInstruction#getInstruction <em>Instruction</em>}'.
@@ -3199,17 +2792,6 @@ public interface AssemblerPackage extends EPackage
   EReference getAslInstruction_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AslInstruction#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AslInstruction#getComment()
-   * @see #getAslInstruction()
-   * @generated
-   */
-  EAttribute getAslInstruction_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction <em>And CC Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3218,17 +2800,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getAndCCInstruction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction#getName()
-   * @see #getAndCCInstruction()
-   * @generated
-   */
-  EReference getAndCCInstruction_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction#getInstruction <em>Instruction</em>}'.
@@ -3253,17 +2824,6 @@ public interface AssemblerPackage extends EPackage
   EReference getAndCCInstruction_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction#getComment()
-   * @see #getAndCCInstruction()
-   * @generated
-   */
-  EAttribute getAndCCInstruction_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction <em>And Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3272,17 +2832,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getAndInstruction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getName()
-   * @see #getAndInstruction()
-   * @generated
-   */
-  EReference getAndInstruction_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getInstruction <em>Instruction</em>}'.
@@ -3307,17 +2856,6 @@ public interface AssemblerPackage extends EPackage
   EReference getAndInstruction_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getComment()
-   * @see #getAndInstruction()
-   * @generated
-   */
-  EAttribute getAndInstruction_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction <em>Addd Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3326,17 +2864,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getAdddInstruction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction#getName()
-   * @see #getAdddInstruction()
-   * @generated
-   */
-  EReference getAdddInstruction_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction#getInstruction <em>Instruction</em>}'.
@@ -3361,17 +2888,6 @@ public interface AssemblerPackage extends EPackage
   EReference getAdddInstruction_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction#getComment()
-   * @see #getAdddInstruction()
-   * @generated
-   */
-  EAttribute getAdddInstruction_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AddInstruction <em>Add Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3380,17 +2896,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getAddInstruction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AddInstruction#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AddInstruction#getName()
-   * @see #getAddInstruction()
-   * @generated
-   */
-  EReference getAddInstruction_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AddInstruction#getInstruction <em>Instruction</em>}'.
@@ -3415,17 +2920,6 @@ public interface AssemblerPackage extends EPackage
   EReference getAddInstruction_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AddInstruction#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AddInstruction#getComment()
-   * @see #getAddInstruction()
-   * @generated
-   */
-  EAttribute getAddInstruction_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction <em>Adc Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3434,17 +2928,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getAdcInstruction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getName()
-   * @see #getAdcInstruction()
-   * @generated
-   */
-  EReference getAdcInstruction_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getInstruction <em>Instruction</em>}'.
@@ -3469,17 +2952,6 @@ public interface AssemblerPackage extends EPackage
   EReference getAdcInstruction_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getComment()
-   * @see #getAdcInstruction()
-   * @generated
-   */
-  EAttribute getAdcInstruction_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction <em>Abx Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3488,17 +2960,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getAbxInstruction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getName()
-   * @see #getAbxInstruction()
-   * @generated
-   */
-  EReference getAbxInstruction_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getInstruction <em>Instruction</em>}'.
@@ -3510,17 +2971,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getAbxInstruction_Instruction();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction#getComment()
-   * @see #getAbxInstruction()
-   * @generated
-   */
-  EAttribute getAbxInstruction_Comment();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand <em>Extended Indirect Operand</em>}'.
@@ -3938,6 +3388,17 @@ public interface AssemblerPackage extends EPackage
   EClass getDirectiveLine();
 
   /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getName()
+   * @see #getDirectiveLine()
+   * @generated
+   */
+  EReference getDirectiveLine_Name();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getDirective <em>Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3949,6 +3410,17 @@ public interface AssemblerPackage extends EPackage
   EReference getDirectiveLine_Directive();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getComment()
+   * @see #getDirectiveLine()
+   * @generated
+   */
+  EAttribute getDirectiveLine_Comment();
+
+  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective <em>Fcc Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -3957,17 +3429,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getFccDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getName()
-   * @see #getFccDirective()
-   * @generated
-   */
-  EReference getFccDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getDirective <em>Directive</em>}'.
@@ -3992,17 +3453,6 @@ public interface AssemblerPackage extends EPackage
   EAttribute getFccDirective_String();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getComment()
-   * @see #getFccDirective()
-   * @generated
-   */
-  EAttribute getFccDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.RegDirective <em>Reg Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4011,17 +3461,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getRegDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RegDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.RegDirective#getName()
-   * @see #getRegDirective()
-   * @generated
-   */
-  EReference getRegDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RegDirective#getDirective <em>Directive</em>}'.
@@ -4046,17 +3485,6 @@ public interface AssemblerPackage extends EPackage
   EAttribute getRegDirective_Options();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RegDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.RegDirective#getComment()
-   * @see #getRegDirective()
-   * @generated
-   */
-  EAttribute getRegDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.SpcDirective <em>Spc Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4065,17 +3493,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getSpcDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SpcDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SpcDirective#getName()
-   * @see #getSpcDirective()
-   * @generated
-   */
-  EReference getSpcDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SpcDirective#getDirective <em>Directive</em>}'.
@@ -4111,17 +3528,6 @@ public interface AssemblerPackage extends EPackage
   EReference getSpcDirective_KeepCount();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SpcDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SpcDirective#getComment()
-   * @see #getSpcDirective()
-   * @generated
-   */
-  EAttribute getSpcDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.NamDirective <em>Nam Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4130,17 +3536,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getNamDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.NamDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.NamDirective#getName()
-   * @see #getNamDirective()
-   * @generated
-   */
-  EReference getNamDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.NamDirective#getDirective <em>Directive</em>}'.
@@ -4165,17 +3560,6 @@ public interface AssemblerPackage extends EPackage
   EReference getNamDirective_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.NamDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.NamDirective#getComment()
-   * @see #getNamDirective()
-   * @generated
-   */
-  EAttribute getNamDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.PagDirective <em>Pag Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4184,17 +3568,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getPagDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.PagDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.PagDirective#getName()
-   * @see #getPagDirective()
-   * @generated
-   */
-  EReference getPagDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.PagDirective#getDirective <em>Directive</em>}'.
@@ -4219,17 +3592,6 @@ public interface AssemblerPackage extends EPackage
   EReference getPagDirective_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.PagDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.PagDirective#getComment()
-   * @see #getPagDirective()
-   * @generated
-   */
-  EAttribute getPagDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.OptDirective <em>Opt Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4238,17 +3600,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getOptDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.OptDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OptDirective#getName()
-   * @see #getOptDirective()
-   * @generated
-   */
-  EReference getOptDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OptDirective#getDirective <em>Directive</em>}'.
@@ -4273,17 +3624,6 @@ public interface AssemblerPackage extends EPackage
   EAttribute getOptDirective_Options();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OptDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OptDirective#getComment()
-   * @see #getOptDirective()
-   * @generated
-   */
-  EAttribute getOptDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.FailDirective <em>Fail Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4292,17 +3632,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getFailDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.FailDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FailDirective#getName()
-   * @see #getFailDirective()
-   * @generated
-   */
-  EReference getFailDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FailDirective#getDirective <em>Directive</em>}'.
@@ -4316,17 +3645,6 @@ public interface AssemblerPackage extends EPackage
   EAttribute getFailDirective_Directive();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FailDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FailDirective#getComment()
-   * @see #getFailDirective()
-   * @generated
-   */
-  EAttribute getFailDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.SetDirective <em>Set Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4335,17 +3653,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getSetDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SetDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SetDirective#getName()
-   * @see #getSetDirective()
-   * @generated
-   */
-  EReference getSetDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SetDirective#getDirective <em>Directive</em>}'.
@@ -4381,17 +3688,6 @@ public interface AssemblerPackage extends EPackage
   EReference getSetDirective_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SetDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SetDirective#getComment()
-   * @see #getSetDirective()
-   * @generated
-   */
-  EAttribute getSetDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective <em>Fill Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4400,17 +3696,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getFillDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getName()
-   * @see #getFillDirective()
-   * @generated
-   */
-  EReference getFillDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getDirective <em>Directive</em>}'.
@@ -4446,17 +3731,6 @@ public interface AssemblerPackage extends EPackage
   EReference getFillDirective_Number();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getComment()
-   * @see #getFillDirective()
-   * @generated
-   */
-  EAttribute getFillDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.BszDirective <em>Bsz Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4465,17 +3739,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getBszDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BszDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.BszDirective#getName()
-   * @see #getBszDirective()
-   * @generated
-   */
-  EReference getBszDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BszDirective#getDirective <em>Directive</em>}'.
@@ -4500,17 +3763,6 @@ public interface AssemblerPackage extends EPackage
   EReference getBszDirective_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BszDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.BszDirective#getComment()
-   * @see #getBszDirective()
-   * @generated
-   */
-  EAttribute getBszDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.FdbDirective <em>Fdb Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4519,17 +3771,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getFdbDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.FdbDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FdbDirective#getName()
-   * @see #getFdbDirective()
-   * @generated
-   */
-  EReference getFdbDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FdbDirective#getDirective <em>Directive</em>}'.
@@ -4554,17 +3795,6 @@ public interface AssemblerPackage extends EPackage
   EReference getFdbDirective_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FdbDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FdbDirective#getComment()
-   * @see #getFdbDirective()
-   * @generated
-   */
-  EAttribute getFdbDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.FcbDirective <em>Fcb Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4573,17 +3803,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getFcbDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.FcbDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FcbDirective#getName()
-   * @see #getFcbDirective()
-   * @generated
-   */
-  EReference getFcbDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FcbDirective#getDirective <em>Directive</em>}'.
@@ -4608,17 +3827,6 @@ public interface AssemblerPackage extends EPackage
   EReference getFcbDirective_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FcbDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FcbDirective#getComment()
-   * @see #getFcbDirective()
-   * @generated
-   */
-  EAttribute getFcbDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.RmbDirective <em>Rmb Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4627,17 +3835,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getRmbDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RmbDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.RmbDirective#getName()
-   * @see #getRmbDirective()
-   * @generated
-   */
-  EReference getRmbDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RmbDirective#getDirective <em>Directive</em>}'.
@@ -4673,17 +3870,6 @@ public interface AssemblerPackage extends EPackage
   EReference getRmbDirective_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RmbDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.RmbDirective#getComment()
-   * @see #getRmbDirective()
-   * @generated
-   */
-  EAttribute getRmbDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective <em>End Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4692,17 +3878,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getEndDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getName()
-   * @see #getEndDirective()
-   * @generated
-   */
-  EReference getEndDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getDirective <em>Directive</em>}'.
@@ -4738,17 +3913,6 @@ public interface AssemblerPackage extends EPackage
   EReference getEndDirective_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getComment()
-   * @see #getEndDirective()
-   * @generated
-   */
-  EAttribute getEndDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.OrgDirective <em>Org Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4757,17 +3921,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getOrgDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.OrgDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OrgDirective#getName()
-   * @see #getOrgDirective()
-   * @generated
-   */
-  EReference getOrgDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OrgDirective#getDirective <em>Directive</em>}'.
@@ -4803,17 +3956,6 @@ public interface AssemblerPackage extends EPackage
   EReference getOrgDirective_Operand();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OrgDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OrgDirective#getComment()
-   * @see #getOrgDirective()
-   * @generated
-   */
-  EAttribute getOrgDirective_Comment();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective <em>Equ Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4822,17 +3964,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getEquDirective();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getName <em>Name</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getName()
-   * @see #getEquDirective()
-   * @generated
-   */
-  EReference getEquDirective_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getDirective <em>Directive</em>}'.
@@ -4866,17 +3997,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EReference getEquDirective_Operand();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getComment <em>Comment</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getComment()
-   * @see #getEquDirective()
-   * @generated
-   */
-  EAttribute getEquDirective_Comment();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression <em>List Of Expression</em>}'.
@@ -5599,12 +4719,28 @@ public interface AssemblerPackage extends EPackage
     EClass INSTRUCTION_LINE = eINSTANCE.getInstructionLine();
 
     /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference INSTRUCTION_LINE__NAME = eINSTANCE.getInstructionLine_Name();
+
+    /**
      * The meta object literal for the '<em><b>Instruction</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference INSTRUCTION_LINE__INSTRUCTION = eINSTANCE.getInstructionLine_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INSTRUCTION_LINE__COMMENT = eINSTANCE.getInstructionLine_Comment();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AsrInstructionImpl <em>Asr Instruction</em>}' class.
@@ -5615,14 +4751,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass ASR_INSTRUCTION = eINSTANCE.getAsrInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ASR_INSTRUCTION__NAME = eINSTANCE.getAsrInstruction_Name();
 
     /**
      * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
@@ -5641,14 +4769,6 @@ public interface AssemblerPackage extends EPackage
     EReference ASR_INSTRUCTION__OPERAND = eINSTANCE.getAsrInstruction_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ASR_INSTRUCTION__COMMENT = eINSTANCE.getAsrInstruction_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AslInstructionImpl <em>Asl Instruction</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5657,14 +4777,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass ASL_INSTRUCTION = eINSTANCE.getAslInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ASL_INSTRUCTION__NAME = eINSTANCE.getAslInstruction_Name();
 
     /**
      * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
@@ -5683,14 +4795,6 @@ public interface AssemblerPackage extends EPackage
     EReference ASL_INSTRUCTION__OPERAND = eINSTANCE.getAslInstruction_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ASL_INSTRUCTION__COMMENT = eINSTANCE.getAslInstruction_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndCCInstructionImpl <em>And CC Instruction</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5699,14 +4803,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass AND_CC_INSTRUCTION = eINSTANCE.getAndCCInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AND_CC_INSTRUCTION__NAME = eINSTANCE.getAndCCInstruction_Name();
 
     /**
      * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
@@ -5725,14 +4821,6 @@ public interface AssemblerPackage extends EPackage
     EReference AND_CC_INSTRUCTION__OPERAND = eINSTANCE.getAndCCInstruction_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AND_CC_INSTRUCTION__COMMENT = eINSTANCE.getAndCCInstruction_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndInstructionImpl <em>And Instruction</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5741,14 +4829,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass AND_INSTRUCTION = eINSTANCE.getAndInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AND_INSTRUCTION__NAME = eINSTANCE.getAndInstruction_Name();
 
     /**
      * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
@@ -5767,14 +4847,6 @@ public interface AssemblerPackage extends EPackage
     EReference AND_INSTRUCTION__OPERAND = eINSTANCE.getAndInstruction_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AND_INSTRUCTION__COMMENT = eINSTANCE.getAndInstruction_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdddInstructionImpl <em>Addd Instruction</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5783,14 +4855,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass ADDD_INSTRUCTION = eINSTANCE.getAdddInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ADDD_INSTRUCTION__NAME = eINSTANCE.getAdddInstruction_Name();
 
     /**
      * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
@@ -5809,14 +4873,6 @@ public interface AssemblerPackage extends EPackage
     EReference ADDD_INSTRUCTION__OPERAND = eINSTANCE.getAdddInstruction_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ADDD_INSTRUCTION__COMMENT = eINSTANCE.getAdddInstruction_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AddInstructionImpl <em>Add Instruction</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5825,14 +4881,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass ADD_INSTRUCTION = eINSTANCE.getAddInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ADD_INSTRUCTION__NAME = eINSTANCE.getAddInstruction_Name();
 
     /**
      * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
@@ -5851,14 +4899,6 @@ public interface AssemblerPackage extends EPackage
     EReference ADD_INSTRUCTION__OPERAND = eINSTANCE.getAddInstruction_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ADD_INSTRUCTION__COMMENT = eINSTANCE.getAddInstruction_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdcInstructionImpl <em>Adc Instruction</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5867,14 +4907,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass ADC_INSTRUCTION = eINSTANCE.getAdcInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ADC_INSTRUCTION__NAME = eINSTANCE.getAdcInstruction_Name();
 
     /**
      * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
@@ -5893,14 +4925,6 @@ public interface AssemblerPackage extends EPackage
     EReference ADC_INSTRUCTION__OPERAND = eINSTANCE.getAdcInstruction_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ADC_INSTRUCTION__COMMENT = eINSTANCE.getAdcInstruction_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AbxInstructionImpl <em>Abx Instruction</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -5911,28 +4935,12 @@ public interface AssemblerPackage extends EPackage
     EClass ABX_INSTRUCTION = eINSTANCE.getAbxInstruction();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ABX_INSTRUCTION__NAME = eINSTANCE.getAbxInstruction_Name();
-
-    /**
      * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute ABX_INSTRUCTION__INSTRUCTION = eINSTANCE.getAbxInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ABX_INSTRUCTION__COMMENT = eINSTANCE.getAbxInstruction_Comment();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedIndirectOperandImpl <em>Extended Indirect Operand</em>}' class.
@@ -6275,12 +5283,28 @@ public interface AssemblerPackage extends EPackage
     EClass DIRECTIVE_LINE = eINSTANCE.getDirectiveLine();
 
     /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference DIRECTIVE_LINE__NAME = eINSTANCE.getDirectiveLine_Name();
+
+    /**
      * The meta object literal for the '<em><b>Directive</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference DIRECTIVE_LINE__DIRECTIVE = eINSTANCE.getDirectiveLine_Directive();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DIRECTIVE_LINE__COMMENT = eINSTANCE.getDirectiveLine_Comment();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl <em>Fcc Directive</em>}' class.
@@ -6291,14 +5315,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass FCC_DIRECTIVE = eINSTANCE.getFccDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FCC_DIRECTIVE__NAME = eINSTANCE.getFccDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6317,14 +5333,6 @@ public interface AssemblerPackage extends EPackage
     EAttribute FCC_DIRECTIVE__STRING = eINSTANCE.getFccDirective_String();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FCC_DIRECTIVE__COMMENT = eINSTANCE.getFccDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RegDirectiveImpl <em>Reg Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6333,14 +5341,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass REG_DIRECTIVE = eINSTANCE.getRegDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference REG_DIRECTIVE__NAME = eINSTANCE.getRegDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6359,14 +5359,6 @@ public interface AssemblerPackage extends EPackage
     EAttribute REG_DIRECTIVE__OPTIONS = eINSTANCE.getRegDirective_Options();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute REG_DIRECTIVE__COMMENT = eINSTANCE.getRegDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl <em>Spc Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6375,14 +5367,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass SPC_DIRECTIVE = eINSTANCE.getSpcDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SPC_DIRECTIVE__NAME = eINSTANCE.getSpcDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6409,14 +5393,6 @@ public interface AssemblerPackage extends EPackage
     EReference SPC_DIRECTIVE__KEEP_COUNT = eINSTANCE.getSpcDirective_KeepCount();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SPC_DIRECTIVE__COMMENT = eINSTANCE.getSpcDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NamDirectiveImpl <em>Nam Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6425,14 +5401,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass NAM_DIRECTIVE = eINSTANCE.getNamDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference NAM_DIRECTIVE__NAME = eINSTANCE.getNamDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6451,14 +5419,6 @@ public interface AssemblerPackage extends EPackage
     EReference NAM_DIRECTIVE__OPERAND = eINSTANCE.getNamDirective_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NAM_DIRECTIVE__COMMENT = eINSTANCE.getNamDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PagDirectiveImpl <em>Pag Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6467,14 +5427,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass PAG_DIRECTIVE = eINSTANCE.getPagDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PAG_DIRECTIVE__NAME = eINSTANCE.getPagDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6493,14 +5445,6 @@ public interface AssemblerPackage extends EPackage
     EReference PAG_DIRECTIVE__OPERAND = eINSTANCE.getPagDirective_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PAG_DIRECTIVE__COMMENT = eINSTANCE.getPagDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl <em>Opt Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6509,14 +5453,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass OPT_DIRECTIVE = eINSTANCE.getOptDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OPT_DIRECTIVE__NAME = eINSTANCE.getOptDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6535,14 +5471,6 @@ public interface AssemblerPackage extends EPackage
     EAttribute OPT_DIRECTIVE__OPTIONS = eINSTANCE.getOptDirective_Options();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OPT_DIRECTIVE__COMMENT = eINSTANCE.getOptDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FailDirectiveImpl <em>Fail Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6553,28 +5481,12 @@ public interface AssemblerPackage extends EPackage
     EClass FAIL_DIRECTIVE = eINSTANCE.getFailDirective();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FAIL_DIRECTIVE__NAME = eINSTANCE.getFailDirective_Name();
-
-    /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute FAIL_DIRECTIVE__DIRECTIVE = eINSTANCE.getFailDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FAIL_DIRECTIVE__COMMENT = eINSTANCE.getFailDirective_Comment();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SetDirectiveImpl <em>Set Directive</em>}' class.
@@ -6585,14 +5497,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass SET_DIRECTIVE = eINSTANCE.getSetDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SET_DIRECTIVE__NAME = eINSTANCE.getSetDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6619,14 +5523,6 @@ public interface AssemblerPackage extends EPackage
     EReference SET_DIRECTIVE__OPERAND = eINSTANCE.getSetDirective_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SET_DIRECTIVE__COMMENT = eINSTANCE.getSetDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FillDirectiveImpl <em>Fill Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6635,14 +5531,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass FILL_DIRECTIVE = eINSTANCE.getFillDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FILL_DIRECTIVE__NAME = eINSTANCE.getFillDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6669,14 +5557,6 @@ public interface AssemblerPackage extends EPackage
     EReference FILL_DIRECTIVE__NUMBER = eINSTANCE.getFillDirective_Number();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FILL_DIRECTIVE__COMMENT = eINSTANCE.getFillDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BszDirectiveImpl <em>Bsz Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6685,14 +5565,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass BSZ_DIRECTIVE = eINSTANCE.getBszDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BSZ_DIRECTIVE__NAME = eINSTANCE.getBszDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6711,14 +5583,6 @@ public interface AssemblerPackage extends EPackage
     EReference BSZ_DIRECTIVE__OPERAND = eINSTANCE.getBszDirective_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BSZ_DIRECTIVE__COMMENT = eINSTANCE.getBszDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FdbDirectiveImpl <em>Fdb Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6727,14 +5591,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass FDB_DIRECTIVE = eINSTANCE.getFdbDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FDB_DIRECTIVE__NAME = eINSTANCE.getFdbDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6753,14 +5609,6 @@ public interface AssemblerPackage extends EPackage
     EReference FDB_DIRECTIVE__OPERAND = eINSTANCE.getFdbDirective_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FDB_DIRECTIVE__COMMENT = eINSTANCE.getFdbDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FcbDirectiveImpl <em>Fcb Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6769,14 +5617,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass FCB_DIRECTIVE = eINSTANCE.getFcbDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FCB_DIRECTIVE__NAME = eINSTANCE.getFcbDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6795,14 +5635,6 @@ public interface AssemblerPackage extends EPackage
     EReference FCB_DIRECTIVE__OPERAND = eINSTANCE.getFcbDirective_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FCB_DIRECTIVE__COMMENT = eINSTANCE.getFcbDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RmbDirectiveImpl <em>Rmb Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6811,14 +5643,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass RMB_DIRECTIVE = eINSTANCE.getRmbDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RMB_DIRECTIVE__NAME = eINSTANCE.getRmbDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6845,14 +5669,6 @@ public interface AssemblerPackage extends EPackage
     EReference RMB_DIRECTIVE__OPERAND = eINSTANCE.getRmbDirective_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RMB_DIRECTIVE__COMMENT = eINSTANCE.getRmbDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EndDirectiveImpl <em>End Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6861,14 +5677,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass END_DIRECTIVE = eINSTANCE.getEndDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference END_DIRECTIVE__NAME = eINSTANCE.getEndDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6895,14 +5703,6 @@ public interface AssemblerPackage extends EPackage
     EReference END_DIRECTIVE__OPERAND = eINSTANCE.getEndDirective_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute END_DIRECTIVE__COMMENT = eINSTANCE.getEndDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl <em>Org Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6911,14 +5711,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass ORG_DIRECTIVE = eINSTANCE.getOrgDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ORG_DIRECTIVE__NAME = eINSTANCE.getOrgDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6945,14 +5737,6 @@ public interface AssemblerPackage extends EPackage
     EReference ORG_DIRECTIVE__OPERAND = eINSTANCE.getOrgDirective_Operand();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ORG_DIRECTIVE__COMMENT = eINSTANCE.getOrgDirective_Comment();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl <em>Equ Directive</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -6961,14 +5745,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass EQU_DIRECTIVE = eINSTANCE.getEquDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EQU_DIRECTIVE__NAME = eINSTANCE.getEquDirective_Name();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
@@ -6993,14 +5769,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EReference EQU_DIRECTIVE__OPERAND = eINSTANCE.getEquDirective_Operand();
-
-    /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EQU_DIRECTIVE__COMMENT = eINSTANCE.getEquDirective_Comment();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ListOfExpressionImpl <em>List Of Expression</em>}' class.

@@ -20,62 +20,20 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AssemblerGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_AbxInstruction_WSTerminalRuleCall_4_q;
-	protected AbstractElementAlias match_AdcInstruction_WSTerminalRuleCall_6_q;
-	protected AbstractElementAlias match_AddInstruction_WSTerminalRuleCall_6_q;
-	protected AbstractElementAlias match_AdddInstruction_WSTerminalRuleCall_6_q;
-	protected AbstractElementAlias match_AndCCInstruction_WSTerminalRuleCall_6_q;
-	protected AbstractElementAlias match_AndInstruction_WSTerminalRuleCall_6_q;
-	protected AbstractElementAlias match_AslInstruction_WSTerminalRuleCall_4_q;
-	protected AbstractElementAlias match_AsrInstruction_WSTerminalRuleCall_4_q;
-	protected AbstractElementAlias match_BszDirective_WSTerminalRuleCall_5_q;
-	protected AbstractElementAlias match_EndDirective_WSTerminalRuleCall_5_q;
-	protected AbstractElementAlias match_EquDirective_WSTerminalRuleCall_5_q;
+	protected AbstractElementAlias match_DirectiveLine_WSTerminalRuleCall_4_q;
 	protected AbstractElementAlias match_ExtendedOperand_GreaterThanSignKeyword_0_q;
-	protected AbstractElementAlias match_FailDirective_WSTerminalRuleCall_3_0_q;
-	protected AbstractElementAlias match_FcbDirective_WSTerminalRuleCall_5_q;
-	protected AbstractElementAlias match_FccDirective_WSTerminalRuleCall_5_q;
-	protected AbstractElementAlias match_FdbDirective_WSTerminalRuleCall_5_q;
-	protected AbstractElementAlias match_FillDirective_WSTerminalRuleCall_4_q;
-	protected AbstractElementAlias match_OptDirective_WSTerminalRuleCall_4_0_q;
-	protected AbstractElementAlias match_OrgDirective_WSTerminalRuleCall_4_q;
-	protected AbstractElementAlias match_PagDirective_WSTerminalRuleCall_3_0_q;
+	protected AbstractElementAlias match_InstructionLine_WSTerminalRuleCall_4_q;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_7_0_a;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_7_0_p;
-	protected AbstractElementAlias match_RegDirective_WSTerminalRuleCall_4_0_q;
-	protected AbstractElementAlias match_RmbDirective_WSTerminalRuleCall_5_q;
-	protected AbstractElementAlias match_SetDirective_WSTerminalRuleCall_5_q;
-	protected AbstractElementAlias match_SpcDirective_WSTerminalRuleCall_5_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AssemblerGrammarAccess) access;
-		match_AbxInstruction_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getAbxInstructionAccess().getWSTerminalRuleCall_4());
-		match_AdcInstruction_WSTerminalRuleCall_6_q = new TokenAlias(false, true, grammarAccess.getAdcInstructionAccess().getWSTerminalRuleCall_6());
-		match_AddInstruction_WSTerminalRuleCall_6_q = new TokenAlias(false, true, grammarAccess.getAddInstructionAccess().getWSTerminalRuleCall_6());
-		match_AdddInstruction_WSTerminalRuleCall_6_q = new TokenAlias(false, true, grammarAccess.getAdddInstructionAccess().getWSTerminalRuleCall_6());
-		match_AndCCInstruction_WSTerminalRuleCall_6_q = new TokenAlias(false, true, grammarAccess.getAndCCInstructionAccess().getWSTerminalRuleCall_6());
-		match_AndInstruction_WSTerminalRuleCall_6_q = new TokenAlias(false, true, grammarAccess.getAndInstructionAccess().getWSTerminalRuleCall_6());
-		match_AslInstruction_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getAslInstructionAccess().getWSTerminalRuleCall_4());
-		match_AsrInstruction_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getAsrInstructionAccess().getWSTerminalRuleCall_4());
-		match_BszDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getBszDirectiveAccess().getWSTerminalRuleCall_5());
-		match_EndDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_5());
-		match_EquDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_5());
+		match_DirectiveLine_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_4());
 		match_ExtendedOperand_GreaterThanSignKeyword_0_q = new TokenAlias(false, true, grammarAccess.getExtendedOperandAccess().getGreaterThanSignKeyword_0());
-		match_FailDirective_WSTerminalRuleCall_3_0_q = new TokenAlias(false, true, grammarAccess.getFailDirectiveAccess().getWSTerminalRuleCall_3_0());
-		match_FcbDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getFcbDirectiveAccess().getWSTerminalRuleCall_5());
-		match_FccDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getFccDirectiveAccess().getWSTerminalRuleCall_5());
-		match_FdbDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getFdbDirectiveAccess().getWSTerminalRuleCall_5());
-		match_FillDirective_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getFillDirectiveAccess().getWSTerminalRuleCall_4());
-		match_OptDirective_WSTerminalRuleCall_4_0_q = new TokenAlias(false, true, grammarAccess.getOptDirectiveAccess().getWSTerminalRuleCall_4_0());
-		match_OrgDirective_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_4());
-		match_PagDirective_WSTerminalRuleCall_3_0_q = new TokenAlias(false, true, grammarAccess.getPagDirectiveAccess().getWSTerminalRuleCall_3_0());
+		match_InstructionLine_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_4());
 		match_Primary_LeftParenthesisKeyword_7_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_7_0());
 		match_Primary_LeftParenthesisKeyword_7_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_7_0());
-		match_RegDirective_WSTerminalRuleCall_4_0_q = new TokenAlias(false, true, grammarAccess.getRegDirectiveAccess().getWSTerminalRuleCall_4_0());
-		match_RmbDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getRmbDirectiveAccess().getWSTerminalRuleCall_5());
-		match_SetDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getSetDirectiveAccess().getWSTerminalRuleCall_5());
-		match_SpcDirective_WSTerminalRuleCall_5_q = new TokenAlias(false, true, grammarAccess.getSpcDirectiveAccess().getWSTerminalRuleCall_5());
 	}
 	
 	@Override
@@ -111,58 +69,16 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_AbxInstruction_WSTerminalRuleCall_4_q.equals(syntax))
-				emit_AbxInstruction_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AdcInstruction_WSTerminalRuleCall_6_q.equals(syntax))
-				emit_AdcInstruction_WSTerminalRuleCall_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AddInstruction_WSTerminalRuleCall_6_q.equals(syntax))
-				emit_AddInstruction_WSTerminalRuleCall_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AdddInstruction_WSTerminalRuleCall_6_q.equals(syntax))
-				emit_AdddInstruction_WSTerminalRuleCall_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AndCCInstruction_WSTerminalRuleCall_6_q.equals(syntax))
-				emit_AndCCInstruction_WSTerminalRuleCall_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AndInstruction_WSTerminalRuleCall_6_q.equals(syntax))
-				emit_AndInstruction_WSTerminalRuleCall_6_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AslInstruction_WSTerminalRuleCall_4_q.equals(syntax))
-				emit_AslInstruction_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_AsrInstruction_WSTerminalRuleCall_4_q.equals(syntax))
-				emit_AsrInstruction_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_BszDirective_WSTerminalRuleCall_5_q.equals(syntax))
-				emit_BszDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_EndDirective_WSTerminalRuleCall_5_q.equals(syntax))
-				emit_EndDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_EquDirective_WSTerminalRuleCall_5_q.equals(syntax))
-				emit_EquDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_DirectiveLine_WSTerminalRuleCall_4_q.equals(syntax))
+				emit_DirectiveLine_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ExtendedOperand_GreaterThanSignKeyword_0_q.equals(syntax))
 				emit_ExtendedOperand_GreaterThanSignKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_FailDirective_WSTerminalRuleCall_3_0_q.equals(syntax))
-				emit_FailDirective_WSTerminalRuleCall_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_FcbDirective_WSTerminalRuleCall_5_q.equals(syntax))
-				emit_FcbDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_FccDirective_WSTerminalRuleCall_5_q.equals(syntax))
-				emit_FccDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_FdbDirective_WSTerminalRuleCall_5_q.equals(syntax))
-				emit_FdbDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_FillDirective_WSTerminalRuleCall_4_q.equals(syntax))
-				emit_FillDirective_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_OptDirective_WSTerminalRuleCall_4_0_q.equals(syntax))
-				emit_OptDirective_WSTerminalRuleCall_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_OrgDirective_WSTerminalRuleCall_4_q.equals(syntax))
-				emit_OrgDirective_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_PagDirective_WSTerminalRuleCall_3_0_q.equals(syntax))
-				emit_PagDirective_WSTerminalRuleCall_3_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_InstructionLine_WSTerminalRuleCall_4_q.equals(syntax))
+				emit_InstructionLine_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_7_0_a.equals(syntax))
 				emit_Primary_LeftParenthesisKeyword_7_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_7_0_p.equals(syntax))
 				emit_Primary_LeftParenthesisKeyword_7_0_p(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_RegDirective_WSTerminalRuleCall_4_0_q.equals(syntax))
-				emit_RegDirective_WSTerminalRuleCall_4_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_RmbDirective_WSTerminalRuleCall_5_q.equals(syntax))
-				emit_RmbDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_SetDirective_WSTerminalRuleCall_5_q.equals(syntax))
-				emit_SetDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_SpcDirective_WSTerminalRuleCall_5_q.equals(syntax))
-				emit_SpcDirective_WSTerminalRuleCall_5_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -174,191 +90,26 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     instruction='ABX' (ambiguity) EndOfLine (rule end)
+	 *     directive=BszDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=EndDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=EquDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=FailDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=FcbDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=FccDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=FdbDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=FillDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=NamDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=OptDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=OrgDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=PagDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=RegDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=RmbDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=SetDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=SpcDirective (ambiguity) EndOfLine (rule end)
 	 
 	 * </pre>
 	 */
-	protected void emit_AbxInstruction_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     operand=DirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedIndirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ImmediatOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=IndexedOperand (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_AdcInstruction_WSTerminalRuleCall_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     operand=DirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedIndirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ImmediatOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=IndexedOperand (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_AddInstruction_WSTerminalRuleCall_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     operand=DirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedIndirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ImmediatOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=IndexedOperand (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_AdddInstruction_WSTerminalRuleCall_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     operand=ImmediatOperand (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_AndCCInstruction_WSTerminalRuleCall_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     operand=DirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedIndirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ImmediatOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=IndexedOperand (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_AndInstruction_WSTerminalRuleCall_6_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     instruction='ASLA' (ambiguity) EndOfLine (rule end)
-	 *     instruction='ASLB' (ambiguity) EndOfLine (rule end)
-	 *     operand=DirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedIndirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=IndexedOperand (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_AslInstruction_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     instruction='ASRA' (ambiguity) EndOfLine (rule end)
-	 *     instruction='ASRB' (ambiguity) EndOfLine (rule end)
-	 *     operand=DirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedIndirectOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=ExtendedOperand (ambiguity) EndOfLine (rule end)
-	 *     operand=IndexedOperand (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_AsrInstruction_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     operand=Expression (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_BszDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     directive='END' (ambiguity) EndOfLine (rule end)
-	 *     isRelativeToPC?='*' (ambiguity) EndOfLine (rule end)
-	 *     operand=Expression (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_EndDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     isRelativeToPC?='*' (ambiguity) EndOfLine (rule end)
-	 *     isRelativeToPC?='*' (ambiguity) comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-	 *     operand=Expression (ambiguity) EndOfLine (rule end)
-	 *     operand=Expression (ambiguity) comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-	 
-	 * </pre>
-	 */
-	protected void emit_EquDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_DirectiveLine_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -382,122 +133,19 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     WS?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     directive='FAIL' (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_FailDirective_WSTerminalRuleCall_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
 	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     directive='FCB' (ambiguity) EndOfLine (rule end)
-	 *     operand=ListOfExpression (ambiguity) EndOfLine (rule end)
+	 *     instruction=AbxInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=AdcInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=AddInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=AdddInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=AndCCInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=AndInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=AslInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=AsrInstruction (ambiguity) EndOfLine (rule end)
 	 
 	 * </pre>
 	 */
-	protected void emit_FcbDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     string=STRING (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_FccDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     directive='FDB' (ambiguity) EndOfLine (rule end)
-	 *     operand=ListOfExpression (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_FdbDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     number=Expression (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_FillDirective_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     directive='OPT' (ambiguity) EndOfLine (rule end)
-	 *     options+=AssemblyOption (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_OptDirective_WSTerminalRuleCall_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     directive='ORG' (ambiguity) EndOfLine (rule end)
-	 *     directive='ORG' (ambiguity) comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-	 *     isRelativeToPC?='*' (ambiguity) EndOfLine (rule end)
-	 *     isRelativeToPC?='*' (ambiguity) comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-	 *     operand=Expression (ambiguity) EndOfLine (rule end)
-	 *     operand=Expression (ambiguity) comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-	 
-	 * </pre>
-	 */
-	protected void emit_OrgDirective_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     directive='PAG' (ambiguity) EndOfLine (rule end)
-	 *     directive='PAG' (ambiguity) WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-	 
-	 * </pre>
-	 */
-	protected void emit_PagDirective_WSTerminalRuleCall_3_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_InstructionLine_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -551,71 +199,6 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 * </pre>
 	 */
 	protected void emit_Primary_LeftParenthesisKeyword_7_0_p(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     directive='REG' (ambiguity) EndOfLine (rule end)
-	 *     options+=Register (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_RegDirective_WSTerminalRuleCall_4_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     directive='RMB' (ambiguity) EndOfLine (rule end)
-	 *     operand=Expression (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_RmbDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     isRelativeToPC?='*' (ambiguity) EndOfLine (rule end)
-	 *     isRelativeToPC?='*' (ambiguity) comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-	 *     operand=Expression (ambiguity) EndOfLine (rule end)
-	 *     operand=Expression (ambiguity) comment=ANY_EXCEPT_COMMENT_END_OF_LINE
-	 
-	 * </pre>
-	 */
-	protected void emit_SetDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
-		acceptNodes(transition, nodes);
-	}
-	
-	/**
-	 * <pre>
-	 * Ambiguous syntax:
-	 *     WS?
-	 *
-	 * This ambiguous syntax occurs at:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
-	 *     directive='SPC' (ambiguity) EndOfLine (rule end)
-	 *     keepCount=Expression (ambiguity) EndOfLine (rule end)
-	 *     spaceCount=Expression (ambiguity) EndOfLine (rule end)
-	 
-	 * </pre>
-	 */
-	protected void emit_SpcDirective_WSTerminalRuleCall_5_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

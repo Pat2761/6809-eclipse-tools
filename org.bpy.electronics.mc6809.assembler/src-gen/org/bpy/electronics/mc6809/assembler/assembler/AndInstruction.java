@@ -14,10 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getInstruction <em>Instruction</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getOperand <em>Operand</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getAndInstruction()
@@ -26,28 +24,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface AndInstruction extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Name</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' containment reference.
-   * @see #setName(IdentifierValue)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getAndInstruction_Name()
-   * @model containment="true"
-   * @generated
-   */
-  IdentifierValue getName();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getName <em>Name</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' containment reference.
-   * @see #getName()
-   * @generated
-   */
-  void setName(IdentifierValue value);
-
   /**
    * Returns the value of the '<em><b>Instruction</b></em>' attribute.
    * <!-- begin-user-doc -->
@@ -91,27 +67,5 @@ public interface AndInstruction extends EObject
    * @generated
    */
   void setOperand(EObject value);
-
-  /**
-   * Returns the value of the '<em><b>Comment</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Comment</em>' attribute.
-   * @see #setComment(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getAndInstruction_Comment()
-   * @model
-   * @generated
-   */
-  String getComment();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getComment <em>Comment</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Comment</em>' attribute.
-   * @see #getComment()
-   * @generated
-   */
-  void setComment(String value);
 
 } // AndInstruction

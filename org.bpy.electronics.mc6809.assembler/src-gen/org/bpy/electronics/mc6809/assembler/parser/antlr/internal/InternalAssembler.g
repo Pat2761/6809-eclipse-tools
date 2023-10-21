@@ -309,162 +309,224 @@ ruleInstructionLine returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAbxInstructionParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getInstructionLineAccess().getNameIdentifierValueParserRuleCall_0_0());
 				}
-				lv_instruction_0_0=ruleAbxInstruction
+				lv_name_0_0=ruleIdentifierValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
 					}
 					set(
 						$current,
-						"instruction",
-						lv_instruction_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.AbxInstruction");
+						"name",
+						lv_name_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
-		    |
+		)?
+		this_WS_1=RULE_WS
+		{
+			newLeafNode(this_WS_1, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_1());
+		}
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAdcInstructionParserRuleCall_1_0());
-				}
-				lv_instruction_1_0=ruleAdcInstruction
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAbxInstructionParserRuleCall_2_0_0());
 					}
-					set(
-						$current,
-						"instruction",
-						lv_instruction_1_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.AdcInstruction");
-					afterParserOrEnumRuleCall();
-				}
+					lv_instruction_2_0=ruleAbxInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_2_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.AbxInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAddInstructionParserRuleCall_2_0());
-				}
-				lv_instruction_2_0=ruleAddInstruction
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAdcInstructionParserRuleCall_2_1_0());
 					}
-					set(
-						$current,
-						"instruction",
-						lv_instruction_2_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.AddInstruction");
-					afterParserOrEnumRuleCall();
-				}
+					lv_instruction_3_0=ruleAdcInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_3_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.AdcInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAdddInstructionParserRuleCall_3_0());
-				}
-				lv_instruction_3_0=ruleAdddInstruction
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAddInstructionParserRuleCall_2_2_0());
 					}
-					set(
-						$current,
-						"instruction",
-						lv_instruction_3_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.AdddInstruction");
-					afterParserOrEnumRuleCall();
-				}
+					lv_instruction_4_0=ruleAddInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_4_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.AddInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAndInstructionParserRuleCall_4_0());
-				}
-				lv_instruction_4_0=ruleAndInstruction
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAdddInstructionParserRuleCall_2_3_0());
 					}
-					set(
-						$current,
-						"instruction",
-						lv_instruction_4_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.AndInstruction");
-					afterParserOrEnumRuleCall();
-				}
+					lv_instruction_5_0=ruleAdddInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_5_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.AdddInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAndCCInstructionParserRuleCall_5_0());
-				}
-				lv_instruction_5_0=ruleAndCCInstruction
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAndInstructionParserRuleCall_2_4_0());
 					}
-					set(
-						$current,
-						"instruction",
-						lv_instruction_5_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.AndCCInstruction");
-					afterParserOrEnumRuleCall();
-				}
+					lv_instruction_6_0=ruleAndInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_6_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.AndInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAslInstructionParserRuleCall_6_0());
-				}
-				lv_instruction_6_0=ruleAslInstruction
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAndCCInstructionParserRuleCall_2_5_0());
 					}
-					set(
-						$current,
-						"instruction",
-						lv_instruction_6_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.AslInstruction");
-					afterParserOrEnumRuleCall();
-				}
+					lv_instruction_7_0=ruleAndCCInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_7_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.AndCCInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAsrInstructionParserRuleCall_7_0());
-				}
-				lv_instruction_7_0=ruleAsrInstruction
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAslInstructionParserRuleCall_2_6_0());
 					}
-					set(
-						$current,
-						"instruction",
-						lv_instruction_7_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.AsrInstruction");
-					afterParserOrEnumRuleCall();
-				}
+					lv_instruction_8_0=ruleAslInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_8_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.AslInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAsrInstructionParserRuleCall_2_7_0());
+					}
+					lv_instruction_9_0=ruleAsrInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_9_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.AsrInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
 		)
+		(
+			this_WS_10=RULE_WS
+			{
+				newLeafNode(this_WS_10, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_3_0());
+			}
+			(
+				(
+					lv_comment_11_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					{
+						newLeafNode(lv_comment_11_0, grammarAccess.getInstructionLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getInstructionLineRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"comment",
+							lv_comment_11_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
+					}
+				)
+			)
+		)?
+		(
+			this_WS_12=RULE_WS
+			{
+				newLeafNode(this_WS_12, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_4());
+			}
+		)?
+		{
+			newCompositeNode(grammarAccess.getInstructionLineAccess().getEndOfLineParserRuleCall_5());
+		}
+		ruleEndOfLine
+		{
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -486,183 +548,121 @@ ruleAsrInstruction returns [EObject current=null]
 	(
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getAsrInstructionAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAsrInstructionRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getAsrInstructionAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
 				(
-					(
-						lv_instruction_2_1='ASRA'
-						{
-							newLeafNode(lv_instruction_2_1, grammarAccess.getAsrInstructionAccess().getInstructionASRAKeyword_2_0_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getAsrInstructionRule());
-							}
-							setWithLastConsumed($current, "instruction", lv_instruction_2_1, null);
-						}
-						    |
-						lv_instruction_2_2='ASRB'
-						{
-							newLeafNode(lv_instruction_2_2, grammarAccess.getAsrInstructionAccess().getInstructionASRBKeyword_2_0_0_1());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getAsrInstructionRule());
-							}
-							setWithLastConsumed($current, "instruction", lv_instruction_2_2, null);
-						}
-					)
-				)
-			)
-			    |
-			(
-				(
-					(
-						lv_instruction_3_0='ASR'
-						{
-							newLeafNode(lv_instruction_3_0, grammarAccess.getAsrInstructionAccess().getInstructionASRKeyword_2_1_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getAsrInstructionRule());
-							}
-							setWithLastConsumed($current, "instruction", lv_instruction_3_0, "ASR");
-						}
-					)
-				)
-				this_WS_4=RULE_WS
-				{
-					newLeafNode(this_WS_4, grammarAccess.getAsrInstructionAccess().getWSTerminalRuleCall_2_1_1());
-				}
-				(
-					(
-						(
-							{
-								newCompositeNode(grammarAccess.getAsrInstructionAccess().getOperandDirectOperandParserRuleCall_2_1_2_0_0());
-							}
-							lv_operand_5_1=ruleDirectOperand
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getAsrInstructionRule());
-								}
-								set(
-									$current,
-									"operand",
-									lv_operand_5_1,
-									"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
-								afterParserOrEnumRuleCall();
-							}
-							    |
-							{
-								newCompositeNode(grammarAccess.getAsrInstructionAccess().getOperandIndexedOperandParserRuleCall_2_1_2_0_1());
-							}
-							lv_operand_5_2=ruleIndexedOperand
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getAsrInstructionRule());
-								}
-								set(
-									$current,
-									"operand",
-									lv_operand_5_2,
-									"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
-								afterParserOrEnumRuleCall();
-							}
-							    |
-							{
-								newCompositeNode(grammarAccess.getAsrInstructionAccess().getOperandExtendedOperandParserRuleCall_2_1_2_0_2());
-							}
-							lv_operand_5_3=ruleExtendedOperand
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getAsrInstructionRule());
-								}
-								set(
-									$current,
-									"operand",
-									lv_operand_5_3,
-									"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
-								afterParserOrEnumRuleCall();
-							}
-							    |
-							{
-								newCompositeNode(grammarAccess.getAsrInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_1_2_0_3());
-							}
-							lv_operand_5_4=ruleExtendedIndirectOperand
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getAsrInstructionRule());
-								}
-								set(
-									$current,
-									"operand",
-									lv_operand_5_4,
-									"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
-								afterParserOrEnumRuleCall();
-							}
-						)
-					)
-				)
-			)
-		)
-		(
-			this_WS_6=RULE_WS
-			{
-				newLeafNode(this_WS_6, grammarAccess.getAsrInstructionAccess().getWSTerminalRuleCall_3_0());
-			}
-			(
-				(
-					lv_comment_7_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					lv_instruction_0_1='ASRA'
 					{
-						newLeafNode(lv_comment_7_0, grammarAccess.getAsrInstructionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
+						newLeafNode(lv_instruction_0_1, grammarAccess.getAsrInstructionAccess().getInstructionASRAKeyword_0_0_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getAsrInstructionRule());
 						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_7_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
+						setWithLastConsumed($current, "instruction", lv_instruction_0_1, null);
+					}
+					    |
+					lv_instruction_0_2='ASRB'
+					{
+						newLeafNode(lv_instruction_0_2, grammarAccess.getAsrInstructionAccess().getInstructionASRBKeyword_0_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAsrInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_2, null);
 					}
 				)
 			)
-		)?
+		)
+		    |
 		(
-			this_WS_8=RULE_WS
+			(
+				(
+					lv_instruction_1_0='ASR'
+					{
+						newLeafNode(lv_instruction_1_0, grammarAccess.getAsrInstructionAccess().getInstructionASRKeyword_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAsrInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_1_0, "ASR");
+					}
+				)
+			)
+			this_WS_2=RULE_WS
 			{
-				newLeafNode(this_WS_8, grammarAccess.getAsrInstructionAccess().getWSTerminalRuleCall_4());
+				newLeafNode(this_WS_2, grammarAccess.getAsrInstructionAccess().getWSTerminalRuleCall_1_1());
 			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getAsrInstructionAccess().getEndOfLineParserRuleCall_5());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getAsrInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0());
+						}
+						lv_operand_3_1=ruleDirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAsrInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_1,
+								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getAsrInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1());
+						}
+						lv_operand_3_2=ruleIndexedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAsrInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_2,
+								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getAsrInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2());
+						}
+						lv_operand_3_3=ruleExtendedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAsrInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_3,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getAsrInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3());
+						}
+						lv_operand_3_4=ruleExtendedIndirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAsrInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_4,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)
+		)
 	)
 ;
 
@@ -684,183 +684,121 @@ ruleAslInstruction returns [EObject current=null]
 	(
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getAslInstructionAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getAslInstructionAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
 				(
-					(
-						lv_instruction_2_1='ASLA'
-						{
-							newLeafNode(lv_instruction_2_1, grammarAccess.getAslInstructionAccess().getInstructionASLAKeyword_2_0_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getAslInstructionRule());
-							}
-							setWithLastConsumed($current, "instruction", lv_instruction_2_1, null);
-						}
-						    |
-						lv_instruction_2_2='ASLB'
-						{
-							newLeafNode(lv_instruction_2_2, grammarAccess.getAslInstructionAccess().getInstructionASLBKeyword_2_0_0_1());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getAslInstructionRule());
-							}
-							setWithLastConsumed($current, "instruction", lv_instruction_2_2, null);
-						}
-					)
-				)
-			)
-			    |
-			(
-				(
-					(
-						lv_instruction_3_0='ASL'
-						{
-							newLeafNode(lv_instruction_3_0, grammarAccess.getAslInstructionAccess().getInstructionASLKeyword_2_1_0_0());
-						}
-						{
-							if ($current==null) {
-								$current = createModelElement(grammarAccess.getAslInstructionRule());
-							}
-							setWithLastConsumed($current, "instruction", lv_instruction_3_0, "ASL");
-						}
-					)
-				)
-				this_WS_4=RULE_WS
-				{
-					newLeafNode(this_WS_4, grammarAccess.getAslInstructionAccess().getWSTerminalRuleCall_2_1_1());
-				}
-				(
-					(
-						(
-							{
-								newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandDirectOperandParserRuleCall_2_1_2_0_0());
-							}
-							lv_operand_5_1=ruleDirectOperand
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
-								}
-								set(
-									$current,
-									"operand",
-									lv_operand_5_1,
-									"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
-								afterParserOrEnumRuleCall();
-							}
-							    |
-							{
-								newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandIndexedOperandParserRuleCall_2_1_2_0_1());
-							}
-							lv_operand_5_2=ruleIndexedOperand
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
-								}
-								set(
-									$current,
-									"operand",
-									lv_operand_5_2,
-									"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
-								afterParserOrEnumRuleCall();
-							}
-							    |
-							{
-								newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandExtendedOperandParserRuleCall_2_1_2_0_2());
-							}
-							lv_operand_5_3=ruleExtendedOperand
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
-								}
-								set(
-									$current,
-									"operand",
-									lv_operand_5_3,
-									"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
-								afterParserOrEnumRuleCall();
-							}
-							    |
-							{
-								newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_1_2_0_3());
-							}
-							lv_operand_5_4=ruleExtendedIndirectOperand
-							{
-								if ($current==null) {
-									$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
-								}
-								set(
-									$current,
-									"operand",
-									lv_operand_5_4,
-									"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
-								afterParserOrEnumRuleCall();
-							}
-						)
-					)
-				)
-			)
-		)
-		(
-			this_WS_6=RULE_WS
-			{
-				newLeafNode(this_WS_6, grammarAccess.getAslInstructionAccess().getWSTerminalRuleCall_3_0());
-			}
-			(
-				(
-					lv_comment_7_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					lv_instruction_0_1='ASLA'
 					{
-						newLeafNode(lv_comment_7_0, grammarAccess.getAslInstructionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
+						newLeafNode(lv_instruction_0_1, grammarAccess.getAslInstructionAccess().getInstructionASLAKeyword_0_0_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getAslInstructionRule());
 						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_7_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
+						setWithLastConsumed($current, "instruction", lv_instruction_0_1, null);
+					}
+					    |
+					lv_instruction_0_2='ASLB'
+					{
+						newLeafNode(lv_instruction_0_2, grammarAccess.getAslInstructionAccess().getInstructionASLBKeyword_0_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAslInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_2, null);
 					}
 				)
 			)
-		)?
+		)
+		    |
 		(
-			this_WS_8=RULE_WS
+			(
+				(
+					lv_instruction_1_0='ASL'
+					{
+						newLeafNode(lv_instruction_1_0, grammarAccess.getAslInstructionAccess().getInstructionASLKeyword_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAslInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_1_0, "ASL");
+					}
+				)
+			)
+			this_WS_2=RULE_WS
 			{
-				newLeafNode(this_WS_8, grammarAccess.getAslInstructionAccess().getWSTerminalRuleCall_4());
+				newLeafNode(this_WS_2, grammarAccess.getAslInstructionAccess().getWSTerminalRuleCall_1_1());
 			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getAslInstructionAccess().getEndOfLineParserRuleCall_5());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0());
+						}
+						lv_operand_3_1=ruleDirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_1,
+								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1());
+						}
+						lv_operand_3_2=ruleIndexedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_2,
+								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2());
+						}
+						lv_operand_3_3=ruleExtendedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_3,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3());
+						}
+						lv_operand_3_4=ruleExtendedIndirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_4,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)
+		)
 	)
 ;
 
@@ -882,51 +820,28 @@ ruleAndCCInstruction returns [EObject current=null]
 	(
 		(
 			(
+				lv_instruction_0_0='ANDCC'
 				{
-					newCompositeNode(grammarAccess.getAndCCInstructionAccess().getNameIdentifierValueParserRuleCall_0_0());
+					newLeafNode(lv_instruction_0_0, grammarAccess.getAndCCInstructionAccess().getInstructionANDCCKeyword_0_0());
 				}
-				lv_name_0_0=ruleIdentifierValue
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAndCCInstructionRule());
+						$current = createModelElement(grammarAccess.getAndCCInstructionRule());
 					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
+					setWithLastConsumed($current, "instruction", lv_instruction_0_0, "ANDCC");
 				}
 			)
-		)?
+		)
 		this_WS_1=RULE_WS
 		{
 			newLeafNode(this_WS_1, grammarAccess.getAndCCInstructionAccess().getWSTerminalRuleCall_1());
 		}
 		(
 			(
-				lv_instruction_2_0='ANDCC'
 				{
-					newLeafNode(lv_instruction_2_0, grammarAccess.getAndCCInstructionAccess().getInstructionANDCCKeyword_2_0());
+					newCompositeNode(grammarAccess.getAndCCInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0());
 				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getAndCCInstructionRule());
-					}
-					setWithLastConsumed($current, "instruction", lv_instruction_2_0, "ANDCC");
-				}
-			)
-		)
-		this_WS_3=RULE_WS
-		{
-			newLeafNode(this_WS_3, grammarAccess.getAndCCInstructionAccess().getWSTerminalRuleCall_3());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getAndCCInstructionAccess().getOperandImmediatOperandParserRuleCall_4_0());
-				}
-				lv_operand_4_0=ruleImmediatOperand
+				lv_operand_2_0=ruleImmediatOperand
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getAndCCInstructionRule());
@@ -934,49 +849,12 @@ ruleAndCCInstruction returns [EObject current=null]
 					set(
 						$current,
 						"operand",
-						lv_operand_4_0,
+						lv_operand_2_0,
 						"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getAndCCInstructionAccess().getWSTerminalRuleCall_5_0());
-			}
-			(
-				(
-					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getAndCCInstructionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAndCCInstructionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_6_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getAndCCInstructionAccess().getWSTerminalRuleCall_6());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getAndCCInstructionAccess().getEndOfLineParserRuleCall_7());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -998,23 +876,31 @@ ruleAndInstruction returns [EObject current=null]
 	(
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getAndInstructionAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAndInstructionRule());
+				(
+					lv_instruction_0_1='ANDA'
+					{
+						newLeafNode(lv_instruction_0_1, grammarAccess.getAndInstructionAccess().getInstructionANDAKeyword_0_0_0());
 					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAndInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_1, null);
+					}
+					    |
+					lv_instruction_0_2='ANDB'
+					{
+						newLeafNode(lv_instruction_0_2, grammarAccess.getAndInstructionAccess().getInstructionANDBKeyword_0_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAndInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_2, null);
+					}
+				)
 			)
-		)?
+		)
 		this_WS_1=RULE_WS
 		{
 			newLeafNode(this_WS_1, grammarAccess.getAndInstructionAccess().getWSTerminalRuleCall_1());
@@ -1022,41 +908,10 @@ ruleAndInstruction returns [EObject current=null]
 		(
 			(
 				(
-					lv_instruction_2_1='ANDA'
 					{
-						newLeafNode(lv_instruction_2_1, grammarAccess.getAndInstructionAccess().getInstructionANDAKeyword_2_0_0());
+						newCompositeNode(grammarAccess.getAndInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAndInstructionRule());
-						}
-						setWithLastConsumed($current, "instruction", lv_instruction_2_1, null);
-					}
-					    |
-					lv_instruction_2_2='ANDB'
-					{
-						newLeafNode(lv_instruction_2_2, grammarAccess.getAndInstructionAccess().getInstructionANDBKeyword_2_0_1());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAndInstructionRule());
-						}
-						setWithLastConsumed($current, "instruction", lv_instruction_2_2, null);
-					}
-				)
-			)
-		)
-		this_WS_3=RULE_WS
-		{
-			newLeafNode(this_WS_3, grammarAccess.getAndInstructionAccess().getWSTerminalRuleCall_3());
-		}
-		(
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getAndInstructionAccess().getOperandImmediatOperandParserRuleCall_4_0_0());
-					}
-					lv_operand_4_1=ruleImmediatOperand
+					lv_operand_2_1=ruleImmediatOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAndInstructionRule());
@@ -1064,15 +919,15 @@ ruleAndInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_1,
+							lv_operand_2_1,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAndInstructionAccess().getOperandDirectOperandParserRuleCall_4_0_1());
+						newCompositeNode(grammarAccess.getAndInstructionAccess().getOperandDirectOperandParserRuleCall_2_0_1());
 					}
-					lv_operand_4_2=ruleDirectOperand
+					lv_operand_2_2=ruleDirectOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAndInstructionRule());
@@ -1080,15 +935,15 @@ ruleAndInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_2,
+							lv_operand_2_2,
 							"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAndInstructionAccess().getOperandIndexedOperandParserRuleCall_4_0_2());
+						newCompositeNode(grammarAccess.getAndInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0_2());
 					}
-					lv_operand_4_3=ruleIndexedOperand
+					lv_operand_2_3=ruleIndexedOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAndInstructionRule());
@@ -1096,15 +951,15 @@ ruleAndInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_3,
+							lv_operand_2_3,
 							"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAndInstructionAccess().getOperandExtendedOperandParserRuleCall_4_0_3());
+						newCompositeNode(grammarAccess.getAndInstructionAccess().getOperandExtendedOperandParserRuleCall_2_0_3());
 					}
-					lv_operand_4_4=ruleExtendedOperand
+					lv_operand_2_4=ruleExtendedOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAndInstructionRule());
@@ -1112,15 +967,15 @@ ruleAndInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_4,
+							lv_operand_2_4,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAndInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_4_0_4());
+						newCompositeNode(grammarAccess.getAndInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_0_4());
 					}
-					lv_operand_4_5=ruleExtendedIndirectOperand
+					lv_operand_2_5=ruleExtendedIndirectOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAndInstructionRule());
@@ -1128,50 +983,13 @@ ruleAndInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_5,
+							lv_operand_2_5,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getAndInstructionAccess().getWSTerminalRuleCall_5_0());
-			}
-			(
-				(
-					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getAndInstructionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAndInstructionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_6_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getAndInstructionAccess().getWSTerminalRuleCall_6());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getAndInstructionAccess().getEndOfLineParserRuleCall_7());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -1193,52 +1011,29 @@ ruleAdddInstruction returns [EObject current=null]
 	(
 		(
 			(
+				lv_instruction_0_0='ADDD'
 				{
-					newCompositeNode(grammarAccess.getAdddInstructionAccess().getNameIdentifierValueParserRuleCall_0_0());
+					newLeafNode(lv_instruction_0_0, grammarAccess.getAdddInstructionAccess().getInstructionADDDKeyword_0_0());
 				}
-				lv_name_0_0=ruleIdentifierValue
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAdddInstructionRule());
+						$current = createModelElement(grammarAccess.getAdddInstructionRule());
 					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
+					setWithLastConsumed($current, "instruction", lv_instruction_0_0, "ADDD");
 				}
 			)
-		)?
+		)
 		this_WS_1=RULE_WS
 		{
 			newLeafNode(this_WS_1, grammarAccess.getAdddInstructionAccess().getWSTerminalRuleCall_1());
 		}
 		(
 			(
-				lv_instruction_2_0='ADDD'
-				{
-					newLeafNode(lv_instruction_2_0, grammarAccess.getAdddInstructionAccess().getInstructionADDDKeyword_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getAdddInstructionRule());
-					}
-					setWithLastConsumed($current, "instruction", lv_instruction_2_0, "ADDD");
-				}
-			)
-		)
-		this_WS_3=RULE_WS
-		{
-			newLeafNode(this_WS_3, grammarAccess.getAdddInstructionAccess().getWSTerminalRuleCall_3());
-		}
-		(
-			(
 				(
 					{
-						newCompositeNode(grammarAccess.getAdddInstructionAccess().getOperandImmediatOperandParserRuleCall_4_0_0());
+						newCompositeNode(grammarAccess.getAdddInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0());
 					}
-					lv_operand_4_1=ruleImmediatOperand
+					lv_operand_2_1=ruleImmediatOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAdddInstructionRule());
@@ -1246,15 +1041,15 @@ ruleAdddInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_1,
+							lv_operand_2_1,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAdddInstructionAccess().getOperandDirectOperandParserRuleCall_4_0_1());
+						newCompositeNode(grammarAccess.getAdddInstructionAccess().getOperandDirectOperandParserRuleCall_2_0_1());
 					}
-					lv_operand_4_2=ruleDirectOperand
+					lv_operand_2_2=ruleDirectOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAdddInstructionRule());
@@ -1262,15 +1057,15 @@ ruleAdddInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_2,
+							lv_operand_2_2,
 							"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAdddInstructionAccess().getOperandIndexedOperandParserRuleCall_4_0_2());
+						newCompositeNode(grammarAccess.getAdddInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0_2());
 					}
-					lv_operand_4_3=ruleIndexedOperand
+					lv_operand_2_3=ruleIndexedOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAdddInstructionRule());
@@ -1278,15 +1073,15 @@ ruleAdddInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_3,
+							lv_operand_2_3,
 							"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAdddInstructionAccess().getOperandExtendedOperandParserRuleCall_4_0_3());
+						newCompositeNode(grammarAccess.getAdddInstructionAccess().getOperandExtendedOperandParserRuleCall_2_0_3());
 					}
-					lv_operand_4_4=ruleExtendedOperand
+					lv_operand_2_4=ruleExtendedOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAdddInstructionRule());
@@ -1294,15 +1089,15 @@ ruleAdddInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_4,
+							lv_operand_2_4,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAdddInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_4_0_4());
+						newCompositeNode(grammarAccess.getAdddInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_0_4());
 					}
-					lv_operand_4_5=ruleExtendedIndirectOperand
+					lv_operand_2_5=ruleExtendedIndirectOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAdddInstructionRule());
@@ -1310,50 +1105,13 @@ ruleAdddInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_5,
+							lv_operand_2_5,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getAdddInstructionAccess().getWSTerminalRuleCall_5_0());
-			}
-			(
-				(
-					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getAdddInstructionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAdddInstructionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_6_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getAdddInstructionAccess().getWSTerminalRuleCall_6());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getAdddInstructionAccess().getEndOfLineParserRuleCall_7());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -1375,23 +1133,31 @@ ruleAddInstruction returns [EObject current=null]
 	(
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getAddInstructionAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAddInstructionRule());
+				(
+					lv_instruction_0_1='ADDA'
+					{
+						newLeafNode(lv_instruction_0_1, grammarAccess.getAddInstructionAccess().getInstructionADDAKeyword_0_0_0());
 					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAddInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_1, null);
+					}
+					    |
+					lv_instruction_0_2='ADDB'
+					{
+						newLeafNode(lv_instruction_0_2, grammarAccess.getAddInstructionAccess().getInstructionADDBKeyword_0_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAddInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_2, null);
+					}
+				)
 			)
-		)?
+		)
 		this_WS_1=RULE_WS
 		{
 			newLeafNode(this_WS_1, grammarAccess.getAddInstructionAccess().getWSTerminalRuleCall_1());
@@ -1399,41 +1165,10 @@ ruleAddInstruction returns [EObject current=null]
 		(
 			(
 				(
-					lv_instruction_2_1='ADDA'
 					{
-						newLeafNode(lv_instruction_2_1, grammarAccess.getAddInstructionAccess().getInstructionADDAKeyword_2_0_0());
+						newCompositeNode(grammarAccess.getAddInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAddInstructionRule());
-						}
-						setWithLastConsumed($current, "instruction", lv_instruction_2_1, null);
-					}
-					    |
-					lv_instruction_2_2='ADDB'
-					{
-						newLeafNode(lv_instruction_2_2, grammarAccess.getAddInstructionAccess().getInstructionADDBKeyword_2_0_1());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAddInstructionRule());
-						}
-						setWithLastConsumed($current, "instruction", lv_instruction_2_2, null);
-					}
-				)
-			)
-		)
-		this_WS_3=RULE_WS
-		{
-			newLeafNode(this_WS_3, grammarAccess.getAddInstructionAccess().getWSTerminalRuleCall_3());
-		}
-		(
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getAddInstructionAccess().getOperandImmediatOperandParserRuleCall_4_0_0());
-					}
-					lv_operand_4_1=ruleImmediatOperand
+					lv_operand_2_1=ruleImmediatOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAddInstructionRule());
@@ -1441,15 +1176,15 @@ ruleAddInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_1,
+							lv_operand_2_1,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAddInstructionAccess().getOperandDirectOperandParserRuleCall_4_0_1());
+						newCompositeNode(grammarAccess.getAddInstructionAccess().getOperandDirectOperandParserRuleCall_2_0_1());
 					}
-					lv_operand_4_2=ruleDirectOperand
+					lv_operand_2_2=ruleDirectOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAddInstructionRule());
@@ -1457,15 +1192,15 @@ ruleAddInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_2,
+							lv_operand_2_2,
 							"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAddInstructionAccess().getOperandIndexedOperandParserRuleCall_4_0_2());
+						newCompositeNode(grammarAccess.getAddInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0_2());
 					}
-					lv_operand_4_3=ruleIndexedOperand
+					lv_operand_2_3=ruleIndexedOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAddInstructionRule());
@@ -1473,15 +1208,15 @@ ruleAddInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_3,
+							lv_operand_2_3,
 							"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAddInstructionAccess().getOperandExtendedOperandParserRuleCall_4_0_3());
+						newCompositeNode(grammarAccess.getAddInstructionAccess().getOperandExtendedOperandParserRuleCall_2_0_3());
 					}
-					lv_operand_4_4=ruleExtendedOperand
+					lv_operand_2_4=ruleExtendedOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAddInstructionRule());
@@ -1489,15 +1224,15 @@ ruleAddInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_4,
+							lv_operand_2_4,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAddInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_4_0_4());
+						newCompositeNode(grammarAccess.getAddInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_0_4());
 					}
-					lv_operand_4_5=ruleExtendedIndirectOperand
+					lv_operand_2_5=ruleExtendedIndirectOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAddInstructionRule());
@@ -1505,50 +1240,13 @@ ruleAddInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_5,
+							lv_operand_2_5,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getAddInstructionAccess().getWSTerminalRuleCall_5_0());
-			}
-			(
-				(
-					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getAddInstructionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAddInstructionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_6_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getAddInstructionAccess().getWSTerminalRuleCall_6());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getAddInstructionAccess().getEndOfLineParserRuleCall_7());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -1570,23 +1268,31 @@ ruleAdcInstruction returns [EObject current=null]
 	(
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getAdcInstructionAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
+				(
+					lv_instruction_0_1='ADCA'
+					{
+						newLeafNode(lv_instruction_0_1, grammarAccess.getAdcInstructionAccess().getInstructionADCAKeyword_0_0_0());
 					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAdcInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_1, null);
+					}
+					    |
+					lv_instruction_0_2='ADCB'
+					{
+						newLeafNode(lv_instruction_0_2, grammarAccess.getAdcInstructionAccess().getInstructionADCBKeyword_0_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getAdcInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_2, null);
+					}
+				)
 			)
-		)?
+		)
 		this_WS_1=RULE_WS
 		{
 			newLeafNode(this_WS_1, grammarAccess.getAdcInstructionAccess().getWSTerminalRuleCall_1());
@@ -1594,41 +1300,10 @@ ruleAdcInstruction returns [EObject current=null]
 		(
 			(
 				(
-					lv_instruction_2_1='ADCA'
 					{
-						newLeafNode(lv_instruction_2_1, grammarAccess.getAdcInstructionAccess().getInstructionADCAKeyword_2_0_0());
+						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAdcInstructionRule());
-						}
-						setWithLastConsumed($current, "instruction", lv_instruction_2_1, null);
-					}
-					    |
-					lv_instruction_2_2='ADCB'
-					{
-						newLeafNode(lv_instruction_2_2, grammarAccess.getAdcInstructionAccess().getInstructionADCBKeyword_2_0_1());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAdcInstructionRule());
-						}
-						setWithLastConsumed($current, "instruction", lv_instruction_2_2, null);
-					}
-				)
-			)
-		)
-		this_WS_3=RULE_WS
-		{
-			newLeafNode(this_WS_3, grammarAccess.getAdcInstructionAccess().getWSTerminalRuleCall_3());
-		}
-		(
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandImmediatOperandParserRuleCall_4_0_0());
-					}
-					lv_operand_4_1=ruleImmediatOperand
+					lv_operand_2_1=ruleImmediatOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
@@ -1636,15 +1311,15 @@ ruleAdcInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_1,
+							lv_operand_2_1,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandDirectOperandParserRuleCall_4_0_1());
+						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandDirectOperandParserRuleCall_2_0_1());
 					}
-					lv_operand_4_2=ruleDirectOperand
+					lv_operand_2_2=ruleDirectOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
@@ -1652,15 +1327,15 @@ ruleAdcInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_2,
+							lv_operand_2_2,
 							"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandIndexedOperandParserRuleCall_4_0_2());
+						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0_2());
 					}
-					lv_operand_4_3=ruleIndexedOperand
+					lv_operand_2_3=ruleIndexedOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
@@ -1668,15 +1343,15 @@ ruleAdcInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_3,
+							lv_operand_2_3,
 							"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandExtendedOperandParserRuleCall_4_0_3());
+						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandExtendedOperandParserRuleCall_2_0_3());
 					}
-					lv_operand_4_4=ruleExtendedOperand
+					lv_operand_2_4=ruleExtendedOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
@@ -1684,15 +1359,15 @@ ruleAdcInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_4,
+							lv_operand_2_4,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
 						afterParserOrEnumRuleCall();
 					}
 					    |
 					{
-						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_4_0_4());
+						newCompositeNode(grammarAccess.getAdcInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_0_4());
 					}
-					lv_operand_4_5=ruleExtendedIndirectOperand
+					lv_operand_2_5=ruleExtendedIndirectOperand
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getAdcInstructionRule());
@@ -1700,50 +1375,13 @@ ruleAdcInstruction returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_5,
+							lv_operand_2_5,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getAdcInstructionAccess().getWSTerminalRuleCall_5_0());
-			}
-			(
-				(
-					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getAdcInstructionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAdcInstructionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_6_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getAdcInstructionAccess().getWSTerminalRuleCall_6());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getAdcInstructionAccess().getEndOfLineParserRuleCall_7());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -1764,79 +1402,17 @@ ruleAbxInstruction returns [EObject current=null]
 }:
 	(
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getAbxInstructionAccess().getNameIdentifierValueParserRuleCall_0_0());
+			lv_instruction_0_0='ABX'
+			{
+				newLeafNode(lv_instruction_0_0, grammarAccess.getAbxInstructionAccess().getInstructionABXKeyword_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getAbxInstructionRule());
 				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAbxInstructionRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getAbxInstructionAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_instruction_2_0='ABX'
-				{
-					newLeafNode(lv_instruction_2_0, grammarAccess.getAbxInstructionAccess().getInstructionABXKeyword_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getAbxInstructionRule());
-					}
-					setWithLastConsumed($current, "instruction", lv_instruction_2_0, "ABX");
-				}
-			)
+				setWithLastConsumed($current, "instruction", lv_instruction_0_0, "ABX");
+			}
 		)
-		(
-			this_WS_3=RULE_WS
-			{
-				newLeafNode(this_WS_3, grammarAccess.getAbxInstructionAccess().getWSTerminalRuleCall_3_0());
-			}
-			(
-				(
-					lv_comment_4_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_4_0, grammarAccess.getAbxInstructionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getAbxInstructionRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_4_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getAbxInstructionAccess().getWSTerminalRuleCall_4());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getAbxInstructionAccess().getEndOfLineParserRuleCall_5());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -3175,322 +2751,384 @@ ruleDirectiveLine returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveEquDirectiveParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getDirectiveLineAccess().getNameIdentifierValueParserRuleCall_0_0());
 				}
-				lv_directive_0_0=ruleEquDirective
+				lv_name_0_0=ruleIdentifierValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
 					}
 					set(
 						$current,
-						"directive",
-						lv_directive_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.EquDirective");
+						"name",
+						lv_name_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
-		    |
+		)?
+		this_WS_1=RULE_WS
+		{
+			newLeafNode(this_WS_1, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_1());
+		}
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveOrgDirectiveParserRuleCall_1_0());
-				}
-				lv_directive_1_0=ruleOrgDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveEquDirectiveParserRuleCall_2_0_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_1_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.OrgDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_2_0=ruleEquDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_2_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.EquDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveBszDirectiveParserRuleCall_2_0());
-				}
-				lv_directive_2_0=ruleBszDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveOrgDirectiveParserRuleCall_2_1_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_2_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.BszDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_3_0=ruleOrgDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_3_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.OrgDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveEndDirectiveParserRuleCall_3_0());
-				}
-				lv_directive_3_0=ruleEndDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveBszDirectiveParserRuleCall_2_2_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_3_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.EndDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_4_0=ruleBszDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_4_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.BszDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFailDirectiveParserRuleCall_4_0());
-				}
-				lv_directive_4_0=ruleFailDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveEndDirectiveParserRuleCall_2_3_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_4_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.FailDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_5_0=ruleEndDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_5_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.EndDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFillDirectiveParserRuleCall_5_0());
-				}
-				lv_directive_5_0=ruleFillDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFailDirectiveParserRuleCall_2_4_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_5_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.FillDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_6_0=ruleFailDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_6_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.FailDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveOptDirectiveParserRuleCall_6_0());
-				}
-				lv_directive_6_0=ruleOptDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFillDirectiveParserRuleCall_2_5_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_6_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.OptDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_7_0=ruleFillDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_7_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.FillDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectivePagDirectiveParserRuleCall_7_0());
-				}
-				lv_directive_7_0=rulePagDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveOptDirectiveParserRuleCall_2_6_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_7_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.PagDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_8_0=ruleOptDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_8_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.OptDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveNamDirectiveParserRuleCall_8_0());
-				}
-				lv_directive_8_0=ruleNamDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectivePagDirectiveParserRuleCall_2_7_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_8_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.NamDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_9_0=rulePagDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_9_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.PagDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveSetDirectiveParserRuleCall_9_0());
-				}
-				lv_directive_9_0=ruleSetDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveNamDirectiveParserRuleCall_2_8_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_9_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.SetDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_10_0=ruleNamDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_10_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.NamDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveSpcDirectiveParserRuleCall_10_0());
-				}
-				lv_directive_10_0=ruleSpcDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveSetDirectiveParserRuleCall_2_9_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_10_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.SpcDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_11_0=ruleSetDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_11_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.SetDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveRegDirectiveParserRuleCall_11_0());
-				}
-				lv_directive_11_0=ruleRegDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveSpcDirectiveParserRuleCall_2_10_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_11_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.RegDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_12_0=ruleSpcDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_12_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.SpcDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFcbDirectiveParserRuleCall_12_0());
-				}
-				lv_directive_12_0=ruleFcbDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveRegDirectiveParserRuleCall_2_11_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_12_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.FcbDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_13_0=ruleRegDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_13_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.RegDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFdbDirectiveParserRuleCall_13_0());
-				}
-				lv_directive_13_0=ruleFdbDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFcbDirectiveParserRuleCall_2_12_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_13_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.FdbDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_14_0=ruleFcbDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_14_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.FcbDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFccDirectiveParserRuleCall_14_0());
-				}
-				lv_directive_14_0=ruleFccDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFdbDirectiveParserRuleCall_2_13_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_14_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.FccDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_15_0=ruleFdbDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_15_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.FdbDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
-		)
-		    |
-		(
+			    |
 			(
-				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveRmbDirectiveParserRuleCall_15_0());
-				}
-				lv_directive_15_0=ruleRmbDirective
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFccDirectiveParserRuleCall_2_14_0());
 					}
-					set(
-						$current,
-						"directive",
-						lv_directive_15_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.RmbDirective");
-					afterParserOrEnumRuleCall();
-				}
+					lv_directive_16_0=ruleFccDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_16_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.FccDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveRmbDirectiveParserRuleCall_2_15_0());
+					}
+					lv_directive_17_0=ruleRmbDirective
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
+						}
+						set(
+							$current,
+							"directive",
+							lv_directive_17_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.RmbDirective");
+						afterParserOrEnumRuleCall();
+					}
+				)
 			)
 		)
+		(
+			this_WS_18=RULE_WS
+			{
+				newLeafNode(this_WS_18, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_3_0());
+			}
+			(
+				(
+					lv_comment_19_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					{
+						newLeafNode(lv_comment_19_0, grammarAccess.getDirectiveLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getDirectiveLineRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"comment",
+							lv_comment_19_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
+					}
+				)
+			)
+		)?
+		(
+			this_WS_20=RULE_WS
+			{
+				newLeafNode(this_WS_20, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_4());
+			}
+		)?
+		{
+			newCompositeNode(grammarAccess.getDirectiveLineAccess().getEndOfLineParserRuleCall_5());
+		}
+		ruleEndOfLine
+		{
+			afterParserOrEnumRuleCall();
+		}
 	)
 ;
 
@@ -3512,51 +3150,28 @@ ruleFccDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='FCC'
 				{
-					newCompositeNode(grammarAccess.getFccDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFccDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getFccDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='FCC'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getFccDirectiveAccess().getDirectiveFCCKeyword_2_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getFccDirectiveAccess().getDirectiveFCCKeyword_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getFccDirectiveRule());
 					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "FCC");
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "FCC");
 				}
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getFccDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getFccDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
-					lv_string_4_0=RULE_STRING
+					lv_string_2_0=RULE_STRING
 					{
-						newLeafNode(lv_string_4_0, grammarAccess.getFccDirectiveAccess().getStringSTRINGTerminalRuleCall_3_1_0());
+						newLeafNode(lv_string_2_0, grammarAccess.getFccDirectiveAccess().getStringSTRINGTerminalRuleCall_1_1_0());
 					}
 					{
 						if ($current==null) {
@@ -3565,49 +3180,12 @@ ruleFccDirective returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"string",
-							lv_string_4_0,
+							lv_string_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.STRING");
 					}
 				)
 			)
 		)
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getFccDirectiveAccess().getWSTerminalRuleCall_4_0());
-			}
-			(
-				(
-					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getFccDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFccDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_6_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getFccDirectiveAccess().getWSTerminalRuleCall_5());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getFccDirectiveAccess().getEndOfLineParserRuleCall_6());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -3629,52 +3207,29 @@ ruleRegDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='REG'
 				{
-					newCompositeNode(grammarAccess.getRegDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRegDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getRegDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='REG'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getRegDirectiveAccess().getDirectiveREGKeyword_2_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getRegDirectiveAccess().getDirectiveREGKeyword_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getRegDirectiveRule());
 					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "REG");
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "REG");
 				}
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getRegDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getRegDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getRegDirectiveAccess().getOptionsRegisterEnumRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getRegDirectiveAccess().getOptionsRegisterEnumRuleCall_1_1_0());
 					}
-					lv_options_4_0=ruleRegister
+					lv_options_2_0=ruleRegister
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getRegDirectiveRule());
@@ -3682,23 +3237,23 @@ ruleRegDirective returns [EObject current=null]
 						add(
 							$current,
 							"options",
-							lv_options_4_0,
+							lv_options_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.Register");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 			(
-				otherlv_5=','
+				otherlv_3=','
 				{
-					newLeafNode(otherlv_5, grammarAccess.getRegDirectiveAccess().getCommaKeyword_3_2_0());
+					newLeafNode(otherlv_3, grammarAccess.getRegDirectiveAccess().getCommaKeyword_1_2_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getRegDirectiveAccess().getOptionsRegisterEnumRuleCall_3_2_1_0());
+							newCompositeNode(grammarAccess.getRegDirectiveAccess().getOptionsRegisterEnumRuleCall_1_2_1_0());
 						}
-						lv_options_6_0=ruleRegister
+						lv_options_4_0=ruleRegister
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getRegDirectiveRule());
@@ -3706,7 +3261,7 @@ ruleRegDirective returns [EObject current=null]
 							add(
 								$current,
 								"options",
-								lv_options_6_0,
+								lv_options_4_0,
 								"org.bpy.electronics.mc6809.assembler.Assembler.Register");
 							afterParserOrEnumRuleCall();
 						}
@@ -3714,37 +3269,6 @@ ruleRegDirective returns [EObject current=null]
 				)
 			)*
 		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getRegDirectiveAccess().getWSTerminalRuleCall_4_0());
-			}
-			(
-				(
-					lv_comment_8_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_8_0, grammarAccess.getRegDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getRegDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_8_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)?
-		)?
-		{
-			newCompositeNode(grammarAccess.getRegDirectiveAccess().getEndOfLineParserRuleCall_5());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -3766,52 +3290,29 @@ ruleSpcDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='SPC'
 				{
-					newCompositeNode(grammarAccess.getSpcDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getSpcDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getSpcDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='SPC'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getSpcDirectiveAccess().getDirectiveSPCKeyword_2_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getSpcDirectiveAccess().getDirectiveSPCKeyword_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getSpcDirectiveRule());
 					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "SPC");
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "SPC");
 				}
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getSpcDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getSpcDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSpcDirectiveAccess().getSpaceCountExpressionParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getSpcDirectiveAccess().getSpaceCountExpressionParserRuleCall_1_1_0());
 					}
-					lv_spaceCount_4_0=ruleExpression
+					lv_spaceCount_2_0=ruleExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getSpcDirectiveRule());
@@ -3819,23 +3320,23 @@ ruleSpcDirective returns [EObject current=null]
 						set(
 							$current,
 							"spaceCount",
-							lv_spaceCount_4_0,
+							lv_spaceCount_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 			(
-				otherlv_5=','
+				otherlv_3=','
 				{
-					newLeafNode(otherlv_5, grammarAccess.getSpcDirectiveAccess().getCommaKeyword_3_2_0());
+					newLeafNode(otherlv_3, grammarAccess.getSpcDirectiveAccess().getCommaKeyword_1_2_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getSpcDirectiveAccess().getKeepCountExpressionParserRuleCall_3_2_1_0());
+							newCompositeNode(grammarAccess.getSpcDirectiveAccess().getKeepCountExpressionParserRuleCall_1_2_1_0());
 						}
-						lv_keepCount_6_0=ruleExpression
+						lv_keepCount_4_0=ruleExpression
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getSpcDirectiveRule());
@@ -3843,7 +3344,7 @@ ruleSpcDirective returns [EObject current=null]
 							set(
 								$current,
 								"keepCount",
-								lv_keepCount_6_0,
+								lv_keepCount_4_0,
 								"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 							afterParserOrEnumRuleCall();
 						}
@@ -3851,43 +3352,6 @@ ruleSpcDirective returns [EObject current=null]
 				)
 			)?
 		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getSpcDirectiveAccess().getWSTerminalRuleCall_4_0());
-			}
-			(
-				(
-					lv_comment_8_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_8_0, grammarAccess.getSpcDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getSpcDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_8_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_9=RULE_WS
-			{
-				newLeafNode(this_WS_9, grammarAccess.getSpcDirectiveAccess().getWSTerminalRuleCall_5());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getSpcDirectiveAccess().getEndOfLineParserRuleCall_6());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -3909,68 +3373,45 @@ ruleNamDirective returns [EObject current=null]
 	(
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getNamDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getNamDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getNamDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
 				(
-					lv_directive_2_0='NAM'
+					lv_directive_0_0='NAM'
 					{
-						newLeafNode(lv_directive_2_0, grammarAccess.getNamDirectiveAccess().getDirectiveNAMKeyword_2_0_0());
+						newLeafNode(lv_directive_0_0, grammarAccess.getNamDirectiveAccess().getDirectiveNAMKeyword_0_0_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getNamDirectiveRule());
 						}
-						setWithLastConsumed($current, "directive", lv_directive_2_0, "NAM");
+						setWithLastConsumed($current, "directive", lv_directive_0_0, "NAM");
 					}
 				)
 			)
 			    |
 			(
 				(
-					lv_directive_3_0='TTL'
+					lv_directive_1_0='TTL'
 					{
-						newLeafNode(lv_directive_3_0, grammarAccess.getNamDirectiveAccess().getDirectiveTTLKeyword_2_1_0());
+						newLeafNode(lv_directive_1_0, grammarAccess.getNamDirectiveAccess().getDirectiveTTLKeyword_0_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getNamDirectiveRule());
 						}
-						setWithLastConsumed($current, "directive", lv_directive_3_0, "TTL");
+						setWithLastConsumed($current, "directive", lv_directive_1_0, "TTL");
 					}
 				)
 			)
 		)
-		this_WS_4=RULE_WS
+		this_WS_2=RULE_WS
 		{
-			newLeafNode(this_WS_4, grammarAccess.getNamDirectiveAccess().getWSTerminalRuleCall_3());
+			newLeafNode(this_WS_2, grammarAccess.getNamDirectiveAccess().getWSTerminalRuleCall_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getNamDirectiveAccess().getOperandIdentifierValueParserRuleCall_4_0());
+					newCompositeNode(grammarAccess.getNamDirectiveAccess().getOperandIdentifierValueParserRuleCall_2_0());
 				}
-				lv_operand_5_0=ruleIdentifierValue
+				lv_operand_3_0=ruleIdentifierValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getNamDirectiveRule());
@@ -3978,43 +3419,12 @@ ruleNamDirective returns [EObject current=null]
 					set(
 						$current,
 						"operand",
-						lv_operand_5_0,
+						lv_operand_3_0,
 						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		(
-			this_WS_6=RULE_WS
-			{
-				newLeafNode(this_WS_6, grammarAccess.getNamDirectiveAccess().getWSTerminalRuleCall_5_0());
-			}
-			(
-				(
-					lv_comment_7_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_7_0, grammarAccess.getNamDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getNamDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_7_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		{
-			newCompositeNode(grammarAccess.getNamDirectiveAccess().getEndOfLineParserRuleCall_6());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -4036,52 +3446,29 @@ rulePagDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='PAG'
 				{
-					newCompositeNode(grammarAccess.getPagDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getPagDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getPagDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='PAG'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getPagDirectiveAccess().getDirectivePAGKeyword_2_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getPagDirectiveAccess().getDirectivePAGKeyword_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getPagDirectiveRule());
 					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "PAG");
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "PAG");
 				}
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getPagDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getPagDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getPagDirectiveAccess().getOperandExpressionParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getPagDirectiveAccess().getOperandExpressionParserRuleCall_1_1_0());
 					}
-					lv_operand_4_0=ruleExpression
+					lv_operand_2_0=ruleExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getPagDirectiveRule());
@@ -4089,44 +3476,13 @@ rulePagDirective returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_0,
+							lv_operand_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 						afterParserOrEnumRuleCall();
 					}
 				)
-			)?
-		)?
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getPagDirectiveAccess().getWSTerminalRuleCall_4_0());
-			}
-			(
-				(
-					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getPagDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getPagDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_6_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
 			)
 		)?
-		{
-			newCompositeNode(grammarAccess.getPagDirectiveAccess().getEndOfLineParserRuleCall_5());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -4148,52 +3504,29 @@ ruleOptDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='OPT'
 				{
-					newCompositeNode(grammarAccess.getOptDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getOptDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getOptDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='OPT'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getOptDirectiveAccess().getDirectiveOPTKeyword_2_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getOptDirectiveAccess().getDirectiveOPTKeyword_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getOptDirectiveRule());
 					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "OPT");
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "OPT");
 				}
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getOptDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getOptDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getOptDirectiveAccess().getOptionsAssemblyOptionEnumRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getOptDirectiveAccess().getOptionsAssemblyOptionEnumRuleCall_1_1_0());
 					}
-					lv_options_4_0=ruleAssemblyOption
+					lv_options_2_0=ruleAssemblyOption
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getOptDirectiveRule());
@@ -4201,23 +3534,23 @@ ruleOptDirective returns [EObject current=null]
 						add(
 							$current,
 							"options",
-							lv_options_4_0,
+							lv_options_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.AssemblyOption");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 			(
-				otherlv_5=','
+				otherlv_3=','
 				{
-					newLeafNode(otherlv_5, grammarAccess.getOptDirectiveAccess().getCommaKeyword_3_2_0());
+					newLeafNode(otherlv_3, grammarAccess.getOptDirectiveAccess().getCommaKeyword_1_2_0());
 				}
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getOptDirectiveAccess().getOptionsAssemblyOptionEnumRuleCall_3_2_1_0());
+							newCompositeNode(grammarAccess.getOptDirectiveAccess().getOptionsAssemblyOptionEnumRuleCall_1_2_1_0());
 						}
-						lv_options_6_0=ruleAssemblyOption
+						lv_options_4_0=ruleAssemblyOption
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getOptDirectiveRule());
@@ -4225,7 +3558,7 @@ ruleOptDirective returns [EObject current=null]
 							add(
 								$current,
 								"options",
-								lv_options_6_0,
+								lv_options_4_0,
 								"org.bpy.electronics.mc6809.assembler.Assembler.AssemblyOption");
 							afterParserOrEnumRuleCall();
 						}
@@ -4233,37 +3566,6 @@ ruleOptDirective returns [EObject current=null]
 				)
 			)*
 		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getOptDirectiveAccess().getWSTerminalRuleCall_4_0());
-			}
-			(
-				(
-					lv_comment_8_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_8_0, grammarAccess.getOptDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getOptDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_8_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)?
-		)?
-		{
-			newCompositeNode(grammarAccess.getOptDirectiveAccess().getEndOfLineParserRuleCall_5());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -4284,73 +3586,17 @@ ruleFailDirective returns [EObject current=null]
 }:
 	(
 		(
-			(
-				{
-					newCompositeNode(grammarAccess.getFailDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFailDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getFailDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='FAIL'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getFailDirectiveAccess().getDirectiveFAILKeyword_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getFailDirectiveRule());
-					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "FAIL");
-				}
-			)
-		)
-		(
-			this_WS_3=RULE_WS
+			lv_directive_0_0='FAIL'
 			{
-				newLeafNode(this_WS_3, grammarAccess.getFailDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(lv_directive_0_0, grammarAccess.getFailDirectiveAccess().getDirectiveFAILKeyword_0());
 			}
-			(
-				(
-					lv_comment_4_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_4_0, grammarAccess.getFailDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFailDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_4_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)?
-		)?
-		{
-			newCompositeNode(grammarAccess.getFailDirectiveAccess().getEndOfLineParserRuleCall_4());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getFailDirectiveRule());
+				}
+				setWithLastConsumed($current, "directive", lv_directive_0_0, "FAIL");
+			}
+		)
 	)
 ;
 
@@ -4372,67 +3618,44 @@ ruleSetDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='SET'
 				{
-					newCompositeNode(grammarAccess.getSetDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getSetDirectiveAccess().getDirectiveSETKeyword_0_0());
 				}
-				lv_name_0_0=ruleIdentifierValue
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getSetDirectiveRule());
+						$current = createModelElement(grammarAccess.getSetDirectiveRule());
 					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "SET");
 				}
 			)
-		)?
+		)
 		this_WS_1=RULE_WS
 		{
 			newLeafNode(this_WS_1, grammarAccess.getSetDirectiveAccess().getWSTerminalRuleCall_1());
 		}
 		(
 			(
-				lv_directive_2_0='SET'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getSetDirectiveAccess().getDirectiveSETKeyword_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getSetDirectiveRule());
-					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "SET");
-				}
-			)
-		)
-		this_WS_3=RULE_WS
-		{
-			newLeafNode(this_WS_3, grammarAccess.getSetDirectiveAccess().getWSTerminalRuleCall_3());
-		}
-		(
-			(
 				(
 					(
-						lv_isRelativeToPC_4_0='*'
+						lv_isRelativeToPC_2_0='*'
 						{
-							newLeafNode(lv_isRelativeToPC_4_0, grammarAccess.getSetDirectiveAccess().getIsRelativeToPCAsteriskKeyword_4_0_0_0());
+							newLeafNode(lv_isRelativeToPC_2_0, grammarAccess.getSetDirectiveAccess().getIsRelativeToPCAsteriskKeyword_2_0_0_0());
 						}
 						{
 							if ($current==null) {
 								$current = createModelElement(grammarAccess.getSetDirectiveRule());
 							}
-							setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_4_0 != null, "*");
+							setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_2_0 != null, "*");
 						}
 					)
 				)?
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getSetDirectiveAccess().getOperandExpressionParserRuleCall_4_0_1_0());
+							newCompositeNode(grammarAccess.getSetDirectiveAccess().getOperandExpressionParserRuleCall_2_0_1_0());
 						}
-						lv_operand_5_0=ruleExpression
+						lv_operand_3_0=ruleExpression
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getSetDirectiveRule());
@@ -4440,7 +3663,7 @@ ruleSetDirective returns [EObject current=null]
 							set(
 								$current,
 								"operand",
-								lv_operand_5_0,
+								lv_operand_3_0,
 								"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 							afterParserOrEnumRuleCall();
 						}
@@ -4450,50 +3673,19 @@ ruleSetDirective returns [EObject current=null]
 			    |
 			(
 				(
-					lv_isRelativeToPC_6_0='*'
+					lv_isRelativeToPC_4_0='*'
 					{
-						newLeafNode(lv_isRelativeToPC_6_0, grammarAccess.getSetDirectiveAccess().getIsRelativeToPCAsteriskKeyword_4_1_0());
+						newLeafNode(lv_isRelativeToPC_4_0, grammarAccess.getSetDirectiveAccess().getIsRelativeToPCAsteriskKeyword_2_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getSetDirectiveRule());
 						}
-						setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_6_0 != null, "*");
+						setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_4_0 != null, "*");
 					}
 				)
 			)
 		)
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getSetDirectiveAccess().getWSTerminalRuleCall_5());
-			}
-		)?
-		(
-			(
-				lv_comment_8_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-				{
-					newLeafNode(lv_comment_8_0, grammarAccess.getSetDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getSetDirectiveRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"comment",
-						lv_comment_8_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-				}
-			)
-		)?
-		{
-			newCompositeNode(grammarAccess.getSetDirectiveAccess().getEndOfLineParserRuleCall_7());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -4515,23 +3707,18 @@ ruleFillDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='FILL'
 				{
-					newCompositeNode(grammarAccess.getFillDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getFillDirectiveAccess().getDirectiveFILLKeyword_0_0());
 				}
-				lv_name_0_0=ruleIdentifierValue
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFillDirectiveRule());
+						$current = createModelElement(grammarAccess.getFillDirectiveRule());
 					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "FILL");
 				}
 			)
-		)?
+		)
 		(
 			this_WS_1=RULE_WS
 			{
@@ -4539,30 +3726,10 @@ ruleFillDirective returns [EObject current=null]
 			}
 			(
 				(
-					lv_directive_2_0='FILL'
 					{
-						newLeafNode(lv_directive_2_0, grammarAccess.getFillDirectiveAccess().getDirectiveFILLKeyword_1_1_0());
+						newCompositeNode(grammarAccess.getFillDirectiveAccess().getValueExpressionParserRuleCall_1_1_0());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFillDirectiveRule());
-						}
-						setWithLastConsumed($current, "directive", lv_directive_2_0, "FILL");
-					}
-				)
-			)
-		)
-		(
-			this_WS_3=RULE_WS
-			{
-				newLeafNode(this_WS_3, grammarAccess.getFillDirectiveAccess().getWSTerminalRuleCall_2_0());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getFillDirectiveAccess().getValueExpressionParserRuleCall_2_1_0());
-					}
-					lv_value_4_0=ruleExpression
+					lv_value_2_0=ruleExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getFillDirectiveRule());
@@ -4570,22 +3737,22 @@ ruleFillDirective returns [EObject current=null]
 						set(
 							$current,
 							"value",
-							lv_value_4_0,
+							lv_value_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
-			otherlv_5=','
+			otherlv_3=','
 			{
-				newLeafNode(otherlv_5, grammarAccess.getFillDirectiveAccess().getCommaKeyword_2_2());
+				newLeafNode(otherlv_3, grammarAccess.getFillDirectiveAccess().getCommaKeyword_1_2());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getFillDirectiveAccess().getNumberExpressionParserRuleCall_2_3_0());
+						newCompositeNode(grammarAccess.getFillDirectiveAccess().getNumberExpressionParserRuleCall_1_3_0());
 					}
-					lv_number_6_0=ruleExpression
+					lv_number_4_0=ruleExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getFillDirectiveRule());
@@ -4593,50 +3760,13 @@ ruleFillDirective returns [EObject current=null]
 						set(
 							$current,
 							"number",
-							lv_number_6_0,
+							lv_number_4_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getFillDirectiveAccess().getWSTerminalRuleCall_3_0());
-			}
-			(
-				(
-					lv_comment_8_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_8_0, grammarAccess.getFillDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFillDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_8_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_9=RULE_WS
-			{
-				newLeafNode(this_WS_9, grammarAccess.getFillDirectiveAccess().getWSTerminalRuleCall_4());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getFillDirectiveAccess().getEndOfLineParserRuleCall_5());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -4658,65 +3788,42 @@ ruleBszDirective returns [EObject current=null]
 	(
 		(
 			(
-				{
-					newCompositeNode(grammarAccess.getBszDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getBszDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getBszDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
 				(
-					lv_directive_2_1='BSZ'
+					lv_directive_0_1='BSZ'
 					{
-						newLeafNode(lv_directive_2_1, grammarAccess.getBszDirectiveAccess().getDirectiveBSZKeyword_2_0_0());
+						newLeafNode(lv_directive_0_1, grammarAccess.getBszDirectiveAccess().getDirectiveBSZKeyword_0_0_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getBszDirectiveRule());
 						}
-						setWithLastConsumed($current, "directive", lv_directive_2_1, null);
+						setWithLastConsumed($current, "directive", lv_directive_0_1, null);
 					}
 					    |
-					lv_directive_2_2='ZMB'
+					lv_directive_0_2='ZMB'
 					{
-						newLeafNode(lv_directive_2_2, grammarAccess.getBszDirectiveAccess().getDirectiveZMBKeyword_2_0_1());
+						newLeafNode(lv_directive_0_2, grammarAccess.getBszDirectiveAccess().getDirectiveZMBKeyword_0_0_1());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getBszDirectiveRule());
 						}
-						setWithLastConsumed($current, "directive", lv_directive_2_2, null);
+						setWithLastConsumed($current, "directive", lv_directive_0_2, null);
 					}
 				)
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getBszDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getBszDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getBszDirectiveAccess().getOperandExpressionParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getBszDirectiveAccess().getOperandExpressionParserRuleCall_1_1_0());
 					}
-					lv_operand_4_0=ruleExpression
+					lv_operand_2_0=ruleExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getBszDirectiveRule());
@@ -4724,50 +3831,13 @@ ruleBszDirective returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_0,
+							lv_operand_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getBszDirectiveAccess().getWSTerminalRuleCall_4_0());
-			}
-			(
-				(
-					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getBszDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getBszDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_6_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getBszDirectiveAccess().getWSTerminalRuleCall_5());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getBszDirectiveAccess().getEndOfLineParserRuleCall_6());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -4789,52 +3859,29 @@ ruleFdbDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='FDB'
 				{
-					newCompositeNode(grammarAccess.getFdbDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFdbDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getFdbDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='FDB'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getFdbDirectiveAccess().getDirectiveFDBKeyword_2_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getFdbDirectiveAccess().getDirectiveFDBKeyword_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getFdbDirectiveRule());
 					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "FDB");
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "FDB");
 				}
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getFdbDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getFdbDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getFdbDirectiveAccess().getOperandListOfExpressionParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getFdbDirectiveAccess().getOperandListOfExpressionParserRuleCall_1_1_0());
 					}
-					lv_operand_4_0=ruleListOfExpression
+					lv_operand_2_0=ruleListOfExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getFdbDirectiveRule());
@@ -4842,50 +3889,13 @@ ruleFdbDirective returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_0,
+							lv_operand_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ListOfExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)?
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getFdbDirectiveAccess().getWSTerminalRuleCall_4_0());
-			}
-			(
-				(
-					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getFdbDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFdbDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_6_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getFdbDirectiveAccess().getWSTerminalRuleCall_5());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getFdbDirectiveAccess().getEndOfLineParserRuleCall_6());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -4907,52 +3917,29 @@ ruleFcbDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='FCB'
 				{
-					newCompositeNode(grammarAccess.getFcbDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getFcbDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getFcbDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='FCB'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getFcbDirectiveAccess().getDirectiveFCBKeyword_2_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getFcbDirectiveAccess().getDirectiveFCBKeyword_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getFcbDirectiveRule());
 					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "FCB");
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "FCB");
 				}
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getFcbDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getFcbDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getFcbDirectiveAccess().getOperandListOfExpressionParserRuleCall_3_1_0());
+						newCompositeNode(grammarAccess.getFcbDirectiveAccess().getOperandListOfExpressionParserRuleCall_1_1_0());
 					}
-					lv_operand_4_0=ruleListOfExpression
+					lv_operand_2_0=ruleListOfExpression
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getFcbDirectiveRule());
@@ -4960,50 +3947,13 @@ ruleFcbDirective returns [EObject current=null]
 						set(
 							$current,
 							"operand",
-							lv_operand_4_0,
+							lv_operand_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ListOfExpression");
 						afterParserOrEnumRuleCall();
 					}
 				)
 			)
 		)?
-		(
-			this_WS_5=RULE_WS
-			{
-				newLeafNode(this_WS_5, grammarAccess.getFcbDirectiveAccess().getWSTerminalRuleCall_4_0());
-			}
-			(
-				(
-					lv_comment_6_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_6_0, grammarAccess.getFcbDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFcbDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_6_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getFcbDirectiveAccess().getWSTerminalRuleCall_5());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getFcbDirectiveAccess().getEndOfLineParserRuleCall_6());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -5025,67 +3975,44 @@ ruleRmbDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='RMB'
 				{
-					newCompositeNode(grammarAccess.getRmbDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRmbDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getRmbDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='RMB'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getRmbDirectiveAccess().getDirectiveRMBKeyword_2_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getRmbDirectiveAccess().getDirectiveRMBKeyword_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getRmbDirectiveRule());
 					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "RMB");
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "RMB");
 				}
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getRmbDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getRmbDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
 					(
-						lv_isRelativeToPC_4_0='*'
+						lv_isRelativeToPC_2_0='*'
 						{
-							newLeafNode(lv_isRelativeToPC_4_0, grammarAccess.getRmbDirectiveAccess().getIsRelativeToPCAsteriskKeyword_3_1_0_0());
+							newLeafNode(lv_isRelativeToPC_2_0, grammarAccess.getRmbDirectiveAccess().getIsRelativeToPCAsteriskKeyword_1_1_0_0());
 						}
 						{
 							if ($current==null) {
 								$current = createModelElement(grammarAccess.getRmbDirectiveRule());
 							}
-							setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_4_0 != null, "*");
+							setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_2_0 != null, "*");
 						}
 					)
 				)?
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getRmbDirectiveAccess().getOperandExpressionParserRuleCall_3_1_1_0());
+							newCompositeNode(grammarAccess.getRmbDirectiveAccess().getOperandExpressionParserRuleCall_1_1_1_0());
 						}
-						lv_operand_5_0=ruleExpression
+						lv_operand_3_0=ruleExpression
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getRmbDirectiveRule());
@@ -5093,7 +4020,7 @@ ruleRmbDirective returns [EObject current=null]
 							set(
 								$current,
 								"operand",
-								lv_operand_5_0,
+								lv_operand_3_0,
 								"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 							afterParserOrEnumRuleCall();
 						}
@@ -5101,43 +4028,6 @@ ruleRmbDirective returns [EObject current=null]
 				)
 			)
 		)?
-		(
-			this_WS_6=RULE_WS
-			{
-				newLeafNode(this_WS_6, grammarAccess.getRmbDirectiveAccess().getWSTerminalRuleCall_4_0());
-			}
-			(
-				(
-					lv_comment_7_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_7_0, grammarAccess.getRmbDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getRmbDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_7_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_8=RULE_WS
-			{
-				newLeafNode(this_WS_8, grammarAccess.getRmbDirectiveAccess().getWSTerminalRuleCall_5());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getRmbDirectiveAccess().getEndOfLineParserRuleCall_6());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -5159,68 +4049,45 @@ ruleEndDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='END'
 				{
-					newCompositeNode(grammarAccess.getEndDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getEndDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='END'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getEndDirectiveAccess().getDirectiveENDKeyword_2_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getEndDirectiveAccess().getDirectiveENDKeyword_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getEndDirectiveRule());
 					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "END");
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "END");
 				}
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
 					(
 						(
-							lv_isRelativeToPC_4_0='*'
+							lv_isRelativeToPC_2_0='*'
 							{
-								newLeafNode(lv_isRelativeToPC_4_0, grammarAccess.getEndDirectiveAccess().getIsRelativeToPCAsteriskKeyword_3_1_0_0_0());
+								newLeafNode(lv_isRelativeToPC_2_0, grammarAccess.getEndDirectiveAccess().getIsRelativeToPCAsteriskKeyword_1_1_0_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getEndDirectiveRule());
 								}
-								setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_4_0 != null, "*");
+								setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_2_0 != null, "*");
 							}
 						)
 					)?
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getEndDirectiveAccess().getOperandExpressionParserRuleCall_3_1_0_1_0());
+								newCompositeNode(grammarAccess.getEndDirectiveAccess().getOperandExpressionParserRuleCall_1_1_0_1_0());
 							}
-							lv_operand_5_0=ruleExpression
+							lv_operand_3_0=ruleExpression
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getEndDirectiveRule());
@@ -5228,7 +4095,7 @@ ruleEndDirective returns [EObject current=null]
 								set(
 									$current,
 									"operand",
-									lv_operand_5_0,
+									lv_operand_3_0,
 									"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 								afterParserOrEnumRuleCall();
 							}
@@ -5238,57 +4105,20 @@ ruleEndDirective returns [EObject current=null]
 				    |
 				(
 					(
-						lv_isRelativeToPC_6_0='*'
+						lv_isRelativeToPC_4_0='*'
 						{
-							newLeafNode(lv_isRelativeToPC_6_0, grammarAccess.getEndDirectiveAccess().getIsRelativeToPCAsteriskKeyword_3_1_1_0());
+							newLeafNode(lv_isRelativeToPC_4_0, grammarAccess.getEndDirectiveAccess().getIsRelativeToPCAsteriskKeyword_1_1_1_0());
 						}
 						{
 							if ($current==null) {
 								$current = createModelElement(grammarAccess.getEndDirectiveRule());
 							}
-							setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_6_0 != null, "*");
+							setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_4_0 != null, "*");
 						}
 					)
 				)
 			)
 		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_4_0());
-			}
-			(
-				(
-					lv_comment_8_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-					{
-						newLeafNode(lv_comment_8_0, grammarAccess.getEndDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getEndDirectiveRule());
-						}
-						setWithLastConsumed(
-							$current,
-							"comment",
-							lv_comment_8_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-					}
-				)
-			)
-		)?
-		(
-			this_WS_9=RULE_WS
-			{
-				newLeafNode(this_WS_9, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_5());
-			}
-		)?
-		{
-			newCompositeNode(grammarAccess.getEndDirectiveAccess().getEndOfLineParserRuleCall_6());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -5310,68 +4140,45 @@ ruleOrgDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='ORG'
 				{
-					newCompositeNode(grammarAccess.getOrgDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
-				}
-				lv_name_0_0=ruleIdentifierValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getOrgDirectiveRule());
-					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_1());
-		}
-		(
-			(
-				lv_directive_2_0='ORG'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getOrgDirectiveAccess().getDirectiveORGKeyword_2_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getOrgDirectiveAccess().getDirectiveORGKeyword_0_0());
 				}
 				{
 					if ($current==null) {
 						$current = createModelElement(grammarAccess.getOrgDirectiveRule());
 					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "ORG");
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "ORG");
 				}
 			)
 		)
 		(
-			this_WS_3=RULE_WS
+			this_WS_1=RULE_WS
 			{
-				newLeafNode(this_WS_3, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_1, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_1_0());
 			}
 			(
 				(
 					(
 						(
-							lv_isRelativeToPC_4_0='*'
+							lv_isRelativeToPC_2_0='*'
 							{
-								newLeafNode(lv_isRelativeToPC_4_0, grammarAccess.getOrgDirectiveAccess().getIsRelativeToPCAsteriskKeyword_3_1_0_0_0());
+								newLeafNode(lv_isRelativeToPC_2_0, grammarAccess.getOrgDirectiveAccess().getIsRelativeToPCAsteriskKeyword_1_1_0_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getOrgDirectiveRule());
 								}
-								setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_4_0 != null, "*");
+								setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_2_0 != null, "*");
 							}
 						)
 					)?
 					(
 						(
 							{
-								newCompositeNode(grammarAccess.getOrgDirectiveAccess().getOperandExpressionParserRuleCall_3_1_0_1_0());
+								newCompositeNode(grammarAccess.getOrgDirectiveAccess().getOperandExpressionParserRuleCall_1_1_0_1_0());
 							}
-							lv_operand_5_0=ruleExpression
+							lv_operand_3_0=ruleExpression
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getOrgDirectiveRule());
@@ -5379,7 +4186,7 @@ ruleOrgDirective returns [EObject current=null]
 								set(
 									$current,
 									"operand",
-									lv_operand_5_0,
+									lv_operand_3_0,
 									"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 								afterParserOrEnumRuleCall();
 							}
@@ -5389,51 +4196,20 @@ ruleOrgDirective returns [EObject current=null]
 				    |
 				(
 					(
-						lv_isRelativeToPC_6_0='*'
+						lv_isRelativeToPC_4_0='*'
 						{
-							newLeafNode(lv_isRelativeToPC_6_0, grammarAccess.getOrgDirectiveAccess().getIsRelativeToPCAsteriskKeyword_3_1_1_0());
+							newLeafNode(lv_isRelativeToPC_4_0, grammarAccess.getOrgDirectiveAccess().getIsRelativeToPCAsteriskKeyword_1_1_1_0());
 						}
 						{
 							if ($current==null) {
 								$current = createModelElement(grammarAccess.getOrgDirectiveRule());
 							}
-							setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_6_0 != null, "*");
+							setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_4_0 != null, "*");
 						}
 					)
 				)
 			)
 		)?
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_4());
-			}
-		)?
-		(
-			(
-				lv_comment_8_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-				{
-					newLeafNode(lv_comment_8_0, grammarAccess.getOrgDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_5_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getOrgDirectiveRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"comment",
-						lv_comment_8_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-				}
-			)
-		)?
-		{
-			newCompositeNode(grammarAccess.getOrgDirectiveAccess().getEndOfLineParserRuleCall_6());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 
@@ -5455,67 +4231,44 @@ ruleEquDirective returns [EObject current=null]
 	(
 		(
 			(
+				lv_directive_0_0='EQU'
 				{
-					newCompositeNode(grammarAccess.getEquDirectiveAccess().getNameIdentifierValueParserRuleCall_0_0());
+					newLeafNode(lv_directive_0_0, grammarAccess.getEquDirectiveAccess().getDirectiveEQUKeyword_0_0());
 				}
-				lv_name_0_0=ruleIdentifierValue
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getEquDirectiveRule());
+						$current = createModelElement(grammarAccess.getEquDirectiveRule());
 					}
-					set(
-						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
-					afterParserOrEnumRuleCall();
+					setWithLastConsumed($current, "directive", lv_directive_0_0, "EQU");
 				}
 			)
-		)?
+		)
 		this_WS_1=RULE_WS
 		{
 			newLeafNode(this_WS_1, grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_1());
 		}
 		(
 			(
-				lv_directive_2_0='EQU'
-				{
-					newLeafNode(lv_directive_2_0, grammarAccess.getEquDirectiveAccess().getDirectiveEQUKeyword_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getEquDirectiveRule());
-					}
-					setWithLastConsumed($current, "directive", lv_directive_2_0, "EQU");
-				}
-			)
-		)
-		this_WS_3=RULE_WS
-		{
-			newLeafNode(this_WS_3, grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_3());
-		}
-		(
-			(
 				(
 					(
-						lv_isRelativeToPC_4_0='*'
+						lv_isRelativeToPC_2_0='*'
 						{
-							newLeafNode(lv_isRelativeToPC_4_0, grammarAccess.getEquDirectiveAccess().getIsRelativeToPCAsteriskKeyword_4_0_0_0());
+							newLeafNode(lv_isRelativeToPC_2_0, grammarAccess.getEquDirectiveAccess().getIsRelativeToPCAsteriskKeyword_2_0_0_0());
 						}
 						{
 							if ($current==null) {
 								$current = createModelElement(grammarAccess.getEquDirectiveRule());
 							}
-							setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_4_0 != null, "*");
+							setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_2_0 != null, "*");
 						}
 					)
 				)?
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getEquDirectiveAccess().getOperandExpressionParserRuleCall_4_0_1_0());
+							newCompositeNode(grammarAccess.getEquDirectiveAccess().getOperandExpressionParserRuleCall_2_0_1_0());
 						}
-						lv_operand_5_0=ruleExpression
+						lv_operand_3_0=ruleExpression
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getEquDirectiveRule());
@@ -5523,7 +4276,7 @@ ruleEquDirective returns [EObject current=null]
 							set(
 								$current,
 								"operand",
-								lv_operand_5_0,
+								lv_operand_3_0,
 								"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 							afterParserOrEnumRuleCall();
 						}
@@ -5533,50 +4286,19 @@ ruleEquDirective returns [EObject current=null]
 			    |
 			(
 				(
-					lv_isRelativeToPC_6_0='*'
+					lv_isRelativeToPC_4_0='*'
 					{
-						newLeafNode(lv_isRelativeToPC_6_0, grammarAccess.getEquDirectiveAccess().getIsRelativeToPCAsteriskKeyword_4_1_0());
+						newLeafNode(lv_isRelativeToPC_4_0, grammarAccess.getEquDirectiveAccess().getIsRelativeToPCAsteriskKeyword_2_1_0());
 					}
 					{
 						if ($current==null) {
 							$current = createModelElement(grammarAccess.getEquDirectiveRule());
 						}
-						setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_6_0 != null, "*");
+						setWithLastConsumed($current, "isRelativeToPC", lv_isRelativeToPC_4_0 != null, "*");
 					}
 				)
 			)
 		)
-		(
-			this_WS_7=RULE_WS
-			{
-				newLeafNode(this_WS_7, grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_5());
-			}
-		)?
-		(
-			(
-				lv_comment_8_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-				{
-					newLeafNode(lv_comment_8_0, grammarAccess.getEquDirectiveAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_6_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getEquDirectiveRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"comment",
-						lv_comment_8_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
-				}
-			)
-		)?
-		{
-			newCompositeNode(grammarAccess.getEquDirectiveAccess().getEndOfLineParserRuleCall_7());
-		}
-		ruleEndOfLine
-		{
-			afterParserOrEnumRuleCall();
-		}
 	)
 ;
 

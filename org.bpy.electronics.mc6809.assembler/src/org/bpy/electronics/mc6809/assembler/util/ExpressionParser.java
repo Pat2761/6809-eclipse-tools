@@ -30,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -133,7 +134,8 @@ public class ExpressionParser {
 				equValues = new HashMap<>();
 			}
 			
-			equValues.put(equDirective.getName().getValue(), equValue);
+			DirectiveLine directiveLine=(DirectiveLine)equDirective.eContainer();
+			equValues.put(directiveLine.getName().getValue(), equValue);
 			return equValue;
 		} else {
 			return -1;

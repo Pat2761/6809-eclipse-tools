@@ -5,7 +5,6 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
-import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,27 +24,15 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl#getDirective <em>Directive</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl#getSpaceCount <em>Space Count</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl#getKeepCount <em>Keep Count</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements SpcDirective
 {
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected IdentifierValue name;
-
   /**
    * The default value of the '{@link #getDirective() <em>Directive</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -87,26 +74,6 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
   protected Expression keepCount;
 
   /**
-   * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComment()
-   * @generated
-   * @ordered
-   */
-  protected static final String COMMENT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComment()
-   * @generated
-   * @ordered
-   */
-  protected String comment = COMMENT_EDEFAULT;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -125,56 +92,6 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
   protected EClass eStaticClass()
   {
     return AssemblerPackage.Literals.SPC_DIRECTIVE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public IdentifierValue getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetName(IdentifierValue newName, NotificationChain msgs)
-  {
-    IdentifierValue oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.SPC_DIRECTIVE__NAME, oldName, newName);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setName(IdentifierValue newName)
-  {
-    if (newName != name)
-    {
-      NotificationChain msgs = null;
-      if (name != null)
-        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SPC_DIRECTIVE__NAME, null, msgs);
-      if (newName != null)
-        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SPC_DIRECTIVE__NAME, null, msgs);
-      msgs = basicSetName(newName, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SPC_DIRECTIVE__NAME, newName, newName));
   }
 
   /**
@@ -308,37 +225,10 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
    * @generated
    */
   @Override
-  public String getComment()
-  {
-    return comment;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setComment(String newComment)
-  {
-    String oldComment = comment;
-    comment = newComment;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SPC_DIRECTIVE__COMMENT, oldComment, comment));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
-      case AssemblerPackage.SPC_DIRECTIVE__NAME:
-        return basicSetName(null, msgs);
       case AssemblerPackage.SPC_DIRECTIVE__SPACE_COUNT:
         return basicSetSpaceCount(null, msgs);
       case AssemblerPackage.SPC_DIRECTIVE__KEEP_COUNT:
@@ -357,16 +247,12 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
   {
     switch (featureID)
     {
-      case AssemblerPackage.SPC_DIRECTIVE__NAME:
-        return getName();
       case AssemblerPackage.SPC_DIRECTIVE__DIRECTIVE:
         return getDirective();
       case AssemblerPackage.SPC_DIRECTIVE__SPACE_COUNT:
         return getSpaceCount();
       case AssemblerPackage.SPC_DIRECTIVE__KEEP_COUNT:
         return getKeepCount();
-      case AssemblerPackage.SPC_DIRECTIVE__COMMENT:
-        return getComment();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -381,9 +267,6 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
   {
     switch (featureID)
     {
-      case AssemblerPackage.SPC_DIRECTIVE__NAME:
-        setName((IdentifierValue)newValue);
-        return;
       case AssemblerPackage.SPC_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
         return;
@@ -392,9 +275,6 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
         return;
       case AssemblerPackage.SPC_DIRECTIVE__KEEP_COUNT:
         setKeepCount((Expression)newValue);
-        return;
-      case AssemblerPackage.SPC_DIRECTIVE__COMMENT:
-        setComment((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -410,9 +290,6 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
   {
     switch (featureID)
     {
-      case AssemblerPackage.SPC_DIRECTIVE__NAME:
-        setName((IdentifierValue)null);
-        return;
       case AssemblerPackage.SPC_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
@@ -421,9 +298,6 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
         return;
       case AssemblerPackage.SPC_DIRECTIVE__KEEP_COUNT:
         setKeepCount((Expression)null);
-        return;
-      case AssemblerPackage.SPC_DIRECTIVE__COMMENT:
-        setComment(COMMENT_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -439,16 +313,12 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
   {
     switch (featureID)
     {
-      case AssemblerPackage.SPC_DIRECTIVE__NAME:
-        return name != null;
       case AssemblerPackage.SPC_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
       case AssemblerPackage.SPC_DIRECTIVE__SPACE_COUNT:
         return spaceCount != null;
       case AssemblerPackage.SPC_DIRECTIVE__KEEP_COUNT:
         return keepCount != null;
-      case AssemblerPackage.SPC_DIRECTIVE__COMMENT:
-        return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }
     return super.eIsSet(featureID);
   }
@@ -466,8 +336,6 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (directive: ");
     result.append(directive);
-    result.append(", comment: ");
-    result.append(comment);
     result.append(')');
     return result.toString();
   }

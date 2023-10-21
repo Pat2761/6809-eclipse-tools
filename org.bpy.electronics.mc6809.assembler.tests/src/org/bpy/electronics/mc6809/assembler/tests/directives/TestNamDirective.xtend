@@ -28,7 +28,6 @@ import org.junit.Test
 import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
-import org.bpy.electronics.mc6809.assembler.assembler.FailDirective
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 

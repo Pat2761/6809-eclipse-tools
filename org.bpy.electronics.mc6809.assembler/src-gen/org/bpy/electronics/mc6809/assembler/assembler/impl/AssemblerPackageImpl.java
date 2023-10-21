@@ -717,9 +717,31 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getInstructionLine_Instruction()
+  public EReference getInstructionLine_Name()
   {
     return (EReference)instructionLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getInstructionLine_Instruction()
+  {
+    return (EReference)instructionLineEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getInstructionLine_Comment()
+  {
+    return (EAttribute)instructionLineEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -739,20 +761,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getAsrInstruction_Name()
-  {
-    return (EReference)asrInstructionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAsrInstruction_Instruction()
   {
-    return (EAttribute)asrInstructionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)asrInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -763,18 +774,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getAsrInstruction_Operand()
   {
-    return (EReference)asrInstructionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAsrInstruction_Comment()
-  {
-    return (EAttribute)asrInstructionEClass.getEStructuralFeatures().get(3);
+    return (EReference)asrInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -794,20 +794,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getAslInstruction_Name()
-  {
-    return (EReference)aslInstructionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAslInstruction_Instruction()
   {
-    return (EAttribute)aslInstructionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)aslInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -818,18 +807,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getAslInstruction_Operand()
   {
-    return (EReference)aslInstructionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAslInstruction_Comment()
-  {
-    return (EAttribute)aslInstructionEClass.getEStructuralFeatures().get(3);
+    return (EReference)aslInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -849,20 +827,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getAndCCInstruction_Name()
-  {
-    return (EReference)andCCInstructionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAndCCInstruction_Instruction()
   {
-    return (EAttribute)andCCInstructionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)andCCInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -873,18 +840,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getAndCCInstruction_Operand()
   {
-    return (EReference)andCCInstructionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAndCCInstruction_Comment()
-  {
-    return (EAttribute)andCCInstructionEClass.getEStructuralFeatures().get(3);
+    return (EReference)andCCInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -904,20 +860,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getAndInstruction_Name()
-  {
-    return (EReference)andInstructionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAndInstruction_Instruction()
   {
-    return (EAttribute)andInstructionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)andInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -928,18 +873,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getAndInstruction_Operand()
   {
-    return (EReference)andInstructionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAndInstruction_Comment()
-  {
-    return (EAttribute)andInstructionEClass.getEStructuralFeatures().get(3);
+    return (EReference)andInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -959,20 +893,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getAdddInstruction_Name()
-  {
-    return (EReference)adddInstructionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAdddInstruction_Instruction()
   {
-    return (EAttribute)adddInstructionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)adddInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -983,18 +906,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getAdddInstruction_Operand()
   {
-    return (EReference)adddInstructionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAdddInstruction_Comment()
-  {
-    return (EAttribute)adddInstructionEClass.getEStructuralFeatures().get(3);
+    return (EReference)adddInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1014,20 +926,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getAddInstruction_Name()
-  {
-    return (EReference)addInstructionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAddInstruction_Instruction()
   {
-    return (EAttribute)addInstructionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)addInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1038,18 +939,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getAddInstruction_Operand()
   {
-    return (EReference)addInstructionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAddInstruction_Comment()
-  {
-    return (EAttribute)addInstructionEClass.getEStructuralFeatures().get(3);
+    return (EReference)addInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1069,20 +959,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getAdcInstruction_Name()
-  {
-    return (EReference)adcInstructionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAdcInstruction_Instruction()
   {
-    return (EAttribute)adcInstructionEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)adcInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1093,18 +972,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getAdcInstruction_Operand()
   {
-    return (EReference)adcInstructionEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAdcInstruction_Comment()
-  {
-    return (EAttribute)adcInstructionEClass.getEStructuralFeatures().get(3);
+    return (EReference)adcInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1124,31 +992,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getAbxInstruction_Name()
-  {
-    return (EReference)abxInstructionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAbxInstruction_Instruction()
   {
-    return (EAttribute)abxInstructionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getAbxInstruction_Comment()
-  {
-    return (EAttribute)abxInstructionEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)abxInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1586,9 +1432,31 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getDirectiveLine_Directive()
+  public EReference getDirectiveLine_Name()
   {
     return (EReference)directiveLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getDirectiveLine_Directive()
+  {
+    return (EReference)directiveLineEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDirectiveLine_Comment()
+  {
+    return (EAttribute)directiveLineEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1608,20 +1476,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getFccDirective_Name()
-  {
-    return (EReference)fccDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getFccDirective_Directive()
   {
-    return (EAttribute)fccDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)fccDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1632,18 +1489,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getFccDirective_String()
   {
-    return (EAttribute)fccDirectiveEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getFccDirective_Comment()
-  {
-    return (EAttribute)fccDirectiveEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)fccDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1663,20 +1509,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getRegDirective_Name()
-  {
-    return (EReference)regDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getRegDirective_Directive()
   {
-    return (EAttribute)regDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)regDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1687,18 +1522,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getRegDirective_Options()
   {
-    return (EAttribute)regDirectiveEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getRegDirective_Comment()
-  {
-    return (EAttribute)regDirectiveEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)regDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1718,20 +1542,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getSpcDirective_Name()
-  {
-    return (EReference)spcDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getSpcDirective_Directive()
   {
-    return (EAttribute)spcDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)spcDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1742,7 +1555,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getSpcDirective_SpaceCount()
   {
-    return (EReference)spcDirectiveEClass.getEStructuralFeatures().get(2);
+    return (EReference)spcDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1753,18 +1566,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getSpcDirective_KeepCount()
   {
-    return (EReference)spcDirectiveEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getSpcDirective_Comment()
-  {
-    return (EAttribute)spcDirectiveEClass.getEStructuralFeatures().get(4);
+    return (EReference)spcDirectiveEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -1784,20 +1586,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getNamDirective_Name()
-  {
-    return (EReference)namDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getNamDirective_Directive()
   {
-    return (EAttribute)namDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)namDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1808,18 +1599,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getNamDirective_Operand()
   {
-    return (EReference)namDirectiveEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getNamDirective_Comment()
-  {
-    return (EAttribute)namDirectiveEClass.getEStructuralFeatures().get(3);
+    return (EReference)namDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1839,20 +1619,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getPagDirective_Name()
-  {
-    return (EReference)pagDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getPagDirective_Directive()
   {
-    return (EAttribute)pagDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)pagDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1863,18 +1632,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getPagDirective_Operand()
   {
-    return (EReference)pagDirectiveEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getPagDirective_Comment()
-  {
-    return (EAttribute)pagDirectiveEClass.getEStructuralFeatures().get(3);
+    return (EReference)pagDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1894,20 +1652,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getOptDirective_Name()
-  {
-    return (EReference)optDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getOptDirective_Directive()
   {
-    return (EAttribute)optDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)optDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1918,18 +1665,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getOptDirective_Options()
   {
-    return (EAttribute)optDirectiveEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getOptDirective_Comment()
-  {
-    return (EAttribute)optDirectiveEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)optDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1949,31 +1685,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getFailDirective_Name()
-  {
-    return (EReference)failDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getFailDirective_Directive()
   {
-    return (EAttribute)failDirectiveEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getFailDirective_Comment()
-  {
-    return (EAttribute)failDirectiveEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)failDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1993,20 +1707,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getSetDirective_Name()
-  {
-    return (EReference)setDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getSetDirective_Directive()
   {
-    return (EAttribute)setDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)setDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2017,7 +1720,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getSetDirective_IsRelativeToPC()
   {
-    return (EAttribute)setDirectiveEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)setDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2028,18 +1731,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getSetDirective_Operand()
   {
-    return (EReference)setDirectiveEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getSetDirective_Comment()
-  {
-    return (EAttribute)setDirectiveEClass.getEStructuralFeatures().get(4);
+    return (EReference)setDirectiveEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2059,20 +1751,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getFillDirective_Name()
-  {
-    return (EReference)fillDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getFillDirective_Directive()
   {
-    return (EAttribute)fillDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)fillDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2083,7 +1764,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getFillDirective_Value()
   {
-    return (EReference)fillDirectiveEClass.getEStructuralFeatures().get(2);
+    return (EReference)fillDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2094,18 +1775,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getFillDirective_Number()
   {
-    return (EReference)fillDirectiveEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getFillDirective_Comment()
-  {
-    return (EAttribute)fillDirectiveEClass.getEStructuralFeatures().get(4);
+    return (EReference)fillDirectiveEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2125,20 +1795,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getBszDirective_Name()
-  {
-    return (EReference)bszDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getBszDirective_Directive()
   {
-    return (EAttribute)bszDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)bszDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2149,18 +1808,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getBszDirective_Operand()
   {
-    return (EReference)bszDirectiveEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getBszDirective_Comment()
-  {
-    return (EAttribute)bszDirectiveEClass.getEStructuralFeatures().get(3);
+    return (EReference)bszDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2180,20 +1828,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getFdbDirective_Name()
-  {
-    return (EReference)fdbDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getFdbDirective_Directive()
   {
-    return (EAttribute)fdbDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)fdbDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2204,18 +1841,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getFdbDirective_Operand()
   {
-    return (EReference)fdbDirectiveEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getFdbDirective_Comment()
-  {
-    return (EAttribute)fdbDirectiveEClass.getEStructuralFeatures().get(3);
+    return (EReference)fdbDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2235,20 +1861,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getFcbDirective_Name()
-  {
-    return (EReference)fcbDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getFcbDirective_Directive()
   {
-    return (EAttribute)fcbDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)fcbDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2259,18 +1874,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getFcbDirective_Operand()
   {
-    return (EReference)fcbDirectiveEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getFcbDirective_Comment()
-  {
-    return (EAttribute)fcbDirectiveEClass.getEStructuralFeatures().get(3);
+    return (EReference)fcbDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2290,20 +1894,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getRmbDirective_Name()
-  {
-    return (EReference)rmbDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getRmbDirective_Directive()
   {
-    return (EAttribute)rmbDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)rmbDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2314,7 +1907,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getRmbDirective_IsRelativeToPC()
   {
-    return (EAttribute)rmbDirectiveEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)rmbDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2325,18 +1918,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getRmbDirective_Operand()
   {
-    return (EReference)rmbDirectiveEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getRmbDirective_Comment()
-  {
-    return (EAttribute)rmbDirectiveEClass.getEStructuralFeatures().get(4);
+    return (EReference)rmbDirectiveEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2356,20 +1938,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getEndDirective_Name()
-  {
-    return (EReference)endDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getEndDirective_Directive()
   {
-    return (EAttribute)endDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)endDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2380,7 +1951,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getEndDirective_IsRelativeToPC()
   {
-    return (EAttribute)endDirectiveEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)endDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2391,18 +1962,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getEndDirective_Operand()
   {
-    return (EReference)endDirectiveEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getEndDirective_Comment()
-  {
-    return (EAttribute)endDirectiveEClass.getEStructuralFeatures().get(4);
+    return (EReference)endDirectiveEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2422,20 +1982,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getOrgDirective_Name()
-  {
-    return (EReference)orgDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getOrgDirective_Directive()
   {
-    return (EAttribute)orgDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)orgDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2446,7 +1995,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getOrgDirective_IsRelativeToPC()
   {
-    return (EAttribute)orgDirectiveEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)orgDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2457,18 +2006,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getOrgDirective_Operand()
   {
-    return (EReference)orgDirectiveEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getOrgDirective_Comment()
-  {
-    return (EAttribute)orgDirectiveEClass.getEStructuralFeatures().get(4);
+    return (EReference)orgDirectiveEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -2488,20 +2026,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getEquDirective_Name()
-  {
-    return (EReference)equDirectiveEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getEquDirective_Directive()
   {
-    return (EAttribute)equDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)equDirectiveEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2512,7 +2039,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getEquDirective_IsRelativeToPC()
   {
-    return (EAttribute)equDirectiveEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)equDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -2523,18 +2050,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EReference getEquDirective_Operand()
   {
-    return (EReference)equDirectiveEClass.getEStructuralFeatures().get(3);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getEquDirective_Comment()
-  {
-    return (EAttribute)equDirectiveEClass.getEStructuralFeatures().get(4);
+    return (EReference)equDirectiveEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -3219,54 +2735,40 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEAttribute(commentLineEClass, COMMENT_LINE__COMMENT);
 
     instructionLineEClass = createEClass(INSTRUCTION_LINE);
+    createEReference(instructionLineEClass, INSTRUCTION_LINE__NAME);
     createEReference(instructionLineEClass, INSTRUCTION_LINE__INSTRUCTION);
+    createEAttribute(instructionLineEClass, INSTRUCTION_LINE__COMMENT);
 
     asrInstructionEClass = createEClass(ASR_INSTRUCTION);
-    createEReference(asrInstructionEClass, ASR_INSTRUCTION__NAME);
     createEAttribute(asrInstructionEClass, ASR_INSTRUCTION__INSTRUCTION);
     createEReference(asrInstructionEClass, ASR_INSTRUCTION__OPERAND);
-    createEAttribute(asrInstructionEClass, ASR_INSTRUCTION__COMMENT);
 
     aslInstructionEClass = createEClass(ASL_INSTRUCTION);
-    createEReference(aslInstructionEClass, ASL_INSTRUCTION__NAME);
     createEAttribute(aslInstructionEClass, ASL_INSTRUCTION__INSTRUCTION);
     createEReference(aslInstructionEClass, ASL_INSTRUCTION__OPERAND);
-    createEAttribute(aslInstructionEClass, ASL_INSTRUCTION__COMMENT);
 
     andCCInstructionEClass = createEClass(AND_CC_INSTRUCTION);
-    createEReference(andCCInstructionEClass, AND_CC_INSTRUCTION__NAME);
     createEAttribute(andCCInstructionEClass, AND_CC_INSTRUCTION__INSTRUCTION);
     createEReference(andCCInstructionEClass, AND_CC_INSTRUCTION__OPERAND);
-    createEAttribute(andCCInstructionEClass, AND_CC_INSTRUCTION__COMMENT);
 
     andInstructionEClass = createEClass(AND_INSTRUCTION);
-    createEReference(andInstructionEClass, AND_INSTRUCTION__NAME);
     createEAttribute(andInstructionEClass, AND_INSTRUCTION__INSTRUCTION);
     createEReference(andInstructionEClass, AND_INSTRUCTION__OPERAND);
-    createEAttribute(andInstructionEClass, AND_INSTRUCTION__COMMENT);
 
     adddInstructionEClass = createEClass(ADDD_INSTRUCTION);
-    createEReference(adddInstructionEClass, ADDD_INSTRUCTION__NAME);
     createEAttribute(adddInstructionEClass, ADDD_INSTRUCTION__INSTRUCTION);
     createEReference(adddInstructionEClass, ADDD_INSTRUCTION__OPERAND);
-    createEAttribute(adddInstructionEClass, ADDD_INSTRUCTION__COMMENT);
 
     addInstructionEClass = createEClass(ADD_INSTRUCTION);
-    createEReference(addInstructionEClass, ADD_INSTRUCTION__NAME);
     createEAttribute(addInstructionEClass, ADD_INSTRUCTION__INSTRUCTION);
     createEReference(addInstructionEClass, ADD_INSTRUCTION__OPERAND);
-    createEAttribute(addInstructionEClass, ADD_INSTRUCTION__COMMENT);
 
     adcInstructionEClass = createEClass(ADC_INSTRUCTION);
-    createEReference(adcInstructionEClass, ADC_INSTRUCTION__NAME);
     createEAttribute(adcInstructionEClass, ADC_INSTRUCTION__INSTRUCTION);
     createEReference(adcInstructionEClass, ADC_INSTRUCTION__OPERAND);
-    createEAttribute(adcInstructionEClass, ADC_INSTRUCTION__COMMENT);
 
     abxInstructionEClass = createEClass(ABX_INSTRUCTION);
-    createEReference(abxInstructionEClass, ABX_INSTRUCTION__NAME);
     createEAttribute(abxInstructionEClass, ABX_INSTRUCTION__INSTRUCTION);
-    createEAttribute(abxInstructionEClass, ABX_INSTRUCTION__COMMENT);
 
     extendedIndirectOperandEClass = createEClass(EXTENDED_INDIRECT_OPERAND);
     createEReference(extendedIndirectOperandEClass, EXTENDED_INDIRECT_OPERAND__OPERAND);
@@ -3320,109 +2822,79 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEAttribute(relatifToPCIndirectModeEClass, RELATIF_TO_PC_INDIRECT_MODE__REGISTER);
 
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
+    createEReference(directiveLineEClass, DIRECTIVE_LINE__NAME);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__DIRECTIVE);
+    createEAttribute(directiveLineEClass, DIRECTIVE_LINE__COMMENT);
 
     fccDirectiveEClass = createEClass(FCC_DIRECTIVE);
-    createEReference(fccDirectiveEClass, FCC_DIRECTIVE__NAME);
     createEAttribute(fccDirectiveEClass, FCC_DIRECTIVE__DIRECTIVE);
     createEAttribute(fccDirectiveEClass, FCC_DIRECTIVE__STRING);
-    createEAttribute(fccDirectiveEClass, FCC_DIRECTIVE__COMMENT);
 
     regDirectiveEClass = createEClass(REG_DIRECTIVE);
-    createEReference(regDirectiveEClass, REG_DIRECTIVE__NAME);
     createEAttribute(regDirectiveEClass, REG_DIRECTIVE__DIRECTIVE);
     createEAttribute(regDirectiveEClass, REG_DIRECTIVE__OPTIONS);
-    createEAttribute(regDirectiveEClass, REG_DIRECTIVE__COMMENT);
 
     spcDirectiveEClass = createEClass(SPC_DIRECTIVE);
-    createEReference(spcDirectiveEClass, SPC_DIRECTIVE__NAME);
     createEAttribute(spcDirectiveEClass, SPC_DIRECTIVE__DIRECTIVE);
     createEReference(spcDirectiveEClass, SPC_DIRECTIVE__SPACE_COUNT);
     createEReference(spcDirectiveEClass, SPC_DIRECTIVE__KEEP_COUNT);
-    createEAttribute(spcDirectiveEClass, SPC_DIRECTIVE__COMMENT);
 
     namDirectiveEClass = createEClass(NAM_DIRECTIVE);
-    createEReference(namDirectiveEClass, NAM_DIRECTIVE__NAME);
     createEAttribute(namDirectiveEClass, NAM_DIRECTIVE__DIRECTIVE);
     createEReference(namDirectiveEClass, NAM_DIRECTIVE__OPERAND);
-    createEAttribute(namDirectiveEClass, NAM_DIRECTIVE__COMMENT);
 
     pagDirectiveEClass = createEClass(PAG_DIRECTIVE);
-    createEReference(pagDirectiveEClass, PAG_DIRECTIVE__NAME);
     createEAttribute(pagDirectiveEClass, PAG_DIRECTIVE__DIRECTIVE);
     createEReference(pagDirectiveEClass, PAG_DIRECTIVE__OPERAND);
-    createEAttribute(pagDirectiveEClass, PAG_DIRECTIVE__COMMENT);
 
     optDirectiveEClass = createEClass(OPT_DIRECTIVE);
-    createEReference(optDirectiveEClass, OPT_DIRECTIVE__NAME);
     createEAttribute(optDirectiveEClass, OPT_DIRECTIVE__DIRECTIVE);
     createEAttribute(optDirectiveEClass, OPT_DIRECTIVE__OPTIONS);
-    createEAttribute(optDirectiveEClass, OPT_DIRECTIVE__COMMENT);
 
     failDirectiveEClass = createEClass(FAIL_DIRECTIVE);
-    createEReference(failDirectiveEClass, FAIL_DIRECTIVE__NAME);
     createEAttribute(failDirectiveEClass, FAIL_DIRECTIVE__DIRECTIVE);
-    createEAttribute(failDirectiveEClass, FAIL_DIRECTIVE__COMMENT);
 
     setDirectiveEClass = createEClass(SET_DIRECTIVE);
-    createEReference(setDirectiveEClass, SET_DIRECTIVE__NAME);
     createEAttribute(setDirectiveEClass, SET_DIRECTIVE__DIRECTIVE);
     createEAttribute(setDirectiveEClass, SET_DIRECTIVE__IS_RELATIVE_TO_PC);
     createEReference(setDirectiveEClass, SET_DIRECTIVE__OPERAND);
-    createEAttribute(setDirectiveEClass, SET_DIRECTIVE__COMMENT);
 
     fillDirectiveEClass = createEClass(FILL_DIRECTIVE);
-    createEReference(fillDirectiveEClass, FILL_DIRECTIVE__NAME);
     createEAttribute(fillDirectiveEClass, FILL_DIRECTIVE__DIRECTIVE);
     createEReference(fillDirectiveEClass, FILL_DIRECTIVE__VALUE);
     createEReference(fillDirectiveEClass, FILL_DIRECTIVE__NUMBER);
-    createEAttribute(fillDirectiveEClass, FILL_DIRECTIVE__COMMENT);
 
     bszDirectiveEClass = createEClass(BSZ_DIRECTIVE);
-    createEReference(bszDirectiveEClass, BSZ_DIRECTIVE__NAME);
     createEAttribute(bszDirectiveEClass, BSZ_DIRECTIVE__DIRECTIVE);
     createEReference(bszDirectiveEClass, BSZ_DIRECTIVE__OPERAND);
-    createEAttribute(bszDirectiveEClass, BSZ_DIRECTIVE__COMMENT);
 
     fdbDirectiveEClass = createEClass(FDB_DIRECTIVE);
-    createEReference(fdbDirectiveEClass, FDB_DIRECTIVE__NAME);
     createEAttribute(fdbDirectiveEClass, FDB_DIRECTIVE__DIRECTIVE);
     createEReference(fdbDirectiveEClass, FDB_DIRECTIVE__OPERAND);
-    createEAttribute(fdbDirectiveEClass, FDB_DIRECTIVE__COMMENT);
 
     fcbDirectiveEClass = createEClass(FCB_DIRECTIVE);
-    createEReference(fcbDirectiveEClass, FCB_DIRECTIVE__NAME);
     createEAttribute(fcbDirectiveEClass, FCB_DIRECTIVE__DIRECTIVE);
     createEReference(fcbDirectiveEClass, FCB_DIRECTIVE__OPERAND);
-    createEAttribute(fcbDirectiveEClass, FCB_DIRECTIVE__COMMENT);
 
     rmbDirectiveEClass = createEClass(RMB_DIRECTIVE);
-    createEReference(rmbDirectiveEClass, RMB_DIRECTIVE__NAME);
     createEAttribute(rmbDirectiveEClass, RMB_DIRECTIVE__DIRECTIVE);
     createEAttribute(rmbDirectiveEClass, RMB_DIRECTIVE__IS_RELATIVE_TO_PC);
     createEReference(rmbDirectiveEClass, RMB_DIRECTIVE__OPERAND);
-    createEAttribute(rmbDirectiveEClass, RMB_DIRECTIVE__COMMENT);
 
     endDirectiveEClass = createEClass(END_DIRECTIVE);
-    createEReference(endDirectiveEClass, END_DIRECTIVE__NAME);
     createEAttribute(endDirectiveEClass, END_DIRECTIVE__DIRECTIVE);
     createEAttribute(endDirectiveEClass, END_DIRECTIVE__IS_RELATIVE_TO_PC);
     createEReference(endDirectiveEClass, END_DIRECTIVE__OPERAND);
-    createEAttribute(endDirectiveEClass, END_DIRECTIVE__COMMENT);
 
     orgDirectiveEClass = createEClass(ORG_DIRECTIVE);
-    createEReference(orgDirectiveEClass, ORG_DIRECTIVE__NAME);
     createEAttribute(orgDirectiveEClass, ORG_DIRECTIVE__DIRECTIVE);
     createEAttribute(orgDirectiveEClass, ORG_DIRECTIVE__IS_RELATIVE_TO_PC);
     createEReference(orgDirectiveEClass, ORG_DIRECTIVE__OPERAND);
-    createEAttribute(orgDirectiveEClass, ORG_DIRECTIVE__COMMENT);
 
     equDirectiveEClass = createEClass(EQU_DIRECTIVE);
-    createEReference(equDirectiveEClass, EQU_DIRECTIVE__NAME);
     createEAttribute(equDirectiveEClass, EQU_DIRECTIVE__DIRECTIVE);
     createEAttribute(equDirectiveEClass, EQU_DIRECTIVE__IS_RELATIVE_TO_PC);
     createEReference(equDirectiveEClass, EQU_DIRECTIVE__OPERAND);
-    createEAttribute(equDirectiveEClass, EQU_DIRECTIVE__COMMENT);
 
     listOfExpressionEClass = createEClass(LIST_OF_EXPRESSION);
     createEReference(listOfExpressionEClass, LIST_OF_EXPRESSION__EXPRESSIONS);
@@ -3561,54 +3033,40 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getCommentLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, CommentLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(instructionLineEClass, InstructionLine.class, "InstructionLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getInstructionLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstructionLine_Instruction(), ecorePackage.getEObject(), null, "instruction", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInstructionLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(asrInstructionEClass, AsrInstruction.class, "AsrInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAsrInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AsrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAsrInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AsrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAsrInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, AsrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAsrInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AsrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(aslInstructionEClass, AslInstruction.class, "AslInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAslInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AslInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAslInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AslInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAslInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, AslInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAslInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AslInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(andCCInstructionEClass, AndCCInstruction.class, "AndCCInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAndCCInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AndCCInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAndCCInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AndCCInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAndCCInstruction_Operand(), this.getImmediatOperand(), null, "operand", null, 0, 1, AndCCInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAndCCInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AndCCInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(andInstructionEClass, AndInstruction.class, "AndInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAndInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AndInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAndInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AndInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAndInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, AndInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAndInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AndInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(adddInstructionEClass, AdddInstruction.class, "AdddInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAdddInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AdddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAdddInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AdddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAdddInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, AdddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAdddInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AdddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(addInstructionEClass, AddInstruction.class, "AddInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAddInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAddInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAddInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, AddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAddInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AddInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(adcInstructionEClass, AdcInstruction.class, "AdcInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAdcInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AdcInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAdcInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AdcInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getAdcInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, AdcInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAdcInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AdcInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(abxInstructionEClass, AbxInstruction.class, "AbxInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAbxInstruction_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, AbxInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAbxInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, AbxInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getAbxInstruction_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, AbxInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(extendedIndirectOperandEClass, ExtendedIndirectOperand.class, "ExtendedIndirectOperand", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExtendedIndirectOperand_Operand(), this.getExpression(), null, "operand", null, 0, 1, ExtendedIndirectOperand.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -3662,109 +3120,79 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getRelatifToPCIndirectMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, RelatifToPCIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getDirectiveLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDirectiveLine_Directive(), ecorePackage.getEObject(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDirectiveLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fccDirectiveEClass, FccDirective.class, "FccDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFccDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFccDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFccDirective_String(), ecorePackage.getEString(), "string", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFccDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(regDirectiveEClass, RegDirective.class, "RegDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRegDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, RegDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRegDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, RegDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRegDirective_Options(), this.getRegister(), "options", null, 0, -1, RegDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRegDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, RegDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(spcDirectiveEClass, SpcDirective.class, "SpcDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSpcDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, SpcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSpcDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, SpcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpcDirective_SpaceCount(), this.getExpression(), null, "spaceCount", null, 0, 1, SpcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSpcDirective_KeepCount(), this.getExpression(), null, "keepCount", null, 0, 1, SpcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSpcDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, SpcDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(namDirectiveEClass, NamDirective.class, "NamDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getNamDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, NamDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getNamDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, NamDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getNamDirective_Operand(), this.getIdentifierValue(), null, "operand", null, 0, 1, NamDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getNamDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, NamDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(pagDirectiveEClass, PagDirective.class, "PagDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getPagDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, PagDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPagDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, PagDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getPagDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, PagDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getPagDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, PagDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(optDirectiveEClass, OptDirective.class, "OptDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getOptDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, OptDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOptDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, OptDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOptDirective_Options(), this.getAssemblyOption(), "options", null, 0, -1, OptDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getOptDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, OptDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(failDirectiveEClass, FailDirective.class, "FailDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFailDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, FailDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFailDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, FailDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFailDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FailDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(setDirectiveEClass, SetDirective.class, "SetDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getSetDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSetDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getSetDirective_IsRelativeToPC(), ecorePackage.getEBoolean(), "isRelativeToPC", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSetDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getSetDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, SetDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fillDirectiveEClass, FillDirective.class, "FillDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFillDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, FillDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFillDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, FillDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFillDirective_Value(), this.getExpression(), null, "value", null, 0, 1, FillDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFillDirective_Number(), this.getExpression(), null, "number", null, 0, 1, FillDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFillDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FillDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bszDirectiveEClass, BszDirective.class, "BszDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getBszDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, BszDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getBszDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, BszDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getBszDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, BszDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getBszDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, BszDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fdbDirectiveEClass, FdbDirective.class, "FdbDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFdbDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, FdbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFdbDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, FdbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFdbDirective_Operand(), this.getListOfExpression(), null, "operand", null, 0, 1, FdbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFdbDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FdbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fcbDirectiveEClass, FcbDirective.class, "FcbDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getFcbDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, FcbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getFcbDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, FcbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getFcbDirective_Operand(), this.getListOfExpression(), null, "operand", null, 0, 1, FcbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFcbDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, FcbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(rmbDirectiveEClass, RmbDirective.class, "RmbDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getRmbDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, RmbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRmbDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, RmbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getRmbDirective_IsRelativeToPC(), ecorePackage.getEBoolean(), "isRelativeToPC", null, 0, 1, RmbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRmbDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, RmbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getRmbDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, RmbDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(endDirectiveEClass, EndDirective.class, "EndDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEndDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, EndDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEndDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, EndDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEndDirective_IsRelativeToPC(), ecorePackage.getEBoolean(), "isRelativeToPC", null, 0, 1, EndDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEndDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, EndDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEndDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, EndDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orgDirectiveEClass, OrgDirective.class, "OrgDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getOrgDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, OrgDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOrgDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, OrgDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOrgDirective_IsRelativeToPC(), ecorePackage.getEBoolean(), "isRelativeToPC", null, 0, 1, OrgDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getOrgDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, OrgDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getOrgDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, OrgDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(equDirectiveEClass, EquDirective.class, "EquDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getEquDirective_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEquDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEquDirective_IsRelativeToPC(), ecorePackage.getEBoolean(), "isRelativeToPC", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEquDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getEquDirective_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listOfExpressionEClass, ListOfExpression.class, "ListOfExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getListOfExpression_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, ListOfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

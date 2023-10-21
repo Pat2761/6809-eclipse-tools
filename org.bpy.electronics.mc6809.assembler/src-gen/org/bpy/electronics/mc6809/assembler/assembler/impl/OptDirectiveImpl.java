@@ -7,16 +7,13 @@ import java.util.Collection;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblyOption;
-import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -31,26 +28,14 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl#getDirective <em>Directive</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl#getOptions <em>Options</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements OptDirective
 {
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected IdentifierValue name;
-
   /**
    * The default value of the '{@link #getDirective() <em>Directive</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -82,26 +67,6 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
   protected EList<AssemblyOption> options;
 
   /**
-   * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComment()
-   * @generated
-   * @ordered
-   */
-  protected static final String COMMENT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComment()
-   * @generated
-   * @ordered
-   */
-  protected String comment = COMMENT_EDEFAULT;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -120,56 +85,6 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
   protected EClass eStaticClass()
   {
     return AssemblerPackage.Literals.OPT_DIRECTIVE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public IdentifierValue getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetName(IdentifierValue newName, NotificationChain msgs)
-  {
-    IdentifierValue oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.OPT_DIRECTIVE__NAME, oldName, newName);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setName(IdentifierValue newName)
-  {
-    if (newName != name)
-    {
-      NotificationChain msgs = null;
-      if (name != null)
-        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.OPT_DIRECTIVE__NAME, null, msgs);
-      if (newName != null)
-        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.OPT_DIRECTIVE__NAME, null, msgs);
-      msgs = basicSetName(newName, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OPT_DIRECTIVE__NAME, newName, newName));
   }
 
   /**
@@ -218,59 +133,14 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
    * @generated
    */
   @Override
-  public String getComment()
-  {
-    return comment;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setComment(String newComment)
-  {
-    String oldComment = comment;
-    comment = newComment;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OPT_DIRECTIVE__COMMENT, oldComment, comment));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case AssemblerPackage.OPT_DIRECTIVE__NAME:
-        return basicSetName(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
-      case AssemblerPackage.OPT_DIRECTIVE__NAME:
-        return getName();
       case AssemblerPackage.OPT_DIRECTIVE__DIRECTIVE:
         return getDirective();
       case AssemblerPackage.OPT_DIRECTIVE__OPTIONS:
         return getOptions();
-      case AssemblerPackage.OPT_DIRECTIVE__COMMENT:
-        return getComment();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -286,18 +156,12 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
   {
     switch (featureID)
     {
-      case AssemblerPackage.OPT_DIRECTIVE__NAME:
-        setName((IdentifierValue)newValue);
-        return;
       case AssemblerPackage.OPT_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
         return;
       case AssemblerPackage.OPT_DIRECTIVE__OPTIONS:
         getOptions().clear();
         getOptions().addAll((Collection<? extends AssemblyOption>)newValue);
-        return;
-      case AssemblerPackage.OPT_DIRECTIVE__COMMENT:
-        setComment((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -313,17 +177,11 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
   {
     switch (featureID)
     {
-      case AssemblerPackage.OPT_DIRECTIVE__NAME:
-        setName((IdentifierValue)null);
-        return;
       case AssemblerPackage.OPT_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
       case AssemblerPackage.OPT_DIRECTIVE__OPTIONS:
         getOptions().clear();
-        return;
-      case AssemblerPackage.OPT_DIRECTIVE__COMMENT:
-        setComment(COMMENT_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -339,14 +197,10 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
   {
     switch (featureID)
     {
-      case AssemblerPackage.OPT_DIRECTIVE__NAME:
-        return name != null;
       case AssemblerPackage.OPT_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
       case AssemblerPackage.OPT_DIRECTIVE__OPTIONS:
         return options != null && !options.isEmpty();
-      case AssemblerPackage.OPT_DIRECTIVE__COMMENT:
-        return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }
     return super.eIsSet(featureID);
   }
@@ -366,8 +220,6 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
     result.append(directive);
     result.append(", options: ");
     result.append(options);
-    result.append(", comment: ");
-    result.append(comment);
     result.append(')');
     return result.toString();
   }

@@ -3,16 +3,36 @@
  */
 package org.bpy.electronics.mc6809.assembler.tests;
 
-import org.eclipse.xtext.testing.InjectWith;
-import org.eclipse.xtext.testing.XtextRunner;
-import org.junit.Test;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestBszDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestComment;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestEndDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestEquDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestFailDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestFcbDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestFccDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestFdbDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestFillDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestNamDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestOptDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestOrgDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestPagDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestRegDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestRmbDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestSetDirective;
+import org.bpy.electronics.mc6809.assembler.tests.directives.TestSpcDirective;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestABXInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADCInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDDInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDCCInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASRInstruction;
 import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
 
-@RunWith(XtextRunner.class)
-@InjectWith(AssemblerInjectorProvider.class)
+@RunWith(Suite.class)
+@Suite.SuiteClasses({ TestComment.class, TestBszDirective.class, TestEndDirective.class, TestEquDirective.class, TestFailDirective.class, TestFcbDirective.class, TestFccDirective.class, TestFdbDirective.class, TestFillDirective.class, TestNamDirective.class, TestOptDirective.class, TestOrgDirective.class, TestPagDirective.class, TestRegDirective.class, TestRmbDirective.class, TestSetDirective.class, TestSpcDirective.class, TestABXInstruction.class, TestADCInstruction.class, TestADDDInstruction.class, TestADDInstruction.class, TestANDCCInstruction.class, TestANDInstruction.class, TestASLInstruction.class, TestASRInstruction.class })
 @SuppressWarnings("all")
 public class AssemblerParsingTest {
-  @Test
-  public void loadModel() {
-  }
 }

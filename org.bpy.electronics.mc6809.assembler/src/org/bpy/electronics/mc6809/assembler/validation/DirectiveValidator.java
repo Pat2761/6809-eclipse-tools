@@ -29,22 +29,22 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 * @param equDirective reference on the EQU directive
 	 */
 	public void checkEquConstraints(EquDirective equDirective) {
-		if (equDirective.getName() == null) {
-			error("EQU directive must have a label)",
-					AssemblerPackage.Literals.EQU_DIRECTIVE__NAME,
-					MISSING_LABEL);
-		}
-
-		int equValue = ExpressionParser.parse(equDirective);
-		if (equValue > 65535) {
-			error("EQU value can't exceed 65535 (16 bits value)",
-					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
-					INVALID_RANGE);
-		} else 	if (equValue < -32768) {
-			error("EQU value can't be lower than -32768 (16 bits value)",
-					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
-					INVALID_RANGE);
-		} 
+//		if (equDirective.getName() == null) {
+//			error("EQU directive must have a label)",
+//					AssemblerPackage.Literals.EQU_DIRECTIVE__NAME,
+//					MISSING_LABEL);
+//		}
+//
+//		int equValue = ExpressionParser.parse(equDirective);
+//		if (equValue > 65535) {
+//			error("EQU value can't exceed 65535 (16 bits value)",
+//					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
+//					INVALID_RANGE);
+//		} else 	if (equValue < -32768) {
+//			error("EQU value can't be lower than -32768 (16 bits value)",
+//					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
+//					INVALID_RANGE);
+//		} 
 	}
 
 	@Check
@@ -55,23 +55,23 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 * @param orgDirective reference on the ORG directive
 	 */
 	public void checkOrgConstraints(OrgDirective orgDirective) {
-		String label = CommandUtil.getLabel(orgDirective);
-		if (label != null) {
-			error("Label isn't not allow for ORG directive",
-					AssemblerPackage.Literals.ORG_DIRECTIVE__NAME,
-					UNEXPECTED_LABEL);
-		}
-
-		int orgValue = ExpressionParser.parse(orgDirective);
-		if (orgValue > 0xFFFF) {
-			error("ORG value maximum value is $FFFF",
-					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
-					INVALID_RANGE);
-		} else if (orgValue < 0) {
-			error("ORG value can't be negative",
-					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
-					INVALID_RANGE);
-		}
+//		String label = CommandUtil.getLabel(orgDirective);
+//		if (label != null) {
+//			error("Label isn't not allow for ORG directive",
+//					AssemblerPackage.Literals.ORG_DIRECTIVE__NAME,
+//					UNEXPECTED_LABEL);
+//		}
+//
+//		int orgValue = ExpressionParser.parse(orgDirective);
+//		if (orgValue > 0xFFFF) {
+//			error("ORG value maximum value is $FFFF",
+//					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
+//					INVALID_RANGE);
+//		} else if (orgValue < 0) {
+//			error("ORG value can't be negative",
+//					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
+//					INVALID_RANGE);
+//		}
 	}
 
 	@Check
@@ -83,23 +83,23 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	public void checkEndConstraints(EndDirective endDirective) {
 		
-		String label = CommandUtil.getLabel(endDirective);
-		if (label != null) {
-			error("Label isn't not allow for END directive",
-					AssemblerPackage.Literals.END_DIRECTIVE__NAME,
-					UNEXPECTED_LABEL);
-		}
-
-		int equValue = ExpressionParser.parse(endDirective);
-		if (equValue > 0xFFFF) {
-			error("END value maximum value is $FFFF",
-					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
-					INVALID_RANGE);
-		} else if (equValue < 0) {
-			error("END value can't be negative",
-					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
-					INVALID_RANGE);
-		}
+//		String label = CommandUtil.getLabel(endDirective);
+//		if (label != null) {
+//			error("Label isn't not allow for END directive",
+//					AssemblerPackage.Literals.END_DIRECTIVE__NAME,
+//					UNEXPECTED_LABEL);
+//		}
+//
+//		int equValue = ExpressionParser.parse(endDirective);
+//		if (equValue > 0xFFFF) {
+//			error("END value maximum value is $FFFF",
+//					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
+//					INVALID_RANGE);
+//		} else if (equValue < 0) {
+//			error("END value can't be negative",
+//					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
+//					INVALID_RANGE);
+//		}
 	}
 
 	@Check

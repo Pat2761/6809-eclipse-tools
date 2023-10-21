@@ -5,7 +5,6 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
-import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,27 +24,15 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl#getDirective <em>Directive</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl#isIsRelativeToPC <em>Is Relative To PC</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl#getOperand <em>Operand</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
  * @generated
  */
 public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements OrgDirective
 {
-  /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getName()
-   * @generated
-   * @ordered
-   */
-  protected IdentifierValue name;
-
   /**
    * The default value of the '{@link #getDirective() <em>Directive</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -97,26 +84,6 @@ public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements Or
   protected Expression operand;
 
   /**
-   * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComment()
-   * @generated
-   * @ordered
-   */
-  protected static final String COMMENT_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getComment()
-   * @generated
-   * @ordered
-   */
-  protected String comment = COMMENT_EDEFAULT;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -135,56 +102,6 @@ public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements Or
   protected EClass eStaticClass()
   {
     return AssemblerPackage.Literals.ORG_DIRECTIVE;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public IdentifierValue getName()
-  {
-    return name;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetName(IdentifierValue newName, NotificationChain msgs)
-  {
-    IdentifierValue oldName = name;
-    name = newName;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.ORG_DIRECTIVE__NAME, oldName, newName);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setName(IdentifierValue newName)
-  {
-    if (newName != name)
-    {
-      NotificationChain msgs = null;
-      if (name != null)
-        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.ORG_DIRECTIVE__NAME, null, msgs);
-      if (newName != null)
-        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.ORG_DIRECTIVE__NAME, null, msgs);
-      msgs = basicSetName(newName, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ORG_DIRECTIVE__NAME, newName, newName));
   }
 
   /**
@@ -293,37 +210,10 @@ public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements Or
    * @generated
    */
   @Override
-  public String getComment()
-  {
-    return comment;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setComment(String newComment)
-  {
-    String oldComment = comment;
-    comment = newComment;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ORG_DIRECTIVE__COMMENT, oldComment, comment));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
-      case AssemblerPackage.ORG_DIRECTIVE__NAME:
-        return basicSetName(null, msgs);
       case AssemblerPackage.ORG_DIRECTIVE__OPERAND:
         return basicSetOperand(null, msgs);
     }
@@ -340,16 +230,12 @@ public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements Or
   {
     switch (featureID)
     {
-      case AssemblerPackage.ORG_DIRECTIVE__NAME:
-        return getName();
       case AssemblerPackage.ORG_DIRECTIVE__DIRECTIVE:
         return getDirective();
       case AssemblerPackage.ORG_DIRECTIVE__IS_RELATIVE_TO_PC:
         return isIsRelativeToPC();
       case AssemblerPackage.ORG_DIRECTIVE__OPERAND:
         return getOperand();
-      case AssemblerPackage.ORG_DIRECTIVE__COMMENT:
-        return getComment();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -364,9 +250,6 @@ public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements Or
   {
     switch (featureID)
     {
-      case AssemblerPackage.ORG_DIRECTIVE__NAME:
-        setName((IdentifierValue)newValue);
-        return;
       case AssemblerPackage.ORG_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
         return;
@@ -375,9 +258,6 @@ public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements Or
         return;
       case AssemblerPackage.ORG_DIRECTIVE__OPERAND:
         setOperand((Expression)newValue);
-        return;
-      case AssemblerPackage.ORG_DIRECTIVE__COMMENT:
-        setComment((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -393,9 +273,6 @@ public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements Or
   {
     switch (featureID)
     {
-      case AssemblerPackage.ORG_DIRECTIVE__NAME:
-        setName((IdentifierValue)null);
-        return;
       case AssemblerPackage.ORG_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
@@ -404,9 +281,6 @@ public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements Or
         return;
       case AssemblerPackage.ORG_DIRECTIVE__OPERAND:
         setOperand((Expression)null);
-        return;
-      case AssemblerPackage.ORG_DIRECTIVE__COMMENT:
-        setComment(COMMENT_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -422,16 +296,12 @@ public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements Or
   {
     switch (featureID)
     {
-      case AssemblerPackage.ORG_DIRECTIVE__NAME:
-        return name != null;
       case AssemblerPackage.ORG_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
       case AssemblerPackage.ORG_DIRECTIVE__IS_RELATIVE_TO_PC:
         return isRelativeToPC != IS_RELATIVE_TO_PC_EDEFAULT;
       case AssemblerPackage.ORG_DIRECTIVE__OPERAND:
         return operand != null;
-      case AssemblerPackage.ORG_DIRECTIVE__COMMENT:
-        return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }
     return super.eIsSet(featureID);
   }
@@ -451,8 +321,6 @@ public class OrgDirectiveImpl extends MinimalEObjectImpl.Container implements Or
     result.append(directive);
     result.append(", isRelativeToPC: ");
     result.append(isRelativeToPC);
-    result.append(", comment: ");
-    result.append(comment);
     result.append(')');
     return result.toString();
   }

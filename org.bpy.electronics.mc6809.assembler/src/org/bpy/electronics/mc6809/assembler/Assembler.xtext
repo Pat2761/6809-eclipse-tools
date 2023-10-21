@@ -61,14 +61,19 @@ CommentLine:
  * Definition of the list possible instructions
  */
 InstructionLine:
-	instruction = AbxInstruction            |
-	instruction = AdcInstruction            |
-	instruction = AddInstruction            |
-	instruction = AdddInstruction           |
-	instruction = AndInstruction            |
-	instruction = AndCCInstruction          |
-	instruction = AslInstruction			|  
-	instruction = AsrInstruction  
+	(name = IdentifierValue)? WS 
+	(
+		instruction = AbxInstruction            |
+		instruction = AdcInstruction            |
+		instruction = AddInstruction            |
+		instruction = AdddInstruction           |
+		instruction = AndInstruction            |
+		instruction = AndCCInstruction          |
+		instruction = AslInstruction			|  
+		instruction = AsrInstruction
+	)  
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
 ;
 
 /*
@@ -89,24 +94,19 @@ InstructionLine:
  *                    Indexed
  */
 AsrInstruction:
-	(name = IdentifierValue)? WS 
-	   (
-	   	    (
-	   	    	instruction = ('ASRA' | 'ASRB')
-	   	    )
-	   	 |  
-	   	    (
-	   	 	 	instruction = ('ASR')
-				WS operand = ( 
-					DirectOperand  |
-					IndexedOperand | 
-					ExtendedOperand |
-					ExtendedIndirectOperand 
-				)
-	   		)   
-	   )
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	WS? EndOfLine	
+    (
+    	instruction = ('ASRA' | 'ASRB')
+	)
+	|  
+	(
+	 	instruction = ('ASR')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
 ;
 
 /*
@@ -125,24 +125,19 @@ AsrInstruction:
  * Addressing Mode	: Inherent
  */
 AslInstruction:
-	(name = IdentifierValue)? WS 
-	   (
-	   	    (
-	   	    	instruction = ('ASLA' | 'ASLB')
-	   	    )
-	   	 |  
-	   	    (
-	   	 	 	instruction = ('ASL')
-				WS operand = ( 
-					DirectOperand  |
-					IndexedOperand | 
-					ExtendedOperand |
-					ExtendedIndirectOperand 
-				)
-	   		)   
-	   )
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	WS? EndOfLine	
+    (
+	   instruction = ('ASLA' | 'ASLB')
+	)
+	|  
+	(
+	 	instruction = ('ASL')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
 ;
 
 /*
@@ -157,12 +152,10 @@ AslInstruction:
  * Addressing Mode	: Immediate
  */
 AndCCInstruction:
-	(name = IdentifierValue)? WS (instruction = ('ANDCC'))
+	instruction = ('ANDCC')
 	WS operand = ( 
 		ImmediatOperand  
 	)
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	WS? EndOfLine	
 ;
 
 /*
@@ -184,7 +177,7 @@ AndCCInstruction:
  *                    Indexed 
  */
 AndInstruction:
-	(name = IdentifierValue)? WS (instruction = ('ANDA' | 'ANDB'))
+	instruction = ('ANDA' | 'ANDB')
 	WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
@@ -192,8 +185,6 @@ AndInstruction:
 		ExtendedOperand |
 		ExtendedIndirectOperand 
 	)
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	WS? EndOfLine	
 ;
 
 /*
@@ -214,7 +205,7 @@ AndInstruction:
  *                    Indexed 
  */
 AdddInstruction:
-	(name = IdentifierValue)? WS (instruction = ('ADDD'))
+	instruction = ('ADDD')
 	WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
@@ -222,8 +213,6 @@ AdddInstruction:
 		ExtendedOperand |
 		ExtendedIndirectOperand 
 	)
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	WS? EndOfLine	
 ;
 
 /*
@@ -244,7 +233,7 @@ AdddInstruction:
  *                    Indexed 
  */
 AddInstruction:
-	(name = IdentifierValue)? WS (instruction = ('ADDA' | 'ADDB'))
+	instruction = ('ADDA' | 'ADDB')
 	WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
@@ -252,8 +241,6 @@ AddInstruction:
 		ExtendedOperand |
 		ExtendedIndirectOperand 
 	)
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	WS? EndOfLine	
 ;
 
 /*
@@ -274,7 +261,7 @@ AddInstruction:
  *                    Indexed 
  */
 AdcInstruction:
-	(name = IdentifierValue)? WS (instruction = ('ADCA' | 'ADCB'))
+	instruction = ('ADCA' | 'ADCB')
 	WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
@@ -282,8 +269,6 @@ AdcInstruction:
 		ExtendedOperand |
 		ExtendedIndirectOperand 
 	)
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	WS? EndOfLine	
 ;
 
 /*
@@ -297,9 +282,7 @@ AdcInstruction:
  * Addressing Mode	: Inherent 
  */
 AbxInstruction:
-	(name = IdentifierValue)? WS (instruction = 'ABX')
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	WS? EndOfLine	
+	instruction = 'ABX'
 ;
 
 /*
@@ -432,22 +415,27 @@ RelatifToPCIndirectMode:
  * Definition of the list possible directives
  */
 DirectiveLine:
-	   directive = EquDirective
-	|  directive = OrgDirective
-	|  directive = BszDirective
-	|  directive = EndDirective
-	|  directive = FailDirective
-	|  directive = FillDirective
-	|  directive = OptDirective
-	|  directive = PagDirective
-	|  directive = NamDirective
-	|  directive = SetDirective
-	|  directive = SpcDirective
-	|  directive = RegDirective
-	|  directive = FcbDirective
-	|  directive = FdbDirective
-	|  directive = FccDirective
-	|  directive = RmbDirective
+	(name = IdentifierValue)? WS
+	(
+	 	   directive = EquDirective
+		|  directive = OrgDirective
+		|  directive = BszDirective
+		|  directive = EndDirective
+		|  directive = FailDirective
+		|  directive = FillDirective
+		|  directive = OptDirective
+		|  directive = PagDirective
+		|  directive = NamDirective
+		|  directive = SetDirective
+		|  directive = SpcDirective
+		|  directive = RegDirective
+		|  directive = FcbDirective
+		|  directive = FdbDirective
+		|  directive = FccDirective
+		|  directive = RmbDirective
+	)
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine
 ;
 
 /*
@@ -477,10 +465,8 @@ DirectiveLine:
  * Note that more than one delimited string may be placed on a line as in the second example.
  */
 FccDirective:
-	(name = IdentifierValue)? WS (directive = 'FCC')
+	directive = 'FCC'
 	(WS string=STRING) 
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	WS? EndOfLine	
 ;
 
 /*
@@ -510,10 +496,8 @@ FccDirective:
  * (with the desired bit pattern) may be specified.
  */
 RegDirective:
-	(name = IdentifierValue)? WS (directive = 'REG')
+	(directive = 'REG')
 	(WS options+=Register ( ',' options+=Register)*)? 
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-	EndOfLine	
 ;
 
 /*
@@ -532,10 +516,8 @@ RegDirective:
  *  is given (ie. just the directive SPC), the assembler will default to one blank line in the output listing. 
  */
 SpcDirective:
-	(name = IdentifierValue)? WS (directive = 'SPC') 
+	directive = 'SPC' 
 	(WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))? 
-	WS? EndOfLine	
 ;
 
 /*
@@ -555,10 +537,8 @@ SpcDirective:
  * at the top of the following page(s).
  */
 NamDirective:
-	(name = IdentifierValue)? WS (directive = 'NAM'|directive = 'TTL') 
+	(directive = 'NAM'|directive = 'TTL') 
 	WS (operand=IdentifierValue)
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))? 
-	EndOfLine	
 ;
 
 /*
@@ -579,10 +559,8 @@ NamDirective:
  * or subtitle instructions being in the way. 
  */
 PagDirective:
-	(name = IdentifierValue)? WS (directive = 'PAG') 
-	(WS (operand=Expression)?)?
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))? 
-	EndOfLine	
+	directive = 'PAG' 
+	(WS (operand=Expression))?
 ;
 
 /*
@@ -619,11 +597,8 @@ PagDirective:
  * * denotes default option and is not part of option name 
  */
 OptDirective:
-	(name = IdentifierValue)? WS (directive = 'OPT')
+	directive = 'OPT'
 	(WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)? 
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-	EndOfLine	
-	
 ;
 
 /*
@@ -632,9 +607,7 @@ OptDirective:
  * 
  */
 FailDirective:
-	(name = IdentifierValue)? WS (directive = 'FAIL') 
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)?
-	EndOfLine	
+	directive = 'FAIL' 
 ;
 
 /*
@@ -651,13 +624,11 @@ FailDirective:
  * The label is strictly required and no code is generated.  
  */
 SetDirective:
-	(name = IdentifierValue)? WS (directive = 'SET') 
+	directive = 'SET' 
 	WS ( 
 		( isRelativeToPC?='*'? operand=Expression) |
 		( isRelativeToPC?='*' )
 		)
-	WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
-	EndOfLine	
 ;
 
 /*
@@ -667,10 +638,8 @@ SetDirective:
  * the first value define the value to set, the seconfd value define the number of byte to set
  */
 FillDirective:
-	(name = IdentifierValue)? 
-	(WS (directive = 'FILL')) 
+	directive = 'FILL' 
 	(WS value=Expression ',' number=Expression) 
-	(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
 ;
 
 /*
@@ -680,9 +649,8 @@ FillDirective:
  * The operand define the number on byte to reserve
  */
 BszDirective:
-	(name = IdentifierValue)? WS (directive = ('BSZ'|'ZMB')) 
+	directive = ('BSZ'|'ZMB') 
 	(WS operand=Expression) 
-	(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
 ;
 
 
@@ -699,10 +667,8 @@ BszDirective:
  * Again, the label field is optional. 
  */
 FdbDirective:
-	(name = IdentifierValue)? WS (directive = 'FDB') 
+	directive = 'FDB' 
 	(WS (operand = ListOfExpression))? 
-	(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
-	WS? EndOfLine	
 ;
 
 
@@ -719,7 +685,8 @@ FdbDirective:
  * The label is optional. 
  */
 FcbDirective:
-	(name = IdentifierValue)? WS (directive = 'FCB') (WS (operand = ListOfExpression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
+	directive = 'FCB' 
+	(WS (operand = ListOfExpression))?	
 ;
 
 /*
@@ -735,7 +702,8 @@ FcbDirective:
  * The label is optional, and the expression is a 16 bit quantity.
  */
 RmbDirective:
-	(name = IdentifierValue)? WS (directive = 'RMB') (WS (isRelativeToPC?='*'? operand = Expression))? (WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
+	directive = 'RMB' 
+	(WS (isRelativeToPC?='*'? operand = Expression))?	
 ;
 
 /*
@@ -750,12 +718,11 @@ RmbDirective:
  * but is the only means of getting a transfer address appended to a binary output file.  
  */
 EndDirective:
-	(name = IdentifierValue)? WS (directive = 'END') 
+	directive = 'END' 
 	(WS ( 
 		( isRelativeToPC?='*'? operand=Expression) |
 		( isRelativeToPC?='*' )
 		))?
-	(WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? WS? EndOfLine	
 ;
 
 /*
@@ -766,13 +733,11 @@ EndDirective:
  *	No label may be placed on an ORG statement and no code is produced. If no ORG statement appears in the source, an origin of 0000 is assumed. 
  */
 OrgDirective:
-	(name = IdentifierValue)? WS (directive = 'ORG') 
+	directive = 'ORG' 
 	(WS ( 
 		(isRelativeToPC?='*'? operand=Expression) |
 		(isRelativeToPC?='*' )
 		))?
-	WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
-	EndOfLine	
 ;
 
 /*
@@ -780,13 +745,11 @@ OrgDirective:
  * An EQU directive must have a label, following by EQU, an operand, and optionnaly a comment  
  */
 EquDirective:
-	(name = IdentifierValue)? WS (directive = 'EQU') 
+	directive = 'EQU' 
 	WS ( 
 		( isRelativeToPC?='*'? operand=Expression) |
 		( isRelativeToPC?='*' )
 		)
-	WS? (comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
-	EndOfLine	
 ;
 
 ListOfExpression:

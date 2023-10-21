@@ -325,11 +325,17 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     AbxInstruction returns AbxInstruction
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? instruction='ABX' comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     instruction='ABX'
 	 * </pre>
 	 */
 	protected void sequence_AbxInstruction(ISerializationContext context, AbxInstruction semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ABX_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ABX_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAbxInstructionAccess().getInstructionABXKeyword_0(), semanticObject.getInstruction());
+		feeder.finish();
 	}
 	
 	
@@ -368,10 +374,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=IdentifierValue? 
 	 *         (instruction='ADCA' | instruction='ADCB') 
-	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand) 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
 	 */
@@ -387,10 +391,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=IdentifierValue? 
 	 *         (instruction='ADDA' | instruction='ADDB') 
-	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand) 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
 	 */
@@ -406,10 +408,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=IdentifierValue? 
 	 *         instruction='ADDD' 
-	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand) 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
 	 */
@@ -467,11 +467,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     AndCCInstruction returns AndCCInstruction
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? instruction='ANDCC' operand=ImmediatOperand comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (instruction='ANDCC' operand=ImmediatOperand)
 	 * </pre>
 	 */
 	protected void sequence_AndCCInstruction(ISerializationContext context, AndCCInstruction semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.AND_CC_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.AND_CC_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.AND_CC_INSTRUCTION__OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.AND_CC_INSTRUCTION__OPERAND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getAndCCInstructionAccess().getInstructionANDCCKeyword_0_0(), semanticObject.getInstruction());
+		feeder.accept(grammarAccess.getAndCCInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0(), semanticObject.getOperand());
+		feeder.finish();
 	}
 	
 	
@@ -482,10 +491,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=IdentifierValue? 
 	 *         (instruction='ANDA' | instruction='ANDB') 
-	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand) 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
 	 */
@@ -544,13 +551,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=IdentifierValue? 
-	 *         (
-	 *             instruction='ASLA' | 
-	 *             instruction='ASLB' | 
-	 *             (instruction='ASL' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
-	 *         ) 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *         instruction='ASLA' | 
+	 *         instruction='ASLB' | 
+	 *         (instruction='ASL' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
 	 *     )
 	 * </pre>
 	 */
@@ -566,13 +569,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=IdentifierValue? 
-	 *         (
-	 *             instruction='ASRA' | 
-	 *             instruction='ASRB' | 
-	 *             (instruction='ASR' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
-	 *         ) 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *         instruction='ASRA' | 
+	 *         instruction='ASRB' | 
+	 *         (instruction='ASR' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
 	 *     )
 	 * </pre>
 	 */
@@ -661,7 +660,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BszDirective returns BszDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? (directive='BSZ' | directive='ZMB') operand=Expression comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     ((directive='BSZ' | directive='ZMB') operand=Expression)
 	 * </pre>
 	 */
 	protected void sequence_BszDirective(ISerializationContext context, BszDirective semanticObject) {
@@ -778,22 +777,26 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         directive=EquDirective | 
-	 *         directive=OrgDirective | 
-	 *         directive=BszDirective | 
-	 *         directive=EndDirective | 
-	 *         directive=FailDirective | 
-	 *         directive=FillDirective | 
-	 *         directive=OptDirective | 
-	 *         directive=PagDirective | 
-	 *         directive=NamDirective | 
-	 *         directive=SetDirective | 
-	 *         directive=SpcDirective | 
-	 *         directive=RegDirective | 
-	 *         directive=FcbDirective | 
-	 *         directive=FdbDirective | 
-	 *         directive=FccDirective | 
-	 *         directive=RmbDirective
+	 *         name=IdentifierValue? 
+	 *         (
+	 *             directive=EquDirective | 
+	 *             directive=OrgDirective | 
+	 *             directive=BszDirective | 
+	 *             directive=EndDirective | 
+	 *             directive=FailDirective | 
+	 *             directive=FillDirective | 
+	 *             directive=OptDirective | 
+	 *             directive=PagDirective | 
+	 *             directive=NamDirective | 
+	 *             directive=SetDirective | 
+	 *             directive=SpcDirective | 
+	 *             directive=RegDirective | 
+	 *             directive=FcbDirective | 
+	 *             directive=FdbDirective | 
+	 *             directive=FccDirective | 
+	 *             directive=RmbDirective
+	 *         ) 
+	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
 	 *     )
 	 * </pre>
 	 */
@@ -854,12 +857,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     EndDirective returns EndDirective
 	 *
 	 * Constraint:
-	 *     (
-	 *         name=IdentifierValue? 
-	 *         directive='END' 
-	 *         ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*')? 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
-	 *     )
+	 *     (directive='END' ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*')?)
 	 * </pre>
 	 */
 	protected void sequence_EndDirective(ISerializationContext context, EndDirective semanticObject) {
@@ -873,7 +871,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     EquDirective returns EquDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='EQU' ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*') comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='EQU' ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*'))
 	 * </pre>
 	 */
 	protected void sequence_EquDirective(ISerializationContext context, EquDirective semanticObject) {
@@ -947,11 +945,17 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FailDirective returns FailDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='FAIL' comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     directive='FAIL'
 	 * </pre>
 	 */
 	protected void sequence_FailDirective(ISerializationContext context, FailDirective semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FAIL_DIRECTIVE__DIRECTIVE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FAIL_DIRECTIVE__DIRECTIVE));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFailDirectiveAccess().getDirectiveFAILKeyword_0(), semanticObject.getDirective());
+		feeder.finish();
 	}
 	
 	
@@ -961,7 +965,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FcbDirective returns FcbDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='FCB' operand=ListOfExpression? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='FCB' operand=ListOfExpression?)
 	 * </pre>
 	 */
 	protected void sequence_FcbDirective(ISerializationContext context, FcbDirective semanticObject) {
@@ -975,11 +979,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FccDirective returns FccDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='FCC' string=STRING comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='FCC' string=STRING)
 	 * </pre>
 	 */
 	protected void sequence_FccDirective(ISerializationContext context, FccDirective semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FCC_DIRECTIVE__DIRECTIVE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FCC_DIRECTIVE__DIRECTIVE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FCC_DIRECTIVE__STRING) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FCC_DIRECTIVE__STRING));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFccDirectiveAccess().getDirectiveFCCKeyword_0_0(), semanticObject.getDirective());
+		feeder.accept(grammarAccess.getFccDirectiveAccess().getStringSTRINGTerminalRuleCall_1_1_0(), semanticObject.getString());
+		feeder.finish();
 	}
 	
 	
@@ -989,7 +1002,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FdbDirective returns FdbDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='FDB' operand=ListOfExpression? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='FDB' operand=ListOfExpression?)
 	 * </pre>
 	 */
 	protected void sequence_FdbDirective(ISerializationContext context, FdbDirective semanticObject) {
@@ -1003,11 +1016,23 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FillDirective returns FillDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='FILL' value=Expression number=Expression comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='FILL' value=Expression number=Expression)
 	 * </pre>
 	 */
 	protected void sequence_FillDirective(ISerializationContext context, FillDirective semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__DIRECTIVE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__DIRECTIVE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getFillDirectiveAccess().getDirectiveFILLKeyword_0_0(), semanticObject.getDirective());
+		feeder.accept(grammarAccess.getFillDirectiveAccess().getValueExpressionParserRuleCall_1_1_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getFillDirectiveAccess().getNumberExpressionParserRuleCall_1_3_0(), semanticObject.getNumber());
+		feeder.finish();
 	}
 	
 	
@@ -1101,14 +1126,18 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         instruction=AbxInstruction | 
-	 *         instruction=AdcInstruction | 
-	 *         instruction=AddInstruction | 
-	 *         instruction=AdddInstruction | 
-	 *         instruction=AndInstruction | 
-	 *         instruction=AndCCInstruction | 
-	 *         instruction=AslInstruction | 
-	 *         instruction=AsrInstruction
+	 *         name=IdentifierValue? 
+	 *         (
+	 *             instruction=AbxInstruction | 
+	 *             instruction=AdcInstruction | 
+	 *             instruction=AddInstruction | 
+	 *             instruction=AdddInstruction | 
+	 *             instruction=AndInstruction | 
+	 *             instruction=AndCCInstruction | 
+	 *             instruction=AslInstruction | 
+	 *             instruction=AsrInstruction
+	 *         ) 
+	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
 	 *     )
 	 * </pre>
 	 */
@@ -1286,7 +1315,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     NamDirective returns NamDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? (directive='NAM' | directive='TTL') operand=IdentifierValue comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     ((directive='NAM' | directive='TTL') operand=IdentifierValue)
 	 * </pre>
 	 */
 	protected void sequence_NamDirective(ISerializationContext context, NamDirective semanticObject) {
@@ -1341,7 +1370,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     OptDirective returns OptDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='OPT' (options+=AssemblyOption options+=AssemblyOption*)? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='OPT' (options+=AssemblyOption options+=AssemblyOption*)?)
 	 * </pre>
 	 */
 	protected void sequence_OptDirective(ISerializationContext context, OptDirective semanticObject) {
@@ -1398,12 +1427,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     OrgDirective returns OrgDirective
 	 *
 	 * Constraint:
-	 *     (
-	 *         name=IdentifierValue? 
-	 *         directive='ORG' 
-	 *         ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*')? 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
-	 *     )
+	 *     (directive='ORG' ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*')?)
 	 * </pre>
 	 */
 	protected void sequence_OrgDirective(ISerializationContext context, OrgDirective semanticObject) {
@@ -1417,7 +1441,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PagDirective returns PagDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='PAG' operand=Expression? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='PAG' operand=Expression?)
 	 * </pre>
 	 */
 	protected void sequence_PagDirective(ISerializationContext context, PagDirective semanticObject) {
@@ -1512,7 +1536,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     RegDirective returns RegDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='REG' (options+=Register options+=Register*)? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='REG' (options+=Register options+=Register*)?)
 	 * </pre>
 	 */
 	protected void sequence_RegDirective(ISerializationContext context, RegDirective semanticObject) {
@@ -1597,7 +1621,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     RmbDirective returns RmbDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='RMB' (isRelativeToPC?='*'? operand=Expression)? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='RMB' (isRelativeToPC?='*'? operand=Expression)?)
 	 * </pre>
 	 */
 	protected void sequence_RmbDirective(ISerializationContext context, RmbDirective semanticObject) {
@@ -1611,7 +1635,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     SetDirective returns SetDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='SET' ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*') comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='SET' ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*'))
 	 * </pre>
 	 */
 	protected void sequence_SetDirective(ISerializationContext context, SetDirective semanticObject) {
@@ -1639,7 +1663,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     SpcDirective returns SpcDirective
 	 *
 	 * Constraint:
-	 *     (name=IdentifierValue? directive='SPC' (spaceCount=Expression keepCount=Expression?)? comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (directive='SPC' (spaceCount=Expression keepCount=Expression?)?)
 	 * </pre>
 	 */
 	protected void sequence_SpcDirective(ISerializationContext context, SpcDirective semanticObject) {

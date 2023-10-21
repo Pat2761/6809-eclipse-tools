@@ -1,5 +1,6 @@
 package org.bpy.electronics.mc6809.assembler.util;
 
+import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
@@ -16,8 +17,9 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(EquDirective equDirective) {
-		if ( equDirective.getName() != null) {
-			return equDirective.getName().getValue();
+		DirectiveLine directiveLine = (DirectiveLine)equDirective.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
 		} else {
 			return null;
 		}
@@ -30,8 +32,9 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(OrgDirective orgDirective) {
-		if ( orgDirective.getName() != null) {
-			return orgDirective.getName().getValue();
+		DirectiveLine directiveLine = (DirectiveLine)orgDirective.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
 		} else {
 			return null;
 		}
@@ -44,8 +47,9 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(RmbDirective rmbDirective) {
-		if ( rmbDirective.getName() != null) {
-			return rmbDirective.getName().getValue();
+		DirectiveLine directiveLine = (DirectiveLine)rmbDirective.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
 		} else {
 			return null;
 		}
@@ -58,8 +62,9 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(FcbDirective fcbDirective) {
-		if ( fcbDirective.getName() != null) {
-			return fcbDirective.getName().getValue();
+		DirectiveLine directiveLine = (DirectiveLine)fcbDirective.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
 		} else {
 			return null;
 		}
@@ -72,8 +77,9 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(FdbDirective fdbDirective) {
-		if ( fdbDirective.getName() != null) {
-			return fdbDirective.getName().getValue();
+		DirectiveLine directiveLine = (DirectiveLine)fdbDirective.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
 		} else {
 			return null;
 		}
@@ -86,8 +92,9 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(EndDirective endDirective) {
-		if ( endDirective.getName() != null) {
-			return endDirective.getName().getValue();
+		DirectiveLine directiveLine = (DirectiveLine)endDirective.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
 		} else {
 			return null;
 		}
