@@ -30,6 +30,13 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASRInstruction
 import org.bpy.electronics.mc6809.assembler.tests.directives.TestComment
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBCCInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBCSInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBEQInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBGEInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBGTInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBHIInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBHSInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -61,9 +68,18 @@ import org.bpy.electronics.mc6809.assembler.tests.directives.TestComment
 	 TestANDCCInstruction,
 	 TestANDInstruction,
 	 TestASLInstruction,
-	 TestASRInstruction
+	 TestASRInstruction,
+	 TestBCCInstruction,
+	 TestBCSInstruction,
+	 TestBEQInstruction,
+	 TestBGEInstruction,
+	 TestBGTInstruction,
+	 TestBHIInstruction,
+	 TestBHSInstruction
 )
     
 class AssemblerParsingTest {
+	
+	val Class<?> TestBCSInstruction = null
 	
 }

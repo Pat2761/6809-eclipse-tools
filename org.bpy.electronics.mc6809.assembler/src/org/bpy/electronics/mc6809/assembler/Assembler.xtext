@@ -70,10 +70,146 @@ InstructionLine:
 		instruction = AndInstruction            |
 		instruction = AndCCInstruction          |
 		instruction = AslInstruction			|  
-		instruction = AsrInstruction
+		instruction = AsrInstruction            |
+		instruction = BccInstruction			|
+		instruction = BcsInstruction  			|
+		instruction = BeqInstruction			|
+		instruction = BgeInstruction			|
+		instruction = BgtInstruction			|
+		instruction = BhiInstruction			|
+		instruction = BhsInstruction
 	)  
 	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine	
+;
+
+/*
+ * BHS
+ * 
+ * Branch if Higher or Same
+ * Source Form		: BHS dd; LBHS DDDD 
+ * Operation		: TEMP— Ml
+ *                    IFF C = 0 then PC'^PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Tests the state of the C (carry) bit and causes a branch if it is clear.
+ *                    When used after a subtract or compare on unsigned binary values,
+ *                    this instruction will branch if the register was higher than or the
+ *                    same as the memory operand.
+ * Addressing Mode	: Relative
+ */
+BhsInstruction:
+ 	instruction = ('BHS' | 'LBHS')
+	WS operand = RelativeMode
+;
+
+/*
+ * BHI
+ * 
+ * Branch if Higher
+ * Source Form		: BHI dd; LBHI DDDD 
+ * Operation		: TEMP— Ml
+ *                    IFF [0 V Z] = 0 then PC'^PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Causes a branch if the previous operation caused neither a carry nor
+ *                    a zero result. When used after a subtract or compare operation on
+ *                    unsigned binary values, this instruction will branch if the register
+ *                    was higher than the memory operand.
+ * Addressing Mode	: Relative
+ */
+BhiInstruction:
+ 	instruction = ('BHI' | 'LBHI')
+	WS operand = RelativeMode
+;
+
+/*
+ * BGT
+ * 
+ * Branch on Greater than or Equal to Zero
+ * Source Form		: BGT dd; LBGT DDDD 
+ * Operation		: TEMP— Ml
+ *                    IFF ZA[N®V] = 0 then PC'^PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Causes a branch if the N (negative) bit and V (overflow) bit are either
+ *					  both set or both clear and the Z (zero) bit is clear. In other words,
+ * 					  branch if the sign of a valid twos complement result is, or would be,
+ * 					  positive and not zero. When used after a subtract or compare operation on twos complement values, this instruction will branch if the
+ * 					  register was greater than the memory operand.
+ * Addressing Mode	: Relative
+ */
+BgtInstruction:
+ 	instruction = ('BGT' | 'LBGT')
+	WS operand = RelativeMode
+;
+
+/*
+ * BGE
+ * 
+ * Branch on Greater than or Equal to Zero
+ * Source Form		: BGE dd; LBGE DDDD 
+ * Operation		: TEMP— Ml
+ *                    IFF [N®V] = then PC'^PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Causes a branch if the N (negative) bit and the V (overflow) bit are
+ *					  either both set or both clear. That is, branch if the sign of a valid
+ *                    twos complement result is, or would be, positive. When used after a
+ *                    subtract or compare operation on twos complement values, this instruction will branch if the register was greater than or equal to the
+ *                    memory operand.
+ * Addressing Mode	: Relative
+ */
+BgeInstruction:
+ 	instruction = ('BGE' | 'LBGE')
+	WS operand = RelativeMode
+;
+
+/*
+ * BEQ
+ * 
+ * Branch on Equal
+ * Source Form		: BEQ dd; LBEQ DDDD 
+ * Operation		: TEMP— Ml
+ *                    IFF Z=1  then PC'<- PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Tests the state of the Z (zero) bit and causes a branch if it is set.
+ *     				  When used after a subtract or compare operation, this Instruction
+ * 					  will branch If the compared values, signed or unsigned, were exactly
+ * 					  the same.
+ * Addressing Mode	: Relative
+ */
+BeqInstruction:
+ 	instruction = ('BEQ' | 'LBEQ')
+	WS operand = RelativeMode
+;
+
+/*
+ * BCS
+ * 
+ * Branch on Carry Set
+ * Source Form		: BCS dd; LBCS DDDD 
+ * Operation		: TEMP— Ml
+ *                    IFF C=A  then PC'*- PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Tests the state of the C (carry) bit and causes a branch If it Is set.
+ * Addressing Mode	: Relative
+ */
+BcsInstruction:
+ 	instruction = ('BCS' | 'LBCS')
+	WS operand = RelativeMode
+;
+
+/*
+ * BCC
+ * 
+ * Branch on Carry Clear
+ * Source Form		: BCC dd; LBCC DDDD 
+ * Operation		: TEMP— Ml
+ *                    IFF C = then PC'*- PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Tests the state of the C (carry) bit and causes a branch If it Is clear.
+ * Addressing Mode	: Relative
+ */
+BccInstruction:
+ 	instruction = ('BCC' | 'LBCC')
+	WS operand = RelativeMode
 ;
 
 /*
@@ -410,6 +546,9 @@ RelatifToPCIndirectMode:
 	(register='PCR' )
 	']'
 ;
+
+RelativeMode:
+	location=IdentifierValue;
 
 /*
  * Definition of the list possible directives

@@ -28,11 +28,19 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDCCInstruct
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASRInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBCCInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBCSInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBEQInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBGEInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBGTInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBHIInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBHSInstruction;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestComment.class, TestBszDirective.class, TestEndDirective.class, TestEquDirective.class, TestFailDirective.class, TestFcbDirective.class, TestFccDirective.class, TestFdbDirective.class, TestFillDirective.class, TestNamDirective.class, TestOptDirective.class, TestOrgDirective.class, TestPagDirective.class, TestRegDirective.class, TestRmbDirective.class, TestSetDirective.class, TestSpcDirective.class, TestABXInstruction.class, TestADCInstruction.class, TestADDDInstruction.class, TestADDInstruction.class, TestANDCCInstruction.class, TestANDInstruction.class, TestASLInstruction.class, TestASRInstruction.class })
+@Suite.SuiteClasses({ TestComment.class, TestBszDirective.class, TestEndDirective.class, TestEquDirective.class, TestFailDirective.class, TestFcbDirective.class, TestFccDirective.class, TestFdbDirective.class, TestFillDirective.class, TestNamDirective.class, TestOptDirective.class, TestOrgDirective.class, TestPagDirective.class, TestRegDirective.class, TestRmbDirective.class, TestSetDirective.class, TestSpcDirective.class, TestABXInstruction.class, TestADCInstruction.class, TestADDDInstruction.class, TestADDInstruction.class, TestANDCCInstruction.class, TestANDInstruction.class, TestASLInstruction.class, TestASRInstruction.class, TestBCCInstruction.class, TestBCSInstruction.class, TestBEQInstruction.class, TestBGEInstruction.class, TestBGTInstruction.class, TestBHIInstruction.class, TestBHSInstruction.class })
 @SuppressWarnings("all")
 public class AssemblerParsingTest {
+  private final Class<?> TestBCSInstruction = null;
 }
