@@ -1,5 +1,5 @@
 /*
- * European Scoring Tool For Baseball
+ * MC6809 Toolkit
  * Copyright (C) 2023  Patrick BRIAND
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -77,10 +77,264 @@ InstructionLine:
 		instruction = BgeInstruction			|
 		instruction = BgtInstruction			|
 		instruction = BhiInstruction			|
-		instruction = BhsInstruction
+		instruction = BhsInstruction  			|	
+		instruction = BitInstruction			|
+		instruction = BleInstruction            |
+		instruction = BloInstruction			|
+		instruction = BlsInstruction			|
+		instruction = BltInstruction			|
+		instruction = BmiInstruction			|			
+		instruction = BneInstruction			|				
+		instruction = BplInstruction			|			
+		instruction = BraInstruction			|			
+		instruction = BrnInstruction			|				
+		instruction = BsrInstruction			|			
+		instruction = BvcInstruction			|			
+		instruction = BvsInstruction			
 	)  
 	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine	
+;
+
+/*
+ * BVS
+ * 
+ * Branch on Overflow set
+ * Source Form		: BVS dd; LBVS DDDD 
+ * Operation		: TEMP-MI
+ *                    IFF V = 1 then PC'*- PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Tests the state of the V (overflow) bit and causes a branch if it is set. That is, branch if the 
+ *                    twos complement result was valid. When used after an operation on twos complement binary values, this 
+ *                    instruction will branch if there was no overflow.
+ * Addressing Mode	: Relative
+ */
+BvsInstruction:
+ 	instruction = ('BVS' | 'LBVS')
+	WS operand = RelativeMode
+;
+
+/*
+ * BVC
+ * 
+ * Branch on Overflow Clear
+ * Source Form		: BVC dd; LBVC DDDD 
+ * Operation		: TEMP-MI
+ *                    IFF V = 0 then PC'*- PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Tests the state of the V (overflow) bit and causes a branch if it is clear. That is, branch if the 
+ *                    twos complement result was valid. When used after an operation on twos complement binary values, this 
+ *                    instruction will branch if there was no overflow.
+ * Addressing Mode	: Relative
+ */
+BvcInstruction:
+ 	instruction = ('BVC' | 'LBVC')
+	WS operand = RelativeMode
+;
+
+/*
+ * BSR
+ * 
+ * Branch to Subroutine
+ * Source Form		: BSR dd; LBSR DDDD 
+ * Operation		: TEMP-MI
+ *                    SP'— SP-1,(SP)— POL
+ * 					  SP'-SP-1,(SP)— PCH
+ * 					  PC— PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: The program counter is pushed onto the stack. The program counter is then loaded with the sum 
+ * 					  of the program counter and the offset.
+ * Addressing Mode	: Relative
+ */
+BsrInstruction:
+ 	instruction = ('BSR' | 'LBSR')
+	WS operand = RelativeMode
+;
+
+/*
+ * BRN
+ * 
+ * Branch Never
+ * Source Form		: BRN dd; LBRN DDDD 
+ * Operation		: TEMP-MI
+ * Condition Codes	: Not affected.
+ * Description		: Does not cause a branch. This instruction is essentially a no operation, but has a bit pattern logically related to branch always.
+ * Addressing Mode	: Relative
+ */
+BrnInstruction:
+ 	instruction = ('BRN' | 'LBRN')
+	WS operand = RelativeMode
+;
+
+/*
+ * BRA
+ * 
+ * Branch always
+ * Source Form		: BRA dd; LBRA DDDD 
+ * Operation		: TEMP-MI
+ *                    PC— PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Causes an unconditlonai branch.
+ * Addressing Mode	: Relative
+ */
+BraInstruction:
+ 	instruction = ('BRA' | 'LBRA')
+	WS operand = RelativeMode
+;
+
+/*
+ * BPL
+ * 
+ * Branch on plus
+ * Source Form		: BPL dd; LBPL DDDD 
+ * Operation		: TEMP-MI
+ *                    IFF N=0 then PC— PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Tests the state of the N (negative) bit and causes a branch if it is clear. That is, branch if the sign of 
+ *                    the twos complement result is positive.
+ * Addressing Mode	: Relative
+ */
+BplInstruction:
+ 	instruction = ('BPL' | 'LBPL')
+	WS operand = RelativeMode
+;
+
+/*
+ * BNE
+ * 
+ * Branch not equal
+ * Source Form		: BNE dd; LBNE DDDD 
+ * Operation		: TEMP-MI
+ *                    IFF Z = then PC'*- PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Tests the state of the Z (zero) bit and causes a branch if it is clear. When used after a subtract or compare 
+ * 	                  operation on any binary values, this instruction will branch if the register is, or would be, not equal to the 
+ *                    memory operand.
+ * Addressing Mode	: Relative
+ */
+BneInstruction:
+ 	instruction = ('BNE' | 'LBNE')
+	WS operand = RelativeMode
+;
+
+/*
+ * BMI
+ * 
+ * Branch on Minus
+ * Source Form		: BMI dd; LBMI DDDD 
+ * Operation		: TEMP-MI
+ *                    IFF N = 1 then PC'*- PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Tests the state of the N (negative) bit and causes a branch if set.
+ *					  That is, branch if the sign of the twos compiement result is negative.
+ * Addressing Mode	: Relative
+ */
+BmiInstruction:
+ 	instruction = ('BMI' | 'LBMI')
+	WS operand = RelativeMode
+;
+
+/*
+ * BLT
+ * 
+ * Branch on Less than Zero
+ * Source Form		: BLT dd; LBLT DDDD 
+ * Operation		: TEMP-MI
+ *                    IFF [NeV]=1 then PC—PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Causes a branch if either, but not both, of the N (negative) or V (overflow) bits is set. That is, branch 
+ *                    if the sign of a valid twos complement result is, or would be, negative. When used after a subtract or compare 
+ *                    operation on twos complement binary values, this instruction will branch if the register was less than the memory
+ *                    operand.
+ * Addressing Mode	: Relative
+ */
+BltInstruction:
+ 	instruction = ('BLT' | 'LBLT')
+	WS operand = RelativeMode
+;
+
+/*
+ * BLS
+ * 
+ * Branch on Lower
+ * Source Form		: BLS dd; LBLS DDDD 
+ * Operation		: TEMP-MI
+ *                    IFF(CvZ) = 1 then PC— PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Causes a branch if the previous operation caused either a carry or a zero result. When used after a subtract or 
+ *                    compare operation on unsigned binary values, this instruction will branch if the register was lower than or the 
+ *                    same as the memory operand.
+ * Addressing Mode	: Relative
+ */
+BlsInstruction:
+ 	instruction = ('BLS' | 'LBLS')
+	WS operand = RelativeMode
+;
+
+/*
+ * BLO
+ * 
+ * Branch on Lower
+ * Source Form		: BLO dd; LBLO DDDD 
+ * Operation		: TEMP-MI
+ *                    IFF = 1 then PO'*-PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Tests the state of the (carry) bit and causes a branch if it is set. When used after a subtract or compare on unsigned 
+ *                    binary values, this instruction will branch if the register was lower than the memory operand.
+ * Addressing Mode	: Relative
+ */
+BloInstruction:
+ 	instruction = ('BLO' | 'LBLO')
+	WS operand = RelativeMode
+;
+
+/*
+ * BLE
+ * 
+ * Branch on Less than or Equal to Zero
+ * Source Form		: BLE dd; LBLE DDDD 
+ * Operation		: TEMP-MI
+ *                    IFF Z V [N ® V] = 1 then PC- PC + TEMP
+ * Condition Codes	: Not affected.
+ * Description		: Causes a branch if the exclusive OR of the N (negative) and V (overflow) bits is 1 or if the Z (zero) bit is set. 
+ *                    That is, branch if the sign of a valid twos complement result is, or would be, negative. When used after a subtract 
+ *                    or compare operation on twos complement values, this instruction will branch if the register was less than or equal 
+ *                    to the memory operand.
+ * Addressing Mode	: Relative
+ */
+BleInstruction:
+ 	instruction = ('BLE' | 'LBLE')
+	WS operand = RelativeMode
+;
+
+/*
+ * BIT
+ * 
+ * Bit Test
+ * Source Form		: Bit P
+ * Operation		: TEMP— RAM
+ * Condition Codes	: H - Undefined
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V -  Always cleared
+ * 					  C - Not affected.
+ * Description		: Performs the logical AND of the contents of accumulator A or B and the contents of memory location M and modifies the condition
+ *                    codes accordingly. The contents of accumulator A or B and memory location M are not affected.
+ * Addressing Mode	: Immediate
+ * 					  Extended
+ *                    Direct
+ *                    Indexed
+ */
+BitInstruction:
+	(
+		instruction = ('BIT')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
 ;
 
 /*

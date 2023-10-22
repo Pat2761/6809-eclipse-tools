@@ -1,5 +1,5 @@
 /**
- * European Scoring Tool For Baseball
+ * MC6809 Toolkit
  * Copyright (C) 2023  Patrick BRIAND
  * 
  * This program is free software: you can redistribute it and/or modify
