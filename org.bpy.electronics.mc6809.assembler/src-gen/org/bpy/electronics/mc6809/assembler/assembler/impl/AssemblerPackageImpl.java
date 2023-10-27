@@ -44,9 +44,13 @@ import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
+import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
@@ -143,6 +147,34 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass instructionLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass cwaiInstructionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass comInstructionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass cmpInstructionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass clrInstructionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -910,6 +942,138 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EAttribute getInstructionLine_Comment()
   {
     return (EAttribute)instructionLineEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCwaiInstruction()
+  {
+    return cwaiInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCwaiInstruction_Instruction()
+  {
+    return (EAttribute)cwaiInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCwaiInstruction_Operand()
+  {
+    return (EReference)cwaiInstructionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getComInstruction()
+  {
+    return comInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getComInstruction_Instruction()
+  {
+    return (EAttribute)comInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getComInstruction_Operand()
+  {
+    return (EReference)comInstructionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCmpInstruction()
+  {
+    return cmpInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCmpInstruction_Instruction()
+  {
+    return (EAttribute)cmpInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCmpInstruction_Operand()
+  {
+    return (EReference)cmpInstructionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getClrInstruction()
+  {
+    return clrInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getClrInstruction_Instruction()
+  {
+    return (EAttribute)clrInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getClrInstruction_Operand()
+  {
+    return (EReference)clrInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3589,6 +3753,22 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(instructionLineEClass, INSTRUCTION_LINE__INSTRUCTION);
     createEAttribute(instructionLineEClass, INSTRUCTION_LINE__COMMENT);
 
+    cwaiInstructionEClass = createEClass(CWAI_INSTRUCTION);
+    createEAttribute(cwaiInstructionEClass, CWAI_INSTRUCTION__INSTRUCTION);
+    createEReference(cwaiInstructionEClass, CWAI_INSTRUCTION__OPERAND);
+
+    comInstructionEClass = createEClass(COM_INSTRUCTION);
+    createEAttribute(comInstructionEClass, COM_INSTRUCTION__INSTRUCTION);
+    createEReference(comInstructionEClass, COM_INSTRUCTION__OPERAND);
+
+    cmpInstructionEClass = createEClass(CMP_INSTRUCTION);
+    createEAttribute(cmpInstructionEClass, CMP_INSTRUCTION__INSTRUCTION);
+    createEReference(cmpInstructionEClass, CMP_INSTRUCTION__OPERAND);
+
+    clrInstructionEClass = createEClass(CLR_INSTRUCTION);
+    createEAttribute(clrInstructionEClass, CLR_INSTRUCTION__INSTRUCTION);
+    createEReference(clrInstructionEClass, CLR_INSTRUCTION__OPERAND);
+
     bvsInstructionEClass = createEClass(BVS_INSTRUCTION);
     createEAttribute(bvsInstructionEClass, BVS_INSTRUCTION__INSTRUCTION);
     createEReference(bvsInstructionEClass, BVS_INSTRUCTION__OPERAND);
@@ -3969,6 +4149,22 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getInstructionLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstructionLine_Instruction(), ecorePackage.getEObject(), null, "instruction", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getInstructionLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(cwaiInstructionEClass, CwaiInstruction.class, "CwaiInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCwaiInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, CwaiInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCwaiInstruction_Operand(), this.getImmediatOperand(), null, "operand", null, 0, 1, CwaiInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(comInstructionEClass, ComInstruction.class, "ComInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getComInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, ComInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getComInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, ComInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(cmpInstructionEClass, CmpInstruction.class, "CmpInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCmpInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, CmpInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCmpInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, CmpInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(clrInstructionEClass, ClrInstruction.class, "ClrInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getClrInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, ClrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getClrInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, ClrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(bvsInstructionEClass, BvsInstruction.class, "BvsInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBvsInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, BvsInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

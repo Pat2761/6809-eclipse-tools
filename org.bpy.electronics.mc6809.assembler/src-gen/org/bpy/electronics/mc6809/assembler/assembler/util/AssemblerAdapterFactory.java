@@ -101,6 +101,26 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createInstructionLineAdapter();
       }
       @Override
+      public Adapter caseCwaiInstruction(CwaiInstruction object)
+      {
+        return createCwaiInstructionAdapter();
+      }
+      @Override
+      public Adapter caseComInstruction(ComInstruction object)
+      {
+        return createComInstructionAdapter();
+      }
+      @Override
+      public Adapter caseCmpInstruction(CmpInstruction object)
+      {
+        return createCmpInstructionAdapter();
+      }
+      @Override
+      public Adapter caseClrInstruction(ClrInstruction object)
+      {
+        return createClrInstructionAdapter();
+      }
+      @Override
       public Adapter caseBvsInstruction(BvsInstruction object)
       {
         return createBvsInstructionAdapter();
@@ -593,6 +613,66 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInstructionLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction <em>Cwai Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction
+   * @generated
+   */
+  public Adapter createCwaiInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ComInstruction <em>Com Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ComInstruction
+   * @generated
+   */
+  public Adapter createComInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction <em>Cmp Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction
+   * @generated
+   */
+  public Adapter createCmpInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction <em>Clr Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction
+   * @generated
+   */
+  public Adapter createClrInstructionAdapter()
   {
     return null;
   }

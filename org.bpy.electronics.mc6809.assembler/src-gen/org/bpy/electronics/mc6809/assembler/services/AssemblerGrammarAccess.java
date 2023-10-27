@@ -223,6 +223,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cInstructionBvcInstructionParserRuleCall_2_26_0 = (RuleCall)cInstructionAssignment_2_26.eContents().get(0);
 		private final Assignment cInstructionAssignment_2_27 = (Assignment)cAlternatives_2.eContents().get(27);
 		private final RuleCall cInstructionBvsInstructionParserRuleCall_2_27_0 = (RuleCall)cInstructionAssignment_2_27.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_28 = (Assignment)cAlternatives_2.eContents().get(28);
+		private final RuleCall cInstructionClrInstructionParserRuleCall_2_28_0 = (RuleCall)cInstructionAssignment_2_28.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_29 = (Assignment)cAlternatives_2.eContents().get(29);
+		private final RuleCall cInstructionCmpInstructionParserRuleCall_2_29_0 = (RuleCall)cInstructionAssignment_2_29.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_30 = (Assignment)cAlternatives_2.eContents().get(30);
+		private final RuleCall cInstructionComInstructionParserRuleCall_2_30_0 = (RuleCall)cInstructionAssignment_2_30.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_31 = (Assignment)cAlternatives_2.eContents().get(31);
+		private final RuleCall cInstructionCwaiInstructionParserRuleCall_2_31_0 = (RuleCall)cInstructionAssignment_2_31.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
 		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -263,7 +271,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        instruction = BrnInstruction            |
 		//        instruction = BsrInstruction            |
 		//        instruction = BvcInstruction            |
-		//        instruction = BvsInstruction
+		//        instruction = BvsInstruction            |
+		//        instruction = ClrInstruction            |
+		//        instruction = CmpInstruction            |
+		//        instruction = ComInstruction            |
+		//        instruction = CwaiInstruction
 		//    )
 		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    WS? EndOfLine
@@ -299,7 +311,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = BrnInstruction            |
 		//    instruction = BsrInstruction            |
 		//    instruction = BvcInstruction            |
-		//    instruction = BvsInstruction
+		//    instruction = BvsInstruction            |
+		//    instruction = ClrInstruction            |
+		//    instruction = CmpInstruction            |
+		//    instruction = ComInstruction            |
+		//    instruction = CwaiInstruction
 		//)
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//WS? EndOfLine
@@ -342,7 +358,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = BrnInstruction            |
 		//    instruction = BsrInstruction            |
 		//    instruction = BvcInstruction            |
-		//    instruction = BvsInstruction
+		//    instruction = BvsInstruction            |
+		//    instruction = ClrInstruction            |
+		//    instruction = CmpInstruction            |
+		//    instruction = ComInstruction            |
+		//    instruction = CwaiInstruction
 		//)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
@@ -514,6 +534,30 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//BvsInstruction
 		public RuleCall getInstructionBvsInstructionParserRuleCall_2_27_0() { return cInstructionBvsInstructionParserRuleCall_2_27_0; }
 		
+		//instruction = ClrInstruction
+		public Assignment getInstructionAssignment_2_28() { return cInstructionAssignment_2_28; }
+		
+		//ClrInstruction
+		public RuleCall getInstructionClrInstructionParserRuleCall_2_28_0() { return cInstructionClrInstructionParserRuleCall_2_28_0; }
+		
+		//instruction = CmpInstruction
+		public Assignment getInstructionAssignment_2_29() { return cInstructionAssignment_2_29; }
+		
+		//CmpInstruction
+		public RuleCall getInstructionCmpInstructionParserRuleCall_2_29_0() { return cInstructionCmpInstructionParserRuleCall_2_29_0; }
+		
+		//instruction = ComInstruction
+		public Assignment getInstructionAssignment_2_30() { return cInstructionAssignment_2_30; }
+		
+		//ComInstruction
+		public RuleCall getInstructionComInstructionParserRuleCall_2_30_0() { return cInstructionComInstructionParserRuleCall_2_30_0; }
+		
+		//instruction = CwaiInstruction
+		public Assignment getInstructionAssignment_2_31() { return cInstructionAssignment_2_31; }
+		
+		//CwaiInstruction
+		public RuleCall getInstructionCwaiInstructionParserRuleCall_2_31_0() { return cInstructionCwaiInstructionParserRuleCall_2_31_0; }
+		
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_3() { return cGroup_3; }
 		
@@ -531,6 +575,446 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class CwaiInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CwaiInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cInstructionCWAIKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
+		
+		///*
+		// * CWAI
+		// *
+		// * Clear CC bits and Wait for Interrupt
+		// * Source Form        : CWAI #$xx
+		// * Operation        : CCR'^CCR A Ml (Possibly clear masks)
+		// *                    Set E (entire state saved)
+		// *                    SP'— SP-1,(SP)*-PCL
+		// *                    SP'— SP-1,(SP)— PCH
+		// *                    SP'*-SP-1,(SP)— USL
+		// *                    SP'— SP-1,(SP)— USH
+		// *                    SP'— SP-1,(SP)*-IYL
+		// *                    SP'*-SP-1,(SP)— lYH
+		// *                    SP'— SP-1,(SP)-IXL
+		// *                    SP'—SP-1,(SP)— IXH
+		// *                    SP'— SP-1,(SP)-DPR
+		// *                    SP'-SP-1,(SP)-ACCB
+		// *                    SP'^SP-1, (SP)— ACCA
+		// *                    SP'— SP-1,(SP)-CCR
+		// * Condition Codes    : Affected according to the operation.
+		// * Description        : This instruction ANDs an immediate byte with the condition code register which may clear the
+		// *                    interrupt mask bits I and F, stacks the entire machine state on the hardware stack and then
+		// *                    looks for an interrupt. When a non-masked interrupt occurs, no further machine state information
+		// *                    need be saved before vectoring to the interrupt handling routine. This instruction replaced the
+		// *                    MC6800 CLI WAI sequence, but does not place the buses in a high-impedance state. A FIRQ
+		// *                    (fast interrupt request) may enter its interrupt handler with its entire machine state saved.
+		// *                    The RTI (return from interrupt) instruction will automatically return the entire machine state
+		// *                    after testing the E (entire) bit of the recovered condition code register.
+		// * Addressing Mode    : Immediate
+		// */
+		//CwaiInstruction:
+		//     instruction = ('CWAI')
+		//    WS operand = (
+		//        ImmediatOperand
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		// instruction = ('CWAI')
+		//WS operand = (
+		//    ImmediatOperand
+		//)
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = ('CWAI')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('CWAI')
+		public Keyword getInstructionCWAIKeyword_0_0() { return cInstructionCWAIKeyword_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//operand = (
+		//       ImmediatOperand
+		//   )
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
+		
+		//(
+		//       ImmediatOperand
+		//   )
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0() { return cOperandImmediatOperandParserRuleCall_2_0; }
+	}
+	public class ComInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ComInstruction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionCOMAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionCOMBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionCOMKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		
+		///*
+		// * COM
+		// *
+		// * Complement
+		// * Source Form        : COM Q, COMA; COMB
+		// * Operation        : M'<— 0 + !M
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result is zero; cleared otherwise.
+		// *                    V - Always cleared.
+		// *                       C - Always set.
+		// * Description        : Replaces the contents of memory location M or accumulator A or B with its logical complement.
+		// *                    When operating on unsigned values, only BEQ and BNE branches can be expected to behave properly
+		// *                    following a COM instruction. When operating on twos complement values, all signed branches are
+		// *                    available.
+		// * Addressing Mode    : Inherent
+		// *                       Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//ComInstruction:
+		//    (
+		//        instruction = ('COMA' | 'COMB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('COM')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(
+		//    instruction = ('COMA' | 'COMB')
+		//)
+		//|
+		//(
+		//     instruction = ('COM')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//    instruction = ('COMA' | 'COMB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('COMA' | 'COMB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'COMA'
+		public Keyword getInstructionCOMAKeyword_0_0_0() { return cInstructionCOMAKeyword_0_0_0; }
+		
+		//'COMB'
+		public Keyword getInstructionCOMBKeyword_0_0_1() { return cInstructionCOMBKeyword_0_0_1; }
+		
+		//(
+		//     instruction = ('COM')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//instruction = ('COM')
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
+		
+		//('COM')
+		public Keyword getInstructionCOMKeyword_1_0_0() { return cInstructionCOMKeyword_1_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
+		
+		//operand = (
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//(
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
+	}
+	public class CmpInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CmpInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionCMPAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionCMPBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
+		
+		///*
+		// * CMP
+		// *
+		// * Compare Memory from Register
+		// * Source Form        : CMPA Q, CMPB Q
+		// * Operation        : TEMP<-R_M
+		// * Condition Codes    : H - Undefined.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result is zero; cleared otherwise.
+		// *                    V - Set if an overflow is generated; cleared otherwise.
+		// *                       C - Set if a borrow is generated; cleared otherwise.
+		// * Description        : Compares the contents of memory location to the contents of the specified register and sets the
+		// *                    appropriate condition codes. Neither memory location M nor the specified register is modified.
+		// *                    The carry flag represents a borrow and is set to the inverse of the resulting binary carry.
+		// * Addressing Mode    : Immediate
+		// *                       Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//CmpInstruction:
+		//     instruction = ('CMPA' | 'CMPB')
+		//    WS operand = (
+		//        ImmediatOperand      |
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		// instruction = ('CMPA' | 'CMPB')
+		//WS operand = (
+		//    ImmediatOperand      |
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = ('CMPA' | 'CMPB')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('CMPA' | 'CMPB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'CMPA'
+		public Keyword getInstructionCMPAKeyword_0_0_0() { return cInstructionCMPAKeyword_0_0_0; }
+		
+		//'CMPB'
+		public Keyword getInstructionCMPBKeyword_0_0_1() { return cInstructionCMPBKeyword_0_0_1; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//operand = (
+		//       ImmediatOperand      |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
+		
+		//(
+		//       ImmediatOperand      |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
+		
+		//ImmediatOperand
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
+	}
+	public class ClrInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ClrInstruction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionCLRAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionCLRBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionCLRKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		
+		///*
+		// * CLR
+		// *
+		// * Clear
+		// * Source Form        : CLR Q, CLRA; CLRB
+		// * Operation        : TEMP<-M
+		// *                    : M<—OO16
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Always cleared.
+		// *                       Z - Always set.
+		// *                    V - Always cleared.
+		// *                       C - Always cleared.
+		// * Description        : Accumulator A or B or memory location M is loaded with 00000000.
+		// *                       Note that the EA is read during this operation.
+		// * Addressing Mode    : Inherent
+		// *                       Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//ClrInstruction:
+		//    (
+		//        instruction = ('CLRA' | 'CLRB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('CLR')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(
+		//    instruction = ('CLRA' | 'CLRB')
+		//)
+		//|
+		//(
+		//     instruction = ('CLR')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//    instruction = ('CLRA' | 'CLRB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('CLRA' | 'CLRB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'CLRA'
+		public Keyword getInstructionCLRAKeyword_0_0_0() { return cInstructionCLRAKeyword_0_0_0; }
+		
+		//'CLRB'
+		public Keyword getInstructionCLRBKeyword_0_0_1() { return cInstructionCLRBKeyword_0_0_1; }
+		
+		//(
+		//     instruction = ('CLR')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//instruction = ('CLR')
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
+		
+		//('CLR')
+		public Keyword getInstructionCLRKeyword_1_0_0() { return cInstructionCLRKeyword_1_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
+		
+		//operand = (
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//(
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
 	}
 	public class BvsInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.BvsInstruction");
@@ -5492,6 +5976,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final InstructionLineElements pInstructionLine;
+	private final CwaiInstructionElements pCwaiInstruction;
+	private final ComInstructionElements pComInstruction;
+	private final CmpInstructionElements pCmpInstruction;
+	private final ClrInstructionElements pClrInstruction;
 	private final BvsInstructionElements pBvsInstruction;
 	private final BvcInstructionElements pBvcInstruction;
 	private final BsrInstructionElements pBsrInstruction;
@@ -5597,6 +6085,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pInstructionLine = new InstructionLineElements();
+		this.pCwaiInstruction = new CwaiInstructionElements();
+		this.pComInstruction = new ComInstructionElements();
+		this.pCmpInstruction = new CmpInstructionElements();
+		this.pClrInstruction = new ClrInstructionElements();
 		this.pBvsInstruction = new BvsInstructionElements();
 		this.pBvcInstruction = new BvcInstructionElements();
 		this.pBsrInstruction = new BsrInstructionElements();
@@ -5812,7 +6304,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        instruction = BrnInstruction            |
 	//        instruction = BsrInstruction            |
 	//        instruction = BvcInstruction            |
-	//        instruction = BvsInstruction
+	//        instruction = BvsInstruction            |
+	//        instruction = ClrInstruction            |
+	//        instruction = CmpInstruction            |
+	//        instruction = ComInstruction            |
+	//        instruction = CwaiInstruction
 	//    )
 	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    WS? EndOfLine
@@ -5823,6 +6319,172 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getInstructionLineRule() {
 		return getInstructionLineAccess().getRule();
+	}
+	
+	///*
+	// * CWAI
+	// *
+	// * Clear CC bits and Wait for Interrupt
+	// * Source Form        : CWAI #$xx
+	// * Operation        : CCR'^CCR A Ml (Possibly clear masks)
+	// *                    Set E (entire state saved)
+	// *                    SP'— SP-1,(SP)*-PCL
+	// *                    SP'— SP-1,(SP)— PCH
+	// *                    SP'*-SP-1,(SP)— USL
+	// *                    SP'— SP-1,(SP)— USH
+	// *                    SP'— SP-1,(SP)*-IYL
+	// *                    SP'*-SP-1,(SP)— lYH
+	// *                    SP'— SP-1,(SP)-IXL
+	// *                    SP'—SP-1,(SP)— IXH
+	// *                    SP'— SP-1,(SP)-DPR
+	// *                    SP'-SP-1,(SP)-ACCB
+	// *                    SP'^SP-1, (SP)— ACCA
+	// *                    SP'— SP-1,(SP)-CCR
+	// * Condition Codes    : Affected according to the operation.
+	// * Description        : This instruction ANDs an immediate byte with the condition code register which may clear the
+	// *                    interrupt mask bits I and F, stacks the entire machine state on the hardware stack and then
+	// *                    looks for an interrupt. When a non-masked interrupt occurs, no further machine state information
+	// *                    need be saved before vectoring to the interrupt handling routine. This instruction replaced the
+	// *                    MC6800 CLI WAI sequence, but does not place the buses in a high-impedance state. A FIRQ
+	// *                    (fast interrupt request) may enter its interrupt handler with its entire machine state saved.
+	// *                    The RTI (return from interrupt) instruction will automatically return the entire machine state
+	// *                    after testing the E (entire) bit of the recovered condition code register.
+	// * Addressing Mode    : Immediate
+	// */
+	//CwaiInstruction:
+	//     instruction = ('CWAI')
+	//    WS operand = (
+	//        ImmediatOperand
+	//    )
+	//;
+	public CwaiInstructionElements getCwaiInstructionAccess() {
+		return pCwaiInstruction;
+	}
+	
+	public ParserRule getCwaiInstructionRule() {
+		return getCwaiInstructionAccess().getRule();
+	}
+	
+	///*
+	// * COM
+	// *
+	// * Complement
+	// * Source Form        : COM Q, COMA; COMB
+	// * Operation        : M'<— 0 + !M
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result is zero; cleared otherwise.
+	// *                    V - Always cleared.
+	// *                       C - Always set.
+	// * Description        : Replaces the contents of memory location M or accumulator A or B with its logical complement.
+	// *                    When operating on unsigned values, only BEQ and BNE branches can be expected to behave properly
+	// *                    following a COM instruction. When operating on twos complement values, all signed branches are
+	// *                    available.
+	// * Addressing Mode    : Inherent
+	// *                       Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//ComInstruction:
+	//    (
+	//        instruction = ('COMA' | 'COMB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('COM')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
+	//;
+	public ComInstructionElements getComInstructionAccess() {
+		return pComInstruction;
+	}
+	
+	public ParserRule getComInstructionRule() {
+		return getComInstructionAccess().getRule();
+	}
+	
+	///*
+	// * CMP
+	// *
+	// * Compare Memory from Register
+	// * Source Form        : CMPA Q, CMPB Q
+	// * Operation        : TEMP<-R_M
+	// * Condition Codes    : H - Undefined.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result is zero; cleared otherwise.
+	// *                    V - Set if an overflow is generated; cleared otherwise.
+	// *                       C - Set if a borrow is generated; cleared otherwise.
+	// * Description        : Compares the contents of memory location to the contents of the specified register and sets the
+	// *                    appropriate condition codes. Neither memory location M nor the specified register is modified.
+	// *                    The carry flag represents a borrow and is set to the inverse of the resulting binary carry.
+	// * Addressing Mode    : Immediate
+	// *                       Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//CmpInstruction:
+	//     instruction = ('CMPA' | 'CMPB')
+	//    WS operand = (
+	//        ImmediatOperand      |
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
+	//;
+	public CmpInstructionElements getCmpInstructionAccess() {
+		return pCmpInstruction;
+	}
+	
+	public ParserRule getCmpInstructionRule() {
+		return getCmpInstructionAccess().getRule();
+	}
+	
+	///*
+	// * CLR
+	// *
+	// * Clear
+	// * Source Form        : CLR Q, CLRA; CLRB
+	// * Operation        : TEMP<-M
+	// *                    : M<—OO16
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Always cleared.
+	// *                       Z - Always set.
+	// *                    V - Always cleared.
+	// *                       C - Always cleared.
+	// * Description        : Accumulator A or B or memory location M is loaded with 00000000.
+	// *                       Note that the EA is read during this operation.
+	// * Addressing Mode    : Inherent
+	// *                       Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//ClrInstruction:
+	//    (
+	//        instruction = ('CLRA' | 'CLRB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('CLR')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
+	//;
+	public ClrInstructionElements getClrInstructionAccess() {
+		return pClrInstruction;
+	}
+	
+	public ParserRule getClrInstructionRule() {
+		return getClrInstructionAccess().getRule();
 	}
 	
 	///*

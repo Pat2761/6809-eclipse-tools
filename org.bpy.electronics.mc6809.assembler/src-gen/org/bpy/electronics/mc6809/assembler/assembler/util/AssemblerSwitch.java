@@ -108,6 +108,34 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.CWAI_INSTRUCTION:
+      {
+        CwaiInstruction cwaiInstruction = (CwaiInstruction)theEObject;
+        T result = caseCwaiInstruction(cwaiInstruction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.COM_INSTRUCTION:
+      {
+        ComInstruction comInstruction = (ComInstruction)theEObject;
+        T result = caseComInstruction(comInstruction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.CMP_INSTRUCTION:
+      {
+        CmpInstruction cmpInstruction = (CmpInstruction)theEObject;
+        T result = caseCmpInstruction(cmpInstruction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.CLR_INSTRUCTION:
+      {
+        ClrInstruction clrInstruction = (ClrInstruction)theEObject;
+        T result = caseClrInstruction(clrInstruction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.BVS_INSTRUCTION:
       {
         BvsInstruction bvsInstruction = (BvsInstruction)theEObject;
@@ -759,6 +787,70 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseInstructionLine(InstructionLine object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Cwai Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Cwai Instruction</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCwaiInstruction(CwaiInstruction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Com Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Com Instruction</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseComInstruction(ComInstruction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Cmp Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Cmp Instruction</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCmpInstruction(CmpInstruction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Clr Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Clr Instruction</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseClrInstruction(ClrInstruction object)
   {
     return null;
   }

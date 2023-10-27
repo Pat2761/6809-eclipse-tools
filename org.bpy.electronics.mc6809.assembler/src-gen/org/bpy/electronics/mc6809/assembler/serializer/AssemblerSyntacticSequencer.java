@@ -162,6 +162,10 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     instruction=BsrInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=BvcInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=BvsInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=ClrInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=CmpInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=ComInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=CwaiInstruction (ambiguity) EndOfLine (rule end)
 	 
 	 * </pre>
 	 */

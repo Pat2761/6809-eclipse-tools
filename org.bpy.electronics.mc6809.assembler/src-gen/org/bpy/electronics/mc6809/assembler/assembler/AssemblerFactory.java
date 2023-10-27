@@ -69,6 +69,42 @@ public interface AssemblerFactory extends EFactory
   InstructionLine createInstructionLine();
 
   /**
+   * Returns a new object of class '<em>Cwai Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cwai Instruction</em>'.
+   * @generated
+   */
+  CwaiInstruction createCwaiInstruction();
+
+  /**
+   * Returns a new object of class '<em>Com Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Com Instruction</em>'.
+   * @generated
+   */
+  ComInstruction createComInstruction();
+
+  /**
+   * Returns a new object of class '<em>Cmp Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cmp Instruction</em>'.
+   * @generated
+   */
+  CmpInstruction createCmpInstruction();
+
+  /**
+   * Returns a new object of class '<em>Clr Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Clr Instruction</em>'.
+   * @generated
+   */
+  ClrInstruction createClrInstruction();
+
+  /**
    * Returns a new object of class '<em>Bvs Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -90,10 +90,152 @@ InstructionLine:
 		instruction = BrnInstruction			|				
 		instruction = BsrInstruction			|			
 		instruction = BvcInstruction			|			
-		instruction = BvsInstruction			
+		instruction = BvsInstruction			|
+		instruction = ClrInstruction			|			
+		instruction = CmpInstruction			|			
+		instruction = ComInstruction			|			
+		instruction = CwaiInstruction			
 	)  
 	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine	
+;
+
+/*
+ * CWAI
+ * 
+ * Clear CC bits and Wait for Interrupt
+ * Source Form		: CWAI #$xx 
+ * Operation		: CCR'^CCR A Ml (Possibly clear masks)
+ *                    Set E (entire state saved)
+ *                    SP'— SP-1,(SP)*-PCL
+ *                    SP'— SP-1,(SP)— PCH
+ *                    SP'*-SP-1,(SP)— USL
+ *                    SP'— SP-1,(SP)— USH
+ *                    SP'— SP-1,(SP)*-IYL
+ *                    SP'*-SP-1,(SP)— lYH
+ *                    SP'— SP-1,(SP)-IXL
+ *                    SP'—SP-1,(SP)— IXH
+ *                    SP'— SP-1,(SP)-DPR
+ *                    SP'-SP-1,(SP)-ACCB
+ *                    SP'^SP-1, (SP)— ACCA
+ *                    SP'— SP-1,(SP)-CCR
+ * Condition Codes	: Affected according to the operation.
+ * Description		: This instruction ANDs an immediate byte with the condition code register which may clear the 
+ *                    interrupt mask bits I and F, stacks the entire machine state on the hardware stack and then 
+ *                    looks for an interrupt. When a non-masked interrupt occurs, no further machine state information 
+ *                    need be saved before vectoring to the interrupt handling routine. This instruction replaced the 
+ *                    MC6800 CLI WAI sequence, but does not place the buses in a high-impedance state. A FIRQ 
+ *                    (fast interrupt request) may enter its interrupt handler with its entire machine state saved. 
+ *                    The RTI (return from interrupt) instruction will automatically return the entire machine state 
+ *                    after testing the E (entire) bit of the recovered condition code register.
+ * Addressing Mode	: Immediate
+ */
+CwaiInstruction:
+ 	instruction = ('CWAI')
+	WS operand = ( 
+		ImmediatOperand  
+	)
+;
+
+/*
+ * COM
+ * 
+ * Complement
+ * Source Form		: COM Q, COMA; COMB 
+ * Operation		: M'<— 0 + !M
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result is zero; cleared otherwise.
+ *                    V - Always cleared.
+ * 					  C - Always set.
+ * Description		: Replaces the contents of memory location M or accumulator A or B with its logical complement.
+ *                    When operating on unsigned values, only BEQ and BNE branches can be expected to behave properly
+ *                    following a COM instruction. When operating on twos complement values, all signed branches are 
+ *                    available.
+ * Addressing Mode	: Inherent
+ * 					  Extended
+ *                    Direct
+ *                    Indexed
+ */
+ComInstruction:
+	(
+    	instruction = ('COMA' | 'COMB')
+	)
+	|  
+	(
+	 	instruction = ('COM')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
+;
+
+/*
+ * CMP
+ * 
+ * Compare Memory from Register
+ * Source Form		: CMPA Q, CMPB Q 
+ * Operation		: TEMP<-R_M
+ * Condition Codes	: H - Undefined.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result is zero; cleared otherwise.
+ *                    V - Set if an overflow is generated; cleared otherwise.
+ * 					  C - Set if a borrow is generated; cleared otherwise.
+ * Description		: Compares the contents of memory location to the contents of the specified register and sets the 
+ *                    appropriate condition codes. Neither memory location M nor the specified register is modified. 
+ *                    The carry flag represents a borrow and is set to the inverse of the resulting binary carry.
+ * Addressing Mode	: Immediate
+ * 					  Extended
+ *                    Direct
+ *                    Indexed
+ */
+CmpInstruction:
+ 	instruction = ('CMPA' | 'CMPB')
+	WS operand = ( 
+		ImmediatOperand      |
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+;
+
+/*
+ * CLR
+ * 
+ * Clear
+ * Source Form		: CLR Q, CLRA; CLRB 
+ * Operation		: TEMP<-M
+ *					: M<—OO16
+ * Condition Codes	: H - Not affected.
+ * 					  N - Always cleared.
+ * 					  Z - Always set.
+ *                    V - Always cleared.
+ * 					  C - Always cleared.
+ * Description		: Accumulator A or B or memory location M is loaded with 00000000.
+ * 					  Note that the EA is read during this operation.
+ * Addressing Mode	: Inherent
+ * 					  Extended
+ *                    Direct
+ *                    Indexed
+ */
+ClrInstruction:
+	(
+    	instruction = ('CLRA' | 'CLRB')
+	)
+	|  
+	(
+	 	instruction = ('CLR')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
 ;
 
 /*

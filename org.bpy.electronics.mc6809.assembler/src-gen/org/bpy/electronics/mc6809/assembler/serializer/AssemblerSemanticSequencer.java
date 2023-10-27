@@ -44,9 +44,13 @@ import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
+import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
@@ -230,6 +234,15 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.CHARACTER_VALUE:
 				sequence_CharacterValue(context, (CharacterValue) semanticObject); 
 				return; 
+			case AssemblerPackage.CLR_INSTRUCTION:
+				sequence_ClrInstruction(context, (ClrInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.CMP_INSTRUCTION:
+				sequence_CmpInstruction(context, (CmpInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.COM_INSTRUCTION:
+				sequence_ComInstruction(context, (ComInstruction) semanticObject); 
+				return; 
 			case AssemblerPackage.COMMENT_LINE:
 				sequence_CommentLine(context, (CommentLine) semanticObject); 
 				return; 
@@ -238,6 +251,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.CONSTANT_INDEXED_MOVING_INDIRECT_MODE:
 				sequence_ConstantIndexedMovingIndirectMode(context, (ConstantIndexedMovingIndirectMode) semanticObject); 
+				return; 
+			case AssemblerPackage.CWAI_INSTRUCTION:
+				sequence_CwaiInstruction(context, (CwaiInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.DECIMAL_VALUE:
 				sequence_DecimalValue(context, (DecimalValue) semanticObject); 
@@ -1055,6 +1071,59 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     ClrInstruction returns ClrInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='CLRA' | 
+	 *         instruction='CLRB' | 
+	 *         (instruction='CLR' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_ClrInstruction(ISerializationContext context, ClrInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     CmpInstruction returns CmpInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         (instruction='CMPA' | instruction='CMPB') 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_CmpInstruction(ISerializationContext context, CmpInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ComInstruction returns ComInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='COMA' | 
+	 *         instruction='COMB' | 
+	 *         (instruction='COM' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_ComInstruction(ISerializationContext context, ComInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     CommentLine returns CommentLine
 	 *
 	 * Constraint:
@@ -1097,6 +1166,29 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_ConstantIndexedMovingIndirectMode(ISerializationContext context, ConstantIndexedMovingIndirectMode semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     CwaiInstruction returns CwaiInstruction
+	 *
+	 * Constraint:
+	 *     (instruction='CWAI' operand=ImmediatOperand)
+	 * </pre>
+	 */
+	protected void sequence_CwaiInstruction(ISerializationContext context, CwaiInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.CWAI_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.CWAI_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.CWAI_INSTRUCTION__OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.CWAI_INSTRUCTION__OPERAND));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getCwaiInstructionAccess().getInstructionCWAIKeyword_0_0(), semanticObject.getInstruction());
+		feeder.accept(grammarAccess.getCwaiInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0(), semanticObject.getOperand());
+		feeder.finish();
 	}
 	
 	
@@ -1519,7 +1611,11 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=BrnInstruction | 
 	 *             instruction=BsrInstruction | 
 	 *             instruction=BvcInstruction | 
-	 *             instruction=BvsInstruction
+	 *             instruction=BvsInstruction | 
+	 *             instruction=ClrInstruction | 
+	 *             instruction=CmpInstruction | 
+	 *             instruction=ComInstruction | 
+	 *             instruction=CwaiInstruction
 	 *         ) 
 	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
 	 *     )

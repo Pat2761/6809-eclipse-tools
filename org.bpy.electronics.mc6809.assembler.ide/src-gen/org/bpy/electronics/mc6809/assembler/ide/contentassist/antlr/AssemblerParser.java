@@ -33,6 +33,14 @@ public class AssemblerParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, AssemblerGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getSourceLineAccess().getAlternatives(), "rule__SourceLine__Alternatives");
 			builder.put(grammarAccess.getInstructionLineAccess().getAlternatives_2(), "rule__InstructionLine__Alternatives_2");
+			builder.put(grammarAccess.getComInstructionAccess().getAlternatives(), "rule__ComInstruction__Alternatives");
+			builder.put(grammarAccess.getComInstructionAccess().getInstructionAlternatives_0_0(), "rule__ComInstruction__InstructionAlternatives_0_0");
+			builder.put(grammarAccess.getComInstructionAccess().getOperandAlternatives_1_2_0(), "rule__ComInstruction__OperandAlternatives_1_2_0");
+			builder.put(grammarAccess.getCmpInstructionAccess().getInstructionAlternatives_0_0(), "rule__CmpInstruction__InstructionAlternatives_0_0");
+			builder.put(grammarAccess.getCmpInstructionAccess().getOperandAlternatives_2_0(), "rule__CmpInstruction__OperandAlternatives_2_0");
+			builder.put(grammarAccess.getClrInstructionAccess().getAlternatives(), "rule__ClrInstruction__Alternatives");
+			builder.put(grammarAccess.getClrInstructionAccess().getInstructionAlternatives_0_0(), "rule__ClrInstruction__InstructionAlternatives_0_0");
+			builder.put(grammarAccess.getClrInstructionAccess().getOperandAlternatives_1_2_0(), "rule__ClrInstruction__OperandAlternatives_1_2_0");
 			builder.put(grammarAccess.getBvsInstructionAccess().getInstructionAlternatives_0_0(), "rule__BvsInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getBvcInstructionAccess().getInstructionAlternatives_0_0(), "rule__BvcInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getBsrInstructionAccess().getInstructionAlternatives_0_0(), "rule__BsrInstruction__InstructionAlternatives_0_0");
@@ -100,6 +108,10 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCommentLineAccess().getGroup(), "rule__CommentLine__Group__0");
 			builder.put(grammarAccess.getInstructionLineAccess().getGroup(), "rule__InstructionLine__Group__0");
 			builder.put(grammarAccess.getInstructionLineAccess().getGroup_3(), "rule__InstructionLine__Group_3__0");
+			builder.put(grammarAccess.getCwaiInstructionAccess().getGroup(), "rule__CwaiInstruction__Group__0");
+			builder.put(grammarAccess.getComInstructionAccess().getGroup_1(), "rule__ComInstruction__Group_1__0");
+			builder.put(grammarAccess.getCmpInstructionAccess().getGroup(), "rule__CmpInstruction__Group__0");
+			builder.put(grammarAccess.getClrInstructionAccess().getGroup_1(), "rule__ClrInstruction__Group_1__0");
 			builder.put(grammarAccess.getBvsInstructionAccess().getGroup(), "rule__BvsInstruction__Group__0");
 			builder.put(grammarAccess.getBvcInstructionAccess().getGroup(), "rule__BvcInstruction__Group__0");
 			builder.put(grammarAccess.getBsrInstructionAccess().getGroup(), "rule__BsrInstruction__Group__0");
@@ -241,7 +253,21 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_25(), "rule__InstructionLine__InstructionAssignment_2_25");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_26(), "rule__InstructionLine__InstructionAssignment_2_26");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_27(), "rule__InstructionLine__InstructionAssignment_2_27");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_28(), "rule__InstructionLine__InstructionAssignment_2_28");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_29(), "rule__InstructionLine__InstructionAssignment_2_29");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_30(), "rule__InstructionLine__InstructionAssignment_2_30");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_31(), "rule__InstructionLine__InstructionAssignment_2_31");
 			builder.put(grammarAccess.getInstructionLineAccess().getCommentAssignment_3_1(), "rule__InstructionLine__CommentAssignment_3_1");
+			builder.put(grammarAccess.getCwaiInstructionAccess().getInstructionAssignment_0(), "rule__CwaiInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getCwaiInstructionAccess().getOperandAssignment_2(), "rule__CwaiInstruction__OperandAssignment_2");
+			builder.put(grammarAccess.getComInstructionAccess().getInstructionAssignment_0(), "rule__ComInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getComInstructionAccess().getInstructionAssignment_1_0(), "rule__ComInstruction__InstructionAssignment_1_0");
+			builder.put(grammarAccess.getComInstructionAccess().getOperandAssignment_1_2(), "rule__ComInstruction__OperandAssignment_1_2");
+			builder.put(grammarAccess.getCmpInstructionAccess().getInstructionAssignment_0(), "rule__CmpInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getCmpInstructionAccess().getOperandAssignment_2(), "rule__CmpInstruction__OperandAssignment_2");
+			builder.put(grammarAccess.getClrInstructionAccess().getInstructionAssignment_0(), "rule__ClrInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getClrInstructionAccess().getInstructionAssignment_1_0(), "rule__ClrInstruction__InstructionAssignment_1_0");
+			builder.put(grammarAccess.getClrInstructionAccess().getOperandAssignment_1_2(), "rule__ClrInstruction__OperandAssignment_1_2");
 			builder.put(grammarAccess.getBvsInstructionAccess().getInstructionAssignment_0(), "rule__BvsInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getBvsInstructionAccess().getOperandAssignment_2(), "rule__BvsInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getBvcInstructionAccess().getInstructionAssignment_0(), "rule__BvcInstruction__InstructionAssignment_0");

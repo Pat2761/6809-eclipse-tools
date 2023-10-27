@@ -71,6 +71,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.INSTRUCTION_LINE: return createInstructionLine();
+      case AssemblerPackage.CWAI_INSTRUCTION: return createCwaiInstruction();
+      case AssemblerPackage.COM_INSTRUCTION: return createComInstruction();
+      case AssemblerPackage.CMP_INSTRUCTION: return createCmpInstruction();
+      case AssemblerPackage.CLR_INSTRUCTION: return createClrInstruction();
       case AssemblerPackage.BVS_INSTRUCTION: return createBvsInstruction();
       case AssemblerPackage.BVC_INSTRUCTION: return createBvcInstruction();
       case AssemblerPackage.BSR_INSTRUCTION: return createBsrInstruction();
@@ -252,6 +256,54 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     InstructionLineImpl instructionLine = new InstructionLineImpl();
     return instructionLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CwaiInstruction createCwaiInstruction()
+  {
+    CwaiInstructionImpl cwaiInstruction = new CwaiInstructionImpl();
+    return cwaiInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ComInstruction createComInstruction()
+  {
+    ComInstructionImpl comInstruction = new ComInstructionImpl();
+    return comInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CmpInstruction createCmpInstruction()
+  {
+    CmpInstructionImpl cmpInstruction = new CmpInstructionImpl();
+    return cmpInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ClrInstruction createClrInstruction()
+  {
+    ClrInstructionImpl clrInstruction = new ClrInstructionImpl();
+    return clrInstruction;
   }
 
   /**
