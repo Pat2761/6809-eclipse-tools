@@ -108,6 +108,13 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.INC_INSTRUCTION:
+      {
+        IncInstruction incInstruction = (IncInstruction)theEObject;
+        T result = caseIncInstruction(incInstruction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.EXG_INSTRUCTION:
       {
         ExgInstruction exgInstruction = (ExgInstruction)theEObject;
@@ -815,6 +822,22 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseInstructionLine(InstructionLine object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Inc Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Inc Instruction</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseIncInstruction(IncInstruction object)
   {
     return null;
   }

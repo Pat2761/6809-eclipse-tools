@@ -98,10 +98,46 @@ InstructionLine:
 		instruction = DaaInstruction			|
 		instruction = DecInstruction			|
 		instruction = EorInstruction			|
-		instruction = ExgInstruction
+		instruction = ExgInstruction			|
+		instruction = IncInstruction			
 	)  
 	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine	
+;
+
+/*
+ * INC
+ * 
+ * Increment
+ * Source Form		: INC Q, INCA; INCB 
+ * Operation		: M'— M+1
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V -Set if the original operand was 01111111; cleared otherwise.
+ * 					  C - Not affected.
+ * Description		: Adds to the operand. The carry bit is not affected, thus allowing this instruction to be used as a loop counter in multiple-precision computations. 
+ * 					  When operating on unsigned values, only the BEQ and BNE branches can be expected to behave consistently. When operating on twos complement values, 
+ * 					  all signed branches are correctly available.
+ * Addressing Mode	: Inherent
+ * 					  Extended
+ *                    Direct
+ *                    Indexed
+ */
+IncInstruction:
+    (
+	   instruction = ('INCA' | 'INCB')
+	)
+	|  
+	(
+	 	instruction = ('INC')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
 ;
 
 /*

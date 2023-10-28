@@ -170,6 +170,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     instruction=DecInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=EorInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=ExgInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=IncInstruction (ambiguity) EndOfLine (rule end)
 	 
 	 * </pre>
 	 */

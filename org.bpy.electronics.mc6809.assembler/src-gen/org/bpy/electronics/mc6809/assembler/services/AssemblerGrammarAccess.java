@@ -239,6 +239,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cInstructionEorInstructionParserRuleCall_2_34_0 = (RuleCall)cInstructionAssignment_2_34.eContents().get(0);
 		private final Assignment cInstructionAssignment_2_35 = (Assignment)cAlternatives_2.eContents().get(35);
 		private final RuleCall cInstructionExgInstructionParserRuleCall_2_35_0 = (RuleCall)cInstructionAssignment_2_35.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_36 = (Assignment)cAlternatives_2.eContents().get(36);
+		private final RuleCall cInstructionIncInstructionParserRuleCall_2_36_0 = (RuleCall)cInstructionAssignment_2_36.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
 		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -287,7 +289,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        instruction = DaaInstruction            |
 		//        instruction = DecInstruction            |
 		//        instruction = EorInstruction            |
-		//        instruction = ExgInstruction
+		//        instruction = ExgInstruction            |
+		//        instruction = IncInstruction
 		//    )
 		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    WS? EndOfLine
@@ -331,7 +334,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = DaaInstruction            |
 		//    instruction = DecInstruction            |
 		//    instruction = EorInstruction            |
-		//    instruction = ExgInstruction
+		//    instruction = ExgInstruction            |
+		//    instruction = IncInstruction
 		//)
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//WS? EndOfLine
@@ -382,7 +386,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = DaaInstruction            |
 		//    instruction = DecInstruction            |
 		//    instruction = EorInstruction            |
-		//    instruction = ExgInstruction
+		//    instruction = ExgInstruction            |
+		//    instruction = IncInstruction
 		//)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
@@ -602,6 +607,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//ExgInstruction
 		public RuleCall getInstructionExgInstructionParserRuleCall_2_35_0() { return cInstructionExgInstructionParserRuleCall_2_35_0; }
 		
+		//instruction = IncInstruction
+		public Assignment getInstructionAssignment_2_36() { return cInstructionAssignment_2_36; }
+		
+		//IncInstruction
+		public RuleCall getInstructionIncInstructionParserRuleCall_2_36_0() { return cInstructionIncInstructionParserRuleCall_2_36_0; }
+		
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_3() { return cGroup_3; }
 		
@@ -619,6 +630,137 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class IncInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.IncInstruction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionINCAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionINCBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionINCKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		
+		///*
+		// * INC
+		// *
+		// * Increment
+		// * Source Form        : INC Q, INCA; INCB
+		// * Operation        : M'— M+1
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V -Set if the original operand was 01111111; cleared otherwise.
+		// *                       C - Not affected.
+		// * Description        : Adds to the operand. The carry bit is not affected, thus allowing this instruction to be used as a loop counter in multiple-precision computations.
+		// *                       When operating on unsigned values, only the BEQ and BNE branches can be expected to behave consistently. When operating on twos complement values,
+		// *                       all signed branches are correctly available.
+		// * Addressing Mode    : Inherent
+		// *                       Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//IncInstruction:
+		//    (
+		//       instruction = ('INCA' | 'INCB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('INC')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(
+		//   instruction = ('INCA' | 'INCB')
+		//)
+		//|
+		//(
+		//     instruction = ('INC')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//   instruction = ('INCA' | 'INCB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('INCA' | 'INCB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'INCA'
+		public Keyword getInstructionINCAKeyword_0_0_0() { return cInstructionINCAKeyword_0_0_0; }
+		
+		//'INCB'
+		public Keyword getInstructionINCBKeyword_0_0_1() { return cInstructionINCBKeyword_0_0_1; }
+		
+		//(
+		//     instruction = ('INC')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//instruction = ('INC')
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
+		
+		//('INC')
+		public Keyword getInstructionINCKeyword_1_0_0() { return cInstructionINCKeyword_1_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
+		
+		//operand = (
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//(
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
 	}
 	public class ExgInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ExgInstruction");
@@ -6364,6 +6506,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final InstructionLineElements pInstructionLine;
+	private final IncInstructionElements pIncInstruction;
 	private final ExgInstructionElements pExgInstruction;
 	private final EorInstructionElements pEorInstruction;
 	private final DecInstructionElements pDecInstruction;
@@ -6477,6 +6620,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pInstructionLine = new InstructionLineElements();
+		this.pIncInstruction = new IncInstructionElements();
 		this.pExgInstruction = new ExgInstructionElements();
 		this.pEorInstruction = new EorInstructionElements();
 		this.pDecInstruction = new DecInstructionElements();
@@ -6708,7 +6852,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        instruction = DaaInstruction            |
 	//        instruction = DecInstruction            |
 	//        instruction = EorInstruction            |
-	//        instruction = ExgInstruction
+	//        instruction = ExgInstruction            |
+	//        instruction = IncInstruction
 	//    )
 	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    WS? EndOfLine
@@ -6719,6 +6864,48 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getInstructionLineRule() {
 		return getInstructionLineAccess().getRule();
+	}
+	
+	///*
+	// * INC
+	// *
+	// * Increment
+	// * Source Form        : INC Q, INCA; INCB
+	// * Operation        : M'— M+1
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V -Set if the original operand was 01111111; cleared otherwise.
+	// *                       C - Not affected.
+	// * Description        : Adds to the operand. The carry bit is not affected, thus allowing this instruction to be used as a loop counter in multiple-precision computations.
+	// *                       When operating on unsigned values, only the BEQ and BNE branches can be expected to behave consistently. When operating on twos complement values,
+	// *                       all signed branches are correctly available.
+	// * Addressing Mode    : Inherent
+	// *                       Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//IncInstruction:
+	//    (
+	//       instruction = ('INCA' | 'INCB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('INC')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
+	//;
+	public IncInstructionElements getIncInstructionAccess() {
+		return pIncInstruction;
+	}
+	
+	public ParserRule getIncInstructionRule() {
+		return getIncInstructionAccess().getRule();
 	}
 	
 	///*

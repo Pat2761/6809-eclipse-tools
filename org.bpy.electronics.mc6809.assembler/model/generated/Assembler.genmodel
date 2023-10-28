@@ -45,6 +45,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/instruction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//InstructionLine/comment"/>
     </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//IncInstruction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//IncInstruction/instruction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//IncInstruction/operand"/>
+    </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//ExgInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ExgInstruction/instruction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ExgInstruction/reg1"/>

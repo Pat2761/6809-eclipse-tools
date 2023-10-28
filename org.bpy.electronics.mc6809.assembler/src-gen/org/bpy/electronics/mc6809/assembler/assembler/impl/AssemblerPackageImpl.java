@@ -72,6 +72,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
@@ -151,6 +152,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass instructionLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass incInstructionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -974,6 +982,39 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EAttribute getInstructionLine_Comment()
   {
     return (EAttribute)instructionLineEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getIncInstruction()
+  {
+    return incInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getIncInstruction_Instruction()
+  {
+    return (EAttribute)incInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getIncInstruction_Operand()
+  {
+    return (EReference)incInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3917,6 +3958,10 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(instructionLineEClass, INSTRUCTION_LINE__INSTRUCTION);
     createEAttribute(instructionLineEClass, INSTRUCTION_LINE__COMMENT);
 
+    incInstructionEClass = createEClass(INC_INSTRUCTION);
+    createEAttribute(incInstructionEClass, INC_INSTRUCTION__INSTRUCTION);
+    createEReference(incInstructionEClass, INC_INSTRUCTION__OPERAND);
+
     exgInstructionEClass = createEClass(EXG_INSTRUCTION);
     createEAttribute(exgInstructionEClass, EXG_INSTRUCTION__INSTRUCTION);
     createEAttribute(exgInstructionEClass, EXG_INSTRUCTION__REG1);
@@ -4329,6 +4374,10 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getInstructionLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstructionLine_Instruction(), ecorePackage.getEObject(), null, "instruction", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getInstructionLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(incInstructionEClass, IncInstruction.class, "IncInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getIncInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, IncInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getIncInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, IncInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(exgInstructionEClass, ExgInstruction.class, "ExgInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getExgInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, ExgInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

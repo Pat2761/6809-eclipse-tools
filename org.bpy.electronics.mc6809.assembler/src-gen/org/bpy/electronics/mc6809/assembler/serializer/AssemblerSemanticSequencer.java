@@ -72,6 +72,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
@@ -348,6 +349,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.IMMEDIAT_OPERAND:
 				sequence_ImmediatOperand(context, (ImmediatOperand) semanticObject); 
+				return; 
+			case AssemblerPackage.INC_INSTRUCTION:
+				sequence_IncInstruction(context, (IncInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.INDEXED_OPERAND:
 				sequence_IndexedOperand(context, (IndexedOperand) semanticObject); 
@@ -1652,6 +1656,24 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     IncInstruction returns IncInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='INCA' | 
+	 *         instruction='INCB' | 
+	 *         (instruction='INC' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_IncInstruction(ISerializationContext context, IncInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     IndexedOperand returns IndexedOperand
 	 *
 	 * Constraint:
@@ -1716,7 +1738,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=DaaInstruction | 
 	 *             instruction=DecInstruction | 
 	 *             instruction=EorInstruction | 
-	 *             instruction=ExgInstruction
+	 *             instruction=ExgInstruction | 
+	 *             instruction=IncInstruction
 	 *         ) 
 	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
 	 *     )
