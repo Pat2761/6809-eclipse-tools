@@ -101,6 +101,36 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createInstructionLineAdapter();
       }
       @Override
+      public Adapter caseNopInstruction(NopInstruction object)
+      {
+        return createNopInstructionAdapter();
+      }
+      @Override
+      public Adapter caseNegInstruction(NegInstruction object)
+      {
+        return createNegInstructionAdapter();
+      }
+      @Override
+      public Adapter caseMulInstruction(MulInstruction object)
+      {
+        return createMulInstructionAdapter();
+      }
+      @Override
+      public Adapter caseLsrInstruction(LsrInstruction object)
+      {
+        return createLsrInstructionAdapter();
+      }
+      @Override
+      public Adapter caseLslInstruction(LslInstruction object)
+      {
+        return createLslInstructionAdapter();
+      }
+      @Override
+      public Adapter caseLeaInstruction(LeaInstruction object)
+      {
+        return createLeaInstructionAdapter();
+      }
+      @Override
       public Adapter caseLd16Instruction(Ld16Instruction object)
       {
         return createLd16InstructionAdapter();
@@ -658,6 +688,96 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInstructionLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.NopInstruction <em>Nop Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.NopInstruction
+   * @generated
+   */
+  public Adapter createNopInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.NegInstruction <em>Neg Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.NegInstruction
+   * @generated
+   */
+  public Adapter createNegInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.MulInstruction <em>Mul Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.MulInstruction
+   * @generated
+   */
+  public Adapter createMulInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction <em>Lsr Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction
+   * @generated
+   */
+  public Adapter createLsrInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.LslInstruction <em>Lsl Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LslInstruction
+   * @generated
+   */
+  public Adapter createLslInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction <em>Lea Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction
+   * @generated
+   */
+  public Adapter createLeaInstructionAdapter()
   {
     return null;
   }

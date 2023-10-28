@@ -103,10 +103,179 @@ InstructionLine:
 		instruction = JmpInstruction			|			
 		instruction = JsrInstruction			|			
 		instruction = Ld8Instruction			|			
-		instruction = Ld16Instruction			
+		instruction = Ld16Instruction			|			
+		instruction = LeaInstruction			|			
+		instruction = LslInstruction			|		
+		instruction = LsrInstruction			|						
+		instruction = MulInstruction            |						
+		instruction = NegInstruction			|						
+		instruction = NopInstruction						
 	)  
 	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine	
+;
+
+/*
+ * NOP
+ * 
+ * No operation
+ * Source Form		: NOP 
+ * Operation		: Not affected. 
+ * Condition Codes	: Not affected. 
+ * Description		: This instruction causes only the program counter to be incremented. No other registers 
+ *                    or memory locations are affected.
+ * Addressing Mode	: Inherent
+ *                    
+ */
+NopInstruction:
+	instruction = 'NOP'
+;
+
+/*
+ * NEG
+ * 
+ * Negate
+ * Source Form		: NEG Q, NEGA; NEGB 
+ * Operation		: M'—0-M
+ * Condition Codes	: H - Undefined
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result is zero; cleared otherwise.
+ *                    V - Set if the original operand was 10000000.
+ * 					  C - Set if a borrow is generated; cleared otherwise.
+ * Description		: Replaces the operand with its twos complement. The (carry) bit represents a borrow and is 
+ *                    set to the inverse of the resulting binary carry. Note that 80i6 is replaced by itself and 
+ *                    only in this case is the  V (overflow) bit set. The value OOie is also replaced by itself, 
+ *                    and only in this case is the C (carry) bit cleared.
+ * Addressing Mode	: Inherent
+ *                    Extended
+ *                    Direct
+ *                    
+ */
+NegInstruction:
+    (
+	   instruction = ('NEGA' | 'NEGB')
+	)
+	|  
+	(
+	 	instruction = ('NEG')
+		WS operand = ( 
+			DirectOperand  |
+			ExtendedOperand 
+		)
+	)   
+;
+
+/*
+ * Mul
+ * 
+ * Multiply
+ * Source Form		: MUL
+ * Operation		: ACCA':ACCB'<—ACCA x ACCB
+ * Condition Codes	: H - Not affected.
+ * 					  N - Not affected.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Not affected.
+ * 					  C - Set if ACOB bit 7 of result is set; cleared otherwise.
+ * Description		: Multiply the unsigned binary numbers in the accumulators and place the result In both accumulators
+ *                    (ACCA contains the most significant byte of the result). Unsigned multiply allows multiple precision
+ *                    operations.
+ * Addressing Mode	: Inherent
+ */
+MulInstruction:
+	instruction = 'MUL'
+;
+
+/*
+ * LSR
+ * 
+ * Logical Shift Right
+ * Source Form		: LSR Q, LSRA; LSRB 
+ * Operation		: 
+ * Condition Codes	: H - Undefined
+ * 					  N - Always cleared.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Not affected.
+ * 					  C - Loaded with bit zero of the original operand.
+ * Description		: Performs a logical shift right on the operand. Shifts a zero into bit seven and bit 
+ *                    zero into the C (carry) bit.
+ * Addressing Mode	: Inherent
+ *                    Extended
+ *                    Direct
+ *                    Indexed
+ */
+LsrInstruction:
+    (
+	   instruction = ('LSRA' | 'LSRB')
+	)
+	|  
+	(
+	 	instruction = ('LSR')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
+;
+
+/*
+ * LSL
+ * 
+ * Logical Shift Left
+ * Source Form		: LSL Q, LSLA; LSLB 
+ * Operation		: 
+ * Condition Codes	: H - Undefined
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Loaded with the result of the exclusive OR of bits six and seven of the original operand.
+ * 					  C - Loaded with bit seven of the original operand.
+ * Description		: Shifts all bits of accumulator A or B or memory location M one place to the left. 
+ *                    Bit zero is loaded with a zero. Bit seven of accumulator A or B or memory location M 
+ *                    is shifted into the (carry) bit.
+ * Addressing Mode	: Inherent
+ *                    Extended
+ *                    Direct
+ *                    Indexed
+ */
+LslInstruction:
+    (
+	   instruction = ('LSLA' | 'LSLB')
+	)
+	|  
+	(
+	 	instruction = ('LSL')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
+;
+
+/*
+ * LEA
+ * 
+ * Load Effective Address
+ * Source Form		: LEAX, LEAY, LEAS, LEAU 
+ * Operation		: R <- EA
+ * Condition Codes	: H - Not affected.
+ * 					  N - Not affected.
+ * 					  Z -  LEAX, LEAY: Set if the result is zero; cleared otherwise
+ *                         LEAS, LEAU: Not affected.
+ *                    V - Not affected.
+ * 					  C - Not affected.
+ * Description		: Calculates the effective address from the indexed addressing and places the address in an 
+ *                    indexable register. LEAX and LEAY affect the Z (zero) bit to allow use of these registers
+ *                    as counters and for MC6800 INX/DEX compatibility. LEAU and LEAS do not affect the Z bit to 
+ *                    allow cleaning up the stack while returning the Z bit as a parameter to a calling routine, 
+ *                    and also for MC6800 INS/DES compatibility.
+ * Addressing Mode	: Indexed
+ */
+LeaInstruction:
+ 	instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
+	WS operand = IndexedOperand
 ;
 
 /*

@@ -69,6 +69,60 @@ public interface AssemblerFactory extends EFactory
   InstructionLine createInstructionLine();
 
   /**
+   * Returns a new object of class '<em>Nop Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Nop Instruction</em>'.
+   * @generated
+   */
+  NopInstruction createNopInstruction();
+
+  /**
+   * Returns a new object of class '<em>Neg Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Neg Instruction</em>'.
+   * @generated
+   */
+  NegInstruction createNegInstruction();
+
+  /**
+   * Returns a new object of class '<em>Mul Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Mul Instruction</em>'.
+   * @generated
+   */
+  MulInstruction createMulInstruction();
+
+  /**
+   * Returns a new object of class '<em>Lsr Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lsr Instruction</em>'.
+   * @generated
+   */
+  LsrInstruction createLsrInstruction();
+
+  /**
+   * Returns a new object of class '<em>Lsl Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lsl Instruction</em>'.
+   * @generated
+   */
+  LslInstruction createLslInstruction();
+
+  /**
+   * Returns a new object of class '<em>Lea Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Lea Instruction</em>'.
+   * @generated
+   */
+  LeaInstruction createLeaInstruction();
+
+  /**
    * Returns a new object of class '<em>Ld16 Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

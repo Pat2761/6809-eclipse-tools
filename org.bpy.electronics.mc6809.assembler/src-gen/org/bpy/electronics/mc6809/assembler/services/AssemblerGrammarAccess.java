@@ -249,6 +249,18 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cInstructionLd8InstructionParserRuleCall_2_39_0 = (RuleCall)cInstructionAssignment_2_39.eContents().get(0);
 		private final Assignment cInstructionAssignment_2_40 = (Assignment)cAlternatives_2.eContents().get(40);
 		private final RuleCall cInstructionLd16InstructionParserRuleCall_2_40_0 = (RuleCall)cInstructionAssignment_2_40.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_41 = (Assignment)cAlternatives_2.eContents().get(41);
+		private final RuleCall cInstructionLeaInstructionParserRuleCall_2_41_0 = (RuleCall)cInstructionAssignment_2_41.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_42 = (Assignment)cAlternatives_2.eContents().get(42);
+		private final RuleCall cInstructionLslInstructionParserRuleCall_2_42_0 = (RuleCall)cInstructionAssignment_2_42.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_43 = (Assignment)cAlternatives_2.eContents().get(43);
+		private final RuleCall cInstructionLsrInstructionParserRuleCall_2_43_0 = (RuleCall)cInstructionAssignment_2_43.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_44 = (Assignment)cAlternatives_2.eContents().get(44);
+		private final RuleCall cInstructionMulInstructionParserRuleCall_2_44_0 = (RuleCall)cInstructionAssignment_2_44.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_45 = (Assignment)cAlternatives_2.eContents().get(45);
+		private final RuleCall cInstructionNegInstructionParserRuleCall_2_45_0 = (RuleCall)cInstructionAssignment_2_45.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_46 = (Assignment)cAlternatives_2.eContents().get(46);
+		private final RuleCall cInstructionNopInstructionParserRuleCall_2_46_0 = (RuleCall)cInstructionAssignment_2_46.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
 		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -302,7 +314,13 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        instruction = JmpInstruction            |
 		//        instruction = JsrInstruction            |
 		//        instruction = Ld8Instruction            |
-		//        instruction = Ld16Instruction
+		//        instruction = Ld16Instruction            |
+		//        instruction = LeaInstruction            |
+		//        instruction = LslInstruction            |
+		//        instruction = LsrInstruction            |
+		//        instruction = MulInstruction            |
+		//        instruction = NegInstruction            |
+		//        instruction = NopInstruction
 		//    )
 		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    WS? EndOfLine
@@ -351,7 +369,13 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = JmpInstruction            |
 		//    instruction = JsrInstruction            |
 		//    instruction = Ld8Instruction            |
-		//    instruction = Ld16Instruction
+		//    instruction = Ld16Instruction            |
+		//    instruction = LeaInstruction            |
+		//    instruction = LslInstruction            |
+		//    instruction = LsrInstruction            |
+		//    instruction = MulInstruction            |
+		//    instruction = NegInstruction            |
+		//    instruction = NopInstruction
 		//)
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//WS? EndOfLine
@@ -407,7 +431,13 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = JmpInstruction            |
 		//    instruction = JsrInstruction            |
 		//    instruction = Ld8Instruction            |
-		//    instruction = Ld16Instruction
+		//    instruction = Ld16Instruction            |
+		//    instruction = LeaInstruction            |
+		//    instruction = LslInstruction            |
+		//    instruction = LsrInstruction            |
+		//    instruction = MulInstruction            |
+		//    instruction = NegInstruction            |
+		//    instruction = NopInstruction
 		//)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
@@ -657,6 +687,42 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//Ld16Instruction
 		public RuleCall getInstructionLd16InstructionParserRuleCall_2_40_0() { return cInstructionLd16InstructionParserRuleCall_2_40_0; }
 		
+		//instruction = LeaInstruction
+		public Assignment getInstructionAssignment_2_41() { return cInstructionAssignment_2_41; }
+		
+		//LeaInstruction
+		public RuleCall getInstructionLeaInstructionParserRuleCall_2_41_0() { return cInstructionLeaInstructionParserRuleCall_2_41_0; }
+		
+		//instruction = LslInstruction
+		public Assignment getInstructionAssignment_2_42() { return cInstructionAssignment_2_42; }
+		
+		//LslInstruction
+		public RuleCall getInstructionLslInstructionParserRuleCall_2_42_0() { return cInstructionLslInstructionParserRuleCall_2_42_0; }
+		
+		//instruction = LsrInstruction
+		public Assignment getInstructionAssignment_2_43() { return cInstructionAssignment_2_43; }
+		
+		//LsrInstruction
+		public RuleCall getInstructionLsrInstructionParserRuleCall_2_43_0() { return cInstructionLsrInstructionParserRuleCall_2_43_0; }
+		
+		//instruction = MulInstruction
+		public Assignment getInstructionAssignment_2_44() { return cInstructionAssignment_2_44; }
+		
+		//MulInstruction
+		public RuleCall getInstructionMulInstructionParserRuleCall_2_44_0() { return cInstructionMulInstructionParserRuleCall_2_44_0; }
+		
+		//instruction = NegInstruction
+		public Assignment getInstructionAssignment_2_45() { return cInstructionAssignment_2_45; }
+		
+		//NegInstruction
+		public RuleCall getInstructionNegInstructionParserRuleCall_2_45_0() { return cInstructionNegInstructionParserRuleCall_2_45_0; }
+		
+		//instruction = NopInstruction
+		public Assignment getInstructionAssignment_2_46() { return cInstructionAssignment_2_46; }
+		
+		//NopInstruction
+		public RuleCall getInstructionNopInstructionParserRuleCall_2_46_0() { return cInstructionNopInstructionParserRuleCall_2_46_0; }
+		
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_3() { return cGroup_3; }
 		
@@ -674,6 +740,510 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class NopInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.NopInstruction");
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionNOPKeyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
+		
+		///*
+		// * NOP
+		// *
+		// * No operation
+		// * Source Form        : NOP
+		// * Operation        : Not affected.
+		// * Condition Codes    : Not affected.
+		// * Description        : This instruction causes only the program counter to be incremented. No other registers
+		// *                    or memory locations are affected.
+		// * Addressing Mode    : Inherent
+		// *
+		// */
+		//NopInstruction:
+		//    instruction = 'NOP'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'NOP'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
+		
+		//'NOP'
+		public Keyword getInstructionNOPKeyword_0() { return cInstructionNOPKeyword_0; }
+	}
+	public class NegInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.NegInstruction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionNEGAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionNEGBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionNEGKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		
+		///*
+		// * NEG
+		// *
+		// * Negate
+		// * Source Form        : NEG Q, NEGA; NEGB
+		// * Operation        : M'—0-M
+		// * Condition Codes    : H - Undefined
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result is zero; cleared otherwise.
+		// *                    V - Set if the original operand was 10000000.
+		// *                       C - Set if a borrow is generated; cleared otherwise.
+		// * Description        : Replaces the operand with its twos complement. The (carry) bit represents a borrow and is
+		// *                    set to the inverse of the resulting binary carry. Note that 80i6 is replaced by itself and
+		// *                    only in this case is the  V (overflow) bit set. The value OOie is also replaced by itself,
+		// *                    and only in this case is the C (carry) bit cleared.
+		// * Addressing Mode    : Inherent
+		// *                    Extended
+		// *                    Direct
+		// *
+		// */
+		//NegInstruction:
+		//    (
+		//       instruction = ('NEGA' | 'NEGB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('NEG')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            ExtendedOperand
+		//        )
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(
+		//   instruction = ('NEGA' | 'NEGB')
+		//)
+		//|
+		//(
+		//     instruction = ('NEG')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        ExtendedOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//   instruction = ('NEGA' | 'NEGB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('NEGA' | 'NEGB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'NEGA'
+		public Keyword getInstructionNEGAKeyword_0_0_0() { return cInstructionNEGAKeyword_0_0_0; }
+		
+		//'NEGB'
+		public Keyword getInstructionNEGBKeyword_0_0_1() { return cInstructionNEGBKeyword_0_0_1; }
+		
+		//(
+		//     instruction = ('NEG')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        ExtendedOperand
+		//    )
+		//)
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//instruction = ('NEG')
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
+		
+		//('NEG')
+		public Keyword getInstructionNEGKeyword_1_0_0() { return cInstructionNEGKeyword_1_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
+		
+		//operand = (
+		//           DirectOperand  |
+		//           ExtendedOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//(
+		//           DirectOperand  |
+		//           ExtendedOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_1() { return cOperandExtendedOperandParserRuleCall_1_2_0_1; }
+	}
+	public class MulInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.MulInstruction");
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionMULKeyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
+		
+		///*
+		// * Mul
+		// *
+		// * Multiply
+		// * Source Form        : MUL
+		// * Operation        : ACCA':ACCB'<—ACCA x ACCB
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Not affected.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Not affected.
+		// *                       C - Set if ACOB bit 7 of result is set; cleared otherwise.
+		// * Description        : Multiply the unsigned binary numbers in the accumulators and place the result In both accumulators
+		// *                    (ACCA contains the most significant byte of the result). Unsigned multiply allows multiple precision
+		// *                    operations.
+		// * Addressing Mode    : Inherent
+		// */
+		//MulInstruction:
+		//    instruction = 'MUL'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'MUL'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
+		
+		//'MUL'
+		public Keyword getInstructionMULKeyword_0() { return cInstructionMULKeyword_0; }
+	}
+	public class LsrInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LsrInstruction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionLSRAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionLSRBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionLSRKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		
+		///*
+		// * LSR
+		// *
+		// * Logical Shift Right
+		// * Source Form        : LSR Q, LSRA; LSRB
+		// * Operation        :
+		// * Condition Codes    : H - Undefined
+		// *                       N - Always cleared.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Not affected.
+		// *                       C - Loaded with bit zero of the original operand.
+		// * Description        : Performs a logical shift right on the operand. Shifts a zero into bit seven and bit
+		// *                    zero into the C (carry) bit.
+		// * Addressing Mode    : Inherent
+		// *                    Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//LsrInstruction:
+		//    (
+		//       instruction = ('LSRA' | 'LSRB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('LSR')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(
+		//   instruction = ('LSRA' | 'LSRB')
+		//)
+		//|
+		//(
+		//     instruction = ('LSR')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//   instruction = ('LSRA' | 'LSRB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('LSRA' | 'LSRB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'LSRA'
+		public Keyword getInstructionLSRAKeyword_0_0_0() { return cInstructionLSRAKeyword_0_0_0; }
+		
+		//'LSRB'
+		public Keyword getInstructionLSRBKeyword_0_0_1() { return cInstructionLSRBKeyword_0_0_1; }
+		
+		//(
+		//     instruction = ('LSR')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//instruction = ('LSR')
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
+		
+		//('LSR')
+		public Keyword getInstructionLSRKeyword_1_0_0() { return cInstructionLSRKeyword_1_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
+		
+		//operand = (
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//(
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
+	}
+	public class LslInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LslInstruction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionLSLAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionLSLBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionLSLKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		
+		///*
+		// * LSL
+		// *
+		// * Logical Shift Left
+		// * Source Form        : LSL Q, LSLA; LSLB
+		// * Operation        :
+		// * Condition Codes    : H - Undefined
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Loaded with the result of the exclusive OR of bits six and seven of the original operand.
+		// *                       C - Loaded with bit seven of the original operand.
+		// * Description        : Shifts all bits of accumulator A or B or memory location M one place to the left.
+		// *                    Bit zero is loaded with a zero. Bit seven of accumulator A or B or memory location M
+		// *                    is shifted into the (carry) bit.
+		// * Addressing Mode    : Inherent
+		// *                    Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//LslInstruction:
+		//    (
+		//       instruction = ('LSLA' | 'LSLB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('LSL')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(
+		//   instruction = ('LSLA' | 'LSLB')
+		//)
+		//|
+		//(
+		//     instruction = ('LSL')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//   instruction = ('LSLA' | 'LSLB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('LSLA' | 'LSLB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'LSLA'
+		public Keyword getInstructionLSLAKeyword_0_0_0() { return cInstructionLSLAKeyword_0_0_0; }
+		
+		//'LSLB'
+		public Keyword getInstructionLSLBKeyword_0_0_1() { return cInstructionLSLBKeyword_0_0_1; }
+		
+		//(
+		//     instruction = ('LSL')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//instruction = ('LSL')
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
+		
+		//('LSL')
+		public Keyword getInstructionLSLKeyword_1_0_0() { return cInstructionLSLKeyword_1_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
+		
+		//operand = (
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//(
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
+	}
+	public class LeaInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LeaInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionLEAXKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionLEAYKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Keyword cInstructionLEASKeyword_0_0_2 = (Keyword)cInstructionAlternatives_0_0.eContents().get(2);
+		private final Keyword cInstructionLEAUKeyword_0_0_3 = (Keyword)cInstructionAlternatives_0_0.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
+		
+		///*
+		// * LEA
+		// *
+		// * Load Effective Address
+		// * Source Form        : LEAX, LEAY, LEAS, LEAU
+		// * Operation        : R <- EA
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Not affected.
+		// *                       Z -  LEAX, LEAY: Set if the result is zero; cleared otherwise
+		// *                         LEAS, LEAU: Not affected.
+		// *                    V - Not affected.
+		// *                       C - Not affected.
+		// * Description        : Calculates the effective address from the indexed addressing and places the address in an
+		// *                    indexable register. LEAX and LEAY affect the Z (zero) bit to allow use of these registers
+		// *                    as counters and for MC6800 INX/DEX compatibility. LEAU and LEAS do not affect the Z bit to
+		// *                    allow cleaning up the stack while returning the Z bit as a parameter to a calling routine,
+		// *                    and also for MC6800 INS/DES compatibility.
+		// * Addressing Mode    : Indexed
+		// */
+		//LeaInstruction:
+		//     instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
+		//    WS operand = IndexedOperand
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		// instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
+		//WS operand = IndexedOperand
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'LEAX'
+		public Keyword getInstructionLEAXKeyword_0_0_0() { return cInstructionLEAXKeyword_0_0_0; }
+		
+		//'LEAY'
+		public Keyword getInstructionLEAYKeyword_0_0_1() { return cInstructionLEAYKeyword_0_0_1; }
+		
+		//'LEAS'
+		public Keyword getInstructionLEASKeyword_0_0_2() { return cInstructionLEASKeyword_0_0_2; }
+		
+		//'LEAU'
+		public Keyword getInstructionLEAUKeyword_0_0_3() { return cInstructionLEAUKeyword_0_0_3; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//operand = IndexedOperand
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0() { return cOperandIndexedOperandParserRuleCall_2_0; }
 	}
 	public class Ld16InstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Ld16Instruction");
@@ -6935,6 +7505,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final InstructionLineElements pInstructionLine;
+	private final NopInstructionElements pNopInstruction;
+	private final NegInstructionElements pNegInstruction;
+	private final MulInstructionElements pMulInstruction;
+	private final LsrInstructionElements pLsrInstruction;
+	private final LslInstructionElements pLslInstruction;
+	private final LeaInstructionElements pLeaInstruction;
 	private final Ld16InstructionElements pLd16Instruction;
 	private final Ld8InstructionElements pLd8Instruction;
 	private final JsrInstructionElements pJsrInstruction;
@@ -7053,6 +7629,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pInstructionLine = new InstructionLineElements();
+		this.pNopInstruction = new NopInstructionElements();
+		this.pNegInstruction = new NegInstructionElements();
+		this.pMulInstruction = new MulInstructionElements();
+		this.pLsrInstruction = new LsrInstructionElements();
+		this.pLslInstruction = new LslInstructionElements();
+		this.pLeaInstruction = new LeaInstructionElements();
 		this.pLd16Instruction = new Ld16InstructionElements();
 		this.pLd8Instruction = new Ld8InstructionElements();
 		this.pJsrInstruction = new JsrInstructionElements();
@@ -7294,7 +7876,13 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        instruction = JmpInstruction            |
 	//        instruction = JsrInstruction            |
 	//        instruction = Ld8Instruction            |
-	//        instruction = Ld16Instruction
+	//        instruction = Ld16Instruction            |
+	//        instruction = LeaInstruction            |
+	//        instruction = LslInstruction            |
+	//        instruction = LsrInstruction            |
+	//        instruction = MulInstruction            |
+	//        instruction = NegInstruction            |
+	//        instruction = NopInstruction
 	//    )
 	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    WS? EndOfLine
@@ -7305,6 +7893,211 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getInstructionLineRule() {
 		return getInstructionLineAccess().getRule();
+	}
+	
+	///*
+	// * NOP
+	// *
+	// * No operation
+	// * Source Form        : NOP
+	// * Operation        : Not affected.
+	// * Condition Codes    : Not affected.
+	// * Description        : This instruction causes only the program counter to be incremented. No other registers
+	// *                    or memory locations are affected.
+	// * Addressing Mode    : Inherent
+	// *
+	// */
+	//NopInstruction:
+	//    instruction = 'NOP'
+	//;
+	public NopInstructionElements getNopInstructionAccess() {
+		return pNopInstruction;
+	}
+	
+	public ParserRule getNopInstructionRule() {
+		return getNopInstructionAccess().getRule();
+	}
+	
+	///*
+	// * NEG
+	// *
+	// * Negate
+	// * Source Form        : NEG Q, NEGA; NEGB
+	// * Operation        : M'—0-M
+	// * Condition Codes    : H - Undefined
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result is zero; cleared otherwise.
+	// *                    V - Set if the original operand was 10000000.
+	// *                       C - Set if a borrow is generated; cleared otherwise.
+	// * Description        : Replaces the operand with its twos complement. The (carry) bit represents a borrow and is
+	// *                    set to the inverse of the resulting binary carry. Note that 80i6 is replaced by itself and
+	// *                    only in this case is the  V (overflow) bit set. The value OOie is also replaced by itself,
+	// *                    and only in this case is the C (carry) bit cleared.
+	// * Addressing Mode    : Inherent
+	// *                    Extended
+	// *                    Direct
+	// *
+	// */
+	//NegInstruction:
+	//    (
+	//       instruction = ('NEGA' | 'NEGB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('NEG')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            ExtendedOperand
+	//        )
+	//    )
+	//;
+	public NegInstructionElements getNegInstructionAccess() {
+		return pNegInstruction;
+	}
+	
+	public ParserRule getNegInstructionRule() {
+		return getNegInstructionAccess().getRule();
+	}
+	
+	///*
+	// * Mul
+	// *
+	// * Multiply
+	// * Source Form        : MUL
+	// * Operation        : ACCA':ACCB'<—ACCA x ACCB
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Not affected.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Not affected.
+	// *                       C - Set if ACOB bit 7 of result is set; cleared otherwise.
+	// * Description        : Multiply the unsigned binary numbers in the accumulators and place the result In both accumulators
+	// *                    (ACCA contains the most significant byte of the result). Unsigned multiply allows multiple precision
+	// *                    operations.
+	// * Addressing Mode    : Inherent
+	// */
+	//MulInstruction:
+	//    instruction = 'MUL'
+	//;
+	public MulInstructionElements getMulInstructionAccess() {
+		return pMulInstruction;
+	}
+	
+	public ParserRule getMulInstructionRule() {
+		return getMulInstructionAccess().getRule();
+	}
+	
+	///*
+	// * LSR
+	// *
+	// * Logical Shift Right
+	// * Source Form        : LSR Q, LSRA; LSRB
+	// * Operation        :
+	// * Condition Codes    : H - Undefined
+	// *                       N - Always cleared.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Not affected.
+	// *                       C - Loaded with bit zero of the original operand.
+	// * Description        : Performs a logical shift right on the operand. Shifts a zero into bit seven and bit
+	// *                    zero into the C (carry) bit.
+	// * Addressing Mode    : Inherent
+	// *                    Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//LsrInstruction:
+	//    (
+	//       instruction = ('LSRA' | 'LSRB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('LSR')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
+	//;
+	public LsrInstructionElements getLsrInstructionAccess() {
+		return pLsrInstruction;
+	}
+	
+	public ParserRule getLsrInstructionRule() {
+		return getLsrInstructionAccess().getRule();
+	}
+	
+	///*
+	// * LSL
+	// *
+	// * Logical Shift Left
+	// * Source Form        : LSL Q, LSLA; LSLB
+	// * Operation        :
+	// * Condition Codes    : H - Undefined
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Loaded with the result of the exclusive OR of bits six and seven of the original operand.
+	// *                       C - Loaded with bit seven of the original operand.
+	// * Description        : Shifts all bits of accumulator A or B or memory location M one place to the left.
+	// *                    Bit zero is loaded with a zero. Bit seven of accumulator A or B or memory location M
+	// *                    is shifted into the (carry) bit.
+	// * Addressing Mode    : Inherent
+	// *                    Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//LslInstruction:
+	//    (
+	//       instruction = ('LSLA' | 'LSLB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('LSL')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
+	//;
+	public LslInstructionElements getLslInstructionAccess() {
+		return pLslInstruction;
+	}
+	
+	public ParserRule getLslInstructionRule() {
+		return getLslInstructionAccess().getRule();
+	}
+	
+	///*
+	// * LEA
+	// *
+	// * Load Effective Address
+	// * Source Form        : LEAX, LEAY, LEAS, LEAU
+	// * Operation        : R <- EA
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Not affected.
+	// *                       Z -  LEAX, LEAY: Set if the result is zero; cleared otherwise
+	// *                         LEAS, LEAU: Not affected.
+	// *                    V - Not affected.
+	// *                       C - Not affected.
+	// * Description        : Calculates the effective address from the indexed addressing and places the address in an
+	// *                    indexable register. LEAX and LEAY affect the Z (zero) bit to allow use of these registers
+	// *                    as counters and for MC6800 INX/DEX compatibility. LEAU and LEAS do not affect the Z bit to
+	// *                    allow cleaning up the stack while returning the Z bit as a parameter to a calling routine,
+	// *                    and also for MC6800 INS/DES compatibility.
+	// * Addressing Mode    : Indexed
+	// */
+	//LeaInstruction:
+	//     instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
+	//    WS operand = IndexedOperand
+	//;
+	public LeaInstructionElements getLeaInstructionAccess() {
+		return pLeaInstruction;
+	}
+	
+	public ParserRule getLeaInstructionRule() {
+		return getLeaInstructionAccess().getRule();
 	}
 	
 	///*

@@ -71,6 +71,12 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.INSTRUCTION_LINE: return createInstructionLine();
+      case AssemblerPackage.NOP_INSTRUCTION: return createNopInstruction();
+      case AssemblerPackage.NEG_INSTRUCTION: return createNegInstruction();
+      case AssemblerPackage.MUL_INSTRUCTION: return createMulInstruction();
+      case AssemblerPackage.LSR_INSTRUCTION: return createLsrInstruction();
+      case AssemblerPackage.LSL_INSTRUCTION: return createLslInstruction();
+      case AssemblerPackage.LEA_INSTRUCTION: return createLeaInstruction();
       case AssemblerPackage.LD16_INSTRUCTION: return createLd16Instruction();
       case AssemblerPackage.LD8_INSTRUCTION: return createLd8Instruction();
       case AssemblerPackage.JSR_INSTRUCTION: return createJsrInstruction();
@@ -265,6 +271,78 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     InstructionLineImpl instructionLine = new InstructionLineImpl();
     return instructionLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NopInstruction createNopInstruction()
+  {
+    NopInstructionImpl nopInstruction = new NopInstructionImpl();
+    return nopInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public NegInstruction createNegInstruction()
+  {
+    NegInstructionImpl negInstruction = new NegInstructionImpl();
+    return negInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MulInstruction createMulInstruction()
+  {
+    MulInstructionImpl mulInstruction = new MulInstructionImpl();
+    return mulInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LsrInstruction createLsrInstruction()
+  {
+    LsrInstructionImpl lsrInstruction = new LsrInstructionImpl();
+    return lsrInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LslInstruction createLslInstruction()
+  {
+    LslInstructionImpl lslInstruction = new LslInstructionImpl();
+    return lslInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LeaInstruction createLeaInstruction()
+  {
+    LeaInstructionImpl leaInstruction = new LeaInstructionImpl();
+    return leaInstruction;
   }
 
   /**

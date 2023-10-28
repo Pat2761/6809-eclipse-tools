@@ -79,12 +79,18 @@ import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Ld16Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Ld8Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
+import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
+import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Not;
 import org.bpy.electronics.mc6809.assembler.assembler.NumericalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
@@ -375,11 +381,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.LD8_INSTRUCTION:
 				sequence_Ld8Instruction(context, (Ld8Instruction) semanticObject); 
 				return; 
+			case AssemblerPackage.LEA_INSTRUCTION:
+				sequence_LeaInstruction(context, (LeaInstruction) semanticObject); 
+				return; 
 			case AssemblerPackage.LEFT_SHIFT:
 				sequence_LeftShift(context, (LeftShift) semanticObject); 
 				return; 
 			case AssemblerPackage.LIST_OF_EXPRESSION:
 				sequence_ListOfExpression(context, (ListOfExpression) semanticObject); 
+				return; 
+			case AssemblerPackage.LSL_INSTRUCTION:
+				sequence_LslInstruction(context, (LslInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.LSR_INSTRUCTION:
+				sequence_LsrInstruction(context, (LsrInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
@@ -387,11 +402,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.MODULO:
 				sequence_Modulo(context, (Modulo) semanticObject); 
 				return; 
+			case AssemblerPackage.MUL_INSTRUCTION:
+				sequence_MulInstruction(context, (MulInstruction) semanticObject); 
+				return; 
 			case AssemblerPackage.MULTIPLICATION:
 				sequence_Multiplication(context, (Multiplication) semanticObject); 
 				return; 
 			case AssemblerPackage.NAM_DIRECTIVE:
 				sequence_NamDirective(context, (NamDirective) semanticObject); 
+				return; 
+			case AssemblerPackage.NEG_INSTRUCTION:
+				sequence_NegInstruction(context, (NegInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.NOP_INSTRUCTION:
+				sequence_NopInstruction(context, (NopInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.NOT:
 				sequence_Primary(context, (Not) semanticObject); 
@@ -1759,7 +1783,13 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=JmpInstruction | 
 	 *             instruction=JsrInstruction | 
 	 *             instruction=Ld8Instruction | 
-	 *             instruction=Ld16Instruction
+	 *             instruction=Ld16Instruction | 
+	 *             instruction=LeaInstruction | 
+	 *             instruction=LslInstruction | 
+	 *             instruction=LsrInstruction | 
+	 *             instruction=MulInstruction | 
+	 *             instruction=NegInstruction | 
+	 *             instruction=NopInstruction
 	 *         ) 
 	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
 	 *     )
@@ -1835,6 +1865,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     LeaInstruction returns LeaInstruction
+	 *
+	 * Constraint:
+	 *     ((instruction='LEAX' | instruction='LEAY' | instruction='LEAS' | instruction='LEAU') operand=IndexedOperand)
+	 * </pre>
+	 */
+	protected void sequence_LeaInstruction(ISerializationContext context, LeaInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Multiplication returns LeftShift
 	 *     Multiplication.Multiplication_1_0 returns LeftShift
 	 *     Division returns LeftShift
@@ -1885,6 +1929,42 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * </pre>
 	 */
 	protected void sequence_ListOfExpression(ISerializationContext context, ListOfExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     LslInstruction returns LslInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='LSLA' | 
+	 *         instruction='LSLB' | 
+	 *         (instruction='LSL' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_LslInstruction(ISerializationContext context, LslInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     LsrInstruction returns LsrInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='LSRA' | 
+	 *         instruction='LSRB' | 
+	 *         (instruction='LSR' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_LsrInstruction(ISerializationContext context, LsrInstruction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1952,6 +2032,26 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     MulInstruction returns MulInstruction
+	 *
+	 * Constraint:
+	 *     instruction='MUL'
+	 * </pre>
+	 */
+	protected void sequence_MulInstruction(ISerializationContext context, MulInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MUL_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MUL_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getMulInstructionAccess().getInstructionMULKeyword_0(), semanticObject.getInstruction());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Multiplication returns Multiplication
 	 *     Multiplication.Multiplication_1_0 returns Multiplication
 	 *     Division returns Multiplication
@@ -2006,6 +2106,40 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_NamDirective(ISerializationContext context, NamDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     NegInstruction returns NegInstruction
+	 *
+	 * Constraint:
+	 *     (instruction='NEGA' | instruction='NEGB' | (instruction='NEG' (operand=DirectOperand | operand=ExtendedOperand)))
+	 * </pre>
+	 */
+	protected void sequence_NegInstruction(ISerializationContext context, NegInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     NopInstruction returns NopInstruction
+	 *
+	 * Constraint:
+	 *     instruction='NOP'
+	 * </pre>
+	 */
+	protected void sequence_NopInstruction(ISerializationContext context, NopInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.NOP_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.NOP_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getNopInstructionAccess().getInstructionNOPKeyword_0(), semanticObject.getInstruction());
+		feeder.finish();
 	}
 	
 	

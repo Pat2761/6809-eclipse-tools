@@ -175,6 +175,12 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     instruction=JsrInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=Ld16Instruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=Ld8Instruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=LeaInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=LslInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=LsrInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=MulInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=NegInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=NopInstruction (ambiguity) EndOfLine (rule end)
 	 
 	 * </pre>
 	 */

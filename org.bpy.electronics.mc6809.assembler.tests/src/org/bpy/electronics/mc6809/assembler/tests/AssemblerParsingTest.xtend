@@ -78,6 +78,12 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestJMPInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestJSRInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLD8Instruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLD16Instruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLEAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSLInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestMULInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNegInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNOPInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -142,7 +148,13 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLD16Instructi
 	 TestJMPInstruction,
 	 TestJSRInstruction,
 	 TestLD8Instruction,
-	 TestLD16Instruction
+	 TestLD16Instruction,
+	 TestLEAInstruction,
+	 TestLSLInstruction,
+	 TestLSRInstruction,
+	 TestMULInstruction,
+	 TestNegInstruction,
+	 TestNOPInstruction
 )
     
 class AssemblerParsingTest {
