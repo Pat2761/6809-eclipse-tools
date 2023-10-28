@@ -99,10 +99,117 @@ InstructionLine:
 		instruction = DecInstruction			|
 		instruction = EorInstruction			|
 		instruction = ExgInstruction			|
-		instruction = IncInstruction			
+		instruction = IncInstruction			|			
+		instruction = JmpInstruction			|			
+		instruction = JsrInstruction			|			
+		instruction = Ld8Instruction			|			
+		instruction = Ld16Instruction			
 	)  
 	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine	
+;
+
+/*
+ * LD (16 bits)
+ * 
+ * Load Register from Memory
+ * Source Form		: LDA P, LDB P 
+ * Operation		: R <- M:M+1
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Always cleared.
+ * 					  C - Not affected.
+ * Description		: Loads the contents of memory location M:M+1 into the designated 16 bits register.
+ * Addressing Mode	: Immediate
+ * 					  Extended
+ *                    Direct
+ *                    Indexed
+ */
+Ld16Instruction:
+ 	instruction = ('LDD' | 'LDX' | 'LDY' | 'LDS' | 'LDU')
+	WS operand = ( 
+		ImmediatOperand |
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+;
+
+/*
+ * LD (8 bits)
+ * 
+ * Load Register from Memory
+ * Source Form		: LDA P, LDB P 
+ * Operation		: R <- M
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Always cleared.
+ * 					  C - Not affected.
+ * Description		: Loads the contents of memory location M into the designated register.
+ * Addressing Mode	: Immediate
+ * 					  Extended
+ *                    Direct
+ *                    Indexed
+ */
+Ld8Instruction:
+ 	instruction = ('LDA' | 'LDB')
+	WS operand = ( 
+		ImmediatOperand |
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+;
+
+/*
+ * JSR
+ * 
+ * Jump to Subroutine
+ * Source Form		: JSR EA 
+ * Operation		: SP'— SP-1,(SP)*-PCL
+ *                    SP'— SP-1,(SP)*-PCH
+ *                    PC— EA
+ * Condition Codes	: Not affected.
+ * Description		: Program control is transferred to the effective address after storing the return address on the 
+ *                    hardware stack. A RTS Instruction should be the last executed instruction of the subroutine.
+ * Addressing Mode	: Extended
+ *                    Direct
+ *                    Indexed
+ */
+JsrInstruction:
+ 	instruction = ('JSR')
+	WS operand = ( 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+;
+
+/*
+ * JMP
+ * 
+ * Jump
+ * Source Form		: JMP EA 
+ * Operation		: PC'*-EA
+ * Condition Codes	: Not affected.
+ * Description		: Program control is transferred to the effective address.
+ * Addressing Mode	: Extended
+ *                    Direct
+ *                    Indexed
+ */
+JmpInstruction:
+ 	instruction = ('JMP')
+	WS operand = ( 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
 ;
 
 /*
