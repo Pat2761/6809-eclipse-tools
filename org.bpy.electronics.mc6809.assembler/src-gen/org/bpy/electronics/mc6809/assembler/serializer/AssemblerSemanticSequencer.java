@@ -51,12 +51,16 @@ import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
@@ -255,6 +259,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.CWAI_INSTRUCTION:
 				sequence_CwaiInstruction(context, (CwaiInstruction) semanticObject); 
 				return; 
+			case AssemblerPackage.DAA_INSTRUCTION:
+				sequence_DaaInstruction(context, (DaaInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.DEC_INSTRUCTION:
+				sequence_DecInstruction(context, (DecInstruction) semanticObject); 
+				return; 
 			case AssemblerPackage.DECIMAL_VALUE:
 				sequence_DecimalValue(context, (DecimalValue) semanticObject); 
 				return; 
@@ -270,8 +280,14 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.END_DIRECTIVE:
 				sequence_EndDirective(context, (EndDirective) semanticObject); 
 				return; 
+			case AssemblerPackage.EOR_INSTRUCTION:
+				sequence_EorInstruction(context, (EorInstruction) semanticObject); 
+				return; 
 			case AssemblerPackage.EQU_DIRECTIVE:
 				sequence_EquDirective(context, (EquDirective) semanticObject); 
+				return; 
+			case AssemblerPackage.EXG_INSTRUCTION:
+				sequence_ExgInstruction(context, (ExgInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.EXPRESSION:
 				if (rule == grammarAccess.getExpressionRule()) {
@@ -1195,6 +1211,44 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     DaaInstruction returns DaaInstruction
+	 *
+	 * Constraint:
+	 *     instruction='DAA'
+	 * </pre>
+	 */
+	protected void sequence_DaaInstruction(ISerializationContext context, DaaInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DAA_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DAA_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getDaaInstructionAccess().getInstructionDAAKeyword_0(), semanticObject.getInstruction());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     DecInstruction returns DecInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='DECA' | 
+	 *         instruction='DECB' | 
+	 *         (instruction='DEC' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_DecInstruction(ISerializationContext context, DecInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     DecimalValue returns DecimalValue
 	 *
 	 * Constraint:
@@ -1324,6 +1378,23 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     EorInstruction returns EorInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         (instruction='EORA' | instruction='EORB') 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_EorInstruction(ISerializationContext context, EorInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     EquDirective returns EquDirective
 	 *
 	 * Constraint:
@@ -1332,6 +1403,32 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_EquDirective(ISerializationContext context, EquDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     ExgInstruction returns ExgInstruction
+	 *
+	 * Constraint:
+	 *     (instruction='EXG' reg1=Register reg2=Register)
+	 * </pre>
+	 */
+	protected void sequence_ExgInstruction(ISerializationContext context, ExgInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG1));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG2));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getExgInstructionAccess().getInstructionEXGKeyword_0_0(), semanticObject.getInstruction());
+		feeder.accept(grammarAccess.getExgInstructionAccess().getReg1RegisterEnumRuleCall_2_0(), semanticObject.getReg1());
+		feeder.accept(grammarAccess.getExgInstructionAccess().getReg2RegisterEnumRuleCall_4_0(), semanticObject.getReg2());
+		feeder.finish();
 	}
 	
 	
@@ -1615,7 +1712,11 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=ClrInstruction | 
 	 *             instruction=CmpInstruction | 
 	 *             instruction=ComInstruction | 
-	 *             instruction=CwaiInstruction
+	 *             instruction=CwaiInstruction | 
+	 *             instruction=DaaInstruction | 
+	 *             instruction=DecInstruction | 
+	 *             instruction=EorInstruction | 
+	 *             instruction=ExgInstruction
 	 *         ) 
 	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
 	 *     )

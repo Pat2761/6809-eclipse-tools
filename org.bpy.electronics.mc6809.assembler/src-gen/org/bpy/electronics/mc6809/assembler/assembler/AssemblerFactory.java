@@ -69,6 +69,42 @@ public interface AssemblerFactory extends EFactory
   InstructionLine createInstructionLine();
 
   /**
+   * Returns a new object of class '<em>Exg Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Exg Instruction</em>'.
+   * @generated
+   */
+  ExgInstruction createExgInstruction();
+
+  /**
+   * Returns a new object of class '<em>Eor Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Eor Instruction</em>'.
+   * @generated
+   */
+  EorInstruction createEorInstruction();
+
+  /**
+   * Returns a new object of class '<em>Dec Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Dec Instruction</em>'.
+   * @generated
+   */
+  DecInstruction createDecInstruction();
+
+  /**
+   * Returns a new object of class '<em>Daa Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Daa Instruction</em>'.
+   * @generated
+   */
+  DaaInstruction createDaaInstruction();
+
+  /**
    * Returns a new object of class '<em>Cwai Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

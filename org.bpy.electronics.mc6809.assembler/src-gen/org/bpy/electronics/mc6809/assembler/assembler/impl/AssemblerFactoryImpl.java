@@ -71,6 +71,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.INSTRUCTION_LINE: return createInstructionLine();
+      case AssemblerPackage.EXG_INSTRUCTION: return createExgInstruction();
+      case AssemblerPackage.EOR_INSTRUCTION: return createEorInstruction();
+      case AssemblerPackage.DEC_INSTRUCTION: return createDecInstruction();
+      case AssemblerPackage.DAA_INSTRUCTION: return createDaaInstruction();
       case AssemblerPackage.CWAI_INSTRUCTION: return createCwaiInstruction();
       case AssemblerPackage.COM_INSTRUCTION: return createComInstruction();
       case AssemblerPackage.CMP_INSTRUCTION: return createCmpInstruction();
@@ -256,6 +260,54 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     InstructionLineImpl instructionLine = new InstructionLineImpl();
     return instructionLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public ExgInstruction createExgInstruction()
+  {
+    ExgInstructionImpl exgInstruction = new ExgInstructionImpl();
+    return exgInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EorInstruction createEorInstruction()
+  {
+    EorInstructionImpl eorInstruction = new EorInstructionImpl();
+    return eorInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DecInstruction createDecInstruction()
+  {
+    DecInstructionImpl decInstruction = new DecInstructionImpl();
+    return decInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public DaaInstruction createDaaInstruction()
+  {
+    DaaInstructionImpl daaInstruction = new DaaInstructionImpl();
+    return daaInstruction;
   }
 
   /**

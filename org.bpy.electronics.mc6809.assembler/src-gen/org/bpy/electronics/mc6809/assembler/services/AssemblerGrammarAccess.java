@@ -231,6 +231,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cInstructionComInstructionParserRuleCall_2_30_0 = (RuleCall)cInstructionAssignment_2_30.eContents().get(0);
 		private final Assignment cInstructionAssignment_2_31 = (Assignment)cAlternatives_2.eContents().get(31);
 		private final RuleCall cInstructionCwaiInstructionParserRuleCall_2_31_0 = (RuleCall)cInstructionAssignment_2_31.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_32 = (Assignment)cAlternatives_2.eContents().get(32);
+		private final RuleCall cInstructionDaaInstructionParserRuleCall_2_32_0 = (RuleCall)cInstructionAssignment_2_32.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_33 = (Assignment)cAlternatives_2.eContents().get(33);
+		private final RuleCall cInstructionDecInstructionParserRuleCall_2_33_0 = (RuleCall)cInstructionAssignment_2_33.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_34 = (Assignment)cAlternatives_2.eContents().get(34);
+		private final RuleCall cInstructionEorInstructionParserRuleCall_2_34_0 = (RuleCall)cInstructionAssignment_2_34.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_35 = (Assignment)cAlternatives_2.eContents().get(35);
+		private final RuleCall cInstructionExgInstructionParserRuleCall_2_35_0 = (RuleCall)cInstructionAssignment_2_35.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
 		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -275,7 +283,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        instruction = ClrInstruction            |
 		//        instruction = CmpInstruction            |
 		//        instruction = ComInstruction            |
-		//        instruction = CwaiInstruction
+		//        instruction = CwaiInstruction            |
+		//        instruction = DaaInstruction            |
+		//        instruction = DecInstruction            |
+		//        instruction = EorInstruction            |
+		//        instruction = ExgInstruction
 		//    )
 		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    WS? EndOfLine
@@ -315,7 +327,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = ClrInstruction            |
 		//    instruction = CmpInstruction            |
 		//    instruction = ComInstruction            |
-		//    instruction = CwaiInstruction
+		//    instruction = CwaiInstruction            |
+		//    instruction = DaaInstruction            |
+		//    instruction = DecInstruction            |
+		//    instruction = EorInstruction            |
+		//    instruction = ExgInstruction
 		//)
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//WS? EndOfLine
@@ -362,7 +378,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = ClrInstruction            |
 		//    instruction = CmpInstruction            |
 		//    instruction = ComInstruction            |
-		//    instruction = CwaiInstruction
+		//    instruction = CwaiInstruction            |
+		//    instruction = DaaInstruction            |
+		//    instruction = DecInstruction            |
+		//    instruction = EorInstruction            |
+		//    instruction = ExgInstruction
 		//)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
@@ -558,6 +578,30 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//CwaiInstruction
 		public RuleCall getInstructionCwaiInstructionParserRuleCall_2_31_0() { return cInstructionCwaiInstructionParserRuleCall_2_31_0; }
 		
+		//instruction = DaaInstruction
+		public Assignment getInstructionAssignment_2_32() { return cInstructionAssignment_2_32; }
+		
+		//DaaInstruction
+		public RuleCall getInstructionDaaInstructionParserRuleCall_2_32_0() { return cInstructionDaaInstructionParserRuleCall_2_32_0; }
+		
+		//instruction = DecInstruction
+		public Assignment getInstructionAssignment_2_33() { return cInstructionAssignment_2_33; }
+		
+		//DecInstruction
+		public RuleCall getInstructionDecInstructionParserRuleCall_2_33_0() { return cInstructionDecInstructionParserRuleCall_2_33_0; }
+		
+		//instruction = EorInstruction
+		public Assignment getInstructionAssignment_2_34() { return cInstructionAssignment_2_34; }
+		
+		//EorInstruction
+		public RuleCall getInstructionEorInstructionParserRuleCall_2_34_0() { return cInstructionEorInstructionParserRuleCall_2_34_0; }
+		
+		//instruction = ExgInstruction
+		public Assignment getInstructionAssignment_2_35() { return cInstructionAssignment_2_35; }
+		
+		//ExgInstruction
+		public RuleCall getInstructionExgInstructionParserRuleCall_2_35_0() { return cInstructionExgInstructionParserRuleCall_2_35_0; }
+		
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_3() { return cGroup_3; }
 		
@@ -575,6 +619,350 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class ExgInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ExgInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cInstructionEXGKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cReg1Assignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cReg1RegisterEnumRuleCall_2_0 = (RuleCall)cReg1Assignment_2.eContents().get(0);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cReg2Assignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cReg2RegisterEnumRuleCall_4_0 = (RuleCall)cReg2Assignment_4.eContents().get(0);
+		
+		///*
+		// * EXG
+		// *
+		// * Exclusive OR
+		// * Source Form        : EXG R1,R2
+		// * Operation        : R1<->R2
+		// * Condition Codes    : Not affected (unless one of the registers is the condition coderegister).
+		// * Description        : Exchanges data between two designated registers. Bits 3-0 of the postbyte define one register,
+		// *                    while bits 7-4 define the other, as follows:
+		// *                                     0000 = A:B                1000 = A
+		// *                                     0001 =X                    1001 = B
+		// *                                     0010 = Y                1010 = COR
+		// *                                     0011= US                1011= DPR
+		// *                                     0100 = SP                1100 = Undefined
+		// *                                     0101 = PC                1101 = Undefined
+		// *                                     0110 = Undefined        1110 = Undefined
+		// *                                     0111= Undefined            1111 = Undefined
+		// *                     Only like size registers may be exchanged. (8-bit with 8-bit or 16-bit with 16-bit.)
+		// * Addressing Mode    : Immediate
+		// */
+		//ExgInstruction:
+		//    instruction = ('EXG' )
+		//    WS reg1=Register ',' reg2=Register
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = ('EXG' )
+		//WS reg1=Register ',' reg2=Register
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = ('EXG' )
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('EXG' )
+		public Keyword getInstructionEXGKeyword_0_0() { return cInstructionEXGKeyword_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//reg1=Register
+		public Assignment getReg1Assignment_2() { return cReg1Assignment_2; }
+		
+		//Register
+		public RuleCall getReg1RegisterEnumRuleCall_2_0() { return cReg1RegisterEnumRuleCall_2_0; }
+		
+		//','
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+		
+		//reg2=Register
+		public Assignment getReg2Assignment_4() { return cReg2Assignment_4; }
+		
+		//Register
+		public RuleCall getReg2RegisterEnumRuleCall_4_0() { return cReg2RegisterEnumRuleCall_4_0; }
+	}
+	public class EorInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.EorInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionEORAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionEORBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
+		
+		///*
+		// * EOR
+		// *
+		// * Exclusive OR
+		// * Source Form        : EORA P; EORB P
+		// * Operation        : R'— R®M
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result is zero; cleared otherwise.
+		// *                    V - Always cleared.
+		// *                       C - Not affected.
+		// * Description        : The contents of memory location M is exclusive ORed into an 8-blt register..
+		// * Addressing Mode    : Immediate
+		// *                    Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//EorInstruction:
+		//    instruction = ('EORA' | 'EORB')
+		//    WS operand = (
+		//        ImmediatOperand |
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = ('EORA' | 'EORB')
+		//WS operand = (
+		//    ImmediatOperand |
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = ('EORA' | 'EORB')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('EORA' | 'EORB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'EORA'
+		public Keyword getInstructionEORAKeyword_0_0_0() { return cInstructionEORAKeyword_0_0_0; }
+		
+		//'EORB'
+		public Keyword getInstructionEORBKeyword_0_0_1() { return cInstructionEORBKeyword_0_0_1; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//operand = (
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
+		
+		//(
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
+		
+		//ImmediatOperand
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
+	}
+	public class DecInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DecInstruction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionDECAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionDECBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionDECKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		
+		///*
+		// * DEC
+		// *
+		// * Decrement
+		// * Source Form        : DEC Q, DECA; DECB
+		// * Operation        : M'— M-1
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Set if the original operand was 10000000; cleared otherwise.
+		// *                       C - Not affected.
+		// * Description        : Subtract one from the operand. The carry bit is not affected, thus allowing this instruction to be used as a loop counter
+		// *                    in multipleprecision computations. When operating on unsigned values, only BEQ and BNE branches can be expected to behave consistently.
+		// *                    When operating on twos complement values, all signed branches are available.
+		// * Addressing Mode    : Inherent
+		// *                       Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//DecInstruction:
+		//    (
+		//       instruction = ('DECA' | 'DECB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('DEC')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(
+		//   instruction = ('DECA' | 'DECB')
+		//)
+		//|
+		//(
+		//     instruction = ('DEC')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//   instruction = ('DECA' | 'DECB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('DECA' | 'DECB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'DECA'
+		public Keyword getInstructionDECAKeyword_0_0_0() { return cInstructionDECAKeyword_0_0_0; }
+		
+		//'DECB'
+		public Keyword getInstructionDECBKeyword_0_0_1() { return cInstructionDECBKeyword_0_0_1; }
+		
+		//(
+		//     instruction = ('DEC')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//instruction = ('DEC')
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
+		
+		//('DEC')
+		public Keyword getInstructionDECKeyword_1_0_0() { return cInstructionDECKeyword_1_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
+		
+		//operand = (
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//(
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
+	}
+	public class DaaInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DaaInstruction");
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionDAAKeyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
+		
+		///*
+		// * DAA
+		// *
+		// * Decimal Addition Adjust
+		// * Source Form        : DAA
+		// * Operation        : ACCA'— ACCA + OF (MSN):CF(LSN)
+		// *                    where OF is a Correction Factor, as follows: the CF for each nibble
+		// *                    (BCD) digit is determined separately, and is either 6 or 0.
+		// *
+		// *                    Least Significant Nibble
+		// *                    CF(LSN) = 6IFF1)C = 1
+		// *                                     or2)LSN>9
+		// *
+		// *                    Most Significant Nibble
+		// *                   CF(MSN) = 6IFF1)C = 1
+		// *                                     or 2) MSN > 9
+		// *                                     or 3) MSN > 8 and LSN> 9
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result is zero; cleared otherwise.
+		// *                    V - Undefined
+		// *                       C - Set if a carry is generated or if the carry bit was set before the operation; cleared otherwise.
+		// * Description        : The sequence of a single-byte add instruction on accumulator A (either ADDA or ADCA) and a following decimal addition adjust instruction results
+		// *                    in a BCD addition with an appropriate carry bit. Both values to be added must be in proper BCD form (each nibble such that: 0<nibble<9).
+		// *                    Multiple-precision addition must add the carry generated by this decimal addition adjust into the next higher digit during the add operation (ADCA)
+		// *                    immediately prior to the next decimal addition adjust.
+		// * Addressing Mode    : inherent
+		// */
+		//DaaInstruction:
+		//    instruction = 'DAA'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'DAA'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
+		
+		//'DAA'
+		public Keyword getInstructionDAAKeyword_0() { return cInstructionDAAKeyword_0; }
 	}
 	public class CwaiInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CwaiInstruction");
@@ -5976,6 +6364,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final InstructionLineElements pInstructionLine;
+	private final ExgInstructionElements pExgInstruction;
+	private final EorInstructionElements pEorInstruction;
+	private final DecInstructionElements pDecInstruction;
+	private final DaaInstructionElements pDaaInstruction;
 	private final CwaiInstructionElements pCwaiInstruction;
 	private final ComInstructionElements pComInstruction;
 	private final CmpInstructionElements pCmpInstruction;
@@ -6085,6 +6477,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pInstructionLine = new InstructionLineElements();
+		this.pExgInstruction = new ExgInstructionElements();
+		this.pEorInstruction = new EorInstructionElements();
+		this.pDecInstruction = new DecInstructionElements();
+		this.pDaaInstruction = new DaaInstructionElements();
 		this.pCwaiInstruction = new CwaiInstructionElements();
 		this.pComInstruction = new ComInstructionElements();
 		this.pCmpInstruction = new CmpInstructionElements();
@@ -6308,7 +6704,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        instruction = ClrInstruction            |
 	//        instruction = CmpInstruction            |
 	//        instruction = ComInstruction            |
-	//        instruction = CwaiInstruction
+	//        instruction = CwaiInstruction            |
+	//        instruction = DaaInstruction            |
+	//        instruction = DecInstruction            |
+	//        instruction = EorInstruction            |
+	//        instruction = ExgInstruction
 	//    )
 	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    WS? EndOfLine
@@ -6319,6 +6719,154 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getInstructionLineRule() {
 		return getInstructionLineAccess().getRule();
+	}
+	
+	///*
+	// * EXG
+	// *
+	// * Exclusive OR
+	// * Source Form        : EXG R1,R2
+	// * Operation        : R1<->R2
+	// * Condition Codes    : Not affected (unless one of the registers is the condition coderegister).
+	// * Description        : Exchanges data between two designated registers. Bits 3-0 of the postbyte define one register,
+	// *                    while bits 7-4 define the other, as follows:
+	// *                                     0000 = A:B                1000 = A
+	// *                                     0001 =X                    1001 = B
+	// *                                     0010 = Y                1010 = COR
+	// *                                     0011= US                1011= DPR
+	// *                                     0100 = SP                1100 = Undefined
+	// *                                     0101 = PC                1101 = Undefined
+	// *                                     0110 = Undefined        1110 = Undefined
+	// *                                     0111= Undefined            1111 = Undefined
+	// *                     Only like size registers may be exchanged. (8-bit with 8-bit or 16-bit with 16-bit.)
+	// * Addressing Mode    : Immediate
+	// */
+	//ExgInstruction:
+	//    instruction = ('EXG' )
+	//    WS reg1=Register ',' reg2=Register
+	//;
+	public ExgInstructionElements getExgInstructionAccess() {
+		return pExgInstruction;
+	}
+	
+	public ParserRule getExgInstructionRule() {
+		return getExgInstructionAccess().getRule();
+	}
+	
+	///*
+	// * EOR
+	// *
+	// * Exclusive OR
+	// * Source Form        : EORA P; EORB P
+	// * Operation        : R'— R®M
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result is zero; cleared otherwise.
+	// *                    V - Always cleared.
+	// *                       C - Not affected.
+	// * Description        : The contents of memory location M is exclusive ORed into an 8-blt register..
+	// * Addressing Mode    : Immediate
+	// *                    Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//EorInstruction:
+	//    instruction = ('EORA' | 'EORB')
+	//    WS operand = (
+	//        ImmediatOperand |
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
+	//;
+	public EorInstructionElements getEorInstructionAccess() {
+		return pEorInstruction;
+	}
+	
+	public ParserRule getEorInstructionRule() {
+		return getEorInstructionAccess().getRule();
+	}
+	
+	///*
+	// * DEC
+	// *
+	// * Decrement
+	// * Source Form        : DEC Q, DECA; DECB
+	// * Operation        : M'— M-1
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Set if the original operand was 10000000; cleared otherwise.
+	// *                       C - Not affected.
+	// * Description        : Subtract one from the operand. The carry bit is not affected, thus allowing this instruction to be used as a loop counter
+	// *                    in multipleprecision computations. When operating on unsigned values, only BEQ and BNE branches can be expected to behave consistently.
+	// *                    When operating on twos complement values, all signed branches are available.
+	// * Addressing Mode    : Inherent
+	// *                       Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//DecInstruction:
+	//    (
+	//       instruction = ('DECA' | 'DECB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('DEC')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
+	//;
+	public DecInstructionElements getDecInstructionAccess() {
+		return pDecInstruction;
+	}
+	
+	public ParserRule getDecInstructionRule() {
+		return getDecInstructionAccess().getRule();
+	}
+	
+	///*
+	// * DAA
+	// *
+	// * Decimal Addition Adjust
+	// * Source Form        : DAA
+	// * Operation        : ACCA'— ACCA + OF (MSN):CF(LSN)
+	// *                    where OF is a Correction Factor, as follows: the CF for each nibble
+	// *                    (BCD) digit is determined separately, and is either 6 or 0.
+	// *
+	// *                    Least Significant Nibble
+	// *                    CF(LSN) = 6IFF1)C = 1
+	// *                                     or2)LSN>9
+	// *
+	// *                    Most Significant Nibble
+	// *                   CF(MSN) = 6IFF1)C = 1
+	// *                                     or 2) MSN > 9
+	// *                                     or 3) MSN > 8 and LSN> 9
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result is zero; cleared otherwise.
+	// *                    V - Undefined
+	// *                       C - Set if a carry is generated or if the carry bit was set before the operation; cleared otherwise.
+	// * Description        : The sequence of a single-byte add instruction on accumulator A (either ADDA or ADCA) and a following decimal addition adjust instruction results
+	// *                    in a BCD addition with an appropriate carry bit. Both values to be added must be in proper BCD form (each nibble such that: 0<nibble<9).
+	// *                    Multiple-precision addition must add the carry generated by this decimal addition adjust into the next higher digit during the add operation (ADCA)
+	// *                    immediately prior to the next decimal addition adjust.
+	// * Addressing Mode    : inherent
+	// */
+	//DaaInstruction:
+	//    instruction = 'DAA'
+	//;
+	public DaaInstructionElements getDaaInstructionAccess() {
+		return pDaaInstruction;
+	}
+	
+	public ParserRule getDaaInstructionRule() {
+		return getDaaInstructionAccess().getRule();
 	}
 	
 	///*

@@ -68,6 +68,11 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBVSInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCLRInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCOMInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCWAIInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestDAAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestDECInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEORInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEXGInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -122,7 +127,12 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCOMInstructio
 	 TestBVSInstruction,
 	 TestCLRInstruction,
 	 TestCMPInstruction,
-	 TestCOMInstruction
+	 TestCOMInstruction,
+	 TestCWAIInstruction,
+	 TestDAAInstruction,
+	 TestDECInstruction,
+	 TestEORInstruction,
+	 TestEXGInstruction
 )
     
 class AssemblerParsingTest {

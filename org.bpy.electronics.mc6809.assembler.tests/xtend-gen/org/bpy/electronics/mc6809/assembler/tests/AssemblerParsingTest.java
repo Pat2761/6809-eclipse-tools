@@ -65,11 +65,16 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBVSInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCLRInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCOMInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCWAIInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestDAAInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestDECInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEORInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEXGInstruction;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ TestComment.class, TestBszDirective.class, TestEndDirective.class, TestEquDirective.class, TestFailDirective.class, TestFcbDirective.class, TestFccDirective.class, TestFdbDirective.class, TestFillDirective.class, TestNamDirective.class, TestOptDirective.class, TestOrgDirective.class, TestPagDirective.class, TestRegDirective.class, TestRmbDirective.class, TestSetDirective.class, TestSpcDirective.class, TestABXInstruction.class, TestADCInstruction.class, TestADDDInstruction.class, TestADDInstruction.class, TestANDCCInstruction.class, TestANDInstruction.class, TestASLInstruction.class, TestASRInstruction.class, TestBCCInstruction.class, TestBCSInstruction.class, TestBEQInstruction.class, TestBGEInstruction.class, TestBGTInstruction.class, TestBHIInstruction.class, TestBHSInstruction.class, TestBITInstruction.class, TestBLEInstruction.class, TestBLOInstruction.class, TestBLSInstruction.class, TestBLTInstruction.class, TestBMIInstruction.class, TestBNEInstruction.class, TestBPLInstruction.class, TestBRAInstruction.class, TestBRNInstruction.class, TestBSRInstruction.class, TestBVCInstruction.class, TestBVSInstruction.class, TestCLRInstruction.class, TestCMPInstruction.class, TestCOMInstruction.class })
+@Suite.SuiteClasses({ TestComment.class, TestBszDirective.class, TestEndDirective.class, TestEquDirective.class, TestFailDirective.class, TestFcbDirective.class, TestFccDirective.class, TestFdbDirective.class, TestFillDirective.class, TestNamDirective.class, TestOptDirective.class, TestOrgDirective.class, TestPagDirective.class, TestRegDirective.class, TestRmbDirective.class, TestSetDirective.class, TestSpcDirective.class, TestABXInstruction.class, TestADCInstruction.class, TestADDDInstruction.class, TestADDInstruction.class, TestANDCCInstruction.class, TestANDInstruction.class, TestASLInstruction.class, TestASRInstruction.class, TestBCCInstruction.class, TestBCSInstruction.class, TestBEQInstruction.class, TestBGEInstruction.class, TestBGTInstruction.class, TestBHIInstruction.class, TestBHSInstruction.class, TestBITInstruction.class, TestBLEInstruction.class, TestBLOInstruction.class, TestBLSInstruction.class, TestBLTInstruction.class, TestBMIInstruction.class, TestBNEInstruction.class, TestBPLInstruction.class, TestBRAInstruction.class, TestBRNInstruction.class, TestBSRInstruction.class, TestBVCInstruction.class, TestBVSInstruction.class, TestCLRInstruction.class, TestCMPInstruction.class, TestCOMInstruction.class, TestCWAIInstruction.class, TestDAAInstruction.class, TestDECInstruction.class, TestEORInstruction.class, TestEXGInstruction.class })
 @SuppressWarnings("all")
 public class AssemblerParsingTest {
 }

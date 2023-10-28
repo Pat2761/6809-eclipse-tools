@@ -166,6 +166,10 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     instruction=CmpInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=ComInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=CwaiInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=DaaInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=DecInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=EorInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=ExgInstruction (ambiguity) EndOfLine (rule end)
 	 
 	 * </pre>
 	 */

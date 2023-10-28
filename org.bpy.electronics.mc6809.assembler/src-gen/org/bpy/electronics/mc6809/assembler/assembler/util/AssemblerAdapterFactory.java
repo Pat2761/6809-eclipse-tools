@@ -101,6 +101,26 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createInstructionLineAdapter();
       }
       @Override
+      public Adapter caseExgInstruction(ExgInstruction object)
+      {
+        return createExgInstructionAdapter();
+      }
+      @Override
+      public Adapter caseEorInstruction(EorInstruction object)
+      {
+        return createEorInstructionAdapter();
+      }
+      @Override
+      public Adapter caseDecInstruction(DecInstruction object)
+      {
+        return createDecInstructionAdapter();
+      }
+      @Override
+      public Adapter caseDaaInstruction(DaaInstruction object)
+      {
+        return createDaaInstructionAdapter();
+      }
+      @Override
       public Adapter caseCwaiInstruction(CwaiInstruction object)
       {
         return createCwaiInstructionAdapter();
@@ -613,6 +633,66 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInstructionLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction <em>Exg Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction
+   * @generated
+   */
+  public Adapter createExgInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.EorInstruction <em>Eor Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EorInstruction
+   * @generated
+   */
+  public Adapter createEorInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.DecInstruction <em>Dec Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DecInstruction
+   * @generated
+   */
+  public Adapter createDecInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction <em>Daa Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction
+   * @generated
+   */
+  public Adapter createDaaInstructionAdapter()
   {
     return null;
   }
