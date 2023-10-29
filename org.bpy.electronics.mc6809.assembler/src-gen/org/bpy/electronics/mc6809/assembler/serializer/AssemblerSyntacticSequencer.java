@@ -191,6 +191,16 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     instruction=RorInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=RtiInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=RtsInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=SbcInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=SexInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=St16Instruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=St8Instruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=SubInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=SubdInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=Swi2Instruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=Swi3Instruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=SwiInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=SyncInstruction (ambiguity) EndOfLine (rule end)
 	 
 	 * </pre>
 	 */

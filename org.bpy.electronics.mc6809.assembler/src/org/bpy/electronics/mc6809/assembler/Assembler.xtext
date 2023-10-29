@@ -119,10 +119,284 @@ InstructionLine:
 		instruction = RolInstruction			|			   
 		instruction = RorInstruction			|			   
 		instruction = RtiInstruction			|			   
-		instruction = RtsInstruction			   
+		instruction = RtsInstruction			|			   
+		instruction = SbcInstruction			|			   
+		instruction = SexInstruction			|			   
+		instruction = St8Instruction			|			   
+		instruction = St16Instruction			|			   
+		instruction = SubInstruction			|			   
+		instruction = SubdInstruction			|			   
+		instruction = SwiInstruction			|			   
+		instruction = Swi2Instruction			|			   
+		instruction = Swi3Instruction			|			   
+		instruction = SyncInstruction			   
 	)  
 	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine	
+;
+
+/*
+ * SYNC
+ * 
+ * Synchronize to External Event
+ * Source Form		: SYNC
+ * Operation		: Synchronize to External Event
+ * Condition Codes	: Not affected.
+ * Description		: When a SYNC instruction is excuted, tlie processor enters a synchronizing state, stops processing instructions, and waits for an interrupt.
+ * 					  When an interrupt occurs, the synchronizing state is cleared and processing continues. If the interrupt is enabled, and it lasts three cycles 
+ *                    or more, the processor will perform the interrupt routine. If the interrupt is masked or is shorter than three cycles, the processor simply 
+ *                    continues to the next instruction. While in the synchronizing state, the address and data buses are in the high impedance state. 
+ * Addressing Mode	: Inherent
+ */
+SyncInstruction:
+	instruction = 'SYNC'
+;
+
+/*
+ * SWI3
+ * 
+ * Software Interrupt 3
+ * Source Form		: SWI3
+ * Operation		: Set E (entire state will be saved)
+ * 					  SP'-SP-1,(SP)-PCL 
+ *                    SP'^SP-1,(SP)— PCH
+ *                    SP'—SP-1,(SP)*-USL 
+ *                    SP'— SP-1,(SP)*-USH
+ *                    SP'-SP-1,(SP)— lYL 
+ *                    SP'*-SP-1,(SP)— lYH
+ *                    SP'-SP-1,(SP)-IXL
+ *                    SP'—SP-1,(SP)— IXH 
+ *                    SP'—SP-1,(SP)^DPR 
+ *                    SP'— SP-1,(SP)*-ACCB 
+ *                    SP'— SP-1,(SP)— ACCA 
+ *                    SP'—SP-1,(SP)— OCR 
+ *                    Set I, F (mask interrupts) 
+ *                    PC'-(FFF2):(FFF3)
+ * Condition Codes	: Not affected.
+ * Description		: All of the processor registers are pushed onto the hardware stack (with the exception of the hardware stack pointer itself), and control
+ *                    is transferred through the software interrupt 2 vector. This interrupt is available to the end user and must not be used in packaged software. 
+ *                    This interrupt does not mask (disable) the norma! and fast interrupts. 
+ * Addressing Mode	: Inherent
+ */
+Swi3Instruction:
+	instruction = 'SWI3'
+;
+
+/*
+ * SWI2
+ * 
+ * Software Interrupt 2
+ * Source Form		: SWI2
+ * Operation		: Set E (entire state will be saved)
+ * 					  SP'-SP-1,(SP)-PCL 
+ *                    SP'^SP-1,(SP)— PCH
+ *                    SP'—SP-1,(SP)*-USL 
+ *                    SP'— SP-1,(SP)*-USH
+ *                    SP'-SP-1,(SP)— lYL 
+ *                    SP'*-SP-1,(SP)— lYH
+ *                    SP'-SP-1,(SP)-IXL
+ *                    SP'—SP-1,(SP)— IXH 
+ *                    SP'—SP-1,(SP)^DPR 
+ *                    SP'— SP-1,(SP)*-ACCB 
+ *                    SP'— SP-1,(SP)— ACCA 
+ *                    SP'—SP-1,(SP)— OCR 
+ *                    Set I, F (mask interrupts) 
+ *                    PC'-(FFF4):(FFF5)
+ * Condition Codes	: Not affected.
+ * Description		: All of the processor registers are pushed onto the hardware stack (with the exception of the hardware stack pointer itself), and control
+ *                    is transferred through the software interrupt 2 vector. This interrupt is available to the end user and must not be used in packaged software. 
+ *                    This interrupt does not mask (disable) the norma! and fast interrupts. 
+ * Addressing Mode	: Inherent
+ */
+Swi2Instruction:
+	instruction = 'SWI2'
+;
+
+/*
+ * SWI
+ * 
+ * Software Interrupt
+ * Source Form		: SWI
+ * Operation		: Set E (entire state will be saved)
+ * 					  SP'-SP-1,(SP)-PCL 
+ *                    SP'^SP-1,(SP)— PCH
+ *                    SP'—SP-1,(SP)*-USL 
+ *                    SP'— SP-1,(SP)*-USH
+ *                    SP'-SP-1,(SP)— lYL 
+ *                    SP'*-SP-1,(SP)— lYH
+ *                    SP'-SP-1,(SP)-IXL
+ *                    SP'—SP-1,(SP)— IXH 
+ *                    SP'—SP-1,(SP)^DPR 
+ *                    SP'— SP-1,(SP)*-ACCB 
+ *                    SP'— SP-1,(SP)— ACCA 
+ *                    SP'—SP-1,(SP)— OCR 
+ *                    Set I, F (mask interrupts) 
+ *                    PC'*-(FFFA):(FFFB)
+ * Condition Codes	: Not affected.
+ * Description		: All of the processor registers are pushed onto the hardware stack (with the exception of the hardware stack pointer itself), and control
+ *                    is transferred through the software Interrupt vector. Both the normal and fast interrupts are masked (disabled). 
+ * Addressing Mode	: Inherent
+ */
+SwiInstruction:
+	instruction = 'SWI'
+;
+
+/*
+ * SUBD
+ * 
+ * Subtract Memory from Register
+ * Source Form		: SUBD P
+ * Operation		: R'*-R - M:M+1
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result is zero; cleared otherwise.
+ *                    V - Set if the overflow is generated; cleared otherwise.
+ * 					  C - Set if a borrow is generated; cleared otherwise.
+ * Description		: Subtracts the value in memory location M:M + 1 from the contents of a designated 16-bit register. The C (carry) bit represents a borrow
+ * 					  and is set to the inverse of the resulting binary carry. 
+ * Addressing Mode	: Immediate
+ *                    Extended
+ *                    Direct
+ *                    Indexed 
+ */
+SubdInstruction:
+	instruction = 'SUBD'
+	WS operand = ( 
+		ImmediatOperand | 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+;
+
+/*
+ * SUB
+ * 
+ * ASubtract Memory from Register
+ * Source Form		: SUBA P; SUBB P;
+ * Operation		: R'*-R - M
+ * Condition Codes	: H - Undefined.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result is zero; cleared otherwise.
+ *                    V - Set if the result is zero; cleared otherwise.
+ * 					  C - Set if a borrow is generated; cleared otherwise.
+ * Description		: Subtracts the value in memory location M:M + 1 from the contents of a designated 16-bit register. The C (carry) bit represents a borrow
+ *                    and is set to the inverse of the resulting binary carry. 
+ * Addressing Mode	: Immediate
+ *                    Extended
+ *                    Direct
+ *                    Indexed 
+ */
+SubInstruction:
+	instruction = ('SUBA' | 'SUBB')
+	WS operand = ( 
+		ImmediatOperand | 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+;
+
+/*
+ * ST (16 bits)
+ * 
+ * store Register into Memory
+ * Source Form		: STD P, STX P, STY P, STS P, STU P
+ * Operation		: M:%+1 <- R
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Always cleared.
+ * 					  C - Not affected.
+ * Description		: Writes the contents of a 16-bit register into two consecutive memory locations.
+ * Addressing Mode	: Extended
+ *                    Direct
+ *                    Indexed
+ */
+St16Instruction:
+ 	instruction = ('STD' | 'STX' | 'STY' | 'STS' | 'STU')
+	WS operand = ( 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+;
+
+/*
+ * ST (8 bits)
+ * 
+ * store Register into Memory
+ * Source Form		: STA P, STB P 
+ * Operation		: M <- R
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Always cleared.
+ * 					  C - Not affected.
+ * Description		: Writes the contents of an 8-bit register into a memory location.
+ * Addressing Mode	: Extended
+ *                    Direct
+ *                    Indexed
+ */
+St8Instruction:
+ 	instruction = ('STA' | 'STB')
+	WS operand = ( 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
+;
+
+/*
+ * SEX
+ * 
+ * Sign Extended
+ * Source Form		: SEX
+ * Operation		: If bit seven of ACCB is set then ACCA'-^FF16
+ *					  else ACCA'-^OO16
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Not affected.
+ * 					  C - Not affected.
+ * Description		: This instruction transforms a twos complement 8-bit value in accumulator B into a twos complement 16-bit value in the D accumulator.
+ * Addressing Mode	: Inherent
+ */
+SexInstruction:
+	instruction = 'SEX'
+;
+
+/*
+ * SBC
+ * 
+ * Subtract with Borrow
+ * Source Form		: SBCA P, SBCB P 
+ * Operation		: R <- R-M-C
+ * Condition Codes	: H - Undefined.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Set if an overflow is generated; cleared otherwise.
+ * 					  C - Set if a borrow is generated; cleared otherwise.
+ * Description		: Subtracts the contents of memory location M and the borrow (in the C (carry) bit) from the contents of the designated 8-bit register, and
+ *                    places the result in that register. The C bit represents a borrow and is set to the inverse of the resulting binary carry.
+ * Addressing Mode	: Immediate
+ * 					  Extended
+ *                    Direct
+ *                    Indexed
+ */
+SbcInstruction:
+ 	instruction = ('SBCA' | 'SBCB')
+	WS operand = ( 
+		ImmediatOperand |
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
 ;
 
 /*

@@ -71,6 +71,16 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.INSTRUCTION_LINE: return createInstructionLine();
+      case AssemblerPackage.SYNC_INSTRUCTION: return createSyncInstruction();
+      case AssemblerPackage.SWI3_INSTRUCTION: return createSwi3Instruction();
+      case AssemblerPackage.SWI2_INSTRUCTION: return createSwi2Instruction();
+      case AssemblerPackage.SWI_INSTRUCTION: return createSwiInstruction();
+      case AssemblerPackage.SUBD_INSTRUCTION: return createSubdInstruction();
+      case AssemblerPackage.SUB_INSTRUCTION: return createSubInstruction();
+      case AssemblerPackage.ST16_INSTRUCTION: return createSt16Instruction();
+      case AssemblerPackage.ST8_INSTRUCTION: return createSt8Instruction();
+      case AssemblerPackage.SEX_INSTRUCTION: return createSexInstruction();
+      case AssemblerPackage.SBC_INSTRUCTION: return createSbcInstruction();
       case AssemblerPackage.RTS_INSTRUCTION: return createRtsInstruction();
       case AssemblerPackage.RTI_INSTRUCTION: return createRtiInstruction();
       case AssemblerPackage.ROR_INSTRUCTION: return createRorInstruction();
@@ -281,6 +291,126 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     InstructionLineImpl instructionLine = new InstructionLineImpl();
     return instructionLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SyncInstruction createSyncInstruction()
+  {
+    SyncInstructionImpl syncInstruction = new SyncInstructionImpl();
+    return syncInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Swi3Instruction createSwi3Instruction()
+  {
+    Swi3InstructionImpl swi3Instruction = new Swi3InstructionImpl();
+    return swi3Instruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public Swi2Instruction createSwi2Instruction()
+  {
+    Swi2InstructionImpl swi2Instruction = new Swi2InstructionImpl();
+    return swi2Instruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SwiInstruction createSwiInstruction()
+  {
+    SwiInstructionImpl swiInstruction = new SwiInstructionImpl();
+    return swiInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SubdInstruction createSubdInstruction()
+  {
+    SubdInstructionImpl subdInstruction = new SubdInstructionImpl();
+    return subdInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SubInstruction createSubInstruction()
+  {
+    SubInstructionImpl subInstruction = new SubInstructionImpl();
+    return subInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public St16Instruction createSt16Instruction()
+  {
+    St16InstructionImpl st16Instruction = new St16InstructionImpl();
+    return st16Instruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public St8Instruction createSt8Instruction()
+  {
+    St8InstructionImpl st8Instruction = new St8InstructionImpl();
+    return st8Instruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SexInstruction createSexInstruction()
+  {
+    SexInstructionImpl sexInstruction = new SexInstructionImpl();
+    return sexInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SbcInstruction createSbcInstruction()
+  {
+    SbcInstructionImpl sbcInstruction = new SbcInstructionImpl();
+    return sbcInstruction;
   }
 
   /**

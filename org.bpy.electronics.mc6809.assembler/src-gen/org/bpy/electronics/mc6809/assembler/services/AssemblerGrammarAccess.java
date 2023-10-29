@@ -281,6 +281,26 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cInstructionRtiInstructionParserRuleCall_2_55_0 = (RuleCall)cInstructionAssignment_2_55.eContents().get(0);
 		private final Assignment cInstructionAssignment_2_56 = (Assignment)cAlternatives_2.eContents().get(56);
 		private final RuleCall cInstructionRtsInstructionParserRuleCall_2_56_0 = (RuleCall)cInstructionAssignment_2_56.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_57 = (Assignment)cAlternatives_2.eContents().get(57);
+		private final RuleCall cInstructionSbcInstructionParserRuleCall_2_57_0 = (RuleCall)cInstructionAssignment_2_57.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_58 = (Assignment)cAlternatives_2.eContents().get(58);
+		private final RuleCall cInstructionSexInstructionParserRuleCall_2_58_0 = (RuleCall)cInstructionAssignment_2_58.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_59 = (Assignment)cAlternatives_2.eContents().get(59);
+		private final RuleCall cInstructionSt8InstructionParserRuleCall_2_59_0 = (RuleCall)cInstructionAssignment_2_59.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_60 = (Assignment)cAlternatives_2.eContents().get(60);
+		private final RuleCall cInstructionSt16InstructionParserRuleCall_2_60_0 = (RuleCall)cInstructionAssignment_2_60.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_61 = (Assignment)cAlternatives_2.eContents().get(61);
+		private final RuleCall cInstructionSubInstructionParserRuleCall_2_61_0 = (RuleCall)cInstructionAssignment_2_61.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_62 = (Assignment)cAlternatives_2.eContents().get(62);
+		private final RuleCall cInstructionSubdInstructionParserRuleCall_2_62_0 = (RuleCall)cInstructionAssignment_2_62.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_63 = (Assignment)cAlternatives_2.eContents().get(63);
+		private final RuleCall cInstructionSwiInstructionParserRuleCall_2_63_0 = (RuleCall)cInstructionAssignment_2_63.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_64 = (Assignment)cAlternatives_2.eContents().get(64);
+		private final RuleCall cInstructionSwi2InstructionParserRuleCall_2_64_0 = (RuleCall)cInstructionAssignment_2_64.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_65 = (Assignment)cAlternatives_2.eContents().get(65);
+		private final RuleCall cInstructionSwi3InstructionParserRuleCall_2_65_0 = (RuleCall)cInstructionAssignment_2_65.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_66 = (Assignment)cAlternatives_2.eContents().get(66);
+		private final RuleCall cInstructionSyncInstructionParserRuleCall_2_66_0 = (RuleCall)cInstructionAssignment_2_66.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
 		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -350,7 +370,17 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        instruction = RolInstruction            |
 		//        instruction = RorInstruction            |
 		//        instruction = RtiInstruction            |
-		//        instruction = RtsInstruction
+		//        instruction = RtsInstruction            |
+		//        instruction = SbcInstruction            |
+		//        instruction = SexInstruction            |
+		//        instruction = St8Instruction            |
+		//        instruction = St16Instruction            |
+		//        instruction = SubInstruction            |
+		//        instruction = SubdInstruction            |
+		//        instruction = SwiInstruction            |
+		//        instruction = Swi2Instruction            |
+		//        instruction = Swi3Instruction            |
+		//        instruction = SyncInstruction
 		//    )
 		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    WS? EndOfLine
@@ -415,7 +445,17 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = RolInstruction            |
 		//    instruction = RorInstruction            |
 		//    instruction = RtiInstruction            |
-		//    instruction = RtsInstruction
+		//    instruction = RtsInstruction            |
+		//    instruction = SbcInstruction            |
+		//    instruction = SexInstruction            |
+		//    instruction = St8Instruction            |
+		//    instruction = St16Instruction            |
+		//    instruction = SubInstruction            |
+		//    instruction = SubdInstruction            |
+		//    instruction = SwiInstruction            |
+		//    instruction = Swi2Instruction            |
+		//    instruction = Swi3Instruction            |
+		//    instruction = SyncInstruction
 		//)
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//WS? EndOfLine
@@ -487,7 +527,17 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = RolInstruction            |
 		//    instruction = RorInstruction            |
 		//    instruction = RtiInstruction            |
-		//    instruction = RtsInstruction
+		//    instruction = RtsInstruction            |
+		//    instruction = SbcInstruction            |
+		//    instruction = SexInstruction            |
+		//    instruction = St8Instruction            |
+		//    instruction = St16Instruction            |
+		//    instruction = SubInstruction            |
+		//    instruction = SubdInstruction            |
+		//    instruction = SwiInstruction            |
+		//    instruction = Swi2Instruction            |
+		//    instruction = Swi3Instruction            |
+		//    instruction = SyncInstruction
 		//)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
@@ -833,6 +883,66 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//RtsInstruction
 		public RuleCall getInstructionRtsInstructionParserRuleCall_2_56_0() { return cInstructionRtsInstructionParserRuleCall_2_56_0; }
 		
+		//instruction = SbcInstruction
+		public Assignment getInstructionAssignment_2_57() { return cInstructionAssignment_2_57; }
+		
+		//SbcInstruction
+		public RuleCall getInstructionSbcInstructionParserRuleCall_2_57_0() { return cInstructionSbcInstructionParserRuleCall_2_57_0; }
+		
+		//instruction = SexInstruction
+		public Assignment getInstructionAssignment_2_58() { return cInstructionAssignment_2_58; }
+		
+		//SexInstruction
+		public RuleCall getInstructionSexInstructionParserRuleCall_2_58_0() { return cInstructionSexInstructionParserRuleCall_2_58_0; }
+		
+		//instruction = St8Instruction
+		public Assignment getInstructionAssignment_2_59() { return cInstructionAssignment_2_59; }
+		
+		//St8Instruction
+		public RuleCall getInstructionSt8InstructionParserRuleCall_2_59_0() { return cInstructionSt8InstructionParserRuleCall_2_59_0; }
+		
+		//instruction = St16Instruction
+		public Assignment getInstructionAssignment_2_60() { return cInstructionAssignment_2_60; }
+		
+		//St16Instruction
+		public RuleCall getInstructionSt16InstructionParserRuleCall_2_60_0() { return cInstructionSt16InstructionParserRuleCall_2_60_0; }
+		
+		//instruction = SubInstruction
+		public Assignment getInstructionAssignment_2_61() { return cInstructionAssignment_2_61; }
+		
+		//SubInstruction
+		public RuleCall getInstructionSubInstructionParserRuleCall_2_61_0() { return cInstructionSubInstructionParserRuleCall_2_61_0; }
+		
+		//instruction = SubdInstruction
+		public Assignment getInstructionAssignment_2_62() { return cInstructionAssignment_2_62; }
+		
+		//SubdInstruction
+		public RuleCall getInstructionSubdInstructionParserRuleCall_2_62_0() { return cInstructionSubdInstructionParserRuleCall_2_62_0; }
+		
+		//instruction = SwiInstruction
+		public Assignment getInstructionAssignment_2_63() { return cInstructionAssignment_2_63; }
+		
+		//SwiInstruction
+		public RuleCall getInstructionSwiInstructionParserRuleCall_2_63_0() { return cInstructionSwiInstructionParserRuleCall_2_63_0; }
+		
+		//instruction = Swi2Instruction
+		public Assignment getInstructionAssignment_2_64() { return cInstructionAssignment_2_64; }
+		
+		//Swi2Instruction
+		public RuleCall getInstructionSwi2InstructionParserRuleCall_2_64_0() { return cInstructionSwi2InstructionParserRuleCall_2_64_0; }
+		
+		//instruction = Swi3Instruction
+		public Assignment getInstructionAssignment_2_65() { return cInstructionAssignment_2_65; }
+		
+		//Swi3Instruction
+		public RuleCall getInstructionSwi3InstructionParserRuleCall_2_65_0() { return cInstructionSwi3InstructionParserRuleCall_2_65_0; }
+		
+		//instruction = SyncInstruction
+		public Assignment getInstructionAssignment_2_66() { return cInstructionAssignment_2_66; }
+		
+		//SyncInstruction
+		public RuleCall getInstructionSyncInstructionParserRuleCall_2_66_0() { return cInstructionSyncInstructionParserRuleCall_2_66_0; }
+		
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_3() { return cGroup_3; }
 		
@@ -850,6 +960,695 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class SyncInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SyncInstruction");
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionSYNCKeyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
+		
+		///*
+		// * SYNC
+		// *
+		// * Synchronize to External Event
+		// * Source Form        : SYNC
+		// * Operation        : Synchronize to External Event
+		// * Condition Codes    : Not affected.
+		// * Description        : When a SYNC instruction is excuted, tlie processor enters a synchronizing state, stops processing instructions, and waits for an interrupt.
+		// *                       When an interrupt occurs, the synchronizing state is cleared and processing continues. If the interrupt is enabled, and it lasts three cycles
+		// *                    or more, the processor will perform the interrupt routine. If the interrupt is masked or is shorter than three cycles, the processor simply
+		// *                    continues to the next instruction. While in the synchronizing state, the address and data buses are in the high impedance state.
+		// * Addressing Mode    : Inherent
+		// */
+		//SyncInstruction:
+		//    instruction = 'SYNC'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'SYNC'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
+		
+		//'SYNC'
+		public Keyword getInstructionSYNCKeyword_0() { return cInstructionSYNCKeyword_0; }
+	}
+	public class Swi3InstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Swi3Instruction");
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionSWI3Keyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
+		
+		///*
+		// * SWI3
+		// *
+		// * Software Interrupt 3
+		// * Source Form        : SWI3
+		// * Operation        : Set E (entire state will be saved)
+		// *                       SP'-SP-1,(SP)-PCL
+		// *                    SP'^SP-1,(SP)— PCH
+		// *                    SP'—SP-1,(SP)*-USL
+		// *                    SP'— SP-1,(SP)*-USH
+		// *                    SP'-SP-1,(SP)— lYL
+		// *                    SP'*-SP-1,(SP)— lYH
+		// *                    SP'-SP-1,(SP)-IXL
+		// *                    SP'—SP-1,(SP)— IXH
+		// *                    SP'—SP-1,(SP)^DPR
+		// *                    SP'— SP-1,(SP)*-ACCB
+		// *                    SP'— SP-1,(SP)— ACCA
+		// *                    SP'—SP-1,(SP)— OCR
+		// *                    Set I, F (mask interrupts)
+		// *                    PC'-(FFF2):(FFF3)
+		// * Condition Codes    : Not affected.
+		// * Description        : All of the processor registers are pushed onto the hardware stack (with the exception of the hardware stack pointer itself), and control
+		// *                    is transferred through the software interrupt 2 vector. This interrupt is available to the end user and must not be used in packaged software.
+		// *                    This interrupt does not mask (disable) the norma! and fast interrupts.
+		// * Addressing Mode    : Inherent
+		// */
+		//Swi3Instruction:
+		//    instruction = 'SWI3'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'SWI3'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
+		
+		//'SWI3'
+		public Keyword getInstructionSWI3Keyword_0() { return cInstructionSWI3Keyword_0; }
+	}
+	public class Swi2InstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Swi2Instruction");
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionSWI2Keyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
+		
+		///*
+		// * SWI2
+		// *
+		// * Software Interrupt 2
+		// * Source Form        : SWI2
+		// * Operation        : Set E (entire state will be saved)
+		// *                       SP'-SP-1,(SP)-PCL
+		// *                    SP'^SP-1,(SP)— PCH
+		// *                    SP'—SP-1,(SP)*-USL
+		// *                    SP'— SP-1,(SP)*-USH
+		// *                    SP'-SP-1,(SP)— lYL
+		// *                    SP'*-SP-1,(SP)— lYH
+		// *                    SP'-SP-1,(SP)-IXL
+		// *                    SP'—SP-1,(SP)— IXH
+		// *                    SP'—SP-1,(SP)^DPR
+		// *                    SP'— SP-1,(SP)*-ACCB
+		// *                    SP'— SP-1,(SP)— ACCA
+		// *                    SP'—SP-1,(SP)— OCR
+		// *                    Set I, F (mask interrupts)
+		// *                    PC'-(FFF4):(FFF5)
+		// * Condition Codes    : Not affected.
+		// * Description        : All of the processor registers are pushed onto the hardware stack (with the exception of the hardware stack pointer itself), and control
+		// *                    is transferred through the software interrupt 2 vector. This interrupt is available to the end user and must not be used in packaged software.
+		// *                    This interrupt does not mask (disable) the norma! and fast interrupts.
+		// * Addressing Mode    : Inherent
+		// */
+		//Swi2Instruction:
+		//    instruction = 'SWI2'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'SWI2'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
+		
+		//'SWI2'
+		public Keyword getInstructionSWI2Keyword_0() { return cInstructionSWI2Keyword_0; }
+	}
+	public class SwiInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SwiInstruction");
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionSWIKeyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
+		
+		///*
+		// * SWI
+		// *
+		// * Software Interrupt
+		// * Source Form        : SWI
+		// * Operation        : Set E (entire state will be saved)
+		// *                       SP'-SP-1,(SP)-PCL
+		// *                    SP'^SP-1,(SP)— PCH
+		// *                    SP'—SP-1,(SP)*-USL
+		// *                    SP'— SP-1,(SP)*-USH
+		// *                    SP'-SP-1,(SP)— lYL
+		// *                    SP'*-SP-1,(SP)— lYH
+		// *                    SP'-SP-1,(SP)-IXL
+		// *                    SP'—SP-1,(SP)— IXH
+		// *                    SP'—SP-1,(SP)^DPR
+		// *                    SP'— SP-1,(SP)*-ACCB
+		// *                    SP'— SP-1,(SP)— ACCA
+		// *                    SP'—SP-1,(SP)— OCR
+		// *                    Set I, F (mask interrupts)
+		// *                    PC'*-(FFFA):(FFFB)
+		// * Condition Codes    : Not affected.
+		// * Description        : All of the processor registers are pushed onto the hardware stack (with the exception of the hardware stack pointer itself), and control
+		// *                    is transferred through the software Interrupt vector. Both the normal and fast interrupts are masked (disabled).
+		// * Addressing Mode    : Inherent
+		// */
+		//SwiInstruction:
+		//    instruction = 'SWI'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'SWI'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
+		
+		//'SWI'
+		public Keyword getInstructionSWIKeyword_0() { return cInstructionSWIKeyword_0; }
+	}
+	public class SubdInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SubdInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cInstructionSUBDKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
+		
+		///*
+		// * SUBD
+		// *
+		// * Subtract Memory from Register
+		// * Source Form        : SUBD P
+		// * Operation        : R'*-R - M:M+1
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result is zero; cleared otherwise.
+		// *                    V - Set if the overflow is generated; cleared otherwise.
+		// *                       C - Set if a borrow is generated; cleared otherwise.
+		// * Description        : Subtracts the value in memory location M:M + 1 from the contents of a designated 16-bit register. The C (carry) bit represents a borrow
+		// *                       and is set to the inverse of the resulting binary carry.
+		// * Addressing Mode    : Immediate
+		// *                    Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//SubdInstruction:
+		//    instruction = 'SUBD'
+		//    WS operand = (
+		//        ImmediatOperand |
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'SUBD'
+		//WS operand = (
+		//    ImmediatOperand |
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = 'SUBD'
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//'SUBD'
+		public Keyword getInstructionSUBDKeyword_0_0() { return cInstructionSUBDKeyword_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//operand = (
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
+		
+		//(
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
+		
+		//ImmediatOperand
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
+	}
+	public class SubInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SubInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionSUBAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionSUBBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
+		
+		///*
+		// * SUB
+		// *
+		// * ASubtract Memory from Register
+		// * Source Form        : SUBA P; SUBB P;
+		// * Operation        : R'*-R - M
+		// * Condition Codes    : H - Undefined.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result is zero; cleared otherwise.
+		// *                    V - Set if the result is zero; cleared otherwise.
+		// *                       C - Set if a borrow is generated; cleared otherwise.
+		// * Description        : Subtracts the value in memory location M:M + 1 from the contents of a designated 16-bit register. The C (carry) bit represents a borrow
+		// *                    and is set to the inverse of the resulting binary carry.
+		// * Addressing Mode    : Immediate
+		// *                    Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//SubInstruction:
+		//    instruction = ('SUBA' | 'SUBB')
+		//    WS operand = (
+		//        ImmediatOperand |
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = ('SUBA' | 'SUBB')
+		//WS operand = (
+		//    ImmediatOperand |
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = ('SUBA' | 'SUBB')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('SUBA' | 'SUBB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'SUBA'
+		public Keyword getInstructionSUBAKeyword_0_0_0() { return cInstructionSUBAKeyword_0_0_0; }
+		
+		//'SUBB'
+		public Keyword getInstructionSUBBKeyword_0_0_1() { return cInstructionSUBBKeyword_0_0_1; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//operand = (
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
+		
+		//(
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
+		
+		//ImmediatOperand
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
+	}
+	public class St16InstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.St16Instruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionSTDKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionSTXKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Keyword cInstructionSTYKeyword_0_0_2 = (Keyword)cInstructionAlternatives_0_0.eContents().get(2);
+		private final Keyword cInstructionSTSKeyword_0_0_3 = (Keyword)cInstructionAlternatives_0_0.eContents().get(3);
+		private final Keyword cInstructionSTUKeyword_0_0_4 = (Keyword)cInstructionAlternatives_0_0.eContents().get(4);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		
+		///*
+		// * ST (16 bits)
+		// *
+		// * store Register into Memory
+		// * Source Form        : STD P, STX P, STY P, STS P, STU P
+		// * Operation        : M:%+1 <- R
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Always cleared.
+		// *                       C - Not affected.
+		// * Description        : Writes the contents of a 16-bit register into two consecutive memory locations.
+		// * Addressing Mode    : Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//St16Instruction:
+		//     instruction = ('STD' | 'STX' | 'STY' | 'STS' | 'STU')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		// instruction = ('STD' | 'STX' | 'STY' | 'STS' | 'STU')
+		//WS operand = (
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = ('STD' | 'STX' | 'STY' | 'STS' | 'STU')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('STD' | 'STX' | 'STY' | 'STS' | 'STU')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'STD'
+		public Keyword getInstructionSTDKeyword_0_0_0() { return cInstructionSTDKeyword_0_0_0; }
+		
+		//'STX'
+		public Keyword getInstructionSTXKeyword_0_0_1() { return cInstructionSTXKeyword_0_0_1; }
+		
+		//'STY'
+		public Keyword getInstructionSTYKeyword_0_0_2() { return cInstructionSTYKeyword_0_0_2; }
+		
+		//'STS'
+		public Keyword getInstructionSTSKeyword_0_0_3() { return cInstructionSTSKeyword_0_0_3; }
+		
+		//'STU'
+		public Keyword getInstructionSTUKeyword_0_0_4() { return cInstructionSTUKeyword_0_0_4; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//operand = (
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
+		
+		//(
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_0() { return cOperandDirectOperandParserRuleCall_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_1() { return cOperandIndexedOperandParserRuleCall_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_2() { return cOperandExtendedOperandParserRuleCall_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_3; }
+	}
+	public class St8InstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.St8Instruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionSTAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionSTBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		
+		///*
+		// * ST (8 bits)
+		// *
+		// * store Register into Memory
+		// * Source Form        : STA P, STB P
+		// * Operation        : M <- R
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Always cleared.
+		// *                       C - Not affected.
+		// * Description        : Writes the contents of an 8-bit register into a memory location.
+		// * Addressing Mode    : Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//St8Instruction:
+		//     instruction = ('STA' | 'STB')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		// instruction = ('STA' | 'STB')
+		//WS operand = (
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = ('STA' | 'STB')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('STA' | 'STB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'STA'
+		public Keyword getInstructionSTAKeyword_0_0_0() { return cInstructionSTAKeyword_0_0_0; }
+		
+		//'STB'
+		public Keyword getInstructionSTBKeyword_0_0_1() { return cInstructionSTBKeyword_0_0_1; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//operand = (
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
+		
+		//(
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_0() { return cOperandDirectOperandParserRuleCall_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_1() { return cOperandIndexedOperandParserRuleCall_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_2() { return cOperandExtendedOperandParserRuleCall_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_3; }
+	}
+	public class SexInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SexInstruction");
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionSEXKeyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
+		
+		///*
+		// * SEX
+		// *
+		// * Sign Extended
+		// * Source Form        : SEX
+		// * Operation        : If bit seven of ACCB is set then ACCA'-^FF16
+		// *                      else ACCA'-^OO16
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Not affected.
+		// *                       C - Not affected.
+		// * Description        : This instruction transforms a twos complement 8-bit value in accumulator B into a twos complement 16-bit value in the D accumulator.
+		// * Addressing Mode    : Inherent
+		// */
+		//SexInstruction:
+		//    instruction = 'SEX'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'SEX'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
+		
+		//'SEX'
+		public Keyword getInstructionSEXKeyword_0() { return cInstructionSEXKeyword_0; }
+	}
+	public class SbcInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SbcInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionSBCAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionSBCBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
+		
+		///*
+		// * SBC
+		// *
+		// * Subtract with Borrow
+		// * Source Form        : SBCA P, SBCB P
+		// * Operation        : R <- R-M-C
+		// * Condition Codes    : H - Undefined.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Set if an overflow is generated; cleared otherwise.
+		// *                       C - Set if a borrow is generated; cleared otherwise.
+		// * Description        : Subtracts the contents of memory location M and the borrow (in the C (carry) bit) from the contents of the designated 8-bit register, and
+		// *                    places the result in that register. The C bit represents a borrow and is set to the inverse of the resulting binary carry.
+		// * Addressing Mode    : Immediate
+		// *                       Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//SbcInstruction:
+		//     instruction = ('SBCA' | 'SBCB')
+		//    WS operand = (
+		//        ImmediatOperand |
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		// instruction = ('SBCA' | 'SBCB')
+		//WS operand = (
+		//    ImmediatOperand |
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = ('SBCA' | 'SBCB')
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('SBCA' | 'SBCB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'SBCA'
+		public Keyword getInstructionSBCAKeyword_0_0_0() { return cInstructionSBCAKeyword_0_0_0; }
+		
+		//'SBCB'
+		public Keyword getInstructionSBCBKeyword_0_0_1() { return cInstructionSBCBKeyword_0_0_1; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//operand = (
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
+		
+		//(
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
+		
+		//ImmediatOperand
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
 	}
 	public class RtsInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RtsInstruction");
@@ -8441,6 +9240,16 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final InstructionLineElements pInstructionLine;
+	private final SyncInstructionElements pSyncInstruction;
+	private final Swi3InstructionElements pSwi3Instruction;
+	private final Swi2InstructionElements pSwi2Instruction;
+	private final SwiInstructionElements pSwiInstruction;
+	private final SubdInstructionElements pSubdInstruction;
+	private final SubInstructionElements pSubInstruction;
+	private final St16InstructionElements pSt16Instruction;
+	private final St8InstructionElements pSt8Instruction;
+	private final SexInstructionElements pSexInstruction;
+	private final SbcInstructionElements pSbcInstruction;
 	private final RtsInstructionElements pRtsInstruction;
 	private final RtiInstructionElements pRtiInstruction;
 	private final RorInstructionElements pRorInstruction;
@@ -8575,6 +9384,16 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pInstructionLine = new InstructionLineElements();
+		this.pSyncInstruction = new SyncInstructionElements();
+		this.pSwi3Instruction = new Swi3InstructionElements();
+		this.pSwi2Instruction = new Swi2InstructionElements();
+		this.pSwiInstruction = new SwiInstructionElements();
+		this.pSubdInstruction = new SubdInstructionElements();
+		this.pSubInstruction = new SubInstructionElements();
+		this.pSt16Instruction = new St16InstructionElements();
+		this.pSt8Instruction = new St8InstructionElements();
+		this.pSexInstruction = new SexInstructionElements();
+		this.pSbcInstruction = new SbcInstructionElements();
 		this.pRtsInstruction = new RtsInstructionElements();
 		this.pRtiInstruction = new RtiInstructionElements();
 		this.pRorInstruction = new RorInstructionElements();
@@ -8848,7 +9667,17 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        instruction = RolInstruction            |
 	//        instruction = RorInstruction            |
 	//        instruction = RtiInstruction            |
-	//        instruction = RtsInstruction
+	//        instruction = RtsInstruction            |
+	//        instruction = SbcInstruction            |
+	//        instruction = SexInstruction            |
+	//        instruction = St8Instruction            |
+	//        instruction = St16Instruction            |
+	//        instruction = SubInstruction            |
+	//        instruction = SubdInstruction            |
+	//        instruction = SwiInstruction            |
+	//        instruction = Swi2Instruction            |
+	//        instruction = Swi3Instruction            |
+	//        instruction = SyncInstruction
 	//    )
 	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    WS? EndOfLine
@@ -8859,6 +9688,340 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getInstructionLineRule() {
 		return getInstructionLineAccess().getRule();
+	}
+	
+	///*
+	// * SYNC
+	// *
+	// * Synchronize to External Event
+	// * Source Form        : SYNC
+	// * Operation        : Synchronize to External Event
+	// * Condition Codes    : Not affected.
+	// * Description        : When a SYNC instruction is excuted, tlie processor enters a synchronizing state, stops processing instructions, and waits for an interrupt.
+	// *                       When an interrupt occurs, the synchronizing state is cleared and processing continues. If the interrupt is enabled, and it lasts three cycles
+	// *                    or more, the processor will perform the interrupt routine. If the interrupt is masked or is shorter than three cycles, the processor simply
+	// *                    continues to the next instruction. While in the synchronizing state, the address and data buses are in the high impedance state.
+	// * Addressing Mode    : Inherent
+	// */
+	//SyncInstruction:
+	//    instruction = 'SYNC'
+	//;
+	public SyncInstructionElements getSyncInstructionAccess() {
+		return pSyncInstruction;
+	}
+	
+	public ParserRule getSyncInstructionRule() {
+		return getSyncInstructionAccess().getRule();
+	}
+	
+	///*
+	// * SWI3
+	// *
+	// * Software Interrupt 3
+	// * Source Form        : SWI3
+	// * Operation        : Set E (entire state will be saved)
+	// *                       SP'-SP-1,(SP)-PCL
+	// *                    SP'^SP-1,(SP)— PCH
+	// *                    SP'—SP-1,(SP)*-USL
+	// *                    SP'— SP-1,(SP)*-USH
+	// *                    SP'-SP-1,(SP)— lYL
+	// *                    SP'*-SP-1,(SP)— lYH
+	// *                    SP'-SP-1,(SP)-IXL
+	// *                    SP'—SP-1,(SP)— IXH
+	// *                    SP'—SP-1,(SP)^DPR
+	// *                    SP'— SP-1,(SP)*-ACCB
+	// *                    SP'— SP-1,(SP)— ACCA
+	// *                    SP'—SP-1,(SP)— OCR
+	// *                    Set I, F (mask interrupts)
+	// *                    PC'-(FFF2):(FFF3)
+	// * Condition Codes    : Not affected.
+	// * Description        : All of the processor registers are pushed onto the hardware stack (with the exception of the hardware stack pointer itself), and control
+	// *                    is transferred through the software interrupt 2 vector. This interrupt is available to the end user and must not be used in packaged software.
+	// *                    This interrupt does not mask (disable) the norma! and fast interrupts.
+	// * Addressing Mode    : Inherent
+	// */
+	//Swi3Instruction:
+	//    instruction = 'SWI3'
+	//;
+	public Swi3InstructionElements getSwi3InstructionAccess() {
+		return pSwi3Instruction;
+	}
+	
+	public ParserRule getSwi3InstructionRule() {
+		return getSwi3InstructionAccess().getRule();
+	}
+	
+	///*
+	// * SWI2
+	// *
+	// * Software Interrupt 2
+	// * Source Form        : SWI2
+	// * Operation        : Set E (entire state will be saved)
+	// *                       SP'-SP-1,(SP)-PCL
+	// *                    SP'^SP-1,(SP)— PCH
+	// *                    SP'—SP-1,(SP)*-USL
+	// *                    SP'— SP-1,(SP)*-USH
+	// *                    SP'-SP-1,(SP)— lYL
+	// *                    SP'*-SP-1,(SP)— lYH
+	// *                    SP'-SP-1,(SP)-IXL
+	// *                    SP'—SP-1,(SP)— IXH
+	// *                    SP'—SP-1,(SP)^DPR
+	// *                    SP'— SP-1,(SP)*-ACCB
+	// *                    SP'— SP-1,(SP)— ACCA
+	// *                    SP'—SP-1,(SP)— OCR
+	// *                    Set I, F (mask interrupts)
+	// *                    PC'-(FFF4):(FFF5)
+	// * Condition Codes    : Not affected.
+	// * Description        : All of the processor registers are pushed onto the hardware stack (with the exception of the hardware stack pointer itself), and control
+	// *                    is transferred through the software interrupt 2 vector. This interrupt is available to the end user and must not be used in packaged software.
+	// *                    This interrupt does not mask (disable) the norma! and fast interrupts.
+	// * Addressing Mode    : Inherent
+	// */
+	//Swi2Instruction:
+	//    instruction = 'SWI2'
+	//;
+	public Swi2InstructionElements getSwi2InstructionAccess() {
+		return pSwi2Instruction;
+	}
+	
+	public ParserRule getSwi2InstructionRule() {
+		return getSwi2InstructionAccess().getRule();
+	}
+	
+	///*
+	// * SWI
+	// *
+	// * Software Interrupt
+	// * Source Form        : SWI
+	// * Operation        : Set E (entire state will be saved)
+	// *                       SP'-SP-1,(SP)-PCL
+	// *                    SP'^SP-1,(SP)— PCH
+	// *                    SP'—SP-1,(SP)*-USL
+	// *                    SP'— SP-1,(SP)*-USH
+	// *                    SP'-SP-1,(SP)— lYL
+	// *                    SP'*-SP-1,(SP)— lYH
+	// *                    SP'-SP-1,(SP)-IXL
+	// *                    SP'—SP-1,(SP)— IXH
+	// *                    SP'—SP-1,(SP)^DPR
+	// *                    SP'— SP-1,(SP)*-ACCB
+	// *                    SP'— SP-1,(SP)— ACCA
+	// *                    SP'—SP-1,(SP)— OCR
+	// *                    Set I, F (mask interrupts)
+	// *                    PC'*-(FFFA):(FFFB)
+	// * Condition Codes    : Not affected.
+	// * Description        : All of the processor registers are pushed onto the hardware stack (with the exception of the hardware stack pointer itself), and control
+	// *                    is transferred through the software Interrupt vector. Both the normal and fast interrupts are masked (disabled).
+	// * Addressing Mode    : Inherent
+	// */
+	//SwiInstruction:
+	//    instruction = 'SWI'
+	//;
+	public SwiInstructionElements getSwiInstructionAccess() {
+		return pSwiInstruction;
+	}
+	
+	public ParserRule getSwiInstructionRule() {
+		return getSwiInstructionAccess().getRule();
+	}
+	
+	///*
+	// * SUBD
+	// *
+	// * Subtract Memory from Register
+	// * Source Form        : SUBD P
+	// * Operation        : R'*-R - M:M+1
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result is zero; cleared otherwise.
+	// *                    V - Set if the overflow is generated; cleared otherwise.
+	// *                       C - Set if a borrow is generated; cleared otherwise.
+	// * Description        : Subtracts the value in memory location M:M + 1 from the contents of a designated 16-bit register. The C (carry) bit represents a borrow
+	// *                       and is set to the inverse of the resulting binary carry.
+	// * Addressing Mode    : Immediate
+	// *                    Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//SubdInstruction:
+	//    instruction = 'SUBD'
+	//    WS operand = (
+	//        ImmediatOperand |
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
+	//;
+	public SubdInstructionElements getSubdInstructionAccess() {
+		return pSubdInstruction;
+	}
+	
+	public ParserRule getSubdInstructionRule() {
+		return getSubdInstructionAccess().getRule();
+	}
+	
+	///*
+	// * SUB
+	// *
+	// * ASubtract Memory from Register
+	// * Source Form        : SUBA P; SUBB P;
+	// * Operation        : R'*-R - M
+	// * Condition Codes    : H - Undefined.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result is zero; cleared otherwise.
+	// *                    V - Set if the result is zero; cleared otherwise.
+	// *                       C - Set if a borrow is generated; cleared otherwise.
+	// * Description        : Subtracts the value in memory location M:M + 1 from the contents of a designated 16-bit register. The C (carry) bit represents a borrow
+	// *                    and is set to the inverse of the resulting binary carry.
+	// * Addressing Mode    : Immediate
+	// *                    Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//SubInstruction:
+	//    instruction = ('SUBA' | 'SUBB')
+	//    WS operand = (
+	//        ImmediatOperand |
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
+	//;
+	public SubInstructionElements getSubInstructionAccess() {
+		return pSubInstruction;
+	}
+	
+	public ParserRule getSubInstructionRule() {
+		return getSubInstructionAccess().getRule();
+	}
+	
+	///*
+	// * ST (16 bits)
+	// *
+	// * store Register into Memory
+	// * Source Form        : STD P, STX P, STY P, STS P, STU P
+	// * Operation        : M:%+1 <- R
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Always cleared.
+	// *                       C - Not affected.
+	// * Description        : Writes the contents of a 16-bit register into two consecutive memory locations.
+	// * Addressing Mode    : Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//St16Instruction:
+	//     instruction = ('STD' | 'STX' | 'STY' | 'STS' | 'STU')
+	//    WS operand = (
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
+	//;
+	public St16InstructionElements getSt16InstructionAccess() {
+		return pSt16Instruction;
+	}
+	
+	public ParserRule getSt16InstructionRule() {
+		return getSt16InstructionAccess().getRule();
+	}
+	
+	///*
+	// * ST (8 bits)
+	// *
+	// * store Register into Memory
+	// * Source Form        : STA P, STB P
+	// * Operation        : M <- R
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Always cleared.
+	// *                       C - Not affected.
+	// * Description        : Writes the contents of an 8-bit register into a memory location.
+	// * Addressing Mode    : Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//St8Instruction:
+	//     instruction = ('STA' | 'STB')
+	//    WS operand = (
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
+	//;
+	public St8InstructionElements getSt8InstructionAccess() {
+		return pSt8Instruction;
+	}
+	
+	public ParserRule getSt8InstructionRule() {
+		return getSt8InstructionAccess().getRule();
+	}
+	
+	///*
+	// * SEX
+	// *
+	// * Sign Extended
+	// * Source Form        : SEX
+	// * Operation        : If bit seven of ACCB is set then ACCA'-^FF16
+	// *                      else ACCA'-^OO16
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Not affected.
+	// *                       C - Not affected.
+	// * Description        : This instruction transforms a twos complement 8-bit value in accumulator B into a twos complement 16-bit value in the D accumulator.
+	// * Addressing Mode    : Inherent
+	// */
+	//SexInstruction:
+	//    instruction = 'SEX'
+	//;
+	public SexInstructionElements getSexInstructionAccess() {
+		return pSexInstruction;
+	}
+	
+	public ParserRule getSexInstructionRule() {
+		return getSexInstructionAccess().getRule();
+	}
+	
+	///*
+	// * SBC
+	// *
+	// * Subtract with Borrow
+	// * Source Form        : SBCA P, SBCB P
+	// * Operation        : R <- R-M-C
+	// * Condition Codes    : H - Undefined.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Set if an overflow is generated; cleared otherwise.
+	// *                       C - Set if a borrow is generated; cleared otherwise.
+	// * Description        : Subtracts the contents of memory location M and the borrow (in the C (carry) bit) from the contents of the designated 8-bit register, and
+	// *                    places the result in that register. The C bit represents a borrow and is set to the inverse of the resulting binary carry.
+	// * Addressing Mode    : Immediate
+	// *                       Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//SbcInstruction:
+	//     instruction = ('SBCA' | 'SBCB')
+	//    WS operand = (
+	//        ImmediatOperand |
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
+	//;
+	public SbcInstructionElements getSbcInstructionAccess() {
+		return pSbcInstruction;
+	}
+	
+	public ParserRule getSbcInstructionRule() {
+		return getSbcInstructionAccess().getRule();
 	}
 	
 	///*

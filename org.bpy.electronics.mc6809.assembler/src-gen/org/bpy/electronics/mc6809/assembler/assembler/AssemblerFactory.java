@@ -69,6 +69,96 @@ public interface AssemblerFactory extends EFactory
   InstructionLine createInstructionLine();
 
   /**
+   * Returns a new object of class '<em>Sync Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Sync Instruction</em>'.
+   * @generated
+   */
+  SyncInstruction createSyncInstruction();
+
+  /**
+   * Returns a new object of class '<em>Swi3 Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Swi3 Instruction</em>'.
+   * @generated
+   */
+  Swi3Instruction createSwi3Instruction();
+
+  /**
+   * Returns a new object of class '<em>Swi2 Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Swi2 Instruction</em>'.
+   * @generated
+   */
+  Swi2Instruction createSwi2Instruction();
+
+  /**
+   * Returns a new object of class '<em>Swi Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Swi Instruction</em>'.
+   * @generated
+   */
+  SwiInstruction createSwiInstruction();
+
+  /**
+   * Returns a new object of class '<em>Subd Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Subd Instruction</em>'.
+   * @generated
+   */
+  SubdInstruction createSubdInstruction();
+
+  /**
+   * Returns a new object of class '<em>Sub Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Sub Instruction</em>'.
+   * @generated
+   */
+  SubInstruction createSubInstruction();
+
+  /**
+   * Returns a new object of class '<em>St16 Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>St16 Instruction</em>'.
+   * @generated
+   */
+  St16Instruction createSt16Instruction();
+
+  /**
+   * Returns a new object of class '<em>St8 Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>St8 Instruction</em>'.
+   * @generated
+   */
+  St8Instruction createSt8Instruction();
+
+  /**
+   * Returns a new object of class '<em>Sex Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Sex Instruction</em>'.
+   * @generated
+   */
+  SexInstruction createSexInstruction();
+
+  /**
+   * Returns a new object of class '<em>Sbc Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Sbc Instruction</em>'.
+   * @generated
+   */
+  SbcInstruction createSbcInstruction();
+
+  /**
    * Returns a new object of class '<em>Rts Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

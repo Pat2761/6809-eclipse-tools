@@ -114,11 +114,21 @@ import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.St16Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.St8Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
+import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.bpy.electronics.mc6809.assembler.services.AssemblerGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
@@ -496,8 +506,14 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.RTS_INSTRUCTION:
 				sequence_RtsInstruction(context, (RtsInstruction) semanticObject); 
 				return; 
+			case AssemblerPackage.SBC_INSTRUCTION:
+				sequence_SbcInstruction(context, (SbcInstruction) semanticObject); 
+				return; 
 			case AssemblerPackage.SET_DIRECTIVE:
 				sequence_SetDirective(context, (SetDirective) semanticObject); 
+				return; 
+			case AssemblerPackage.SEX_INSTRUCTION:
+				sequence_SexInstruction(context, (SexInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.SOURCE_LINE:
 				sequence_SourceLine(context, (SourceLine) semanticObject); 
@@ -505,11 +521,35 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.SPC_DIRECTIVE:
 				sequence_SpcDirective(context, (SpcDirective) semanticObject); 
 				return; 
+			case AssemblerPackage.ST16_INSTRUCTION:
+				sequence_St16Instruction(context, (St16Instruction) semanticObject); 
+				return; 
+			case AssemblerPackage.ST8_INSTRUCTION:
+				sequence_St8Instruction(context, (St8Instruction) semanticObject); 
+				return; 
 			case AssemblerPackage.STRING_VALUE:
 				sequence_StringValue(context, (StringValue) semanticObject); 
 				return; 
+			case AssemblerPackage.SUB_INSTRUCTION:
+				sequence_SubInstruction(context, (SubInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.SUBD_INSTRUCTION:
+				sequence_SubdInstruction(context, (SubdInstruction) semanticObject); 
+				return; 
 			case AssemblerPackage.SUBSTRACTION:
 				sequence_Substraction(context, (Substraction) semanticObject); 
+				return; 
+			case AssemblerPackage.SWI2_INSTRUCTION:
+				sequence_Swi2Instruction(context, (Swi2Instruction) semanticObject); 
+				return; 
+			case AssemblerPackage.SWI3_INSTRUCTION:
+				sequence_Swi3Instruction(context, (Swi3Instruction) semanticObject); 
+				return; 
+			case AssemblerPackage.SWI_INSTRUCTION:
+				sequence_SwiInstruction(context, (SwiInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.SYNC_INSTRUCTION:
+				sequence_SyncInstruction(context, (SyncInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.XOR:
 				sequence_Xor(context, (Xor) semanticObject); 
@@ -1839,7 +1879,17 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=RolInstruction | 
 	 *             instruction=RorInstruction | 
 	 *             instruction=RtiInstruction | 
-	 *             instruction=RtsInstruction
+	 *             instruction=RtsInstruction | 
+	 *             instruction=SbcInstruction | 
+	 *             instruction=SexInstruction | 
+	 *             instruction=St8Instruction | 
+	 *             instruction=St16Instruction | 
+	 *             instruction=SubInstruction | 
+	 *             instruction=SubdInstruction | 
+	 *             instruction=SwiInstruction | 
+	 *             instruction=Swi2Instruction | 
+	 *             instruction=Swi3Instruction | 
+	 *             instruction=SyncInstruction
 	 *         ) 
 	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
 	 *     )
@@ -2694,6 +2744,23 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     SbcInstruction returns SbcInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         (instruction='SBCA' | instruction='SBCB') 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_SbcInstruction(ISerializationContext context, SbcInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     SetDirective returns SetDirective
 	 *
 	 * Constraint:
@@ -2702,6 +2769,26 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_SetDirective(ISerializationContext context, SetDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SexInstruction returns SexInstruction
+	 *
+	 * Constraint:
+	 *     instruction='SEX'
+	 * </pre>
+	 */
+	protected void sequence_SexInstruction(ISerializationContext context, SexInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SEX_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SEX_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSexInstructionAccess().getInstructionSEXKeyword_0(), semanticObject.getInstruction());
+		feeder.finish();
 	}
 	
 	
@@ -2736,6 +2823,40 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     St16Instruction returns St16Instruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         (instruction='STD' | instruction='STX' | instruction='STY' | instruction='STS' | instruction='STU') 
+	 *         (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_St16Instruction(ISerializationContext context, St16Instruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     St8Instruction returns St8Instruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         (instruction='STA' | instruction='STB') 
+	 *         (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_St8Instruction(ISerializationContext context, St8Instruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     StringValue returns StringValue
 	 *
 	 * Constraint:
@@ -2750,6 +2871,40 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SubInstruction returns SubInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         (instruction='SUBA' | instruction='SUBB') 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_SubInstruction(ISerializationContext context, SubInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SubdInstruction returns SubdInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='SUBD' 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_SubdInstruction(ISerializationContext context, SubdInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2792,6 +2947,86 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSubstractionAccess().getSubstractionLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getSubstractionAccess().getRightLeftShiftParserRuleCall_1_2_0(), semanticObject.getRight());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Swi2Instruction returns Swi2Instruction
+	 *
+	 * Constraint:
+	 *     instruction='SWI2'
+	 * </pre>
+	 */
+	protected void sequence_Swi2Instruction(ISerializationContext context, Swi2Instruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SWI2_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SWI2_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSwi2InstructionAccess().getInstructionSWI2Keyword_0(), semanticObject.getInstruction());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Swi3Instruction returns Swi3Instruction
+	 *
+	 * Constraint:
+	 *     instruction='SWI3'
+	 * </pre>
+	 */
+	protected void sequence_Swi3Instruction(ISerializationContext context, Swi3Instruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SWI3_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SWI3_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSwi3InstructionAccess().getInstructionSWI3Keyword_0(), semanticObject.getInstruction());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SwiInstruction returns SwiInstruction
+	 *
+	 * Constraint:
+	 *     instruction='SWI'
+	 * </pre>
+	 */
+	protected void sequence_SwiInstruction(ISerializationContext context, SwiInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SWI_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SWI_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSwiInstructionAccess().getInstructionSWIKeyword_0(), semanticObject.getInstruction());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SyncInstruction returns SyncInstruction
+	 *
+	 * Constraint:
+	 *     instruction='SYNC'
+	 * </pre>
+	 */
+	protected void sequence_SyncInstruction(ISerializationContext context, SyncInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SYNC_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SYNC_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSyncInstructionAccess().getInstructionSYNCKeyword_0(), semanticObject.getInstruction());
 		feeder.finish();
 	}
 	

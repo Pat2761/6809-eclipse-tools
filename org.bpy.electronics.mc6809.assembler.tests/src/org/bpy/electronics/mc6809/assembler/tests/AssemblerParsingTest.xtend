@@ -94,6 +94,16 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTIInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTSInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSEXInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestST8Instruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestST16Instruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBDInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWIInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWI2Instruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWI3Instruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSYNCInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -174,7 +184,17 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTSInstructio
 	 TestROLInstruction,
 	 TestRORInstruction,
 	 TestRTIInstruction,
-	 TestRTSInstruction
+	 TestRTSInstruction,
+	 TestSBCInstruction,
+	 TestSEXInstruction,
+	 TestST8Instruction,
+	 TestST16Instruction,
+	 TestSUBInstruction,
+	 TestSUBDInstruction,
+	 TestSWIInstruction,
+	 TestSWI2Instruction,
+	 TestSWI3Instruction,
+	 TestSYNCInstruction
 )
     
 class AssemblerParsingTest {

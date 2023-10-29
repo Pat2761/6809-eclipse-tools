@@ -101,6 +101,56 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createInstructionLineAdapter();
       }
       @Override
+      public Adapter caseSyncInstruction(SyncInstruction object)
+      {
+        return createSyncInstructionAdapter();
+      }
+      @Override
+      public Adapter caseSwi3Instruction(Swi3Instruction object)
+      {
+        return createSwi3InstructionAdapter();
+      }
+      @Override
+      public Adapter caseSwi2Instruction(Swi2Instruction object)
+      {
+        return createSwi2InstructionAdapter();
+      }
+      @Override
+      public Adapter caseSwiInstruction(SwiInstruction object)
+      {
+        return createSwiInstructionAdapter();
+      }
+      @Override
+      public Adapter caseSubdInstruction(SubdInstruction object)
+      {
+        return createSubdInstructionAdapter();
+      }
+      @Override
+      public Adapter caseSubInstruction(SubInstruction object)
+      {
+        return createSubInstructionAdapter();
+      }
+      @Override
+      public Adapter caseSt16Instruction(St16Instruction object)
+      {
+        return createSt16InstructionAdapter();
+      }
+      @Override
+      public Adapter caseSt8Instruction(St8Instruction object)
+      {
+        return createSt8InstructionAdapter();
+      }
+      @Override
+      public Adapter caseSexInstruction(SexInstruction object)
+      {
+        return createSexInstructionAdapter();
+      }
+      @Override
+      public Adapter caseSbcInstruction(SbcInstruction object)
+      {
+        return createSbcInstructionAdapter();
+      }
+      @Override
       public Adapter caseRtsInstruction(RtsInstruction object)
       {
         return createRtsInstructionAdapter();
@@ -738,6 +788,156 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInstructionLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction <em>Sync Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction
+   * @generated
+   */
+  public Adapter createSyncInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction <em>Swi3 Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction
+   * @generated
+   */
+  public Adapter createSwi3InstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction <em>Swi2 Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction
+   * @generated
+   */
+  public Adapter createSwi2InstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction <em>Swi Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction
+   * @generated
+   */
+  public Adapter createSwiInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction <em>Subd Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction
+   * @generated
+   */
+  public Adapter createSubdInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.SubInstruction <em>Sub Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SubInstruction
+   * @generated
+   */
+  public Adapter createSubInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.St16Instruction <em>St16 Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.St16Instruction
+   * @generated
+   */
+  public Adapter createSt16InstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.St8Instruction <em>St8 Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.St8Instruction
+   * @generated
+   */
+  public Adapter createSt8InstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.SexInstruction <em>Sex Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SexInstruction
+   * @generated
+   */
+  public Adapter createSexInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction <em>Sbc Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction
+   * @generated
+   */
+  public Adapter createSbcInstructionAdapter()
   {
     return null;
   }
