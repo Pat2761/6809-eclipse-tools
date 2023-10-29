@@ -109,10 +109,141 @@ InstructionLine:
 		instruction = LsrInstruction			|						
 		instruction = MulInstruction            |						
 		instruction = NegInstruction			|						
-		instruction = NopInstruction						
+		instruction = NopInstruction			|
+		instruction = OrInstruction				|	   
+		instruction = OrccInstruction			|			   
+		instruction = PshsInstruction			|			   
+		instruction = PshuInstruction			|		   
+		instruction = PulsInstruction			|			   
+		instruction = PuluInstruction			   
 	)  
 	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine	
+;
+
+/*
+ * PULu
+ * 
+ * Pull Registers from the User Stack
+ * Source Form		: PULU register list
+					  PULU #LABEL
+ * Operation		: 
+ * Condition Codes	: May be pulled from stack; not affected otherwise.
+ * Description		: All, some, or none of the processor registers are pulled from the user stack (with the exception of the user stack pointer itself). 
+ * Addressing Mode	: Immediate
+ */
+PuluInstruction:
+	instruction = 'PULU'
+	WS  
+	( 
+		   (operand = ImmediatOperand)
+		|  ( registers+=Register (',' registers+=Register)*)
+	)
+;
+
+/*
+ * PULS
+ * 
+ * Pull Registers from the Hardware Stack
+ * Source Form		: PULS register list
+					  PULS #LABEL
+ * Operation		: 
+ * Condition Codes	: May be pulled from stack; not affected otherwise.
+ * Description		: All, some, or none of the processor registers are pulled from the hardware stack (with the exception of the hardware stack pointer itself).
+ * Addressing Mode	: Immediate
+ */
+PulsInstruction:
+	instruction = 'PULS'
+	WS  
+	( 
+		   (operand = ImmediatOperand)
+		|  ( registers+=Register (',' registers+=Register)*)
+	)
+;
+
+/*
+ * PSHU
+ * 
+ * Push Registers on the user Stack
+ * Source Form		: PSHU register list
+					  PSHU #LABEL
+ * Operation		: 
+ * Condition Codes	: not effected
+ * Description		: All, some, or none of the processor registers are pushed onto the user stack (with the exception of the user stack pointer itself).
+ * Addressing Mode	: Immediate
+ */
+PshuInstruction:
+	instruction = 'PSHU'
+	WS  
+	( 
+		   (operand = ImmediatOperand)
+		|  ( registers+=Register (',' registers+=Register)*)
+	)
+;
+
+/*
+ * PSHS
+ * 
+ * Push Registers on the Hardware Stack
+ * Source Form		: PSHS register list
+					  PSHS #LABEL
+ * Operation		: 
+ * Condition Codes	: not effected
+ * Description		: All, some, or none of the processor registers are pushed onto the hardware stack (with the exception of the hardware stack pointer itself).
+ * Addressing Mode	: Immediate
+ */
+PshsInstruction:
+	instruction = 'PSHS'
+	WS  
+	( 
+		   (operand = ImmediatOperand)
+		|  ( registers+=Register (',' registers+=Register)*)
+	)
+;
+
+/*
+ * ORCC
+ * 
+ * Inclusive OR Memory Immediate Into Condition Code Register
+ * Source Form		: ORCC #XX
+ * Operation		: R'— RvMi
+ * Condition Codes	: Affected according to the operation.
+ * Description		: Performs an inclusive OR operation between the contents of the condition code registers and the immediate value, and the result is
+ *                    piaced in the condition code register. This instruction may be used to set interrupt maslcs (disable interrupts) or any other bit(s).
+ * Addressing Mode	: Immediate
+ */
+OrccInstruction:
+	instruction = 'ORCC'
+	WS operand = ImmediatOperand
+;
+
+/*
+ * OR
+ * 
+ * Inclusive OR Memory into Register
+ * Source Form		: ORA P; ORB P
+ * Operation		: R'— RvM
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Always cleared.
+ * 					  C - Not affected.
+ * Description		: Performs an inclusive OR operation between the contents of accumulator A or B and the contents of memory location M and the result is 
+ * 				      stored in accumulator A or B.
+ * Addressing Mode	: Immediate
+ *                    Extended
+ *                    Direct
+ *                    Indexed 
+ */
+OrInstruction:
+	instruction = ('ORA' | 'ORB')
+	WS operand = ( 
+		ImmediatOperand | 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
 ;
 
 /*

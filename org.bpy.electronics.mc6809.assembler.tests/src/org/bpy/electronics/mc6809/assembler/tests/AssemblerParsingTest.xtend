@@ -84,6 +84,11 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestMULInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNegInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNOPInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORCCInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPSHSInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPSHUInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPULSInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -154,7 +159,12 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNOPInstructio
 	 TestLSRInstruction,
 	 TestMULInstruction,
 	 TestNegInstruction,
-	 TestNOPInstruction
+	 TestNOPInstruction,
+	 TestORInstruction,
+	 TestORCCInstruction,
+	 TestPSHSInstruction,
+	 TestPSHUInstruction,
+	 TestPULSInstruction
 )
     
 class AssemblerParsingTest {
