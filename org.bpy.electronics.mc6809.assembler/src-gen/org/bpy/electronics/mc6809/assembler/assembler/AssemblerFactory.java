@@ -69,6 +69,24 @@ public interface AssemblerFactory extends EFactory
   InstructionLine createInstructionLine();
 
   /**
+   * Returns a new object of class '<em>Tst Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Tst Instruction</em>'.
+   * @generated
+   */
+  TstInstruction createTstInstruction();
+
+  /**
+   * Returns a new object of class '<em>Tfr Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Tfr Instruction</em>'.
+   * @generated
+   */
+  TfrInstruction createTfrInstruction();
+
+  /**
    * Returns a new object of class '<em>Sync Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

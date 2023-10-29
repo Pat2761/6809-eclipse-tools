@@ -115,6 +115,8 @@ public class InternalAssemblerLexer extends Lexer {
     public static final int T__23=23;
     public static final int T__24=24;
     public static final int T__25=25;
+    public static final int T__203=203;
+    public static final int T__202=202;
     public static final int T__20=20;
     public static final int T__21=21;
     public static final int T__122=122;
@@ -141,6 +143,8 @@ public class InternalAssemblerLexer extends Lexer {
     public static final int T__106=106;
     public static final int T__105=105;
     public static final int RULE_HEXA=9;
+    public static final int T__201=201;
+    public static final int T__200=200;
     public static final int RULE_BINARY=11;
     public static final int T__91=91;
     public static final int T__188=188;
@@ -228,10 +232,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__15;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:11:7: ( 'SYNC' )
-            // InternalAssembler.g:11:9: 'SYNC'
+            // InternalAssembler.g:11:7: ( 'TSTA' )
+            // InternalAssembler.g:11:9: 'TSTA'
             {
-            match("SYNC"); 
+            match("TSTA"); 
 
 
             }
@@ -249,10 +253,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__16;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12:7: ( 'SWI3' )
-            // InternalAssembler.g:12:9: 'SWI3'
+            // InternalAssembler.g:12:7: ( 'TSTB' )
+            // InternalAssembler.g:12:9: 'TSTB'
             {
-            match("SWI3"); 
+            match("TSTB"); 
 
 
             }
@@ -270,10 +274,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__17;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:13:7: ( 'SWI2' )
-            // InternalAssembler.g:13:9: 'SWI2'
+            // InternalAssembler.g:13:7: ( 'TST' )
+            // InternalAssembler.g:13:9: 'TST'
             {
-            match("SWI2"); 
+            match("TST"); 
 
 
             }
@@ -291,10 +295,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__18;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:14:7: ( 'SWI' )
-            // InternalAssembler.g:14:9: 'SWI'
+            // InternalAssembler.g:14:7: ( 'TFR' )
+            // InternalAssembler.g:14:9: 'TFR'
             {
-            match("SWI"); 
+            match("TFR"); 
 
 
             }
@@ -312,11 +316,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__19;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:15:7: ( 'SUBD' )
-            // InternalAssembler.g:15:9: 'SUBD'
+            // InternalAssembler.g:15:7: ( ',' )
+            // InternalAssembler.g:15:9: ','
             {
-            match("SUBD"); 
-
+            match(','); 
 
             }
 
@@ -333,10 +336,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__20;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:16:7: ( 'SUBA' )
-            // InternalAssembler.g:16:9: 'SUBA'
+            // InternalAssembler.g:16:7: ( 'SYNC' )
+            // InternalAssembler.g:16:9: 'SYNC'
             {
-            match("SUBA"); 
+            match("SYNC"); 
 
 
             }
@@ -354,10 +357,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__21;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:17:7: ( 'SUBB' )
-            // InternalAssembler.g:17:9: 'SUBB'
+            // InternalAssembler.g:17:7: ( 'SWI3' )
+            // InternalAssembler.g:17:9: 'SWI3'
             {
-            match("SUBB"); 
+            match("SWI3"); 
 
 
             }
@@ -375,10 +378,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__22;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:18:7: ( 'STD' )
-            // InternalAssembler.g:18:9: 'STD'
+            // InternalAssembler.g:18:7: ( 'SWI2' )
+            // InternalAssembler.g:18:9: 'SWI2'
             {
-            match("STD"); 
+            match("SWI2"); 
 
 
             }
@@ -396,10 +399,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__23;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:19:7: ( 'STX' )
-            // InternalAssembler.g:19:9: 'STX'
+            // InternalAssembler.g:19:7: ( 'SWI' )
+            // InternalAssembler.g:19:9: 'SWI'
             {
-            match("STX"); 
+            match("SWI"); 
 
 
             }
@@ -417,10 +420,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__24;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:20:7: ( 'STY' )
-            // InternalAssembler.g:20:9: 'STY'
+            // InternalAssembler.g:20:7: ( 'SUBD' )
+            // InternalAssembler.g:20:9: 'SUBD'
             {
-            match("STY"); 
+            match("SUBD"); 
 
 
             }
@@ -438,10 +441,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__25;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:21:7: ( 'STS' )
-            // InternalAssembler.g:21:9: 'STS'
+            // InternalAssembler.g:21:7: ( 'SUBA' )
+            // InternalAssembler.g:21:9: 'SUBA'
             {
-            match("STS"); 
+            match("SUBA"); 
 
 
             }
@@ -459,10 +462,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__26;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:22:7: ( 'STU' )
-            // InternalAssembler.g:22:9: 'STU'
+            // InternalAssembler.g:22:7: ( 'SUBB' )
+            // InternalAssembler.g:22:9: 'SUBB'
             {
-            match("STU"); 
+            match("SUBB"); 
 
 
             }
@@ -480,10 +483,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__27;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:23:7: ( 'STA' )
-            // InternalAssembler.g:23:9: 'STA'
+            // InternalAssembler.g:23:7: ( 'STD' )
+            // InternalAssembler.g:23:9: 'STD'
             {
-            match("STA"); 
+            match("STD"); 
 
 
             }
@@ -501,10 +504,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__28;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:24:7: ( 'STB' )
-            // InternalAssembler.g:24:9: 'STB'
+            // InternalAssembler.g:24:7: ( 'STX' )
+            // InternalAssembler.g:24:9: 'STX'
             {
-            match("STB"); 
+            match("STX"); 
 
 
             }
@@ -522,10 +525,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__29;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:25:7: ( 'SEX' )
-            // InternalAssembler.g:25:9: 'SEX'
+            // InternalAssembler.g:25:7: ( 'STY' )
+            // InternalAssembler.g:25:9: 'STY'
             {
-            match("SEX"); 
+            match("STY"); 
 
 
             }
@@ -543,10 +546,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__30;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:26:7: ( 'SBCA' )
-            // InternalAssembler.g:26:9: 'SBCA'
+            // InternalAssembler.g:26:7: ( 'STS' )
+            // InternalAssembler.g:26:9: 'STS'
             {
-            match("SBCA"); 
+            match("STS"); 
 
 
             }
@@ -564,10 +567,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__31;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:27:7: ( 'SBCB' )
-            // InternalAssembler.g:27:9: 'SBCB'
+            // InternalAssembler.g:27:7: ( 'STU' )
+            // InternalAssembler.g:27:9: 'STU'
             {
-            match("SBCB"); 
+            match("STU"); 
 
 
             }
@@ -585,10 +588,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__32;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:28:7: ( 'RTS' )
-            // InternalAssembler.g:28:9: 'RTS'
+            // InternalAssembler.g:28:7: ( 'STA' )
+            // InternalAssembler.g:28:9: 'STA'
             {
-            match("RTS"); 
+            match("STA"); 
 
 
             }
@@ -606,10 +609,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__33;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:29:7: ( 'RTI' )
-            // InternalAssembler.g:29:9: 'RTI'
+            // InternalAssembler.g:29:7: ( 'STB' )
+            // InternalAssembler.g:29:9: 'STB'
             {
-            match("RTI"); 
+            match("STB"); 
 
 
             }
@@ -627,10 +630,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__34;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:30:7: ( 'RORA' )
-            // InternalAssembler.g:30:9: 'RORA'
+            // InternalAssembler.g:30:7: ( 'SEX' )
+            // InternalAssembler.g:30:9: 'SEX'
             {
-            match("RORA"); 
+            match("SEX"); 
 
 
             }
@@ -648,10 +651,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__35;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:31:7: ( 'RORB' )
-            // InternalAssembler.g:31:9: 'RORB'
+            // InternalAssembler.g:31:7: ( 'SBCA' )
+            // InternalAssembler.g:31:9: 'SBCA'
             {
-            match("RORB"); 
+            match("SBCA"); 
 
 
             }
@@ -669,10 +672,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__36;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:32:7: ( 'ROR' )
-            // InternalAssembler.g:32:9: 'ROR'
+            // InternalAssembler.g:32:7: ( 'SBCB' )
+            // InternalAssembler.g:32:9: 'SBCB'
             {
-            match("ROR"); 
+            match("SBCB"); 
 
 
             }
@@ -690,10 +693,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__37;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:33:7: ( 'ROLA' )
-            // InternalAssembler.g:33:9: 'ROLA'
+            // InternalAssembler.g:33:7: ( 'RTS' )
+            // InternalAssembler.g:33:9: 'RTS'
             {
-            match("ROLA"); 
+            match("RTS"); 
 
 
             }
@@ -711,10 +714,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__38;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:34:7: ( 'ROLB' )
-            // InternalAssembler.g:34:9: 'ROLB'
+            // InternalAssembler.g:34:7: ( 'RTI' )
+            // InternalAssembler.g:34:9: 'RTI'
             {
-            match("ROLB"); 
+            match("RTI"); 
 
 
             }
@@ -732,10 +735,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__39;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:35:7: ( 'ROL' )
-            // InternalAssembler.g:35:9: 'ROL'
+            // InternalAssembler.g:35:7: ( 'RORA' )
+            // InternalAssembler.g:35:9: 'RORA'
             {
-            match("ROL"); 
+            match("RORA"); 
 
 
             }
@@ -753,10 +756,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__40;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:36:7: ( 'PULU' )
-            // InternalAssembler.g:36:9: 'PULU'
+            // InternalAssembler.g:36:7: ( 'RORB' )
+            // InternalAssembler.g:36:9: 'RORB'
             {
-            match("PULU"); 
+            match("RORB"); 
 
 
             }
@@ -774,10 +777,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__41;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:37:7: ( ',' )
-            // InternalAssembler.g:37:9: ','
+            // InternalAssembler.g:37:7: ( 'ROR' )
+            // InternalAssembler.g:37:9: 'ROR'
             {
-            match(','); 
+            match("ROR"); 
+
 
             }
 
@@ -794,10 +798,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__42;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:38:7: ( 'PULS' )
-            // InternalAssembler.g:38:9: 'PULS'
+            // InternalAssembler.g:38:7: ( 'ROLA' )
+            // InternalAssembler.g:38:9: 'ROLA'
             {
-            match("PULS"); 
+            match("ROLA"); 
 
 
             }
@@ -815,10 +819,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__43;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:39:7: ( 'PSHU' )
-            // InternalAssembler.g:39:9: 'PSHU'
+            // InternalAssembler.g:39:7: ( 'ROLB' )
+            // InternalAssembler.g:39:9: 'ROLB'
             {
-            match("PSHU"); 
+            match("ROLB"); 
 
 
             }
@@ -836,10 +840,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__44;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:40:7: ( 'PSHS' )
-            // InternalAssembler.g:40:9: 'PSHS'
+            // InternalAssembler.g:40:7: ( 'ROL' )
+            // InternalAssembler.g:40:9: 'ROL'
             {
-            match("PSHS"); 
+            match("ROL"); 
 
 
             }
@@ -857,10 +861,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__45;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:41:7: ( 'ORCC' )
-            // InternalAssembler.g:41:9: 'ORCC'
+            // InternalAssembler.g:41:7: ( 'PULU' )
+            // InternalAssembler.g:41:9: 'PULU'
             {
-            match("ORCC"); 
+            match("PULU"); 
 
 
             }
@@ -878,10 +882,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__46;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:42:7: ( 'ORA' )
-            // InternalAssembler.g:42:9: 'ORA'
+            // InternalAssembler.g:42:7: ( 'PULS' )
+            // InternalAssembler.g:42:9: 'PULS'
             {
-            match("ORA"); 
+            match("PULS"); 
 
 
             }
@@ -899,10 +903,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__47;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:43:7: ( 'ORB' )
-            // InternalAssembler.g:43:9: 'ORB'
+            // InternalAssembler.g:43:7: ( 'PSHU' )
+            // InternalAssembler.g:43:9: 'PSHU'
             {
-            match("ORB"); 
+            match("PSHU"); 
 
 
             }
@@ -920,10 +924,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__48;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:44:7: ( 'NOP' )
-            // InternalAssembler.g:44:9: 'NOP'
+            // InternalAssembler.g:44:7: ( 'PSHS' )
+            // InternalAssembler.g:44:9: 'PSHS'
             {
-            match("NOP"); 
+            match("PSHS"); 
 
 
             }
@@ -941,10 +945,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__49;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:45:7: ( 'NEGA' )
-            // InternalAssembler.g:45:9: 'NEGA'
+            // InternalAssembler.g:45:7: ( 'ORCC' )
+            // InternalAssembler.g:45:9: 'ORCC'
             {
-            match("NEGA"); 
+            match("ORCC"); 
 
 
             }
@@ -962,10 +966,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__50;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:46:7: ( 'NEGB' )
-            // InternalAssembler.g:46:9: 'NEGB'
+            // InternalAssembler.g:46:7: ( 'ORA' )
+            // InternalAssembler.g:46:9: 'ORA'
             {
-            match("NEGB"); 
+            match("ORA"); 
 
 
             }
@@ -983,10 +987,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__51;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:47:7: ( 'NEG' )
-            // InternalAssembler.g:47:9: 'NEG'
+            // InternalAssembler.g:47:7: ( 'ORB' )
+            // InternalAssembler.g:47:9: 'ORB'
             {
-            match("NEG"); 
+            match("ORB"); 
 
 
             }
@@ -1004,10 +1008,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__52;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:48:7: ( 'MUL' )
-            // InternalAssembler.g:48:9: 'MUL'
+            // InternalAssembler.g:48:7: ( 'NOP' )
+            // InternalAssembler.g:48:9: 'NOP'
             {
-            match("MUL"); 
+            match("NOP"); 
 
 
             }
@@ -1025,10 +1029,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__53;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:49:7: ( 'LSRA' )
-            // InternalAssembler.g:49:9: 'LSRA'
+            // InternalAssembler.g:49:7: ( 'NEGA' )
+            // InternalAssembler.g:49:9: 'NEGA'
             {
-            match("LSRA"); 
+            match("NEGA"); 
 
 
             }
@@ -1046,10 +1050,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__54;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:50:7: ( 'LSRB' )
-            // InternalAssembler.g:50:9: 'LSRB'
+            // InternalAssembler.g:50:7: ( 'NEGB' )
+            // InternalAssembler.g:50:9: 'NEGB'
             {
-            match("LSRB"); 
+            match("NEGB"); 
 
 
             }
@@ -1067,10 +1071,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__55;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:51:7: ( 'LSR' )
-            // InternalAssembler.g:51:9: 'LSR'
+            // InternalAssembler.g:51:7: ( 'NEG' )
+            // InternalAssembler.g:51:9: 'NEG'
             {
-            match("LSR"); 
+            match("NEG"); 
 
 
             }
@@ -1088,10 +1092,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__56;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:52:7: ( 'LSLA' )
-            // InternalAssembler.g:52:9: 'LSLA'
+            // InternalAssembler.g:52:7: ( 'MUL' )
+            // InternalAssembler.g:52:9: 'MUL'
             {
-            match("LSLA"); 
+            match("MUL"); 
 
 
             }
@@ -1109,10 +1113,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__57;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:53:7: ( 'LSLB' )
-            // InternalAssembler.g:53:9: 'LSLB'
+            // InternalAssembler.g:53:7: ( 'LSRA' )
+            // InternalAssembler.g:53:9: 'LSRA'
             {
-            match("LSLB"); 
+            match("LSRA"); 
 
 
             }
@@ -1130,10 +1134,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__58;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:54:7: ( 'LSL' )
-            // InternalAssembler.g:54:9: 'LSL'
+            // InternalAssembler.g:54:7: ( 'LSRB' )
+            // InternalAssembler.g:54:9: 'LSRB'
             {
-            match("LSL"); 
+            match("LSRB"); 
 
 
             }
@@ -1151,10 +1155,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__59;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:55:7: ( 'LEAX' )
-            // InternalAssembler.g:55:9: 'LEAX'
+            // InternalAssembler.g:55:7: ( 'LSR' )
+            // InternalAssembler.g:55:9: 'LSR'
             {
-            match("LEAX"); 
+            match("LSR"); 
 
 
             }
@@ -1172,10 +1176,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__60;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:56:7: ( 'LEAY' )
-            // InternalAssembler.g:56:9: 'LEAY'
+            // InternalAssembler.g:56:7: ( 'LSLA' )
+            // InternalAssembler.g:56:9: 'LSLA'
             {
-            match("LEAY"); 
+            match("LSLA"); 
 
 
             }
@@ -1193,10 +1197,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__61;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:57:7: ( 'LEAS' )
-            // InternalAssembler.g:57:9: 'LEAS'
+            // InternalAssembler.g:57:7: ( 'LSLB' )
+            // InternalAssembler.g:57:9: 'LSLB'
             {
-            match("LEAS"); 
+            match("LSLB"); 
 
 
             }
@@ -1214,10 +1218,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__62;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:58:7: ( 'LEAU' )
-            // InternalAssembler.g:58:9: 'LEAU'
+            // InternalAssembler.g:58:7: ( 'LSL' )
+            // InternalAssembler.g:58:9: 'LSL'
             {
-            match("LEAU"); 
+            match("LSL"); 
 
 
             }
@@ -1235,10 +1239,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__63;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:59:7: ( 'LDD' )
-            // InternalAssembler.g:59:9: 'LDD'
+            // InternalAssembler.g:59:7: ( 'LEAX' )
+            // InternalAssembler.g:59:9: 'LEAX'
             {
-            match("LDD"); 
+            match("LEAX"); 
 
 
             }
@@ -1256,10 +1260,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__64;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:60:7: ( 'LDX' )
-            // InternalAssembler.g:60:9: 'LDX'
+            // InternalAssembler.g:60:7: ( 'LEAY' )
+            // InternalAssembler.g:60:9: 'LEAY'
             {
-            match("LDX"); 
+            match("LEAY"); 
 
 
             }
@@ -1277,10 +1281,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__65;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:61:7: ( 'LDY' )
-            // InternalAssembler.g:61:9: 'LDY'
+            // InternalAssembler.g:61:7: ( 'LEAS' )
+            // InternalAssembler.g:61:9: 'LEAS'
             {
-            match("LDY"); 
+            match("LEAS"); 
 
 
             }
@@ -1298,10 +1302,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__66;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:62:7: ( 'LDS' )
-            // InternalAssembler.g:62:9: 'LDS'
+            // InternalAssembler.g:62:7: ( 'LEAU' )
+            // InternalAssembler.g:62:9: 'LEAU'
             {
-            match("LDS"); 
+            match("LEAU"); 
 
 
             }
@@ -1319,10 +1323,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__67;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:63:7: ( 'LDU' )
-            // InternalAssembler.g:63:9: 'LDU'
+            // InternalAssembler.g:63:7: ( 'LDD' )
+            // InternalAssembler.g:63:9: 'LDD'
             {
-            match("LDU"); 
+            match("LDD"); 
 
 
             }
@@ -1340,10 +1344,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__68;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:64:7: ( 'LDA' )
-            // InternalAssembler.g:64:9: 'LDA'
+            // InternalAssembler.g:64:7: ( 'LDX' )
+            // InternalAssembler.g:64:9: 'LDX'
             {
-            match("LDA"); 
+            match("LDX"); 
 
 
             }
@@ -1361,10 +1365,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__69;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:65:7: ( 'LDB' )
-            // InternalAssembler.g:65:9: 'LDB'
+            // InternalAssembler.g:65:7: ( 'LDY' )
+            // InternalAssembler.g:65:9: 'LDY'
             {
-            match("LDB"); 
+            match("LDY"); 
 
 
             }
@@ -1382,10 +1386,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__70;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:66:7: ( 'JSR' )
-            // InternalAssembler.g:66:9: 'JSR'
+            // InternalAssembler.g:66:7: ( 'LDS' )
+            // InternalAssembler.g:66:9: 'LDS'
             {
-            match("JSR"); 
+            match("LDS"); 
 
 
             }
@@ -1403,10 +1407,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__71;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:67:7: ( 'JMP' )
-            // InternalAssembler.g:67:9: 'JMP'
+            // InternalAssembler.g:67:7: ( 'LDU' )
+            // InternalAssembler.g:67:9: 'LDU'
             {
-            match("JMP"); 
+            match("LDU"); 
 
 
             }
@@ -1424,10 +1428,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__72;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:68:7: ( 'INCA' )
-            // InternalAssembler.g:68:9: 'INCA'
+            // InternalAssembler.g:68:7: ( 'LDA' )
+            // InternalAssembler.g:68:9: 'LDA'
             {
-            match("INCA"); 
+            match("LDA"); 
 
 
             }
@@ -1445,10 +1449,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__73;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:69:7: ( 'INCB' )
-            // InternalAssembler.g:69:9: 'INCB'
+            // InternalAssembler.g:69:7: ( 'LDB' )
+            // InternalAssembler.g:69:9: 'LDB'
             {
-            match("INCB"); 
+            match("LDB"); 
 
 
             }
@@ -1466,10 +1470,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__74;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:70:7: ( 'INC' )
-            // InternalAssembler.g:70:9: 'INC'
+            // InternalAssembler.g:70:7: ( 'JSR' )
+            // InternalAssembler.g:70:9: 'JSR'
             {
-            match("INC"); 
+            match("JSR"); 
 
 
             }
@@ -1487,10 +1491,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__75;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:71:7: ( 'EXG' )
-            // InternalAssembler.g:71:9: 'EXG'
+            // InternalAssembler.g:71:7: ( 'JMP' )
+            // InternalAssembler.g:71:9: 'JMP'
             {
-            match("EXG"); 
+            match("JMP"); 
 
 
             }
@@ -1508,10 +1512,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__76;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:72:7: ( 'EORA' )
-            // InternalAssembler.g:72:9: 'EORA'
+            // InternalAssembler.g:72:7: ( 'INCA' )
+            // InternalAssembler.g:72:9: 'INCA'
             {
-            match("EORA"); 
+            match("INCA"); 
 
 
             }
@@ -1529,10 +1533,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__77;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:73:7: ( 'EORB' )
-            // InternalAssembler.g:73:9: 'EORB'
+            // InternalAssembler.g:73:7: ( 'INCB' )
+            // InternalAssembler.g:73:9: 'INCB'
             {
-            match("EORB"); 
+            match("INCB"); 
 
 
             }
@@ -1550,10 +1554,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__78;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:74:7: ( 'DECA' )
-            // InternalAssembler.g:74:9: 'DECA'
+            // InternalAssembler.g:74:7: ( 'INC' )
+            // InternalAssembler.g:74:9: 'INC'
             {
-            match("DECA"); 
+            match("INC"); 
 
 
             }
@@ -1571,10 +1575,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__79;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:75:7: ( 'DECB' )
-            // InternalAssembler.g:75:9: 'DECB'
+            // InternalAssembler.g:75:7: ( 'EXG' )
+            // InternalAssembler.g:75:9: 'EXG'
             {
-            match("DECB"); 
+            match("EXG"); 
 
 
             }
@@ -1592,10 +1596,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__80;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:76:7: ( 'DEC' )
-            // InternalAssembler.g:76:9: 'DEC'
+            // InternalAssembler.g:76:7: ( 'EORA' )
+            // InternalAssembler.g:76:9: 'EORA'
             {
-            match("DEC"); 
+            match("EORA"); 
 
 
             }
@@ -1613,10 +1617,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__81;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:77:7: ( 'DAA' )
-            // InternalAssembler.g:77:9: 'DAA'
+            // InternalAssembler.g:77:7: ( 'EORB' )
+            // InternalAssembler.g:77:9: 'EORB'
             {
-            match("DAA"); 
+            match("EORB"); 
 
 
             }
@@ -1634,10 +1638,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__82;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:78:7: ( 'CWAI' )
-            // InternalAssembler.g:78:9: 'CWAI'
+            // InternalAssembler.g:78:7: ( 'DECA' )
+            // InternalAssembler.g:78:9: 'DECA'
             {
-            match("CWAI"); 
+            match("DECA"); 
 
 
             }
@@ -1655,10 +1659,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__83;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:79:7: ( 'COMA' )
-            // InternalAssembler.g:79:9: 'COMA'
+            // InternalAssembler.g:79:7: ( 'DECB' )
+            // InternalAssembler.g:79:9: 'DECB'
             {
-            match("COMA"); 
+            match("DECB"); 
 
 
             }
@@ -1676,10 +1680,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__84;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:80:7: ( 'COMB' )
-            // InternalAssembler.g:80:9: 'COMB'
+            // InternalAssembler.g:80:7: ( 'DEC' )
+            // InternalAssembler.g:80:9: 'DEC'
             {
-            match("COMB"); 
+            match("DEC"); 
 
 
             }
@@ -1697,10 +1701,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__85;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:81:7: ( 'COM' )
-            // InternalAssembler.g:81:9: 'COM'
+            // InternalAssembler.g:81:7: ( 'DAA' )
+            // InternalAssembler.g:81:9: 'DAA'
             {
-            match("COM"); 
+            match("DAA"); 
 
 
             }
@@ -1718,10 +1722,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__86;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:82:7: ( 'CMPA' )
-            // InternalAssembler.g:82:9: 'CMPA'
+            // InternalAssembler.g:82:7: ( 'CWAI' )
+            // InternalAssembler.g:82:9: 'CWAI'
             {
-            match("CMPA"); 
+            match("CWAI"); 
 
 
             }
@@ -1739,10 +1743,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__87;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:83:7: ( 'CMPB' )
-            // InternalAssembler.g:83:9: 'CMPB'
+            // InternalAssembler.g:83:7: ( 'COMA' )
+            // InternalAssembler.g:83:9: 'COMA'
             {
-            match("CMPB"); 
+            match("COMA"); 
 
 
             }
@@ -1760,10 +1764,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__88;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:84:7: ( 'CLRA' )
-            // InternalAssembler.g:84:9: 'CLRA'
+            // InternalAssembler.g:84:7: ( 'COMB' )
+            // InternalAssembler.g:84:9: 'COMB'
             {
-            match("CLRA"); 
+            match("COMB"); 
 
 
             }
@@ -1781,10 +1785,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__89;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:85:7: ( 'CLRB' )
-            // InternalAssembler.g:85:9: 'CLRB'
+            // InternalAssembler.g:85:7: ( 'COM' )
+            // InternalAssembler.g:85:9: 'COM'
             {
-            match("CLRB"); 
+            match("COM"); 
 
 
             }
@@ -1802,10 +1806,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__90;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:86:7: ( 'CLR' )
-            // InternalAssembler.g:86:9: 'CLR'
+            // InternalAssembler.g:86:7: ( 'CMPA' )
+            // InternalAssembler.g:86:9: 'CMPA'
             {
-            match("CLR"); 
+            match("CMPA"); 
 
 
             }
@@ -1823,10 +1827,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__91;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:87:7: ( 'BVS' )
-            // InternalAssembler.g:87:9: 'BVS'
+            // InternalAssembler.g:87:7: ( 'CMPB' )
+            // InternalAssembler.g:87:9: 'CMPB'
             {
-            match("BVS"); 
+            match("CMPB"); 
 
 
             }
@@ -1844,10 +1848,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__92;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:88:7: ( 'LBVS' )
-            // InternalAssembler.g:88:9: 'LBVS'
+            // InternalAssembler.g:88:7: ( 'CLRA' )
+            // InternalAssembler.g:88:9: 'CLRA'
             {
-            match("LBVS"); 
+            match("CLRA"); 
 
 
             }
@@ -1865,10 +1869,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__93;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:89:7: ( 'BVC' )
-            // InternalAssembler.g:89:9: 'BVC'
+            // InternalAssembler.g:89:7: ( 'CLRB' )
+            // InternalAssembler.g:89:9: 'CLRB'
             {
-            match("BVC"); 
+            match("CLRB"); 
 
 
             }
@@ -1886,10 +1890,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__94;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:90:7: ( 'LBVC' )
-            // InternalAssembler.g:90:9: 'LBVC'
+            // InternalAssembler.g:90:7: ( 'CLR' )
+            // InternalAssembler.g:90:9: 'CLR'
             {
-            match("LBVC"); 
+            match("CLR"); 
 
 
             }
@@ -1907,10 +1911,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__95;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:91:7: ( 'BSR' )
-            // InternalAssembler.g:91:9: 'BSR'
+            // InternalAssembler.g:91:7: ( 'BVS' )
+            // InternalAssembler.g:91:9: 'BVS'
             {
-            match("BSR"); 
+            match("BVS"); 
 
 
             }
@@ -1928,10 +1932,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__96;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:92:7: ( 'LBSR' )
-            // InternalAssembler.g:92:9: 'LBSR'
+            // InternalAssembler.g:92:7: ( 'LBVS' )
+            // InternalAssembler.g:92:9: 'LBVS'
             {
-            match("LBSR"); 
+            match("LBVS"); 
 
 
             }
@@ -1949,10 +1953,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__97;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:93:7: ( 'BRN' )
-            // InternalAssembler.g:93:9: 'BRN'
+            // InternalAssembler.g:93:7: ( 'BVC' )
+            // InternalAssembler.g:93:9: 'BVC'
             {
-            match("BRN"); 
+            match("BVC"); 
 
 
             }
@@ -1970,10 +1974,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__98;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:94:7: ( 'LBRN' )
-            // InternalAssembler.g:94:9: 'LBRN'
+            // InternalAssembler.g:94:7: ( 'LBVC' )
+            // InternalAssembler.g:94:9: 'LBVC'
             {
-            match("LBRN"); 
+            match("LBVC"); 
 
 
             }
@@ -1991,10 +1995,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__99;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:95:7: ( 'BRA' )
-            // InternalAssembler.g:95:9: 'BRA'
+            // InternalAssembler.g:95:7: ( 'BSR' )
+            // InternalAssembler.g:95:9: 'BSR'
             {
-            match("BRA"); 
+            match("BSR"); 
 
 
             }
@@ -2012,10 +2016,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__100;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:96:8: ( 'LBRA' )
-            // InternalAssembler.g:96:10: 'LBRA'
+            // InternalAssembler.g:96:8: ( 'LBSR' )
+            // InternalAssembler.g:96:10: 'LBSR'
             {
-            match("LBRA"); 
+            match("LBSR"); 
 
 
             }
@@ -2033,10 +2037,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__101;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:97:8: ( 'BPL' )
-            // InternalAssembler.g:97:10: 'BPL'
+            // InternalAssembler.g:97:8: ( 'BRN' )
+            // InternalAssembler.g:97:10: 'BRN'
             {
-            match("BPL"); 
+            match("BRN"); 
 
 
             }
@@ -2054,10 +2058,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__102;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:98:8: ( 'LBPL' )
-            // InternalAssembler.g:98:10: 'LBPL'
+            // InternalAssembler.g:98:8: ( 'LBRN' )
+            // InternalAssembler.g:98:10: 'LBRN'
             {
-            match("LBPL"); 
+            match("LBRN"); 
 
 
             }
@@ -2075,10 +2079,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__103;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:99:8: ( 'BNE' )
-            // InternalAssembler.g:99:10: 'BNE'
+            // InternalAssembler.g:99:8: ( 'BRA' )
+            // InternalAssembler.g:99:10: 'BRA'
             {
-            match("BNE"); 
+            match("BRA"); 
 
 
             }
@@ -2096,10 +2100,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__104;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:100:8: ( 'LBNE' )
-            // InternalAssembler.g:100:10: 'LBNE'
+            // InternalAssembler.g:100:8: ( 'LBRA' )
+            // InternalAssembler.g:100:10: 'LBRA'
             {
-            match("LBNE"); 
+            match("LBRA"); 
 
 
             }
@@ -2117,10 +2121,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__105;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:101:8: ( 'BMI' )
-            // InternalAssembler.g:101:10: 'BMI'
+            // InternalAssembler.g:101:8: ( 'BPL' )
+            // InternalAssembler.g:101:10: 'BPL'
             {
-            match("BMI"); 
+            match("BPL"); 
 
 
             }
@@ -2138,10 +2142,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__106;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:102:8: ( 'LBMI' )
-            // InternalAssembler.g:102:10: 'LBMI'
+            // InternalAssembler.g:102:8: ( 'LBPL' )
+            // InternalAssembler.g:102:10: 'LBPL'
             {
-            match("LBMI"); 
+            match("LBPL"); 
 
 
             }
@@ -2159,10 +2163,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__107;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:103:8: ( 'BLT' )
-            // InternalAssembler.g:103:10: 'BLT'
+            // InternalAssembler.g:103:8: ( 'BNE' )
+            // InternalAssembler.g:103:10: 'BNE'
             {
-            match("BLT"); 
+            match("BNE"); 
 
 
             }
@@ -2180,10 +2184,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__108;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:104:8: ( 'LBLT' )
-            // InternalAssembler.g:104:10: 'LBLT'
+            // InternalAssembler.g:104:8: ( 'LBNE' )
+            // InternalAssembler.g:104:10: 'LBNE'
             {
-            match("LBLT"); 
+            match("LBNE"); 
 
 
             }
@@ -2201,10 +2205,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__109;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:105:8: ( 'BLS' )
-            // InternalAssembler.g:105:10: 'BLS'
+            // InternalAssembler.g:105:8: ( 'BMI' )
+            // InternalAssembler.g:105:10: 'BMI'
             {
-            match("BLS"); 
+            match("BMI"); 
 
 
             }
@@ -2222,10 +2226,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__110;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:106:8: ( 'LBLS' )
-            // InternalAssembler.g:106:10: 'LBLS'
+            // InternalAssembler.g:106:8: ( 'LBMI' )
+            // InternalAssembler.g:106:10: 'LBMI'
             {
-            match("LBLS"); 
+            match("LBMI"); 
 
 
             }
@@ -2243,10 +2247,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__111;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:107:8: ( 'BLO' )
-            // InternalAssembler.g:107:10: 'BLO'
+            // InternalAssembler.g:107:8: ( 'BLT' )
+            // InternalAssembler.g:107:10: 'BLT'
             {
-            match("BLO"); 
+            match("BLT"); 
 
 
             }
@@ -2264,10 +2268,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__112;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:108:8: ( 'LBLO' )
-            // InternalAssembler.g:108:10: 'LBLO'
+            // InternalAssembler.g:108:8: ( 'LBLT' )
+            // InternalAssembler.g:108:10: 'LBLT'
             {
-            match("LBLO"); 
+            match("LBLT"); 
 
 
             }
@@ -2285,10 +2289,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__113;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:109:8: ( 'BLE' )
-            // InternalAssembler.g:109:10: 'BLE'
+            // InternalAssembler.g:109:8: ( 'BLS' )
+            // InternalAssembler.g:109:10: 'BLS'
             {
-            match("BLE"); 
+            match("BLS"); 
 
 
             }
@@ -2306,10 +2310,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__114;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:110:8: ( 'LBLE' )
-            // InternalAssembler.g:110:10: 'LBLE'
+            // InternalAssembler.g:110:8: ( 'LBLS' )
+            // InternalAssembler.g:110:10: 'LBLS'
             {
-            match("LBLE"); 
+            match("LBLS"); 
 
 
             }
@@ -2327,10 +2331,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__115;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:111:8: ( 'BIT' )
-            // InternalAssembler.g:111:10: 'BIT'
+            // InternalAssembler.g:111:8: ( 'BLO' )
+            // InternalAssembler.g:111:10: 'BLO'
             {
-            match("BIT"); 
+            match("BLO"); 
 
 
             }
@@ -2348,10 +2352,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__116;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:112:8: ( 'BHS' )
-            // InternalAssembler.g:112:10: 'BHS'
+            // InternalAssembler.g:112:8: ( 'LBLO' )
+            // InternalAssembler.g:112:10: 'LBLO'
             {
-            match("BHS"); 
+            match("LBLO"); 
 
 
             }
@@ -2369,10 +2373,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__117;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:113:8: ( 'LBHS' )
-            // InternalAssembler.g:113:10: 'LBHS'
+            // InternalAssembler.g:113:8: ( 'BLE' )
+            // InternalAssembler.g:113:10: 'BLE'
             {
-            match("LBHS"); 
+            match("BLE"); 
 
 
             }
@@ -2390,10 +2394,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__118;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:114:8: ( 'BHI' )
-            // InternalAssembler.g:114:10: 'BHI'
+            // InternalAssembler.g:114:8: ( 'LBLE' )
+            // InternalAssembler.g:114:10: 'LBLE'
             {
-            match("BHI"); 
+            match("LBLE"); 
 
 
             }
@@ -2411,10 +2415,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__119;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:115:8: ( 'LBHI' )
-            // InternalAssembler.g:115:10: 'LBHI'
+            // InternalAssembler.g:115:8: ( 'BIT' )
+            // InternalAssembler.g:115:10: 'BIT'
             {
-            match("LBHI"); 
+            match("BIT"); 
 
 
             }
@@ -2432,10 +2436,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__120;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:116:8: ( 'BGT' )
-            // InternalAssembler.g:116:10: 'BGT'
+            // InternalAssembler.g:116:8: ( 'BHS' )
+            // InternalAssembler.g:116:10: 'BHS'
             {
-            match("BGT"); 
+            match("BHS"); 
 
 
             }
@@ -2453,10 +2457,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__121;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:117:8: ( 'LBGT' )
-            // InternalAssembler.g:117:10: 'LBGT'
+            // InternalAssembler.g:117:8: ( 'LBHS' )
+            // InternalAssembler.g:117:10: 'LBHS'
             {
-            match("LBGT"); 
+            match("LBHS"); 
 
 
             }
@@ -2474,10 +2478,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__122;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:118:8: ( 'BGE' )
-            // InternalAssembler.g:118:10: 'BGE'
+            // InternalAssembler.g:118:8: ( 'BHI' )
+            // InternalAssembler.g:118:10: 'BHI'
             {
-            match("BGE"); 
+            match("BHI"); 
 
 
             }
@@ -2495,10 +2499,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__123;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:119:8: ( 'LBGE' )
-            // InternalAssembler.g:119:10: 'LBGE'
+            // InternalAssembler.g:119:8: ( 'LBHI' )
+            // InternalAssembler.g:119:10: 'LBHI'
             {
-            match("LBGE"); 
+            match("LBHI"); 
 
 
             }
@@ -2516,10 +2520,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__124;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:120:8: ( 'BEQ' )
-            // InternalAssembler.g:120:10: 'BEQ'
+            // InternalAssembler.g:120:8: ( 'BGT' )
+            // InternalAssembler.g:120:10: 'BGT'
             {
-            match("BEQ"); 
+            match("BGT"); 
 
 
             }
@@ -2537,10 +2541,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__125;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:121:8: ( 'LBEQ' )
-            // InternalAssembler.g:121:10: 'LBEQ'
+            // InternalAssembler.g:121:8: ( 'LBGT' )
+            // InternalAssembler.g:121:10: 'LBGT'
             {
-            match("LBEQ"); 
+            match("LBGT"); 
 
 
             }
@@ -2558,10 +2562,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__126;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:122:8: ( 'BCS' )
-            // InternalAssembler.g:122:10: 'BCS'
+            // InternalAssembler.g:122:8: ( 'BGE' )
+            // InternalAssembler.g:122:10: 'BGE'
             {
-            match("BCS"); 
+            match("BGE"); 
 
 
             }
@@ -2579,10 +2583,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__127;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:123:8: ( 'LBCS' )
-            // InternalAssembler.g:123:10: 'LBCS'
+            // InternalAssembler.g:123:8: ( 'LBGE' )
+            // InternalAssembler.g:123:10: 'LBGE'
             {
-            match("LBCS"); 
+            match("LBGE"); 
 
 
             }
@@ -2600,10 +2604,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__128;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:124:8: ( 'BCC' )
-            // InternalAssembler.g:124:10: 'BCC'
+            // InternalAssembler.g:124:8: ( 'BEQ' )
+            // InternalAssembler.g:124:10: 'BEQ'
             {
-            match("BCC"); 
+            match("BEQ"); 
 
 
             }
@@ -2621,10 +2625,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__129;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:125:8: ( 'LBCC' )
-            // InternalAssembler.g:125:10: 'LBCC'
+            // InternalAssembler.g:125:8: ( 'LBEQ' )
+            // InternalAssembler.g:125:10: 'LBEQ'
             {
-            match("LBCC"); 
+            match("LBEQ"); 
 
 
             }
@@ -2642,10 +2646,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__130;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:126:8: ( 'ASRA' )
-            // InternalAssembler.g:126:10: 'ASRA'
+            // InternalAssembler.g:126:8: ( 'BCS' )
+            // InternalAssembler.g:126:10: 'BCS'
             {
-            match("ASRA"); 
+            match("BCS"); 
 
 
             }
@@ -2663,10 +2667,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__131;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:127:8: ( 'ASRB' )
-            // InternalAssembler.g:127:10: 'ASRB'
+            // InternalAssembler.g:127:8: ( 'LBCS' )
+            // InternalAssembler.g:127:10: 'LBCS'
             {
-            match("ASRB"); 
+            match("LBCS"); 
 
 
             }
@@ -2684,10 +2688,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__132;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:128:8: ( 'ASR' )
-            // InternalAssembler.g:128:10: 'ASR'
+            // InternalAssembler.g:128:8: ( 'BCC' )
+            // InternalAssembler.g:128:10: 'BCC'
             {
-            match("ASR"); 
+            match("BCC"); 
 
 
             }
@@ -2705,10 +2709,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__133;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:129:8: ( 'ASLA' )
-            // InternalAssembler.g:129:10: 'ASLA'
+            // InternalAssembler.g:129:8: ( 'LBCC' )
+            // InternalAssembler.g:129:10: 'LBCC'
             {
-            match("ASLA"); 
+            match("LBCC"); 
 
 
             }
@@ -2726,10 +2730,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__134;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:130:8: ( 'ASLB' )
-            // InternalAssembler.g:130:10: 'ASLB'
+            // InternalAssembler.g:130:8: ( 'ASRA' )
+            // InternalAssembler.g:130:10: 'ASRA'
             {
-            match("ASLB"); 
+            match("ASRA"); 
 
 
             }
@@ -2747,10 +2751,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__135;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:131:8: ( 'ASL' )
-            // InternalAssembler.g:131:10: 'ASL'
+            // InternalAssembler.g:131:8: ( 'ASRB' )
+            // InternalAssembler.g:131:10: 'ASRB'
             {
-            match("ASL"); 
+            match("ASRB"); 
 
 
             }
@@ -2768,10 +2772,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__136;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:132:8: ( 'ANDCC' )
-            // InternalAssembler.g:132:10: 'ANDCC'
+            // InternalAssembler.g:132:8: ( 'ASR' )
+            // InternalAssembler.g:132:10: 'ASR'
             {
-            match("ANDCC"); 
+            match("ASR"); 
 
 
             }
@@ -2789,10 +2793,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__137;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:133:8: ( 'ANDA' )
-            // InternalAssembler.g:133:10: 'ANDA'
+            // InternalAssembler.g:133:8: ( 'ASLA' )
+            // InternalAssembler.g:133:10: 'ASLA'
             {
-            match("ANDA"); 
+            match("ASLA"); 
 
 
             }
@@ -2810,10 +2814,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__138;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:134:8: ( 'ANDB' )
-            // InternalAssembler.g:134:10: 'ANDB'
+            // InternalAssembler.g:134:8: ( 'ASLB' )
+            // InternalAssembler.g:134:10: 'ASLB'
             {
-            match("ANDB"); 
+            match("ASLB"); 
 
 
             }
@@ -2831,10 +2835,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__139;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:135:8: ( 'ADDD' )
-            // InternalAssembler.g:135:10: 'ADDD'
+            // InternalAssembler.g:135:8: ( 'ASL' )
+            // InternalAssembler.g:135:10: 'ASL'
             {
-            match("ADDD"); 
+            match("ASL"); 
 
 
             }
@@ -2852,10 +2856,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__140;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:136:8: ( 'ADDA' )
-            // InternalAssembler.g:136:10: 'ADDA'
+            // InternalAssembler.g:136:8: ( 'ANDCC' )
+            // InternalAssembler.g:136:10: 'ANDCC'
             {
-            match("ADDA"); 
+            match("ANDCC"); 
 
 
             }
@@ -2873,10 +2877,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__141;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:137:8: ( 'ADDB' )
-            // InternalAssembler.g:137:10: 'ADDB'
+            // InternalAssembler.g:137:8: ( 'ANDA' )
+            // InternalAssembler.g:137:10: 'ANDA'
             {
-            match("ADDB"); 
+            match("ANDA"); 
 
 
             }
@@ -2894,10 +2898,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__142;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:138:8: ( 'ADCA' )
-            // InternalAssembler.g:138:10: 'ADCA'
+            // InternalAssembler.g:138:8: ( 'ANDB' )
+            // InternalAssembler.g:138:10: 'ANDB'
             {
-            match("ADCA"); 
+            match("ANDB"); 
 
 
             }
@@ -2915,10 +2919,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__143;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:139:8: ( 'ADCB' )
-            // InternalAssembler.g:139:10: 'ADCB'
+            // InternalAssembler.g:139:8: ( 'ADDD' )
+            // InternalAssembler.g:139:10: 'ADDD'
             {
-            match("ADCB"); 
+            match("ADDD"); 
 
 
             }
@@ -2936,10 +2940,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__144;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:140:8: ( 'ABX' )
-            // InternalAssembler.g:140:10: 'ABX'
+            // InternalAssembler.g:140:8: ( 'ADDA' )
+            // InternalAssembler.g:140:10: 'ADDA'
             {
-            match("ABX"); 
+            match("ADDA"); 
 
 
             }
@@ -2957,10 +2961,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__145;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:141:8: ( '[' )
-            // InternalAssembler.g:141:10: '['
+            // InternalAssembler.g:141:8: ( 'ADDB' )
+            // InternalAssembler.g:141:10: 'ADDB'
             {
-            match('['); 
+            match("ADDB"); 
+
 
             }
 
@@ -2977,10 +2982,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__146;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:142:8: ( ']' )
-            // InternalAssembler.g:142:10: ']'
+            // InternalAssembler.g:142:8: ( 'ADCA' )
+            // InternalAssembler.g:142:10: 'ADCA'
             {
-            match(']'); 
+            match("ADCA"); 
+
 
             }
 
@@ -2997,10 +3003,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__147;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:143:8: ( '>' )
-            // InternalAssembler.g:143:10: '>'
+            // InternalAssembler.g:143:8: ( 'ADCB' )
+            // InternalAssembler.g:143:10: 'ADCB'
             {
-            match('>'); 
+            match("ADCB"); 
+
 
             }
 
@@ -3017,10 +3024,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__148;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:144:8: ( '<' )
-            // InternalAssembler.g:144:10: '<'
+            // InternalAssembler.g:144:8: ( 'ABX' )
+            // InternalAssembler.g:144:10: 'ABX'
             {
-            match('<'); 
+            match("ABX"); 
+
 
             }
 
@@ -3037,10 +3045,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__149;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:145:8: ( '#' )
-            // InternalAssembler.g:145:10: '#'
+            // InternalAssembler.g:145:8: ( '[' )
+            // InternalAssembler.g:145:10: '['
             {
-            match('#'); 
+            match('['); 
 
             }
 
@@ -3057,10 +3065,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__150;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:146:8: ( 'S' )
-            // InternalAssembler.g:146:10: 'S'
+            // InternalAssembler.g:146:8: ( ']' )
+            // InternalAssembler.g:146:10: ']'
             {
-            match('S'); 
+            match(']'); 
 
             }
 
@@ -3077,10 +3085,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__151;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:147:8: ( 'U' )
-            // InternalAssembler.g:147:10: 'U'
+            // InternalAssembler.g:147:8: ( '>' )
+            // InternalAssembler.g:147:10: '>'
             {
-            match('U'); 
+            match('>'); 
 
             }
 
@@ -3097,10 +3105,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__152;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:148:8: ( 'X' )
-            // InternalAssembler.g:148:10: 'X'
+            // InternalAssembler.g:148:8: ( '<' )
+            // InternalAssembler.g:148:10: '<'
             {
-            match('X'); 
+            match('<'); 
 
             }
 
@@ -3117,10 +3125,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__153;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:149:8: ( 'Y' )
-            // InternalAssembler.g:149:10: 'Y'
+            // InternalAssembler.g:149:8: ( '#' )
+            // InternalAssembler.g:149:10: '#'
             {
-            match('Y'); 
+            match('#'); 
 
             }
 
@@ -3137,10 +3145,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__154;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:150:8: ( 'A' )
-            // InternalAssembler.g:150:10: 'A'
+            // InternalAssembler.g:150:8: ( 'S' )
+            // InternalAssembler.g:150:10: 'S'
             {
-            match('A'); 
+            match('S'); 
 
             }
 
@@ -3157,10 +3165,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__155;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:151:8: ( 'B' )
-            // InternalAssembler.g:151:10: 'B'
+            // InternalAssembler.g:151:8: ( 'U' )
+            // InternalAssembler.g:151:10: 'U'
             {
-            match('B'); 
+            match('U'); 
 
             }
 
@@ -3177,10 +3185,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__156;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:152:8: ( 'D' )
-            // InternalAssembler.g:152:10: 'D'
+            // InternalAssembler.g:152:8: ( 'X' )
+            // InternalAssembler.g:152:10: 'X'
             {
-            match('D'); 
+            match('X'); 
 
             }
 
@@ -3197,10 +3205,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__157;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:153:8: ( '-' )
-            // InternalAssembler.g:153:10: '-'
+            // InternalAssembler.g:153:8: ( 'Y' )
+            // InternalAssembler.g:153:10: 'Y'
             {
-            match('-'); 
+            match('Y'); 
 
             }
 
@@ -3217,11 +3225,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__158;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:154:8: ( '--' )
-            // InternalAssembler.g:154:10: '--'
+            // InternalAssembler.g:154:8: ( 'A' )
+            // InternalAssembler.g:154:10: 'A'
             {
-            match("--"); 
-
+            match('A'); 
 
             }
 
@@ -3238,10 +3245,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__159;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:155:8: ( '+' )
-            // InternalAssembler.g:155:10: '+'
+            // InternalAssembler.g:155:8: ( 'B' )
+            // InternalAssembler.g:155:10: 'B'
             {
-            match('+'); 
+            match('B'); 
 
             }
 
@@ -3258,11 +3265,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__160;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:156:8: ( '++' )
-            // InternalAssembler.g:156:10: '++'
+            // InternalAssembler.g:156:8: ( 'D' )
+            // InternalAssembler.g:156:10: 'D'
             {
-            match("++"); 
-
+            match('D'); 
 
             }
 
@@ -3279,11 +3285,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__161;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:157:8: ( 'PCR' )
-            // InternalAssembler.g:157:10: 'PCR'
+            // InternalAssembler.g:157:8: ( '-' )
+            // InternalAssembler.g:157:10: '-'
             {
-            match("PCR"); 
-
+            match('-'); 
 
             }
 
@@ -3300,10 +3305,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__162;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:158:8: ( 'FCC' )
-            // InternalAssembler.g:158:10: 'FCC'
+            // InternalAssembler.g:158:8: ( '--' )
+            // InternalAssembler.g:158:10: '--'
             {
-            match("FCC"); 
+            match("--"); 
 
 
             }
@@ -3321,11 +3326,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__163;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:159:8: ( 'REG' )
-            // InternalAssembler.g:159:10: 'REG'
+            // InternalAssembler.g:159:8: ( '+' )
+            // InternalAssembler.g:159:10: '+'
             {
-            match("REG"); 
-
+            match('+'); 
 
             }
 
@@ -3342,10 +3346,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__164;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:160:8: ( 'SPC' )
-            // InternalAssembler.g:160:10: 'SPC'
+            // InternalAssembler.g:160:8: ( '++' )
+            // InternalAssembler.g:160:10: '++'
             {
-            match("SPC"); 
+            match("++"); 
 
 
             }
@@ -3363,10 +3367,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__165;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:161:8: ( 'NAM' )
-            // InternalAssembler.g:161:10: 'NAM'
+            // InternalAssembler.g:161:8: ( 'PCR' )
+            // InternalAssembler.g:161:10: 'PCR'
             {
-            match("NAM"); 
+            match("PCR"); 
 
 
             }
@@ -3384,10 +3388,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__166;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:162:8: ( 'TTL' )
-            // InternalAssembler.g:162:10: 'TTL'
+            // InternalAssembler.g:162:8: ( 'FCC' )
+            // InternalAssembler.g:162:10: 'FCC'
             {
-            match("TTL"); 
+            match("FCC"); 
 
 
             }
@@ -3405,10 +3409,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__167;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:163:8: ( 'PAG' )
-            // InternalAssembler.g:163:10: 'PAG'
+            // InternalAssembler.g:163:8: ( 'REG' )
+            // InternalAssembler.g:163:10: 'REG'
             {
-            match("PAG"); 
+            match("REG"); 
 
 
             }
@@ -3426,10 +3430,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__168;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:164:8: ( 'OPT' )
-            // InternalAssembler.g:164:10: 'OPT'
+            // InternalAssembler.g:164:8: ( 'SPC' )
+            // InternalAssembler.g:164:10: 'SPC'
             {
-            match("OPT"); 
+            match("SPC"); 
 
 
             }
@@ -3447,10 +3451,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__169;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:165:8: ( 'FAIL' )
-            // InternalAssembler.g:165:10: 'FAIL'
+            // InternalAssembler.g:165:8: ( 'NAM' )
+            // InternalAssembler.g:165:10: 'NAM'
             {
-            match("FAIL"); 
+            match("NAM"); 
 
 
             }
@@ -3468,10 +3472,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__170;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:166:8: ( 'SET' )
-            // InternalAssembler.g:166:10: 'SET'
+            // InternalAssembler.g:166:8: ( 'TTL' )
+            // InternalAssembler.g:166:10: 'TTL'
             {
-            match("SET"); 
+            match("TTL"); 
 
 
             }
@@ -3489,10 +3493,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__171;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:167:8: ( '*' )
-            // InternalAssembler.g:167:10: '*'
+            // InternalAssembler.g:167:8: ( 'PAG' )
+            // InternalAssembler.g:167:10: 'PAG'
             {
-            match('*'); 
+            match("PAG"); 
+
 
             }
 
@@ -3509,10 +3514,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__172;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:168:8: ( 'FILL' )
-            // InternalAssembler.g:168:10: 'FILL'
+            // InternalAssembler.g:168:8: ( 'OPT' )
+            // InternalAssembler.g:168:10: 'OPT'
             {
-            match("FILL"); 
+            match("OPT"); 
 
 
             }
@@ -3530,10 +3535,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__173;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:169:8: ( 'BSZ' )
-            // InternalAssembler.g:169:10: 'BSZ'
+            // InternalAssembler.g:169:8: ( 'FAIL' )
+            // InternalAssembler.g:169:10: 'FAIL'
             {
-            match("BSZ"); 
+            match("FAIL"); 
 
 
             }
@@ -3551,10 +3556,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__174;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:170:8: ( 'ZMB' )
-            // InternalAssembler.g:170:10: 'ZMB'
+            // InternalAssembler.g:170:8: ( 'SET' )
+            // InternalAssembler.g:170:10: 'SET'
             {
-            match("ZMB"); 
+            match("SET"); 
 
 
             }
@@ -3572,11 +3577,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__175;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:171:8: ( 'FDB' )
-            // InternalAssembler.g:171:10: 'FDB'
+            // InternalAssembler.g:171:8: ( '*' )
+            // InternalAssembler.g:171:10: '*'
             {
-            match("FDB"); 
-
+            match('*'); 
 
             }
 
@@ -3593,10 +3597,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__176;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:172:8: ( 'FCB' )
-            // InternalAssembler.g:172:10: 'FCB'
+            // InternalAssembler.g:172:8: ( 'FILL' )
+            // InternalAssembler.g:172:10: 'FILL'
             {
-            match("FCB"); 
+            match("FILL"); 
 
 
             }
@@ -3614,10 +3618,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__177;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:173:8: ( 'RMB' )
-            // InternalAssembler.g:173:10: 'RMB'
+            // InternalAssembler.g:173:8: ( 'BSZ' )
+            // InternalAssembler.g:173:10: 'BSZ'
             {
-            match("RMB"); 
+            match("BSZ"); 
 
 
             }
@@ -3635,10 +3639,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__178;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:174:8: ( 'END' )
-            // InternalAssembler.g:174:10: 'END'
+            // InternalAssembler.g:174:8: ( 'ZMB' )
+            // InternalAssembler.g:174:10: 'ZMB'
             {
-            match("END"); 
+            match("ZMB"); 
 
 
             }
@@ -3656,10 +3660,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__179;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:175:8: ( 'ORG' )
-            // InternalAssembler.g:175:10: 'ORG'
+            // InternalAssembler.g:175:8: ( 'FDB' )
+            // InternalAssembler.g:175:10: 'FDB'
             {
-            match("ORG"); 
+            match("FDB"); 
 
 
             }
@@ -3677,10 +3681,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__180;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:176:8: ( 'EQU' )
-            // InternalAssembler.g:176:10: 'EQU'
+            // InternalAssembler.g:176:8: ( 'FCB' )
+            // InternalAssembler.g:176:10: 'FCB'
             {
-            match("EQU"); 
+            match("FCB"); 
 
 
             }
@@ -3698,10 +3702,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__181;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:177:8: ( '/' )
-            // InternalAssembler.g:177:10: '/'
+            // InternalAssembler.g:177:8: ( 'RMB' )
+            // InternalAssembler.g:177:10: 'RMB'
             {
-            match('/'); 
+            match("RMB"); 
+
 
             }
 
@@ -3718,10 +3723,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__182;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:178:8: ( '%' )
-            // InternalAssembler.g:178:10: '%'
+            // InternalAssembler.g:178:8: ( 'END' )
+            // InternalAssembler.g:178:10: 'END'
             {
-            match('%'); 
+            match("END"); 
+
 
             }
 
@@ -3738,10 +3744,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__183;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:179:8: ( '<<' )
-            // InternalAssembler.g:179:10: '<<'
+            // InternalAssembler.g:179:8: ( 'ORG' )
+            // InternalAssembler.g:179:10: 'ORG'
             {
-            match("<<"); 
+            match("ORG"); 
 
 
             }
@@ -3759,10 +3765,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__184;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:180:8: ( '>>' )
-            // InternalAssembler.g:180:10: '>>'
+            // InternalAssembler.g:180:8: ( 'EQU' )
+            // InternalAssembler.g:180:10: 'EQU'
             {
-            match(">>"); 
+            match("EQU"); 
 
 
             }
@@ -3780,11 +3786,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__185;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:181:8: ( '&&' )
-            // InternalAssembler.g:181:10: '&&'
+            // InternalAssembler.g:181:8: ( '/' )
+            // InternalAssembler.g:181:10: '/'
             {
-            match("&&"); 
-
+            match('/'); 
 
             }
 
@@ -3801,11 +3806,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__186;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:182:8: ( '||' )
-            // InternalAssembler.g:182:10: '||'
+            // InternalAssembler.g:182:8: ( '%' )
+            // InternalAssembler.g:182:10: '%'
             {
-            match("||"); 
-
+            match('%'); 
 
             }
 
@@ -3822,10 +3826,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__187;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:183:8: ( '^' )
-            // InternalAssembler.g:183:10: '^'
+            // InternalAssembler.g:183:8: ( '<<' )
+            // InternalAssembler.g:183:10: '<<'
             {
-            match('^'); 
+            match("<<"); 
+
 
             }
 
@@ -3842,10 +3847,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__188;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:184:8: ( '!' )
-            // InternalAssembler.g:184:10: '!'
+            // InternalAssembler.g:184:8: ( '>>' )
+            // InternalAssembler.g:184:10: '>>'
             {
-            match('!'); 
+            match(">>"); 
+
 
             }
 
@@ -3862,10 +3868,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__189;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:185:8: ( '(' )
-            // InternalAssembler.g:185:10: '('
+            // InternalAssembler.g:185:8: ( '&&' )
+            // InternalAssembler.g:185:10: '&&'
             {
-            match('('); 
+            match("&&"); 
+
 
             }
 
@@ -3882,10 +3889,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__190;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:186:8: ( ')' )
-            // InternalAssembler.g:186:10: ')'
+            // InternalAssembler.g:186:8: ( '||' )
+            // InternalAssembler.g:186:10: '||'
             {
-            match(')'); 
+            match("||"); 
+
 
             }
 
@@ -3902,11 +3910,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__191;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:187:8: ( 'CON' )
-            // InternalAssembler.g:187:10: 'CON'
+            // InternalAssembler.g:187:8: ( '^' )
+            // InternalAssembler.g:187:10: '^'
             {
-            match("CON"); 
-
+            match('^'); 
 
             }
 
@@ -3923,11 +3930,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__192;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:188:8: ( 'NOC' )
-            // InternalAssembler.g:188:10: 'NOC'
+            // InternalAssembler.g:188:8: ( '!' )
+            // InternalAssembler.g:188:10: '!'
             {
-            match("NOC"); 
-
+            match('!'); 
 
             }
 
@@ -3944,11 +3950,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__193;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:189:8: ( 'MAC' )
-            // InternalAssembler.g:189:10: 'MAC'
+            // InternalAssembler.g:189:8: ( '(' )
+            // InternalAssembler.g:189:10: '('
             {
-            match("MAC"); 
-
+            match('('); 
 
             }
 
@@ -3965,11 +3970,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__194;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:190:8: ( 'NOM' )
-            // InternalAssembler.g:190:10: 'NOM'
+            // InternalAssembler.g:190:8: ( ')' )
+            // InternalAssembler.g:190:10: ')'
             {
-            match("NOM"); 
-
+            match(')'); 
 
             }
 
@@ -3986,10 +3990,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__195;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:191:8: ( 'EXP' )
-            // InternalAssembler.g:191:10: 'EXP'
+            // InternalAssembler.g:191:8: ( 'CON' )
+            // InternalAssembler.g:191:10: 'CON'
             {
-            match("EXP"); 
+            match("CON"); 
 
 
             }
@@ -4007,10 +4011,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__196;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:192:8: ( 'NOE' )
-            // InternalAssembler.g:192:10: 'NOE'
+            // InternalAssembler.g:192:8: ( 'NOC' )
+            // InternalAssembler.g:192:10: 'NOC'
             {
-            match("NOE"); 
+            match("NOC"); 
 
 
             }
@@ -4028,10 +4032,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__197;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:193:8: ( 'DP' )
-            // InternalAssembler.g:193:10: 'DP'
+            // InternalAssembler.g:193:8: ( 'MAC' )
+            // InternalAssembler.g:193:10: 'MAC'
             {
-            match("DP"); 
+            match("MAC"); 
 
 
             }
@@ -4049,10 +4053,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__198;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:194:8: ( 'CC' )
-            // InternalAssembler.g:194:10: 'CC'
+            // InternalAssembler.g:194:8: ( 'NOM' )
+            // InternalAssembler.g:194:10: 'NOM'
             {
-            match("CC"); 
+            match("NOM"); 
 
 
             }
@@ -4070,10 +4074,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = T__199;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:195:8: ( 'PC' )
-            // InternalAssembler.g:195:10: 'PC'
+            // InternalAssembler.g:195:8: ( 'EXP' )
+            // InternalAssembler.g:195:10: 'EXP'
             {
-            match("PC"); 
+            match("EXP"); 
 
 
             }
@@ -4086,15 +4090,99 @@ public class InternalAssemblerLexer extends Lexer {
     }
     // $ANTLR end "T__199"
 
+    // $ANTLR start "T__200"
+    public final void mT__200() throws RecognitionException {
+        try {
+            int _type = T__200;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalAssembler.g:196:8: ( 'NOE' )
+            // InternalAssembler.g:196:10: 'NOE'
+            {
+            match("NOE"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__200"
+
+    // $ANTLR start "T__201"
+    public final void mT__201() throws RecognitionException {
+        try {
+            int _type = T__201;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalAssembler.g:197:8: ( 'DP' )
+            // InternalAssembler.g:197:10: 'DP'
+            {
+            match("DP"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__201"
+
+    // $ANTLR start "T__202"
+    public final void mT__202() throws RecognitionException {
+        try {
+            int _type = T__202;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalAssembler.g:198:8: ( 'CC' )
+            // InternalAssembler.g:198:10: 'CC'
+            {
+            match("CC"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__202"
+
+    // $ANTLR start "T__203"
+    public final void mT__203() throws RecognitionException {
+        try {
+            int _type = T__203;
+            int _channel = DEFAULT_TOKEN_CHANNEL;
+            // InternalAssembler.g:199:8: ( 'PC' )
+            // InternalAssembler.g:199:10: 'PC'
+            {
+            match("PC"); 
+
+
+            }
+
+            state.type = _type;
+            state.channel = _channel;
+        }
+        finally {
+        }
+    }
+    // $ANTLR end "T__203"
+
     // $ANTLR start "RULE_ID"
     public final void mRULE_ID() throws RecognitionException {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12214:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalAssembler.g:12214:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalAssembler.g:12469:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalAssembler.g:12469:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalAssembler.g:12214:11: ( '^' )?
+            // InternalAssembler.g:12469:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -4103,7 +4191,7 @@ public class InternalAssemblerLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalAssembler.g:12214:11: '^'
+                    // InternalAssembler.g:12469:11: '^'
                     {
                     match('^'); 
 
@@ -4121,7 +4209,7 @@ public class InternalAssemblerLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalAssembler.g:12214:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalAssembler.g:12469:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -4170,11 +4258,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_HEXA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12216:11: ( '$' ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+ )
-            // InternalAssembler.g:12216:13: '$' ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
+            // InternalAssembler.g:12471:11: ( '$' ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+ )
+            // InternalAssembler.g:12471:13: '$' ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
             {
             match('$'); 
-            // InternalAssembler.g:12216:17: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
+            // InternalAssembler.g:12471:17: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
             int cnt3=0;
             loop3:
             do {
@@ -4228,10 +4316,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12218:10: ( ( '0' .. '9' )+ )
-            // InternalAssembler.g:12218:12: ( '0' .. '9' )+
+            // InternalAssembler.g:12473:10: ( ( '0' .. '9' )+ )
+            // InternalAssembler.g:12473:12: ( '0' .. '9' )+
             {
-            // InternalAssembler.g:12218:12: ( '0' .. '9' )+
+            // InternalAssembler.g:12473:12: ( '0' .. '9' )+
             int cnt4=0;
             loop4:
             do {
@@ -4245,7 +4333,7 @@ public class InternalAssemblerLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // InternalAssembler.g:12218:13: '0' .. '9'
+            	    // InternalAssembler.g:12473:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -4277,11 +4365,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_OCTAL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12220:12: ( '@' ( '0' .. '7' )+ )
-            // InternalAssembler.g:12220:14: '@' ( '0' .. '7' )+
+            // InternalAssembler.g:12475:12: ( '@' ( '0' .. '7' )+ )
+            // InternalAssembler.g:12475:14: '@' ( '0' .. '7' )+
             {
             match('@'); 
-            // InternalAssembler.g:12220:18: ( '0' .. '7' )+
+            // InternalAssembler.g:12475:18: ( '0' .. '7' )+
             int cnt5=0;
             loop5:
             do {
@@ -4295,7 +4383,7 @@ public class InternalAssemblerLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // InternalAssembler.g:12220:19: '0' .. '7'
+            	    // InternalAssembler.g:12475:19: '0' .. '7'
             	    {
             	    matchRange('0','7'); 
 
@@ -4327,12 +4415,12 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_BINARY;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12222:13: ( '0' 'b' ( '0' .. '1' )+ )
-            // InternalAssembler.g:12222:15: '0' 'b' ( '0' .. '1' )+
+            // InternalAssembler.g:12477:13: ( '0' 'b' ( '0' .. '1' )+ )
+            // InternalAssembler.g:12477:15: '0' 'b' ( '0' .. '1' )+
             {
             match('0'); 
             match('b'); 
-            // InternalAssembler.g:12222:23: ( '0' .. '1' )+
+            // InternalAssembler.g:12477:23: ( '0' .. '1' )+
             int cnt6=0;
             loop6:
             do {
@@ -4346,7 +4434,7 @@ public class InternalAssemblerLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // InternalAssembler.g:12222:24: '0' .. '1'
+            	    // InternalAssembler.g:12477:24: '0' .. '1'
             	    {
             	    matchRange('0','1'); 
 
@@ -4378,8 +4466,8 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_CHARACTER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12224:16: ( '\\'' ' ' .. '\\u007F' )
-            // InternalAssembler.g:12224:18: '\\'' ' ' .. '\\u007F'
+            // InternalAssembler.g:12479:16: ( '\\'' ' ' .. '\\u007F' )
+            // InternalAssembler.g:12479:18: '\\'' ' ' .. '\\u007F'
             {
             match('\''); 
             matchRange(' ','\u007F'); 
@@ -4399,11 +4487,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12226:13: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // InternalAssembler.g:12226:15: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // InternalAssembler.g:12481:13: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // InternalAssembler.g:12481:15: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // InternalAssembler.g:12226:19: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+            // InternalAssembler.g:12481:19: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
             loop7:
             do {
                 int alt7=3;
@@ -4419,7 +4507,7 @@ public class InternalAssemblerLexer extends Lexer {
 
                 switch (alt7) {
             	case 1 :
-            	    // InternalAssembler.g:12226:20: '\\\\' .
+            	    // InternalAssembler.g:12481:20: '\\\\' .
             	    {
             	    match('\\'); 
             	    matchAny(); 
@@ -4427,7 +4515,7 @@ public class InternalAssemblerLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // InternalAssembler.g:12226:27: ~ ( ( '\\\\' | '\"' ) )
+            	    // InternalAssembler.g:12481:27: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -4464,11 +4552,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_ANY_EXCEPT_COMMENT_END_OF_LINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12228:37: ( ';' (~ ( ( '\\n' | '\\r' ) ) )* )
-            // InternalAssembler.g:12228:39: ';' (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalAssembler.g:12483:37: ( ';' (~ ( ( '\\n' | '\\r' ) ) )* )
+            // InternalAssembler.g:12483:39: ';' (~ ( ( '\\n' | '\\r' ) ) )*
             {
             match(';'); 
-            // InternalAssembler.g:12228:43: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalAssembler.g:12483:43: (~ ( ( '\\n' | '\\r' ) ) )*
             loop8:
             do {
                 int alt8=2;
@@ -4481,7 +4569,7 @@ public class InternalAssemblerLexer extends Lexer {
 
                 switch (alt8) {
             	case 1 :
-            	    // InternalAssembler.g:12228:43: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalAssembler.g:12483:43: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -4517,10 +4605,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12230:9: ( ( ' ' | '\\t' )+ )
-            // InternalAssembler.g:12230:11: ( ' ' | '\\t' )+
+            // InternalAssembler.g:12485:9: ( ( ' ' | '\\t' )+ )
+            // InternalAssembler.g:12485:11: ( ' ' | '\\t' )+
             {
-            // InternalAssembler.g:12230:11: ( ' ' | '\\t' )+
+            // InternalAssembler.g:12485:11: ( ' ' | '\\t' )+
             int cnt9=0;
             loop9:
             do {
@@ -4574,10 +4662,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_CR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12232:9: ( ( '\\r' )? '\\n' )
-            // InternalAssembler.g:12232:11: ( '\\r' )? '\\n'
+            // InternalAssembler.g:12487:9: ( ( '\\r' )? '\\n' )
+            // InternalAssembler.g:12487:11: ( '\\r' )? '\\n'
             {
-            // InternalAssembler.g:12232:11: ( '\\r' )?
+            // InternalAssembler.g:12487:11: ( '\\r' )?
             int alt10=2;
             int LA10_0 = input.LA(1);
 
@@ -4586,7 +4674,7 @@ public class InternalAssemblerLexer extends Lexer {
             }
             switch (alt10) {
                 case 1 :
-                    // InternalAssembler.g:12232:11: '\\r'
+                    // InternalAssembler.g:12487:11: '\\r'
                     {
                     match('\r'); 
 
@@ -4612,8 +4700,8 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_END_OF_FILE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:12234:18: ( EOF )
-            // InternalAssembler.g:12234:20: EOF
+            // InternalAssembler.g:12489:18: ( EOF )
+            // InternalAssembler.g:12489:20: EOF
             {
             match(EOF); 
 
@@ -4628,8 +4716,8 @@ public class InternalAssemblerLexer extends Lexer {
     // $ANTLR end "RULE_END_OF_FILE"
 
     public void mTokens() throws RecognitionException {
-        // InternalAssembler.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | T__198 | T__199 | RULE_ID | RULE_HEXA | RULE_INT | RULE_OCTAL | RULE_BINARY | RULE_CHARACTER | RULE_STRING | RULE_ANY_EXCEPT_COMMENT_END_OF_LINE | RULE_WS | RULE_CR | RULE_END_OF_FILE )
-        int alt11=196;
+        // InternalAssembler.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | T__198 | T__199 | T__200 | T__201 | T__202 | T__203 | RULE_ID | RULE_HEXA | RULE_INT | RULE_OCTAL | RULE_BINARY | RULE_CHARACTER | RULE_STRING | RULE_ANY_EXCEPT_COMMENT_END_OF_LINE | RULE_WS | RULE_CR | RULE_END_OF_FILE )
+        int alt11=200;
         alt11 = dfa11.predict(input);
         switch (alt11) {
             case 1 :
@@ -5928,77 +6016,105 @@ public class InternalAssemblerLexer extends Lexer {
                 }
                 break;
             case 186 :
-                // InternalAssembler.g:1:1220: RULE_ID
+                // InternalAssembler.g:1:1220: T__200
+                {
+                mT__200(); 
+
+                }
+                break;
+            case 187 :
+                // InternalAssembler.g:1:1227: T__201
+                {
+                mT__201(); 
+
+                }
+                break;
+            case 188 :
+                // InternalAssembler.g:1:1234: T__202
+                {
+                mT__202(); 
+
+                }
+                break;
+            case 189 :
+                // InternalAssembler.g:1:1241: T__203
+                {
+                mT__203(); 
+
+                }
+                break;
+            case 190 :
+                // InternalAssembler.g:1:1248: RULE_ID
                 {
                 mRULE_ID(); 
 
                 }
                 break;
-            case 187 :
-                // InternalAssembler.g:1:1228: RULE_HEXA
+            case 191 :
+                // InternalAssembler.g:1:1256: RULE_HEXA
                 {
                 mRULE_HEXA(); 
 
                 }
                 break;
-            case 188 :
-                // InternalAssembler.g:1:1238: RULE_INT
+            case 192 :
+                // InternalAssembler.g:1:1266: RULE_INT
                 {
                 mRULE_INT(); 
 
                 }
                 break;
-            case 189 :
-                // InternalAssembler.g:1:1247: RULE_OCTAL
+            case 193 :
+                // InternalAssembler.g:1:1275: RULE_OCTAL
                 {
                 mRULE_OCTAL(); 
 
                 }
                 break;
-            case 190 :
-                // InternalAssembler.g:1:1258: RULE_BINARY
+            case 194 :
+                // InternalAssembler.g:1:1286: RULE_BINARY
                 {
                 mRULE_BINARY(); 
 
                 }
                 break;
-            case 191 :
-                // InternalAssembler.g:1:1270: RULE_CHARACTER
+            case 195 :
+                // InternalAssembler.g:1:1298: RULE_CHARACTER
                 {
                 mRULE_CHARACTER(); 
 
                 }
                 break;
-            case 192 :
-                // InternalAssembler.g:1:1285: RULE_STRING
+            case 196 :
+                // InternalAssembler.g:1:1313: RULE_STRING
                 {
                 mRULE_STRING(); 
 
                 }
                 break;
-            case 193 :
-                // InternalAssembler.g:1:1297: RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+            case 197 :
+                // InternalAssembler.g:1:1325: RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
                 {
                 mRULE_ANY_EXCEPT_COMMENT_END_OF_LINE(); 
 
                 }
                 break;
-            case 194 :
-                // InternalAssembler.g:1:1333: RULE_WS
+            case 198 :
+                // InternalAssembler.g:1:1361: RULE_WS
                 {
                 mRULE_WS(); 
 
                 }
                 break;
-            case 195 :
-                // InternalAssembler.g:1:1341: RULE_CR
+            case 199 :
+                // InternalAssembler.g:1:1369: RULE_CR
                 {
                 mRULE_CR(); 
 
                 }
                 break;
-            case 196 :
-                // InternalAssembler.g:1:1349: RULE_END_OF_FILE
+            case 200 :
+                // InternalAssembler.g:1:1377: RULE_END_OF_FILE
                 {
                 mRULE_END_OF_FILE(); 
 
@@ -6012,48 +6128,48 @@ public class InternalAssemblerLexer extends Lexer {
 
     protected DFA11 dfa11 = new DFA11(this);
     static final String DFA11_eotS =
-        "\1\60\1\70\2\46\1\uffff\7\46\1\126\1\46\1\150\1\155\2\uffff\1\157\1\161\1\uffff\1\162\1\163\1\164\1\166\1\170\2\46\1\uffff\1\46\4\uffff\1\177\5\uffff\1\52\10\uffff\7\46\1\uffff\6\46\1\u0098\25\46\1\u00c6\1\uffff\4\46\1\u00cc\14\46\1\uffff\4\46\14\uffff\6\46\2\uffff\1\46\1\u00f2\1\46\1\u00f6\1\u00f7\1\u00f8\1\u00f9\1\u00fa\1\u00fb\1\u00fc\1\u00fd\1\u00fe\1\46\1\u0101\1\u0102\1\u0103\1\u0106\1\u0109\1\u010a\1\u010b\2\46\1\u0110\1\uffff\1\u0111\1\46\1\u0113\1\u0114\1\u0115\1\u0116\1\u0117\1\u0118\1\u0119\1\u011a\1\u011d\1\u011e\1\u011f\1\u0120\1\u0123\1\u0126\1\46\1\u012b\1\u012c\1\u012d\1\u012e\1\u012f\1\u0130\1\u0131\13\46\1\u0145\1\u0146\1\u0149\1\u014a\1\u014b\1\46\1\u014e\1\u014f\1\u0152\1\u0153\1\uffff\1\46\1\u0157\1\u0158\1\46\1\u015d\1\uffff\1\u015e\1\u015f\1\u0160\1\u0161\1\u0162\1\u0163\1\u0164\1\u0165\1\u0166\1\u0167\1\u0168\1\u0169\1\u016a\1\u016b\1\u016c\1\u016d\1\u016e\1\u016f\1\u0170\1\u0171\1\u0172\1\u0175\1\u0178\3\46\1\u0181\1\u0182\1\u0183\2\46\1\u0186\1\u0187\1\u0188\1\u0189\1\u018a\1\u018b\1\uffff\1\u018c\1\u018d\1\u018e\11\uffff\1\u018f\1\u0190\3\uffff\1\u0191\1\u0192\1\uffff\1\u0193\1\u0194\3\uffff\1\u0195\1\u0196\1\u0197\1\u0198\2\uffff\1\u0199\10\uffff\1\u019a\1\u019b\4\uffff\1\u019c\1\u019d\1\uffff\1\u019e\1\u019f\1\uffff\1\u01a0\1\u01a1\1\u01a2\1\u01a3\7\uffff\1\u01a4\1\u01a5\1\u01a6\1\u01a7\1\u01a8\1\u01a9\1\u01aa\1\u01ab\1\u01ac\1\u01ad\1\u01ae\1\u01af\1\u01b0\1\u01b1\1\u01b2\1\u01b3\1\u01b4\1\u01b5\1\u01b6\2\uffff\1\u01b7\1\u01b8\3\uffff\1\u01b9\1\u01ba\2\uffff\1\u01bb\1\u01bc\2\uffff\1\u01bd\1\u01be\1\u01bf\2\uffff\1\u01c0\1\u01c1\1\u01c2\1\u01c3\26\uffff\1\u01c4\1\u01c5\1\uffff\1\u01c6\1\u01c7\1\uffff\1\46\1\u01c9\1\u01ca\1\u01cb\1\u01cc\1\u01cd\1\u01ce\1\u01cf\3\uffff\1\u01d0\1\u01d1\102\uffff\1\u01d2\12\uffff";
+        "\1\60\1\46\1\uffff\1\73\11\46\1\131\1\46\1\153\1\160\2\uffff\1\162\1\164\1\uffff\1\165\1\166\1\167\1\171\1\173\1\46\1\uffff\1\46\4\uffff\1\u0081\5\uffff\1\52\10\uffff\12\46\1\uffff\6\46\1\u009d\25\46\1\u00cb\1\uffff\4\46\1\u00d1\14\46\1\uffff\4\46\14\uffff\5\46\2\uffff\1\u00f5\1\u00f6\1\u00f7\1\46\1\u00fb\1\46\1\u00ff\1\u0100\1\u0101\1\u0102\1\u0103\1\u0104\1\u0105\1\u0106\1\u0107\1\46\1\u010a\1\u010b\1\u010c\1\u010f\1\u0112\1\u0113\1\u0114\2\46\1\u0119\1\uffff\1\u011a\1\46\1\u011c\1\u011d\1\u011e\1\u011f\1\u0120\1\u0121\1\u0122\1\u0123\1\u0126\1\u0127\1\u0128\1\u0129\1\u012c\1\u012f\1\46\1\u0134\1\u0135\1\u0136\1\u0137\1\u0138\1\u0139\1\u013a\13\46\1\u014e\1\u014f\1\u0152\1\u0153\1\u0154\1\46\1\u0157\1\u0158\1\u015b\1\u015c\1\uffff\1\46\1\u0160\1\u0161\1\46\1\u0166\1\uffff\1\u0167\1\u0168\1\u0169\1\u016a\1\u016b\1\u016c\1\u016d\1\u016e\1\u016f\1\u0170\1\u0171\1\u0172\1\u0173\1\u0174\1\u0175\1\u0176\1\u0177\1\u0178\1\u0179\1\u017a\1\u017b\1\u017e\1\u0181\3\46\1\u018a\1\u018b\1\u018c\2\46\1\u018f\1\u0190\1\u0191\1\u0192\3\uffff\1\u0193\1\u0194\1\u0195\1\uffff\1\u0196\1\u0197\1\u0198\11\uffff\1\u0199\1\u019a\3\uffff\1\u019b\1\u019c\1\uffff\1\u019d\1\u019e\3\uffff\1\u019f\1\u01a0\1\u01a1\1\u01a2\2\uffff\1\u01a3\10\uffff\1\u01a4\1\u01a5\4\uffff\1\u01a6\1\u01a7\1\uffff\1\u01a8\1\u01a9\1\uffff\1\u01aa\1\u01ab\1\u01ac\1\u01ad\7\uffff\1\u01ae\1\u01af\1\u01b0\1\u01b1\1\u01b2\1\u01b3\1\u01b4\1\u01b5\1\u01b6\1\u01b7\1\u01b8\1\u01b9\1\u01ba\1\u01bb\1\u01bc\1\u01bd\1\u01be\1\u01bf\1\u01c0\2\uffff\1\u01c1\1\u01c2\3\uffff\1\u01c3\1\u01c4\2\uffff\1\u01c5\1\u01c6\2\uffff\1\u01c7\1\u01c8\1\u01c9\2\uffff\1\u01ca\1\u01cb\1\u01cc\1\u01cd\26\uffff\1\u01ce\1\u01cf\1\uffff\1\u01d0\1\u01d1\1\uffff\1\46\1\u01d3\1\u01d4\1\u01d5\1\u01d6\1\u01d7\1\u01d8\1\u01d9\3\uffff\1\u01da\1\u01db\103\uffff\1\u01dc\12\uffff";
     static final String DFA11_eofS =
-        "\u01d3\uffff";
+        "\u01dd\uffff";
     static final String DFA11_minS =
-        "\1\11\1\60\1\105\1\101\1\uffff\1\120\2\101\1\102\1\115\2\116\1\60\1\103\2\60\2\uffff\1\76\1\74\1\uffff\3\60\1\55\1\53\1\101\1\124\1\uffff\1\115\4\uffff\1\101\5\uffff\1\142\10\uffff\1\116\1\111\1\102\1\101\1\124\2\103\1\uffff\1\111\1\114\1\107\1\102\1\114\1\110\1\60\1\107\1\101\1\124\1\103\1\107\1\115\1\114\1\103\1\114\2\101\1\103\1\122\1\120\1\103\1\107\1\122\1\104\1\125\1\103\1\101\1\60\1\uffff\1\101\1\115\1\120\1\122\1\60\1\103\1\122\1\101\1\114\1\105\1\111\1\105\1\124\1\111\1\105\1\121\1\103\1\uffff\1\114\1\104\1\103\1\130\14\uffff\1\102\1\111\1\114\1\102\1\114\1\102\2\uffff\1\103\1\60\1\101\11\60\1\101\7\60\2\123\1\60\1\uffff\1\60\1\103\16\60\1\123\7\60\1\103\1\122\1\101\1\114\1\105\1\111\1\105\1\111\1\105\1\121\1\103\5\60\1\101\4\60\1\uffff\1\111\2\60\1\101\1\60\1\uffff\27\60\3\101\3\60\2\114\6\60\1\uffff\3\60\11\uffff\2\60\3\uffff\2\60\1\uffff\2\60\3\uffff\4\60\2\uffff\1\60\10\uffff\2\60\4\uffff\2\60\1\uffff\2\60\1\uffff\4\60\7\uffff\23\60\2\uffff\2\60\3\uffff\2\60\2\uffff\2\60\2\uffff\3\60\2\uffff\4\60\26\uffff\2\60\1\uffff\2\60\1\uffff\1\103\7\60\3\uffff\2\60\102\uffff\1\60\12\uffff";
+        "\1\11\1\106\1\uffff\1\60\1\105\1\101\1\120\2\101\1\102\1\115\2\116\1\60\1\103\2\60\2\uffff\1\76\1\74\1\uffff\3\60\1\55\1\53\1\101\1\uffff\1\115\4\uffff\1\101\5\uffff\1\142\10\uffff\1\124\1\122\1\114\1\116\1\111\1\102\1\101\1\124\2\103\1\uffff\1\111\1\114\1\107\1\102\1\114\1\110\1\60\1\107\1\101\1\124\1\103\1\107\1\115\1\114\1\103\1\114\2\101\1\103\1\122\1\120\1\103\1\107\1\122\1\104\1\125\1\103\1\101\1\60\1\uffff\1\101\1\115\1\120\1\122\1\60\1\103\1\122\1\101\1\114\1\105\1\111\1\105\1\124\1\111\1\105\1\121\1\103\1\uffff\1\114\1\104\1\103\1\130\14\uffff\1\102\1\111\1\114\2\102\2\uffff\3\60\1\103\1\60\1\101\11\60\1\101\7\60\2\123\1\60\1\uffff\1\60\1\103\16\60\1\123\7\60\1\103\1\122\1\101\1\114\1\105\1\111\1\105\1\111\1\105\1\121\1\103\5\60\1\101\4\60\1\uffff\1\111\2\60\1\101\1\60\1\uffff\27\60\3\101\3\60\2\114\4\60\3\uffff\3\60\1\uffff\3\60\11\uffff\2\60\3\uffff\2\60\1\uffff\2\60\3\uffff\4\60\2\uffff\1\60\10\uffff\2\60\4\uffff\2\60\1\uffff\2\60\1\uffff\4\60\7\uffff\23\60\2\uffff\2\60\3\uffff\2\60\2\uffff\2\60\2\uffff\3\60\2\uffff\4\60\26\uffff\2\60\1\uffff\2\60\1\uffff\1\103\7\60\3\uffff\2\60\103\uffff\1\60\12\uffff";
     static final String DFA11_maxS =
-        "\1\174\1\172\1\124\1\125\1\uffff\1\122\1\117\1\125\2\123\1\116\1\130\1\172\1\127\2\172\2\uffff\1\76\1\74\1\uffff\3\172\1\55\1\53\1\111\1\124\1\uffff\1\115\4\uffff\1\172\5\uffff\1\142\10\uffff\1\116\1\111\1\102\1\131\1\130\2\103\1\uffff\1\123\1\122\1\107\1\102\1\114\1\110\1\172\2\107\1\124\1\120\1\107\1\115\1\114\1\103\1\122\1\101\1\131\1\126\1\122\1\120\1\103\1\120\1\122\1\104\1\125\1\103\1\101\1\172\1\uffff\1\101\1\116\1\120\1\122\1\172\1\123\1\132\1\116\1\114\1\105\1\111\2\124\1\123\1\124\1\121\1\123\1\uffff\1\122\2\104\1\130\14\uffff\1\103\1\111\1\114\1\102\1\114\1\102\2\uffff\1\103\1\172\1\104\11\172\1\102\7\172\2\125\1\172\1\uffff\1\172\1\103\16\172\1\131\7\172\1\123\1\122\1\116\1\114\1\105\1\111\1\124\1\123\1\124\1\121\1\123\5\172\1\102\4\172\1\uffff\1\111\2\172\1\102\1\172\1\uffff\27\172\1\103\1\104\1\102\3\172\2\114\6\172\1\uffff\3\172\11\uffff\2\172\3\uffff\2\172\1\uffff\2\172\3\uffff\4\172\2\uffff\1\172\10\uffff\2\172\4\uffff\2\172\1\uffff\2\172\1\uffff\4\172\7\uffff\23\172\2\uffff\2\172\3\uffff\2\172\2\uffff\2\172\2\uffff\3\172\2\uffff\4\172\26\uffff\2\172\1\uffff\2\172\1\uffff\1\103\7\172\3\uffff\2\172\102\uffff\1\172\12\uffff";
+        "\1\174\1\124\1\uffff\1\172\1\124\1\125\1\122\1\117\1\125\2\123\1\116\1\130\1\172\1\127\2\172\2\uffff\1\76\1\74\1\uffff\3\172\1\55\1\53\1\111\1\uffff\1\115\4\uffff\1\172\5\uffff\1\142\10\uffff\1\124\1\122\1\114\1\116\1\111\1\102\1\131\1\130\2\103\1\uffff\1\123\1\122\1\107\1\102\1\114\1\110\1\172\2\107\1\124\1\120\1\107\1\115\1\114\1\103\1\122\1\101\1\131\1\126\1\122\1\120\1\103\1\120\1\122\1\104\1\125\1\103\1\101\1\172\1\uffff\1\101\1\116\1\120\1\122\1\172\1\123\1\132\1\116\1\114\1\105\1\111\2\124\1\123\1\124\1\121\1\123\1\uffff\1\122\2\104\1\130\14\uffff\1\103\1\111\1\114\2\102\2\uffff\3\172\1\103\1\172\1\104\11\172\1\102\7\172\2\125\1\172\1\uffff\1\172\1\103\16\172\1\131\7\172\1\123\1\122\1\116\1\114\1\105\1\111\1\124\1\123\1\124\1\121\1\123\5\172\1\102\4\172\1\uffff\1\111\2\172\1\102\1\172\1\uffff\27\172\1\103\1\104\1\102\3\172\2\114\4\172\3\uffff\3\172\1\uffff\3\172\11\uffff\2\172\3\uffff\2\172\1\uffff\2\172\3\uffff\4\172\2\uffff\1\172\10\uffff\2\172\4\uffff\2\172\1\uffff\2\172\1\uffff\4\172\7\uffff\23\172\2\uffff\2\172\3\uffff\2\172\2\uffff\2\172\2\uffff\3\172\2\uffff\4\172\26\uffff\2\172\1\uffff\2\172\1\uffff\1\103\7\172\3\uffff\2\172\103\uffff\1\172\12\uffff";
     static final String DFA11_acceptS =
-        "\4\uffff\1\33\13\uffff\1\u0083\1\u0084\2\uffff\1\u0087\7\uffff\1\u009d\1\uffff\1\u00a7\1\u00a8\1\u00ab\1\u00ac\1\uffff\1\u00ae\1\u00af\1\u00b0\1\u00ba\1\u00bb\1\uffff\1\u00bd\1\u00bc\1\u00bf\1\u00c0\1\u00c1\1\u00c2\1\u00c3\1\u00c4\7\uffff\1\u0088\35\uffff\1\u008e\21\uffff\1\u008d\4\uffff\1\u008c\1\u00aa\1\u0085\1\u00a9\1\u0086\1\u0089\1\u008a\1\u008b\1\u0090\1\u008f\1\u0092\1\u0091\6\uffff\1\u00ad\1\u00be\27\uffff\1\u00b9\55\uffff\1\u00b7\5\uffff\1\u00b8\45\uffff\1\4\3\uffff\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1\u009c\2\uffff\1\u0096\1\22\1\23\2\uffff\1\26\2\uffff\1\31\1\u0095\1\u00a3\4\uffff\1\u0093\1\u0099\1\uffff\1\40\1\41\1\u00a5\1\u009a\1\42\1\u00b2\1\u00b4\1\u00b6\2\uffff\1\45\1\u0097\1\46\1\u00b3\2\uffff\1\51\2\uffff\1\54\4\uffff\1\61\1\62\1\63\1\64\1\65\1\66\1\67\23\uffff\1\70\1\71\2\uffff\1\74\1\75\1\u00b5\2\uffff\1\u00a4\1\u00a6\2\uffff\1\102\1\103\3\uffff\1\107\1\u00b1\4\uffff\1\114\1\115\1\117\1\121\1\u009f\1\123\1\125\1\127\1\131\1\133\1\135\1\137\1\141\1\143\1\145\1\146\1\150\1\152\1\154\1\156\1\160\1\162\2\uffff\1\166\2\uffff\1\171\10\uffff\1\u0082\1\u0094\1\u00a2\2\uffff\1\u00a1\1\u0098\1\u00a0\1\1\1\2\1\3\1\5\1\6\1\7\1\20\1\21\1\24\1\25\1\27\1\30\1\32\1\34\1\35\1\36\1\37\1\43\1\44\1\47\1\50\1\52\1\53\1\55\1\56\1\57\1\60\1\116\1\120\1\122\1\124\1\126\1\130\1\132\1\134\1\136\1\140\1\142\1\144\1\147\1\151\1\153\1\155\1\157\1\161\1\163\1\72\1\73\1\76\1\77\1\100\1\101\1\104\1\105\1\106\1\110\1\111\1\112\1\113\1\164\1\165\1\167\1\170\1\uffff\1\173\1\174\1\175\1\176\1\177\1\u0080\1\u0081\1\u009b\1\u009e\1\172";
+        "\2\uffff\1\5\16\uffff\1\u0087\1\u0088\2\uffff\1\u008b\6\uffff\1\u00a1\1\uffff\1\u00ab\1\u00ac\1\u00af\1\u00b0\1\uffff\1\u00b2\1\u00b3\1\u00b4\1\u00be\1\u00bf\1\uffff\1\u00c1\1\u00c0\1\u00c3\1\u00c4\1\u00c5\1\u00c6\1\u00c7\1\u00c8\12\uffff\1\u008c\35\uffff\1\u0092\21\uffff\1\u0091\4\uffff\1\u0090\1\u00ae\1\u0089\1\u00ad\1\u008a\1\u008d\1\u008e\1\u008f\1\u0094\1\u0093\1\u0096\1\u0095\5\uffff\1\u00b1\1\u00c2\32\uffff\1\u00bd\55\uffff\1\u00bb\5\uffff\1\u00bc\43\uffff\1\3\1\4\1\u009c\3\uffff\1\11\3\uffff\1\15\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\u00a0\2\uffff\1\u009a\1\27\1\30\2\uffff\1\33\2\uffff\1\36\1\u0099\1\u00a7\4\uffff\1\u0097\1\u009d\1\uffff\1\44\1\45\1\u00a9\1\u009e\1\46\1\u00b6\1\u00b8\1\u00ba\2\uffff\1\51\1\u009b\1\52\1\u00b7\2\uffff\1\55\2\uffff\1\60\4\uffff\1\65\1\66\1\67\1\70\1\71\1\72\1\73\23\uffff\1\74\1\75\2\uffff\1\100\1\101\1\u00b9\2\uffff\1\u00a8\1\u00aa\2\uffff\1\106\1\107\3\uffff\1\113\1\u00b5\4\uffff\1\120\1\121\1\123\1\125\1\u00a3\1\127\1\131\1\133\1\135\1\137\1\141\1\143\1\145\1\147\1\151\1\152\1\154\1\156\1\160\1\162\1\164\1\166\2\uffff\1\172\2\uffff\1\175\10\uffff\1\u0086\1\u0098\1\u00a6\2\uffff\1\u00a5\1\u00a4\1\1\1\2\1\6\1\7\1\10\1\12\1\13\1\14\1\25\1\26\1\31\1\32\1\34\1\35\1\37\1\40\1\41\1\42\1\43\1\47\1\50\1\53\1\54\1\56\1\57\1\61\1\62\1\63\1\64\1\122\1\124\1\126\1\130\1\132\1\134\1\136\1\140\1\142\1\144\1\146\1\150\1\153\1\155\1\157\1\161\1\163\1\165\1\167\1\76\1\77\1\102\1\103\1\104\1\105\1\110\1\111\1\112\1\114\1\115\1\116\1\117\1\170\1\171\1\173\1\174\1\uffff\1\177\1\u0080\1\u0081\1\u0082\1\u0083\1\u0084\1\u0085\1\u009f\1\u00a2\1\176";
     static final String DFA11_specialS =
-        "\u01d3\uffff}>";
+        "\u01dd\uffff}>";
     static final String[] DFA11_transitionS = {
-            "\1\56\1\57\2\uffff\1\57\22\uffff\1\56\1\43\1\54\1\24\1\47\1\37\1\40\1\53\1\44\1\45\1\34\1\31\1\4\1\30\1\uffff\1\36\1\50\11\52\1\uffff\1\55\1\23\1\uffff\1\22\1\uffff\1\51\1\17\1\16\1\15\1\14\1\13\1\32\2\46\1\12\1\11\1\46\1\10\1\7\1\6\1\5\1\3\1\46\1\2\1\1\1\33\1\25\2\46\1\26\1\27\1\35\1\20\1\uffff\1\21\1\42\1\46\1\uffff\32\46\1\uffff\1\41",
-            "\12\46\7\uffff\1\46\1\66\2\46\1\65\12\46\1\67\3\46\1\64\1\63\1\46\1\62\1\46\1\61\1\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\73\7\uffff\1\74\1\uffff\1\72\4\uffff\1\71",
-            "\1\100\1\uffff\1\77\17\uffff\1\76\1\uffff\1\75",
+            "\1\56\1\57\2\uffff\1\57\22\uffff\1\56\1\43\1\54\1\25\1\47\1\37\1\40\1\53\1\44\1\45\1\34\1\32\1\2\1\31\1\uffff\1\36\1\50\11\52\1\uffff\1\55\1\24\1\uffff\1\23\1\uffff\1\51\1\20\1\17\1\16\1\15\1\14\1\33\2\46\1\13\1\12\1\46\1\11\1\10\1\7\1\6\1\5\1\46\1\4\1\3\1\1\1\26\2\46\1\27\1\30\1\35\1\21\1\uffff\1\22\1\42\1\46\1\uffff\32\46\1\uffff\1\41",
+            "\1\62\14\uffff\1\61\1\63",
             "",
-            "\1\102\1\uffff\1\101",
-            "\1\105\3\uffff\1\104\11\uffff\1\103",
-            "\1\107\23\uffff\1\106",
-            "\1\113\1\uffff\1\112\1\111\15\uffff\1\110",
-            "\1\115\5\uffff\1\114",
-            "\1\116",
-            "\1\121\1\120\1\uffff\1\122\6\uffff\1\117",
-            "\12\46\7\uffff\1\124\3\46\1\123\12\46\1\125\12\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\133\10\uffff\1\132\1\131\1\uffff\1\130\7\uffff\1\127",
-            "\12\46\7\uffff\2\46\1\147\1\46\1\146\1\46\1\145\1\144\1\143\2\46\1\142\1\141\1\140\1\46\1\137\1\46\1\136\1\135\2\46\1\134\4\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\1\46\1\154\1\46\1\153\11\46\1\152\4\46\1\151\7\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\1\46\1\71\2\46\1\70\12\46\1\72\3\46\1\67\1\66\1\46\1\65\1\46\1\64\1\46\4\uffff\1\46\1\uffff\32\46",
+            "\1\76\7\uffff\1\77\1\uffff\1\75\4\uffff\1\74",
+            "\1\103\1\uffff\1\102\17\uffff\1\101\1\uffff\1\100",
+            "\1\105\1\uffff\1\104",
+            "\1\110\3\uffff\1\107\11\uffff\1\106",
+            "\1\112\23\uffff\1\111",
+            "\1\116\1\uffff\1\115\1\114\15\uffff\1\113",
+            "\1\120\5\uffff\1\117",
+            "\1\121",
+            "\1\124\1\123\1\uffff\1\125\6\uffff\1\122",
+            "\12\46\7\uffff\1\127\3\46\1\126\12\46\1\130\12\46\4\uffff\1\46\1\uffff\32\46",
+            "\1\136\10\uffff\1\135\1\134\1\uffff\1\133\7\uffff\1\132",
+            "\12\46\7\uffff\2\46\1\152\1\46\1\151\1\46\1\150\1\147\1\146\2\46\1\145\1\144\1\143\1\46\1\142\1\46\1\141\1\140\2\46\1\137\4\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\1\46\1\157\1\46\1\156\11\46\1\155\4\46\1\154\7\46\4\uffff\1\46\1\uffff\32\46",
             "",
             "",
-            "\1\156",
-            "\1\160",
+            "\1\161",
+            "\1\163",
             "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\165",
-            "\1\167",
-            "\1\172\1\uffff\1\171\1\174\4\uffff\1\173",
-            "\1\175",
+            "\1\170",
+            "\1\172",
+            "\1\175\1\uffff\1\174\1\177\4\uffff\1\176",
             "",
-            "\1\176",
+            "\1\u0080",
             "",
             "",
             "",
@@ -6064,98 +6180,103 @@ public class InternalAssemblerLexer extends Lexer {
             "",
             "",
             "",
-            "\1\u0080",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\u0081",
             "\1\u0082",
-            "\1\u0083",
-            "\1\u0089\1\u008a\1\uffff\1\u0084\16\uffff\1\u0087\1\uffff\1\u0088\2\uffff\1\u0085\1\u0086",
-            "\1\u008c\3\uffff\1\u008b",
-            "\1\u008d",
-            "\1\u008e",
             "",
-            "\1\u0090\11\uffff\1\u008f",
-            "\1\u0092\5\uffff\1\u0091",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\u0083",
+            "\1\u0084",
+            "\1\u0085",
+            "\1\u0086",
+            "\1\u0087",
+            "\1\u0088",
+            "\1\u008e\1\u008f\1\uffff\1\u0089\16\uffff\1\u008c\1\uffff\1\u008d\2\uffff\1\u008a\1\u008b",
+            "\1\u0091\3\uffff\1\u0090",
+            "\1\u0092",
             "\1\u0093",
-            "\1\u0094",
-            "\1\u0095",
-            "\1\u0096",
-            "\12\46\7\uffff\21\46\1\u0097\10\46\4\uffff\1\46\1\uffff\32\46",
+            "",
+            "\1\u0095\11\uffff\1\u0094",
+            "\1\u0097\5\uffff\1\u0096",
+            "\1\u0098",
             "\1\u0099",
-            "\1\u009b\1\u009c\1\u009a\3\uffff\1\u009d",
+            "\1\u009a",
+            "\1\u009b",
+            "\12\46\7\uffff\21\46\1\u009c\10\46\4\uffff\1\46\1\uffff\32\46",
             "\1\u009e",
-            "\1\u00a0\1\uffff\1\u00a2\7\uffff\1\u00a1\2\uffff\1\u009f",
+            "\1\u00a0\1\u00a1\1\u009f\3\uffff\1\u00a2",
             "\1\u00a3",
-            "\1\u00a4",
-            "\1\u00a5",
-            "\1\u00a6",
-            "\1\u00a8\5\uffff\1\u00a7",
+            "\1\u00a5\1\uffff\1\u00a7\7\uffff\1\u00a6\2\uffff\1\u00a4",
+            "\1\u00a8",
             "\1\u00a9",
-            "\1\u00af\1\u00b0\1\uffff\1\u00aa\16\uffff\1\u00ad\1\uffff\1\u00ae\2\uffff\1\u00ab\1\u00ac",
-            "\1\u00bb\1\uffff\1\u00ba\1\uffff\1\u00b9\1\u00b8\3\uffff\1\u00b7\1\u00b6\1\u00b5\1\uffff\1\u00b4\1\uffff\1\u00b3\1\u00b2\2\uffff\1\u00b1",
-            "\1\u00bc",
-            "\1\u00bd",
-            "\1\u00be",
-            "\1\u00bf\10\uffff\1\u00c0",
+            "\1\u00aa",
+            "\1\u00ab",
+            "\1\u00ad\5\uffff\1\u00ac",
+            "\1\u00ae",
+            "\1\u00b4\1\u00b5\1\uffff\1\u00af\16\uffff\1\u00b2\1\uffff\1\u00b3\2\uffff\1\u00b0\1\u00b1",
+            "\1\u00c0\1\uffff\1\u00bf\1\uffff\1\u00be\1\u00bd\3\uffff\1\u00bc\1\u00bb\1\u00ba\1\uffff\1\u00b9\1\uffff\1\u00b8\1\u00b7\2\uffff\1\u00b6",
             "\1\u00c1",
             "\1\u00c2",
             "\1\u00c3",
-            "\1\u00c4",
-            "\1\u00c5",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "",
+            "\1\u00c4\10\uffff\1\u00c5",
+            "\1\u00c6",
             "\1\u00c7",
-            "\1\u00c8\1\u00c9",
+            "\1\u00c8",
+            "\1\u00c9",
             "\1\u00ca",
-            "\1\u00cb",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u00ce\17\uffff\1\u00cd",
-            "\1\u00cf\7\uffff\1\u00d0",
-            "\1\u00d2\14\uffff\1\u00d1",
-            "\1\u00d3",
-            "\1\u00d4",
-            "\1\u00d5",
-            "\1\u00d9\11\uffff\1\u00d8\3\uffff\1\u00d7\1\u00d6",
+            "",
+            "\1\u00cc",
+            "\1\u00cd\1\u00ce",
+            "\1\u00cf",
+            "\1\u00d0",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\1\u00d3\17\uffff\1\u00d2",
+            "\1\u00d4\7\uffff\1\u00d5",
+            "\1\u00d7\14\uffff\1\u00d6",
+            "\1\u00d8",
+            "\1\u00d9",
             "\1\u00da",
-            "\1\u00dc\11\uffff\1\u00db",
-            "\1\u00de\16\uffff\1\u00dd",
+            "\1\u00de\11\uffff\1\u00dd\3\uffff\1\u00dc\1\u00db",
             "\1\u00df",
-            "\1\u00e1\17\uffff\1\u00e0",
-            "",
-            "\1\u00e3\5\uffff\1\u00e2",
+            "\1\u00e1\11\uffff\1\u00e0",
+            "\1\u00e3\16\uffff\1\u00e2",
             "\1\u00e4",
-            "\1\u00e6\1\u00e5",
-            "\1\u00e7",
+            "\1\u00e6\17\uffff\1\u00e5",
             "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "\1\u00e9\1\u00e8",
-            "\1\u00ea",
-            "\1\u00eb",
+            "\1\u00e8\5\uffff\1\u00e7",
+            "\1\u00e9",
+            "\1\u00eb\1\u00ea",
             "\1\u00ec",
-            "\1\u00ed",
-            "\1\u00ee",
             "",
             "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "\1\u00ee\1\u00ed",
             "\1\u00ef",
-            "\2\46\1\u00f1\1\u00f0\6\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u00f4\1\u00f5\1\uffff\1\u00f3",
+            "\1\u00f0",
+            "\1\u00f1",
+            "\1\u00f2",
+            "",
+            "",
+            "\12\46\7\uffff\1\u00f3\1\u00f4\30\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\1\u00f8",
+            "\2\46\1\u00fa\1\u00f9\6\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\1\u00fd\1\u00fe\1\uffff\1\u00fc",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
@@ -6165,20 +6286,20 @@ public class InternalAssemblerLexer extends Lexer {
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u00ff\1\u0100",
+            "\1\u0108\1\u0109",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\1\u0104\1\u0105\30\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\1\u0107\1\u0108\30\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\1\u010d\1\u010e\30\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\1\u0110\1\u0111\30\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u010d\1\uffff\1\u010c",
-            "\1\u010f\1\uffff\1\u010e",
+            "\1\u0116\1\uffff\1\u0115",
+            "\1\u0118\1\uffff\1\u0117",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u0112",
+            "\1\u011b",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
@@ -6187,13 +6308,13 @@ public class InternalAssemblerLexer extends Lexer {
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\1\u011b\1\u011c\30\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\1\u0121\1\u0122\30\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\1\u0124\1\u0125\30\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u0129\1\uffff\1\u012a\2\uffff\1\u0127\1\u0128",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\1\u012a\1\u012b\30\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\1\u012d\1\u012e\30\46\4\uffff\1\46\1\uffff\32\46",
+            "\1\u0132\1\uffff\1\u0133\2\uffff\1\u0130\1\u0131",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
@@ -6201,33 +6322,33 @@ public class InternalAssemblerLexer extends Lexer {
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u0133\17\uffff\1\u0132",
-            "\1\u0134",
-            "\1\u0136\14\uffff\1\u0135",
-            "\1\u0137",
-            "\1\u0138",
-            "\1\u0139",
-            "\1\u013d\11\uffff\1\u013c\3\uffff\1\u013b\1\u013a",
-            "\1\u013f\11\uffff\1\u013e",
-            "\1\u0141\16\uffff\1\u0140",
+            "\1\u013c\17\uffff\1\u013b",
+            "\1\u013d",
+            "\1\u013f\14\uffff\1\u013e",
+            "\1\u0140",
+            "\1\u0141",
             "\1\u0142",
-            "\1\u0144\17\uffff\1\u0143",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\1\u0147\1\u0148\30\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u014c\1\u014d",
+            "\1\u0146\11\uffff\1\u0145\3\uffff\1\u0144\1\u0143",
+            "\1\u0148\11\uffff\1\u0147",
+            "\1\u014a\16\uffff\1\u0149",
+            "\1\u014b",
+            "\1\u014d\17\uffff\1\u014c",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\1\u0150\1\u0151\30\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\1\u0155\1\u0156",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\1\u0159\1\u015a\30\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "",
-            "\1\u0154",
-            "\12\46\7\uffff\1\u0155\1\u0156\30\46\4\uffff\1\46\1\uffff\32\46",
+            "\1\u015d",
+            "\12\46\7\uffff\1\u015e\1\u015f\30\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u0159\1\u015a",
-            "\12\46\7\uffff\1\u015b\1\u015c\30\46\4\uffff\1\46\1\uffff\32\46",
+            "\1\u0162\1\u0163",
+            "\12\46\7\uffff\1\u0164\1\u0165\30\46\4\uffff\1\46\1\uffff\32\46",
             "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
@@ -6250,22 +6371,26 @@ public class InternalAssemblerLexer extends Lexer {
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\1\u0173\1\u0174\30\46\4\uffff\1\46\1\uffff\32\46",
-            "\12\46\7\uffff\1\u0176\1\u0177\30\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u017a\1\u017b\1\u0179",
-            "\1\u017d\1\u017e\1\uffff\1\u017c",
-            "\1\u017f\1\u0180",
+            "\12\46\7\uffff\1\u017c\1\u017d\30\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\1\u017f\1\u0180\30\46\4\uffff\1\46\1\uffff\32\46",
+            "\1\u0183\1\u0184\1\u0182",
+            "\1\u0186\1\u0187\1\uffff\1\u0185",
+            "\1\u0188\1\u0189",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
-            "\1\u0184",
-            "\1\u0185",
+            "\1\u018d",
+            "\1\u018e",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "",
+            "",
+            "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
@@ -6401,7 +6526,7 @@ public class InternalAssemblerLexer extends Lexer {
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "",
-            "\1\u01c8",
+            "\1\u01d2",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
@@ -6414,6 +6539,7 @@ public class InternalAssemblerLexer extends Lexer {
             "",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
             "\12\46\7\uffff\32\46\4\uffff\1\46\1\uffff\32\46",
+            "",
             "",
             "",
             "",
@@ -6523,7 +6649,7 @@ public class InternalAssemblerLexer extends Lexer {
             this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "1:1: Tokens : ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | T__198 | T__199 | RULE_ID | RULE_HEXA | RULE_INT | RULE_OCTAL | RULE_BINARY | RULE_CHARACTER | RULE_STRING | RULE_ANY_EXCEPT_COMMENT_END_OF_LINE | RULE_WS | RULE_CR | RULE_END_OF_FILE );";
+            return "1:1: Tokens : ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | T__24 | T__25 | T__26 | T__27 | T__28 | T__29 | T__30 | T__31 | T__32 | T__33 | T__34 | T__35 | T__36 | T__37 | T__38 | T__39 | T__40 | T__41 | T__42 | T__43 | T__44 | T__45 | T__46 | T__47 | T__48 | T__49 | T__50 | T__51 | T__52 | T__53 | T__54 | T__55 | T__56 | T__57 | T__58 | T__59 | T__60 | T__61 | T__62 | T__63 | T__64 | T__65 | T__66 | T__67 | T__68 | T__69 | T__70 | T__71 | T__72 | T__73 | T__74 | T__75 | T__76 | T__77 | T__78 | T__79 | T__80 | T__81 | T__82 | T__83 | T__84 | T__85 | T__86 | T__87 | T__88 | T__89 | T__90 | T__91 | T__92 | T__93 | T__94 | T__95 | T__96 | T__97 | T__98 | T__99 | T__100 | T__101 | T__102 | T__103 | T__104 | T__105 | T__106 | T__107 | T__108 | T__109 | T__110 | T__111 | T__112 | T__113 | T__114 | T__115 | T__116 | T__117 | T__118 | T__119 | T__120 | T__121 | T__122 | T__123 | T__124 | T__125 | T__126 | T__127 | T__128 | T__129 | T__130 | T__131 | T__132 | T__133 | T__134 | T__135 | T__136 | T__137 | T__138 | T__139 | T__140 | T__141 | T__142 | T__143 | T__144 | T__145 | T__146 | T__147 | T__148 | T__149 | T__150 | T__151 | T__152 | T__153 | T__154 | T__155 | T__156 | T__157 | T__158 | T__159 | T__160 | T__161 | T__162 | T__163 | T__164 | T__165 | T__166 | T__167 | T__168 | T__169 | T__170 | T__171 | T__172 | T__173 | T__174 | T__175 | T__176 | T__177 | T__178 | T__179 | T__180 | T__181 | T__182 | T__183 | T__184 | T__185 | T__186 | T__187 | T__188 | T__189 | T__190 | T__191 | T__192 | T__193 | T__194 | T__195 | T__196 | T__197 | T__198 | T__199 | T__200 | T__201 | T__202 | T__203 | RULE_ID | RULE_HEXA | RULE_INT | RULE_OCTAL | RULE_BINARY | RULE_CHARACTER | RULE_STRING | RULE_ANY_EXCEPT_COMMENT_END_OF_LINE | RULE_WS | RULE_CR | RULE_END_OF_FILE );";
         }
     }
  

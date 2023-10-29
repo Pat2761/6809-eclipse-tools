@@ -33,6 +33,9 @@ public class AssemblerParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, AssemblerGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getSourceLineAccess().getAlternatives(), "rule__SourceLine__Alternatives");
 			builder.put(grammarAccess.getInstructionLineAccess().getAlternatives_2(), "rule__InstructionLine__Alternatives_2");
+			builder.put(grammarAccess.getTstInstructionAccess().getAlternatives(), "rule__TstInstruction__Alternatives");
+			builder.put(grammarAccess.getTstInstructionAccess().getInstructionAlternatives_0_0(), "rule__TstInstruction__InstructionAlternatives_0_0");
+			builder.put(grammarAccess.getTstInstructionAccess().getOperandAlternatives_1_2_0(), "rule__TstInstruction__OperandAlternatives_1_2_0");
 			builder.put(grammarAccess.getSubdInstructionAccess().getOperandAlternatives_2_0(), "rule__SubdInstruction__OperandAlternatives_2_0");
 			builder.put(grammarAccess.getSubInstructionAccess().getInstructionAlternatives_0_0(), "rule__SubInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getSubInstructionAccess().getOperandAlternatives_2_0(), "rule__SubInstruction__OperandAlternatives_2_0");
@@ -153,6 +156,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCommentLineAccess().getGroup(), "rule__CommentLine__Group__0");
 			builder.put(grammarAccess.getInstructionLineAccess().getGroup(), "rule__InstructionLine__Group__0");
 			builder.put(grammarAccess.getInstructionLineAccess().getGroup_3(), "rule__InstructionLine__Group_3__0");
+			builder.put(grammarAccess.getTstInstructionAccess().getGroup_1(), "rule__TstInstruction__Group_1__0");
+			builder.put(grammarAccess.getTfrInstructionAccess().getGroup(), "rule__TfrInstruction__Group__0");
 			builder.put(grammarAccess.getSubdInstructionAccess().getGroup(), "rule__SubdInstruction__Group__0");
 			builder.put(grammarAccess.getSubInstructionAccess().getGroup(), "rule__SubInstruction__Group__0");
 			builder.put(grammarAccess.getSt16InstructionAccess().getGroup(), "rule__St16Instruction__Group__0");
@@ -370,7 +375,15 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_64(), "rule__InstructionLine__InstructionAssignment_2_64");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_65(), "rule__InstructionLine__InstructionAssignment_2_65");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_66(), "rule__InstructionLine__InstructionAssignment_2_66");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_67(), "rule__InstructionLine__InstructionAssignment_2_67");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_68(), "rule__InstructionLine__InstructionAssignment_2_68");
 			builder.put(grammarAccess.getInstructionLineAccess().getCommentAssignment_3_1(), "rule__InstructionLine__CommentAssignment_3_1");
+			builder.put(grammarAccess.getTstInstructionAccess().getInstructionAssignment_0(), "rule__TstInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getTstInstructionAccess().getInstructionAssignment_1_0(), "rule__TstInstruction__InstructionAssignment_1_0");
+			builder.put(grammarAccess.getTstInstructionAccess().getOperandAssignment_1_2(), "rule__TstInstruction__OperandAssignment_1_2");
+			builder.put(grammarAccess.getTfrInstructionAccess().getInstructionAssignment_0(), "rule__TfrInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getTfrInstructionAccess().getReg1Assignment_2(), "rule__TfrInstruction__Reg1Assignment_2");
+			builder.put(grammarAccess.getTfrInstructionAccess().getReg2Assignment_4(), "rule__TfrInstruction__Reg2Assignment_4");
 			builder.put(grammarAccess.getSyncInstructionAccess().getInstructionAssignment(), "rule__SyncInstruction__InstructionAssignment");
 			builder.put(grammarAccess.getSwi3InstructionAccess().getInstructionAssignment(), "rule__Swi3Instruction__InstructionAssignment");
 			builder.put(grammarAccess.getSwi2InstructionAccess().getInstructionAssignment(), "rule__Swi2Instruction__InstructionAssignment");

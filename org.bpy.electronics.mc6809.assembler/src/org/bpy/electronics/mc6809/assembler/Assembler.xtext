@@ -129,10 +129,72 @@ InstructionLine:
 		instruction = SwiInstruction			|			   
 		instruction = Swi2Instruction			|			   
 		instruction = Swi3Instruction			|			   
-		instruction = SyncInstruction			   
+		instruction = SyncInstruction			|			   
+		instruction = TfrInstruction			|			   
+		instruction = TstInstruction			   
 	)  
 	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine	
+;
+
+/*
+ * TST
+ * 
+ * Test
+ * Source Form		: TST Q, TSTA; TSTB 
+ * Operation		: TEMP<— M-0
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Always cleared.
+ * 					  C - Not affected.
+ * Description		: Set the N (negative) and Z (zero) bits according to the contents of memory location M, and clear the V (overflow) bit. The TST instruction provides
+ *                    only minimum information when testing unsigned values; since no unsigned value is less than zero, BLO and BLS have no utility. While BHI could be 
+ *                    used after TST, it provides exactly the same control as BNE, which is preferred. The signed branches are available.
+ * Addressing Mode	: Inherent
+ *                    Extended
+ *                    Direct
+ *                    Indexed
+ */
+TstInstruction:
+    (
+	   instruction = ('TSTA' | 'TSTB')
+	)
+	|  
+	(
+	 	instruction = ('TST')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
+;
+
+/*
+ * TFR
+ * 
+ * Transfer Register to Register
+ * Source Form		: TFR R1,R2
+ * Operation		: R1->R2
+ * Condition Codes	:Not affected unless R2 is the condition code register.
+ * Description		: Exchanges data between two designated registers. Bits 3-0 of the postbyte define one register, 
+ *                    while bits 7-4 define the other, as follows: 
+ * 									0000 = A:B				1000 = A 			
+ * 									0001 =X					1001 = B
+ * 									0010 = Y				1010 = COR
+ * 									0011= US				1011= DPR
+ * 									0100 = SP				1100 = Undefined
+ * 									0101 = PC				1101 = Undefined
+ * 									0110 = Undefined		1110 = Undefined
+ * 									0111= Undefined			1111 = Undefined
+ *					  Only like size registers may be exchanged. (8-bit with 8-bit or 16-bit with 16-bit.)
+ * Addressing Mode	: Immediate
+ */
+TfrInstruction:
+	instruction = ('TFR' )
+	WS reg1=Register ',' reg2=Register	
 ;
 
 /*

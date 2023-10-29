@@ -71,6 +71,8 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.INSTRUCTION_LINE: return createInstructionLine();
+      case AssemblerPackage.TST_INSTRUCTION: return createTstInstruction();
+      case AssemblerPackage.TFR_INSTRUCTION: return createTfrInstruction();
       case AssemblerPackage.SYNC_INSTRUCTION: return createSyncInstruction();
       case AssemblerPackage.SWI3_INSTRUCTION: return createSwi3Instruction();
       case AssemblerPackage.SWI2_INSTRUCTION: return createSwi2Instruction();
@@ -291,6 +293,30 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     InstructionLineImpl instructionLine = new InstructionLineImpl();
     return instructionLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public TstInstruction createTstInstruction()
+  {
+    TstInstructionImpl tstInstruction = new TstInstructionImpl();
+    return tstInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public TfrInstruction createTfrInstruction()
+  {
+    TfrInstructionImpl tfrInstruction = new TfrInstructionImpl();
+    return tfrInstruction;
   }
 
   /**

@@ -201,6 +201,8 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     instruction=Swi3Instruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=SwiInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=SyncInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=TfrInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=TstInstruction (ambiguity) EndOfLine (rule end)
 	 
 	 * </pre>
 	 */

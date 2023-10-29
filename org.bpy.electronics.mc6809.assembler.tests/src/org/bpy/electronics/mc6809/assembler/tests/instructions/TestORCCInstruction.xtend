@@ -29,7 +29,6 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
-import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
 import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand

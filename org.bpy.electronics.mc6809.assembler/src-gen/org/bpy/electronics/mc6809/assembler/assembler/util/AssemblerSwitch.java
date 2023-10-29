@@ -108,6 +108,20 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.TST_INSTRUCTION:
+      {
+        TstInstruction tstInstruction = (TstInstruction)theEObject;
+        T result = caseTstInstruction(tstInstruction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.TFR_INSTRUCTION:
+      {
+        TfrInstruction tfrInstruction = (TfrInstruction)theEObject;
+        T result = caseTfrInstruction(tfrInstruction);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.SYNC_INSTRUCTION:
       {
         SyncInstruction syncInstruction = (SyncInstruction)theEObject;
@@ -1032,6 +1046,38 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseInstructionLine(InstructionLine object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Tst Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Tst Instruction</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTstInstruction(TstInstruction object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Tfr Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Tfr Instruction</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseTfrInstruction(TfrInstruction object)
   {
     return null;
   }

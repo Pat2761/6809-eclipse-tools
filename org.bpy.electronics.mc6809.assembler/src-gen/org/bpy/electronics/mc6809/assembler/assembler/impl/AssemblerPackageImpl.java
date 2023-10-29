@@ -130,6 +130,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 
 import org.eclipse.emf.ecore.EAttribute;
@@ -182,6 +184,20 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass instructionLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass tstInstructionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass tfrInstructionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1222,6 +1238,83 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EAttribute getInstructionLine_Comment()
   {
     return (EAttribute)instructionLineEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getTstInstruction()
+  {
+    return tstInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTstInstruction_Instruction()
+  {
+    return (EAttribute)tstInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getTstInstruction_Operand()
+  {
+    return (EReference)tstInstructionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getTfrInstruction()
+  {
+    return tfrInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTfrInstruction_Instruction()
+  {
+    return (EAttribute)tfrInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTfrInstruction_Reg1()
+  {
+    return (EAttribute)tfrInstructionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getTfrInstruction_Reg2()
+  {
+    return (EAttribute)tfrInstructionEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -5133,6 +5226,15 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(instructionLineEClass, INSTRUCTION_LINE__INSTRUCTION);
     createEAttribute(instructionLineEClass, INSTRUCTION_LINE__COMMENT);
 
+    tstInstructionEClass = createEClass(TST_INSTRUCTION);
+    createEAttribute(tstInstructionEClass, TST_INSTRUCTION__INSTRUCTION);
+    createEReference(tstInstructionEClass, TST_INSTRUCTION__OPERAND);
+
+    tfrInstructionEClass = createEClass(TFR_INSTRUCTION);
+    createEAttribute(tfrInstructionEClass, TFR_INSTRUCTION__INSTRUCTION);
+    createEAttribute(tfrInstructionEClass, TFR_INSTRUCTION__REG1);
+    createEAttribute(tfrInstructionEClass, TFR_INSTRUCTION__REG2);
+
     syncInstructionEClass = createEClass(SYNC_INSTRUCTION);
     createEAttribute(syncInstructionEClass, SYNC_INSTRUCTION__INSTRUCTION);
 
@@ -5664,6 +5766,15 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getInstructionLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstructionLine_Instruction(), ecorePackage.getEObject(), null, "instruction", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getInstructionLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(tstInstructionEClass, TstInstruction.class, "TstInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTstInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, TstInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getTstInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, TstInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(tfrInstructionEClass, TfrInstruction.class, "TfrInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTfrInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, TfrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTfrInstruction_Reg1(), this.getRegister(), "reg1", null, 0, 1, TfrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getTfrInstruction_Reg2(), this.getRegister(), "reg2", null, 0, 1, TfrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(syncInstructionEClass, SyncInstruction.class, "SyncInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSyncInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, SyncInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

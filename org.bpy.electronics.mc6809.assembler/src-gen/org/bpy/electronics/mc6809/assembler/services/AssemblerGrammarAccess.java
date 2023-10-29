@@ -301,6 +301,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cInstructionSwi3InstructionParserRuleCall_2_65_0 = (RuleCall)cInstructionAssignment_2_65.eContents().get(0);
 		private final Assignment cInstructionAssignment_2_66 = (Assignment)cAlternatives_2.eContents().get(66);
 		private final RuleCall cInstructionSyncInstructionParserRuleCall_2_66_0 = (RuleCall)cInstructionAssignment_2_66.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_67 = (Assignment)cAlternatives_2.eContents().get(67);
+		private final RuleCall cInstructionTfrInstructionParserRuleCall_2_67_0 = (RuleCall)cInstructionAssignment_2_67.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_68 = (Assignment)cAlternatives_2.eContents().get(68);
+		private final RuleCall cInstructionTstInstructionParserRuleCall_2_68_0 = (RuleCall)cInstructionAssignment_2_68.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
 		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -380,7 +384,9 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        instruction = SwiInstruction            |
 		//        instruction = Swi2Instruction            |
 		//        instruction = Swi3Instruction            |
-		//        instruction = SyncInstruction
+		//        instruction = SyncInstruction            |
+		//        instruction = TfrInstruction            |
+		//        instruction = TstInstruction
 		//    )
 		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    WS? EndOfLine
@@ -455,7 +461,9 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = SwiInstruction            |
 		//    instruction = Swi2Instruction            |
 		//    instruction = Swi3Instruction            |
-		//    instruction = SyncInstruction
+		//    instruction = SyncInstruction            |
+		//    instruction = TfrInstruction            |
+		//    instruction = TstInstruction
 		//)
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//WS? EndOfLine
@@ -537,7 +545,9 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = SwiInstruction            |
 		//    instruction = Swi2Instruction            |
 		//    instruction = Swi3Instruction            |
-		//    instruction = SyncInstruction
+		//    instruction = SyncInstruction            |
+		//    instruction = TfrInstruction            |
+		//    instruction = TstInstruction
 		//)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
@@ -943,6 +953,18 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//SyncInstruction
 		public RuleCall getInstructionSyncInstructionParserRuleCall_2_66_0() { return cInstructionSyncInstructionParserRuleCall_2_66_0; }
 		
+		//instruction = TfrInstruction
+		public Assignment getInstructionAssignment_2_67() { return cInstructionAssignment_2_67; }
+		
+		//TfrInstruction
+		public RuleCall getInstructionTfrInstructionParserRuleCall_2_67_0() { return cInstructionTfrInstructionParserRuleCall_2_67_0; }
+		
+		//instruction = TstInstruction
+		public Assignment getInstructionAssignment_2_68() { return cInstructionAssignment_2_68; }
+		
+		//TstInstruction
+		public RuleCall getInstructionTstInstructionParserRuleCall_2_68_0() { return cInstructionTstInstructionParserRuleCall_2_68_0; }
+		
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_3() { return cGroup_3; }
 		
@@ -960,6 +982,203 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class TstInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.TstInstruction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionTSTAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionTSTBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionTSTKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		
+		///*
+		// * TST
+		// *
+		// * Test
+		// * Source Form        : TST Q, TSTA; TSTB
+		// * Operation        : TEMP<— M-0
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Always cleared.
+		// *                       C - Not affected.
+		// * Description        : Set the N (negative) and Z (zero) bits according to the contents of memory location M, and clear the V (overflow) bit. The TST instruction provides
+		// *                    only minimum information when testing unsigned values; since no unsigned value is less than zero, BLO and BLS have no utility. While BHI could be
+		// *                    used after TST, it provides exactly the same control as BNE, which is preferred. The signed branches are available.
+		// * Addressing Mode    : Inherent
+		// *                    Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//TstInstruction:
+		//    (
+		//       instruction = ('TSTA' | 'TSTB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('TST')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(
+		//   instruction = ('TSTA' | 'TSTB')
+		//)
+		//|
+		//(
+		//     instruction = ('TST')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//   instruction = ('TSTA' | 'TSTB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('TSTA' | 'TSTB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'TSTA'
+		public Keyword getInstructionTSTAKeyword_0_0_0() { return cInstructionTSTAKeyword_0_0_0; }
+		
+		//'TSTB'
+		public Keyword getInstructionTSTBKeyword_0_0_1() { return cInstructionTSTBKeyword_0_0_1; }
+		
+		//(
+		//     instruction = ('TST')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//instruction = ('TST')
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
+		
+		//('TST')
+		public Keyword getInstructionTSTKeyword_1_0_0() { return cInstructionTSTKeyword_1_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
+		
+		//operand = (
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//(
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
+	}
+	public class TfrInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.TfrInstruction");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cInstructionTFRKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cReg1Assignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cReg1RegisterEnumRuleCall_2_0 = (RuleCall)cReg1Assignment_2.eContents().get(0);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cReg2Assignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cReg2RegisterEnumRuleCall_4_0 = (RuleCall)cReg2Assignment_4.eContents().get(0);
+		
+		///*
+		// * TFR
+		// *
+		// * Transfer Register to Register
+		// * Source Form        : TFR R1,R2
+		// * Operation        : R1->R2
+		// * Condition Codes    :Not affected unless R2 is the condition code register.
+		// * Description        : Exchanges data between two designated registers. Bits 3-0 of the postbyte define one register,
+		// *                    while bits 7-4 define the other, as follows:
+		// *                                     0000 = A:B                1000 = A
+		// *                                     0001 =X                    1001 = B
+		// *                                     0010 = Y                1010 = COR
+		// *                                     0011= US                1011= DPR
+		// *                                     0100 = SP                1100 = Undefined
+		// *                                     0101 = PC                1101 = Undefined
+		// *                                     0110 = Undefined        1110 = Undefined
+		// *                                     0111= Undefined            1111 = Undefined
+		// *                      Only like size registers may be exchanged. (8-bit with 8-bit or 16-bit with 16-bit.)
+		// * Addressing Mode    : Immediate
+		// */
+		//TfrInstruction:
+		//    instruction = ('TFR' )
+		//    WS reg1=Register ',' reg2=Register
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = ('TFR' )
+		//WS reg1=Register ',' reg2=Register
+		public Group getGroup() { return cGroup; }
+		
+		//instruction = ('TFR' )
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('TFR' )
+		public Keyword getInstructionTFRKeyword_0_0() { return cInstructionTFRKeyword_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		
+		//reg1=Register
+		public Assignment getReg1Assignment_2() { return cReg1Assignment_2; }
+		
+		//Register
+		public RuleCall getReg1RegisterEnumRuleCall_2_0() { return cReg1RegisterEnumRuleCall_2_0; }
+		
+		//','
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+		
+		//reg2=Register
+		public Assignment getReg2Assignment_4() { return cReg2Assignment_4; }
+		
+		//Register
+		public RuleCall getReg2RegisterEnumRuleCall_4_0() { return cReg2RegisterEnumRuleCall_4_0; }
 	}
 	public class SyncInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SyncInstruction");
@@ -9240,6 +9459,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final InstructionLineElements pInstructionLine;
+	private final TstInstructionElements pTstInstruction;
+	private final TfrInstructionElements pTfrInstruction;
 	private final SyncInstructionElements pSyncInstruction;
 	private final Swi3InstructionElements pSwi3Instruction;
 	private final Swi2InstructionElements pSwi2Instruction;
@@ -9384,6 +9605,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pInstructionLine = new InstructionLineElements();
+		this.pTstInstruction = new TstInstructionElements();
+		this.pTfrInstruction = new TfrInstructionElements();
 		this.pSyncInstruction = new SyncInstructionElements();
 		this.pSwi3Instruction = new Swi3InstructionElements();
 		this.pSwi2Instruction = new Swi2InstructionElements();
@@ -9677,7 +9900,9 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        instruction = SwiInstruction            |
 	//        instruction = Swi2Instruction            |
 	//        instruction = Swi3Instruction            |
-	//        instruction = SyncInstruction
+	//        instruction = SyncInstruction            |
+	//        instruction = TfrInstruction            |
+	//        instruction = TstInstruction
 	//    )
 	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    WS? EndOfLine
@@ -9688,6 +9913,80 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getInstructionLineRule() {
 		return getInstructionLineAccess().getRule();
+	}
+	
+	///*
+	// * TST
+	// *
+	// * Test
+	// * Source Form        : TST Q, TSTA; TSTB
+	// * Operation        : TEMP<— M-0
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Always cleared.
+	// *                       C - Not affected.
+	// * Description        : Set the N (negative) and Z (zero) bits according to the contents of memory location M, and clear the V (overflow) bit. The TST instruction provides
+	// *                    only minimum information when testing unsigned values; since no unsigned value is less than zero, BLO and BLS have no utility. While BHI could be
+	// *                    used after TST, it provides exactly the same control as BNE, which is preferred. The signed branches are available.
+	// * Addressing Mode    : Inherent
+	// *                    Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//TstInstruction:
+	//    (
+	//       instruction = ('TSTA' | 'TSTB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('TST')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
+	//;
+	public TstInstructionElements getTstInstructionAccess() {
+		return pTstInstruction;
+	}
+	
+	public ParserRule getTstInstructionRule() {
+		return getTstInstructionAccess().getRule();
+	}
+	
+	///*
+	// * TFR
+	// *
+	// * Transfer Register to Register
+	// * Source Form        : TFR R1,R2
+	// * Operation        : R1->R2
+	// * Condition Codes    :Not affected unless R2 is the condition code register.
+	// * Description        : Exchanges data between two designated registers. Bits 3-0 of the postbyte define one register,
+	// *                    while bits 7-4 define the other, as follows:
+	// *                                     0000 = A:B                1000 = A
+	// *                                     0001 =X                    1001 = B
+	// *                                     0010 = Y                1010 = COR
+	// *                                     0011= US                1011= DPR
+	// *                                     0100 = SP                1100 = Undefined
+	// *                                     0101 = PC                1101 = Undefined
+	// *                                     0110 = Undefined        1110 = Undefined
+	// *                                     0111= Undefined            1111 = Undefined
+	// *                      Only like size registers may be exchanged. (8-bit with 8-bit or 16-bit with 16-bit.)
+	// * Addressing Mode    : Immediate
+	// */
+	//TfrInstruction:
+	//    instruction = ('TFR' )
+	//    WS reg1=Register ',' reg2=Register
+	//;
+	public TfrInstructionElements getTfrInstructionAccess() {
+		return pTfrInstruction;
+	}
+	
+	public ParserRule getTfrInstructionRule() {
+		return getTfrInstructionAccess().getRule();
 	}
 	
 	///*

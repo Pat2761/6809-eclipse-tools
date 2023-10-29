@@ -1669,17 +1669,57 @@ ruleInstructionLine returns [EObject current=null]
 					}
 				)
 			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionTfrInstructionParserRuleCall_2_67_0());
+					}
+					lv_instruction_69_0=ruleTfrInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_69_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.TfrInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionTstInstructionParserRuleCall_2_68_0());
+					}
+					lv_instruction_70_0=ruleTstInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_70_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.TstInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
 		)
 		(
-			this_WS_69=RULE_WS
+			this_WS_71=RULE_WS
 			{
-				newLeafNode(this_WS_69, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_71, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_3_0());
 			}
 			(
 				(
-					lv_comment_70_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					lv_comment_72_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
 					{
-						newLeafNode(lv_comment_70_0, grammarAccess.getInstructionLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
+						newLeafNode(lv_comment_72_0, grammarAccess.getInstructionLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
 					}
 					{
 						if ($current==null) {
@@ -1688,16 +1728,16 @@ ruleInstructionLine returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"comment",
-							lv_comment_70_0,
+							lv_comment_72_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
 					}
 				)
 			)
 		)?
 		(
-			this_WS_71=RULE_WS
+			this_WS_73=RULE_WS
 			{
-				newLeafNode(this_WS_71, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_4());
+				newLeafNode(this_WS_73, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_4());
 			}
 		)?
 		{
@@ -1707,6 +1747,221 @@ ruleInstructionLine returns [EObject current=null]
 		{
 			afterParserOrEnumRuleCall();
 		}
+	)
+;
+
+// Entry rule entryRuleTstInstruction
+entryRuleTstInstruction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTstInstructionRule()); }
+	iv_ruleTstInstruction=ruleTstInstruction
+	{ $current=$iv_ruleTstInstruction.current; }
+	EOF;
+
+// Rule TstInstruction
+ruleTstInstruction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				(
+					lv_instruction_0_1='TSTA'
+					{
+						newLeafNode(lv_instruction_0_1, grammarAccess.getTstInstructionAccess().getInstructionTSTAKeyword_0_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTstInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_1, null);
+					}
+					    |
+					lv_instruction_0_2='TSTB'
+					{
+						newLeafNode(lv_instruction_0_2, grammarAccess.getTstInstructionAccess().getInstructionTSTBKeyword_0_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTstInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_2, null);
+					}
+				)
+			)
+		)
+		    |
+		(
+			(
+				(
+					lv_instruction_1_0='TST'
+					{
+						newLeafNode(lv_instruction_1_0, grammarAccess.getTstInstructionAccess().getInstructionTSTKeyword_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getTstInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_1_0, "TST");
+					}
+				)
+			)
+			this_WS_2=RULE_WS
+			{
+				newLeafNode(this_WS_2, grammarAccess.getTstInstructionAccess().getWSTerminalRuleCall_1_1());
+			}
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getTstInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0());
+						}
+						lv_operand_3_1=ruleDirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getTstInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_1,
+								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getTstInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1());
+						}
+						lv_operand_3_2=ruleIndexedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getTstInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_2,
+								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getTstInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2());
+						}
+						lv_operand_3_3=ruleExtendedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getTstInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_3,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getTstInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3());
+						}
+						lv_operand_3_4=ruleExtendedIndirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getTstInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_4,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleTfrInstruction
+entryRuleTfrInstruction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getTfrInstructionRule()); }
+	iv_ruleTfrInstruction=ruleTfrInstruction
+	{ $current=$iv_ruleTfrInstruction.current; }
+	EOF;
+
+// Rule TfrInstruction
+ruleTfrInstruction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_instruction_0_0='TFR'
+				{
+					newLeafNode(lv_instruction_0_0, grammarAccess.getTfrInstructionAccess().getInstructionTFRKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getTfrInstructionRule());
+					}
+					setWithLastConsumed($current, "instruction", lv_instruction_0_0, "TFR");
+				}
+			)
+		)
+		this_WS_1=RULE_WS
+		{
+			newLeafNode(this_WS_1, grammarAccess.getTfrInstructionAccess().getWSTerminalRuleCall_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTfrInstructionAccess().getReg1RegisterEnumRuleCall_2_0());
+				}
+				lv_reg1_2_0=ruleRegister
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTfrInstructionRule());
+					}
+					set(
+						$current,
+						"reg1",
+						lv_reg1_2_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Register");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3=','
+		{
+			newLeafNode(otherlv_3, grammarAccess.getTfrInstructionAccess().getCommaKeyword_3());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getTfrInstructionAccess().getReg2RegisterEnumRuleCall_4_0());
+				}
+				lv_reg2_4_0=ruleRegister
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getTfrInstructionRule());
+					}
+					set(
+						$current,
+						"reg2",
+						lv_reg2_4_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Register");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 	)
 ;
 

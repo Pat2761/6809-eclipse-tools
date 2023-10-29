@@ -104,6 +104,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWIInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWI2Instruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWI3Instruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSYNCInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTFRInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -194,7 +196,9 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSYNCInstructi
 	 TestSWIInstruction,
 	 TestSWI2Instruction,
 	 TestSWI3Instruction,
-	 TestSYNCInstruction
+	 TestSYNCInstruction,
+	 TestTFRInstruction,
+	 TestTSTInstruction
 )
     
 class AssemblerParsingTest {

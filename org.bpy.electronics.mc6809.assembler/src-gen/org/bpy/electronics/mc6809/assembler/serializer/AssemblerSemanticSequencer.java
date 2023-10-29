@@ -129,6 +129,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.bpy.electronics.mc6809.assembler.services.AssemblerGrammarAccess;
 import org.eclipse.emf.ecore.EObject;
@@ -550,6 +552,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.SYNC_INSTRUCTION:
 				sequence_SyncInstruction(context, (SyncInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.TFR_INSTRUCTION:
+				sequence_TfrInstruction(context, (TfrInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.TST_INSTRUCTION:
+				sequence_TstInstruction(context, (TstInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.XOR:
 				sequence_Xor(context, (Xor) semanticObject); 
@@ -1889,7 +1897,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=SwiInstruction | 
 	 *             instruction=Swi2Instruction | 
 	 *             instruction=Swi3Instruction | 
-	 *             instruction=SyncInstruction
+	 *             instruction=SyncInstruction | 
+	 *             instruction=TfrInstruction | 
+	 *             instruction=TstInstruction
 	 *         ) 
 	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
 	 *     )
@@ -3028,6 +3038,50 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSyncInstructionAccess().getInstructionSYNCKeyword_0(), semanticObject.getInstruction());
 		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     TfrInstruction returns TfrInstruction
+	 *
+	 * Constraint:
+	 *     (instruction='TFR' reg1=Register reg2=Register)
+	 * </pre>
+	 */
+	protected void sequence_TfrInstruction(ISerializationContext context, TfrInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG1) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG1));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG2) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG2));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getTfrInstructionAccess().getInstructionTFRKeyword_0_0(), semanticObject.getInstruction());
+		feeder.accept(grammarAccess.getTfrInstructionAccess().getReg1RegisterEnumRuleCall_2_0(), semanticObject.getReg1());
+		feeder.accept(grammarAccess.getTfrInstructionAccess().getReg2RegisterEnumRuleCall_4_0(), semanticObject.getReg2());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     TstInstruction returns TstInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='TSTA' | 
+	 *         instruction='TSTB' | 
+	 *         (instruction='TST' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_TstInstruction(ISerializationContext context, TstInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
