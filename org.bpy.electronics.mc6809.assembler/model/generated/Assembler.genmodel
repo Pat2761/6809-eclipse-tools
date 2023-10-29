@@ -45,6 +45,20 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/instruction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//InstructionLine/comment"/>
     </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//RtsInstruction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RtsInstruction/instruction"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//RtiInstruction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RtiInstruction/instruction"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//RorInstruction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RorInstruction/instruction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RorInstruction/operand"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//RolInstruction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RolInstruction/instruction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RolInstruction/operand"/>
+    </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//PuluInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PuluInstruction/instruction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PuluInstruction/operand"/>

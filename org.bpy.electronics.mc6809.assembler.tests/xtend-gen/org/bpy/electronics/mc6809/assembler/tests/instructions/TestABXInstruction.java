@@ -76,7 +76,7 @@ public class TestABXInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an RMB directive line", (_instruction instanceof AbxInstruction));
+      Assert.assertTrue("Must be an ABX directive line", (_instruction instanceof AbxInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -110,7 +110,7 @@ public class TestABXInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an RMB directive line", (_instruction instanceof AbxInstruction));
+      Assert.assertTrue("Must be an ABX directive line", (_instruction instanceof AbxInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -144,7 +144,7 @@ public class TestABXInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an RMB directive line", (_instruction instanceof AbxInstruction));
+      Assert.assertTrue("Must be an ABX directive line", (_instruction instanceof AbxInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -178,7 +178,7 @@ public class TestABXInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an RMB directive line", (_instruction instanceof AbxInstruction));
+      Assert.assertTrue("Must be an ABX directive line", (_instruction instanceof AbxInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

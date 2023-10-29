@@ -187,6 +187,10 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     instruction=PshuInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=PulsInstruction (ambiguity) EndOfLine (rule end)
 	 *     instruction=PuluInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=RolInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=RorInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=RtiInstruction (ambiguity) EndOfLine (rule end)
+	 *     instruction=RtsInstruction (ambiguity) EndOfLine (rule end)
 	 
 	 * </pre>
 	 */

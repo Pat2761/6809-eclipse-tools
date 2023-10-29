@@ -1389,17 +1389,97 @@ ruleInstructionLine returns [EObject current=null]
 					}
 				)
 			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRolInstructionParserRuleCall_2_53_0());
+					}
+					lv_instruction_55_0=ruleRolInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_55_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.RolInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRorInstructionParserRuleCall_2_54_0());
+					}
+					lv_instruction_56_0=ruleRorInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_56_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.RorInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRtiInstructionParserRuleCall_2_55_0());
+					}
+					lv_instruction_57_0=ruleRtiInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_57_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.RtiInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+			    |
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRtsInstructionParserRuleCall_2_56_0());
+					}
+					lv_instruction_58_0=ruleRtsInstruction
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
+						}
+						set(
+							$current,
+							"instruction",
+							lv_instruction_58_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.RtsInstruction");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
 		)
 		(
-			this_WS_55=RULE_WS
+			this_WS_59=RULE_WS
 			{
-				newLeafNode(this_WS_55, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_59, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_3_0());
 			}
 			(
 				(
-					lv_comment_56_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					lv_comment_60_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
 					{
-						newLeafNode(lv_comment_56_0, grammarAccess.getInstructionLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
+						newLeafNode(lv_comment_60_0, grammarAccess.getInstructionLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
 					}
 					{
 						if ($current==null) {
@@ -1408,16 +1488,16 @@ ruleInstructionLine returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"comment",
-							lv_comment_56_0,
+							lv_comment_60_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
 					}
 				)
 			)
 		)?
 		(
-			this_WS_57=RULE_WS
+			this_WS_61=RULE_WS
 			{
-				newLeafNode(this_WS_57, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_4());
+				newLeafNode(this_WS_61, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_4());
 			}
 		)?
 		{
@@ -1427,6 +1507,340 @@ ruleInstructionLine returns [EObject current=null]
 		{
 			afterParserOrEnumRuleCall();
 		}
+	)
+;
+
+// Entry rule entryRuleRtsInstruction
+entryRuleRtsInstruction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRtsInstructionRule()); }
+	iv_ruleRtsInstruction=ruleRtsInstruction
+	{ $current=$iv_ruleRtsInstruction.current; }
+	EOF;
+
+// Rule RtsInstruction
+ruleRtsInstruction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_instruction_0_0='RTS'
+			{
+				newLeafNode(lv_instruction_0_0, grammarAccess.getRtsInstructionAccess().getInstructionRTSKeyword_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getRtsInstructionRule());
+				}
+				setWithLastConsumed($current, "instruction", lv_instruction_0_0, "RTS");
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleRtiInstruction
+entryRuleRtiInstruction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRtiInstructionRule()); }
+	iv_ruleRtiInstruction=ruleRtiInstruction
+	{ $current=$iv_ruleRtiInstruction.current; }
+	EOF;
+
+// Rule RtiInstruction
+ruleRtiInstruction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_instruction_0_0='RTI'
+			{
+				newLeafNode(lv_instruction_0_0, grammarAccess.getRtiInstructionAccess().getInstructionRTIKeyword_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getRtiInstructionRule());
+				}
+				setWithLastConsumed($current, "instruction", lv_instruction_0_0, "RTI");
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleRorInstruction
+entryRuleRorInstruction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRorInstructionRule()); }
+	iv_ruleRorInstruction=ruleRorInstruction
+	{ $current=$iv_ruleRorInstruction.current; }
+	EOF;
+
+// Rule RorInstruction
+ruleRorInstruction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				(
+					lv_instruction_0_1='RORA'
+					{
+						newLeafNode(lv_instruction_0_1, grammarAccess.getRorInstructionAccess().getInstructionRORAKeyword_0_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRorInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_1, null);
+					}
+					    |
+					lv_instruction_0_2='RORB'
+					{
+						newLeafNode(lv_instruction_0_2, grammarAccess.getRorInstructionAccess().getInstructionRORBKeyword_0_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRorInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_2, null);
+					}
+				)
+			)
+		)
+		    |
+		(
+			(
+				(
+					lv_instruction_1_0='ROR'
+					{
+						newLeafNode(lv_instruction_1_0, grammarAccess.getRorInstructionAccess().getInstructionRORKeyword_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRorInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_1_0, "ROR");
+					}
+				)
+			)
+			this_WS_2=RULE_WS
+			{
+				newLeafNode(this_WS_2, grammarAccess.getRorInstructionAccess().getWSTerminalRuleCall_1_1());
+			}
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getRorInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0());
+						}
+						lv_operand_3_1=ruleDirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getRorInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_1,
+								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getRorInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1());
+						}
+						lv_operand_3_2=ruleIndexedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getRorInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_2,
+								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getRorInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2());
+						}
+						lv_operand_3_3=ruleExtendedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getRorInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_3,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getRorInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3());
+						}
+						lv_operand_3_4=ruleExtendedIndirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getRorInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_4,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleRolInstruction
+entryRuleRolInstruction returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getRolInstructionRule()); }
+	iv_ruleRolInstruction=ruleRolInstruction
+	{ $current=$iv_ruleRolInstruction.current; }
+	EOF;
+
+// Rule RolInstruction
+ruleRolInstruction returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				(
+					lv_instruction_0_1='ROLA'
+					{
+						newLeafNode(lv_instruction_0_1, grammarAccess.getRolInstructionAccess().getInstructionROLAKeyword_0_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRolInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_1, null);
+					}
+					    |
+					lv_instruction_0_2='ROLB'
+					{
+						newLeafNode(lv_instruction_0_2, grammarAccess.getRolInstructionAccess().getInstructionROLBKeyword_0_0_1());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRolInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_0_2, null);
+					}
+				)
+			)
+		)
+		    |
+		(
+			(
+				(
+					lv_instruction_1_0='ROL'
+					{
+						newLeafNode(lv_instruction_1_0, grammarAccess.getRolInstructionAccess().getInstructionROLKeyword_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRolInstructionRule());
+						}
+						setWithLastConsumed($current, "instruction", lv_instruction_1_0, "ROL");
+					}
+				)
+			)
+			this_WS_2=RULE_WS
+			{
+				newLeafNode(this_WS_2, grammarAccess.getRolInstructionAccess().getWSTerminalRuleCall_1_1());
+			}
+			(
+				(
+					(
+						{
+							newCompositeNode(grammarAccess.getRolInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0());
+						}
+						lv_operand_3_1=ruleDirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getRolInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_1,
+								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getRolInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1());
+						}
+						lv_operand_3_2=ruleIndexedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getRolInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_2,
+								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getRolInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2());
+						}
+						lv_operand_3_3=ruleExtendedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getRolInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_3,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getRolInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3());
+						}
+						lv_operand_3_4=ruleExtendedIndirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getRolInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_4,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+					)
+				)
+			)
+		)
 	)
 ;
 

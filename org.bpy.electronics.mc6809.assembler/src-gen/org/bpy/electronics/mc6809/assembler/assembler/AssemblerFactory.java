@@ -69,6 +69,42 @@ public interface AssemblerFactory extends EFactory
   InstructionLine createInstructionLine();
 
   /**
+   * Returns a new object of class '<em>Rts Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rts Instruction</em>'.
+   * @generated
+   */
+  RtsInstruction createRtsInstruction();
+
+  /**
+   * Returns a new object of class '<em>Rti Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rti Instruction</em>'.
+   * @generated
+   */
+  RtiInstruction createRtiInstruction();
+
+  /**
+   * Returns a new object of class '<em>Ror Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Ror Instruction</em>'.
+   * @generated
+   */
+  RorInstruction createRorInstruction();
+
+  /**
+   * Returns a new object of class '<em>Rol Instruction</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Rol Instruction</em>'.
+   * @generated
+   */
+  RolInstruction createRolInstruction();
+
+  /**
    * Returns a new object of class '<em>Pulu Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

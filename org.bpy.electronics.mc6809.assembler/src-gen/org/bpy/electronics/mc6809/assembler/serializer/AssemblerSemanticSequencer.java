@@ -110,6 +110,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
@@ -479,6 +483,18 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.RMB_DIRECTIVE:
 				sequence_RmbDirective(context, (RmbDirective) semanticObject); 
+				return; 
+			case AssemblerPackage.ROL_INSTRUCTION:
+				sequence_RolInstruction(context, (RolInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.ROR_INSTRUCTION:
+				sequence_RorInstruction(context, (RorInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.RTI_INSTRUCTION:
+				sequence_RtiInstruction(context, (RtiInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.RTS_INSTRUCTION:
+				sequence_RtsInstruction(context, (RtsInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.SET_DIRECTIVE:
 				sequence_SetDirective(context, (SetDirective) semanticObject); 
@@ -1819,7 +1835,11 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=PshsInstruction | 
 	 *             instruction=PshuInstruction | 
 	 *             instruction=PulsInstruction | 
-	 *             instruction=PuluInstruction
+	 *             instruction=PuluInstruction | 
+	 *             instruction=RolInstruction | 
+	 *             instruction=RorInstruction | 
+	 *             instruction=RtiInstruction | 
+	 *             instruction=RtsInstruction
 	 *         ) 
 	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
 	 *     )
@@ -2592,6 +2612,82 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_RmbDirective(ISerializationContext context, RmbDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     RolInstruction returns RolInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='ROLA' | 
+	 *         instruction='ROLB' | 
+	 *         (instruction='ROL' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_RolInstruction(ISerializationContext context, RolInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     RorInstruction returns RorInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='RORA' | 
+	 *         instruction='RORB' | 
+	 *         (instruction='ROR' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_RorInstruction(ISerializationContext context, RorInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     RtiInstruction returns RtiInstruction
+	 *
+	 * Constraint:
+	 *     instruction='RTI'
+	 * </pre>
+	 */
+	protected void sequence_RtiInstruction(ISerializationContext context, RtiInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RTI_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RTI_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRtiInstructionAccess().getInstructionRTIKeyword_0(), semanticObject.getInstruction());
+		feeder.finish();
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     RtsInstruction returns RtsInstruction
+	 *
+	 * Constraint:
+	 *     instruction='RTS'
+	 * </pre>
+	 */
+	protected void sequence_RtsInstruction(ISerializationContext context, RtsInstruction semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RTS_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RTS_INSTRUCTION__INSTRUCTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getRtsInstructionAccess().getInstructionRTSKeyword_0(), semanticObject.getInstruction());
+		feeder.finish();
 	}
 	
 	

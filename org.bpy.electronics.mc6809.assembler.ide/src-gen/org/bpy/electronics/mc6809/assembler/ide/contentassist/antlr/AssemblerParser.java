@@ -33,6 +33,12 @@ public class AssemblerParser extends AbstractContentAssistParser {
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, AssemblerGrammarAccess grammarAccess) {
 			builder.put(grammarAccess.getSourceLineAccess().getAlternatives(), "rule__SourceLine__Alternatives");
 			builder.put(grammarAccess.getInstructionLineAccess().getAlternatives_2(), "rule__InstructionLine__Alternatives_2");
+			builder.put(grammarAccess.getRorInstructionAccess().getAlternatives(), "rule__RorInstruction__Alternatives");
+			builder.put(grammarAccess.getRorInstructionAccess().getInstructionAlternatives_0_0(), "rule__RorInstruction__InstructionAlternatives_0_0");
+			builder.put(grammarAccess.getRorInstructionAccess().getOperandAlternatives_1_2_0(), "rule__RorInstruction__OperandAlternatives_1_2_0");
+			builder.put(grammarAccess.getRolInstructionAccess().getAlternatives(), "rule__RolInstruction__Alternatives");
+			builder.put(grammarAccess.getRolInstructionAccess().getInstructionAlternatives_0_0(), "rule__RolInstruction__InstructionAlternatives_0_0");
+			builder.put(grammarAccess.getRolInstructionAccess().getOperandAlternatives_1_2_0(), "rule__RolInstruction__OperandAlternatives_1_2_0");
 			builder.put(grammarAccess.getPuluInstructionAccess().getAlternatives_2(), "rule__PuluInstruction__Alternatives_2");
 			builder.put(grammarAccess.getPulsInstructionAccess().getAlternatives_2(), "rule__PulsInstruction__Alternatives_2");
 			builder.put(grammarAccess.getPshuInstructionAccess().getAlternatives_2(), "rule__PshuInstruction__Alternatives_2");
@@ -138,6 +144,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getCommentLineAccess().getGroup(), "rule__CommentLine__Group__0");
 			builder.put(grammarAccess.getInstructionLineAccess().getGroup(), "rule__InstructionLine__Group__0");
 			builder.put(grammarAccess.getInstructionLineAccess().getGroup_3(), "rule__InstructionLine__Group_3__0");
+			builder.put(grammarAccess.getRorInstructionAccess().getGroup_1(), "rule__RorInstruction__Group_1__0");
+			builder.put(grammarAccess.getRolInstructionAccess().getGroup_1(), "rule__RolInstruction__Group_1__0");
 			builder.put(grammarAccess.getPuluInstructionAccess().getGroup(), "rule__PuluInstruction__Group__0");
 			builder.put(grammarAccess.getPuluInstructionAccess().getGroup_2_1(), "rule__PuluInstruction__Group_2_1__0");
 			builder.put(grammarAccess.getPuluInstructionAccess().getGroup_2_1_1(), "rule__PuluInstruction__Group_2_1_1__0");
@@ -334,7 +342,19 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_50(), "rule__InstructionLine__InstructionAssignment_2_50");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_51(), "rule__InstructionLine__InstructionAssignment_2_51");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_52(), "rule__InstructionLine__InstructionAssignment_2_52");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_53(), "rule__InstructionLine__InstructionAssignment_2_53");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_54(), "rule__InstructionLine__InstructionAssignment_2_54");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_55(), "rule__InstructionLine__InstructionAssignment_2_55");
+			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_56(), "rule__InstructionLine__InstructionAssignment_2_56");
 			builder.put(grammarAccess.getInstructionLineAccess().getCommentAssignment_3_1(), "rule__InstructionLine__CommentAssignment_3_1");
+			builder.put(grammarAccess.getRtsInstructionAccess().getInstructionAssignment(), "rule__RtsInstruction__InstructionAssignment");
+			builder.put(grammarAccess.getRtiInstructionAccess().getInstructionAssignment(), "rule__RtiInstruction__InstructionAssignment");
+			builder.put(grammarAccess.getRorInstructionAccess().getInstructionAssignment_0(), "rule__RorInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getRorInstructionAccess().getInstructionAssignment_1_0(), "rule__RorInstruction__InstructionAssignment_1_0");
+			builder.put(grammarAccess.getRorInstructionAccess().getOperandAssignment_1_2(), "rule__RorInstruction__OperandAssignment_1_2");
+			builder.put(grammarAccess.getRolInstructionAccess().getInstructionAssignment_0(), "rule__RolInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getRolInstructionAccess().getInstructionAssignment_1_0(), "rule__RolInstruction__InstructionAssignment_1_0");
+			builder.put(grammarAccess.getRolInstructionAccess().getOperandAssignment_1_2(), "rule__RolInstruction__OperandAssignment_1_2");
 			builder.put(grammarAccess.getPuluInstructionAccess().getInstructionAssignment_0(), "rule__PuluInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getPuluInstructionAccess().getOperandAssignment_2_0(), "rule__PuluInstruction__OperandAssignment_2_0");
 			builder.put(grammarAccess.getPuluInstructionAccess().getRegistersAssignment_2_1_0(), "rule__PuluInstruction__RegistersAssignment_2_1_0");

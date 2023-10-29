@@ -71,6 +71,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.INSTRUCTION_LINE: return createInstructionLine();
+      case AssemblerPackage.RTS_INSTRUCTION: return createRtsInstruction();
+      case AssemblerPackage.RTI_INSTRUCTION: return createRtiInstruction();
+      case AssemblerPackage.ROR_INSTRUCTION: return createRorInstruction();
+      case AssemblerPackage.ROL_INSTRUCTION: return createRolInstruction();
       case AssemblerPackage.PULU_INSTRUCTION: return createPuluInstruction();
       case AssemblerPackage.PULS_INSTRUCTION: return createPulsInstruction();
       case AssemblerPackage.PSHU_INSTRUCTION: return createPshuInstruction();
@@ -277,6 +281,54 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     InstructionLineImpl instructionLine = new InstructionLineImpl();
     return instructionLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RtsInstruction createRtsInstruction()
+  {
+    RtsInstructionImpl rtsInstruction = new RtsInstructionImpl();
+    return rtsInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RtiInstruction createRtiInstruction()
+  {
+    RtiInstructionImpl rtiInstruction = new RtiInstructionImpl();
+    return rtiInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RorInstruction createRorInstruction()
+  {
+    RorInstructionImpl rorInstruction = new RorInstructionImpl();
+    return rorInstruction;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public RolInstruction createRolInstruction()
+  {
+    RolInstructionImpl rolInstruction = new RolInstructionImpl();
+    return rolInstruction;
   }
 
   /**

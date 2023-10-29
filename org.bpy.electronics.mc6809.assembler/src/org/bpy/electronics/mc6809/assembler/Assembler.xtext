@@ -115,10 +115,123 @@ InstructionLine:
 		instruction = PshsInstruction			|			   
 		instruction = PshuInstruction			|		   
 		instruction = PulsInstruction			|			   
-		instruction = PuluInstruction			   
+		instruction = PuluInstruction			|			   
+		instruction = RolInstruction			|			   
+		instruction = RorInstruction			|			   
+		instruction = RtiInstruction			|			   
+		instruction = RtsInstruction			   
 	)  
 	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine	
+;
+
+/*
+ * RTS
+ * 
+ * Return from Subroutine
+ * Source Form		: RTS
+ * Operation		: PCH'—(SP), SP'*-SP + 1
+					  PCL'*-(SP), SP'-SP+1
+ * Condition Codes	: Not affected.
+ * Description		: Program control is returned from the subroutine to the calling program. The return address is pulled from the stack.
+ * Addressing Mode	: Inherent
+ */
+RtsInstruction:
+	instruction = 'RTS'
+;
+
+/*
+ * RTI
+ * 
+ * Return from Interrupt
+ * Source Form		: RTI
+ * Operation		: OCR'— (SP),SP'—SP + 1, then
+ *						IFF COR bit E is set, then: 	ACCA'-(SP), SP'*-SP + 1 
+ *														ACCB'*-(SP), SP'-SP + 1
+ *														DPR' -(SP), SP'-SP + 1
+ *														IXH' —(SP), SP'*-SP + 1
+ *														IXL' —(SP), SP'— SP + 1
+ *														lYH' —(SP), SP'*-SP + 1
+ *														lYL' «-(SP), SP'— SP + 1
+ *														USH' —(SP), SP'— SP + 1
+ *														USL' *-(SP), SP'*-SP + 1
+ *														PCH' ^(SP), SP'— SP + 1
+ *													 	PCL' *-(SP), SP'*-SP + 1
+ *						IFF CCR bit E is clear, then: 	PCH' ^(SP), SP'— SP + 1
+ *														PCL' *-(SP), SP'— SP + 1
+ * Condition Codes	: Recovered from the stack
+ * Description		: The saved machine state is recovered from the hardware stack and control is returned to the Interrupted program. If the recovered E (entire) bit is clear, 
+ *                    it indicates that only a subset of the machine state was saved (return address and condition codes) and only that subset is recovered.
+ * Addressing Mode	: Inherent
+ */
+RtiInstruction:
+	instruction = 'RTI'
+;
+
+/*
+ * ROR
+ * 
+ * Rotate Right
+ * Source Form		: ROR Q, RORA; RORB 
+ * Operation		: 
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Not affected.
+ * 					  C - Loaded with bit zero of the previous operand.
+ * Description		: Rotates all bits of the operand one place right through the C (carry) bit. This is a 9-bit rotation.
+ * Addressing Mode	: Inherent
+ *                    Extended
+ *                    Direct
+ *                    Indexed
+ */
+RorInstruction:
+    (
+	   instruction = ('RORA' | 'RORB')
+	)
+	|  
+	(
+	 	instruction = ('ROR')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
+;
+
+/*
+ * ROL
+ * 
+ * Rotate Left
+ * Source Form		: ROL Q, ROLA; ROLB 
+ * Operation		: 
+ * Condition Codes	: H - Not affected.
+ * 					  N - Set if the result is negative; cleared otherwise.
+ * 					  Z - Set if the result Is zero; cleared otherwise,
+ *                    V - Loaded with the result of the exclusive OR of bits six and seven of the original operand.
+ * 					  C - Loaded with bit seven of the original operand.
+ * Description		: Rotates all bits of the operand one place left through the (carry) bit. This is a 9-bit rotation.
+ * Addressing Mode	: Inherent
+ *                    Extended
+ *                    Direct
+ *                    Indexed
+ */
+RolInstruction:
+    (
+	   instruction = ('ROLA' | 'ROLB')
+	)
+	|  
+	(
+	 	instruction = ('ROL')
+		WS operand = ( 
+			DirectOperand  |
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
+		)
+	)   
 ;
 
 /*

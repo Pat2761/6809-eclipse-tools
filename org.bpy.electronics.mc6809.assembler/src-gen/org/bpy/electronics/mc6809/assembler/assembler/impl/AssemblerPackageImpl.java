@@ -111,6 +111,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
@@ -168,6 +172,34 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass instructionLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass rtsInstructionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass rtiInstructionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass rorInstructionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass rolInstructionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1110,6 +1142,116 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EAttribute getInstructionLine_Comment()
   {
     return (EAttribute)instructionLineEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRtsInstruction()
+  {
+    return rtsInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRtsInstruction_Instruction()
+  {
+    return (EAttribute)rtsInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRtiInstruction()
+  {
+    return rtiInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRtiInstruction_Instruction()
+  {
+    return (EAttribute)rtiInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRorInstruction()
+  {
+    return rorInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRorInstruction_Instruction()
+  {
+    return (EAttribute)rorInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRorInstruction_Operand()
+  {
+    return (EReference)rorInstructionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getRolInstruction()
+  {
+    return rolInstructionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getRolInstruction_Instruction()
+  {
+    return (EAttribute)rolInstructionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRolInstruction_Operand()
+  {
+    return (EReference)rolInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -4636,6 +4778,20 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(instructionLineEClass, INSTRUCTION_LINE__INSTRUCTION);
     createEAttribute(instructionLineEClass, INSTRUCTION_LINE__COMMENT);
 
+    rtsInstructionEClass = createEClass(RTS_INSTRUCTION);
+    createEAttribute(rtsInstructionEClass, RTS_INSTRUCTION__INSTRUCTION);
+
+    rtiInstructionEClass = createEClass(RTI_INSTRUCTION);
+    createEAttribute(rtiInstructionEClass, RTI_INSTRUCTION__INSTRUCTION);
+
+    rorInstructionEClass = createEClass(ROR_INSTRUCTION);
+    createEAttribute(rorInstructionEClass, ROR_INSTRUCTION__INSTRUCTION);
+    createEReference(rorInstructionEClass, ROR_INSTRUCTION__OPERAND);
+
+    rolInstructionEClass = createEClass(ROL_INSTRUCTION);
+    createEAttribute(rolInstructionEClass, ROL_INSTRUCTION__INSTRUCTION);
+    createEReference(rolInstructionEClass, ROL_INSTRUCTION__OPERAND);
+
     puluInstructionEClass = createEClass(PULU_INSTRUCTION);
     createEAttribute(puluInstructionEClass, PULU_INSTRUCTION__INSTRUCTION);
     createEReference(puluInstructionEClass, PULU_INSTRUCTION__OPERAND);
@@ -5118,6 +5274,20 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getInstructionLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstructionLine_Instruction(), ecorePackage.getEObject(), null, "instruction", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getInstructionLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(rtsInstructionEClass, RtsInstruction.class, "RtsInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRtsInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, RtsInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(rtiInstructionEClass, RtiInstruction.class, "RtiInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRtiInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, RtiInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(rorInstructionEClass, RorInstruction.class, "RorInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRorInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, RorInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRorInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, RorInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(rolInstructionEClass, RolInstruction.class, "RolInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRolInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, RolInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRolInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, RolInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(puluInstructionEClass, PuluInstruction.class, "PuluInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getPuluInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, PuluInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -57,7 +57,7 @@ class TestABXInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RMB directive line", instructionLine.instruction instanceof AbxInstruction)
+		Assert.assertTrue("Must be an ABX directive line", instructionLine.instruction instanceof AbxInstruction)
 	}
 	
 	/**
@@ -79,7 +79,7 @@ class TestABXInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RMB directive line", instructionLine.instruction instanceof AbxInstruction)
+		Assert.assertTrue("Must be an ABX directive line", instructionLine.instruction instanceof AbxInstruction)
 	}
 	
 	/**
@@ -101,7 +101,7 @@ class TestABXInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RMB directive line", instructionLine.instruction instanceof AbxInstruction)
+		Assert.assertTrue("Must be an ABX directive line", instructionLine.instruction instanceof AbxInstruction)
 	}
 	
 	/**
@@ -123,7 +123,7 @@ class TestABXInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RMB directive line", instructionLine.instruction instanceof AbxInstruction)
+		Assert.assertTrue("Must be an ABX directive line", instructionLine.instruction instanceof AbxInstruction)
 	}
 	
 }

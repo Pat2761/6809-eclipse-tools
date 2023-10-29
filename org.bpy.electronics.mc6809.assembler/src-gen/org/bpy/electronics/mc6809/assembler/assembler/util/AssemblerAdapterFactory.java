@@ -101,6 +101,26 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createInstructionLineAdapter();
       }
       @Override
+      public Adapter caseRtsInstruction(RtsInstruction object)
+      {
+        return createRtsInstructionAdapter();
+      }
+      @Override
+      public Adapter caseRtiInstruction(RtiInstruction object)
+      {
+        return createRtiInstructionAdapter();
+      }
+      @Override
+      public Adapter caseRorInstruction(RorInstruction object)
+      {
+        return createRorInstructionAdapter();
+      }
+      @Override
+      public Adapter caseRolInstruction(RolInstruction object)
+      {
+        return createRolInstructionAdapter();
+      }
+      @Override
       public Adapter casePuluInstruction(PuluInstruction object)
       {
         return createPuluInstructionAdapter();
@@ -718,6 +738,66 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInstructionLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction <em>Rts Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction
+   * @generated
+   */
+  public Adapter createRtsInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction <em>Rti Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction
+   * @generated
+   */
+  public Adapter createRtiInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RorInstruction <em>Ror Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RorInstruction
+   * @generated
+   */
+  public Adapter createRorInstructionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.RolInstruction <em>Rol Instruction</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RolInstruction
+   * @generated
+   */
+  public Adapter createRolInstructionAdapter()
   {
     return null;
   }

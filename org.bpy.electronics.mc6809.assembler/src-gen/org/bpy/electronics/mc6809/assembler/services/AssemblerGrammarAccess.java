@@ -273,6 +273,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cInstructionPulsInstructionParserRuleCall_2_51_0 = (RuleCall)cInstructionAssignment_2_51.eContents().get(0);
 		private final Assignment cInstructionAssignment_2_52 = (Assignment)cAlternatives_2.eContents().get(52);
 		private final RuleCall cInstructionPuluInstructionParserRuleCall_2_52_0 = (RuleCall)cInstructionAssignment_2_52.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_53 = (Assignment)cAlternatives_2.eContents().get(53);
+		private final RuleCall cInstructionRolInstructionParserRuleCall_2_53_0 = (RuleCall)cInstructionAssignment_2_53.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_54 = (Assignment)cAlternatives_2.eContents().get(54);
+		private final RuleCall cInstructionRorInstructionParserRuleCall_2_54_0 = (RuleCall)cInstructionAssignment_2_54.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_55 = (Assignment)cAlternatives_2.eContents().get(55);
+		private final RuleCall cInstructionRtiInstructionParserRuleCall_2_55_0 = (RuleCall)cInstructionAssignment_2_55.eContents().get(0);
+		private final Assignment cInstructionAssignment_2_56 = (Assignment)cAlternatives_2.eContents().get(56);
+		private final RuleCall cInstructionRtsInstructionParserRuleCall_2_56_0 = (RuleCall)cInstructionAssignment_2_56.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
 		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -338,7 +346,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        instruction = PshsInstruction            |
 		//        instruction = PshuInstruction            |
 		//        instruction = PulsInstruction            |
-		//        instruction = PuluInstruction
+		//        instruction = PuluInstruction            |
+		//        instruction = RolInstruction            |
+		//        instruction = RorInstruction            |
+		//        instruction = RtiInstruction            |
+		//        instruction = RtsInstruction
 		//    )
 		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    WS? EndOfLine
@@ -399,7 +411,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = PshsInstruction            |
 		//    instruction = PshuInstruction            |
 		//    instruction = PulsInstruction            |
-		//    instruction = PuluInstruction
+		//    instruction = PuluInstruction            |
+		//    instruction = RolInstruction            |
+		//    instruction = RorInstruction            |
+		//    instruction = RtiInstruction            |
+		//    instruction = RtsInstruction
 		//)
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//WS? EndOfLine
@@ -467,7 +483,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = PshsInstruction            |
 		//    instruction = PshuInstruction            |
 		//    instruction = PulsInstruction            |
-		//    instruction = PuluInstruction
+		//    instruction = PuluInstruction            |
+		//    instruction = RolInstruction            |
+		//    instruction = RorInstruction            |
+		//    instruction = RtiInstruction            |
+		//    instruction = RtsInstruction
 		//)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
@@ -789,6 +809,30 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//PuluInstruction
 		public RuleCall getInstructionPuluInstructionParserRuleCall_2_52_0() { return cInstructionPuluInstructionParserRuleCall_2_52_0; }
 		
+		//instruction = RolInstruction
+		public Assignment getInstructionAssignment_2_53() { return cInstructionAssignment_2_53; }
+		
+		//RolInstruction
+		public RuleCall getInstructionRolInstructionParserRuleCall_2_53_0() { return cInstructionRolInstructionParserRuleCall_2_53_0; }
+		
+		//instruction = RorInstruction
+		public Assignment getInstructionAssignment_2_54() { return cInstructionAssignment_2_54; }
+		
+		//RorInstruction
+		public RuleCall getInstructionRorInstructionParserRuleCall_2_54_0() { return cInstructionRorInstructionParserRuleCall_2_54_0; }
+		
+		//instruction = RtiInstruction
+		public Assignment getInstructionAssignment_2_55() { return cInstructionAssignment_2_55; }
+		
+		//RtiInstruction
+		public RuleCall getInstructionRtiInstructionParserRuleCall_2_55_0() { return cInstructionRtiInstructionParserRuleCall_2_55_0; }
+		
+		//instruction = RtsInstruction
+		public Assignment getInstructionAssignment_2_56() { return cInstructionAssignment_2_56; }
+		
+		//RtsInstruction
+		public RuleCall getInstructionRtsInstructionParserRuleCall_2_56_0() { return cInstructionRtsInstructionParserRuleCall_2_56_0; }
+		
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_3() { return cGroup_3; }
 		
@@ -806,6 +850,331 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class RtsInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RtsInstruction");
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionRTSKeyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
+		
+		///*
+		// * RTS
+		// *
+		// * Return from Subroutine
+		// * Source Form        : RTS
+		// * Operation        : PCH'—(SP), SP'*-SP + 1
+		//                      PCL'*-(SP), SP'-SP+1
+		// * Condition Codes    : Not affected.
+		// * Description        : Program control is returned from the subroutine to the calling program. The return address is pulled from the stack.
+		// * Addressing Mode    : Inherent
+		// */
+		//RtsInstruction:
+		//    instruction = 'RTS'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'RTS'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
+		
+		//'RTS'
+		public Keyword getInstructionRTSKeyword_0() { return cInstructionRTSKeyword_0; }
+	}
+	public class RtiInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RtiInstruction");
+		private final Assignment cInstructionAssignment = (Assignment)rule.eContents().get(1);
+		private final Keyword cInstructionRTIKeyword_0 = (Keyword)cInstructionAssignment.eContents().get(0);
+		
+		///*
+		// * RTI
+		// *
+		// * Return from Interrupt
+		// * Source Form        : RTI
+		// * Operation        : OCR'— (SP),SP'—SP + 1, then
+		// *                        IFF COR bit E is set, then:     ACCA'-(SP), SP'*-SP + 1
+		// *                                                        ACCB'*-(SP), SP'-SP + 1
+		// *                                                        DPR' -(SP), SP'-SP + 1
+		// *                                                        IXH' —(SP), SP'*-SP + 1
+		// *                                                        IXL' —(SP), SP'— SP + 1
+		// *                                                        lYH' —(SP), SP'*-SP + 1
+		// *                                                        lYL' «-(SP), SP'— SP + 1
+		// *                                                        USH' —(SP), SP'— SP + 1
+		// *                                                        USL' *-(SP), SP'*-SP + 1
+		// *                                                        PCH' ^(SP), SP'— SP + 1
+		// *                                                         PCL' *-(SP), SP'*-SP + 1
+		// *                        IFF CCR bit E is clear, then:     PCH' ^(SP), SP'— SP + 1
+		// *                                                        PCL' *-(SP), SP'— SP + 1
+		// * Condition Codes    : Recovered from the stack
+		// * Description        : The saved machine state is recovered from the hardware stack and control is returned to the Interrupted program. If the recovered E (entire) bit is clear,
+		// *                    it indicates that only a subset of the machine state was saved (return address and condition codes) and only that subset is recovered.
+		// * Addressing Mode    : Inherent
+		// */
+		//RtiInstruction:
+		//    instruction = 'RTI'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//instruction = 'RTI'
+		public Assignment getInstructionAssignment() { return cInstructionAssignment; }
+		
+		//'RTI'
+		public Keyword getInstructionRTIKeyword_0() { return cInstructionRTIKeyword_0; }
+	}
+	public class RorInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RorInstruction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionRORAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionRORBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionRORKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		
+		///*
+		// * ROR
+		// *
+		// * Rotate Right
+		// * Source Form        : ROR Q, RORA; RORB
+		// * Operation        :
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Not affected.
+		// *                       C - Loaded with bit zero of the previous operand.
+		// * Description        : Rotates all bits of the operand one place right through the C (carry) bit. This is a 9-bit rotation.
+		// * Addressing Mode    : Inherent
+		// *                    Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//RorInstruction:
+		//    (
+		//       instruction = ('RORA' | 'RORB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('ROR')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(
+		//   instruction = ('RORA' | 'RORB')
+		//)
+		//|
+		//(
+		//     instruction = ('ROR')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//   instruction = ('RORA' | 'RORB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('RORA' | 'RORB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'RORA'
+		public Keyword getInstructionRORAKeyword_0_0_0() { return cInstructionRORAKeyword_0_0_0; }
+		
+		//'RORB'
+		public Keyword getInstructionRORBKeyword_0_0_1() { return cInstructionRORBKeyword_0_0_1; }
+		
+		//(
+		//     instruction = ('ROR')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//instruction = ('ROR')
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
+		
+		//('ROR')
+		public Keyword getInstructionRORKeyword_1_0_0() { return cInstructionRORKeyword_1_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
+		
+		//operand = (
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//(
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
+	}
+	public class RolInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RolInstruction");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final Assignment cInstructionAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
+		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
+		private final Keyword cInstructionROLAKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
+		private final Keyword cInstructionROLBKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
+		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final Keyword cInstructionROLKeyword_1_0_0 = (Keyword)cInstructionAssignment_1_0.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
+		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
+		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		
+		///*
+		// * ROL
+		// *
+		// * Rotate Left
+		// * Source Form        : ROL Q, ROLA; ROLB
+		// * Operation        :
+		// * Condition Codes    : H - Not affected.
+		// *                       N - Set if the result is negative; cleared otherwise.
+		// *                       Z - Set if the result Is zero; cleared otherwise,
+		// *                    V - Loaded with the result of the exclusive OR of bits six and seven of the original operand.
+		// *                       C - Loaded with bit seven of the original operand.
+		// * Description        : Rotates all bits of the operand one place left through the (carry) bit. This is a 9-bit rotation.
+		// * Addressing Mode    : Inherent
+		// *                    Extended
+		// *                    Direct
+		// *                    Indexed
+		// */
+		//RolInstruction:
+		//    (
+		//       instruction = ('ROLA' | 'ROLB')
+		//    )
+		//    |
+		//    (
+		//         instruction = ('ROL')
+		//        WS operand = (
+		//            DirectOperand  |
+		//            IndexedOperand |
+		//            ExtendedOperand |
+		//            ExtendedIndirectOperand
+		//        )
+		//    )
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//(
+		//   instruction = ('ROLA' | 'ROLB')
+		//)
+		//|
+		//(
+		//     instruction = ('ROL')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//(
+		//   instruction = ('ROLA' | 'ROLB')
+		//)
+		public Assignment getInstructionAssignment_0() { return cInstructionAssignment_0; }
+		
+		//('ROLA' | 'ROLB')
+		public Alternatives getInstructionAlternatives_0_0() { return cInstructionAlternatives_0_0; }
+		
+		//'ROLA'
+		public Keyword getInstructionROLAKeyword_0_0_0() { return cInstructionROLAKeyword_0_0_0; }
+		
+		//'ROLB'
+		public Keyword getInstructionROLBKeyword_0_0_1() { return cInstructionROLBKeyword_0_0_1; }
+		
+		//(
+		//     instruction = ('ROL')
+		//    WS operand = (
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
+		//)
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//instruction = ('ROL')
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
+		
+		//('ROL')
+		public Keyword getInstructionROLKeyword_1_0_0() { return cInstructionROLKeyword_1_0_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
+		
+		//operand = (
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
+		
+		//(
+		//           DirectOperand  |
+		//           IndexedOperand |
+		//           ExtendedOperand |
+		//           ExtendedIndirectOperand
+		//       )
+		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
 	}
 	public class PuluInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.PuluInstruction");
@@ -8072,6 +8441,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final InstructionLineElements pInstructionLine;
+	private final RtsInstructionElements pRtsInstruction;
+	private final RtiInstructionElements pRtiInstruction;
+	private final RorInstructionElements pRorInstruction;
+	private final RolInstructionElements pRolInstruction;
 	private final PuluInstructionElements pPuluInstruction;
 	private final PulsInstructionElements pPulsInstruction;
 	private final PshuInstructionElements pPshuInstruction;
@@ -8202,6 +8575,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pInstructionLine = new InstructionLineElements();
+		this.pRtsInstruction = new RtsInstructionElements();
+		this.pRtiInstruction = new RtiInstructionElements();
+		this.pRorInstruction = new RorInstructionElements();
+		this.pRolInstruction = new RolInstructionElements();
 		this.pPuluInstruction = new PuluInstructionElements();
 		this.pPulsInstruction = new PulsInstructionElements();
 		this.pPshuInstruction = new PshuInstructionElements();
@@ -8467,7 +8844,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        instruction = PshsInstruction            |
 	//        instruction = PshuInstruction            |
 	//        instruction = PulsInstruction            |
-	//        instruction = PuluInstruction
+	//        instruction = PuluInstruction            |
+	//        instruction = RolInstruction            |
+	//        instruction = RorInstruction            |
+	//        instruction = RtiInstruction            |
+	//        instruction = RtsInstruction
 	//    )
 	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    WS? EndOfLine
@@ -8478,6 +8859,143 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getInstructionLineRule() {
 		return getInstructionLineAccess().getRule();
+	}
+	
+	///*
+	// * RTS
+	// *
+	// * Return from Subroutine
+	// * Source Form        : RTS
+	// * Operation        : PCH'—(SP), SP'*-SP + 1
+	//                      PCL'*-(SP), SP'-SP+1
+	// * Condition Codes    : Not affected.
+	// * Description        : Program control is returned from the subroutine to the calling program. The return address is pulled from the stack.
+	// * Addressing Mode    : Inherent
+	// */
+	//RtsInstruction:
+	//    instruction = 'RTS'
+	//;
+	public RtsInstructionElements getRtsInstructionAccess() {
+		return pRtsInstruction;
+	}
+	
+	public ParserRule getRtsInstructionRule() {
+		return getRtsInstructionAccess().getRule();
+	}
+	
+	///*
+	// * RTI
+	// *
+	// * Return from Interrupt
+	// * Source Form        : RTI
+	// * Operation        : OCR'— (SP),SP'—SP + 1, then
+	// *                        IFF COR bit E is set, then:     ACCA'-(SP), SP'*-SP + 1
+	// *                                                        ACCB'*-(SP), SP'-SP + 1
+	// *                                                        DPR' -(SP), SP'-SP + 1
+	// *                                                        IXH' —(SP), SP'*-SP + 1
+	// *                                                        IXL' —(SP), SP'— SP + 1
+	// *                                                        lYH' —(SP), SP'*-SP + 1
+	// *                                                        lYL' «-(SP), SP'— SP + 1
+	// *                                                        USH' —(SP), SP'— SP + 1
+	// *                                                        USL' *-(SP), SP'*-SP + 1
+	// *                                                        PCH' ^(SP), SP'— SP + 1
+	// *                                                         PCL' *-(SP), SP'*-SP + 1
+	// *                        IFF CCR bit E is clear, then:     PCH' ^(SP), SP'— SP + 1
+	// *                                                        PCL' *-(SP), SP'— SP + 1
+	// * Condition Codes    : Recovered from the stack
+	// * Description        : The saved machine state is recovered from the hardware stack and control is returned to the Interrupted program. If the recovered E (entire) bit is clear,
+	// *                    it indicates that only a subset of the machine state was saved (return address and condition codes) and only that subset is recovered.
+	// * Addressing Mode    : Inherent
+	// */
+	//RtiInstruction:
+	//    instruction = 'RTI'
+	//;
+	public RtiInstructionElements getRtiInstructionAccess() {
+		return pRtiInstruction;
+	}
+	
+	public ParserRule getRtiInstructionRule() {
+		return getRtiInstructionAccess().getRule();
+	}
+	
+	///*
+	// * ROR
+	// *
+	// * Rotate Right
+	// * Source Form        : ROR Q, RORA; RORB
+	// * Operation        :
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Not affected.
+	// *                       C - Loaded with bit zero of the previous operand.
+	// * Description        : Rotates all bits of the operand one place right through the C (carry) bit. This is a 9-bit rotation.
+	// * Addressing Mode    : Inherent
+	// *                    Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//RorInstruction:
+	//    (
+	//       instruction = ('RORA' | 'RORB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('ROR')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
+	//;
+	public RorInstructionElements getRorInstructionAccess() {
+		return pRorInstruction;
+	}
+	
+	public ParserRule getRorInstructionRule() {
+		return getRorInstructionAccess().getRule();
+	}
+	
+	///*
+	// * ROL
+	// *
+	// * Rotate Left
+	// * Source Form        : ROL Q, ROLA; ROLB
+	// * Operation        :
+	// * Condition Codes    : H - Not affected.
+	// *                       N - Set if the result is negative; cleared otherwise.
+	// *                       Z - Set if the result Is zero; cleared otherwise,
+	// *                    V - Loaded with the result of the exclusive OR of bits six and seven of the original operand.
+	// *                       C - Loaded with bit seven of the original operand.
+	// * Description        : Rotates all bits of the operand one place left through the (carry) bit. This is a 9-bit rotation.
+	// * Addressing Mode    : Inherent
+	// *                    Extended
+	// *                    Direct
+	// *                    Indexed
+	// */
+	//RolInstruction:
+	//    (
+	//       instruction = ('ROLA' | 'ROLB')
+	//    )
+	//    |
+	//    (
+	//         instruction = ('ROL')
+	//        WS operand = (
+	//            DirectOperand  |
+	//            IndexedOperand |
+	//            ExtendedOperand |
+	//            ExtendedIndirectOperand
+	//        )
+	//    )
+	//;
+	public RolInstructionElements getRolInstructionAccess() {
+		return pRolInstruction;
+	}
+	
+	public ParserRule getRolInstructionRule() {
+		return getRolInstructionAccess().getRule();
 	}
 	
 	///*
