@@ -2601,7 +2601,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     RelativeMode returns RelativeMode
 	 *
 	 * Constraint:
-	 *     ((isPcRelative='*' offset=Expression) | location=IdentifierValue)
+	 *     (isPcRelative?='*'? offset=Expression)
 	 * </pre>
 	 */
 	protected void sequence_RelativeMode(ISerializationContext context, RelativeMode semanticObject) {

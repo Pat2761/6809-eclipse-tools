@@ -39,7 +39,7 @@ class SorekSamples {
 	@Inject extension ValidationTestHelper
 	
 	/**
-	 * Check ABX with extra space
+	 * 
 	 */
 	@Test 
 	def void testSample173() {
@@ -114,4 +114,60 @@ class SorekSamples {
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 	}
+
+	@Test
+	def void checkProg1_A() {
+		val result = parseHelper.parse('''
+					ORG 		$0000 				; Début du programme
+					LDX 		#$0100 				; Début de table
+					LDA 		#$00 				; 1ere données $00
+		Boucle 		STA 		,X+ 				; Chargement et incrémentation du pointeur
+					CMPA 		#$FF 				; Dernière donnée = $FF alors fin de programme
+					BEQ 		Fin 				;
+					INCA 							; Incrémentation de la donnée
+					BRA 		Boucle 				;
+		Fin 		SWI 							;
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	}
+	@Test
+
+	def void checkProg1_B() {
+		val result = parseHelper.parse('''
+					ORG 		$0000 			; Début du programme
+					LDX 		#$0200 			; Début 1ere donnée négative
+					LDY 		#$0280 			; Début 1ere donnée positive
+					LDA 		#$FF 			; 1ere donnée négative $FF
+		BOUCLE 		STA 		,X+ 			; Chargement et incrémentation du pointeur X
+					CMPA 		#$80 			; Si donnée = $80 fin des données négatives
+					BEQ 		POSITIF 		;
+					DECA 						; Décrémentation de la donnée
+					BRA 		BOUCLE 			;
+					LDA 		#$00 			; 1ere donnée positive
+		BOUCLE1 	STA 		,Y+ 			; Chargement et incrémentation du pointeur
+					CMPA 		#$7F 			; Si donnée = $7F fin des données positives
+					BEQ 		FIN 			;
+					INCA 						; Incrémentation de la donnée
+					BRA 		BOUCLE1 		;
+		FIN 		SWI 						;
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	} 
+
+/* 
+	def void empty() {
+		val result = parseHelper.parse('''
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	} 
+*/
 }

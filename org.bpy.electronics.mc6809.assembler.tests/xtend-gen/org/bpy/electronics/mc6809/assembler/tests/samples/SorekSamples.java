@@ -44,9 +44,6 @@ public class SorekSamples {
   @Extension
   private ValidationTestHelper _validationTestHelper;
 
-  /**
-   * Check ABX with extra space
-   */
   @Test
   public void testSample173() {
     try {
@@ -218,6 +215,108 @@ public class SorekSamples {
       _builder.append("ERSCH \t\tSWI \t\t\t\t\t\t\t;");
       _builder.newLine();
       _builder.append("TMDCD \t\tSWI \t\t\t\t\t\t\t;");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  @Test
+  public void checkProg1_A() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\t\t\t");
+      _builder.append("ORG \t\t$0000 \t\t\t\t; Début du programme");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("LDX \t\t#$0100 \t\t\t\t; Début de table");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("LDA \t\t#$00 \t\t\t\t; 1ere données $00");
+      _builder.newLine();
+      _builder.append("Boucle \t\tSTA \t\t,X+ \t\t\t\t; Chargement et incrémentation du pointeur");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("CMPA \t\t#$FF \t\t\t\t; Dernière donnée = $FF alors fin de programme");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BEQ \t\tFin \t\t\t\t;");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("INCA \t\t\t\t\t\t\t; Incrémentation de la donnée");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BRA \t\tBoucle \t\t\t\t;");
+      _builder.newLine();
+      _builder.append("Fin \t\tSWI \t\t\t\t\t\t\t;");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  @Test
+  public void checkProg1_B() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\t\t\t");
+      _builder.append("ORG \t\t$0000 \t\t\t; Début du programme");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("LDX \t\t#$0200 \t\t\t; Début 1ere donnée négative");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("LDY \t\t#$0280 \t\t\t; Début 1ere donnée positive");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("LDA \t\t#$FF \t\t\t; 1ere donnée négative $FF");
+      _builder.newLine();
+      _builder.append("BOUCLE \t\tSTA \t\t,X+ \t\t\t; Chargement et incrémentation du pointeur X");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("CMPA \t\t#$80 \t\t\t; Si donnée = $80 fin des données négatives");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BEQ \t\tPOSITIF \t\t;");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("DECA \t\t\t\t\t\t; Décrémentation de la donnée");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BRA \t\tBOUCLE \t\t\t;");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("LDA \t\t#$00 \t\t\t; 1ere donnée positive");
+      _builder.newLine();
+      _builder.append("BOUCLE1 \tSTA \t\t,Y+ \t\t\t; Chargement et incrémentation du pointeur");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("CMPA \t\t#$7F \t\t\t; Si donnée = $7F fin des données positives");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BEQ \t\tFIN \t\t\t;");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("INCA \t\t\t\t\t\t; Incrémentation de la donnée");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BRA \t\tBOUCLE1 \t\t;");
+      _builder.newLine();
+      _builder.append("FIN \t\tSWI \t\t\t\t\t\t;");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);

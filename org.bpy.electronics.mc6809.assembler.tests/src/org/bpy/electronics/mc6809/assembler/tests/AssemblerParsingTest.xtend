@@ -105,6 +105,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWI3Instructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSYNCInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTFRInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTInstruction
+import org.bpy.electronics.mc6809.assembler.tests.samples.SorekSamples
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -196,10 +197,11 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTInstructio
 	 TestSWI3Instruction,
 	 TestSYNCInstruction,
 	 TestTFRInstruction,
-	 TestTSTInstruction
+	 TestTSTInstruction,
+	 
+	 /* Examples  */
+	 SorekSamples
 )
     
 class AssemblerParsingTest {
-
-	
 }

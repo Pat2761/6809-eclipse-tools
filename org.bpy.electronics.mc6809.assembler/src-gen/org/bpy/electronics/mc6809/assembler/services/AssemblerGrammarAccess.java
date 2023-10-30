@@ -7243,44 +7243,31 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	public class RelativeModeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RelativeMode");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
-		private final Assignment cIsPcRelativeAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
-		private final Keyword cIsPcRelativeAsteriskKeyword_0_0_0 = (Keyword)cIsPcRelativeAssignment_0_0.eContents().get(0);
-		private final Assignment cOffsetAssignment_0_1 = (Assignment)cGroup_0.eContents().get(1);
-		private final RuleCall cOffsetExpressionParserRuleCall_0_1_0 = (RuleCall)cOffsetAssignment_0_1.eContents().get(0);
-		private final Assignment cLocationAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
-		private final RuleCall cLocationIdentifierValueParserRuleCall_1_0 = (RuleCall)cLocationAssignment_1.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cIsPcRelativeAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cIsPcRelativeAsteriskKeyword_0_0 = (Keyword)cIsPcRelativeAssignment_0.eContents().get(0);
+		private final Assignment cOffsetAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cOffsetExpressionParserRuleCall_1_0 = (RuleCall)cOffsetAssignment_1.eContents().get(0);
 		
 		//RelativeMode:
-		//    (isPcRelative='*' offset=Expression) |
-		//    location=IdentifierValue ;
+		//    isPcRelative?='*'? offset=Expression
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(isPcRelative='*' offset=Expression) |
-		//location=IdentifierValue
-		public Alternatives getAlternatives() { return cAlternatives; }
+		//isPcRelative?='*'? offset=Expression
+		public Group getGroup() { return cGroup; }
 		
-		//(isPcRelative='*' offset=Expression)
-		public Group getGroup_0() { return cGroup_0; }
-		
-		//isPcRelative='*'
-		public Assignment getIsPcRelativeAssignment_0_0() { return cIsPcRelativeAssignment_0_0; }
+		//isPcRelative?='*'?
+		public Assignment getIsPcRelativeAssignment_0() { return cIsPcRelativeAssignment_0; }
 		
 		//'*'
-		public Keyword getIsPcRelativeAsteriskKeyword_0_0_0() { return cIsPcRelativeAsteriskKeyword_0_0_0; }
+		public Keyword getIsPcRelativeAsteriskKeyword_0_0() { return cIsPcRelativeAsteriskKeyword_0_0; }
 		
 		//offset=Expression
-		public Assignment getOffsetAssignment_0_1() { return cOffsetAssignment_0_1; }
+		public Assignment getOffsetAssignment_1() { return cOffsetAssignment_1; }
 		
 		//Expression
-		public RuleCall getOffsetExpressionParserRuleCall_0_1_0() { return cOffsetExpressionParserRuleCall_0_1_0; }
-		
-		//location=IdentifierValue
-		public Assignment getLocationAssignment_1() { return cLocationAssignment_1; }
-		
-		//IdentifierValue
-		public RuleCall getLocationIdentifierValueParserRuleCall_1_0() { return cLocationIdentifierValueParserRuleCall_1_0; }
+		public RuleCall getOffsetExpressionParserRuleCall_1_0() { return cOffsetExpressionParserRuleCall_1_0; }
 	}
 	public class DirectiveLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DirectiveLine");
@@ -12372,8 +12359,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//RelativeMode:
-	//    (isPcRelative='*' offset=Expression) |
-	//    location=IdentifierValue ;
+	//    isPcRelative?='*'? offset=Expression
+	//;
 	public RelativeModeElements getRelativeModeAccess() {
 		return pRelativeMode;
 	}

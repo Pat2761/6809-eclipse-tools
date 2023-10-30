@@ -9429,55 +9429,33 @@ ruleRelativeMode returns [EObject current=null]
 	(
 		(
 			(
-				(
-					lv_isPcRelative_0_0='*'
-					{
-						newLeafNode(lv_isPcRelative_0_0, grammarAccess.getRelativeModeAccess().getIsPcRelativeAsteriskKeyword_0_0_0());
+				lv_isPcRelative_0_0='*'
+				{
+					newLeafNode(lv_isPcRelative_0_0, grammarAccess.getRelativeModeAccess().getIsPcRelativeAsteriskKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRelativeModeRule());
 					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getRelativeModeRule());
-						}
-						setWithLastConsumed($current, "isPcRelative", lv_isPcRelative_0_0, "*");
-					}
-				)
+					setWithLastConsumed($current, "isPcRelative", lv_isPcRelative_0_0 != null, "*");
+				}
 			)
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getRelativeModeAccess().getOffsetExpressionParserRuleCall_0_1_0());
-					}
-					lv_offset_1_0=ruleExpression
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getRelativeModeRule());
-						}
-						set(
-							$current,
-							"offset",
-							lv_offset_1_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)
-		    |
+		)?
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRelativeModeAccess().getLocationIdentifierValueParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getRelativeModeAccess().getOffsetExpressionParserRuleCall_1_0());
 				}
-				lv_location_2_0=ruleIdentifierValue
+				lv_offset_1_0=ruleExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRelativeModeRule());
 					}
 					set(
 						$current,
-						"location",
-						lv_location_2_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+						"offset",
+						lv_offset_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 					afterParserOrEnumRuleCall();
 				}
 			)

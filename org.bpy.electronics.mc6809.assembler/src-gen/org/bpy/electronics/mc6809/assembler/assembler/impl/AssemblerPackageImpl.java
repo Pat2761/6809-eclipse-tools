@@ -3919,17 +3919,6 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getRelativeMode_Location()
-  {
-    return (EReference)relativeModeEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getDirectiveLine()
   {
     return directiveLineEClass;
@@ -5573,7 +5562,6 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     relativeModeEClass = createEClass(RELATIVE_MODE);
     createEAttribute(relativeModeEClass, RELATIVE_MODE__IS_PC_RELATIVE);
     createEReference(relativeModeEClass, RELATIVE_MODE__OFFSET);
-    createEReference(relativeModeEClass, RELATIVE_MODE__LOCATION);
 
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__NAME);
@@ -6114,9 +6102,8 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getRelatifToPCIndirectMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, RelatifToPCIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relativeModeEClass, RelativeMode.class, "RelativeMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getRelativeMode_IsPcRelative(), ecorePackage.getEString(), "isPcRelative", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getRelativeMode_IsPcRelative(), ecorePackage.getEBoolean(), "isPcRelative", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelativeMode_Offset(), this.getExpression(), null, "offset", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelativeMode_Location(), this.getIdentifierValue(), null, "location", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDirectiveLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

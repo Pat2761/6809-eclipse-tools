@@ -1960,8 +1960,8 @@ RelatifToPCIndirectMode:
 ;
 
 RelativeMode:
-	(isPcRelative='*' offset=Expression) |
-	location=IdentifierValue ;
+	isPcRelative?='*'? offset=Expression
+;
 
 /*
  * Definition of the list possible directives

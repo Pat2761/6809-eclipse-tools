@@ -5,7 +5,6 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
-import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,9 +24,8 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelativeModeImpl#getIsPcRelative <em>Is Pc Relative</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelativeModeImpl#isIsPcRelative <em>Is Pc Relative</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelativeModeImpl#getOffset <em>Offset</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelativeModeImpl#getLocation <em>Location</em>}</li>
  * </ul>
  *
  * @generated
@@ -35,24 +33,24 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class RelativeModeImpl extends MinimalEObjectImpl.Container implements RelativeMode
 {
   /**
-   * The default value of the '{@link #getIsPcRelative() <em>Is Pc Relative</em>}' attribute.
+   * The default value of the '{@link #isIsPcRelative() <em>Is Pc Relative</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIsPcRelative()
+   * @see #isIsPcRelative()
    * @generated
    * @ordered
    */
-  protected static final String IS_PC_RELATIVE_EDEFAULT = null;
+  protected static final boolean IS_PC_RELATIVE_EDEFAULT = false;
 
   /**
-   * The cached value of the '{@link #getIsPcRelative() <em>Is Pc Relative</em>}' attribute.
+   * The cached value of the '{@link #isIsPcRelative() <em>Is Pc Relative</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getIsPcRelative()
+   * @see #isIsPcRelative()
    * @generated
    * @ordered
    */
-  protected String isPcRelative = IS_PC_RELATIVE_EDEFAULT;
+  protected boolean isPcRelative = IS_PC_RELATIVE_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getOffset() <em>Offset</em>}' containment reference.
@@ -63,16 +61,6 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
    * @ordered
    */
   protected Expression offset;
-
-  /**
-   * The cached value of the '{@link #getLocation() <em>Location</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getLocation()
-   * @generated
-   * @ordered
-   */
-  protected IdentifierValue location;
 
   /**
    * <!-- begin-user-doc -->
@@ -101,7 +89,7 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    */
   @Override
-  public String getIsPcRelative()
+  public boolean isIsPcRelative()
   {
     return isPcRelative;
   }
@@ -112,9 +100,9 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    */
   @Override
-  public void setIsPcRelative(String newIsPcRelative)
+  public void setIsPcRelative(boolean newIsPcRelative)
   {
-    String oldIsPcRelative = isPcRelative;
+    boolean oldIsPcRelative = isPcRelative;
     isPcRelative = newIsPcRelative;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.RELATIVE_MODE__IS_PC_RELATIVE, oldIsPcRelative, isPcRelative));
@@ -176,64 +164,12 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    */
   @Override
-  public IdentifierValue getLocation()
-  {
-    return location;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetLocation(IdentifierValue newLocation, NotificationChain msgs)
-  {
-    IdentifierValue oldLocation = location;
-    location = newLocation;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.RELATIVE_MODE__LOCATION, oldLocation, newLocation);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setLocation(IdentifierValue newLocation)
-  {
-    if (newLocation != location)
-    {
-      NotificationChain msgs = null;
-      if (location != null)
-        msgs = ((InternalEObject)location).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.RELATIVE_MODE__LOCATION, null, msgs);
-      if (newLocation != null)
-        msgs = ((InternalEObject)newLocation).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.RELATIVE_MODE__LOCATION, null, msgs);
-      msgs = basicSetLocation(newLocation, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.RELATIVE_MODE__LOCATION, newLocation, newLocation));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
       case AssemblerPackage.RELATIVE_MODE__OFFSET:
         return basicSetOffset(null, msgs);
-      case AssemblerPackage.RELATIVE_MODE__LOCATION:
-        return basicSetLocation(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -249,11 +185,9 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
     switch (featureID)
     {
       case AssemblerPackage.RELATIVE_MODE__IS_PC_RELATIVE:
-        return getIsPcRelative();
+        return isIsPcRelative();
       case AssemblerPackage.RELATIVE_MODE__OFFSET:
         return getOffset();
-      case AssemblerPackage.RELATIVE_MODE__LOCATION:
-        return getLocation();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -269,13 +203,10 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
     switch (featureID)
     {
       case AssemblerPackage.RELATIVE_MODE__IS_PC_RELATIVE:
-        setIsPcRelative((String)newValue);
+        setIsPcRelative((Boolean)newValue);
         return;
       case AssemblerPackage.RELATIVE_MODE__OFFSET:
         setOffset((Expression)newValue);
-        return;
-      case AssemblerPackage.RELATIVE_MODE__LOCATION:
-        setLocation((IdentifierValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -297,9 +228,6 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
       case AssemblerPackage.RELATIVE_MODE__OFFSET:
         setOffset((Expression)null);
         return;
-      case AssemblerPackage.RELATIVE_MODE__LOCATION:
-        setLocation((IdentifierValue)null);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -315,11 +243,9 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
     switch (featureID)
     {
       case AssemblerPackage.RELATIVE_MODE__IS_PC_RELATIVE:
-        return IS_PC_RELATIVE_EDEFAULT == null ? isPcRelative != null : !IS_PC_RELATIVE_EDEFAULT.equals(isPcRelative);
+        return isPcRelative != IS_PC_RELATIVE_EDEFAULT;
       case AssemblerPackage.RELATIVE_MODE__OFFSET:
         return offset != null;
-      case AssemblerPackage.RELATIVE_MODE__LOCATION:
-        return location != null;
     }
     return super.eIsSet(featureID);
   }

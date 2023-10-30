@@ -14,9 +14,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getIsPcRelative <em>Is Pc Relative</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#isIsPcRelative <em>Is Pc Relative</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getOffset <em>Offset</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getLocation <em>Location</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getRelativeMode()
@@ -30,22 +29,22 @@ public interface RelativeMode extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Is Pc Relative</em>' attribute.
-   * @see #setIsPcRelative(String)
+   * @see #setIsPcRelative(boolean)
    * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getRelativeMode_IsPcRelative()
    * @model
    * @generated
    */
-  String getIsPcRelative();
+  boolean isIsPcRelative();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getIsPcRelative <em>Is Pc Relative</em>}' attribute.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#isIsPcRelative <em>Is Pc Relative</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Is Pc Relative</em>' attribute.
-   * @see #getIsPcRelative()
+   * @see #isIsPcRelative()
    * @generated
    */
-  void setIsPcRelative(String value);
+  void setIsPcRelative(boolean value);
 
   /**
    * Returns the value of the '<em><b>Offset</b></em>' containment reference.
@@ -68,27 +67,5 @@ public interface RelativeMode extends EObject
    * @generated
    */
   void setOffset(Expression value);
-
-  /**
-   * Returns the value of the '<em><b>Location</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Location</em>' containment reference.
-   * @see #setLocation(IdentifierValue)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getRelativeMode_Location()
-   * @model containment="true"
-   * @generated
-   */
-  IdentifierValue getLocation();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getLocation <em>Location</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Location</em>' containment reference.
-   * @see #getLocation()
-   * @generated
-   */
-  void setLocation(IdentifierValue value);
 
 } // RelativeMode
