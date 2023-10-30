@@ -28,6 +28,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndir
 import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -61,10 +62,10 @@ public class TestBITInstruction {
   private ValidationTestHelper _validationTestHelper;
 
   /**
-   * Check BIT direct mode
+   * Check BITA immediat
    */
   @Test
-  public void testBITDirectAddressingMode() {
+  public void testBITAImemdiatAddressingMode() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -73,7 +74,7 @@ public class TestBITInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("BIT\t\t  \t<124");
+      _builder.append("BITA\t\t  \t#124");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -88,11 +89,50 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be an immediate addressing mode", (_operand instanceof ImmediatOperand));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITA direct mode
+   */
+  @Test
+  public void testBITADirectAddressingMode() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("BITA\t\t  \t<124");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(2);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a direct addressing mode", (_operand instanceof DirectOperand));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -100,10 +140,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT extended mode
+   * Check BITA extended mode
    */
   @Test
-  public void testBITExtendedAddressingMode1() {
+  public void testBITAExtendedAddressingMode1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -112,7 +152,7 @@ public class TestBITInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("BIT\t\t  \t$1234");
+      _builder.append("BITA\t\t  \t$1234");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -127,11 +167,11 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a extended addressing mode", (_operand instanceof ExtendedOperand));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -139,10 +179,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT extended mode
+   * Check BITA extended mode
    */
   @Test
-  public void testBITExtendedAddressingMode2() {
+  public void testBITAExtendedAddressingMode2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -151,7 +191,7 @@ public class TestBITInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("BIT\t\t  \t>$1234");
+      _builder.append("BITA\t\t  \t>$1234");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -166,11 +206,11 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a extended addressing mode", (_operand instanceof ExtendedOperand));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -178,10 +218,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT extended indirect mode
+   * Check BITA extended indirect mode
    */
   @Test
-  public void testBITExtendedIndirectAddressingMode1() {
+  public void testBITAExtendedIndirectAddressingMode1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -190,7 +230,7 @@ public class TestBITInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("BIT\t\t  \t[$1234]");
+      _builder.append("BITA\t\t  \t[$1234]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -205,11 +245,11 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a extended indirect addressing mode", (_operand instanceof ExtendedIndirectOperand));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -217,10 +257,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT Constant-Offset Indexed
+   * Check BITA Constant-Offset Indexed
    */
   @Test
-  public void testBITConstantOffsetIndexed() {
+  public void testBITAConstantOffsetIndexed() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -231,22 +271,22 @@ public class TestBITInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \tConst,X");
+      _builder.append("BITA\t\t  \tConst,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t,X");
+      _builder.append("BITA\t\t  \t,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t$9,U");
+      _builder.append("BITA\t\t  \t$9,U");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t$9,S");
+      _builder.append("BITA\t\t  \t$9,S");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t$9,X");
+      _builder.append("BITA\t\t  \t$9,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t$9,Y");
+      _builder.append("BITA\t\t  \t$9,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -261,13 +301,13 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = bitInstruction.getOperand();
+      EObject _operand_1 = ld8Instruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_mode instanceof ConstantIndexedMode));
@@ -277,10 +317,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT Constant-Offset Indexed indirect
+   * Check BITA Constant-Offset Indexed indirect
    */
   @Test
-  public void testBITConstantOffsetIndexedIndirect() {
+  public void testBITAConstantOffsetIndexedIndirect() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -291,22 +331,22 @@ public class TestBITInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[Const,X]");
+      _builder.append("BITA\t\t  \t[Const,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t[,X]");
+      _builder.append("BITA\t\t  \t[,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t[$9,U]");
+      _builder.append("BITA\t\t  \t[$9,U]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t[$9,S]");
+      _builder.append("BITA\t\t  \t[$9,S]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t[$9,X]");
+      _builder.append("BITA\t\t  \t[$9,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t[$9,Y]");
+      _builder.append("BITA\t\t  \t[$9,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -321,13 +361,13 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = bitInstruction.getOperand();
+      EObject _operand_1 = ld8Instruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Constant-Offset Indexed indirect mode", (_mode instanceof ConstantIndexedMovingIndirectMode));
@@ -337,10 +377,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT Accumulator Indexed
+   * Check BITA Accumulator Indexed
    */
   @Test
-  public void testBITAccumulatorIndexed() {
+  public void testBITAAccumulatorIndexed() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -351,22 +391,22 @@ public class TestBITInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \tA,X");
+      _builder.append("BITA\t\t  \tA,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \tB,X");
+      _builder.append("BITA\t\t  \tB,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \tD,U");
+      _builder.append("BITA\t\t  \tD,U");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \tA,S");
+      _builder.append("BITA\t\t  \tA,S");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \tB,X");
+      _builder.append("BITA\t\t  \tB,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \tD,Y");
+      _builder.append("BITA\t\t  \tD,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -381,13 +421,13 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = bitInstruction.getOperand();
+      EObject _operand_1 = ld8Instruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Accumulator Indexed mode", (_mode instanceof AccumulatorMovingMode));
@@ -397,10 +437,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT Accumulator Indexed Indirect
+   * Check BITA Accumulator Indexed Indirect
    */
   @Test
-  public void testBITAccumulatorIndexedIndirect() {
+  public void testBITAAccumulatorIndexedIndirect() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -411,22 +451,22 @@ public class TestBITInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[A,X]");
+      _builder.append("BITA\t\t  \t[A,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t[B,X]");
+      _builder.append("BITA\t\t  \t[B,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t[D,U]");
+      _builder.append("BITA\t\t  \t[D,U]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t[A,S]");
+      _builder.append("BITA\t\t  \t[A,S]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t[B,X]");
+      _builder.append("BITA\t\t  \t[B,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BIT\t\t  \t[D,Y]");
+      _builder.append("BITA\t\t  \t[D,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -441,13 +481,13 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = bitInstruction.getOperand();
+      EObject _operand_1 = ld8Instruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Accumulator Indexed indirect mode", (_mode instanceof AccumulatorMovingIndirectMode));
@@ -457,10 +497,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT Auto-Increment Indexed
+   * Check BITA Auto-Increment Indexed
    */
   @Test
-  public void testBITAutoIncrementIndexed() {
+  public void testBITAAutoIncrementIndexed() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -471,28 +511,28 @@ public class TestBITInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t0,--X");
+      _builder.append("BITA\t\t  \t0,--X");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t0,-X");
+      _builder.append("BITA\t\t  \t0,-X");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \tConst,X+");
+      _builder.append("BITA\t\t  \tConst,X+");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \tConst,X++");
+      _builder.append("BITA\t\t  \tConst,X++");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t0,--S");
+      _builder.append("BITA\t\t  \t0,--S");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t0,-S");
+      _builder.append("BITA\t\t  \t0,-S");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \tConst,U+");
+      _builder.append("BITA\t\t  \tConst,U+");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \tConst,U++");
+      _builder.append("BITA\t\t  \tConst,U++");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -507,13 +547,13 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = bitInstruction.getOperand();
+      EObject _operand_1 = ld8Instruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Auto-Increment Indexed mode", (_mode instanceof AutoIncDecMode));
@@ -523,10 +563,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT Auto-Increment Indexed Indirect
+   * Check BITA Auto-Increment Indexed Indirect
    */
   @Test
-  public void testBITAutoIncrementIndexedIndirect() {
+  public void testBITAAutoIncrementIndexedIndirect() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -537,28 +577,28 @@ public class TestBITInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[0,--X]");
+      _builder.append("BITA\t\t  \t[0,--X]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[0,-X]");
+      _builder.append("BITA\t\t  \t[0,-X]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[Const,X+]");
+      _builder.append("BITA\t\t  \t[Const,X+]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[Const,X++]");
+      _builder.append("BITA\t\t  \t[Const,X++]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[0,--S]");
+      _builder.append("BITA\t\t  \t[0,--S]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[0,-S]");
+      _builder.append("BITA\t\t  \t[0,-S]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[Const,U+]");
+      _builder.append("BITA\t\t  \t[Const,U+]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[Const,U++]");
+      _builder.append("BITA\t\t  \t[Const,U++]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -573,13 +613,13 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = bitInstruction.getOperand();
+      EObject _operand_1 = ld8Instruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Auto-Increment Indexed indirect mode", (_mode instanceof AutoIncDecIndirectMode));
@@ -589,10 +629,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT Relative to PC Indexed
+   * Check BITA Relative to PC Indexed
    */
   @Test
-  public void testBITRelativePCIndexed() {
+  public void testBITARelativePCIndexed() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -603,13 +643,13 @@ public class TestBITInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t0,PCR");
+      _builder.append("BITA\t\t  \t0,PCR");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t,PCR");
+      _builder.append("BITA\t\t  \t,PCR");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \tConst,PCR");
+      _builder.append("BITA\t\t  \tConst,PCR");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -624,13 +664,13 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = bitInstruction.getOperand();
+      EObject _operand_1 = ld8Instruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Relative to Indexed mode", (_mode instanceof RelatifToPCMode));
@@ -640,10 +680,10 @@ public class TestBITInstruction {
   }
 
   /**
-   * Check BIT Relative to PC Indexed Indirect
+   * Check BITA Relative to PC Indexed Indirect
    */
   @Test
-  public void testBITRelativePCIndexedIndirect() {
+  public void testBITARelativePCIndexedIndirect() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -654,13 +694,13 @@ public class TestBITInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[0,PCR]");
+      _builder.append("BITA\t\t  \t[0,PCR]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[,PCR]");
+      _builder.append("BITA\t\t  \t[,PCR]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("BIT\t\t  \t[Const,PCR]");
+      _builder.append("BITA\t\t  \t[Const,PCR]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -675,13 +715,682 @@ public class TestBITInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADD directive line", (_instruction instanceof BitInstruction));
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final BitInstruction bitInstruction = ((BitInstruction) _instruction_1);
-      Assert.assertEquals("Must be an BIT instruction", bitInstruction.getInstruction(), "BIT");
-      EObject _operand = bitInstruction.getOperand();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITA instruction", ld8Instruction.getInstruction(), "BITA");
+      EObject _operand = ld8Instruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = bitInstruction.getOperand();
+      EObject _operand_1 = ld8Instruction.getOperand();
+      final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
+      EObject _mode = indexedOperand.getMode();
+      Assert.assertTrue("Must be a Relative to Indexed Indirect mode", (_mode instanceof RelatifToPCIndirectMode));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB immediat
+   */
+  @Test
+  public void testBITBImemdiatAddressingMode() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("BITB\t\t  \t#124");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(2);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be an immediate addressing mode", (_operand instanceof ImmediatOperand));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB direct mode
+   */
+  @Test
+  public void testBITBDirectAddressingMode() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("BITB\t\t  \t<124");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(2);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a direct addressing mode", (_operand instanceof DirectOperand));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB extended mode
+   */
+  @Test
+  public void testBITBExtendedAddressingMode1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("BITB\t\t  \t$1234");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(2);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a extended addressing mode", (_operand instanceof ExtendedOperand));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB extended mode
+   */
+  @Test
+  public void testBITBExtendedAddressingMode2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("BITB\t\t  \t>$1234");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(2);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a extended addressing mode", (_operand instanceof ExtendedOperand));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB extended indirect mode
+   */
+  @Test
+  public void testBITBExtendedIndirectAddressingMode1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("BITB\t\t  \t[$1234]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(2);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a extended indirect addressing mode", (_operand instanceof ExtendedIndirectOperand));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB Constant-Offset Indexed
+   */
+  @Test
+  public void testBITBConstantOffsetIndexed() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \tConst,X");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t,X");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t$9,U");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t$9,S");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t$9,X");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t$9,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(3);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
+      EObject _operand_1 = ld8Instruction.getOperand();
+      final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
+      EObject _mode = indexedOperand.getMode();
+      Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_mode instanceof ConstantIndexedMode));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB Constant-Offset Indexed indirect
+   */
+  @Test
+  public void testBITBConstantOffsetIndexedIndirect() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[Const,X]");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t[,X]");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t[$9,U]");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t[$9,S]");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t[$9,X]");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t[$9,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(3);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
+      EObject _operand_1 = ld8Instruction.getOperand();
+      final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
+      EObject _mode = indexedOperand.getMode();
+      Assert.assertTrue("Must be a Constant-Offset Indexed indirect mode", (_mode instanceof ConstantIndexedMovingIndirectMode));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB Accumulator Indexed
+   */
+  @Test
+  public void testBITBAccumulatorIndexed() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \tA,X");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \tB,X");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \tD,U");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \tA,S");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \tB,X");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \tD,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(3);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
+      EObject _operand_1 = ld8Instruction.getOperand();
+      final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
+      EObject _mode = indexedOperand.getMode();
+      Assert.assertTrue("Must be a Accumulator Indexed mode", (_mode instanceof AccumulatorMovingMode));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB Accumulator Indexed Indirect
+   */
+  @Test
+  public void testBITBAccumulatorIndexedIndirect() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[A,X]");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t[B,X]");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t[D,U]");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t[A,S]");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t[B,X]");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("BITB\t\t  \t[D,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(3);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
+      EObject _operand_1 = ld8Instruction.getOperand();
+      final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
+      EObject _mode = indexedOperand.getMode();
+      Assert.assertTrue("Must be a Accumulator Indexed indirect mode", (_mode instanceof AccumulatorMovingIndirectMode));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB Auto-Increment Indexed
+   */
+  @Test
+  public void testBITBAutoIncrementIndexed() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t0,--X");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t0,-X");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \tConst,X+");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \tConst,X++");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t0,--S");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t0,-S");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \tConst,U+");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \tConst,U++");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(3);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
+      EObject _operand_1 = ld8Instruction.getOperand();
+      final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
+      EObject _mode = indexedOperand.getMode();
+      Assert.assertTrue("Must be a Auto-Increment Indexed mode", (_mode instanceof AutoIncDecMode));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB Auto-Increment Indexed Indirect
+   */
+  @Test
+  public void testBITBAutoIncrementIndexedIndirect() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[0,--X]");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[0,-X]");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[Const,X+]");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[Const,X++]");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[0,--S]");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[0,-S]");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[Const,U+]");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[Const,U++]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(3);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
+      EObject _operand_1 = ld8Instruction.getOperand();
+      final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
+      EObject _mode = indexedOperand.getMode();
+      Assert.assertTrue("Must be a Auto-Increment Indexed indirect mode", (_mode instanceof AutoIncDecIndirectMode));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB Relative to PC Indexed
+   */
+  @Test
+  public void testBITBRelativePCIndexed() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t0,PCR");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t,PCR");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \tConst,PCR");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(3);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
+      EObject _operand_1 = ld8Instruction.getOperand();
+      final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
+      EObject _mode = indexedOperand.getMode();
+      Assert.assertTrue("Must be a Relative to Indexed mode", (_mode instanceof RelatifToPCMode));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BITB Relative to PC Indexed Indirect
+   */
+  @Test
+  public void testBITBRelativePCIndexedIndirect() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[0,PCR]");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[,PCR]");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("BITB\t\t  \t[Const,PCR]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(3);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an BIT directive line", (_instruction instanceof BitInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final BitInstruction ld8Instruction = ((BitInstruction) _instruction_1);
+      Assert.assertEquals("Must be an BITB instruction", ld8Instruction.getInstruction(), "BITB");
+      EObject _operand = ld8Instruction.getOperand();
+      Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
+      EObject _operand_1 = ld8Instruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Relative to Indexed Indirect mode", (_mode instanceof RelatifToPCIndirectMode));

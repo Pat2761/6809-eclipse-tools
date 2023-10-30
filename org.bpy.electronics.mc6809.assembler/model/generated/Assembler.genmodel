@@ -368,6 +368,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RelatifToPCIndirectMode/register"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//RelativeMode">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RelativeMode/isPcRelative"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RelativeMode/offset"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RelativeMode/location"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">

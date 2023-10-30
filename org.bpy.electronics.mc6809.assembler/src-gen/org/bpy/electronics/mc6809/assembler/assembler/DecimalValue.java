@@ -51,12 +51,12 @@ public interface DecimalValue extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(int)
+   * @see #setValue(String)
    * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getDecimalValue_Value()
    * @model
    * @generated
    */
-  int getValue();
+  String getValue();
 
   /**
    * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.DecimalValue#getValue <em>Value</em>}' attribute.
@@ -66,6 +66,6 @@ public interface DecimalValue extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(int value);
+  void setValue(String value);
 
 } // DecimalValue

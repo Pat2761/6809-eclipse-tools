@@ -266,7 +266,7 @@ public class TestEquDirective {
   public void testWithABinaryValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Label1       EQU   0b10010011\t\t ");
+      _builder.append("Label1       EQU   %10010011\t\t ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -630,7 +630,7 @@ public class TestEquDirective {
   public void testWithLogicalXOrOfTwoBinaryValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Label1       EQU    0b01010101^0b00001111\t\t ");
+      _builder.append("Label1       EQU    %01010101^%00001111\t\t ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);

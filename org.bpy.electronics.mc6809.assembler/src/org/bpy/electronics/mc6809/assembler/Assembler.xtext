@@ -54,7 +54,8 @@ BlankLine:
  * A comment line start with a ; following by anything and finish with a end of line 
  */
 CommentLine:
-	comment = ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine 
+	{CommentLine}
+	comment = WS? ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine 
 ;
 
 /*
@@ -1484,14 +1485,13 @@ BleInstruction:
  *                    Indexed
  */
 BitInstruction:
-	(
-		instruction = ('BIT')
-		WS operand = ( 
-			DirectOperand  |
-			IndexedOperand | 
-			ExtendedOperand |
-			ExtendedIndirectOperand 
-		)
+	instruction = ('BITA' | 'BITB')
+	WS operand = ( 
+		ImmediatOperand |
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
 	)   
 ;
 
@@ -1960,7 +1960,8 @@ RelatifToPCIndirectMode:
 ;
 
 RelativeMode:
-	location=IdentifierValue;
+	(isPcRelative='*' offset=Expression) |
+	location=IdentifierValue ;
 
 /*
  * Definition of the list possible directives
@@ -2371,31 +2372,31 @@ NumericalValue:
 ;
 
 IdentifierValue:
-	value = ID
+	value=ID
 ;
 
 StringValue:
-	value = STRING
+	value=STRING
 ;
 
 DecimalValue:
-	sign=('-'|'+')? value = INT
+	sign=('-'|'+')? value=NUMBERS
 ;
 
 HexaDecimalValue:
-	value = HEXA
+	value=HEXA
 ;
 
 OctalValue:
-	value = OCTAL
+	'@' value=NUMBERS
 ;
 
 BinaryValue:
-	value = BINARY
+	'%' value=NUMBERS
 ;
 
 CharacterValue:
-	value = CHARACTER
+	value=CHARACTER
 ;
 
 enum AssemblyOption:
@@ -2425,9 +2426,9 @@ enum Register:
 
 terminal ID									: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 terminal HEXA 								: '$' ('0'..'9'|'a'..'f'|'A'..'F')+;
-terminal INT returns ecore::EInt			: ('0'..'9')+;
-terminal OCTAL 								: '@'('0'..'7')+;
-terminal BINARY 							: '0''b'('0'..'1')+;
+terminal NUMBERS 								: ('0'..'9')+;
+//terminal OCTAL 								: '@'('0'..'7')+;
+//terminal BINARY 							: '0''b'('0'..'1')+;
 terminal CHARACTER							: '\'' ('\u0020'..'\u007F');
 
 EndOfLine: CR | END_OF_FILE;

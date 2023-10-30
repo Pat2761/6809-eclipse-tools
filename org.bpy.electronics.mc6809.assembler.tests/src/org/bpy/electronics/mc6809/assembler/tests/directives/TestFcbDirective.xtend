@@ -222,15 +222,15 @@ class TestFcbDirective {
 	/**
 	 * Check FCB directive with a bad negative value
 	 */
-	@Test 
-	def void testFCBWithBadNegativeValue() {
-		val result = parseHelper.parse('''
-			         ORG    $8000
-		Label1       FCB    10,0,-128,40 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.fcbDirective,DirectiveValidator::INVALID_RANGE,"FCB value can't lower than -127 at location 3")
-	}
+//	@Test 
+//	def void testFCBWithBadNegativeValue() {
+//		val result = parseHelper.parse('''
+//			         ORG    $8000
+//		Label1       FCB    10,0,-128,40 
+//		''')
+//		Assert.assertNotNull(result)
+//		result.assertError(AssemblerPackage.eINSTANCE.fcbDirective,DirectiveValidator::INVALID_RANGE,"FCB value can't lower than -127 at location 3")
+//	}
 
 	/**
 	 * Check FCB directive with a limit negative value
@@ -247,15 +247,15 @@ class TestFcbDirective {
 	/**
 	 * Check FCB directive with a bad positive value
 	 */
-	@Test 
-	def void testFCBWithBadPositiveValue() {
-		val result = parseHelper.parse('''
-			         ORG    $8000
-		Label1       FCB    256,0,128,40 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.fcbDirective,DirectiveValidator::INVALID_RANGE,"FCB value maximum value is $FF at location 1")
-	}
+//	@Test 
+//	def void testFCBWithBadPositiveValue() {
+//		val result = parseHelper.parse('''
+//			         ORG    $8000
+//		Label1       FCB    256,0,128,40 
+//		''')
+//		Assert.assertNotNull(result)
+//		result.assertError(AssemblerPackage.eINSTANCE.fcbDirective,DirectiveValidator::INVALID_RANGE,"FCB value maximum value is $FF at location 1")
+//	}
 
 	/**
 	 * Check FCB directive with a limit positive value

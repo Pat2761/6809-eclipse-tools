@@ -264,7 +264,13 @@ public class ExpressionParser {
 		if (value.getSign()!=null && value.getSign().equals("-")) {
 			sign = -1;
 		}
-		return value.getValue()*sign;
+		try {
+			int intValue = Integer.parseInt(value.getValue());
+			return intValue*sign;
+		}	
+		catch(NumberFormatException ex) {
+			return -1;
+		}
 	}
 
 	/**

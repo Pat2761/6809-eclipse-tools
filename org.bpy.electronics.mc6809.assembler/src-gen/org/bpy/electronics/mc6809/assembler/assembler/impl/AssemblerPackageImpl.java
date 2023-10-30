@@ -3897,9 +3897,31 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EAttribute getRelativeMode_IsPcRelative()
+  {
+    return (EAttribute)relativeModeEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getRelativeMode_Offset()
+  {
+    return (EReference)relativeModeEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getRelativeMode_Location()
   {
-    return (EReference)relativeModeEClass.getEStructuralFeatures().get(0);
+    return (EReference)relativeModeEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -5549,6 +5571,8 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEAttribute(relatifToPCIndirectModeEClass, RELATIF_TO_PC_INDIRECT_MODE__REGISTER);
 
     relativeModeEClass = createEClass(RELATIVE_MODE);
+    createEAttribute(relativeModeEClass, RELATIVE_MODE__IS_PC_RELATIVE);
+    createEReference(relativeModeEClass, RELATIVE_MODE__OFFSET);
     createEReference(relativeModeEClass, RELATIVE_MODE__LOCATION);
 
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
@@ -6090,6 +6114,8 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getRelatifToPCIndirectMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, RelatifToPCIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(relativeModeEClass, RelativeMode.class, "RelativeMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getRelativeMode_IsPcRelative(), ecorePackage.getEString(), "isPcRelative", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelativeMode_Offset(), this.getExpression(), null, "offset", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getRelativeMode_Location(), this.getIdentifierValue(), null, "location", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -6185,7 +6211,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(decimalValueEClass, DecimalValue.class, "DecimalValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getDecimalValue_Sign(), ecorePackage.getEString(), "sign", null, 0, 1, DecimalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getDecimalValue_Value(), ecorePackage.getEInt(), "value", null, 0, 1, DecimalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDecimalValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, DecimalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(hexaDecimalValueEClass, HexaDecimalValue.class, "HexaDecimalValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getHexaDecimalValue_Value(), ecorePackage.getEString(), "value", null, 0, 1, HexaDecimalValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

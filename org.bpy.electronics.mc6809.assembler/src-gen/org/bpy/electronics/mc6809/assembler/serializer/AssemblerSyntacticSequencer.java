@@ -38,11 +38,22 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	
 	@Override
 	protected String getUnassignedRuleCallToken(EObject semanticObject, RuleCall ruleCall, INode node) {
-		if (ruleCall.getRule() == grammarAccess.getEndOfLineRule())
+		if (ruleCall.getRule() == grammarAccess.getANY_EXCEPT_COMMENT_END_OF_LINERule())
+			return getANY_EXCEPT_COMMENT_END_OF_LINEToken(semanticObject, ruleCall, node);
+		else if (ruleCall.getRule() == grammarAccess.getEndOfLineRule())
 			return getEndOfLineToken(semanticObject, ruleCall, node);
 		else if (ruleCall.getRule() == grammarAccess.getWSRule())
 			return getWSToken(semanticObject, ruleCall, node);
 		return "";
+	}
+	
+	/**
+	 * terminal ANY_EXCEPT_COMMENT_END_OF_LINE  	: ';' !('\n' | '\r')*;
+	 */
+	protected String getANY_EXCEPT_COMMENT_END_OF_LINEToken(EObject semanticObject, RuleCall ruleCall, INode node) {
+		if (node != null)
+			return getTokenText(node);
+		return ";";
 	}
 	
 	/**

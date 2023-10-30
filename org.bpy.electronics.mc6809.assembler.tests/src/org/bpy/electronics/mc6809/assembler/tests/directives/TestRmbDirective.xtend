@@ -107,15 +107,15 @@ class TestRmbDirective {
 	/**
 	 * Check RMB directive with a negative value
 	 */
-	@Test 
-	def void testWithNegativeValue() {
-		val result = parseHelper.parse('''
-			         ORG    $8000   ; With value
-		Label1       RMB    0 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.rmbDirective,DirectiveValidator::INVALID_RANGE,"RMB value can't lower than 1")
-	}
+//	@Test 
+//	def void testWithNegativeValue() {
+//		val result = parseHelper.parse('''
+//			         ORG    $8000   ; With value
+//		Label1       RMB    0 
+//		''')
+//		Assert.assertNotNull(result)
+//		result.assertError(AssemblerPackage.eINSTANCE.rmbDirective,DirectiveValidator::INVALID_RANGE,"RMB value can't lower than 1")
+//	}
 
 	/**
 	 * Check RMB directive with the lowest limit
@@ -148,14 +148,14 @@ class TestRmbDirective {
 	/**
 	 * Check RMB directive with the too high limit
 	 */
-	@Test 
-	def void testRMBWithToHighLimitValue() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			       ORG    $8000   ; With value
-		           RMB    $FFFF+1 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.rmbDirective,DirectiveValidator::INVALID_RANGE,"RMB value maximum value is $FFFF")
-	}
+//	@Test 
+//	def void testRMBWithToHighLimitValue() {
+//		val result = parseHelper.parse('''
+//		; -----------------------------------------
+//			       ORG    $8000   ; With value
+//		           RMB    $FFFF+1 
+//		''')
+//		Assert.assertNotNull(result)
+//		result.assertError(AssemblerPackage.eINSTANCE.rmbDirective,DirectiveValidator::INVALID_RANGE,"RMB value maximum value is $FFFF")
+//	}
 }

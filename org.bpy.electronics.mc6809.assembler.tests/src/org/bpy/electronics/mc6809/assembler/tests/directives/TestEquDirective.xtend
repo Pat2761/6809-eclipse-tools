@@ -240,7 +240,7 @@ class TestEquDirective {
 	@Test 
 	def void testWithABinaryValue() {
 		val result = parseHelper.parse('''
-		Label1       EQU   0b10010011		 
+		Label1       EQU   %10010011		 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -564,7 +564,7 @@ class TestEquDirective {
 	def void testWithLogicalXOrOfTwoBinaryValue() {
 		
 		val result = parseHelper.parse('''
-		Label1       EQU    0b01010101^0b00001111		 
+		Label1       EQU    %01010101^%00001111		 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors

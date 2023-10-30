@@ -29,20 +29,21 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
+import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
-import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction
-import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand
-import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode
+import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand
 import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode
-import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode
+import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode
-import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode
 
 @RunWith(XtextRunner)
@@ -52,15 +53,15 @@ class TestBITInstruction {
 	@Inject ParseHelper<Model> parseHelper
 	@Inject extension ValidationTestHelper
 	
-		/**
-	 * Check BIT direct mode 
+	/**
+	 * Check BITA immediat 
 	 */
 	@Test 
-	def void testBITDirectAddressingMode() {
+	def void testBITAImemdiatAddressingMode() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    		$8000
-			       BIT		  	<124
+			       BITA		  	#124
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -71,22 +72,22 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a direct addressing mode", bitInstruction.operand instanceof DirectOperand)
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be an immediate addressing mode", ld8Instruction.operand instanceof ImmediatOperand)
 	}
-
+	
 	/**
-	 * Check BIT extended mode 
+	 * Check BITA direct mode 
 	 */
 	@Test 
-	def void testBITExtendedAddressingMode1() {
+	def void testBITADirectAddressingMode() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    		$8000
-			       BIT		  	$1234
+			       BITA		  	<124
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -97,22 +98,22 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a extended addressing mode", bitInstruction.operand instanceof ExtendedOperand)
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a direct addressing mode", ld8Instruction.operand instanceof DirectOperand)
 	}
 
 	/**
-	 * Check BIT extended mode 
+	 * Check BITA extended mode 
 	 */
 	@Test 
-	def void testBITExtendedAddressingMode2() {
+	def void testBITAExtendedAddressingMode1() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    		$8000
-			       BIT		  	>$1234
+			       BITA		  	$1234
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -123,22 +124,22 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a extended addressing mode", bitInstruction.operand instanceof ExtendedOperand)
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a extended addressing mode", ld8Instruction.operand instanceof ExtendedOperand)
 	}
 
 	/**
-	 * Check BIT extended indirect mode 
+	 * Check BITA extended mode 
 	 */
 	@Test 
-	def void testBITExtendedIndirectAddressingMode1() {
+	def void testBITAExtendedAddressingMode2() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    		$8000
-			       BIT		  	[$1234]
+			       BITA		  	>$1234
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -149,28 +150,54 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a extended indirect addressing mode", bitInstruction.operand instanceof ExtendedIndirectOperand)
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a extended addressing mode", ld8Instruction.operand instanceof ExtendedOperand)
 	}
 
 	/**
-	 * Check BIT Constant-Offset Indexed 
+	 * Check BITA extended indirect mode 
 	 */
 	@Test 
-	def void testBITConstantOffsetIndexed() {
+	def void testBITAExtendedIndirectAddressingMode1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    		$8000
+			       BITA		  	[$1234]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(2)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a extended indirect addressing mode", ld8Instruction.operand instanceof ExtendedIndirectOperand)
+	}
+
+	/**
+	 * Check BITA Constant-Offset Indexed 
+	 */
+	@Test 
+	def void testBITAConstantOffsetIndexed() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	BIT		  	Const,X
-					BIT		  	,X
-					BIT		  	$9,U
-					BIT		  	$9,S
-					BIT		  	$9,X
-					BIT		  	$9,Y
+			       	BITA		  	Const,X
+					BITA		  	,X
+					BITA		  	$9,U
+					BITA		  	$9,S
+					BITA		  	$9,X
+					BITA		  	$9,Y
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -181,30 +208,30 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a Constant-Offset Indexed mode", bitInstruction.operand instanceof IndexedOperand)
-		val indexedOperand = bitInstruction.operand as IndexedOperand
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
 		assertTrue("Must be a Constant-Offset Indexed mode", indexedOperand.mode instanceof ConstantIndexedMode)
 	}
 
 	/**
-	 * Check BIT Constant-Offset Indexed indirect 
+	 * Check BITA Constant-Offset Indexed indirect 
 	 */
 	@Test 
-	def void testBITConstantOffsetIndexedIndirect() {
+	def void testBITAConstantOffsetIndexedIndirect() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	BIT		  	[Const,X]
-					BIT		  	[,X]
-					BIT		  	[$9,U]
-					BIT		  	[$9,S]
-					BIT		  	[$9,X]
-					BIT		  	[$9,Y]
+			       	BITA		  	[Const,X]
+					BITA		  	[,X]
+					BITA		  	[$9,U]
+					BITA		  	[$9,S]
+					BITA		  	[$9,X]
+					BITA		  	[$9,Y]
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -215,30 +242,30 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a Constant-Offset Indexed mode", bitInstruction.operand instanceof IndexedOperand)
-		val indexedOperand = bitInstruction.operand as IndexedOperand
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
 		assertTrue("Must be a Constant-Offset Indexed indirect mode", indexedOperand.mode instanceof ConstantIndexedMovingIndirectMode)
 	}
 
 	/**
-	 * Check BIT Accumulator Indexed 
+	 * Check BITA Accumulator Indexed 
 	 */
 	@Test 
-	def void testBITAccumulatorIndexed() {
+	def void testBITAAccumulatorIndexed() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	BIT		  	A,X
-					BIT		  	B,X
-					BIT		  	D,U
-					BIT		  	A,S
-					BIT		  	B,X
-					BIT		  	D,Y
+			       	BITA		  	A,X
+					BITA		  	B,X
+					BITA		  	D,U
+					BITA		  	A,S
+					BITA		  	B,X
+					BITA		  	D,Y
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -249,30 +276,30 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a Constant-Offset Indexed mode", bitInstruction.operand instanceof IndexedOperand)
-		val indexedOperand = bitInstruction.operand as IndexedOperand
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
 		assertTrue("Must be a Accumulator Indexed mode", indexedOperand.mode instanceof AccumulatorMovingMode)
 	}
 
 	/**
-	 * Check BIT Accumulator Indexed Indirect
+	 * Check BITA Accumulator Indexed Indirect
 	 */
 	@Test 
-	def void testBITAccumulatorIndexedIndirect() {
+	def void testBITAAccumulatorIndexedIndirect() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	BIT		  	[A,X]
-					BIT		  	[B,X]
-					BIT		  	[D,U]
-					BIT		  	[A,S]
-					BIT		  	[B,X]
-					BIT		  	[D,Y]
+			       	BITA		  	[A,X]
+					BITA		  	[B,X]
+					BITA		  	[D,U]
+					BITA		  	[A,S]
+					BITA		  	[B,X]
+					BITA		  	[D,Y]
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -283,32 +310,32 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a Constant-Offset Indexed mode", bitInstruction.operand instanceof IndexedOperand)
-		val indexedOperand = bitInstruction.operand as IndexedOperand
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
 		assertTrue("Must be a Accumulator Indexed indirect mode", indexedOperand.mode instanceof AccumulatorMovingIndirectMode)
 	}
 
 	/**
-	 * Check BIT Auto-Increment Indexed 
+	 * Check BITA Auto-Increment Indexed 
 	 */
 	@Test 
-	def void testBITAutoIncrementIndexed() {
+	def void testBITAAutoIncrementIndexed() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	BIT		  	0,--X
-			       	BIT		  	0,-X
-			       	BIT		  	Const,X+
-			       	BIT		  	Const,X++
-			       	BIT		  	0,--S
-			       	BIT		  	0,-S
-			       	BIT		  	Const,U+
-			       	BIT		  	Const,U++
+			       	BITA		  	0,--X
+			       	BITA		  	0,-X
+			       	BITA		  	Const,X+
+			       	BITA		  	Const,X++
+			       	BITA		  	0,--S
+			       	BITA		  	0,-S
+			       	BITA		  	Const,U+
+			       	BITA		  	Const,U++
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -319,33 +346,33 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a Constant-Offset Indexed mode", bitInstruction.operand instanceof IndexedOperand)
-		val indexedOperand = bitInstruction.operand as IndexedOperand
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
 		assertTrue("Must be a Auto-Increment Indexed mode", indexedOperand.mode instanceof AutoIncDecMode)
 	}
 
 
 	/**
-	 * Check BIT Auto-Increment Indexed Indirect
+	 * Check BITA Auto-Increment Indexed Indirect
 	 */
 	@Test 
-	def void testBITAutoIncrementIndexedIndirect() {
+	def void testBITAAutoIncrementIndexedIndirect() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	BIT		  	[0,--X]
-			       	BIT		  	[0,-X]
-			       	BIT		  	[Const,X+]
-			       	BIT		  	[Const,X++]
-			       	BIT		  	[0,--S]
-			       	BIT		  	[0,-S]
-			       	BIT		  	[Const,U+]
-			       	BIT		  	[Const,U++]
+			       	BITA		  	[0,--X]
+			       	BITA		  	[0,-X]
+			       	BITA		  	[Const,X+]
+			       	BITA		  	[Const,X++]
+			       	BITA		  	[0,--S]
+			       	BITA		  	[0,-S]
+			       	BITA		  	[Const,U+]
+			       	BITA		  	[Const,U++]
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -356,27 +383,27 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a Constant-Offset Indexed mode", bitInstruction.operand instanceof IndexedOperand)
-		val indexedOperand = bitInstruction.operand as IndexedOperand
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
 		assertTrue("Must be a Auto-Increment Indexed indirect mode", indexedOperand.mode instanceof AutoIncDecIndirectMode)
 	}
 	
 	/**
-	 * Check BIT Relative to PC Indexed 
+	 * Check BITA Relative to PC Indexed 
 	 */
 	@Test 
-	def void testBITRelativePCIndexed() {
+	def void testBITARelativePCIndexed() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	BIT		  	0,PCR
-			       	BIT		  	,PCR
-			       	BIT		  	Const,PCR
+			       	BITA		  	0,PCR
+			       	BITA		  	,PCR
+			       	BITA		  	Const,PCR
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -387,27 +414,27 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a Constant-Offset Indexed mode", bitInstruction.operand instanceof IndexedOperand)
-		val indexedOperand = bitInstruction.operand as IndexedOperand
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
 		assertTrue("Must be a Relative to Indexed mode", indexedOperand.mode instanceof RelatifToPCMode)
 	}
 	
 	/**
-	 * Check BIT Relative to PC Indexed Indirect 
+	 * Check BITA Relative to PC Indexed Indirect 
 	 */
 	@Test 
-	def void testBITRelativePCIndexedIndirect() {
+	def void testBITARelativePCIndexedIndirect() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	BIT		  	[0,PCR]
-			       	BIT		  	[,PCR]
-			       	BIT		  	[Const,PCR]
+			       	BITA		  	[0,PCR]
+			       	BITA		  	[,PCR]
+			       	BITA		  	[Const,PCR]
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -418,12 +445,413 @@ class TestBITInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ADD directive line", instructionLine.instruction instanceof BitInstruction)
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
 
-		val bitInstruction = instructionLine.instruction as BitInstruction
-		assertEquals("Must be an BIT instruction", bitInstruction.instruction,"BIT")
-		assertTrue("Must be a Constant-Offset Indexed mode", bitInstruction.operand instanceof IndexedOperand)
-		val indexedOperand = bitInstruction.operand as IndexedOperand
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITA instruction", ld8Instruction.instruction,"BITA")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
+		assertTrue("Must be a Relative to Indexed Indirect mode", indexedOperand.mode instanceof RelatifToPCIndirectMode)
+	}
+
+	/**
+	 * Check BITB immediat 
+	 */
+	@Test 
+	def void testBITBImemdiatAddressingMode() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    		$8000
+			       BITB		  	#124
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(2)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be an immediate addressing mode", ld8Instruction.operand instanceof ImmediatOperand)
+	}
+	
+	/**
+	 * Check BITB direct mode 
+	 */
+	@Test 
+	def void testBITBDirectAddressingMode() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    		$8000
+			       BITB		  	<124
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(2)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a direct addressing mode", ld8Instruction.operand instanceof DirectOperand)
+	}
+
+	/**
+	 * Check BITB extended mode 
+	 */
+	@Test 
+	def void testBITBExtendedAddressingMode1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    		$8000
+			       BITB		  	$1234
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(2)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a extended addressing mode", ld8Instruction.operand instanceof ExtendedOperand)
+	}
+
+	/**
+	 * Check BITB extended mode 
+	 */
+	@Test 
+	def void testBITBExtendedAddressingMode2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    		$8000
+			       BITB		  	>$1234
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(2)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a extended addressing mode", ld8Instruction.operand instanceof ExtendedOperand)
+	}
+
+	/**
+	 * Check BITB extended indirect mode 
+	 */
+	@Test 
+	def void testBITBExtendedIndirectAddressingMode1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    		$8000
+			       BITB		  	[$1234]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(2)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a extended indirect addressing mode", ld8Instruction.operand instanceof ExtendedIndirectOperand)
+	}
+
+	/**
+	 * Check BITB Constant-Offset Indexed 
+	 */
+	@Test 
+	def void testBITBConstantOffsetIndexed() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    			$8000
+		Const	   	EQU          	5    
+			       	BITB		  	Const,X
+					BITB		  	,X
+					BITB		  	$9,U
+					BITB		  	$9,S
+					BITB		  	$9,X
+					BITB		  	$9,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(3)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
+		assertTrue("Must be a Constant-Offset Indexed mode", indexedOperand.mode instanceof ConstantIndexedMode)
+	}
+
+	/**
+	 * Check BITB Constant-Offset Indexed indirect 
+	 */
+	@Test 
+	def void testBITBConstantOffsetIndexedIndirect() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    			$8000
+		Const	   	EQU          	5    
+			       	BITB		  	[Const,X]
+					BITB		  	[,X]
+					BITB		  	[$9,U]
+					BITB		  	[$9,S]
+					BITB		  	[$9,X]
+					BITB		  	[$9,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(3)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
+		assertTrue("Must be a Constant-Offset Indexed indirect mode", indexedOperand.mode instanceof ConstantIndexedMovingIndirectMode)
+	}
+
+	/**
+	 * Check BITB Accumulator Indexed 
+	 */
+	@Test 
+	def void testBITBAccumulatorIndexed() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    			$8000
+		Const	   	EQU          	5    
+			       	BITB		  	A,X
+					BITB		  	B,X
+					BITB		  	D,U
+					BITB		  	A,S
+					BITB		  	B,X
+					BITB		  	D,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(3)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
+		assertTrue("Must be a Accumulator Indexed mode", indexedOperand.mode instanceof AccumulatorMovingMode)
+	}
+
+	/**
+	 * Check BITB Accumulator Indexed Indirect
+	 */
+	@Test 
+	def void testBITBAccumulatorIndexedIndirect() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    			$8000
+		Const	   	EQU          	5    
+			       	BITB		  	[A,X]
+					BITB		  	[B,X]
+					BITB		  	[D,U]
+					BITB		  	[A,S]
+					BITB		  	[B,X]
+					BITB		  	[D,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(3)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
+		assertTrue("Must be a Accumulator Indexed indirect mode", indexedOperand.mode instanceof AccumulatorMovingIndirectMode)
+	}
+
+	/**
+	 * Check BITB Auto-Increment Indexed 
+	 */
+	@Test 
+	def void testBITBAutoIncrementIndexed() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    			$8000
+		Const	   	EQU          	5    
+			       	BITB		  	0,--X
+			       	BITB		  	0,-X
+			       	BITB		  	Const,X+
+			       	BITB		  	Const,X++
+			       	BITB		  	0,--S
+			       	BITB		  	0,-S
+			       	BITB		  	Const,U+
+			       	BITB		  	Const,U++
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(3)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
+		assertTrue("Must be a Auto-Increment Indexed mode", indexedOperand.mode instanceof AutoIncDecMode)
+	}
+
+
+	/**
+	 * Check BITB Auto-Increment Indexed Indirect
+	 */
+	@Test 
+	def void testBITBAutoIncrementIndexedIndirect() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    			$8000
+		Const	   	EQU          	5    
+			       	BITB		  	[0,--X]
+			       	BITB		  	[0,-X]
+			       	BITB		  	[Const,X+]
+			       	BITB		  	[Const,X++]
+			       	BITB		  	[0,--S]
+			       	BITB		  	[0,-S]
+			       	BITB		  	[Const,U+]
+			       	BITB		  	[Const,U++]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(3)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
+		assertTrue("Must be a Auto-Increment Indexed indirect mode", indexedOperand.mode instanceof AutoIncDecIndirectMode)
+	}
+	
+	/**
+	 * Check BITB Relative to PC Indexed 
+	 */
+	@Test 
+	def void testBITBRelativePCIndexed() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    			$8000
+		Const	   	EQU          	5    
+			       	BITB		  	0,PCR
+			       	BITB		  	,PCR
+			       	BITB		  	Const,PCR
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(3)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
+		assertTrue("Must be a Relative to Indexed mode", indexedOperand.mode instanceof RelatifToPCMode)
+	}
+	
+	/**
+	 * Check BITB Relative to PC Indexed Indirect 
+	 */
+	@Test 
+	def void testBITBRelativePCIndexedIndirect() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    			$8000
+		Const	   	EQU          	5    
+			       	BITB		  	[0,PCR]
+			       	BITB		  	[,PCR]
+			       	BITB		  	[Const,PCR]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(3)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an BIT directive line", instructionLine.instruction instanceof BitInstruction)
+
+		val ld8Instruction = instructionLine.instruction as BitInstruction
+		assertEquals("Must be an BITB instruction", ld8Instruction.instruction,"BITB")
+		assertTrue("Must be a Constant-Offset Indexed mode", ld8Instruction.operand instanceof IndexedOperand)
+		val indexedOperand = ld8Instruction.operand as IndexedOperand
 		assertTrue("Must be a Relative to Indexed Indirect mode", indexedOperand.mode instanceof RelatifToPCIndirectMode)
 	}
 }

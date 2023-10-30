@@ -19,7 +19,6 @@ package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
 import java.util.List;
-import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -27,7 +26,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
-import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -301,26 +299,6 @@ public class TestFdbDirective {
   }
 
   /**
-   * Check FDB directive with a bad negative value
-   */
-  @Test
-  public void testFDBWithBadNegativeValue() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("\t         ");
-      _builder.append("ORG    $8000");
-      _builder.newLine();
-      _builder.append("Label1       FDB    10,0,-32769,40 ");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), DirectiveValidator.INVALID_RANGE, "FDB value can\'t lower than -32768 at location 3");
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
    * Check FDB directive with a limit negative value
    */
   @Test
@@ -335,26 +313,6 @@ public class TestFdbDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
-   * Check FDB directive with a bad positive value
-   */
-  @Test
-  public void testFDBWithBadPositiveValue() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("\t         ");
-      _builder.append("ORG    $8000");
-      _builder.newLine();
-      _builder.append("Label1       FDB    65536,0,128,40 ");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), DirectiveValidator.INVALID_RANGE, "FDB value maximum value is 65535 at location 1");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

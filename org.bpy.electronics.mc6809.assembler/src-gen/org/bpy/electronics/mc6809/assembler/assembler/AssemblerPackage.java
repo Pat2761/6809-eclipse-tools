@@ -3207,13 +3207,31 @@ public interface AssemblerPackage extends EPackage
   int RELATIVE_MODE = 87;
 
   /**
+   * The feature id for the '<em><b>Is Pc Relative</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIVE_MODE__IS_PC_RELATIVE = 0;
+
+  /**
+   * The feature id for the '<em><b>Offset</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RELATIVE_MODE__OFFSET = 1;
+
+  /**
    * The feature id for the '<em><b>Location</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RELATIVE_MODE__LOCATION = 0;
+  int RELATIVE_MODE__LOCATION = 2;
 
   /**
    * The number of structural features of the '<em>Relative Mode</em>' class.
@@ -3222,7 +3240,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RELATIVE_MODE_FEATURE_COUNT = 1;
+  int RELATIVE_MODE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl <em>Directive Line</em>}' class.
@@ -7545,6 +7563,28 @@ public interface AssemblerPackage extends EPackage
   EClass getRelativeMode();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getIsPcRelative <em>Is Pc Relative</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Is Pc Relative</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getIsPcRelative()
+   * @see #getRelativeMode()
+   * @generated
+   */
+  EAttribute getRelativeMode_IsPcRelative();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getOffset <em>Offset</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Offset</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getOffset()
+   * @see #getRelativeMode()
+   * @generated
+   */
+  EReference getRelativeMode_Offset();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getLocation <em>Location</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -11013,6 +11053,22 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass RELATIVE_MODE = eINSTANCE.getRelativeMode();
+
+    /**
+     * The meta object literal for the '<em><b>Is Pc Relative</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute RELATIVE_MODE__IS_PC_RELATIVE = eINSTANCE.getRelativeMode_IsPcRelative();
+
+    /**
+     * The meta object literal for the '<em><b>Offset</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference RELATIVE_MODE__OFFSET = eINSTANCE.getRelativeMode_Offset();
 
     /**
      * The meta object literal for the '<em><b>Location</b></em>' containment reference feature.

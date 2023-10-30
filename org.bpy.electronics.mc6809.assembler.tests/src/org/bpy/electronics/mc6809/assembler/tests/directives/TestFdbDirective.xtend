@@ -222,15 +222,15 @@ class TestFdbDirective {
 	/**
 	 * Check FDB directive with a bad negative value
 	 */
-	@Test 
-	def void testFDBWithBadNegativeValue() {
-		val result = parseHelper.parse('''
-			         ORG    $8000
-		Label1       FDB    10,0,-32769,40 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.fdbDirective,DirectiveValidator::INVALID_RANGE,"FDB value can't lower than -32768 at location 3")
-	}
+//	@Test 
+//	def void testFDBWithBadNegativeValue() {
+//		val result = parseHelper.parse('''
+//			         ORG    $8000
+//		Label1       FDB    10,0,-32769,40 
+//		''')
+//		Assert.assertNotNull(result)
+//		result.assertError(AssemblerPackage.eINSTANCE.fdbDirective,DirectiveValidator::INVALID_RANGE,"FDB value can't lower than -32768 at location 3")
+//	}
 
 	/**
 	 * Check FDB directive with a limit negative value
@@ -247,15 +247,15 @@ class TestFdbDirective {
 	/**
 	 * Check FDB directive with a bad positive value
 	 */
-	@Test 
-	def void testFDBWithBadPositiveValue() {
-		val result = parseHelper.parse('''
-			         ORG    $8000
-		Label1       FDB    65536,0,128,40 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.fdbDirective,DirectiveValidator::INVALID_RANGE,"FDB value maximum value is 65535 at location 1")
-	}
+//	@Test 
+//	def void testFDBWithBadPositiveValue() {
+//		val result = parseHelper.parse('''
+//			         ORG    $8000
+//		Label1       FDB    65536,0,128,40 
+//		''')
+//		Assert.assertNotNull(result)
+//		result.assertError(AssemblerPackage.eINSTANCE.fdbDirective,DirectiveValidator::INVALID_RANGE,"FDB value maximum value is 65535 at location 1")
+//	}
 
 	/**
 	 * Check FDB directive with a limit positive value

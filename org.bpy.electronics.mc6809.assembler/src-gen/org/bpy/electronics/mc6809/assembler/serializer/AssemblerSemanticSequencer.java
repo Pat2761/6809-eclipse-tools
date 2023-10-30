@@ -972,7 +972,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BinaryValue returns BinaryValue
 	 *
 	 * Constraint:
-	 *     value=BINARY
+	 *     value=NUMBERS
 	 * </pre>
 	 */
 	protected void sequence_BinaryValue(ISerializationContext context, BinaryValue semanticObject) {
@@ -981,7 +981,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.BINARY_VALUE__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getBinaryValueAccess().getValueBINARYTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getBinaryValueAccess().getValueNUMBERSTerminalRuleCall_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -992,7 +992,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BitInstruction returns BitInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='BIT' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     (
+	 *         (instruction='BITA' | instruction='BITB') 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_BitInstruction(ISerializationContext context, BitInstruction semanticObject) {
@@ -1275,17 +1278,11 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     CommentLine returns CommentLine
 	 *
 	 * Constraint:
-	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE
+	 *     comment=WS?
 	 * </pre>
 	 */
 	protected void sequence_CommentLine(ISerializationContext context, CommentLine semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.COMMENT_LINE__COMMENT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.COMMENT_LINE__COMMENT));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCommentLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_0_0(), semanticObject.getComment());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1384,7 +1381,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     DecimalValue returns DecimalValue
 	 *
 	 * Constraint:
-	 *     ((sign='-' | sign='+')? value=INT)
+	 *     ((sign='-' | sign='+')? value=NUMBERS)
 	 * </pre>
 	 */
 	protected void sequence_DecimalValue(ISerializationContext context, DecimalValue semanticObject) {
@@ -2280,7 +2277,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     OctalValue returns OctalValue
 	 *
 	 * Constraint:
-	 *     value=OCTAL
+	 *     value=NUMBERS
 	 * </pre>
 	 */
 	protected void sequence_OctalValue(ISerializationContext context, OctalValue semanticObject) {
@@ -2289,7 +2286,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.OCTAL_VALUE__VALUE));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOctalValueAccess().getValueOCTALTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getOctalValueAccess().getValueNUMBERSTerminalRuleCall_1_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	
@@ -2604,17 +2601,11 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     RelativeMode returns RelativeMode
 	 *
 	 * Constraint:
-	 *     location=IdentifierValue
+	 *     ((isPcRelative='*' offset=Expression) | location=IdentifierValue)
 	 * </pre>
 	 */
 	protected void sequence_RelativeMode(ISerializationContext context, RelativeMode semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RELATIVE_MODE__LOCATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RELATIVE_MODE__LOCATION));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRelativeModeAccess().getLocationIdentifierValueParserRuleCall_0(), semanticObject.getLocation());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

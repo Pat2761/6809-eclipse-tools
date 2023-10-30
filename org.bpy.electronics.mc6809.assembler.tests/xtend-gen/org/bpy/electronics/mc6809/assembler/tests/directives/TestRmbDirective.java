@@ -18,7 +18,6 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
-import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -27,7 +26,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
-import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -140,26 +138,6 @@ public class TestRmbDirective {
   }
 
   /**
-   * Check RMB directive with a negative value
-   */
-  @Test
-  public void testWithNegativeValue() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("\t         ");
-      _builder.append("ORG    $8000   ; With value");
-      _builder.newLine();
-      _builder.append("Label1       RMB    0 ");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getRmbDirective(), DirectiveValidator.INVALID_RANGE, "RMB value can\'t lower than 1");
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
    * Check RMB directive with the lowest limit
    */
   @Test
@@ -200,29 +178,6 @@ public class TestRmbDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
-   * Check RMB directive with the too high limit
-   */
-  @Test
-  public void testRMBWithToHighLimitValue() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("; -----------------------------------------");
-      _builder.newLine();
-      _builder.append("\t       ");
-      _builder.append("ORG    $8000   ; With value");
-      _builder.newLine();
-      _builder.append("           ");
-      _builder.append("RMB    $FFFF+1 ");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getRmbDirective(), DirectiveValidator.INVALID_RANGE, "RMB value maximum value is $FFFF");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

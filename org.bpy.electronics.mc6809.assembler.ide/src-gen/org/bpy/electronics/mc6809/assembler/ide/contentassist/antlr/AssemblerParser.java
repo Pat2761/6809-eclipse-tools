@@ -101,6 +101,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBlsInstructionAccess().getInstructionAlternatives_0_0(), "rule__BlsInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getBloInstructionAccess().getInstructionAlternatives_0_0(), "rule__BloInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getBleInstructionAccess().getInstructionAlternatives_0_0(), "rule__BleInstruction__InstructionAlternatives_0_0");
+			builder.put(grammarAccess.getBitInstructionAccess().getInstructionAlternatives_0_0(), "rule__BitInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getBitInstructionAccess().getOperandAlternatives_2_0(), "rule__BitInstruction__OperandAlternatives_2_0");
 			builder.put(grammarAccess.getBhsInstructionAccess().getInstructionAlternatives_0_0(), "rule__BhsInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getBhiInstructionAccess().getInstructionAlternatives_0_0(), "rule__BhiInstruction__InstructionAlternatives_0_0");
@@ -139,6 +140,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterAlternatives_3_0_1_0(), "rule__AutoIncDecIndirectMode__RegisterAlternatives_3_0_1_0");
 			builder.put(grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterAlternatives_3_1_0_0(), "rule__AutoIncDecIndirectMode__RegisterAlternatives_3_1_0_0");
 			builder.put(grammarAccess.getAutoIncDecIndirectModeAccess().getAlternatives_3_1_1(), "rule__AutoIncDecIndirectMode__Alternatives_3_1_1");
+			builder.put(grammarAccess.getRelativeModeAccess().getAlternatives(), "rule__RelativeMode__Alternatives");
 			builder.put(grammarAccess.getDirectiveLineAccess().getAlternatives_2(), "rule__DirectiveLine__Alternatives_2");
 			builder.put(grammarAccess.getNamDirectiveAccess().getAlternatives_0(), "rule__NamDirective__Alternatives_0");
 			builder.put(grammarAccess.getSetDirectiveAccess().getAlternatives_2(), "rule__SetDirective__Alternatives_2");
@@ -238,6 +240,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAutoIncDecIndirectModeAccess().getGroup_3_1(), "rule__AutoIncDecIndirectMode__Group_3_1__0");
 			builder.put(grammarAccess.getRelatifToPCModeAccess().getGroup(), "rule__RelatifToPCMode__Group__0");
 			builder.put(grammarAccess.getRelatifToPCIndirectModeAccess().getGroup(), "rule__RelatifToPCIndirectMode__Group__0");
+			builder.put(grammarAccess.getRelativeModeAccess().getGroup_0(), "rule__RelativeMode__Group_0__0");
 			builder.put(grammarAccess.getDirectiveLineAccess().getGroup(), "rule__DirectiveLine__Group__0");
 			builder.put(grammarAccess.getDirectiveLineAccess().getGroup_3(), "rule__DirectiveLine__Group_3__0");
 			builder.put(grammarAccess.getFccDirectiveAccess().getGroup(), "rule__FccDirective__Group__0");
@@ -300,13 +303,15 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPrimaryAccess().getGroup_6(), "rule__Primary__Group_6__0");
 			builder.put(grammarAccess.getPrimaryAccess().getGroup_7(), "rule__Primary__Group_7__0");
 			builder.put(grammarAccess.getDecimalValueAccess().getGroup(), "rule__DecimalValue__Group__0");
+			builder.put(grammarAccess.getOctalValueAccess().getGroup(), "rule__OctalValue__Group__0");
+			builder.put(grammarAccess.getBinaryValueAccess().getGroup(), "rule__BinaryValue__Group__0");
 			builder.put(grammarAccess.getModelAccess().getSourceLinesAssignment(), "rule__Model__SourceLinesAssignment");
 			builder.put(grammarAccess.getSourceLineAccess().getLineContentAssignment_0(), "rule__SourceLine__LineContentAssignment_0");
 			builder.put(grammarAccess.getSourceLineAccess().getLineContentAssignment_1(), "rule__SourceLine__LineContentAssignment_1");
 			builder.put(grammarAccess.getSourceLineAccess().getLineContentAssignment_2(), "rule__SourceLine__LineContentAssignment_2");
 			builder.put(grammarAccess.getSourceLineAccess().getLineContentAssignment_3(), "rule__SourceLine__LineContentAssignment_3");
 			builder.put(grammarAccess.getBlankLineAccess().getBlankLineAssignment_1(), "rule__BlankLine__BlankLineAssignment_1");
-			builder.put(grammarAccess.getCommentLineAccess().getCommentAssignment_0(), "rule__CommentLine__CommentAssignment_0");
+			builder.put(grammarAccess.getCommentLineAccess().getCommentAssignment_1(), "rule__CommentLine__CommentAssignment_1");
 			builder.put(grammarAccess.getInstructionLineAccess().getNameAssignment_0(), "rule__InstructionLine__NameAssignment_0");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_0(), "rule__InstructionLine__InstructionAssignment_2_0");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_1(), "rule__InstructionLine__InstructionAssignment_2_1");
@@ -565,7 +570,9 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRelatifToPCModeAccess().getRegisterAssignment_2(), "rule__RelatifToPCMode__RegisterAssignment_2");
 			builder.put(grammarAccess.getRelatifToPCIndirectModeAccess().getDeplacementAssignment_1(), "rule__RelatifToPCIndirectMode__DeplacementAssignment_1");
 			builder.put(grammarAccess.getRelatifToPCIndirectModeAccess().getRegisterAssignment_3(), "rule__RelatifToPCIndirectMode__RegisterAssignment_3");
-			builder.put(grammarAccess.getRelativeModeAccess().getLocationAssignment(), "rule__RelativeMode__LocationAssignment");
+			builder.put(grammarAccess.getRelativeModeAccess().getIsPcRelativeAssignment_0_0(), "rule__RelativeMode__IsPcRelativeAssignment_0_0");
+			builder.put(grammarAccess.getRelativeModeAccess().getOffsetAssignment_0_1(), "rule__RelativeMode__OffsetAssignment_0_1");
+			builder.put(grammarAccess.getRelativeModeAccess().getLocationAssignment_1(), "rule__RelativeMode__LocationAssignment_1");
 			builder.put(grammarAccess.getDirectiveLineAccess().getNameAssignment_0(), "rule__DirectiveLine__NameAssignment_0");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_0(), "rule__DirectiveLine__DirectiveAssignment_2_0");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_1(), "rule__DirectiveLine__DirectiveAssignment_2_1");
@@ -663,8 +670,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDecimalValueAccess().getSignAssignment_0(), "rule__DecimalValue__SignAssignment_0");
 			builder.put(grammarAccess.getDecimalValueAccess().getValueAssignment_1(), "rule__DecimalValue__ValueAssignment_1");
 			builder.put(grammarAccess.getHexaDecimalValueAccess().getValueAssignment(), "rule__HexaDecimalValue__ValueAssignment");
-			builder.put(grammarAccess.getOctalValueAccess().getValueAssignment(), "rule__OctalValue__ValueAssignment");
-			builder.put(grammarAccess.getBinaryValueAccess().getValueAssignment(), "rule__BinaryValue__ValueAssignment");
+			builder.put(grammarAccess.getOctalValueAccess().getValueAssignment_1(), "rule__OctalValue__ValueAssignment_1");
+			builder.put(grammarAccess.getBinaryValueAccess().getValueAssignment_1(), "rule__BinaryValue__ValueAssignment_1");
 			builder.put(grammarAccess.getCharacterValueAccess().getValueAssignment(), "rule__CharacterValue__ValueAssignment");
 		}
 	}

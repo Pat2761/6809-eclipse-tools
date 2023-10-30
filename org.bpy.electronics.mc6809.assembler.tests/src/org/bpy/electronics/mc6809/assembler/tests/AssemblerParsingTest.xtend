@@ -37,7 +37,6 @@ import org.bpy.electronics.mc6809.assembler.tests.directives.TestRmbDirective
 import org.bpy.electronics.mc6809.assembler.tests.directives.TestSetDirective
 import org.bpy.electronics.mc6809.assembler.tests.directives.TestSpcDirective
 import org.bpy.electronics.mc6809.assembler.tests.directives.TestComment
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestABXInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADCInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDDInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDInstruction
@@ -130,7 +129,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTInstructio
 	 TestSpcDirective,
 	 
 	 /* Instructions  */
-	 TestABXInstruction,
 	 TestADCInstruction,
 	 TestADDDInstruction,
 	 TestADDInstruction,
