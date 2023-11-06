@@ -3,6 +3,10 @@
  */
 package org.bpy.electronics.mc6809.assembler.validation;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
+import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
+import org.eclipse.xtext.validation.Check;
 
 /**
  * This class contains custom validation rules. 
@@ -11,15 +15,32 @@ package org.bpy.electronics.mc6809.assembler.validation;
  */
 public class AssemblerValidator extends AbstractAssemblerValidator {
 	
-//	public static final String INVALID_NAME = "invalidName";
-//
-//	@Check
-//	public void checkGreetingStartsWithCapital(Greeting greeting) {
-//		if (!Character.isUpperCase(greeting.getName().charAt(0))) {
-//			warning("Name should start with a capital",
-//					AssemblerPackage.Literals.GREETING__NAME,
-//					INVALID_NAME);
-//		}
-//	}
+	public static final String INVALID_FIGURE = "invalidFigure";
+
+	@Check
+	public void checkFigureInBinary(BinaryValue binaryValue) {
+		String strVal = binaryValue.getValue();
+		for (int i=0;  i<strVal.length(); i++) {
+			if (strVal.charAt(i)!='0' && strVal.charAt(i) != '1') {
+				error(strVal.charAt(i) + " is invalid in binary value",
+						AssemblerPackage.Literals.BINARY_VALUE__VALUE,
+						INVALID_FIGURE);
+				break;
+			}
+		}
+	}
+
+	@Check
+	public void checkFigureInOctal(OctalValue octalValue) {
+		String strVal = octalValue.getValue();
+		for (int i=0;  i<strVal.length(); i++) {
+			if (strVal.charAt(i)<'0' || strVal.charAt(i) > '7') {
+				error(strVal.charAt(i) + " is invalid in octal value",
+						AssemblerPackage.Literals.OCTAL_VALUE__VALUE,
+						INVALID_FIGURE);
+				break;
+			}
+		}
+	}
 	
 }

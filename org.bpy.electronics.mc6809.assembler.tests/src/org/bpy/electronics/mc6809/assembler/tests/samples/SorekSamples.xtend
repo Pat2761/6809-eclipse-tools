@@ -27,9 +27,7 @@ import org.eclipse.xtext.testing.util.ParseHelper
 import org.bpy.electronics.mc6809.assembler.assembler.Model
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Assert
-import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
