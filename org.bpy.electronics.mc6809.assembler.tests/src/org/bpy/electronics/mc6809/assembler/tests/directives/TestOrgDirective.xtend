@@ -32,6 +32,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -184,64 +186,108 @@ class TestOrgDirective {
 	/**
 	 * Check ORG directive with a negative value
 	 */
-//	@Test 
-//	def void testWithNegativeValue() {
-//		val result = parseHelper.parse('''
-//		Label1       ORG    -1 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.orgDirective,DirectiveValidator::INVALID_RANGE,"ORG value can't be negative")
-//	}
+	@Test 
+	def void testWithNegativeValue() {
+		val result = parseHelper.parse('''
+		Label1       ORG    -1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.orgDirective,DirectiveValidator::INVALID_RANGE,"ORG value can't be negative")
+	}
 
 	/**
 	 * Check ORG directive with the lowest limit
 	 */
-//	@Test 
-//	def void testWithLowestValue() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//		        ORG    0 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertNoErrors
-//	}
+	@Test 
+	def void testWithLowestValue() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		        ORG    0 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
 
 	/**
 	 * Check ORG directive with the upper limit
 	 */
-//	@Test 
-//	def void testWithUpperLimitValue() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//		       ORG    $FFFF 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertNoErrors
-//	}
+	@Test 
+	def void testWithUpperLimitValue() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		       ORG    $FFFF 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
 
 	/**
 	 * Check ORG directive with the too high limit
 	 */
-//	@Test 
-//	def void testWithToHighLimitValue() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//		       ORG    $FFFF+1 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.orgDirective,DirectiveValidator::INVALID_RANGE,"ORG value maximum value is $FFFF")
-//	}
+	@Test 
+	def void testWithToHighLimitValue() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		       ORG    $FFFF+1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.orgDirective,DirectiveValidator::INVALID_RANGE,"ORG value maximum value is $FFFF")
+	}
 
 	/**
-	 * Check ORG directive with the too high limit
+	 * Check Sorek ORG directive 
 	 */
-//	@Test 
-//	def void testUnexpectedLabel() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//		OrgLabel       ORG    $FFFF 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.orgDirective,DirectiveValidator::UNEXPECTED_LABEL,"Label isn't not allow for ORG directive")
-//	}
+	@Test 
+	def void testSorekOrg1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		       ORG    $0400 		; opérande du type constante
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check Sorek ORG directive 
+	 */
+	@Test 
+	def void testSorekOrg2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		RESET	EQU			$4000		; Reset
+		
+		        ORG         RESET       ; opérande du type symbole
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check Sorek ORG directive 
+	 */
+	@Test 
+	def void testSorekOrg3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		        ORG         *+100       ; opérande du type expression
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check Sorek ORG directive 
+	 */
+	@Test 
+	def void testSorekOrg4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		SBR1			EQU			100	
+		LGTAB			EQU			200
+		
+			      		ORG         SBR1+LGTAB*8       ; opérande du type expression
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
 }

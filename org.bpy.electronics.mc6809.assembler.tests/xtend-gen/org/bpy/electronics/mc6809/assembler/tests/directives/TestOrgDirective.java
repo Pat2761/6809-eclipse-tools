@@ -18,6 +18,7 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -25,6 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -222,6 +224,171 @@ public class TestOrgDirective {
       final DirectiveLine directiveLine1 = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine1.getDirective();
       Assert.assertTrue("Must be an ORG directive line", (_directive instanceof OrgDirective));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check ORG directive with a negative value
+   */
+  @Test
+  public void testWithNegativeValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Label1       ORG    -1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), DirectiveValidator.INVALID_RANGE, "ORG value can\'t be negative");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check ORG directive with the lowest limit
+   */
+  @Test
+  public void testWithLowestValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("ORG    0 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check ORG directive with the upper limit
+   */
+  @Test
+  public void testWithUpperLimitValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("       ");
+      _builder.append("ORG    $FFFF ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check ORG directive with the too high limit
+   */
+  @Test
+  public void testWithToHighLimitValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("       ");
+      _builder.append("ORG    $FFFF+1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), DirectiveValidator.INVALID_RANGE, "ORG value maximum value is $FFFF");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Sorek ORG directive
+   */
+  @Test
+  public void testSorekOrg1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("       ");
+      _builder.append("ORG    $0400 \t\t; opérande du type constante");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Sorek ORG directive
+   */
+  @Test
+  public void testSorekOrg2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("RESET\tEQU\t\t\t$4000\t\t; Reset");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("ORG         RESET       ; opérande du type symbole");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Sorek ORG directive
+   */
+  @Test
+  public void testSorekOrg3() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("        ");
+      _builder.append("ORG         *+100       ; opérande du type expression");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Sorek ORG directive
+   */
+  @Test
+  public void testSorekOrg4() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("SBR1\t\t\tEQU\t\t\t100\t");
+      _builder.newLine();
+      _builder.append("LGTAB\t\t\tEQU\t\t\t200");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("\t      \t\t");
+      _builder.append("ORG         SBR1+LGTAB*8       ; opérande du type expression");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

@@ -1,15 +1,14 @@
 package org.bpy.electronics.mc6809.assembler.validation;
 
-import java.util.List;
-
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
-import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.xtext.validation.Check;
 
@@ -48,6 +47,17 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	}
 
 	@Check
+	public void checkDirectiveLine(DirectiveLine directiveLine) {
+		if (directiveLine.getDirective() instanceof BszDirective) {
+			if (directiveLine.getName() == null) {
+				warning("No label defined for BSZ directive",
+					AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+					MISSING_LABEL);
+			}
+		}
+	}
+	
+	@Check
 	/**
 	 * Check the ORG directive limits (0-FFFF)
 	 * ORG can't have a label
@@ -55,25 +65,40 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 * @param orgDirective reference on the ORG directive
 	 */
 	public void checkOrgConstraints(OrgDirective orgDirective) {
-//		String label = CommandUtil.getLabel(orgDirective);
-//		if (label != null) {
-//			error("Label isn't not allow for ORG directive",
-//					AssemblerPackage.Literals.ORG_DIRECTIVE__NAME,
-//					UNEXPECTED_LABEL);
-//		}
-//
-//		int orgValue = ExpressionParser.parse(orgDirective);
-//		if (orgValue > 0xFFFF) {
-//			error("ORG value maximum value is $FFFF",
-//					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
-//					INVALID_RANGE);
-//		} else if (orgValue < 0) {
-//			error("ORG value can't be negative",
-//					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
-//					INVALID_RANGE);
-//		}
+		int orgValue = ExpressionParser.parse(orgDirective);
+		if (orgValue > 0xFFFF) {
+			error("ORG value maximum value is $FFFF",
+					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else if (orgValue < 0) {
+			error("ORG value can't be negative",
+					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		}
 	}
-
+	
+	@Check
+	
+	/**
+	 * Check the BSZ directive constraints
+	 * can't be negative
+	 * Doubt if equals to 0
+	 * 
+	 * @param bszDirective reference on the BSZ directive
+	 */
+	public void checkBszConstraints(BszDirective bszDirective) {
+		int bszValue = ExpressionParser.parse(bszDirective);
+	    if (bszValue < 0) {
+			error("BSZ value can't be negative",
+					AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else if (bszValue == 0) {
+			warning("Reserving no bytes makes no sense",
+					AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		}
+	}
+	
 	@Check
 	/**
 	 * An END directive can't have a label

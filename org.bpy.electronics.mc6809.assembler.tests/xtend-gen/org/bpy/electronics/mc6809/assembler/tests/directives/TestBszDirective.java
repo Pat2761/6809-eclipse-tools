@@ -18,6 +18,7 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -25,6 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -158,6 +160,95 @@ public class TestBszDirective {
       final DirectiveLine directiveLine1 = ((DirectiveLine) _lineContent_2);
       EObject _directive_1 = directiveLine1.getDirective();
       Assert.assertTrue("Must be an BSZ directive line", (_directive_1 instanceof BszDirective));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BSZ directive with a negative value
+   */
+  @Test
+  public void testBSZWithNegativeValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\t         ");
+      _builder.append("ORG    $8000   ; With value");
+      _builder.newLine();
+      _builder.append("Label1       BSZ    -1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBszDirective(), DirectiveValidator.INVALID_RANGE, "BSZ value can\'t be negative");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BSZ directive with the lowest limit
+   */
+  @Test
+  public void testWithLowestValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000   ; With value");
+      _builder.newLine();
+      _builder.append("           ");
+      _builder.append("BSZ    1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BSZ directive with 0 value
+   */
+  @Test
+  public void testWithNothingValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000   ; With value");
+      _builder.newLine();
+      _builder.append("           ");
+      _builder.append("BSZ    0 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getBszDirective(), DirectiveValidator.INVALID_RANGE, "Reserving no bytes makes no sense");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BSZ directive with missing label
+   */
+  @Test
+  public void testBszMissingLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           ");
+      _builder.append("ORG    $8000   ; With value");
+      _builder.newLine();
+      _builder.append(" \t\t       ");
+      _builder.append("BSZ    10 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.MISSING_LABEL, "No label defined for BSZ directive");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

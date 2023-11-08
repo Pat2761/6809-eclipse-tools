@@ -28,6 +28,7 @@ import java.util.logging.Logger;
 import org.bpy.electronics.mc6809.assembler.assembler.Addition;
 import org.bpy.electronics.mc6809.assembler.assembler.And;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
+import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
@@ -192,6 +193,24 @@ public class ExpressionParser {
 			return 0;
 		}
 	}
+
+	/** 
+	 *  Parse the operand of an BSZ directive.
+	 *  
+	 *  @param bszDirective reference on the BSZ directive
+	 *  @return value of the operand 
+	 */
+	public static int parse(BszDirective bszDirective) {
+		if (bszDirective.getOperand() != null && bszDirective.getOperand().getOperand() != null) {
+			EObject operand = bszDirective.getOperand().getOperand();
+			int equValue = resolveExpression((Expression)operand);
+			
+			return equValue;
+		} else {
+			return 0;
+		}
+	}
+
 	
 	/**
 	 * resolve an expression object 
@@ -555,4 +574,5 @@ public class ExpressionParser {
 		}
 		return left>>right;
 	}
+
 }

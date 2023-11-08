@@ -110,6 +110,9 @@ import org.bpy.electronics.mc6809.assembler.tests.samples.SorekSamples
 @RunWith(Suite)
 @Suite.SuiteClasses(
 	
+	 /* general */
+	 CheckNumberValidation,	
+	
 	 /* Directives */
 	 TestComment,
 	 TestBszDirective,

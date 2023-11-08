@@ -32,6 +32,8 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -61,9 +63,6 @@ class TestBszDirective {
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an BSZ directive line", directiveLine.directive instanceof BszDirective)
 		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -87,9 +86,6 @@ class TestBszDirective {
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an BSZ directive line", directiveLine.directive instanceof BszDirective)
 		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 	
 
@@ -121,78 +117,61 @@ class TestBszDirective {
 		
 		val directiveLine1 = line1.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an BSZ directive line", directiveLine1.directive instanceof BszDirective)
-		
-//		val endDirective = directiveLine1.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to $8000", 0x8000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
-	 * Check END directive with a negative value
+	 * Check BSZ directive with a negative value
 	 */
-//	@Test 
-//	def void testWithNegativeValue() {
-//		val result = parseHelper.parse('''
-//			         ORG    $8000   ; With value
-//		Label1       END    -1 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.endDirective,DirectiveValidator::INVALID_RANGE,"END value can't be negative")
-//	}
+	@Test 
+	def void testBSZWithNegativeValue() {
+		val result = parseHelper.parse('''
+			         ORG    $8000   ; With value
+		Label1       BSZ    -1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.bszDirective,DirectiveValidator::INVALID_RANGE,"BSZ value can't be negative")
+	}
 
 	/**
-	 * Check END directive with the lowest limit
+	 * Check BSZ directive with the lowest limit
 	 */
-//	@Test 
-//	def void testWithLowestValue() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//			       ORG    $8000   ; With value
-//		           END    0 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertNoErrors
-//	}
+	@Test 
+	def void testWithLowestValue() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000   ; With value
+		           BSZ    1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
 
 	/**
-	 * Check END directive with the upper limit
+	 * Check BSZ directive with 0 value
 	 */
-//	@Test 
-//	def void testWithUpperLimitValue() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//			   ORG    $8000   ; With value
-//		       END    $FFFF 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertNoErrors
-//	}
+	@Test 
+	def void testWithNothingValue() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000   ; With value
+		           BSZ    0 
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.eINSTANCE.bszDirective,DirectiveValidator::INVALID_RANGE,"Reserving no bytes makes no sense")
+	}
 
 	/**
-	 * Check ORG directive with the too high limit
+	 * Check BSZ directive with missing label
 	 */
-//	@Test 
-//	def void testWithToHighLimitValue() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//			       ORG    $8000   ; With value
-//		           END    $FFFF+1 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.endDirective,DirectiveValidator::INVALID_RANGE,"END value maximum value is $FFFF")
-//	}
-
-	/**
-	 * Check ORG directive with the too high limit
-	 */
-//	@Test 
-//	def void testEndUnexpectedLabel() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//			           ORG    $8000   ; With value
-//		EndLabel       END    $FFFF 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.endDirective,DirectiveValidator::UNEXPECTED_LABEL,"Label isn't not allow for END directive")
-//	}
+	@Test 
+	def void testBszMissingLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           ORG    $8000   ; With value
+		 		       BSZ    10 
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.eINSTANCE.directiveLine, DirectiveValidator::MISSING_LABEL, "No label defined for BSZ directive")
+	}
 }
