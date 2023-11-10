@@ -11,4 +11,13 @@
 		<relativePath>../org.bpy.electronics.mc6809.build/parent/pom.xml</relativePath>
 	</parent>
 
+	<dependencies>
+		<dependency>
+			<groupId>org.bpy.electronics.mc6809</groupId>
+			<artifactId>
+				org.bpy.electronics.mc6809.assembler
+			</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 </project>

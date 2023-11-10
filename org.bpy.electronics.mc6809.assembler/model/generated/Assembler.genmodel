@@ -38,6 +38,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BlankLine/blankLine"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//CommentLine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CommentLine/startingSpace"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CommentLine/comment"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//InstructionLine">

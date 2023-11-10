@@ -11,6 +11,8 @@ import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.testing.validation.ValidationTestHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -34,8 +36,10 @@ public class OrgDirectiveTest {
       _builder.append("Test\t\tORG \t$8000\t\t; Start code at $8000\t");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
       final AssemblerEngine engine = new AssemblerEngine();
       engine.engine(result);
+      InputOutput.<AssemblerEngine>print(engine);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

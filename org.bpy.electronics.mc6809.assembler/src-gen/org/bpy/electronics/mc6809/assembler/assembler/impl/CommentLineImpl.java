@@ -21,6 +21,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommentLineImpl#getStartingSpace <em>Starting Space</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommentLineImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
@@ -28,6 +29,26 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class CommentLineImpl extends MinimalEObjectImpl.Container implements CommentLine
 {
+  /**
+   * The default value of the '{@link #getStartingSpace() <em>Starting Space</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStartingSpace()
+   * @generated
+   * @ordered
+   */
+  protected static final String STARTING_SPACE_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getStartingSpace() <em>Starting Space</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getStartingSpace()
+   * @generated
+   * @ordered
+   */
+  protected String startingSpace = STARTING_SPACE_EDEFAULT;
+
   /**
    * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -75,6 +96,31 @@ public class CommentLineImpl extends MinimalEObjectImpl.Container implements Com
    * @generated
    */
   @Override
+  public String getStartingSpace()
+  {
+    return startingSpace;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setStartingSpace(String newStartingSpace)
+  {
+    String oldStartingSpace = startingSpace;
+    startingSpace = newStartingSpace;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.COMMENT_LINE__STARTING_SPACE, oldStartingSpace, startingSpace));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String getComment()
   {
     return comment;
@@ -104,6 +150,8 @@ public class CommentLineImpl extends MinimalEObjectImpl.Container implements Com
   {
     switch (featureID)
     {
+      case AssemblerPackage.COMMENT_LINE__STARTING_SPACE:
+        return getStartingSpace();
       case AssemblerPackage.COMMENT_LINE__COMMENT:
         return getComment();
     }
@@ -120,6 +168,9 @@ public class CommentLineImpl extends MinimalEObjectImpl.Container implements Com
   {
     switch (featureID)
     {
+      case AssemblerPackage.COMMENT_LINE__STARTING_SPACE:
+        setStartingSpace((String)newValue);
+        return;
       case AssemblerPackage.COMMENT_LINE__COMMENT:
         setComment((String)newValue);
         return;
@@ -137,6 +188,9 @@ public class CommentLineImpl extends MinimalEObjectImpl.Container implements Com
   {
     switch (featureID)
     {
+      case AssemblerPackage.COMMENT_LINE__STARTING_SPACE:
+        setStartingSpace(STARTING_SPACE_EDEFAULT);
+        return;
       case AssemblerPackage.COMMENT_LINE__COMMENT:
         setComment(COMMENT_EDEFAULT);
         return;
@@ -154,6 +208,8 @@ public class CommentLineImpl extends MinimalEObjectImpl.Container implements Com
   {
     switch (featureID)
     {
+      case AssemblerPackage.COMMENT_LINE__STARTING_SPACE:
+        return STARTING_SPACE_EDEFAULT == null ? startingSpace != null : !STARTING_SPACE_EDEFAULT.equals(startingSpace);
       case AssemblerPackage.COMMENT_LINE__COMMENT:
         return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }
@@ -171,7 +227,9 @@ public class CommentLineImpl extends MinimalEObjectImpl.Container implements Com
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (comment: ");
+    result.append(" (startingSpace: ");
+    result.append(startingSpace);
+    result.append(", comment: ");
     result.append(comment);
     result.append(')');
     return result.toString();

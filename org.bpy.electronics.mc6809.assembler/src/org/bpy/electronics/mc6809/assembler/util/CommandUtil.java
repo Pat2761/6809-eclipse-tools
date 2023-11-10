@@ -28,13 +28,28 @@ public class CommandUtil {
 	/**
 	 * Return the label associated to an ORG directive.
 	 * 
-	 * @param equDirective reference on the ORG directive
+	 * @param orgDirective reference on the ORG directive
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(OrgDirective orgDirective) {
 		DirectiveLine directiveLine = (DirectiveLine)orgDirective.eContainer();
 		if ( directiveLine.getName() != null) {
 			return directiveLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to an ORG directive.
+	 * 
+	 * @param orgDirective reference on the ORG directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(OrgDirective orgDirective) {
+		DirectiveLine directiveLine = (DirectiveLine)orgDirective.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
 		} else {
 			return null;
 		}

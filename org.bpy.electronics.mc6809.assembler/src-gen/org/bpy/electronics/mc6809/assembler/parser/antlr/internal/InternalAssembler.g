@@ -271,9 +271,27 @@ ruleCommentLine returns [EObject current=null]
 		)
 		(
 			(
-				lv_comment_1_0=RULE_WS
+				lv_startingSpace_1_0=RULE_WS
 				{
-					newLeafNode(lv_comment_1_0, grammarAccess.getCommentLineAccess().getCommentWSTerminalRuleCall_1_0());
+					newLeafNode(lv_startingSpace_1_0, grammarAccess.getCommentLineAccess().getStartingSpaceWSTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getCommentLineRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"startingSpace",
+						lv_startingSpace_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)?
+		(
+			(
+				lv_comment_2_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+				{
+					newLeafNode(lv_comment_2_0, grammarAccess.getCommentLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_0());
 				}
 				{
 					if ($current==null) {
@@ -282,15 +300,11 @@ ruleCommentLine returns [EObject current=null]
 					setWithLastConsumed(
 						$current,
 						"comment",
-						lv_comment_1_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+						lv_comment_2_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
 				}
 			)
-		)?
-		this_ANY_EXCEPT_COMMENT_END_OF_LINE_2=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
-		{
-			newLeafNode(this_ANY_EXCEPT_COMMENT_END_OF_LINE_2, grammarAccess.getCommentLineAccess().getANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2());
-		}
+		)
 		{
 			newCompositeNode(grammarAccess.getCommentLineAccess().getEndOfLineParserRuleCall_3());
 		}

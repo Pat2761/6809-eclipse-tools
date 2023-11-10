@@ -1278,7 +1278,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     CommentLine returns CommentLine
 	 *
 	 * Constraint:
-	 *     comment=WS?
+	 *     (startingSpace=WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
 	 * </pre>
 	 */
 	protected void sequence_CommentLine(ISerializationContext context, CommentLine semanticObject) {

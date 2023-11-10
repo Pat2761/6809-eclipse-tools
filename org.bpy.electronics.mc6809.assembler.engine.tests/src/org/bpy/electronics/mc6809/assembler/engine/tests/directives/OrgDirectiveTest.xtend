@@ -10,6 +10,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Test
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.junit.Assert
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -24,8 +25,12 @@ class OrgDirectiveTest {
 		;******************************************************
 		Test		ORG 	$8000		; Start code at $8000	
 				''')
+		Assert.assertNotNull(result)
+				
 		val engine = new AssemblerEngine()		
 		engine.engine(result)
+		
+		print(engine)
 	}
 	
 }

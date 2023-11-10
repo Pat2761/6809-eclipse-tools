@@ -136,9 +136,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CommentLine");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cCommentLineAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cCommentAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cCommentWSTerminalRuleCall_1_0 = (RuleCall)cCommentAssignment_1.eContents().get(0);
-		private final RuleCall cANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Assignment cStartingSpaceAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cStartingSpaceWSTerminalRuleCall_1_0 = (RuleCall)cStartingSpaceAssignment_1.eContents().get(0);
+		private final Assignment cCommentAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_0 = (RuleCall)cCommentAssignment_2.eContents().get(0);
 		private final RuleCall cEndOfLineParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		///*
@@ -147,25 +148,28 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//CommentLine:
 		//    {CommentLine}
-		//    comment = WS? ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
+		//    startingSpace = WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{CommentLine}
-		//comment = WS? ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
+		//startingSpace = WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
 		public Group getGroup() { return cGroup; }
 		
 		//{CommentLine}
 		public Action getCommentLineAction_0() { return cCommentLineAction_0; }
 		
-		//comment = WS?
-		public Assignment getCommentAssignment_1() { return cCommentAssignment_1; }
+		//startingSpace = WS?
+		public Assignment getStartingSpaceAssignment_1() { return cStartingSpaceAssignment_1; }
 		
 		//WS
-		public RuleCall getCommentWSTerminalRuleCall_1_0() { return cCommentWSTerminalRuleCall_1_0; }
+		public RuleCall getStartingSpaceWSTerminalRuleCall_1_0() { return cStartingSpaceWSTerminalRuleCall_1_0; }
+		
+		//comment=ANY_EXCEPT_COMMENT_END_OF_LINE
+		public Assignment getCommentAssignment_2() { return cCommentAssignment_2; }
 		
 		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2() { return cANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2; }
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_0; }
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_3() { return cEndOfLineParserRuleCall_3; }
@@ -9866,7 +9870,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//CommentLine:
 	//    {CommentLine}
-	//    comment = WS? ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
+	//    startingSpace = WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
 	//;
 	public CommentLineElements getCommentLineAccess() {
 		return pCommentLine;

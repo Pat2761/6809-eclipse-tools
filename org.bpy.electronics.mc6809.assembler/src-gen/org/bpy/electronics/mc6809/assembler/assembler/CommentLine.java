@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.CommentLine#getStartingSpace <em>Starting Space</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.CommentLine#getComment <em>Comment</em>}</li>
  * </ul>
  *
@@ -23,6 +24,28 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface CommentLine extends EObject
 {
+  /**
+   * Returns the value of the '<em><b>Starting Space</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Starting Space</em>' attribute.
+   * @see #setStartingSpace(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getCommentLine_StartingSpace()
+   * @model
+   * @generated
+   */
+  String getStartingSpace();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.CommentLine#getStartingSpace <em>Starting Space</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Starting Space</em>' attribute.
+   * @see #getStartingSpace()
+   * @generated
+   */
+  void setStartingSpace(String value);
+
   /**
    * Returns the value of the '<em><b>Comment</b></em>' attribute.
    * <!-- begin-user-doc -->

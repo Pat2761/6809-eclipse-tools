@@ -310,7 +310,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSourceLineAccess().getLineContentAssignment_2(), "rule__SourceLine__LineContentAssignment_2");
 			builder.put(grammarAccess.getSourceLineAccess().getLineContentAssignment_3(), "rule__SourceLine__LineContentAssignment_3");
 			builder.put(grammarAccess.getBlankLineAccess().getBlankLineAssignment_1(), "rule__BlankLine__BlankLineAssignment_1");
-			builder.put(grammarAccess.getCommentLineAccess().getCommentAssignment_1(), "rule__CommentLine__CommentAssignment_1");
+			builder.put(grammarAccess.getCommentLineAccess().getStartingSpaceAssignment_1(), "rule__CommentLine__StartingSpaceAssignment_1");
+			builder.put(grammarAccess.getCommentLineAccess().getCommentAssignment_2(), "rule__CommentLine__CommentAssignment_2");
 			builder.put(grammarAccess.getInstructionLineAccess().getNameAssignment_0(), "rule__InstructionLine__NameAssignment_0");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_0(), "rule__InstructionLine__InstructionAssignment_2_0");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_1(), "rule__InstructionLine__InstructionAssignment_2_1");

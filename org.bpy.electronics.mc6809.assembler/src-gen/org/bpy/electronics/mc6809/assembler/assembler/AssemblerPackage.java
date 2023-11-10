@@ -153,13 +153,22 @@ public interface AssemblerPackage extends EPackage
   int COMMENT_LINE = 3;
 
   /**
+   * The feature id for the '<em><b>Starting Space</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMENT_LINE__STARTING_SPACE = 0;
+
+  /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COMMENT_LINE__COMMENT = 0;
+  int COMMENT_LINE__COMMENT = 1;
 
   /**
    * The number of structural features of the '<em>Comment Line</em>' class.
@@ -168,7 +177,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int COMMENT_LINE_FEATURE_COUNT = 1;
+  int COMMENT_LINE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl <em>Instruction Line</em>}' class.
@@ -4932,6 +4941,17 @@ public interface AssemblerPackage extends EPackage
   EClass getCommentLine();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.CommentLine#getStartingSpace <em>Starting Space</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Starting Space</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CommentLine#getStartingSpace()
+   * @see #getCommentLine()
+   * @generated
+   */
+  EAttribute getCommentLine_StartingSpace();
+
+  /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.CommentLine#getComment <em>Comment</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -8897,6 +8917,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass COMMENT_LINE = eINSTANCE.getCommentLine();
+
+    /**
+     * The meta object literal for the '<em><b>Starting Space</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COMMENT_LINE__STARTING_SPACE = eINSTANCE.getCommentLine_StartingSpace();
 
     /**
      * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.

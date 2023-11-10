@@ -1,23 +1,97 @@
+/*
+ * MC6809 Toolkit
+ * Copyright (C) 2023  Patrick BRIAND
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package org.bpy.electronics.mc6809.assembler.engine;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
+import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
 public class AssemblerEngine {
 	
-	private int pcValue;
-
+	private int currentPcValue;
+	private int lineNumber;
+	private List<AbstractAssemblyLine> assemblyLines;
 	
 	public AssemblerEngine() {
-		pcValue = -1;
+		lineNumber = 1;
+		currentPcValue = -1;
+		assemblyLines = new ArrayList<>();
 	}
 	
 	public void engine(Model model) {
 		List<SourceLine> sourceLines = model.getSourceLines();
 		for (SourceLine sourceLine : sourceLines) {
-			System.out.println(sourceLine);
+			if (sourceLine.getLineContent() instanceof BlankLine) {
+				
+			} else if (sourceLine.getLineContent() instanceof CommentLine) {
+				parseCommentLine((CommentLine)sourceLine.getLineContent());
+				
+			} else if (sourceLine.getLineContent() instanceof DirectiveLine) {
+				DirectiveLine directiveLine = (DirectiveLine) sourceLine.getLineContent();
+				parseDirectiveLine(directiveLine);
+			
+			} else if (sourceLine.getLineContent() instanceof InstructionLine) {
+				
+			}
+			lineNumber++;
 		}
 	}
+
+	private void parseCommentLine(CommentLine commentLine) {
+		AssembledCommentLine assembledCommentLine = new AssembledCommentLine();
+		assembledCommentLine.parse(commentLine, currentPcValue, lineNumber);
+		assemblyLines.add(assembledCommentLine);
+	}
+
+	private void parseDirectiveLine(DirectiveLine directiveLine) {
+		if (directiveLine.getDirective() instanceof OrgDirective) {
+			parseOrgDirective((OrgDirective)directiveLine.getDirective());
+		}
+	}
+
+	private void parseOrgDirective(OrgDirective directive) {
+		int pcValue = ExpressionParser.parse(directive);
+		currentPcValue = pcValue;
+		AssembledDirectiveLine line = new AssembledDirectiveLine();
+		line.parse(directive, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder strBuilder = new StringBuilder();
+		for (AbstractAssemblyLine line : assemblyLines) {
+			strBuilder.append(line.toString());
+			strBuilder.append("\r\n");
+		}
+		return strBuilder.toString();
+	}
+	
 }
