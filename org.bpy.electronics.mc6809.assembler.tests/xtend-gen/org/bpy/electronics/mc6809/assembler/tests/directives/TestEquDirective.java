@@ -18,6 +18,7 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -25,6 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -477,6 +479,16 @@ public class TestEquDirective {
    */
   @Test
   public void testWithTooHighValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Label1       EQU    65536 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), DirectiveValidator.INVALID_RANGE, "EQU value can\'t exceed 65535 (16 bits value)");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -484,6 +496,16 @@ public class TestEquDirective {
    */
   @Test
   public void testWithTooLowValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("Label1       EQU    -32769 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), DirectiveValidator.INVALID_RANGE, "EQU value can\'t be lower than -32768 (16 bits value)");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -508,6 +530,19 @@ public class TestEquDirective {
    */
   @Test
   public void testWithMissingLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test EQU without label");
+      _builder.newLine();
+      _builder.append(" \t    ");
+      _builder.append("EQU    100 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.MISSING_LABEL, "No label defined for EQU directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   @Test
@@ -737,6 +772,49 @@ public class TestEquDirective {
       final EquDirective equDirective = ((EquDirective) _directive_1);
       Assert.assertEquals("Label must be set to Label1", "Label1", CommandUtil.getLabel(equDirective));
       Assert.assertEquals("Operand must be equals to 22", 22, ExpressionParser.parse(equDirective));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  @Test
+  public void testSorek() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("START\t\t\tORG\t\t\t$2000");
+      _builder.newLine();
+      _builder.append("DEBUT\t\t\tEQU\t\t\tSTART");
+      _builder.newLine();
+      _builder.append("COMPT \t\t\tEQU \t\t$05 \t\t\t\t\t; donnée 8 bits");
+      _builder.newLine();
+      _builder.append("ADRDEB\t\t\tEQU \t\t1000 \t\t\t\t\t; donnée 16 bits");
+      _builder.newLine();
+      _builder.append("FIN \t\t\tEQU \t\tDEBUT+$60 \t\t\t\t; ");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("VALHEX \t\t\tEQU \t\t$8000 \t\t\t\t\t; VALHEX aura pour valeur $8000");
+      _builder.newLine();
+      _builder.append(";DEBBIN \t\tEQU \t\t-$0200 \t\t\t\t\t; ==> negative hexa decimal not managed");
+      _builder.newLine();
+      _builder.append("FINATT \t\t\tEQU \t\tNOMVAR+30 \t\t\t\t;");
+      _builder.newLine();
+      _builder.append("FINTIT \t\t\tEQU \t\tNOMVAR-VARFIN \t\t\t;");
+      _builder.newLine();
+      _builder.append("TOUCHA \t\t\tEQU \t\t\'A \t\t\t\t\t\t; assigne $0041 au symbole TOUCHA");
+      _builder.newLine();
+      _builder.append("FONCTA \t\t\tEQU \t\tTOUCHA+%10000000 \t\t; assigne $00C1 au symbole FONCTA");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("TOTO \t\t\tEQU \t\t* \t\t\t\t\t\t; TOTO aura pour valeur $2000, car on affecte la");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; valeur courante de l\'adresse à TOTO");
+      _builder.newLine();
+      _builder.append("TITI \t\t\tEQU \t\t*-3 \t\t\t\t\t; TITI aura pour valeurs $1FFD ($2000-3)");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

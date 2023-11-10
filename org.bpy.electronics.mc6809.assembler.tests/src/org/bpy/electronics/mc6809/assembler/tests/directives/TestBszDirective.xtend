@@ -174,4 +174,20 @@ class TestBszDirective {
 		Assert.assertNotNull(result)
 		result.assertWarning(AssemblerPackage.eINSTANCE.directiveLine, DirectiveValidator::MISSING_LABEL, "No label defined for BSZ directive")
 	}
+
+	/**
+	 * Check BSZ Sorek directive 
+	 */
+	@Test 
+	def void testBszSorek() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000   	; With value
+		TOTO	       	BSZ    	$10 		; Toto vaudra $2000
+		TITI			EQU		* 			; TITI vaudra $2010
+											; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
 }

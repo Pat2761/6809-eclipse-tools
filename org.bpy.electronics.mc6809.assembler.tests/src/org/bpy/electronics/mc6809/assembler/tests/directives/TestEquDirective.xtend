@@ -32,6 +32,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -58,10 +60,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 1234", 1234, ExpressionParser.parse(equDirective))		
 	}
 
 	/**
@@ -82,10 +80,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to -25", -25, ExpressionParser.parse(equDirective))		
 	}
 	
 	@Test
@@ -107,10 +101,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 36", 36, ExpressionParser.parse(equDirective))		
 	}
 	
 	@Test
@@ -131,10 +121,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 41", 41, ExpressionParser.parse(equDirective))		
 	}
 
 	@Test
@@ -156,10 +142,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 180", 180, ExpressionParser.parse(equDirective))		
 	}
 
 	@Test
@@ -180,10 +162,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 65280", 65280, ExpressionParser.parse(equDirective))		
 	}
 
 	@Test
@@ -204,10 +182,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 204", 204, ExpressionParser.parse(equDirective))		
 	}
 
 	/**
@@ -228,10 +202,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 1250", 1250, ExpressionParser.parse(equDirective))		
 	}
 	
 	/**
@@ -252,10 +222,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 147", 147, ExpressionParser.parse(equDirective))		
 	}
 	
 	/**
@@ -276,10 +242,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 668", 668, ExpressionParser.parse(equDirective))		
 	}
 	
 	/**
@@ -306,10 +268,6 @@ class TestEquDirective {
 		
 		val directiveLine1 = line1.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine1.directive instanceof EquDirective)
-		
-//		val equDirective1 = directiveLine1.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Result" , CommandUtil.getLabel(equDirective1))	
-//		Assert.assertEquals("Operand must be equals to 10", 10, ExpressionParser.parse(equDirective1))		
 	}
 
 	/**
@@ -330,10 +288,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 65", 65, ExpressionParser.parse(equDirective))		
 	}
 
 	/**
@@ -355,10 +309,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 65", 65, ExpressionParser.parse(equDirective))		
 	}
 
 
@@ -381,10 +331,6 @@ class TestEquDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-//		val equDirective = directiveLine.directive as EquDirective
-//	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-//		Assert.assertEquals("Operand must be equals to 65", 65, ExpressionParser.parse(equDirective))		
 	}
 	@Test
 	def void testEQUWithSamples() { 
@@ -413,11 +359,11 @@ class TestEquDirective {
 	 */
 	@Test 
 	def void testWithTooHighValue() {
-//		val result = parseHelper.parse('''
-//		Label1       EQU    65536 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::INVALID_RANGE,"EQU value can't exceed 65535 (16 bits value)")
+		val result = parseHelper.parse('''
+		Label1       EQU    65536 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::INVALID_RANGE,"EQU value can't exceed 65535 (16 bits value)")
 	}
 
 	/**
@@ -425,11 +371,11 @@ class TestEquDirective {
 	 */
 	@Test 
 	def void testWithTooLowValue() {
-//		val result = parseHelper.parse('''
-//		Label1       EQU    -32769 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::INVALID_RANGE,"EQU value can't be lower than -32768 (16 bits value)")
+		val result = parseHelper.parse('''
+		Label1       EQU    -32769 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::INVALID_RANGE,"EQU value can't be lower than -32768 (16 bits value)")
 	}
 
 	/**
@@ -449,12 +395,12 @@ class TestEquDirective {
 	 */
 	@Test 
 	def void testWithMissingLabel() {
-//		val result = parseHelper.parse('''
-//		; test EQU without label
-//		 	    EQU    100 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::MISSING_LABEL,"EQU directive must have a label")
+		val result = parseHelper.parse('''
+		; test EQU without label
+		 	    EQU    100 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::MISSING_LABEL,"No label defined for EQU directive")
 	}
 	
 	@Test
@@ -655,5 +601,29 @@ class TestEquDirective {
 		val equDirective = directiveLine.directive as EquDirective
 	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
 		Assert.assertEquals("Operand must be equals to 22", 22, ExpressionParser.parse(equDirective))		
+	}
+	
+	@Test
+	def void testSorek() {
+		val result = parseHelper.parse('''
+		START			ORG			$2000
+		DEBUT			EQU			START
+		COMPT 			EQU 		$05 					; donnée 8 bits
+		ADRDEB			EQU 		1000 					; donnée 16 bits
+		FIN 			EQU 		DEBUT+$60 				; 
+		
+		VALHEX 			EQU 		$8000 					; VALHEX aura pour valeur $8000
+		;DEBBIN 		EQU 		-$0200 					; ==> negative hexa decimal not managed
+		FINATT 			EQU 		NOMVAR+30 				;
+		FINTIT 			EQU 		NOMVAR-VARFIN 			;
+		TOUCHA 			EQU 		'A 						; assigne $0041 au symbole TOUCHA
+		FONCTA 			EQU 		TOUCHA+%10000000 		; assigne $00C1 au symbole FONCTA
+		
+		TOTO 			EQU 		* 						; TOTO aura pour valeur $2000, car on affecte la
+															; valeur courante de l'adresse à TOTO
+		TITI 			EQU 		*-3 					; TITI aura pour valeurs $1FFD ($2000-3)
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
 	}
 }

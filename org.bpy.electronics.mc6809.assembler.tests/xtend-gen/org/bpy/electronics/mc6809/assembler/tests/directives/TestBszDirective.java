@@ -253,4 +253,31 @@ public class TestBszDirective {
       throw Exceptions.sneakyThrow(_e);
     }
   }
+
+  /**
+   * Check BSZ Sorek directive
+   */
+  @Test
+  public void testBszSorek() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000   \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tBSZ    \t$10 \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("TITI\t\t\tEQU\t\t* \t\t\t; TITI vaudra $2010");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
 }

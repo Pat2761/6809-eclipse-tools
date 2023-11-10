@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: org.bpy.electronics.mc6809.assembler.engine.tests
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: org.bpy.electronics.mc6809.assembler.engine.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Require-Bundle: com.google.guava,
+ org.eclipse.xtext.xbase.lib,
+ org.eclipse.xtend.lib,
+ org.eclipse.xtend.lib.macro,
+ com.google.inject;bundle-version="5.0.1",
+ org.bpy.electronics.mc6809.assembler;bundle-version="1.0.0",
+ org.junit;bundle-version="4.13.2",
+ org.eclipse.xtext.testing;bundle-version="2.29.0",
+ org.bpy.electronics.mc6809.assembler.tests;bundle-version="1.0.0",
+ org.bpy.electronics.mc6809.assembler.engine;bundle-version="1.0.0"

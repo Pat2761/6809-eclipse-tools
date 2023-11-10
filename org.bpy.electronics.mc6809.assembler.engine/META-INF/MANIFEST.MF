@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Engine
+Bundle-SymbolicName: org.bpy.electronics.mc6809.assembler.engine
+Bundle-Version: 1.0.0.qualifier
+Import-Package: com.google.inject,
+ org.bpy.electronics.mc6809.assembler.assembler,
+ org.eclipse.emf.common.util
+Automatic-Module-Name: org.bpy.electronics.mc6809.assembler.engine
+Bundle-RequiredExecutionEnvironment: JavaSE-17

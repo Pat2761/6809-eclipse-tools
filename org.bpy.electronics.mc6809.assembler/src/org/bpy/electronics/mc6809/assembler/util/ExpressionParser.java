@@ -62,7 +62,7 @@ import org.eclipse.emf.ecore.EObject;
 public class ExpressionParser {
 	
 	/** Memorize the EQU values */
-	private static Map<String, Integer> equValues; 
+	private static Map<String, Integer> equValues = null; 
 	
 	/**
 	 * Add a private constructor to hide the implicit public one.

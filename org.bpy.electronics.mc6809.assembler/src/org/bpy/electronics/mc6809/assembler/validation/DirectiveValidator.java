@@ -18,7 +18,24 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	public static final String MISSING_LABEL = "missingLabel";
 	public static final String UNEXPECTED_LABEL = "unexpectedLabel";
 
+	/**
+	 * Check labels on the directive line
+	 * 
+	 * @param directiveLine reference on the directive line
+	 */
 	@Check
+	public void checkDirectiveLine(DirectiveLine directiveLine) {
+		if ((directiveLine.getDirective() instanceof BszDirective) && (directiveLine.getName() == null)) {
+			warning("No label defined for BSZ directive",
+				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				MISSING_LABEL);
+		} else if ((directiveLine.getDirective() instanceof EquDirective) && (directiveLine.getName() == null)) {
+			error("No label defined for EQU directive",
+				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				MISSING_LABEL);
+		}	
+	}
+
 	/**
 	 * The 6809 is a 16 bits microprocessor, so value must be contains in 16 bits
 	 * The Limit of a positive value is  65535
@@ -27,43 +44,27 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 * 
 	 * @param equDirective reference on the EQU directive
 	 */
-	public void checkEquConstraints(EquDirective equDirective) {
-//		if (equDirective.getName() == null) {
-//			error("EQU directive must have a label)",
-//					AssemblerPackage.Literals.EQU_DIRECTIVE__NAME,
-//					MISSING_LABEL);
-//		}
-//
-//		int equValue = ExpressionParser.parse(equDirective);
-//		if (equValue > 65535) {
-//			error("EQU value can't exceed 65535 (16 bits value)",
-//					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
-//					INVALID_RANGE);
-//		} else 	if (equValue < -32768) {
-//			error("EQU value can't be lower than -32768 (16 bits value)",
-//					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
-//					INVALID_RANGE);
-//		} 
-	}
-
 	@Check
-	public void checkDirectiveLine(DirectiveLine directiveLine) {
-		if (directiveLine.getDirective() instanceof BszDirective) {
-			if (directiveLine.getName() == null) {
-				warning("No label defined for BSZ directive",
-					AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
-					MISSING_LABEL);
-			}
-		}
+	public void checkEquConstraints(EquDirective equDirective) {
+		int equValue = ExpressionParser.parse(equDirective);
+		if (equValue > 65535) {
+			error("EQU value can't exceed 65535 (16 bits value)",
+					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else 	if (equValue < -32768) {
+			error("EQU value can't be lower than -32768 (16 bits value)",
+					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} 
 	}
 	
-	@Check
 	/**
 	 * Check the ORG directive limits (0-FFFF)
 	 * ORG can't have a label
 	 * 
 	 * @param orgDirective reference on the ORG directive
 	 */
+	@Check
 	public void checkOrgConstraints(OrgDirective orgDirective) {
 		int orgValue = ExpressionParser.parse(orgDirective);
 		if (orgValue > 0xFFFF) {
