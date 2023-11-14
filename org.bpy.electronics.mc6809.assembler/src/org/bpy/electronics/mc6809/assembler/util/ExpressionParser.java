@@ -211,7 +211,6 @@ public class ExpressionParser {
 		}
 	}
 
-	
 	/**
 	 * resolve an expression object 
 	 * 
@@ -574,5 +573,4 @@ public class ExpressionParser {
 		}
 		return left>>right;
 	}
-
 }

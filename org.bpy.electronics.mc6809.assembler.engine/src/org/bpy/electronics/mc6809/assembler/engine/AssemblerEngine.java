@@ -21,6 +21,7 @@ package org.bpy.electronics.mc6809.assembler.engine;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
@@ -32,6 +33,11 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
+import org.eclipse.xtext.validation.IResourceValidator;
+import com.google.inject.Inject;
 
 public class AssemblerEngine {
 	
@@ -46,6 +52,8 @@ public class AssemblerEngine {
 	}
 	
 	public void engine(Model model) {
+		AssemblerErrorManager.getInstance().clear();
+
 		List<SourceLine> sourceLines = model.getSourceLines();
 		for (SourceLine sourceLine : sourceLines) {
 			if (sourceLine.getLineContent() instanceof BlankLine) {
@@ -82,6 +90,9 @@ public class AssemblerEngine {
 		AssembledDirectiveLine line = new AssembledDirectiveLine();
 		line.parse(directive, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+
+		AssemblerWarningDescription problemDescription = new AssemblerWarningDescription("Un message", AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND, AssemblerValidator.INVALID_FIGURE);
+		AssemblerErrorManager.getInstance().addProblem(directive, problemDescription );
 	}
 
 	@Override

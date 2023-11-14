@@ -33,6 +33,8 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -130,15 +132,15 @@ class TestEndDirective {
 	/**
 	 * Check END directive with a negative value
 	 */
-//	@Test 
-//	def void testWithNegativeValue() {
-//		val result = parseHelper.parse('''
-//			         ORG    $8000   ; With value
-//		Label1       END    -1 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.endDirective,DirectiveValidator::INVALID_RANGE,"END value can't be negative")
-//	}
+	@Test 
+	def void testWithNegativeValue() {
+		val result = parseHelper.parse('''
+			         ORG    $8000   ; With value
+		Label1       END    -1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.endDirective,DirectiveValidator::INVALID_RANGE,"END value can't be negative")
+	}
 
 	/**
 	 * Check END directive with the lowest limit
@@ -173,13 +175,13 @@ class TestEndDirective {
 	 */
 	@Test 
 	def void testWithToHighLimitValue() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//			       ORG    $8000   ; With value
-//		           END    $FFFF+1 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.endDirective,DirectiveValidator::INVALID_RANGE,"END value maximum value is $FFFF")
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000   ; With value
+		           END    $FFFF+1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.endDirective,DirectiveValidator::INVALID_RANGE,"END value maximum value is $FFFF")
 	}
 
 	/**
@@ -187,12 +189,12 @@ class TestEndDirective {
 	 */
 	@Test 
 	def void testEndUnexpectedLabel() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//			           ORG    $8000   ; With value
-//		EndLabel       END    $FFFF 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.endDirective,DirectiveValidator::UNEXPECTED_LABEL,"Label isn't not allow for END directive")
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           ORG    $8000   ; With value
+		EndLabel       END    $FFFF 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for END directive")
 	}
 }

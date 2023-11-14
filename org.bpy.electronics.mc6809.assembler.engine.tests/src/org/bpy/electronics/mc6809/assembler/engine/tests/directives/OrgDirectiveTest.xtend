@@ -26,11 +26,11 @@ class OrgDirectiveTest {
 		Test		ORG 	$8000		; Start code at $8000	
 				''')
 		Assert.assertNotNull(result)
+		result.assertNoErrors
 				
 		val engine = new AssemblerEngine()		
 		engine.engine(result)
 		
 		print(engine)
 	}
-	
 }

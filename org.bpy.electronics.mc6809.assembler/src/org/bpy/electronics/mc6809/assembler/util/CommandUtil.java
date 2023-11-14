@@ -3,8 +3,10 @@ package org.bpy.electronics.mc6809.assembler.util;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 
@@ -114,4 +116,15 @@ public class CommandUtil {
 			return null;
 		}
 	}
+
+	public static int getByteToSet(FillDirective fillDirective) {
+		Expression value = fillDirective.getValue();
+		return ExpressionParser.resolveExpression(value);
+	}
+
+	public static int getQuantity(FillDirective fillDirective) {
+		Expression value = fillDirective.getNumber();
+		return ExpressionParser.resolveExpression(value);
+	}
+
 }

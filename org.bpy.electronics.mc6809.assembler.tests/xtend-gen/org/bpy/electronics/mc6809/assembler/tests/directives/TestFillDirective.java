@@ -51,10 +51,10 @@ public class TestFillDirective {
   private ValidationTestHelper _validationTestHelper;
 
   /**
-   * Check BSZ directive with a simple values
+   * Check FILL directive with a simple values
    */
   @Test
-  public void testBSZWithDecimalValue() {
+  public void testFILLWithDecimalValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -85,10 +85,10 @@ public class TestFillDirective {
   }
 
   /**
-   * Check BSZ directive with a simple identifier defined by an another EQU
+   * Check FILL directive with a simple identifier defined by an another EQU
    */
   @Test
-  public void testBSZWithIdentifierValue() {
+  public void testFILLWithIdentifierValue() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; Starting assembly file");

@@ -41,10 +41,10 @@ class TestFillDirective {
 	@Inject extension ValidationTestHelper
 	
 	/**
-	 * Check BSZ directive with a simple values
+	 * Check FILL directive with a simple values
 	 */
 	@Test 
-	def void testBSZWithDecimalValue() {
+	def void testFILLWithDecimalValue() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
@@ -60,18 +60,14 @@ class TestFillDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an FILL directive line", directiveLine.directive instanceof FillDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 	
 
 	/**
-	 * Check BSZ directive with a simple identifier defined by an another EQU
+	 * Check FILL directive with a simple identifier defined by an another EQU
 	 */
 	@Test 
-	def void testBSZWithIdentifierValue() {
+	def void testFILLWithIdentifierValue() {
 		val result = parseHelper.parse('''
 		; Starting assembly file
 		Val1       EQU    $40            ; Number 

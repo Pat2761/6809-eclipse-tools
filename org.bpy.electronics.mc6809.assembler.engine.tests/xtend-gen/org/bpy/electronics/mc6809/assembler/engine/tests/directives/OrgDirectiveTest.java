@@ -37,6 +37,7 @@ public class OrgDirectiveTest {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
       final AssemblerEngine engine = new AssemblerEngine();
       engine.engine(result);
       InputOutput.<AssemblerEngine>print(engine);
