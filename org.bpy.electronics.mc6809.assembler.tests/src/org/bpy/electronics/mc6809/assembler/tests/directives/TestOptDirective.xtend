@@ -30,6 +30,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -58,10 +60,6 @@ class TestOptDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an OPT directive line", directiveLine.directive instanceof OptDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 	
 	
@@ -85,10 +83,6 @@ class TestOptDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an OPT directive line", directiveLine.directive instanceof OptDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -111,10 +105,6 @@ class TestOptDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an OPT directive line", directiveLine.directive instanceof OptDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -137,10 +127,6 @@ class TestOptDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an OPT directive line", directiveLine.directive instanceof OptDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -163,13 +149,8 @@ class TestOptDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an OPT directive line", directiveLine.directive instanceof OptDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 	
-
 	/**
 	 * Check OPT directive with list of options and comment
 	 */
@@ -190,10 +171,20 @@ class TestOptDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an OPT directive line", directiveLine.directive instanceof OptDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 	
+	
+	/**
+	 * Check OPT directive with list duplicate option
+	 */
+	@Test 
+	def void testOPTWithListOfDuplicateOption() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   OPT    CON,PAG,CON,NOE   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.optDirective,DirectiveValidator::DUPLICATE_OPTION,"Duplicate option CON")
+	}
 }

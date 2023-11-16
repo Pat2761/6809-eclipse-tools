@@ -18,11 +18,13 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -247,6 +249,29 @@ public class TestOptDirective {
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an OPT directive line", (_directive instanceof OptDirective));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive with list duplicate option
+   */
+  @Test
+  public void testOPTWithListOfDuplicateOption() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("OPT    CON,PAG,CON,NOE   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.DUPLICATE_OPTION, "Duplicate option CON");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

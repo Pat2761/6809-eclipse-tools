@@ -1,6 +1,10 @@
 package org.bpy.electronics.mc6809.assembler.validation;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblyOption;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
@@ -8,6 +12,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -19,6 +24,7 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	public static final String INVALID_RANGE = "invalidRange";
 	public static final String MISSING_LABEL = "missingLabel";
 	public static final String UNEXPECTED_LABEL = "unexpectedLabel";
+	public static final String DUPLICATE_OPTION = "duplicateOption";
 
 	/**
 	 * Check labels on the directive line
@@ -117,6 +123,26 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			error("FILL value maximum value is $FFFF",
 					AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
 					INVALID_RANGE);
+		}
+	}
+
+	/**
+	 * Check Opt directive constraints.
+	 * check duplicate options
+	 * 
+	 * @param optDirective reference on the OPT directive
+	 */
+	@Check
+	public void checkOptConstraints(OptDirective optDirective) {
+		List<String> options = new ArrayList<>();
+		for (AssemblyOption option : optDirective.getOptions()) {
+			if (options.contains(option.getLiteral())) {
+				error("Duplicate option " + option.getLiteral(),
+						AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
+						DUPLICATE_OPTION);
+			} else { 
+				options.add(option.getLiteral());
+			}
 		}
 	}
 
