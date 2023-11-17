@@ -30,6 +30,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -58,10 +60,6 @@ class TestPagDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an PAG directive line", directiveLine.directive instanceof PagDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 	
 	/**
@@ -84,10 +82,6 @@ class TestPagDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an PAG directive line", directiveLine.directive instanceof PagDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 	
 	/**
@@ -110,10 +104,6 @@ class TestPagDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an PAG directive line", directiveLine.directive instanceof PagDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -136,10 +126,6 @@ class TestPagDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an PAG directive line", directiveLine.directive instanceof PagDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -162,10 +148,62 @@ class TestPagDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an PAG directive line", directiveLine.directive instanceof PagDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
+	}
+
+	/**
+	 * Check PAG directive with negative operand
+	 */
+	@Test 
+	def void testPAGWithNegativeOperand() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   PAG    -1        ; Page 1
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.pagDirective, DirectiveValidator::INVALID_RANGE,"PAG value can't be negative")
+	}
+
+	/**
+	 * Check PAG directive with operand equals to 0
+	 */
+	@Test 
+	def void testPAGWith0() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   PAG    1-1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.eINSTANCE.pagDirective, DirectiveValidator::INVALID_RANGE,"Null page value is suspicious")
+	}
+
+	/**
+	 * Check PAG directive with operand equals to 9
+	 */
+	@Test 
+	def void testPAGWith9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   PAG    9 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check PAG directive with operand equals to 10
+	 */
+	@Test 
+	def void testPAGWith10() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   PAG    10 
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.eINSTANCE.pagDirective, DirectiveValidator::INVALID_RANGE,"PAG value superior to 9 is suspicious")
 	}
 }
 	

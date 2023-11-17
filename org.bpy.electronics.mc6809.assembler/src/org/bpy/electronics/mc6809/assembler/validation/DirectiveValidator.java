@@ -14,6 +14,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -144,6 +145,32 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 				options.add(option.getLiteral());
 			}
 		}
+	}
+
+	/**
+	 * Check PAG directive constraints.
+	 * operand can't be negative
+	 * operand = 0 is ambiguous
+	 * operand > 10 is suspicious
+	 * 
+	 * @param pagDirective reference on the OPT directive
+	 */
+	@Check
+	public void checkPagConstraints(PagDirective pagDirective) {
+		int pagValue = ExpressionParser.parse(pagDirective);
+		if (pagValue < 0) {
+			error("PAG value can't be negative",
+					AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else if (pagValue == 0) {
+			warning("Null page value is suspicious",
+					AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else if (pagValue > 9) {
+			warning("PAG value superior to 9 is suspicious",
+					AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		}	
 	}
 
 	/**

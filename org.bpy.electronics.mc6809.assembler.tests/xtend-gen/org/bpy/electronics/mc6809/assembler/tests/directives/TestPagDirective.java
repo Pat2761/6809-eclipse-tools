@@ -18,11 +18,13 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -213,6 +215,98 @@ public class TestPagDirective {
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an PAG directive line", (_directive instanceof PagDirective));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PAG directive with negative operand
+   */
+  @Test
+  public void testPAGWithNegativeOperand() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("PAG    -1        ; Page 1");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE, "PAG value can\'t be negative");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PAG directive with operand equals to 0
+   */
+  @Test
+  public void testPAGWith0() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("PAG    1-1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE, "Null page value is suspicious");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PAG directive with operand equals to 9
+   */
+  @Test
+  public void testPAGWith9() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("PAG    9 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PAG directive with operand equals to 10
+   */
+  @Test
+  public void testPAGWith10() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("PAG    10 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE, "PAG value superior to 9 is suspicious");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

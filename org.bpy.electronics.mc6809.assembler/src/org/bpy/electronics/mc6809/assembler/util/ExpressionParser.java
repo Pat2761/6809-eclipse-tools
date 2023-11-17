@@ -47,6 +47,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Not;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
@@ -157,6 +158,23 @@ public class ExpressionParser {
 			return equValue;
 		} else {
 			return 0;
+		}
+	}
+
+	/** 
+	 *  Parse the operand of an PAG directive.
+	 *  
+	 *  @param pagDirective reference on the PAG directive
+	 *  @return value of the operand 
+	 */
+	public static int parse(PagDirective pagDirective) {
+		if (pagDirective.getOperand() != null && pagDirective.getOperand().getOperand() != null) {
+			EObject operand = pagDirective.getOperand().getOperand();
+			int pagValue = resolveExpression((Expression)operand);
+			
+			return pagValue;
+		} else {
+			return 1;
 		}
 	}
 
