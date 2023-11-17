@@ -7,6 +7,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 
@@ -125,6 +126,13 @@ public class CommandUtil {
 	public static int getQuantity(FillDirective fillDirective) {
 		Expression value = fillDirective.getNumber();
 		return ExpressionParser.resolveExpression(value);
+	}
+
+	/*
+	 * Get name defined by a NAM directive
+	 */
+	public static String getName(NamDirective namDirective) {
+		return namDirective.getOperand().getValue();
 	}
 
 }

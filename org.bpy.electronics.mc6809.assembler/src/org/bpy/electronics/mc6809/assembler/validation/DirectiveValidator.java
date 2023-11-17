@@ -12,6 +12,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
@@ -26,7 +27,8 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	public static final String MISSING_LABEL = "missingLabel";
 	public static final String UNEXPECTED_LABEL = "unexpectedLabel";
 	public static final String DUPLICATE_OPTION = "duplicateOption";
-
+	public static final String NAME_ERROR = "nameError";
+	
 	/**
 	 * Check labels on the directive line
 	 * 
@@ -153,7 +155,7 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 * operand = 0 is ambiguous
 	 * operand > 10 is suspicious
 	 * 
-	 * @param pagDirective reference on the OPT directive
+	 * @param pagDirective reference on the PAG directive
 	 */
 	@Check
 	public void checkPagConstraints(PagDirective pagDirective) {
@@ -170,6 +172,22 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			warning("PAG value superior to 9 is suspicious",
 					AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
+		}	
+	}
+
+	/**
+	 * Check NAM directive constraints.
+	 * NAM operand shall contains at least on character
+	 * 
+	 * @param namDirective reference on the NAM directive
+	 */
+	@Check
+	public void checkNamConstraints(NamDirective namDirective) {
+		String namValue = CommandUtil.getName(namDirective);
+		if (namValue.length() > 6) {
+			warning("Program name must be defined by 6 characters max",
+					AssemblerPackage.Literals.NAM_DIRECTIVE__OPERAND,
+					NAME_ERROR);
 		}	
 	}
 

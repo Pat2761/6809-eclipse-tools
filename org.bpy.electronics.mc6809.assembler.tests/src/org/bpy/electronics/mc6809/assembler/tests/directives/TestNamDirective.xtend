@@ -30,6 +30,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -46,7 +48,7 @@ class TestNamDirective {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-		 		   NAM    NameValue
+		 		   NAM    Name
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -58,10 +60,6 @@ class TestNamDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an NAM directive line", directiveLine.directive instanceof NamDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -72,7 +70,7 @@ class TestNamDirective {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-		 		   TTL    NameValue
+		 		   TTL    Na_e
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -84,10 +82,6 @@ class TestNamDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an NAM directive line", directiveLine.directive instanceof NamDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -98,7 +92,7 @@ class TestNamDirective {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-		 		   NAM    NameValue   ; it is a name
+		 		   NAM    Name		   ; it is a name
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -110,10 +104,6 @@ class TestNamDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an NAM directive line", directiveLine.directive instanceof NamDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -124,7 +114,7 @@ class TestNamDirective {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-		 		   TTL    NameValue    ; it is a name
+		 		   TTL    Name       ; it is a name
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -136,9 +126,33 @@ class TestNamDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an NAM directive line", directiveLine.directive instanceof NamDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
+	}
+
+	/**
+	 * Check TTL directive with 6 characters
+	 */
+	@Test 
+	def void testTTLWith6Characters() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   TTL    Name01       ; it is a name
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check TTL directive with 7 characters
+	 */
+	@Test 
+	def void testTTLWith7Characters() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   TTL    Name_12       ; it is a name
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.eINSTANCE.namDirective,DirectiveValidator::NAME_ERROR,"Program name must be defined by 6 characters max")
 	}
 }
