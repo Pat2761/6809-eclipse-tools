@@ -30,6 +30,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -58,10 +60,6 @@ class TestSetDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an SET directive line", directiveLine.directive instanceof SetDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 	
 	/**
@@ -85,10 +83,6 @@ class TestSetDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an SET directive line", directiveLine.directive instanceof SetDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 	
 	/**
@@ -112,10 +106,6 @@ class TestSetDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an SET directive line", directiveLine.directive instanceof SetDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -138,10 +128,66 @@ class TestSetDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an SET directive line", directiveLine.directive instanceof SetDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
+	}
+	/**
+	 * Check SET directive with a value which is upper to 65535
+	 */
+	@Test 
+	def void testWithHighestLimit() {
+		val result = parseHelper.parse('''
+		Label1       SET    65535 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check SET directive with a value which is upper to 65535
+	 */
+	@Test 
+	def void testWithTooHighValue() {
+		val result = parseHelper.parse('''
+		Label1       SET    65536 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.setDirective,DirectiveValidator::INVALID_RANGE,"SET value can't exceed 65535 (16 bits value)")
+	}
+
+	/**
+	 * Check SET directive with a value which is lower than -32768
+	 */
+	@Test 
+	def void testWithTooLowValue() {
+		val result = parseHelper.parse('''
+		Label1       SET    -32769 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.setDirective,DirectiveValidator::INVALID_RANGE,"SET value can't be lower than -32768 (16 bits value)")
+	}
+
+	/**
+	 * Check SET directive with a value which is lower than -32768
+	 */
+	@Test 
+	def void testWithLowestNegativeValue() {
+		val result = parseHelper.parse('''
+		Label1       SET    -32768 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check SET directive with a missing label
+	 */
+	@Test 
+	def void testWithMissingLabel() {
+		val result = parseHelper.parse('''
+		; test SET without label
+		 	    SET    100 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::MISSING_LABEL,"No label defined for SET directive")
 	}
 
 }

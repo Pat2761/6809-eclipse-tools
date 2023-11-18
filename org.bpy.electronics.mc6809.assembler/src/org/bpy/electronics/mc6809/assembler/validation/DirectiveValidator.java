@@ -17,6 +17,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.xtext.validation.Check;
@@ -42,6 +43,10 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 				MISSING_LABEL);
 		} else if ((directiveLine.getDirective() instanceof EquDirective) && (directiveLine.getName() == null)) {
 			error("No label defined for EQU directive",
+				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				MISSING_LABEL);
+		} else if ((directiveLine.getDirective() instanceof SetDirective) && (directiveLine.getName() == null)) {
+			error("No label defined for SET directive",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
 				MISSING_LABEL);
 		} else if ((directiveLine.getDirective() instanceof EndDirective) && (directiveLine.getName() != null)) {		
@@ -231,6 +236,29 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
 		}
+	}
+	
+	/**   
+	 * Check SET constraints
+	 *                                				                                                                                        
+	 * The 6809 is a 16 bits microprocessor, so value must be contains in 16 bits		                                                                                                       
+	 * The Limit of a positive value is  65535
+	 * The limit of a negative value is -32768
+	 * 
+	 * @param equDirective reference on the EQU directive
+	 */
+	@Check
+	public void checkSetConstraints(SetDirective setDirective) {
+		int setValue = ExpressionParser.parse(setDirective);
+		if (setValue > 65535) {
+			error("SET value can't exceed 65535 (16 bits value)",
+					AssemblerPackage.Literals.SET_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else 	if (setValue < -32768) {
+			error("SET value can't be lower than -32768 (16 bits value)",
+					AssemblerPackage.Literals.SET_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} 
 	}
 
 	@Check

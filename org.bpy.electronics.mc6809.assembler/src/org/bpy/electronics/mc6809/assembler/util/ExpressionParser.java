@@ -50,6 +50,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.eclipse.emf.ecore.EObject;
@@ -144,6 +145,29 @@ public class ExpressionParser {
 		}
 	}
 
+
+	/** 
+	 *  Parse the operand of an SET directive.
+	 *  
+	 *  @param setDirective reference on the SET directive
+	 *  @return value of the operand 
+	 */
+	public static int parse(SetDirective setDirective) {
+		if (setDirective.getOperand() != null && setDirective.getOperand().getOperand() != null) {
+			EObject operand = setDirective.getOperand().getOperand();
+			int equValue = resolveExpression((Expression)operand);
+			
+			if (equValues == null) {
+				equValues = new HashMap<>();
+			}
+			
+			DirectiveLine directiveLine=(DirectiveLine)setDirective.eContainer();
+			equValues.put(directiveLine.getName().getValue(), equValue);
+			return equValue;
+		} else {
+			return -1;
+		}
+	}
 	/** 
 	 *  Parse the operand of an ORG directive.
 	 *  
