@@ -30,6 +30,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -57,10 +59,6 @@ class TestSpcDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an SPC directive line", directiveLine.directive instanceof SpcDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -82,10 +80,6 @@ class TestSpcDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an SPC directive line", directiveLine.directive instanceof SpcDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -107,10 +101,6 @@ class TestSpcDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an SPC directive line", directiveLine.directive instanceof SpcDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -132,10 +122,6 @@ class TestSpcDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an SPC directive line", directiveLine.directive instanceof SpcDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -158,10 +144,131 @@ class TestSpcDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an SPC directive line", directiveLine.directive instanceof SpcDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
+	
+	/**
+	 * Check SPC directive with an unexpected label
+	 */
+	@Test 
+	def void testWithUnexpectedLabel() {
+		val result = parseHelper.parse('''
+		; test SPC with label
+		AnSPC 	    SPC    	1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for SPC directive")
+	}
+	
+	/**
+	 * Check SPC directive space value with negative operand
+	 */
+	@Test 
+	def void testSPCWithSpaceValueNegativeOperand() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   SPC    -1        ; Page 1
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.spcDirective, DirectiveValidator::INVALID_RANGE,"SPC space value can't be negative")
+	}
+
+	/**
+	 * Check SPC directive with space value operand equals to 0
+	 */
+	@Test 
+	def void testSPCWithSpaceValue0() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   SPC    1-1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.eINSTANCE.spcDirective, DirectiveValidator::INVALID_RANGE,"0 Space count value is suspicious")
+	}
+
+	/**
+	 * Check SPC directive with space value operand equals to 9
+	 */
+	@Test 
+	def void testSPCWithSpaceValue9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   SPC    9 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check SPC directive with keep value operand equals to 10
+	 */
+	@Test 
+	def void testSPCWithSpaceValue10() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   SPC    10 
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.eINSTANCE.spcDirective, DirectiveValidator::INVALID_RANGE,"SPC value superior to 9 is suspicious")
+	}
+	/**
+	 * Check SPC directive keep value with negative operand
+	 */
+	@Test 
+	def void testSPCWithKeepValueNegativeOperand() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   SPC    1,-1        ; Page 1
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.spcDirective, DirectiveValidator::INVALID_RANGE,"SPC keep count value can't be negative")
+	}
+
+	/**
+	 * Check SPC directive with keep value operand equals to 0
+	 */
+	@Test 
+	def void testSPCWithKeepValue0() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   SPC    1,0 
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.eINSTANCE.spcDirective, DirectiveValidator::INVALID_RANGE,"0 keep count value is suspicious")
+	}
+
+	/**
+	 * Check SPC directive with keep value operand equals to 9
+	 */
+	@Test 
+	def void testSPCWithKeepValue9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   SPC    1,9 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+
+	/**
+	 * Check SPC directive with space value operand equals to 10
+	 */
+	@Test 
+	def void testSPCWithKeepValue10() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   SPC    1,10 
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.eINSTANCE.spcDirective, DirectiveValidator::INVALID_RANGE,"SPC keep count value superior to 9 is suspicious")
+	}
+	
 }
 	

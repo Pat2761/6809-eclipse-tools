@@ -18,11 +18,13 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -200,6 +202,209 @@ public class TestSpcDirective {
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an SPC directive line", (_directive instanceof SpcDirective));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive with an unexpected label
+   */
+  @Test
+  public void testWithUnexpectedLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test SPC with label");
+      _builder.newLine();
+      _builder.append("AnSPC \t    SPC    \t1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL, "No label may be set for SPC directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive space value with negative operand
+   */
+  @Test
+  public void testSPCWithSpaceValueNegativeOperand() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    -1        ; Page 1");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE, "SPC space value can\'t be negative");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive with space value operand equals to 0
+   */
+  @Test
+  public void testSPCWithSpaceValue0() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    1-1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE, "0 Space count value is suspicious");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive with space value operand equals to 9
+   */
+  @Test
+  public void testSPCWithSpaceValue9() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    9 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive with keep value operand equals to 10
+   */
+  @Test
+  public void testSPCWithSpaceValue10() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    10 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE, "SPC value superior to 9 is suspicious");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive keep value with negative operand
+   */
+  @Test
+  public void testSPCWithKeepValueNegativeOperand() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    1,-1        ; Page 1");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE, "SPC keep count value can\'t be negative");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive with keep value operand equals to 0
+   */
+  @Test
+  public void testSPCWithKeepValue0() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    1,0 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE, "0 keep count value is suspicious");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive with keep value operand equals to 9
+   */
+  @Test
+  public void testSPCWithKeepValue9() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    1,9 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive with space value operand equals to 10
+   */
+  @Test
+  public void testSPCWithKeepValue10() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    1,10 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE, "SPC keep count value superior to 9 is suspicious");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

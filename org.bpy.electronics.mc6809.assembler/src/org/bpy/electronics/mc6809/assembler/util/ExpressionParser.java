@@ -51,6 +51,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.eclipse.emf.ecore.EObject;
@@ -248,6 +249,36 @@ public class ExpressionParser {
 			int equValue = resolveExpression((Expression)operand);
 			
 			return equValue;
+		} else {
+			return 0;
+		}
+	}
+
+	/** 
+	 *  Parse the space count value of an SPC directive.
+	 *  
+	 *  @param spcDirective reference on the SPC directive
+	 *  @return value of the operand 
+	 */
+	public static int getSpaceCount(SpcDirective spcDirective) {
+		Expression spaceCount = spcDirective.getSpaceCount();
+		if (spaceCount != null) {
+			return resolveExpression(spaceCount.getOperand());
+		} else {
+			return 1;
+		}
+	}
+
+	/** 
+	 *  Parse the keep count value of an SPC directive.
+	 *  
+	 *  @param spcDirective reference on the SPC directive
+	 *  @return value of the operand 
+	 */
+	public static int getKeepCount(SpcDirective spcDirective) {
+		Expression keepCount = spcDirective.getKeepCount();
+		if (keepCount != null) {
+			return resolveExpression(keepCount.getOperand());
 		} else {
 			return 0;
 		}

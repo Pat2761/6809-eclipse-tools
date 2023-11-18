@@ -18,6 +18,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.xtext.validation.Check;
@@ -51,6 +52,14 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 				MISSING_LABEL);
 		} else if ((directiveLine.getDirective() instanceof EndDirective) && (directiveLine.getName() != null)) {		
    			error("No label may be set for END directive",                                                             
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				UNEXPECTED_LABEL);
+		} else if ((directiveLine.getDirective() instanceof SpcDirective) && (directiveLine.getName() != null)) {		
+   			error("No label may be set for SPC directive",                                                             
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				UNEXPECTED_LABEL);
+		} else if ((directiveLine.getDirective() instanceof PagDirective) && (directiveLine.getName() != null)) {		
+   			error("No label may be set for PAG directive",                                                             
    				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
    				UNEXPECTED_LABEL);
 		}	
@@ -177,7 +186,7 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			warning("PAG value superior to 9 is suspicious",
 					AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
-		}	
+		}
 	}
 
 	/**
@@ -259,6 +268,47 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					AssemblerPackage.Literals.SET_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
 		} 
+	}
+	
+	/**   
+	 * Check SPC constraints
+	 *   can't be negative                                				                                                                                        
+	 *   can't be zero
+	 *   Suspicious if over 9
+	 *   
+	 * @param spcDirective reference on the SPC directive
+	 */
+	@Check
+	public void checkSpcConstraints(SpcDirective spcDirective) {
+		int spcValue = ExpressionParser.getSpaceCount(spcDirective);
+		if (spcValue < 0) {
+			error("SPC space value can't be negative",
+					AssemblerPackage.Literals.SPC_DIRECTIVE__SPACE_COUNT,
+					INVALID_RANGE);
+		} else if (spcValue == 0) {
+			warning("0 Space count value is suspicious",
+					AssemblerPackage.Literals.SPC_DIRECTIVE__SPACE_COUNT,
+					INVALID_RANGE);
+		} else if (spcValue > 9) {
+			warning("SPC value superior to 9 is suspicious",
+					AssemblerPackage.Literals.SPC_DIRECTIVE__SPACE_COUNT,
+					INVALID_RANGE);
+		}
+		
+		int keepCount = ExpressionParser.getKeepCount(spcDirective);
+		if (keepCount < 0) {
+			error("SPC keep count value can't be negative",
+					AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT,
+					INVALID_RANGE);
+		} else if (keepCount == 0) {
+			warning("0 keep count value is suspicious",
+					AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT,
+					INVALID_RANGE);
+		} else if (keepCount > 9) {
+			warning("SPC keep count value superior to 9 is suspicious",
+					AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT,
+					INVALID_RANGE);
+		}
 	}
 
 	@Check

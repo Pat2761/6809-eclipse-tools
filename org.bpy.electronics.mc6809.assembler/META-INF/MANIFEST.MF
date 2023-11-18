@@ -34,5 +34,4 @@ Import-Package: org.apache.log4j,
  org.eclipse.e4.core.contexts;version="1.7.0",
  org.eclipse.e4.core.services.events,
  org.eclipse.e4.ui.di,
- org.eclipse.e4.ui.internal.workbench,
- org.eclipse.ui
+ org.eclipse.e4.ui.internal.workbench

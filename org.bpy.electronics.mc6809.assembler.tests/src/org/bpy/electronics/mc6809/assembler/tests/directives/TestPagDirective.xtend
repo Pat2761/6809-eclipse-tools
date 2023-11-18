@@ -205,5 +205,20 @@ class TestPagDirective {
 		Assert.assertNotNull(result)
 		result.assertWarning(AssemblerPackage.eINSTANCE.pagDirective, DirectiveValidator::INVALID_RANGE,"PAG value superior to 9 is suspicious")
 	}
+	
+		/**
+	 * Check SPC directive with an unexpected label
+	 */
+	@Test 
+	def void testWithUnexpectedLabel() {
+		val result = parseHelper.parse('''
+		; test PAG with label
+		APAG 	    PAG    	1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for PAG directive")
+	}
+	
+	
 }
 	
