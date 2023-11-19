@@ -377,6 +377,30 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 
 	@Check
 	/**
+	 * Check the FDB constraints
+	 * Values must be defined in the range [-32768..65535]
+	 * 
+	 * @param fdbDirective reference on the FDB directive
+	 */
+	public void checkFdbConstraints(FdbDirective fdbDirective) {
+		
+		List<Integer> rmbValues = ExpressionParser.parse(fdbDirective);
+		int location = 1;
+		for (Integer rmbValue : rmbValues) {
+			if (rmbValue > 65535) {
+				error("FDB value maximum value is 65535 at location " + location ,
+						AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND,
+						INVALID_RANGE);
+			} else if (rmbValue < -32768) {
+				error("FDB value can't lower than -32768 at location " + location,
+						AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND,
+						INVALID_RANGE);
+			}
+			location++;
+		}
+	}
+	@Check
+	/**
 	 * Check the RMB directive limits (1-FFFF)
 	 * 
 	 * @param rmbDirective reference on the RMB directive
@@ -392,32 +416,6 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 //			error("RMB value can't lower than 1",
 //					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
 //					INVALID_RANGE);
-//		}
-	}
-
-
-	@Check
-	/**
-	 * Check the FDB constraints
-	 * Values must be defined in the range [-32768..65535]
-	 * 
-	 * @param fdbDirective reference on the FDB directive
-	 */
-	public void checkFdbConstraints(FdbDirective fdbDirective) {
-		
-//		List<Integer> rmbValues = ExpressionParser.parse(fdbDirective);
-//		int location = 1;
-//		for (Integer rmbValue : rmbValues) {
-//			if (rmbValue > 65535) {
-//				error("FDB value maximum value is 65535 at location " + location ,
-//						AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND,
-//						INVALID_RANGE);
-//			} else if (rmbValue < -32768) {
-//				error("FDB value can't lower than -32768 at location " + location,
-//						AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND,
-//						INVALID_RANGE);
-//			}
-//			location++;
 //		}
 	}
 }

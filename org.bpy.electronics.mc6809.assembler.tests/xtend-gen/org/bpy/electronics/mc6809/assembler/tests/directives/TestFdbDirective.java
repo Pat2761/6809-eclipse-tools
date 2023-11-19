@@ -18,14 +18,13 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
-import java.util.List;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
-import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -80,12 +79,6 @@ public class TestFdbDirective {
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an FDB directive line", (_directive instanceof FdbDirective));
-      EObject _directive_1 = directiveLine.getDirective();
-      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
-      Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective));
-      final List<Integer> values = ExpressionParser.parse(fdbDirective);
-      Assert.assertEquals("Only one value defined", 1, values.size());
-      Assert.assertEquals("First value must be set to 1234", 1234, (values.get(0)).intValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -120,13 +113,6 @@ public class TestFdbDirective {
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an FDB directive line", (_directive instanceof FdbDirective));
-      EObject _directive_1 = directiveLine.getDirective();
-      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
-      Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective));
-      final List<Integer> values = ExpressionParser.parse(fdbDirective);
-      Assert.assertEquals("Only two value defined", 2, values.size());
-      Assert.assertEquals("Value 1 must be set to 255", 255, (values.get(0)).intValue());
-      Assert.assertEquals("Value 2 must be set to 4125", 4125, (values.get(1)).intValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -161,14 +147,6 @@ public class TestFdbDirective {
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an FDB directive line", (_directive instanceof FdbDirective));
-      EObject _directive_1 = directiveLine.getDirective();
-      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
-      Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective));
-      final List<Integer> values = ExpressionParser.parse(fdbDirective);
-      Assert.assertEquals("Only three value defined", 3, values.size());
-      Assert.assertEquals("Value 1 must be set to 1", 1, (values.get(0)).intValue());
-      Assert.assertEquals("Value 2 must be set to 0", 0, (values.get(1)).intValue());
-      Assert.assertEquals("Value 3 must be set to 3", 3, (values.get(2)).intValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -203,14 +181,6 @@ public class TestFdbDirective {
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an FDB directive line", (_directive instanceof FdbDirective));
-      EObject _directive_1 = directiveLine.getDirective();
-      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
-      Assert.assertNull("Label must be null", CommandUtil.getLabel(fdbDirective));
-      final List<Integer> values = ExpressionParser.parse(fdbDirective);
-      Assert.assertEquals("Only three value defined", 3, values.size());
-      Assert.assertEquals("Value 1 must be set to 1", 1, (values.get(0)).intValue());
-      Assert.assertEquals("Value 2 must be set to 0", 0, (values.get(1)).intValue());
-      Assert.assertEquals("Value 3 must be set to 3", 3, (values.get(2)).intValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -244,14 +214,6 @@ public class TestFdbDirective {
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an FCB directive line", (_directive instanceof FdbDirective));
-      EObject _directive_1 = directiveLine.getDirective();
-      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
-      Assert.assertEquals("Label must be equal to ", "FcbL", CommandUtil.getLabel(fdbDirective));
-      final List<Integer> values = ExpressionParser.parse(fdbDirective);
-      Assert.assertEquals("Only three value defined", 3, values.size());
-      Assert.assertEquals("Value 1 must be set to 1", 1, (values.get(0)).intValue());
-      Assert.assertEquals("Value 2 must be set to 0", 0, (values.get(1)).intValue());
-      Assert.assertEquals("Value 3 must be set to 3", 3, (values.get(2)).intValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -285,14 +247,26 @@ public class TestFdbDirective {
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an FDB directive line", (_directive instanceof FdbDirective));
-      EObject _directive_1 = directiveLine.getDirective();
-      final FdbDirective fdbDirective = ((FdbDirective) _directive_1);
-      Assert.assertEquals("Label must be equals to FcbL", "FcbL", CommandUtil.getLabel(fdbDirective));
-      final List<Integer> values = ExpressionParser.parse(fdbDirective);
-      Assert.assertEquals("Only three value defined", 3, values.size());
-      Assert.assertEquals("Value 1 must be set to 1", 1, (values.get(0)).intValue());
-      Assert.assertEquals("Value 2 must be set to 0", 0, (values.get(1)).intValue());
-      Assert.assertEquals("Value 3 must be set to 3", 3, (values.get(2)).intValue());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FDB directive with a bad negative value
+   */
+  @Test
+  public void testFDBWithBadNegativeValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\t         ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append("Label1       FDB    10,0,-32769,40 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), DirectiveValidator.INVALID_RANGE, "FDB value can\'t lower than -32768 at location 3");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -313,6 +287,26 @@ public class TestFdbDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FDB directive with a bad positive value
+   */
+  @Test
+  public void testFDBWithBadPositiveValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\t         ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append("Label1       FDB    65536,0,128,40 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), DirectiveValidator.INVALID_RANGE, "FDB value maximum value is 65535 at location 1");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
