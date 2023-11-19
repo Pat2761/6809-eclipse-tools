@@ -322,11 +322,6 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 		}
 	}
 
-//	@Check
-//	public void test(Model model) {
-//		System.out.println("test");
-//	}
-//	
 	@Check
 	/**
 	 * Check the REG directive (avoid duplicate register)
@@ -357,6 +352,31 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 
 	@Check
 	/**
+	 * Check the FCB constraints
+	 * Values must be defined in the range [-127..255]
+	 * 
+	 * @param fcbDirective reference on the FCB directive
+	 */
+	public void checkFcbConstraints(FcbDirective fcbDirective) {
+		
+		List<Integer> rmbValues = ExpressionParser.parse(fcbDirective);
+		int location = 1;
+		for (Integer rmbValue : rmbValues) {
+			if (rmbValue > 255) {
+				error("FCB value maximum value is $FF at location " + location ,
+						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
+						INVALID_RANGE);
+			} else if (rmbValue < -127) {
+				error("FCB value can't lower than -127 at location " + location,
+						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
+						INVALID_RANGE);
+			}
+			location++;
+		}
+	}
+
+	@Check
+	/**
 	 * Check the RMB directive limits (1-FFFF)
 	 * 
 	 * @param rmbDirective reference on the RMB directive
@@ -375,30 +395,6 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 //		}
 	}
 
-	@Check
-	/**
-	 * Check the FCB constraints
-	 * Values must be defined in the range [-127..255]
-	 * 
-	 * @param fcbDirective reference on the FCB directive
-	 */
-	public void checkFcbConstraints(FcbDirective fcbDirective) {
-		
-//		List<Integer> rmbValues = ExpressionParser.parse(fcbDirective);
-//		int location = 1;
-//		for (Integer rmbValue : rmbValues) {
-//			if (rmbValue > 255) {
-//				error("FCB value maximum value is $FF at location " + location ,
-//						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
-//						INVALID_RANGE);
-//			} else if (rmbValue < -127) {
-//				error("FCB value can't lower than -127 at location " + location,
-//						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
-//						INVALID_RANGE);
-//			}
-//			location++;
-//		}
-	}
 
 	@Check
 	/**
