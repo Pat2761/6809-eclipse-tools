@@ -18,11 +18,13 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -86,6 +88,64 @@ public class TestRegDirective {
       final DirectiveLine directiveLine = ((DirectiveLine) _lineContent_1);
       EObject _directive = directiveLine.getDirective();
       Assert.assertTrue("Must be an REG directive line", (_directive instanceof RegDirective));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check REG directive with a missing label
+   */
+  @Test
+  public void testWithMissingLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append(" \t    ");
+      _builder.append("REG     A ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.MISSING_LABEL, "No label defined for REG directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check REG directive with a missing register
+   */
+  @Test
+  public void testWithMissingRegister() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("Regs \t    REG     \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getRegDirective(), DirectiveValidator.MISSING_OPTION, "no register defined in the REG Directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check REG directive with a duplicate register
+   */
+  @Test
+  public void testWithDuplicateRegister() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("Regs \t    REG    A,B,U,S,A \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getRegDirective(), DirectiveValidator.DUPLICATE_OPTION, "Register A is duplicate in the REG Directive");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

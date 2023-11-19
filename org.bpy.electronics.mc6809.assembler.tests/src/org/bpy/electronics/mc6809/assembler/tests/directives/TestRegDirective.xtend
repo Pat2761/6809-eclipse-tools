@@ -30,6 +30,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -63,11 +65,45 @@ class TestRegDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an REG directive line", directiveLine.directive instanceof RegDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
+	/**
+	 * Check REG directive with a missing label
+	 */
+	@Test 
+	def void testWithMissingLabel() {
+		val result = parseHelper.parse('''
+		; test REG without label
+		 	    REG     A ; Oups
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::MISSING_LABEL,"No label defined for REG directive")
+	}
+
+	/**
+	 * Check REG directive with a missing register
+	 */
+	@Test 
+	def void testWithMissingRegister() {
+		val result = parseHelper.parse('''
+		; test REG without label
+		Regs 	    REG     		 ; Oups
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.regDirective,DirectiveValidator::MISSING_OPTION,"no register defined in the REG Directive")
+	}
+
+	/**
+	 * Check REG directive with a duplicate register
+	 */
+	@Test 
+	def void testWithDuplicateRegister() {
+		val result = parseHelper.parse('''
+		; test REG without label
+		Regs 	    REG    A,B,U,S,A 		 ; Oups
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.regDirective,DirectiveValidator::DUPLICATE_OPTION,"Register A is duplicate in the REG Directive")
+	}
 
 }

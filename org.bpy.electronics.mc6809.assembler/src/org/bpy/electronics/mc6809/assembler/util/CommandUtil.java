@@ -1,5 +1,8 @@
 package org.bpy.electronics.mc6809.assembler.util;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -9,7 +12,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.eclipse.emf.common.util.EList;
 
 public class CommandUtil {
 
@@ -133,6 +139,21 @@ public class CommandUtil {
 	 */
 	public static String getName(NamDirective namDirective) {
 		return namDirective.getOperand().getValue();
+	}
+
+	/**
+	 * Get the list of registers in a REG directive
+	 * 
+	 * @param regDirective reference on the REG Directive
+	 * @return List of registers name
+	 */
+	public static List<String> getRegisters(RegDirective regDirective) {
+		List<String> registers = new ArrayList<>();
+		EList<Register> options = regDirective.getOptions();
+		for (Register option : options) {
+			registers.add(option.getLiteral());
+		}
+		return registers;
 	}
 
 }

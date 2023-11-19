@@ -12,10 +12,12 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
@@ -29,6 +31,7 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	public static final String MISSING_LABEL = "missingLabel";
 	public static final String UNEXPECTED_LABEL = "unexpectedLabel";
 	public static final String DUPLICATE_OPTION = "duplicateOption";
+	public static final String MISSING_OPTION = "missingOption";
 	public static final String NAME_ERROR = "nameError";
 	
 	/**
@@ -62,6 +65,10 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
    			error("No label may be set for PAG directive",                                                             
    				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
    				UNEXPECTED_LABEL);
+		} else if ((directiveLine.getDirective() instanceof RegDirective) && (directiveLine.getName() == null)) {
+			error("No label defined for REG directive",
+				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				MISSING_LABEL);
 		}	
 	}
 	
@@ -105,7 +112,6 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					INVALID_RANGE);
 		}
 	}
-	
 	
 	/**
 	 * Check the FILL directive limits
@@ -308,6 +314,39 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			warning("SPC keep count value superior to 9 is suspicious",
 					AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT,
 					INVALID_RANGE);
+		}
+	}
+
+	@Check
+	public void test(Model model) {
+		System.out.println("test");
+	}
+	
+	@Check
+	/**
+	 * Check the REG directive (avoid duplicate register)
+	 * 
+	 * @param regDirective reference on the REG directive
+	 */
+	public void checkRegConstraints(RegDirective regDirective) {
+		List<String> regs = CommandUtil.getRegisters(regDirective);
+		List<String> testReg = new ArrayList<>();
+		if (regs.isEmpty()) {
+			error("no register defined in the REG Directive",
+					AssemblerPackage.Literals.REG_DIRECTIVE__OPTIONS,
+					MISSING_OPTION);
+			
+		} else {
+			for (String reg : regs) {
+				if (testReg.contains(reg)) {
+					error("Register " + reg + " is duplcate in the REG Directive",
+							AssemblerPackage.Literals.REG_DIRECTIVE__OPTIONS,
+							DUPLICATE_OPTION);
+					break;
+				} else {
+					testReg.add(reg);
+				}
+	 		}
 		}
 	}
 
