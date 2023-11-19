@@ -125,5 +125,4 @@ class TestABXInstruction {
 		val instructionLine = line.lineContent as InstructionLine
 		Assert.assertTrue("Must be an ABX directive line", instructionLine.instruction instanceof AbxInstruction)
 	}
-	
 }

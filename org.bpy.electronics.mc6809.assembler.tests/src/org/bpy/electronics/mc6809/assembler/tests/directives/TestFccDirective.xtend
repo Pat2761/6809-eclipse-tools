@@ -58,10 +58,6 @@ class TestFccDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an FCC directive line", directiveLine.directive instanceof FccDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
@@ -84,10 +80,6 @@ class TestFccDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an FCC directive line", directiveLine.directive instanceof FccDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 
 
@@ -111,9 +103,5 @@ class TestFccDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an FCC directive line", directiveLine.directive instanceof FccDirective)
-		
-//		val endDirective = directiveLine.directive as EndDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-//		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
 	}
 }
