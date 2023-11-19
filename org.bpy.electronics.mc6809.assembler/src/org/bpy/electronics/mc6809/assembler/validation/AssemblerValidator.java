@@ -11,19 +11,20 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.ComposedChecks;
 
 /**
  * This class contains custom validation rules. 
  *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
+@ComposedChecks(validators = {DirectiveValidator.class})
 public class AssemblerValidator extends AbstractAssemblerValidator {
 	
 	public static final String INVALID_FIGURE = "invalidFigure";
 
 	@Check
 	public void prepareValidation(Model model) {
-		
 	}
 	
 	@Check

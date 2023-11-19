@@ -24,6 +24,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.validation.EValidatorRegistrar;
 
 public class DirectiveValidator  extends AbstractAssemblerValidator {
 
@@ -34,6 +35,10 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	public static final String MISSING_OPTION = "missingOption";
 	public static final String NAME_ERROR = "nameError";
 	
+	@Override
+	public void register(EValidatorRegistrar registrar) {
+	}
+
 	/**
 	 * Check labels on the directive line
 	 * 
@@ -317,11 +322,11 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 		}
 	}
 
-	@Check
-	public void test(Model model) {
-		System.out.println("test");
-	}
-	
+//	@Check
+//	public void test(Model model) {
+//		System.out.println("test");
+//	}
+//	
 	@Check
 	/**
 	 * Check the REG directive (avoid duplicate register)
@@ -339,7 +344,7 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 		} else {
 			for (String reg : regs) {
 				if (testReg.contains(reg)) {
-					error("Register " + reg + " is duplcate in the REG Directive",
+					error("Register " + reg + " is duplicate in the REG Directive",
 							AssemblerPackage.Literals.REG_DIRECTIVE__OPTIONS,
 							DUPLICATE_OPTION);
 					break;
