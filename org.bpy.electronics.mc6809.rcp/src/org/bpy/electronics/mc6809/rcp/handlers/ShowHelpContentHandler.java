@@ -4,7 +4,6 @@ package org.bpy.electronics.mc6809.rcp.handlers;
 import org.eclipse.e4.core.di.annotations.CanExecute;
 import org.eclipse.e4.core.di.annotations.Execute;
 import org.eclipse.swt.custom.BusyIndicator;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 
 public class ShowHelpContentHandler {

@@ -599,7 +599,6 @@ public class ExpressionParser {
 	public static int resolveExpression(Not not) {
 		
 		int notValue = 0;
-		int r=0; 
 		
 		if (not.getValue() != null) {
 			notValue = resolveExpression((Expression)not.getValue());

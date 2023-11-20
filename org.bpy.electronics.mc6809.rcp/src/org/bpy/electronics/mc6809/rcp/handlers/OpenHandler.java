@@ -3,7 +3,6 @@ package org.bpy.electronics.mc6809.rcp.handlers;
 import org.bpy.electronics.mc6809.rcp.dialogs.UnderConstruction;
 
 import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
 
 public class OpenHandler {

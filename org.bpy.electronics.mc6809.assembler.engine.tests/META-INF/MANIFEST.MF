@@ -12,6 +12,6 @@ Require-Bundle: com.google.guava,
  com.google.inject;bundle-version="5.0.1",
  org.bpy.electronics.mc6809.assembler;bundle-version="1.0.0",
  org.junit;bundle-version="4.13.2",
- org.eclipse.xtext.testing;bundle-version="2.29.0",
+ org.eclipse.xtext.testing;bundle-version="2.28.0",
  org.bpy.electronics.mc6809.assembler.tests;bundle-version="1.0.0",
  org.bpy.electronics.mc6809.assembler.engine;bundle-version="1.0.0"

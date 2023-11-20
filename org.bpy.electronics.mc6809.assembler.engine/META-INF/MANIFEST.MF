@@ -7,9 +7,12 @@ Import-Package: com.google.inject,
  org.bpy.electronics.mc6809.assembler.assembler,
  org.bpy.electronics.mc6809.assembler.util,
  org.bpy.electronics.mc6809.assembler.validation,
+ org.eclipse.core.resources,
  org.eclipse.emf.common.util,
  org.eclipse.emf.ecore,
  org.eclipse.xtext.validation
-Require-Bundle: org.eclipse.e4.core.services;bundle-version="2.3.400"
+Require-Bundle: org.eclipse.e4.core.services;bundle-version="2.3.300",
+ org.eclipse.emf.ecore,
+ org.eclipse.core.runtime;bundle-version="3.26.0"
 Automatic-Module-Name: org.bpy.electronics.mc6809.assembler.engine
 Bundle-RequiredExecutionEnvironment: JavaSE-17

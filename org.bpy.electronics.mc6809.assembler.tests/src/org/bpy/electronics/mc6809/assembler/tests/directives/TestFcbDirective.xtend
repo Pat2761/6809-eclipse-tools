@@ -27,7 +27,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model
 import org.junit.Test
 import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective

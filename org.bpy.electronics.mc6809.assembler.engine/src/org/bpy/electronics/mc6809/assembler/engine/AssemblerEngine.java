@@ -36,8 +36,10 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
-import org.eclipse.xtext.validation.IResourceValidator;
-import com.google.inject.Inject;
+import org.eclipse.core.resources.IMarker;
+import org.eclipse.core.resources.IResource;
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.ecore.resource.Resource;
 
 public class AssemblerEngine {
 	
@@ -70,6 +72,22 @@ public class AssemblerEngine {
 			}
 			lineNumber++;
 		}
+		
+		IResource resource = (IResource) model.eResource();
+		try {
+			IMarker marker = resource.createMarker(IMarker.PROBLEM);
+			marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_HIGH);
+			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+			marker.setAttribute(IMarker.MESSAGE, "A que coucou");
+			
+		} catch (CoreException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		Diagnostician validator = Diagnostician.INSTANCE;
+//		validator.
+//		AssembledSourceValidator validator = injector.getInstance(AssembledSourceValidator.class);
+		
 	}
 
 	private void parseCommentLine(CommentLine commentLine) {
