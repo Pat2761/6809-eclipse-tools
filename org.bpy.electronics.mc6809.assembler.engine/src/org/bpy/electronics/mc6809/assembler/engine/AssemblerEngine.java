@@ -31,7 +31,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
@@ -109,7 +109,7 @@ public class AssemblerEngine {
 	private void parseOrgDirective(OrgDirective directive) {
 		int pcValue = ExpressionParser.parse(directive);
 		currentPcValue = pcValue;
-		AssembledDirectiveLine line = new AssembledDirectiveLine();
+		AssembledOrgDirectiveLine line = new AssembledOrgDirectiveLine();
 		line.parse(directive, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 

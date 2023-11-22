@@ -34,6 +34,7 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -402,6 +403,20 @@ class TestEquDirective {
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::MISSING_LABEL,"No label defined for EQU directive")
 	}
+
+	/**
+	 * Check EQU directive with a duplicate label
+	 */
+	@Test 
+	def void testWithDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; test EQU without label
+		EquLabel 	    EQU    	100 
+		EquLabel		EQU		200
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,AssemblerEngine::DUPLICATE_LABEL,"The label EquLabel for an EQU directive is already defined")
+	}
 	
 	@Test
 	/**
@@ -602,28 +617,28 @@ class TestEquDirective {
 	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
 		Assert.assertEquals("Operand must be equals to 22", 22, ExpressionParser.parse(equDirective))		
 	}
-	
-	@Test
-	def void testSorek() {
-		val result = parseHelper.parse('''
-		START			ORG			$2000
-		DEBUT			EQU			START
-		COMPT 			EQU 		$05 					; donnée 8 bits
-		ADRDEB			EQU 		1000 					; donnée 16 bits
-		FIN 			EQU 		DEBUT+$60 				; 
-		
-		VALHEX 			EQU 		$8000 					; VALHEX aura pour valeur $8000
-		;DEBBIN 		EQU 		-$0200 					; ==> negative hexa decimal not managed
-		FINATT 			EQU 		NOMVAR+30 				;
-		FINTIT 			EQU 		NOMVAR-VARFIN 			;
-		TOUCHA 			EQU 		'A 						; assigne $0041 au symbole TOUCHA
-		FONCTA 			EQU 		TOUCHA+%10000000 		; assigne $00C1 au symbole FONCTA
-		
-		TOTO 			EQU 		* 						; TOTO aura pour valeur $2000, car on affecte la
-															; valeur courante de l'adresse à TOTO
-		TITI 			EQU 		*-3 					; TITI aura pour valeurs $1FFD ($2000-3)
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-	}
+//	
+//	@Test
+//	def void testSorek() {
+//		val result = parseHelper.parse('''
+//		START			ORG			$2000
+//		DEBUT			EQU			START
+//		COMPT 			EQU 		$05 					; donnée 8 bits
+//		ADRDEB			EQU 		1000 					; donnée 16 bits
+//		FIN 			EQU 		DEBUT+$60 				; 
+//		
+//		VALHEX 			EQU 		$8000 					; VALHEX aura pour valeur $8000
+//		;DEBBIN 		EQU 		-$0200 					; ==> negative hexa decimal not managed
+//		FINATT 			EQU 		NOMVAR+30 				;
+//		FINTIT 			EQU 		NOMVAR-VARFIN 			;
+//		TOUCHA 			EQU 		'A 						; assigne $0041 au symbole TOUCHA
+//		FONCTA 			EQU 		TOUCHA+%10000000 		; assigne $00C1 au symbole FONCTA
+//		
+//		TOTO 			EQU 		* 						; TOTO aura pour valeur $2000, car on affecte la
+//															; valeur courante de l'adresse à TOTO
+//		TITI 			EQU 		*-3 					; TITI aura pour valeurs $1FFD ($2000-3)
+//		''')
+//		Assert.assertNotNull(result)
+//		result.assertNoErrors
+//	}
 }

@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
@@ -415,8 +415,8 @@ public class TestOrgDirective {
       final AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
       this._validationTestHelper.assertNoErrors(result);
       final AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(1);
-      Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledDirectiveLine));
-      final AssembledDirectiveLine orgDirective = ((AssembledDirectiveLine) assemblyLine);
+      Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledOrgDirectiveLine));
+      final AssembledOrgDirectiveLine orgDirective = ((AssembledOrgDirectiveLine) assemblyLine);
       Assert.assertEquals("PC must be set to 0", 0, orgDirective.getPcAddress());
       Assert.assertEquals("Line number must be 2", 2, orgDirective.getLineNumber());
       Assert.assertEquals("Check current PC position", 0, assemblerEngine.getCurrentPcValue());
@@ -443,8 +443,8 @@ public class TestOrgDirective {
       final AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
       this._validationTestHelper.assertNoErrors(result);
       final AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(1);
-      Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledDirectiveLine));
-      final AssembledDirectiveLine orgDirective = ((AssembledDirectiveLine) assemblyLine);
+      Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledOrgDirectiveLine));
+      final AssembledOrgDirectiveLine orgDirective = ((AssembledOrgDirectiveLine) assemblyLine);
       Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.getPcAddress());
       Assert.assertEquals("Line number must be 2", 2, orgDirective.getLineNumber());
       Assert.assertEquals("Check current PC position", 0x8000, assemblerEngine.getCurrentPcValue());
@@ -472,8 +472,8 @@ public class TestOrgDirective {
       final AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
       this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), AssemblerEngine.DUPLICATE_LABEL, "Label OrgPos is already defined");
       final AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(2);
-      Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledDirectiveLine));
-      final AssembledDirectiveLine orgDirective = ((AssembledDirectiveLine) assemblyLine);
+      Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledOrgDirectiveLine));
+      final AssembledOrgDirectiveLine orgDirective = ((AssembledOrgDirectiveLine) assemblyLine);
       Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.getPcAddress());
       Assert.assertEquals("Line number must be 3", 3, orgDirective.getLineNumber());
     } catch (Throwable _e) {

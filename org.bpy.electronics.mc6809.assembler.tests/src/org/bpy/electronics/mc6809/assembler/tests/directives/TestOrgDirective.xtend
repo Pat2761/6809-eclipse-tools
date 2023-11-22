@@ -35,7 +35,7 @@ import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledDirectiveLine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -299,8 +299,8 @@ class TestOrgDirective {
 		result.assertNoErrors
 	
 		val assemblyLine = assemblerEngine.getAssembledLine(1)
-		Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledDirectiveLine)
-		val orgDirective = assemblyLine as AssembledDirectiveLine
+		Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledOrgDirectiveLine)
+		val orgDirective = assemblyLine as AssembledOrgDirectiveLine
 		
 		Assert.assertEquals("PC must be set to 0", 0, orgDirective.pcAddress)
 		Assert.assertEquals("Line number must be 2", 2, orgDirective.lineNumber)
@@ -322,8 +322,8 @@ class TestOrgDirective {
 		result.assertNoErrors
 	
 		val assemblyLine = assemblerEngine.getAssembledLine(1)
-		Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledDirectiveLine)
-		val orgDirective = assemblyLine as AssembledDirectiveLine
+		Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledOrgDirectiveLine)
+		val orgDirective = assemblyLine as AssembledOrgDirectiveLine
 		
 		Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.pcAddress)
 		Assert.assertEquals("Line number must be 2", 2, orgDirective.lineNumber)
@@ -347,8 +347,8 @@ class TestOrgDirective {
 		result.assertError(AssemblerPackage.eINSTANCE.directiveLine, AssemblerEngine.DUPLICATE_LABEL,"Label OrgPos is already defined")
 	
 		val assemblyLine = assemblerEngine.getAssembledLine(2)
-		Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledDirectiveLine)
-		val orgDirective = assemblyLine as AssembledDirectiveLine
+		Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledOrgDirectiveLine)
+		val orgDirective = assemblyLine as AssembledOrgDirectiveLine
 		
 		Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.pcAddress)
 		Assert.assertEquals("Line number must be 3", 3, orgDirective.lineNumber)

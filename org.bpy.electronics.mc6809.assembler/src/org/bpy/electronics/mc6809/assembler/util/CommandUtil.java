@@ -35,6 +35,21 @@ public class CommandUtil {
 	}
 	
 	/**
+	 * Return the comment associated to an EQU directive.
+	 * 
+	 * @param equDirective reference on the EQU directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(EquDirective equDirective) {
+		DirectiveLine directiveLine = (DirectiveLine)equDirective.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Return the label associated to an ORG directive.
 	 * 
 	 * @param orgDirective reference on the ORG directive
@@ -155,5 +170,4 @@ public class CommandUtil {
 		}
 		return registers;
 	}
-
 }
