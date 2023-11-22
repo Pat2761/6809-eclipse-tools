@@ -40,6 +40,8 @@ import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.linking.lazy.LazyLinkingResource;
+import org.eclipse.xtext.validation.IResourceValidator;
 
 public class AssemblerEngine {
 	
@@ -73,17 +75,19 @@ public class AssemblerEngine {
 			lineNumber++;
 		}
 		
-		IResource resource = (IResource) model.eResource();
-		try {
-			IMarker marker = resource.createMarker(IMarker.PROBLEM);
-			marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_HIGH);
-			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
-			marker.setAttribute(IMarker.MESSAGE, "A que coucou");
-			
-		} catch (CoreException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		LazyLinkingResource resource = (LazyLinkingResource) model.eResource();
+		System.out.println(resource);
+		
+//		try {
+//			IMarker marker = resource.createMarker(IMarker.PROBLEM);
+//			marker.setAttribute(IMarker.PRIORITY, IMarker.PRIORITY_HIGH);
+//			marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_ERROR);
+//			marker.setAttribute(IMarker.MESSAGE, "A que coucou");
+//			
+//		} catch (CoreException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 //		Diagnostician validator = Diagnostician.INSTANCE;
 //		validator.
 //		AssembledSourceValidator validator = injector.getInstance(AssembledSourceValidator.class);

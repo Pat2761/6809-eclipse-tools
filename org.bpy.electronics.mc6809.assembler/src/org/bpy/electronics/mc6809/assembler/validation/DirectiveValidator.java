@@ -73,7 +73,19 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			error("No label defined for REG directive",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
 				MISSING_LABEL);
-		}	
+		}
+		
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(directiveLine.getDirective());
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(directiveLine.getDirective());
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
 	}
 	
 	/**                                  				                                                                                        

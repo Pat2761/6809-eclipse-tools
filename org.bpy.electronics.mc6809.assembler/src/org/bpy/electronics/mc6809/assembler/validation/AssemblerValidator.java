@@ -10,6 +10,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 
@@ -25,6 +26,8 @@ public class AssemblerValidator extends AbstractAssemblerValidator {
 
 	@Check
 	public void prepareValidation(Model model) {
+		AssemblerEngine.getInstance().clear();
+		AssemblerEngine.getInstance().engine(model);
 	}
 	
 	@Check
@@ -38,6 +41,7 @@ public class AssemblerValidator extends AbstractAssemblerValidator {
 				break;
 			}
 		}
+		this.addIssue(strVal, binaryValue, strVal);
 	}
 
 	@Check
@@ -62,5 +66,4 @@ public class AssemblerValidator extends AbstractAssemblerValidator {
 			}
 		}
 	}
-	
 }

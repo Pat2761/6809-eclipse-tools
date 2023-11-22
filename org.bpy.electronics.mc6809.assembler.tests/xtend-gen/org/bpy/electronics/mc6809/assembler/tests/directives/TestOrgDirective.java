@@ -24,6 +24,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
@@ -389,6 +392,90 @@ public class TestOrgDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  @Test
+  public void checkNoValueResult() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    ; Without value ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
+      this._validationTestHelper.assertNoErrors(result);
+      final AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(1);
+      Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledDirectiveLine));
+      final AssembledDirectiveLine orgDirective = ((AssembledDirectiveLine) assemblyLine);
+      Assert.assertEquals("PC must be set to 0", 0, orgDirective.getPcAddress());
+      Assert.assertEquals("Line number must be 2", 2, orgDirective.getLineNumber());
+      Assert.assertEquals("Check current PC position", 0, assemblerEngine.getCurrentPcValue());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  @Test
+  public void checkWithValueResult() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t$8000\t\t\t; Without value ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
+      this._validationTestHelper.assertNoErrors(result);
+      final AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(1);
+      Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledDirectiveLine));
+      final AssembledDirectiveLine orgDirective = ((AssembledDirectiveLine) assemblyLine);
+      Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.getPcAddress());
+      Assert.assertEquals("Line number must be 2", 2, orgDirective.getLineNumber());
+      Assert.assertEquals("Check current PC position", 0x8000, assemblerEngine.getCurrentPcValue());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  @Test
+  public void checkDuplicateLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("OrgPos\t       ORG    \t\t\t\t; Without value ");
+      _builder.newLine();
+      _builder.append("OrgPos\t       ORG    $8000\t\t\t; With value ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), AssemblerEngine.DUPLICATE_LABEL, "Label OrgPos is already defined");
+      final AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(2);
+      Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledDirectiveLine));
+      final AssembledDirectiveLine orgDirective = ((AssembledDirectiveLine) assemblyLine);
+      Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.getPcAddress());
+      Assert.assertEquals("Line number must be 3", 3, orgDirective.getLineNumber());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

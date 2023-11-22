@@ -3,6 +3,7 @@ package org.bpy.electronics.mc6809.assembler.validation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 class AssemblerProblemManagerDescription {
+	
 	private String message;
 	private EStructuralFeature feature;
 	private String issueData;

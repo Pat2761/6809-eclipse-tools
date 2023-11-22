@@ -34,6 +34,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -152,10 +154,6 @@ class TestOrgDirective {
 		
 		val directiveLine1 = line1.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an ORG directive line", directiveLine1.directive instanceof OrgDirective)
-		
-//		val orgDirective = directiveLine1.directive as OrgDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective))	
-//		Assert.assertEquals("Operand must be equals to $8020", 0x8020, ExpressionParser.parse(orgDirective))		
 	}
 
 	/**
@@ -177,10 +175,6 @@ class TestOrgDirective {
 		
 		val directiveLine1 = line1.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an ORG directive line", directiveLine1.directive instanceof OrgDirective)
-		
-//		val orgDirective = directiveLine1.directive as OrgDirective
-//	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective))	
-//		Assert.assertEquals("Operand must be equals to $8020", 0x8020, ExpressionParser.parse(orgDirective))		
 	}
 
 	/**
@@ -289,5 +283,74 @@ class TestOrgDirective {
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
+	}
+	
+	@Test
+	def void checkNoValueResult() {
+	val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    ; Without value 
+		''')
+		Assert.assertNotNull(result)
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+
+		val assemblerEngine = AssemblerEngine.getInstance()
+		result.assertNoErrors
+	
+		val assemblyLine = assemblerEngine.getAssembledLine(1)
+		Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledDirectiveLine)
+		val orgDirective = assemblyLine as AssembledDirectiveLine
+		
+		Assert.assertEquals("PC must be set to 0", 0, orgDirective.pcAddress)
+		Assert.assertEquals("Line number must be 2", 2, orgDirective.lineNumber)
+	
+		Assert.assertEquals("Check current PC position", 0, assemblerEngine.currentPcValue)	
+	}
+
+	@Test
+	def void checkWithValueResult() {
+	val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    	$8000			; Without value 
+		''')
+		Assert.assertNotNull(result)
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+
+		val assemblerEngine = AssemblerEngine.getInstance()
+		result.assertNoErrors
+	
+		val assemblyLine = assemblerEngine.getAssembledLine(1)
+		Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledDirectiveLine)
+		val orgDirective = assemblyLine as AssembledDirectiveLine
+		
+		Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.pcAddress)
+		Assert.assertEquals("Line number must be 2", 2, orgDirective.lineNumber)
+	
+		Assert.assertEquals("Check current PC position", 0x8000, assemblerEngine.currentPcValue)	
+	}
+
+	@Test
+	def void checkDuplicateLabel() {
+	val result = parseHelper.parse('''
+		; -----------------------------------------
+		OrgPos	       ORG    				; Without value 
+		OrgPos	       ORG    $8000			; With value 
+		''')
+		Assert.assertNotNull(result)
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	
+		val assemblerEngine = AssemblerEngine.getInstance()
+
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine, AssemblerEngine.DUPLICATE_LABEL,"Label OrgPos is already defined")
+	
+		val assemblyLine = assemblerEngine.getAssembledLine(2)
+		Assert.assertTrue("assemblyLine must be an Assembly line", assemblyLine instanceof AssembledDirectiveLine)
+		val orgDirective = assemblyLine as AssembledDirectiveLine
+		
+		Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.pcAddress)
+		Assert.assertEquals("Line number must be 3", 3, orgDirective.lineNumber)
 	}
 }
