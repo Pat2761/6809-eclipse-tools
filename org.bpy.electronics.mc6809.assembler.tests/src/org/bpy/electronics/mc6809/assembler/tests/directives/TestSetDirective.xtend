@@ -32,6 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -190,4 +191,33 @@ class TestSetDirective {
 		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::MISSING_LABEL,"No label defined for SET directive")
 	}
 
+	/**
+	 * Check SET directive after an EQU directive with same label
+	 */
+	@Test 
+	def void testWithEQUWthSameLabel() {
+		val result = parseHelper.parse('''
+		; test  SET 
+		MySET			 EQU 	200
+		MySET 	   		 SET    100 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"The label MySET for an SET directive is already defined")
+	}
+
+	/**
+	 * Check SET directive after an SET directive with same label
+	 */
+	@Test 
+	def void testWithSETWthSameLabel() {
+		val result = parseHelper.parse('''
+		; test  SET 
+		MySET			 SET 	200
+		MySET 	   		 SET    100 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
 }

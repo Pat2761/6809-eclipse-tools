@@ -417,6 +417,23 @@ class TestEquDirective {
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,AssemblerEngine::DUPLICATE_LABEL,"The label EquLabel for an EQU directive is already defined")
 	}
+
+	/**
+	 * Check EQU directive with a duplicate label defined by a SET directive
+	 */
+	@Test 
+	def void testWithSETDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; test EQU without label
+		EquLabel 	    SET    	100 
+		EquLabel		EQU		200
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.eINSTANCE.directiveLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"The label EquLabel for an EQU directive is already defined by a SET directive"
+		)
+	}
 	
 	@Test
 	/**

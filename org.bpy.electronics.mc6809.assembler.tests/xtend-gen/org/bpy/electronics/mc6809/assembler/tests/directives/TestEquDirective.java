@@ -567,6 +567,29 @@ public class TestEquDirective {
     }
   }
 
+  /**
+   * Check EQU directive with a duplicate label defined by a SET directive
+   */
+  @Test
+  public void testWithSETDuplicateLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test EQU without label");
+      _builder.newLine();
+      _builder.append("EquLabel \t    SET    \t100 ");
+      _builder.newLine();
+      _builder.append("EquLabel\t\tEQU\t\t200");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), 
+        AssemblerEngine.DUPLICATE_LABEL, 
+        "The label EquLabel for an EQU directive is already defined by a SET directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
   @Test
   public void testWithSubstractionOfTwoDecimalValue() {
     try {

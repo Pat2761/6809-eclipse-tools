@@ -23,6 +23,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
@@ -269,6 +270,50 @@ public class TestSetDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.MISSING_LABEL, "No label defined for SET directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SET directive after an EQU directive with same label
+   */
+  @Test
+  public void testWithEQUWthSameLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test  SET ");
+      _builder.newLine();
+      _builder.append("MySET\t\t\t EQU \t200");
+      _builder.newLine();
+      _builder.append("MySET \t   \t\t SET    100 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), 
+        AssemblerEngine.DUPLICATE_LABEL, 
+        "The label MySET for an SET directive is already defined");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SET directive after an SET directive with same label
+   */
+  @Test
+  public void testWithSETWthSameLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test  SET ");
+      _builder.newLine();
+      _builder.append("MySET\t\t\t SET \t200");
+      _builder.newLine();
+      _builder.append("MySET \t   \t\t SET    100 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

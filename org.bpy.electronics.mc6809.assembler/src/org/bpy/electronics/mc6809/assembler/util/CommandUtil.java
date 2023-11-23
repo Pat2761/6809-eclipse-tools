@@ -1,3 +1,21 @@
+/*
+ * MC6809 Toolkit
+ * Copyright (C) 2023  Patrick BRIAND
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package org.bpy.electronics.mc6809.assembler.util;
 
 import java.util.ArrayList;
@@ -15,6 +33,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.eclipse.emf.common.util.EList;
 
 public class CommandUtil {
@@ -42,6 +61,21 @@ public class CommandUtil {
 	 */
 	public static String getComment(EquDirective equDirective) {
 		DirectiveLine directiveLine = (DirectiveLine)equDirective.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the label associated to an SET directive.
+	 * 
+	 * @param setDirective reference on the SET directive
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SetDirective setDirective) {
+		DirectiveLine directiveLine = (DirectiveLine)setDirective.eContainer();
 		if ( directiveLine.getName() != null) {
 			return directiveLine.getName().getValue();
 		} else {
@@ -49,6 +83,21 @@ public class CommandUtil {
 		}
 	}
 
+	/**
+	 * Return the comment associated to an SET directive.
+	 * 
+	 * @param setDirective reference on the SET directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SetDirective setDirective) {
+		DirectiveLine directiveLine = (DirectiveLine)setDirective.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+	
 	/**
 	 * Return the label associated to an ORG directive.
 	 * 
