@@ -19,9 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.util;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -32,7 +30,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
-import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -69,10 +66,7 @@ import org.eclipse.emf.ecore.EReference;
  */
 public class ExpressionParser {
 	
-	public static String EXPRESSION_ERROR = "expressionError";
-	
-	/** Memorize the EQU values */
-	private static Map<String, Integer> equValues = null; 
+	public static final String EXPRESSION_ERROR = "expressionError";
 	
 	private static EReference eReference;
 	private static Object assemblyLine; 
@@ -81,7 +75,6 @@ public class ExpressionParser {
 	 * Add a private constructor to hide the implicit public one.
 	 */
 	private ExpressionParser() {
-		equValues = new HashMap<>();
 	}
 
 	/** Looger of the class */
@@ -147,15 +140,7 @@ public class ExpressionParser {
 		
 		if (equDirective.getOperand() != null && equDirective.getOperand().getOperand() != null) {
 			EObject operand = equDirective.getOperand().getOperand();
-			int equValue = resolveExpression((Expression)operand);
-			
-			if (equValues == null) {
-				equValues = new HashMap<>();
-			}
-			
-			DirectiveLine directiveLine=(DirectiveLine)equDirective.eContainer();
-			equValues.put(directiveLine.getName().getValue(), equValue);
-			return equValue;
+			return resolveExpression((Expression)operand);
 		} else {
 			return -1;
 		}
@@ -175,19 +160,12 @@ public class ExpressionParser {
 
 		if (setDirective.getOperand() != null && setDirective.getOperand().getOperand() != null) {
 			EObject operand = setDirective.getOperand().getOperand();
-			int setValue = resolveExpression((Expression)operand);
-			
-			if (equValues == null) {
-				equValues = new HashMap<>();
-			}
-			
-			DirectiveLine directiveLine=(DirectiveLine)setDirective.eContainer();
-			equValues.put(directiveLine.getName().getValue(), setValue);
-			return setValue;
+			return resolveExpression((Expression)operand);
 		} else {
 			return -1;
 		}
 	}
+
 	/** 
 	 *  Parse the operand of an ORG directive.
 	 *  
@@ -197,9 +175,7 @@ public class ExpressionParser {
 	public static int parse(OrgDirective orgDirective) {
 		if (orgDirective.getOperand() != null && orgDirective.getOperand().getOperand() != null) {
 			EObject operand = orgDirective.getOperand().getOperand();
-			int equValue = resolveExpression((Expression)operand);
-			
-			return equValue;
+			return resolveExpression((Expression)operand);
 		} else {
 			return 0;
 		}
@@ -214,9 +190,7 @@ public class ExpressionParser {
 	public static int parse(PagDirective pagDirective) {
 		if (pagDirective.getOperand() != null && pagDirective.getOperand().getOperand() != null) {
 			EObject operand = pagDirective.getOperand().getOperand();
-			int pagValue = resolveExpression((Expression)operand);
-			
-			return pagValue;
+			return resolveExpression((Expression)operand);
 		} else {
 			return 1;
 		}
@@ -231,9 +205,7 @@ public class ExpressionParser {
 	public static int parse(EndDirective endDirective) {
 		if (endDirective.getOperand() != null && endDirective.getOperand().getOperand() != null) {
 			EObject operand = endDirective.getOperand().getOperand();
-			int equValue = resolveExpression((Expression)operand);
-			
-			return equValue;
+			return resolveExpression((Expression)operand);
 		} else {
 			return 0;
 		}
@@ -248,9 +220,7 @@ public class ExpressionParser {
 	public static int parse(RmbDirective rmbDirective) {
 		if (rmbDirective.getOperand() != null && rmbDirective.getOperand().getOperand() != null) {
 			EObject operand = rmbDirective.getOperand().getOperand();
-			int equValue = resolveExpression((Expression)operand);
-			
-			return equValue;
+			return resolveExpression((Expression)operand);
 		} else {
 			return 0;
 		}
@@ -265,9 +235,7 @@ public class ExpressionParser {
 	public static int parse(BszDirective bszDirective) {
 		if (bszDirective.getOperand() != null && bszDirective.getOperand().getOperand() != null) {
 			EObject operand = bszDirective.getOperand().getOperand();
-			int equValue = resolveExpression((Expression)operand);
-			
-			return equValue;
+			return resolveExpression((Expression)operand);
 		} else {
 			return 0;
 		}
@@ -311,57 +279,57 @@ public class ExpressionParser {
 	 */
 	public static int resolveExpression(Expression expression) {
 		
-		if (expression instanceof Multiplication) {
-			return resolveExpression((Multiplication)expression);
+		if (expression instanceof Multiplication multiplication) {
+			return resolveExpression(multiplication);
 			
-		} else if (expression instanceof Division) {
-				return resolveExpression((Division)expression);
+		} else if (expression instanceof Division division) {
+				return resolveExpression(division);
 				
-		} else if (expression instanceof Addition) { 	
-			return resolveExpression((Addition)expression);
+		} else if (expression instanceof Addition addition) { 	
+			return resolveExpression(addition);
 			
-		} else if (expression instanceof Substraction) { 	
-			return resolveExpression((Substraction)expression);
+		} else if (expression instanceof Substraction substraction) { 	
+			return resolveExpression(substraction);
 			
-		} else if (expression instanceof Modulo) { 	
-			return resolveExpression((Modulo)expression);
+		} else if (expression instanceof Modulo modulo) { 	
+			return resolveExpression(modulo);
 			
-		} else if (expression instanceof And) { 	
-			return resolveExpression((And)expression);
+		} else if (expression instanceof And and) { 	
+			return resolveExpression(and);
 			
-		} else if (expression instanceof Or) { 	
-			return resolveExpression((Or)expression);
+		} else if (expression instanceof Or or) { 	
+			return resolveExpression(or);
 			
-		} else if (expression instanceof Xor) { 	
-			return resolveExpression((Xor)expression);
+		} else if (expression instanceof Xor xor) { 	
+			return resolveExpression(xor);
 			
-		} else if (expression instanceof Not) { 	
-			return resolveExpression((Not)expression);
+		} else if (expression instanceof Not not) { 	
+			return resolveExpression(not);
 			
-		} else if (expression instanceof LeftShift) { 	
-			return resolveExpression((LeftShift)expression);
+		} else if (expression instanceof LeftShift leftshift) { 	
+			return resolveExpression(leftshift);
 			
-		} else if (expression instanceof RightShift) { 	
-			return resolveExpression((RightShift)expression);
+		} else if (expression instanceof RightShift rightShift) { 	
+			return resolveExpression(rightShift);
 			
 		} else {
-			if (expression.getValue() instanceof DecimalValue) {
-				return (resolveDecimalValue((DecimalValue)expression.getValue()));
+			if (expression.getValue() instanceof DecimalValue decimalValue) {
+				return resolveDecimalValue(decimalValue);
 			
-			} else if( expression.getValue() instanceof HexaDecimalValue) {
-				return (resolveHexadecimalValue((HexaDecimalValue)expression.getValue()));
+			} else if( expression.getValue() instanceof HexaDecimalValue hexaDecimalValue) {
+				return resolveHexadecimalValue(hexaDecimalValue);
 			
-			} else if( expression.getValue() instanceof BinaryValue) {
-				return (resolveBinaryValue((BinaryValue)expression.getValue()));
+			} else if( expression.getValue() instanceof BinaryValue binaryValue) {
+				return resolveBinaryValue(binaryValue);
 
-			} else if( expression.getValue() instanceof OctalValue) {
-				return (resolveOctalValue((OctalValue)expression.getValue()));
+			} else if( expression.getValue() instanceof OctalValue octalValue) {
+				return resolveOctalValue(octalValue);
 
-			} else if( expression.getValue() instanceof IdentifierValue) {
-				return (resolveIdentifierValue((IdentifierValue)expression.getValue()));
+			} else if( expression.getValue() instanceof IdentifierValue identifierValue) {
+				return resolveIdentifierValue(identifierValue);
 
-			} else if( expression.getValue() instanceof CharacterValue) {
-				return (resolveCharacterValue((CharacterValue)expression.getValue()));
+			} else if( expression.getValue() instanceof CharacterValue characterValue) {
+				return resolveCharacterValue(characterValue);
 			}
 			
 			logger.log(Level.SEVERE, "{0} isn''t managed in this version" ,expression.getValue().getClass().getSimpleName());
@@ -391,7 +359,7 @@ public class ExpressionParser {
 	 */
 	private static int resolveCharacterValue(CharacterValue value) {
 		char strValue = value.getValue().replaceFirst("\\'", "").charAt(0);
-		return (int) strValue;
+		return strValue;
 	}
 
 	/**
@@ -498,6 +466,14 @@ public class ExpressionParser {
 		if (division.getRight() != null) {
 			right = resolveExpression(division.getRight());
 		}
+		if (right == 0) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"Division by 0 is not allow, the result of the expression will be false", 
+					eReference, 
+					EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			return 0;
+		}
 		return left/right;
 	}
 
@@ -554,6 +530,15 @@ public class ExpressionParser {
 		}
 		if (modulo.getRight() != null) {
 			right = resolveExpression(modulo.getRight());
+		}
+		
+		if (right == 0) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"Division by 0 is not allow, the result of the expression will be false", 
+					eReference, 
+					EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			return 0;
 		}
 		return left%right;
 	}

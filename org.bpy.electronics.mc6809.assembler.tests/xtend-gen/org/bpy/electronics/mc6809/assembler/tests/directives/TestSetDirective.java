@@ -340,4 +340,46 @@ public class TestSetDirective {
       throw Exceptions.sneakyThrow(_e);
     }
   }
+
+  /**
+   * Check SET directive with modulo division by 0
+   */
+  @Test
+  public void testWithSETWithModuloDivisionByZero() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test  SET ");
+      _builder.newLine();
+      _builder.append("MySET \t   \t\t SET    100%0 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), 
+        ExpressionParser.EXPRESSION_ERROR, 
+        "Division by 0 is not allow, the result of the expression will be false");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SET directive with modulo division by 0
+   */
+  @Test
+  public void testWithSETWithDivisionByZero() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test  SET ");
+      _builder.newLine();
+      _builder.append("MySET \t   \t\t SET    100/0 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), 
+        ExpressionParser.EXPRESSION_ERROR, 
+        "Division by 0 is not allow, the result of the expression will be false");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
 }

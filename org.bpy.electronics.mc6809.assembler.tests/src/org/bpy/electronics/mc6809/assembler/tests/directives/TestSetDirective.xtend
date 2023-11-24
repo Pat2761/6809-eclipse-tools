@@ -237,4 +237,36 @@ class TestSetDirective {
 			"Can't find Deux definition"
 		)
 	}
+
+	/**
+	 * Check SET directive with modulo division by 0
+	 */
+	@Test 
+	def void testWithSETWithModuloDivisionByZero() {
+		val result = parseHelper.parse('''
+		; test  SET 
+		MySET 	   		 SET    100%0 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.setDirective,
+			ExpressionParser::EXPRESSION_ERROR,
+			"Division by 0 is not allow, the result of the expression will be false"
+		)
+	}
+
+	/**
+	 * Check SET directive with modulo division by 0
+	 */
+	@Test 
+	def void testWithSETWithDivisionByZero() {
+		val result = parseHelper.parse('''
+		; test  SET 
+		MySET 	   		 SET    100/0 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.setDirective,
+			ExpressionParser::EXPRESSION_ERROR,
+			"Division by 0 is not allow, the result of the expression will be false"
+		)
+	}
 }
