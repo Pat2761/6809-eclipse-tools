@@ -24,6 +24,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
@@ -249,6 +252,39 @@ public class TestBszDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.MISSING_LABEL, "No label defined for BSZ directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BSZ directive behavior
+   */
+  @Test
+  public void testBszBehavior() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           ");
+      _builder.append("ORG    $8000 \t; With value");
+      _builder.newLine();
+      _builder.append("MyBsz\t       BSZ    10 \t\t; A comment for BSZ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("PC value must be 800A", 0x800A, engine.getCurrentPcValue());
+      final AbstractAssemblyLine line = engine.getAssembledLine(2);
+      final AssembledBszDirectiveLine bszLine = ((AssembledBszDirectiveLine) line);
+      final int[] values = bszLine.getValues();
+      for (final int value : values) {
+        Assert.assertEquals("Reserved bytes must be equals to 0", 0, value);
+      }
+      Assert.assertEquals("Check line number", 3, bszLine.getLineNumber());
+      Assert.assertEquals("Check label", "MyBsz", bszLine.getLabel());
+      Assert.assertEquals("Check comment", "; A comment for BSZ", bszLine.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

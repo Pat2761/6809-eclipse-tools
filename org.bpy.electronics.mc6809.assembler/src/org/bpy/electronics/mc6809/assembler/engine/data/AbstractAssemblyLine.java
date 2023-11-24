@@ -26,6 +26,9 @@ public abstract class AbstractAssemblyLine {
 	protected int pcAddress;
 	protected SourceLine sourceLine;
 	protected String label;
+	protected String comment;
+
+	public abstract int getPcIncrement();
 	
 	public abstract void setOpcode(StringBuilder strBuilder);
 	public abstract void setOperand(StringBuilder strBuilder);
@@ -34,6 +37,14 @@ public abstract class AbstractAssemblyLine {
 	public abstract void setInstructionName(StringBuilder strBuilder);
 	public abstract void setInstructionOperand(StringBuilder strBuilder);
 	public abstract void setLastComment(StringBuilder strBuilder);
+	
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 	
 	public String getLabel() {
 		return label;

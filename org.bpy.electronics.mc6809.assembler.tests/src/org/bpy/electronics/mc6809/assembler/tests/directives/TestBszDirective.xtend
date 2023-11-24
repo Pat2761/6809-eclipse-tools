@@ -34,6 +34,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.BszDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -146,7 +148,6 @@ class TestBszDirective {
 		result.assertNoErrors
 	}
 
-
 	/**
 	 * Check BSZ directive with 0 value
 	 */
@@ -173,6 +174,32 @@ class TestBszDirective {
 		''')
 		Assert.assertNotNull(result)
 		result.assertWarning(AssemblerPackage.eINSTANCE.directiveLine, DirectiveValidator::MISSING_LABEL, "No label defined for BSZ directive")
+	}
+
+	/**
+	 * Check BSZ directive behavior
+	 */
+	@Test 
+	def void testBszBehavior() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           ORG    $8000 	; With value
+		MyBsz	       BSZ    10 		; A comment for BSZ
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("PC value must be 800A", 0x800A, engine.currentPcValue)
+		val line = engine.getAssembledLine(2)
+		val bszLine = line as AssembledBszDirectiveLine
+		val values = bszLine.values
+		for (value : values) {
+			Assert.assertEquals("Reserved bytes must be equals to 0", 0, value)
+		}
+		Assert.assertEquals("Check line number", 3, bszLine.lineNumber)
+		Assert.assertEquals("Check label", "MyBsz", bszLine.label)
+		Assert.assertEquals("Check comment", "; A comment for BSZ", bszLine.comment)
 	}
 
 	/**

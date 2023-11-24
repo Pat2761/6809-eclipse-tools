@@ -57,4 +57,9 @@ public class BlanckLine extends AbstractAssemblyLine {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public int getPcIncrement() {
+		return 0;
+	}
+
 }

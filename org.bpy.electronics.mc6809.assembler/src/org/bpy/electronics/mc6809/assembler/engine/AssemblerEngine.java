@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
+import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -36,6 +37,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEquDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
@@ -144,9 +146,24 @@ public class AssemblerEngine {
 			parseDirective(equDirective);
 		}else if (directiveLine.getDirective() instanceof SetDirective setDirective) {
 			parseDirective(setDirective);
+		}else if (directiveLine.getDirective() instanceof BszDirective bszDirective) {
+			parseDirective(bszDirective);
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
 		}
+	}
+
+	/**
+	 * Parse an BSZ directive line.
+	 * Memorize the BSZ label 
+	 *  
+	 * @param bszDirective reference on the BSZ directive
+	 */
+	private void parseDirective(BszDirective bszDirective) {
+		AssembledBszDirectiveLine line = new AssembledBszDirectiveLine();
+		line.parse(bszDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		currentPcValue += line.getPcIncrement();
 	}
 
 	/**

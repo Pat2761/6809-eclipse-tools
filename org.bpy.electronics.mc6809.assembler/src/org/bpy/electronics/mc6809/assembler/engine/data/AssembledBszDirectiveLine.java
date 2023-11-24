@@ -18,36 +18,45 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
-import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
-/*
- * Used to store information about ORG directive
+/**
+ * Used to store information about BSZ directive
  */
-public class AssembledOrgDirectiveLine extends AbstractAssemblyLine {
+public class AssembledBszDirectiveLine extends AbstractAssemblyLine {
 
-	/** reference to the ORG directive in the edited file */
-	private OrgDirective directive;
-
+	/** reference to the BSZ directive in the edited file */
+	private BszDirective directive;
+	/** Integer value defined by the EQU directive */ 
+	private int[] values;	
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledOrgDirectiveLine() {
+	public AssembledBszDirectiveLine() {
 		// nothing to do
 	}
 
 	/**
 	 * Extract information from the edited line.
 	 * 
-	 * @param directive reference to the Xtext description of the ORG directive
+	 * @param directive reference to the Xtext description of the BSZ directive
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(OrgDirective directive, int currentPcValue, int lineNumber) {
+	public void parse(BszDirective directive, int currentPcValue, int lineNumber) {
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
+		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
+		
+		int nbBytes = ExpressionParser.parse(directive);
+		values = new int[nbBytes];
+		for (int i=0; i<nbBytes; i++) {
+			values[0] = 0;
+		}
 	}
 
 	@Override
@@ -93,16 +102,20 @@ public class AssembledOrgDirectiveLine extends AbstractAssemblyLine {
 		strBuilder.append(String.format("%-6s", directive.getDirective()));  // Mnemonique (6 car)
 	}
 
-	public OrgDirective getDirective() {
+	public BszDirective getDirective() {
 		return directive;
 	}
 
-	public void setDirective(OrgDirective directive) {
+	public void setDirective(BszDirective directive) {
 		this.directive = directive;
+	}
+
+	public int[] getValues() {
+		return values;
 	}
 
 	@Override
 	public int getPcIncrement() {
-		return 0;
+		return values.length;
 	}
 }

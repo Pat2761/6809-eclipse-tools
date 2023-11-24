@@ -87,4 +87,9 @@ public class AssembledCommentLine extends AbstractAssemblyLine {
 	public void setLastComment(StringBuilder strBuilder) {
 		// Nothing to do
 	}
+
+	@Override
+	public int getPcIncrement() {
+		return 0;
+	}
 }

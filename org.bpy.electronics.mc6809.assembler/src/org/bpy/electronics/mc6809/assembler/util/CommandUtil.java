@@ -21,6 +21,7 @@ package org.bpy.electronics.mc6809.assembler.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -129,6 +130,36 @@ public class CommandUtil {
 	}
 	
 	/**
+	 * Return the label associated to an BSZ directive.
+	 * 
+	 * @param directive reference on the BSZ directive
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BszDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to an BSZ directive.
+	 * 
+	 * @param directive reference on the BSZ directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BszDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Return the label associated to an RMB directive.
 	 * 
 	 * @param rmbDirective reference on the RMB directive
@@ -219,4 +250,5 @@ public class CommandUtil {
 		}
 		return registers;
 	}
+
 }

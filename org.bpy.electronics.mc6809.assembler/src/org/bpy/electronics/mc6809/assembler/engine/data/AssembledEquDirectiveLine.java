@@ -108,5 +108,10 @@ public class AssembledEquDirectiveLine extends AbstractAssemblyLine {
 	public int getValue() {
 		return value;
 	}
+
+	@Override
+	public int getPcIncrement() {
+		return 0;
+	}
 	
 }

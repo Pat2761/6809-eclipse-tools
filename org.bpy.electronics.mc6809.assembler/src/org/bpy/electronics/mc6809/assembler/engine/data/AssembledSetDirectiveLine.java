@@ -110,4 +110,9 @@ public class AssembledSetDirectiveLine extends AbstractAssemblyLine {
 	public Integer getValue() {
 		return value;
 	}
+
+	@Override
+	public int getPcIncrement() {
+		return 0;
+	}
 }
