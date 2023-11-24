@@ -20,11 +20,15 @@ package org.bpy.electronics.mc6809.assembler.engine.data;
 
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
-/*
- * Used to store information about EQU directive
+/**
+ * Used to store information about SET directive
  */
 public class AssembledSetDirectiveLine extends AbstractAssemblyLine {
+
+	/** Integer value defined by the EQU directive */ 
+	private int value;	
 
 	/** reference to the SET directive in the edited file */
 	private SetDirective directive;
@@ -48,6 +52,8 @@ public class AssembledSetDirectiveLine extends AbstractAssemblyLine {
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
 		this.directive = directive;
+
+		value = ExpressionParser.parse(directive);
 	}
 
 	@Override
@@ -99,5 +105,9 @@ public class AssembledSetDirectiveLine extends AbstractAssemblyLine {
 
 	public void setDirective(SetDirective directive) {
 		this.directive = directive;
+	}
+
+	public Integer getValue() {
+		return value;
 	}
 }

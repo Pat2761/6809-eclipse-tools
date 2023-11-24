@@ -590,6 +590,27 @@ public class TestEquDirective {
     }
   }
 
+  /**
+   * Check EQU directive with a missing EQU definition in the expression
+   */
+  @Test
+  public void testWithMissingEquLabelExpression() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test EQU missing EQU");
+      _builder.newLine();
+      _builder.append("EquLabel\t\tEQU\t\tLabel1+200");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), 
+        ExpressionParser.EXPRESSION_ERROR, 
+        "Can\'t find Label1 definition");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
   @Test
   public void testWithSubstractionOfTwoDecimalValue() {
     try {

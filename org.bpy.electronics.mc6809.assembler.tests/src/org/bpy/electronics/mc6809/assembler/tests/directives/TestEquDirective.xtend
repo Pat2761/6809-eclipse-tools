@@ -435,6 +435,22 @@ class TestEquDirective {
 		)
 	}
 	
+	/**
+	 * Check EQU directive with a missing EQU definition in the expression
+	 */
+	@Test 
+	def void testWithMissingEquLabelExpression() {
+		val result = parseHelper.parse('''
+		; test EQU missing EQU
+		EquLabel		EQU		Label1+200
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.equDirective,
+			ExpressionParser::EXPRESSION_ERROR,
+			"Can't find Label1 definition"
+		)
+	}
+	
 	@Test
 	/**
 	 * Check EQU directive with an subtraction of two decimal values 

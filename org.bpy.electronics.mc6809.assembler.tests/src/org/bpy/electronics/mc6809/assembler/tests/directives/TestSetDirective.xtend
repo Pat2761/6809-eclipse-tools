@@ -33,6 +33,7 @@ import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -219,5 +220,21 @@ class TestSetDirective {
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
+	}
+
+	/**
+	 * Check SET directive with missing label in expression
+	 */
+	@Test 
+	def void testWithSETWthMissingLabelInExpression() {
+		val result = parseHelper.parse('''
+		; test  SET 
+		MySET 	   		 SET    100*Deux 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.setDirective,
+			ExpressionParser::EXPRESSION_ERROR,
+			"Can't find Deux definition"
+		)
 	}
 }

@@ -169,7 +169,7 @@ public class AssemblerEngine {
 						"The label " + label + " for an SET directive is already defined", 
 						AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
 						DUPLICATE_LABEL);
-				AssemblerErrorManager.getInstance().addProblem(line.getDirective(), problemDescription );
+				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 			} else {
 				labelsEquSet.put(label, line);
 			}
@@ -199,7 +199,7 @@ public class AssemblerEngine {
 						"The label " + label + " for an EQU directive is already defined by a SET directive", 
 						AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
 						DUPLICATE_LABEL);
-				AssemblerErrorManager.getInstance().addWarning(line.getDirective(), warningDescription);
+				AssemblerErrorManager.getInstance().addWarning(line.getDirective().eContainer(), warningDescription);
 	
 				labelsEquSet.put(label, line);
 				
@@ -209,7 +209,7 @@ public class AssemblerEngine {
 						"The label " + label + " for an EQU directive is already defined", 
 						AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
 						DUPLICATE_LABEL);
-				AssemblerErrorManager.getInstance().addProblem(line.getDirective(), problemDescription );
+				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 			}
 		} else {
 			labelsEquSet.put(label, line);
@@ -244,5 +244,17 @@ public class AssemblerEngine {
 
 	public AbstractAssemblyLine getAssembledLine(int location) {
 	  return assemblyLines.get(location);
+	}
+
+	public Integer getEquSetLabelValue(String value) {
+		
+		AbstractAssemblyLine assemblyLine = labelsEquSet.get(value);
+		if (assemblyLine instanceof AssembledEquDirectiveLine equDirectiveLine) {
+			return equDirectiveLine.getValue();
+		} else if (assemblyLine instanceof AssembledSetDirectiveLine setDirectiveLine) {
+			return setDirectiveLine.getValue();
+		} else {
+			return null;
+		}
 	}
 }

@@ -20,15 +20,17 @@ package org.bpy.electronics.mc6809.assembler.engine.data;
 
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
-/*
+/**
  * Used to store information about EQU directive
  */
 public class AssembledEquDirectiveLine extends AbstractAssemblyLine {
 
 	/** reference to the EQU directive in the edited file */
 	private EquDirective directive;
-
+	/** Integer value defined by the EQU directive */ 
+	private int value;	
 	/**
 	 * Constructor of the class
 	 */
@@ -48,6 +50,8 @@ public class AssembledEquDirectiveLine extends AbstractAssemblyLine {
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
 		this.directive = directive;
+		
+		value = ExpressionParser.parse(directive);
 	}
 
 	@Override
@@ -100,4 +104,9 @@ public class AssembledEquDirectiveLine extends AbstractAssemblyLine {
 	public void setDirective(EquDirective directive) {
 		this.directive = directive;
 	}
+
+	public int getValue() {
+		return value;
+	}
+	
 }

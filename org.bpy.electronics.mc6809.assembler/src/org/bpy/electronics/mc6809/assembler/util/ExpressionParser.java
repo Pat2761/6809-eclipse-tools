@@ -27,6 +27,7 @@ import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.assembler.Addition;
 import org.bpy.electronics.mc6809.assembler.assembler.And;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
@@ -54,7 +55,11 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * This class allow to parse expression 
@@ -64,8 +69,13 @@ import org.eclipse.emf.ecore.EObject;
  */
 public class ExpressionParser {
 	
+	public static String EXPRESSION_ERROR = "expressionError";
+	
 	/** Memorize the EQU values */
 	private static Map<String, Integer> equValues = null; 
+	
+	private static EReference eReference;
+	private static Object assemblyLine; 
 	
 	/**
 	 * Add a private constructor to hide the implicit public one.
@@ -126,10 +136,15 @@ public class ExpressionParser {
 	/** 
 	 *  Parse the operand of an EQU directive.
 	 *  
-	 *  @param equDirective reference on the EQU directive
-	 *  @return value of the operand 
+	 * @param equDirective reference on the EQU directive
+	 * @param equDirectiveOperand used in a case of error detection 
+	 * @return value of the operand 
 	 */
 	public static int parse(EquDirective equDirective) {
+		
+		eReference = AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND;
+		assemblyLine = equDirective;
+		
 		if (equDirective.getOperand() != null && equDirective.getOperand().getOperand() != null) {
 			EObject operand = equDirective.getOperand().getOperand();
 			int equValue = resolveExpression((Expression)operand);
@@ -154,17 +169,21 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static int parse(SetDirective setDirective) {
+		
+		eReference = AssemblerPackage.Literals.SET_DIRECTIVE__OPERAND;
+		assemblyLine = setDirective;
+
 		if (setDirective.getOperand() != null && setDirective.getOperand().getOperand() != null) {
 			EObject operand = setDirective.getOperand().getOperand();
-			int equValue = resolveExpression((Expression)operand);
+			int setValue = resolveExpression((Expression)operand);
 			
 			if (equValues == null) {
 				equValues = new HashMap<>();
 			}
 			
 			DirectiveLine directiveLine=(DirectiveLine)setDirective.eContainer();
-			equValues.put(directiveLine.getName().getValue(), equValue);
-			return equValue;
+			equValues.put(directiveLine.getName().getValue(), setValue);
+			return setValue;
 		} else {
 			return -1;
 		}
@@ -381,11 +400,17 @@ public class ExpressionParser {
 	 * @param value Identifier value to convert
 	 * @return decimal value of the binary expression
 	 */
-	private static int resolveIdentifierValue(IdentifierValue value) {
-		if (equValues.containsKey(value.getValue())) {
-			return equValues.get(value.getValue());
+	private static int resolveIdentifierValue(IdentifierValue labelValue) {
+		Integer value = AssemblerEngine.getInstance().getEquSetLabelValue(labelValue.getValue());
+		
+		if (value != null) {
+			return value.intValue();
 		} else {
-			logger.log(Level.SEVERE, "Can''t resolve {0} value", value.getValue());
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"Can't find " + labelValue.getValue() + " definition", 
+					eReference, 
+					EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 		}
 		return 0;
 	}
@@ -413,7 +438,7 @@ public class ExpressionParser {
 	 * @return decimal value of the binary expression
 	 */
 	private static int resolveBinaryValue(BinaryValue binaryValue) {
-		String strValue = binaryValue.getValue().replaceFirst("0b", "");
+		String strValue = binaryValue.getValue().replaceFirst("%", "");
 		try {
 			return Integer.parseInt(strValue, 2);
 		} catch (NumberFormatException ex) {

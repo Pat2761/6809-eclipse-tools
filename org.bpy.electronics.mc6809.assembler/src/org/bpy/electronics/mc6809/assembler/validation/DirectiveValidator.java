@@ -38,6 +38,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.xtext.validation.Check;
@@ -94,13 +95,13 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 		}
 		
 		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(directiveLine.getDirective());
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(directiveLine);
 		for (AssemblerProblemManagerDescription error : errors) {
 			error(error.getMessage(), error.getFeature(), error.getIssueData());
 		}
 
 		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(directiveLine.getDirective());
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(directiveLine);
 		for (AssemblerProblemManagerDescription warning : warnings) {
 			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}
@@ -115,7 +116,20 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkEquConstraints(EquDirective equDirective) {
-		int equValue = ExpressionParser.parse(equDirective);
+
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(equDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(equDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+		
+		int equValue = AssemblerEngine.getInstance().getEquSetLabelValue(CommandUtil.getLabel(equDirective));
 		if (equValue > 65535) {
 			error("EQU value can't exceed 65535 (16 bits value)",
 					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
@@ -125,6 +139,7 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
 		} 
+
 	}
 	
 	/**
@@ -294,11 +309,24 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 * The Limit of a positive value is  65535
 	 * The limit of a negative value is -32768
 	 * 
-	 * @param equDirective reference on the EQU directive
+	 * @param equDirective reference on the SET directive
 	 */
 	@Check
 	public void checkSetConstraints(SetDirective setDirective) {
-		int setValue = ExpressionParser.parse(setDirective);
+
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(setDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(setDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+
+		int setValue = AssemblerEngine.getInstance().getEquSetLabelValue(CommandUtil.getLabel(setDirective));
 		if (setValue > 65535) {
 			error("SET value can't exceed 65535 (16 bits value)",
 					AssemblerPackage.Literals.SET_DIRECTIVE__OPERAND,

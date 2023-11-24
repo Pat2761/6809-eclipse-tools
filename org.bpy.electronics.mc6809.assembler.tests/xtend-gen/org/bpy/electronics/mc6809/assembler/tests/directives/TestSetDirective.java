@@ -25,6 +25,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -314,6 +315,27 @@ public class TestSetDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SET directive with missing label in expression
+   */
+  @Test
+  public void testWithSETWthMissingLabelInExpression() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test  SET ");
+      _builder.newLine();
+      _builder.append("MySET \t   \t\t SET    100*Deux ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), 
+        ExpressionParser.EXPRESSION_ERROR, 
+        "Can\'t find Deux definition");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
