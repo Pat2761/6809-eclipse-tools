@@ -32,16 +32,19 @@ import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBlankLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEndDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEquDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFillDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -108,7 +111,8 @@ public class AssemblerEngine {
 		List<SourceLine> sourceLines = model.getSourceLines();
 		for (SourceLine sourceLine : sourceLines) {
 			if (sourceLine.getLineContent() instanceof BlankLine) {
-				logger.log(Level.SEVERE,"Unknow directive {0}" + sourceLine.getLineContent().getClass().getSimpleName());
+				BlankLine blankLine = (BlankLine)sourceLine.getLineContent();
+				parseBlankLine(blankLine);
 				
 			} else if (sourceLine.getLineContent() instanceof CommentLine) {
 				CommentLine commentLine = (CommentLine)sourceLine.getLineContent(); 
@@ -131,6 +135,17 @@ public class AssemblerEngine {
 		}
 	}
 	
+	/**
+	 * Parse a blank line 
+	 * 
+	 * @param blankLine reference on the blank line
+	 */
+	private void parseBlankLine(BlankLine blankLine) {
+		AssembledBlankLine line = new AssembledBlankLine();
+		line.parse(blankLine, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+	}
+
 	/**
 	 * Parse a comment line 
 	 * 
@@ -155,28 +170,50 @@ public class AssemblerEngine {
 			OrgDirective orgDirective = (OrgDirective)directiveLine.getDirective();
 			parseDirective(orgDirective);
 		
-		}else if (directiveLine.getDirective() instanceof EquDirective) {
+		} else if (directiveLine.getDirective() instanceof EquDirective) {
 			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
 			parseDirective(equDirective);
 		
-		}else if (directiveLine.getDirective() instanceof SetDirective) {
+		} else if (directiveLine.getDirective() instanceof SetDirective) {
 			SetDirective setDirective = (SetDirective)directiveLine.getDirective();
 			parseDirective(setDirective);
 		
-		}else if (directiveLine.getDirective() instanceof BszDirective) {
+		} else if (directiveLine.getDirective() instanceof BszDirective) {
 			BszDirective bszDirective = (BszDirective)directiveLine.getDirective();
 			parseDirective(bszDirective);
 		
-		}else if (directiveLine.getDirective() instanceof EndDirective) {
+		} else if (directiveLine.getDirective() instanceof EndDirective) {
 			EndDirective endDirective = (EndDirective)directiveLine.getDirective();
 			parseDirective(endDirective);
 			needStop = true;
 			
+		} else if (directiveLine.getDirective() instanceof FillDirective) {
+			FillDirective fillDirective = (FillDirective)directiveLine.getDirective();
+			parseDirective(fillDirective);
+			needStop = true;
+
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
 		}
 		
 		return needStop;
+	}
+
+	/**
+	 * Parse an Fill directive line.
+	 *  
+	 * @param fillDirective reference on the FILL directive
+	 */
+	private void parseDirective(FillDirective fillDirective) {
+		AssembledFillDirectiveLine line = new AssembledFillDirectiveLine();
+		line.parse(fillDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		currentPcValue += line.getPcIncrement();
+		
+		registerLabelPosition(line, 
+				line.getDirective().eContainer(),
+				"Label " + line.getLabel() + " is already defined",
+				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
 	/**
@@ -220,7 +257,7 @@ public class AssemblerEngine {
 		currentPcValue += line.getPcIncrement();
 		
 		registerLabelPosition(line, 
-				line.getDirective(),
+				line.getDirective().eContainer(),
 				"Label " + line.getLabel() + " is already defined",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}

@@ -32,6 +32,11 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEndDirectiveLine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFillDirectiveLine
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -61,7 +66,6 @@ class TestFillDirective {
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an FILL directive line", directiveLine.directive instanceof FillDirective)
 	}
-	
 
 	/**
 	 * Check FILL directive with a simple identifier defined by an another EQU
@@ -70,26 +74,192 @@ class TestFillDirective {
 	def void testFILLWithIdentifierValue() {
 		val result = parseHelper.parse('''
 		; Starting assembly file
-		Val1       EQU    $40            ; Number 
+		Start		EQU		$8000
+		Val1       	EQU    	$40            ; Number 
 		
 		; Strating code section
-		           ORG    Start         ; Start program at $4000
-		           FILL   Val1,10       ; Fill example
+		           	ORG    	Start         ; Start program at $4000
+		           	FILL   	Val1,10       ; Fill example
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 
-		val line0 = result.sourceLines.get(1)
-		val directiveLine0 = line0.lineContent as DirectiveLine
-		val equDirective0 = directiveLine0.directive as EquDirective
-		ExpressionParser.parse(equDirective0)
-		
-		val line1 = result.sourceLines.get(5)
+		val line1 = result.sourceLines.get(6)
 		Assert.assertTrue("Must be a directive line", line1.lineContent instanceof DirectiveLine)
 		
 		val directiveLine1 = line1.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an FILL directive line", directiveLine1.directive instanceof FillDirective)
+
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("PC value must be 800A", 0x800A, engine.currentPcValue)
+		val line = engine.getAssembledLine(6)
+		val bszLine = line as AssembledFillDirectiveLine
+		Assert.assertEquals("Check line number", 7, bszLine.lineNumber)
+		Assert.assertNull("Check label", bszLine.label)
+		Assert.assertEquals("Check comment", "; Fill example", bszLine.comment)
+
+		for (value : bszLine.values) {
+			Assert.assertEquals("Reserved bytes must be equals to 64", 64, value)
+		}
+	}
+
+	/**
+	 * Check FILL directive with duplicate label
+	 */
+	@Test 
+	def void testFILLWithDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; Starting assembly file
+		Start		EQU		$8000
+		Val1       	EQU    	$40            ; Number 
+		
+		; Strating code section
+		           	ORG    	Start         ; Start program at $4000
+		Val2       	BSZ		6	
+		Val2       	FILL   	Val1,10       ; Fill example
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.directiveLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Val2 is already defined"
+		)
+		
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	}
+	
+	/**
+	 * Check FILL directive with Low value limit
+	 */
+	@Test 
+	def void testFILLWithLowValueLimit() {
+		val result = parseHelper.parse('''
+		; Starting assembly file
+		Val2       	FILL   	-128,10       ; Fill example
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+	
+	/**
+	 * Check FILL directive with High value limit
+	 */
+	@Test 
+	def void testFILLWithHighValueLimit() {
+		val result = parseHelper.parse('''
+		; Starting assembly file
+		Val2       	FILL   	255,10       ; Fill example
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+	
+	/**
+	 * Check FILL directive with Low value limit
+	 */
+	@Test 
+	def void testFILLWithLowBadValueLimit() {
+		val result = parseHelper.parse('''
+		; Starting assembly file
+		Val2       	FILL   	-129,10       ; Fill example
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.Literals.FILL_DIRECTIVE,
+			DirectiveValidator::INVALID_RANGE,
+			"FILL value minimum value is -128"			
+		)
+	}
+	
+	/**
+	 * Check FILL directive with High value limit
+	 */
+	@Test 
+	def void testFILLWithHighBadValueLimit() {
+		val result = parseHelper.parse('''
+		; Starting assembly file
+		Val2       	FILL   	256,10       ; Fill example
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.Literals.FILL_DIRECTIVE,
+			DirectiveValidator::INVALID_RANGE,
+			"FILL maximum value to set is 255"			
+		)
+	}
+
+	/**
+	 * Check FILL directive with Low occurrence limit
+	 */
+	@Test 
+	def void testFILLWithLowOccurrenceLimit() {
+		val result = parseHelper.parse('''
+		; Starting assembly file
+		Val2       	FILL   	10,1       ; Fill example
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+	
+	/**
+	 * Check FILL directive with High occurrence limit
+	 */
+	@Test 
+	def void testFILLWithHighOccurrenceLimit() {
+		val result = parseHelper.parse('''
+		; Starting assembly file
+		Val2       	FILL   	127,9       ; Fill example
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+	}
+	
+	/**
+	 * Check FILL directive with Low occurrence limit
+	 */
+	@Test 
+	def void testFILLWithLowBadOccurrenceLimit() {
+		val result = parseHelper.parse('''
+		; Starting assembly file
+		Val2       	FILL   	45,-1       ; Fill example
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.Literals.FILL_DIRECTIVE,
+			DirectiveValidator::INVALID_RANGE,
+			"FILL value occurrence can't be negative"			
+		)
+	}
+
+	/**
+	 * Check FILL directive with no occurrence
+	 */
+	@Test 
+	def void testFILLWithLowNoOccurrenceLimit() {
+		val result = parseHelper.parse('''
+		; Starting assembly file
+		Val2       	FILL   	45,0       ; Fill example
+		''')
+		Assert.assertNotNull(result)
+		result.assertWarning(AssemblerPackage.Literals.FILL_DIRECTIVE,
+			DirectiveValidator::INVALID_RANGE,
+			"FILL occurrence can't be null"			
+		)
+	}
+	
+	/**
+	 * Check FILL directive with High value limit
+	 */
+	@Test 
+	def void testFILLWithHighBadOccurrenceLimit() {
+		val result = parseHelper.parse('''
+		; Starting assembly file
+		Val2       	FILL   	255,65536       ; Fill example
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.Literals.FILL_DIRECTIVE,
+			DirectiveValidator::INVALID_RANGE,
+			"FILL value maximum value is $FFFF"			
+		)
 	}
 }

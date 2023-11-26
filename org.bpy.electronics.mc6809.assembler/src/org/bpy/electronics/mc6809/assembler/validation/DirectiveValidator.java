@@ -171,24 +171,25 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkFillConstraints(FillDirective fillDirective) {
+
 		int valueToSet = CommandUtil.getByteToSet(fillDirective);
 		int quantity = CommandUtil.getQuantity(fillDirective);
 		if (valueToSet > 255) {
-			error("FILL value maximum value is $FF",
+			error("FILL maximum value to set is 255",
 					AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE,
 					INVALID_RANGE);
-		} else if (valueToSet < 0) {
-			error("FILL value minimum value is $00",
+		} else if (valueToSet < -128) {
+			error("FILL value minimum value is -128",
 					AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE,
 					INVALID_RANGE);
 		} 		
 			
 		if (quantity < 0) {
-			error("FILL value can't be negative",
+			error("FILL value occurrence can't be negative",
 					AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
 					INVALID_RANGE);
 		} else if (quantity == 0) {
-			error("FILL value can't be null",
+			warning("FILL occurrence can't be null",
 					AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
 					INVALID_RANGE);
 		} else if (quantity > 65535) {

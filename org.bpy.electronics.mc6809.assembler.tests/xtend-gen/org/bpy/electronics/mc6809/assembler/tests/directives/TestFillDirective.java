@@ -18,13 +18,16 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
-import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFillDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -93,16 +96,18 @@ public class TestFillDirective {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; Starting assembly file");
       _builder.newLine();
-      _builder.append("Val1       EQU    $40            ; Number ");
+      _builder.append("Start\t\tEQU\t\t$8000");
+      _builder.newLine();
+      _builder.append("Val1       \tEQU    \t$40            ; Number ");
       _builder.newLine();
       _builder.newLine();
       _builder.append("; Strating code section");
       _builder.newLine();
-      _builder.append("           ");
-      _builder.append("ORG    Start         ; Start program at $4000");
+      _builder.append("           \t");
+      _builder.append("ORG    \tStart         ; Start program at $4000");
       _builder.newLine();
-      _builder.append("           ");
-      _builder.append("FILL   Val1,10       ; Fill example");
+      _builder.append("           \t");
+      _builder.append("FILL   \tVal1,10       ; Fill example");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -111,19 +116,243 @@ public class TestFillDirective {
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final SourceLine line0 = result.getSourceLines().get(1);
-      EObject _lineContent = line0.getLineContent();
-      final DirectiveLine directiveLine0 = ((DirectiveLine) _lineContent);
-      EObject _directive = directiveLine0.getDirective();
-      final EquDirective equDirective0 = ((EquDirective) _directive);
-      ExpressionParser.parse(equDirective0);
-      final SourceLine line1 = result.getSourceLines().get(5);
+      final SourceLine line1 = result.getSourceLines().get(6);
+      EObject _lineContent = line1.getLineContent();
+      Assert.assertTrue("Must be a directive line", (_lineContent instanceof DirectiveLine));
       EObject _lineContent_1 = line1.getLineContent();
-      Assert.assertTrue("Must be a directive line", (_lineContent_1 instanceof DirectiveLine));
-      EObject _lineContent_2 = line1.getLineContent();
-      final DirectiveLine directiveLine1 = ((DirectiveLine) _lineContent_2);
-      EObject _directive_1 = directiveLine1.getDirective();
-      Assert.assertTrue("Must be an FILL directive line", (_directive_1 instanceof FillDirective));
+      final DirectiveLine directiveLine1 = ((DirectiveLine) _lineContent_1);
+      EObject _directive = directiveLine1.getDirective();
+      Assert.assertTrue("Must be an FILL directive line", (_directive instanceof FillDirective));
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("PC value must be 800A", 0x800A, engine.getCurrentPcValue());
+      final AbstractAssemblyLine line = engine.getAssembledLine(6);
+      final AssembledFillDirectiveLine bszLine = ((AssembledFillDirectiveLine) line);
+      Assert.assertEquals("Check line number", 7, bszLine.getLineNumber());
+      Assert.assertNull("Check label", bszLine.getLabel());
+      Assert.assertEquals("Check comment", "; Fill example", bszLine.getComment());
+      int[] _values = bszLine.getValues();
+      for (final int value : _values) {
+        Assert.assertEquals("Reserved bytes must be equals to 64", 64, value);
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL directive with duplicate label
+   */
+  @Test
+  public void testFILLWithDuplicateLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; Starting assembly file");
+      _builder.newLine();
+      _builder.append("Start\t\tEQU\t\t$8000");
+      _builder.newLine();
+      _builder.append("Val1       \tEQU    \t$40            ; Number ");
+      _builder.newLine();
+      _builder.newLine();
+      _builder.append("; Strating code section");
+      _builder.newLine();
+      _builder.append("           \t");
+      _builder.append("ORG    \tStart         ; Start program at $4000");
+      _builder.newLine();
+      _builder.append("Val2       \tBSZ\t\t6\t");
+      _builder.newLine();
+      _builder.append("Val2       \tFILL   \tVal1,10       ; Fill example");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getDirectiveLine(), 
+        AssemblerEngine.DUPLICATE_LABEL, 
+        "Label Val2 is already defined");
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL directive with Low value limit
+   */
+  @Test
+  public void testFILLWithLowValueLimit() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; Starting assembly file");
+      _builder.newLine();
+      _builder.append("Val2       \tFILL   \t-128,10       ; Fill example");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL directive with High value limit
+   */
+  @Test
+  public void testFILLWithHighValueLimit() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; Starting assembly file");
+      _builder.newLine();
+      _builder.append("Val2       \tFILL   \t255,10       ; Fill example");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL directive with Low value limit
+   */
+  @Test
+  public void testFILLWithLowBadValueLimit() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; Starting assembly file");
+      _builder.newLine();
+      _builder.append("Val2       \tFILL   \t-129,10       ; Fill example");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
+        DirectiveValidator.INVALID_RANGE, 
+        "FILL value minimum value is -128");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL directive with High value limit
+   */
+  @Test
+  public void testFILLWithHighBadValueLimit() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; Starting assembly file");
+      _builder.newLine();
+      _builder.append("Val2       \tFILL   \t256,10       ; Fill example");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
+        DirectiveValidator.INVALID_RANGE, 
+        "FILL maximum value to set is 255");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL directive with Low occurrence limit
+   */
+  @Test
+  public void testFILLWithLowOccurrenceLimit() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; Starting assembly file");
+      _builder.newLine();
+      _builder.append("Val2       \tFILL   \t10,1       ; Fill example");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL directive with High occurrence limit
+   */
+  @Test
+  public void testFILLWithHighOccurrenceLimit() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; Starting assembly file");
+      _builder.newLine();
+      _builder.append("Val2       \tFILL   \t127,9       ; Fill example");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL directive with Low occurrence limit
+   */
+  @Test
+  public void testFILLWithLowBadOccurrenceLimit() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; Starting assembly file");
+      _builder.newLine();
+      _builder.append("Val2       \tFILL   \t45,-1       ; Fill example");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
+        DirectiveValidator.INVALID_RANGE, 
+        "FILL value occurrence can\'t be negative");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL directive with no occurrence
+   */
+  @Test
+  public void testFILLWithLowNoOccurrenceLimit() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; Starting assembly file");
+      _builder.newLine();
+      _builder.append("Val2       \tFILL   \t45,0       ; Fill example");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
+        DirectiveValidator.INVALID_RANGE, 
+        "FILL occurrence can\'t be null");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL directive with High value limit
+   */
+  @Test
+  public void testFILLWithHighBadOccurrenceLimit() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; Starting assembly file");
+      _builder.newLine();
+      _builder.append("Val2       \tFILL   \t255,65536       ; Fill example");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
+        DirectiveValidator.INVALID_RANGE, 
+        "FILL value maximum value is $FFFF");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

@@ -234,13 +234,43 @@ public class CommandUtil {
 		}
 	}
 
+	/**
+	 * Return the label associated to an FILL directive.
+	 * 
+	 * @param directive reference on the FILL directive
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(FillDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to an FILL directive.
+	 * 
+	 * @param directive reference on the FILL directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(FillDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+
 	public static int getByteToSet(FillDirective fillDirective) {
-		Expression value = fillDirective.getValue();
+		Expression value = fillDirective.getValue().getOperand();
 		return ExpressionParser.resolveExpression(value);
 	}
 
 	public static int getQuantity(FillDirective fillDirective) {
-		Expression value = fillDirective.getNumber();
+		Expression value = fillDirective.getNumber().getOperand();
 		return ExpressionParser.resolveExpression(value);
 	}
 
@@ -265,4 +295,5 @@ public class CommandUtil {
 		}
 		return registers;
 	}
+
 }

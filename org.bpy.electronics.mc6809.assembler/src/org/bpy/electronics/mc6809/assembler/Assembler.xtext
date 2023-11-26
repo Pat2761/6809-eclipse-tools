@@ -2187,7 +2187,7 @@ SetDirective:
  * FILL
  * 
  * FILL allow to initialize a memory area with a value
- * the first value define the value to set, the seconfd value define the number of byte to set
+ * the first value define the value to set, the second value define the number of byte to set
  */
 FillDirective:
 	directive = 'FILL' 

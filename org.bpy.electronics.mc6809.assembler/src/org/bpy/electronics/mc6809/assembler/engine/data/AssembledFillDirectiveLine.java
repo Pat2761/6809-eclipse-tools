@@ -19,22 +19,23 @@
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
 /**
- * Used to store information about BSZ directive
+ * Used to store information about FILL directive
  */
-public class AssembledBszDirectiveLine extends AbstractAssemblyLine {
+public class AssembledFillDirectiveLine extends AbstractAssemblyLine {
 
-	/** reference to the BSZ directive in the edited file */
-	private BszDirective directive;
+	/** reference to the FILL directive in the edited file */
+	private FillDirective directive;
 	/** Integer value defined by the EQU directive */ 
 	private int[] values;	
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledBszDirectiveLine() {
+	public AssembledFillDirectiveLine() {
 		// nothing to do
 	}
 
@@ -45,17 +46,22 @@ public class AssembledBszDirectiveLine extends AbstractAssemblyLine {
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(BszDirective directive, int currentPcValue, int lineNumber) {
+	public void parse(FillDirective directive, int currentPcValue, int lineNumber) {
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
 		
-		int nbBytes = ExpressionParser.parse(directive);
+		
+		int nbBytes = ExpressionParser.resolveExpression(directive.getNumber().getOperand());
+		int value = ExpressionParser.resolveExpression(directive.getValue().getOperand());
+		if (nbBytes < 0) {
+			nbBytes = 0;
+		}
 		values = new int[nbBytes];
 		for (int i=0; i<nbBytes; i++) {
-			values[i] = 0;
+			values[i] = value;
 		}
 	}
 
@@ -102,11 +108,11 @@ public class AssembledBszDirectiveLine extends AbstractAssemblyLine {
 		strBuilder.append(String.format("%-6s", directive.getDirective()));  // Mnemonique (6 car)
 	}
 
-	public BszDirective getDirective() {
+	public FillDirective getDirective() {
 		return directive;
 	}
 
-	public void setDirective(BszDirective directive) {
+	public void setDirective(FillDirective directive) {
 		this.directive = directive;
 	}
 
