@@ -258,6 +258,32 @@ public class TestBszDirective {
   }
 
   /**
+   * Check BSZ duplicate label
+   */
+  @Test
+  public void testBszDuplicateLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$8000 \t; With value");
+      _builder.newLine();
+      _builder.append("MyBsz\t\t   \tBSZ  \t10\t           ");
+      _builder.newLine();
+      _builder.append("MyBsz\t       \tBSZ    \t10 \t\t; A comment for BSZ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), 
+        AssemblerEngine.DUPLICATE_LABEL, 
+        "Label MyBsz is already defined");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
    * Check BSZ directive behavior
    */
   @Test

@@ -41,6 +41,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.EValidatorRegistrar;
 
@@ -52,6 +53,8 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	public static final String DUPLICATE_OPTION = "duplicateOption";
 	public static final String MISSING_OPTION = "missingOption";
 	public static final String NAME_ERROR = "nameError";
+	public static final String INCONSISTENCY_ERROR = "inconsistencyError";
+	
 	
 	@Override
 	public void register(EValidatorRegistrar registrar) {
@@ -92,6 +95,10 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			error("No label defined for REG directive",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
 				MISSING_LABEL);
+		} else if ((directiveLine.getDirective() instanceof OptDirective) && (directiveLine.getName() != null)) {		
+   			error("No label may be set for OPT directive",                                                             
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				UNEXPECTED_LABEL);
 		}
 		
 		// Management of errors after code analyse 
@@ -207,8 +214,11 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkOptConstraints(OptDirective optDirective) {
+		
 		List<String> options = new ArrayList<>();
+		List<String> listOfOptions = new ArrayList<>();
 		for (AssemblyOption option : optDirective.getOptions()) {
+			listOfOptions.add(option.getLiteral());
 			if (options.contains(option.getLiteral())) {
 				error("Duplicate option " + option.getLiteral(),
 						AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
@@ -216,6 +226,27 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			} else { 
 				options.add(option.getLiteral());
 			}
+		}
+		
+		if (listOfOptions.contains("PAG") && listOfOptions.contains("NOP")) {
+			error("The OPT directive does not contain at the same time the PAG and NOP options",
+					AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
+					INCONSISTENCY_ERROR);
+		}
+		if (listOfOptions.contains("CON") && listOfOptions.contains("NOC")) {
+			error("The OPT directive does not contain at the same time the CON and NOC options",
+					AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
+					INCONSISTENCY_ERROR);
+		}
+		if (listOfOptions.contains("MAC") && listOfOptions.contains("NOM")) {
+			error("The OPT directive does not contain at the same time the MAC and NOM options",
+					AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
+					INCONSISTENCY_ERROR);
+		}
+		if (listOfOptions.contains("EXP") && listOfOptions.contains("NOE")) {
+			error("The OPT directive does not contain at the same time the EXP and NOE options",
+					AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
+					INCONSISTENCY_ERROR);
 		}
 	}
 

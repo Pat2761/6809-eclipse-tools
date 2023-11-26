@@ -35,6 +35,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
@@ -45,6 +46,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEndDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEquDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFillDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOptDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -54,23 +56,44 @@ import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
 import org.eclipse.emf.ecore.EReference;
 
+/**
+ * This is the main class which allow to assemble the current resource and
+ * validate some point of the assembly code
+ * 
+ * @author Patrick
+ *
+ */
 public class AssemblerEngine {
+	
+	/** Logger of the class */
 	private static final Logger logger = Logger.getLogger(AssemblerEngine.class.getSimpleName());
 	
+	/** String marker for the error manager in case of duplicate label */
 	public static final String DUPLICATE_LABEL = "duplicateLabel";
 	
+	/** State of the current PC */
 	private int currentPcValue;
+	/** memorize the current line number */ 
 	private int lineNumber;
 	private List<AbstractAssemblyLine> assemblyLines;
 	private static AssemblerEngine eInstance;
 	
+	/** Contains the collection of label which reference assembly line */
 	private Map<String, AbstractAssemblyLine> labelsPositionObject;
+	/** Contains the collection of Labels which define values */
 	private Map<String, AbstractAssemblyLine> labelsEquSet;
 	
+	/**
+	 * Constructor of the class
+	 */
 	public AssemblerEngine() {
 		clear();
 	}
 
+	/**
+	 * Get instance on the engine
+	 * @return instance of the engine
+	 */
 	public static AssemblerEngine getInstance() {
 		if (eInstance == null) {
 			eInstance = new AssemblerEngine();
@@ -78,6 +101,9 @@ public class AssemblerEngine {
 		return eInstance;
 	}
 	
+	/**
+	 * Clear fields before assembling
+	 */
 	public void clear() {
 		lineNumber = 1;
 		currentPcValue = 0;
@@ -89,18 +115,34 @@ public class AssemblerEngine {
 		
 	}
 
+	/**
+	 * Return the value of the current PC pointer
+	 * @return value of the current PC pointer
+	 */ 
 	public int getCurrentPcValue() {
 		return currentPcValue;
 	}
 
+	/**
+	 * return the collection of label which reference assembly line
+	 * @return collection of label which reference assembly line
+	 */
 	public Map<String, AbstractAssemblyLine> getLabelsPositionObject() {
 		return labelsPositionObject;
 	}
 
+	/**
+	 * return the collection of Labels which define values
+	 * @return collection of Labels which define values
+	 */
 	public Map<String, AbstractAssemblyLine> getLabelsEquSet() {
 		return labelsEquSet;
 	}
 
+	/**
+	 * Entry point of the engine
+	 * @param model reference on the EMF model of the AS9 file
+	 */
 	public void engine(Model model) {
 		lineNumber = 1;
 		currentPcValue = -1;
@@ -192,11 +234,29 @@ public class AssemblerEngine {
 			parseDirective(fillDirective);
 			needStop = true;
 
+		} else if (directiveLine.getDirective() instanceof OptDirective) {
+			OptDirective optDirective = (OptDirective)directiveLine.getDirective();
+			parseDirective(optDirective);
+			needStop = true;
+
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
 		}
 		
 		return needStop;
+	}
+
+	/**
+	 * Parse an Opt directive line.
+	 *  
+	 * @param optDirective reference on the OPT directive
+	 */
+	private void parseDirective(OptDirective optDirective) {
+		AssembledOptDirectiveLine line = new AssembledOptDirectiveLine();
+		line.parse(optDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		currentPcValue += line.getPcIncrement();
+		
 	}
 
 	/**
@@ -329,6 +389,13 @@ public class AssemblerEngine {
 		}
 	}
 
+	/**
+	 * Parse an ORG directive line.
+	 * Memorize the ORG label and check that there the label 
+	 * isn't duplicate
+	 * 
+	 * @param orgDirective reference on the ORG directive
+	 */
 	private void parseDirective(OrgDirective directive) {
 		int pcValue = ExpressionParser.parse(directive);
 		currentPcValue = pcValue;
@@ -343,6 +410,13 @@ public class AssemblerEngine {
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
+	/**
+	 * Register the label position, and send an error if thelabel is duplicate
+	 * @param directive reference on the directive
+	 * @param objectWithProblem reference on EMF object which has the problem
+	 * @param message Error message
+	 * @param reference EMF reference of the object
+	 */
 	private void registerLabelPosition(AbstractAssemblyLine directive,Object objectWithProblem,  String message, EReference reference) {
 		if (directive.getLabel() != null) {
 			if (labelsPositionObject.containsKey(directive.getLabel())) {
@@ -356,10 +430,22 @@ public class AssemblerEngine {
 		}
 	}
 
+	/**
+	 * Get an assembly line.
+	 *  
+	 * @param location number of line
+	 * @return reference on the assembly line
+	 */
 	public AbstractAssemblyLine getAssembledLine(int location) {
 	  return assemblyLines.get(location);
 	}
 
+	/**
+	 * Get the value for a label 
+	 * 
+	 * @param value value of the label
+	 * @return value pointed by the label
+	 */
 	public Integer getEquSetLabelValue(String value) {
 		
 		AbstractAssemblyLine assemblyLine = labelsEquSet.get(value);

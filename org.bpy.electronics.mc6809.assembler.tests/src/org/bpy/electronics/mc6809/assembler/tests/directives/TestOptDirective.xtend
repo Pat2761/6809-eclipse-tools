@@ -32,6 +32,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.OptDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOptDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -93,7 +95,7 @@ class TestOptDirective {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-		 		   OPT    ; All by defult
+		 		   OPT    ; All by default
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -173,7 +175,6 @@ class TestOptDirective {
 		Assert.assertTrue("Must be an OPT directive line", directiveLine.directive instanceof OptDirective)
 	}
 	
-	
 	/**
 	 * Check OPT directive with list duplicate option
 	 */
@@ -186,5 +187,266 @@ class TestOptDirective {
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.optDirective,DirectiveValidator::DUPLICATE_OPTION,"Duplicate option CON")
+	}
+	
+	/**
+	 * Check OPT directive with duplicate label
+	 */
+	@Test 
+	def void testOPTWithListOfDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    	$8000
+		Label		EQU		10	       
+		Label	   	OPT    	CON			   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine, DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for OPT directive")
+	}
+	
+	/**
+	 * Check OPT directive with inconsistency PAG NOP option 
+	 */
+	@Test 
+	def void testOPTWithInconsistencyPAG_NOP() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    	$8000
+		Label		EQU		10	       
+		Label	   	OPT    	PAG,NOP			   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.optDirective, DirectiveValidator::INCONSISTENCY_ERROR,"The OPT directive does not contain at the same time the PAG and NOP options")
+	}
+	
+	/**
+	 * Check OPT directive with inconsistency CON NOC option 
+	 */
+	@Test 
+	def void testOPTWithInconsistencyCON_NOC() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    	$8000
+		Label	   	OPT    	CON,NOC			   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.optDirective, DirectiveValidator::INCONSISTENCY_ERROR,"The OPT directive does not contain at the same time the CON and NOC options")
+	}
+
+	/**
+	 * Check OPT directive with inconsistency MAC NOM option 
+	 */
+	@Test 
+	def void testOPTWithInconsistencyMAC_NOM() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    	$8000
+		Label	   	OPT    	MAC,NOM			   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.optDirective, DirectiveValidator::INCONSISTENCY_ERROR,"The OPT directive does not contain at the same time the MAC and NOM options")
+	}
+
+	/**
+	 * Check OPT directive with inconsistency EXP NOE option 
+	 */
+	@Test 
+	def void testOPTWithInconsistencyEXP_NOE() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       	ORG    	$8000
+		Label	   	OPT    	EXP,NOE			   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.optDirective, DirectiveValidator::INCONSISTENCY_ERROR,"The OPT directive does not contain at the same time the EXP and NOE options")
+	}
+
+	/**
+	 * Check OPT directive check Page formatting  
+	 */
+	@Test 
+	def void testOPTPageFormating0() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					   	OPT    					   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1)
+		
+		val optLine = line as AssembledOptDirectiveLine
+		Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination)
+		Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode)
+		Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls)
+		Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines)
+	}
+
+	/**
+	 * Check OPT directive check Page formatting  
+	 */
+	@Test 
+	def void testOPTPageFormating1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					   	OPT    	PAG				   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1)
+		
+		val optLine = line as AssembledOptDirectiveLine
+		Assert.assertTrue("Enable page formatting and numbering", optLine.isEnablePagination)
+		Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode)
+		Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls)
+		Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines)
+	}
+
+	/**
+	 * Check OPT directive check Page formatting  
+	 */
+	@Test 
+	def void testOPTPageFormating2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					   	OPT    	NOP				   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1)
+		
+		val optLine = line as AssembledOptDirectiveLine
+		Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination)
+		Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode)
+		Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls)
+		Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines)
+	}
+
+	/**
+	 * Check OPT directive check print conditionally skipped code
+	 */
+	@Test 
+	def void testOPTPrintConditionallySkippedCode1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					   	OPT    	CON				   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1)
+		
+		val optLine = line as AssembledOptDirectiveLine
+		Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination)
+		Assert.assertTrue("Print conditionally skipped code", optLine.isConditionallySkippedCode)
+		Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls)
+		Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines)
+	}
+
+	/**
+	 * Check OPT directive check print conditionally skipped code 
+	 */
+	@Test 
+	def void testOPTPrintConditionallySkippedCode2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					   	OPT    	NOC				   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1)
+		
+		val optLine = line as AssembledOptDirectiveLine
+		Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination)
+		Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode)
+		Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls)
+		Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines)
+	}
+
+	/**
+	 * Check OPT directive check suppress printing of macro calls 
+	 */
+	@Test 
+	def void testOPTSuppressPrintingOfMacroCalls1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					   	OPT    	NOM				   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1)
+		
+		val optLine = line as AssembledOptDirectiveLine
+		Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination)
+		Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode)
+		Assert.assertTrue("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls)
+		Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines)
+	}
+
+	/**
+	 * Check OPT directive check suppress printing of macro calls  
+	 */
+	@Test 
+	def void testOPTSuppressPrintingOfMacroCalls2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					   	OPT    	NOC				   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1)
+		
+		val optLine = line as AssembledOptDirectiveLine
+		Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination)
+		Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode)
+		Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls)
+		Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines)
+	}
+
+	/**
+	 * Check OPT directive check Print macro expansion line 
+	 */
+	@Test 
+	def void testOPTSuppressPrintPrintMacroExpansionLine1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					   	OPT    	EXP				   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1)
+		
+		val optLine = line as AssembledOptDirectiveLine
+		Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination)
+		Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode)
+		Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls)
+		Assert.assertTrue("Print macro expansion lines", optLine.isPrintMacroExpansionLines)
+	}
+
+	/**
+	 * Check OPT directive check Print macro expansion line 
+	 */
+	@Test 
+	def void testOPTSuppressPrintPrintMacroExpansionLine2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					   	OPT    	NOE				   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1)
+		
+		val optLine = line as AssembledOptDirectiveLine
+		Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination)
+		Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode)
+		Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls)
+		Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines)
 	}
 }

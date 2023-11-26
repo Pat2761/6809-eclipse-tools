@@ -53,6 +53,9 @@ public class AssembledBszDirectiveLine extends AbstractAssemblyLine {
 		this.directive = directive;
 		
 		int nbBytes = ExpressionParser.parse(directive);
+		if (nbBytes <0) {
+			nbBytes = 0;
+		}
 		values = new int[nbBytes];
 		for (int i=0; i<nbBytes; i++) {
 			values[i] = 0;

@@ -51,6 +51,7 @@ public class AssembledSetDirectiveLine extends AbstractAssemblyLine {
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
+		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
 
 		value = ExpressionParser.parse(directive);

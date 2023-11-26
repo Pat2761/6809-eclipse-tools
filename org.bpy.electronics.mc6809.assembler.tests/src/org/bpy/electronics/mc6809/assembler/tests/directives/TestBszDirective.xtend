@@ -176,6 +176,26 @@ class TestBszDirective {
 		result.assertWarning(AssemblerPackage.eINSTANCE.directiveLine, DirectiveValidator::MISSING_LABEL, "No label defined for BSZ directive")
 	}
 
+
+	/**
+	 * Check BSZ duplicate label
+	 */
+	@Test 
+	def void testBszDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$8000 	; With value
+		MyBsz		   	BSZ  	10	           
+		MyBsz	       	BSZ    	10 		; A comment for BSZ
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine, 
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label MyBsz is already defined"
+		)
+	
+	}
+
 	/**
 	 * Check BSZ directive behavior
 	 */

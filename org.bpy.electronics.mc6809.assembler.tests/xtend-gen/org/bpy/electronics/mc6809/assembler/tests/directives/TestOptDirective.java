@@ -23,6 +23,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOptDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
@@ -131,7 +134,7 @@ public class TestOptDirective {
       _builder.append("ORG    $8000");
       _builder.newLine();
       _builder.append(" \t\t   ");
-      _builder.append("OPT    ; All by defult");
+      _builder.append("OPT    ; All by default");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -272,6 +275,363 @@ public class TestOptDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.DUPLICATE_OPTION, "Duplicate option CON");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive with duplicate label
+   */
+  @Test
+  public void testOPTWithListOfDuplicateLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t$8000");
+      _builder.newLine();
+      _builder.append("Label\t\tEQU\t\t10\t       ");
+      _builder.newLine();
+      _builder.append("Label\t   \tOPT    \tCON\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL, "No label may be set for OPT directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive with inconsistency PAG NOP option
+   */
+  @Test
+  public void testOPTWithInconsistencyPAG_NOP() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t$8000");
+      _builder.newLine();
+      _builder.append("Label\t\tEQU\t\t10\t       ");
+      _builder.newLine();
+      _builder.append("Label\t   \tOPT    \tPAG,NOP\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.INCONSISTENCY_ERROR, "The OPT directive does not contain at the same time the PAG and NOP options");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive with inconsistency CON NOC option
+   */
+  @Test
+  public void testOPTWithInconsistencyCON_NOC() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t$8000");
+      _builder.newLine();
+      _builder.append("Label\t   \tOPT    \tCON,NOC\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.INCONSISTENCY_ERROR, "The OPT directive does not contain at the same time the CON and NOC options");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive with inconsistency MAC NOM option
+   */
+  @Test
+  public void testOPTWithInconsistencyMAC_NOM() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t$8000");
+      _builder.newLine();
+      _builder.append("Label\t   \tOPT    \tMAC,NOM\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.INCONSISTENCY_ERROR, "The OPT directive does not contain at the same time the MAC and NOM options");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive with inconsistency EXP NOE option
+   */
+  @Test
+  public void testOPTWithInconsistencyEXP_NOE() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t$8000");
+      _builder.newLine();
+      _builder.append("Label\t   \tOPT    \tEXP,NOE\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.INCONSISTENCY_ERROR, "The OPT directive does not contain at the same time the EXP and NOE options");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive check Page formatting
+   */
+  @Test
+  public void testOPTPageFormating0() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t   \t");
+      _builder.append("OPT    \t\t\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      final AbstractAssemblyLine line = engine.getAssembledLine(1);
+      final AssembledOptDirectiveLine optLine = ((AssembledOptDirectiveLine) line);
+      Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination());
+      Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode());
+      Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
+      Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive check Page formatting
+   */
+  @Test
+  public void testOPTPageFormating1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t   \t");
+      _builder.append("OPT    \tPAG\t\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      final AbstractAssemblyLine line = engine.getAssembledLine(1);
+      final AssembledOptDirectiveLine optLine = ((AssembledOptDirectiveLine) line);
+      Assert.assertTrue("Enable page formatting and numbering", optLine.isEnablePagination());
+      Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode());
+      Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
+      Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive check Page formatting
+   */
+  @Test
+  public void testOPTPageFormating2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t   \t");
+      _builder.append("OPT    \tNOP\t\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      final AbstractAssemblyLine line = engine.getAssembledLine(1);
+      final AssembledOptDirectiveLine optLine = ((AssembledOptDirectiveLine) line);
+      Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination());
+      Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode());
+      Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
+      Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive check print conditionally skipped code
+   */
+  @Test
+  public void testOPTPrintConditionallySkippedCode1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t   \t");
+      _builder.append("OPT    \tCON\t\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      final AbstractAssemblyLine line = engine.getAssembledLine(1);
+      final AssembledOptDirectiveLine optLine = ((AssembledOptDirectiveLine) line);
+      Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination());
+      Assert.assertTrue("Print conditionally skipped code", optLine.isConditionallySkippedCode());
+      Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
+      Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive check print conditionally skipped code
+   */
+  @Test
+  public void testOPTPrintConditionallySkippedCode2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t   \t");
+      _builder.append("OPT    \tNOC\t\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      final AbstractAssemblyLine line = engine.getAssembledLine(1);
+      final AssembledOptDirectiveLine optLine = ((AssembledOptDirectiveLine) line);
+      Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination());
+      Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode());
+      Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
+      Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive check suppress printing of macro calls
+   */
+  @Test
+  public void testOPTSuppressPrintingOfMacroCalls1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t   \t");
+      _builder.append("OPT    \tNOM\t\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      final AbstractAssemblyLine line = engine.getAssembledLine(1);
+      final AssembledOptDirectiveLine optLine = ((AssembledOptDirectiveLine) line);
+      Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination());
+      Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode());
+      Assert.assertTrue("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
+      Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive check suppress printing of macro calls
+   */
+  @Test
+  public void testOPTSuppressPrintingOfMacroCalls2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t   \t");
+      _builder.append("OPT    \tNOC\t\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      final AbstractAssemblyLine line = engine.getAssembledLine(1);
+      final AssembledOptDirectiveLine optLine = ((AssembledOptDirectiveLine) line);
+      Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination());
+      Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode());
+      Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
+      Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive check Print macro expansion line
+   */
+  @Test
+  public void testOPTSuppressPrintPrintMacroExpansionLine1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t   \t");
+      _builder.append("OPT    \tEXP\t\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      final AbstractAssemblyLine line = engine.getAssembledLine(1);
+      final AssembledOptDirectiveLine optLine = ((AssembledOptDirectiveLine) line);
+      Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination());
+      Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode());
+      Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
+      Assert.assertTrue("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive check Print macro expansion line
+   */
+  @Test
+  public void testOPTSuppressPrintPrintMacroExpansionLine2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t   \t");
+      _builder.append("OPT    \tNOE\t\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      final AbstractAssemblyLine line = engine.getAssembledLine(1);
+      final AssembledOptDirectiveLine optLine = ((AssembledOptDirectiveLine) line);
+      Assert.assertFalse("Enable page formatting and numbering", optLine.isEnablePagination());
+      Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode());
+      Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
+      Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

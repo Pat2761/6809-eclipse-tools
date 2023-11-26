@@ -30,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
@@ -37,6 +38,12 @@ import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.eclipse.emf.common.util.EList;
 
+/**
+ * Utility class for get informations about instructions or directives
+ * 
+ * @author Patrick
+ *
+ */
 public class CommandUtil {
 
 	/**
@@ -264,6 +271,37 @@ public class CommandUtil {
 		}
 	}
 
+	/**
+	 * Return the label associated to an OPT directive.
+	 * 
+	 * @param directive reference on the OPT directive
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(OptDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+
+	/**
+	 * Return the comment associated to an OPT directive.
+	 * 
+	 * @param directive reference on the OPT directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(OptDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+
 	public static int getByteToSet(FillDirective fillDirective) {
 		Expression value = fillDirective.getValue().getOperand();
 		return ExpressionParser.resolveExpression(value);
@@ -295,5 +333,4 @@ public class CommandUtil {
 		}
 		return registers;
 	}
-
 }
