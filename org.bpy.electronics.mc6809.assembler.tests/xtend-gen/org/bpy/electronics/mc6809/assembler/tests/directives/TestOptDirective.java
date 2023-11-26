@@ -294,7 +294,8 @@ public class TestOptDirective {
       _builder.newLine();
       _builder.append("Label\t\tEQU\t\t10\t       ");
       _builder.newLine();
-      _builder.append("Label\t   \tOPT    \tCON\t\t\t   ; Options");
+      _builder.append("\t\t   \t");
+      _builder.append("OPT    \tCON\t\t\t   ; Options");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -318,7 +319,8 @@ public class TestOptDirective {
       _builder.newLine();
       _builder.append("Label\t\tEQU\t\t10\t       ");
       _builder.newLine();
-      _builder.append("Label\t   \tOPT    \tPAG,NOP\t\t\t   ; Options");
+      _builder.append("\t\t   \t");
+      _builder.append("OPT    \tPAG,NOP\t\t\t   ; Options");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -340,7 +342,8 @@ public class TestOptDirective {
       _builder.append("\t       \t");
       _builder.append("ORG    \t$8000");
       _builder.newLine();
-      _builder.append("Label\t   \tOPT    \tCON,NOC\t\t\t   ; Options");
+      _builder.append(" \t\t   \t");
+      _builder.append("OPT    \tCON,NOC\t\t\t   ; Options");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -362,7 +365,8 @@ public class TestOptDirective {
       _builder.append("\t       \t");
       _builder.append("ORG    \t$8000");
       _builder.newLine();
-      _builder.append("Label\t   \tOPT    \tMAC,NOM\t\t\t   ; Options");
+      _builder.append("\t\t   \t");
+      _builder.append("OPT    \tMAC,NOM\t\t\t   ; Options");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -384,7 +388,8 @@ public class TestOptDirective {
       _builder.append("\t       \t");
       _builder.append("ORG    \t$8000");
       _builder.newLine();
-      _builder.append("Label\t   \tOPT    \tEXP,NOE\t\t\t   ; Options");
+      _builder.append("\t\t   \t");
+      _builder.append("OPT    \tEXP,NOE\t\t\t   ; Options");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);

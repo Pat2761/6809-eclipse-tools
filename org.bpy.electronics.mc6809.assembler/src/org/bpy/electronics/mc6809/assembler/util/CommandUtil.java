@@ -32,6 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
@@ -286,7 +287,6 @@ public class CommandUtil {
 		}
 	}
 
-
 	/**
 	 * Return the comment associated to an OPT directive.
 	 * 
@@ -294,6 +294,36 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(OptDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the label associated to an PAG directive.
+	 * 
+	 * @param directive reference on the PAG directive
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(PagDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to an PAG directive.
+	 * 
+	 * @param directive reference on the PAG directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(PagDirective directive) {
 		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
 		if ( directiveLine.getComment() != null) {
 			return directiveLine.getComment();

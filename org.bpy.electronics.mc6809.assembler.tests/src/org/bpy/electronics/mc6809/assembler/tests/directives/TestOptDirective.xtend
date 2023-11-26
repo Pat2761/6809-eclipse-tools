@@ -198,7 +198,7 @@ class TestOptDirective {
 		; -----------------------------------------
 			       	ORG    	$8000
 		Label		EQU		10	       
-		Label	   	OPT    	CON			   ; Options
+				   	OPT    	CON			   ; Options
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.directiveLine, DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for OPT directive")
@@ -213,7 +213,7 @@ class TestOptDirective {
 		; -----------------------------------------
 			       	ORG    	$8000
 		Label		EQU		10	       
-		Label	   	OPT    	PAG,NOP			   ; Options
+				   	OPT    	PAG,NOP			   ; Options
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.optDirective, DirectiveValidator::INCONSISTENCY_ERROR,"The OPT directive does not contain at the same time the PAG and NOP options")
@@ -227,7 +227,7 @@ class TestOptDirective {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    	$8000
-		Label	   	OPT    	CON,NOC			   ; Options
+		 		   	OPT    	CON,NOC			   ; Options
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.optDirective, DirectiveValidator::INCONSISTENCY_ERROR,"The OPT directive does not contain at the same time the CON and NOC options")
@@ -241,7 +241,7 @@ class TestOptDirective {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    	$8000
-		Label	   	OPT    	MAC,NOM			   ; Options
+				   	OPT    	MAC,NOM			   ; Options
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.optDirective, DirectiveValidator::INCONSISTENCY_ERROR,"The OPT directive does not contain at the same time the MAC and NOM options")
@@ -255,7 +255,7 @@ class TestOptDirective {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       	ORG    	$8000
-		Label	   	OPT    	EXP,NOE			   ; Options
+				   	OPT    	EXP,NOE			   ; Options
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.optDirective, DirectiveValidator::INCONSISTENCY_ERROR,"The OPT directive does not contain at the same time the EXP and NOE options")

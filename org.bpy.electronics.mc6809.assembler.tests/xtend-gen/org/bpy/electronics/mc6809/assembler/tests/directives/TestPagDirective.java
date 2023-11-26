@@ -330,4 +330,23 @@ public class TestPagDirective {
       throw Exceptions.sneakyThrow(_e);
     }
   }
+
+  /**
+   * Check PAG directive with label
+   */
+  @Test
+  public void testPagWithLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("Label\t   \tPAG    \t1\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL, "No label may be set for PAG directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
 }

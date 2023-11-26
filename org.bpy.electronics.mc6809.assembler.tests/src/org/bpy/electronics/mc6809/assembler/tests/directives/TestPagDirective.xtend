@@ -219,6 +219,17 @@ class TestPagDirective {
 		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for PAG directive")
 	}
 	
-	
+	/**
+	 * Check PAG directive with label
+	 */
+	@Test 
+	def void testPagWithLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		Label	   	PAG    	1			   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine, DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for PAG directive")
+	}
 }
 	

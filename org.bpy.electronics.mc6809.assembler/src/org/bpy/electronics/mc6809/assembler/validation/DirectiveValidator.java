@@ -71,34 +71,46 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			warning("No label defined for BSZ directive",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
 				MISSING_LABEL);
+		
 		} else if ((directiveLine.getDirective() instanceof EquDirective) && (directiveLine.getName() == null)) {
 			error("No label defined for EQU directive",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
 				MISSING_LABEL);
+		
 		} else if ((directiveLine.getDirective() instanceof SetDirective) && (directiveLine.getName() == null)) {
 			error("No label defined for SET directive",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
 				MISSING_LABEL);
+		
 		} else if ((directiveLine.getDirective() instanceof EndDirective) && (directiveLine.getName() != null)) {		
    			error("No label may be set for END directive",                                                             
    				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
    				UNEXPECTED_LABEL);
+		
 		} else if ((directiveLine.getDirective() instanceof SpcDirective) && (directiveLine.getName() != null)) {		
    			error("No label may be set for SPC directive",                                                             
    				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
    				UNEXPECTED_LABEL);
+		
 		} else if ((directiveLine.getDirective() instanceof PagDirective) && (directiveLine.getName() != null)) {		
    			error("No label may be set for PAG directive",                                                             
    				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
    				UNEXPECTED_LABEL);
+		
 		} else if ((directiveLine.getDirective() instanceof RegDirective) && (directiveLine.getName() == null)) {
 			error("No label defined for REG directive",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
 				MISSING_LABEL);
+		
 		} else if ((directiveLine.getDirective() instanceof OptDirective) && (directiveLine.getName() != null)) {		
    			error("No label may be set for OPT directive",                                                             
    				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
    				UNEXPECTED_LABEL);
+   			
+   			} else if ((directiveLine.getDirective() instanceof PagDirective) && (directiveLine.getName() != null)) {		
+   	   			error("No label may be set for PAG directive",                                                             
+   	   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   	   				UNEXPECTED_LABEL);
 		}
 		
 		// Management of errors after code analyse 

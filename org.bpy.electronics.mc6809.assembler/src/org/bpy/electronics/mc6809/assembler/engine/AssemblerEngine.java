@@ -37,6 +37,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
@@ -48,6 +49,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEquDirectiveLin
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFillDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOptDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledPagDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -232,18 +234,32 @@ public class AssemblerEngine {
 		} else if (directiveLine.getDirective() instanceof FillDirective) {
 			FillDirective fillDirective = (FillDirective)directiveLine.getDirective();
 			parseDirective(fillDirective);
-			needStop = true;
 
 		} else if (directiveLine.getDirective() instanceof OptDirective) {
 			OptDirective optDirective = (OptDirective)directiveLine.getDirective();
 			parseDirective(optDirective);
-			needStop = true;
+
+		} else if (directiveLine.getDirective() instanceof PagDirective) {
+			PagDirective pagDirective = (PagDirective)directiveLine.getDirective();
+			parseDirective(pagDirective);
 
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
 		}
 		
 		return needStop;
+	}
+
+	/**
+	 * Parse an PAG directive line.
+	 *  
+	 * @param pagDirective reference on the PAG directive
+	 */
+	private void parseDirective(PagDirective pagDirective) {
+		AssembledPagDirectiveLine line = new AssembledPagDirectiveLine();
+		line.parse(pagDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		currentPcValue += line.getPcIncrement();
 	}
 
 	/**
@@ -256,7 +272,6 @@ public class AssemblerEngine {
 		line.parse(optDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		currentPcValue += line.getPcIncrement();
-		
 	}
 
 	/**
