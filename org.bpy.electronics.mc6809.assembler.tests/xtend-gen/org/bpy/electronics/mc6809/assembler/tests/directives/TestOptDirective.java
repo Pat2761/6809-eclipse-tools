@@ -294,8 +294,7 @@ public class TestOptDirective {
       _builder.newLine();
       _builder.append("Label\t\tEQU\t\t10\t       ");
       _builder.newLine();
-      _builder.append("\t\t   \t");
-      _builder.append("OPT    \tCON\t\t\t   ; Options");
+      _builder.append("Label\t   \tOPT    \tCON\t\t\t   ; Options");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -637,6 +636,31 @@ public class TestOptDirective {
       Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode());
       Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
       Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check OPT directive check program counter
+   */
+  @Test
+  public void testOPTProgramCounter() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t\t");
+      _builder.append("ORG\t\t$4000");
+      _builder.newLine();
+      _builder.append("\t\t\t   \t");
+      _builder.append("OPT    \tNOE\t\t\t\t   ; Options");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC after OPT instruction", 0x4000, engine.getCurrentPcValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

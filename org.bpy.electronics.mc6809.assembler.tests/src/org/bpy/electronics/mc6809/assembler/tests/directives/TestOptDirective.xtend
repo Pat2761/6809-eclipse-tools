@@ -198,7 +198,7 @@ class TestOptDirective {
 		; -----------------------------------------
 			       	ORG    	$8000
 		Label		EQU		10	       
-				   	OPT    	CON			   ; Options
+		Label	   	OPT    	CON			   ; Options
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.directiveLine, DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for OPT directive")
@@ -448,5 +448,21 @@ class TestOptDirective {
 		Assert.assertFalse("Print conditionally skipped code", optLine.isConditionallySkippedCode)
 		Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls)
 		Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines)
+	}
+
+	/**
+	 * Check OPT directive check program counter 
+	 */
+	@Test 
+	def void testOPTProgramCounter() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+						ORG		$4000
+					   	OPT    	NOE				   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC after OPT instruction", 0x4000, engine.currentPcValue)		
 	}
 }

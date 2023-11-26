@@ -32,6 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.PagDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -230,6 +231,23 @@ class TestPagDirective {
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.directiveLine, DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for PAG directive")
+	}
+	
+	/**
+	 * Check PC counter after PAG directive 
+	 */
+	@Test 
+	def void testPagPCCounter() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					ORG		$2000
+				   	PAG    	1			   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC after PAG instruction", 0x2000, engine.currentPcValue)		
+		
 	}
 }
 	

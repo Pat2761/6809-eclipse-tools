@@ -32,6 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.NamDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -154,5 +155,35 @@ class TestNamDirective {
 		''')
 		Assert.assertNotNull(result)
 		result.assertWarning(AssemblerPackage.eINSTANCE.namDirective,DirectiveValidator::NAME_ERROR,"Program name must be defined by 6 characters max")
+	}
+
+	/**
+	 * Check NAM directive with label
+	 */
+	@Test 
+	def void testNAMWithLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		AName 	   NAM    Name       ; it is a name
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for NAM directive")
+	}
+
+	/**
+	 * Check NAM directive check program counter 
+	 */
+	@Test 
+	def void testNAMProgramCounter() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+						ORG		$4000
+					   	NAM    	AName				   ; Options
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC after NAM instruction", 0x4000, engine.currentPcValue)		
 	}
 }

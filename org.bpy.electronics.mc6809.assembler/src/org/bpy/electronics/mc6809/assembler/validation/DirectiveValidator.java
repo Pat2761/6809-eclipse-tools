@@ -107,10 +107,13 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
    				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
    				UNEXPECTED_LABEL);
    			
-   			} else if ((directiveLine.getDirective() instanceof PagDirective) && (directiveLine.getName() != null)) {		
-   	   			error("No label may be set for PAG directive",                                                             
+   		} else if ((directiveLine.getDirective() instanceof NamDirective) && (directiveLine.getName() != null)) {		
+   	   			error("No label may be set for NAM directive",                                                             
    	   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
    	   				UNEXPECTED_LABEL);
+		
+   		} else {
+			// nothing to do
 		}
 		
 		// Management of errors after code analyse 
