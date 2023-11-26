@@ -18,41 +18,46 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
-import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
 /**
- * Used to store information about EQU directive
+ * Used to store information about END directive
  */
-public class AssembledEquDirectiveLine extends AbstractAssemblyLine {
+public class AssembledEndDirectiveLine extends AbstractAssemblyLine {
 
-	/** reference to the EQU directive in the edited file */
-	private EquDirective directive;
-	/** Integer value defined by the EQU directive */ 
+	/** reference to the END directive in the edited file */
+	private EndDirective directive;
+	/** Integer value defined by the END directive */ 
 	private int value;	
+	private String target;
 	
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledEquDirectiveLine() {
+	public AssembledEndDirectiveLine() {
 		// nothing to do
 	}
 
 	/**
 	 * Extract information from the edited line.
 	 * 
-	 * @param directive reference to the Xtext description of the EQU directive
+	 * @param directive reference to the Xtext description of the BSZ directive
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(EquDirective directive, int currentPcValue, int lineNumber) {
+	public void parse(EndDirective directive, int currentPcValue, int lineNumber) {
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
+		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
-		
-		value = ExpressionParser.parse(directive);
+		try {
+			this.target = directive.getOperand().getValue();
+		} catch (NullPointerException ex) {
+			this.target = null;
+		}
 	}
 
 	@Override
@@ -98,11 +103,11 @@ public class AssembledEquDirectiveLine extends AbstractAssemblyLine {
 		strBuilder.append(String.format("%-6s", directive.getDirective()));  // Mnemonique (6 car)
 	}
 
-	public EquDirective getDirective() {
+	public EndDirective getDirective() {
 		return directive;
 	}
 
-	public void setDirective(EquDirective directive) {
+	public void setDirective(EndDirective directive) {
 		this.directive = directive;
 	}
 
@@ -110,9 +115,16 @@ public class AssembledEquDirectiveLine extends AbstractAssemblyLine {
 		return value;
 	}
 
+	public void setValue(int value) {
+		this.value = value;
+	}
+
 	@Override
 	public int getPcIncrement() {
 		return 0;
 	}
-	
+
+	public String getTarget() {
+		return target;
+	}
 }

@@ -2271,10 +2271,7 @@ RmbDirective:
  */
 EndDirective:
 	directive = 'END' 
-	(WS ( 
-		( isRelativeToPC?='*'? operand=Expression) |
-		( isRelativeToPC?='*' )
-		))?
+	(WS operand=IdentifierValue)?
 ;
 
 /*

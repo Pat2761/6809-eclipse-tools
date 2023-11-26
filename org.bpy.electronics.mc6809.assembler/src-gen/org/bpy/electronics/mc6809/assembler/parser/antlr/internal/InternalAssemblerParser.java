@@ -29431,26 +29431,24 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEndDirective"
-    // InternalAssembler.g:10787:1: ruleEndDirective returns [EObject current=null] : ( ( (lv_directive_0_0= 'END' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? ) ;
+    // InternalAssembler.g:10787:1: ruleEndDirective returns [EObject current=null] : ( ( (lv_directive_0_0= 'END' ) ) (this_WS_1= RULE_WS ( (lv_operand_2_0= ruleIdentifierValue ) ) )? ) ;
     public final EObject ruleEndDirective() throws RecognitionException {
         EObject current = null;
 
         Token lv_directive_0_0=null;
         Token this_WS_1=null;
-        Token lv_isRelativeToPC_2_0=null;
-        Token lv_isRelativeToPC_4_0=null;
-        EObject lv_operand_3_0 = null;
+        EObject lv_operand_2_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalAssembler.g:10793:2: ( ( ( (lv_directive_0_0= 'END' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? ) )
-            // InternalAssembler.g:10794:2: ( ( (lv_directive_0_0= 'END' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? )
+            // InternalAssembler.g:10793:2: ( ( ( (lv_directive_0_0= 'END' ) ) (this_WS_1= RULE_WS ( (lv_operand_2_0= ruleIdentifierValue ) ) )? ) )
+            // InternalAssembler.g:10794:2: ( ( (lv_directive_0_0= 'END' ) ) (this_WS_1= RULE_WS ( (lv_operand_2_0= ruleIdentifierValue ) ) )? )
             {
-            // InternalAssembler.g:10794:2: ( ( (lv_directive_0_0= 'END' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? )
-            // InternalAssembler.g:10795:3: ( (lv_directive_0_0= 'END' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )?
+            // InternalAssembler.g:10794:2: ( ( (lv_directive_0_0= 'END' ) ) (this_WS_1= RULE_WS ( (lv_operand_2_0= ruleIdentifierValue ) ) )? )
+            // InternalAssembler.g:10795:3: ( (lv_directive_0_0= 'END' ) ) (this_WS_1= RULE_WS ( (lv_operand_2_0= ruleIdentifierValue ) ) )?
             {
             // InternalAssembler.g:10795:3: ( (lv_directive_0_0= 'END' ) )
             // InternalAssembler.g:10796:4: (lv_directive_0_0= 'END' )
@@ -29478,175 +29476,59 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalAssembler.g:10809:3: (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )?
-            int alt149=2;
-            int LA149_0 = input.LA(1);
+            // InternalAssembler.g:10809:3: (this_WS_1= RULE_WS ( (lv_operand_2_0= ruleIdentifierValue ) ) )?
+            int alt147=2;
+            int LA147_0 = input.LA(1);
 
-            if ( (LA149_0==RULE_WS) ) {
-                int LA149_1 = input.LA(2);
+            if ( (LA147_0==RULE_WS) ) {
+                int LA147_1 = input.LA(2);
 
-                if ( ((LA149_1>=RULE_ID && LA149_1<=RULE_CHARACTER)||LA149_1==160||LA149_1==162||LA149_1==165||LA149_1==185||(LA149_1>=191 && LA149_1<=192)||LA149_1==194) ) {
-                    alt149=1;
+                if ( (LA147_1==RULE_ID) ) {
+                    alt147=1;
                 }
             }
-            switch (alt149) {
+            switch (alt147) {
                 case 1 :
-                    // InternalAssembler.g:10810:4: this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
+                    // InternalAssembler.g:10810:4: this_WS_1= RULE_WS ( (lv_operand_2_0= ruleIdentifierValue ) )
                     {
-                    this_WS_1=(Token)match(input,RULE_WS,FOLLOW_17); if (state.failed) return current;
+                    this_WS_1=(Token)match(input,RULE_WS,FOLLOW_29); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       				newLeafNode(this_WS_1, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_1_0());
                       			
                     }
-                    // InternalAssembler.g:10814:4: ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
-                    int alt148=2;
-                    int LA148_0 = input.LA(1);
+                    // InternalAssembler.g:10814:4: ( (lv_operand_2_0= ruleIdentifierValue ) )
+                    // InternalAssembler.g:10815:5: (lv_operand_2_0= ruleIdentifierValue )
+                    {
+                    // InternalAssembler.g:10815:5: (lv_operand_2_0= ruleIdentifierValue )
+                    // InternalAssembler.g:10816:6: lv_operand_2_0= ruleIdentifierValue
+                    {
+                    if ( state.backtracking==0 ) {
 
-                    if ( (LA148_0==165) ) {
-                        int LA148_1 = input.LA(2);
-
-                        if ( ((LA148_1>=RULE_ID && LA148_1<=RULE_CHARACTER)||LA148_1==160||LA148_1==162||LA148_1==185||(LA148_1>=191 && LA148_1<=192)||LA148_1==194) ) {
-                            alt148=1;
-                        }
-                        else if ( (LA148_1==EOF||LA148_1==RULE_WS||(LA148_1>=RULE_CR && LA148_1<=RULE_END_OF_FILE)) ) {
-                            alt148=2;
-                        }
-                        else {
-                            if (state.backtracking>0) {state.failed=true; return current;}
-                            NoViableAltException nvae =
-                                new NoViableAltException("", 148, 1, input);
-
-                            throw nvae;
-                        }
+                      						newCompositeNode(grammarAccess.getEndDirectiveAccess().getOperandIdentifierValueParserRuleCall_1_1_0());
+                      					
                     }
-                    else if ( ((LA148_0>=RULE_ID && LA148_0<=RULE_CHARACTER)||LA148_0==160||LA148_0==162||LA148_0==185||(LA148_0>=191 && LA148_0<=192)||LA148_0==194) ) {
-                        alt148=1;
+                    pushFollow(FOLLOW_2);
+                    lv_operand_2_0=ruleIdentifierValue();
+
+                    state._fsp--;
+                    if (state.failed) return current;
+                    if ( state.backtracking==0 ) {
+
+                      						if (current==null) {
+                      							current = createModelElementForParent(grammarAccess.getEndDirectiveRule());
+                      						}
+                      						set(
+                      							current,
+                      							"operand",
+                      							lv_operand_2_0,
+                      							"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+                      						afterParserOrEnumRuleCall();
+                      					
                     }
-                    else {
-                        if (state.backtracking>0) {state.failed=true; return current;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 148, 0, input);
 
-                        throw nvae;
                     }
-                    switch (alt148) {
-                        case 1 :
-                            // InternalAssembler.g:10815:5: ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
-                            {
-                            // InternalAssembler.g:10815:5: ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
-                            // InternalAssembler.g:10816:6: ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) )
-                            {
-                            // InternalAssembler.g:10816:6: ( (lv_isRelativeToPC_2_0= '*' ) )?
-                            int alt147=2;
-                            int LA147_0 = input.LA(1);
 
-                            if ( (LA147_0==165) ) {
-                                alt147=1;
-                            }
-                            switch (alt147) {
-                                case 1 :
-                                    // InternalAssembler.g:10817:7: (lv_isRelativeToPC_2_0= '*' )
-                                    {
-                                    // InternalAssembler.g:10817:7: (lv_isRelativeToPC_2_0= '*' )
-                                    // InternalAssembler.g:10818:8: lv_isRelativeToPC_2_0= '*'
-                                    {
-                                    lv_isRelativeToPC_2_0=(Token)match(input,165,FOLLOW_18); if (state.failed) return current;
-                                    if ( state.backtracking==0 ) {
-
-                                      								newLeafNode(lv_isRelativeToPC_2_0, grammarAccess.getEndDirectiveAccess().getIsRelativeToPCAsteriskKeyword_1_1_0_0_0());
-                                      							
-                                    }
-                                    if ( state.backtracking==0 ) {
-
-                                      								if (current==null) {
-                                      									current = createModelElement(grammarAccess.getEndDirectiveRule());
-                                      								}
-                                      								setWithLastConsumed(current, "isRelativeToPC", lv_isRelativeToPC_2_0 != null, "*");
-                                      							
-                                    }
-
-                                    }
-
-
-                                    }
-                                    break;
-
-                            }
-
-                            // InternalAssembler.g:10830:6: ( (lv_operand_3_0= ruleExpression ) )
-                            // InternalAssembler.g:10831:7: (lv_operand_3_0= ruleExpression )
-                            {
-                            // InternalAssembler.g:10831:7: (lv_operand_3_0= ruleExpression )
-                            // InternalAssembler.g:10832:8: lv_operand_3_0= ruleExpression
-                            {
-                            if ( state.backtracking==0 ) {
-
-                              								newCompositeNode(grammarAccess.getEndDirectiveAccess().getOperandExpressionParserRuleCall_1_1_0_1_0());
-                              							
-                            }
-                            pushFollow(FOLLOW_2);
-                            lv_operand_3_0=ruleExpression();
-
-                            state._fsp--;
-                            if (state.failed) return current;
-                            if ( state.backtracking==0 ) {
-
-                              								if (current==null) {
-                              									current = createModelElementForParent(grammarAccess.getEndDirectiveRule());
-                              								}
-                              								set(
-                              									current,
-                              									"operand",
-                              									lv_operand_3_0,
-                              									"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
-                              								afterParserOrEnumRuleCall();
-                              							
-                            }
-
-                            }
-
-
-                            }
-
-
-                            }
-
-
-                            }
-                            break;
-                        case 2 :
-                            // InternalAssembler.g:10851:5: ( (lv_isRelativeToPC_4_0= '*' ) )
-                            {
-                            // InternalAssembler.g:10851:5: ( (lv_isRelativeToPC_4_0= '*' ) )
-                            // InternalAssembler.g:10852:6: (lv_isRelativeToPC_4_0= '*' )
-                            {
-                            // InternalAssembler.g:10852:6: (lv_isRelativeToPC_4_0= '*' )
-                            // InternalAssembler.g:10853:7: lv_isRelativeToPC_4_0= '*'
-                            {
-                            lv_isRelativeToPC_4_0=(Token)match(input,165,FOLLOW_2); if (state.failed) return current;
-                            if ( state.backtracking==0 ) {
-
-                              							newLeafNode(lv_isRelativeToPC_4_0, grammarAccess.getEndDirectiveAccess().getIsRelativeToPCAsteriskKeyword_1_1_1_0());
-                              						
-                            }
-                            if ( state.backtracking==0 ) {
-
-                              							if (current==null) {
-                              								current = createModelElement(grammarAccess.getEndDirectiveRule());
-                              							}
-                              							setWithLastConsumed(current, "isRelativeToPC", lv_isRelativeToPC_4_0 != null, "*");
-                              						
-                            }
-
-                            }
-
-
-                            }
-
-
-                            }
-                            break;
 
                     }
 
@@ -29681,7 +29563,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleOrgDirective"
-    // InternalAssembler.g:10871:1: entryRuleOrgDirective returns [EObject current=null] : iv_ruleOrgDirective= ruleOrgDirective EOF ;
+    // InternalAssembler.g:10838:1: entryRuleOrgDirective returns [EObject current=null] : iv_ruleOrgDirective= ruleOrgDirective EOF ;
     public final EObject entryRuleOrgDirective() throws RecognitionException {
         EObject current = null;
 
@@ -29689,8 +29571,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:10871:53: (iv_ruleOrgDirective= ruleOrgDirective EOF )
-            // InternalAssembler.g:10872:2: iv_ruleOrgDirective= ruleOrgDirective EOF
+            // InternalAssembler.g:10838:53: (iv_ruleOrgDirective= ruleOrgDirective EOF )
+            // InternalAssembler.g:10839:2: iv_ruleOrgDirective= ruleOrgDirective EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOrgDirectiveRule()); 
@@ -29721,7 +29603,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOrgDirective"
-    // InternalAssembler.g:10878:1: ruleOrgDirective returns [EObject current=null] : ( ( (lv_directive_0_0= 'ORG' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? ) ;
+    // InternalAssembler.g:10845:1: ruleOrgDirective returns [EObject current=null] : ( ( (lv_directive_0_0= 'ORG' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? ) ;
     public final EObject ruleOrgDirective() throws RecognitionException {
         EObject current = null;
 
@@ -29736,17 +29618,17 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:10884:2: ( ( ( (lv_directive_0_0= 'ORG' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? ) )
-            // InternalAssembler.g:10885:2: ( ( (lv_directive_0_0= 'ORG' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? )
+            // InternalAssembler.g:10851:2: ( ( ( (lv_directive_0_0= 'ORG' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? ) )
+            // InternalAssembler.g:10852:2: ( ( (lv_directive_0_0= 'ORG' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? )
             {
-            // InternalAssembler.g:10885:2: ( ( (lv_directive_0_0= 'ORG' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? )
-            // InternalAssembler.g:10886:3: ( (lv_directive_0_0= 'ORG' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )?
+            // InternalAssembler.g:10852:2: ( ( (lv_directive_0_0= 'ORG' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )? )
+            // InternalAssembler.g:10853:3: ( (lv_directive_0_0= 'ORG' ) ) (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )?
             {
-            // InternalAssembler.g:10886:3: ( (lv_directive_0_0= 'ORG' ) )
-            // InternalAssembler.g:10887:4: (lv_directive_0_0= 'ORG' )
+            // InternalAssembler.g:10853:3: ( (lv_directive_0_0= 'ORG' ) )
+            // InternalAssembler.g:10854:4: (lv_directive_0_0= 'ORG' )
             {
-            // InternalAssembler.g:10887:4: (lv_directive_0_0= 'ORG' )
-            // InternalAssembler.g:10888:5: lv_directive_0_0= 'ORG'
+            // InternalAssembler.g:10854:4: (lv_directive_0_0= 'ORG' )
+            // InternalAssembler.g:10855:5: lv_directive_0_0= 'ORG'
             {
             lv_directive_0_0=(Token)match(input,182,FOLLOW_28); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -29768,20 +29650,20 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalAssembler.g:10900:3: (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )?
-            int alt152=2;
-            int LA152_0 = input.LA(1);
+            // InternalAssembler.g:10867:3: (this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )?
+            int alt150=2;
+            int LA150_0 = input.LA(1);
 
-            if ( (LA152_0==RULE_WS) ) {
-                int LA152_1 = input.LA(2);
+            if ( (LA150_0==RULE_WS) ) {
+                int LA150_1 = input.LA(2);
 
-                if ( ((LA152_1>=RULE_ID && LA152_1<=RULE_CHARACTER)||LA152_1==160||LA152_1==162||LA152_1==165||LA152_1==185||(LA152_1>=191 && LA152_1<=192)||LA152_1==194) ) {
-                    alt152=1;
+                if ( ((LA150_1>=RULE_ID && LA150_1<=RULE_CHARACTER)||LA150_1==160||LA150_1==162||LA150_1==165||LA150_1==185||(LA150_1>=191 && LA150_1<=192)||LA150_1==194) ) {
+                    alt150=1;
                 }
             }
-            switch (alt152) {
+            switch (alt150) {
                 case 1 :
-                    // InternalAssembler.g:10901:4: this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
+                    // InternalAssembler.g:10868:4: this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
                     {
                     this_WS_1=(Token)match(input,RULE_WS,FOLLOW_17); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -29789,57 +29671,57 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                       				newLeafNode(this_WS_1, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_1_0());
                       			
                     }
-                    // InternalAssembler.g:10905:4: ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
-                    int alt151=2;
-                    int LA151_0 = input.LA(1);
+                    // InternalAssembler.g:10872:4: ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
+                    int alt149=2;
+                    int LA149_0 = input.LA(1);
 
-                    if ( (LA151_0==165) ) {
-                        int LA151_1 = input.LA(2);
+                    if ( (LA149_0==165) ) {
+                        int LA149_1 = input.LA(2);
 
-                        if ( (LA151_1==EOF||LA151_1==RULE_WS||(LA151_1>=RULE_CR && LA151_1<=RULE_END_OF_FILE)) ) {
-                            alt151=2;
+                        if ( ((LA149_1>=RULE_ID && LA149_1<=RULE_CHARACTER)||LA149_1==160||LA149_1==162||LA149_1==185||(LA149_1>=191 && LA149_1<=192)||LA149_1==194) ) {
+                            alt149=1;
                         }
-                        else if ( ((LA151_1>=RULE_ID && LA151_1<=RULE_CHARACTER)||LA151_1==160||LA151_1==162||LA151_1==185||(LA151_1>=191 && LA151_1<=192)||LA151_1==194) ) {
-                            alt151=1;
+                        else if ( (LA149_1==EOF||LA149_1==RULE_WS||(LA149_1>=RULE_CR && LA149_1<=RULE_END_OF_FILE)) ) {
+                            alt149=2;
                         }
                         else {
                             if (state.backtracking>0) {state.failed=true; return current;}
                             NoViableAltException nvae =
-                                new NoViableAltException("", 151, 1, input);
+                                new NoViableAltException("", 149, 1, input);
 
                             throw nvae;
                         }
                     }
-                    else if ( ((LA151_0>=RULE_ID && LA151_0<=RULE_CHARACTER)||LA151_0==160||LA151_0==162||LA151_0==185||(LA151_0>=191 && LA151_0<=192)||LA151_0==194) ) {
-                        alt151=1;
+                    else if ( ((LA149_0>=RULE_ID && LA149_0<=RULE_CHARACTER)||LA149_0==160||LA149_0==162||LA149_0==185||(LA149_0>=191 && LA149_0<=192)||LA149_0==194) ) {
+                        alt149=1;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return current;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 151, 0, input);
+                            new NoViableAltException("", 149, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt151) {
+                    switch (alt149) {
                         case 1 :
-                            // InternalAssembler.g:10906:5: ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
+                            // InternalAssembler.g:10873:5: ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
                             {
-                            // InternalAssembler.g:10906:5: ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
-                            // InternalAssembler.g:10907:6: ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) )
+                            // InternalAssembler.g:10873:5: ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
+                            // InternalAssembler.g:10874:6: ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) )
                             {
-                            // InternalAssembler.g:10907:6: ( (lv_isRelativeToPC_2_0= '*' ) )?
-                            int alt150=2;
-                            int LA150_0 = input.LA(1);
+                            // InternalAssembler.g:10874:6: ( (lv_isRelativeToPC_2_0= '*' ) )?
+                            int alt148=2;
+                            int LA148_0 = input.LA(1);
 
-                            if ( (LA150_0==165) ) {
-                                alt150=1;
+                            if ( (LA148_0==165) ) {
+                                alt148=1;
                             }
-                            switch (alt150) {
+                            switch (alt148) {
                                 case 1 :
-                                    // InternalAssembler.g:10908:7: (lv_isRelativeToPC_2_0= '*' )
+                                    // InternalAssembler.g:10875:7: (lv_isRelativeToPC_2_0= '*' )
                                     {
-                                    // InternalAssembler.g:10908:7: (lv_isRelativeToPC_2_0= '*' )
-                                    // InternalAssembler.g:10909:8: lv_isRelativeToPC_2_0= '*'
+                                    // InternalAssembler.g:10875:7: (lv_isRelativeToPC_2_0= '*' )
+                                    // InternalAssembler.g:10876:8: lv_isRelativeToPC_2_0= '*'
                                     {
                                     lv_isRelativeToPC_2_0=(Token)match(input,165,FOLLOW_18); if (state.failed) return current;
                                     if ( state.backtracking==0 ) {
@@ -29864,11 +29746,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
                             }
 
-                            // InternalAssembler.g:10921:6: ( (lv_operand_3_0= ruleExpression ) )
-                            // InternalAssembler.g:10922:7: (lv_operand_3_0= ruleExpression )
+                            // InternalAssembler.g:10888:6: ( (lv_operand_3_0= ruleExpression ) )
+                            // InternalAssembler.g:10889:7: (lv_operand_3_0= ruleExpression )
                             {
-                            // InternalAssembler.g:10922:7: (lv_operand_3_0= ruleExpression )
-                            // InternalAssembler.g:10923:8: lv_operand_3_0= ruleExpression
+                            // InternalAssembler.g:10889:7: (lv_operand_3_0= ruleExpression )
+                            // InternalAssembler.g:10890:8: lv_operand_3_0= ruleExpression
                             {
                             if ( state.backtracking==0 ) {
 
@@ -29906,13 +29788,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalAssembler.g:10942:5: ( (lv_isRelativeToPC_4_0= '*' ) )
+                            // InternalAssembler.g:10909:5: ( (lv_isRelativeToPC_4_0= '*' ) )
                             {
-                            // InternalAssembler.g:10942:5: ( (lv_isRelativeToPC_4_0= '*' ) )
-                            // InternalAssembler.g:10943:6: (lv_isRelativeToPC_4_0= '*' )
+                            // InternalAssembler.g:10909:5: ( (lv_isRelativeToPC_4_0= '*' ) )
+                            // InternalAssembler.g:10910:6: (lv_isRelativeToPC_4_0= '*' )
                             {
-                            // InternalAssembler.g:10943:6: (lv_isRelativeToPC_4_0= '*' )
-                            // InternalAssembler.g:10944:7: lv_isRelativeToPC_4_0= '*'
+                            // InternalAssembler.g:10910:6: (lv_isRelativeToPC_4_0= '*' )
+                            // InternalAssembler.g:10911:7: lv_isRelativeToPC_4_0= '*'
                             {
                             lv_isRelativeToPC_4_0=(Token)match(input,165,FOLLOW_2); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
@@ -29971,7 +29853,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEquDirective"
-    // InternalAssembler.g:10962:1: entryRuleEquDirective returns [EObject current=null] : iv_ruleEquDirective= ruleEquDirective EOF ;
+    // InternalAssembler.g:10929:1: entryRuleEquDirective returns [EObject current=null] : iv_ruleEquDirective= ruleEquDirective EOF ;
     public final EObject entryRuleEquDirective() throws RecognitionException {
         EObject current = null;
 
@@ -29979,8 +29861,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:10962:53: (iv_ruleEquDirective= ruleEquDirective EOF )
-            // InternalAssembler.g:10963:2: iv_ruleEquDirective= ruleEquDirective EOF
+            // InternalAssembler.g:10929:53: (iv_ruleEquDirective= ruleEquDirective EOF )
+            // InternalAssembler.g:10930:2: iv_ruleEquDirective= ruleEquDirective EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getEquDirectiveRule()); 
@@ -30011,7 +29893,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEquDirective"
-    // InternalAssembler.g:10969:1: ruleEquDirective returns [EObject current=null] : ( ( (lv_directive_0_0= 'EQU' ) ) this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) ) ;
+    // InternalAssembler.g:10936:1: ruleEquDirective returns [EObject current=null] : ( ( (lv_directive_0_0= 'EQU' ) ) this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) ) ;
     public final EObject ruleEquDirective() throws RecognitionException {
         EObject current = null;
 
@@ -30026,17 +29908,17 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:10975:2: ( ( ( (lv_directive_0_0= 'EQU' ) ) this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) ) )
-            // InternalAssembler.g:10976:2: ( ( (lv_directive_0_0= 'EQU' ) ) this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )
+            // InternalAssembler.g:10942:2: ( ( ( (lv_directive_0_0= 'EQU' ) ) this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) ) )
+            // InternalAssembler.g:10943:2: ( ( (lv_directive_0_0= 'EQU' ) ) this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )
             {
-            // InternalAssembler.g:10976:2: ( ( (lv_directive_0_0= 'EQU' ) ) this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )
-            // InternalAssembler.g:10977:3: ( (lv_directive_0_0= 'EQU' ) ) this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
+            // InternalAssembler.g:10943:2: ( ( (lv_directive_0_0= 'EQU' ) ) this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) ) )
+            // InternalAssembler.g:10944:3: ( (lv_directive_0_0= 'EQU' ) ) this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
             {
-            // InternalAssembler.g:10977:3: ( (lv_directive_0_0= 'EQU' ) )
-            // InternalAssembler.g:10978:4: (lv_directive_0_0= 'EQU' )
+            // InternalAssembler.g:10944:3: ( (lv_directive_0_0= 'EQU' ) )
+            // InternalAssembler.g:10945:4: (lv_directive_0_0= 'EQU' )
             {
-            // InternalAssembler.g:10978:4: (lv_directive_0_0= 'EQU' )
-            // InternalAssembler.g:10979:5: lv_directive_0_0= 'EQU'
+            // InternalAssembler.g:10945:4: (lv_directive_0_0= 'EQU' )
+            // InternalAssembler.g:10946:5: lv_directive_0_0= 'EQU'
             {
             lv_directive_0_0=(Token)match(input,183,FOLLOW_6); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -30064,57 +29946,57 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newLeafNode(this_WS_1, grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_1());
               		
             }
-            // InternalAssembler.g:10995:3: ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
-            int alt154=2;
-            int LA154_0 = input.LA(1);
+            // InternalAssembler.g:10962:3: ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
+            int alt152=2;
+            int LA152_0 = input.LA(1);
 
-            if ( (LA154_0==165) ) {
-                int LA154_1 = input.LA(2);
+            if ( (LA152_0==165) ) {
+                int LA152_1 = input.LA(2);
 
-                if ( ((LA154_1>=RULE_ID && LA154_1<=RULE_CHARACTER)||LA154_1==160||LA154_1==162||LA154_1==185||(LA154_1>=191 && LA154_1<=192)||LA154_1==194) ) {
-                    alt154=1;
+                if ( ((LA152_1>=RULE_ID && LA152_1<=RULE_CHARACTER)||LA152_1==160||LA152_1==162||LA152_1==185||(LA152_1>=191 && LA152_1<=192)||LA152_1==194) ) {
+                    alt152=1;
                 }
-                else if ( (LA154_1==EOF||LA154_1==RULE_WS||(LA154_1>=RULE_CR && LA154_1<=RULE_END_OF_FILE)) ) {
-                    alt154=2;
+                else if ( (LA152_1==EOF||LA152_1==RULE_WS||(LA152_1>=RULE_CR && LA152_1<=RULE_END_OF_FILE)) ) {
+                    alt152=2;
                 }
                 else {
                     if (state.backtracking>0) {state.failed=true; return current;}
                     NoViableAltException nvae =
-                        new NoViableAltException("", 154, 1, input);
+                        new NoViableAltException("", 152, 1, input);
 
                     throw nvae;
                 }
             }
-            else if ( ((LA154_0>=RULE_ID && LA154_0<=RULE_CHARACTER)||LA154_0==160||LA154_0==162||LA154_0==185||(LA154_0>=191 && LA154_0<=192)||LA154_0==194) ) {
-                alt154=1;
+            else if ( ((LA152_0>=RULE_ID && LA152_0<=RULE_CHARACTER)||LA152_0==160||LA152_0==162||LA152_0==185||(LA152_0>=191 && LA152_0<=192)||LA152_0==194) ) {
+                alt152=1;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 154, 0, input);
+                    new NoViableAltException("", 152, 0, input);
 
                 throw nvae;
             }
-            switch (alt154) {
+            switch (alt152) {
                 case 1 :
-                    // InternalAssembler.g:10996:4: ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
+                    // InternalAssembler.g:10963:4: ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
                     {
-                    // InternalAssembler.g:10996:4: ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
-                    // InternalAssembler.g:10997:5: ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) )
+                    // InternalAssembler.g:10963:4: ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
+                    // InternalAssembler.g:10964:5: ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) )
                     {
-                    // InternalAssembler.g:10997:5: ( (lv_isRelativeToPC_2_0= '*' ) )?
-                    int alt153=2;
-                    int LA153_0 = input.LA(1);
+                    // InternalAssembler.g:10964:5: ( (lv_isRelativeToPC_2_0= '*' ) )?
+                    int alt151=2;
+                    int LA151_0 = input.LA(1);
 
-                    if ( (LA153_0==165) ) {
-                        alt153=1;
+                    if ( (LA151_0==165) ) {
+                        alt151=1;
                     }
-                    switch (alt153) {
+                    switch (alt151) {
                         case 1 :
-                            // InternalAssembler.g:10998:6: (lv_isRelativeToPC_2_0= '*' )
+                            // InternalAssembler.g:10965:6: (lv_isRelativeToPC_2_0= '*' )
                             {
-                            // InternalAssembler.g:10998:6: (lv_isRelativeToPC_2_0= '*' )
-                            // InternalAssembler.g:10999:7: lv_isRelativeToPC_2_0= '*'
+                            // InternalAssembler.g:10965:6: (lv_isRelativeToPC_2_0= '*' )
+                            // InternalAssembler.g:10966:7: lv_isRelativeToPC_2_0= '*'
                             {
                             lv_isRelativeToPC_2_0=(Token)match(input,165,FOLLOW_18); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
@@ -30139,11 +30021,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalAssembler.g:11011:5: ( (lv_operand_3_0= ruleExpression ) )
-                    // InternalAssembler.g:11012:6: (lv_operand_3_0= ruleExpression )
+                    // InternalAssembler.g:10978:5: ( (lv_operand_3_0= ruleExpression ) )
+                    // InternalAssembler.g:10979:6: (lv_operand_3_0= ruleExpression )
                     {
-                    // InternalAssembler.g:11012:6: (lv_operand_3_0= ruleExpression )
-                    // InternalAssembler.g:11013:7: lv_operand_3_0= ruleExpression
+                    // InternalAssembler.g:10979:6: (lv_operand_3_0= ruleExpression )
+                    // InternalAssembler.g:10980:7: lv_operand_3_0= ruleExpression
                     {
                     if ( state.backtracking==0 ) {
 
@@ -30181,13 +30063,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalAssembler.g:11032:4: ( (lv_isRelativeToPC_4_0= '*' ) )
+                    // InternalAssembler.g:10999:4: ( (lv_isRelativeToPC_4_0= '*' ) )
                     {
-                    // InternalAssembler.g:11032:4: ( (lv_isRelativeToPC_4_0= '*' ) )
-                    // InternalAssembler.g:11033:5: (lv_isRelativeToPC_4_0= '*' )
+                    // InternalAssembler.g:10999:4: ( (lv_isRelativeToPC_4_0= '*' ) )
+                    // InternalAssembler.g:11000:5: (lv_isRelativeToPC_4_0= '*' )
                     {
-                    // InternalAssembler.g:11033:5: (lv_isRelativeToPC_4_0= '*' )
-                    // InternalAssembler.g:11034:6: lv_isRelativeToPC_4_0= '*'
+                    // InternalAssembler.g:11000:5: (lv_isRelativeToPC_4_0= '*' )
+                    // InternalAssembler.g:11001:6: lv_isRelativeToPC_4_0= '*'
                     {
                     lv_isRelativeToPC_4_0=(Token)match(input,165,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -30240,7 +30122,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleListOfExpression"
-    // InternalAssembler.g:11051:1: entryRuleListOfExpression returns [EObject current=null] : iv_ruleListOfExpression= ruleListOfExpression EOF ;
+    // InternalAssembler.g:11018:1: entryRuleListOfExpression returns [EObject current=null] : iv_ruleListOfExpression= ruleListOfExpression EOF ;
     public final EObject entryRuleListOfExpression() throws RecognitionException {
         EObject current = null;
 
@@ -30248,8 +30130,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:11051:57: (iv_ruleListOfExpression= ruleListOfExpression EOF )
-            // InternalAssembler.g:11052:2: iv_ruleListOfExpression= ruleListOfExpression EOF
+            // InternalAssembler.g:11018:57: (iv_ruleListOfExpression= ruleListOfExpression EOF )
+            // InternalAssembler.g:11019:2: iv_ruleListOfExpression= ruleListOfExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getListOfExpressionRule()); 
@@ -30280,7 +30162,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleListOfExpression"
-    // InternalAssembler.g:11058:1: ruleListOfExpression returns [EObject current=null] : ( ( (lv_expressions_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )* ) ;
+    // InternalAssembler.g:11025:1: ruleListOfExpression returns [EObject current=null] : ( ( (lv_expressions_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )* ) ;
     public final EObject ruleListOfExpression() throws RecognitionException {
         EObject current = null;
 
@@ -30294,17 +30176,17 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11064:2: ( ( ( (lv_expressions_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )* ) )
-            // InternalAssembler.g:11065:2: ( ( (lv_expressions_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )* )
+            // InternalAssembler.g:11031:2: ( ( ( (lv_expressions_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )* ) )
+            // InternalAssembler.g:11032:2: ( ( (lv_expressions_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )* )
             {
-            // InternalAssembler.g:11065:2: ( ( (lv_expressions_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )* )
-            // InternalAssembler.g:11066:3: ( (lv_expressions_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )*
+            // InternalAssembler.g:11032:2: ( ( (lv_expressions_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )* )
+            // InternalAssembler.g:11033:3: ( (lv_expressions_0_0= ruleExpression ) ) (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )*
             {
-            // InternalAssembler.g:11066:3: ( (lv_expressions_0_0= ruleExpression ) )
-            // InternalAssembler.g:11067:4: (lv_expressions_0_0= ruleExpression )
+            // InternalAssembler.g:11033:3: ( (lv_expressions_0_0= ruleExpression ) )
+            // InternalAssembler.g:11034:4: (lv_expressions_0_0= ruleExpression )
             {
-            // InternalAssembler.g:11067:4: (lv_expressions_0_0= ruleExpression )
-            // InternalAssembler.g:11068:5: lv_expressions_0_0= ruleExpression
+            // InternalAssembler.g:11034:4: (lv_expressions_0_0= ruleExpression )
+            // InternalAssembler.g:11035:5: lv_expressions_0_0= ruleExpression
             {
             if ( state.backtracking==0 ) {
 
@@ -30335,20 +30217,20 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalAssembler.g:11085:3: (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )*
-            loop155:
+            // InternalAssembler.g:11052:3: (otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) ) )*
+            loop153:
             do {
-                int alt155=2;
-                int LA155_0 = input.LA(1);
+                int alt153=2;
+                int LA153_0 = input.LA(1);
 
-                if ( (LA155_0==17) ) {
-                    alt155=1;
+                if ( (LA153_0==17) ) {
+                    alt153=1;
                 }
 
 
-                switch (alt155) {
+                switch (alt153) {
             	case 1 :
-            	    // InternalAssembler.g:11086:4: otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) )
+            	    // InternalAssembler.g:11053:4: otherlv_1= ',' ( (lv_expressions_2_0= ruleExpression ) )
             	    {
             	    otherlv_1=(Token)match(input,17,FOLLOW_18); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -30356,11 +30238,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      				newLeafNode(otherlv_1, grammarAccess.getListOfExpressionAccess().getCommaKeyword_1_0());
             	      			
             	    }
-            	    // InternalAssembler.g:11090:4: ( (lv_expressions_2_0= ruleExpression ) )
-            	    // InternalAssembler.g:11091:5: (lv_expressions_2_0= ruleExpression )
+            	    // InternalAssembler.g:11057:4: ( (lv_expressions_2_0= ruleExpression ) )
+            	    // InternalAssembler.g:11058:5: (lv_expressions_2_0= ruleExpression )
             	    {
-            	    // InternalAssembler.g:11091:5: (lv_expressions_2_0= ruleExpression )
-            	    // InternalAssembler.g:11092:6: lv_expressions_2_0= ruleExpression
+            	    // InternalAssembler.g:11058:5: (lv_expressions_2_0= ruleExpression )
+            	    // InternalAssembler.g:11059:6: lv_expressions_2_0= ruleExpression
             	    {
             	    if ( state.backtracking==0 ) {
 
@@ -30396,7 +30278,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	    break;
 
             	default :
-            	    break loop155;
+            	    break loop153;
                 }
             } while (true);
 
@@ -30425,7 +30307,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleExpression"
-    // InternalAssembler.g:11114:1: entryRuleExpression returns [EObject current=null] : iv_ruleExpression= ruleExpression EOF ;
+    // InternalAssembler.g:11081:1: entryRuleExpression returns [EObject current=null] : iv_ruleExpression= ruleExpression EOF ;
     public final EObject entryRuleExpression() throws RecognitionException {
         EObject current = null;
 
@@ -30433,8 +30315,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:11114:51: (iv_ruleExpression= ruleExpression EOF )
-            // InternalAssembler.g:11115:2: iv_ruleExpression= ruleExpression EOF
+            // InternalAssembler.g:11081:51: (iv_ruleExpression= ruleExpression EOF )
+            // InternalAssembler.g:11082:2: iv_ruleExpression= ruleExpression EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getExpressionRule()); 
@@ -30465,7 +30347,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleExpression"
-    // InternalAssembler.g:11121:1: ruleExpression returns [EObject current=null] : ( (lv_operand_0_0= ruleMultiplication ) ) ;
+    // InternalAssembler.g:11088:1: ruleExpression returns [EObject current=null] : ( (lv_operand_0_0= ruleMultiplication ) ) ;
     public final EObject ruleExpression() throws RecognitionException {
         EObject current = null;
 
@@ -30476,14 +30358,14 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11127:2: ( ( (lv_operand_0_0= ruleMultiplication ) ) )
-            // InternalAssembler.g:11128:2: ( (lv_operand_0_0= ruleMultiplication ) )
+            // InternalAssembler.g:11094:2: ( ( (lv_operand_0_0= ruleMultiplication ) ) )
+            // InternalAssembler.g:11095:2: ( (lv_operand_0_0= ruleMultiplication ) )
             {
-            // InternalAssembler.g:11128:2: ( (lv_operand_0_0= ruleMultiplication ) )
-            // InternalAssembler.g:11129:3: (lv_operand_0_0= ruleMultiplication )
+            // InternalAssembler.g:11095:2: ( (lv_operand_0_0= ruleMultiplication ) )
+            // InternalAssembler.g:11096:3: (lv_operand_0_0= ruleMultiplication )
             {
-            // InternalAssembler.g:11129:3: (lv_operand_0_0= ruleMultiplication )
-            // InternalAssembler.g:11130:4: lv_operand_0_0= ruleMultiplication
+            // InternalAssembler.g:11096:3: (lv_operand_0_0= ruleMultiplication )
+            // InternalAssembler.g:11097:4: lv_operand_0_0= ruleMultiplication
             {
             if ( state.backtracking==0 ) {
 
@@ -30536,7 +30418,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleMultiplication"
-    // InternalAssembler.g:11150:1: entryRuleMultiplication returns [EObject current=null] : iv_ruleMultiplication= ruleMultiplication EOF ;
+    // InternalAssembler.g:11117:1: entryRuleMultiplication returns [EObject current=null] : iv_ruleMultiplication= ruleMultiplication EOF ;
     public final EObject entryRuleMultiplication() throws RecognitionException {
         EObject current = null;
 
@@ -30544,8 +30426,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:11150:55: (iv_ruleMultiplication= ruleMultiplication EOF )
-            // InternalAssembler.g:11151:2: iv_ruleMultiplication= ruleMultiplication EOF
+            // InternalAssembler.g:11117:55: (iv_ruleMultiplication= ruleMultiplication EOF )
+            // InternalAssembler.g:11118:2: iv_ruleMultiplication= ruleMultiplication EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getMultiplicationRule()); 
@@ -30576,7 +30458,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleMultiplication"
-    // InternalAssembler.g:11157:1: ruleMultiplication returns [EObject current=null] : (this_Division_0= ruleDivision ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )* ) ;
+    // InternalAssembler.g:11124:1: ruleMultiplication returns [EObject current=null] : (this_Division_0= ruleDivision ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )* ) ;
     public final EObject ruleMultiplication() throws RecognitionException {
         EObject current = null;
 
@@ -30590,11 +30472,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11163:2: ( (this_Division_0= ruleDivision ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )* ) )
-            // InternalAssembler.g:11164:2: (this_Division_0= ruleDivision ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )* )
+            // InternalAssembler.g:11130:2: ( (this_Division_0= ruleDivision ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )* ) )
+            // InternalAssembler.g:11131:2: (this_Division_0= ruleDivision ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )* )
             {
-            // InternalAssembler.g:11164:2: (this_Division_0= ruleDivision ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )* )
-            // InternalAssembler.g:11165:3: this_Division_0= ruleDivision ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )*
+            // InternalAssembler.g:11131:2: (this_Division_0= ruleDivision ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )* )
+            // InternalAssembler.g:11132:3: this_Division_0= ruleDivision ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )*
             {
             if ( state.backtracking==0 ) {
 
@@ -30612,23 +30494,23 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAssembler.g:11173:3: ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )*
-            loop156:
+            // InternalAssembler.g:11140:3: ( () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) ) )*
+            loop154:
             do {
-                int alt156=2;
-                int LA156_0 = input.LA(1);
+                int alt154=2;
+                int LA154_0 = input.LA(1);
 
-                if ( (LA156_0==165) ) {
-                    alt156=1;
+                if ( (LA154_0==165) ) {
+                    alt154=1;
                 }
 
 
-                switch (alt156) {
+                switch (alt154) {
             	case 1 :
-            	    // InternalAssembler.g:11174:4: () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) )
+            	    // InternalAssembler.g:11141:4: () ( (lv_operation_2_0= '*' ) ) ( (lv_right_3_0= ruleDivision ) )
             	    {
-            	    // InternalAssembler.g:11174:4: ()
-            	    // InternalAssembler.g:11175:5: 
+            	    // InternalAssembler.g:11141:4: ()
+            	    // InternalAssembler.g:11142:5: 
             	    {
             	    if ( state.backtracking==0 ) {
 
@@ -30640,11 +30522,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    // InternalAssembler.g:11181:4: ( (lv_operation_2_0= '*' ) )
-            	    // InternalAssembler.g:11182:5: (lv_operation_2_0= '*' )
+            	    // InternalAssembler.g:11148:4: ( (lv_operation_2_0= '*' ) )
+            	    // InternalAssembler.g:11149:5: (lv_operation_2_0= '*' )
             	    {
-            	    // InternalAssembler.g:11182:5: (lv_operation_2_0= '*' )
-            	    // InternalAssembler.g:11183:6: lv_operation_2_0= '*'
+            	    // InternalAssembler.g:11149:5: (lv_operation_2_0= '*' )
+            	    // InternalAssembler.g:11150:6: lv_operation_2_0= '*'
             	    {
             	    lv_operation_2_0=(Token)match(input,165,FOLLOW_18); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
@@ -30666,11 +30548,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
             	    }
 
-            	    // InternalAssembler.g:11195:4: ( (lv_right_3_0= ruleDivision ) )
-            	    // InternalAssembler.g:11196:5: (lv_right_3_0= ruleDivision )
+            	    // InternalAssembler.g:11162:4: ( (lv_right_3_0= ruleDivision ) )
+            	    // InternalAssembler.g:11163:5: (lv_right_3_0= ruleDivision )
             	    {
-            	    // InternalAssembler.g:11196:5: (lv_right_3_0= ruleDivision )
-            	    // InternalAssembler.g:11197:6: lv_right_3_0= ruleDivision
+            	    // InternalAssembler.g:11163:5: (lv_right_3_0= ruleDivision )
+            	    // InternalAssembler.g:11164:6: lv_right_3_0= ruleDivision
             	    {
             	    if ( state.backtracking==0 ) {
 
@@ -30692,6 +30574,404 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      							"right",
             	      							lv_right_3_0,
             	      							"org.bpy.electronics.mc6809.assembler.Assembler.Division");
+            	      						afterParserOrEnumRuleCall();
+            	      					
+            	    }
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop154;
+                }
+            } while (true);
+
+
+            }
+
+
+            }
+
+            if ( state.backtracking==0 ) {
+
+              	leaveRule();
+
+            }
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleMultiplication"
+
+
+    // $ANTLR start "entryRuleDivision"
+    // InternalAssembler.g:11186:1: entryRuleDivision returns [EObject current=null] : iv_ruleDivision= ruleDivision EOF ;
+    public final EObject entryRuleDivision() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleDivision = null;
+
+
+        try {
+            // InternalAssembler.g:11186:49: (iv_ruleDivision= ruleDivision EOF )
+            // InternalAssembler.g:11187:2: iv_ruleDivision= ruleDivision EOF
+            {
+            if ( state.backtracking==0 ) {
+               newCompositeNode(grammarAccess.getDivisionRule()); 
+            }
+            pushFollow(FOLLOW_1);
+            iv_ruleDivision=ruleDivision();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+               current =iv_ruleDivision; 
+            }
+            match(input,EOF,FOLLOW_2); if (state.failed) return current;
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleDivision"
+
+
+    // $ANTLR start "ruleDivision"
+    // InternalAssembler.g:11193:1: ruleDivision returns [EObject current=null] : (this_Modulo_0= ruleModulo ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )* ) ;
+    public final EObject ruleDivision() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_opretation_2_0=null;
+        EObject this_Modulo_0 = null;
+
+        EObject lv_right_3_0 = null;
+
+
+
+        	enterRule();
+
+        try {
+            // InternalAssembler.g:11199:2: ( (this_Modulo_0= ruleModulo ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )* ) )
+            // InternalAssembler.g:11200:2: (this_Modulo_0= ruleModulo ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )* )
+            {
+            // InternalAssembler.g:11200:2: (this_Modulo_0= ruleModulo ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )* )
+            // InternalAssembler.g:11201:3: this_Modulo_0= ruleModulo ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )*
+            {
+            if ( state.backtracking==0 ) {
+
+              			newCompositeNode(grammarAccess.getDivisionAccess().getModuloParserRuleCall_0());
+              		
+            }
+            pushFollow(FOLLOW_32);
+            this_Modulo_0=ruleModulo();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+              			current = this_Modulo_0;
+              			afterParserOrEnumRuleCall();
+              		
+            }
+            // InternalAssembler.g:11209:3: ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )*
+            loop155:
+            do {
+                int alt155=2;
+                int LA155_0 = input.LA(1);
+
+                if ( (LA155_0==184) ) {
+                    alt155=1;
+                }
+
+
+                switch (alt155) {
+            	case 1 :
+            	    // InternalAssembler.g:11210:4: () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) )
+            	    {
+            	    // InternalAssembler.g:11210:4: ()
+            	    // InternalAssembler.g:11211:5: 
+            	    {
+            	    if ( state.backtracking==0 ) {
+
+            	      					current = forceCreateModelElementAndSet(
+            	      						grammarAccess.getDivisionAccess().getDivisionLeftAction_1_0(),
+            	      						current);
+            	      				
+            	    }
+
+            	    }
+
+            	    // InternalAssembler.g:11217:4: ( (lv_opretation_2_0= '/' ) )
+            	    // InternalAssembler.g:11218:5: (lv_opretation_2_0= '/' )
+            	    {
+            	    // InternalAssembler.g:11218:5: (lv_opretation_2_0= '/' )
+            	    // InternalAssembler.g:11219:6: lv_opretation_2_0= '/'
+            	    {
+            	    lv_opretation_2_0=(Token)match(input,184,FOLLOW_18); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      						newLeafNode(lv_opretation_2_0, grammarAccess.getDivisionAccess().getOpretationSolidusKeyword_1_1_0());
+            	      					
+            	    }
+            	    if ( state.backtracking==0 ) {
+
+            	      						if (current==null) {
+            	      							current = createModelElement(grammarAccess.getDivisionRule());
+            	      						}
+            	      						setWithLastConsumed(current, "opretation", lv_opretation_2_0, "/");
+            	      					
+            	    }
+
+            	    }
+
+
+            	    }
+
+            	    // InternalAssembler.g:11231:4: ( (lv_right_3_0= ruleModulo ) )
+            	    // InternalAssembler.g:11232:5: (lv_right_3_0= ruleModulo )
+            	    {
+            	    // InternalAssembler.g:11232:5: (lv_right_3_0= ruleModulo )
+            	    // InternalAssembler.g:11233:6: lv_right_3_0= ruleModulo
+            	    {
+            	    if ( state.backtracking==0 ) {
+
+            	      						newCompositeNode(grammarAccess.getDivisionAccess().getRightModuloParserRuleCall_1_2_0());
+            	      					
+            	    }
+            	    pushFollow(FOLLOW_32);
+            	    lv_right_3_0=ruleModulo();
+
+            	    state._fsp--;
+            	    if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      						if (current==null) {
+            	      							current = createModelElementForParent(grammarAccess.getDivisionRule());
+            	      						}
+            	      						set(
+            	      							current,
+            	      							"right",
+            	      							lv_right_3_0,
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Modulo");
+            	      						afterParserOrEnumRuleCall();
+            	      					
+            	    }
+
+            	    }
+
+
+            	    }
+
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop155;
+                }
+            } while (true);
+
+
+            }
+
+
+            }
+
+            if ( state.backtracking==0 ) {
+
+              	leaveRule();
+
+            }
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "ruleDivision"
+
+
+    // $ANTLR start "entryRuleModulo"
+    // InternalAssembler.g:11255:1: entryRuleModulo returns [EObject current=null] : iv_ruleModulo= ruleModulo EOF ;
+    public final EObject entryRuleModulo() throws RecognitionException {
+        EObject current = null;
+
+        EObject iv_ruleModulo = null;
+
+
+        try {
+            // InternalAssembler.g:11255:47: (iv_ruleModulo= ruleModulo EOF )
+            // InternalAssembler.g:11256:2: iv_ruleModulo= ruleModulo EOF
+            {
+            if ( state.backtracking==0 ) {
+               newCompositeNode(grammarAccess.getModuloRule()); 
+            }
+            pushFollow(FOLLOW_1);
+            iv_ruleModulo=ruleModulo();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+               current =iv_ruleModulo; 
+            }
+            match(input,EOF,FOLLOW_2); if (state.failed) return current;
+
+            }
+
+        }
+
+            catch (RecognitionException re) {
+                recover(input,re);
+                appendSkippedTokens();
+            }
+        finally {
+        }
+        return current;
+    }
+    // $ANTLR end "entryRuleModulo"
+
+
+    // $ANTLR start "ruleModulo"
+    // InternalAssembler.g:11262:1: ruleModulo returns [EObject current=null] : (this_Addition_0= ruleAddition ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )* ) ;
+    public final EObject ruleModulo() throws RecognitionException {
+        EObject current = null;
+
+        Token lv_opretation_2_0=null;
+        EObject this_Addition_0 = null;
+
+        EObject lv_right_3_0 = null;
+
+
+
+        	enterRule();
+
+        try {
+            // InternalAssembler.g:11268:2: ( (this_Addition_0= ruleAddition ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )* ) )
+            // InternalAssembler.g:11269:2: (this_Addition_0= ruleAddition ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )* )
+            {
+            // InternalAssembler.g:11269:2: (this_Addition_0= ruleAddition ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )* )
+            // InternalAssembler.g:11270:3: this_Addition_0= ruleAddition ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )*
+            {
+            if ( state.backtracking==0 ) {
+
+              			newCompositeNode(grammarAccess.getModuloAccess().getAdditionParserRuleCall_0());
+              		
+            }
+            pushFollow(FOLLOW_33);
+            this_Addition_0=ruleAddition();
+
+            state._fsp--;
+            if (state.failed) return current;
+            if ( state.backtracking==0 ) {
+
+              			current = this_Addition_0;
+              			afterParserOrEnumRuleCall();
+              		
+            }
+            // InternalAssembler.g:11278:3: ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )*
+            loop156:
+            do {
+                int alt156=2;
+                int LA156_0 = input.LA(1);
+
+                if ( (LA156_0==185) ) {
+                    alt156=1;
+                }
+
+
+                switch (alt156) {
+            	case 1 :
+            	    // InternalAssembler.g:11279:4: () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) )
+            	    {
+            	    // InternalAssembler.g:11279:4: ()
+            	    // InternalAssembler.g:11280:5: 
+            	    {
+            	    if ( state.backtracking==0 ) {
+
+            	      					current = forceCreateModelElementAndSet(
+            	      						grammarAccess.getModuloAccess().getModuloLeftAction_1_0(),
+            	      						current);
+            	      				
+            	    }
+
+            	    }
+
+            	    // InternalAssembler.g:11286:4: ( (lv_opretation_2_0= '%' ) )
+            	    // InternalAssembler.g:11287:5: (lv_opretation_2_0= '%' )
+            	    {
+            	    // InternalAssembler.g:11287:5: (lv_opretation_2_0= '%' )
+            	    // InternalAssembler.g:11288:6: lv_opretation_2_0= '%'
+            	    {
+            	    lv_opretation_2_0=(Token)match(input,185,FOLLOW_18); if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      						newLeafNode(lv_opretation_2_0, grammarAccess.getModuloAccess().getOpretationPercentSignKeyword_1_1_0());
+            	      					
+            	    }
+            	    if ( state.backtracking==0 ) {
+
+            	      						if (current==null) {
+            	      							current = createModelElement(grammarAccess.getModuloRule());
+            	      						}
+            	      						setWithLastConsumed(current, "opretation", lv_opretation_2_0, "%");
+            	      					
+            	    }
+
+            	    }
+
+
+            	    }
+
+            	    // InternalAssembler.g:11300:4: ( (lv_right_3_0= ruleAddition ) )
+            	    // InternalAssembler.g:11301:5: (lv_right_3_0= ruleAddition )
+            	    {
+            	    // InternalAssembler.g:11301:5: (lv_right_3_0= ruleAddition )
+            	    // InternalAssembler.g:11302:6: lv_right_3_0= ruleAddition
+            	    {
+            	    if ( state.backtracking==0 ) {
+
+            	      						newCompositeNode(grammarAccess.getModuloAccess().getRightAdditionParserRuleCall_1_2_0());
+            	      					
+            	    }
+            	    pushFollow(FOLLOW_33);
+            	    lv_right_3_0=ruleAddition();
+
+            	    state._fsp--;
+            	    if (state.failed) return current;
+            	    if ( state.backtracking==0 ) {
+
+            	      						if (current==null) {
+            	      							current = createModelElementForParent(grammarAccess.getModuloRule());
+            	      						}
+            	      						set(
+            	      							current,
+            	      							"right",
+            	      							lv_right_3_0,
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Addition");
             	      						afterParserOrEnumRuleCall();
             	      					
             	    }
@@ -30731,31 +31011,31 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleMultiplication"
+    // $ANTLR end "ruleModulo"
 
 
-    // $ANTLR start "entryRuleDivision"
-    // InternalAssembler.g:11219:1: entryRuleDivision returns [EObject current=null] : iv_ruleDivision= ruleDivision EOF ;
-    public final EObject entryRuleDivision() throws RecognitionException {
+    // $ANTLR start "entryRuleAddition"
+    // InternalAssembler.g:11324:1: entryRuleAddition returns [EObject current=null] : iv_ruleAddition= ruleAddition EOF ;
+    public final EObject entryRuleAddition() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleDivision = null;
+        EObject iv_ruleAddition = null;
 
 
         try {
-            // InternalAssembler.g:11219:49: (iv_ruleDivision= ruleDivision EOF )
-            // InternalAssembler.g:11220:2: iv_ruleDivision= ruleDivision EOF
+            // InternalAssembler.g:11324:49: (iv_ruleAddition= ruleAddition EOF )
+            // InternalAssembler.g:11325:2: iv_ruleAddition= ruleAddition EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getDivisionRule()); 
+               newCompositeNode(grammarAccess.getAdditionRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleDivision=ruleDivision();
+            iv_ruleAddition=ruleAddition();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleDivision; 
+               current =iv_ruleAddition; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -30771,16 +31051,16 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleDivision"
+    // $ANTLR end "entryRuleAddition"
 
 
-    // $ANTLR start "ruleDivision"
-    // InternalAssembler.g:11226:1: ruleDivision returns [EObject current=null] : (this_Modulo_0= ruleModulo ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )* ) ;
-    public final EObject ruleDivision() throws RecognitionException {
+    // $ANTLR start "ruleAddition"
+    // InternalAssembler.g:11331:1: ruleAddition returns [EObject current=null] : (this_Substraction_0= ruleSubstraction ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )* ) ;
+    public final EObject ruleAddition() throws RecognitionException {
         EObject current = null;
 
-        Token lv_opretation_2_0=null;
-        EObject this_Modulo_0 = null;
+        Token otherlv_2=null;
+        EObject this_Substraction_0 = null;
 
         EObject lv_right_3_0 = null;
 
@@ -30789,108 +31069,88 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11232:2: ( (this_Modulo_0= ruleModulo ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )* ) )
-            // InternalAssembler.g:11233:2: (this_Modulo_0= ruleModulo ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )* )
+            // InternalAssembler.g:11337:2: ( (this_Substraction_0= ruleSubstraction ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )* ) )
+            // InternalAssembler.g:11338:2: (this_Substraction_0= ruleSubstraction ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )* )
             {
-            // InternalAssembler.g:11233:2: (this_Modulo_0= ruleModulo ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )* )
-            // InternalAssembler.g:11234:3: this_Modulo_0= ruleModulo ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )*
+            // InternalAssembler.g:11338:2: (this_Substraction_0= ruleSubstraction ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )* )
+            // InternalAssembler.g:11339:3: this_Substraction_0= ruleSubstraction ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )*
             {
             if ( state.backtracking==0 ) {
 
-              			newCompositeNode(grammarAccess.getDivisionAccess().getModuloParserRuleCall_0());
+              			newCompositeNode(grammarAccess.getAdditionAccess().getSubstractionParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_32);
-            this_Modulo_0=ruleModulo();
+            pushFollow(FOLLOW_34);
+            this_Substraction_0=ruleSubstraction();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			current = this_Modulo_0;
+              			current = this_Substraction_0;
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAssembler.g:11242:3: ( () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) ) )*
+            // InternalAssembler.g:11347:3: ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )*
             loop157:
             do {
                 int alt157=2;
                 int LA157_0 = input.LA(1);
 
-                if ( (LA157_0==184) ) {
+                if ( (LA157_0==162) ) {
                     alt157=1;
                 }
 
 
                 switch (alt157) {
             	case 1 :
-            	    // InternalAssembler.g:11243:4: () ( (lv_opretation_2_0= '/' ) ) ( (lv_right_3_0= ruleModulo ) )
+            	    // InternalAssembler.g:11348:4: () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) )
             	    {
-            	    // InternalAssembler.g:11243:4: ()
-            	    // InternalAssembler.g:11244:5: 
+            	    // InternalAssembler.g:11348:4: ()
+            	    // InternalAssembler.g:11349:5: 
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getDivisionAccess().getDivisionLeftAction_1_0(),
+            	      						grammarAccess.getAdditionAccess().getAdditionLeftAction_1_0(),
             	      						current);
             	      				
             	    }
 
             	    }
 
-            	    // InternalAssembler.g:11250:4: ( (lv_opretation_2_0= '/' ) )
-            	    // InternalAssembler.g:11251:5: (lv_opretation_2_0= '/' )
-            	    {
-            	    // InternalAssembler.g:11251:5: (lv_opretation_2_0= '/' )
-            	    // InternalAssembler.g:11252:6: lv_opretation_2_0= '/'
-            	    {
-            	    lv_opretation_2_0=(Token)match(input,184,FOLLOW_18); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,162,FOLLOW_18); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      						newLeafNode(lv_opretation_2_0, grammarAccess.getDivisionAccess().getOpretationSolidusKeyword_1_1_0());
-            	      					
+            	      				newLeafNode(otherlv_2, grammarAccess.getAdditionAccess().getPlusSignKeyword_1_1());
+            	      			
             	    }
-            	    if ( state.backtracking==0 ) {
-
-            	      						if (current==null) {
-            	      							current = createModelElement(grammarAccess.getDivisionRule());
-            	      						}
-            	      						setWithLastConsumed(current, "opretation", lv_opretation_2_0, "/");
-            	      					
-            	    }
-
-            	    }
-
-
-            	    }
-
-            	    // InternalAssembler.g:11264:4: ( (lv_right_3_0= ruleModulo ) )
-            	    // InternalAssembler.g:11265:5: (lv_right_3_0= ruleModulo )
+            	    // InternalAssembler.g:11359:4: ( (lv_right_3_0= ruleSubstraction ) )
+            	    // InternalAssembler.g:11360:5: (lv_right_3_0= ruleSubstraction )
             	    {
-            	    // InternalAssembler.g:11265:5: (lv_right_3_0= ruleModulo )
-            	    // InternalAssembler.g:11266:6: lv_right_3_0= ruleModulo
+            	    // InternalAssembler.g:11360:5: (lv_right_3_0= ruleSubstraction )
+            	    // InternalAssembler.g:11361:6: lv_right_3_0= ruleSubstraction
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      						newCompositeNode(grammarAccess.getDivisionAccess().getRightModuloParserRuleCall_1_2_0());
+            	      						newCompositeNode(grammarAccess.getAdditionAccess().getRightSubstractionParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_32);
-            	    lv_right_3_0=ruleModulo();
+            	    pushFollow(FOLLOW_34);
+            	    lv_right_3_0=ruleSubstraction();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      						if (current==null) {
-            	      							current = createModelElementForParent(grammarAccess.getDivisionRule());
+            	      							current = createModelElementForParent(grammarAccess.getAdditionRule());
             	      						}
             	      						set(
             	      							current,
             	      							"right",
             	      							lv_right_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Modulo");
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Substraction");
             	      						afterParserOrEnumRuleCall();
             	      					
             	    }
@@ -30930,31 +31190,31 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleDivision"
+    // $ANTLR end "ruleAddition"
 
 
-    // $ANTLR start "entryRuleModulo"
-    // InternalAssembler.g:11288:1: entryRuleModulo returns [EObject current=null] : iv_ruleModulo= ruleModulo EOF ;
-    public final EObject entryRuleModulo() throws RecognitionException {
+    // $ANTLR start "entryRuleSubstraction"
+    // InternalAssembler.g:11383:1: entryRuleSubstraction returns [EObject current=null] : iv_ruleSubstraction= ruleSubstraction EOF ;
+    public final EObject entryRuleSubstraction() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleModulo = null;
+        EObject iv_ruleSubstraction = null;
 
 
         try {
-            // InternalAssembler.g:11288:47: (iv_ruleModulo= ruleModulo EOF )
-            // InternalAssembler.g:11289:2: iv_ruleModulo= ruleModulo EOF
+            // InternalAssembler.g:11383:53: (iv_ruleSubstraction= ruleSubstraction EOF )
+            // InternalAssembler.g:11384:2: iv_ruleSubstraction= ruleSubstraction EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getModuloRule()); 
+               newCompositeNode(grammarAccess.getSubstractionRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleModulo=ruleModulo();
+            iv_ruleSubstraction=ruleSubstraction();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleModulo; 
+               current =iv_ruleSubstraction; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -30970,16 +31230,16 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleModulo"
+    // $ANTLR end "entryRuleSubstraction"
 
 
-    // $ANTLR start "ruleModulo"
-    // InternalAssembler.g:11295:1: ruleModulo returns [EObject current=null] : (this_Addition_0= ruleAddition ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )* ) ;
-    public final EObject ruleModulo() throws RecognitionException {
+    // $ANTLR start "ruleSubstraction"
+    // InternalAssembler.g:11390:1: ruleSubstraction returns [EObject current=null] : (this_LeftShift_0= ruleLeftShift ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )* ) ;
+    public final EObject ruleSubstraction() throws RecognitionException {
         EObject current = null;
 
-        Token lv_opretation_2_0=null;
-        EObject this_Addition_0 = null;
+        Token otherlv_2=null;
+        EObject this_LeftShift_0 = null;
 
         EObject lv_right_3_0 = null;
 
@@ -30988,108 +31248,94 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11301:2: ( (this_Addition_0= ruleAddition ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )* ) )
-            // InternalAssembler.g:11302:2: (this_Addition_0= ruleAddition ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )* )
+            // InternalAssembler.g:11396:2: ( (this_LeftShift_0= ruleLeftShift ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )* ) )
+            // InternalAssembler.g:11397:2: (this_LeftShift_0= ruleLeftShift ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )* )
             {
-            // InternalAssembler.g:11302:2: (this_Addition_0= ruleAddition ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )* )
-            // InternalAssembler.g:11303:3: this_Addition_0= ruleAddition ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )*
+            // InternalAssembler.g:11397:2: (this_LeftShift_0= ruleLeftShift ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )* )
+            // InternalAssembler.g:11398:3: this_LeftShift_0= ruleLeftShift ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )*
             {
             if ( state.backtracking==0 ) {
 
-              			newCompositeNode(grammarAccess.getModuloAccess().getAdditionParserRuleCall_0());
+              			newCompositeNode(grammarAccess.getSubstractionAccess().getLeftShiftParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_33);
-            this_Addition_0=ruleAddition();
+            pushFollow(FOLLOW_35);
+            this_LeftShift_0=ruleLeftShift();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			current = this_Addition_0;
+              			current = this_LeftShift_0;
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAssembler.g:11311:3: ( () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) ) )*
+            // InternalAssembler.g:11406:3: ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )*
             loop158:
             do {
                 int alt158=2;
                 int LA158_0 = input.LA(1);
 
-                if ( (LA158_0==185) ) {
+                if ( (LA158_0==160) ) {
                     alt158=1;
                 }
 
 
                 switch (alt158) {
             	case 1 :
-            	    // InternalAssembler.g:11312:4: () ( (lv_opretation_2_0= '%' ) ) ( (lv_right_3_0= ruleAddition ) )
+            	    // InternalAssembler.g:11407:4: () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) )
             	    {
-            	    // InternalAssembler.g:11312:4: ()
-            	    // InternalAssembler.g:11313:5: 
+            	    // InternalAssembler.g:11407:4: ()
+            	    // InternalAssembler.g:11408:5: 
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getModuloAccess().getModuloLeftAction_1_0(),
+            	      						grammarAccess.getSubstractionAccess().getSubstractionLeftAction_1_0(),
             	      						current);
             	      				
             	    }
 
             	    }
 
-            	    // InternalAssembler.g:11319:4: ( (lv_opretation_2_0= '%' ) )
-            	    // InternalAssembler.g:11320:5: (lv_opretation_2_0= '%' )
+            	    // InternalAssembler.g:11414:4: ( ( '-' )=>otherlv_2= '-' )
+            	    // InternalAssembler.g:11415:5: ( '-' )=>otherlv_2= '-'
             	    {
-            	    // InternalAssembler.g:11320:5: (lv_opretation_2_0= '%' )
-            	    // InternalAssembler.g:11321:6: lv_opretation_2_0= '%'
-            	    {
-            	    lv_opretation_2_0=(Token)match(input,185,FOLLOW_18); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,160,FOLLOW_18); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      						newLeafNode(lv_opretation_2_0, grammarAccess.getModuloAccess().getOpretationPercentSignKeyword_1_1_0());
-            	      					
-            	    }
-            	    if ( state.backtracking==0 ) {
-
-            	      						if (current==null) {
-            	      							current = createModelElement(grammarAccess.getModuloRule());
-            	      						}
-            	      						setWithLastConsumed(current, "opretation", lv_opretation_2_0, "%");
-            	      					
+            	      					newLeafNode(otherlv_2, grammarAccess.getSubstractionAccess().getHyphenMinusKeyword_1_1());
+            	      				
             	    }
 
             	    }
 
-
-            	    }
-
-            	    // InternalAssembler.g:11333:4: ( (lv_right_3_0= ruleAddition ) )
-            	    // InternalAssembler.g:11334:5: (lv_right_3_0= ruleAddition )
+            	    // InternalAssembler.g:11421:4: ( (lv_right_3_0= ruleLeftShift ) )
+            	    // InternalAssembler.g:11422:5: (lv_right_3_0= ruleLeftShift )
             	    {
-            	    // InternalAssembler.g:11334:5: (lv_right_3_0= ruleAddition )
-            	    // InternalAssembler.g:11335:6: lv_right_3_0= ruleAddition
+            	    // InternalAssembler.g:11422:5: (lv_right_3_0= ruleLeftShift )
+            	    // InternalAssembler.g:11423:6: lv_right_3_0= ruleLeftShift
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      						newCompositeNode(grammarAccess.getModuloAccess().getRightAdditionParserRuleCall_1_2_0());
+            	      						newCompositeNode(grammarAccess.getSubstractionAccess().getRightLeftShiftParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_33);
-            	    lv_right_3_0=ruleAddition();
+            	    pushFollow(FOLLOW_35);
+            	    lv_right_3_0=ruleLeftShift();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      						if (current==null) {
-            	      							current = createModelElementForParent(grammarAccess.getModuloRule());
+            	      							current = createModelElementForParent(grammarAccess.getSubstractionRule());
             	      						}
             	      						set(
             	      							current,
             	      							"right",
             	      							lv_right_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Addition");
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.LeftShift");
             	      						afterParserOrEnumRuleCall();
             	      					
             	    }
@@ -31129,31 +31375,31 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleModulo"
+    // $ANTLR end "ruleSubstraction"
 
 
-    // $ANTLR start "entryRuleAddition"
-    // InternalAssembler.g:11357:1: entryRuleAddition returns [EObject current=null] : iv_ruleAddition= ruleAddition EOF ;
-    public final EObject entryRuleAddition() throws RecognitionException {
+    // $ANTLR start "entryRuleLeftShift"
+    // InternalAssembler.g:11445:1: entryRuleLeftShift returns [EObject current=null] : iv_ruleLeftShift= ruleLeftShift EOF ;
+    public final EObject entryRuleLeftShift() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleAddition = null;
+        EObject iv_ruleLeftShift = null;
 
 
         try {
-            // InternalAssembler.g:11357:49: (iv_ruleAddition= ruleAddition EOF )
-            // InternalAssembler.g:11358:2: iv_ruleAddition= ruleAddition EOF
+            // InternalAssembler.g:11445:50: (iv_ruleLeftShift= ruleLeftShift EOF )
+            // InternalAssembler.g:11446:2: iv_ruleLeftShift= ruleLeftShift EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getAdditionRule()); 
+               newCompositeNode(grammarAccess.getLeftShiftRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleAddition=ruleAddition();
+            iv_ruleLeftShift=ruleLeftShift();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleAddition; 
+               current =iv_ruleLeftShift; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -31169,16 +31415,16 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleAddition"
+    // $ANTLR end "entryRuleLeftShift"
 
 
-    // $ANTLR start "ruleAddition"
-    // InternalAssembler.g:11364:1: ruleAddition returns [EObject current=null] : (this_Substraction_0= ruleSubstraction ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )* ) ;
-    public final EObject ruleAddition() throws RecognitionException {
+    // $ANTLR start "ruleLeftShift"
+    // InternalAssembler.g:11452:1: ruleLeftShift returns [EObject current=null] : (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* ) ;
+    public final EObject ruleLeftShift() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_2=null;
-        EObject this_Substraction_0 = null;
+        EObject this_RightShift_0 = null;
 
         EObject lv_right_3_0 = null;
 
@@ -31187,88 +31433,88 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11370:2: ( (this_Substraction_0= ruleSubstraction ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )* ) )
-            // InternalAssembler.g:11371:2: (this_Substraction_0= ruleSubstraction ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )* )
+            // InternalAssembler.g:11458:2: ( (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* ) )
+            // InternalAssembler.g:11459:2: (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* )
             {
-            // InternalAssembler.g:11371:2: (this_Substraction_0= ruleSubstraction ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )* )
-            // InternalAssembler.g:11372:3: this_Substraction_0= ruleSubstraction ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )*
+            // InternalAssembler.g:11459:2: (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* )
+            // InternalAssembler.g:11460:3: this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )*
             {
             if ( state.backtracking==0 ) {
 
-              			newCompositeNode(grammarAccess.getAdditionAccess().getSubstractionParserRuleCall_0());
+              			newCompositeNode(grammarAccess.getLeftShiftAccess().getRightShiftParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_34);
-            this_Substraction_0=ruleSubstraction();
+            pushFollow(FOLLOW_36);
+            this_RightShift_0=ruleRightShift();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			current = this_Substraction_0;
+              			current = this_RightShift_0;
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAssembler.g:11380:3: ( () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) ) )*
+            // InternalAssembler.g:11468:3: ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )*
             loop159:
             do {
                 int alt159=2;
                 int LA159_0 = input.LA(1);
 
-                if ( (LA159_0==162) ) {
+                if ( (LA159_0==186) ) {
                     alt159=1;
                 }
 
 
                 switch (alt159) {
             	case 1 :
-            	    // InternalAssembler.g:11381:4: () otherlv_2= '+' ( (lv_right_3_0= ruleSubstraction ) )
+            	    // InternalAssembler.g:11469:4: () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) )
             	    {
-            	    // InternalAssembler.g:11381:4: ()
-            	    // InternalAssembler.g:11382:5: 
+            	    // InternalAssembler.g:11469:4: ()
+            	    // InternalAssembler.g:11470:5: 
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getAdditionAccess().getAdditionLeftAction_1_0(),
+            	      						grammarAccess.getLeftShiftAccess().getLeftShiftLeftAction_1_0(),
             	      						current);
             	      				
             	    }
 
             	    }
 
-            	    otherlv_2=(Token)match(input,162,FOLLOW_18); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,186,FOLLOW_18); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      				newLeafNode(otherlv_2, grammarAccess.getAdditionAccess().getPlusSignKeyword_1_1());
+            	      				newLeafNode(otherlv_2, grammarAccess.getLeftShiftAccess().getLessThanSignLessThanSignKeyword_1_1());
             	      			
             	    }
-            	    // InternalAssembler.g:11392:4: ( (lv_right_3_0= ruleSubstraction ) )
-            	    // InternalAssembler.g:11393:5: (lv_right_3_0= ruleSubstraction )
+            	    // InternalAssembler.g:11480:4: ( (lv_right_3_0= ruleRightShift ) )
+            	    // InternalAssembler.g:11481:5: (lv_right_3_0= ruleRightShift )
             	    {
-            	    // InternalAssembler.g:11393:5: (lv_right_3_0= ruleSubstraction )
-            	    // InternalAssembler.g:11394:6: lv_right_3_0= ruleSubstraction
+            	    // InternalAssembler.g:11481:5: (lv_right_3_0= ruleRightShift )
+            	    // InternalAssembler.g:11482:6: lv_right_3_0= ruleRightShift
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      						newCompositeNode(grammarAccess.getAdditionAccess().getRightSubstractionParserRuleCall_1_2_0());
+            	      						newCompositeNode(grammarAccess.getLeftShiftAccess().getRightRightShiftParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_34);
-            	    lv_right_3_0=ruleSubstraction();
+            	    pushFollow(FOLLOW_36);
+            	    lv_right_3_0=ruleRightShift();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      						if (current==null) {
-            	      							current = createModelElementForParent(grammarAccess.getAdditionRule());
+            	      							current = createModelElementForParent(grammarAccess.getLeftShiftRule());
             	      						}
             	      						set(
             	      							current,
             	      							"right",
             	      							lv_right_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Substraction");
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.RightShift");
             	      						afterParserOrEnumRuleCall();
             	      					
             	    }
@@ -31308,31 +31554,31 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleAddition"
+    // $ANTLR end "ruleLeftShift"
 
 
-    // $ANTLR start "entryRuleSubstraction"
-    // InternalAssembler.g:11416:1: entryRuleSubstraction returns [EObject current=null] : iv_ruleSubstraction= ruleSubstraction EOF ;
-    public final EObject entryRuleSubstraction() throws RecognitionException {
+    // $ANTLR start "entryRuleRightShift"
+    // InternalAssembler.g:11504:1: entryRuleRightShift returns [EObject current=null] : iv_ruleRightShift= ruleRightShift EOF ;
+    public final EObject entryRuleRightShift() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleSubstraction = null;
+        EObject iv_ruleRightShift = null;
 
 
         try {
-            // InternalAssembler.g:11416:53: (iv_ruleSubstraction= ruleSubstraction EOF )
-            // InternalAssembler.g:11417:2: iv_ruleSubstraction= ruleSubstraction EOF
+            // InternalAssembler.g:11504:51: (iv_ruleRightShift= ruleRightShift EOF )
+            // InternalAssembler.g:11505:2: iv_ruleRightShift= ruleRightShift EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getSubstractionRule()); 
+               newCompositeNode(grammarAccess.getRightShiftRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleSubstraction=ruleSubstraction();
+            iv_ruleRightShift=ruleRightShift();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleSubstraction; 
+               current =iv_ruleRightShift; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -31348,16 +31594,16 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleSubstraction"
+    // $ANTLR end "entryRuleRightShift"
 
 
-    // $ANTLR start "ruleSubstraction"
-    // InternalAssembler.g:11423:1: ruleSubstraction returns [EObject current=null] : (this_LeftShift_0= ruleLeftShift ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )* ) ;
-    public final EObject ruleSubstraction() throws RecognitionException {
+    // $ANTLR start "ruleRightShift"
+    // InternalAssembler.g:11511:1: ruleRightShift returns [EObject current=null] : (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* ) ;
+    public final EObject ruleRightShift() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_2=null;
-        EObject this_LeftShift_0 = null;
+        EObject this_And_0 = null;
 
         EObject lv_right_3_0 = null;
 
@@ -31366,94 +31612,88 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11429:2: ( (this_LeftShift_0= ruleLeftShift ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )* ) )
-            // InternalAssembler.g:11430:2: (this_LeftShift_0= ruleLeftShift ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )* )
+            // InternalAssembler.g:11517:2: ( (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* ) )
+            // InternalAssembler.g:11518:2: (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* )
             {
-            // InternalAssembler.g:11430:2: (this_LeftShift_0= ruleLeftShift ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )* )
-            // InternalAssembler.g:11431:3: this_LeftShift_0= ruleLeftShift ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )*
+            // InternalAssembler.g:11518:2: (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* )
+            // InternalAssembler.g:11519:3: this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )*
             {
             if ( state.backtracking==0 ) {
 
-              			newCompositeNode(grammarAccess.getSubstractionAccess().getLeftShiftParserRuleCall_0());
+              			newCompositeNode(grammarAccess.getRightShiftAccess().getAndParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_35);
-            this_LeftShift_0=ruleLeftShift();
+            pushFollow(FOLLOW_37);
+            this_And_0=ruleAnd();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			current = this_LeftShift_0;
+              			current = this_And_0;
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAssembler.g:11439:3: ( () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) ) )*
+            // InternalAssembler.g:11527:3: ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )*
             loop160:
             do {
                 int alt160=2;
                 int LA160_0 = input.LA(1);
 
-                if ( (LA160_0==160) ) {
+                if ( (LA160_0==187) ) {
                     alt160=1;
                 }
 
 
                 switch (alt160) {
             	case 1 :
-            	    // InternalAssembler.g:11440:4: () ( ( '-' )=>otherlv_2= '-' ) ( (lv_right_3_0= ruleLeftShift ) )
+            	    // InternalAssembler.g:11528:4: () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) )
             	    {
-            	    // InternalAssembler.g:11440:4: ()
-            	    // InternalAssembler.g:11441:5: 
+            	    // InternalAssembler.g:11528:4: ()
+            	    // InternalAssembler.g:11529:5: 
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getSubstractionAccess().getSubstractionLeftAction_1_0(),
+            	      						grammarAccess.getRightShiftAccess().getRightShiftLeftAction_1_0(),
             	      						current);
             	      				
             	    }
 
             	    }
 
-            	    // InternalAssembler.g:11447:4: ( ( '-' )=>otherlv_2= '-' )
-            	    // InternalAssembler.g:11448:5: ( '-' )=>otherlv_2= '-'
-            	    {
-            	    otherlv_2=(Token)match(input,160,FOLLOW_18); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,187,FOLLOW_18); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      					newLeafNode(otherlv_2, grammarAccess.getSubstractionAccess().getHyphenMinusKeyword_1_1());
-            	      				
+            	      				newLeafNode(otherlv_2, grammarAccess.getRightShiftAccess().getGreaterThanSignGreaterThanSignKeyword_1_1());
+            	      			
             	    }
-
-            	    }
-
-            	    // InternalAssembler.g:11454:4: ( (lv_right_3_0= ruleLeftShift ) )
-            	    // InternalAssembler.g:11455:5: (lv_right_3_0= ruleLeftShift )
+            	    // InternalAssembler.g:11539:4: ( (lv_right_3_0= ruleAnd ) )
+            	    // InternalAssembler.g:11540:5: (lv_right_3_0= ruleAnd )
             	    {
-            	    // InternalAssembler.g:11455:5: (lv_right_3_0= ruleLeftShift )
-            	    // InternalAssembler.g:11456:6: lv_right_3_0= ruleLeftShift
+            	    // InternalAssembler.g:11540:5: (lv_right_3_0= ruleAnd )
+            	    // InternalAssembler.g:11541:6: lv_right_3_0= ruleAnd
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      						newCompositeNode(grammarAccess.getSubstractionAccess().getRightLeftShiftParserRuleCall_1_2_0());
+            	      						newCompositeNode(grammarAccess.getRightShiftAccess().getRightAndParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_35);
-            	    lv_right_3_0=ruleLeftShift();
+            	    pushFollow(FOLLOW_37);
+            	    lv_right_3_0=ruleAnd();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      						if (current==null) {
-            	      							current = createModelElementForParent(grammarAccess.getSubstractionRule());
+            	      							current = createModelElementForParent(grammarAccess.getRightShiftRule());
             	      						}
             	      						set(
             	      							current,
             	      							"right",
             	      							lv_right_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.LeftShift");
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.And");
             	      						afterParserOrEnumRuleCall();
             	      					
             	    }
@@ -31493,31 +31733,31 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleSubstraction"
+    // $ANTLR end "ruleRightShift"
 
 
-    // $ANTLR start "entryRuleLeftShift"
-    // InternalAssembler.g:11478:1: entryRuleLeftShift returns [EObject current=null] : iv_ruleLeftShift= ruleLeftShift EOF ;
-    public final EObject entryRuleLeftShift() throws RecognitionException {
+    // $ANTLR start "entryRuleAnd"
+    // InternalAssembler.g:11563:1: entryRuleAnd returns [EObject current=null] : iv_ruleAnd= ruleAnd EOF ;
+    public final EObject entryRuleAnd() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleLeftShift = null;
+        EObject iv_ruleAnd = null;
 
 
         try {
-            // InternalAssembler.g:11478:50: (iv_ruleLeftShift= ruleLeftShift EOF )
-            // InternalAssembler.g:11479:2: iv_ruleLeftShift= ruleLeftShift EOF
+            // InternalAssembler.g:11563:44: (iv_ruleAnd= ruleAnd EOF )
+            // InternalAssembler.g:11564:2: iv_ruleAnd= ruleAnd EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getLeftShiftRule()); 
+               newCompositeNode(grammarAccess.getAndRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleLeftShift=ruleLeftShift();
+            iv_ruleAnd=ruleAnd();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleLeftShift; 
+               current =iv_ruleAnd; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -31533,16 +31773,16 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleLeftShift"
+    // $ANTLR end "entryRuleAnd"
 
 
-    // $ANTLR start "ruleLeftShift"
-    // InternalAssembler.g:11485:1: ruleLeftShift returns [EObject current=null] : (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* ) ;
-    public final EObject ruleLeftShift() throws RecognitionException {
+    // $ANTLR start "ruleAnd"
+    // InternalAssembler.g:11570:1: ruleAnd returns [EObject current=null] : (this_Or_0= ruleOr ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )* ) ;
+    public final EObject ruleAnd() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_2=null;
-        EObject this_RightShift_0 = null;
+        EObject this_Or_0 = null;
 
         EObject lv_right_3_0 = null;
 
@@ -31551,88 +31791,88 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11491:2: ( (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* ) )
-            // InternalAssembler.g:11492:2: (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* )
+            // InternalAssembler.g:11576:2: ( (this_Or_0= ruleOr ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )* ) )
+            // InternalAssembler.g:11577:2: (this_Or_0= ruleOr ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )* )
             {
-            // InternalAssembler.g:11492:2: (this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )* )
-            // InternalAssembler.g:11493:3: this_RightShift_0= ruleRightShift ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )*
+            // InternalAssembler.g:11577:2: (this_Or_0= ruleOr ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )* )
+            // InternalAssembler.g:11578:3: this_Or_0= ruleOr ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )*
             {
             if ( state.backtracking==0 ) {
 
-              			newCompositeNode(grammarAccess.getLeftShiftAccess().getRightShiftParserRuleCall_0());
+              			newCompositeNode(grammarAccess.getAndAccess().getOrParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_36);
-            this_RightShift_0=ruleRightShift();
+            pushFollow(FOLLOW_38);
+            this_Or_0=ruleOr();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			current = this_RightShift_0;
+              			current = this_Or_0;
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAssembler.g:11501:3: ( () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) ) )*
+            // InternalAssembler.g:11586:3: ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )*
             loop161:
             do {
                 int alt161=2;
                 int LA161_0 = input.LA(1);
 
-                if ( (LA161_0==186) ) {
+                if ( (LA161_0==188) ) {
                     alt161=1;
                 }
 
 
                 switch (alt161) {
             	case 1 :
-            	    // InternalAssembler.g:11502:4: () otherlv_2= '<<' ( (lv_right_3_0= ruleRightShift ) )
+            	    // InternalAssembler.g:11587:4: () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) )
             	    {
-            	    // InternalAssembler.g:11502:4: ()
-            	    // InternalAssembler.g:11503:5: 
+            	    // InternalAssembler.g:11587:4: ()
+            	    // InternalAssembler.g:11588:5: 
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getLeftShiftAccess().getLeftShiftLeftAction_1_0(),
+            	      						grammarAccess.getAndAccess().getAndLeftAction_1_0(),
             	      						current);
             	      				
             	    }
 
             	    }
 
-            	    otherlv_2=(Token)match(input,186,FOLLOW_18); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,188,FOLLOW_18); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      				newLeafNode(otherlv_2, grammarAccess.getLeftShiftAccess().getLessThanSignLessThanSignKeyword_1_1());
+            	      				newLeafNode(otherlv_2, grammarAccess.getAndAccess().getAmpersandAmpersandKeyword_1_1());
             	      			
             	    }
-            	    // InternalAssembler.g:11513:4: ( (lv_right_3_0= ruleRightShift ) )
-            	    // InternalAssembler.g:11514:5: (lv_right_3_0= ruleRightShift )
+            	    // InternalAssembler.g:11598:4: ( (lv_right_3_0= ruleOr ) )
+            	    // InternalAssembler.g:11599:5: (lv_right_3_0= ruleOr )
             	    {
-            	    // InternalAssembler.g:11514:5: (lv_right_3_0= ruleRightShift )
-            	    // InternalAssembler.g:11515:6: lv_right_3_0= ruleRightShift
+            	    // InternalAssembler.g:11599:5: (lv_right_3_0= ruleOr )
+            	    // InternalAssembler.g:11600:6: lv_right_3_0= ruleOr
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      						newCompositeNode(grammarAccess.getLeftShiftAccess().getRightRightShiftParserRuleCall_1_2_0());
+            	      						newCompositeNode(grammarAccess.getAndAccess().getRightOrParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_36);
-            	    lv_right_3_0=ruleRightShift();
+            	    pushFollow(FOLLOW_38);
+            	    lv_right_3_0=ruleOr();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      						if (current==null) {
-            	      							current = createModelElementForParent(grammarAccess.getLeftShiftRule());
+            	      							current = createModelElementForParent(grammarAccess.getAndRule());
             	      						}
             	      						set(
             	      							current,
             	      							"right",
             	      							lv_right_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.RightShift");
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Or");
             	      						afterParserOrEnumRuleCall();
             	      					
             	    }
@@ -31672,31 +31912,31 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleLeftShift"
+    // $ANTLR end "ruleAnd"
 
 
-    // $ANTLR start "entryRuleRightShift"
-    // InternalAssembler.g:11537:1: entryRuleRightShift returns [EObject current=null] : iv_ruleRightShift= ruleRightShift EOF ;
-    public final EObject entryRuleRightShift() throws RecognitionException {
+    // $ANTLR start "entryRuleOr"
+    // InternalAssembler.g:11622:1: entryRuleOr returns [EObject current=null] : iv_ruleOr= ruleOr EOF ;
+    public final EObject entryRuleOr() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleRightShift = null;
+        EObject iv_ruleOr = null;
 
 
         try {
-            // InternalAssembler.g:11537:51: (iv_ruleRightShift= ruleRightShift EOF )
-            // InternalAssembler.g:11538:2: iv_ruleRightShift= ruleRightShift EOF
+            // InternalAssembler.g:11622:43: (iv_ruleOr= ruleOr EOF )
+            // InternalAssembler.g:11623:2: iv_ruleOr= ruleOr EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getRightShiftRule()); 
+               newCompositeNode(grammarAccess.getOrRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleRightShift=ruleRightShift();
+            iv_ruleOr=ruleOr();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleRightShift; 
+               current =iv_ruleOr; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -31712,16 +31952,16 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleRightShift"
+    // $ANTLR end "entryRuleOr"
 
 
-    // $ANTLR start "ruleRightShift"
-    // InternalAssembler.g:11544:1: ruleRightShift returns [EObject current=null] : (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* ) ;
-    public final EObject ruleRightShift() throws RecognitionException {
+    // $ANTLR start "ruleOr"
+    // InternalAssembler.g:11629:1: ruleOr returns [EObject current=null] : (this_Xor_0= ruleXor ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )* ) ;
+    public final EObject ruleOr() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_2=null;
-        EObject this_And_0 = null;
+        EObject this_Xor_0 = null;
 
         EObject lv_right_3_0 = null;
 
@@ -31730,88 +31970,88 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11550:2: ( (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* ) )
-            // InternalAssembler.g:11551:2: (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* )
+            // InternalAssembler.g:11635:2: ( (this_Xor_0= ruleXor ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )* ) )
+            // InternalAssembler.g:11636:2: (this_Xor_0= ruleXor ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )* )
             {
-            // InternalAssembler.g:11551:2: (this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )* )
-            // InternalAssembler.g:11552:3: this_And_0= ruleAnd ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )*
+            // InternalAssembler.g:11636:2: (this_Xor_0= ruleXor ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )* )
+            // InternalAssembler.g:11637:3: this_Xor_0= ruleXor ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )*
             {
             if ( state.backtracking==0 ) {
 
-              			newCompositeNode(grammarAccess.getRightShiftAccess().getAndParserRuleCall_0());
+              			newCompositeNode(grammarAccess.getOrAccess().getXorParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_37);
-            this_And_0=ruleAnd();
+            pushFollow(FOLLOW_39);
+            this_Xor_0=ruleXor();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			current = this_And_0;
+              			current = this_Xor_0;
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAssembler.g:11560:3: ( () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) ) )*
+            // InternalAssembler.g:11645:3: ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )*
             loop162:
             do {
                 int alt162=2;
                 int LA162_0 = input.LA(1);
 
-                if ( (LA162_0==187) ) {
+                if ( (LA162_0==189) ) {
                     alt162=1;
                 }
 
 
                 switch (alt162) {
             	case 1 :
-            	    // InternalAssembler.g:11561:4: () otherlv_2= '>>' ( (lv_right_3_0= ruleAnd ) )
+            	    // InternalAssembler.g:11646:4: () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) )
             	    {
-            	    // InternalAssembler.g:11561:4: ()
-            	    // InternalAssembler.g:11562:5: 
+            	    // InternalAssembler.g:11646:4: ()
+            	    // InternalAssembler.g:11647:5: 
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getRightShiftAccess().getRightShiftLeftAction_1_0(),
+            	      						grammarAccess.getOrAccess().getOrLeftAction_1_0(),
             	      						current);
             	      				
             	    }
 
             	    }
 
-            	    otherlv_2=(Token)match(input,187,FOLLOW_18); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,189,FOLLOW_18); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      				newLeafNode(otherlv_2, grammarAccess.getRightShiftAccess().getGreaterThanSignGreaterThanSignKeyword_1_1());
+            	      				newLeafNode(otherlv_2, grammarAccess.getOrAccess().getVerticalLineVerticalLineKeyword_1_1());
             	      			
             	    }
-            	    // InternalAssembler.g:11572:4: ( (lv_right_3_0= ruleAnd ) )
-            	    // InternalAssembler.g:11573:5: (lv_right_3_0= ruleAnd )
+            	    // InternalAssembler.g:11657:4: ( (lv_right_3_0= ruleXor ) )
+            	    // InternalAssembler.g:11658:5: (lv_right_3_0= ruleXor )
             	    {
-            	    // InternalAssembler.g:11573:5: (lv_right_3_0= ruleAnd )
-            	    // InternalAssembler.g:11574:6: lv_right_3_0= ruleAnd
+            	    // InternalAssembler.g:11658:5: (lv_right_3_0= ruleXor )
+            	    // InternalAssembler.g:11659:6: lv_right_3_0= ruleXor
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      						newCompositeNode(grammarAccess.getRightShiftAccess().getRightAndParserRuleCall_1_2_0());
+            	      						newCompositeNode(grammarAccess.getOrAccess().getRightXorParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_37);
-            	    lv_right_3_0=ruleAnd();
+            	    pushFollow(FOLLOW_39);
+            	    lv_right_3_0=ruleXor();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      						if (current==null) {
-            	      							current = createModelElementForParent(grammarAccess.getRightShiftRule());
+            	      							current = createModelElementForParent(grammarAccess.getOrRule());
             	      						}
             	      						set(
             	      							current,
             	      							"right",
             	      							lv_right_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.And");
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Xor");
             	      						afterParserOrEnumRuleCall();
             	      					
             	    }
@@ -31851,31 +32091,31 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleRightShift"
+    // $ANTLR end "ruleOr"
 
 
-    // $ANTLR start "entryRuleAnd"
-    // InternalAssembler.g:11596:1: entryRuleAnd returns [EObject current=null] : iv_ruleAnd= ruleAnd EOF ;
-    public final EObject entryRuleAnd() throws RecognitionException {
+    // $ANTLR start "entryRuleXor"
+    // InternalAssembler.g:11681:1: entryRuleXor returns [EObject current=null] : iv_ruleXor= ruleXor EOF ;
+    public final EObject entryRuleXor() throws RecognitionException {
         EObject current = null;
 
-        EObject iv_ruleAnd = null;
+        EObject iv_ruleXor = null;
 
 
         try {
-            // InternalAssembler.g:11596:44: (iv_ruleAnd= ruleAnd EOF )
-            // InternalAssembler.g:11597:2: iv_ruleAnd= ruleAnd EOF
+            // InternalAssembler.g:11681:44: (iv_ruleXor= ruleXor EOF )
+            // InternalAssembler.g:11682:2: iv_ruleXor= ruleXor EOF
             {
             if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getAndRule()); 
+               newCompositeNode(grammarAccess.getXorRule()); 
             }
             pushFollow(FOLLOW_1);
-            iv_ruleAnd=ruleAnd();
+            iv_ruleXor=ruleXor();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
-               current =iv_ruleAnd; 
+               current =iv_ruleXor; 
             }
             match(input,EOF,FOLLOW_2); if (state.failed) return current;
 
@@ -31891,16 +32131,16 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "entryRuleAnd"
+    // $ANTLR end "entryRuleXor"
 
 
-    // $ANTLR start "ruleAnd"
-    // InternalAssembler.g:11603:1: ruleAnd returns [EObject current=null] : (this_Or_0= ruleOr ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )* ) ;
-    public final EObject ruleAnd() throws RecognitionException {
+    // $ANTLR start "ruleXor"
+    // InternalAssembler.g:11688:1: ruleXor returns [EObject current=null] : (this_Primary_0= rulePrimary ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )* ) ;
+    public final EObject ruleXor() throws RecognitionException {
         EObject current = null;
 
         Token otherlv_2=null;
-        EObject this_Or_0 = null;
+        EObject this_Primary_0 = null;
 
         EObject lv_right_3_0 = null;
 
@@ -31909,88 +32149,88 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11609:2: ( (this_Or_0= ruleOr ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )* ) )
-            // InternalAssembler.g:11610:2: (this_Or_0= ruleOr ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )* )
+            // InternalAssembler.g:11694:2: ( (this_Primary_0= rulePrimary ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )* ) )
+            // InternalAssembler.g:11695:2: (this_Primary_0= rulePrimary ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )* )
             {
-            // InternalAssembler.g:11610:2: (this_Or_0= ruleOr ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )* )
-            // InternalAssembler.g:11611:3: this_Or_0= ruleOr ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )*
+            // InternalAssembler.g:11695:2: (this_Primary_0= rulePrimary ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )* )
+            // InternalAssembler.g:11696:3: this_Primary_0= rulePrimary ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )*
             {
             if ( state.backtracking==0 ) {
 
-              			newCompositeNode(grammarAccess.getAndAccess().getOrParserRuleCall_0());
+              			newCompositeNode(grammarAccess.getXorAccess().getPrimaryParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_38);
-            this_Or_0=ruleOr();
+            pushFollow(FOLLOW_40);
+            this_Primary_0=rulePrimary();
 
             state._fsp--;
             if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
-              			current = this_Or_0;
+              			current = this_Primary_0;
               			afterParserOrEnumRuleCall();
               		
             }
-            // InternalAssembler.g:11619:3: ( () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) ) )*
+            // InternalAssembler.g:11704:3: ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )*
             loop163:
             do {
                 int alt163=2;
                 int LA163_0 = input.LA(1);
 
-                if ( (LA163_0==188) ) {
+                if ( (LA163_0==190) ) {
                     alt163=1;
                 }
 
 
                 switch (alt163) {
             	case 1 :
-            	    // InternalAssembler.g:11620:4: () otherlv_2= '&&' ( (lv_right_3_0= ruleOr ) )
+            	    // InternalAssembler.g:11705:4: () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) )
             	    {
-            	    // InternalAssembler.g:11620:4: ()
-            	    // InternalAssembler.g:11621:5: 
+            	    // InternalAssembler.g:11705:4: ()
+            	    // InternalAssembler.g:11706:5: 
             	    {
             	    if ( state.backtracking==0 ) {
 
             	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getAndAccess().getAndLeftAction_1_0(),
+            	      						grammarAccess.getXorAccess().getXorLeftAction_1_0(),
             	      						current);
             	      				
             	    }
 
             	    }
 
-            	    otherlv_2=(Token)match(input,188,FOLLOW_18); if (state.failed) return current;
+            	    otherlv_2=(Token)match(input,190,FOLLOW_18); if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
-            	      				newLeafNode(otherlv_2, grammarAccess.getAndAccess().getAmpersandAmpersandKeyword_1_1());
+            	      				newLeafNode(otherlv_2, grammarAccess.getXorAccess().getCircumflexAccentKeyword_1_1());
             	      			
             	    }
-            	    // InternalAssembler.g:11631:4: ( (lv_right_3_0= ruleOr ) )
-            	    // InternalAssembler.g:11632:5: (lv_right_3_0= ruleOr )
+            	    // InternalAssembler.g:11716:4: ( (lv_right_3_0= rulePrimary ) )
+            	    // InternalAssembler.g:11717:5: (lv_right_3_0= rulePrimary )
             	    {
-            	    // InternalAssembler.g:11632:5: (lv_right_3_0= ruleOr )
-            	    // InternalAssembler.g:11633:6: lv_right_3_0= ruleOr
+            	    // InternalAssembler.g:11717:5: (lv_right_3_0= rulePrimary )
+            	    // InternalAssembler.g:11718:6: lv_right_3_0= rulePrimary
             	    {
             	    if ( state.backtracking==0 ) {
 
-            	      						newCompositeNode(grammarAccess.getAndAccess().getRightOrParserRuleCall_1_2_0());
+            	      						newCompositeNode(grammarAccess.getXorAccess().getRightPrimaryParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_38);
-            	    lv_right_3_0=ruleOr();
+            	    pushFollow(FOLLOW_40);
+            	    lv_right_3_0=rulePrimary();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      						if (current==null) {
-            	      							current = createModelElementForParent(grammarAccess.getAndRule());
+            	      							current = createModelElementForParent(grammarAccess.getXorRule());
             	      						}
             	      						set(
             	      							current,
             	      							"right",
             	      							lv_right_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Or");
+            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Primary");
             	      						afterParserOrEnumRuleCall();
             	      					
             	    }
@@ -32030,369 +32270,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleAnd"
-
-
-    // $ANTLR start "entryRuleOr"
-    // InternalAssembler.g:11655:1: entryRuleOr returns [EObject current=null] : iv_ruleOr= ruleOr EOF ;
-    public final EObject entryRuleOr() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleOr = null;
-
-
-        try {
-            // InternalAssembler.g:11655:43: (iv_ruleOr= ruleOr EOF )
-            // InternalAssembler.g:11656:2: iv_ruleOr= ruleOr EOF
-            {
-            if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getOrRule()); 
-            }
-            pushFollow(FOLLOW_1);
-            iv_ruleOr=ruleOr();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-               current =iv_ruleOr; 
-            }
-            match(input,EOF,FOLLOW_2); if (state.failed) return current;
-
-            }
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleOr"
-
-
-    // $ANTLR start "ruleOr"
-    // InternalAssembler.g:11662:1: ruleOr returns [EObject current=null] : (this_Xor_0= ruleXor ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )* ) ;
-    public final EObject ruleOr() throws RecognitionException {
-        EObject current = null;
-
-        Token otherlv_2=null;
-        EObject this_Xor_0 = null;
-
-        EObject lv_right_3_0 = null;
-
-
-
-        	enterRule();
-
-        try {
-            // InternalAssembler.g:11668:2: ( (this_Xor_0= ruleXor ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )* ) )
-            // InternalAssembler.g:11669:2: (this_Xor_0= ruleXor ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )* )
-            {
-            // InternalAssembler.g:11669:2: (this_Xor_0= ruleXor ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )* )
-            // InternalAssembler.g:11670:3: this_Xor_0= ruleXor ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )*
-            {
-            if ( state.backtracking==0 ) {
-
-              			newCompositeNode(grammarAccess.getOrAccess().getXorParserRuleCall_0());
-              		
-            }
-            pushFollow(FOLLOW_39);
-            this_Xor_0=ruleXor();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-              			current = this_Xor_0;
-              			afterParserOrEnumRuleCall();
-              		
-            }
-            // InternalAssembler.g:11678:3: ( () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) ) )*
-            loop164:
-            do {
-                int alt164=2;
-                int LA164_0 = input.LA(1);
-
-                if ( (LA164_0==189) ) {
-                    alt164=1;
-                }
-
-
-                switch (alt164) {
-            	case 1 :
-            	    // InternalAssembler.g:11679:4: () otherlv_2= '||' ( (lv_right_3_0= ruleXor ) )
-            	    {
-            	    // InternalAssembler.g:11679:4: ()
-            	    // InternalAssembler.g:11680:5: 
-            	    {
-            	    if ( state.backtracking==0 ) {
-
-            	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getOrAccess().getOrLeftAction_1_0(),
-            	      						current);
-            	      				
-            	    }
-
-            	    }
-
-            	    otherlv_2=(Token)match(input,189,FOLLOW_18); if (state.failed) return current;
-            	    if ( state.backtracking==0 ) {
-
-            	      				newLeafNode(otherlv_2, grammarAccess.getOrAccess().getVerticalLineVerticalLineKeyword_1_1());
-            	      			
-            	    }
-            	    // InternalAssembler.g:11690:4: ( (lv_right_3_0= ruleXor ) )
-            	    // InternalAssembler.g:11691:5: (lv_right_3_0= ruleXor )
-            	    {
-            	    // InternalAssembler.g:11691:5: (lv_right_3_0= ruleXor )
-            	    // InternalAssembler.g:11692:6: lv_right_3_0= ruleXor
-            	    {
-            	    if ( state.backtracking==0 ) {
-
-            	      						newCompositeNode(grammarAccess.getOrAccess().getRightXorParserRuleCall_1_2_0());
-            	      					
-            	    }
-            	    pushFollow(FOLLOW_39);
-            	    lv_right_3_0=ruleXor();
-
-            	    state._fsp--;
-            	    if (state.failed) return current;
-            	    if ( state.backtracking==0 ) {
-
-            	      						if (current==null) {
-            	      							current = createModelElementForParent(grammarAccess.getOrRule());
-            	      						}
-            	      						set(
-            	      							current,
-            	      							"right",
-            	      							lv_right_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Xor");
-            	      						afterParserOrEnumRuleCall();
-            	      					
-            	    }
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop164;
-                }
-            } while (true);
-
-
-            }
-
-
-            }
-
-            if ( state.backtracking==0 ) {
-
-              	leaveRule();
-
-            }
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleOr"
-
-
-    // $ANTLR start "entryRuleXor"
-    // InternalAssembler.g:11714:1: entryRuleXor returns [EObject current=null] : iv_ruleXor= ruleXor EOF ;
-    public final EObject entryRuleXor() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleXor = null;
-
-
-        try {
-            // InternalAssembler.g:11714:44: (iv_ruleXor= ruleXor EOF )
-            // InternalAssembler.g:11715:2: iv_ruleXor= ruleXor EOF
-            {
-            if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getXorRule()); 
-            }
-            pushFollow(FOLLOW_1);
-            iv_ruleXor=ruleXor();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-               current =iv_ruleXor; 
-            }
-            match(input,EOF,FOLLOW_2); if (state.failed) return current;
-
-            }
-
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleXor"
-
-
-    // $ANTLR start "ruleXor"
-    // InternalAssembler.g:11721:1: ruleXor returns [EObject current=null] : (this_Primary_0= rulePrimary ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )* ) ;
-    public final EObject ruleXor() throws RecognitionException {
-        EObject current = null;
-
-        Token otherlv_2=null;
-        EObject this_Primary_0 = null;
-
-        EObject lv_right_3_0 = null;
-
-
-
-        	enterRule();
-
-        try {
-            // InternalAssembler.g:11727:2: ( (this_Primary_0= rulePrimary ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )* ) )
-            // InternalAssembler.g:11728:2: (this_Primary_0= rulePrimary ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )* )
-            {
-            // InternalAssembler.g:11728:2: (this_Primary_0= rulePrimary ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )* )
-            // InternalAssembler.g:11729:3: this_Primary_0= rulePrimary ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )*
-            {
-            if ( state.backtracking==0 ) {
-
-              			newCompositeNode(grammarAccess.getXorAccess().getPrimaryParserRuleCall_0());
-              		
-            }
-            pushFollow(FOLLOW_40);
-            this_Primary_0=rulePrimary();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-              			current = this_Primary_0;
-              			afterParserOrEnumRuleCall();
-              		
-            }
-            // InternalAssembler.g:11737:3: ( () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) ) )*
-            loop165:
-            do {
-                int alt165=2;
-                int LA165_0 = input.LA(1);
-
-                if ( (LA165_0==190) ) {
-                    alt165=1;
-                }
-
-
-                switch (alt165) {
-            	case 1 :
-            	    // InternalAssembler.g:11738:4: () otherlv_2= '^' ( (lv_right_3_0= rulePrimary ) )
-            	    {
-            	    // InternalAssembler.g:11738:4: ()
-            	    // InternalAssembler.g:11739:5: 
-            	    {
-            	    if ( state.backtracking==0 ) {
-
-            	      					current = forceCreateModelElementAndSet(
-            	      						grammarAccess.getXorAccess().getXorLeftAction_1_0(),
-            	      						current);
-            	      				
-            	    }
-
-            	    }
-
-            	    otherlv_2=(Token)match(input,190,FOLLOW_18); if (state.failed) return current;
-            	    if ( state.backtracking==0 ) {
-
-            	      				newLeafNode(otherlv_2, grammarAccess.getXorAccess().getCircumflexAccentKeyword_1_1());
-            	      			
-            	    }
-            	    // InternalAssembler.g:11749:4: ( (lv_right_3_0= rulePrimary ) )
-            	    // InternalAssembler.g:11750:5: (lv_right_3_0= rulePrimary )
-            	    {
-            	    // InternalAssembler.g:11750:5: (lv_right_3_0= rulePrimary )
-            	    // InternalAssembler.g:11751:6: lv_right_3_0= rulePrimary
-            	    {
-            	    if ( state.backtracking==0 ) {
-
-            	      						newCompositeNode(grammarAccess.getXorAccess().getRightPrimaryParserRuleCall_1_2_0());
-            	      					
-            	    }
-            	    pushFollow(FOLLOW_40);
-            	    lv_right_3_0=rulePrimary();
-
-            	    state._fsp--;
-            	    if (state.failed) return current;
-            	    if ( state.backtracking==0 ) {
-
-            	      						if (current==null) {
-            	      							current = createModelElementForParent(grammarAccess.getXorRule());
-            	      						}
-            	      						set(
-            	      							current,
-            	      							"right",
-            	      							lv_right_3_0,
-            	      							"org.bpy.electronics.mc6809.assembler.Assembler.Primary");
-            	      						afterParserOrEnumRuleCall();
-            	      					
-            	    }
-
-            	    }
-
-
-            	    }
-
-
-            	    }
-            	    break;
-
-            	default :
-            	    break loop165;
-                }
-            } while (true);
-
-
-            }
-
-
-            }
-
-            if ( state.backtracking==0 ) {
-
-              	leaveRule();
-
-            }
-        }
-
-            catch (RecognitionException re) {
-                recover(input,re);
-                appendSkippedTokens();
-            }
-        finally {
-        }
-        return current;
-    }
     // $ANTLR end "ruleXor"
 
 
     // $ANTLR start "entryRulePrimary"
-    // InternalAssembler.g:11773:1: entryRulePrimary returns [EObject current=null] : iv_rulePrimary= rulePrimary EOF ;
+    // InternalAssembler.g:11740:1: entryRulePrimary returns [EObject current=null] : iv_rulePrimary= rulePrimary EOF ;
     public final EObject entryRulePrimary() throws RecognitionException {
         EObject current = null;
 
@@ -32400,8 +32282,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:11773:48: (iv_rulePrimary= rulePrimary EOF )
-            // InternalAssembler.g:11774:2: iv_rulePrimary= rulePrimary EOF
+            // InternalAssembler.g:11740:48: (iv_rulePrimary= rulePrimary EOF )
+            // InternalAssembler.g:11741:2: iv_rulePrimary= rulePrimary EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getPrimaryRule()); 
@@ -32432,7 +32314,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "rulePrimary"
-    // InternalAssembler.g:11780:1: rulePrimary returns [EObject current=null] : ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) ) | (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' ) ) ;
+    // InternalAssembler.g:11747:1: rulePrimary returns [EObject current=null] : ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) ) | (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' ) ) ;
     public final EObject rulePrimary() throws RecognitionException {
         EObject current = null;
 
@@ -32460,71 +32342,71 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11786:2: ( ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) ) | (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' ) ) )
-            // InternalAssembler.g:11787:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) ) | (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' ) )
+            // InternalAssembler.g:11753:2: ( ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) ) | (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' ) ) )
+            // InternalAssembler.g:11754:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) ) | (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' ) )
             {
-            // InternalAssembler.g:11787:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) ) | (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' ) )
-            int alt166=8;
+            // InternalAssembler.g:11754:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) | ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) ) | (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' ) )
+            int alt164=8;
             switch ( input.LA(1) ) {
             case RULE_NUMBERS:
             case 160:
             case 162:
                 {
-                alt166=1;
+                alt164=1;
                 }
                 break;
             case RULE_HEXA:
                 {
-                alt166=2;
+                alt164=2;
                 }
                 break;
             case 194:
                 {
-                alt166=3;
+                alt164=3;
                 }
                 break;
             case 185:
                 {
-                alt166=4;
+                alt164=4;
                 }
                 break;
             case RULE_CHARACTER:
                 {
-                alt166=5;
+                alt164=5;
                 }
                 break;
             case RULE_ID:
                 {
-                alt166=6;
+                alt164=6;
                 }
                 break;
             case 191:
                 {
-                alt166=7;
+                alt164=7;
                 }
                 break;
             case 192:
                 {
-                alt166=8;
+                alt164=8;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 166, 0, input);
+                    new NoViableAltException("", 164, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt166) {
+            switch (alt164) {
                 case 1 :
-                    // InternalAssembler.g:11788:3: ( (lv_value_0_0= ruleDecimalValue ) )
+                    // InternalAssembler.g:11755:3: ( (lv_value_0_0= ruleDecimalValue ) )
                     {
-                    // InternalAssembler.g:11788:3: ( (lv_value_0_0= ruleDecimalValue ) )
-                    // InternalAssembler.g:11789:4: (lv_value_0_0= ruleDecimalValue )
+                    // InternalAssembler.g:11755:3: ( (lv_value_0_0= ruleDecimalValue ) )
+                    // InternalAssembler.g:11756:4: (lv_value_0_0= ruleDecimalValue )
                     {
-                    // InternalAssembler.g:11789:4: (lv_value_0_0= ruleDecimalValue )
-                    // InternalAssembler.g:11790:5: lv_value_0_0= ruleDecimalValue
+                    // InternalAssembler.g:11756:4: (lv_value_0_0= ruleDecimalValue )
+                    // InternalAssembler.g:11757:5: lv_value_0_0= ruleDecimalValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -32559,13 +32441,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalAssembler.g:11808:3: ( (lv_value_1_0= ruleHexaDecimalValue ) )
+                    // InternalAssembler.g:11775:3: ( (lv_value_1_0= ruleHexaDecimalValue ) )
                     {
-                    // InternalAssembler.g:11808:3: ( (lv_value_1_0= ruleHexaDecimalValue ) )
-                    // InternalAssembler.g:11809:4: (lv_value_1_0= ruleHexaDecimalValue )
+                    // InternalAssembler.g:11775:3: ( (lv_value_1_0= ruleHexaDecimalValue ) )
+                    // InternalAssembler.g:11776:4: (lv_value_1_0= ruleHexaDecimalValue )
                     {
-                    // InternalAssembler.g:11809:4: (lv_value_1_0= ruleHexaDecimalValue )
-                    // InternalAssembler.g:11810:5: lv_value_1_0= ruleHexaDecimalValue
+                    // InternalAssembler.g:11776:4: (lv_value_1_0= ruleHexaDecimalValue )
+                    // InternalAssembler.g:11777:5: lv_value_1_0= ruleHexaDecimalValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -32600,13 +32482,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalAssembler.g:11828:3: ( (lv_value_2_0= ruleOctalValue ) )
+                    // InternalAssembler.g:11795:3: ( (lv_value_2_0= ruleOctalValue ) )
                     {
-                    // InternalAssembler.g:11828:3: ( (lv_value_2_0= ruleOctalValue ) )
-                    // InternalAssembler.g:11829:4: (lv_value_2_0= ruleOctalValue )
+                    // InternalAssembler.g:11795:3: ( (lv_value_2_0= ruleOctalValue ) )
+                    // InternalAssembler.g:11796:4: (lv_value_2_0= ruleOctalValue )
                     {
-                    // InternalAssembler.g:11829:4: (lv_value_2_0= ruleOctalValue )
-                    // InternalAssembler.g:11830:5: lv_value_2_0= ruleOctalValue
+                    // InternalAssembler.g:11796:4: (lv_value_2_0= ruleOctalValue )
+                    // InternalAssembler.g:11797:5: lv_value_2_0= ruleOctalValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -32641,13 +32523,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalAssembler.g:11848:3: ( (lv_value_3_0= ruleBinaryValue ) )
+                    // InternalAssembler.g:11815:3: ( (lv_value_3_0= ruleBinaryValue ) )
                     {
-                    // InternalAssembler.g:11848:3: ( (lv_value_3_0= ruleBinaryValue ) )
-                    // InternalAssembler.g:11849:4: (lv_value_3_0= ruleBinaryValue )
+                    // InternalAssembler.g:11815:3: ( (lv_value_3_0= ruleBinaryValue ) )
+                    // InternalAssembler.g:11816:4: (lv_value_3_0= ruleBinaryValue )
                     {
-                    // InternalAssembler.g:11849:4: (lv_value_3_0= ruleBinaryValue )
-                    // InternalAssembler.g:11850:5: lv_value_3_0= ruleBinaryValue
+                    // InternalAssembler.g:11816:4: (lv_value_3_0= ruleBinaryValue )
+                    // InternalAssembler.g:11817:5: lv_value_3_0= ruleBinaryValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -32682,13 +32564,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalAssembler.g:11868:3: ( (lv_value_4_0= ruleCharacterValue ) )
+                    // InternalAssembler.g:11835:3: ( (lv_value_4_0= ruleCharacterValue ) )
                     {
-                    // InternalAssembler.g:11868:3: ( (lv_value_4_0= ruleCharacterValue ) )
-                    // InternalAssembler.g:11869:4: (lv_value_4_0= ruleCharacterValue )
+                    // InternalAssembler.g:11835:3: ( (lv_value_4_0= ruleCharacterValue ) )
+                    // InternalAssembler.g:11836:4: (lv_value_4_0= ruleCharacterValue )
                     {
-                    // InternalAssembler.g:11869:4: (lv_value_4_0= ruleCharacterValue )
-                    // InternalAssembler.g:11870:5: lv_value_4_0= ruleCharacterValue
+                    // InternalAssembler.g:11836:4: (lv_value_4_0= ruleCharacterValue )
+                    // InternalAssembler.g:11837:5: lv_value_4_0= ruleCharacterValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -32723,13 +32605,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalAssembler.g:11888:3: ( (lv_value_5_0= ruleIdentifierValue ) )
+                    // InternalAssembler.g:11855:3: ( (lv_value_5_0= ruleIdentifierValue ) )
                     {
-                    // InternalAssembler.g:11888:3: ( (lv_value_5_0= ruleIdentifierValue ) )
-                    // InternalAssembler.g:11889:4: (lv_value_5_0= ruleIdentifierValue )
+                    // InternalAssembler.g:11855:3: ( (lv_value_5_0= ruleIdentifierValue ) )
+                    // InternalAssembler.g:11856:4: (lv_value_5_0= ruleIdentifierValue )
                     {
-                    // InternalAssembler.g:11889:4: (lv_value_5_0= ruleIdentifierValue )
-                    // InternalAssembler.g:11890:5: lv_value_5_0= ruleIdentifierValue
+                    // InternalAssembler.g:11856:4: (lv_value_5_0= ruleIdentifierValue )
+                    // InternalAssembler.g:11857:5: lv_value_5_0= ruleIdentifierValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -32764,13 +32646,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // InternalAssembler.g:11908:3: ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) )
+                    // InternalAssembler.g:11875:3: ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) )
                     {
-                    // InternalAssembler.g:11908:3: ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) )
-                    // InternalAssembler.g:11909:4: () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) )
+                    // InternalAssembler.g:11875:3: ( () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) ) )
+                    // InternalAssembler.g:11876:4: () otherlv_7= '!' ( (lv_value_8_0= rulePrimary ) )
                     {
-                    // InternalAssembler.g:11909:4: ()
-                    // InternalAssembler.g:11910:5: 
+                    // InternalAssembler.g:11876:4: ()
+                    // InternalAssembler.g:11877:5: 
                     {
                     if ( state.backtracking==0 ) {
 
@@ -32788,11 +32670,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                       				newLeafNode(otherlv_7, grammarAccess.getPrimaryAccess().getExclamationMarkKeyword_6_1());
                       			
                     }
-                    // InternalAssembler.g:11920:4: ( (lv_value_8_0= rulePrimary ) )
-                    // InternalAssembler.g:11921:5: (lv_value_8_0= rulePrimary )
+                    // InternalAssembler.g:11887:4: ( (lv_value_8_0= rulePrimary ) )
+                    // InternalAssembler.g:11888:5: (lv_value_8_0= rulePrimary )
                     {
-                    // InternalAssembler.g:11921:5: (lv_value_8_0= rulePrimary )
-                    // InternalAssembler.g:11922:6: lv_value_8_0= rulePrimary
+                    // InternalAssembler.g:11888:5: (lv_value_8_0= rulePrimary )
+                    // InternalAssembler.g:11889:6: lv_value_8_0= rulePrimary
                     {
                     if ( state.backtracking==0 ) {
 
@@ -32830,10 +32712,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // InternalAssembler.g:11941:3: (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' )
+                    // InternalAssembler.g:11908:3: (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' )
                     {
-                    // InternalAssembler.g:11941:3: (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' )
-                    // InternalAssembler.g:11942:4: otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')'
+                    // InternalAssembler.g:11908:3: (otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')' )
+                    // InternalAssembler.g:11909:4: otherlv_9= '(' this_Multiplication_10= ruleMultiplication otherlv_11= ')'
                     {
                     otherlv_9=(Token)match(input,192,FOLLOW_18); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -32894,7 +32776,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleNumericalValue"
-    // InternalAssembler.g:11963:1: entryRuleNumericalValue returns [EObject current=null] : iv_ruleNumericalValue= ruleNumericalValue EOF ;
+    // InternalAssembler.g:11930:1: entryRuleNumericalValue returns [EObject current=null] : iv_ruleNumericalValue= ruleNumericalValue EOF ;
     public final EObject entryRuleNumericalValue() throws RecognitionException {
         EObject current = null;
 
@@ -32902,8 +32784,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:11963:55: (iv_ruleNumericalValue= ruleNumericalValue EOF )
-            // InternalAssembler.g:11964:2: iv_ruleNumericalValue= ruleNumericalValue EOF
+            // InternalAssembler.g:11930:55: (iv_ruleNumericalValue= ruleNumericalValue EOF )
+            // InternalAssembler.g:11931:2: iv_ruleNumericalValue= ruleNumericalValue EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getNumericalValueRule()); 
@@ -32934,7 +32816,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleNumericalValue"
-    // InternalAssembler.g:11970:1: ruleNumericalValue returns [EObject current=null] : ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) ) ;
+    // InternalAssembler.g:11937:1: ruleNumericalValue returns [EObject current=null] : ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) ) ;
     public final EObject ruleNumericalValue() throws RecognitionException {
         EObject current = null;
 
@@ -32955,61 +32837,61 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:11976:2: ( ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) ) )
-            // InternalAssembler.g:11977:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) )
+            // InternalAssembler.g:11943:2: ( ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) ) )
+            // InternalAssembler.g:11944:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) )
             {
-            // InternalAssembler.g:11977:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) )
-            int alt167=6;
+            // InternalAssembler.g:11944:2: ( ( (lv_value_0_0= ruleDecimalValue ) ) | ( (lv_value_1_0= ruleHexaDecimalValue ) ) | ( (lv_value_2_0= ruleOctalValue ) ) | ( (lv_value_3_0= ruleBinaryValue ) ) | ( (lv_value_4_0= ruleCharacterValue ) ) | ( (lv_value_5_0= ruleIdentifierValue ) ) )
+            int alt165=6;
             switch ( input.LA(1) ) {
             case RULE_NUMBERS:
             case 160:
             case 162:
                 {
-                alt167=1;
+                alt165=1;
                 }
                 break;
             case RULE_HEXA:
                 {
-                alt167=2;
+                alt165=2;
                 }
                 break;
             case 194:
                 {
-                alt167=3;
+                alt165=3;
                 }
                 break;
             case 185:
                 {
-                alt167=4;
+                alt165=4;
                 }
                 break;
             case RULE_CHARACTER:
                 {
-                alt167=5;
+                alt165=5;
                 }
                 break;
             case RULE_ID:
                 {
-                alt167=6;
+                alt165=6;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 167, 0, input);
+                    new NoViableAltException("", 165, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt167) {
+            switch (alt165) {
                 case 1 :
-                    // InternalAssembler.g:11978:3: ( (lv_value_0_0= ruleDecimalValue ) )
+                    // InternalAssembler.g:11945:3: ( (lv_value_0_0= ruleDecimalValue ) )
                     {
-                    // InternalAssembler.g:11978:3: ( (lv_value_0_0= ruleDecimalValue ) )
-                    // InternalAssembler.g:11979:4: (lv_value_0_0= ruleDecimalValue )
+                    // InternalAssembler.g:11945:3: ( (lv_value_0_0= ruleDecimalValue ) )
+                    // InternalAssembler.g:11946:4: (lv_value_0_0= ruleDecimalValue )
                     {
-                    // InternalAssembler.g:11979:4: (lv_value_0_0= ruleDecimalValue )
-                    // InternalAssembler.g:11980:5: lv_value_0_0= ruleDecimalValue
+                    // InternalAssembler.g:11946:4: (lv_value_0_0= ruleDecimalValue )
+                    // InternalAssembler.g:11947:5: lv_value_0_0= ruleDecimalValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -33044,13 +32926,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalAssembler.g:11998:3: ( (lv_value_1_0= ruleHexaDecimalValue ) )
+                    // InternalAssembler.g:11965:3: ( (lv_value_1_0= ruleHexaDecimalValue ) )
                     {
-                    // InternalAssembler.g:11998:3: ( (lv_value_1_0= ruleHexaDecimalValue ) )
-                    // InternalAssembler.g:11999:4: (lv_value_1_0= ruleHexaDecimalValue )
+                    // InternalAssembler.g:11965:3: ( (lv_value_1_0= ruleHexaDecimalValue ) )
+                    // InternalAssembler.g:11966:4: (lv_value_1_0= ruleHexaDecimalValue )
                     {
-                    // InternalAssembler.g:11999:4: (lv_value_1_0= ruleHexaDecimalValue )
-                    // InternalAssembler.g:12000:5: lv_value_1_0= ruleHexaDecimalValue
+                    // InternalAssembler.g:11966:4: (lv_value_1_0= ruleHexaDecimalValue )
+                    // InternalAssembler.g:11967:5: lv_value_1_0= ruleHexaDecimalValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -33085,13 +32967,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalAssembler.g:12018:3: ( (lv_value_2_0= ruleOctalValue ) )
+                    // InternalAssembler.g:11985:3: ( (lv_value_2_0= ruleOctalValue ) )
                     {
-                    // InternalAssembler.g:12018:3: ( (lv_value_2_0= ruleOctalValue ) )
-                    // InternalAssembler.g:12019:4: (lv_value_2_0= ruleOctalValue )
+                    // InternalAssembler.g:11985:3: ( (lv_value_2_0= ruleOctalValue ) )
+                    // InternalAssembler.g:11986:4: (lv_value_2_0= ruleOctalValue )
                     {
-                    // InternalAssembler.g:12019:4: (lv_value_2_0= ruleOctalValue )
-                    // InternalAssembler.g:12020:5: lv_value_2_0= ruleOctalValue
+                    // InternalAssembler.g:11986:4: (lv_value_2_0= ruleOctalValue )
+                    // InternalAssembler.g:11987:5: lv_value_2_0= ruleOctalValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -33126,13 +33008,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalAssembler.g:12038:3: ( (lv_value_3_0= ruleBinaryValue ) )
+                    // InternalAssembler.g:12005:3: ( (lv_value_3_0= ruleBinaryValue ) )
                     {
-                    // InternalAssembler.g:12038:3: ( (lv_value_3_0= ruleBinaryValue ) )
-                    // InternalAssembler.g:12039:4: (lv_value_3_0= ruleBinaryValue )
+                    // InternalAssembler.g:12005:3: ( (lv_value_3_0= ruleBinaryValue ) )
+                    // InternalAssembler.g:12006:4: (lv_value_3_0= ruleBinaryValue )
                     {
-                    // InternalAssembler.g:12039:4: (lv_value_3_0= ruleBinaryValue )
-                    // InternalAssembler.g:12040:5: lv_value_3_0= ruleBinaryValue
+                    // InternalAssembler.g:12006:4: (lv_value_3_0= ruleBinaryValue )
+                    // InternalAssembler.g:12007:5: lv_value_3_0= ruleBinaryValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -33167,13 +33049,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalAssembler.g:12058:3: ( (lv_value_4_0= ruleCharacterValue ) )
+                    // InternalAssembler.g:12025:3: ( (lv_value_4_0= ruleCharacterValue ) )
                     {
-                    // InternalAssembler.g:12058:3: ( (lv_value_4_0= ruleCharacterValue ) )
-                    // InternalAssembler.g:12059:4: (lv_value_4_0= ruleCharacterValue )
+                    // InternalAssembler.g:12025:3: ( (lv_value_4_0= ruleCharacterValue ) )
+                    // InternalAssembler.g:12026:4: (lv_value_4_0= ruleCharacterValue )
                     {
-                    // InternalAssembler.g:12059:4: (lv_value_4_0= ruleCharacterValue )
-                    // InternalAssembler.g:12060:5: lv_value_4_0= ruleCharacterValue
+                    // InternalAssembler.g:12026:4: (lv_value_4_0= ruleCharacterValue )
+                    // InternalAssembler.g:12027:5: lv_value_4_0= ruleCharacterValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -33208,13 +33090,13 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalAssembler.g:12078:3: ( (lv_value_5_0= ruleIdentifierValue ) )
+                    // InternalAssembler.g:12045:3: ( (lv_value_5_0= ruleIdentifierValue ) )
                     {
-                    // InternalAssembler.g:12078:3: ( (lv_value_5_0= ruleIdentifierValue ) )
-                    // InternalAssembler.g:12079:4: (lv_value_5_0= ruleIdentifierValue )
+                    // InternalAssembler.g:12045:3: ( (lv_value_5_0= ruleIdentifierValue ) )
+                    // InternalAssembler.g:12046:4: (lv_value_5_0= ruleIdentifierValue )
                     {
-                    // InternalAssembler.g:12079:4: (lv_value_5_0= ruleIdentifierValue )
-                    // InternalAssembler.g:12080:5: lv_value_5_0= ruleIdentifierValue
+                    // InternalAssembler.g:12046:4: (lv_value_5_0= ruleIdentifierValue )
+                    // InternalAssembler.g:12047:5: lv_value_5_0= ruleIdentifierValue
                     {
                     if ( state.backtracking==0 ) {
 
@@ -33273,7 +33155,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleIdentifierValue"
-    // InternalAssembler.g:12101:1: entryRuleIdentifierValue returns [EObject current=null] : iv_ruleIdentifierValue= ruleIdentifierValue EOF ;
+    // InternalAssembler.g:12068:1: entryRuleIdentifierValue returns [EObject current=null] : iv_ruleIdentifierValue= ruleIdentifierValue EOF ;
     public final EObject entryRuleIdentifierValue() throws RecognitionException {
         EObject current = null;
 
@@ -33281,8 +33163,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:12101:56: (iv_ruleIdentifierValue= ruleIdentifierValue EOF )
-            // InternalAssembler.g:12102:2: iv_ruleIdentifierValue= ruleIdentifierValue EOF
+            // InternalAssembler.g:12068:56: (iv_ruleIdentifierValue= ruleIdentifierValue EOF )
+            // InternalAssembler.g:12069:2: iv_ruleIdentifierValue= ruleIdentifierValue EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getIdentifierValueRule()); 
@@ -33313,7 +33195,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleIdentifierValue"
-    // InternalAssembler.g:12108:1: ruleIdentifierValue returns [EObject current=null] : ( (lv_value_0_0= RULE_ID ) ) ;
+    // InternalAssembler.g:12075:1: ruleIdentifierValue returns [EObject current=null] : ( (lv_value_0_0= RULE_ID ) ) ;
     public final EObject ruleIdentifierValue() throws RecognitionException {
         EObject current = null;
 
@@ -33323,14 +33205,14 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:12114:2: ( ( (lv_value_0_0= RULE_ID ) ) )
-            // InternalAssembler.g:12115:2: ( (lv_value_0_0= RULE_ID ) )
+            // InternalAssembler.g:12081:2: ( ( (lv_value_0_0= RULE_ID ) ) )
+            // InternalAssembler.g:12082:2: ( (lv_value_0_0= RULE_ID ) )
             {
-            // InternalAssembler.g:12115:2: ( (lv_value_0_0= RULE_ID ) )
-            // InternalAssembler.g:12116:3: (lv_value_0_0= RULE_ID )
+            // InternalAssembler.g:12082:2: ( (lv_value_0_0= RULE_ID ) )
+            // InternalAssembler.g:12083:3: (lv_value_0_0= RULE_ID )
             {
-            // InternalAssembler.g:12116:3: (lv_value_0_0= RULE_ID )
-            // InternalAssembler.g:12117:4: lv_value_0_0= RULE_ID
+            // InternalAssembler.g:12083:3: (lv_value_0_0= RULE_ID )
+            // InternalAssembler.g:12084:4: lv_value_0_0= RULE_ID
             {
             lv_value_0_0=(Token)match(input,RULE_ID,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -33378,7 +33260,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleDecimalValue"
-    // InternalAssembler.g:12136:1: entryRuleDecimalValue returns [EObject current=null] : iv_ruleDecimalValue= ruleDecimalValue EOF ;
+    // InternalAssembler.g:12103:1: entryRuleDecimalValue returns [EObject current=null] : iv_ruleDecimalValue= ruleDecimalValue EOF ;
     public final EObject entryRuleDecimalValue() throws RecognitionException {
         EObject current = null;
 
@@ -33386,8 +33268,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:12136:53: (iv_ruleDecimalValue= ruleDecimalValue EOF )
-            // InternalAssembler.g:12137:2: iv_ruleDecimalValue= ruleDecimalValue EOF
+            // InternalAssembler.g:12103:53: (iv_ruleDecimalValue= ruleDecimalValue EOF )
+            // InternalAssembler.g:12104:2: iv_ruleDecimalValue= ruleDecimalValue EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getDecimalValueRule()); 
@@ -33418,7 +33300,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleDecimalValue"
-    // InternalAssembler.g:12143:1: ruleDecimalValue returns [EObject current=null] : ( ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )? ( (lv_value_1_0= RULE_NUMBERS ) ) ) ;
+    // InternalAssembler.g:12110:1: ruleDecimalValue returns [EObject current=null] : ( ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )? ( (lv_value_1_0= RULE_NUMBERS ) ) ) ;
     public final EObject ruleDecimalValue() throws RecognitionException {
         EObject current = null;
 
@@ -33430,46 +33312,46 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:12149:2: ( ( ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )? ( (lv_value_1_0= RULE_NUMBERS ) ) ) )
-            // InternalAssembler.g:12150:2: ( ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )? ( (lv_value_1_0= RULE_NUMBERS ) ) )
+            // InternalAssembler.g:12116:2: ( ( ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )? ( (lv_value_1_0= RULE_NUMBERS ) ) ) )
+            // InternalAssembler.g:12117:2: ( ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )? ( (lv_value_1_0= RULE_NUMBERS ) ) )
             {
-            // InternalAssembler.g:12150:2: ( ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )? ( (lv_value_1_0= RULE_NUMBERS ) ) )
-            // InternalAssembler.g:12151:3: ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )? ( (lv_value_1_0= RULE_NUMBERS ) )
+            // InternalAssembler.g:12117:2: ( ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )? ( (lv_value_1_0= RULE_NUMBERS ) ) )
+            // InternalAssembler.g:12118:3: ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )? ( (lv_value_1_0= RULE_NUMBERS ) )
             {
-            // InternalAssembler.g:12151:3: ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )?
-            int alt169=2;
-            int LA169_0 = input.LA(1);
+            // InternalAssembler.g:12118:3: ( ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) ) )?
+            int alt167=2;
+            int LA167_0 = input.LA(1);
 
-            if ( (LA169_0==160||LA169_0==162) ) {
-                alt169=1;
+            if ( (LA167_0==160||LA167_0==162) ) {
+                alt167=1;
             }
-            switch (alt169) {
+            switch (alt167) {
                 case 1 :
-                    // InternalAssembler.g:12152:4: ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) )
+                    // InternalAssembler.g:12119:4: ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) )
                     {
-                    // InternalAssembler.g:12152:4: ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) )
-                    // InternalAssembler.g:12153:5: (lv_sign_0_1= '-' | lv_sign_0_2= '+' )
+                    // InternalAssembler.g:12119:4: ( (lv_sign_0_1= '-' | lv_sign_0_2= '+' ) )
+                    // InternalAssembler.g:12120:5: (lv_sign_0_1= '-' | lv_sign_0_2= '+' )
                     {
-                    // InternalAssembler.g:12153:5: (lv_sign_0_1= '-' | lv_sign_0_2= '+' )
-                    int alt168=2;
-                    int LA168_0 = input.LA(1);
+                    // InternalAssembler.g:12120:5: (lv_sign_0_1= '-' | lv_sign_0_2= '+' )
+                    int alt166=2;
+                    int LA166_0 = input.LA(1);
 
-                    if ( (LA168_0==160) ) {
-                        alt168=1;
+                    if ( (LA166_0==160) ) {
+                        alt166=1;
                     }
-                    else if ( (LA168_0==162) ) {
-                        alt168=2;
+                    else if ( (LA166_0==162) ) {
+                        alt166=2;
                     }
                     else {
                         if (state.backtracking>0) {state.failed=true; return current;}
                         NoViableAltException nvae =
-                            new NoViableAltException("", 168, 0, input);
+                            new NoViableAltException("", 166, 0, input);
 
                         throw nvae;
                     }
-                    switch (alt168) {
+                    switch (alt166) {
                         case 1 :
-                            // InternalAssembler.g:12154:6: lv_sign_0_1= '-'
+                            // InternalAssembler.g:12121:6: lv_sign_0_1= '-'
                             {
                             lv_sign_0_1=(Token)match(input,160,FOLLOW_42); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
@@ -33489,7 +33371,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                             }
                             break;
                         case 2 :
-                            // InternalAssembler.g:12165:6: lv_sign_0_2= '+'
+                            // InternalAssembler.g:12132:6: lv_sign_0_2= '+'
                             {
                             lv_sign_0_2=(Token)match(input,162,FOLLOW_42); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
@@ -33520,11 +33402,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalAssembler.g:12178:3: ( (lv_value_1_0= RULE_NUMBERS ) )
-            // InternalAssembler.g:12179:4: (lv_value_1_0= RULE_NUMBERS )
+            // InternalAssembler.g:12145:3: ( (lv_value_1_0= RULE_NUMBERS ) )
+            // InternalAssembler.g:12146:4: (lv_value_1_0= RULE_NUMBERS )
             {
-            // InternalAssembler.g:12179:4: (lv_value_1_0= RULE_NUMBERS )
-            // InternalAssembler.g:12180:5: lv_value_1_0= RULE_NUMBERS
+            // InternalAssembler.g:12146:4: (lv_value_1_0= RULE_NUMBERS )
+            // InternalAssembler.g:12147:5: lv_value_1_0= RULE_NUMBERS
             {
             lv_value_1_0=(Token)match(input,RULE_NUMBERS,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -33575,7 +33457,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleHexaDecimalValue"
-    // InternalAssembler.g:12200:1: entryRuleHexaDecimalValue returns [EObject current=null] : iv_ruleHexaDecimalValue= ruleHexaDecimalValue EOF ;
+    // InternalAssembler.g:12167:1: entryRuleHexaDecimalValue returns [EObject current=null] : iv_ruleHexaDecimalValue= ruleHexaDecimalValue EOF ;
     public final EObject entryRuleHexaDecimalValue() throws RecognitionException {
         EObject current = null;
 
@@ -33583,8 +33465,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:12200:57: (iv_ruleHexaDecimalValue= ruleHexaDecimalValue EOF )
-            // InternalAssembler.g:12201:2: iv_ruleHexaDecimalValue= ruleHexaDecimalValue EOF
+            // InternalAssembler.g:12167:57: (iv_ruleHexaDecimalValue= ruleHexaDecimalValue EOF )
+            // InternalAssembler.g:12168:2: iv_ruleHexaDecimalValue= ruleHexaDecimalValue EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getHexaDecimalValueRule()); 
@@ -33615,7 +33497,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleHexaDecimalValue"
-    // InternalAssembler.g:12207:1: ruleHexaDecimalValue returns [EObject current=null] : ( (lv_value_0_0= RULE_HEXA ) ) ;
+    // InternalAssembler.g:12174:1: ruleHexaDecimalValue returns [EObject current=null] : ( (lv_value_0_0= RULE_HEXA ) ) ;
     public final EObject ruleHexaDecimalValue() throws RecognitionException {
         EObject current = null;
 
@@ -33625,14 +33507,14 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:12213:2: ( ( (lv_value_0_0= RULE_HEXA ) ) )
-            // InternalAssembler.g:12214:2: ( (lv_value_0_0= RULE_HEXA ) )
+            // InternalAssembler.g:12180:2: ( ( (lv_value_0_0= RULE_HEXA ) ) )
+            // InternalAssembler.g:12181:2: ( (lv_value_0_0= RULE_HEXA ) )
             {
-            // InternalAssembler.g:12214:2: ( (lv_value_0_0= RULE_HEXA ) )
-            // InternalAssembler.g:12215:3: (lv_value_0_0= RULE_HEXA )
+            // InternalAssembler.g:12181:2: ( (lv_value_0_0= RULE_HEXA ) )
+            // InternalAssembler.g:12182:3: (lv_value_0_0= RULE_HEXA )
             {
-            // InternalAssembler.g:12215:3: (lv_value_0_0= RULE_HEXA )
-            // InternalAssembler.g:12216:4: lv_value_0_0= RULE_HEXA
+            // InternalAssembler.g:12182:3: (lv_value_0_0= RULE_HEXA )
+            // InternalAssembler.g:12183:4: lv_value_0_0= RULE_HEXA
             {
             lv_value_0_0=(Token)match(input,RULE_HEXA,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -33680,7 +33562,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleOctalValue"
-    // InternalAssembler.g:12235:1: entryRuleOctalValue returns [EObject current=null] : iv_ruleOctalValue= ruleOctalValue EOF ;
+    // InternalAssembler.g:12202:1: entryRuleOctalValue returns [EObject current=null] : iv_ruleOctalValue= ruleOctalValue EOF ;
     public final EObject entryRuleOctalValue() throws RecognitionException {
         EObject current = null;
 
@@ -33688,8 +33570,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:12235:51: (iv_ruleOctalValue= ruleOctalValue EOF )
-            // InternalAssembler.g:12236:2: iv_ruleOctalValue= ruleOctalValue EOF
+            // InternalAssembler.g:12202:51: (iv_ruleOctalValue= ruleOctalValue EOF )
+            // InternalAssembler.g:12203:2: iv_ruleOctalValue= ruleOctalValue EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getOctalValueRule()); 
@@ -33720,7 +33602,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleOctalValue"
-    // InternalAssembler.g:12242:1: ruleOctalValue returns [EObject current=null] : (otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) ) ) ;
+    // InternalAssembler.g:12209:1: ruleOctalValue returns [EObject current=null] : (otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) ) ) ;
     public final EObject ruleOctalValue() throws RecognitionException {
         EObject current = null;
 
@@ -33731,11 +33613,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:12248:2: ( (otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) ) ) )
-            // InternalAssembler.g:12249:2: (otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) ) )
+            // InternalAssembler.g:12215:2: ( (otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) ) ) )
+            // InternalAssembler.g:12216:2: (otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) ) )
             {
-            // InternalAssembler.g:12249:2: (otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) ) )
-            // InternalAssembler.g:12250:3: otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) )
+            // InternalAssembler.g:12216:2: (otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) ) )
+            // InternalAssembler.g:12217:3: otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) )
             {
             otherlv_0=(Token)match(input,194,FOLLOW_42); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -33743,11 +33625,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getOctalValueAccess().getCommercialAtKeyword_0());
               		
             }
-            // InternalAssembler.g:12254:3: ( (lv_value_1_0= RULE_NUMBERS ) )
-            // InternalAssembler.g:12255:4: (lv_value_1_0= RULE_NUMBERS )
+            // InternalAssembler.g:12221:3: ( (lv_value_1_0= RULE_NUMBERS ) )
+            // InternalAssembler.g:12222:4: (lv_value_1_0= RULE_NUMBERS )
             {
-            // InternalAssembler.g:12255:4: (lv_value_1_0= RULE_NUMBERS )
-            // InternalAssembler.g:12256:5: lv_value_1_0= RULE_NUMBERS
+            // InternalAssembler.g:12222:4: (lv_value_1_0= RULE_NUMBERS )
+            // InternalAssembler.g:12223:5: lv_value_1_0= RULE_NUMBERS
             {
             lv_value_1_0=(Token)match(input,RULE_NUMBERS,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -33798,7 +33680,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleBinaryValue"
-    // InternalAssembler.g:12276:1: entryRuleBinaryValue returns [EObject current=null] : iv_ruleBinaryValue= ruleBinaryValue EOF ;
+    // InternalAssembler.g:12243:1: entryRuleBinaryValue returns [EObject current=null] : iv_ruleBinaryValue= ruleBinaryValue EOF ;
     public final EObject entryRuleBinaryValue() throws RecognitionException {
         EObject current = null;
 
@@ -33806,8 +33688,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:12276:52: (iv_ruleBinaryValue= ruleBinaryValue EOF )
-            // InternalAssembler.g:12277:2: iv_ruleBinaryValue= ruleBinaryValue EOF
+            // InternalAssembler.g:12243:52: (iv_ruleBinaryValue= ruleBinaryValue EOF )
+            // InternalAssembler.g:12244:2: iv_ruleBinaryValue= ruleBinaryValue EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getBinaryValueRule()); 
@@ -33838,7 +33720,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleBinaryValue"
-    // InternalAssembler.g:12283:1: ruleBinaryValue returns [EObject current=null] : (otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) ) ) ;
+    // InternalAssembler.g:12250:1: ruleBinaryValue returns [EObject current=null] : (otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) ) ) ;
     public final EObject ruleBinaryValue() throws RecognitionException {
         EObject current = null;
 
@@ -33849,11 +33731,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:12289:2: ( (otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) ) ) )
-            // InternalAssembler.g:12290:2: (otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) ) )
+            // InternalAssembler.g:12256:2: ( (otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) ) ) )
+            // InternalAssembler.g:12257:2: (otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) ) )
             {
-            // InternalAssembler.g:12290:2: (otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) ) )
-            // InternalAssembler.g:12291:3: otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) )
+            // InternalAssembler.g:12257:2: (otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) ) )
+            // InternalAssembler.g:12258:3: otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) )
             {
             otherlv_0=(Token)match(input,185,FOLLOW_42); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -33861,11 +33743,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newLeafNode(otherlv_0, grammarAccess.getBinaryValueAccess().getPercentSignKeyword_0());
               		
             }
-            // InternalAssembler.g:12295:3: ( (lv_value_1_0= RULE_NUMBERS ) )
-            // InternalAssembler.g:12296:4: (lv_value_1_0= RULE_NUMBERS )
+            // InternalAssembler.g:12262:3: ( (lv_value_1_0= RULE_NUMBERS ) )
+            // InternalAssembler.g:12263:4: (lv_value_1_0= RULE_NUMBERS )
             {
-            // InternalAssembler.g:12296:4: (lv_value_1_0= RULE_NUMBERS )
-            // InternalAssembler.g:12297:5: lv_value_1_0= RULE_NUMBERS
+            // InternalAssembler.g:12263:4: (lv_value_1_0= RULE_NUMBERS )
+            // InternalAssembler.g:12264:5: lv_value_1_0= RULE_NUMBERS
             {
             lv_value_1_0=(Token)match(input,RULE_NUMBERS,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -33916,7 +33798,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleCharacterValue"
-    // InternalAssembler.g:12317:1: entryRuleCharacterValue returns [EObject current=null] : iv_ruleCharacterValue= ruleCharacterValue EOF ;
+    // InternalAssembler.g:12284:1: entryRuleCharacterValue returns [EObject current=null] : iv_ruleCharacterValue= ruleCharacterValue EOF ;
     public final EObject entryRuleCharacterValue() throws RecognitionException {
         EObject current = null;
 
@@ -33924,8 +33806,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:12317:55: (iv_ruleCharacterValue= ruleCharacterValue EOF )
-            // InternalAssembler.g:12318:2: iv_ruleCharacterValue= ruleCharacterValue EOF
+            // InternalAssembler.g:12284:55: (iv_ruleCharacterValue= ruleCharacterValue EOF )
+            // InternalAssembler.g:12285:2: iv_ruleCharacterValue= ruleCharacterValue EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getCharacterValueRule()); 
@@ -33956,7 +33838,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCharacterValue"
-    // InternalAssembler.g:12324:1: ruleCharacterValue returns [EObject current=null] : ( (lv_value_0_0= RULE_CHARACTER ) ) ;
+    // InternalAssembler.g:12291:1: ruleCharacterValue returns [EObject current=null] : ( (lv_value_0_0= RULE_CHARACTER ) ) ;
     public final EObject ruleCharacterValue() throws RecognitionException {
         EObject current = null;
 
@@ -33966,14 +33848,14 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:12330:2: ( ( (lv_value_0_0= RULE_CHARACTER ) ) )
-            // InternalAssembler.g:12331:2: ( (lv_value_0_0= RULE_CHARACTER ) )
+            // InternalAssembler.g:12297:2: ( ( (lv_value_0_0= RULE_CHARACTER ) ) )
+            // InternalAssembler.g:12298:2: ( (lv_value_0_0= RULE_CHARACTER ) )
             {
-            // InternalAssembler.g:12331:2: ( (lv_value_0_0= RULE_CHARACTER ) )
-            // InternalAssembler.g:12332:3: (lv_value_0_0= RULE_CHARACTER )
+            // InternalAssembler.g:12298:2: ( (lv_value_0_0= RULE_CHARACTER ) )
+            // InternalAssembler.g:12299:3: (lv_value_0_0= RULE_CHARACTER )
             {
-            // InternalAssembler.g:12332:3: (lv_value_0_0= RULE_CHARACTER )
-            // InternalAssembler.g:12333:4: lv_value_0_0= RULE_CHARACTER
+            // InternalAssembler.g:12299:3: (lv_value_0_0= RULE_CHARACTER )
+            // InternalAssembler.g:12300:4: lv_value_0_0= RULE_CHARACTER
             {
             lv_value_0_0=(Token)match(input,RULE_CHARACTER,FOLLOW_2); if (state.failed) return current;
             if ( state.backtracking==0 ) {
@@ -34021,7 +33903,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "entryRuleEndOfLine"
-    // InternalAssembler.g:12352:1: entryRuleEndOfLine returns [String current=null] : iv_ruleEndOfLine= ruleEndOfLine EOF ;
+    // InternalAssembler.g:12319:1: entryRuleEndOfLine returns [String current=null] : iv_ruleEndOfLine= ruleEndOfLine EOF ;
     public final String entryRuleEndOfLine() throws RecognitionException {
         String current = null;
 
@@ -34029,8 +33911,8 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
         try {
-            // InternalAssembler.g:12352:49: (iv_ruleEndOfLine= ruleEndOfLine EOF )
-            // InternalAssembler.g:12353:2: iv_ruleEndOfLine= ruleEndOfLine EOF
+            // InternalAssembler.g:12319:49: (iv_ruleEndOfLine= ruleEndOfLine EOF )
+            // InternalAssembler.g:12320:2: iv_ruleEndOfLine= ruleEndOfLine EOF
             {
             if ( state.backtracking==0 ) {
                newCompositeNode(grammarAccess.getEndOfLineRule()); 
@@ -34061,7 +33943,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEndOfLine"
-    // InternalAssembler.g:12359:1: ruleEndOfLine returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_CR_0= RULE_CR | this_END_OF_FILE_1= RULE_END_OF_FILE ) ;
+    // InternalAssembler.g:12326:1: ruleEndOfLine returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()] : (this_CR_0= RULE_CR | this_END_OF_FILE_1= RULE_END_OF_FILE ) ;
     public final AntlrDatatypeRuleToken ruleEndOfLine() throws RecognitionException {
         AntlrDatatypeRuleToken current = new AntlrDatatypeRuleToken();
 
@@ -34072,29 +33954,29 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:12365:2: ( (this_CR_0= RULE_CR | this_END_OF_FILE_1= RULE_END_OF_FILE ) )
-            // InternalAssembler.g:12366:2: (this_CR_0= RULE_CR | this_END_OF_FILE_1= RULE_END_OF_FILE )
+            // InternalAssembler.g:12332:2: ( (this_CR_0= RULE_CR | this_END_OF_FILE_1= RULE_END_OF_FILE ) )
+            // InternalAssembler.g:12333:2: (this_CR_0= RULE_CR | this_END_OF_FILE_1= RULE_END_OF_FILE )
             {
-            // InternalAssembler.g:12366:2: (this_CR_0= RULE_CR | this_END_OF_FILE_1= RULE_END_OF_FILE )
-            int alt170=2;
-            int LA170_0 = input.LA(1);
+            // InternalAssembler.g:12333:2: (this_CR_0= RULE_CR | this_END_OF_FILE_1= RULE_END_OF_FILE )
+            int alt168=2;
+            int LA168_0 = input.LA(1);
 
-            if ( (LA170_0==RULE_CR) ) {
-                alt170=1;
+            if ( (LA168_0==RULE_CR) ) {
+                alt168=1;
             }
-            else if ( (LA170_0==RULE_END_OF_FILE) ) {
-                alt170=2;
+            else if ( (LA168_0==RULE_END_OF_FILE) ) {
+                alt168=2;
             }
             else {
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 170, 0, input);
+                    new NoViableAltException("", 168, 0, input);
 
                 throw nvae;
             }
-            switch (alt170) {
+            switch (alt168) {
                 case 1 :
-                    // InternalAssembler.g:12367:3: this_CR_0= RULE_CR
+                    // InternalAssembler.g:12334:3: this_CR_0= RULE_CR
                     {
                     this_CR_0=(Token)match(input,RULE_CR,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34111,7 +33993,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalAssembler.g:12375:3: this_END_OF_FILE_1= RULE_END_OF_FILE
+                    // InternalAssembler.g:12342:3: this_END_OF_FILE_1= RULE_END_OF_FILE
                     {
                     this_END_OF_FILE_1=(Token)match(input,RULE_END_OF_FILE,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34152,7 +34034,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleAssemblyOption"
-    // InternalAssembler.g:12386:1: ruleAssemblyOption returns [Enumerator current=null] : ( (enumLiteral_0= 'PAG' ) | (enumLiteral_1= 'NOP' ) | (enumLiteral_2= 'CON' ) | (enumLiteral_3= 'NOC' ) | (enumLiteral_4= 'MAC' ) | (enumLiteral_5= 'NOM' ) | (enumLiteral_6= 'EXP' ) | (enumLiteral_7= 'NOE' ) ) ;
+    // InternalAssembler.g:12353:1: ruleAssemblyOption returns [Enumerator current=null] : ( (enumLiteral_0= 'PAG' ) | (enumLiteral_1= 'NOP' ) | (enumLiteral_2= 'CON' ) | (enumLiteral_3= 'NOC' ) | (enumLiteral_4= 'MAC' ) | (enumLiteral_5= 'NOM' ) | (enumLiteral_6= 'EXP' ) | (enumLiteral_7= 'NOE' ) ) ;
     public final Enumerator ruleAssemblyOption() throws RecognitionException {
         Enumerator current = null;
 
@@ -34169,66 +34051,66 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:12392:2: ( ( (enumLiteral_0= 'PAG' ) | (enumLiteral_1= 'NOP' ) | (enumLiteral_2= 'CON' ) | (enumLiteral_3= 'NOC' ) | (enumLiteral_4= 'MAC' ) | (enumLiteral_5= 'NOM' ) | (enumLiteral_6= 'EXP' ) | (enumLiteral_7= 'NOE' ) ) )
-            // InternalAssembler.g:12393:2: ( (enumLiteral_0= 'PAG' ) | (enumLiteral_1= 'NOP' ) | (enumLiteral_2= 'CON' ) | (enumLiteral_3= 'NOC' ) | (enumLiteral_4= 'MAC' ) | (enumLiteral_5= 'NOM' ) | (enumLiteral_6= 'EXP' ) | (enumLiteral_7= 'NOE' ) )
+            // InternalAssembler.g:12359:2: ( ( (enumLiteral_0= 'PAG' ) | (enumLiteral_1= 'NOP' ) | (enumLiteral_2= 'CON' ) | (enumLiteral_3= 'NOC' ) | (enumLiteral_4= 'MAC' ) | (enumLiteral_5= 'NOM' ) | (enumLiteral_6= 'EXP' ) | (enumLiteral_7= 'NOE' ) ) )
+            // InternalAssembler.g:12360:2: ( (enumLiteral_0= 'PAG' ) | (enumLiteral_1= 'NOP' ) | (enumLiteral_2= 'CON' ) | (enumLiteral_3= 'NOC' ) | (enumLiteral_4= 'MAC' ) | (enumLiteral_5= 'NOM' ) | (enumLiteral_6= 'EXP' ) | (enumLiteral_7= 'NOE' ) )
             {
-            // InternalAssembler.g:12393:2: ( (enumLiteral_0= 'PAG' ) | (enumLiteral_1= 'NOP' ) | (enumLiteral_2= 'CON' ) | (enumLiteral_3= 'NOC' ) | (enumLiteral_4= 'MAC' ) | (enumLiteral_5= 'NOM' ) | (enumLiteral_6= 'EXP' ) | (enumLiteral_7= 'NOE' ) )
-            int alt171=8;
+            // InternalAssembler.g:12360:2: ( (enumLiteral_0= 'PAG' ) | (enumLiteral_1= 'NOP' ) | (enumLiteral_2= 'CON' ) | (enumLiteral_3= 'NOC' ) | (enumLiteral_4= 'MAC' ) | (enumLiteral_5= 'NOM' ) | (enumLiteral_6= 'EXP' ) | (enumLiteral_7= 'NOE' ) )
+            int alt169=8;
             switch ( input.LA(1) ) {
             case 171:
                 {
-                alt171=1;
+                alt169=1;
                 }
                 break;
             case 50:
                 {
-                alt171=2;
+                alt169=2;
                 }
                 break;
             case 195:
                 {
-                alt171=3;
+                alt169=3;
                 }
                 break;
             case 196:
                 {
-                alt171=4;
+                alt169=4;
                 }
                 break;
             case 197:
                 {
-                alt171=5;
+                alt169=5;
                 }
                 break;
             case 198:
                 {
-                alt171=6;
+                alt169=6;
                 }
                 break;
             case 199:
                 {
-                alt171=7;
+                alt169=7;
                 }
                 break;
             case 200:
                 {
-                alt171=8;
+                alt169=8;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 171, 0, input);
+                    new NoViableAltException("", 169, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt171) {
+            switch (alt169) {
                 case 1 :
-                    // InternalAssembler.g:12394:3: (enumLiteral_0= 'PAG' )
+                    // InternalAssembler.g:12361:3: (enumLiteral_0= 'PAG' )
                     {
-                    // InternalAssembler.g:12394:3: (enumLiteral_0= 'PAG' )
-                    // InternalAssembler.g:12395:4: enumLiteral_0= 'PAG'
+                    // InternalAssembler.g:12361:3: (enumLiteral_0= 'PAG' )
+                    // InternalAssembler.g:12362:4: enumLiteral_0= 'PAG'
                     {
                     enumLiteral_0=(Token)match(input,171,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34244,10 +34126,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalAssembler.g:12402:3: (enumLiteral_1= 'NOP' )
+                    // InternalAssembler.g:12369:3: (enumLiteral_1= 'NOP' )
                     {
-                    // InternalAssembler.g:12402:3: (enumLiteral_1= 'NOP' )
-                    // InternalAssembler.g:12403:4: enumLiteral_1= 'NOP'
+                    // InternalAssembler.g:12369:3: (enumLiteral_1= 'NOP' )
+                    // InternalAssembler.g:12370:4: enumLiteral_1= 'NOP'
                     {
                     enumLiteral_1=(Token)match(input,50,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34263,10 +34145,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalAssembler.g:12410:3: (enumLiteral_2= 'CON' )
+                    // InternalAssembler.g:12377:3: (enumLiteral_2= 'CON' )
                     {
-                    // InternalAssembler.g:12410:3: (enumLiteral_2= 'CON' )
-                    // InternalAssembler.g:12411:4: enumLiteral_2= 'CON'
+                    // InternalAssembler.g:12377:3: (enumLiteral_2= 'CON' )
+                    // InternalAssembler.g:12378:4: enumLiteral_2= 'CON'
                     {
                     enumLiteral_2=(Token)match(input,195,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34282,10 +34164,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalAssembler.g:12418:3: (enumLiteral_3= 'NOC' )
+                    // InternalAssembler.g:12385:3: (enumLiteral_3= 'NOC' )
                     {
-                    // InternalAssembler.g:12418:3: (enumLiteral_3= 'NOC' )
-                    // InternalAssembler.g:12419:4: enumLiteral_3= 'NOC'
+                    // InternalAssembler.g:12385:3: (enumLiteral_3= 'NOC' )
+                    // InternalAssembler.g:12386:4: enumLiteral_3= 'NOC'
                     {
                     enumLiteral_3=(Token)match(input,196,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34301,10 +34183,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalAssembler.g:12426:3: (enumLiteral_4= 'MAC' )
+                    // InternalAssembler.g:12393:3: (enumLiteral_4= 'MAC' )
                     {
-                    // InternalAssembler.g:12426:3: (enumLiteral_4= 'MAC' )
-                    // InternalAssembler.g:12427:4: enumLiteral_4= 'MAC'
+                    // InternalAssembler.g:12393:3: (enumLiteral_4= 'MAC' )
+                    // InternalAssembler.g:12394:4: enumLiteral_4= 'MAC'
                     {
                     enumLiteral_4=(Token)match(input,197,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34320,10 +34202,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalAssembler.g:12434:3: (enumLiteral_5= 'NOM' )
+                    // InternalAssembler.g:12401:3: (enumLiteral_5= 'NOM' )
                     {
-                    // InternalAssembler.g:12434:3: (enumLiteral_5= 'NOM' )
-                    // InternalAssembler.g:12435:4: enumLiteral_5= 'NOM'
+                    // InternalAssembler.g:12401:3: (enumLiteral_5= 'NOM' )
+                    // InternalAssembler.g:12402:4: enumLiteral_5= 'NOM'
                     {
                     enumLiteral_5=(Token)match(input,198,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34339,10 +34221,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // InternalAssembler.g:12442:3: (enumLiteral_6= 'EXP' )
+                    // InternalAssembler.g:12409:3: (enumLiteral_6= 'EXP' )
                     {
-                    // InternalAssembler.g:12442:3: (enumLiteral_6= 'EXP' )
-                    // InternalAssembler.g:12443:4: enumLiteral_6= 'EXP'
+                    // InternalAssembler.g:12409:3: (enumLiteral_6= 'EXP' )
+                    // InternalAssembler.g:12410:4: enumLiteral_6= 'EXP'
                     {
                     enumLiteral_6=(Token)match(input,199,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34358,10 +34240,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // InternalAssembler.g:12450:3: (enumLiteral_7= 'NOE' )
+                    // InternalAssembler.g:12417:3: (enumLiteral_7= 'NOE' )
                     {
-                    // InternalAssembler.g:12450:3: (enumLiteral_7= 'NOE' )
-                    // InternalAssembler.g:12451:4: enumLiteral_7= 'NOE'
+                    // InternalAssembler.g:12417:3: (enumLiteral_7= 'NOE' )
+                    // InternalAssembler.g:12418:4: enumLiteral_7= 'NOE'
                     {
                     enumLiteral_7=(Token)match(input,200,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34401,7 +34283,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRegister"
-    // InternalAssembler.g:12461:1: ruleRegister returns [Enumerator current=null] : ( (enumLiteral_0= 'A' ) | (enumLiteral_1= 'B' ) | (enumLiteral_2= 'D' ) | (enumLiteral_3= 'X' ) | (enumLiteral_4= 'Y' ) | (enumLiteral_5= 'U' ) | (enumLiteral_6= 'S' ) | (enumLiteral_7= 'DP' ) | (enumLiteral_8= 'CC' ) | (enumLiteral_9= 'PC' ) ) ;
+    // InternalAssembler.g:12428:1: ruleRegister returns [Enumerator current=null] : ( (enumLiteral_0= 'A' ) | (enumLiteral_1= 'B' ) | (enumLiteral_2= 'D' ) | (enumLiteral_3= 'X' ) | (enumLiteral_4= 'Y' ) | (enumLiteral_5= 'U' ) | (enumLiteral_6= 'S' ) | (enumLiteral_7= 'DP' ) | (enumLiteral_8= 'CC' ) | (enumLiteral_9= 'PC' ) ) ;
     public final Enumerator ruleRegister() throws RecognitionException {
         Enumerator current = null;
 
@@ -34420,76 +34302,76 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:12467:2: ( ( (enumLiteral_0= 'A' ) | (enumLiteral_1= 'B' ) | (enumLiteral_2= 'D' ) | (enumLiteral_3= 'X' ) | (enumLiteral_4= 'Y' ) | (enumLiteral_5= 'U' ) | (enumLiteral_6= 'S' ) | (enumLiteral_7= 'DP' ) | (enumLiteral_8= 'CC' ) | (enumLiteral_9= 'PC' ) ) )
-            // InternalAssembler.g:12468:2: ( (enumLiteral_0= 'A' ) | (enumLiteral_1= 'B' ) | (enumLiteral_2= 'D' ) | (enumLiteral_3= 'X' ) | (enumLiteral_4= 'Y' ) | (enumLiteral_5= 'U' ) | (enumLiteral_6= 'S' ) | (enumLiteral_7= 'DP' ) | (enumLiteral_8= 'CC' ) | (enumLiteral_9= 'PC' ) )
+            // InternalAssembler.g:12434:2: ( ( (enumLiteral_0= 'A' ) | (enumLiteral_1= 'B' ) | (enumLiteral_2= 'D' ) | (enumLiteral_3= 'X' ) | (enumLiteral_4= 'Y' ) | (enumLiteral_5= 'U' ) | (enumLiteral_6= 'S' ) | (enumLiteral_7= 'DP' ) | (enumLiteral_8= 'CC' ) | (enumLiteral_9= 'PC' ) ) )
+            // InternalAssembler.g:12435:2: ( (enumLiteral_0= 'A' ) | (enumLiteral_1= 'B' ) | (enumLiteral_2= 'D' ) | (enumLiteral_3= 'X' ) | (enumLiteral_4= 'Y' ) | (enumLiteral_5= 'U' ) | (enumLiteral_6= 'S' ) | (enumLiteral_7= 'DP' ) | (enumLiteral_8= 'CC' ) | (enumLiteral_9= 'PC' ) )
             {
-            // InternalAssembler.g:12468:2: ( (enumLiteral_0= 'A' ) | (enumLiteral_1= 'B' ) | (enumLiteral_2= 'D' ) | (enumLiteral_3= 'X' ) | (enumLiteral_4= 'Y' ) | (enumLiteral_5= 'U' ) | (enumLiteral_6= 'S' ) | (enumLiteral_7= 'DP' ) | (enumLiteral_8= 'CC' ) | (enumLiteral_9= 'PC' ) )
-            int alt172=10;
+            // InternalAssembler.g:12435:2: ( (enumLiteral_0= 'A' ) | (enumLiteral_1= 'B' ) | (enumLiteral_2= 'D' ) | (enumLiteral_3= 'X' ) | (enumLiteral_4= 'Y' ) | (enumLiteral_5= 'U' ) | (enumLiteral_6= 'S' ) | (enumLiteral_7= 'DP' ) | (enumLiteral_8= 'CC' ) | (enumLiteral_9= 'PC' ) )
+            int alt170=10;
             switch ( input.LA(1) ) {
             case 157:
                 {
-                alt172=1;
+                alt170=1;
                 }
                 break;
             case 158:
                 {
-                alt172=2;
+                alt170=2;
                 }
                 break;
             case 159:
                 {
-                alt172=3;
+                alt170=3;
                 }
                 break;
             case 155:
                 {
-                alt172=4;
+                alt170=4;
                 }
                 break;
             case 156:
                 {
-                alt172=5;
+                alt170=5;
                 }
                 break;
             case 154:
                 {
-                alt172=6;
+                alt170=6;
                 }
                 break;
             case 153:
                 {
-                alt172=7;
+                alt170=7;
                 }
                 break;
             case 201:
                 {
-                alt172=8;
+                alt170=8;
                 }
                 break;
             case 202:
                 {
-                alt172=9;
+                alt170=9;
                 }
                 break;
             case 203:
                 {
-                alt172=10;
+                alt170=10;
                 }
                 break;
             default:
                 if (state.backtracking>0) {state.failed=true; return current;}
                 NoViableAltException nvae =
-                    new NoViableAltException("", 172, 0, input);
+                    new NoViableAltException("", 170, 0, input);
 
                 throw nvae;
             }
 
-            switch (alt172) {
+            switch (alt170) {
                 case 1 :
-                    // InternalAssembler.g:12469:3: (enumLiteral_0= 'A' )
+                    // InternalAssembler.g:12436:3: (enumLiteral_0= 'A' )
                     {
-                    // InternalAssembler.g:12469:3: (enumLiteral_0= 'A' )
-                    // InternalAssembler.g:12470:4: enumLiteral_0= 'A'
+                    // InternalAssembler.g:12436:3: (enumLiteral_0= 'A' )
+                    // InternalAssembler.g:12437:4: enumLiteral_0= 'A'
                     {
                     enumLiteral_0=(Token)match(input,157,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34505,10 +34387,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 2 :
-                    // InternalAssembler.g:12477:3: (enumLiteral_1= 'B' )
+                    // InternalAssembler.g:12444:3: (enumLiteral_1= 'B' )
                     {
-                    // InternalAssembler.g:12477:3: (enumLiteral_1= 'B' )
-                    // InternalAssembler.g:12478:4: enumLiteral_1= 'B'
+                    // InternalAssembler.g:12444:3: (enumLiteral_1= 'B' )
+                    // InternalAssembler.g:12445:4: enumLiteral_1= 'B'
                     {
                     enumLiteral_1=(Token)match(input,158,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34524,10 +34406,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 3 :
-                    // InternalAssembler.g:12485:3: (enumLiteral_2= 'D' )
+                    // InternalAssembler.g:12452:3: (enumLiteral_2= 'D' )
                     {
-                    // InternalAssembler.g:12485:3: (enumLiteral_2= 'D' )
-                    // InternalAssembler.g:12486:4: enumLiteral_2= 'D'
+                    // InternalAssembler.g:12452:3: (enumLiteral_2= 'D' )
+                    // InternalAssembler.g:12453:4: enumLiteral_2= 'D'
                     {
                     enumLiteral_2=(Token)match(input,159,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34543,10 +34425,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 4 :
-                    // InternalAssembler.g:12493:3: (enumLiteral_3= 'X' )
+                    // InternalAssembler.g:12460:3: (enumLiteral_3= 'X' )
                     {
-                    // InternalAssembler.g:12493:3: (enumLiteral_3= 'X' )
-                    // InternalAssembler.g:12494:4: enumLiteral_3= 'X'
+                    // InternalAssembler.g:12460:3: (enumLiteral_3= 'X' )
+                    // InternalAssembler.g:12461:4: enumLiteral_3= 'X'
                     {
                     enumLiteral_3=(Token)match(input,155,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34562,10 +34444,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 5 :
-                    // InternalAssembler.g:12501:3: (enumLiteral_4= 'Y' )
+                    // InternalAssembler.g:12468:3: (enumLiteral_4= 'Y' )
                     {
-                    // InternalAssembler.g:12501:3: (enumLiteral_4= 'Y' )
-                    // InternalAssembler.g:12502:4: enumLiteral_4= 'Y'
+                    // InternalAssembler.g:12468:3: (enumLiteral_4= 'Y' )
+                    // InternalAssembler.g:12469:4: enumLiteral_4= 'Y'
                     {
                     enumLiteral_4=(Token)match(input,156,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34581,10 +34463,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 6 :
-                    // InternalAssembler.g:12509:3: (enumLiteral_5= 'U' )
+                    // InternalAssembler.g:12476:3: (enumLiteral_5= 'U' )
                     {
-                    // InternalAssembler.g:12509:3: (enumLiteral_5= 'U' )
-                    // InternalAssembler.g:12510:4: enumLiteral_5= 'U'
+                    // InternalAssembler.g:12476:3: (enumLiteral_5= 'U' )
+                    // InternalAssembler.g:12477:4: enumLiteral_5= 'U'
                     {
                     enumLiteral_5=(Token)match(input,154,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34600,10 +34482,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 7 :
-                    // InternalAssembler.g:12517:3: (enumLiteral_6= 'S' )
+                    // InternalAssembler.g:12484:3: (enumLiteral_6= 'S' )
                     {
-                    // InternalAssembler.g:12517:3: (enumLiteral_6= 'S' )
-                    // InternalAssembler.g:12518:4: enumLiteral_6= 'S'
+                    // InternalAssembler.g:12484:3: (enumLiteral_6= 'S' )
+                    // InternalAssembler.g:12485:4: enumLiteral_6= 'S'
                     {
                     enumLiteral_6=(Token)match(input,153,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34619,10 +34501,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 8 :
-                    // InternalAssembler.g:12525:3: (enumLiteral_7= 'DP' )
+                    // InternalAssembler.g:12492:3: (enumLiteral_7= 'DP' )
                     {
-                    // InternalAssembler.g:12525:3: (enumLiteral_7= 'DP' )
-                    // InternalAssembler.g:12526:4: enumLiteral_7= 'DP'
+                    // InternalAssembler.g:12492:3: (enumLiteral_7= 'DP' )
+                    // InternalAssembler.g:12493:4: enumLiteral_7= 'DP'
                     {
                     enumLiteral_7=(Token)match(input,201,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34638,10 +34520,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 9 :
-                    // InternalAssembler.g:12533:3: (enumLiteral_8= 'CC' )
+                    // InternalAssembler.g:12500:3: (enumLiteral_8= 'CC' )
                     {
-                    // InternalAssembler.g:12533:3: (enumLiteral_8= 'CC' )
-                    // InternalAssembler.g:12534:4: enumLiteral_8= 'CC'
+                    // InternalAssembler.g:12500:3: (enumLiteral_8= 'CC' )
+                    // InternalAssembler.g:12501:4: enumLiteral_8= 'CC'
                     {
                     enumLiteral_8=(Token)match(input,202,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
@@ -34657,10 +34539,10 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     }
                     break;
                 case 10 :
-                    // InternalAssembler.g:12541:3: (enumLiteral_9= 'PC' )
+                    // InternalAssembler.g:12508:3: (enumLiteral_9= 'PC' )
                     {
-                    // InternalAssembler.g:12541:3: (enumLiteral_9= 'PC' )
-                    // InternalAssembler.g:12542:4: enumLiteral_9= 'PC'
+                    // InternalAssembler.g:12508:3: (enumLiteral_9= 'PC' )
+                    // InternalAssembler.g:12509:4: enumLiteral_9= 'PC'
                     {
                     enumLiteral_9=(Token)match(input,203,FOLLOW_2); if (state.failed) return current;
                     if ( state.backtracking==0 ) {

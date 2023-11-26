@@ -35,6 +35,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEndDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -43,31 +45,6 @@ class TestEndDirective {
 	@Inject ParseHelper<Model> parseHelper
 	@Inject extension ValidationTestHelper
 	
-	/**
-	 * Check END directive with a simple decimal value
-	 */
-	@Test 
-	def void testOrgWithHexaDecimalValue() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			       ORG    $8000
-			       END    1000 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
-		
-		val line = result.sourceLines.get(2)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an End directive line", directiveLine.directive instanceof EndDirective)
-		
-		val endDirective = directiveLine.directive as EndDirective
-	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-		Assert.assertEquals("Operand must be equals to 1000", 1000, ExpressionParser.parse(endDirective))		
-	}
 	
 	/**
 	 * Check ORG directive with no value , return 0
@@ -89,112 +66,55 @@ class TestEndDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an END directive line", directiveLine.directive instanceof EndDirective)
-		
-		val endDirective = directiveLine.directive as EndDirective
-	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-		Assert.assertEquals("Operand must be equals to 0", 0, ExpressionParser.parse(endDirective))		
 	}
 
 	/**
-	 * Check ORG directive with a simple identifier defined by an anothoer EQU
+	 * Check END directive with the value
 	 */
 	@Test 
-	def void testWithIdentifierValue() {
+	def void checkEndValueWithValue() {
 		val result = parseHelper.parse('''
-		; Starting assembly file
-		Start       EQU    $4000         ; Starting code
-		
-		; Strating code section
-		            ORG    Start         ; Start program at $4000
-		            END    Start*2
+		; -----------------------------------------
+			   		ORG    	$8000   	; With value
+					BSZ		$0A	
+		Start		BSZ		1   		
+		       		END    	Start 		; That's all folk
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
-
-		val line0 = result.sourceLines.get(1)
-		val directiveLine0 = line0.lineContent as DirectiveLine
-		val equDirective0 = directiveLine0.directive as EquDirective
-		ExpressionParser.parse(equDirective0)
 		
-		val line1 = result.sourceLines.get(5)
-		Assert.assertTrue("Must be a directive line", line1.lineContent instanceof DirectiveLine)
-		
-		val directiveLine1 = line1.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an END directive line", directiveLine1.directive instanceof EndDirective)
-		
-		val endDirective = directiveLine1.directive as EndDirective
-	 	Assert.assertNull("Label must be null", CommandUtil.getLabel(endDirective))	
-		Assert.assertEquals("Operand must be equals to $8000", 0x8000, ExpressionParser.parse(endDirective))		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("PC value must be 800B", 0x800B, engine.currentPcValue)
+		val line = engine.getAssembledLine(4)
+		val endLine = line as AssembledEndDirectiveLine
+		Assert.assertEquals("Check line number", 5, endLine.lineNumber)
+		Assert.assertNull("Check label", endLine.label)
+		Assert.assertEquals("Check comment", "; That's all folk", endLine.comment)
+		Assert.assertEquals("Check start value", 0x800A, endLine.value)
 	}
 
 	/**
-	 * Check END directive with a negative value
+	 * Check END directive without the value
 	 */
 	@Test 
-	def void testWithNegativeValue() {
-		val result = parseHelper.parse('''
-			         ORG    $8000   ; With value
-		Label1       END    -1 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.endDirective,DirectiveValidator::INVALID_RANGE,"END value can't be negative")
-	}
-
-	/**
-	 * Check END directive with the lowest limit
-	 */
-	@Test 
-	def void testWithLowestValue() {
+	def void checkEndWithoutValue() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000   ; With value
-		           END    0 
+			   		ORG    	$8000   	; With value
+					BSZ		$0A	
+		Start		BSZ		1   		
+		       		END
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
-	}
-
-	/**
-	 * Check END directive with the upper limit
-	 */
-	@Test 
-	def void testWithUpperLimitValue() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			   ORG    $8000   ; With value
-		       END    $FFFF 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-	}
-
-	/**
-	 * Check ORG directive with the too high limit
-	 */
-	@Test 
-	def void testWithToHighLimitValue() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			       ORG    $8000   ; With value
-		           END    $FFFF+1 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.endDirective,DirectiveValidator::INVALID_RANGE,"END value maximum value is $FFFF")
-	}
-
-	/**
-	 * Check ORG directive with the too high limit
-	 */
-	@Test 
-	def void testEndUnexpectedLabel() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			           ORG    $8000   ; With value
-		EndLabel       END    $FFFF 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for END directive")
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("PC value must be 800B", 0x800B, engine.currentPcValue)
+		val line = engine.getAssembledLine(4)
+		val endLine = line as AssembledEndDirectiveLine
+		Assert.assertEquals("Check line number", 5, endLine.lineNumber)
+		Assert.assertNull("Check label", endLine.label)
+		Assert.assertNull("Check comment",  endLine.comment)
+		Assert.assertEquals("Check start value", 0, endLine.value)
 	}
 }

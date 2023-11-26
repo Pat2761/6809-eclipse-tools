@@ -28,9 +28,5 @@ class OrgDirectiveTest {
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 				
-		val engine = new AssemblerEngine()		
-		engine.engine(result)
-		
-		print(engine)
 	}
 }

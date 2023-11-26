@@ -2,7 +2,6 @@ package org.bpy.electronics.mc6809.assembler.engine.tests.directives;
 
 import com.google.inject.Inject;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.testing.InjectWith;
@@ -11,7 +10,6 @@ import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.testing.validation.ValidationTestHelper;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -38,9 +36,6 @@ public class OrgDirectiveTest {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
-      final AssemblerEngine engine = new AssemblerEngine();
-      engine.engine(result);
-      InputOutput.<AssemblerEngine>print(engine);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

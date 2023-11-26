@@ -197,21 +197,6 @@ public class ExpressionParser {
 	}
 
 	/** 
-	 *  Parse the operand of an END directive.
-	 *  
-	 *  @param endDirective reference on the END directive
-	 *  @return value of the operand 
-	 */
-	public static int parse(EndDirective endDirective) {
-		if (endDirective.getOperand() != null && endDirective.getOperand().getOperand() != null) {
-			EObject operand = endDirective.getOperand().getOperand();
-			return resolveExpression((Expression)operand);
-		} else {
-			return 0;
-		}
-	}
-
-	/** 
 	 *  Parse the operand of an RMB directive.
 	 *  
 	 *  @param rmbDirective reference on the RMB directive
@@ -279,56 +264,73 @@ public class ExpressionParser {
 	 */
 	public static int resolveExpression(Expression expression) {
 		
-		if (expression instanceof Multiplication multiplication) {
+		if (expression instanceof Multiplication) {
+			Multiplication multiplication = (Multiplication)expression;
 			return resolveExpression(multiplication);
 			
-		} else if (expression instanceof Division division) {
-				return resolveExpression(division);
+		} else if (expression instanceof Division) {
+			Division division = (Division)expression;
+			return resolveExpression(division);
 				
-		} else if (expression instanceof Addition addition) { 	
+		} else if (expression instanceof Addition) { 	
+			Addition addition = (Addition)expression;
 			return resolveExpression(addition);
 			
-		} else if (expression instanceof Substraction substraction) { 	
+		} else if (expression instanceof Substraction) { 	
+			Substraction substraction = (Substraction)expression;
 			return resolveExpression(substraction);
 			
-		} else if (expression instanceof Modulo modulo) { 	
+		} else if (expression instanceof Modulo) { 	
+			Modulo modulo = (Modulo)expression;
 			return resolveExpression(modulo);
 			
-		} else if (expression instanceof And and) { 	
+		} else if (expression instanceof And) { 	
+			And and = (And)expression;
 			return resolveExpression(and);
 			
-		} else if (expression instanceof Or or) { 	
+		} else if (expression instanceof Or) { 	
+			Or or = (Or)expression;
 			return resolveExpression(or);
 			
-		} else if (expression instanceof Xor xor) { 	
+		} else if (expression instanceof Xor) { 	
+			Xor xor = (Xor)expression;
 			return resolveExpression(xor);
 			
-		} else if (expression instanceof Not not) { 	
+		} else if (expression instanceof Not) { 	
+			Not not = (Not)expression;
 			return resolveExpression(not);
 			
-		} else if (expression instanceof LeftShift leftshift) { 	
+		} else if (expression instanceof LeftShift) { 	
+			LeftShift leftshift = (LeftShift)expression;
 			return resolveExpression(leftshift);
 			
-		} else if (expression instanceof RightShift rightShift) { 	
+		} else if (expression instanceof RightShift) { 	
+			RightShift rightShift = (RightShift)expression;
 			return resolveExpression(rightShift);
 			
 		} else {
-			if (expression.getValue() instanceof DecimalValue decimalValue) {
+			if (expression.getValue() instanceof DecimalValue) {
+				DecimalValue decimalValue = (DecimalValue)expression.getValue();
 				return resolveDecimalValue(decimalValue);
 			
-			} else if( expression.getValue() instanceof HexaDecimalValue hexaDecimalValue) {
+			} else if( expression.getValue() instanceof HexaDecimalValue) {
+				HexaDecimalValue hexaDecimalValue = (HexaDecimalValue)expression.getValue();
 				return resolveHexadecimalValue(hexaDecimalValue);
 			
-			} else if( expression.getValue() instanceof BinaryValue binaryValue) {
+			} else if( expression.getValue() instanceof BinaryValue) {
+				BinaryValue binaryValue = (BinaryValue)expression.getValue();
 				return resolveBinaryValue(binaryValue);
 
-			} else if( expression.getValue() instanceof OctalValue octalValue) {
+			} else if( expression.getValue() instanceof OctalValue) {
+				OctalValue octalValue = (OctalValue)expression.getValue();
 				return resolveOctalValue(octalValue);
 
-			} else if( expression.getValue() instanceof IdentifierValue identifierValue) {
+			} else if( expression.getValue() instanceof IdentifierValue) {
+				IdentifierValue identifierValue = (IdentifierValue)expression.getValue();
 				return resolveIdentifierValue(identifierValue);
 
-			} else if( expression.getValue() instanceof CharacterValue characterValue) {
+			} else if( expression.getValue() instanceof CharacterValue) {
+				CharacterValue characterValue = (CharacterValue)expression.getValue();
 				return resolveCharacterValue(characterValue);
 			}
 			

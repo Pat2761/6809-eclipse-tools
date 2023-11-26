@@ -30,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -39,6 +40,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEndDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEquDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDirectiveLine;
@@ -106,12 +108,18 @@ public class AssemblerEngine {
 		List<SourceLine> sourceLines = model.getSourceLines();
 		for (SourceLine sourceLine : sourceLines) {
 			if (sourceLine.getLineContent() instanceof BlankLine) {
+				logger.log(Level.SEVERE,"Unknow directive {0}" + sourceLine.getLineContent().getClass().getSimpleName());
 				
-			} else if (sourceLine.getLineContent() instanceof CommentLine commentLine) {
+			} else if (sourceLine.getLineContent() instanceof CommentLine) {
+				CommentLine commentLine = (CommentLine)sourceLine.getLineContent(); 
 				parseCommentLine(commentLine);
 				
-			} else if (sourceLine.getLineContent() instanceof DirectiveLine directiveLine) {
-				parseDirectiveLine(directiveLine);
+			} else if (sourceLine.getLineContent() instanceof DirectiveLine) {
+				DirectiveLine directiveLine = (DirectiveLine)sourceLine.getLineContent();
+				boolean needStop = parseDirectiveLine(directiveLine);
+				if (needStop) {
+					break;
+				}
 			
 			} else if (sourceLine.getLineContent() instanceof InstructionLine) {
 				logger.log(Level.SEVERE,"Unknow directive {0}" + sourceLine.getLineContent().getClass().getSimpleName());
@@ -138,18 +146,64 @@ public class AssemblerEngine {
 	 * Parse a directive line
 	 * 
 	 * @param directiveLine reference on the directive line
+	 * @return <b>true</b> stop the assembler,<b>false</b> otherwise continue 
 	 */
-	private void parseDirectiveLine(DirectiveLine directiveLine) {
-		if (directiveLine.getDirective() instanceof OrgDirective orgDirective) {
+	private boolean parseDirectiveLine(DirectiveLine directiveLine) {
+		boolean needStop = false;
+		
+		if (directiveLine.getDirective() instanceof OrgDirective) {
+			OrgDirective orgDirective = (OrgDirective)directiveLine.getDirective();
 			parseDirective(orgDirective);
-		}else if (directiveLine.getDirective() instanceof EquDirective equDirective) {
+		
+		}else if (directiveLine.getDirective() instanceof EquDirective) {
+			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
 			parseDirective(equDirective);
-		}else if (directiveLine.getDirective() instanceof SetDirective setDirective) {
+		
+		}else if (directiveLine.getDirective() instanceof SetDirective) {
+			SetDirective setDirective = (SetDirective)directiveLine.getDirective();
 			parseDirective(setDirective);
-		}else if (directiveLine.getDirective() instanceof BszDirective bszDirective) {
+		
+		}else if (directiveLine.getDirective() instanceof BszDirective) {
+			BszDirective bszDirective = (BszDirective)directiveLine.getDirective();
 			parseDirective(bszDirective);
+		
+		}else if (directiveLine.getDirective() instanceof EndDirective) {
+			EndDirective endDirective = (EndDirective)directiveLine.getDirective();
+			parseDirective(endDirective);
+			needStop = true;
+			
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
+		}
+		
+		return needStop;
+	}
+
+	/**
+	 * Parse an End directive line.
+	 *  
+	 * @param endDirective reference on the END directive
+	 */
+	private void parseDirective(EndDirective endDirective) {
+		AssembledEndDirectiveLine line = new AssembledEndDirectiveLine();
+		line.parse(endDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+
+		if (line.getTarget() == null) {
+			line.setValue(0);
+		} else {
+			AbstractAssemblyLine referencedLine = labelsPositionObject.get(line.getTarget());
+			if (referencedLine == null) {
+	
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
+						"The label " + line.getTarget() + " Can't be found", 
+						AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+						DUPLICATE_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
+				line.setValue(0);
+			} else {
+				line.setValue(referencedLine.getPcAddress());
+			}
 		}
 	}
 
@@ -164,6 +218,11 @@ public class AssemblerEngine {
 		line.parse(bszDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		currentPcValue += line.getPcIncrement();
+		
+		registerLabelPosition(line, 
+				line.getDirective(),
+				"Label " + line.getLabel() + " is already defined",
+				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
 	/**
@@ -242,17 +301,18 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 
 		registerLabelPosition(line, 
+				line.getDirective(),
 				"Label " + CommandUtil.getLabel(directive) + " is already defined",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
-	private void registerLabelPosition(AssembledOrgDirectiveLine directive, String message, EReference reference) {
+	private void registerLabelPosition(AbstractAssemblyLine directive,Object objectWithProblem,  String message, EReference reference) {
 		if (directive.getLabel() != null) {
 			if (labelsPositionObject.containsKey(directive.getLabel())) {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(message, 
 						reference,
 						DUPLICATE_LABEL);
-				AssemblerErrorManager.getInstance().addProblem(directive.getDirective(), problemDescription );
+				AssemblerErrorManager.getInstance().addProblem(objectWithProblem, problemDescription );
 			} else {
 				labelsPositionObject.put(directive.getLabel(), directive);
 			}
@@ -266,9 +326,11 @@ public class AssemblerEngine {
 	public Integer getEquSetLabelValue(String value) {
 		
 		AbstractAssemblyLine assemblyLine = labelsEquSet.get(value);
-		if (assemblyLine instanceof AssembledEquDirectiveLine equDirectiveLine) {
+		if (assemblyLine instanceof AssembledEquDirectiveLine) {
+			 AssembledEquDirectiveLine equDirectiveLine = (AssembledEquDirectiveLine)assemblyLine;
 			return equDirectiveLine.getValue();
-		} else if (assemblyLine instanceof AssembledSetDirectiveLine setDirectiveLine) {
+		} else if (assemblyLine instanceof AssembledSetDirectiveLine) {
+			 AssembledSetDirectiveLine setDirectiveLine = (AssembledSetDirectiveLine)assemblyLine;
 			return setDirectiveLine.getValue();
 		} else {
 			return null;

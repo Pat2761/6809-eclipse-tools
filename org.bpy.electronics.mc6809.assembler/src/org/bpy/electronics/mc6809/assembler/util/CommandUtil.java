@@ -219,6 +219,21 @@ public class CommandUtil {
 		}
 	}
 
+	/**
+	 * Return the comment associated to an END directive.
+	 * 
+	 * @param endDirective reference on the END directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(EndDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+
 	public static int getByteToSet(FillDirective fillDirective) {
 		Expression value = fillDirective.getValue();
 		return ExpressionParser.resolveExpression(value);
@@ -250,5 +265,4 @@ public class CommandUtil {
 		}
 		return registers;
 	}
-
 }

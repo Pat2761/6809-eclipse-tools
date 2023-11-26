@@ -290,16 +290,16 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	public void checkEndConstraints(EndDirective endDirective) {
 		
-		int equValue = ExpressionParser.parse(endDirective);
-		if (equValue > 0xFFFF) {
-			error("END value maximum value is $FFFF",
-					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
-					INVALID_RANGE);
-		} else if (equValue < 0) {
-			error("END value can't be negative",
-					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
-					INVALID_RANGE);
-		}
+//		int equValue = ExpressionParser.parse(endDirective);
+//		if (equValue > 0xFFFF) {
+//			error("END value maximum value is $FFFF",
+//					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
+//					INVALID_RANGE);
+//		} else if (equValue < 0) {
+//			error("END value can't be negative",
+//					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
+//					INVALID_RANGE);
+//		}
 	}
 	
 	/**   
