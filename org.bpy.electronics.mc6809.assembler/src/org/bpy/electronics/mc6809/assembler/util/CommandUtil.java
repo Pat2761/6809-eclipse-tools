@@ -393,6 +393,36 @@ public class CommandUtil {
 		}
 	}
 
+	/**
+	 * Return the label associated to an REG directive.
+	 * 
+	 * @param directive reference on the REG directive
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(RegDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to an REG directive.
+	 * 
+	 * @param directive reference on the REG directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(RegDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+
 	
 	public static int getByteToSet(FillDirective fillDirective) {
 		Expression value = fillDirective.getValue().getOperand();

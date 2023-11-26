@@ -435,6 +435,7 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	public void checkRegConstraints(RegDirective regDirective) {
 		List<String> regs = CommandUtil.getRegisters(regDirective);
 		List<String> testReg = new ArrayList<>();
+		
 		if (regs.isEmpty()) {
 			error("no register defined in the REG Directive",
 					AssemblerPackage.Literals.REG_DIRECTIVE__OPTIONS,
@@ -451,6 +452,17 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					testReg.add(reg);
 				}
 	 		}
+		}
+		
+		if (regs.contains("A") && regs.contains("D")) {
+			error("D register overwrite the A register in the REG Directive",
+					AssemblerPackage.Literals.REG_DIRECTIVE__OPTIONS,
+					DUPLICATE_OPTION);
+		}
+		if (regs.contains("B") && regs.contains("D")) {
+			error("D register overwrite the B register in the REG Directive",
+					AssemblerPackage.Literals.REG_DIRECTIVE__OPTIONS,
+					DUPLICATE_OPTION);
 		}
 	}
 

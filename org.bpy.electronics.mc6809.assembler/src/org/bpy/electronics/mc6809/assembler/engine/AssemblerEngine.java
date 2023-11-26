@@ -39,6 +39,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
@@ -53,6 +54,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AssembledNamDirectiveLin
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOptDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledPagDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledRegDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSpcDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -255,11 +257,39 @@ public class AssemblerEngine {
 			SpcDirective spcDirective = (SpcDirective)directiveLine.getDirective();
 			parseDirective(spcDirective);
 
+		} else if (directiveLine.getDirective() instanceof RegDirective) {
+			RegDirective regDirective = (RegDirective)directiveLine.getDirective();
+			parseDirective(regDirective);
+
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
 		}
 		
 		return needStop;
+	}
+
+	/**
+	 * Parse an REG directive line.
+	 *  
+	 * @param regDirective reference on the REG directive
+	 */
+	private void parseDirective(RegDirective regDirective) {
+		AssembledRegDirectiveLine line = new AssembledRegDirectiveLine();
+		line.parse(regDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		currentPcValue += line.getPcIncrement();
+		
+		String label = line.getLabel();
+		if (labelsEquSet.containsKey(label)) {
+	
+			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
+					"The label " + label + " for an REG directive is already defined", 
+					AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+					DUPLICATE_LABEL);
+			AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
+		} else {
+			labelsEquSet.put(label, line);
+		}
 	}
 
 	/**
@@ -501,12 +531,19 @@ public class AssemblerEngine {
 		
 		AbstractAssemblyLine assemblyLine = labelsEquSet.get(value);
 		if (assemblyLine instanceof AssembledEquDirectiveLine) {
-			 AssembledEquDirectiveLine equDirectiveLine = (AssembledEquDirectiveLine)assemblyLine;
+			AssembledEquDirectiveLine equDirectiveLine = (AssembledEquDirectiveLine)assemblyLine;
 			return equDirectiveLine.getValue();
+		
 		} else if (assemblyLine instanceof AssembledSetDirectiveLine) {
-			 AssembledSetDirectiveLine setDirectiveLine = (AssembledSetDirectiveLine)assemblyLine;
+			AssembledSetDirectiveLine setDirectiveLine = (AssembledSetDirectiveLine)assemblyLine;
 			return setDirectiveLine.getValue();
+		
+		} else if (assemblyLine instanceof AssembledRegDirectiveLine) {
+			AssembledRegDirectiveLine regDirectiveLine = (AssembledRegDirectiveLine)assemblyLine;
+			return regDirectiveLine.getValue();
+		
 		} else {
+			logger.log(Level.SEVERE,"getEquSetLabelValue:" + assemblyLine.getClass().getSimpleName());
 			return null;
 		}
 	}

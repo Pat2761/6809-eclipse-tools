@@ -32,6 +32,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.RegDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledRegDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -106,4 +108,134 @@ class TestRegDirective {
 		result.assertError(AssemblerPackage.eINSTANCE.regDirective,DirectiveValidator::DUPLICATE_OPTION,"Register A is duplicate in the REG Directive")
 	}
 
+	/**
+	 * Check REG directive with missing label
+	 */
+	@Test 
+	def void testRegWithMissingLabel() {
+		val result = parseHelper.parse('''
+		; test REG without label
+			 	    REG    A,B,U,S,A 		 ; Oups
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::MISSING_LABEL,"No label defined for REG directive")
+	}
+
+	/**
+	 * Check REG directive impact on PC Address
+	 */
+	@Test 
+	def void testRegPcAddress() {
+		val result = parseHelper.parse('''
+		; test REG without label
+					ORG	   $C000
+		RegV 	    REG    A,B,U,S 		 ; Oups
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Address", 0xC000, engine.currentPcValue)
+	}
+
+	/**
+	 * Check REG directive with D and A register
+	 */
+	@Test 
+	def void testRegWithAAndDRegister() {
+		val result = parseHelper.parse('''
+		; test REG without label
+			 	    REG    A,D 		 ; Oups
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.regDirective,DirectiveValidator::DUPLICATE_OPTION,"D register overwrite the A register in the REG Directive")
+	}
+
+	/**
+	 * Check REG directive with D and B register
+	 */
+	@Test 
+	def void testRegWithBAndDRegister() {
+		val result = parseHelper.parse('''
+		; test REG without label
+			 	    REG    B,D 		 ; Oups
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.regDirective,DirectiveValidator::DUPLICATE_OPTION,"D register overwrite the B register in the REG Directive")
+	}
+
+	/**
+	 * Check REG directive with duplicate label
+	 */
+	@Test 
+	def void testRegWithDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; test REG without label
+		Lab1		EQU		100
+		Lab1	 	REG    	B,D 		 ; Oups
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,AssemblerEngine::DUPLICATE_LABEL,"The label Lab1 for an REG directive is already defined")
+	}
+
+	/**
+	 * Check equ value forREG directive 
+	 */
+	@Test 
+	def void testRegEquValue() {
+		val result = parseHelper.parse('''
+		; test REG without label
+		Lab2	 	REG    	B,X 		 ; Oups
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check equ value",0x14, engine.getEquSetLabelValue(line.label))
+	}
+
+	/**
+	 * Check REG directive value CC
+	 */
+	@Test 
+	def void testRegValueCC() {
+		val result = parseHelper.parse('''
+		; test REG without label
+		CC1	 	    REG    CC 		 
+		L_A	 	    REG    A 		 
+		L_B	 	    REG    B 		 
+		L_D 	    REG    D
+		L_DP 	    REG    DP
+		L_X	 	    REG    X 		 
+		L_Y	 	    REG    Y 		 
+		L_U	 	    REG    U 		 
+		L_S	 	    REG    S 		 
+		L_PC	 	REG    PC 		 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		val regLineCC = engine.getAssembledLine(1) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check value CC", 1, regLineCC.value)
+		val regLineA = engine.getAssembledLine(2) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check value A", 2, regLineA.value)
+		val regLineB = engine.getAssembledLine(3) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check value B", 4, regLineB.value)
+		val regLineD = engine.getAssembledLine(4) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check value D", 6, regLineD.value)
+		val regLineDP = engine.getAssembledLine(5) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check value DP", 8, regLineDP.value)
+		val regLineX = engine.getAssembledLine(6) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check value X", 16, regLineX.value)
+		val regLineY = engine.getAssembledLine(7) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check value X", 32, regLineY.value)
+		val regLineU = engine.getAssembledLine(8) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check value U", 64, regLineU.value)
+		val regLineS = engine.getAssembledLine(9) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check value U", 64, regLineS.value)
+		val regLinePC = engine.getAssembledLine(10) as AssembledRegDirectiveLine
+		Assert.assertEquals("Check value PC", 128, regLinePC.value)
+	}
 }
