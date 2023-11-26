@@ -41,6 +41,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBlankLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLine;
@@ -53,6 +54,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOptDirectiveLin
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledPagDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSpcDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -249,11 +251,27 @@ public class AssemblerEngine {
 			NamDirective namDirective = (NamDirective)directiveLine.getDirective();
 			parseDirective(namDirective);
 
+		} else if (directiveLine.getDirective() instanceof SpcDirective) {
+			SpcDirective spcDirective = (SpcDirective)directiveLine.getDirective();
+			parseDirective(spcDirective);
+
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
 		}
 		
 		return needStop;
+	}
+
+	/**
+	 * Parse an SPC directive line.
+	 *  
+	 * @param spcDirective reference on the SPC directive
+	 */
+	private void parseDirective(SpcDirective spcDirective) {
+		AssembledSpcDirectiveLine line = new AssembledSpcDirectiveLine();
+		line.parse(spcDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		currentPcValue += line.getPcIncrement();
 	}
 
 	/**

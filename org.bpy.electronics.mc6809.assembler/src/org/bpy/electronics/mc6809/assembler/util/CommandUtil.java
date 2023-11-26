@@ -37,6 +37,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -354,6 +355,36 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(NamDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the label associated to an SPC directive.
+	 * 
+	 * @param directive reference on the SPC directive
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SpcDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to an SPC directive.
+	 * 
+	 * @param directive reference on the SPC directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SpcDirective directive) {
 		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
 		if ( directiveLine.getComment() != null) {
 			return directiveLine.getComment();

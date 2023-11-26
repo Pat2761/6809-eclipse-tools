@@ -32,6 +32,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSpcDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -269,6 +272,69 @@ class TestSpcDirective {
 		Assert.assertNotNull(result)
 		result.assertWarning(AssemblerPackage.eINSTANCE.spcDirective, DirectiveValidator::INVALID_RANGE,"SPC keep count value superior to 9 is suspicious")
 	}
+
+	/**
+	 * Check SPC directive with label
+	 */
+	@Test 
+	def void testSPCWithLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		Label 		   SPC    1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.directiveLine, DirectiveValidator::UNEXPECTED_LABEL,"No label may be set for SPC directive")
+	}
+
+	/**
+	 * Check PC counter SPC directive 
+	 */
+	@Test 
+	def void testSPCPCCounter() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000
+		 		   SPC    1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC after SPC instruction", 0x8000, engine.currentPcValue)		
+	}
 	
+	/**
+	 * Check SPC directive  assembly 
+	 */
+	@Test 
+	def void testSPCAssembly1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		 		   SPC    1,2 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1) as AssembledSpcDirectiveLine
+		Assert.assertEquals("Check Space count", 1, line.spaceCountValue)
+		Assert.assertEquals("Check Keep count", 2, line.getkeepCountValue)
+	}
+	
+	/**
+	 * Check SPC directive  assembly 
+	 */
+	@Test 
+	def void testSPCAssembly2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		 		   SPC    1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1) as AssembledSpcDirectiveLine
+		Assert.assertEquals("Check Space count", 1, line.spaceCountValue)
+		Assert.assertEquals("Check Keep count", 0, line.getkeepCountValue)
+	}
 }
 	

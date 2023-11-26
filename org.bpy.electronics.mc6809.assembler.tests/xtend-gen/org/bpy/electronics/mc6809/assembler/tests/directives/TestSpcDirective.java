@@ -23,6 +23,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSpcDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
@@ -405,6 +408,103 @@ public class TestSpcDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getSpcDirective(), DirectiveValidator.INVALID_RANGE, "SPC keep count value superior to 9 is suspicious");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive with label
+   */
+  @Test
+  public void testSPCWithLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append("Label \t\t   SPC    1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL, "No label may be set for SPC directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PC counter SPC directive
+   */
+  @Test
+  public void testSPCPCCounter() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC after SPC instruction", 0x8000, engine.getCurrentPcValue());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive  assembly
+   */
+  @Test
+  public void testSPCAssembly1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    1,2 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledSpcDirectiveLine line = ((AssembledSpcDirectiveLine) _assembledLine);
+      Assert.assertEquals("Check Space count", 1, line.getSpaceCountValue());
+      Assert.assertEquals("Check Keep count", 2, line.getkeepCountValue());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check SPC directive  assembly
+   */
+  @Test
+  public void testSPCAssembly2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append(" \t\t   ");
+      _builder.append("SPC    1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledSpcDirectiveLine line = ((AssembledSpcDirectiveLine) _assembledLine);
+      Assert.assertEquals("Check Space count", 1, line.getSpaceCountValue());
+      Assert.assertEquals("Check Keep count", 0, line.getkeepCountValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

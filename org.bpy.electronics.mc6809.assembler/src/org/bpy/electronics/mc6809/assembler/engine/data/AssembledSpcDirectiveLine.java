@@ -18,43 +18,45 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
-import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
 /**
- * Used to store information about NAM directive
+ * Used to store information about SPC directive
  */
-public class AssembledNamDirectiveLine extends AbstractAssemblyLine {
+public class AssembledSpcDirectiveLine extends AbstractAssemblyLine {
 
-	/** reference to the NAM directive in the edited file */
-	private NamDirective directive;
-	/** String value defined by the NAM directive */ 
-	private String value;	
+	/** reference to the SPC directive in the edited file */
+	private SpcDirective directive;
+	/** Integer value of the space count defined by the SPC directive */ 
+	private int spaceCount;
+	/** Integer value of the keep count defined by the SPC directive */ 
+	private int keepCount;
 	
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledNamDirectiveLine() {
+	public AssembledSpcDirectiveLine() {
 		// nothing to do
 	}
 
 	/**
 	 * Extract information from the edited line.
 	 * 
-	 * @param directive reference to the Xtext description of the NAM directive
+	 * @param directive reference to the Xtext description of the SPC directive
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(NamDirective directive, int currentPcValue, int lineNumber) {
+	public void parse(SpcDirective directive, int currentPcValue, int lineNumber) {
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
 		
-		value = directive.getOperand().getValue();
+		keepCount = ExpressionParser.getKeepCount(directive);
+		spaceCount = ExpressionParser.getSpaceCount(directive);
 	}
 
 	@Override
@@ -100,16 +102,20 @@ public class AssembledNamDirectiveLine extends AbstractAssemblyLine {
 		strBuilder.append(String.format("%-6s", directive.getDirective()));  // Mnemonique (6 car)
 	}
 
-	public NamDirective getDirective() {
+	public SpcDirective getDirective() {
 		return directive;
 	}
 
-	public void setDirective(NamDirective directive) {
+	public void setDirective(SpcDirective directive) {
 		this.directive = directive;
 	}
 
-	public String getValue() {
-		return value;
+	public int getSpaceCountValue() {
+		return spaceCount;
+	}
+
+	public int getkeepCountValue() {
+		return keepCount;
 	}
 
 	@Override
