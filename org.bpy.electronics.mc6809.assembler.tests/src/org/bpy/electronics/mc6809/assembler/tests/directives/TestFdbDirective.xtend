@@ -32,6 +32,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFdbDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -222,4 +224,52 @@ class TestFdbDirective {
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 	}
+	
+	
+	/**
+	 * Check FDB directive with duplicate Label
+	 */
+	@Test 
+	def void testFCBWithDuplicateLabels() {
+		val result = parseHelper.parse('''
+			         ORG    $8000
+		Label1	     BSZ	10    
+		Label1       FDB    10 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.directiveLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Label1 is already defined"
+		)
+	}
+
+	/**
+	 * Check FDB directive with duplicate Label
+	 */
+	@Test 
+	def void testFDBAssemblyResult() {
+		val result = parseHelper.parse('''
+			        	ORG    	$8000
+		EquVal			EQU		15         
+		Label1			BSZ		10    
+		Label2			FDB    	10,,'A,EquVal*2,$2500 		; a comment
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(3) as AssembledFdbDirectiveLine;
+		Assert.assertEquals("Check Label","Label2",line.label)
+		Assert.assertEquals("Check Comment","; a comment",line.comment)
+
+		Assert.assertEquals("Check value 0",10,line.values.get(0))
+		Assert.assertEquals("Check value 1",0,line.values.get(1))
+		Assert.assertEquals("Check value 2",65,line.values.get(2))
+		Assert.assertEquals("Check value 3",30,line.values.get(3))
+		Assert.assertEquals("Check value 4",0x2500,line.values.get(4))
+
+		Assert.assertEquals("Check Impact on PC",0x800F,engine.currentPcValue)
+	}
+	
 }

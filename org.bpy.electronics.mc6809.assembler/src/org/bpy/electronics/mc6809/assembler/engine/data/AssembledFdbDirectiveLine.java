@@ -20,34 +20,34 @@ package org.bpy.electronics.mc6809.assembler.engine.data;
 
 import java.util.List;
 
-import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
 /**
- * Used to store information about FCB directive
+ * Used to store information about FDB directive
  */
-public class AssembledFcbDirectiveLine extends AbstractAssemblyLine {
+public class AssembledFdbDirectiveLine extends AbstractAssemblyLine {
 
-	/** reference to the FCB directive in the edited file */
-	private FcbDirective directive;
+	/** reference to the FDB directive in the edited file */
+	private FdbDirective directive;
 	/** Integer value defined by the FCB directive */ 
 	private int[] values;	
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledFcbDirectiveLine() {
+	public AssembledFdbDirectiveLine() {
 		// nothing to do
 	}
 
 	/**
 	 * Extract information from the edited line.
 	 * 
-	 * @param directive reference to the Xtext description of the FCB directive
+	 * @param directive reference to the Xtext description of the FDB directive
 	 * @param currentPcValu;e value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(FcbDirective directive, int currentPcValue, int lineNumber) {
+	public void parse(FdbDirective directive, int currentPcValue, int lineNumber) {
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
@@ -104,11 +104,11 @@ public class AssembledFcbDirectiveLine extends AbstractAssemblyLine {
 		strBuilder.append(String.format("%-6s", directive.getDirective()));  // Mnemonique (6 car)
 	}
 
-	public FcbDirective getDirective() {
+	public FdbDirective getDirective() {
 		return directive;
 	}
 
-	public void setDirective(FcbDirective directive) {
+	public void setDirective(FdbDirective directive) {
 		this.directive = directive;
 	}
 

@@ -23,6 +23,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFdbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
@@ -327,6 +330,66 @@ public class TestFdbDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FDB directive with duplicate Label
+   */
+  @Test
+  public void testFCBWithDuplicateLabels() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\t         ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append("Label1\t     BSZ\t10    ");
+      _builder.newLine();
+      _builder.append("Label1       FDB    10 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getDirectiveLine(), 
+        AssemblerEngine.DUPLICATE_LABEL, 
+        "Label Label1 is already defined");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FDB directive with duplicate Label
+   */
+  @Test
+  public void testFDBAssemblyResult() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\t        \t");
+      _builder.append("ORG    \t$8000");
+      _builder.newLine();
+      _builder.append("EquVal\t\t\tEQU\t\t15         ");
+      _builder.newLine();
+      _builder.append("Label1\t\t\tBSZ\t\t10    ");
+      _builder.newLine();
+      _builder.append("Label2\t\t\tFDB    \t10,,\'A,EquVal*2,$2500 \t\t; a comment");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledFdbDirectiveLine line = ((AssembledFdbDirectiveLine) _assembledLine);
+      Assert.assertEquals("Check Label", "Label2", line.getLabel());
+      Assert.assertEquals("Check Comment", "; a comment", line.getComment());
+      Assert.assertEquals("Check value 0", 10, line.getValues()[0]);
+      Assert.assertEquals("Check value 1", 0, line.getValues()[1]);
+      Assert.assertEquals("Check value 2", 65, line.getValues()[2]);
+      Assert.assertEquals("Check value 3", 30, line.getValues()[3]);
+      Assert.assertEquals("Check value 4", 0x2500, line.getValues()[4]);
+      Assert.assertEquals("Check Impact on PC", 0x800F, engine.getCurrentPcValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

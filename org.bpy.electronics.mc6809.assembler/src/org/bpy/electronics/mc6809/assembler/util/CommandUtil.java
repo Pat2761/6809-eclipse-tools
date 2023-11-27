@@ -227,6 +227,21 @@ public class CommandUtil {
 			return null;
 		}
 	}
+
+	/**
+	 * Return the comment associated to an FDB directive.
+	 * 
+	 * @param directive reference on the FDB directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(FdbDirective fdbDirective) {
+		DirectiveLine directiveLine = (DirectiveLine)fdbDirective.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
 	
 	/**
 	 * Return the label associated to an END directive.

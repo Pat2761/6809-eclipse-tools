@@ -20,7 +20,6 @@ package org.bpy.electronics.mc6809.assembler.engine.data;
 
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
 /**
  * Used to store information about END directive

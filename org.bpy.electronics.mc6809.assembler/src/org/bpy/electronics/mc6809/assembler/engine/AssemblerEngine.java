@@ -33,6 +33,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -51,6 +52,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEndDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEquDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFcbDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFdbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFillDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledNamDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOptDirectiveLine;
@@ -267,11 +269,31 @@ public class AssemblerEngine {
 			FcbDirective fcbDirective = (FcbDirective)directiveLine.getDirective();
 			parseDirective(fcbDirective);
 
+		} else if (directiveLine.getDirective() instanceof FdbDirective) {
+			FdbDirective fdbDirective = (FdbDirective)directiveLine.getDirective();
+			parseDirective(fdbDirective);
+
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
 		}
 		
 		return needStop;
+	}
+
+	/**
+	 * Parse an FDB directive line.
+	 *  
+	 * @param fdbDirective reference on the FDB directive
+	 */
+	private void parseDirective(FdbDirective fdbDirective) {
+		AssembledFdbDirectiveLine line = new AssembledFdbDirectiveLine();
+		line.parse(fdbDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		currentPcValue += line.getPcIncrement();
+		
+		registerLabelPosition(line, 
+				line.getDirective().eContainer(),
+				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
 	/**
