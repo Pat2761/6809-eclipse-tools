@@ -32,7 +32,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CommaExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
-import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
@@ -89,6 +88,8 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static List<Integer> parse(FdbDirective fdbDirective) {
+		assemblyLine = fdbDirective;
+		eReference = AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND;
 		return parse(fdbDirective.getOperand()); 
 	}
 
@@ -99,6 +100,8 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static List<Integer> parse(FcbDirective fcbDirective) {
+		assemblyLine = fcbDirective;
+		eReference = AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND;
 		return parse(fcbDirective.getOperand()); 
 	}
 
@@ -170,6 +173,9 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static int parse(OrgDirective orgDirective) {
+		assemblyLine = orgDirective;
+		eReference = AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND;
+
 		if (orgDirective.getOperand() != null && orgDirective.getOperand().getOperand() != null) {
 			EObject operand = orgDirective.getOperand().getOperand();
 			return resolveExpression((Expression)operand);
@@ -185,6 +191,8 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static int parse(PagDirective pagDirective) {
+		assemblyLine = pagDirective;
+		eReference = AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND;
 		if (pagDirective.getOperand() != null && pagDirective.getOperand().getOperand() != null) {
 			EObject operand = pagDirective.getOperand().getOperand();
 			return resolveExpression((Expression)operand);
@@ -200,6 +208,8 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static int parse(RmbDirective rmbDirective) {
+		assemblyLine = rmbDirective;
+		eReference = AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND;
 		if (rmbDirective.getOperand() != null && rmbDirective.getOperand().getOperand() != null) {
 			EObject operand = rmbDirective.getOperand().getOperand();
 			return resolveExpression((Expression)operand);
@@ -215,6 +225,8 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static int parse(BszDirective bszDirective) {
+		assemblyLine = bszDirective;
+		eReference = AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND;
 		if (bszDirective.getOperand() != null && bszDirective.getOperand().getOperand() != null) {
 			EObject operand = bszDirective.getOperand().getOperand();
 			return resolveExpression((Expression)operand);
@@ -230,6 +242,8 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static int getSpaceCount(SpcDirective spcDirective) {
+		assemblyLine = spcDirective;
+		eReference = AssemblerPackage.Literals.SPC_DIRECTIVE__SPACE_COUNT;
 		Expression spaceCount = spcDirective.getSpaceCount();
 		if (spaceCount != null) {
 			return resolveExpression(spaceCount.getOperand());
@@ -245,6 +259,8 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static int getKeepCount(SpcDirective spcDirective) {
+		assemblyLine = spcDirective;
+		eReference = AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT;
 		Expression keepCount = spcDirective.getKeepCount();
 		if (keepCount != null) {
 			return resolveExpression(keepCount.getOperand());

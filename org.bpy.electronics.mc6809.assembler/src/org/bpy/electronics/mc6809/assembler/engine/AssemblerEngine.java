@@ -572,7 +572,7 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 
 		registerLabelPosition(line, 
-				line.getDirective(),
+				line.getDirective().eContainer(),
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
@@ -628,7 +628,6 @@ public class AssemblerEngine {
 			return regDirectiveLine.getValue();
 		
 		} else {
-			logger.log(Level.SEVERE,"getEquSetLabelValue:" + assemblyLine.getClass().getSimpleName());
 			return null;
 		}
 	}
