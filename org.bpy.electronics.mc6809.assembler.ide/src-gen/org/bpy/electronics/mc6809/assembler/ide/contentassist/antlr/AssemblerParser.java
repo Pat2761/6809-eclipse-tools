@@ -241,6 +241,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRelativeModeAccess().getGroup(), "rule__RelativeMode__Group__0");
 			builder.put(grammarAccess.getDirectiveLineAccess().getGroup(), "rule__DirectiveLine__Group__0");
 			builder.put(grammarAccess.getDirectiveLineAccess().getGroup_3(), "rule__DirectiveLine__Group_3__0");
+			builder.put(grammarAccess.getSetDPDirectiveAccess().getGroup(), "rule__SetDPDirective__Group__0");
+			builder.put(grammarAccess.getSetDPDirectiveAccess().getGroup_1(), "rule__SetDPDirective__Group_1__0");
 			builder.put(grammarAccess.getFccDirectiveAccess().getGroup(), "rule__FccDirective__Group__0");
 			builder.put(grammarAccess.getFccDirectiveAccess().getGroup_1(), "rule__FccDirective__Group_1__0");
 			builder.put(grammarAccess.getRegDirectiveAccess().getGroup(), "rule__RegDirective__Group__0");
@@ -587,7 +589,10 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_13(), "rule__DirectiveLine__DirectiveAssignment_2_13");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_14(), "rule__DirectiveLine__DirectiveAssignment_2_14");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_15(), "rule__DirectiveLine__DirectiveAssignment_2_15");
+			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_16(), "rule__DirectiveLine__DirectiveAssignment_2_16");
 			builder.put(grammarAccess.getDirectiveLineAccess().getCommentAssignment_3_1(), "rule__DirectiveLine__CommentAssignment_3_1");
+			builder.put(grammarAccess.getSetDPDirectiveAccess().getDirectiveAssignment_0(), "rule__SetDPDirective__DirectiveAssignment_0");
+			builder.put(grammarAccess.getSetDPDirectiveAccess().getOperandAssignment_1_1(), "rule__SetDPDirective__OperandAssignment_1_1");
 			builder.put(grammarAccess.getFccDirectiveAccess().getDirectiveAssignment_0(), "rule__FccDirective__DirectiveAssignment_0");
 			builder.put(grammarAccess.getFccDirectiveAccess().getStringAssignment_1_1(), "rule__FccDirective__StringAssignment_1_1");
 			builder.put(grammarAccess.getRegDirectiveAccess().getDirectiveAssignment_0(), "rule__RegDirective__DirectiveAssignment_0");

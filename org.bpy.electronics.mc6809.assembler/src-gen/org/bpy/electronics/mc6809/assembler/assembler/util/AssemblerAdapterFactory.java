@@ -521,6 +521,11 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createDirectiveLineAdapter();
       }
       @Override
+      public Adapter caseSetDPDirective(SetDPDirective object)
+      {
+        return createSetDPDirectiveAdapter();
+      }
+      @Override
       public Adapter caseFccDirective(FccDirective object)
       {
         return createFccDirectiveAdapter();
@@ -2063,6 +2068,21 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createDirectiveLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective <em>Set DP Directive</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective
+   * @generated
+   */
+  public Adapter createSetDPDirectiveAdapter()
   {
     return null;
   }

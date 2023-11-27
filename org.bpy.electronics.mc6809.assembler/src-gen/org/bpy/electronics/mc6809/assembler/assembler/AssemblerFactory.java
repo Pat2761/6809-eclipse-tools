@@ -825,6 +825,15 @@ public interface AssemblerFactory extends EFactory
   DirectiveLine createDirectiveLine();
 
   /**
+   * Returns a new object of class '<em>Set DP Directive</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Set DP Directive</em>'.
+   * @generated
+   */
+  SetDPDirective createSetDPDirective();
+
+  /**
    * Returns a new object of class '<em>Fcc Directive</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

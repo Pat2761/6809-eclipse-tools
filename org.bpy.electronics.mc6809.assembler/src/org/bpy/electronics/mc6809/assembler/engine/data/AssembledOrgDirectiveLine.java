@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data;
 
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
 /*
  * Used to store information about ORG directive
@@ -28,6 +29,8 @@ public class AssembledOrgDirectiveLine extends AbstractAssemblyLine {
 
 	/** reference to the ORG directive in the edited file */
 	private OrgDirective directive;
+	/** Value of the ORG directive */
+	private int value;
 
 	/**
 	 * Constructor of the class
@@ -48,6 +51,8 @@ public class AssembledOrgDirectiveLine extends AbstractAssemblyLine {
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
 		this.directive = directive;
+		
+		value = ExpressionParser.parse(directive);
 	}
 
 	@Override
@@ -104,5 +109,9 @@ public class AssembledOrgDirectiveLine extends AbstractAssemblyLine {
 	@Override
 	public int getPcIncrement() {
 		return 0;
+	}
+	
+	public int getValue() {
+		return value;
 	}
 }

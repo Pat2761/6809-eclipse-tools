@@ -36,11 +36,20 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFcbDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFdbDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledPagDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledRmbDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDPDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSpcDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.EValidatorRegistrar;
 
@@ -171,7 +180,9 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkOrgConstraints(OrgDirective orgDirective) {
-		int orgValue = ExpressionParser.parse(orgDirective);
+		
+		AssembledOrgDirectiveLine assembledLine = (AssembledOrgDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(orgDirective);
+		int orgValue = assembledLine.getValue();
 		if (orgValue > 0xFFFF) {
 			error("ORG value maximum value is $FFFF",
 					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
@@ -301,7 +312,8 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkPagConstraints(PagDirective pagDirective) {
-		int pagValue = ExpressionParser.parse(pagDirective);
+		AssembledPagDirectiveLine assembledLine = (AssembledPagDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(pagDirective);
+		int pagValue = assembledLine.getValue();
 		if (pagValue < 0) {
 			error("PAG value can't be negative",
 					AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND,
@@ -347,20 +359,54 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 
 	/**
 	 * Check the BSZ directive constraints
-	 * can't be negative
+	 * Can't be negative
 	 * Doubt if equals to 0
 	 * 
 	 * @param bszDirective reference on the BSZ directive
 	 */
 	@Check
 	public void checkBszConstraints(BszDirective bszDirective) {
-		int bszValue = ExpressionParser.parse(bszDirective);
+		AssembledBszDirectiveLine assembledLine = (AssembledBszDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(bszDirective);
+		int bszValue = assembledLine.getNbBytes();
 	    if (bszValue < 0) {
 			error("BSZ value can't be negative",
 					AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
 		} else if (bszValue == 0) {
 			warning("Reserving no bytes makes no sense",
+					AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		}
+
+	    // Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(bszDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(bszDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+	}
+
+	/**
+	 * Check the SETDP directive constraints
+	 * Can't be negative
+	 * 
+	 * @param setdpDirective reference on the SETDP directive
+	 */
+	@Check
+	public void checkSetDPConstraints(SetDPDirective setdpDirective) {
+		AssembledSetDPDirectiveLine assembledLine = (AssembledSetDPDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(setdpDirective);
+		int setDPValue = assembledLine.getValue();
+	    if (setDPValue < 0) {
+			error("SETDP value can't be negative",
+					AssemblerPackage.Literals.SET_DP_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else if (setDPValue > 255) {
+			error("The SETDP value cannot be greater than 255",
 					AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
 		}
@@ -386,17 +432,6 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 * @param endDirective reference on the END directive
 	 */
 	public void checkEndConstraints(EndDirective endDirective) {
-		
-//		int equValue = ExpressionParser.parse(endDirective);
-//		if (equValue > 0xFFFF) {
-//			error("END value maximum value is $FFFF",
-//					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
-//					INVALID_RANGE);
-//		} else if (equValue < 0) {
-//			error("END value can't be negative",
-//					AssemblerPackage.Literals.END_DIRECTIVE__OPERAND,
-//					INVALID_RANGE);
-//		}
 	}
 	
 	/**   
@@ -445,7 +480,8 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkSpcConstraints(SpcDirective spcDirective) {
-		int spcValue = ExpressionParser.getSpaceCount(spcDirective);
+		AssembledSpcDirectiveLine assembledLine = (AssembledSpcDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(spcDirective);
+		int spcValue = assembledLine.getSpaceCountValue();
 		if (spcValue < 0) {
 			error("SPC space value can't be negative",
 					AssemblerPackage.Literals.SPC_DIRECTIVE__SPACE_COUNT,
@@ -460,7 +496,7 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					INVALID_RANGE);
 		}
 		
-		int keepCount = ExpressionParser.getKeepCount(spcDirective);
+		int keepCount = assembledLine.getkeepCountValue();
 		if (keepCount < 0) {
 			error("SPC keep count value can't be negative",
 					AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT,
@@ -539,7 +575,8 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	public void checkFcbConstraints(FcbDirective fcbDirective) {
 		
-		List<Integer> fcbValues = ExpressionParser.parse(fcbDirective);
+		AssembledFcbDirectiveLine assembledLine = (AssembledFcbDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(fcbDirective);
+		int[] fcbValues = assembledLine.getValues();
 		int location = 1;
 		for (Integer fcbValue : fcbValues) {
 			if (fcbValue > 255) {
@@ -576,7 +613,8 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	public void checkFdbConstraints(FdbDirective fdbDirective) {
 		
-		List<Integer> rmbValues = ExpressionParser.parse(fdbDirective);
+		AssembledFdbDirectiveLine assembledLine = (AssembledFdbDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(fdbDirective);
+		int[] rmbValues = assembledLine.getValues();
 		int location = 1;
 		for (Integer rmbValue : rmbValues) {
 			if (rmbValue > 65535) {
@@ -611,7 +649,8 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 * @param rmbDirective reference on the RMB directive
 	 */
 	public void checkRmdConstraints(RmbDirective rmbDirective) {
-		int rmbValue = ExpressionParser.parse(rmbDirective);
+		AssembledRmbDirectiveLine assembledLine = (AssembledRmbDirectiveLine)AssemblerEngine.getInstance().getAssemblyLine(rmbDirective);
+		int rmbValue = assembledLine.getNbBytesReserved();
 		if (rmbValue > 0xFFFF) {
 			error("RMB value maximum value is $FFFF",
 					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,

@@ -155,6 +155,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.RELATIF_TO_PC_INDIRECT_MODE: return createRelatifToPCIndirectMode();
       case AssemblerPackage.RELATIVE_MODE: return createRelativeMode();
       case AssemblerPackage.DIRECTIVE_LINE: return createDirectiveLine();
+      case AssemblerPackage.SET_DP_DIRECTIVE: return createSetDPDirective();
       case AssemblerPackage.FCC_DIRECTIVE: return createFccDirective();
       case AssemblerPackage.REG_DIRECTIVE: return createRegDirective();
       case AssemblerPackage.SPC_DIRECTIVE: return createSpcDirective();
@@ -1302,6 +1303,18 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     DirectiveLineImpl directiveLine = new DirectiveLineImpl();
     return directiveLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SetDPDirective createSetDPDirective()
+  {
+    SetDPDirectiveImpl setDPDirective = new SetDPDirectiveImpl();
+    return setDPDirective;
   }
 
   /**

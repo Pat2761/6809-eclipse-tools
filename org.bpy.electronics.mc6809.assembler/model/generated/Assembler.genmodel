@@ -377,6 +377,10 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DirectiveLine/comment"/>
     </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//SetDPDirective">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SetDPDirective/directive"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SetDPDirective/operand"/>
+    </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//FccDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FccDirective/directive"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FccDirective/string"/>

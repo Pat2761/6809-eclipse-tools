@@ -54,7 +54,7 @@ public class AssembledFdbDirectiveLine extends AbstractAssemblyLine {
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
 
-		List<Integer> listValues = ExpressionParser.parse(directive.getOperand());
+		List<Integer> listValues = ExpressionParser.parse(directive);
 		values = new int[listValues.size()];
 		for (int i=0; i<listValues.size(); i++) {
 			values[i] = listValues.get(i);	

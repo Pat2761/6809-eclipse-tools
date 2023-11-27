@@ -37,6 +37,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.eclipse.emf.common.util.EList;
@@ -498,6 +499,36 @@ public class CommandUtil {
 			return null;
 		}
 	}
+
+	/**
+	 * Return the label associated to an SETDP directive.
+	 * 
+	 * @param directive reference on the SETDP directive
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SetDPDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to an SETDP directive.
+	 * 
+	 * @param directive reference on the SETDP directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SetDPDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
 	
 	public static int getByteToSet(FillDirective fillDirective, EReference currentReference) {
 		Expression value = fillDirective.getValue().getOperand();
@@ -530,5 +561,4 @@ public class CommandUtil {
 		}
 		return registers;
 	}
-
 }

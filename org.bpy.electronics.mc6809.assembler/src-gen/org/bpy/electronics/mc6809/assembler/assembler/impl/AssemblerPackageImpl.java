@@ -117,6 +117,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
@@ -773,6 +774,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass directiveLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass setDPDirectiveEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -3982,6 +3990,39 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EClass getSetDPDirective()
+  {
+    return setDPDirectiveEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getSetDPDirective_Directive()
+  {
+    return (EAttribute)setDPDirectiveEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSetDPDirective_Operand()
+  {
+    return (EReference)setDPDirectiveEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EClass getFccDirective()
   {
     return fccDirectiveEClass;
@@ -5621,6 +5662,10 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(directiveLineEClass, DIRECTIVE_LINE__DIRECTIVE);
     createEAttribute(directiveLineEClass, DIRECTIVE_LINE__COMMENT);
 
+    setDPDirectiveEClass = createEClass(SET_DP_DIRECTIVE);
+    createEAttribute(setDPDirectiveEClass, SET_DP_DIRECTIVE__DIRECTIVE);
+    createEReference(setDPDirectiveEClass, SET_DP_DIRECTIVE__OPERAND);
+
     fccDirectiveEClass = createEClass(FCC_DIRECTIVE);
     createEAttribute(fccDirectiveEClass, FCC_DIRECTIVE__DIRECTIVE);
     createEAttribute(fccDirectiveEClass, FCC_DIRECTIVE__STRING);
@@ -6167,6 +6212,10 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getDirectiveLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDirectiveLine_Directive(), ecorePackage.getEObject(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDirectiveLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(setDPDirectiveEClass, SetDPDirective.class, "SetDPDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getSetDPDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, SetDPDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSetDPDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, SetDPDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(fccDirectiveEClass, FccDirective.class, "FccDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFccDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

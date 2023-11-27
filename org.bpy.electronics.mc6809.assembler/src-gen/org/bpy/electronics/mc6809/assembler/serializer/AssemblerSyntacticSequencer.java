@@ -104,6 +104,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     directive=PagDirective (ambiguity) EndOfLine (rule end)
 	 *     directive=RegDirective (ambiguity) EndOfLine (rule end)
 	 *     directive=RmbDirective (ambiguity) EndOfLine (rule end)
+	 *     directive=SetDPDirective (ambiguity) EndOfLine (rule end)
 	 *     directive=SetDirective (ambiguity) EndOfLine (rule end)
 	 *     directive=SpcDirective (ambiguity) EndOfLine (rule end)
 	 

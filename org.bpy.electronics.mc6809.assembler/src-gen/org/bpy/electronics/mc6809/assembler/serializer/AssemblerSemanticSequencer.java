@@ -116,6 +116,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
@@ -514,6 +515,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.SBC_INSTRUCTION:
 				sequence_SbcInstruction(context, (SbcInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.SET_DP_DIRECTIVE:
+				sequence_SetDPDirective(context, (SetDPDirective) semanticObject); 
 				return; 
 			case AssemblerPackage.SET_DIRECTIVE:
 				sequence_SetDirective(context, (SetDirective) semanticObject); 
@@ -1451,7 +1455,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             directive=FcbDirective | 
 	 *             directive=FdbDirective | 
 	 *             directive=FccDirective | 
-	 *             directive=RmbDirective
+	 *             directive=RmbDirective | 
+	 *             directive=SetDPDirective
 	 *         ) 
 	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
 	 *     )
@@ -2773,6 +2778,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * </pre>
 	 */
 	protected void sequence_SbcInstruction(ISerializationContext context, SbcInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SetDPDirective returns SetDPDirective
+	 *
+	 * Constraint:
+	 *     (directive='SETDP' operand=Expression?)
+	 * </pre>
+	 */
+	protected void sequence_SetDPDirective(ISerializationContext context, SetDPDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

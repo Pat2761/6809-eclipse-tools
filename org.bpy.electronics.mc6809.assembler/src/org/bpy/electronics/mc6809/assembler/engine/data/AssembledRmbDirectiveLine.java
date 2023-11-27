@@ -111,4 +111,8 @@ public class AssembledRmbDirectiveLine extends AbstractAssemblyLine {
 	public int getPcIncrement() {
 		return nbBytesReserved;
 	}
+
+	public int getNbBytesReserved() {
+		return nbBytesReserved;
+	}
 }

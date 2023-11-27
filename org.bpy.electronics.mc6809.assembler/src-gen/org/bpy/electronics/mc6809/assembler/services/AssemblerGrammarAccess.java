@@ -7312,6 +7312,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cDirectiveFccDirectiveParserRuleCall_2_14_0 = (RuleCall)cDirectiveAssignment_2_14.eContents().get(0);
 		private final Assignment cDirectiveAssignment_2_15 = (Assignment)cAlternatives_2.eContents().get(15);
 		private final RuleCall cDirectiveRmbDirectiveParserRuleCall_2_15_0 = (RuleCall)cDirectiveAssignment_2_15.eContents().get(0);
+		private final Assignment cDirectiveAssignment_2_16 = (Assignment)cAlternatives_2.eContents().get(16);
+		private final RuleCall cDirectiveSetDPDirectiveParserRuleCall_2_16_0 = (RuleCall)cDirectiveAssignment_2_16.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
 		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
@@ -7341,6 +7343,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        |  directive = FdbDirective
 		//        |  directive = FccDirective
 		//        |  directive = RmbDirective
+		//        |  directive = SetDPDirective
 		//    )
 		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    WS? EndOfLine
@@ -7365,6 +7368,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    |  directive = FdbDirective
 		//    |  directive = FccDirective
 		//    |  directive = RmbDirective
+		//    |  directive = SetDPDirective
 		//)
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//WS? EndOfLine
@@ -7396,6 +7400,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    |  directive = FdbDirective
 		//    |  directive = FccDirective
 		//    |  directive = RmbDirective
+		//    |  directive = SetDPDirective
 		//)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
@@ -7495,6 +7500,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//RmbDirective
 		public RuleCall getDirectiveRmbDirectiveParserRuleCall_2_15_0() { return cDirectiveRmbDirectiveParserRuleCall_2_15_0; }
 		
+		//directive = SetDPDirective
+		public Assignment getDirectiveAssignment_2_16() { return cDirectiveAssignment_2_16; }
+		
+		//SetDPDirective
+		public RuleCall getDirectiveSetDPDirectiveParserRuleCall_2_16_0() { return cDirectiveSetDPDirectiveParserRuleCall_2_16_0; }
+		
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_3() { return cGroup_3; }
 		
@@ -7512,6 +7523,59 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+	}
+	public class SetDPDirectiveElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SetDPDirective");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cDirectiveSETDPKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
+		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
+		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final RuleCall cOperandExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
+		
+		///*
+		// *  SETDP
+		// *
+		// * The SETDP or Set Direct Page directive allows the user to set which memory page the assembler will use
+		// * for the direct page addressing mode. The correct format is as follows:
+		// *
+		// * SETDP [<page value>]
+		// *
+		// * As an example, if "SETDP $D0" is encountered, the assembler will then use direct addressing for any address
+		// * in the range of $D000 to $D0FF. It is important to note that this directive does not actually affect the
+		// * contents of the direct page register. The value set is what will be used at assembly time to determine
+		// * direct addressing, but it is up to the user to be sure the DP register corresponds at run time. If there
+		// * is no <page value> supplied, direct addressing will be disabled and all addresses will be full 16 bit values.
+		// * Any number of SETDP instructions may occur in a program. The default value is page 0 (for 6800 compatibility).
+		// */
+		//SetDPDirective:
+		//    directive = 'SETDP'
+		//    (WS (operand=Expression))?
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//directive = 'SETDP'
+		//(WS (operand=Expression))?
+		public Group getGroup() { return cGroup; }
+		
+		//directive = 'SETDP'
+		public Assignment getDirectiveAssignment_0() { return cDirectiveAssignment_0; }
+		
+		//'SETDP'
+		public Keyword getDirectiveSETDPKeyword_0_0() { return cDirectiveSETDPKeyword_0_0; }
+		
+		//(WS (operand=Expression))?
+		public Group getGroup_1() { return cGroup_1; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		
+		//(operand=Expression)
+		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
+		
+		//Expression
+		public RuleCall getOperandExpressionParserRuleCall_1_1_0() { return cOperandExpressionParserRuleCall_1_1_0; }
 	}
 	public class FccDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.FccDirective");
@@ -9590,6 +9654,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final RelatifToPCIndirectModeElements pRelatifToPCIndirectMode;
 	private final RelativeModeElements pRelativeMode;
 	private final DirectiveLineElements pDirectiveLine;
+	private final SetDPDirectiveElements pSetDPDirective;
 	private final FccDirectiveElements pFccDirective;
 	private final RegDirectiveElements pRegDirective;
 	private final SpcDirectiveElements pSpcDirective;
@@ -9735,6 +9800,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pRelatifToPCIndirectMode = new RelatifToPCIndirectModeElements();
 		this.pRelativeMode = new RelativeModeElements();
 		this.pDirectiveLine = new DirectiveLineElements();
+		this.pSetDPDirective = new SetDPDirectiveElements();
 		this.pFccDirective = new FccDirectiveElements();
 		this.pRegDirective = new RegDirectiveElements();
 		this.pSpcDirective = new SpcDirectiveElements();
@@ -12389,6 +12455,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        |  directive = FdbDirective
 	//        |  directive = FccDirective
 	//        |  directive = RmbDirective
+	//        |  directive = SetDPDirective
 	//    )
 	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    WS? EndOfLine
@@ -12399,6 +12466,33 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getDirectiveLineRule() {
 		return getDirectiveLineAccess().getRule();
+	}
+	
+	///*
+	// *  SETDP
+	// *
+	// * The SETDP or Set Direct Page directive allows the user to set which memory page the assembler will use
+	// * for the direct page addressing mode. The correct format is as follows:
+	// *
+	// * SETDP [<page value>]
+	// *
+	// * As an example, if "SETDP $D0" is encountered, the assembler will then use direct addressing for any address
+	// * in the range of $D000 to $D0FF. It is important to note that this directive does not actually affect the
+	// * contents of the direct page register. The value set is what will be used at assembly time to determine
+	// * direct addressing, but it is up to the user to be sure the DP register corresponds at run time. If there
+	// * is no <page value> supplied, direct addressing will be disabled and all addresses will be full 16 bit values.
+	// * Any number of SETDP instructions may occur in a program. The default value is page 0 (for 6800 compatibility).
+	// */
+	//SetDPDirective:
+	//    directive = 'SETDP'
+	//    (WS (operand=Expression))?
+	//;
+	public SetDPDirectiveElements getSetDPDirectiveAccess() {
+		return pSetDPDirective;
+	}
+	
+	public ParserRule getSetDPDirectiveRule() {
+		return getSetDPDirectiveAccess().getRule();
 	}
 	
 	///*

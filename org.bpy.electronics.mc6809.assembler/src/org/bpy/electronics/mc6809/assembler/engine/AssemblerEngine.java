@@ -44,6 +44,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
@@ -63,9 +64,9 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLin
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledPagDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledRegDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledRmbDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDPDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSpcDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -98,6 +99,10 @@ public class AssemblerEngine {
 	private Map<String, AbstractAssemblyLine> labelsPositionObject;
 	/** Contains the collection of Labels which define values */
 	private Map<String, AbstractAssemblyLine> labelsEquSet;
+	/** Contains the collection of assembled line  */
+	private Map<Object, AbstractAssemblyLine> assembledLinesMap;
+	/** Contains the current DP Page */
+	private int currentDPPage;
 	
 	/**
 	 * Constructor of the class
@@ -123,12 +128,14 @@ public class AssemblerEngine {
 	public void clear() {
 		lineNumber = 1;
 		currentPcValue = 0;
+		currentDPPage = 0;
+		
 		assemblyLines = new ArrayList<>();
 		AssemblerErrorManager.getInstance().clear();
 		
 		labelsPositionObject = new HashMap<>();
 		labelsEquSet = new HashMap<>();
-		
+		assembledLinesMap = new HashMap<>();
 	}
 
 	/**
@@ -202,6 +209,7 @@ public class AssemblerEngine {
 		AssembledBlankLine line = new AssembledBlankLine();
 		line.parse(blankLine, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(blankLine, line);
 	}
 
 	/**
@@ -213,6 +221,7 @@ public class AssemblerEngine {
 		AssembledCommentLine assembledCommentLine = new AssembledCommentLine();
 		assembledCommentLine.parse(commentLine, currentPcValue, lineNumber);
 		assemblyLines.add(assembledCommentLine);
+		assembledLinesMap.put(commentLine, assembledCommentLine);
 	}
 
 	/**
@@ -285,11 +294,34 @@ public class AssemblerEngine {
 			RmbDirective rmbDirective = (RmbDirective)directiveLine.getDirective();
 			parseDirective(rmbDirective);
 
+		} else if (directiveLine.getDirective() instanceof SetDPDirective) {
+			SetDPDirective setdpDirective = (SetDPDirective)directiveLine.getDirective();
+			parseDirective(setdpDirective);
+
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
 		}
 		
 		return needStop;
+	}
+
+	/**
+	 * Parse an SETDP directive line.
+	 *  
+	 * @param setdpDirective reference on the SETDP directive
+	 */
+	private void parseDirective(SetDPDirective setdpDirective) {
+		AssembledSetDPDirectiveLine line = new AssembledSetDPDirectiveLine();
+		line.parse(setdpDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		assembledLinesMap.put(setdpDirective, line);
+		currentPcValue += line.getPcIncrement();
+		
+		currentDPPage = line.getValue();
+		
+		registerLabelPosition(line, 
+				line.getDirective().eContainer(),
+				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
 	/**
@@ -301,6 +333,7 @@ public class AssemblerEngine {
 		AssembledRmbDirectiveLine line = new AssembledRmbDirectiveLine();
 		line.parse(rmbDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(rmbDirective, line);
 		currentPcValue += line.getPcIncrement();
 		
 		registerLabelPosition(line, 
@@ -317,6 +350,7 @@ public class AssemblerEngine {
 		AssembledFccDirectiveLine line = new AssembledFccDirectiveLine();
 		line.parse(fccDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(fccDirective, line);
 		currentPcValue += line.getPcIncrement();
 		
 		registerLabelPosition(line, 
@@ -333,6 +367,7 @@ public class AssemblerEngine {
 		AssembledFdbDirectiveLine line = new AssembledFdbDirectiveLine();
 		line.parse(fdbDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(fdbDirective, line);
 		currentPcValue += line.getPcIncrement();
 		
 		registerLabelPosition(line, 
@@ -349,6 +384,7 @@ public class AssemblerEngine {
 		AssembledFcbDirectiveLine line = new AssembledFcbDirectiveLine();
 		line.parse(fcbDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(fcbDirective, line);
 		currentPcValue += line.getPcIncrement();
 		
 		registerLabelPosition(line, 
@@ -365,6 +401,7 @@ public class AssemblerEngine {
 		AssembledRegDirectiveLine line = new AssembledRegDirectiveLine();
 		line.parse(regDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(regDirective, line);
 		currentPcValue += line.getPcIncrement();
 		
 		String label = line.getLabel();
@@ -389,6 +426,7 @@ public class AssemblerEngine {
 		AssembledSpcDirectiveLine line = new AssembledSpcDirectiveLine();
 		line.parse(spcDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(spcDirective, line);
 		currentPcValue += line.getPcIncrement();
 	}
 
@@ -401,6 +439,7 @@ public class AssemblerEngine {
 		AssembledNamDirectiveLine line = new AssembledNamDirectiveLine();
 		line.parse(namDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(namDirective, line);
 		currentPcValue += line.getPcIncrement();
 	}
 
@@ -413,6 +452,7 @@ public class AssemblerEngine {
 		AssembledPagDirectiveLine line = new AssembledPagDirectiveLine();
 		line.parse(pagDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(pagDirective, line);
 		currentPcValue += line.getPcIncrement();
 	}
 
@@ -425,6 +465,7 @@ public class AssemblerEngine {
 		AssembledOptDirectiveLine line = new AssembledOptDirectiveLine();
 		line.parse(optDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(optDirective, line);
 		currentPcValue += line.getPcIncrement();
 	}
 
@@ -437,6 +478,7 @@ public class AssemblerEngine {
 		AssembledFillDirectiveLine line = new AssembledFillDirectiveLine();
 		line.parse(fillDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(fillDirective, line);
 		currentPcValue += line.getPcIncrement();
 		
 		registerLabelPosition(line, 
@@ -453,6 +495,7 @@ public class AssemblerEngine {
 		AssembledEndDirectiveLine line = new AssembledEndDirectiveLine();
 		line.parse(endDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(endDirective, line);
 
 		if (line.getTarget() == null) {
 			line.setValue(0);
@@ -482,6 +525,7 @@ public class AssemblerEngine {
 		AssembledBszDirectiveLine line = new AssembledBszDirectiveLine();
 		line.parse(bszDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(bszDirective, line);
 		currentPcValue += line.getPcIncrement();
 		
 		registerLabelPosition(line, 
@@ -499,6 +543,7 @@ public class AssemblerEngine {
 		AssembledSetDirectiveLine line = new AssembledSetDirectiveLine();
 		line.parse(setDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(setDirective, line);
 		
 		String label = line.getLabel();
 		if (labelsEquSet.containsKey(label)) {
@@ -529,6 +574,7 @@ public class AssemblerEngine {
 		AssembledEquDirectiveLine line = new AssembledEquDirectiveLine();
 		line.parse(equDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(equDirective, line);
 		
 		String label = line.getLabel();
 		if (labelsEquSet.containsKey(label)) {
@@ -570,6 +616,7 @@ public class AssemblerEngine {
 		AssembledOrgDirectiveLine line = new AssembledOrgDirectiveLine();
 		line.parse(directive, currentPcValue, lineNumber);
 		assemblyLines.add(line);
+		assembledLinesMap.put(directive, line);
 
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
@@ -607,6 +654,16 @@ public class AssemblerEngine {
 	}
 
 	/**
+	 * Get the assembly line corresponding to the assembly line
+	 * 
+	 * @param objectLine Assembly line reference
+	 * @return Reference on the assembled line, <b>null</b> if not found
+	 */
+	public AbstractAssemblyLine getAssemblyLine(Object objectLine) {
+		return assembledLinesMap.get(objectLine);
+	}
+	
+	/**
 	 * Get the value for a label 
 	 * 
 	 * @param value value of the label
@@ -631,4 +688,9 @@ public class AssemblerEngine {
 			return null;
 		}
 	}
+
+	public int getCurrentDPPage() {
+		return currentDPPage;
+	}
+
 }

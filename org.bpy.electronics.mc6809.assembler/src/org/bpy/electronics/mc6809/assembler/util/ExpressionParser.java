@@ -50,6 +50,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RightShift;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
@@ -107,7 +108,7 @@ public class ExpressionParser {
 		return parse(fcbDirective.getOperand()); 
 	}
 
-	public static List<Integer> parse(ListOfExpression operand) {
+	private static List<Integer> parse(ListOfExpression operand) {
 		List<Integer> listValues = new ArrayList<>();
 		if (operand != null) {
 			Expression expression = operand.getExpression();
@@ -233,6 +234,23 @@ public class ExpressionParser {
 		eReference = AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND;
 		if (bszDirective.getOperand() != null && bszDirective.getOperand().getOperand() != null) {
 			EObject operand = bszDirective.getOperand().getOperand();
+			return resolveExpression((Expression)operand);
+		} else {
+			return 0;
+		}
+	}
+
+	/** 
+	 *  Parse the operand of an SETDP directive.
+	 *  
+	 *  @param directive reference on the SETDP directive
+	 *  @return value of the operand 
+	 */
+	public static int parse(SetDPDirective directive) {
+		assemblyLine = directive;
+		eReference = AssemblerPackage.Literals.SET_DP_DIRECTIVE__OPERAND;
+		if (directive.getOperand() != null && directive.getOperand().getOperand() != null) {
+			EObject operand = directive.getOperand().getOperand();
 			return resolveExpression((Expression)operand);
 		} else {
 			return 0;

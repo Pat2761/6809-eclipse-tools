@@ -18,25 +18,24 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
-import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
 /**
- * Used to store information about BSZ directive
+ * Used to store information about SETDP directive
  */
-public class AssembledBszDirectiveLine extends AbstractAssemblyLine {
+public class AssembledSetDPDirectiveLine extends AbstractAssemblyLine {
 
-	/** reference to the BSZ directive in the edited file */
-	private BszDirective directive;
-	/** Integer value defined by the EQU directive */ 
-	private int[] values;	
-	/** Integer value defined the number of byte */ 
-	private int nbBytes;	
+	/** reference to the SETDP directive in the edited file */
+	private SetDPDirective directive;
+	/** Integer value defined the directive */ 
+	private int value;	
+	
 	/**
 	 * Constructor of the class
 	 */
-	public AssembledBszDirectiveLine() {
+	public AssembledSetDPDirectiveLine() {
 		// nothing to do
 	}
 
@@ -47,26 +46,14 @@ public class AssembledBszDirectiveLine extends AbstractAssemblyLine {
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(BszDirective directive, int currentPcValue, int lineNumber) {
+	public void parse(SetDPDirective directive, int currentPcValue, int lineNumber) {
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
 		
-		nbBytes = ExpressionParser.parse(directive);
-		if (nbBytes<0) {
-			values = new int[0];
-		} else {
-			values = new int[nbBytes];
-			for (int i=0; i<nbBytes; i++) {
-				values[i] = 0;
-			}
-		}
-	}
-
-	public int getNbBytes() {
-		return nbBytes;
+		value = ExpressionParser.parse(directive);
 	}
 
 	@Override
@@ -112,20 +99,21 @@ public class AssembledBszDirectiveLine extends AbstractAssemblyLine {
 		strBuilder.append(String.format("%-6s", directive.getDirective()));  // Mnemonique (6 car)
 	}
 
-	public BszDirective getDirective() {
+	public SetDPDirective getDirective() {
 		return directive;
 	}
 
-	public void setDirective(BszDirective directive) {
+	public void setDirective(SetDPDirective directive) {
 		this.directive = directive;
-	}
-
-	public int[] getValues() {
-		return values;
 	}
 
 	@Override
 	public int getPcIncrement() {
-		return values.length;
+		return 0;
 	}
+
+	public int getValue() {
+		return value;
+	}
+	
 }

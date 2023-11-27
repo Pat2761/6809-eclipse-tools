@@ -696,6 +696,13 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.SET_DP_DIRECTIVE:
+      {
+        SetDPDirective setDPDirective = (SetDPDirective)theEObject;
+        T result = caseSetDPDirective(setDPDirective);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.FCC_DIRECTIVE:
       {
         FccDirective fccDirective = (FccDirective)theEObject;
@@ -2397,6 +2404,22 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseDirectiveLine(DirectiveLine object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Set DP Directive</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Set DP Directive</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSetDPDirective(SetDPDirective object)
   {
     return null;
   }
