@@ -30,6 +30,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFccDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -103,5 +106,56 @@ class TestFccDirective {
 		
 		val directiveLine = line.lineContent as DirectiveLine
 		Assert.assertTrue("Must be an FCC directive line", directiveLine.directive instanceof FccDirective)
+	}
+	
+	/**
+	 * Check FCC directive with duplicate Label
+	 */
+	@Test 
+	def void testFCBWithDuplicateLabels() {
+		val result = parseHelper.parse('''
+			         ORG    $8000
+		Label1	     BSZ	10    
+		Label1       FCC    "Erreur AA115" 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.directiveLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Label1 is already defined"
+		)
+	}
+
+	/**
+	 * Check FDB directive with duplicate Label
+	 */
+	@Test 
+	def void testFDBAssemblyResult() {
+		val result = parseHelper.parse('''
+			        	ORG    	$8000
+		Label1       	FCC    	"Erreur AA115" 		; error message
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1) as AssembledFccDirectiveLine;
+		Assert.assertEquals("Check Label","Label1",line.label)
+		Assert.assertEquals("Check Comment","; error message",line.comment)
+
+		Assert.assertEquals("Check value 0",69,line.values.get(0))
+		Assert.assertEquals("Check value 1",114,line.values.get(1))
+		Assert.assertEquals("Check value 2",114,line.values.get(2))
+		Assert.assertEquals("Check value 3",101,line.values.get(3))
+		Assert.assertEquals("Check value 4",117,line.values.get(4))
+		Assert.assertEquals("Check value 5",114,line.values.get(5))
+		Assert.assertEquals("Check value 6",32,line.values.get(6))
+		Assert.assertEquals("Check value 7",65,line.values.get(7))
+		Assert.assertEquals("Check value 8",65,line.values.get(8))
+		Assert.assertEquals("Check value 9",49,line.values.get(9))
+		Assert.assertEquals("Check value 10",49,line.values.get(10))
+		Assert.assertEquals("Check value 11",53,line.values.get(11))
+
+		Assert.assertEquals("Check Impact on PC",0x800C,engine.currentPcValue)
 	}
 }

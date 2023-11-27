@@ -27,6 +27,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
@@ -243,6 +244,35 @@ public class CommandUtil {
 		}
 	}
 	
+	/**
+	 * Return the label associated to an FCC directive.
+	 * 
+	 * @param fccDirective reference on the FCC directive
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(FccDirective fccDirective) {
+		DirectiveLine directiveLine = (DirectiveLine)fccDirective.eContainer();
+		if ( directiveLine.getName() != null) {
+			return directiveLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to an FCC directive.
+	 * 
+	 * @param fccDirective reference on the FCC directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(FccDirective fccDirective) {
+		DirectiveLine directiveLine = (DirectiveLine)fccDirective.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
 	/**
 	 * Return the label associated to an END directive.
 	 * 
