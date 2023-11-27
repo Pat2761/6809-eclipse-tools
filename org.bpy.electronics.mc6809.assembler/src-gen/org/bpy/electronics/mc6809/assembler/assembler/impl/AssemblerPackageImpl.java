@@ -47,6 +47,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CommaExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
@@ -891,6 +892,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass listOfExpressionEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass commaExpressionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -4568,9 +4576,53 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getListOfExpression_Expressions()
+  public EReference getListOfExpression_Expression()
   {
     return (EReference)listOfExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getListOfExpression_CommaExpressions()
+  {
+    return (EReference)listOfExpressionEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getCommaExpression()
+  {
+    return commaExpressionEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getCommaExpression_Comma()
+  {
+    return (EAttribute)commaExpressionEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getCommaExpression_Expression()
+  {
+    return (EReference)commaExpressionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5639,7 +5691,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(equDirectiveEClass, EQU_DIRECTIVE__OPERAND);
 
     listOfExpressionEClass = createEClass(LIST_OF_EXPRESSION);
-    createEReference(listOfExpressionEClass, LIST_OF_EXPRESSION__EXPRESSIONS);
+    createEReference(listOfExpressionEClass, LIST_OF_EXPRESSION__EXPRESSION);
+    createEReference(listOfExpressionEClass, LIST_OF_EXPRESSION__COMMA_EXPRESSIONS);
+
+    commaExpressionEClass = createEClass(COMMA_EXPRESSION);
+    createEAttribute(commaExpressionEClass, COMMA_EXPRESSION__COMMA);
+    createEReference(commaExpressionEClass, COMMA_EXPRESSION__EXPRESSION);
 
     expressionEClass = createEClass(EXPRESSION);
     createEReference(expressionEClass, EXPRESSION__OPERAND);
@@ -6181,7 +6238,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getEquDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(listOfExpressionEClass, ListOfExpression.class, "ListOfExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getListOfExpression_Expressions(), this.getExpression(), null, "expressions", null, 0, -1, ListOfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getListOfExpression_Expression(), this.getExpression(), null, "expression", null, 0, 1, ListOfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getListOfExpression_CommaExpressions(), this.getCommaExpression(), null, "commaExpressions", null, 0, -1, ListOfExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(commaExpressionEClass, CommaExpression.class, "CommaExpression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getCommaExpression_Comma(), ecorePackage.getEString(), "comma", null, 0, 1, CommaExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCommaExpression_Expression(), this.getExpression(), null, "expression", null, 0, 1, CommaExpression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(expressionEClass, Expression.class, "Expression", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getExpression_Operand(), this.getExpression(), null, "operand", null, 0, 1, Expression.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

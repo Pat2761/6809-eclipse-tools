@@ -11033,47 +11033,93 @@ ruleListOfExpression returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getListOfExpressionAccess().getExpressionsExpressionParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getListOfExpressionAccess().getExpressionExpressionParserRuleCall_0_0());
 				}
-				lv_expressions_0_0=ruleExpression
+				lv_expression_0_0=ruleExpression
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getListOfExpressionRule());
 					}
-					add(
+					set(
 						$current,
-						"expressions",
-						lv_expressions_0_0,
+						"expression",
+						lv_expression_0_0,
 						"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
 		(
-			otherlv_1=','
-			{
-				newLeafNode(otherlv_1, grammarAccess.getListOfExpressionAccess().getCommaKeyword_1_0());
-			}
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getListOfExpressionAccess().getExpressionsExpressionParserRuleCall_1_1_0());
+				{
+					newCompositeNode(grammarAccess.getListOfExpressionAccess().getCommaExpressionsCommaExpressionParserRuleCall_1_0());
+				}
+				lv_commaExpressions_1_0=ruleCommaExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getListOfExpressionRule());
 					}
-					lv_expressions_2_0=ruleExpression
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getListOfExpressionRule());
-						}
-						add(
-							$current,
-							"expressions",
-							lv_expressions_2_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					add(
+						$current,
+						"commaExpressions",
+						lv_commaExpressions_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.CommaExpression");
+					afterParserOrEnumRuleCall();
+				}
 			)
 		)*
+	)
+;
+
+// Entry rule entryRuleCommaExpression
+entryRuleCommaExpression returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getCommaExpressionRule()); }
+	iv_ruleCommaExpression=ruleCommaExpression
+	{ $current=$iv_ruleCommaExpression.current; }
+	EOF;
+
+// Rule CommaExpression
+ruleCommaExpression returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_comma_0_0=','
+				{
+					newLeafNode(lv_comma_0_0, grammarAccess.getCommaExpressionAccess().getCommaCommaKeyword_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getCommaExpressionRule());
+					}
+					setWithLastConsumed($current, "comma", lv_comma_0_0, ",");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getCommaExpressionAccess().getExpressionExpressionParserRuleCall_1_0());
+				}
+				lv_expression_1_0=ruleExpression
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getCommaExpressionRule());
+					}
+					set(
+						$current,
+						"expression",
+						lv_expression_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
 	)
 ;
 

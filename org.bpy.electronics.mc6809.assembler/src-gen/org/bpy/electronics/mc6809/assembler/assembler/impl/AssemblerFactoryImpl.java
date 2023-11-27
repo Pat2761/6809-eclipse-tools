@@ -172,6 +172,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.ORG_DIRECTIVE: return createOrgDirective();
       case AssemblerPackage.EQU_DIRECTIVE: return createEquDirective();
       case AssemblerPackage.LIST_OF_EXPRESSION: return createListOfExpression();
+      case AssemblerPackage.COMMA_EXPRESSION: return createCommaExpression();
       case AssemblerPackage.EXPRESSION: return createExpression();
       case AssemblerPackage.NUMERICAL_VALUE: return createNumericalValue();
       case AssemblerPackage.IDENTIFIER_VALUE: return createIdentifierValue();
@@ -1505,6 +1506,18 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     ListOfExpressionImpl listOfExpression = new ListOfExpressionImpl();
     return listOfExpression;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public CommaExpression createCommaExpression()
+  {
+    CommaExpressionImpl commaExpression = new CommaExpressionImpl();
+    return commaExpression;
   }
 
   /**

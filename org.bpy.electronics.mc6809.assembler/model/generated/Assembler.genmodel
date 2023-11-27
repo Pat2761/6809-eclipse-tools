@@ -447,7 +447,12 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//EquDirective/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//ListOfExpression">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ListOfExpression/expressions"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ListOfExpression/expression"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ListOfExpression/commaExpressions"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//CommaExpression">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CommaExpression/comma"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//CommaExpression/expression"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//Expression">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Expression/operand"/>

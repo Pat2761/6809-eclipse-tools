@@ -197,6 +197,21 @@ public class CommandUtil {
 			return null;
 		}
 	}
+
+	/**
+	 * Return the comment associated to an FCB directive.
+	 * 
+	 * @param directive reference on the FCB directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(FcbDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
 	
 	/**
 	 * Return the label associated to an FDB directive.

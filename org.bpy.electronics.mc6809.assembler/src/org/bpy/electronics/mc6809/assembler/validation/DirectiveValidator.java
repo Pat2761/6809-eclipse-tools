@@ -41,7 +41,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.EValidatorRegistrar;
 
@@ -326,6 +325,18 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
 		}
+
+	    // Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(bszDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(bszDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
 	}
 	
 	@Check
@@ -475,20 +486,33 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 */
 	public void checkFcbConstraints(FcbDirective fcbDirective) {
 		
-		List<Integer> rmbValues = ExpressionParser.parse(fcbDirective);
+		List<Integer> fcbValues = ExpressionParser.parse(fcbDirective);
 		int location = 1;
-		for (Integer rmbValue : rmbValues) {
-			if (rmbValue > 255) {
+		for (Integer fcbValue : fcbValues) {
+			if (fcbValue > 255) {
 				error("FCB value maximum value is $FF at location " + location ,
 						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
 						INVALID_RANGE);
-			} else if (rmbValue < -127) {
+			} else if (fcbValue < -127) {
 				error("FCB value can't lower than -127 at location " + location,
 						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
 						INVALID_RANGE);
 			}
 			location++;
 		}
+
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(fcbDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(fcbDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+
 	}
 
 	@Check

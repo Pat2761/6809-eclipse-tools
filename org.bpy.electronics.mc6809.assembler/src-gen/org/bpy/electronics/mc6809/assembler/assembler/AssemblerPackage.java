@@ -3936,13 +3936,22 @@ public interface AssemblerPackage extends EPackage
   int LIST_OF_EXPRESSION = 105;
 
   /**
-   * The feature id for the '<em><b>Expressions</b></em>' containment reference list.
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LIST_OF_EXPRESSION__EXPRESSIONS = 0;
+  int LIST_OF_EXPRESSION__EXPRESSION = 0;
+
+  /**
+   * The feature id for the '<em><b>Comma Expressions</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LIST_OF_EXPRESSION__COMMA_EXPRESSIONS = 1;
 
   /**
    * The number of structural features of the '<em>List Of Expression</em>' class.
@@ -3951,7 +3960,44 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LIST_OF_EXPRESSION_FEATURE_COUNT = 1;
+  int LIST_OF_EXPRESSION_FEATURE_COUNT = 2;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommaExpressionImpl <em>Comma Expression</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CommaExpressionImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCommaExpression()
+   * @generated
+   */
+  int COMMA_EXPRESSION = 106;
+
+  /**
+   * The feature id for the '<em><b>Comma</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMA_EXPRESSION__COMMA = 0;
+
+  /**
+   * The feature id for the '<em><b>Expression</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMA_EXPRESSION__EXPRESSION = 1;
+
+  /**
+   * The number of structural features of the '<em>Comma Expression</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COMMA_EXPRESSION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl <em>Expression</em>}' class.
@@ -3961,7 +4007,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 106;
+  int EXPRESSION = 107;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -3998,7 +4044,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNumericalValue()
    * @generated
    */
-  int NUMERICAL_VALUE = 107;
+  int NUMERICAL_VALUE = 108;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -4026,7 +4072,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifierValue()
    * @generated
    */
-  int IDENTIFIER_VALUE = 108;
+  int IDENTIFIER_VALUE = 109;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4054,7 +4100,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStringValue()
    * @generated
    */
-  int STRING_VALUE = 109;
+  int STRING_VALUE = 110;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4082,7 +4128,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecimalValue()
    * @generated
    */
-  int DECIMAL_VALUE = 110;
+  int DECIMAL_VALUE = 111;
 
   /**
    * The feature id for the '<em><b>Sign</b></em>' attribute.
@@ -4119,7 +4165,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getHexaDecimalValue()
    * @generated
    */
-  int HEXA_DECIMAL_VALUE = 111;
+  int HEXA_DECIMAL_VALUE = 112;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4147,7 +4193,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOctalValue()
    * @generated
    */
-  int OCTAL_VALUE = 112;
+  int OCTAL_VALUE = 113;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4175,7 +4221,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBinaryValue()
    * @generated
    */
-  int BINARY_VALUE = 113;
+  int BINARY_VALUE = 114;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4203,7 +4249,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCharacterValue()
    * @generated
    */
-  int CHARACTER_VALUE = 114;
+  int CHARACTER_VALUE = 115;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4231,7 +4277,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 115;
+  int MULTIPLICATION = 116;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4295,7 +4341,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDivision()
    * @generated
    */
-  int DIVISION = 116;
+  int DIVISION = 117;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4359,7 +4405,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getModulo()
    * @generated
    */
-  int MODULO = 117;
+  int MODULO = 118;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4423,7 +4469,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 118;
+  int ADDITION = 119;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4478,7 +4524,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubstraction()
    * @generated
    */
-  int SUBSTRACTION = 119;
+  int SUBSTRACTION = 120;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4533,7 +4579,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeftShift()
    * @generated
    */
-  int LEFT_SHIFT = 120;
+  int LEFT_SHIFT = 121;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4588,7 +4634,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRightShift()
    * @generated
    */
-  int RIGHT_SHIFT = 121;
+  int RIGHT_SHIFT = 122;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4643,7 +4689,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAnd()
    * @generated
    */
-  int AND = 122;
+  int AND = 123;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4698,7 +4744,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOr()
    * @generated
    */
-  int OR = 123;
+  int OR = 124;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4753,7 +4799,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getXor()
    * @generated
    */
-  int XOR = 124;
+  int XOR = 125;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4808,7 +4854,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNot()
    * @generated
    */
-  int NOT = 125;
+  int NOT = 126;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4845,7 +4891,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAssemblyOption()
    * @generated
    */
-  int ASSEMBLY_OPTION = 126;
+  int ASSEMBLY_OPTION = 127;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.Register <em>Register</em>}' enum.
@@ -4855,7 +4901,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRegister()
    * @generated
    */
-  int REGISTER = 127;
+  int REGISTER = 128;
 
 
   /**
@@ -8207,15 +8253,58 @@ public interface AssemblerPackage extends EPackage
   EClass getListOfExpression();
 
   /**
-   * Returns the meta object for the containment reference list '{@link org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression#getExpressions <em>Expressions</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression#getExpression <em>Expression</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference list '<em>Expressions</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression#getExpressions()
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression#getExpression()
    * @see #getListOfExpression()
    * @generated
    */
-  EReference getListOfExpression_Expressions();
+  EReference getListOfExpression_Expression();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression#getCommaExpressions <em>Comma Expressions</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Comma Expressions</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression#getCommaExpressions()
+   * @see #getListOfExpression()
+   * @generated
+   */
+  EReference getListOfExpression_CommaExpressions();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.CommaExpression <em>Comma Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Comma Expression</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CommaExpression
+   * @generated
+   */
+  EClass getCommaExpression();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.CommaExpression#getComma <em>Comma</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comma</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CommaExpression#getComma()
+   * @see #getCommaExpression()
+   * @generated
+   */
+  EAttribute getCommaExpression_Comma();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.CommaExpression#getExpression <em>Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expression</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CommaExpression#getExpression()
+   * @see #getCommaExpression()
+   * @generated
+   */
+  EReference getCommaExpression_Expression();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Expression <em>Expression</em>}'.
@@ -11559,12 +11648,46 @@ public interface AssemblerPackage extends EPackage
     EClass LIST_OF_EXPRESSION = eINSTANCE.getListOfExpression();
 
     /**
-     * The meta object literal for the '<em><b>Expressions</b></em>' containment reference list feature.
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference LIST_OF_EXPRESSION__EXPRESSIONS = eINSTANCE.getListOfExpression_Expressions();
+    EReference LIST_OF_EXPRESSION__EXPRESSION = eINSTANCE.getListOfExpression_Expression();
+
+    /**
+     * The meta object literal for the '<em><b>Comma Expressions</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LIST_OF_EXPRESSION__COMMA_EXPRESSIONS = eINSTANCE.getListOfExpression_CommaExpressions();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommaExpressionImpl <em>Comma Expression</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CommaExpressionImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCommaExpression()
+     * @generated
+     */
+    EClass COMMA_EXPRESSION = eINSTANCE.getCommaExpression();
+
+    /**
+     * The meta object literal for the '<em><b>Comma</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COMMA_EXPRESSION__COMMA = eINSTANCE.getCommaExpression_Comma();
+
+    /**
+     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference COMMA_EXPRESSION__EXPRESSION = eINSTANCE.getCommaExpression_Expression();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl <em>Expression</em>}' class.

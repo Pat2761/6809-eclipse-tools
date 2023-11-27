@@ -978,6 +978,15 @@ public interface AssemblerFactory extends EFactory
   ListOfExpression createListOfExpression();
 
   /**
+   * Returns a new object of class '<em>Comma Expression</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Comma Expression</em>'.
+   * @generated
+   */
+  CommaExpression createCommaExpression();
+
+  /**
    * Returns a new object of class '<em>Expression</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

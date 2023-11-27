@@ -815,6 +815,13 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.COMMA_EXPRESSION:
+      {
+        CommaExpression commaExpression = (CommaExpression)theEObject;
+        T result = caseCommaExpression(commaExpression);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.EXPRESSION:
       {
         Expression expression = (Expression)theEObject;
@@ -2662,6 +2669,22 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseListOfExpression(ListOfExpression object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Comma Expression</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Comma Expression</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCommaExpression(CommaExpression object)
   {
     return null;
   }

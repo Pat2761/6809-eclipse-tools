@@ -29,6 +29,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
+import org.bpy.electronics.mc6809.assembler.assembler.CommaExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
@@ -39,6 +40,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
+import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.Not;
@@ -87,20 +89,7 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static List<Integer> parse(FdbDirective fdbDirective) {
-		List<Integer> values = new ArrayList<>(); 
-		
-		if (fdbDirective.getOperand() != null && fdbDirective.getOperand().getExpressions() != null) {
-			
-			for ( Expression expression : fdbDirective.getOperand().getExpressions()) {
-				if (expression != null) {
-					int fcbValue = resolveExpression(expression.getOperand());
-					values.add(fcbValue);
-				} else {
-					values.add(0);
-				}
-			}
-		}
-		return values;	
+		return parse(fdbDirective.getOperand()); 
 	}
 
 	/** 
@@ -110,20 +99,28 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static List<Integer> parse(FcbDirective fcbDirective) {
-		List<Integer> values = new ArrayList<>(); 
-		
-		if (fcbDirective.getOperand() != null && fcbDirective.getOperand().getExpressions() != null) {
-			
-			for ( Expression expression : fcbDirective.getOperand().getExpressions()) {
-				if (expression != null) {
-					int fcbValue = resolveExpression(expression.getOperand());
-					values.add(fcbValue);
-				} else {
-					values.add(0);
+		return parse(fcbDirective.getOperand()); 
+	}
+
+	public static List<Integer> parse(ListOfExpression operand) {
+		List<Integer> listValues = new ArrayList<>();
+		if (operand != null) {
+			Expression expression = operand.getExpression();
+			if (expression != null) {
+				listValues.add(ExpressionParser.resolveExpression(expression.getOperand()));
+				
+				if (operand.getCommaExpressions() != null) {
+					for (CommaExpression commaExpression : operand.getCommaExpressions()) {
+						if (commaExpression.getExpression() != null) {
+							listValues.add(ExpressionParser.resolveExpression(commaExpression.getExpression().getOperand()));
+						} else {
+							listValues.add(0);
+						}
+ 					}
 				}
 			}
 		}
-		return values;	
+		return listValues;
 	}
 
 	/** 

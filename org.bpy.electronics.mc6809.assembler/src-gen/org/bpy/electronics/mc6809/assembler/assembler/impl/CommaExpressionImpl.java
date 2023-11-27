@@ -3,17 +3,12 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
-import java.util.Collection;
-
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.CommaExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
-import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -21,25 +16,42 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>List Of Expression</b></em>'.
+ * An implementation of the model object '<em><b>Comma Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ListOfExpressionImpl#getExpression <em>Expression</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ListOfExpressionImpl#getCommaExpressions <em>Comma Expressions</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommaExpressionImpl#getComma <em>Comma</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommaExpressionImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implements ListOfExpression
+public class CommaExpressionImpl extends MinimalEObjectImpl.Container implements CommaExpression
 {
+  /**
+   * The default value of the '{@link #getComma() <em>Comma</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComma()
+   * @generated
+   * @ordered
+   */
+  protected static final String COMMA_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getComma() <em>Comma</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComma()
+   * @generated
+   * @ordered
+   */
+  protected String comma = COMMA_EDEFAULT;
+
   /**
    * The cached value of the '{@link #getExpression() <em>Expression</em>}' containment reference.
    * <!-- begin-user-doc -->
@@ -51,21 +63,11 @@ public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implement
   protected Expression expression;
 
   /**
-   * The cached value of the '{@link #getCommaExpressions() <em>Comma Expressions</em>}' containment reference list.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getCommaExpressions()
-   * @generated
-   * @ordered
-   */
-  protected EList<CommaExpression> commaExpressions;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected ListOfExpressionImpl()
+  protected CommaExpressionImpl()
   {
     super();
   }
@@ -78,7 +80,32 @@ public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implement
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.LIST_OF_EXPRESSION;
+    return AssemblerPackage.Literals.COMMA_EXPRESSION;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getComma()
+  {
+    return comma;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setComma(String newComma)
+  {
+    String oldComma = comma;
+    comma = newComma;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.COMMA_EXPRESSION__COMMA, oldComma, comma));
   }
 
   /**
@@ -103,7 +130,7 @@ public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implement
     expression = newExpression;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.LIST_OF_EXPRESSION__EXPRESSION, oldExpression, newExpression);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.COMMA_EXPRESSION__EXPRESSION, oldExpression, newExpression);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -121,29 +148,14 @@ public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implement
     {
       NotificationChain msgs = null;
       if (expression != null)
-        msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.LIST_OF_EXPRESSION__EXPRESSION, null, msgs);
+        msgs = ((InternalEObject)expression).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.COMMA_EXPRESSION__EXPRESSION, null, msgs);
       if (newExpression != null)
-        msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.LIST_OF_EXPRESSION__EXPRESSION, null, msgs);
+        msgs = ((InternalEObject)newExpression).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.COMMA_EXPRESSION__EXPRESSION, null, msgs);
       msgs = basicSetExpression(newExpression, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.LIST_OF_EXPRESSION__EXPRESSION, newExpression, newExpression));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EList<CommaExpression> getCommaExpressions()
-  {
-    if (commaExpressions == null)
-    {
-      commaExpressions = new EObjectContainmentEList<CommaExpression>(CommaExpression.class, this, AssemblerPackage.LIST_OF_EXPRESSION__COMMA_EXPRESSIONS);
-    }
-    return commaExpressions;
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.COMMA_EXPRESSION__EXPRESSION, newExpression, newExpression));
   }
 
   /**
@@ -156,10 +168,8 @@ public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case AssemblerPackage.LIST_OF_EXPRESSION__EXPRESSION:
+      case AssemblerPackage.COMMA_EXPRESSION__EXPRESSION:
         return basicSetExpression(null, msgs);
-      case AssemblerPackage.LIST_OF_EXPRESSION__COMMA_EXPRESSIONS:
-        return ((InternalEList<?>)getCommaExpressions()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -174,10 +184,10 @@ public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case AssemblerPackage.LIST_OF_EXPRESSION__EXPRESSION:
+      case AssemblerPackage.COMMA_EXPRESSION__COMMA:
+        return getComma();
+      case AssemblerPackage.COMMA_EXPRESSION__EXPRESSION:
         return getExpression();
-      case AssemblerPackage.LIST_OF_EXPRESSION__COMMA_EXPRESSIONS:
-        return getCommaExpressions();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -187,18 +197,16 @@ public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
     switch (featureID)
     {
-      case AssemblerPackage.LIST_OF_EXPRESSION__EXPRESSION:
-        setExpression((Expression)newValue);
+      case AssemblerPackage.COMMA_EXPRESSION__COMMA:
+        setComma((String)newValue);
         return;
-      case AssemblerPackage.LIST_OF_EXPRESSION__COMMA_EXPRESSIONS:
-        getCommaExpressions().clear();
-        getCommaExpressions().addAll((Collection<? extends CommaExpression>)newValue);
+      case AssemblerPackage.COMMA_EXPRESSION__EXPRESSION:
+        setExpression((Expression)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -214,11 +222,11 @@ public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case AssemblerPackage.LIST_OF_EXPRESSION__EXPRESSION:
-        setExpression((Expression)null);
+      case AssemblerPackage.COMMA_EXPRESSION__COMMA:
+        setComma(COMMA_EDEFAULT);
         return;
-      case AssemblerPackage.LIST_OF_EXPRESSION__COMMA_EXPRESSIONS:
-        getCommaExpressions().clear();
+      case AssemblerPackage.COMMA_EXPRESSION__EXPRESSION:
+        setExpression((Expression)null);
         return;
     }
     super.eUnset(featureID);
@@ -234,12 +242,29 @@ public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implement
   {
     switch (featureID)
     {
-      case AssemblerPackage.LIST_OF_EXPRESSION__EXPRESSION:
+      case AssemblerPackage.COMMA_EXPRESSION__COMMA:
+        return COMMA_EDEFAULT == null ? comma != null : !COMMA_EDEFAULT.equals(comma);
+      case AssemblerPackage.COMMA_EXPRESSION__EXPRESSION:
         return expression != null;
-      case AssemblerPackage.LIST_OF_EXPRESSION__COMMA_EXPRESSIONS:
-        return commaExpressions != null && !commaExpressions.isEmpty();
     }
     return super.eIsSet(featureID);
   }
 
-} //ListOfExpressionImpl
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (comma: ");
+    result.append(comma);
+    result.append(')');
+    return result.toString();
+  }
+
+} //CommaExpressionImpl

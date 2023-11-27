@@ -8048,7 +8048,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * FILL
 		// *
 		// * FILL allow to initialize a memory area with a value
-		// * the first value define the value to set, the seconfd value define the number of byte to set
+		// * the first value define the value to set, the second value define the number of byte to set
 		// */
 		//FillDirective:
 		//    directive = 'FILL'
@@ -8505,38 +8505,66 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	public class ListOfExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.ListOfExpression");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cExpressionsAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cExpressionsExpressionParserRuleCall_0_0 = (RuleCall)cExpressionsAssignment_0.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Keyword cCommaKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
-		private final Assignment cExpressionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cExpressionsExpressionParserRuleCall_1_1_0 = (RuleCall)cExpressionsAssignment_1_1.eContents().get(0);
+		private final Assignment cExpressionAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cExpressionExpressionParserRuleCall_0_0 = (RuleCall)cExpressionAssignment_0.eContents().get(0);
+		private final Assignment cCommaExpressionsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cCommaExpressionsCommaExpressionParserRuleCall_1_0 = (RuleCall)cCommaExpressionsAssignment_1.eContents().get(0);
 		
 		//ListOfExpression:
-		//    expressions+=Expression (',' expressions+=Expression)*
+		//    expression=Expression
+		//    (
+		//         commaExpressions+=CommaExpression
+		//    )*
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//expressions+=Expression (',' expressions+=Expression)*
+		//expression=Expression
+		//(
+		//     commaExpressions+=CommaExpression
+		//)*
 		public Group getGroup() { return cGroup; }
 		
-		//expressions+=Expression
-		public Assignment getExpressionsAssignment_0() { return cExpressionsAssignment_0; }
+		//expression=Expression
+		public Assignment getExpressionAssignment_0() { return cExpressionAssignment_0; }
 		
 		//Expression
-		public RuleCall getExpressionsExpressionParserRuleCall_0_0() { return cExpressionsExpressionParserRuleCall_0_0; }
+		public RuleCall getExpressionExpressionParserRuleCall_0_0() { return cExpressionExpressionParserRuleCall_0_0; }
 		
-		//(',' expressions+=Expression)*
-		public Group getGroup_1() { return cGroup_1; }
+		//(
+		//     commaExpressions+=CommaExpression
+		//)*
+		public Assignment getCommaExpressionsAssignment_1() { return cCommaExpressionsAssignment_1; }
+		
+		//CommaExpression
+		public RuleCall getCommaExpressionsCommaExpressionParserRuleCall_1_0() { return cCommaExpressionsCommaExpressionParserRuleCall_1_0; }
+	}
+	public class CommaExpressionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.CommaExpression");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cCommaAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cCommaCommaKeyword_0_0 = (Keyword)cCommaAssignment_0.eContents().get(0);
+		private final Assignment cExpressionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExpressionExpressionParserRuleCall_1_0 = (RuleCall)cExpressionAssignment_1.eContents().get(0);
+		
+		//CommaExpression:
+		//    comma=',' expression=Expression?
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//comma=',' expression=Expression?
+		public Group getGroup() { return cGroup; }
+		
+		//comma=','
+		public Assignment getCommaAssignment_0() { return cCommaAssignment_0; }
 		
 		//','
-		public Keyword getCommaKeyword_1_0() { return cCommaKeyword_1_0; }
+		public Keyword getCommaCommaKeyword_0_0() { return cCommaCommaKeyword_0_0; }
 		
-		//expressions+=Expression
-		public Assignment getExpressionsAssignment_1_1() { return cExpressionsAssignment_1_1; }
+		//expression=Expression?
+		public Assignment getExpressionAssignment_1() { return cExpressionAssignment_1; }
 		
 		//Expression
-		public RuleCall getExpressionsExpressionParserRuleCall_1_1_0() { return cExpressionsExpressionParserRuleCall_1_1_0; }
+		public RuleCall getExpressionExpressionParserRuleCall_1_0() { return cExpressionExpressionParserRuleCall_1_0; }
 	}
 	public class ExpressionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Expression");
@@ -9579,6 +9607,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final OrgDirectiveElements pOrgDirective;
 	private final EquDirectiveElements pEquDirective;
 	private final ListOfExpressionElements pListOfExpression;
+	private final CommaExpressionElements pCommaExpression;
 	private final ExpressionElements pExpression;
 	private final MultiplicationElements pMultiplication;
 	private final DivisionElements pDivision;
@@ -9723,6 +9752,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pOrgDirective = new OrgDirectiveElements();
 		this.pEquDirective = new EquDirectiveElements();
 		this.pListOfExpression = new ListOfExpressionElements();
+		this.pCommaExpression = new CommaExpressionElements();
 		this.pExpression = new ExpressionElements();
 		this.pMultiplication = new MultiplicationElements();
 		this.pDivision = new DivisionElements();
@@ -12624,7 +12654,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * FILL
 	// *
 	// * FILL allow to initialize a memory area with a value
-	// * the first value define the value to set, the seconfd value define the number of byte to set
+	// * the first value define the value to set, the second value define the number of byte to set
 	// */
 	//FillDirective:
 	//    directive = 'FILL'
@@ -12793,7 +12823,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//ListOfExpression:
-	//    expressions+=Expression (',' expressions+=Expression)*
+	//    expression=Expression
+	//    (
+	//         commaExpressions+=CommaExpression
+	//    )*
 	//;
 	public ListOfExpressionElements getListOfExpressionAccess() {
 		return pListOfExpression;
@@ -12801,6 +12834,17 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getListOfExpressionRule() {
 		return getListOfExpressionAccess().getRule();
+	}
+	
+	//CommaExpression:
+	//    comma=',' expression=Expression?
+	//;
+	public CommaExpressionElements getCommaExpressionAccess() {
+		return pCommaExpression;
+	}
+	
+	public ParserRule getCommaExpressionRule() {
+		return getCommaExpressionAccess().getRule();
 	}
 	
 	//Expression:

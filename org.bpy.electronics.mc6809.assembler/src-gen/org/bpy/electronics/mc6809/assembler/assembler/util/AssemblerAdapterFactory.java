@@ -606,6 +606,11 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createListOfExpressionAdapter();
       }
       @Override
+      public Adapter caseCommaExpression(CommaExpression object)
+      {
+        return createCommaExpressionAdapter();
+      }
+      @Override
       public Adapter caseExpression(Expression object)
       {
         return createExpressionAdapter();
@@ -2313,6 +2318,21 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createListOfExpressionAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.CommaExpression <em>Comma Expression</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CommaExpression
+   * @generated
+   */
+  public Adapter createCommaExpressionAdapter()
   {
     return null;
   }

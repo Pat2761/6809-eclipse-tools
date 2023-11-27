@@ -32,6 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -49,6 +50,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLin
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEndDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEquDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFcbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFillDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledNamDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOptDirectiveLine;
@@ -261,11 +263,31 @@ public class AssemblerEngine {
 			RegDirective regDirective = (RegDirective)directiveLine.getDirective();
 			parseDirective(regDirective);
 
+		} else if (directiveLine.getDirective() instanceof FcbDirective) {
+			FcbDirective fcbDirective = (FcbDirective)directiveLine.getDirective();
+			parseDirective(fcbDirective);
+
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
 		}
 		
 		return needStop;
+	}
+
+	/**
+	 * Parse an FCB directive line.
+	 *  
+	 * @param fcbDirective reference on the FCB directive
+	 */
+	private void parseDirective(FcbDirective fcbDirective) {
+		AssembledFcbDirectiveLine line = new AssembledFcbDirectiveLine();
+		line.parse(fcbDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		currentPcValue += line.getPcIncrement();
+		
+		registerLabelPosition(line, 
+				line.getDirective().eContainer(),
+				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
 	/**
@@ -353,7 +375,6 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				"Label " + line.getLabel() + " is already defined",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
@@ -398,8 +419,7 @@ public class AssemblerEngine {
 		currentPcValue += line.getPcIncrement();
 		
 		registerLabelPosition(line, 
-				line.getDirective().eContainer(),
-				"Label " + line.getLabel() + " is already defined",
+				bszDirective.eContainer(),
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
@@ -487,7 +507,6 @@ public class AssemblerEngine {
 
 		registerLabelPosition(line, 
 				line.getDirective(),
-				"Label " + CommandUtil.getLabel(directive) + " is already defined",
 				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
 	}
 
@@ -498,10 +517,10 @@ public class AssemblerEngine {
 	 * @param message Error message
 	 * @param reference EMF reference of the object
 	 */
-	private void registerLabelPosition(AbstractAssemblyLine directive,Object objectWithProblem,  String message, EReference reference) {
+	private void registerLabelPosition(AbstractAssemblyLine directive,Object objectWithProblem, EReference reference) {
 		if (directive.getLabel() != null) {
 			if (labelsPositionObject.containsKey(directive.getLabel())) {
-				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(message, 
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + directive.getLabel() + " is already defined",
 						reference,
 						DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(objectWithProblem, problemDescription );

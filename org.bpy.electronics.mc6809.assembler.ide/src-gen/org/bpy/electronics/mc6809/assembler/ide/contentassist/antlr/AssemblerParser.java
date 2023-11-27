@@ -276,7 +276,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEquDirectiveAccess().getGroup(), "rule__EquDirective__Group__0");
 			builder.put(grammarAccess.getEquDirectiveAccess().getGroup_2_0(), "rule__EquDirective__Group_2_0__0");
 			builder.put(grammarAccess.getListOfExpressionAccess().getGroup(), "rule__ListOfExpression__Group__0");
-			builder.put(grammarAccess.getListOfExpressionAccess().getGroup_1(), "rule__ListOfExpression__Group_1__0");
+			builder.put(grammarAccess.getCommaExpressionAccess().getGroup(), "rule__CommaExpression__Group__0");
 			builder.put(grammarAccess.getMultiplicationAccess().getGroup(), "rule__Multiplication__Group__0");
 			builder.put(grammarAccess.getMultiplicationAccess().getGroup_1(), "rule__Multiplication__Group_1__0");
 			builder.put(grammarAccess.getDivisionAccess().getGroup(), "rule__Division__Group__0");
@@ -631,8 +631,10 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEquDirectiveAccess().getIsRelativeToPCAssignment_2_0_0(), "rule__EquDirective__IsRelativeToPCAssignment_2_0_0");
 			builder.put(grammarAccess.getEquDirectiveAccess().getOperandAssignment_2_0_1(), "rule__EquDirective__OperandAssignment_2_0_1");
 			builder.put(grammarAccess.getEquDirectiveAccess().getIsRelativeToPCAssignment_2_1(), "rule__EquDirective__IsRelativeToPCAssignment_2_1");
-			builder.put(grammarAccess.getListOfExpressionAccess().getExpressionsAssignment_0(), "rule__ListOfExpression__ExpressionsAssignment_0");
-			builder.put(grammarAccess.getListOfExpressionAccess().getExpressionsAssignment_1_1(), "rule__ListOfExpression__ExpressionsAssignment_1_1");
+			builder.put(grammarAccess.getListOfExpressionAccess().getExpressionAssignment_0(), "rule__ListOfExpression__ExpressionAssignment_0");
+			builder.put(grammarAccess.getListOfExpressionAccess().getCommaExpressionsAssignment_1(), "rule__ListOfExpression__CommaExpressionsAssignment_1");
+			builder.put(grammarAccess.getCommaExpressionAccess().getCommaAssignment_0(), "rule__CommaExpression__CommaAssignment_0");
+			builder.put(grammarAccess.getCommaExpressionAccess().getExpressionAssignment_1(), "rule__CommaExpression__ExpressionAssignment_1");
 			builder.put(grammarAccess.getExpressionAccess().getOperandAssignment(), "rule__Expression__OperandAssignment");
 			builder.put(grammarAccess.getMultiplicationAccess().getOperationAssignment_1_1(), "rule__Multiplication__OperationAssignment_1_1");
 			builder.put(grammarAccess.getMultiplicationAccess().getRightAssignment_1_2(), "rule__Multiplication__RightAssignment_1_2");

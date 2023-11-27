@@ -47,6 +47,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CommaExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
@@ -279,6 +280,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.COM_INSTRUCTION:
 				sequence_ComInstruction(context, (ComInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.COMMA_EXPRESSION:
+				sequence_CommaExpression(context, (CommaExpression) semanticObject); 
 				return; 
 			case AssemblerPackage.COMMENT_LINE:
 				sequence_CommentLine(context, (CommentLine) semanticObject); 
@@ -1275,6 +1279,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     CommaExpression returns CommaExpression
+	 *
+	 * Constraint:
+	 *     (comma=',' expression=Expression?)
+	 * </pre>
+	 */
+	protected void sequence_CommaExpression(ISerializationContext context, CommaExpression semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     CommentLine returns CommentLine
 	 *
 	 * Constraint:
@@ -2032,7 +2050,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     ListOfExpression returns ListOfExpression
 	 *
 	 * Constraint:
-	 *     (expressions+=Expression expressions+=Expression*)
+	 *     (expression=Expression commaExpressions+=CommaExpression*)
 	 * </pre>
 	 */
 	protected void sequence_ListOfExpression(ISerializationContext context, ListOfExpression semanticObject) {

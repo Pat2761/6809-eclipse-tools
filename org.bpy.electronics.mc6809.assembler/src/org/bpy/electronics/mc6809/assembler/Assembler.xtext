@@ -2302,7 +2302,14 @@ EquDirective:
 ;
 
 ListOfExpression:
-	expressions+=Expression (',' expressions+=Expression)*
+	expression=Expression 
+	(
+	 	commaExpressions+=CommaExpression 
+	)*
+;
+
+CommaExpression:
+	comma=',' expression=Expression?
 ;
 
 Expression:
