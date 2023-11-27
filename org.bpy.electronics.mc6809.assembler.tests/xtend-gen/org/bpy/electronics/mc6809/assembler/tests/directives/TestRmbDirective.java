@@ -18,14 +18,19 @@
 package org.bpy.electronics.mc6809.assembler.tests.directives;
 
 import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledRmbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -178,6 +183,80 @@ public class TestRmbDirective {
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check RMB directive with the too high limit
+   */
+  @Test
+  public void testRMBWithToHighLimitValue() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    $8000   ; With value");
+      _builder.newLine();
+      _builder.append("           ");
+      _builder.append("RMB    $FFFF+1 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getRmbDirective(), DirectiveValidator.INVALID_RANGE, "RMB value maximum value is $FFFF");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check RMB directive with duplicate Label
+   */
+  @Test
+  public void testFCBWithDuplicateLabels() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\t         ");
+      _builder.append("ORG    $8000");
+      _builder.newLine();
+      _builder.append("Label1\t     BSZ\t10    ");
+      _builder.newLine();
+      _builder.append("Label1       RMB    32 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getDirectiveLine(), 
+        AssemblerEngine.DUPLICATE_LABEL, 
+        "Label Label1 is already defined");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check RMB directive assembly result
+   */
+  @Test
+  public void testRmbAssemblyResult() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("\t        \t");
+      _builder.append("ORG    \t$8000");
+      _builder.newLine();
+      _builder.append("Label1       \tRMB    \t32 \t\t; 32 bytes reserved");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledRmbDirectiveLine line = ((AssembledRmbDirectiveLine) _assembledLine);
+      Assert.assertEquals("Check Label", "Label1", line.getLabel());
+      Assert.assertEquals("Check Comment", "; 32 bytes reserved", line.getComment());
+      Assert.assertEquals("Check Impact on PC", 0x8020, engine.getCurrentPcValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

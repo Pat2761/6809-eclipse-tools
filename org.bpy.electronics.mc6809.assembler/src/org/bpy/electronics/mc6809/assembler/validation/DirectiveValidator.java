@@ -181,6 +181,20 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
 		}
+		
+
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(orgDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(orgDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+
 	}
 	
 	/**
@@ -218,6 +232,19 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
 					INVALID_RANGE);
 		}
+
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(fillDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(fillDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+
 	}
 
 	/**
@@ -435,6 +462,20 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT,
 					INVALID_RANGE);
 		}
+		
+
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(spcDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(spcDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+
 	}
 
 	@Check
@@ -512,7 +553,6 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 		for (AssemblerProblemManagerDescription warning : warnings) {
 			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}
-
 	}
 
 	@Check
@@ -538,7 +578,20 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			}
 			location++;
 		}
+
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(fdbDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(fdbDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
 	}
+	
 	@Check
 	/**
 	 * Check the RMB directive limits (1-FFFF)
@@ -546,16 +599,15 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	 * @param rmbDirective reference on the RMB directive
 	 */
 	public void checkRmdConstraints(RmbDirective rmbDirective) {
-		
-//		int rmbValue = ExpressionParser.parse(rmbDirective);
-//		if (rmbValue > 0xFFFF) {
-//			error("RMB value maximum value is $FFFF",
-//					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
-//					INVALID_RANGE);
-//		} else if (rmbValue < 1) {
-//			error("RMB value can't lower than 1",
-//					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
-//					INVALID_RANGE);
-//		}
+		int rmbValue = ExpressionParser.parse(rmbDirective);
+		if (rmbValue > 0xFFFF) {
+			error("RMB value maximum value is $FFFF",
+					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		} else if (rmbValue < 1) {
+			error("RMB value can't lower than 1",
+					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
+					INVALID_RANGE);
+		}
 	}
 }

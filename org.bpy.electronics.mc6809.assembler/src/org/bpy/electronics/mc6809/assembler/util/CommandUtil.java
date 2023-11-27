@@ -183,7 +183,22 @@ public class CommandUtil {
 			return null;
 		}
 	}
-	
+
+	/**
+	 * Return the comment associated to an RMB directive.
+	 * 
+	 * @param rmbDirective reference on the RMB directive
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(RmbDirective directive) {
+		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
+		if ( directiveLine.getComment() != null) {
+			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+
 	/**
 	 * Return the label associated to an FCB directive.
 	 * 
@@ -515,4 +530,5 @@ public class CommandUtil {
 		}
 		return registers;
 	}
+
 }

@@ -33,6 +33,10 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.AssembledRmbDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -146,14 +150,53 @@ class TestRmbDirective {
 	/**
 	 * Check RMB directive with the too high limit
 	 */
-//	@Test 
-//	def void testRMBWithToHighLimitValue() {
-//		val result = parseHelper.parse('''
-//		; -----------------------------------------
-//			       ORG    $8000   ; With value
-//		           RMB    $FFFF+1 
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertError(AssemblerPackage.eINSTANCE.rmbDirective,DirectiveValidator::INVALID_RANGE,"RMB value maximum value is $FFFF")
-//	}
+	@Test 
+	def void testRMBWithToHighLimitValue() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			       ORG    $8000   ; With value
+		           RMB    $FFFF+1 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.rmbDirective,DirectiveValidator::INVALID_RANGE,"RMB value maximum value is $FFFF")
+	}
+		
+	/**
+	 * Check RMB directive with duplicate Label
+	 */
+	@Test 
+	def void testFCBWithDuplicateLabels() {
+		val result = parseHelper.parse('''
+			         ORG    $8000
+		Label1	     BSZ	10    
+		Label1       RMB    32 
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.directiveLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Label1 is already defined"
+		)
+	}
+	
+	/**
+	 * Check RMB directive assembly result
+	 */
+	@Test 
+	def void testRmbAssemblyResult() {
+		val result = parseHelper.parse('''
+			        	ORG    	$8000
+		Label1       	RMB    	32 		; 32 bytes reserved
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(1) as AssembledRmbDirectiveLine;
+		Assert.assertEquals("Check Label","Label1",line.label)
+		Assert.assertEquals("Check Comment","; 32 bytes reserved",line.comment)
+
+		Assert.assertEquals("Check Impact on PC",0x8020,engine.currentPcValue)
+	}
+	
 }
