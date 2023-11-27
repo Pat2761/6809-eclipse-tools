@@ -29,11 +29,13 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.testing.util.ParseHelper;
@@ -53,7 +55,7 @@ public class TestOrgDirective {
 
   @Inject
   @Extension
-  private ValidationTestHelper _validationTestHelper;
+  private ValidationTestHelper h;
 
   /**
    * Check ORG directive with a simple decimal value
@@ -69,7 +71,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -100,7 +102,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -136,7 +138,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -178,7 +180,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -215,7 +217,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -243,7 +245,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), DirectiveValidator.INVALID_RANGE, "ORG value can\'t be negative");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), DirectiveValidator.INVALID_RANGE, "ORG value can\'t be negative");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -263,7 +265,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -283,7 +285,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -303,7 +305,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), DirectiveValidator.INVALID_RANGE, "ORG value maximum value is $FFFF");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), DirectiveValidator.INVALID_RANGE, "ORG value maximum value is $FFFF");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -323,7 +325,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -346,7 +348,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -366,7 +368,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -391,7 +393,7 @@ public class TestOrgDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -413,7 +415,7 @@ public class TestOrgDirective {
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
       final AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(1);
       Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledOrgDirectiveLine));
       final AssembledOrgDirectiveLine orgDirective = ((AssembledOrgDirectiveLine) assemblyLine);
@@ -441,7 +443,7 @@ public class TestOrgDirective {
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
       final AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(1);
       Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledOrgDirectiveLine));
       final AssembledOrgDirectiveLine orgDirective = ((AssembledOrgDirectiveLine) assemblyLine);
@@ -470,12 +472,87 @@ public class TestOrgDirective {
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
       final AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), AssemblerEngine.DUPLICATE_LABEL, "Label OrgPos is already defined");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), AssemblerEngine.DUPLICATE_LABEL, "Label OrgPos is already defined");
       final AbstractAssemblyLine assemblyLine = assemblerEngine.getAssembledLine(2);
       Assert.assertTrue("assemblyLine must be an Assembly line", (assemblyLine instanceof AssembledOrgDirectiveLine));
       final AssembledOrgDirectiveLine orgDirective = ((AssembledOrgDirectiveLine) assemblyLine);
       Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.getPcAddress());
       Assert.assertEquals("Line number must be 3", 3, orgDirective.getLineNumber());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check ORG with error in expression
+   */
+  @Test
+  public void testBszWithErrorExpression() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tORG    \t10*Deux \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), ExpressionParser.EXPRESSION_ERROR, "Can\'t find Deux definition");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check ORG with binary error syntax
+   */
+  @Test
+  public void testBszWithBinaryErrorSyntax() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tORG    \t%01111211 \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertIssue(result.eResource(), AssemblerPackage.Literals.BINARY_VALUE, AssemblerValidator.INVALID_FIGURE, 113, 8, Severity.ERROR, "2 is invalid in binary value");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check ORG with octal error syntax
+   */
+  @Test
+  public void testBszWithOctalErrorSyntax() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tORG    \t@128\t \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertIssue(result.eResource(), AssemblerPackage.Literals.OCTAL_VALUE, AssemblerValidator.INVALID_FIGURE, 113, 3, Severity.ERROR, "8 is invalid in octal value");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

@@ -118,6 +118,6 @@ public class AssembledFdbDirectiveLine extends AbstractAssemblyLine {
 
 	@Override
 	public int getPcIncrement() {
-		return values.length;
+		return values.length*2;
 	}
 }

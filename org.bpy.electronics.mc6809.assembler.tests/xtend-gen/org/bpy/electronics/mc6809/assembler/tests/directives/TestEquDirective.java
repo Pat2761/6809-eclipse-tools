@@ -27,11 +27,13 @@ import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.testing.util.ParseHelper;
@@ -51,7 +53,7 @@ public class TestEquDirective {
 
   @Inject
   @Extension
-  private ValidationTestHelper _validationTestHelper;
+  private ValidationTestHelper h;
 
   /**
    * Check EQU directive with a simple decimal value
@@ -64,7 +66,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -92,7 +94,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -117,7 +119,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -142,7 +144,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -167,7 +169,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -192,7 +194,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -217,7 +219,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -245,7 +247,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -273,7 +275,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -301,7 +303,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -331,7 +333,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -365,7 +367,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -396,7 +398,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -427,7 +429,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -452,7 +454,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -469,7 +471,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -486,7 +488,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), DirectiveValidator.INVALID_RANGE, "EQU value can\'t exceed 65535 (16 bits value)");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), DirectiveValidator.INVALID_RANGE, "EQU value can\'t exceed 65535 (16 bits value)");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -503,7 +505,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), DirectiveValidator.INVALID_RANGE, "EQU value can\'t be lower than -32768 (16 bits value)");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), DirectiveValidator.INVALID_RANGE, "EQU value can\'t be lower than -32768 (16 bits value)");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -520,7 +522,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -540,7 +542,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.MISSING_LABEL, "No label defined for EQU directive");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.MISSING_LABEL, "No label defined for EQU directive");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -561,7 +563,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), AssemblerEngine.DUPLICATE_LABEL, "The label EquLabel for an EQU directive is already defined");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), AssemblerEngine.DUPLICATE_LABEL, "The label EquLabel for an EQU directive is already defined");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -582,7 +584,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), 
+      this.h.assertWarning(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), 
         AssemblerEngine.DUPLICATE_LABEL, 
         "The label EquLabel for an EQU directive is already defined by a SET directive");
     } catch (Throwable _e) {
@@ -603,7 +605,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), 
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), 
         ExpressionParser.EXPRESSION_ERROR, 
         "Can\'t find Label1 definition");
     } catch (Throwable _e) {
@@ -619,7 +621,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -648,7 +650,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -677,7 +679,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -706,7 +708,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -735,7 +737,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -764,7 +766,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -793,7 +795,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -822,7 +824,7 @@ public class TestEquDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -838,6 +840,81 @@ public class TestEquDirective {
       final EquDirective equDirective = ((EquDirective) _directive_1);
       Assert.assertEquals("Label must be set to Label1", "Label1", CommandUtil.getLabel(equDirective));
       Assert.assertEquals("Operand must be equals to 22", 22, ExpressionParser.parse(equDirective));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check EQU with error in expression
+   */
+  @Test
+  public void testEquWithErrorExpression() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tEQU    \t10*Deux \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), ExpressionParser.EXPRESSION_ERROR, "Can\'t find Deux definition");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check EQU with binary error syntax
+   */
+  @Test
+  public void testEquWithBinaryErrorSyntax() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tEQU    \t%01111211 \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertIssue(result.eResource(), AssemblerPackage.Literals.BINARY_VALUE, AssemblerValidator.INVALID_FIGURE, 113, 8, Severity.ERROR, "2 is invalid in binary value");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check EQU with octal error syntax
+   */
+  @Test
+  public void testEquWithOctalErrorSyntax() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tEQU    \t@128\t \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertIssue(result.eResource(), AssemblerPackage.Literals.OCTAL_VALUE, AssemblerValidator.INVALID_FIGURE, 113, 3, Severity.ERROR, "8 is invalid in octal value");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

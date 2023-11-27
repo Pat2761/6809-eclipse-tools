@@ -34,13 +34,15 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator
+import org.eclipse.xtext.diagnostics.Severity
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
 
 class TestSetDirective {
 	@Inject ParseHelper<Model> parseHelper
-	@Inject extension ValidationTestHelper
+	@Inject extension ValidationTestHelper h
 	
 	/**
 	 * Check SET directive with a simple value
@@ -268,5 +270,50 @@ class TestSetDirective {
 			ExpressionParser::EXPRESSION_ERROR,
 			"Division by 0 is not allow, the result of the expression will be false"
 		)
+	}
+
+	/**
+	 * Check SET with error in expression 
+	 */
+	@Test 
+	def void testSetWithErrorExpression() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	SET    	10*Deux 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.setDirective, ExpressionParser::EXPRESSION_ERROR, "Can't find Deux definition")
+	}
+
+	/**
+	 * Check SET with binary error syntax
+	 */
+	@Test 
+	def void testSetWithBinaryErrorSyntax() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	SET    	%01111211 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		h.assertIssue(result.eResource,AssemblerPackage.Literals.BINARY_VALUE,AssemblerValidator::INVALID_FIGURE,113,8,Severity::ERROR, "2 is invalid in binary value")
+	}
+
+	/**
+	 * Check SET with octal error syntax
+	 */
+	@Test 
+	def void testSetWithOctalErrorSyntax() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	SET    	@128	 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		h.assertIssue(result.eResource,AssemblerPackage.Literals.OCTAL_VALUE,AssemblerValidator::INVALID_FIGURE,113,3,Severity::ERROR, "8 is invalid in octal value")
 	}
 }

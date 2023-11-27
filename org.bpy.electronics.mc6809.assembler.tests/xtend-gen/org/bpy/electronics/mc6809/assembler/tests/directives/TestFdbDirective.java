@@ -27,11 +27,14 @@ import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFdbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.testing.util.ParseHelper;
@@ -51,7 +54,7 @@ public class TestFdbDirective {
 
   @Inject
   @Extension
-  private ValidationTestHelper _validationTestHelper;
+  private ValidationTestHelper h;
 
   /**
    * Check FDB directive with a simple value
@@ -70,7 +73,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -104,7 +107,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -138,7 +141,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -172,7 +175,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -205,7 +208,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -238,7 +241,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -269,7 +272,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), DirectiveValidator.INVALID_RANGE, "FDB value can\'t lower than -32768 at location 3");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), DirectiveValidator.INVALID_RANGE, "FDB value can\'t lower than -32768 at location 3");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -289,7 +292,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -309,7 +312,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), DirectiveValidator.INVALID_RANGE, "FDB value maximum value is 65535 at location 1");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), DirectiveValidator.INVALID_RANGE, "FDB value maximum value is 65535 at location 1");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -329,7 +332,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -351,7 +354,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, 
+      this.h.assertError(result, 
         AssemblerPackage.eINSTANCE.getDirectiveLine(), 
         AssemblerEngine.DUPLICATE_LABEL, 
         "Label Label1 is already defined");
@@ -378,7 +381,7 @@ public class TestFdbDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
       final AssembledFdbDirectiveLine line = ((AssembledFdbDirectiveLine) _assembledLine);
@@ -389,7 +392,82 @@ public class TestFdbDirective {
       Assert.assertEquals("Check value 2", 65, line.getValues()[2]);
       Assert.assertEquals("Check value 3", 30, line.getValues()[3]);
       Assert.assertEquals("Check value 4", 0x2500, line.getValues()[4]);
-      Assert.assertEquals("Check Impact on PC", 0x800F, engine.getCurrentPcValue());
+      Assert.assertEquals("Check Impact on PC", 0x8014, engine.getCurrentPcValue());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FDB with error in expression
+   */
+  @Test
+  public void testFdbWithErrorExpression() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tFDB    \t10*Deux \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getFdbDirective(), ExpressionParser.EXPRESSION_ERROR, "Can\'t find Deux definition");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FDB with binary error syntax
+   */
+  @Test
+  public void testFdbWithBinaryErrorSyntax() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tFDB    \t%01111211 \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertIssue(result.eResource(), AssemblerPackage.Literals.BINARY_VALUE, AssemblerValidator.INVALID_FIGURE, 113, 8, Severity.ERROR, "2 is invalid in binary value");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FDB with octal error syntax
+   */
+  @Test
+  public void testFdbWithOctalErrorSyntax() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tFDB    \t@128\t \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertIssue(result.eResource(), AssemblerPackage.Literals.OCTAL_VALUE, AssemblerValidator.INVALID_FIGURE, 113, 3, Severity.ERROR, "8 is invalid in octal value");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

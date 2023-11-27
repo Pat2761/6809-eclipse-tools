@@ -36,13 +36,15 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLine
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator
+import org.eclipse.xtext.diagnostics.Severity
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
 
 class TestBszDirective {
 	@Inject ParseHelper<Model> parseHelper
-	@Inject extension ValidationTestHelper
+	@Inject extension ValidationTestHelper h
 	
 	/**
 	 * Check BSZ directive with a simple decimal value
@@ -236,5 +238,50 @@ class TestBszDirective {
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
+	}
+
+	/**
+	 * Check BSZ with error in expression 
+	 */
+	@Test 
+	def void testBszWithErrorExpression() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	BSZ    	10*Deux 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.bszDirective, ExpressionParser::EXPRESSION_ERROR, "Can't find Deux definition")
+	}
+
+	/**
+	 * Check BSZ with binary error syntax
+	 */
+	@Test 
+	def void testBszWithBinaryErrorSyntax() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	BSZ    	%01111211 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		h.assertIssue(result.eResource,AssemblerPackage.Literals.BINARY_VALUE,AssemblerValidator::INVALID_FIGURE,113,8,Severity::ERROR, "2 is invalid in binary value")
+	}
+
+	/**
+	 * Check BSZ with octal error syntax
+	 */
+	@Test 
+	def void testBszWithOctalErrorSyntax() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	BSZ    	@128	 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		h.assertIssue(result.eResource,AssemblerPackage.Literals.OCTAL_VALUE,AssemblerValidator::INVALID_FIGURE,113,3,Severity::ERROR, "8 is invalid in octal value")
 	}
 }

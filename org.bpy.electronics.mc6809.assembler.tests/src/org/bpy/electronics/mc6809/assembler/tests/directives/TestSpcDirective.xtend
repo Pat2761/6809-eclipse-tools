@@ -34,13 +34,16 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSpcDirectiveLine
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator
+import org.eclipse.xtext.diagnostics.Severity
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
 
 class TestSpcDirective {
 	@Inject ParseHelper<Model> parseHelper
-	@Inject extension ValidationTestHelper
+	@Inject extension ValidationTestHelper h
 	
 	/**
 	 * Check SPC directive no value, no extra space, no comment 
@@ -335,5 +338,52 @@ class TestSpcDirective {
 		Assert.assertEquals("Check Space count", 1, line.spaceCountValue)
 		Assert.assertEquals("Check Keep count", 0, line.getkeepCountValue)
 	}
+	
+	
+	/**
+	 * Check SPC with error in expression 
+	 */
+	@Test 
+	def void testSpcWithErrorExpression() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	SPC    	10*Deux 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.spcDirective, ExpressionParser::EXPRESSION_ERROR, "Can't find Deux definition")
+	}
+
+	/**
+	 * Check SPC with binary error syntax
+	 */
+	@Test 
+	def void testBszWithBinaryErrorSyntax() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	SPC    	%01111211 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		h.assertIssue(result.eResource,AssemblerPackage.Literals.BINARY_VALUE,AssemblerValidator::INVALID_FIGURE,113,8,Severity::ERROR, "2 is invalid in binary value")
+	}
+
+	/**
+	 * Check SPC with octal error syntax
+	 */
+	@Test 
+	def void testBszWithOctalErrorSyntax() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	SPC    	@128	 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		h.assertIssue(result.eResource,AssemblerPackage.Literals.OCTAL_VALUE,AssemblerValidator::INVALID_FIGURE,113,3,Severity::ERROR, "8 is invalid in octal value")
+	}
+	
 }
 	

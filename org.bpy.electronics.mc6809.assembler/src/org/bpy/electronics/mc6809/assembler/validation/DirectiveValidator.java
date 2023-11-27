@@ -107,9 +107,9 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
    				UNEXPECTED_LABEL);
    			
    		} else if ((directiveLine.getDirective() instanceof NamDirective) && (directiveLine.getName() != null)) {		
-   	   			error("No label may be set for NAM directive",                                                             
-   	   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
-   	   				UNEXPECTED_LABEL);
+   			error("No label may be set for NAM directive",                                                             
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				UNEXPECTED_LABEL);
 		
    		} else {
 			// nothing to do
@@ -207,8 +207,8 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 	@Check
 	public void checkFillConstraints(FillDirective fillDirective) {
 
-		int valueToSet = CommandUtil.getByteToSet(fillDirective);
-		int quantity = CommandUtil.getQuantity(fillDirective);
+		int valueToSet = CommandUtil.getByteToSet(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE);
+		int quantity = CommandUtil.getQuantity(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER);
 		if (valueToSet > 255) {
 			error("FILL maximum value to set is 255",
 					AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE,
@@ -314,6 +314,18 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			warning("PAG value superior to 9 is suspicious",
 					AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
+		}
+
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(pagDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(pagDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}
 	}
 
@@ -608,6 +620,18 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 			error("RMB value can't lower than 1",
 					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
+		}
+
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(rmbDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(rmbDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}
 	}
 }

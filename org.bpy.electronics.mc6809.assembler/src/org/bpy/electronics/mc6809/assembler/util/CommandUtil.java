@@ -40,6 +40,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EReference;
 
 /**
  * Utility class for get informations about instructions or directives
@@ -497,16 +498,15 @@ public class CommandUtil {
 			return null;
 		}
 	}
-
 	
-	public static int getByteToSet(FillDirective fillDirective) {
+	public static int getByteToSet(FillDirective fillDirective, EReference currentReference) {
 		Expression value = fillDirective.getValue().getOperand();
-		return ExpressionParser.resolveExpression(value);
+		return ExpressionParser.resolveExpression(value, fillDirective, currentReference);
 	}
 
-	public static int getQuantity(FillDirective fillDirective) {
+	public static int getQuantity(FillDirective fillDirective, EReference currentReference) {
 		Expression value = fillDirective.getNumber().getOperand();
-		return ExpressionParser.resolveExpression(value);
+		return ExpressionParser.resolveExpression(value, fillDirective, currentReference);
 	}
 
 	/*

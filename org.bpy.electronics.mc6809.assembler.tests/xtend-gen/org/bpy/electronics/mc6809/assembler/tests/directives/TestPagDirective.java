@@ -25,11 +25,14 @@ import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.testing.util.ParseHelper;
@@ -49,7 +52,7 @@ public class TestPagDirective {
 
   @Inject
   @Extension
-  private ValidationTestHelper _validationTestHelper;
+  private ValidationTestHelper h;
 
   /**
    * Check PAG directive without comment
@@ -68,7 +71,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -102,7 +105,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -136,7 +139,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -170,7 +173,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -204,7 +207,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -238,7 +241,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE, "PAG value can\'t be negative");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE, "PAG value can\'t be negative");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -261,7 +264,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE, "Null page value is suspicious");
+      this.h.assertWarning(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE, "Null page value is suspicious");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -284,7 +287,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -307,7 +310,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE, "PAG value superior to 9 is suspicious");
+      this.h.assertWarning(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE, "PAG value superior to 9 is suspicious");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -326,7 +329,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL, "No label may be set for PAG directive");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL, "No label may be set for PAG directive");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -345,7 +348,7 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL, "No label may be set for PAG directive");
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL, "No label may be set for PAG directive");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -368,9 +371,85 @@ public class TestPagDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC after PAG instruction", 0x2000, engine.getCurrentPcValue());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PAG with error in expression
+   */
+  @Test
+  public void testPagWithErrorExpression() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("\t\t       \t");
+      _builder.append("PAG    \t10*Deux \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getPagDirective(), ExpressionParser.EXPRESSION_ERROR, "Can\'t find Deux definition");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PAG with binary error syntax
+   */
+  @Test
+  public void testPagWithBinaryErrorSyntax() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tPAG    \t%01111211 \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertIssue(result.eResource(), AssemblerPackage.Literals.BINARY_VALUE, AssemblerValidator.INVALID_FIGURE, 113, 8, Severity.ERROR, "2 is invalid in binary value");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PAG with octal error syntax
+   */
+  @Test
+  public void testPagWithOctalErrorSyntax() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tPAG    \t@128\t \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertIssue(result.eResource(), AssemblerPackage.Literals.OCTAL_VALUE, AssemblerValidator.INVALID_FIGURE, 113, 3, Severity.ERROR, "8 is invalid in octal value");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

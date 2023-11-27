@@ -18,6 +18,7 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -53,8 +54,8 @@ public class AssembledFillDirectiveLine extends AbstractAssemblyLine {
 		this.directive = directive;
 		
 		
-		int nbBytes = ExpressionParser.resolveExpression(directive.getNumber().getOperand());
-		int value = ExpressionParser.resolveExpression(directive.getValue().getOperand());
+		int nbBytes = ExpressionParser.resolveExpression(directive.getNumber().getOperand(), directive, AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER);
+		int value = ExpressionParser.resolveExpression(directive.getValue().getOperand(), directive, AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE);
 		if (nbBytes < 0) {
 			nbBytes = 0;
 		}

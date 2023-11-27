@@ -27,11 +27,14 @@ import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFillDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.testing.util.ParseHelper;
@@ -51,7 +54,7 @@ public class TestFillDirective {
 
   @Inject
   @Extension
-  private ValidationTestHelper _validationTestHelper;
+  private ValidationTestHelper h;
 
   /**
    * Check FILL directive with a simple values
@@ -70,7 +73,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -111,7 +114,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -164,7 +167,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, 
+      this.h.assertError(result, 
         AssemblerPackage.eINSTANCE.getDirectiveLine(), 
         AssemblerEngine.DUPLICATE_LABEL, 
         "Label Val2 is already defined");
@@ -190,7 +193,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -209,7 +212,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -228,7 +231,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
+      this.h.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
         DirectiveValidator.INVALID_RANGE, 
         "FILL value minimum value is -128");
     } catch (Throwable _e) {
@@ -249,7 +252,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
+      this.h.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
         DirectiveValidator.INVALID_RANGE, 
         "FILL maximum value to set is 255");
     } catch (Throwable _e) {
@@ -270,7 +273,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -289,7 +292,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
+      this.h.assertNoErrors(result);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -308,7 +311,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
+      this.h.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
         DirectiveValidator.INVALID_RANGE, 
         "FILL value occurrence can\'t be negative");
     } catch (Throwable _e) {
@@ -329,7 +332,7 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertWarning(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
+      this.h.assertWarning(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
         DirectiveValidator.INVALID_RANGE, 
         "FILL occurrence can\'t be null");
     } catch (Throwable _e) {
@@ -350,9 +353,84 @@ public class TestFillDirective {
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
+      this.h.assertError(result, AssemblerPackage.Literals.FILL_DIRECTIVE, 
         DirectiveValidator.INVALID_RANGE, 
         "FILL value maximum value is $FFFF");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL with error in expression
+   */
+  @Test
+  public void testBszWithErrorExpression() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tFILL   \t10*Deux,2 \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertError(result, AssemblerPackage.eINSTANCE.getFillDirective(), ExpressionParser.EXPRESSION_ERROR, "Can\'t find Deux definition");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL with binary error syntax
+   */
+  @Test
+  public void testBszWithBinaryErrorSyntax() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tFILL   \t%01111211,5 \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertIssue(result.eResource(), AssemblerPackage.Literals.BINARY_VALUE, AssemblerValidator.INVALID_FIGURE, 113, 8, Severity.ERROR, "2 is invalid in binary value");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check FILL with octal error syntax
+   */
+  @Test
+  public void testBszWithOctalErrorSyntax() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t           \t");
+      _builder.append("ORG    \t$2000  \t\t \t; With value");
+      _builder.newLine();
+      _builder.append("TOTO\t       \tFILL   \t2,@128\t \t\t; Toto vaudra $2000");
+      _builder.newLine();
+      _builder.append("\t\t\t\t\t\t\t\t\t\t");
+      _builder.append("; Et en mémoire entre $2000 et $2010, il y aura des 0");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this.h.assertIssue(result.eResource(), AssemblerPackage.Literals.OCTAL_VALUE, AssemblerValidator.INVALID_FIGURE, 115, 3, Severity.ERROR, "8 is invalid in octal value");
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

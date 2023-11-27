@@ -24,8 +24,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFccDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -182,36 +180,33 @@ public class TestFccDirective {
    */
   @Test
   public void testFDBAssemblyResult() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("\t        \t");
-      _builder.append("ORG    \t$8000");
-      _builder.newLine();
-      _builder.append("Label1       \tFCC    \t\"Erreur AA115\" \t\t; error message");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
-      final AssemblerEngine engine = AssemblerEngine.getInstance();
-      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
-      final AssembledFccDirectiveLine line = ((AssembledFccDirectiveLine) _assembledLine);
-      Assert.assertEquals("Check Label", "Label1", line.getLabel());
-      Assert.assertEquals("Check Comment", "; error message", line.getComment());
-      Assert.assertEquals("Check value 0", 69, line.getValues()[0]);
-      Assert.assertEquals("Check value 1", 114, line.getValues()[1]);
-      Assert.assertEquals("Check value 2", 114, line.getValues()[2]);
-      Assert.assertEquals("Check value 3", 101, line.getValues()[3]);
-      Assert.assertEquals("Check value 4", 117, line.getValues()[4]);
-      Assert.assertEquals("Check value 5", 114, line.getValues()[5]);
-      Assert.assertEquals("Check value 6", 32, line.getValues()[6]);
-      Assert.assertEquals("Check value 7", 65, line.getValues()[7]);
-      Assert.assertEquals("Check value 8", 65, line.getValues()[8]);
-      Assert.assertEquals("Check value 9", 49, line.getValues()[9]);
-      Assert.assertEquals("Check value 10", 49, line.getValues()[10]);
-      Assert.assertEquals("Check value 11", 53, line.getValues()[11]);
-      Assert.assertEquals("Check Impact on PC", 0x800C, engine.getCurrentPcValue());
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
+    throw new Error("Unresolved compilation problems:"
+      + "\nAssembledFccDirectiveLine cannot be resolved to a type."
+      + "\nlabel cannot be resolved"
+      + "\ncomment cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved"
+      + "\nvalues cannot be resolved"
+      + "\nget cannot be resolved");
   }
 }

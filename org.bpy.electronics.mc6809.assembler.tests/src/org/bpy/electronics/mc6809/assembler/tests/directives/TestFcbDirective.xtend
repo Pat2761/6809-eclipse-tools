@@ -35,13 +35,16 @@ import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFcbDirectiveLine
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator
+import org.eclipse.xtext.diagnostics.Severity
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
 
 class TestFcbDirective {
 	@Inject ParseHelper<Model> parseHelper
-	@Inject extension ValidationTestHelper
+	@Inject extension ValidationTestHelper h
 	
 	/**
 	 * Check FCB directive with a simple value
@@ -277,4 +280,51 @@ class TestFcbDirective {
 
 		Assert.assertEquals("Check Impact on PC",0x800F,engine.currentPcValue)
 	}
+	
+	
+	/**
+	 * Check FCB with error in expression 
+	 */
+	@Test 
+	def void testFcbWithErrorExpression() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	FCB    	10*Deux 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.fcbDirective, ExpressionParser::EXPRESSION_ERROR, "Can't find Deux definition")
+	}
+
+	/**
+	 * Check FCB with binary error syntax
+	 */
+	@Test 
+	def void testFcbWithBinaryErrorSyntax() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	FCB    	%01111211 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		h.assertIssue(result.eResource,AssemblerPackage.Literals.BINARY_VALUE,AssemblerValidator::INVALID_FIGURE,113,8,Severity::ERROR, "2 is invalid in binary value")
+	}
+
+	/**
+	 * Check FCB with octal error syntax
+	 */
+	@Test 
+	def void testFcbWithOctalErrorSyntax() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	FCB    	@128	 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		h.assertIssue(result.eResource,AssemblerPackage.Literals.OCTAL_VALUE,AssemblerValidator::INVALID_FIGURE,113,3,Severity::ERROR, "8 is invalid in octal value")
+	}
+	
 }

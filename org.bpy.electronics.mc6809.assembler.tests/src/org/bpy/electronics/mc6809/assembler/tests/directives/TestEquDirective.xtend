@@ -35,13 +35,15 @@ import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator
+import org.eclipse.xtext.diagnostics.Severity
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
 
 class TestEquDirective {
 	@Inject ParseHelper<Model> parseHelper
-	@Inject extension ValidationTestHelper
+	@Inject extension ValidationTestHelper h
 	
 	/**
 	 * Check EQU directive with a simple decimal value
@@ -650,28 +652,51 @@ class TestEquDirective {
 	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
 		Assert.assertEquals("Operand must be equals to 22", 22, ExpressionParser.parse(equDirective))		
 	}
-//	
-//	@Test
-//	def void testSorek() {
-//		val result = parseHelper.parse('''
-//		START			ORG			$2000
-//		DEBUT			EQU			START
-//		COMPT 			EQU 		$05 					; donnée 8 bits
-//		ADRDEB			EQU 		1000 					; donnée 16 bits
-//		FIN 			EQU 		DEBUT+$60 				; 
-//		
-//		VALHEX 			EQU 		$8000 					; VALHEX aura pour valeur $8000
-//		;DEBBIN 		EQU 		-$0200 					; ==> negative hexa decimal not managed
-//		FINATT 			EQU 		NOMVAR+30 				;
-//		FINTIT 			EQU 		NOMVAR-VARFIN 			;
-//		TOUCHA 			EQU 		'A 						; assigne $0041 au symbole TOUCHA
-//		FONCTA 			EQU 		TOUCHA+%10000000 		; assigne $00C1 au symbole FONCTA
-//		
-//		TOTO 			EQU 		* 						; TOTO aura pour valeur $2000, car on affecte la
-//															; valeur courante de l'adresse à TOTO
-//		TITI 			EQU 		*-3 					; TITI aura pour valeurs $1FFD ($2000-3)
-//		''')
-//		Assert.assertNotNull(result)
-//		result.assertNoErrors
-//	}
+
+
+	/**
+	 * Check EQU with error in expression 
+	 */
+	@Test 
+	def void testEquWithErrorExpression() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	EQU    	10*Deux 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.equDirective, ExpressionParser::EXPRESSION_ERROR, "Can't find Deux definition")
+	}
+
+	/**
+	 * Check EQU with binary error syntax
+	 */
+	@Test 
+	def void testEquWithBinaryErrorSyntax() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	EQU    	%01111211 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		h.assertIssue(result.eResource,AssemblerPackage.Literals.BINARY_VALUE,AssemblerValidator::INVALID_FIGURE,113,8,Severity::ERROR, "2 is invalid in binary value")
+	}
+
+	/**
+	 * Check EQU with octal error syntax
+	 */
+	@Test 
+	def void testEquWithOctalErrorSyntax() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			           	ORG    	$2000  		 	; With value
+		TOTO	       	EQU    	@128	 		; Toto vaudra $2000
+												; Et en mémoire entre $2000 et $2010, il y aura des 0
+		''')
+		Assert.assertNotNull(result)
+		h.assertIssue(result.eResource,AssemblerPackage.Literals.OCTAL_VALUE,AssemblerValidator::INVALID_FIGURE,113,3,Severity::ERROR, "8 is invalid in octal value")
+	}
+
 }

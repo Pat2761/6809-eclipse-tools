@@ -36,6 +36,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
@@ -54,6 +55,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.eclipse.emf.ecore.EObject;
@@ -101,7 +103,7 @@ public class ExpressionParser {
 	 */
 	public static List<Integer> parse(FcbDirective fcbDirective) {
 		assemblyLine = fcbDirective;
-		eReference = AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND;
+		eReference = AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND;
 		return parse(fcbDirective.getOperand()); 
 	}
 
@@ -191,8 +193,10 @@ public class ExpressionParser {
 	 *  @return value of the operand 
 	 */
 	public static int parse(PagDirective pagDirective) {
+		
 		assemblyLine = pagDirective;
 		eReference = AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND;
+		
 		if (pagDirective.getOperand() != null && pagDirective.getOperand().getOperand() != null) {
 			EObject operand = pagDirective.getOperand().getOperand();
 			return resolveExpression((Expression)operand);
@@ -273,9 +277,23 @@ public class ExpressionParser {
 	 * resolve an expression object 
 	 * 
 	 * @param expression reference on the expression
+	 * @param directive reference on the directive for the error
+	 * @param currentReference reference on the EMF reference for the error
 	 * @return value of the expression
 	 */
-	public static int resolveExpression(Expression expression) {
+	public static int resolveExpression(Expression expression, FillDirective directive, EReference currentReference) {
+		assemblyLine = directive;
+		eReference = currentReference;
+		return resolveExpression(expression);
+	}
+	
+	/**
+	 * resolve an expression object 
+	 * 
+	 * @param expression reference on the expression
+	 * @return value of the expression
+	 */
+	private static int resolveExpression(Expression expression) {
 		
 		if (expression instanceof Multiplication) {
 			Multiplication multiplication = (Multiplication)expression;
@@ -348,7 +366,7 @@ public class ExpressionParser {
 			}
 			
 			logger.log(Level.SEVERE, "{0} isn''t managed in this version" ,expression.getValue().getClass().getSimpleName());
-			return -1;
+			return 0;
 		}
 	}
 	
@@ -362,7 +380,7 @@ public class ExpressionParser {
 			return intValue*sign;
 		}	
 		catch(NumberFormatException ex) {
-			return -1;
+			return 0;
 		}
 	}
 
@@ -411,7 +429,7 @@ public class ExpressionParser {
 		} catch (NumberFormatException ex) {
 			logger.log(Level.SEVERE, ex.getMessage());
 		}
- 		return -1;
+ 		return 0;
 	}
 
 	/**
@@ -427,7 +445,7 @@ public class ExpressionParser {
 		} catch (NumberFormatException ex) {
 			logger.log(Level.SEVERE, ex.getMessage());
 		}
- 		return -1;
+ 		return 0;
 	}
 
 	/**
