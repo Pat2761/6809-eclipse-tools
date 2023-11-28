@@ -119,6 +119,11 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
    			error("No label may be set for NAM directive",                                                             
    				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
    				UNEXPECTED_LABEL);
+   			
+		} else if ((directiveLine.getDirective() instanceof SetDPDirective) && (directiveLine.getName() != null)) {		
+   			error("No label may be set for SETDP directive",                                                             
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				UNEXPECTED_LABEL);
 		
    		} else {
 			// nothing to do
@@ -407,18 +412,18 @@ public class DirectiveValidator  extends AbstractAssemblerValidator {
 					INVALID_RANGE);
 		} else if (setDPValue > 255) {
 			error("The SETDP value cannot be greater than 255",
-					AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND,
+					AssemblerPackage.Literals.SET_DP_DIRECTIVE__OPERAND,
 					INVALID_RANGE);
 		}
 
 	    // Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(bszDirective);
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(setdpDirective);
 		for (AssemblerProblemManagerDescription error : errors) {
 			error(error.getMessage(), error.getFeature(), error.getIssueData());
 		}
 
 		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(bszDirective);
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(setdpDirective);
 		for (AssemblerProblemManagerDescription warning : warnings) {
 			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}
