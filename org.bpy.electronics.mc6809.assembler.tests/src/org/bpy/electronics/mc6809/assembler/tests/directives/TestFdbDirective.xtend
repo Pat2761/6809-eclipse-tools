@@ -33,7 +33,7 @@ import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFdbDirectiveLine
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFdbDirectiveLine
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator
 import org.eclipse.xtext.diagnostics.Severity
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser

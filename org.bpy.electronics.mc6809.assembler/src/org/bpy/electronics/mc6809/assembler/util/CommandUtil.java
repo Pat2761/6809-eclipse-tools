@@ -21,6 +21,7 @@ package org.bpy.electronics.mc6809.assembler.util;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
@@ -30,6 +31,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
@@ -525,6 +527,36 @@ public class CommandUtil {
 		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
 		if ( directiveLine.getComment() != null) {
 			return directiveLine.getComment();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the label associated to an ABX instruction.
+	 * 
+	 * @param instruction reference on the ABX instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(AbxInstruction instruction) {
+		InstructionLine instructionLine = (InstructionLine)instruction.eContainer();
+		if ( instructionLine.getName() != null) {
+			return instructionLine.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to an ABX instruction.
+	 * 
+	 * @param instruction reference on the ABX instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(AbxInstruction instruction) {
+		InstructionLine instructionLine = (InstructionLine)instruction.eContainer();
+		if ( instructionLine.getComment() != null) {
+			return instructionLine.getComment();
 		} else {
 			return null;
 		}

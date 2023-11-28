@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
@@ -49,24 +50,25 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBlankLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEndDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledEquDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFcbDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFccDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFdbDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFillDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledNamDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOptDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledOrgDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledPagDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledRegDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledRmbDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDPDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSetDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledSpcDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledBlankLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledCommentLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledBszDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledEndDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledEquDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFcbDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFccDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFdbDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFillDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledNamDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledOptDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledOrgDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledPagDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRegDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRmbDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDPDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledAbxInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -191,7 +193,8 @@ public class AssemblerEngine {
 				}
 			
 			} else if (sourceLine.getLineContent() instanceof InstructionLine) {
-				logger.log(Level.SEVERE,"Unknow directive {0}" + sourceLine.getLineContent().getClass().getSimpleName());
+				InstructionLine instructionLine = (InstructionLine) sourceLine.getLineContent();
+				parseInstructionLine(instructionLine);
 				
 			} else {
 				logger.log(Level.SEVERE,"Unknow directive {0}" + sourceLine.getLineContent().getClass().getSimpleName());
@@ -200,6 +203,37 @@ public class AssemblerEngine {
 		}
 	}
 	
+	/**
+	 * Allow to parse an instruction line.
+	 * 
+	 * @param instructionLine reference on the instruction line
+	 */
+	private void parseInstructionLine(InstructionLine instructionLine) {
+		if (instructionLine.getInstruction() instanceof AbxInstruction) {
+			parse((AbxInstruction)instructionLine.getInstruction());
+		} else {
+			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
+		}
+		
+	}
+
+	/**
+	 * Parse an ABX directive line.
+	 *  
+	 * @param reference on the ABX instruction
+	 */
+	private void parse(AbxInstruction instruction) {
+		AssembledAbxInstruction line = new AssembledAbxInstruction();
+		line.parse(instruction, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += line.getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
 	/**
 	 * Parse a blank line 
 	 * 

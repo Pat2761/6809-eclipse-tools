@@ -32,7 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FccDirective
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledFccDirectiveLine
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFccDirectiveLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)

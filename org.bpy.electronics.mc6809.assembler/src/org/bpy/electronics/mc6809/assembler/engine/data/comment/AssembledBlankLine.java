@@ -16,49 +16,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package org.bpy.electronics.mc6809.assembler.engine.data;
+package org.bpy.electronics.mc6809.assembler.engine.data.comment;
 
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 
 public class AssembledBlankLine extends AbstractAssemblyLine {
 	
 	public void parse(BlankLine blankLine, int currentPcValue, int lineNumber) {
 		this.lineNumber = lineNumber;
 		pcAddress = currentPcValue;
-	}
-
-	@Override
-	public void setOpcode(StringBuilder strBuilder) {
-		strBuilder.append("     ");  // Hexa_OpCode (4 car) ---------------------> code Objet
-	}
-
-	@Override
-	public void setOperand(StringBuilder strBuilder) {
-		strBuilder.append("        ");  // Hexa_Operande (7 car) ----------> code Objet
-	}
-
-	@Override
-	public void setAdrsBranch(StringBuilder strBuilder) {
-		strBuilder.append("     ");  // Hexa_AdrsBranch (4 car)
-	}
-
-	@Override
-	public void setLabel(StringBuilder strBuilder) {
-	}
-
-	@Override
-	public void setInstructionName(StringBuilder strBuilder) {
-		strBuilder.append("       ");  // Mnemonique (6 car)
-	}
-
-	@Override
-	public void setInstructionOperand(StringBuilder strBuilder) {
-		// Nothing to do
-	}
-
-	@Override
-	public void setLastComment(StringBuilder strBuilder) {
-		// Nothing to do
 	}
 
 	@Override

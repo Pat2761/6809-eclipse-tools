@@ -30,6 +30,8 @@ import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
 import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledAbxInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -125,4 +127,38 @@ class TestABXInstruction {
 		val instructionLine = line.lineContent as InstructionLine
 		Assert.assertTrue("Must be an ABX directive line", instructionLine.instruction instanceof AbxInstruction)
 	}
+	
+	/**
+	 * Check Assembled ABX
+	 */
+	@Test 
+	def void testAssembledABX() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			      	ORG    $8000
+		LabelAbx	ABX					; Abx comment
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val engine = AssemblerEngine.instance
+		
+		Assert.assertEquals("Check PC after instruction", 0x8001, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledAbxInstruction
+		Assert.assertEquals("Check label", "LabelAbx" , line.label)
+		Assert.assertEquals("Check comment", "; Abx comment" , line.comment)
+		Assert.assertEquals("Check lineNumber", 3 , line.lineNumber)
+		Assert.assertEquals("Check cycle number", 3 , line.cyclesNumber)
+		
+		val code = line.opcode
+		val operand = line.operand
+		
+		Assert.assertEquals("Check Opcode size",1,code.length)
+		Assert.assertEquals("Check Opcode code",0x3A,code.get(0))
+		Assert.assertEquals("Check Operand size",0,operand.length)
+	}
+	
 }

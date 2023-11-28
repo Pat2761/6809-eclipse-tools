@@ -5,6 +5,7 @@ Bundle-SymbolicName: org.bpy.electronics.mc6809.assembler.engine
 Bundle-Version: 1.0.0.qualifier
 Import-Package: com.google.inject,
  org.bpy.electronics.mc6809.assembler.assembler,
+ org.bpy.electronics.mc6809.assembler.engine.data.comment,
  org.bpy.electronics.mc6809.assembler.util,
  org.bpy.electronics.mc6809.assembler.validation,
  org.eclipse.core.resources,

@@ -30,14 +30,6 @@ public abstract class AbstractAssemblyLine {
 
 	public abstract int getPcIncrement();
 	
-	public abstract void setOpcode(StringBuilder strBuilder);
-	public abstract void setOperand(StringBuilder strBuilder);
-	public abstract void setAdrsBranch(StringBuilder strBuilder);
-	public abstract void setLabel(StringBuilder strBuilder);
-	public abstract void setInstructionName(StringBuilder strBuilder);
-	public abstract void setInstructionOperand(StringBuilder strBuilder);
-	public abstract void setLastComment(StringBuilder strBuilder);
-	
 	public String getComment() {
 		return comment;
 	}
@@ -86,20 +78,5 @@ public abstract class AbstractAssemblyLine {
 		} else  {
 			strBuilder.append("     "); // Adresse (4 car)
 		}
-	}
-
-	@Override
-	public String toString() {
-		StringBuilder strBuilder = new StringBuilder();
-		setLineNumber(strBuilder);
-		setPCAddress(strBuilder);
-		setOpcode(strBuilder);
-		setOperand(strBuilder);
-		setAdrsBranch(strBuilder);
-		setLabel(strBuilder);
-		setInstructionName(strBuilder);
-		setInstructionOperand(strBuilder);
-		setLastComment(strBuilder);
-		return strBuilder.toString();
 	}
 }

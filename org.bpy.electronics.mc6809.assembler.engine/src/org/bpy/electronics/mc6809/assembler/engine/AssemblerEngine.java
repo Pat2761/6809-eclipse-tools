@@ -29,7 +29,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledCommentLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledCommentLine;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 
 public class AssemblerEngine {

@@ -35,7 +35,7 @@ import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
-import org.bpy.electronics.mc6809.assembler.engine.data.AssembledBszDirectiveLine
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledBszDirectiveLine
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator
 import org.eclipse.xtext.diagnostics.Severity
 
