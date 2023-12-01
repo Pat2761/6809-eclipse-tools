@@ -18,6 +18,26 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
+import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AddressingMode;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+
 /**
  * Abstract class which defined the common attributes of an instruction
  * 
@@ -26,21 +46,147 @@ package org.bpy.electronics.mc6809.assembler.engine.data;
  */
 public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLine {
 
+	/** OPcode of the instruction */
+	protected int[] opcodeBytes;
+	/** Operand value of the instruction */ 
+	protected int[] operandBytes;
+	/** number of cycle for executing the instruction */
+	protected int cyclesNumber;
+	/** Addressing mode used by the instruction */
+	protected AddressingMode addressingMode;
+	
 	/**
-	 * Return the opcode of the instruction
-	 * @return opcode of the instruction
+	 * Return the opcode of the instruction.
+	 * 
+	 * @param mode addressing mode used by the instruction
 	 */
-	public abstract byte[] getOpcode();
+	public abstract void setOpcode(AddressingMode mode);
 	
 	/**
 	 * return the operand of the instruction
-	 * @return operand of the instruction
+	 * 
+	 * @param mode addressing mode used by the instruction
 	 */
-	public abstract byte[] getOperand(); 
+	public abstract void setOperand(AddressingMode mode); 
 	
 	/**
 	 * Return the number of cycles for an instruction
-	 * @return number of cycles for the instruction
+	 * 
+	 * @param mode addressing mode used by the instruction
 	 */
-	public abstract int getCyclesNumber();
+	public abstract void setCyclesNumber(AddressingMode mode);
+	
+	/**
+	 * Get the reference on the instruction operand
+	 * 
+	 * @return reference on the instruction operand
+	 */
+	public abstract Object getInstructionOperand();
+
+	@Override
+	public int getPcIncrement() {
+		return opcodeBytes.length + operandBytes.length;
+	}
+
+	/**
+	 * Parse common attributes of an Instruction line.
+	 *  
+	 * @param currentPcValue current PC Value
+	 * @param lineNumber line number in the assembly file
+	 */
+	public void parse(int currentPcValue, int lineNumber) {
+		this.pcAddress = currentPcValue;
+		this.lineNumber = lineNumber;
+		
+		assembleInstruction();
+	}
+
+	/**
+	 * get the opcode value of the instruction
+	 * 
+	 * @return opcode value of the instruction
+	 */
+	public int[] getOpcode() {
+		return opcodeBytes;
+	}
+
+	/**
+	 * get the operand value of the instruction
+	 * 
+	 * @return operand value of the instruction
+	 */
+	public int[] getOperand() {
+		return operandBytes;
+	}
+
+	/**
+	 * get the cycle number value of the instruction
+	 * 
+	 * @return cycle number value of the instruction
+	 */
+	public int getCyclesNumber() {
+		return cyclesNumber;
+	}
+
+	/** 
+	 * Allow to assemble the instruction
+	 */
+	private void assembleInstruction() {
+		resolveAddressingMode(getInstructionOperand());
+		setOpcode(addressingMode);
+		setOperand(addressingMode);
+		setCyclesNumber(addressingMode);
+	}
+
+	protected void resolveAddressingMode(Object operand) {
+		if (operand == null) {
+			addressingMode = AddressingMode.INHERENT;
+		} else {
+			if (operand instanceof ImmediatOperand) {
+				addressingMode = AddressingMode.IMMEDIATE;
+			} else if (operand instanceof ExtendedOperand){
+				addressingMode = AddressingMode.EXTENDED;
+			} else if (operand instanceof DirectOperand){
+				addressingMode = AddressingMode.DIRECT;
+			} else if (operand instanceof IndexedOperand){
+				
+				if (((IndexedOperand)operand).getMode() instanceof AutoIncDecMode) {
+					addressingMode = AddressingMode.INDEXED_AUTO_DEC_INC_MODE;
+				} else if (((IndexedOperand)operand).getMode() instanceof ConstantIndexedMode) {
+					addressingMode = AddressingMode.INDEXED_CONSTANT_MODE;
+				} else if (((IndexedOperand)operand).getMode() instanceof AccumulatorMovingMode) {
+					addressingMode = AddressingMode.INDEXED_ACCUMULATOR_MOVING_MODE;
+				} else if (((IndexedOperand)operand).getMode() instanceof RelatifToPCMode) {
+					addressingMode = AddressingMode.INDEXED_RELATIF_TO_PC;
+				} else if (((IndexedOperand)operand).getMode() instanceof ConstantIndexedMovingIndirectMode) {
+					addressingMode = AddressingMode.INDEXED_CONSTANT_MOVING_INDIRECT_MODE;
+				} else if (((IndexedOperand)operand).getMode() instanceof AutoIncDecIndirectMode) {
+					addressingMode = AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE;
+				} else if (((IndexedOperand)operand).getMode() instanceof AccumulatorMovingIndirectMode) {
+					addressingMode = AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE;
+				} else if (((IndexedOperand)operand).getMode() instanceof RelatifToPCIndirectMode) {
+					addressingMode = AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE;
+				}	
+			} else if (operand instanceof ExtendedIndirectOperand){
+				addressingMode = AddressingMode.EXTENDED_INDIRECT;
+			} else if (operand instanceof RelativeMode){
+				addressingMode = AddressingMode.EXTENDED_INDIRECT;
+			}
+		}
+	}
+	
+	protected void setImmediateOperand(EObject instruction,ImmediatOperand immediatOperand, EReference eReference, int min, int max) {
+		int value = ExpressionParser.parse(immediatOperand, eReference, instruction, min, max); 
+		operandBytes = new int[] {(int) value};
+	}
+
+	protected void setDirectOperand(EObject instruction, DirectOperand directOperand, EReference eReference) {
+		int value = ExpressionParser.parse(directOperand, eReference, instruction); 
+		operandBytes = new int[] {(int) value};
+	}
+
+	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,EReference eReference) {
+		int value = ExpressionParser.parse(extendedOperand, eReference, instruction); 
+		operandBytes = new int[] {(int) value/256, (int) value%256};
+	}
 }

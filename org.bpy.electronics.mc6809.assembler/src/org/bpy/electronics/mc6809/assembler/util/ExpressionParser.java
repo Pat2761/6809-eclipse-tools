@@ -31,14 +31,17 @@ import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.CharacterValue;
 import org.bpy.electronics.mc6809.assembler.assembler.CommaExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.DecimalValue;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.HexaDecimalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
+import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
@@ -56,7 +59,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.eclipse.emf.ecore.EObject;
@@ -71,6 +73,7 @@ import org.eclipse.emf.ecore.EReference;
 public class ExpressionParser {
 	
 	public static final String EXPRESSION_ERROR = "expressionError";
+	public static final String OVERFLOW_ERROR = "overflowError";
 	
 	private static EReference eReference;
 	private static Object assemblyLine; 
@@ -130,6 +133,124 @@ public class ExpressionParser {
 	}
 
 	/** 
+	 * Parse the value of an immediate operand.
+	 *  
+	 * @param immediatOperand reference on the instruction operand
+	 * @param instructionReference used in a case of error detection 
+	 * @param instruction reference on the instruction
+	 * @param min the minimal value for the this mode
+	 * @param max the maximal value for the this mode
+	 * @return value of the operand 
+	 */
+	public static int parse(ImmediatOperand immediatOperand, EReference instructionReference,EObject instruction, int min, int max) {
+		
+		eReference = instructionReference;
+		assemblyLine = instruction;
+		
+		int value = 0;		
+		if (immediatOperand.getOperand() != null && immediatOperand.getOperand().getOperand() != null) {
+			EObject operand = immediatOperand.getOperand().getOperand();
+			value = resolveExpression((Expression)operand);
+		}
+		
+		if (value < min) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + value + " is below the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			value = min;
+		} else if (value > max) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + value + " is greater than the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			value = max;
+		}
+		
+		return value & max;
+	}
+
+	/** 
+	 * Parse the value of the instruction operand.
+	 *  
+	 * @param directOperand reference on the instruction operand
+	 * @param instructionReference used in a case of error detection 
+	 * @param instruction reference on the instruction
+	 * @param min the minimal value for the this mode
+	 * @param max the maximal value for the this mode
+	 * @return value of the operand 
+	 */
+	public static int parse(DirectOperand directOperand, EReference instructionReference,EObject instruction) {
+		
+		eReference = instructionReference;
+		assemblyLine = instruction;
+		
+		int value = 0;		
+		if (directOperand.getOperand() != null && directOperand.getOperand().getOperand() != null) {
+			EObject operand = directOperand.getOperand().getOperand();
+			value = resolveExpression((Expression)operand);
+		}
+		
+		if (value < -128) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + value + " is below the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			value = -128;
+		} else if (value > 255) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + value + " is greater than the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			value = 255;
+		}
+		
+		return value & 0xFF;
+	}
+
+	/** 
+	 * Parse the value of the instruction operand.
+	 *  
+	 * @param extendedOperand reference on the instruction operand
+	 * @param instructionReference used in a case of error detection 
+	 * @param instruction reference on the instruction
+	 * @return value of the operand 
+	 */
+	public static int parse(ExtendedOperand extendedOperand, EReference instructionReference, EObject instruction) {
+		
+		eReference = instructionReference;
+		assemblyLine = instruction;
+		
+		int value = 0;		
+		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
+			EObject operand = extendedOperand.getOperand().getOperand();
+			value = resolveExpression((Expression)operand);
+		}
+		
+		if (value < Short.MIN_VALUE) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + value + " is below the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			value = Short.MIN_VALUE;
+		} else if (value > 65535) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + value + " is greater than the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			value = 65535;
+		}
+		
+		return value & 0xFFFF;
+	}
+
+	/** 
 	 *  Parse the operand of an EQU directive.
 	 *  
 	 * @param equDirective reference on the EQU directive
@@ -148,7 +269,6 @@ public class ExpressionParser {
 			return -1;
 		}
 	}
-
 
 	/** 
 	 *  Parse the operand of an SET directive.

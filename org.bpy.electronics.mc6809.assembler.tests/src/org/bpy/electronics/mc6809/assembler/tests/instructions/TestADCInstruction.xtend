@@ -45,6 +45,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndir
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADCAInstruction
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -854,4 +858,330 @@ class TestADCInstruction {
 		val indexedOperand = adcInstruction.operand as IndexedOperand
 		assertTrue("Must be a Relative to Indexed Indirect mode", indexedOperand.mode instanceof RelatifToPCIndirectMode)
 	}
+	
+	/**
+	 * Check ADCA instruction with duplicate label 
+	 */
+	@Test 
+	def void testADCAWithDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start		NOP
+					NOP    
+		Start      	ADCA		  	#Const+2
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.instructionLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Start is already defined"
+		)
+	}
+	
+	/**
+	 * Check Assembled ADCA immediate instruction  
+	 */
+	@Test 
+	def void testADCAImmediatInstruction1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	#Const+2  ; 8000   89 07        START:    ADCA
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0x89, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x07, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   89 07        START:    ADCA", line.comment)	
+	}
+	
+	/**
+	 * Check Assembled ADCA immediate with limit negative operand  
+	 */
+	@Test 
+	def void testADCAImmediatInstruction2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	#-129
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.adcInstruction,
+			ExpressionParser::OVERFLOW_ERROR,	
+			"The value -129 is below the possible limit, data may be lost"
+		)
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(0));
+	}
+	
+	/**
+	 * Check Assembled ADCA immediate with limit negative operand  
+	 */
+	@Test 
+	def void testADCAImmediatInstruction3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	#-128
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(0));
+	}
+
+	/**
+	 * Check Assembled ADCA immediate with positive limit operand  
+	 */
+	@Test 
+	def void testADCAImmediatInstruction4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	#255
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+	}
+
+	/**
+	 * Check Assembled ADCA immediate with positive limit operand  
+	 */
+	@Test 
+	def void testADCAImmediatInstruction5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	#256
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.adcInstruction,
+			ExpressionParser::OVERFLOW_ERROR,	
+			"The value 256 is greater than the possible limit, data may be lost"
+		)
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+	}
+	
+	/**
+	 * Check Assembled ADCA direct mode instruction  
+	 */
+	@Test 
+	def void testADCADirectInstruction1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	<Const*2  ; 8000   99 0A        START:    ADCA   <Const*2 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0x99, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x0A, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   99 0A        START:    ADCA   <Const*2 ", line.comment)	
+	}
+	
+	/**
+	 * Check Assembled ADCA direct with limit negative operand  
+	 */
+	@Test 
+	def void testADCADirectInstruction2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	<-129
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.adcInstruction,
+			ExpressionParser::OVERFLOW_ERROR,	
+			"The value -129 is below the possible limit, data may be lost"
+		)
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(0));
+	}
+	
+	/**
+	 * Check Assembled ADCA direct with limit negative operand  
+	 */
+	@Test 
+	def void testADCADirectInstruction3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	<-128
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(0));
+	}
+
+	/**
+	 * Check Assembled ADCA direct with positive limit operand  
+	 */
+	@Test 
+	def void testADCADirectInstruction4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	<255
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+	}
+
+	/**
+	 * Check Assembled ADCA direct with positive limit operand  
+	 */
+	@Test 
+	def void testADCADirectInstruction5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	<256
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.adcInstruction,
+			ExpressionParser::OVERFLOW_ERROR,	
+			"The value 256 is greater than the possible limit, data may be lost"
+		)
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+	}
+	
+	/**
+	 * Check Assembled ADCA extended mode instruction  
+	 */
+	@Test 
+	def void testADCAExtendedInstruction1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	>Const*1000  ; 8000   B9 13 88     START:    ADCA   >Const*1000 
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xB9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x13, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x88, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   B9 13 88     START:    ADCA   >Const*1000 ", line.comment)	
+	}
+	
+	/**
+	 * Check Assembled ADCA extended with limit negative operand  
+	 */
+	@Test 
+	def void testADCAExtendedInstruction2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	>-32769
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.adcInstruction,
+			ExpressionParser::OVERFLOW_ERROR,	
+			"The value -32769 is below the possible limit, data may be lost"
+		)
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(1));
+	}
+	
+	/**
+	 * Check Assembled ADCA extended with limit negative operand  
+	 */
+	@Test 
+	def void testADCAExtendedInstruction3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	>-32768
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(1));
+	}
+
+	/**
+	 * Check Assembled ADCA extended with positive limit operand  
+	 */
+	@Test 
+	def void testADCAExtendedInstruction4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	>65535
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(1));
+	}
+
+	/**
+	 * Check Assembled ADCA extended with positive limit operand  
+	 */
+	@Test 
+	def void testADCAExtendedInstruction5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	>65536
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.adcInstruction,
+			ExpressionParser::OVERFLOW_ERROR,	
+			"The value 65536 is greater than the possible limit, data may be lost"
+		)
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(1));
+	}
+	
 }

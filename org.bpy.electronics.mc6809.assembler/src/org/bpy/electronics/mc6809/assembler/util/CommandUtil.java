@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
@@ -33,6 +34,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
@@ -54,18 +56,67 @@ import org.eclipse.emf.ecore.EReference;
 public class CommandUtil {
 
 	/**
+	 * Return the label associated to a directive line.
+	 * 
+	 * @param directive reference on the directive line
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(DirectiveLine directive) {
+		if ( directive.getName() != null) {
+			return directive.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to a directive line.
+	 * 
+	 * @param directive reference on the directive line
+	 */
+	public static String getComment(DirectiveLine directive) {
+		if ( directive.getComment() != null) {
+			return directive.getComment();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the label associated to an instruction line.
+	 * 
+	 * @param directive reference on the instruction line
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(InstructionLine directive) {
+		if ( directive.getName() != null) {
+			return directive.getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Return the comment associated to an instruction line.
+	 * 
+	 * @param directive reference on the instruction line
+	 */
+	public static String getComment(InstructionLine directive) {
+		if ( directive.getComment() != null) {
+			return directive.getComment();
+		} else {
+			return null;
+		}
+	}
+
+	/**
 	 * Return the label associated to an EQU directive.
 	 * 
 	 * @param equDirective reference on the EQU directive
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(EquDirective equDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)equDirective.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)equDirective.eContainer());
 	}
 	
 	/**
@@ -75,12 +126,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(EquDirective equDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)equDirective.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)equDirective.eContainer());
 	}
 
 	/**
@@ -90,12 +136,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(SetDirective setDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)setDirective.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)setDirective.eContainer());
 	}
 
 	/**
@@ -105,12 +146,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(SetDirective setDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)setDirective.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)setDirective.eContainer());
 	}
 	
 	/**
@@ -120,12 +156,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(OrgDirective orgDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)orgDirective.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)orgDirective.eContainer());
 	}
 
 	/**
@@ -135,12 +166,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(OrgDirective orgDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)orgDirective.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)orgDirective.eContainer());
 	}
 	
 	/**
@@ -150,12 +176,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(BszDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -165,12 +186,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(BszDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -180,12 +196,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(RmbDirective rmbDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)rmbDirective.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)rmbDirective.eContainer());
 	}
 
 	/**
@@ -195,12 +206,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(RmbDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -210,12 +216,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(FcbDirective fcbDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)fcbDirective.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)fcbDirective.eContainer());
 	}
 
 	/**
@@ -225,12 +226,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(FcbDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 	
 	/**
@@ -240,12 +236,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(FdbDirective fdbDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)fdbDirective.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)fdbDirective.eContainer());
 	}
 
 	/**
@@ -255,12 +246,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(FdbDirective fdbDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)fdbDirective.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)fdbDirective.eContainer());
 	}
 	
 	/**
@@ -270,12 +256,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(FccDirective fccDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)fccDirective.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)fccDirective.eContainer());
 	}
 
 	/**
@@ -285,12 +266,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(FccDirective fccDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)fccDirective.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)fccDirective.eContainer());
 	}
 	/**
 	 * Return the label associated to an END directive.
@@ -299,12 +275,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(EndDirective endDirective) {
-		DirectiveLine directiveLine = (DirectiveLine)endDirective.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)endDirective.eContainer());
 	}
 
 	/**
@@ -314,12 +285,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(EndDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -329,12 +295,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(FillDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -344,12 +305,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(FillDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -359,12 +315,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(OptDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -374,12 +325,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(OptDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -389,12 +335,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(PagDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -404,12 +345,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(PagDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -419,12 +355,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(NamDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -434,12 +365,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(NamDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -449,12 +375,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(SpcDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -464,12 +385,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(SpcDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -479,12 +395,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(RegDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -494,12 +405,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(RegDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -509,12 +415,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(SetDPDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getName() != null) {
-			return directiveLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -524,12 +425,7 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(SetDPDirective directive) {
-		DirectiveLine directiveLine = (DirectiveLine)directive.eContainer();
-		if ( directiveLine.getComment() != null) {
-			return directiveLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((DirectiveLine)directive.eContainer());
 	}
 
 	/**
@@ -539,12 +435,7 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(AbxInstruction instruction) {
-		InstructionLine instructionLine = (InstructionLine)instruction.eContainer();
-		if ( instructionLine.getName() != null) {
-			return instructionLine.getName().getValue();
-		} else {
-			return null;
-		}
+		return getLabel((InstructionLine)instruction.eContainer());
 	}
 
 	/**
@@ -554,14 +445,49 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(AbxInstruction instruction) {
-		InstructionLine instructionLine = (InstructionLine)instruction.eContainer();
-		if ( instructionLine.getComment() != null) {
-			return instructionLine.getComment();
-		} else {
-			return null;
-		}
+		return getComment((InstructionLine)instruction.eContainer());
 	}
 	
+	/**
+	 * Return the label associated to an ADC instruction.
+	 * 
+	 * @param instruction reference on the ADC instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(AdcInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an ADC instruction.
+	 * 
+	 * @param instruction reference on the ADC instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(AdcInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an NOP instruction.
+	 * 
+	 * @param instruction reference on the NOP instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(NopInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an NOP instruction.
+	 * 
+	 * @param instruction reference on the NOP instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(NopInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
 	public static int getByteToSet(FillDirective fillDirective, EReference currentReference) {
 		Expression value = fillDirective.getValue().getOperand();
 		return ExpressionParser.resolveExpression(value, fillDirective, currentReference);

@@ -31,7 +31,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
 import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledAbxInstruction
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledABXInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -147,7 +147,7 @@ class TestABXInstruction {
 		
 		Assert.assertEquals("Check PC after instruction", 0x8001, engine.currentPcValue)
 		
-		val line = engine.getAssembledLine(2) as AssembledAbxInstruction
+		val line = engine.getAssembledLine(2) as AssembledABXInstruction
 		Assert.assertEquals("Check label", "LabelAbx" , line.label)
 		Assert.assertEquals("Check comment", "; Abx comment" , line.comment)
 		Assert.assertEquals("Check lineNumber", 3 , line.lineNumber)

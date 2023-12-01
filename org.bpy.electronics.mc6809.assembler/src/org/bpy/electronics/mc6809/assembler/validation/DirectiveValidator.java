@@ -53,7 +53,7 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.EValidatorRegistrar;
 
-public class DirectiveValidator  extends AbstractAssemblerValidator {
+public class DirectiveValidator extends AbstractAssemblerValidator {
 
 	public static final String INVALID_RANGE = "invalidRange";
 	public static final String MISSING_LABEL = "missingLabel";

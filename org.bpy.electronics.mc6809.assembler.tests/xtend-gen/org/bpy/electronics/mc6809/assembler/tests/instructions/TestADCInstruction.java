@@ -21,6 +21,7 @@ import com.google.inject.Inject;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
@@ -35,7 +36,11 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADCAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -1394,6 +1399,468 @@ public class TestADCInstruction {
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Relative to Indexed Indirect mode", (_mode instanceof RelatifToPCIndirectMode));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check ADCA instruction with duplicate label
+   */
+  @Test
+  public void testADCAWithDuplicateLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start\t\tNOP");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("NOP    ");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t#Const+2");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), 
+        AssemblerEngine.DUPLICATE_LABEL, 
+        "Label Start is already defined");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA immediate instruction
+   */
+  @Test
+  public void testADCAImmediatInstruction1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t#Const+2  ; 8000   89 07        START:    ADCA");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x89, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x07, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   89 07        START:    ADCA", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA immediate with limit negative operand
+   */
+  @Test
+  public void testADCAImmediatInstruction2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t#-129");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value -129 is below the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA immediate with limit negative operand
+   */
+  @Test
+  public void testADCAImmediatInstruction3() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t#-128");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA immediate with positive limit operand
+   */
+  @Test
+  public void testADCAImmediatInstruction4() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t#255");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA immediate with positive limit operand
+   */
+  @Test
+  public void testADCAImmediatInstruction5() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t#256");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value 256 is greater than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA direct mode instruction
+   */
+  @Test
+  public void testADCADirectInstruction1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t<Const*2  ; 8000   99 0A        START:    ADCA   <Const*2 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x99, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x0A, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   99 0A        START:    ADCA   <Const*2 ", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA direct with limit negative operand
+   */
+  @Test
+  public void testADCADirectInstruction2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t<-129");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value -129 is below the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA direct with limit negative operand
+   */
+  @Test
+  public void testADCADirectInstruction3() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t<-128");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA direct with positive limit operand
+   */
+  @Test
+  public void testADCADirectInstruction4() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t<255");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA direct with positive limit operand
+   */
+  @Test
+  public void testADCADirectInstruction5() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t<256");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value 256 is greater than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA extended mode instruction
+   */
+  @Test
+  public void testADCAExtendedInstruction1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t>Const*1000  ; 8000   B9 13 88     START:    ADCA   >Const*1000 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0xB9, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x13, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x88, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   B9 13 88     START:    ADCA   >Const*1000 ", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA extended with limit negative operand
+   */
+  @Test
+  public void testADCAExtendedInstruction2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t>-32769");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value -32769 is below the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA extended with limit negative operand
+   */
+  @Test
+  public void testADCAExtendedInstruction3() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t>-32768");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA extended with positive limit operand
+   */
+  @Test
+  public void testADCAExtendedInstruction4() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t>65535");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA extended with positive limit operand
+   */
+  @Test
+  public void testADCAExtendedInstruction5() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t>65536");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value 65536 is greater than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

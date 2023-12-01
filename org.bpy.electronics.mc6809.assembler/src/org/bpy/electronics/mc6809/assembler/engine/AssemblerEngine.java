@@ -26,6 +26,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
@@ -40,6 +41,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
@@ -50,6 +52,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledBlankLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledCommentLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledBszDirectiveLine;
@@ -68,7 +71,10 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRmbD
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDPDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledAbxInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledABXInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADCAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADCBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -211,19 +217,66 @@ public class AssemblerEngine {
 	private void parseInstructionLine(InstructionLine instructionLine) {
 		if (instructionLine.getInstruction() instanceof AbxInstruction) {
 			parse((AbxInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof AdcInstruction) {
+			parse((AdcInstruction)instructionLine.getInstruction());
+				
+		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
+			parse((NopInstruction)instructionLine.getInstruction());
+				
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
 		
 	}
 
+	private void parse(NopInstruction instruction) {
+		AssembledNOPInstruction line = new AssembledNOPInstruction();
+		line.parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+}
+
+	/**
+	 * Parse an ADC directive line.
+	 *  
+	 * @param instruction reference on the ABX instruction
+	 */
+	private void parse(AdcInstruction instruction) {
+		AbstractAssemblyLine line;
+
+		if ("ADCA".equals(instruction.getInstruction())) {
+			line = new AssembledADCAInstruction();
+			((AssembledADCAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("ADCB".equals(instruction.getInstruction())) {
+			line = new AssembledADCBInstruction();
+			((AssembledADCBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			line = null;
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
 	/**
 	 * Parse an ABX directive line.
 	 *  
-	 * @param reference on the ABX instruction
+	 * @param instruction reference on the ABX instruction
 	 */
 	private void parse(AbxInstruction instruction) {
-		AssembledAbxInstruction line = new AssembledAbxInstruction();
+		AssembledABXInstruction line = new AssembledABXInstruction();
 		line.parse(instruction, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);

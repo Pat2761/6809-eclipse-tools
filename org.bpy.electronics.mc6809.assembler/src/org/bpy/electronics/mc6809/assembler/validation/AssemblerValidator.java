@@ -34,7 +34,7 @@ import org.eclipse.xtext.validation.ComposedChecks;
  *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
-@ComposedChecks(validators = {DirectiveValidator.class})
+@ComposedChecks(validators = {DirectiveValidator.class, InstructionValidator.class})
 public class AssemblerValidator extends AbstractAssemblerValidator {
 	
 	public static final String INVALID_FIGURE = "invalidFigure";
