@@ -28,6 +28,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
@@ -63,7 +64,7 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, new int[] {(int) 0xA9});
 		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_MODE, new int[] {(int) 0xA9});
 		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_MODE, new int[] {(int) 0xA9});
-		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_MOVING_INDIRECT_MODE, new int[] {(int) 0xA9});
+		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE, new int[] {(int) 0xA9});
 		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC, new int[] {(int) 0xA9});
 		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, new int[] {(int) 0xA9});
 		OP_CODE.put(AddressingMode.EXTENDED_INDIRECT, new int[] {(int) 0xA9,(int) 0x9F});
@@ -77,7 +78,7 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 		CYCLES.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, -1);
 		CYCLES.put(AddressingMode.INDEXED_AUTO_DEC_INC_MODE, -1);
 		CYCLES.put(AddressingMode.INDEXED_CONSTANT_MODE, -1);
-		CYCLES.put(AddressingMode.INDEXED_CONSTANT_MOVING_INDIRECT_MODE, -1);
+		CYCLES.put(AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE, -1);
 		CYCLES.put(AddressingMode.INDEXED_RELATIF_TO_PC, -1);
 		CYCLES.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, -1);
 		CYCLES.put(AddressingMode.EXTENDED_INDIRECT, -1);
@@ -156,9 +157,10 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 				break;
 				
 			case INDEXED_CONSTANT_MODE:
+				setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode());
 				break;
 				
-			case INDEXED_CONSTANT_MOVING_INDIRECT_MODE:
+			case INDEXED_CONSTANT_INDIRECT_MODE:
 				break;
 				
 			case INDEXED_RELATIF_TO_PC:

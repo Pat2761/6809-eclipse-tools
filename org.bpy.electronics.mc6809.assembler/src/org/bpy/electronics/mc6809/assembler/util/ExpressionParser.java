@@ -48,6 +48,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.Multiplication;
 import org.bpy.electronics.mc6809.assembler.assembler.Not;
+import org.bpy.electronics.mc6809.assembler.assembler.NumericalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
@@ -546,6 +547,24 @@ public class ExpressionParser {
 			return 0;
 		}
 	}
+
+	public static int parse(NumericalValue deplacement) {
+		EObject node = deplacement.getValue();
+		if (node instanceof DecimalValue) {
+			return resolveDecimalValue((DecimalValue)node);
+		} else if (node instanceof HexaDecimalValue) {
+			return resolveHexadecimalValue((HexaDecimalValue)node);
+		} else if (node instanceof OctalValue) {
+			return resolveOctalValue((OctalValue)node);
+		} else if (node instanceof BinaryValue) {
+			return resolveBinaryValue((BinaryValue)node);
+		} else if (node instanceof CharacterValue) {
+			return resolveCharacterValue((CharacterValue)node);
+		} else if (node instanceof IdentifierValue) {
+			return resolveIdentifierValue((IdentifierValue)node);
+		}
+		return 0;
+	}
 	
 	private static int resolveDecimalValue(DecimalValue value) {
 		int sign = 1;
@@ -865,4 +884,5 @@ public class ExpressionParser {
 		}
 		return left>>right;
 	}
+
 }

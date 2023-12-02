@@ -3850,4 +3850,272 @@ public class TestADCInstruction {
       throw Exceptions.sneakyThrow(_e);
     }
   }
+
+  /**
+   * Check Assembled ADCA Indexed Constant move Mode instruction
+   */
+  @Test
+  public void testADCAIndexedConstantMove1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t1234,X  ; 8000   \tA9 89 04 D2            ADCA   1234,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \tA9 89 04 D2            ADCA   1234,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA Indexed Constant move Mode instruction
+   */
+  @Test
+  public void testADCAIndexedConstantMove2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t1234,Y  ; 8000   \tA9 A9 04 D2            ADCA   1234,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \tA9 A9 04 D2            ADCA   1234,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA Indexed Constant move Mode instruction
+   */
+  @Test
+  public void testADCAIndexedConstantMove3() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t1234,U  ; 8000   \tA9 C9 04 D2            ADCA   1234,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \tA9 C9 04 D2            ADCA   1234,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA Indexed Constant move Mode instruction
+   */
+  @Test
+  public void testADCAIndexedConstantMove4() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t1234,S  ; 8000   \tA9 E9 04 D2            ADCA   1234,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \tA9 E9 04 D2            ADCA   1234,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA Indexed Constant move Mode instruction
+   */
+  @Test
+  public void testADCAIndexedConstantMove5() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t34,X  ; 8000   \tA9 88 22            ADCA   34,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x88, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \tA9 88 22            ADCA   34,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA Indexed Constant move Mode instruction
+   */
+  @Test
+  public void testADCAIndexedConstantMove6() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t34,Y  ; 8000   \tA9 A8 22            ADCA   34,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \tA9 A8 22            ADCA   34,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA Indexed Constant move Mode instruction
+   */
+  @Test
+  public void testADCAIndexedConstantMove7() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t34,U  ; 8000   \tA9 C8 22            ADCA   34,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \tA9 C8 22            ADCA   34,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check Assembled ADCA Indexed Constant move Mode instruction
+   */
+  @Test
+  public void testADCAIndexedConstantMove84() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tADCA\t\t  \t34,S  ; 8000   \tA9 E8 22            ADCA   34,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \tA9 E8 22            ADCA   34,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
 }

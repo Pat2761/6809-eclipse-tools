@@ -30,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.NumericalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
@@ -165,7 +166,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 				} else if (((IndexedOperand)operand).getMode() instanceof RelatifToPCMode) {
 					addressingMode = AddressingMode.INDEXED_RELATIF_TO_PC;
 				} else if (((IndexedOperand)operand).getMode() instanceof ConstantIndexedMovingIndirectMode) {
-					addressingMode = AddressingMode.INDEXED_CONSTANT_MOVING_INDIRECT_MODE;
+					addressingMode = AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE;
 				} else if (((IndexedOperand)operand).getMode() instanceof AutoIncDecIndirectMode) {
 					addressingMode = AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE;
 				} else if (((IndexedOperand)operand).getMode() instanceof AccumulatorMovingIndirectMode) {
@@ -306,6 +307,43 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		}
 		
 		operandBytes = new int[] {postByte%256};
+	}
+
+	protected void setIndexedConstantMode(EObject instruction2, ConstantIndexedMode mode) {
+		int postByte = 0;
+		NumericalValue deplacement = mode.getDeplacement();
+		
+		if (deplacement == null) {
+			switch (mode.getRegister()) {
+				case "X" : postByte |= 0x84; break;
+				case "Y" : postByte |= 0xA4; break;
+				case "U" : postByte |= 0xC4; break;
+				case "S" : postByte |= 0xE4; break;
+			}
+			operandBytes = new int[] {postByte%256};
+		} else {
+			int offset = ExpressionParser.parse(deplacement);
+			if (offset < 0x10) {
+				 
+			} else if (offset < 0x100) {
+				switch (mode.getRegister()) {
+				case "X" : postByte |= 0x88; break;
+				case "Y" : postByte |= 0xA8; break;
+				case "U" : postByte |= 0xC8; break;
+				case "S" : postByte |= 0xE8; break;
+			}	
+			operandBytes = new int[] {postByte%256, offset%256 };
+				
+			} else if (offset <0x10000) {
+				switch (mode.getRegister()) {
+					case "X" : postByte |= 0x89; break;
+					case "Y" : postByte |= 0xA9; break;
+					case "U" : postByte |= 0xC9; break;
+					case "S" : postByte |= 0xE9; break;
+				}	
+				operandBytes = new int[] {postByte%256, offset/256, offset%256 };
+			}
+		}
 	}
 
 	protected void setExtendedIndirectOperand(EObject instruction, ExtendedIndirectOperand operand, EReference eReference) {
