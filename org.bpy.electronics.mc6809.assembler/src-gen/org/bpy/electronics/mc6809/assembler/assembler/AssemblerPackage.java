@@ -3032,22 +3032,13 @@ public interface AssemblerPackage extends EPackage
   int AUTO_INC_DEC_MODE = 83;
 
   /**
-   * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AUTO_INC_DEC_MODE__DEPLACEMENT = 0;
-
-  /**
    * The feature id for the '<em><b>Decrement</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AUTO_INC_DEC_MODE__DECREMENT = 1;
+  int AUTO_INC_DEC_MODE__DECREMENT = 0;
 
   /**
    * The feature id for the '<em><b>Register</b></em>' attribute.
@@ -3056,7 +3047,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AUTO_INC_DEC_MODE__REGISTER = 2;
+  int AUTO_INC_DEC_MODE__REGISTER = 1;
 
   /**
    * The feature id for the '<em><b>Increment</b></em>' attribute.
@@ -3065,7 +3056,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AUTO_INC_DEC_MODE__INCREMENT = 3;
+  int AUTO_INC_DEC_MODE__INCREMENT = 2;
 
   /**
    * The number of structural features of the '<em>Auto Inc Dec Mode</em>' class.
@@ -3074,7 +3065,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AUTO_INC_DEC_MODE_FEATURE_COUNT = 4;
+  int AUTO_INC_DEC_MODE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecIndirectModeImpl <em>Auto Inc Dec Indirect Mode</em>}' class.
@@ -3087,22 +3078,13 @@ public interface AssemblerPackage extends EPackage
   int AUTO_INC_DEC_INDIRECT_MODE = 84;
 
   /**
-   * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int AUTO_INC_DEC_INDIRECT_MODE__DEPLACEMENT = 0;
-
-  /**
    * The feature id for the '<em><b>Decrement</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AUTO_INC_DEC_INDIRECT_MODE__DECREMENT = 1;
+  int AUTO_INC_DEC_INDIRECT_MODE__DECREMENT = 0;
 
   /**
    * The feature id for the '<em><b>Register</b></em>' attribute.
@@ -3111,7 +3093,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AUTO_INC_DEC_INDIRECT_MODE__REGISTER = 2;
+  int AUTO_INC_DEC_INDIRECT_MODE__REGISTER = 1;
 
   /**
    * The feature id for the '<em><b>Increment</b></em>' attribute.
@@ -3120,7 +3102,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AUTO_INC_DEC_INDIRECT_MODE__INCREMENT = 3;
+  int AUTO_INC_DEC_INDIRECT_MODE__INCREMENT = 2;
 
   /**
    * The number of structural features of the '<em>Auto Inc Dec Indirect Mode</em>' class.
@@ -3129,7 +3111,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AUTO_INC_DEC_INDIRECT_MODE_FEATURE_COUNT = 4;
+  int AUTO_INC_DEC_INDIRECT_MODE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCModeImpl <em>Relatif To PC Mode</em>}' class.
@@ -7476,17 +7458,6 @@ public interface AssemblerPackage extends EPackage
   EClass getAutoIncDecMode();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getDeplacement <em>Deplacement</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Deplacement</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getDeplacement()
-   * @see #getAutoIncDecMode()
-   * @generated
-   */
-  EReference getAutoIncDecMode_Deplacement();
-
-  /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getDecrement <em>Decrement</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -7528,17 +7499,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EClass getAutoIncDecIndirectMode();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getDeplacement <em>Deplacement</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Deplacement</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getDeplacement()
-   * @see #getAutoIncDecIndirectMode()
-   * @generated
-   */
-  EReference getAutoIncDecIndirectMode_Deplacement();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode#getDecrement <em>Decrement</em>}'.
@@ -11065,14 +11025,6 @@ public interface AssemblerPackage extends EPackage
     EClass AUTO_INC_DEC_MODE = eINSTANCE.getAutoIncDecMode();
 
     /**
-     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AUTO_INC_DEC_MODE__DEPLACEMENT = eINSTANCE.getAutoIncDecMode_Deplacement();
-
-    /**
      * The meta object literal for the '<em><b>Decrement</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -11105,14 +11057,6 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EClass AUTO_INC_DEC_INDIRECT_MODE = eINSTANCE.getAutoIncDecIndirectMode();
-
-    /**
-     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AUTO_INC_DEC_INDIRECT_MODE__DEPLACEMENT = eINSTANCE.getAutoIncDecIndirectMode_Deplacement();
 
     /**
      * The meta object literal for the '<em><b>Decrement</b></em>' attribute feature.

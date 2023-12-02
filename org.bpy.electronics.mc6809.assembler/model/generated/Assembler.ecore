@@ -394,15 +394,11 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="register" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AutoIncDecMode">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deplacement" eType="#//NumericalValue"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="decrement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="register" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="increment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AutoIncDecIndirectMode">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="deplacement" eType="#//NumericalValue"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="decrement" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="register" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="increment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

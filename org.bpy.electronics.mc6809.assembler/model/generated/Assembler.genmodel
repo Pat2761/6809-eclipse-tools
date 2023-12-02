@@ -349,13 +349,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AccumulatorMovingIndirectMode/register"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AutoIncDecMode">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AutoIncDecMode/deplacement"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecMode/decrement"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecMode/register"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecMode/increment"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AutoIncDecIndirectMode">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AutoIncDecIndirectMode/deplacement"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecIndirectMode/decrement"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecIndirectMode/register"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AutoIncDecIndirectMode/increment"/>

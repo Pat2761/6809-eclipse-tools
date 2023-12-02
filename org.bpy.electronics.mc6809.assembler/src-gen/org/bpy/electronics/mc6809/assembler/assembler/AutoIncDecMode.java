@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getDeplacement <em>Deplacement</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getDecrement <em>Decrement</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getRegister <em>Register</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getIncrement <em>Increment</em>}</li>
@@ -26,28 +25,6 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface AutoIncDecMode extends EObject
 {
-  /**
-   * Returns the value of the '<em><b>Deplacement</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Deplacement</em>' containment reference.
-   * @see #setDeplacement(NumericalValue)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getAutoIncDecMode_Deplacement()
-   * @model containment="true"
-   * @generated
-   */
-  NumericalValue getDeplacement();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode#getDeplacement <em>Deplacement</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Deplacement</em>' containment reference.
-   * @see #getDeplacement()
-   * @generated
-   */
-  void setDeplacement(NumericalValue value);
-
   /**
    * Returns the value of the '<em><b>Decrement</b></em>' attribute.
    * <!-- begin-user-doc -->

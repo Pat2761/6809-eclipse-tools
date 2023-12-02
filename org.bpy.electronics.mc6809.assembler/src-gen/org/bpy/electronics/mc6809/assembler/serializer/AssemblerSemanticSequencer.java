@@ -843,11 +843,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         deplacement=NumericalValue? 
-	 *         (
-	 *             ((decrement='-' | decrement='--') (register='S' | register='U' | register='X' | register='Y')) | 
-	 *             ((register='S' | register='U' | register='X' | register='Y') (increment='+' | increment='++'))
-	 *         )
+	 *         ((decrement='-' | decrement='--') (register='S' | register='U' | register='X' | register='Y')) | 
+	 *         ((register='S' | register='U' | register='X' | register='Y') (increment='+' | increment='++'))
 	 *     )
 	 * </pre>
 	 */
@@ -863,11 +860,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         deplacement=NumericalValue? 
-	 *         (
-	 *             ((decrement='-' | decrement='--') (register='S' | register='U' | register='X' | register='Y')) | 
-	 *             ((register='S' | register='U' | register='X' | register='Y') (increment='+' | increment='++'))
-	 *         )
+	 *         ((decrement='-' | decrement='--') (register='S' | register='U' | register='X' | register='Y')) | 
+	 *         ((register='S' | register='U' | register='X' | register='Y') (increment='+' | increment='++'))
 	 *     )
 	 * </pre>
 	 */

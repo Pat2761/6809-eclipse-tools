@@ -35,8 +35,11 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AddressingMode;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 
 /**
  * Abstract class which defined the common attributes of an instruction
@@ -45,6 +48,9 @@ import org.eclipse.emf.ecore.EReference;
  *
  */
 public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLine {
+	
+	public static final String ILLEGAL_DECREMENT = "illegalDecrement";
+	public static final String ILLEGAL_INCREMENT = "illegalIncrement";
 
 	/** OPcode of the instruction */
 	protected int[] opcodeBytes;
@@ -177,16 +183,133 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	
 	protected void setImmediateOperand(EObject instruction,ImmediatOperand immediatOperand, EReference eReference, int min, int max) {
 		int value = ExpressionParser.parse(immediatOperand, eReference, instruction, min, max); 
-		operandBytes = new int[] {(int) value};
+		operandBytes = new int[] {value};
 	}
 
 	protected void setDirectOperand(EObject instruction, DirectOperand directOperand, EReference eReference) {
 		int value = ExpressionParser.parse(directOperand, eReference, instruction); 
-		operandBytes = new int[] {(int) value};
+		operandBytes = new int[] {value};
 	}
 
 	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,EReference eReference) {
 		int value = ExpressionParser.parse(extendedOperand, eReference, instruction); 
-		operandBytes = new int[] {(int) value/256, (int) value%256};
+		operandBytes = new int[] {value/256, value%256};
+	}
+
+	protected void setIndexedAccumulatorMovingMode(EObject instruction, AccumulatorMovingMode operand) {
+		int postByte = 0;
+		
+		switch (operand.getDeplacement()) {
+			case "A" : postByte |= 0x06; break;
+			case "B" : postByte |= 0x05; break;
+			case "D" : postByte |= 0x0B; break;
+			default: break;
+		}
+		
+		switch (operand.getRegister()) {
+			case "X" : postByte |= 0x80; break;
+			case "Y" : postByte |= 0xA0; break;
+			case "U" : postByte |= 0xC0; break;
+			case "S" : postByte |= 0xE0; break;
+		default: break;
+		}
+		
+		operandBytes = new int[] {postByte%256};
+	}
+
+	protected void setIndexedAccumulatorMovingMode(EObject instruction, AccumulatorMovingIndirectMode mode) {
+		int postByte = 0;
+		
+		switch (mode.getDeplacement()) {
+			case "A" : postByte |= 0x06; break;
+			case "B" : postByte |= 0x05; break;
+			case "D" : postByte |= 0x0B; break;
+			default: break;
+		}
+		
+		switch (mode.getRegister()) {
+			case "X" : postByte |= 0x90; break;
+			case "Y" : postByte |= 0xB0; break;
+			case "U" : postByte |= 0xD0; break;
+			case "S" : postByte |= 0xF0; break;
+		default: break;
+		}
+		
+		operandBytes = new int[] {postByte%256};
+	}
+
+	protected void setIndexedAccumulatorMovingMode(EObject instruction2, AutoIncDecMode mode) {
+		int postByte = 0;
+		
+		if (mode.getDecrement() != null) {
+	 		switch (mode.getDecrement()) {
+				case "-" : postByte |= 0x02; break;
+				case "--" : postByte |= 0x03; break;
+				default: break;
+			}
+		} else if (mode.getIncrement()!=null) {
+	 		switch (mode.getIncrement()) {
+				case "+" :  break; // nothing to do cue to AND with 0
+				case "++" : postByte |= 0x01; break;
+				default: break;
+	 		}	
+		}
+		
+		switch (mode.getRegister()) {
+			case "X" : postByte |= 0x80; break;
+			case "Y" : postByte |= 0xA0; break;
+			case "U" : postByte |= 0xC0; break;
+			case "S" : postByte |= 0xE0; break;
+			default: break;
+		}
+		
+		operandBytes = new int[] {postByte%256};
+	}
+
+	protected void setIndexedAccumulatorMovingMode(EObject instruction, AutoIncDecIndirectMode mode, EStructuralFeature eReference) {
+		int postByte = 0;
+		
+		if (mode.getDecrement() != null) {
+	 		switch (mode.getDecrement()) {
+				case "-" : 
+					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+							"Cannot use pre decrement with 1 for indirect mode" , 
+							eReference, 
+							ILLEGAL_DECREMENT);
+					AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+					break;
+				case "--" : postByte |= 0x03; break;
+				default: break;
+			}
+		} else if (mode.getIncrement()!=null) {
+	 		switch (mode.getIncrement()) {
+				case "+" :  
+					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+							"Cannot use post increment with 1 for indirect mode" , 
+							eReference, 
+							ILLEGAL_INCREMENT);
+					AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+					
+					break; 
+					
+				case "++" : postByte |= 0x01; break;
+				default: break;
+	 		}	
+		}
+		
+		switch (mode.getRegister()) {
+			case "X" : postByte |= 0x90; break;
+			case "Y" : postByte |= 0xB0; break;
+			case "U" : postByte |= 0xD0; break;
+			case "S" : postByte |= 0xF0; break;
+			default: break;
+		}
+		
+		operandBytes = new int[] {postByte%256};
+	}
+
+	protected void setExtendedIndirectOperand(EObject instruction, ExtendedIndirectOperand operand, EReference eReference) {
+		int value = ExpressionParser.parse(operand, eReference, instruction); 
+		operandBytes = new int[] {value/256, value%256};
 	}
 }

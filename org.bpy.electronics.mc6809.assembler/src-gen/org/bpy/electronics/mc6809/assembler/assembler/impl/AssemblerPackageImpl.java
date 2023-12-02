@@ -3748,20 +3748,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getAutoIncDecMode_Deplacement()
-  {
-    return (EReference)autoIncDecModeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAutoIncDecMode_Decrement()
   {
-    return (EAttribute)autoIncDecModeEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)autoIncDecModeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3772,7 +3761,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getAutoIncDecMode_Register()
   {
-    return (EAttribute)autoIncDecModeEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)autoIncDecModeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3783,7 +3772,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getAutoIncDecMode_Increment()
   {
-    return (EAttribute)autoIncDecModeEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)autoIncDecModeEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -3803,20 +3792,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getAutoIncDecIndirectMode_Deplacement()
-  {
-    return (EReference)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EAttribute getAutoIncDecIndirectMode_Decrement()
   {
-    return (EAttribute)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(1);
+    return (EAttribute)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3827,7 +3805,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getAutoIncDecIndirectMode_Register()
   {
-    return (EAttribute)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -3838,7 +3816,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getAutoIncDecIndirectMode_Increment()
   {
-    return (EAttribute)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(3);
+    return (EAttribute)autoIncDecIndirectModeEClass.getEStructuralFeatures().get(2);
   }
 
   /**
@@ -5634,13 +5612,11 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEAttribute(accumulatorMovingIndirectModeEClass, ACCUMULATOR_MOVING_INDIRECT_MODE__REGISTER);
 
     autoIncDecModeEClass = createEClass(AUTO_INC_DEC_MODE);
-    createEReference(autoIncDecModeEClass, AUTO_INC_DEC_MODE__DEPLACEMENT);
     createEAttribute(autoIncDecModeEClass, AUTO_INC_DEC_MODE__DECREMENT);
     createEAttribute(autoIncDecModeEClass, AUTO_INC_DEC_MODE__REGISTER);
     createEAttribute(autoIncDecModeEClass, AUTO_INC_DEC_MODE__INCREMENT);
 
     autoIncDecIndirectModeEClass = createEClass(AUTO_INC_DEC_INDIRECT_MODE);
-    createEReference(autoIncDecIndirectModeEClass, AUTO_INC_DEC_INDIRECT_MODE__DEPLACEMENT);
     createEAttribute(autoIncDecIndirectModeEClass, AUTO_INC_DEC_INDIRECT_MODE__DECREMENT);
     createEAttribute(autoIncDecIndirectModeEClass, AUTO_INC_DEC_INDIRECT_MODE__REGISTER);
     createEAttribute(autoIncDecIndirectModeEClass, AUTO_INC_DEC_INDIRECT_MODE__INCREMENT);
@@ -6185,13 +6161,11 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getAccumulatorMovingIndirectMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, AccumulatorMovingIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(autoIncDecModeEClass, AutoIncDecMode.class, "AutoIncDecMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAutoIncDecMode_Deplacement(), this.getNumericalValue(), null, "deplacement", null, 0, 1, AutoIncDecMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAutoIncDecMode_Decrement(), ecorePackage.getEString(), "decrement", null, 0, 1, AutoIncDecMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAutoIncDecMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, AutoIncDecMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAutoIncDecMode_Increment(), ecorePackage.getEString(), "increment", null, 0, 1, AutoIncDecMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(autoIncDecIndirectModeEClass, AutoIncDecIndirectMode.class, "AutoIncDecIndirectMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getAutoIncDecIndirectMode_Deplacement(), this.getNumericalValue(), null, "deplacement", null, 0, 1, AutoIncDecIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAutoIncDecIndirectMode_Decrement(), ecorePackage.getEString(), "decrement", null, 0, 1, AutoIncDecIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAutoIncDecIndirectMode_Register(), ecorePackage.getEString(), "register", null, 0, 1, AutoIncDecIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getAutoIncDecIndirectMode_Increment(), ecorePackage.getEString(), "increment", null, 0, 1, AutoIncDecIndirectMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

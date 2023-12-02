@@ -35,6 +35,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.Division;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
@@ -221,6 +222,44 @@ public class ExpressionParser {
 	 * @return value of the operand 
 	 */
 	public static int parse(ExtendedOperand extendedOperand, EReference instructionReference, EObject instruction) {
+		
+		eReference = instructionReference;
+		assemblyLine = instruction;
+		
+		int value = 0;		
+		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
+			EObject operand = extendedOperand.getOperand().getOperand();
+			value = resolveExpression((Expression)operand);
+		}
+		
+		if (value < Short.MIN_VALUE) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + value + " is below the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			value = Short.MIN_VALUE;
+		} else if (value > 65535) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + value + " is greater than the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			value = 65535;
+		}
+		
+		return value & 0xFFFF;
+	}
+
+	/** 
+	 * Parse the value of the instruction operand.
+	 *  
+	 * @param extendedOperand reference on the instruction operand
+	 * @param instructionReference used in a case of error detection 
+	 * @param instruction reference on the instruction
+	 * @return value of the operand 
+	 */
+	public static int parse(ExtendedIndirectOperand extendedOperand, EReference instructionReference, EObject instruction) {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;

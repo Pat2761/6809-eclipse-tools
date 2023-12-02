@@ -1930,7 +1930,6 @@ AccumulatorMovingIndirectMode:
 ;
 
 AutoIncDecMode:
-	deplacement=NumericalValue?
 	',' 
 	((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
 	 register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
@@ -1938,7 +1937,6 @@ AutoIncDecMode:
 
 AutoIncDecIndirectMode:
 	'['
-	deplacement=NumericalValue?
 	',' 
 	((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
 	 register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))

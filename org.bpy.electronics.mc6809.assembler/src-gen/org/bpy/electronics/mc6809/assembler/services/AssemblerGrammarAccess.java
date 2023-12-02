@@ -6890,8 +6890,128 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	public class AutoIncDecModeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AutoIncDecMode");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cDeplacementAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cDeplacementNumericalValueParserRuleCall_0_0 = (RuleCall)cDeplacementAssignment_0.eContents().get(0);
+		private final Keyword cCommaKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Group cGroup_1_0 = (Group)cAlternatives_1.eContents().get(0);
+		private final Alternatives cAlternatives_1_0_0 = (Alternatives)cGroup_1_0.eContents().get(0);
+		private final Assignment cDecrementAssignment_1_0_0_0 = (Assignment)cAlternatives_1_0_0.eContents().get(0);
+		private final Keyword cDecrementHyphenMinusKeyword_1_0_0_0_0 = (Keyword)cDecrementAssignment_1_0_0_0.eContents().get(0);
+		private final Assignment cDecrementAssignment_1_0_0_1 = (Assignment)cAlternatives_1_0_0.eContents().get(1);
+		private final Keyword cDecrementHyphenMinusHyphenMinusKeyword_1_0_0_1_0 = (Keyword)cDecrementAssignment_1_0_0_1.eContents().get(0);
+		private final Assignment cRegisterAssignment_1_0_1 = (Assignment)cGroup_1_0.eContents().get(1);
+		private final Alternatives cRegisterAlternatives_1_0_1_0 = (Alternatives)cRegisterAssignment_1_0_1.eContents().get(0);
+		private final Keyword cRegisterSKeyword_1_0_1_0_0 = (Keyword)cRegisterAlternatives_1_0_1_0.eContents().get(0);
+		private final Keyword cRegisterUKeyword_1_0_1_0_1 = (Keyword)cRegisterAlternatives_1_0_1_0.eContents().get(1);
+		private final Keyword cRegisterXKeyword_1_0_1_0_2 = (Keyword)cRegisterAlternatives_1_0_1_0.eContents().get(2);
+		private final Keyword cRegisterYKeyword_1_0_1_0_3 = (Keyword)cRegisterAlternatives_1_0_1_0.eContents().get(3);
+		private final Group cGroup_1_1 = (Group)cAlternatives_1.eContents().get(1);
+		private final Assignment cRegisterAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
+		private final Alternatives cRegisterAlternatives_1_1_0_0 = (Alternatives)cRegisterAssignment_1_1_0.eContents().get(0);
+		private final Keyword cRegisterSKeyword_1_1_0_0_0 = (Keyword)cRegisterAlternatives_1_1_0_0.eContents().get(0);
+		private final Keyword cRegisterUKeyword_1_1_0_0_1 = (Keyword)cRegisterAlternatives_1_1_0_0.eContents().get(1);
+		private final Keyword cRegisterXKeyword_1_1_0_0_2 = (Keyword)cRegisterAlternatives_1_1_0_0.eContents().get(2);
+		private final Keyword cRegisterYKeyword_1_1_0_0_3 = (Keyword)cRegisterAlternatives_1_1_0_0.eContents().get(3);
+		private final Alternatives cAlternatives_1_1_1 = (Alternatives)cGroup_1_1.eContents().get(1);
+		private final Assignment cIncrementAssignment_1_1_1_0 = (Assignment)cAlternatives_1_1_1.eContents().get(0);
+		private final Keyword cIncrementPlusSignKeyword_1_1_1_0_0 = (Keyword)cIncrementAssignment_1_1_1_0.eContents().get(0);
+		private final Assignment cIncrementAssignment_1_1_1_1 = (Assignment)cAlternatives_1_1_1.eContents().get(1);
+		private final Keyword cIncrementPlusSignPlusSignKeyword_1_1_1_1_0 = (Keyword)cIncrementAssignment_1_1_1_1.eContents().get(0);
+		
+		//AutoIncDecMode:
+		//    ','
+		//    ((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+		//     register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//','
+		//((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+		// register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		public Group getGroup() { return cGroup; }
+		
+		//','
+		public Keyword getCommaKeyword_0() { return cCommaKeyword_0; }
+		
+		//((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
+		// register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
+		
+		//(decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y')
+		public Group getGroup_1_0() { return cGroup_1_0; }
+		
+		//(decrement='-' | decrement='--')
+		public Alternatives getAlternatives_1_0_0() { return cAlternatives_1_0_0; }
+		
+		//decrement='-'
+		public Assignment getDecrementAssignment_1_0_0_0() { return cDecrementAssignment_1_0_0_0; }
+		
+		//'-'
+		public Keyword getDecrementHyphenMinusKeyword_1_0_0_0_0() { return cDecrementHyphenMinusKeyword_1_0_0_0_0; }
+		
+		//decrement='--'
+		public Assignment getDecrementAssignment_1_0_0_1() { return cDecrementAssignment_1_0_0_1; }
+		
+		//'--'
+		public Keyword getDecrementHyphenMinusHyphenMinusKeyword_1_0_0_1_0() { return cDecrementHyphenMinusHyphenMinusKeyword_1_0_0_1_0; }
+		
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Assignment getRegisterAssignment_1_0_1() { return cRegisterAssignment_1_0_1; }
+		
+		//('S' | 'U' | 'X' | 'Y')
+		public Alternatives getRegisterAlternatives_1_0_1_0() { return cRegisterAlternatives_1_0_1_0; }
+		
+		//'S'
+		public Keyword getRegisterSKeyword_1_0_1_0_0() { return cRegisterSKeyword_1_0_1_0_0; }
+		
+		//'U'
+		public Keyword getRegisterUKeyword_1_0_1_0_1() { return cRegisterUKeyword_1_0_1_0_1; }
+		
+		//'X'
+		public Keyword getRegisterXKeyword_1_0_1_0_2() { return cRegisterXKeyword_1_0_1_0_2; }
+		
+		//'Y'
+		public Keyword getRegisterYKeyword_1_0_1_0_3() { return cRegisterYKeyword_1_0_1_0_3; }
+		
+		//register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++')
+		public Group getGroup_1_1() { return cGroup_1_1; }
+		
+		//register=('S' | 'U' | 'X' | 'Y')
+		public Assignment getRegisterAssignment_1_1_0() { return cRegisterAssignment_1_1_0; }
+		
+		//('S' | 'U' | 'X' | 'Y')
+		public Alternatives getRegisterAlternatives_1_1_0_0() { return cRegisterAlternatives_1_1_0_0; }
+		
+		//'S'
+		public Keyword getRegisterSKeyword_1_1_0_0_0() { return cRegisterSKeyword_1_1_0_0_0; }
+		
+		//'U'
+		public Keyword getRegisterUKeyword_1_1_0_0_1() { return cRegisterUKeyword_1_1_0_0_1; }
+		
+		//'X'
+		public Keyword getRegisterXKeyword_1_1_0_0_2() { return cRegisterXKeyword_1_1_0_0_2; }
+		
+		//'Y'
+		public Keyword getRegisterYKeyword_1_1_0_0_3() { return cRegisterYKeyword_1_1_0_0_3; }
+		
+		//(increment='+' | increment='++')
+		public Alternatives getAlternatives_1_1_1() { return cAlternatives_1_1_1; }
+		
+		//increment='+'
+		public Assignment getIncrementAssignment_1_1_1_0() { return cIncrementAssignment_1_1_1_0; }
+		
+		//'+'
+		public Keyword getIncrementPlusSignKeyword_1_1_1_0_0() { return cIncrementPlusSignKeyword_1_1_1_0_0; }
+		
+		//increment='++'
+		public Assignment getIncrementAssignment_1_1_1_1() { return cIncrementAssignment_1_1_1_1; }
+		
+		//'++'
+		public Keyword getIncrementPlusSignPlusSignKeyword_1_1_1_1_0() { return cIncrementPlusSignPlusSignKeyword_1_1_1_1_0; }
+	}
+	public class AutoIncDecIndirectModeElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AutoIncDecIndirectMode");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cCommaKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
@@ -6918,26 +7038,26 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cIncrementPlusSignKeyword_2_1_1_0_0 = (Keyword)cIncrementAssignment_2_1_1_0.eContents().get(0);
 		private final Assignment cIncrementAssignment_2_1_1_1 = (Assignment)cAlternatives_2_1_1.eContents().get(1);
 		private final Keyword cIncrementPlusSignPlusSignKeyword_2_1_1_1_0 = (Keyword)cIncrementAssignment_2_1_1_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		
-		//AutoIncDecMode:
-		//    deplacement=NumericalValue?
+		//AutoIncDecIndirectMode:
+		//    '['
 		//    ','
 		//    ((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
 		//     register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		//    ']'
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//deplacement=NumericalValue?
+		//'['
 		//','
 		//((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
 		// register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
+		//']'
 		public Group getGroup() { return cGroup; }
 		
-		//deplacement=NumericalValue?
-		public Assignment getDeplacementAssignment_0() { return cDeplacementAssignment_0; }
-		
-		//NumericalValue
-		public RuleCall getDeplacementNumericalValueParserRuleCall_0_0() { return cDeplacementNumericalValueParserRuleCall_0_0; }
+		//'['
+		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
 		
 		//','
 		public Keyword getCommaKeyword_1() { return cCommaKeyword_1; }
@@ -7017,149 +7137,9 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//'++'
 		public Keyword getIncrementPlusSignPlusSignKeyword_2_1_1_1_0() { return cIncrementPlusSignPlusSignKeyword_2_1_1_1_0; }
-	}
-	public class AutoIncDecIndirectModeElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.AutoIncDecIndirectMode");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftSquareBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cDeplacementAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cDeplacementNumericalValueParserRuleCall_1_0 = (RuleCall)cDeplacementAssignment_1.eContents().get(0);
-		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
-		private final Group cGroup_3_0 = (Group)cAlternatives_3.eContents().get(0);
-		private final Alternatives cAlternatives_3_0_0 = (Alternatives)cGroup_3_0.eContents().get(0);
-		private final Assignment cDecrementAssignment_3_0_0_0 = (Assignment)cAlternatives_3_0_0.eContents().get(0);
-		private final Keyword cDecrementHyphenMinusKeyword_3_0_0_0_0 = (Keyword)cDecrementAssignment_3_0_0_0.eContents().get(0);
-		private final Assignment cDecrementAssignment_3_0_0_1 = (Assignment)cAlternatives_3_0_0.eContents().get(1);
-		private final Keyword cDecrementHyphenMinusHyphenMinusKeyword_3_0_0_1_0 = (Keyword)cDecrementAssignment_3_0_0_1.eContents().get(0);
-		private final Assignment cRegisterAssignment_3_0_1 = (Assignment)cGroup_3_0.eContents().get(1);
-		private final Alternatives cRegisterAlternatives_3_0_1_0 = (Alternatives)cRegisterAssignment_3_0_1.eContents().get(0);
-		private final Keyword cRegisterSKeyword_3_0_1_0_0 = (Keyword)cRegisterAlternatives_3_0_1_0.eContents().get(0);
-		private final Keyword cRegisterUKeyword_3_0_1_0_1 = (Keyword)cRegisterAlternatives_3_0_1_0.eContents().get(1);
-		private final Keyword cRegisterXKeyword_3_0_1_0_2 = (Keyword)cRegisterAlternatives_3_0_1_0.eContents().get(2);
-		private final Keyword cRegisterYKeyword_3_0_1_0_3 = (Keyword)cRegisterAlternatives_3_0_1_0.eContents().get(3);
-		private final Group cGroup_3_1 = (Group)cAlternatives_3.eContents().get(1);
-		private final Assignment cRegisterAssignment_3_1_0 = (Assignment)cGroup_3_1.eContents().get(0);
-		private final Alternatives cRegisterAlternatives_3_1_0_0 = (Alternatives)cRegisterAssignment_3_1_0.eContents().get(0);
-		private final Keyword cRegisterSKeyword_3_1_0_0_0 = (Keyword)cRegisterAlternatives_3_1_0_0.eContents().get(0);
-		private final Keyword cRegisterUKeyword_3_1_0_0_1 = (Keyword)cRegisterAlternatives_3_1_0_0.eContents().get(1);
-		private final Keyword cRegisterXKeyword_3_1_0_0_2 = (Keyword)cRegisterAlternatives_3_1_0_0.eContents().get(2);
-		private final Keyword cRegisterYKeyword_3_1_0_0_3 = (Keyword)cRegisterAlternatives_3_1_0_0.eContents().get(3);
-		private final Alternatives cAlternatives_3_1_1 = (Alternatives)cGroup_3_1.eContents().get(1);
-		private final Assignment cIncrementAssignment_3_1_1_0 = (Assignment)cAlternatives_3_1_1.eContents().get(0);
-		private final Keyword cIncrementPlusSignKeyword_3_1_1_0_0 = (Keyword)cIncrementAssignment_3_1_1_0.eContents().get(0);
-		private final Assignment cIncrementAssignment_3_1_1_1 = (Assignment)cAlternatives_3_1_1.eContents().get(1);
-		private final Keyword cIncrementPlusSignPlusSignKeyword_3_1_1_1_0 = (Keyword)cIncrementAssignment_3_1_1_1.eContents().get(0);
-		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		
-		//AutoIncDecIndirectMode:
-		//    '['
-		//    deplacement=NumericalValue?
-		//    ','
-		//    ((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
-		//     register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
-		//    ']'
-		//;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'['
-		//deplacement=NumericalValue?
-		//','
-		//((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
-		// register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
-		//']'
-		public Group getGroup() { return cGroup; }
-		
-		//'['
-		public Keyword getLeftSquareBracketKeyword_0() { return cLeftSquareBracketKeyword_0; }
-		
-		//deplacement=NumericalValue?
-		public Assignment getDeplacementAssignment_1() { return cDeplacementAssignment_1; }
-		
-		//NumericalValue
-		public RuleCall getDeplacementNumericalValueParserRuleCall_1_0() { return cDeplacementNumericalValueParserRuleCall_1_0; }
-		
-		//','
-		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
-		
-		//((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
-		// register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
-		public Alternatives getAlternatives_3() { return cAlternatives_3; }
-		
-		//(decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y')
-		public Group getGroup_3_0() { return cGroup_3_0; }
-		
-		//(decrement='-' | decrement='--')
-		public Alternatives getAlternatives_3_0_0() { return cAlternatives_3_0_0; }
-		
-		//decrement='-'
-		public Assignment getDecrementAssignment_3_0_0_0() { return cDecrementAssignment_3_0_0_0; }
-		
-		//'-'
-		public Keyword getDecrementHyphenMinusKeyword_3_0_0_0_0() { return cDecrementHyphenMinusKeyword_3_0_0_0_0; }
-		
-		//decrement='--'
-		public Assignment getDecrementAssignment_3_0_0_1() { return cDecrementAssignment_3_0_0_1; }
-		
-		//'--'
-		public Keyword getDecrementHyphenMinusHyphenMinusKeyword_3_0_0_1_0() { return cDecrementHyphenMinusHyphenMinusKeyword_3_0_0_1_0; }
-		
-		//register=('S' | 'U' | 'X' | 'Y')
-		public Assignment getRegisterAssignment_3_0_1() { return cRegisterAssignment_3_0_1; }
-		
-		//('S' | 'U' | 'X' | 'Y')
-		public Alternatives getRegisterAlternatives_3_0_1_0() { return cRegisterAlternatives_3_0_1_0; }
-		
-		//'S'
-		public Keyword getRegisterSKeyword_3_0_1_0_0() { return cRegisterSKeyword_3_0_1_0_0; }
-		
-		//'U'
-		public Keyword getRegisterUKeyword_3_0_1_0_1() { return cRegisterUKeyword_3_0_1_0_1; }
-		
-		//'X'
-		public Keyword getRegisterXKeyword_3_0_1_0_2() { return cRegisterXKeyword_3_0_1_0_2; }
-		
-		//'Y'
-		public Keyword getRegisterYKeyword_3_0_1_0_3() { return cRegisterYKeyword_3_0_1_0_3; }
-		
-		//register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++')
-		public Group getGroup_3_1() { return cGroup_3_1; }
-		
-		//register=('S' | 'U' | 'X' | 'Y')
-		public Assignment getRegisterAssignment_3_1_0() { return cRegisterAssignment_3_1_0; }
-		
-		//('S' | 'U' | 'X' | 'Y')
-		public Alternatives getRegisterAlternatives_3_1_0_0() { return cRegisterAlternatives_3_1_0_0; }
-		
-		//'S'
-		public Keyword getRegisterSKeyword_3_1_0_0_0() { return cRegisterSKeyword_3_1_0_0_0; }
-		
-		//'U'
-		public Keyword getRegisterUKeyword_3_1_0_0_1() { return cRegisterUKeyword_3_1_0_0_1; }
-		
-		//'X'
-		public Keyword getRegisterXKeyword_3_1_0_0_2() { return cRegisterXKeyword_3_1_0_0_2; }
-		
-		//'Y'
-		public Keyword getRegisterYKeyword_3_1_0_0_3() { return cRegisterYKeyword_3_1_0_0_3; }
-		
-		//(increment='+' | increment='++')
-		public Alternatives getAlternatives_3_1_1() { return cAlternatives_3_1_1; }
-		
-		//increment='+'
-		public Assignment getIncrementAssignment_3_1_1_0() { return cIncrementAssignment_3_1_1_0; }
-		
-		//'+'
-		public Keyword getIncrementPlusSignKeyword_3_1_1_0_0() { return cIncrementPlusSignKeyword_3_1_1_0_0; }
-		
-		//increment='++'
-		public Assignment getIncrementAssignment_3_1_1_1() { return cIncrementAssignment_3_1_1_1; }
-		
-		//'++'
-		public Keyword getIncrementPlusSignPlusSignKeyword_3_1_1_1_0() { return cIncrementPlusSignPlusSignKeyword_3_1_1_1_0; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
+		public Keyword getRightSquareBracketKeyword_3() { return cRightSquareBracketKeyword_3; }
 	}
 	public class RelatifToPCModeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RelatifToPCMode");
@@ -12365,7 +12345,6 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//AutoIncDecMode:
-	//    deplacement=NumericalValue?
 	//    ','
 	//    ((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
 	//     register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))
@@ -12380,7 +12359,6 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	//AutoIncDecIndirectMode:
 	//    '['
-	//    deplacement=NumericalValue?
 	//    ','
 	//    ((decrement='-' | decrement='--') register=('S' | 'U' | 'X' | 'Y') |
 	//     register=('S' | 'U' | 'X' | 'Y') (increment='+' | increment='++'))

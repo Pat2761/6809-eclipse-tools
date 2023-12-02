@@ -49,6 +49,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADCAInstruction
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -332,14 +333,14 @@ class TestADCInstruction {
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	ADCA		  	0,--X
-			       	ADCA		  	0,-X
-			       	ADCA		  	Const,X+
-			       	ADCA		  	Const,X++
-			       	ADCA		  	0,--S
-			       	ADCA		  	0,-S
-			       	ADCA		  	Const,U+
-			       	ADCA		  	Const,U++
+			       	ADCA		  	,--X
+			       	ADCA		  	,-X
+			       	ADCA		  	,X+
+			       	ADCA		  	,X++
+			       	ADCA		  	,--S
+			       	ADCA		  	,-S
+			       	ADCA		  	,U+
+			       	ADCA		  	,U++
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -369,14 +370,10 @@ class TestADCInstruction {
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	ADCA		  	[0,--X]
-			       	ADCA		  	[0,-X]
-			       	ADCA		  	[Const,X+]
-			       	ADCA		  	[Const,X++]
-			       	ADCA		  	[0,--S]
-			       	ADCA		  	[0,-S]
-			       	ADCA		  	[Const,U+]
-			       	ADCA		  	[Const,U++]
+			       	ADCA		  	[,--X]
+			       	ADCA		  	[,X++]
+			       	ADCA		  	[,--S]
+			       	ADCA		  	[,U++]
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -733,14 +730,14 @@ class TestADCInstruction {
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	ADCB		  	0,--X
-			       	ADCB		  	0,-X
-			       	ADCB		  	Const,X+
-			       	ADCB		  	Const,X++
-			       	ADCB		  	0,--S
-			       	ADCB		  	0,-S
-			       	ADCB		  	Const,U+
-			       	ADCB		  	Const,U++
+			       	ADCB		  	,--X
+			       	ADCB		  	,-X
+			       	ADCB		  	,X+
+			       	ADCB		  	,X++
+			       	ADCB		  	,--S
+			       	ADCB		  	,-S
+			       	ADCB		  	,U+
+			       	ADCB		  	,U++
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -770,14 +767,14 @@ class TestADCInstruction {
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	ADCB		  	[0,--X]
-			       	ADCB		  	[0,-X]
-			       	ADCB		  	[Const,X+]
-			       	ADCB		  	[Const,X++]
-			       	ADCB		  	[0,--S]
-			       	ADCB		  	[0,-S]
-			       	ADCB		  	[Const,U+]
-			       	ADCB		  	[Const,U++]
+			       	ADCB		  	[,--X]
+			       	ADCB		  	[,-X]
+			       	ADCB		  	[,X+]
+			       	ADCB		  	[,X++]
+			       	ADCB		  	[,--S]
+			       	ADCB		  	[,-S]
+			       	ADCB		  	[,U+]
+			       	ADCB		  	[,U++]
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -1184,4 +1181,1509 @@ class TestADCInstruction {
 		Assert.assertEquals("Check operand", 0xFF, line.operand.get(1));
 	}
 	
+	/**
+	 * Check Assembled ADCA extended indirect mode instruction  
+	 */
+	@Test 
+	def void testADCAExtendedIndirectInstruction1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[Const*1000]  ; 8000   A9 9F 13 88  START:    ADCA   [Const*1000]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 2, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check opcode", 0x9F, line.opcode.get(1));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x13, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x88, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   A9 9F 13 88  START:    ADCA   [Const*1000]", line.comment)	
+	}
+	
+	/**
+	 * Check Assembled ADCA extended indirect with limit negative operand  
+	 */
+	@Test 
+	def void testADCAExtendedIndirectInstruction2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32769]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.adcInstruction,
+			ExpressionParser::OVERFLOW_ERROR,	
+			"The value -32769 is below the possible limit, data may be lost"
+		)
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(1));
+	}
+	
+	/**
+	 * Check Assembled ADCA extended indirect with limit negative operand  
+	 */
+	@Test 
+	def void testADCAExtendedIndirectInstruction3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32768]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(1));
+	}
+
+	/**
+	 * Check Assembled ADCA extended indirect with positive limit operand  
+	 */
+	@Test 
+	def void testADCAExtendedIndirectInstruction4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[65535]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(1));
+	}
+
+	/**
+	 * Check Assembled ADCA extended indirect with positive limit operand  
+	 */
+	@Test 
+	def void testADCAExtendedIndirectInstruction5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[65536]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.adcInstruction,
+			ExpressionParser::OVERFLOW_ERROR,	
+			"The value 65536 is greater than the possible limit, data may be lost"
+		)
+		val engine = AssemblerEngine.instance
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(1));
+	}
+	
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	A,X  ; 8000   A9 86        START:    ADCA   A,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x86, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   A9 86        START:    ADCA   A,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	A,Y  ; 8000   	A9 A6        START:    ADCA   A,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA6, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A6        START:    ADCA   A,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	A,U  ; 8000   	A9 C6        START:    ADCA   A,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC6, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C6        START:    ADCA   A,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	A,S  ; 8000   	A9 E6        START:    ADCA   A,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE6, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E6        START:    ADCA   A,S", line.comment)	
+	}
+	
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	B,X  ; 8000   A9 85        START:    ADCA   B,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x85, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   A9 85        START:    ADCA   B,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode6() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	B,Y  ; 8000   	A9 A5        START:    ADCA   B,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA5, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A5        START:    ADCA   B,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode7() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	B,U  ; 8000   	A9 C5        START:    ADCA   B,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC5, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C5        START:    ADCA   B,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode8() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	B,S  ; 8000   	A9 E5        START:    ADCA   B,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE5, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E5        START:    ADCA   B,S", line.comment)	
+	}
+	
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	D,X  ; 8000   A9 8B        START:    ADCA   D,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x8B, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   A9 8B        START:    ADCA   D,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode10() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	D,Y  ; 8000   	A9 AB        START:    ADCA   D,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xAB, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 AB        START:    ADCA   D,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode11() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	D,U  ; 8000   	A9 CB        START:    ADCA   D,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xCB, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 CB        START:    ADCA   D,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAccumulatorMovingMode12() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	D,S  ; 8000   	A9 EB        START:    ADCA   D,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xEB, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 EB        START:    ADCA   D,S", line.comment)	
+	}
+	
+	/**
+	 * Check Assembled ADCA Indexed indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndorectAccumulatorMovingMode1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[A,X]  ; 8000   A9 96        START:    ADCA   [A,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x96, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   A9 96        START:    ADCA   [A,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[A,Y]  ; 8000   	A9 B6        START:    ADCA   [A,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB6, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B6        START:    ADCA   [A,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[A,U]  ; 8000   	A9 D6        START:    ADCA   [A,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD6, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D6        START:    ADCA   [A,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[A,S]  ; 8000   	A9 F6        START:    ADCA   [A,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF6, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F6        START:    ADCA   [A,S]", line.comment)	
+	}
+	
+	/**
+	 * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[B,X]  ; 8000   A9 95        START:    ADCA   [B,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x95, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   A9 95        START:    ADCA   [B,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode6() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[B,Y]  ; 8000   	A9 B5        START:    ADCA   [B,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB5, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B5        START:    ADCA   [B,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode7() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[B,U]  ; 8000   	A9 D5        START:    ADCA   [B,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD5, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D5        START:    ADCA   [B,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode8() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[B,S]  ; 8000   	A9 F5        START:    ADCA   [B,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF5, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F5        START:    ADCA   [B,S]", line.comment)	
+	}
+	
+	/**
+	 * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[D,X]  ; 8000   A9 9B        START:    ADCA   [D,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x9B, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   A9 9B        START:    ADCA   [D,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode10() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[D,Y]  ; 8000   	A9 BB        START:    ADCA   [D,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xBB, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 BB        START:    ADCA   [D,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode11() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[D,U]  ; 8000   	A9 DB        START:    ADCA   [D,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xDB, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 DB        START:    ADCA   [D,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed indirect Accumulator Moving Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedIndirectAccumulatorMovingMode12() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[D,S]  ; 8000   	A9 FB        START:    ADCA   [D,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xFB, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 FB        START:    ADCA   [D,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,X+  ; 8000   	A9 80        START:    ADCA   ,X+
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 80        START:    ADCA   ,X+", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,X++  ; 8000   	A9 81        START:    ADCA   ,X++
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x81, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 81        START:    ADCA   ,X++", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,Y+  ; 8000   	A9 A0        START:    ADCA   ,Y+
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA0, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A0        START:    ADCA   ,Y+", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,Y++  ; 8000   	A9 A1        START:    ADCA   ,Y++
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA1, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A1        START:    ADCA   ,Y++", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,S+  ; 8000   	A9 E0        START:    ADCA   ,S+
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE0, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E0        START:    ADCA   ,S+", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode6() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,S++  ; 8000   	A9 E1        START:    ADCA   ,S++
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE1, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E1        START:    ADCA   ,S++", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode7() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,U+  ; 8000   	A9 C0        START:    ADCA   ,U+
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC0, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C0        START:    ADCA   ,U+", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode8() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,U++  ; 8000   	A9 C1        START:    ADCA   ,U++
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC1, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C1        START:    ADCA   ,U++", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,-X  ; 8000   	A9 82        START:    ADCA   ,-X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x82, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 82        START:    ADCA   ,-X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode10() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,--X  ; 8000   	A9 83        START:    ADCA   ,--X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x83, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 83        START:    ADCA   ,--X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode11() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,-Y  ; 8000   	A9 A2        START:    ADCA   ,-Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA2, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A2        START:    ADCA   ,-Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode12() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,--Y  ; 8000   	A9 A3        START:    ADCA   ,--Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA3, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A3        START:    ADCA   ,--Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode13() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,-S  ; 8000   	A9 E2        START:    ADCA   ,-S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE2, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E2        START:    ADCA   ,-S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode14() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,--S  ; 8000   	A9 E3        START:    ADCA   ,--S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE3, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E3        START:    ADCA   ,--S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode15() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,-U  ; 8000   	A9 C2        START:    ADCA   ,-U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC2, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C2        START:    ADCA   ,-U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementMode16() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	,--U  ; 8000   	A9 C3        START:    ADCA   ,--U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC3, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C3        START:    ADCA   ,--U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,X+]  ; 8000   	A9 80        START:    ADCA   ,X+
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::ILLEGAL_INCREMENT,
+			"Cannot use post increment with 1 for indirect mode"
+		)
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode indorect instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,X++]  ; 8000   	A9 91        START:    ADCA   [,X++]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x91, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 91        START:    ADCA   [,X++]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Mode indirect instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,Y+]  ; 8000   	A9 A0        START:    ADCA   ,Y+
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::ILLEGAL_INCREMENT,
+			"Cannot use post increment with 1 for indirect mode"
+		)
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,Y++]  ; 8000   	A9 B1        START:    ADCA   [,Y++]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB1, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B1        START:    ADCA   [,Y++]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,S+]  ; 8000   	A9 E0        START:    ADCA   [,S+]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::ILLEGAL_INCREMENT,
+			"Cannot use post increment with 1 for indirect mode"
+		)
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode6() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,S++]  ; 8000   	A9 F1        START:    ADCA   [,S++]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF1, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F1        START:    ADCA   [,S++]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode7() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,U+]  ; 8000   	A9 C0        START:    ADCA   [,U+]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::ILLEGAL_INCREMENT,
+			"Cannot use post increment with 1 for indirect mode"
+		)
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementindirectMode8() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,U++]  ; 8000   	A9 D1        START:    ADCA   [,U++]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD1, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D1        START:    ADCA   [,U++]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,-X]  ; 8000   	A9 82        START:    ADCA   [,-X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::ILLEGAL_DECREMENT,
+			"Cannot use pre decrement with 1 for indirect mode"
+		)
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode10() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,--X]  ; 8000   	A9 93        START:    ADCA   [,--X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x93, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 93        START:    ADCA   [,--X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement INdirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode11() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,-Y]  ; 8000   	A9 A2        START:    ADCA   [,-Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::ILLEGAL_DECREMENT,
+			"Cannot use pre decrement with 1 for indirect mode"
+		)
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode12() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,--Y]  ; 8000   	A9 B3        START:    ADCA   [,--Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB3, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B3        START:    ADCA   [,--Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode13() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,-S]  ; 8000   	A9 E2        START:    ADCA   [,-S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::ILLEGAL_DECREMENT,
+			"Cannot use pre decrement with 1 for indirect mode"
+		)
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode14() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,--S]  ; 8000   	A9 F3        START:    ADCA   [,--S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF3, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F3        START:    ADCA   [,--S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode15() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,-U]  ; 8000   	A9 C2        START:    ADCA   [,-U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::ILLEGAL_DECREMENT,
+			"Cannot use pre decrement with 1 for indirect mode"
+		)
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedAutoIncrementDecrementIndirectMode16() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start      	ADCA		  	[,--U]  ; 8000   	A9 D3        START:    ADCA   [,--U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(3) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD3, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D3        START:    ADCA   [,--U]", line.comment)	
+	}
 }

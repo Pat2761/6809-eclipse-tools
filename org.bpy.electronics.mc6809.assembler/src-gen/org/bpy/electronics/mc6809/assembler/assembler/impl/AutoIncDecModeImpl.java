@@ -5,13 +5,10 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
-import org.bpy.electronics.mc6809.assembler.assembler.NumericalValue;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
@@ -24,7 +21,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecModeImpl#getDeplacement <em>Deplacement</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecModeImpl#getDecrement <em>Decrement</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecModeImpl#getRegister <em>Register</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecModeImpl#getIncrement <em>Increment</em>}</li>
@@ -34,16 +30,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  */
 public class AutoIncDecModeImpl extends MinimalEObjectImpl.Container implements AutoIncDecMode
 {
-  /**
-   * The cached value of the '{@link #getDeplacement() <em>Deplacement</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getDeplacement()
-   * @generated
-   * @ordered
-   */
-  protected NumericalValue deplacement;
-
   /**
    * The default value of the '{@link #getDecrement() <em>Decrement</em>}' attribute.
    * <!-- begin-user-doc -->
@@ -131,56 +117,6 @@ public class AutoIncDecModeImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public NumericalValue getDeplacement()
-  {
-    return deplacement;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetDeplacement(NumericalValue newDeplacement, NotificationChain msgs)
-  {
-    NumericalValue oldDeplacement = deplacement;
-    deplacement = newDeplacement;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.AUTO_INC_DEC_MODE__DEPLACEMENT, oldDeplacement, newDeplacement);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setDeplacement(NumericalValue newDeplacement)
-  {
-    if (newDeplacement != deplacement)
-    {
-      NotificationChain msgs = null;
-      if (deplacement != null)
-        msgs = ((InternalEObject)deplacement).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.AUTO_INC_DEC_MODE__DEPLACEMENT, null, msgs);
-      if (newDeplacement != null)
-        msgs = ((InternalEObject)newDeplacement).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.AUTO_INC_DEC_MODE__DEPLACEMENT, null, msgs);
-      msgs = basicSetDeplacement(newDeplacement, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.AUTO_INC_DEC_MODE__DEPLACEMENT, newDeplacement, newDeplacement));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public String getDecrement()
   {
     return decrement;
@@ -256,28 +192,10 @@ public class AutoIncDecModeImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case AssemblerPackage.AUTO_INC_DEC_MODE__DEPLACEMENT:
-        return basicSetDeplacement(null, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public Object eGet(int featureID, boolean resolve, boolean coreType)
   {
     switch (featureID)
     {
-      case AssemblerPackage.AUTO_INC_DEC_MODE__DEPLACEMENT:
-        return getDeplacement();
       case AssemblerPackage.AUTO_INC_DEC_MODE__DECREMENT:
         return getDecrement();
       case AssemblerPackage.AUTO_INC_DEC_MODE__REGISTER:
@@ -298,9 +216,6 @@ public class AutoIncDecModeImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.AUTO_INC_DEC_MODE__DEPLACEMENT:
-        setDeplacement((NumericalValue)newValue);
-        return;
       case AssemblerPackage.AUTO_INC_DEC_MODE__DECREMENT:
         setDecrement((String)newValue);
         return;
@@ -324,9 +239,6 @@ public class AutoIncDecModeImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.AUTO_INC_DEC_MODE__DEPLACEMENT:
-        setDeplacement((NumericalValue)null);
-        return;
       case AssemblerPackage.AUTO_INC_DEC_MODE__DECREMENT:
         setDecrement(DECREMENT_EDEFAULT);
         return;
@@ -350,8 +262,6 @@ public class AutoIncDecModeImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.AUTO_INC_DEC_MODE__DEPLACEMENT:
-        return deplacement != null;
       case AssemblerPackage.AUTO_INC_DEC_MODE__DECREMENT:
         return DECREMENT_EDEFAULT == null ? decrement != null : !DECREMENT_EDEFAULT.equals(decrement);
       case AssemblerPackage.AUTO_INC_DEC_MODE__REGISTER:

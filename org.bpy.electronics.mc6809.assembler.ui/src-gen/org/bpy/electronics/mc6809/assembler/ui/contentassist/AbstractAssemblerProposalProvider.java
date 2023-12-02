@@ -708,9 +708,6 @@ public abstract class AbstractAssemblerProposalProvider extends AbstractJavaBase
 		// subclasses may override
 		// subclasses may override
 	}
-	public void completeAutoIncDecMode_Deplacement(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
-	}
 	public void completeAutoIncDecMode_Decrement(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
@@ -722,9 +719,6 @@ public abstract class AbstractAssemblerProposalProvider extends AbstractJavaBase
 	}
 	public void completeAutoIncDecMode_Increment(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
-	}
-	public void completeAutoIncDecIndirectMode_Deplacement(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
 	}
 	public void completeAutoIncDecIndirectMode_Decrement(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override

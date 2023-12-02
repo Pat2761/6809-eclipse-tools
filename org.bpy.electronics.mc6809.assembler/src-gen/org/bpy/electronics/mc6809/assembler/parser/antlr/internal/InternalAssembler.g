@@ -8895,58 +8895,39 @@ ruleAutoIncDecMode returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getAutoIncDecModeAccess().getDeplacementNumericalValueParserRuleCall_0_0());
-				}
-				lv_deplacement_0_0=ruleNumericalValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAutoIncDecModeRule());
-					}
-					set(
-						$current,
-						"deplacement",
-						lv_deplacement_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.NumericalValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		otherlv_1=','
+		otherlv_0=','
 		{
-			newLeafNode(otherlv_1, grammarAccess.getAutoIncDecModeAccess().getCommaKeyword_1());
+			newLeafNode(otherlv_0, grammarAccess.getAutoIncDecModeAccess().getCommaKeyword_0());
 		}
 		(
 			(
 				(
 					(
 						(
-							lv_decrement_2_0='-'
+							lv_decrement_1_0='-'
 							{
-								newLeafNode(lv_decrement_2_0, grammarAccess.getAutoIncDecModeAccess().getDecrementHyphenMinusKeyword_2_0_0_0_0());
+								newLeafNode(lv_decrement_1_0, grammarAccess.getAutoIncDecModeAccess().getDecrementHyphenMinusKeyword_1_0_0_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "decrement", lv_decrement_2_0, "-");
+								setWithLastConsumed($current, "decrement", lv_decrement_1_0, "-");
 							}
 						)
 					)
 					    |
 					(
 						(
-							lv_decrement_3_0='--'
+							lv_decrement_2_0='--'
 							{
-								newLeafNode(lv_decrement_3_0, grammarAccess.getAutoIncDecModeAccess().getDecrementHyphenMinusHyphenMinusKeyword_2_0_0_1_0());
+								newLeafNode(lv_decrement_2_0, grammarAccess.getAutoIncDecModeAccess().getDecrementHyphenMinusHyphenMinusKeyword_1_0_0_1_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "decrement", lv_decrement_3_0, "--");
+								setWithLastConsumed($current, "decrement", lv_decrement_2_0, "--");
 							}
 						)
 					)
@@ -8954,48 +8935,48 @@ ruleAutoIncDecMode returns [EObject current=null]
 				(
 					(
 						(
-							lv_register_4_1='S'
+							lv_register_3_1='S'
 							{
-								newLeafNode(lv_register_4_1, grammarAccess.getAutoIncDecModeAccess().getRegisterSKeyword_2_0_1_0_0());
+								newLeafNode(lv_register_3_1, grammarAccess.getAutoIncDecModeAccess().getRegisterSKeyword_1_0_1_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_4_1, null);
+								setWithLastConsumed($current, "register", lv_register_3_1, null);
 							}
 							    |
-							lv_register_4_2='U'
+							lv_register_3_2='U'
 							{
-								newLeafNode(lv_register_4_2, grammarAccess.getAutoIncDecModeAccess().getRegisterUKeyword_2_0_1_0_1());
+								newLeafNode(lv_register_3_2, grammarAccess.getAutoIncDecModeAccess().getRegisterUKeyword_1_0_1_0_1());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_4_2, null);
+								setWithLastConsumed($current, "register", lv_register_3_2, null);
 							}
 							    |
-							lv_register_4_3='X'
+							lv_register_3_3='X'
 							{
-								newLeafNode(lv_register_4_3, grammarAccess.getAutoIncDecModeAccess().getRegisterXKeyword_2_0_1_0_2());
+								newLeafNode(lv_register_3_3, grammarAccess.getAutoIncDecModeAccess().getRegisterXKeyword_1_0_1_0_2());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_4_3, null);
+								setWithLastConsumed($current, "register", lv_register_3_3, null);
 							}
 							    |
-							lv_register_4_4='Y'
+							lv_register_3_4='Y'
 							{
-								newLeafNode(lv_register_4_4, grammarAccess.getAutoIncDecModeAccess().getRegisterYKeyword_2_0_1_0_3());
+								newLeafNode(lv_register_3_4, grammarAccess.getAutoIncDecModeAccess().getRegisterYKeyword_1_0_1_0_3());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_4_4, null);
+								setWithLastConsumed($current, "register", lv_register_3_4, null);
 							}
 						)
 					)
@@ -9006,48 +8987,48 @@ ruleAutoIncDecMode returns [EObject current=null]
 				(
 					(
 						(
-							lv_register_5_1='S'
+							lv_register_4_1='S'
 							{
-								newLeafNode(lv_register_5_1, grammarAccess.getAutoIncDecModeAccess().getRegisterSKeyword_2_1_0_0_0());
+								newLeafNode(lv_register_4_1, grammarAccess.getAutoIncDecModeAccess().getRegisterSKeyword_1_1_0_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_5_1, null);
+								setWithLastConsumed($current, "register", lv_register_4_1, null);
 							}
 							    |
-							lv_register_5_2='U'
+							lv_register_4_2='U'
 							{
-								newLeafNode(lv_register_5_2, grammarAccess.getAutoIncDecModeAccess().getRegisterUKeyword_2_1_0_0_1());
+								newLeafNode(lv_register_4_2, grammarAccess.getAutoIncDecModeAccess().getRegisterUKeyword_1_1_0_0_1());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_5_2, null);
+								setWithLastConsumed($current, "register", lv_register_4_2, null);
 							}
 							    |
-							lv_register_5_3='X'
+							lv_register_4_3='X'
 							{
-								newLeafNode(lv_register_5_3, grammarAccess.getAutoIncDecModeAccess().getRegisterXKeyword_2_1_0_0_2());
+								newLeafNode(lv_register_4_3, grammarAccess.getAutoIncDecModeAccess().getRegisterXKeyword_1_1_0_0_2());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_5_3, null);
+								setWithLastConsumed($current, "register", lv_register_4_3, null);
 							}
 							    |
-							lv_register_5_4='Y'
+							lv_register_4_4='Y'
 							{
-								newLeafNode(lv_register_5_4, grammarAccess.getAutoIncDecModeAccess().getRegisterYKeyword_2_1_0_0_3());
+								newLeafNode(lv_register_4_4, grammarAccess.getAutoIncDecModeAccess().getRegisterYKeyword_1_1_0_0_3());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_5_4, null);
+								setWithLastConsumed($current, "register", lv_register_4_4, null);
 							}
 						)
 					)
@@ -9055,30 +9036,30 @@ ruleAutoIncDecMode returns [EObject current=null]
 				(
 					(
 						(
-							lv_increment_6_0='+'
+							lv_increment_5_0='+'
 							{
-								newLeafNode(lv_increment_6_0, grammarAccess.getAutoIncDecModeAccess().getIncrementPlusSignKeyword_2_1_1_0_0());
+								newLeafNode(lv_increment_5_0, grammarAccess.getAutoIncDecModeAccess().getIncrementPlusSignKeyword_1_1_1_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "increment", lv_increment_6_0, "+");
+								setWithLastConsumed($current, "increment", lv_increment_5_0, "+");
 							}
 						)
 					)
 					    |
 					(
 						(
-							lv_increment_7_0='++'
+							lv_increment_6_0='++'
 							{
-								newLeafNode(lv_increment_7_0, grammarAccess.getAutoIncDecModeAccess().getIncrementPlusSignPlusSignKeyword_2_1_1_1_0());
+								newLeafNode(lv_increment_6_0, grammarAccess.getAutoIncDecModeAccess().getIncrementPlusSignPlusSignKeyword_1_1_1_1_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecModeRule());
 								}
-								setWithLastConsumed($current, "increment", lv_increment_7_0, "++");
+								setWithLastConsumed($current, "increment", lv_increment_6_0, "++");
 							}
 						)
 					)
@@ -9108,58 +9089,39 @@ ruleAutoIncDecIndirectMode returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getAutoIncDecIndirectModeAccess().getLeftSquareBracketKeyword_0());
 		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getAutoIncDecIndirectModeAccess().getDeplacementNumericalValueParserRuleCall_1_0());
-				}
-				lv_deplacement_1_0=ruleNumericalValue
-				{
-					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getAutoIncDecIndirectModeRule());
-					}
-					set(
-						$current,
-						"deplacement",
-						lv_deplacement_1_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.NumericalValue");
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)?
-		otherlv_2=','
+		otherlv_1=','
 		{
-			newLeafNode(otherlv_2, grammarAccess.getAutoIncDecIndirectModeAccess().getCommaKeyword_2());
+			newLeafNode(otherlv_1, grammarAccess.getAutoIncDecIndirectModeAccess().getCommaKeyword_1());
 		}
 		(
 			(
 				(
 					(
 						(
-							lv_decrement_3_0='-'
+							lv_decrement_2_0='-'
 							{
-								newLeafNode(lv_decrement_3_0, grammarAccess.getAutoIncDecIndirectModeAccess().getDecrementHyphenMinusKeyword_3_0_0_0_0());
+								newLeafNode(lv_decrement_2_0, grammarAccess.getAutoIncDecIndirectModeAccess().getDecrementHyphenMinusKeyword_2_0_0_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "decrement", lv_decrement_3_0, "-");
+								setWithLastConsumed($current, "decrement", lv_decrement_2_0, "-");
 							}
 						)
 					)
 					    |
 					(
 						(
-							lv_decrement_4_0='--'
+							lv_decrement_3_0='--'
 							{
-								newLeafNode(lv_decrement_4_0, grammarAccess.getAutoIncDecIndirectModeAccess().getDecrementHyphenMinusHyphenMinusKeyword_3_0_0_1_0());
+								newLeafNode(lv_decrement_3_0, grammarAccess.getAutoIncDecIndirectModeAccess().getDecrementHyphenMinusHyphenMinusKeyword_2_0_0_1_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "decrement", lv_decrement_4_0, "--");
+								setWithLastConsumed($current, "decrement", lv_decrement_3_0, "--");
 							}
 						)
 					)
@@ -9167,48 +9129,48 @@ ruleAutoIncDecIndirectMode returns [EObject current=null]
 				(
 					(
 						(
-							lv_register_5_1='S'
+							lv_register_4_1='S'
 							{
-								newLeafNode(lv_register_5_1, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterSKeyword_3_0_1_0_0());
+								newLeafNode(lv_register_4_1, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterSKeyword_2_0_1_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_5_1, null);
+								setWithLastConsumed($current, "register", lv_register_4_1, null);
 							}
 							    |
-							lv_register_5_2='U'
+							lv_register_4_2='U'
 							{
-								newLeafNode(lv_register_5_2, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterUKeyword_3_0_1_0_1());
+								newLeafNode(lv_register_4_2, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterUKeyword_2_0_1_0_1());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_5_2, null);
+								setWithLastConsumed($current, "register", lv_register_4_2, null);
 							}
 							    |
-							lv_register_5_3='X'
+							lv_register_4_3='X'
 							{
-								newLeafNode(lv_register_5_3, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterXKeyword_3_0_1_0_2());
+								newLeafNode(lv_register_4_3, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterXKeyword_2_0_1_0_2());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_5_3, null);
+								setWithLastConsumed($current, "register", lv_register_4_3, null);
 							}
 							    |
-							lv_register_5_4='Y'
+							lv_register_4_4='Y'
 							{
-								newLeafNode(lv_register_5_4, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterYKeyword_3_0_1_0_3());
+								newLeafNode(lv_register_4_4, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterYKeyword_2_0_1_0_3());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_5_4, null);
+								setWithLastConsumed($current, "register", lv_register_4_4, null);
 							}
 						)
 					)
@@ -9219,48 +9181,48 @@ ruleAutoIncDecIndirectMode returns [EObject current=null]
 				(
 					(
 						(
-							lv_register_6_1='S'
+							lv_register_5_1='S'
 							{
-								newLeafNode(lv_register_6_1, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterSKeyword_3_1_0_0_0());
+								newLeafNode(lv_register_5_1, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterSKeyword_2_1_0_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_6_1, null);
+								setWithLastConsumed($current, "register", lv_register_5_1, null);
 							}
 							    |
-							lv_register_6_2='U'
+							lv_register_5_2='U'
 							{
-								newLeafNode(lv_register_6_2, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterUKeyword_3_1_0_0_1());
+								newLeafNode(lv_register_5_2, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterUKeyword_2_1_0_0_1());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_6_2, null);
+								setWithLastConsumed($current, "register", lv_register_5_2, null);
 							}
 							    |
-							lv_register_6_3='X'
+							lv_register_5_3='X'
 							{
-								newLeafNode(lv_register_6_3, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterXKeyword_3_1_0_0_2());
+								newLeafNode(lv_register_5_3, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterXKeyword_2_1_0_0_2());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_6_3, null);
+								setWithLastConsumed($current, "register", lv_register_5_3, null);
 							}
 							    |
-							lv_register_6_4='Y'
+							lv_register_5_4='Y'
 							{
-								newLeafNode(lv_register_6_4, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterYKeyword_3_1_0_0_3());
+								newLeafNode(lv_register_5_4, grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterYKeyword_2_1_0_0_3());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "register", lv_register_6_4, null);
+								setWithLastConsumed($current, "register", lv_register_5_4, null);
 							}
 						)
 					)
@@ -9268,39 +9230,39 @@ ruleAutoIncDecIndirectMode returns [EObject current=null]
 				(
 					(
 						(
-							lv_increment_7_0='+'
+							lv_increment_6_0='+'
 							{
-								newLeafNode(lv_increment_7_0, grammarAccess.getAutoIncDecIndirectModeAccess().getIncrementPlusSignKeyword_3_1_1_0_0());
+								newLeafNode(lv_increment_6_0, grammarAccess.getAutoIncDecIndirectModeAccess().getIncrementPlusSignKeyword_2_1_1_0_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "increment", lv_increment_7_0, "+");
+								setWithLastConsumed($current, "increment", lv_increment_6_0, "+");
 							}
 						)
 					)
 					    |
 					(
 						(
-							lv_increment_8_0='++'
+							lv_increment_7_0='++'
 							{
-								newLeafNode(lv_increment_8_0, grammarAccess.getAutoIncDecIndirectModeAccess().getIncrementPlusSignPlusSignKeyword_3_1_1_1_0());
+								newLeafNode(lv_increment_7_0, grammarAccess.getAutoIncDecIndirectModeAccess().getIncrementPlusSignPlusSignKeyword_2_1_1_1_0());
 							}
 							{
 								if ($current==null) {
 									$current = createModelElement(grammarAccess.getAutoIncDecIndirectModeRule());
 								}
-								setWithLastConsumed($current, "increment", lv_increment_8_0, "++");
+								setWithLastConsumed($current, "increment", lv_increment_7_0, "++");
 							}
 						)
 					)
 				)
 			)
 		)
-		otherlv_9=']'
+		otherlv_8=']'
 		{
-			newLeafNode(otherlv_9, grammarAccess.getAutoIncDecIndirectModeAccess().getRightSquareBracketKeyword_4());
+			newLeafNode(otherlv_8, grammarAccess.getAutoIncDecIndirectModeAccess().getRightSquareBracketKeyword_3());
 		}
 	)
 ;
