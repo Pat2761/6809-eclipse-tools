@@ -402,9 +402,9 @@ class TestADCInstruction {
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	ADCA		  	0,PCR
-			       	ADCA		  	,PCR
-			       	ADCA		  	Const,PCR
+			       	ADCA		  	0,PC
+			       	ADCA		  	,PC
+			       	ADCA		  	Const,PC
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -433,9 +433,9 @@ class TestADCInstruction {
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	ADCA		  	[0,PCR]
-			       	ADCA		  	[,PCR]
-			       	ADCA		  	[Const,PCR]
+			       	ADCA		  	[0,PC]
+			       	ADCA		  	[,PC]
+			       	ADCA		  	[Const,PC]
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -803,9 +803,9 @@ class TestADCInstruction {
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	ADCB		  	0,PCR
-			       	ADCB		  	,PCR
-			       	ADCB		  	Const,PCR
+			       	ADCB		  	0,PC
+			       	ADCB		  	,PC
+			       	ADCB		  	Const,PC
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -834,9 +834,9 @@ class TestADCInstruction {
 		; -----------------------------------------
 			       	ORG    			$8000
 		Const	   	EQU          	5    
-			       	ADCB		  	[0,PCR]
-			       	ADCB		  	[,PCR]
-			       	ADCB		  	[Const,PCR]
+			       	ADCB		  	[0,PC]
+			       	ADCB		  	[,PC]
+			       	ADCB		  	[Const,PC]
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -2877,7 +2877,7 @@ class TestADCInstruction {
 	 * Check Assembled ADCA Indexed Constant move Mode instruction  
 	 */
 	@Test 
-	def void testADCAIndexedConstantMove84() {
+	def void testADCAIndexedConstantMove8() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 				   	ORG    			$8000
@@ -2897,5 +2897,2965 @@ class TestADCInstruction {
 		Assert.assertEquals("Check operand", 0x22, line.operand.get(1));
 		Assert.assertEquals("Check Label", "Start", line.label)
 		Assert.assertEquals("Check comment", "; 8000   	A9 E8 22            ADCA   34,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	,X  ; 8000   	A9 84            ADCA   ,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x84, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 84            ADCA   ,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove10() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	,Y  ; 8000   	A9 A4            ADCA   ,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A4            ADCA   ,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove11() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	,U  ; 8000   	A9 C4            ADCA   ,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C4            ADCA   ,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove12() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	,S  ; 8000   	A9 E4            ADCA   ,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E4            ADCA   ,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove13() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	0,X  ; 8000   	A9 84            ADCA   0,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x84, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 84            ADCA   0,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove14() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	0,Y  ; 8000   	A9 A4            ADCA   0,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A4            ADCA   0,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove15() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	0,U  ; 8000   	A9 C4            ADCA   0,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C4            ADCA   0,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove16() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	0,S  ; 8000   	A9 E4            ADCA   0,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E4            ADCA   0,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove17() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-16,X  ; 8000   	A9 10            ADCA   -16,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x10, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 10            ADCA   -16,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove19() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	1,X  ; 8000   	A9 01            ADCA   1,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x01, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 01            ADCA   1,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove20() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	15,X  ; 8000   	A9 0F            ADCA   15,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x0F, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 0F            ADCA   15,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove21() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-16,Y  ; 8000   	A9 30            ADCA   -16,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x30, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 30            ADCA   -16,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove23() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	1,Y  ; 8000   	A9 21            ADCA   1,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x21, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 21            ADCA   1,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove24() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	15,Y  ; 8000   	A9 2F            ADCA   15,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x2F, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 2F            ADCA   15,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove25() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-16,U  ; 8000   	A9 50            ADCA   -16,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x50, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 50            ADCA   -16,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove26() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	1,U  ; 8000   	A9 41            ADCA   1,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x41, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 41            ADCA   1,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove27() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	15,U  ; 8000   	A9 4F            ADCA   15,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x4F, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 4F            ADCA   15,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove28() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-16,S  ; 8000   	A9 70            ADCA   -16,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x70, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 70            ADCA   -16,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove29() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	1,S  ; 8000   	A9 61            ADCA   1,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x61, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 61            ADCA   1,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove30() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	15,S  ; 8000   	A9 6F            ADCA   15,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x6F, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 6F            ADCA   15,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove31() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-128,X  ; 8000   	A9 88 80            ADCA   -128,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x88, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 88 80            ADCA   -128,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove32() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	127,X  ; 8000   	A9 88 7F            ADCA   127,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x88, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 88 7F            ADCA   127,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove33() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-128,Y  ; 8000   	A9 A8 80            ADCA   -128,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A8 80            ADCA   -128,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove34() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	127,Y  ; 8000   	A9 A8 7F            ADCA   127,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A8 7F            ADCA   127,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove35() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-128,U  ; 8000   	A9 C8 80            ADCA   -128,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C8 80            ADCA   -128,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove36() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	127,U  ; 8000   	A9 C8 7F            ADCA   127,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C8 7F            ADCA   127,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove37() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-128,S  ; 8000   	A9 E8 80            ADCA   -128,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E8 80            ADCA   -128,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove38() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	127,S  ; 8000   	A9 E8 7F            ADCA   127,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E8 7F            ADCA   127,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove39() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-32768,X  ; 8000   	A9 89 80 00             ADCA   -32768,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x89, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 89 80 00             ADCA   -32768,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove40() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  32767,X  ; 8000   	A9 89 7F FF             ADCA   32767,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x89, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 89 7F FF             ADCA   32767,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove41() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-32768,Y  ; 8000   	A9 A9 80 00             ADCA   -32768,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A9 80 00             ADCA   -32768,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove42() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  32767,Y  ; 8000   	A9 A9 7F FF             ADCA   32767,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A9 7F FF             ADCA   32767,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove43() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-32768,U  ; 8000   	A9 C9 80 00             ADCA   -32768,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C9 80 00             ADCA   -32768,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove44() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  32767,U  ; 8000   	A9 C9 7F FF             ADCA   32767,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C9 7F FF             ADCA   32767,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove45() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-32768,S  ; 8000   	A9 E9 80 00             ADCA   -32768,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E9 80 00             ADCA   -32768,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove46() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  32767,S  ; 8000   	A9 E9 7F FF             ADCA   32767,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E9 7F FF             ADCA   32767,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove47() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-32769,X  ; 8000   	A9 89 80 00             ADCA   -32769,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value -32769 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x89, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 89 80 00             ADCA   -32769,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove48() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  32768,X  ; 8000   	A9 89 7F FF             ADCA   32768,X
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value 32768 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x89, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 89 7F FF             ADCA   32768,X", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove49() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-32769,Y  ; 8000   	A9 A9 80 00             ADCA   -32769,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value -32769 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A9 80 00             ADCA   -32769,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove50() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  32768,Y  ; 8000   	A9 A9 7F FF             ADCA   32768,Y
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value 32768 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xA9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 A9 7F FF             ADCA   32768,Y", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove51() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-32769,U  ; 8000   	A9 C9 80 00             ADCA   -32769,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value -32769 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C9 80 00             ADCA   -32769,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove52() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  32768,U  ; 8000   	A9 C9 7F FF             ADCA   32768,U
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value 32768 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xC9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 C9 7F FF             ADCA   32768,U", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove53() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-32769,S  ; 8000   	A9 E9 80 00             ADCA   -32769,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value -32769 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E9 80 00             ADCA   -32769,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantMove54() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  32768,S  ; 8000   	A9 E9 7F FF             ADCA   32768,S
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value 32768 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xE9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 E9 7F FF             ADCA   32768,S", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[1234,X]  ; 8000   	A9 99 04 D2            ADCA   [1234,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x99, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x04, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xD2, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 99 04 D2            ADCA   [1234,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[1234,Y]  ; 8000   	A9 B9 04 D2            ADCA   [1234,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x04, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xD2, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B9 04 D2            ADCA   [1234,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[1234,U]  ; 8000   	A9 D9 04 D2            ADCA   [1234,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x04, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xD2, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D9 04 D2            ADCA   [1234,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[1234,S]  ; 8000   	A9 F9 04 D2            ADCA   [1234,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x04, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xD2, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F9 04 D2            ADCA   [1234,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[34,X]  ; 8000   	A9 98 22            ADCA   [34,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x98, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x22, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 98 22            ADCA   [34,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove6() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[34,Y]  ; 8000   	A9 B8 22            ADCA   [34,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x22, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B8 22            ADCA   [34,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove7() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[34,U]  ; 8000   	A9 D8 22            ADCA   [34,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x22, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D8 22            ADCA   [34,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove8() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[34,S]  ; 8000   	A9 F8 22            ADCA   [34,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x22, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F8 22            ADCA   [34,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[,X]  ; 8000   	A9 94            ADCA   [,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x94, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 94            ADCA   [,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove10() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[,Y]  ; 8000   	A9 B4            ADCA   [,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B4            ADCA   [,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove11() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[,U]  ; 8000   	A9 D4            ADCA   [,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D4            ADCA   [,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove12() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[,S]  ; 8000   	A9 F4            ADCA   [,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F4            ADCA   [,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove13() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[0,X]  ; 8000   	A9 94            ADCA   [0,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x94, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 94            ADCA   [0,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove14() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[0,Y]  ; 8000   	A9 B4            ADCA   [0,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B4            ADCA   [0,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove15() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[0,U]  ; 8000   	A9 D4            ADCA   [0,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D4            ADCA   [0,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove16() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[0,S]  ; 8000   	A9 F4            ADCA   [0,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8002, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 1, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF4, line.operand.get(0));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F4            ADCA   [0,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove17() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-16,X]  ; 8000   	A9 98 F0            ADCA   [-16,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x98, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0xF0, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 98 F0            ADCA   [-16,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove18() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[15,X]  ; 8000   	A9 98 0F            ADCA   [15,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x98, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x0F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 98 0F            ADCA   [15,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove19() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-16,Y]  ; 8000   	A9 B8 F0            ADCA   [-16,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0xF0, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B8 F0            ADCA   [-16,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove20() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[15,Y]  ; 8000   	A9 B8 0F            ADCA   [15,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x0F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B8 0F            ADCA   [15,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove21() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-16,U]  ; 8000   	A9 D8 F0            ADCA   [-16,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0xF0, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D8 F0            ADCA   [-16,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove22() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[15,U]  ; 8000   	A9 D8 0F            ADCA   [15,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x0F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D8 0F            ADCA   [15,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove23() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-16,S]  ; 8000   	A9 F8 F0            ADCA   [-16,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0xF0, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F8 F0            ADCA   [-16,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove24() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[15,S]  ; 8000   	A9 F8 0F            ADCA   [15,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x0F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F8 0F            ADCA   [15,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove31() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-128,X]  ; 8000   	A9 98 80            ADCA   [-128,X}
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x98, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 98 80            ADCA   [-128,X}", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove32() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[127,X]  ; 8000   	A9 98 7F            ADCA   [127,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x98, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 98 7F            ADCA   [127,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove33() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-128,Y]  ; 8000   	A9 B8 80            ADCA   [-128,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B8 80            ADCA   [-128,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove34() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[127,Y]  ; 8000   	A9 B8 7F            ADCA   [127,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B8 7F            ADCA   [127,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove35() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-128,U]  ; 8000   	A9 D8 80            ADCA   [-128,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D8 80            ADCA   [-128,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant INdirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove36() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[127,U]  ; 8000   	A9 D8 7F            ADCA   [127,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D8 7F            ADCA   [127,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove37() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-128,S]  ; 8000   	A9 F8 80            ADCA   [-128,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F8 80            ADCA   [-128,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove38() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[127,S]  ; 8000   	A9 F8 7F            ADCA   [127,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF8, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F8 7F            ADCA   [127,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove39() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32768,X]  ; 8000   	A9 99 80 00             ADCA   [-32768,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x99, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 99 80 00             ADCA   [-32768,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove40() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  [32767,X]  ; 8000   	A9 99 7F FF             ADCA   [32767,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x99, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 99 7F FF             ADCA   [32767,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove41() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32768,Y]  ; 8000   	A9 B9 80 00             ADCA   [-32768,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B9 80 00             ADCA   [-32768,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove42() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  [32767,Y]  ; 8000   	A9 B9 7F FF             ADCA   [32767,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B9 7F FF             ADCA   [32767,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove43() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32768,U]  ; 8000   	A9 D9 80 00             ADCA   [-32768,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D9 80 00             ADCA   [-32768,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove44() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  [32767,U]  ; 8000   	A9 D9 7F FF             ADCA   [32767,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D9 7F FF             ADCA   [32767,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove45() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32768,S]  ; 8000   	A9 F9 80 00             ADCA   [-32768,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F9 80 00             ADCA   [-32768,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove46() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  [32767,S]  ; 8000   	A9 F9 7F FF             ADCA   [32767,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F9 7F FF             ADCA   [32767,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove47() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32769,X]  ; 8000   	A9 99 80 00             ADCA   [-32769,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value -32769 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x99, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 99 80 00             ADCA   [-32769,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove48() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  [32768,X]  ; 8000   	A9 99 7F FF             ADCA   [32768,X]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value 32768 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x99, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 99 7F FF             ADCA   [32768,X]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove49() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32769,Y]  ; 8000   	A9 B9 80 00             ADCA   [-32769,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value -32769 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B9 80 00             ADCA   [-32769,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove50() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  [32768,Y]  ; 8000   	A9 B9 7F FF             ADCA   [32768,Y]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value 32768 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xB9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 B9 7F FF             ADCA   [32768,Y]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove51() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32769,U]  ; 8000   	A9 D9 80 00             ADCA   [-32769,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value -32769 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D9 80 00             ADCA   [-32769,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove52() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  [32768,U]  ; 8000   	A9 D9 7F FF             ADCA   [32768,U]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value 32768 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xD9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 D9 7F FF             ADCA   [32768,U]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove53() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32769,S]  ; 8000   	A9 F9 80 00             ADCA   [-32769,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value -32769 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F9 80 00             ADCA   [-32769,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed Constant Indirect move Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedConstantIndirectMove54() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  [32768,S]  ; 8000   	A9 F9 7F FF             ADCA   [32768,S]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"Overflow detected for value 32768 , data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0xF9, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 F9 7F FF             ADCA   [32768,S]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifToPCMove1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	0,PCR  ; 8000   	A9 8C 00            ADCA   0,PCR
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x8C, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 8C 00            ADCA   0,PCR", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifToPCMove2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-128,PCR  ; 8000   	A9 8C 80            ADCA   -128,PCR
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x8C, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 8C 80            ADCA   -128,PCR", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifToPCMove3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	127,PCR  ; 8000   	A9 8C 7F            ADCA   127,PCR
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x8C, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 8C 7F            ADCA   127,PCR", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifToPCMove4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-129,PCR  ; 8000   	A9 8D FF 7F            ADCA   -129,PCR
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x8D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 8D FF 7F            ADCA   -129,PCR", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifToPCMove5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	128,PCR  ; 8000   	A9 8D 00 80            ADCA   128,PCR
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x8D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 8D 00 80            ADCA   128,PCR", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifToPCMove6() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-32768,PCR  ; 8000   	A9 8D 80 00            ADCA   -32768,PCR
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x8D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            ADCA   -32768,PCR", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifToPCMove7() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	32767,PCR  ; 8000   	A9 8D 7F FF            ADCA   32767,PCR
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x8D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 8D 7F FF            ADCA   32767,PCR", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifToPCMove8() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	-32769,PCR  ; 8000   	A9 8D 80 00            ADCA   -32769,PCR
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"The value -32769 is out than the possible limit, data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x8D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            ADCA   -32769,PCR", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifToPCMove9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	32768,PCR  ; 8000   	A9 8D 7F FF            ADCA   32768,PCR
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"The value 32768 is out than the possible limit, data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x8D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 8D 7F FF            ADCA   32768,PCR", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifIndirectToPCMove1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[0,PCR]  ; 8000   	A9 9C 00            ADCA   [0,PCR]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x9C, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 9C 00            ADCA   [0,PCR]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifIndirectToPCMove2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-128,PCR]  ; 8000   	A9 9C 80            ADCA   [-128,PCR]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x9C, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 9C 80            ADCA   [-128,PCR]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifIndirectToPCMove3() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[127,PCR]  ; 8000   	A9 9C 7F            ADCA   [127,PCR]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8003, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 2, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x9C, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 9C 7F            ADCA   [127,PCR]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifIndirectToPCMove4() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-129,PCR]  ; 8000   	A9 9D FF 7F            ADCA   [-129,PCR]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x9D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 9D FF 7F            ADCA   [-129,PCR]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifIndirectToPCMove5() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[128,PCR]  ; 8000   	A9 9D 00 80            ADCA   [128,PCR]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x9D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 9D 00 80            ADCA   [128,PCR]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifIndirectToPCMove6() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32768,PCR]  ; 8000   	A9 9D 80 00            ADCA   [-32768,PCR]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x9D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 9D 80 00            ADCA   [-32768,PCR]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifIndirectToPCMove7() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[32767,PCR]  ; 8000   	A9 9D 7F FF            ADCA   [32767,PCR]
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x9D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 9D 7F FF            ADCA   [32767,PCR]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifIndirectToPCMove8() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[-32769,PCR]  ; 8000   	A9 9D 80 00            ADCA   [-32769,PCR]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"The value -32769 is out than the possible limit, data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x9D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x80, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0x00, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 9D 80 00            ADCA   [-32769,PCR]", line.comment)	
+	}
+
+	/**
+	 * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction  
+	 */
+	@Test 
+	def void testADCAIndexedRelatifIndirectToPCMove9() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ADCA		  	[32768,PCR]  ; 8000   	A9 9D 7F FF            ADCA   [32768,PCR]
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(
+			AssemblerPackage.eINSTANCE.adcInstruction,
+			AbstractInstructionAssemblyLine::OVERFLOW_ERROR,
+			"The value 32768 is out than the possible limit, data may be lost"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after the instruction",0x8004, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledADCAInstruction
+		Assert.assertEquals("Check opcode size ", 1, line.opcode.length);	
+		Assert.assertEquals("Check opcode", 0xA9, line.opcode.get(0));	
+		Assert.assertEquals("Check operand size ", 3, line.operand.length);	
+		Assert.assertEquals("Check operand", 0x9D, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(1));
+		Assert.assertEquals("Check operand", 0xFF, line.operand.get(2));
+		Assert.assertEquals("Check Label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; 8000   	A9 9D 7F FF            ADCA   [32768,PCR]", line.comment)	
 	}
 }

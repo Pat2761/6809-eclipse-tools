@@ -52,6 +52,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	
 	public static final String ILLEGAL_DECREMENT = "illegalDecrement";
 	public static final String ILLEGAL_INCREMENT = "illegalIncrement";
+	public static final String OVERFLOW_ERROR = "illegalIncrement";
 
 	/** OPcode of the instruction */
 	protected int[] opcodeBytes;
@@ -194,10 +195,10 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 
 	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,EReference eReference) {
 		int value = ExpressionParser.parse(extendedOperand, eReference, instruction); 
-		operandBytes = new int[] {value/256, value%256};
+		operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF};
 	}
 
-	protected void setIndexedAccumulatorMovingMode(EObject instruction, AccumulatorMovingMode operand) {
+	protected void setIndexedAccumulatorMovingMode(AccumulatorMovingMode operand) {
 		int postByte = 0;
 		
 		switch (operand.getDeplacement()) {
@@ -215,10 +216,10 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		default: break;
 		}
 		
-		operandBytes = new int[] {postByte%256};
+		operandBytes = new int[] {postByte&0xFF};
 	}
 
-	protected void setIndexedAccumulatorMovingMode(EObject instruction, AccumulatorMovingIndirectMode mode) {
+	protected void setIndexedAccumulatorMovingMode(AccumulatorMovingIndirectMode mode) {
 		int postByte = 0;
 		
 		switch (mode.getDeplacement()) {
@@ -236,10 +237,10 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		default: break;
 		}
 		
-		operandBytes = new int[] {postByte%256};
+		operandBytes = new int[] {postByte&0xFF};
 	}
 
-	protected void setIndexedAccumulatorMovingMode(EObject instruction2, AutoIncDecMode mode) {
+	protected void setIndexedAccumulatorMovingMode(AutoIncDecMode mode) {
 		int postByte = 0;
 		
 		if (mode.getDecrement() != null) {
@@ -264,7 +265,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 			default: break;
 		}
 		
-		operandBytes = new int[] {postByte%256};
+		operandBytes = new int[] {postByte&0xFF};
 	}
 
 	protected void setIndexedAccumulatorMovingMode(EObject instruction, AutoIncDecIndirectMode mode, EStructuralFeature eReference) {
@@ -306,43 +307,203 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 			default: break;
 		}
 		
-		operandBytes = new int[] {postByte%256};
+		operandBytes = new int[] {postByte&0xFF};
 	}
 
-	protected void setIndexedConstantMode(EObject instruction2, ConstantIndexedMode mode) {
+	protected void setIndexedConstantMode(EObject instruction, ConstantIndexedMode mode, EStructuralFeature eReference) {
 		int postByte = 0;
+		int offset = 0;
 		NumericalValue deplacement = mode.getDeplacement();
+		if (deplacement != null) { 
+			offset = ExpressionParser.parse(deplacement);
+		}
 		
-		if (deplacement == null) {
+		if ((deplacement == null) || (offset == 0)) {
 			switch (mode.getRegister()) {
 				case "X" : postByte |= 0x84; break;
 				case "Y" : postByte |= 0xA4; break;
 				case "U" : postByte |= 0xC4; break;
 				case "S" : postByte |= 0xE4; break;
 			}
-			operandBytes = new int[] {postByte%256};
+			operandBytes = new int[] {postByte&0xFF};
+
 		} else {
-			int offset = ExpressionParser.parse(deplacement);
-			if (offset < 0x10) {
-				 
-			} else if (offset < 0x100) {
+			if (offset>-17 && offset<16) {
+
 				switch (mode.getRegister()) {
-				case "X" : postByte |= 0x88; break;
-				case "Y" : postByte |= 0xA8; break;
-				case "U" : postByte |= 0xC8; break;
-				case "S" : postByte |= 0xE8; break;
-			}	
-			operandBytes = new int[] {postByte%256, offset%256 };
+					case "X" : postByte |= 0x00; break;
+					case "Y" : postByte |= 0x20; break;
+					case "U" : postByte |= 0x40; break;
+					case "S" : postByte |= 0x60; break;
+				}	
+				if (offset <0) {
+					postByte |= 0x10;
+					offset = offset&0x0F; 
+				}
+				postByte |= offset;
+				operandBytes = new int[] {postByte&0xFF};
+				 
+			} else if (offset>-129 && offset<128) {
 				
-			} else if (offset <0x10000) {
+				switch (mode.getRegister()) {
+					case "X" : postByte |= 0x88; break;
+					case "Y" : postByte |= 0xA8; break;
+					case "U" : postByte |= 0xC8; break;
+					case "S" : postByte |= 0xE8; break;
+				}	
+				operandBytes = new int[] {postByte&0xFF, offset&0xFF };
+				
+			} else  if (offset >-32769 && offset<32768){
+			
 				switch (mode.getRegister()) {
 					case "X" : postByte |= 0x89; break;
 					case "Y" : postByte |= 0xA9; break;
 					case "U" : postByte |= 0xC9; break;
 					case "S" : postByte |= 0xE9; break;
 				}	
-				operandBytes = new int[] {postByte%256, offset/256, offset%256 };
+				operandBytes = new int[] {postByte&0xFF, (offset&0xFF00) >> 8, offset&0xFF };
+			
+			} else {
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						"Overflow detected for value " + offset + " , data may be lost" , 
+						eReference, 
+						OVERFLOW_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+				
+				switch (mode.getRegister()) {
+					case "X" : postByte |= 0x89; break;
+					case "Y" : postByte |= 0xA9; break;
+					case "U" : postByte |= 0xC9; break;
+					case "S" : postByte |= 0xE9; break;
+				}	
+				if (offset<-32768) {
+					operandBytes = new int[] {postByte&0xFF, 0x80, 0x00 };
+				} else {
+					operandBytes = new int[] {postByte&0xFF, 0x7F, 0xFF };
+				}
 			}
+		}
+	}
+
+	protected void setIndexedConstantIndirectMode(EObject instruction, ConstantIndexedMovingIndirectMode mode, EStructuralFeature eReference) {
+		int postByte = 0;
+		int offset = 0;
+		NumericalValue deplacement = mode.getDeplacement();
+		if (deplacement != null) { 
+			offset = ExpressionParser.parse(deplacement);
+		}
+		
+		if ((deplacement == null) || (offset == 0)) {
+			switch (mode.getRegister()) {
+				case "X" : postByte |= 0x94; break;
+				case "Y" : postByte |= 0xB4; break;
+				case "U" : postByte |= 0xD4; break;
+				case "S" : postByte |= 0xF4; break;
+			}
+			operandBytes = new int[] {postByte&0xFF};
+		} else {
+			if (offset > -129 && offset<128) {
+				switch (mode.getRegister()) {
+					case "X" : postByte |= 0x98; break;
+					case "Y" : postByte |= 0xB8; break;
+					case "U" : postByte |= 0xD8; break;
+					case "S" : postByte |= 0xF8; break;
+				}	
+				operandBytes = new int[] {postByte&0xFF, offset&0xFF };
+			} else  if (offset >-32769 && offset<32768){
+				switch (mode.getRegister()) {
+					case "X" : postByte |= 0x99; break;
+					case "Y" : postByte |= 0xB9; break;
+					case "U" : postByte |= 0xD9; break;
+					case "S" : postByte |= 0xF9; break;
+				}	
+				operandBytes = new int[] {postByte&0xFF, (offset&0xFF00)>>8, offset&0xFF };
+				
+			} else {
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						"Overflow detected for value " + offset + " , data may be lost" , 
+						eReference, 
+						OVERFLOW_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+				
+				switch (mode.getRegister()) {
+					case "X" : postByte |= 0x99; break;
+					case "Y" : postByte |= 0xB9; break;
+					case "U" : postByte |= 0xD9; break;
+					case "S" : postByte |= 0xF9; break;
+				}	
+				if (offset<-32768) {
+					operandBytes = new int[] {postByte&0xFF, 0x80, 0x00 };
+				} else {
+					operandBytes = new int[] {postByte&0xFF, 0x7F, 0xFF };
+				}
+			}
+		}
+	}
+
+	protected void setRelatifToPCMode(EObject instruction, RelatifToPCMode mode, EReference eReference) {
+		int postByte = 0;
+		int offset = 0;
+		NumericalValue deplacement = mode.getDeplacement();
+		if (deplacement != null) { 
+			offset = ExpressionParser.parse(deplacement);
+		} else {
+			offset = 0;
+		}
+		
+		if (offset > -129 && offset < 128) {
+			operandBytes = new int[] {0x8C, offset&0xFF };
+		} else if (offset > -32769 && offset< 32768){
+			operandBytes = new int[] {0x8D, (offset&0xFF00) >> 8, offset&0xFF };
+		} else if (offset < -32768) {
+			
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + offset + " is out than the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			operandBytes = new int[] {0x8D, 0x80, 0x00 };
+
+		} else {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + offset + " is out than the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			operandBytes = new int[] {0x8D, 0x7F, 0xFF };
+		}
+	}
+
+	protected void setRelatifToPCIndirectMode(EObject instruction, RelatifToPCIndirectMode mode, EReference eReference) {
+		int postByte = 0;
+		int offset = 0;
+		NumericalValue deplacement = mode.getDeplacement();
+		if (deplacement != null) { 
+			offset = ExpressionParser.parse(deplacement);
+		} else {
+			offset = 0;
+		}
+		
+		if (offset > -129 && offset < 128) {
+			operandBytes = new int[] {0x9C, offset&0xFF };
+		} else if (offset > -32769 && offset< 32768){
+			operandBytes = new int[] {0x9D, (offset&0xFF00) >> 8, offset&0xFF };
+		} else if (offset < -32768) {
+		
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + offset + " is out than the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			operandBytes = new int[] {0x9D, 0x80, 0x00 };
+
+		} else {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + offset + " is out than the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			operandBytes = new int[] {0x9D, 0x7F, 0xFF };
 		}
 	}
 

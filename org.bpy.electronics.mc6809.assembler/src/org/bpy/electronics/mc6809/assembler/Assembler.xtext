@@ -1946,14 +1946,14 @@ AutoIncDecIndirectMode:
 RelatifToPCMode:
 	deplacement=NumericalValue?
 	',' 
-	(register='PCR' )
+	(register='PC' | register='PCR')
 ;
 
 RelatifToPCIndirectMode:
 	'['
 	deplacement=NumericalValue? 
 	',' 
-	(register='PCR' )
+	(register='PC' | register='PCR' )
 	']'
 ;
 

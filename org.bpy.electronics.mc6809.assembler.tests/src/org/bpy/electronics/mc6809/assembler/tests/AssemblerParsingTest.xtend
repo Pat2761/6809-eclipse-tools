@@ -131,6 +131,7 @@ import org.bpy.electronics.mc6809.assembler.tests.samples.SorekSamples
 	 TestRmbDirective,
 	 TestSetDirective,
 	 TestSpcDirective,
+	 TestSetDirective,
 	 
 	 /* Instructions  */
 	 TestADCInstruction,

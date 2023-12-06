@@ -29,11 +29,14 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EReference;
@@ -141,11 +144,11 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 				break;
 				
 			case INDEXED_ACCUMULATOR_MOVING_MODE:
-				setIndexedAccumulatorMovingMode(instruction, (AccumulatorMovingMode)((IndexedOperand)instruction.getOperand()).getMode());
+				setIndexedAccumulatorMovingMode((AccumulatorMovingMode)((IndexedOperand)instruction.getOperand()).getMode());
 				break;
 				
 			case INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE:
-				setIndexedAccumulatorMovingMode(instruction, (AccumulatorMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode());
+				setIndexedAccumulatorMovingMode((AccumulatorMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode());
 				break;
 				
 			case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
@@ -153,20 +156,23 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 				break;
 				
 			case INDEXED_AUTO_DEC_INC_MODE:
-				setIndexedAccumulatorMovingMode(instruction, (AutoIncDecMode)((IndexedOperand)instruction.getOperand()).getMode());
+				setIndexedAccumulatorMovingMode((AutoIncDecMode)((IndexedOperand)instruction.getOperand()).getMode());
 				break;
 				
 			case INDEXED_CONSTANT_MODE:
-				setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode());
+				setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
 				break;
 				
 			case INDEXED_CONSTANT_INDIRECT_MODE:
+				setIndexedConstantIndirectMode(instruction, (ConstantIndexedMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
 				break;
 				
 			case INDEXED_RELATIF_TO_PC:
+				setRelatifToPCMode(instruction, (RelatifToPCMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
 				break;
 				
 			case INDEXED_RELATIF_TO_PC_INDIRECT_MODE:
+				setRelatifToPCIndirectMode(instruction, (RelatifToPCIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
 				break;
 
 			default:

@@ -140,6 +140,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterAlternatives_2_0_1_0(), "rule__AutoIncDecIndirectMode__RegisterAlternatives_2_0_1_0");
 			builder.put(grammarAccess.getAutoIncDecIndirectModeAccess().getRegisterAlternatives_2_1_0_0(), "rule__AutoIncDecIndirectMode__RegisterAlternatives_2_1_0_0");
 			builder.put(grammarAccess.getAutoIncDecIndirectModeAccess().getAlternatives_2_1_1(), "rule__AutoIncDecIndirectMode__Alternatives_2_1_1");
+			builder.put(grammarAccess.getRelatifToPCModeAccess().getAlternatives_2(), "rule__RelatifToPCMode__Alternatives_2");
+			builder.put(grammarAccess.getRelatifToPCIndirectModeAccess().getAlternatives_3(), "rule__RelatifToPCIndirectMode__Alternatives_3");
 			builder.put(grammarAccess.getDirectiveLineAccess().getAlternatives_2(), "rule__DirectiveLine__Alternatives_2");
 			builder.put(grammarAccess.getNamDirectiveAccess().getAlternatives_0(), "rule__NamDirective__Alternatives_0");
 			builder.put(grammarAccess.getSetDirectiveAccess().getAlternatives_2(), "rule__SetDirective__Alternatives_2");
@@ -565,9 +567,11 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAutoIncDecIndirectModeAccess().getIncrementAssignment_2_1_1_0(), "rule__AutoIncDecIndirectMode__IncrementAssignment_2_1_1_0");
 			builder.put(grammarAccess.getAutoIncDecIndirectModeAccess().getIncrementAssignment_2_1_1_1(), "rule__AutoIncDecIndirectMode__IncrementAssignment_2_1_1_1");
 			builder.put(grammarAccess.getRelatifToPCModeAccess().getDeplacementAssignment_0(), "rule__RelatifToPCMode__DeplacementAssignment_0");
-			builder.put(grammarAccess.getRelatifToPCModeAccess().getRegisterAssignment_2(), "rule__RelatifToPCMode__RegisterAssignment_2");
+			builder.put(grammarAccess.getRelatifToPCModeAccess().getRegisterAssignment_2_0(), "rule__RelatifToPCMode__RegisterAssignment_2_0");
+			builder.put(grammarAccess.getRelatifToPCModeAccess().getRegisterAssignment_2_1(), "rule__RelatifToPCMode__RegisterAssignment_2_1");
 			builder.put(grammarAccess.getRelatifToPCIndirectModeAccess().getDeplacementAssignment_1(), "rule__RelatifToPCIndirectMode__DeplacementAssignment_1");
-			builder.put(grammarAccess.getRelatifToPCIndirectModeAccess().getRegisterAssignment_3(), "rule__RelatifToPCIndirectMode__RegisterAssignment_3");
+			builder.put(grammarAccess.getRelatifToPCIndirectModeAccess().getRegisterAssignment_3_0(), "rule__RelatifToPCIndirectMode__RegisterAssignment_3_0");
+			builder.put(grammarAccess.getRelatifToPCIndirectModeAccess().getRegisterAssignment_3_1(), "rule__RelatifToPCIndirectMode__RegisterAssignment_3_1");
 			builder.put(grammarAccess.getRelativeModeAccess().getIsPcRelativeAssignment_0(), "rule__RelativeMode__IsPcRelativeAssignment_0");
 			builder.put(grammarAccess.getRelativeModeAccess().getOffsetAssignment_1(), "rule__RelativeMode__OffsetAssignment_1");
 			builder.put(grammarAccess.getDirectiveLineAccess().getNameAssignment_0(), "rule__DirectiveLine__NameAssignment_0");

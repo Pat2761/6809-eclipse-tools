@@ -2590,7 +2590,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     RelatifToPCIndirectMode returns RelatifToPCIndirectMode
 	 *
 	 * Constraint:
-	 *     (deplacement=NumericalValue? register='PCR')
+	 *     (deplacement=NumericalValue? (register='PC' | register='PCR'))
 	 * </pre>
 	 */
 	protected void sequence_RelatifToPCIndirectMode(ISerializationContext context, RelatifToPCIndirectMode semanticObject) {
@@ -2604,7 +2604,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     RelatifToPCMode returns RelatifToPCMode
 	 *
 	 * Constraint:
-	 *     (deplacement=NumericalValue? register='PCR')
+	 *     (deplacement=NumericalValue? (register='PC' | register='PCR'))
 	 * </pre>
 	 */
 	protected void sequence_RelatifToPCMode(ISerializationContext context, RelatifToPCMode semanticObject) {

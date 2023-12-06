@@ -7147,19 +7147,22 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDeplacementAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cDeplacementNumericalValueParserRuleCall_0_0 = (RuleCall)cDeplacementAssignment_0.eContents().get(0);
 		private final Keyword cCommaKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Assignment cRegisterAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final Keyword cRegisterPCRKeyword_2_0 = (Keyword)cRegisterAssignment_2.eContents().get(0);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final Assignment cRegisterAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
+		private final Keyword cRegisterPCKeyword_2_0_0 = (Keyword)cRegisterAssignment_2_0.eContents().get(0);
+		private final Assignment cRegisterAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
+		private final Keyword cRegisterPCRKeyword_2_1_0 = (Keyword)cRegisterAssignment_2_1.eContents().get(0);
 		
 		//RelatifToPCMode:
 		//    deplacement=NumericalValue?
 		//    ','
-		//    (register='PCR' )
+		//    (register='PC' | register='PCR')
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//deplacement=NumericalValue?
 		//','
-		//(register='PCR' )
+		//(register='PC' | register='PCR')
 		public Group getGroup() { return cGroup; }
 		
 		//deplacement=NumericalValue?
@@ -7171,11 +7174,20 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//','
 		public Keyword getCommaKeyword_1() { return cCommaKeyword_1; }
 		
-		//(register='PCR' )
-		public Assignment getRegisterAssignment_2() { return cRegisterAssignment_2; }
+		//(register='PC' | register='PCR')
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//register='PC'
+		public Assignment getRegisterAssignment_2_0() { return cRegisterAssignment_2_0; }
+		
+		//'PC'
+		public Keyword getRegisterPCKeyword_2_0_0() { return cRegisterPCKeyword_2_0_0; }
+		
+		//register='PCR'
+		public Assignment getRegisterAssignment_2_1() { return cRegisterAssignment_2_1; }
 		
 		//'PCR'
-		public Keyword getRegisterPCRKeyword_2_0() { return cRegisterPCRKeyword_2_0; }
+		public Keyword getRegisterPCRKeyword_2_1_0() { return cRegisterPCRKeyword_2_1_0; }
 	}
 	public class RelatifToPCIndirectModeElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RelatifToPCIndirectMode");
@@ -7184,15 +7196,18 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDeplacementAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cDeplacementNumericalValueParserRuleCall_1_0 = (RuleCall)cDeplacementAssignment_1.eContents().get(0);
 		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cRegisterAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final Keyword cRegisterPCRKeyword_3_0 = (Keyword)cRegisterAssignment_3.eContents().get(0);
+		private final Alternatives cAlternatives_3 = (Alternatives)cGroup.eContents().get(3);
+		private final Assignment cRegisterAssignment_3_0 = (Assignment)cAlternatives_3.eContents().get(0);
+		private final Keyword cRegisterPCKeyword_3_0_0 = (Keyword)cRegisterAssignment_3_0.eContents().get(0);
+		private final Assignment cRegisterAssignment_3_1 = (Assignment)cAlternatives_3.eContents().get(1);
+		private final Keyword cRegisterPCRKeyword_3_1_0 = (Keyword)cRegisterAssignment_3_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		
 		//RelatifToPCIndirectMode:
 		//    '['
 		//    deplacement=NumericalValue?
 		//    ','
-		//    (register='PCR' )
+		//    (register='PC' | register='PCR' )
 		//    ']'
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -7200,7 +7215,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'['
 		//deplacement=NumericalValue?
 		//','
-		//(register='PCR' )
+		//(register='PC' | register='PCR' )
 		//']'
 		public Group getGroup() { return cGroup; }
 		
@@ -7216,11 +7231,20 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//','
 		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
 		
-		//(register='PCR' )
-		public Assignment getRegisterAssignment_3() { return cRegisterAssignment_3; }
+		//(register='PC' | register='PCR' )
+		public Alternatives getAlternatives_3() { return cAlternatives_3; }
+		
+		//register='PC'
+		public Assignment getRegisterAssignment_3_0() { return cRegisterAssignment_3_0; }
+		
+		//'PC'
+		public Keyword getRegisterPCKeyword_3_0_0() { return cRegisterPCKeyword_3_0_0; }
+		
+		//register='PCR'
+		public Assignment getRegisterAssignment_3_1() { return cRegisterAssignment_3_1; }
 		
 		//'PCR'
-		public Keyword getRegisterPCRKeyword_3_0() { return cRegisterPCRKeyword_3_0; }
+		public Keyword getRegisterPCRKeyword_3_1_0() { return cRegisterPCRKeyword_3_1_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_4() { return cRightSquareBracketKeyword_4; }
@@ -12375,7 +12399,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//RelatifToPCMode:
 	//    deplacement=NumericalValue?
 	//    ','
-	//    (register='PCR' )
+	//    (register='PC' | register='PCR')
 	//;
 	public RelatifToPCModeElements getRelatifToPCModeAccess() {
 		return pRelatifToPCMode;
@@ -12389,7 +12413,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    '['
 	//    deplacement=NumericalValue?
 	//    ','
-	//    (register='PCR' )
+	//    (register='PC' | register='PCR' )
 	//    ']'
 	//;
 	public RelatifToPCIndirectModeElements getRelatifToPCIndirectModeAccess() {

@@ -9308,16 +9308,33 @@ ruleRelatifToPCMode returns [EObject current=null]
 		}
 		(
 			(
-				lv_register_2_0='PCR'
-				{
-					newLeafNode(lv_register_2_0, grammarAccess.getRelatifToPCModeAccess().getRegisterPCRKeyword_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRelatifToPCModeRule());
+				(
+					lv_register_2_0='PC'
+					{
+						newLeafNode(lv_register_2_0, grammarAccess.getRelatifToPCModeAccess().getRegisterPCKeyword_2_0_0());
 					}
-					setWithLastConsumed($current, "register", lv_register_2_0, "PCR");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRelatifToPCModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_2_0, "PC");
+					}
+				)
+			)
+			    |
+			(
+				(
+					lv_register_3_0='PCR'
+					{
+						newLeafNode(lv_register_3_0, grammarAccess.getRelatifToPCModeAccess().getRegisterPCRKeyword_2_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRelatifToPCModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_3_0, "PCR");
+					}
+				)
 			)
 		)
 	)
@@ -9368,21 +9385,38 @@ ruleRelatifToPCIndirectMode returns [EObject current=null]
 		}
 		(
 			(
-				lv_register_3_0='PCR'
-				{
-					newLeafNode(lv_register_3_0, grammarAccess.getRelatifToPCIndirectModeAccess().getRegisterPCRKeyword_3_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getRelatifToPCIndirectModeRule());
+				(
+					lv_register_3_0='PC'
+					{
+						newLeafNode(lv_register_3_0, grammarAccess.getRelatifToPCIndirectModeAccess().getRegisterPCKeyword_3_0_0());
 					}
-					setWithLastConsumed($current, "register", lv_register_3_0, "PCR");
-				}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRelatifToPCIndirectModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_3_0, "PC");
+					}
+				)
+			)
+			    |
+			(
+				(
+					lv_register_4_0='PCR'
+					{
+						newLeafNode(lv_register_4_0, grammarAccess.getRelatifToPCIndirectModeAccess().getRegisterPCRKeyword_3_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRelatifToPCIndirectModeRule());
+						}
+						setWithLastConsumed($current, "register", lv_register_4_0, "PCR");
+					}
+				)
 			)
 		)
-		otherlv_4=']'
+		otherlv_5=']'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getRelatifToPCIndirectModeAccess().getRightSquareBracketKeyword_4());
+			newLeafNode(otherlv_5, grammarAccess.getRelatifToPCIndirectModeAccess().getRightSquareBracketKeyword_4());
 		}
 	)
 ;
