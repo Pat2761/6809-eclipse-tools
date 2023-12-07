@@ -18,11 +18,64 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
+import java.util.EnumMap;
+
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 
 public class AssembledADCBInstruction extends AbstractInstructionAssemblyLine {
+
+	/** contains the opcodes for each addressing mode */
+	private static final EnumMap<AddressingMode,int[]> OP_CODE = new EnumMap<>(AddressingMode.class);
+
+	/** contains the base of operand int for each addressing mode */
+	private static final EnumMap<AddressingMode,int[]> OPERAND = new EnumMap<>(AddressingMode.class);
+
+	/** contains the base of cycle needed for each addressing mode */
+	private static final EnumMap<AddressingMode,Integer> CYCLES = new EnumMap<>(AddressingMode.class);
+
+	static {
+		OP_CODE.put(AddressingMode.IMMEDIATE, new int[] {(int) 0xC9});
+		OP_CODE.put(AddressingMode.DIRECT, new int[] {(int) 0xD9});
+		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, new int[] {(int) 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_MODE, new int[] {(int) 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, new int[] {(int) 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_MODE, new int[] {(int) 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_MODE, new int[] {(int) 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE, new int[] {(int) 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC, new int[] {(int) 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, new int[] {(int) 0xE9});
+		OP_CODE.put(AddressingMode.EXTENDED_INDIRECT, new int[] {(int) 0xE9,(int) 0x9F});
+		OP_CODE.put(AddressingMode.EXTENDED, new int[] {(int) 0xF9});
+
+		CYCLES.put(AddressingMode.IMMEDIATE, 2);
+		CYCLES.put(AddressingMode.DIRECT, 4);
+		CYCLES.put(AddressingMode.EXTENDED,5);
+		CYCLES.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, -1);
+		CYCLES.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_MODE, -1);
+		CYCLES.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, -1);
+		CYCLES.put(AddressingMode.INDEXED_AUTO_DEC_INC_MODE, -1);
+		CYCLES.put(AddressingMode.INDEXED_CONSTANT_MODE, -1);
+		CYCLES.put(AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE, -1);
+		CYCLES.put(AddressingMode.INDEXED_RELATIF_TO_PC, -1);
+		CYCLES.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, -1);
+		CYCLES.put(AddressingMode.EXTENDED_INDIRECT, -1);
+	}
 
 	/** reference on the instruction */
 	private AdcInstruction instruction;
@@ -35,10 +88,10 @@ public class AssembledADCBInstruction extends AbstractInstructionAssemblyLine {
 	 * @param lineNumber line number in assembly file
 	 */
 	public void parse(AdcInstruction instruction, int currentPcValue, int lineNumber) {
-		super.parse(currentPcValue, lineNumber);
 		this.label = CommandUtil.getLabel(instruction);
 		this.comment = CommandUtil.getComment(instruction);
 		this.instruction = instruction;
+		super.parse(currentPcValue, lineNumber);
 	}
 
 	/**
@@ -52,14 +105,63 @@ public class AssembledADCBInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public void setOpcode(AddressingMode mode) {
-		// TODO Auto-generated method stub
-		
+		opcodeBytes = OP_CODE.get(mode);
 	}
 
 	@Override
 	public void setOperand(AddressingMode mode) {
-		// TODO Auto-generated method stub
+		switch (mode) {
+		case IMMEDIATE:
+			setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND, -128, 255);
+			break;
+			
+		case DIRECT:
+			setDirectOperand(instruction, (DirectOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+			break;
 		
+		case EXTENDED:
+			setExtendedOperand(instruction, (ExtendedOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+			break;
+			
+		case EXTENDED_INDIRECT:
+			setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+			break;
+			
+		case INDEXED_ACCUMULATOR_MOVING_MODE:
+			setIndexedAccumulatorMovingMode((AccumulatorMovingMode)((IndexedOperand)instruction.getOperand()).getMode());
+			break;
+			
+		case INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE:
+			setIndexedAccumulatorMovingMode((AccumulatorMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode());
+			break;
+			
+		case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
+			setIndexedAccumulatorMovingMode(instruction, (AutoIncDecIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+			break;
+			
+		case INDEXED_AUTO_DEC_INC_MODE:
+			setIndexedAccumulatorMovingMode((AutoIncDecMode)((IndexedOperand)instruction.getOperand()).getMode());
+			break;
+			
+		case INDEXED_CONSTANT_MODE:
+			setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+			break;
+			
+		case INDEXED_CONSTANT_INDIRECT_MODE:
+			setIndexedConstantIndirectMode(instruction, (ConstantIndexedMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+			break;
+			
+		case INDEXED_RELATIF_TO_PC:
+			setRelatifToPCMode(instruction, (RelatifToPCMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+			break;
+			
+		case INDEXED_RELATIF_TO_PC_INDIRECT_MODE:
+			setRelatifToPCIndirectMode(instruction, (RelatifToPCIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	@Override
@@ -70,7 +172,6 @@ public class AssembledADCBInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public Object getInstructionOperand() {
-		// TODO Auto-generated method stub
-		return null;
+		return instruction.getOperand();
 	}
 }
