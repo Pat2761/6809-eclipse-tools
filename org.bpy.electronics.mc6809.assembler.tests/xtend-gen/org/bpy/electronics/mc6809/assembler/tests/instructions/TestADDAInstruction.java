@@ -20,7 +20,7 @@ package org.bpy.electronics.mc6809.assembler.tests.instructions;
 import com.google.inject.Inject;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
-import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
@@ -39,7 +39,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADCAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.eclipse.emf.common.util.EList;
@@ -59,7 +59,7 @@ import org.junit.runner.RunWith;
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 @SuppressWarnings("all")
-public class TestADCAInstruction {
+public class TestADDAInstruction {
   @Inject
   private ParseHelper<Model> parseHelper;
 
@@ -68,10 +68,10 @@ public class TestADCAInstruction {
   private ValidationTestHelper _validationTestHelper;
 
   /**
-   * Check ADCA immediat
+   * Check ADDA immediat
    */
   @Test
-  public void testADCAImemdiatAddressingMode() {
+  public void testADDAImemdiatAddressingMode() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -80,7 +80,7 @@ public class TestADCAInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ADCA\t\t  \t#124");
+      _builder.append("ADDA\t\t  \t#124");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -95,11 +95,11 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be an immediate addressing mode", (_operand instanceof ImmediatOperand));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -107,10 +107,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA direct mode
+   * Check ADDA direct mode
    */
   @Test
-  public void testADCADirectAddressingMode() {
+  public void testADDADirectAddressingMode() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -119,7 +119,7 @@ public class TestADCAInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ADCA\t\t  \t<124");
+      _builder.append("ADDA\t\t  \t<124");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -134,11 +134,11 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a direct addressing mode", (_operand instanceof DirectOperand));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -146,10 +146,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA extended mode
+   * Check ADDA extended mode
    */
   @Test
-  public void testADCAExtendedAddressingMode1() {
+  public void testADDAExtendedAddressingMode1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -158,7 +158,7 @@ public class TestADCAInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ADCA\t\t  \t$1234");
+      _builder.append("ADDA\t\t  \t$1234");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -173,11 +173,11 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a extended addressing mode", (_operand instanceof ExtendedOperand));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -185,10 +185,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA extended mode
+   * Check ADDA extended mode
    */
   @Test
-  public void testADCAExtendedAddressingMode2() {
+  public void testADDAExtendedAddressingMode2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -197,7 +197,7 @@ public class TestADCAInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ADCA\t\t  \t>$1234");
+      _builder.append("ADDA\t\t  \t>$1234");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -212,11 +212,11 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a extended addressing mode", (_operand instanceof ExtendedOperand));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -224,10 +224,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA extended indirect mode
+   * Check ADDA extended indirect mode
    */
   @Test
-  public void testADCAExtendedIndirectAddressingMode1() {
+  public void testADDAExtendedIndirectAddressingMode1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -236,7 +236,7 @@ public class TestADCAInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ADCA\t\t  \t[$1234]");
+      _builder.append("ADDA\t\t  \t[$1234]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -251,11 +251,11 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a extended indirect addressing mode", (_operand instanceof ExtendedIndirectOperand));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -263,10 +263,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA Constant-Offset Indexed
+   * Check ADDA Constant-Offset Indexed
    */
   @Test
-  public void testADCAConstantOffsetIndexed() {
+  public void testADDAConstantOffsetIndexed() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -277,22 +277,22 @@ public class TestADCAInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \tConst,X");
+      _builder.append("ADDA\t\t  \tConst,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t,X");
+      _builder.append("ADDA\t\t  \t,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t$9,U");
+      _builder.append("ADDA\t\t  \t$9,U");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t$9,S");
+      _builder.append("ADDA\t\t  \t$9,S");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t$9,X");
+      _builder.append("ADDA\t\t  \t$9,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t$9,Y");
+      _builder.append("ADDA\t\t  \t$9,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -307,13 +307,13 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = adcInstruction.getOperand();
+      EObject _operand_1 = addInstruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_mode instanceof ConstantIndexedMode));
@@ -323,10 +323,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA Constant-Offset Indexed indirect
+   * Check ADDA Constant-Offset Indexed indirect
    */
   @Test
-  public void testADCAConstantOffsetIndexedIndirect() {
+  public void testADDAConstantOffsetIndexedIndirect() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -337,22 +337,22 @@ public class TestADCAInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t[Const,X]");
+      _builder.append("ADDA\t\t  \t[Const,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t[,X]");
+      _builder.append("ADDA\t\t  \t[,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t[$9,U]");
+      _builder.append("ADDA\t\t  \t[$9,U]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t[$9,S]");
+      _builder.append("ADDA\t\t  \t[$9,S]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t[$9,X]");
+      _builder.append("ADDA\t\t  \t[$9,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t[$9,Y]");
+      _builder.append("ADDA\t\t  \t[$9,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -367,13 +367,13 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = adcInstruction.getOperand();
+      EObject _operand_1 = addInstruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Constant-Offset Indexed indirect mode", (_mode instanceof ConstantIndexedMovingIndirectMode));
@@ -383,10 +383,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA Accumulator Indexed
+   * Check ADDA Accumulator Indexed
    */
   @Test
-  public void testADCAAccumulatorIndexed() {
+  public void testADDAAccumulatorIndexed() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -397,22 +397,22 @@ public class TestADCAInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \tA,X");
+      _builder.append("ADDA\t\t  \tA,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \tB,X");
+      _builder.append("ADDA\t\t  \tB,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \tD,U");
+      _builder.append("ADDA\t\t  \tD,U");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \tA,S");
+      _builder.append("ADDA\t\t  \tA,S");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \tB,X");
+      _builder.append("ADDA\t\t  \tB,X");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \tD,Y");
+      _builder.append("ADDA\t\t  \tD,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -427,13 +427,13 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = adcInstruction.getOperand();
+      EObject _operand_1 = addInstruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Accumulator Indexed mode", (_mode instanceof AccumulatorMovingMode));
@@ -443,10 +443,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA Accumulator Indexed Indirect
+   * Check ADDA Accumulator Indexed Indirect
    */
   @Test
-  public void testADCAAccumulatorIndexedIndirect() {
+  public void testADDAAccumulatorIndexedIndirect() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -457,22 +457,22 @@ public class TestADCAInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t[A,X]");
+      _builder.append("ADDA\t\t  \t[A,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t[B,X]");
+      _builder.append("ADDA\t\t  \t[B,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t[D,U]");
+      _builder.append("ADDA\t\t  \t[D,U]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t[A,S]");
+      _builder.append("ADDA\t\t  \t[A,S]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t[B,X]");
+      _builder.append("ADDA\t\t  \t[B,X]");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ADCA\t\t  \t[D,Y]");
+      _builder.append("ADDA\t\t  \t[D,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -487,13 +487,13 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = adcInstruction.getOperand();
+      EObject _operand_1 = addInstruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Accumulator Indexed indirect mode", (_mode instanceof AccumulatorMovingIndirectMode));
@@ -503,10 +503,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA Auto-Increment Indexed
+   * Check ADDA Auto-Increment Indexed
    */
   @Test
-  public void testADCAAutoIncrementIndexed() {
+  public void testADDAAutoIncrementIndexed() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -517,28 +517,28 @@ public class TestADCAInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t,--X");
+      _builder.append("ADDA\t\t  \t,--X");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t,-X");
+      _builder.append("ADDA\t\t  \t,-X");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t,X+");
+      _builder.append("ADDA\t\t  \t,X+");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t,X++");
+      _builder.append("ADDA\t\t  \t,X++");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t,--S");
+      _builder.append("ADDA\t\t  \t,--S");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t,-S");
+      _builder.append("ADDA\t\t  \t,-S");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t,U+");
+      _builder.append("ADDA\t\t  \t,U+");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t,U++");
+      _builder.append("ADDA\t\t  \t,U++");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -553,13 +553,13 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = adcInstruction.getOperand();
+      EObject _operand_1 = addInstruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Auto-Increment Indexed mode", (_mode instanceof AutoIncDecMode));
@@ -569,10 +569,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA Auto-Increment Indexed Indirect
+   * Check ADDA Auto-Increment Indexed Indirect
    */
   @Test
-  public void testADCAAutoIncrementIndexedIndirect() {
+  public void testADDAAutoIncrementIndexedIndirect() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -583,16 +583,16 @@ public class TestADCAInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t[,--X]");
+      _builder.append("ADDA\t\t  \t[,--X]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t[,X++]");
+      _builder.append("ADDA\t\t  \t[,X++]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t[,--S]");
+      _builder.append("ADDA\t\t  \t[,--S]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t[,U++]");
+      _builder.append("ADDA\t\t  \t[,U++]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -607,13 +607,13 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = adcInstruction.getOperand();
+      EObject _operand_1 = addInstruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Auto-Increment Indexed indirect mode", (_mode instanceof AutoIncDecIndirectMode));
@@ -623,10 +623,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA Relative to PC Indexed
+   * Check ADDA Relative to PC Indexed
    */
   @Test
-  public void testADCARelativePCIndexed() {
+  public void testADDARelativePCIndexed() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -637,13 +637,13 @@ public class TestADCAInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t0,PC");
+      _builder.append("ADDA\t\t  \t0,PC");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t,PC");
+      _builder.append("ADDA\t\t  \t,PC");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \tConst,PC");
+      _builder.append("ADDA\t\t  \tConst,PC");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -658,13 +658,13 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = adcInstruction.getOperand();
+      EObject _operand_1 = addInstruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Relative to Indexed mode", (_mode instanceof RelatifToPCMode));
@@ -674,10 +674,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA Relative to PC Indexed Indirect
+   * Check ADDA Relative to PC Indexed Indirect
    */
   @Test
-  public void testADCARelativePCIndexedIndirect() {
+  public void testADDARelativePCIndexedIndirect() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -688,13 +688,13 @@ public class TestADCAInstruction {
       _builder.append("Const\t   \tEQU          \t5    ");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t[0,PC]");
+      _builder.append("ADDA\t\t  \t[0,PC]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t[,PC]");
+      _builder.append("ADDA\t\t  \t[,PC]");
       _builder.newLine();
       _builder.append("\t       \t");
-      _builder.append("ADCA\t\t  \t[Const,PC]");
+      _builder.append("ADDA\t\t  \t[Const,PC]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -709,13 +709,13 @@ public class TestADCAInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AdcInstruction));
+      Assert.assertTrue("Must be an ADC directive line", (_instruction instanceof AddInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final AdcInstruction adcInstruction = ((AdcInstruction) _instruction_1);
-      Assert.assertEquals("Must be an ADCA instruction", adcInstruction.getInstruction(), "ADCA");
-      EObject _operand = adcInstruction.getOperand();
+      final AddInstruction addInstruction = ((AddInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+      EObject _operand = addInstruction.getOperand();
       Assert.assertTrue("Must be a Constant-Offset Indexed mode", (_operand instanceof IndexedOperand));
-      EObject _operand_1 = adcInstruction.getOperand();
+      EObject _operand_1 = addInstruction.getOperand();
       final IndexedOperand indexedOperand = ((IndexedOperand) _operand_1);
       EObject _mode = indexedOperand.getMode();
       Assert.assertTrue("Must be a Relative to Indexed Indirect mode", (_mode instanceof RelatifToPCIndirectMode));
@@ -725,10 +725,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check ADCA instruction with duplicate label
+   * Check ADDA instruction with duplicate label
    */
   @Test
-  public void testADCAWithDuplicateLabel() {
+  public void testADDAWithDuplicateLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -743,7 +743,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t\t");
       _builder.append("NOP    ");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t#Const+2");
+      _builder.append("Start      \tADDA\t\t  \t#Const+2");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -756,10 +756,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA immediate instruction
+   * Check Assembled ADDA immediate instruction
    */
   @Test
-  public void testADCAImmediatInstruction1() {
+  public void testADDAImmediatInstruction1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -769,7 +769,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t#Const+2  ; 8000   89 07        START:    ADCA");
+      _builder.append("Start      \tADDA\t\t  \t#Const+2  ; 8000   8B 07        START:    ADDA");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -777,23 +777,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0x89, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0x8B, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x07, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   89 07        START:    ADCA", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   8B 07        START:    ADDA", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA immediate with limit negative operand
+   * Check Assembled ADDA immediate with limit negative operand
    */
   @Test
-  public void testADCAImmediatInstruction2() {
+  public void testADDAImmediatInstruction2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -801,16 +801,16 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t#-129");
+      _builder.append("Start      \tADDA\t\t  \t#-129");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAddInstruction(), 
         ExpressionParser.OVERFLOW_ERROR, 
         "The value -129 is below the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -818,10 +818,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA immediate with limit negative operand
+   * Check Assembled ADDA immediate with limit negative operand
    */
   @Test
-  public void testADCAImmediatInstruction3() {
+  public void testADDAImmediatInstruction3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -829,14 +829,14 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t#-128");
+      _builder.append("Start      \tADDA\t\t  \t#-128");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -844,10 +844,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA immediate with positive limit operand
+   * Check Assembled ADDA immediate with positive limit operand
    */
   @Test
-  public void testADCAImmediatInstruction4() {
+  public void testADDAImmediatInstruction4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -855,14 +855,14 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t#127");
+      _builder.append("Start      \tADDA\t\t  \t#127");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -870,10 +870,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA immediate with positive limit operand
+   * Check Assembled ADDA immediate with positive limit operand
    */
   @Test
-  public void testADCAImmediatInstruction5() {
+  public void testADDAImmediatInstruction5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -881,16 +881,16 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t#128");
+      _builder.append("Start      \tADDA\t\t  \t#128");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAddInstruction(), 
         ExpressionParser.OVERFLOW_ERROR, 
         "The value 128 is greater than the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -898,10 +898,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA direct mode instruction
+   * Check Assembled ADDA direct mode instruction
    */
   @Test
-  public void testADCADirectInstruction1() {
+  public void testADDADirectInstruction1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -911,7 +911,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t<Const*2  ; 8000   99 0A        START:    ADCA   <Const*2 ");
+      _builder.append("Start      \tADDA\t\t  \t<Const*2  ; 8000   9B 0A        START:    ADDA   <Const*2 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -919,23 +919,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0x99, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0x9B, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x0A, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   99 0A        START:    ADCA   <Const*2 ", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   9B 0A        START:    ADDA   <Const*2 ", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA direct with limit negative operand
+   * Check Assembled ADDA direct with limit negative operand
    */
   @Test
-  public void testADCADirectInstruction2() {
+  public void testADDADirectInstruction2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -943,16 +943,16 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t<-129");
+      _builder.append("Start      \tADDA\t\t  \t<-129");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAddInstruction(), 
         ExpressionParser.OVERFLOW_ERROR, 
         "The value -129 is below the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -960,10 +960,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA direct with limit negative operand
+   * Check Assembled ADDA direct with limit negative operand
    */
   @Test
-  public void testADCADirectInstruction3() {
+  public void testADDADirectInstruction3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -971,14 +971,14 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t<-128");
+      _builder.append("Start      \tADDA\t\t  \t<-128");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -986,10 +986,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA direct with positive limit operand
+   * Check Assembled ADDA direct with positive limit operand
    */
   @Test
-  public void testADCADirectInstruction4() {
+  public void testADDADirectInstruction4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -997,14 +997,14 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t<127");
+      _builder.append("Start      \tADDA\t\t  \t<127");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -1012,10 +1012,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA direct with positive limit operand
+   * Check Assembled ADDA direct with positive limit operand
    */
   @Test
-  public void testADCADirectInstruction5() {
+  public void testADDADirectInstruction5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1023,16 +1023,16 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t<128");
+      _builder.append("Start      \tADDA\t\t  \t<128");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAddInstruction(), 
         ExpressionParser.OVERFLOW_ERROR, 
         "The value 128 is greater than the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
@@ -1040,10 +1040,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA extended mode instruction
+   * Check Assembled ADDA extended mode instruction
    */
   @Test
-  public void testADCAExtendedInstruction1() {
+  public void testADDAExtendedInstruction1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1053,7 +1053,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t>Const*1000  ; 8000   B9 13 88     START:    ADCA   >Const*1000 ");
+      _builder.append("Start      \tADDA\t\t  \t>Const*1000  ; 8000   BB 13 88     START:    ADDA   >Const*1000 ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1061,24 +1061,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xB9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xBB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x13, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x88, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   B9 13 88     START:    ADCA   >Const*1000 ", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   BB 13 88     START:    ADDA   >Const*1000 ", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA extended with limit negative operand
+   * Check Assembled ADDA extended with limit negative operand
    */
   @Test
-  public void testADCAExtendedInstruction2() {
+  public void testADDAExtendedInstruction2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1086,16 +1086,16 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t>-32769");
+      _builder.append("Start      \tADDA\t\t  \t>-32769");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAddInstruction(), 
         ExpressionParser.OVERFLOW_ERROR, 
         "The value -32769 is below the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
     } catch (Throwable _e) {
@@ -1104,10 +1104,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA extended with limit negative operand
+   * Check Assembled ADDA extended with limit negative operand
    */
   @Test
-  public void testADCAExtendedInstruction3() {
+  public void testADDAExtendedInstruction3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1115,14 +1115,14 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t>-32768");
+      _builder.append("Start      \tADDA\t\t  \t>-32768");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
     } catch (Throwable _e) {
@@ -1131,10 +1131,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA extended with positive limit operand
+   * Check Assembled ADDA extended with positive limit operand
    */
   @Test
-  public void testADCAExtendedInstruction4() {
+  public void testADDAExtendedInstruction4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1142,14 +1142,14 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t>65535");
+      _builder.append("Start      \tADDA\t\t  \t>65535");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
     } catch (Throwable _e) {
@@ -1158,10 +1158,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA extended with positive limit operand
+   * Check Assembled ADDA extended with positive limit operand
    */
   @Test
-  public void testADCAExtendedInstruction5() {
+  public void testADDAExtendedInstruction5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1169,16 +1169,16 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t>65536");
+      _builder.append("Start      \tADDA\t\t  \t>65536");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAddInstruction(), 
         ExpressionParser.OVERFLOW_ERROR, 
         "The value 65536 is greater than the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
     } catch (Throwable _e) {
@@ -1187,10 +1187,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA extended indirect mode instruction
+   * Check Assembled ADDA extended indirect mode instruction
    */
   @Test
-  public void testADCAExtendedIndirectInstruction1() {
+  public void testADDAExtendedIndirectInstruction1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1200,7 +1200,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[Const*1000]  ; 8000   A9 9F 13 88  START:    ADCA   [Const*1000]");
+      _builder.append("Start      \tADDA\t\t  \t[Const*1000]  ; 8000   AB 9F 13 88  START:    ADDA   [Const*1000]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1208,25 +1208,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 2, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check opcode", 0x9F, line.getOpcode()[1]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x13, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x88, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   A9 9F 13 88  START:    ADCA   [Const*1000]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   AB 9F 13 88  START:    ADDA   [Const*1000]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA extended indirect with limit negative operand
+   * Check Assembled ADDA extended indirect with limit negative operand
    */
   @Test
-  public void testADCAExtendedIndirectInstruction2() {
+  public void testADDAExtendedIndirectInstruction2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1234,16 +1234,16 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32769]");
+      _builder.append("Start      \tADDA\t\t  \t[-32769]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAddInstruction(), 
         ExpressionParser.OVERFLOW_ERROR, 
         "The value -32769 is below the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
     } catch (Throwable _e) {
@@ -1252,10 +1252,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA extended indirect with limit negative operand
+   * Check Assembled ADDA extended indirect with limit negative operand
    */
   @Test
-  public void testADCAExtendedIndirectInstruction3() {
+  public void testADDAExtendedIndirectInstruction3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1263,14 +1263,14 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32768]");
+      _builder.append("Start      \tADDA\t\t  \t[-32768]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
     } catch (Throwable _e) {
@@ -1279,10 +1279,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA extended indirect with positive limit operand
+   * Check Assembled ADDA extended indirect with positive limit operand
    */
   @Test
-  public void testADCAExtendedIndirectInstruction4() {
+  public void testADDAExtendedIndirectInstruction4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1290,14 +1290,14 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[65535]");
+      _builder.append("Start      \tADDA\t\t  \t[65535]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
     } catch (Throwable _e) {
@@ -1306,10 +1306,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA extended indirect with positive limit operand
+   * Check Assembled ADDA extended indirect with positive limit operand
    */
   @Test
-  public void testADCAExtendedIndirectInstruction5() {
+  public void testADDAExtendedIndirectInstruction5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1317,16 +1317,16 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[65536]");
+      _builder.append("Start      \tADDA\t\t  \t[65536]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAddInstruction(), 
         ExpressionParser.OVERFLOW_ERROR, 
         "The value 65536 is greater than the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
     } catch (Throwable _e) {
@@ -1335,10 +1335,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode1() {
+  public void testADDAIndexedAccumulatorMovingMode1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1348,7 +1348,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tA,X  ; 8000   A9 86        START:    ADCA   A,X");
+      _builder.append("Start      \tADDA\t\t  \tA,X  ; 8000   AB 86        START:    ADDA   A,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1356,23 +1356,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x86, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   A9 86        START:    ADCA   A,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   AB 86        START:    ADDA   A,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode2() {
+  public void testADDAIndexedAccumulatorMovingMode2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1382,7 +1382,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tA,Y  ; 8000   \tA9 A6        START:    ADCA   A,Y");
+      _builder.append("Start      \tADDA\t\t  \tA,Y  ; 8000   \tAB A6        START:    ADDA   A,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1390,23 +1390,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA6, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A6        START:    ADCA   A,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A6        START:    ADDA   A,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode3() {
+  public void testADDAIndexedAccumulatorMovingMode3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1416,7 +1416,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tA,U  ; 8000   \tA9 C6        START:    ADCA   A,U");
+      _builder.append("Start      \tADDA\t\t  \tA,U  ; 8000   \tAB C6        START:    ADDA   A,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1424,23 +1424,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC6, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C6        START:    ADCA   A,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C6        START:    ADDA   A,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode4() {
+  public void testADDAIndexedAccumulatorMovingMode4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1450,7 +1450,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tA,S  ; 8000   \tA9 E6        START:    ADCA   A,S");
+      _builder.append("Start      \tADDA\t\t  \tA,S  ; 8000   \tAB E6        START:    ADDA   A,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1458,23 +1458,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE6, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E6        START:    ADCA   A,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E6        START:    ADDA   A,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode5() {
+  public void testADDAIndexedAccumulatorMovingMode5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1484,7 +1484,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tB,X  ; 8000   A9 85        START:    ADCA   B,X");
+      _builder.append("Start      \tADDA\t\t  \tB,X  ; 8000   AB 85        START:    ADDA   B,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1492,23 +1492,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x85, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   A9 85        START:    ADCA   B,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   AB 85        START:    ADDA   B,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode6() {
+  public void testADDAIndexedAccumulatorMovingMode6() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1518,7 +1518,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tB,Y  ; 8000   \tA9 A5        START:    ADCA   B,Y");
+      _builder.append("Start      \tADDA\t\t  \tB,Y  ; 8000   \tAB A5        START:    ADDA   B,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1526,23 +1526,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA5, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A5        START:    ADCA   B,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A5        START:    ADDA   B,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode7() {
+  public void testADDAIndexedAccumulatorMovingMode7() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1552,7 +1552,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tB,U  ; 8000   \tA9 C5        START:    ADCA   B,U");
+      _builder.append("Start      \tADDA\t\t  \tB,U  ; 8000   \tAB C5        START:    ADDA   B,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1560,23 +1560,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC5, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C5        START:    ADCA   B,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C5        START:    ADDA   B,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode8() {
+  public void testADDAIndexedAccumulatorMovingMode8() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1586,7 +1586,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tB,S  ; 8000   \tA9 E5        START:    ADCA   B,S");
+      _builder.append("Start      \tADDA\t\t  \tB,S  ; 8000   \tAB E5        START:    ADDA   B,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1594,23 +1594,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE5, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E5        START:    ADCA   B,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E5        START:    ADDA   B,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode9() {
+  public void testADDAIndexedAccumulatorMovingMode9() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1620,7 +1620,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tD,X  ; 8000   A9 8B        START:    ADCA   D,X");
+      _builder.append("Start      \tADDA\t\t  \tD,X  ; 8000   AB 8B        START:    ADDA   D,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1628,23 +1628,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x8B, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   A9 8B        START:    ADCA   D,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   AB 8B        START:    ADDA   D,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode10() {
+  public void testADDAIndexedAccumulatorMovingMode10() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1654,7 +1654,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tD,Y  ; 8000   \tA9 AB        START:    ADCA   D,Y");
+      _builder.append("Start      \tADDA\t\t  \tD,Y  ; 8000   \tAB AB        START:    ADDA   D,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1662,23 +1662,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xAB, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 AB        START:    ADCA   D,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB AB        START:    ADDA   D,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode11() {
+  public void testADDAIndexedAccumulatorMovingMode11() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1688,7 +1688,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tD,U  ; 8000   \tA9 CB        START:    ADCA   D,U");
+      _builder.append("Start      \tADDA\t\t  \tD,U  ; 8000   \tAB CB        START:    ADDA   D,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1696,23 +1696,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xCB, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 CB        START:    ADCA   D,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB CB        START:    ADDA   D,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedAccumulatorMovingMode12() {
+  public void testADDAIndexedAccumulatorMovingMode12() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1722,7 +1722,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \tD,S  ; 8000   \tA9 EB        START:    ADCA   D,S");
+      _builder.append("Start      \tADDA\t\t  \tD,S  ; 8000   \tAB EB        START:    ADDA   D,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1730,23 +1730,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xEB, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 EB        START:    ADCA   D,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB EB        START:    ADDA   D,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndorectAccumulatorMovingMode1() {
+  public void testADDAIndexedIndorectAccumulatorMovingMode1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1756,7 +1756,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[A,X]  ; 8000   A9 96        START:    ADCA   [A,X]");
+      _builder.append("Start      \tADDA\t\t  \t[A,X]  ; 8000   AB 96        START:    ADDA   [A,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1764,23 +1764,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x96, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   A9 96        START:    ADCA   [A,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   AB 96        START:    ADDA   [A,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode2() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1790,7 +1790,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[A,Y]  ; 8000   \tA9 B6        START:    ADCA   [A,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[A,Y]  ; 8000   \tAB B6        START:    ADDA   [A,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1798,23 +1798,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB6, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B6        START:    ADCA   [A,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B6        START:    ADDA   [A,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode3() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1824,7 +1824,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[A,U]  ; 8000   \tA9 D6        START:    ADCA   [A,U]");
+      _builder.append("Start      \tADDA\t\t  \t[A,U]  ; 8000   \tAB D6        START:    ADDA   [A,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1832,23 +1832,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD6, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D6        START:    ADCA   [A,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D6        START:    ADDA   [A,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode4() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1858,7 +1858,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[A,S]  ; 8000   \tA9 F6        START:    ADCA   [A,S]");
+      _builder.append("Start      \tADDA\t\t  \t[A,S]  ; 8000   \tAB F6        START:    ADDA   [A,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1866,23 +1866,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF6, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F6        START:    ADCA   [A,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F6        START:    ADDA   [A,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode5() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1892,7 +1892,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[B,X]  ; 8000   A9 95        START:    ADCA   [B,X]");
+      _builder.append("Start      \tADDA\t\t  \t[B,X]  ; 8000   AB 95        START:    ADDA   [B,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1900,23 +1900,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x95, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   A9 95        START:    ADCA   [B,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   AB 95        START:    ADDA   [B,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode6() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode6() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1926,7 +1926,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[B,Y]  ; 8000   \tA9 B5        START:    ADCA   [B,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[B,Y]  ; 8000   \tAB B5        START:    ADDA   [B,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1934,23 +1934,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB5, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B5        START:    ADCA   [B,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B5        START:    ADDA   [B,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode7() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode7() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1960,7 +1960,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[B,U]  ; 8000   \tA9 D5        START:    ADCA   [B,U]");
+      _builder.append("Start      \tADDA\t\t  \t[B,U]  ; 8000   \tAB D5        START:    ADDA   [B,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1968,23 +1968,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD5, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D5        START:    ADCA   [B,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D5        START:    ADDA   [B,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode8() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode8() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -1994,7 +1994,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[B,S]  ; 8000   \tA9 F5        START:    ADCA   [B,S]");
+      _builder.append("Start      \tADDA\t\t  \t[B,S]  ; 8000   \tAB F5        START:    ADDA   [B,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2002,23 +2002,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF5, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F5        START:    ADCA   [B,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F5        START:    ADDA   [B,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode9() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode9() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2028,7 +2028,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[D,X]  ; 8000   A9 9B        START:    ADCA   [D,X]");
+      _builder.append("Start      \tADDA\t\t  \t[D,X]  ; 8000   AB 9B        START:    ADDA   [D,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2036,23 +2036,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x9B, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   A9 9B        START:    ADCA   [D,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   AB 9B        START:    ADDA   [D,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode10() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode10() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2062,7 +2062,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[D,Y]  ; 8000   \tA9 BB        START:    ADCA   [D,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[D,Y]  ; 8000   \tAB BB        START:    ADDA   [D,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2070,23 +2070,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xBB, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 BB        START:    ADCA   [D,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB BB        START:    ADDA   [D,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed Indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode11() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode11() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2096,7 +2096,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[D,U]  ; 8000   \tA9 DB        START:    ADCA   [D,U]");
+      _builder.append("Start      \tADDA\t\t  \t[D,U]  ; 8000   \tAB DB        START:    ADDA   [D,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2104,23 +2104,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xDB, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 DB        START:    ADCA   [D,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB DB        START:    ADDA   [D,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed indirect Accumulator Moving Mode instruction
+   * Check Assembled ADDA Indexed indirect Accumulator Moving Mode instruction
    */
   @Test
-  public void testADCAIndexedIndirectAccumulatorMovingMode12() {
+  public void testADDAIndexedIndirectAccumulatorMovingMode12() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2130,7 +2130,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[D,S]  ; 8000   \tA9 FB        START:    ADCA   [D,S]");
+      _builder.append("Start      \tADDA\t\t  \t[D,S]  ; 8000   \tAB FB        START:    ADDA   [D,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2138,23 +2138,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xFB, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 FB        START:    ADCA   [D,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB FB        START:    ADDA   [D,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode1() {
+  public void testADDAIndexedAutoIncrementDecrementMode1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2164,7 +2164,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,X+  ; 8000   \tA9 80        START:    ADCA   ,X+");
+      _builder.append("Start      \tADDA\t\t  \t,X+  ; 8000   \tAB 80        START:    ADDA   ,X+");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2172,23 +2172,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 80        START:    ADCA   ,X+", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 80        START:    ADDA   ,X+", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode2() {
+  public void testADDAIndexedAutoIncrementDecrementMode2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2198,7 +2198,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,X++  ; 8000   \tA9 81        START:    ADCA   ,X++");
+      _builder.append("Start      \tADDA\t\t  \t,X++  ; 8000   \tAB 81        START:    ADDA   ,X++");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2206,23 +2206,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x81, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 81        START:    ADCA   ,X++", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 81        START:    ADDA   ,X++", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode3() {
+  public void testADDAIndexedAutoIncrementDecrementMode3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2232,7 +2232,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,Y+  ; 8000   \tA9 A0        START:    ADCA   ,Y+");
+      _builder.append("Start      \tADDA\t\t  \t,Y+  ; 8000   \tAB A0        START:    ADDA   ,Y+");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2240,23 +2240,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA0, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A0        START:    ADCA   ,Y+", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A0        START:    ADDA   ,Y+", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode4() {
+  public void testADDAIndexedAutoIncrementDecrementMode4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2266,7 +2266,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,Y++  ; 8000   \tA9 A1        START:    ADCA   ,Y++");
+      _builder.append("Start      \tADDA\t\t  \t,Y++  ; 8000   \tAB A1        START:    ADDA   ,Y++");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2274,23 +2274,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA1, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A1        START:    ADCA   ,Y++", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A1        START:    ADDA   ,Y++", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode5() {
+  public void testADDAIndexedAutoIncrementDecrementMode5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2300,7 +2300,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,S+  ; 8000   \tA9 E0        START:    ADCA   ,S+");
+      _builder.append("Start      \tADDA\t\t  \t,S+  ; 8000   \tAB E0        START:    ADDA   ,S+");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2308,23 +2308,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE0, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E0        START:    ADCA   ,S+", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E0        START:    ADDA   ,S+", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode6() {
+  public void testADDAIndexedAutoIncrementDecrementMode6() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2334,7 +2334,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,S++  ; 8000   \tA9 E1        START:    ADCA   ,S++");
+      _builder.append("Start      \tADDA\t\t  \t,S++  ; 8000   \tAB E1        START:    ADDA   ,S++");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2342,23 +2342,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE1, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E1        START:    ADCA   ,S++", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E1        START:    ADDA   ,S++", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode7() {
+  public void testADDAIndexedAutoIncrementDecrementMode7() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2368,7 +2368,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,U+  ; 8000   \tA9 C0        START:    ADCA   ,U+");
+      _builder.append("Start      \tADDA\t\t  \t,U+  ; 8000   \tAB C0        START:    ADDA   ,U+");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2376,23 +2376,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC0, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C0        START:    ADCA   ,U+", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C0        START:    ADDA   ,U+", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode8() {
+  public void testADDAIndexedAutoIncrementDecrementMode8() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2402,7 +2402,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,U++  ; 8000   \tA9 C1        START:    ADCA   ,U++");
+      _builder.append("Start      \tADDA\t\t  \t,U++  ; 8000   \tAB C1        START:    ADDA   ,U++");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2410,23 +2410,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC1, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C1        START:    ADCA   ,U++", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C1        START:    ADDA   ,U++", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode9() {
+  public void testADDAIndexedAutoIncrementDecrementMode9() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2436,7 +2436,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,-X  ; 8000   \tA9 82        START:    ADCA   ,-X");
+      _builder.append("Start      \tADDA\t\t  \t,-X  ; 8000   \tAB 82        START:    ADDA   ,-X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2444,23 +2444,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x82, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 82        START:    ADCA   ,-X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 82        START:    ADDA   ,-X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode10() {
+  public void testADDAIndexedAutoIncrementDecrementMode10() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2470,7 +2470,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,--X  ; 8000   \tA9 83        START:    ADCA   ,--X");
+      _builder.append("Start      \tADDA\t\t  \t,--X  ; 8000   \tAB 83        START:    ADDA   ,--X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2478,23 +2478,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x83, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 83        START:    ADCA   ,--X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 83        START:    ADDA   ,--X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode11() {
+  public void testADDAIndexedAutoIncrementDecrementMode11() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2504,7 +2504,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,-Y  ; 8000   \tA9 A2        START:    ADCA   ,-Y");
+      _builder.append("Start      \tADDA\t\t  \t,-Y  ; 8000   \tAB A2        START:    ADDA   ,-Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2512,23 +2512,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA2, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A2        START:    ADCA   ,-Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A2        START:    ADDA   ,-Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode12() {
+  public void testADDAIndexedAutoIncrementDecrementMode12() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2538,7 +2538,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,--Y  ; 8000   \tA9 A3        START:    ADCA   ,--Y");
+      _builder.append("Start      \tADDA\t\t  \t,--Y  ; 8000   \tAB A3        START:    ADDA   ,--Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2546,23 +2546,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA3, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A3        START:    ADCA   ,--Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A3        START:    ADDA   ,--Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode13() {
+  public void testADDAIndexedAutoIncrementDecrementMode13() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2572,7 +2572,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,-S  ; 8000   \tA9 E2        START:    ADCA   ,-S");
+      _builder.append("Start      \tADDA\t\t  \t,-S  ; 8000   \tAB E2        START:    ADDA   ,-S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2580,23 +2580,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE2, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E2        START:    ADCA   ,-S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E2        START:    ADDA   ,-S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode14() {
+  public void testADDAIndexedAutoIncrementDecrementMode14() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2606,7 +2606,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,--S  ; 8000   \tA9 E3        START:    ADCA   ,--S");
+      _builder.append("Start      \tADDA\t\t  \t,--S  ; 8000   \tAB E3        START:    ADDA   ,--S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2614,23 +2614,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE3, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E3        START:    ADCA   ,--S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E3        START:    ADDA   ,--S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode15() {
+  public void testADDAIndexedAutoIncrementDecrementMode15() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2640,7 +2640,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,-U  ; 8000   \tA9 C2        START:    ADCA   ,-U");
+      _builder.append("Start      \tADDA\t\t  \t,-U  ; 8000   \tAB C2        START:    ADDA   ,-U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2648,23 +2648,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC2, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C2        START:    ADCA   ,-U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C2        START:    ADDA   ,-U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementMode16() {
+  public void testADDAIndexedAutoIncrementDecrementMode16() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2674,7 +2674,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,--U  ; 8000   \tA9 C3        START:    ADCA   ,--U");
+      _builder.append("Start      \tADDA\t\t  \t,--U  ; 8000   \tAB C3        START:    ADDA   ,--U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2682,23 +2682,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC3, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C3        START:    ADCA   ,--U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C3        START:    ADDA   ,--U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode1() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2708,12 +2708,12 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,X+]  ; 8000   \tA9 80        START:    ADCA   ,X+");
+      _builder.append("Start      \tADDA\t\t  \t[,X+]  ; 8000   \tAB 80        START:    ADDA   ,X+");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT, 
         "Cannot use post increment with 1 for indirect mode");
     } catch (Throwable _e) {
@@ -2722,10 +2722,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode indorect instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode indorect instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode2() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2735,7 +2735,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,X++]  ; 8000   \tA9 91        START:    ADCA   [,X++]");
+      _builder.append("Start      \tADDA\t\t  \t[,X++]  ; 8000   \tAB 91        START:    ADDA   [,X++]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2743,23 +2743,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x91, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 91        START:    ADCA   [,X++]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 91        START:    ADDA   [,X++]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Mode indirect instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Mode indirect instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode3() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2769,12 +2769,12 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,Y+]  ; 8000   \tA9 A0        START:    ADCA   ,Y+");
+      _builder.append("Start      \tADDA\t\t  \t[,Y+]  ; 8000   \tAB A0        START:    ADDA   ,Y+");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT, 
         "Cannot use post increment with 1 for indirect mode");
     } catch (Throwable _e) {
@@ -2783,10 +2783,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode4() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2796,7 +2796,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,Y++]  ; 8000   \tA9 B1        START:    ADCA   [,Y++]");
+      _builder.append("Start      \tADDA\t\t  \t[,Y++]  ; 8000   \tAB B1        START:    ADDA   [,Y++]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2804,23 +2804,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB1, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B1        START:    ADCA   [,Y++]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B1        START:    ADDA   [,Y++]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode5() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2830,12 +2830,12 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,S+]  ; 8000   \tA9 E0        START:    ADCA   [,S+]");
+      _builder.append("Start      \tADDA\t\t  \t[,S+]  ; 8000   \tAB E0        START:    ADDA   [,S+]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT, 
         "Cannot use post increment with 1 for indirect mode");
     } catch (Throwable _e) {
@@ -2844,10 +2844,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode6() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode6() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2857,7 +2857,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,S++]  ; 8000   \tA9 F1        START:    ADCA   [,S++]");
+      _builder.append("Start      \tADDA\t\t  \t[,S++]  ; 8000   \tAB F1        START:    ADDA   [,S++]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2865,23 +2865,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF1, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F1        START:    ADCA   [,S++]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F1        START:    ADDA   [,S++]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode7() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode7() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2891,12 +2891,12 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,U+]  ; 8000   \tA9 C0        START:    ADCA   [,U+]");
+      _builder.append("Start      \tADDA\t\t  \t[,U+]  ; 8000   \tAB C0        START:    ADDA   [,U+]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT, 
         "Cannot use post increment with 1 for indirect mode");
     } catch (Throwable _e) {
@@ -2905,10 +2905,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementindirectMode8() {
+  public void testADDAIndexedAutoIncrementDecrementindirectMode8() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2918,7 +2918,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,U++]  ; 8000   \tA9 D1        START:    ADCA   [,U++]");
+      _builder.append("Start      \tADDA\t\t  \t[,U++]  ; 8000   \tAB D1        START:    ADDA   [,U++]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2926,23 +2926,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD1, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D1        START:    ADCA   [,U++]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D1        START:    ADDA   [,U++]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode9() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode9() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2952,12 +2952,12 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,-X]  ; 8000   \tA9 82        START:    ADCA   [,-X]");
+      _builder.append("Start      \tADDA\t\t  \t[,-X]  ; 8000   \tAB 82        START:    ADDA   [,-X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT, 
         "Cannot use pre decrement with 1 for indirect mode");
     } catch (Throwable _e) {
@@ -2966,10 +2966,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode10() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode10() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -2979,7 +2979,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,--X]  ; 8000   \tA9 93        START:    ADCA   [,--X]");
+      _builder.append("Start      \tADDA\t\t  \t[,--X]  ; 8000   \tAB 93        START:    ADDA   [,--X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -2987,23 +2987,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x93, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 93        START:    ADCA   [,--X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 93        START:    ADDA   [,--X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement INdirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement INdirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode11() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode11() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3013,12 +3013,12 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,-Y]  ; 8000   \tA9 A2        START:    ADCA   [,-Y]");
+      _builder.append("Start      \tADDA\t\t  \t[,-Y]  ; 8000   \tAB A2        START:    ADDA   [,-Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT, 
         "Cannot use pre decrement with 1 for indirect mode");
     } catch (Throwable _e) {
@@ -3027,10 +3027,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode12() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode12() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3040,7 +3040,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,--Y]  ; 8000   \tA9 B3        START:    ADCA   [,--Y]");
+      _builder.append("Start      \tADDA\t\t  \t[,--Y]  ; 8000   \tAB B3        START:    ADDA   [,--Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3048,23 +3048,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB3, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B3        START:    ADCA   [,--Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B3        START:    ADDA   [,--Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode13() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode13() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3074,12 +3074,12 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,-S]  ; 8000   \tA9 E2        START:    ADCA   [,-S]");
+      _builder.append("Start      \tADDA\t\t  \t[,-S]  ; 8000   \tAB E2        START:    ADDA   [,-S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT, 
         "Cannot use pre decrement with 1 for indirect mode");
     } catch (Throwable _e) {
@@ -3088,10 +3088,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode14() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode14() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3101,7 +3101,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,--S]  ; 8000   \tA9 F3        START:    ADCA   [,--S]");
+      _builder.append("Start      \tADDA\t\t  \t[,--S]  ; 8000   \tAB F3        START:    ADDA   [,--S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3109,23 +3109,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF3, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F3        START:    ADCA   [,--S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F3        START:    ADDA   [,--S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode15() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode15() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3135,12 +3135,12 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,-U]  ; 8000   \tA9 C2        START:    ADCA   [,-U]");
+      _builder.append("Start      \tADDA\t\t  \t[,-U]  ; 8000   \tAB C2        START:    ADDA   [,-U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT, 
         "Cannot use pre decrement with 1 for indirect mode");
     } catch (Throwable _e) {
@@ -3149,10 +3149,10 @@ public class TestADCAInstruction {
   }
 
   /**
-   * Check Assembled ADCA Indexed Auto Increment Decrement Indirect Mode instruction
+   * Check Assembled ADDA Indexed Auto Increment Decrement Indirect Mode instruction
    */
   @Test
-  public void testADCAIndexedAutoIncrementDecrementIndirectMode16() {
+  public void testADDAIndexedAutoIncrementDecrementIndirectMode16() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3162,7 +3162,7 @@ public class TestADCAInstruction {
       _builder.newLine();
       _builder.append("Const\t   \tEQU          \t5");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,--U]  ; 8000   \tA9 D3        START:    ADCA   [,--U]");
+      _builder.append("Start      \tADDA\t\t  \t[,--U]  ; 8000   \tAB D3        START:    ADDA   [,--U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3170,23 +3170,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD3, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D3        START:    ADCA   [,--U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D3        START:    ADDA   [,--U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove1() {
+  public void testADDAIndexedConstantMove1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3194,7 +3194,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t1234,X  ; 8000   \tA9 89 04 D2            ADCA   1234,X");
+      _builder.append("Start      \tADDA\t\t  \t1234,X  ; 8000   \tAB 89 04 D2            ADDA   1234,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3202,25 +3202,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 89 04 D2            ADCA   1234,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 89 04 D2            ADDA   1234,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove2() {
+  public void testADDAIndexedConstantMove2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3228,7 +3228,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t1234,Y  ; 8000   \tA9 A9 04 D2            ADCA   1234,Y");
+      _builder.append("Start      \tADDA\t\t  \t1234,Y  ; 8000   \tAB A9 04 D2            ADDA   1234,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3236,25 +3236,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A9 04 D2            ADCA   1234,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A9 04 D2            ADDA   1234,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove3() {
+  public void testADDAIndexedConstantMove3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3262,7 +3262,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t1234,U  ; 8000   \tA9 C9 04 D2            ADCA   1234,U");
+      _builder.append("Start      \tADDA\t\t  \t1234,U  ; 8000   \tAB C9 04 D2            ADDA   1234,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3270,25 +3270,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C9 04 D2            ADCA   1234,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C9 04 D2            ADDA   1234,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove4() {
+  public void testADDAIndexedConstantMove4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3296,7 +3296,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t1234,S  ; 8000   \tA9 E9 04 D2            ADCA   1234,S");
+      _builder.append("Start      \tADDA\t\t  \t1234,S  ; 8000   \tAB E9 04 D2            ADDA   1234,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3304,25 +3304,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E9 04 D2            ADCA   1234,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E9 04 D2            ADDA   1234,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove5() {
+  public void testADDAIndexedConstantMove5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3330,7 +3330,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t34,X  ; 8000   \tA9 88 22            ADCA   34,X");
+      _builder.append("Start      \tADDA\t\t  \t34,X  ; 8000   \tAB 88 22            ADDA   34,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3338,24 +3338,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x88, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 88 22            ADCA   34,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 88 22            ADDA   34,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove6() {
+  public void testADDAIndexedConstantMove6() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3363,7 +3363,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t34,Y  ; 8000   \tA9 A8 22            ADCA   34,Y");
+      _builder.append("Start      \tADDA\t\t  \t34,Y  ; 8000   \tAB A8 22            ADDA   34,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3371,24 +3371,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A8 22            ADCA   34,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A8 22            ADDA   34,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove7() {
+  public void testADDAIndexedConstantMove7() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3396,7 +3396,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t34,U  ; 8000   \tA9 C8 22            ADCA   34,U");
+      _builder.append("Start      \tADDA\t\t  \t34,U  ; 8000   \tAB C8 22            ADDA   34,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3404,24 +3404,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C8 22            ADCA   34,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C8 22            ADDA   34,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove8() {
+  public void testADDAIndexedConstantMove8() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3429,7 +3429,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t34,S  ; 8000   \tA9 E8 22            ADCA   34,S");
+      _builder.append("Start      \tADDA\t\t  \t34,S  ; 8000   \tAB E8 22            ADDA   34,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3437,24 +3437,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E8 22            ADCA   34,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E8 22            ADDA   34,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove9() {
+  public void testADDAIndexedConstantMove9() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3462,7 +3462,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,X  ; 8000   \tA9 84            ADCA   ,X");
+      _builder.append("Start      \tADDA\t\t  \t,X  ; 8000   \tAB 84            ADDA   ,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3470,23 +3470,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x84, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 84            ADCA   ,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 84            ADDA   ,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove10() {
+  public void testADDAIndexedConstantMove10() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3494,7 +3494,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,Y  ; 8000   \tA9 A4            ADCA   ,Y");
+      _builder.append("Start      \tADDA\t\t  \t,Y  ; 8000   \tAB A4            ADDA   ,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3502,23 +3502,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A4            ADCA   ,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A4            ADDA   ,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove11() {
+  public void testADDAIndexedConstantMove11() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3526,7 +3526,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,U  ; 8000   \tA9 C4            ADCA   ,U");
+      _builder.append("Start      \tADDA\t\t  \t,U  ; 8000   \tAB C4            ADDA   ,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3534,23 +3534,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C4            ADCA   ,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C4            ADDA   ,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove12() {
+  public void testADDAIndexedConstantMove12() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3558,7 +3558,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t,S  ; 8000   \tA9 E4            ADCA   ,S");
+      _builder.append("Start      \tADDA\t\t  \t,S  ; 8000   \tAB E4            ADDA   ,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3566,23 +3566,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E4            ADCA   ,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E4            ADDA   ,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove13() {
+  public void testADDAIndexedConstantMove13() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3590,7 +3590,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t0,X  ; 8000   \tA9 84            ADCA   0,X");
+      _builder.append("Start      \tADDA\t\t  \t0,X  ; 8000   \tAB 84            ADDA   0,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3598,23 +3598,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x84, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 84            ADCA   0,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 84            ADDA   0,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove14() {
+  public void testADDAIndexedConstantMove14() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3622,7 +3622,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t0,Y  ; 8000   \tA9 A4            ADCA   0,Y");
+      _builder.append("Start      \tADDA\t\t  \t0,Y  ; 8000   \tAB A4            ADDA   0,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3630,23 +3630,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A4            ADCA   0,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A4            ADDA   0,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove15() {
+  public void testADDAIndexedConstantMove15() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3654,7 +3654,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t0,U  ; 8000   \tA9 C4            ADCA   0,U");
+      _builder.append("Start      \tADDA\t\t  \t0,U  ; 8000   \tAB C4            ADDA   0,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3662,23 +3662,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C4            ADCA   0,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C4            ADDA   0,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove16() {
+  public void testADDAIndexedConstantMove16() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3686,7 +3686,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t0,S  ; 8000   \tA9 E4            ADCA   0,S");
+      _builder.append("Start      \tADDA\t\t  \t0,S  ; 8000   \tAB E4            ADDA   0,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3694,23 +3694,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E4            ADCA   0,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E4            ADDA   0,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove17() {
+  public void testADDAIndexedConstantMove17() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3718,7 +3718,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-16,X  ; 8000   \tA9 10            ADCA   -16,X");
+      _builder.append("Start      \tADDA\t\t  \t-16,X  ; 8000   \tAB 10            ADDA   -16,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3726,23 +3726,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x10, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 10            ADCA   -16,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 10            ADDA   -16,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove19() {
+  public void testADDAIndexedConstantMove19() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3750,7 +3750,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t1,X  ; 8000   \tA9 01            ADCA   1,X");
+      _builder.append("Start      \tADDA\t\t  \t1,X  ; 8000   \tAB 01            ADDA   1,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3758,23 +3758,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x01, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 01            ADCA   1,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 01            ADDA   1,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove20() {
+  public void testADDAIndexedConstantMove20() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3782,7 +3782,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t15,X  ; 8000   \tA9 0F            ADCA   15,X");
+      _builder.append("Start      \tADDA\t\t  \t15,X  ; 8000   \tAB 0F            ADDA   15,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3790,23 +3790,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x0F, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 0F            ADCA   15,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 0F            ADDA   15,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove21() {
+  public void testADDAIndexedConstantMove21() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3814,7 +3814,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-16,Y  ; 8000   \tA9 30            ADCA   -16,Y");
+      _builder.append("Start      \tADDA\t\t  \t-16,Y  ; 8000   \tAB 30            ADDA   -16,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3822,23 +3822,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x30, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 30            ADCA   -16,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 30            ADDA   -16,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove23() {
+  public void testADDAIndexedConstantMove23() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3846,7 +3846,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t1,Y  ; 8000   \tA9 21            ADCA   1,Y");
+      _builder.append("Start      \tADDA\t\t  \t1,Y  ; 8000   \tAB 21            ADDA   1,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3854,23 +3854,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x21, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 21            ADCA   1,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 21            ADDA   1,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove24() {
+  public void testADDAIndexedConstantMove24() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3878,7 +3878,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t15,Y  ; 8000   \tA9 2F            ADCA   15,Y");
+      _builder.append("Start      \tADDA\t\t  \t15,Y  ; 8000   \tAB 2F            ADDA   15,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3886,23 +3886,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x2F, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 2F            ADCA   15,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 2F            ADDA   15,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove25() {
+  public void testADDAIndexedConstantMove25() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3910,7 +3910,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-16,U  ; 8000   \tA9 50            ADCA   -16,U");
+      _builder.append("Start      \tADDA\t\t  \t-16,U  ; 8000   \tAB 50            ADDA   -16,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3918,23 +3918,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x50, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 50            ADCA   -16,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 50            ADDA   -16,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove26() {
+  public void testADDAIndexedConstantMove26() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3942,7 +3942,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t1,U  ; 8000   \tA9 41            ADCA   1,U");
+      _builder.append("Start      \tADDA\t\t  \t1,U  ; 8000   \tAB 41            ADDA   1,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3950,23 +3950,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x41, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 41            ADCA   1,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 41            ADDA   1,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove27() {
+  public void testADDAIndexedConstantMove27() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -3974,7 +3974,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t15,U  ; 8000   \tA9 4F            ADCA   15,U");
+      _builder.append("Start      \tADDA\t\t  \t15,U  ; 8000   \tAB 4F            ADDA   15,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -3982,23 +3982,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x4F, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 4F            ADCA   15,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 4F            ADDA   15,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove28() {
+  public void testADDAIndexedConstantMove28() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4006,7 +4006,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-16,S  ; 8000   \tA9 70            ADCA   -16,S");
+      _builder.append("Start      \tADDA\t\t  \t-16,S  ; 8000   \tAB 70            ADDA   -16,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4014,23 +4014,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x70, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 70            ADCA   -16,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 70            ADDA   -16,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove29() {
+  public void testADDAIndexedConstantMove29() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4038,7 +4038,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t1,S  ; 8000   \tA9 61            ADCA   1,S");
+      _builder.append("Start      \tADDA\t\t  \t1,S  ; 8000   \tAB 61            ADDA   1,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4046,23 +4046,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x61, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 61            ADCA   1,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 61            ADDA   1,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove30() {
+  public void testADDAIndexedConstantMove30() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4070,7 +4070,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t15,S  ; 8000   \tA9 6F            ADCA   15,S");
+      _builder.append("Start      \tADDA\t\t  \t15,S  ; 8000   \tAB 6F            ADDA   15,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4078,23 +4078,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x6F, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 6F            ADCA   15,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 6F            ADDA   15,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove31() {
+  public void testADDAIndexedConstantMove31() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4102,7 +4102,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-128,X  ; 8000   \tA9 88 80            ADCA   -128,X");
+      _builder.append("Start      \tADDA\t\t  \t-128,X  ; 8000   \tAB 88 80            ADDA   -128,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4110,24 +4110,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x88, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 88 80            ADCA   -128,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 88 80            ADDA   -128,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove32() {
+  public void testADDAIndexedConstantMove32() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4135,7 +4135,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t127,X  ; 8000   \tA9 88 7F            ADCA   127,X");
+      _builder.append("Start      \tADDA\t\t  \t127,X  ; 8000   \tAB 88 7F            ADDA   127,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4143,24 +4143,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x88, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 88 7F            ADCA   127,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 88 7F            ADDA   127,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove33() {
+  public void testADDAIndexedConstantMove33() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4168,7 +4168,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-128,Y  ; 8000   \tA9 A8 80            ADCA   -128,Y");
+      _builder.append("Start      \tADDA\t\t  \t-128,Y  ; 8000   \tAB A8 80            ADDA   -128,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4176,24 +4176,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A8 80            ADCA   -128,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A8 80            ADDA   -128,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove34() {
+  public void testADDAIndexedConstantMove34() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4201,7 +4201,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t127,Y  ; 8000   \tA9 A8 7F            ADCA   127,Y");
+      _builder.append("Start      \tADDA\t\t  \t127,Y  ; 8000   \tAB A8 7F            ADDA   127,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4209,24 +4209,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A8 7F            ADCA   127,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A8 7F            ADDA   127,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove35() {
+  public void testADDAIndexedConstantMove35() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4234,7 +4234,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-128,U  ; 8000   \tA9 C8 80            ADCA   -128,U");
+      _builder.append("Start      \tADDA\t\t  \t-128,U  ; 8000   \tAB C8 80            ADDA   -128,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4242,24 +4242,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C8 80            ADCA   -128,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C8 80            ADDA   -128,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove36() {
+  public void testADDAIndexedConstantMove36() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4267,7 +4267,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t127,U  ; 8000   \tA9 C8 7F            ADCA   127,U");
+      _builder.append("Start      \tADDA\t\t  \t127,U  ; 8000   \tAB C8 7F            ADDA   127,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4275,24 +4275,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C8 7F            ADCA   127,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C8 7F            ADDA   127,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove37() {
+  public void testADDAIndexedConstantMove37() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4300,7 +4300,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-128,S  ; 8000   \tA9 E8 80            ADCA   -128,S");
+      _builder.append("Start      \tADDA\t\t  \t-128,S  ; 8000   \tAB E8 80            ADDA   -128,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4308,24 +4308,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E8 80            ADCA   -128,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E8 80            ADDA   -128,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove38() {
+  public void testADDAIndexedConstantMove38() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4333,7 +4333,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t127,S  ; 8000   \tA9 E8 7F            ADCA   127,S");
+      _builder.append("Start      \tADDA\t\t  \t127,S  ; 8000   \tAB E8 7F            ADDA   127,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4341,24 +4341,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E8 7F            ADCA   127,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E8 7F            ADDA   127,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove39() {
+  public void testADDAIndexedConstantMove39() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4366,7 +4366,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-32768,X  ; 8000   \tA9 89 80 00             ADCA   -32768,X");
+      _builder.append("Start      \tADDA\t\t  \t-32768,X  ; 8000   \tAB 89 80 00             ADDA   -32768,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4374,25 +4374,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 89 80 00             ADCA   -32768,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 89 80 00             ADDA   -32768,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove40() {
+  public void testADDAIndexedConstantMove40() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4400,7 +4400,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  32767,X  ; 8000   \tA9 89 7F FF             ADCA   32767,X");
+      _builder.append("Start      \tADDA\t\t  32767,X  ; 8000   \tAB 89 7F FF             ADDA   32767,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4408,25 +4408,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 89 7F FF             ADCA   32767,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 89 7F FF             ADDA   32767,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove41() {
+  public void testADDAIndexedConstantMove41() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4434,7 +4434,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-32768,Y  ; 8000   \tA9 A9 80 00             ADCA   -32768,Y");
+      _builder.append("Start      \tADDA\t\t  \t-32768,Y  ; 8000   \tAB A9 80 00             ADDA   -32768,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4442,25 +4442,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A9 80 00             ADCA   -32768,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A9 80 00             ADDA   -32768,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove42() {
+  public void testADDAIndexedConstantMove42() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4468,7 +4468,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  32767,Y  ; 8000   \tA9 A9 7F FF             ADCA   32767,Y");
+      _builder.append("Start      \tADDA\t\t  32767,Y  ; 8000   \tAB A9 7F FF             ADDA   32767,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4476,25 +4476,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A9 7F FF             ADCA   32767,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A9 7F FF             ADDA   32767,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove43() {
+  public void testADDAIndexedConstantMove43() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4502,7 +4502,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-32768,U  ; 8000   \tA9 C9 80 00             ADCA   -32768,U");
+      _builder.append("Start      \tADDA\t\t  \t-32768,U  ; 8000   \tAB C9 80 00             ADDA   -32768,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4510,25 +4510,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C9 80 00             ADCA   -32768,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C9 80 00             ADDA   -32768,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove44() {
+  public void testADDAIndexedConstantMove44() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4536,7 +4536,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  32767,U  ; 8000   \tA9 C9 7F FF             ADCA   32767,U");
+      _builder.append("Start      \tADDA\t\t  32767,U  ; 8000   \tAB C9 7F FF             ADDA   32767,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4544,25 +4544,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C9 7F FF             ADCA   32767,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C9 7F FF             ADDA   32767,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove45() {
+  public void testADDAIndexedConstantMove45() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4570,7 +4570,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-32768,S  ; 8000   \tA9 E9 80 00             ADCA   -32768,S");
+      _builder.append("Start      \tADDA\t\t  \t-32768,S  ; 8000   \tAB E9 80 00             ADDA   -32768,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4578,25 +4578,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E9 80 00             ADCA   -32768,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E9 80 00             ADDA   -32768,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove46() {
+  public void testADDAIndexedConstantMove46() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4604,7 +4604,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  32767,S  ; 8000   \tA9 E9 7F FF             ADCA   32767,S");
+      _builder.append("Start      \tADDA\t\t  32767,S  ; 8000   \tAB E9 7F FF             ADDA   32767,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4612,25 +4612,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E9 7F FF             ADCA   32767,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E9 7F FF             ADDA   32767,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove47() {
+  public void testADDAIndexedConstantMove47() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4638,36 +4638,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-32769,X  ; 8000   \tA9 89 80 00             ADCA   -32769,X");
+      _builder.append("Start      \tADDA\t\t  \t-32769,X  ; 8000   \tAB 89 80 00             ADDA   -32769,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value -32769 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 89 80 00             ADCA   -32769,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 89 80 00             ADDA   -32769,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove48() {
+  public void testADDAIndexedConstantMove48() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4675,36 +4675,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  32768,X  ; 8000   \tA9 89 7F FF             ADCA   32768,X");
+      _builder.append("Start      \tADDA\t\t  32768,X  ; 8000   \tAB 89 7F FF             ADDA   32768,X");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value 32768 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 89 7F FF             ADCA   32768,X", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 89 7F FF             ADDA   32768,X", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove49() {
+  public void testADDAIndexedConstantMove49() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4712,36 +4712,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-32769,Y  ; 8000   \tA9 A9 80 00             ADCA   -32769,Y");
+      _builder.append("Start      \tADDA\t\t  \t-32769,Y  ; 8000   \tAB A9 80 00             ADDA   -32769,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value -32769 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A9 80 00             ADCA   -32769,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A9 80 00             ADDA   -32769,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove50() {
+  public void testADDAIndexedConstantMove50() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4749,36 +4749,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  32768,Y  ; 8000   \tA9 A9 7F FF             ADCA   32768,Y");
+      _builder.append("Start      \tADDA\t\t  32768,Y  ; 8000   \tAB A9 7F FF             ADDA   32768,Y");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value 32768 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 A9 7F FF             ADCA   32768,Y", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB A9 7F FF             ADDA   32768,Y", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove51() {
+  public void testADDAIndexedConstantMove51() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4786,36 +4786,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-32769,U  ; 8000   \tA9 C9 80 00             ADCA   -32769,U");
+      _builder.append("Start      \tADDA\t\t  \t-32769,U  ; 8000   \tAB C9 80 00             ADDA   -32769,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value -32769 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C9 80 00             ADCA   -32769,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C9 80 00             ADDA   -32769,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove52() {
+  public void testADDAIndexedConstantMove52() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4823,36 +4823,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  32768,U  ; 8000   \tA9 C9 7F FF             ADCA   32768,U");
+      _builder.append("Start      \tADDA\t\t  32768,U  ; 8000   \tAB C9 7F FF             ADDA   32768,U");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value 32768 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 C9 7F FF             ADCA   32768,U", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB C9 7F FF             ADDA   32768,U", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove53() {
+  public void testADDAIndexedConstantMove53() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4860,36 +4860,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-32769,S  ; 8000   \tA9 E9 80 00             ADCA   -32769,S");
+      _builder.append("Start      \tADDA\t\t  \t-32769,S  ; 8000   \tAB E9 80 00             ADDA   -32769,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value -32769 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E9 80 00             ADCA   -32769,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E9 80 00             ADDA   -32769,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantMove54() {
+  public void testADDAIndexedConstantMove54() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4897,36 +4897,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  32768,S  ; 8000   \tA9 E9 7F FF             ADCA   32768,S");
+      _builder.append("Start      \tADDA\t\t  32768,S  ; 8000   \tAB E9 7F FF             ADDA   32768,S");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value 32768 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 E9 7F FF             ADCA   32768,S", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB E9 7F FF             ADDA   32768,S", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove1() {
+  public void testADDAIndexedConstantIndirectMove1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4934,7 +4934,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[1234,X]  ; 8000   \tA9 99 04 D2            ADCA   [1234,X]");
+      _builder.append("Start      \tADDA\t\t  \t[1234,X]  ; 8000   \tAB 99 04 D2            ADDA   [1234,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4942,25 +4942,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x99, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 99 04 D2            ADCA   [1234,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 99 04 D2            ADDA   [1234,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove2() {
+  public void testADDAIndexedConstantIndirectMove2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -4968,7 +4968,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[1234,Y]  ; 8000   \tA9 B9 04 D2            ADCA   [1234,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[1234,Y]  ; 8000   \tAB B9 04 D2            ADDA   [1234,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -4976,25 +4976,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B9 04 D2            ADCA   [1234,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B9 04 D2            ADDA   [1234,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove3() {
+  public void testADDAIndexedConstantIndirectMove3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5002,7 +5002,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[1234,U]  ; 8000   \tA9 D9 04 D2            ADCA   [1234,U]");
+      _builder.append("Start      \tADDA\t\t  \t[1234,U]  ; 8000   \tAB D9 04 D2            ADDA   [1234,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5010,25 +5010,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D9 04 D2            ADCA   [1234,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D9 04 D2            ADDA   [1234,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove4() {
+  public void testADDAIndexedConstantIndirectMove4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5036,7 +5036,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[1234,S]  ; 8000   \tA9 F9 04 D2            ADCA   [1234,S]");
+      _builder.append("Start      \tADDA\t\t  \t[1234,S]  ; 8000   \tAB F9 04 D2            ADDA   [1234,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5044,25 +5044,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F9 04 D2            ADCA   [1234,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F9 04 D2            ADDA   [1234,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove5() {
+  public void testADDAIndexedConstantIndirectMove5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5070,7 +5070,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[34,X]  ; 8000   \tA9 98 22            ADCA   [34,X]");
+      _builder.append("Start      \tADDA\t\t  \t[34,X]  ; 8000   \tAB 98 22            ADDA   [34,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5078,24 +5078,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 98 22            ADCA   [34,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 98 22            ADDA   [34,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove6() {
+  public void testADDAIndexedConstantIndirectMove6() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5103,7 +5103,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[34,Y]  ; 8000   \tA9 B8 22            ADCA   [34,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[34,Y]  ; 8000   \tAB B8 22            ADDA   [34,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5111,24 +5111,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B8 22            ADCA   [34,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B8 22            ADDA   [34,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove7() {
+  public void testADDAIndexedConstantIndirectMove7() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5136,7 +5136,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[34,U]  ; 8000   \tA9 D8 22            ADCA   [34,U]");
+      _builder.append("Start      \tADDA\t\t  \t[34,U]  ; 8000   \tAB D8 22            ADDA   [34,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5144,24 +5144,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D8 22            ADCA   [34,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D8 22            ADDA   [34,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove8() {
+  public void testADDAIndexedConstantIndirectMove8() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5169,7 +5169,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[34,S]  ; 8000   \tA9 F8 22            ADCA   [34,S]");
+      _builder.append("Start      \tADDA\t\t  \t[34,S]  ; 8000   \tAB F8 22            ADDA   [34,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5177,24 +5177,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F8 22            ADCA   [34,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F8 22            ADDA   [34,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove9() {
+  public void testADDAIndexedConstantIndirectMove9() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5202,7 +5202,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,X]  ; 8000   \tA9 94            ADCA   [,X]");
+      _builder.append("Start      \tADDA\t\t  \t[,X]  ; 8000   \tAB 94            ADDA   [,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5210,23 +5210,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x94, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 94            ADCA   [,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 94            ADDA   [,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove10() {
+  public void testADDAIndexedConstantIndirectMove10() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5234,7 +5234,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,Y]  ; 8000   \tA9 B4            ADCA   [,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[,Y]  ; 8000   \tAB B4            ADDA   [,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5242,23 +5242,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B4            ADCA   [,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B4            ADDA   [,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove11() {
+  public void testADDAIndexedConstantIndirectMove11() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5266,7 +5266,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,U]  ; 8000   \tA9 D4            ADCA   [,U]");
+      _builder.append("Start      \tADDA\t\t  \t[,U]  ; 8000   \tAB D4            ADDA   [,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5274,23 +5274,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D4            ADCA   [,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D4            ADDA   [,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove12() {
+  public void testADDAIndexedConstantIndirectMove12() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5298,7 +5298,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[,S]  ; 8000   \tA9 F4            ADCA   [,S]");
+      _builder.append("Start      \tADDA\t\t  \t[,S]  ; 8000   \tAB F4            ADDA   [,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5306,23 +5306,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F4            ADCA   [,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F4            ADDA   [,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove13() {
+  public void testADDAIndexedConstantIndirectMove13() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5330,7 +5330,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[0,X]  ; 8000   \tA9 94            ADCA   [0,X]");
+      _builder.append("Start      \tADDA\t\t  \t[0,X]  ; 8000   \tAB 94            ADDA   [0,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5338,23 +5338,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x94, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 94            ADCA   [0,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 94            ADDA   [0,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove14() {
+  public void testADDAIndexedConstantIndirectMove14() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5362,7 +5362,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[0,Y]  ; 8000   \tA9 B4            ADCA   [0,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[0,Y]  ; 8000   \tAB B4            ADDA   [0,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5370,23 +5370,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B4            ADCA   [0,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B4            ADDA   [0,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove15() {
+  public void testADDAIndexedConstantIndirectMove15() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5394,7 +5394,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[0,U]  ; 8000   \tA9 D4            ADCA   [0,U]");
+      _builder.append("Start      \tADDA\t\t  \t[0,U]  ; 8000   \tAB D4            ADDA   [0,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5402,23 +5402,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D4            ADCA   [0,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D4            ADDA   [0,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove16() {
+  public void testADDAIndexedConstantIndirectMove16() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5426,7 +5426,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[0,S]  ; 8000   \tA9 F4            ADCA   [0,S]");
+      _builder.append("Start      \tADDA\t\t  \t[0,S]  ; 8000   \tAB F4            ADDA   [0,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5434,23 +5434,23 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF4, line.getOperand()[0]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F4            ADCA   [0,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F4            ADDA   [0,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove17() {
+  public void testADDAIndexedConstantIndirectMove17() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5458,7 +5458,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-16,X]  ; 8000   \tA9 98 F0            ADCA   [-16,X]");
+      _builder.append("Start      \tADDA\t\t  \t[-16,X]  ; 8000   \tAB 98 F0            ADDA   [-16,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5466,24 +5466,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 98 F0            ADCA   [-16,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 98 F0            ADDA   [-16,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove18() {
+  public void testADDAIndexedConstantIndirectMove18() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5491,7 +5491,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[15,X]  ; 8000   \tA9 98 0F            ADCA   [15,X]");
+      _builder.append("Start      \tADDA\t\t  \t[15,X]  ; 8000   \tAB 98 0F            ADDA   [15,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5499,24 +5499,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 98 0F            ADCA   [15,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 98 0F            ADDA   [15,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove19() {
+  public void testADDAIndexedConstantIndirectMove19() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5524,7 +5524,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-16,Y]  ; 8000   \tA9 B8 F0            ADCA   [-16,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[-16,Y]  ; 8000   \tAB B8 F0            ADDA   [-16,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5532,24 +5532,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B8 F0            ADCA   [-16,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B8 F0            ADDA   [-16,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove20() {
+  public void testADDAIndexedConstantIndirectMove20() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5557,7 +5557,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[15,Y]  ; 8000   \tA9 B8 0F            ADCA   [15,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[15,Y]  ; 8000   \tAB B8 0F            ADDA   [15,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5565,24 +5565,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B8 0F            ADCA   [15,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B8 0F            ADDA   [15,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove21() {
+  public void testADDAIndexedConstantIndirectMove21() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5590,7 +5590,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-16,U]  ; 8000   \tA9 D8 F0            ADCA   [-16,U]");
+      _builder.append("Start      \tADDA\t\t  \t[-16,U]  ; 8000   \tAB D8 F0            ADDA   [-16,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5598,24 +5598,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D8 F0            ADCA   [-16,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D8 F0            ADDA   [-16,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove22() {
+  public void testADDAIndexedConstantIndirectMove22() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5623,7 +5623,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[15,U]  ; 8000   \tA9 D8 0F            ADCA   [15,U]");
+      _builder.append("Start      \tADDA\t\t  \t[15,U]  ; 8000   \tAB D8 0F            ADDA   [15,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5631,24 +5631,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D8 0F            ADCA   [15,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D8 0F            ADDA   [15,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove23() {
+  public void testADDAIndexedConstantIndirectMove23() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5656,7 +5656,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-16,S]  ; 8000   \tA9 F8 F0            ADCA   [-16,S]");
+      _builder.append("Start      \tADDA\t\t  \t[-16,S]  ; 8000   \tAB F8 F0            ADDA   [-16,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5664,24 +5664,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F8 F0            ADCA   [-16,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F8 F0            ADDA   [-16,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant move Mode instruction
+   * Check Assembled ADDA Indexed Constant move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove24() {
+  public void testADDAIndexedConstantIndirectMove24() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5689,7 +5689,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[15,S]  ; 8000   \tA9 F8 0F            ADCA   [15,S]");
+      _builder.append("Start      \tADDA\t\t  \t[15,S]  ; 8000   \tAB F8 0F            ADDA   [15,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5697,24 +5697,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F8 0F            ADCA   [15,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F8 0F            ADDA   [15,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove31() {
+  public void testADDAIndexedConstantIndirectMove31() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5722,7 +5722,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-128,X]  ; 8000   \tA9 98 80            ADCA   [-128,X}");
+      _builder.append("Start      \tADDA\t\t  \t[-128,X]  ; 8000   \tAB 98 80            ADDA   [-128,X}");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5730,24 +5730,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 98 80            ADCA   [-128,X}", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 98 80            ADDA   [-128,X}", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove32() {
+  public void testADDAIndexedConstantIndirectMove32() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5755,7 +5755,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[127,X]  ; 8000   \tA9 98 7F            ADCA   [127,X]");
+      _builder.append("Start      \tADDA\t\t  \t[127,X]  ; 8000   \tAB 98 7F            ADDA   [127,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5763,24 +5763,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 98 7F            ADCA   [127,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 98 7F            ADDA   [127,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove33() {
+  public void testADDAIndexedConstantIndirectMove33() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5788,7 +5788,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-128,Y]  ; 8000   \tA9 B8 80            ADCA   [-128,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[-128,Y]  ; 8000   \tAB B8 80            ADDA   [-128,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5796,24 +5796,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B8 80            ADCA   [-128,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B8 80            ADDA   [-128,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove34() {
+  public void testADDAIndexedConstantIndirectMove34() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5821,7 +5821,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[127,Y]  ; 8000   \tA9 B8 7F            ADCA   [127,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[127,Y]  ; 8000   \tAB B8 7F            ADDA   [127,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5829,24 +5829,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B8 7F            ADCA   [127,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B8 7F            ADDA   [127,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove35() {
+  public void testADDAIndexedConstantIndirectMove35() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5854,7 +5854,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-128,U]  ; 8000   \tA9 D8 80            ADCA   [-128,U]");
+      _builder.append("Start      \tADDA\t\t  \t[-128,U]  ; 8000   \tAB D8 80            ADDA   [-128,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5862,24 +5862,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D8 80            ADCA   [-128,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D8 80            ADDA   [-128,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant INdirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant INdirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove36() {
+  public void testADDAIndexedConstantIndirectMove36() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5887,7 +5887,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[127,U]  ; 8000   \tA9 D8 7F            ADCA   [127,U]");
+      _builder.append("Start      \tADDA\t\t  \t[127,U]  ; 8000   \tAB D8 7F            ADDA   [127,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5895,24 +5895,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D8 7F            ADCA   [127,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D8 7F            ADDA   [127,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove37() {
+  public void testADDAIndexedConstantIndirectMove37() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5920,7 +5920,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-128,S]  ; 8000   \tA9 F8 80            ADCA   [-128,S]");
+      _builder.append("Start      \tADDA\t\t  \t[-128,S]  ; 8000   \tAB F8 80            ADDA   [-128,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5928,24 +5928,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F8 80            ADCA   [-128,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F8 80            ADDA   [-128,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove38() {
+  public void testADDAIndexedConstantIndirectMove38() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5953,7 +5953,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[127,S]  ; 8000   \tA9 F8 7F            ADCA   [127,S]");
+      _builder.append("Start      \tADDA\t\t  \t[127,S]  ; 8000   \tAB F8 7F            ADDA   [127,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5961,24 +5961,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F8 7F            ADCA   [127,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F8 7F            ADDA   [127,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove39() {
+  public void testADDAIndexedConstantIndirectMove39() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -5986,7 +5986,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32768,X]  ; 8000   \tA9 99 80 00             ADCA   [-32768,X]");
+      _builder.append("Start      \tADDA\t\t  \t[-32768,X]  ; 8000   \tAB 99 80 00             ADDA   [-32768,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -5994,25 +5994,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x99, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 99 80 00             ADCA   [-32768,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 99 80 00             ADDA   [-32768,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove40() {
+  public void testADDAIndexedConstantIndirectMove40() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6020,7 +6020,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  [32767,X]  ; 8000   \tA9 99 7F FF             ADCA   [32767,X]");
+      _builder.append("Start      \tADDA\t\t  [32767,X]  ; 8000   \tAB 99 7F FF             ADDA   [32767,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6028,25 +6028,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x99, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 99 7F FF             ADCA   [32767,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 99 7F FF             ADDA   [32767,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove41() {
+  public void testADDAIndexedConstantIndirectMove41() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6054,7 +6054,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32768,Y]  ; 8000   \tA9 B9 80 00             ADCA   [-32768,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[-32768,Y]  ; 8000   \tAB B9 80 00             ADDA   [-32768,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6062,25 +6062,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B9 80 00             ADCA   [-32768,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B9 80 00             ADDA   [-32768,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove42() {
+  public void testADDAIndexedConstantIndirectMove42() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6088,7 +6088,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  [32767,Y]  ; 8000   \tA9 B9 7F FF             ADCA   [32767,Y]");
+      _builder.append("Start      \tADDA\t\t  [32767,Y]  ; 8000   \tAB B9 7F FF             ADDA   [32767,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6096,25 +6096,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B9 7F FF             ADCA   [32767,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B9 7F FF             ADDA   [32767,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove43() {
+  public void testADDAIndexedConstantIndirectMove43() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6122,7 +6122,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32768,U]  ; 8000   \tA9 D9 80 00             ADCA   [-32768,U]");
+      _builder.append("Start      \tADDA\t\t  \t[-32768,U]  ; 8000   \tAB D9 80 00             ADDA   [-32768,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6130,25 +6130,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D9 80 00             ADCA   [-32768,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D9 80 00             ADDA   [-32768,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove44() {
+  public void testADDAIndexedConstantIndirectMove44() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6156,7 +6156,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  [32767,U]  ; 8000   \tA9 D9 7F FF             ADCA   [32767,U]");
+      _builder.append("Start      \tADDA\t\t  [32767,U]  ; 8000   \tAB D9 7F FF             ADDA   [32767,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6164,25 +6164,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D9 7F FF             ADCA   [32767,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D9 7F FF             ADDA   [32767,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove45() {
+  public void testADDAIndexedConstantIndirectMove45() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6190,7 +6190,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32768,S]  ; 8000   \tA9 F9 80 00             ADCA   [-32768,S]");
+      _builder.append("Start      \tADDA\t\t  \t[-32768,S]  ; 8000   \tAB F9 80 00             ADDA   [-32768,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6198,25 +6198,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F9 80 00             ADCA   [-32768,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F9 80 00             ADDA   [-32768,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove46() {
+  public void testADDAIndexedConstantIndirectMove46() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6224,7 +6224,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  [32767,S]  ; 8000   \tA9 F9 7F FF             ADCA   [32767,S]");
+      _builder.append("Start      \tADDA\t\t  [32767,S]  ; 8000   \tAB F9 7F FF             ADDA   [32767,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6232,25 +6232,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F9 7F FF             ADCA   [32767,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F9 7F FF             ADDA   [32767,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove47() {
+  public void testADDAIndexedConstantIndirectMove47() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6258,36 +6258,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32769,X]  ; 8000   \tA9 99 80 00             ADCA   [-32769,X]");
+      _builder.append("Start      \tADDA\t\t  \t[-32769,X]  ; 8000   \tAB 99 80 00             ADDA   [-32769,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value -32769 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x99, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 99 80 00             ADCA   [-32769,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 99 80 00             ADDA   [-32769,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove48() {
+  public void testADDAIndexedConstantIndirectMove48() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6295,36 +6295,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  [32768,X]  ; 8000   \tA9 99 7F FF             ADCA   [32768,X]");
+      _builder.append("Start      \tADDA\t\t  [32768,X]  ; 8000   \tAB 99 7F FF             ADDA   [32768,X]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value 32768 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x99, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 99 7F FF             ADCA   [32768,X]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 99 7F FF             ADDA   [32768,X]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove49() {
+  public void testADDAIndexedConstantIndirectMove49() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6332,36 +6332,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32769,Y]  ; 8000   \tA9 B9 80 00             ADCA   [-32769,Y]");
+      _builder.append("Start      \tADDA\t\t  \t[-32769,Y]  ; 8000   \tAB B9 80 00             ADDA   [-32769,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value -32769 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B9 80 00             ADCA   [-32769,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B9 80 00             ADDA   [-32769,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove50() {
+  public void testADDAIndexedConstantIndirectMove50() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6369,36 +6369,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  [32768,Y]  ; 8000   \tA9 B9 7F FF             ADCA   [32768,Y]");
+      _builder.append("Start      \tADDA\t\t  [32768,Y]  ; 8000   \tAB B9 7F FF             ADDA   [32768,Y]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value 32768 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xB9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 B9 7F FF             ADCA   [32768,Y]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB B9 7F FF             ADDA   [32768,Y]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove51() {
+  public void testADDAIndexedConstantIndirectMove51() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6406,36 +6406,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32769,U]  ; 8000   \tA9 D9 80 00             ADCA   [-32769,U]");
+      _builder.append("Start      \tADDA\t\t  \t[-32769,U]  ; 8000   \tAB D9 80 00             ADDA   [-32769,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value -32769 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D9 80 00             ADCA   [-32769,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D9 80 00             ADDA   [-32769,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove52() {
+  public void testADDAIndexedConstantIndirectMove52() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6443,36 +6443,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  [32768,U]  ; 8000   \tA9 D9 7F FF             ADCA   [32768,U]");
+      _builder.append("Start      \tADDA\t\t  [32768,U]  ; 8000   \tAB D9 7F FF             ADDA   [32768,U]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value 32768 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xD9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 D9 7F FF             ADCA   [32768,U]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB D9 7F FF             ADDA   [32768,U]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove53() {
+  public void testADDAIndexedConstantIndirectMove53() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6480,36 +6480,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32769,S]  ; 8000   \tA9 F9 80 00             ADCA   [-32769,S]");
+      _builder.append("Start      \tADDA\t\t  \t[-32769,S]  ; 8000   \tAB F9 80 00             ADDA   [-32769,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value -32769 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F9 80 00             ADCA   [-32769,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F9 80 00             ADDA   [-32769,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed Constant Indirect move Mode instruction
+   * Check Assembled ADDA Indexed Constant Indirect move Mode instruction
    */
   @Test
-  public void testADCAIndexedConstantIndirectMove54() {
+  public void testADDAIndexedConstantIndirectMove54() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6517,36 +6517,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  [32768,S]  ; 8000   \tA9 F9 7F FF             ADCA   [32768,S]");
+      _builder.append("Start      \tADDA\t\t  [32768,S]  ; 8000   \tAB F9 7F FF             ADDA   [32768,S]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "Overflow detected for value 32768 , data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0xF9, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 F9 7F FF             ADCA   [32768,S]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB F9 7F FF             ADDA   [32768,S]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifToPCMove1() {
+  public void testADDAIndexedRelatifToPCMove1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6554,7 +6554,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t0,PCR  ; 8000   \tA9 8C 00            ADCA   0,PCR");
+      _builder.append("Start      \tADDA\t\t  \t0,PCR  ; 8000   \tAB 8C 00            ADDA   0,PCR");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6562,24 +6562,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 8C 00            ADCA   0,PCR", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 8C 00            ADDA   0,PCR", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifToPCMove2() {
+  public void testADDAIndexedRelatifToPCMove2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6587,7 +6587,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-128,PCR  ; 8000   \tA9 8C 80            ADCA   -128,PCR");
+      _builder.append("Start      \tADDA\t\t  \t-128,PCR  ; 8000   \tAB 8C 80            ADDA   -128,PCR");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6595,24 +6595,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 8C 80            ADCA   -128,PCR", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 8C 80            ADDA   -128,PCR", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifToPCMove3() {
+  public void testADDAIndexedRelatifToPCMove3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6620,7 +6620,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t127,PCR  ; 8000   \tA9 8C 7F            ADCA   127,PCR");
+      _builder.append("Start      \tADDA\t\t  \t127,PCR  ; 8000   \tAB 8C 7F            ADDA   127,PCR");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6628,24 +6628,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 8C 7F            ADCA   127,PCR", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 8C 7F            ADDA   127,PCR", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifToPCMove4() {
+  public void testADDAIndexedRelatifToPCMove4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6653,7 +6653,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-129,PCR  ; 8000   \tA9 8D FF 7F            ADCA   -129,PCR");
+      _builder.append("Start      \tADDA\t\t  \t-129,PCR  ; 8000   \tAB 8D FF 7F            ADDA   -129,PCR");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6661,25 +6661,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 8D FF 7F            ADCA   -129,PCR", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 8D FF 7F            ADDA   -129,PCR", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifToPCMove5() {
+  public void testADDAIndexedRelatifToPCMove5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6687,7 +6687,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t128,PCR  ; 8000   \tA9 8D 00 80            ADCA   128,PCR");
+      _builder.append("Start      \tADDA\t\t  \t128,PCR  ; 8000   \tAB 8D 00 80            ADDA   128,PCR");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6695,25 +6695,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 8D 00 80            ADCA   128,PCR", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 8D 00 80            ADDA   128,PCR", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifToPCMove6() {
+  public void testADDAIndexedRelatifToPCMove6() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6721,7 +6721,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-32768,PCR  ; 8000   \tA9 8D 80 00            ADCA   -32768,PCR");
+      _builder.append("Start      \tADDA\t\t  \t-32768,PCR  ; 8000   \tAB 8D 80 00            ADDA   -32768,PCR");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6729,25 +6729,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 8D 80 00            ADCA   -32768,PCR", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 8D 80 00            ADDA   -32768,PCR", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifToPCMove7() {
+  public void testADDAIndexedRelatifToPCMove7() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6755,7 +6755,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t32767,PCR  ; 8000   \tA9 8D 7F FF            ADCA   32767,PCR");
+      _builder.append("Start      \tADDA\t\t  \t32767,PCR  ; 8000   \tAB 8D 7F FF            ADDA   32767,PCR");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6763,25 +6763,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 8D 7F FF            ADCA   32767,PCR", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 8D 7F FF            ADDA   32767,PCR", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifToPCMove8() {
+  public void testADDAIndexedRelatifToPCMove8() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6789,36 +6789,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t-32769,PCR  ; 8000   \tA9 8D 80 00            ADCA   -32769,PCR");
+      _builder.append("Start      \tADDA\t\t  \t-32769,PCR  ; 8000   \tAB 8D 80 00            ADDA   -32769,PCR");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "The value -32769 is out than the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 8D 80 00            ADCA   -32769,PCR", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 8D 80 00            ADDA   -32769,PCR", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifToPCMove9() {
+  public void testADDAIndexedRelatifToPCMove9() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6826,36 +6826,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t32768,PCR  ; 8000   \tA9 8D 7F FF            ADCA   32768,PCR");
+      _builder.append("Start      \tADDA\t\t  \t32768,PCR  ; 8000   \tAB 8D 7F FF            ADDA   32768,PCR");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "The value 32768 is out than the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 8D 7F FF            ADCA   32768,PCR", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 8D 7F FF            ADDA   32768,PCR", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif indirect to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifIndirectToPCMove1() {
+  public void testADDAIndexedRelatifIndirectToPCMove1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6863,7 +6863,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[0,PCR]  ; 8000   \tA9 9C 00            ADCA   [0,PCR]");
+      _builder.append("Start      \tADDA\t\t  \t[0,PCR]  ; 8000   \tAB 9C 00            ADDA   [0,PCR]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6871,24 +6871,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 9C 00            ADCA   [0,PCR]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 9C 00            ADDA   [0,PCR]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif indirect to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifIndirectToPCMove2() {
+  public void testADDAIndexedRelatifIndirectToPCMove2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6896,7 +6896,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-128,PCR]  ; 8000   \tA9 9C 80            ADCA   [-128,PCR]");
+      _builder.append("Start      \tADDA\t\t  \t[-128,PCR]  ; 8000   \tAB 9C 80            ADDA   [-128,PCR]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6904,24 +6904,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 9C 80            ADCA   [-128,PCR]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 9C 80            ADDA   [-128,PCR]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif indirect to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifIndirectToPCMove3() {
+  public void testADDAIndexedRelatifIndirectToPCMove3() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6929,7 +6929,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[127,PCR]  ; 8000   \tA9 9C 7F            ADCA   [127,PCR]");
+      _builder.append("Start      \tADDA\t\t  \t[127,PCR]  ; 8000   \tAB 9C 7F            ADDA   [127,PCR]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6937,24 +6937,24 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 9C 7F            ADCA   [127,PCR]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 9C 7F            ADDA   [127,PCR]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif indirect to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifIndirectToPCMove4() {
+  public void testADDAIndexedRelatifIndirectToPCMove4() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6962,7 +6962,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-129,PCR]  ; 8000   \tA9 9D FF 7F            ADCA   [-129,PCR]");
+      _builder.append("Start      \tADDA\t\t  \t[-129,PCR]  ; 8000   \tAB 9D FF 7F            ADDA   [-129,PCR]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -6970,25 +6970,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 9D FF 7F            ADCA   [-129,PCR]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 9D FF 7F            ADDA   [-129,PCR]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif indirect to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifIndirectToPCMove5() {
+  public void testADDAIndexedRelatifIndirectToPCMove5() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -6996,7 +6996,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[128,PCR]  ; 8000   \tA9 9D 00 80            ADCA   [128,PCR]");
+      _builder.append("Start      \tADDA\t\t  \t[128,PCR]  ; 8000   \tAB 9D 00 80            ADDA   [128,PCR]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -7004,25 +7004,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 9D 00 80            ADCA   [128,PCR]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 9D 00 80            ADDA   [128,PCR]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif indirect to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifIndirectToPCMove6() {
+  public void testADDAIndexedRelatifIndirectToPCMove6() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -7030,7 +7030,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32768,PCR]  ; 8000   \tA9 9D 80 00            ADCA   [-32768,PCR]");
+      _builder.append("Start      \tADDA\t\t  \t[-32768,PCR]  ; 8000   \tAB 9D 80 00            ADDA   [-32768,PCR]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -7038,25 +7038,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 9D 80 00            ADCA   [-32768,PCR]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 9D 80 00            ADDA   [-32768,PCR]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif indirect to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifIndirectToPCMove7() {
+  public void testADDAIndexedRelatifIndirectToPCMove7() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -7064,7 +7064,7 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[32767,PCR]  ; 8000   \tA9 9D 7F FF            ADCA   [32767,PCR]");
+      _builder.append("Start      \tADDA\t\t  \t[32767,PCR]  ; 8000   \tAB 9D 7F FF            ADDA   [32767,PCR]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -7072,25 +7072,25 @@ public class TestADCAInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 9D 7F FF            ADCA   [32767,PCR]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 9D 7F FF            ADDA   [32767,PCR]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif indirect to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifIndirectToPCMove8() {
+  public void testADDAIndexedRelatifIndirectToPCMove8() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -7098,36 +7098,36 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[-32769,PCR]  ; 8000   \tA9 9D 80 00            ADCA   [-32769,PCR]");
+      _builder.append("Start      \tADDA\t\t  \t[-32769,PCR]  ; 8000   \tAB 9D 80 00            ADDA   [-32769,PCR]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "The value -32769 is out than the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 9D 80 00            ADCA   [-32769,PCR]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 9D 80 00            ADDA   [-32769,PCR]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check Assembled ADCA Indexed relatif indirect to PC Mode instruction
+   * Check Assembled ADDA Indexed relatif indirect to PC Mode instruction
    */
   @Test
-  public void testADCAIndexedRelatifIndirectToPCMove9() {
+  public void testADDAIndexedRelatifIndirectToPCMove9() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -7135,26 +7135,26 @@ public class TestADCAInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCA\t\t  \t[32768,PCR]  ; 8000   \tA9 9D 7F FF            ADCA   [32768,PCR]");
+      _builder.append("Start      \tADDA\t\t  \t[32768,PCR]  ; 8000   \tAB 9D 7F FF            ADDA   [32768,PCR]");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getAdcInstruction(), 
+        AssemblerPackage.eINSTANCE.getAddInstruction(), 
         AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
         "The value 32768 is out than the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledADCAInstruction line = ((AssembledADCAInstruction) _assembledLine);
+      final AssembledADDAInstruction line = ((AssembledADDAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0xA9, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0xAB, line.getOpcode()[0]);
       Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
       Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
       Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
       Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
       Assert.assertEquals("Check Label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 8000   \tA9 9D 7F FF            ADCA   [32768,PCR]", line.getComment());
+      Assert.assertEquals("Check comment", "; 8000   \tAB 9D 7F FF            ADDA   [32768,PCR]", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

@@ -38,7 +38,6 @@ import org.bpy.electronics.mc6809.assembler.tests.directives.TestSetDirective
 import org.bpy.electronics.mc6809.assembler.tests.directives.TestSpcDirective
 import org.bpy.electronics.mc6809.assembler.tests.directives.TestComment
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDDInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDCCInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLInstruction
@@ -107,6 +106,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTInstructio
 import org.bpy.electronics.mc6809.assembler.tests.samples.SorekSamples
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADCAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.directives.TestSetDPDirective
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -137,8 +138,9 @@ import org.bpy.electronics.mc6809.assembler.tests.directives.TestSetDPDirective
 	 
 	 /* Instructions  */
 	 TestADCAInstruction,
+	 TestADDAInstruction,
+	 TestADDBInstruction,
 	 TestADDDInstruction,
-	 TestADDInstruction,
 	 TestANDCCInstruction,
 	 TestANDInstruction,
 	 TestASLInstruction,

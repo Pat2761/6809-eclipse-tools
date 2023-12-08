@@ -546,13 +546,13 @@ class TestADCBInstruction {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 				   	ORG    			$8000
-		Start      	ADCB		  	#255
+		Start      	ADCB		  	#127
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 		val engine = AssemblerEngine.instance
 		val line = engine.getAssembledLine(2) as AssembledADCBInstruction
-		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(0));
 	}
 
 	/**
@@ -563,16 +563,16 @@ class TestADCBInstruction {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 				   	ORG    			$8000
-		Start      	ADCB		  	#256
+		Start      	ADCB		  	#128
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.adcInstruction,
 			ExpressionParser::OVERFLOW_ERROR,	
-			"The value 256 is greater than the possible limit, data may be lost"
+			"The value 128 is greater than the possible limit, data may be lost"
 		)
 		val engine = AssemblerEngine.instance
 		val line = engine.getAssembledLine(2) as AssembledADCBInstruction
-		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(0));
 	}
 	
 	/**
@@ -646,13 +646,13 @@ class TestADCBInstruction {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 				   	ORG    			$8000
-		Start      	ADCB		  	<255
+		Start      	ADCB		  	<127
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 		val engine = AssemblerEngine.instance
 		val line = engine.getAssembledLine(2) as AssembledADCBInstruction
-		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(0));
 	}
 
 	/**
@@ -663,16 +663,16 @@ class TestADCBInstruction {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 				   	ORG    			$8000
-		Start      	ADCB		  	<256
+		Start      	ADCB		  	<128
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.adcInstruction,
 			ExpressionParser::OVERFLOW_ERROR,	
-			"The value 256 is greater than the possible limit, data may be lost"
+			"The value 128 is greater than the possible limit, data may be lost"
 		)
 		val engine = AssemblerEngine.instance
 		val line = engine.getAssembledLine(2) as AssembledADCBInstruction
-		Assert.assertEquals("Check operand", 0xFF, line.operand.get(0));
+		Assert.assertEquals("Check operand", 0x7F, line.operand.get(0));
 	}
 	
 	/**

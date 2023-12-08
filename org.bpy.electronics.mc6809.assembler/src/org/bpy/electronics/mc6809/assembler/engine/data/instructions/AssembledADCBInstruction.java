@@ -43,25 +43,22 @@ public class AssembledADCBInstruction extends AbstractInstructionAssemblyLine {
 	/** contains the opcodes for each addressing mode */
 	private static final EnumMap<AddressingMode,int[]> OP_CODE = new EnumMap<>(AddressingMode.class);
 
-	/** contains the base of operand int for each addressing mode */
-	private static final EnumMap<AddressingMode,int[]> OPERAND = new EnumMap<>(AddressingMode.class);
-
 	/** contains the base of cycle needed for each addressing mode */
 	private static final EnumMap<AddressingMode,Integer> CYCLES = new EnumMap<>(AddressingMode.class);
 
 	static {
-		OP_CODE.put(AddressingMode.IMMEDIATE, new int[] {(int) 0xC9});
-		OP_CODE.put(AddressingMode.DIRECT, new int[] {(int) 0xD9});
-		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, new int[] {(int) 0xE9});
-		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_MODE, new int[] {(int) 0xE9});
-		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, new int[] {(int) 0xE9});
-		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_MODE, new int[] {(int) 0xE9});
-		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_MODE, new int[] {(int) 0xE9});
-		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE, new int[] {(int) 0xE9});
-		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC, new int[] {(int) 0xE9});
-		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, new int[] {(int) 0xE9});
-		OP_CODE.put(AddressingMode.EXTENDED_INDIRECT, new int[] {(int) 0xE9,(int) 0x9F});
-		OP_CODE.put(AddressingMode.EXTENDED, new int[] {(int) 0xF9});
+		OP_CODE.put(AddressingMode.IMMEDIATE, new int[] { 0xC9});
+		OP_CODE.put(AddressingMode.DIRECT, new int[] { 0xD9});
+		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, new int[] { 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_MODE, new int[] { 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, new int[] { 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_MODE, new int[] { 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_MODE, new int[] { 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE, new int[] { 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC, new int[] { 0xE9});
+		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, new int[] { 0xE9});
+		OP_CODE.put(AddressingMode.EXTENDED_INDIRECT, new int[] { 0xE9, 0x9F});
+		OP_CODE.put(AddressingMode.EXTENDED, new int[] { 0xF9});
 
 		CYCLES.put(AddressingMode.IMMEDIATE, 2);
 		CYCLES.put(AddressingMode.DIRECT, 4);
@@ -112,7 +109,7 @@ public class AssembledADCBInstruction extends AbstractInstructionAssemblyLine {
 	public void setOperand(AddressingMode mode) {
 		switch (mode) {
 		case IMMEDIATE:
-			setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND, -128, 255);
+			setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND, -128, 127);
 			break;
 			
 		case DIRECT:

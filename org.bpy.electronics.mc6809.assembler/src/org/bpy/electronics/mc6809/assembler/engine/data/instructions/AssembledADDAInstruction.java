@@ -22,7 +22,7 @@ import java.util.EnumMap;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
-import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
@@ -39,34 +39,33 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssem
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 
 /**
- * Allow to pasre an ADCA instruction
+ * Allow to parse an ADDA instruction
  * 
  * 
  * @author briand
  *
  */
-public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
+public class AssembledADDAInstruction extends AbstractInstructionAssemblyLine {
 
 	/** contains the opcodes for each addressing mode */
 	private static final EnumMap<AddressingMode,int[]> OP_CODE = new EnumMap<>(AddressingMode.class);
-
 
 	/** contains the base of cycle needed for each addressing mode */
 	private static final EnumMap<AddressingMode,Integer> CYCLES = new EnumMap<>(AddressingMode.class);
 	
 	static {
-		OP_CODE.put(AddressingMode.IMMEDIATE, new int[] { 0x89});
-		OP_CODE.put(AddressingMode.DIRECT, new int[] { 0x99});
-		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, new int[] { 0xA9});
-		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_MODE, new int[] { 0xA9});
-		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, new int[] { 0xA9});
-		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_MODE, new int[] { 0xA9});
-		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_MODE, new int[] { 0xA9});
-		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE, new int[] { 0xA9});
-		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC, new int[] { 0xA9});
-		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, new int[] { 0xA9});
-		OP_CODE.put(AddressingMode.EXTENDED_INDIRECT, new int[] { 0xA9, 0x9F});
-		OP_CODE.put(AddressingMode.EXTENDED, new int[] { 0xB9});
+		OP_CODE.put(AddressingMode.IMMEDIATE, new int[] { 0x8B});
+		OP_CODE.put(AddressingMode.DIRECT, new int[] { 0x9B});
+		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, new int[] { 0xAB});
+		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_MODE, new int[] { 0xAB});
+		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, new int[] { 0xAB});
+		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_MODE, new int[] { 0xAB});
+		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_MODE, new int[] { 0xAB});
+		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE, new int[] { 0xAB});
+		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC, new int[] { 0xAB});
+		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, new int[] { 0xAB});
+		OP_CODE.put(AddressingMode.EXTENDED_INDIRECT, new int[] { 0xAB, 0x9F});
+		OP_CODE.put(AddressingMode.EXTENDED, new int[] { 0xBB});
 
 		CYCLES.put(AddressingMode.IMMEDIATE, 2);
 		CYCLES.put(AddressingMode.DIRECT, 4);
@@ -83,7 +82,7 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 	}
 	
 	/** reference on the instruction */
-	private AdcInstruction instruction;
+	private AddInstruction instruction;
 	
 	/**
 	 * Allow to parse the instruction and define its parameters.
@@ -92,7 +91,7 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 	 * @param currentPcValue state of the current PC
 	 * @param lineNumber line number in assembly file
 	 */
-	public void parse(AdcInstruction instruction, int currentPcValue, int lineNumber) {
+	public void parse(AddInstruction instruction, int currentPcValue, int lineNumber) {
 		
 		this.label = CommandUtil.getLabel(instruction);
 		this.comment = CommandUtil.getComment(instruction);
@@ -110,7 +109,7 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 	 * 
 	 * @return reference on the editor instruction line.
 	 */
-	public AdcInstruction getInstruction() {
+	public AddInstruction getInstruction() {
 		return instruction;
 	}
 
@@ -123,19 +122,19 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 	public void setOperand(AddressingMode mode) {
 		switch (mode) {
 			case IMMEDIATE:
-				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND, -128, 127);
+				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.ADD_INSTRUCTION__OPERAND, -128, 127);
 				break;
 				
 			case DIRECT:
-				setDirectOperand(instruction, (DirectOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+				setDirectOperand(instruction, (DirectOperand)instruction.getOperand(), AssemblerPackage.Literals.ADD_INSTRUCTION__OPERAND);
 				break;
 			
 			case EXTENDED:
-				setExtendedOperand(instruction, (ExtendedOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+				setExtendedOperand(instruction, (ExtendedOperand)instruction.getOperand(), AssemblerPackage.Literals.ADD_INSTRUCTION__OPERAND);
 				break;
 				
 			case EXTENDED_INDIRECT:
-				setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+				setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand)instruction.getOperand(), AssemblerPackage.Literals.ADD_INSTRUCTION__OPERAND);
 				break;
 				
 			case INDEXED_ACCUMULATOR_MOVING_MODE:
@@ -147,7 +146,7 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 				break;
 				
 			case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
-				setIndexedAccumulatorMovingMode(instruction, (AutoIncDecIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+				setIndexedAccumulatorMovingMode(instruction, (AutoIncDecIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADD_INSTRUCTION__OPERAND);
 				break;
 				
 			case INDEXED_AUTO_DEC_INC_MODE:
@@ -155,19 +154,19 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 				break;
 				
 			case INDEXED_CONSTANT_MODE:
-				setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+				setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.ADD_INSTRUCTION__OPERAND);
 				break;
 				
 			case INDEXED_CONSTANT_INDIRECT_MODE:
-				setIndexedConstantIndirectMode(instruction, (ConstantIndexedMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+				setIndexedConstantIndirectMode(instruction, (ConstantIndexedMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.ADD_INSTRUCTION__OPERAND);
 				break;
 				
 			case INDEXED_RELATIF_TO_PC:
-				setRelatifToPCMode(instruction, (RelatifToPCMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+				setRelatifToPCMode(instruction, (RelatifToPCMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADD_INSTRUCTION__OPERAND);
 				break;
 				
 			case INDEXED_RELATIF_TO_PC_INDIRECT_MODE:
-				setRelatifToPCIndirectMode(instruction, (RelatifToPCIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND);
+				setRelatifToPCIndirectMode(instruction, (RelatifToPCIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.ADD_INSTRUCTION__OPERAND);
 				break;
 
 			default:

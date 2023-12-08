@@ -855,7 +855,7 @@ public class TestADCBInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCB\t\t  \t#255");
+      _builder.append("Start      \tADCB\t\t  \t#127");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -863,7 +863,7 @@ public class TestADCBInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
       final AssembledADCBInstruction line = ((AssembledADCBInstruction) _assembledLine);
-      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -881,17 +881,17 @@ public class TestADCBInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCB\t\t  \t#256");
+      _builder.append("Start      \tADCB\t\t  \t#128");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
         ExpressionParser.OVERFLOW_ERROR, 
-        "The value 256 is greater than the possible limit, data may be lost");
+        "The value 128 is greater than the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
       final AssembledADCBInstruction line = ((AssembledADCBInstruction) _assembledLine);
-      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -997,7 +997,7 @@ public class TestADCBInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCB\t\t  \t<255");
+      _builder.append("Start      \tADCB\t\t  \t<127");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -1005,7 +1005,7 @@ public class TestADCBInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
       final AssembledADCBInstruction line = ((AssembledADCBInstruction) _assembledLine);
-      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
@@ -1023,17 +1023,17 @@ public class TestADCBInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tADCB\t\t  \t<256");
+      _builder.append("Start      \tADCB\t\t  \t<128");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), 
         ExpressionParser.OVERFLOW_ERROR, 
-        "The value 256 is greater than the possible limit, data may be lost");
+        "The value 128 is greater than the possible limit, data may be lost");
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
       final AssembledADCBInstruction line = ((AssembledADCBInstruction) _assembledLine);
-      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
