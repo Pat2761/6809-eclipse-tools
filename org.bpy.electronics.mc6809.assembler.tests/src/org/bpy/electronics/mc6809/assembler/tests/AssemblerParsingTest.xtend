@@ -39,7 +39,6 @@ import org.bpy.electronics.mc6809.assembler.tests.directives.TestSpcDirective
 import org.bpy.electronics.mc6809.assembler.tests.directives.TestComment
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDDInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDCCInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASRInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBCCInstruction
@@ -108,6 +107,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADCAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.directives.TestSetDPDirective
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -142,7 +143,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDBInstructi
 	 TestADDBInstruction,
 	 TestADDDInstruction,
 	 TestANDCCInstruction,
-	 TestANDInstruction,
+	 TestANDAInstruction,
+	 TestANDBInstruction,
 	 TestASLInstruction,
 	 TestASRInstruction,
 	 TestBCCInstruction,
