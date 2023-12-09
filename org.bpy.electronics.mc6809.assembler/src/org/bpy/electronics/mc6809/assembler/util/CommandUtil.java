@@ -29,6 +29,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
@@ -591,6 +592,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(AsrInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a BIT instruction.
+	 * 
+	 * @param instruction reference on the BIT instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BitInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a BIT instruction.
+	 * 
+	 * @param instruction reference on the BIT instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BitInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

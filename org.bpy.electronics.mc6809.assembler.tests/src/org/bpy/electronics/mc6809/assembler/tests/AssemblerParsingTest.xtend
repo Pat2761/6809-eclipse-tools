@@ -48,7 +48,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBGEInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBGTInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBHIInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBHSInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBITInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBLEInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBLOInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBLSInstruction
@@ -111,6 +110,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBITAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBITBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -157,7 +158,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLBInstructi
 	 TestBGTInstruction,
 	 TestBHIInstruction,
 	 TestBHSInstruction,
-	 TestBITInstruction,
+	 TestBITAInstruction,
+	 TestBITBInstruction,
 	 TestBLEInstruction,
 	 TestBLOInstruction,
 	 TestBLSInstruction,

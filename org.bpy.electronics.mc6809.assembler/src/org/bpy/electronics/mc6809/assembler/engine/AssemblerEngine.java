@@ -34,6 +34,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
@@ -92,6 +93,8 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledAS
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBITAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBITBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -257,12 +260,41 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof AsrInstruction) {
 			parse((AsrInstruction)instructionLine.getInstruction());
 				
+		} else if (instructionLine.getInstruction() instanceof BitInstruction) {
+			parse((BitInstruction)instructionLine.getInstruction());
+				
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 				
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**
+	 * Parse the BITA and BITB instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(BitInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("BITA".equals(instruction.getInstruction())) {
+			line = new AssembledBITAInstruction();
+			((AssembledBITAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("BITB".equals(instruction.getInstruction())) {
+			line = new AssembledBITBInstruction();
+			((AssembledBITBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**
