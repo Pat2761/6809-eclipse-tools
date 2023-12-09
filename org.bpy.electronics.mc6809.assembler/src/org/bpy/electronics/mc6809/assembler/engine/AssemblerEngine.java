@@ -32,6 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
@@ -88,6 +89,9 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledAN
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -250,12 +254,43 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof AslInstruction) {
 			parse((AslInstruction)instructionLine.getInstruction());
 				
+		} else if (instructionLine.getInstruction() instanceof AsrInstruction) {
+			parse((AsrInstruction)instructionLine.getInstruction());
+				
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 				
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**
+	 * Parse the ASRA, ASRB and ASR instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(AsrInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("ASRA".equals(instruction.getInstruction())) {
+			line = new AssembledASRAInstruction();
+			((AssembledASRAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("ASRB".equals(instruction.getInstruction())) {
+			line = new AssembledASRBInstruction();
+			((AssembledASRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			line = new AssembledASRInstruction();
+			((AssembledASRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**

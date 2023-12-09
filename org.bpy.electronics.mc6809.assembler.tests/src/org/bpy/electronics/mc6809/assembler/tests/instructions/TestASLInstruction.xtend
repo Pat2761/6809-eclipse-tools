@@ -32,7 +32,6 @@ import org.junit.Test
 import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction
 import static org.junit.Assert.assertEquals
 import static org.junit.Assert.assertTrue
-import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand
 import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand
@@ -50,7 +49,6 @@ import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLInstruction
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine
-import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
