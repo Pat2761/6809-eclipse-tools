@@ -5844,27 +5844,33 @@ rule__AslInstruction__OperandAlternatives_1_2_0
 	}
 :
 	(
-		{ before(grammarAccess.getAslInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0()); }
+		{ before(grammarAccess.getAslInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0()); }
+		ruleImmediatOperand
+		{ after(grammarAccess.getAslInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getAslInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1()); }
 		ruleDirectOperand
-		{ after(grammarAccess.getAslInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0()); }
+		{ after(grammarAccess.getAslInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getAslInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1()); }
+		{ before(grammarAccess.getAslInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2()); }
 		ruleIndexedOperand
-		{ after(grammarAccess.getAslInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1()); }
+		{ after(grammarAccess.getAslInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getAslInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2()); }
+		{ before(grammarAccess.getAslInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3()); }
 		ruleExtendedOperand
-		{ after(grammarAccess.getAslInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2()); }
+		{ after(grammarAccess.getAslInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getAslInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3()); }
+		{ before(grammarAccess.getAslInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4()); }
 		ruleExtendedIndirectOperand
-		{ after(grammarAccess.getAslInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3()); }
+		{ after(grammarAccess.getAslInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4()); }
 	)
 ;
 finally {

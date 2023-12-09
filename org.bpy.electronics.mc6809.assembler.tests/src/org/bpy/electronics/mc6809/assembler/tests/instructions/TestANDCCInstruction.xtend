@@ -341,7 +341,7 @@ class TestANDCCInstruction {
 		Const	   	EQU          	5
 		Start		NOP
 					NOP    
-		Start      	ANDA		  	#Const+2
+		Start      	ANDCC		  	#Const+2
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.instructionLine,

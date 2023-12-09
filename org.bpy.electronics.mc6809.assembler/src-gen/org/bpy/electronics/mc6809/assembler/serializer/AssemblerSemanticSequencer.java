@@ -803,7 +803,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         instruction='ASLA' | 
 	 *         instruction='ASLB' | 
-	 *         (instruction='ASL' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *         (
+	 *             instruction='ASL' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
 	 *     )
 	 * </pre>
 	 */

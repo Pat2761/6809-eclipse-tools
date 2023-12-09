@@ -29,27 +29,27 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledABXInstruction
+import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLBInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
 
-class TestABXInstruction {
+class TestASLBInstruction {
 	@Inject ParseHelper<Model> parseHelper
 	@Inject extension ValidationTestHelper
 	
 	/**
-	 * Check ABX with extra space
+	 * Check ASLB with extra space
 	 */
 	@Test 
-	def void testSimpleABXWithExtraSpace() {
+	def void testSimpleASLBWithExtraSpace() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
-			       ABX  
+			       ORG    		$8000
+			       ASLB  
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -60,18 +60,20 @@ class TestABXInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ABX directive line", instructionLine.instruction instanceof AbxInstruction)
+		Assert.assertTrue("Must be an Asl Accumulateur line", instructionLine.instruction instanceof AslInstruction)
+		val aslInstruction = instructionLine.instruction as AslInstruction
+		Assert.assertEquals("Must be an ASLB instruction", "ASLB", aslInstruction.instruction)
 	}
 	
 	/**
-	 * Check ABX with extra space
+	 * Check ASLB with extra space
 	 */
 	@Test 
-	def void testSimpleABXWithoutExtraSpace() {
+	def void testSimpleASLBWithoutExtraSpace() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-			       ABX
+			       ASLB
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -82,18 +84,20 @@ class TestABXInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ABX directive line", instructionLine.instruction instanceof AbxInstruction)
+		Assert.assertTrue("Must be an Asl Accumulateur line", instructionLine.instruction instanceof AslInstruction)
+		val aslInstruction = instructionLine.instruction as AslInstruction
+		Assert.assertEquals("Must be an ASLB instruction", "ASLB", aslInstruction.instruction)
 	}
 	
 	/**
-	 * Check ABX with extra space
+	 * Check ASLB with extra space
 	 */
 	@Test 
-	def void testSimpleABXWithExtraSpaceWithComment() {
+	def void testSimpleASLBWithExtraSpaceWithComment() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
-			       ABX  			; It is a comment 
+			       ORG    	$8000
+			       ASLB  			; It is a comment 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -104,18 +108,20 @@ class TestABXInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ABX directive line", instructionLine.instruction instanceof AbxInstruction)
+		Assert.assertTrue("Must be an Asl Accumulateur line", instructionLine.instruction instanceof AslInstruction)
+		val aslInstruction = instructionLine.instruction as AslInstruction
+		Assert.assertEquals("Must be an ASLB instruction", "ASLB", aslInstruction.instruction)
 	}
 	
 	/**
-	 * Check ABX with extra space
+	 * Check ASLB with extra space
 	 */
 	@Test 
-	def void testSimpleABXWithoutExtraSpaceWithComment() {
+	def void testSimpleASLBWithoutExtraSpaceWithComment() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-			       ABX					; It is a comment
+			       ASLB					; It is a comment
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -126,11 +132,13 @@ class TestABXInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an ABX directive line", instructionLine.instruction instanceof AbxInstruction)
+		Assert.assertTrue("Must be an Asl Accumulateur line", instructionLine.instruction instanceof AslInstruction)
+		val aslInstruction = instructionLine.instruction as AslInstruction
+		Assert.assertEquals("Must be an ASLB instruction", "ASLB", aslInstruction.instruction)
 	}
-		
+	
 	/**
-	 * Check ABX instruction with duplicate label 
+	 * Check ASLB instruction with duplicate label 
 	 */
 	@Test 
 	def void testASLBWithDuplicateLabel() {
@@ -140,7 +148,7 @@ class TestABXInstruction {
 		Const	   	EQU          	5
 		Start		NOP
 					NOP    
-		Start      	ABX		  	
+		Start      	ASLB		  	
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.instructionLine,
@@ -150,36 +158,25 @@ class TestABXInstruction {
 	}
 	
 	/**
-	 * Check Assembled ABX
+	 * Check ASLB assembly instruction  
 	 */
 	@Test 
-	def void testAssembledABX() {
+	def void testASLBAssembly() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			      	ORG    $8000
-		LabelAbx	ABX					; Abx comment
+				   	ORG    			$8000
+		Start      	ASLB		  		    ; 48   ASLB
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
 		
 		val engine = AssemblerEngine.instance
-		
-		Assert.assertEquals("Check PC after instruction", 0x8001, engine.currentPcValue)
-		
-		val line = engine.getAssembledLine(2) as AssembledABXInstruction
-		Assert.assertEquals("Check label", "LabelAbx" , line.label)
-		Assert.assertEquals("Check comment", "; Abx comment" , line.comment)
-		Assert.assertEquals("Check lineNumber", 3 , line.lineNumber)
-		Assert.assertEquals("Check cycle number", 3 , line.cyclesNumber)
-		
-		val code = line.opcode
-		val operand = line.operand
-		
-		Assert.assertEquals("Check Opcode size",1,code.length)
-		Assert.assertEquals("Check Opcode code",0x3A,code.get(0))
-		Assert.assertEquals("Check Operand size",0,operand.length)
+		Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.currentPcValue)
+		val line = engine.getAssembledLine(2) as AssembledASLBInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode", 0x58, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 0, line.operand.length)
+		Assert.assertEquals("Check label", "Start" , line.label)
+		Assert.assertEquals("Check comment", "; 48   ASLB" , line.comment)
 	}
-	
 }

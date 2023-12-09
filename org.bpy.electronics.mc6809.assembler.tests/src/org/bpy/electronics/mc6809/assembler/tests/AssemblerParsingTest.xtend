@@ -109,6 +109,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -145,7 +147,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDBInstructi
 	 TestANDCCInstruction,
 	 TestANDAInstruction,
 	 TestANDBInstruction,
-	 TestASLInstruction,
+	 TestASLAInstruction,
+	 TestASLBInstruction,
 	 TestASRInstruction,
 	 TestBCCInstruction,
 	 TestBCSInstruction,

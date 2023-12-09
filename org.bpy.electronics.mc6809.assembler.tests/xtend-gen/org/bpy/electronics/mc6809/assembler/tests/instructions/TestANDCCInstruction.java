@@ -458,7 +458,7 @@ public class TestANDCCInstruction {
       _builder.append("\t\t\t");
       _builder.append("NOP    ");
       _builder.newLine();
-      _builder.append("Start      \tANDA\t\t  \t#Const+2");
+      _builder.append("Start      \tANDCC\t\t  \t#Const+2");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);

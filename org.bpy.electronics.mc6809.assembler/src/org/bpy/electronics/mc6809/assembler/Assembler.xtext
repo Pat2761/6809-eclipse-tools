@@ -1679,7 +1679,8 @@ AslInstruction:
 	|  
 	(
 	 	instruction = ('ASL')
-		WS operand = ( 
+		WS operand = (
+			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |

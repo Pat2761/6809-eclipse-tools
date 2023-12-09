@@ -7426,9 +7426,9 @@ ruleAslInstruction returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0());
+							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0());
 						}
-						lv_operand_3_1=ruleDirectOperand
+						lv_operand_3_1=ruleImmediatOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
@@ -7437,14 +7437,14 @@ ruleAslInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_1,
-								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+								"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
 							afterParserOrEnumRuleCall();
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1());
+							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1());
 						}
-						lv_operand_3_2=ruleIndexedOperand
+						lv_operand_3_2=ruleDirectOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
@@ -7453,14 +7453,14 @@ ruleAslInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_2,
-								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
 							afterParserOrEnumRuleCall();
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2());
+							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2());
 						}
-						lv_operand_3_3=ruleExtendedOperand
+						lv_operand_3_3=ruleIndexedOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
@@ -7469,14 +7469,14 @@ ruleAslInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_3,
-								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
 							afterParserOrEnumRuleCall();
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3());
+							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3());
 						}
-						lv_operand_3_4=ruleExtendedIndirectOperand
+						lv_operand_3_4=ruleExtendedOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
@@ -7485,6 +7485,22 @@ ruleAslInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_4,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getAslInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4());
+						}
+						lv_operand_3_5=ruleExtendedIndirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getAslInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_5,
 								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
 							afterParserOrEnumRuleCall();
 						}

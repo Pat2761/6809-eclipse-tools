@@ -18,14 +18,14 @@
 package org.bpy.electronics.mc6809.assembler.tests.instructions;
 
 import com.google.inject.Inject;
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledABXInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLBInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -44,7 +44,7 @@ import org.junit.runner.RunWith;
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 @SuppressWarnings("all")
-public class TestABXInstruction {
+public class TestASLBInstruction {
   @Inject
   private ParseHelper<Model> parseHelper;
 
@@ -53,19 +53,19 @@ public class TestABXInstruction {
   private ValidationTestHelper _validationTestHelper;
 
   /**
-   * Check ABX with extra space
+   * Check ASLB with extra space
    */
   @Test
-  public void testSimpleABXWithExtraSpace() {
+  public void testSimpleASLBWithExtraSpace() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ORG    $8000");
+      _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ABX  ");
+      _builder.append("ASLB  ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -80,17 +80,20 @@ public class TestABXInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ABX directive line", (_instruction instanceof AbxInstruction));
+      Assert.assertTrue("Must be an Asl Accumulateur line", (_instruction instanceof AslInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final AslInstruction aslInstruction = ((AslInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ASLB instruction", "ASLB", aslInstruction.getInstruction());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check ABX with extra space
+   * Check ASLB with extra space
    */
   @Test
-  public void testSimpleABXWithoutExtraSpace() {
+  public void testSimpleASLBWithoutExtraSpace() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -99,7 +102,7 @@ public class TestABXInstruction {
       _builder.append("ORG    $8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ABX");
+      _builder.append("ASLB");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -114,26 +117,29 @@ public class TestABXInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ABX directive line", (_instruction instanceof AbxInstruction));
+      Assert.assertTrue("Must be an Asl Accumulateur line", (_instruction instanceof AslInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final AslInstruction aslInstruction = ((AslInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ASLB instruction", "ASLB", aslInstruction.getInstruction());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check ABX with extra space
+   * Check ASLB with extra space
    */
   @Test
-  public void testSimpleABXWithExtraSpaceWithComment() {
+  public void testSimpleASLBWithExtraSpaceWithComment() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ORG    $8000");
+      _builder.append("ORG    \t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ABX  \t\t\t; It is a comment ");
+      _builder.append("ASLB  \t\t\t; It is a comment ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -148,17 +154,20 @@ public class TestABXInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ABX directive line", (_instruction instanceof AbxInstruction));
+      Assert.assertTrue("Must be an Asl Accumulateur line", (_instruction instanceof AslInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final AslInstruction aslInstruction = ((AslInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ASLB instruction", "ASLB", aslInstruction.getInstruction());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check ABX with extra space
+   * Check ASLB with extra space
    */
   @Test
-  public void testSimpleABXWithoutExtraSpaceWithComment() {
+  public void testSimpleASLBWithoutExtraSpaceWithComment() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -167,7 +176,7 @@ public class TestABXInstruction {
       _builder.append("ORG    $8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("ABX\t\t\t\t\t; It is a comment");
+      _builder.append("ASLB\t\t\t\t\t; It is a comment");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -182,14 +191,17 @@ public class TestABXInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an ABX directive line", (_instruction instanceof AbxInstruction));
+      Assert.assertTrue("Must be an Asl Accumulateur line", (_instruction instanceof AslInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final AslInstruction aslInstruction = ((AslInstruction) _instruction_1);
+      Assert.assertEquals("Must be an ASLB instruction", "ASLB", aslInstruction.getInstruction());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check ABX instruction with duplicate label
+   * Check ASLB instruction with duplicate label
    */
   @Test
   public void testASLBWithDuplicateLabel() {
@@ -207,7 +219,7 @@ public class TestABXInstruction {
       _builder.append("\t\t\t");
       _builder.append("NOP    ");
       _builder.newLine();
-      _builder.append("Start      \tABX\t\t  \t");
+      _builder.append("Start      \tASLB\t\t  \t");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -220,39 +232,31 @@ public class TestABXInstruction {
   }
 
   /**
-   * Check Assembled ABX
+   * Check ASLB assembly instruction
    */
   @Test
-  public void testAssembledABX() {
+  public void testASLBAssembly() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
       _builder.newLine();
-      _builder.append("\t      \t");
-      _builder.append("ORG    $8000");
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("LabelAbx\tABX\t\t\t\t\t; Abx comment");
+      _builder.append("Start      \tASLB\t\t  \t\t    ; 48   ASLB");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
       this._validationTestHelper.assertNoErrors(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
-      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
       final AssemblerEngine engine = AssemblerEngine.getInstance();
-      Assert.assertEquals("Check PC after instruction", 0x8001, engine.getCurrentPcValue());
+      Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledABXInstruction line = ((AssembledABXInstruction) _assembledLine);
-      Assert.assertEquals("Check label", "LabelAbx", line.getLabel());
-      Assert.assertEquals("Check comment", "; Abx comment", line.getComment());
-      Assert.assertEquals("Check lineNumber", 3, line.getLineNumber());
-      Assert.assertEquals("Check cycle number", 3, line.getCyclesNumber());
-      final int[] code = line.getOpcode();
-      final int[] operand = line.getOperand();
-      Assert.assertEquals("Check Opcode size", 1, code.length);
-      Assert.assertEquals("Check Opcode code", 0x3A, code[0]);
-      Assert.assertEquals("Check Operand size", 0, operand.length);
+      final AssembledASLBInstruction line = ((AssembledASLBInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x58, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 48   ASLB", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

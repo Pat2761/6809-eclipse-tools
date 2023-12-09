@@ -31,6 +31,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
@@ -84,6 +85,9 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledAD
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDCCInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -243,6 +247,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof AndCCInstruction) {
 			parse((AndCCInstruction)instructionLine.getInstruction());
 				
+		} else if (instructionLine.getInstruction() instanceof AslInstruction) {
+			parse((AslInstruction)instructionLine.getInstruction());
+				
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 				
@@ -251,6 +258,33 @@ public class AssemblerEngine {
 		}
 	}
 
+	/**
+	 * Parse the ASLA, ASLB and ASL instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(AslInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("ASLA".equals(instruction.getInstruction())) {
+			line = new AssembledASLAInstruction();
+			((AssembledASLAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("ASLB".equals(instruction.getInstruction())) {
+			line = new AssembledASLBInstruction();
+			((AssembledASLBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			line = new AssembledASLInstruction();
+			((AssembledASLInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
 
 	/**
 	 * Parse the ANDA and ANDB instruction.
