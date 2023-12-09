@@ -1702,7 +1702,11 @@ AslInstruction:
 AndCCInstruction:
 	instruction = ('ANDCC')
 	WS operand = ( 
-		ImmediatOperand  
+		ImmediatOperand | 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
 	)
 ;
 

@@ -5,12 +5,12 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -60,7 +60,7 @@ public class AndCCInstructionImpl extends MinimalEObjectImpl.Container implement
    * @generated
    * @ordered
    */
-  protected ImmediatOperand operand;
+  protected EObject operand;
 
   /**
    * <!-- begin-user-doc -->
@@ -114,7 +114,7 @@ public class AndCCInstructionImpl extends MinimalEObjectImpl.Container implement
    * @generated
    */
   @Override
-  public ImmediatOperand getOperand()
+  public EObject getOperand()
   {
     return operand;
   }
@@ -124,9 +124,9 @@ public class AndCCInstructionImpl extends MinimalEObjectImpl.Container implement
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOperand(ImmediatOperand newOperand, NotificationChain msgs)
+  public NotificationChain basicSetOperand(EObject newOperand, NotificationChain msgs)
   {
-    ImmediatOperand oldOperand = operand;
+    EObject oldOperand = operand;
     operand = newOperand;
     if (eNotificationRequired())
     {
@@ -142,7 +142,7 @@ public class AndCCInstructionImpl extends MinimalEObjectImpl.Container implement
    * @generated
    */
   @Override
-  public void setOperand(ImmediatOperand newOperand)
+  public void setOperand(EObject newOperand)
   {
     if (newOperand != operand)
     {
@@ -206,7 +206,7 @@ public class AndCCInstructionImpl extends MinimalEObjectImpl.Container implement
         setInstruction((String)newValue);
         return;
       case AssemblerPackage.AND_CC_INSTRUCTION__OPERAND:
-        setOperand((ImmediatOperand)newValue);
+        setOperand((EObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -226,7 +226,7 @@ public class AndCCInstructionImpl extends MinimalEObjectImpl.Container implement
         setInstruction(INSTRUCTION_EDEFAULT);
         return;
       case AssemblerPackage.AND_CC_INSTRUCTION__OPERAND:
-        setOperand((ImmediatOperand)null);
+        setOperand((EObject)null);
         return;
     }
     super.eUnset(featureID);

@@ -51,12 +51,12 @@ public interface AndCCInstruction extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference.
-   * @see #setOperand(ImmediatOperand)
+   * @see #setOperand(EObject)
    * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getAndCCInstruction_Operand()
    * @model containment="true"
    * @generated
    */
-  ImmediatOperand getOperand();
+  EObject getOperand();
 
   /**
    * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction#getOperand <em>Operand</em>}' containment reference.
@@ -66,6 +66,6 @@ public interface AndCCInstruction extends EObject
    * @see #getOperand()
    * @generated
    */
-  void setOperand(ImmediatOperand value);
+  void setOperand(EObject value);
 
 } // AndCCInstruction

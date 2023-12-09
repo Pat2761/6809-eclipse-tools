@@ -25,6 +25,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
@@ -528,6 +529,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(AndInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a ANDCC instruction.
+	 * 
+	 * @param instruction reference on the ANDCC instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(AndCCInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a ANDCC instruction.
+	 * 
+	 * @param instruction reference on the ANDCC instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(AndCCInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

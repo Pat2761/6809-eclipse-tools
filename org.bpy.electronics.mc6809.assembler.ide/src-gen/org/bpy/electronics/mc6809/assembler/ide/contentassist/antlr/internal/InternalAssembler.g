@@ -5871,6 +5871,45 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__AndCCInstruction__OperandAlternatives_2_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getAndCCInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0()); }
+		ruleImmediatOperand
+		{ after(grammarAccess.getAndCCInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getAndCCInstructionAccess().getOperandDirectOperandParserRuleCall_2_0_1()); }
+		ruleDirectOperand
+		{ after(grammarAccess.getAndCCInstructionAccess().getOperandDirectOperandParserRuleCall_2_0_1()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getAndCCInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0_2()); }
+		ruleIndexedOperand
+		{ after(grammarAccess.getAndCCInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0_2()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getAndCCInstructionAccess().getOperandExtendedOperandParserRuleCall_2_0_3()); }
+		ruleExtendedOperand
+		{ after(grammarAccess.getAndCCInstructionAccess().getOperandExtendedOperandParserRuleCall_2_0_3()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getAndCCInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_0_4()); }
+		ruleExtendedIndirectOperand
+		{ after(grammarAccess.getAndCCInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_0_4()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__AndInstruction__InstructionAlternatives_0_0
 	@init {
 		int stackSize = keepStackSize();
@@ -21655,9 +21694,9 @@ rule__AndCCInstruction__OperandAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getAndCCInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0()); }
-		ruleImmediatOperand
-		{ after(grammarAccess.getAndCCInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0()); }
+		{ before(grammarAccess.getAndCCInstructionAccess().getOperandAlternatives_2_0()); }
+		(rule__AndCCInstruction__OperandAlternatives_2_0)
+		{ after(grammarAccess.getAndCCInstructionAccess().getOperandAlternatives_2_0()); }
 	)
 ;
 finally {

@@ -723,20 +723,14 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     AndCCInstruction returns AndCCInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='ANDCC' operand=ImmediatOperand)
+	 *     (
+	 *         instruction='ANDCC' 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_AndCCInstruction(ISerializationContext context, AndCCInstruction semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.AND_CC_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.AND_CC_INSTRUCTION__INSTRUCTION));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.AND_CC_INSTRUCTION__OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.AND_CC_INSTRUCTION__OPERAND));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getAndCCInstructionAccess().getInstructionANDCCKeyword_0_0(), semanticObject.getInstruction());
-		feeder.accept(grammarAccess.getAndCCInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0(), semanticObject.getOperand());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

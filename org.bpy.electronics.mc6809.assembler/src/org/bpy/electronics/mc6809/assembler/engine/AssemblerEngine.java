@@ -29,6 +29,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
@@ -82,6 +83,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledAD
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDDInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDCCInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -238,13 +240,34 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof AndInstruction) {
 			parse((AndInstruction)instructionLine.getInstruction());
 				
+		} else if (instructionLine.getInstruction() instanceof AndCCInstruction) {
+			parse((AndCCInstruction)instructionLine.getInstruction());
+				
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 				
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+
+	/**
+	 * Parse the ANDA and ANDB instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(AndCCInstruction instruction) {
+		AbstractAssemblyLine line = new AssembledANDCCInstruction();
+		((AssembledANDCCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
 		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**
