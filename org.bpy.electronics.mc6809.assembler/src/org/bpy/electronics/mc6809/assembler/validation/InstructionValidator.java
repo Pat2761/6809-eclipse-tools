@@ -30,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.eclipse.xtext.validation.Check;
@@ -261,6 +262,27 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(CmpInstruction instruction) {
+		
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+	}	
+
+	/**
+	 * Check errors on the ComInstruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(ComInstruction instruction) {
 		
 		// Management of errors after code analyse 
 		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);

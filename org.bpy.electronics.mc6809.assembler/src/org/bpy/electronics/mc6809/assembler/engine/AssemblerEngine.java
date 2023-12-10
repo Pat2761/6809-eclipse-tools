@@ -39,6 +39,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
@@ -107,6 +108,9 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCM
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPUInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPXInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPYInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCOMAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCOMBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCOMInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -281,6 +285,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof CmpInstruction) {
 			parse((CmpInstruction)instructionLine.getInstruction());
 				
+		} else if (instructionLine.getInstruction() instanceof ComInstruction) {
+			parse((ComInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 				
@@ -289,6 +296,39 @@ public class AssemblerEngine {
 		}
 	}
 
+	/**
+	 * Parse the COMA, COMB and COM instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(ComInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("COMA".equals(instruction.getInstruction())) {
+			line = new AssembledCOMAInstruction();
+			((AssembledCOMAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("COMB".equals(instruction.getInstruction())) {
+			line = new AssembledCOMBInstruction();
+			((AssembledCOMBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			line = new AssembledCOMInstruction();
+			((AssembledCOMInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**
+	 * Parse the CMPA, CMPB, CMPD, CMPU, CMPS, CMPX and CMPY instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
 	private void parse(CmpInstruction instruction) {
 		AbstractAssemblyLine line=null;
 
