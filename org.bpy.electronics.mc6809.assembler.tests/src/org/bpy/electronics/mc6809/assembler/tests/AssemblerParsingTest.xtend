@@ -61,7 +61,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBSRInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBVCInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBVSInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCLRInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCOMInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCWAIInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestDAAInstruction
@@ -112,6 +111,10 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBITAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBITBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCLRAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCLRBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -172,8 +175,11 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBITBInstructi
 	 TestBSRInstruction,
 	 TestBVCInstruction,
 	 TestBVSInstruction,
+	 TestCLRAInstruction,
+	 TestCLRBInstruction,
 	 TestCLRInstruction,
-	 TestCMPInstruction,
+	 TestCMPAInstruction,
+	 TestCMPBInstruction,
 	 TestCOMInstruction,
 	 TestCWAIInstruction,
 	 TestDAAInstruction,

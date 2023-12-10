@@ -32,6 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -633,6 +634,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(ClrInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a CMP instruction.
+	 * 
+	 * @param instruction reference on the CMP instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(CmpInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a CMP instruction.
+	 * 
+	 * @param instruction reference on the CMP instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(CmpInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

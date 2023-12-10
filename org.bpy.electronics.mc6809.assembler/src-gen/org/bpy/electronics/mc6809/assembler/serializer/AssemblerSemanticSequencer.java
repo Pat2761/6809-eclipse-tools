@@ -1227,7 +1227,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         instruction='CLRA' | 
 	 *         instruction='CLRB' | 
-	 *         (instruction='CLR' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *         (
+	 *             instruction='CLR' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
 	 *     )
 	 * </pre>
 	 */
@@ -1243,7 +1246,15 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         (instruction='CMPA' | instruction='CMPB') 
+	 *         (
+	 *             instruction='CMPA' | 
+	 *             instruction='CMPB' | 
+	 *             instruction='CMPD' | 
+	 *             instruction='CMPS' | 
+	 *             instruction='CMPU' | 
+	 *             instruction='CMPX' | 
+	 *             instruction='CMPY'
+	 *         ) 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>

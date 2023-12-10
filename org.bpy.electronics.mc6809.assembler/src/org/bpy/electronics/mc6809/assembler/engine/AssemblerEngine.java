@@ -38,6 +38,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
@@ -99,6 +100,9 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBI
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCLRAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCLRBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCLRInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPDInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -270,12 +274,53 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof ClrInstruction) {
 			parse((ClrInstruction)instructionLine.getInstruction());
 				
+		} else if (instructionLine.getInstruction() instanceof CmpInstruction) {
+			parse((CmpInstruction)instructionLine.getInstruction());
+				
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 				
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	private void parse(CmpInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("CMPA".equals(instruction.getInstruction())) {
+			line = new AssembledCMPAInstruction();
+			((AssembledCMPAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("CMPB".equals(instruction.getInstruction())) {
+			line = new AssembledCMPBInstruction();
+			((AssembledCMPBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("CMPD".equals(instruction.getInstruction())) {
+			line = new AssembledCMPDInstruction();
+			((AssembledCMPDInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("CMPS".equals(instruction.getInstruction())) {
+//			line = new AssembledCLRBInstruction();
+//			((AssembledCLRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("CMPU".equals(instruction.getInstruction())) {
+//			line = new AssembledCLRBInstruction();
+//			((AssembledCLRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("CMPX".equals(instruction.getInstruction())) {
+//			line = new AssembledCLRBInstruction();
+//			((AssembledCLRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("CMPY".equals(instruction.getInstruction())) {
+//			line = new AssembledCLRBInstruction();
+//			((AssembledCLRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+//			line = new AssembledCLRInstruction();
+//			((AssembledCLRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**

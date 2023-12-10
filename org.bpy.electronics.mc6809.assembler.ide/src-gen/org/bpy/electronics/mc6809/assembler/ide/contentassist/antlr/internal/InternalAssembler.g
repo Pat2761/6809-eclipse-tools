@@ -5143,6 +5143,36 @@ rule__CmpInstruction__InstructionAlternatives_0_0
 		'CMPB'
 		{ after(grammarAccess.getCmpInstructionAccess().getInstructionCMPBKeyword_0_0_1()); }
 	)
+	|
+	(
+		{ before(grammarAccess.getCmpInstructionAccess().getInstructionCMPDKeyword_0_0_2()); }
+		'CMPD'
+		{ after(grammarAccess.getCmpInstructionAccess().getInstructionCMPDKeyword_0_0_2()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getCmpInstructionAccess().getInstructionCMPSKeyword_0_0_3()); }
+		'CMPS'
+		{ after(grammarAccess.getCmpInstructionAccess().getInstructionCMPSKeyword_0_0_3()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getCmpInstructionAccess().getInstructionCMPUKeyword_0_0_4()); }
+		'CMPU'
+		{ after(grammarAccess.getCmpInstructionAccess().getInstructionCMPUKeyword_0_0_4()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getCmpInstructionAccess().getInstructionCMPXKeyword_0_0_5()); }
+		'CMPX'
+		{ after(grammarAccess.getCmpInstructionAccess().getInstructionCMPXKeyword_0_0_5()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getCmpInstructionAccess().getInstructionCMPYKeyword_0_0_6()); }
+		'CMPY'
+		{ after(grammarAccess.getCmpInstructionAccess().getInstructionCMPYKeyword_0_0_6()); }
+	)
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -5235,27 +5265,33 @@ rule__ClrInstruction__OperandAlternatives_1_2_0
 	}
 :
 	(
-		{ before(grammarAccess.getClrInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0()); }
+		{ before(grammarAccess.getClrInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0()); }
+		ruleImmediatOperand
+		{ after(grammarAccess.getClrInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getClrInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1()); }
 		ruleDirectOperand
-		{ after(grammarAccess.getClrInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0()); }
+		{ after(grammarAccess.getClrInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getClrInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1()); }
+		{ before(grammarAccess.getClrInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2()); }
 		ruleIndexedOperand
-		{ after(grammarAccess.getClrInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1()); }
+		{ after(grammarAccess.getClrInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getClrInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2()); }
+		{ before(grammarAccess.getClrInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3()); }
 		ruleExtendedOperand
-		{ after(grammarAccess.getClrInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2()); }
+		{ after(grammarAccess.getClrInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getClrInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3()); }
+		{ before(grammarAccess.getClrInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4()); }
 		ruleExtendedIndirectOperand
-		{ after(grammarAccess.getClrInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3()); }
+		{ after(grammarAccess.getClrInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4()); }
 	)
 ;
 finally {

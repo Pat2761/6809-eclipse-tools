@@ -1210,7 +1210,7 @@ ComInstruction:
  *                    Indexed
  */
 CmpInstruction:
- 	instruction = ('CMPA' | 'CMPB')
+ 	instruction = ('CMPA' | 'CMPB' | 'CMPD' | 'CMPS' | 'CMPU' | 'CMPX' | 'CMPY')
 	WS operand = ( 
 		ImmediatOperand      |
 		DirectOperand  |
