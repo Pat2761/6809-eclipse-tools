@@ -1247,6 +1247,7 @@ ClrInstruction:
 	(
 	 	instruction = ('CLR')
 		WS operand = ( 
+			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |

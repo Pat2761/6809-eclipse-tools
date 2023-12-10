@@ -37,6 +37,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
@@ -95,6 +96,9 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledAS
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBITAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBITBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCLRAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCLRBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCLRInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -263,12 +267,43 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BitInstruction) {
 			parse((BitInstruction)instructionLine.getInstruction());
 				
+		} else if (instructionLine.getInstruction() instanceof ClrInstruction) {
+			parse((ClrInstruction)instructionLine.getInstruction());
+				
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 				
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**
+	 * Parse the CLRA, CLRB and CLR instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(ClrInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("CLRA".equals(instruction.getInstruction())) {
+			line = new AssembledCLRAInstruction();
+			((AssembledCLRAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("CLRB".equals(instruction.getInstruction())) {
+			line = new AssembledCLRBInstruction();
+			((AssembledCLRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			line = new AssembledCLRInstruction();
+			((AssembledCLRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**
