@@ -103,6 +103,10 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCL
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPDInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPSInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPUInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPXInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPYInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -298,20 +302,17 @@ public class AssemblerEngine {
 			line = new AssembledCMPDInstruction();
 			((AssembledCMPDInstruction) line).parse(instruction, currentPcValue, lineNumber);
 		} else if ("CMPS".equals(instruction.getInstruction())) {
-//			line = new AssembledCLRBInstruction();
-//			((AssembledCLRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			line = new AssembledCMPSInstruction();
+			((AssembledCMPSInstruction) line).parse(instruction, currentPcValue, lineNumber);
 		} else if ("CMPU".equals(instruction.getInstruction())) {
-//			line = new AssembledCLRBInstruction();
-//			((AssembledCLRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			line = new AssembledCMPUInstruction();
+			((AssembledCMPUInstruction) line).parse(instruction, currentPcValue, lineNumber);
 		} else if ("CMPX".equals(instruction.getInstruction())) {
-//			line = new AssembledCLRBInstruction();
-//			((AssembledCLRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			line = new AssembledCMPXInstruction();
+			((AssembledCMPXInstruction) line).parse(instruction, currentPcValue, lineNumber);
 		} else if ("CMPY".equals(instruction.getInstruction())) {
-//			line = new AssembledCLRBInstruction();
-//			((AssembledCLRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
-		} else {
-//			line = new AssembledCLRInstruction();
-//			((AssembledCLRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			line = new AssembledCMPYInstruction();
+			((AssembledCMPYInstruction) line).parse(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);

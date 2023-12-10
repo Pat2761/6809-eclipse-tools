@@ -115,6 +115,10 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCLRAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCLRBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPDInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPSInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPUInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPXInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -180,6 +184,10 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPBInstructi
 	 TestCLRInstruction,
 	 TestCMPAInstruction,
 	 TestCMPBInstruction,
+	 TestCMPDInstruction,
+	 TestCMPSInstruction,
+	 TestCMPUInstruction,
+	 TestCMPXInstruction,
 	 TestCOMInstruction,
 	 TestCWAIInstruction,
 	 TestDAAInstruction,
