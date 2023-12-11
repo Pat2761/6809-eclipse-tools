@@ -39,6 +39,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
@@ -738,6 +739,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(DecInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a EOR instruction.
+	 * 
+	 * @param instruction reference on the EOR instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(EorInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a EOR instruction.
+	 * 
+	 * @param instruction reference on the EOR instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(EorInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

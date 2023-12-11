@@ -46,6 +46,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
@@ -119,6 +120,8 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDA
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDECAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDECBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDECInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEORAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEORBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -305,12 +308,40 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof DecInstruction) {
 			parse((DecInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof EorInstruction) {
+			parse((EorInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 				
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**
+	 * Parse the EORA and EORB instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(EorInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("EORA".equals(instruction.getInstruction())) {
+			line = new AssembledEORAInstruction();
+			((AssembledEORAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("EORB".equals(instruction.getInstruction())) {
+			line = new AssembledEORBInstruction();
+			((AssembledEORBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**
