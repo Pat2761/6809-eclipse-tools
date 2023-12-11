@@ -121,6 +121,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPUInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCMPXInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCOMAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCOMBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestDECAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestDECBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -195,6 +197,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCOMBInstructi
 	 TestCOMInstruction,
 	 TestCWAIInstruction,
 	 TestDAAInstruction,
+	 TestDECAInstruction,
+	 TestDECBInstruction,
 	 TestDECInstruction,
 	 TestEORInstruction,
 	 TestEXGInstruction,

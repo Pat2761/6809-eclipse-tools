@@ -36,6 +36,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -717,6 +718,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(DaaInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a DEC instruction.
+	 * 
+	 * @param instruction reference on the DEC instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(DecInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a DEC instruction.
+	 * 
+	 * @param instruction reference on the DEC instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(DecInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
