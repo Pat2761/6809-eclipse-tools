@@ -84,6 +84,11 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	 */
 	public abstract void setCyclesNumber(AddressingMode mode);
 	
+	public AbstractInstructionAssemblyLine() {
+		opcodeBytes = new int[0];
+		operandBytes = new int[0];
+	}
+	
 	/**
 	 * Get the reference on the instruction operand
 	 * 

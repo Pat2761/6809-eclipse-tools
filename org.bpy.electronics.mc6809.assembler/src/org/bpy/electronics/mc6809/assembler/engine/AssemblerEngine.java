@@ -41,6 +41,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
+import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -111,6 +112,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCM
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCOMAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCOMBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCOMInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCWAIInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -288,12 +290,33 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof ComInstruction) {
 			parse((ComInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof CwaiInstruction) {
+			parse((CwaiInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 				
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**
+	 * Parse the CWAI instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(CwaiInstruction instruction) {
+		AbstractAssemblyLine line = new AssembledCWAIInstruction();
+		((AssembledCWAIInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**

@@ -1344,20 +1344,14 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     CwaiInstruction returns CwaiInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='CWAI' operand=ImmediatOperand)
+	 *     (
+	 *         instruction='CWAI' 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_CwaiInstruction(ISerializationContext context, CwaiInstruction semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.CWAI_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.CWAI_INSTRUCTION__INSTRUCTION));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.CWAI_INSTRUCTION__OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.CWAI_INSTRUCTION__OPERAND));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getCwaiInstructionAccess().getInstructionCWAIKeyword_0_0(), semanticObject.getInstruction());
-		feeder.accept(grammarAccess.getCwaiInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0(), semanticObject.getOperand());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

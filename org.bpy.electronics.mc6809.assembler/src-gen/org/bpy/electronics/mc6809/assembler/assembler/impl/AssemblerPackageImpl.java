@@ -6004,7 +6004,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(cwaiInstructionEClass, CwaiInstruction.class, "CwaiInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCwaiInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, CwaiInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCwaiInstruction_Operand(), this.getImmediatOperand(), null, "operand", null, 0, 1, CwaiInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCwaiInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, CwaiInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(comInstructionEClass, ComInstruction.class, "ComInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getComInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, ComInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

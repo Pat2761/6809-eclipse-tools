@@ -34,6 +34,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -675,6 +676,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(ComInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a CWAI instruction.
+	 * 
+	 * @param instruction reference on the CWAI instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(CwaiInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a COM instruction.
+	 * 
+	 * @param instruction reference on the COM instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(CwaiInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

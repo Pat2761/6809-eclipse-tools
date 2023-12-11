@@ -31,6 +31,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.eclipse.xtext.validation.Check;
@@ -73,18 +74,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkDirectiveLine(AdcInstruction instruction) {
-		
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
-		}
+		exposeProblems(instruction);
 	}	
 
 	/**
@@ -94,18 +84,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkDirectiveLine(AddInstruction instruction) {
-		
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
-		}
+		exposeProblems(instruction);
 	}	
 
 	/**
@@ -115,18 +94,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkDirectiveLine(AdddInstruction instruction) {
-		
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
-		}
+		exposeProblems(instruction);
 	}	
 
 	/**
@@ -136,18 +104,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(AndInstruction instruction) {
-		
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
-		}
+		exposeProblems(instruction);
 	}	
 
 	/**
@@ -157,18 +114,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(AndCCInstruction instruction) {
-		
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
-		}
+		exposeProblems(instruction);
 	}	
 
 	/**
@@ -178,18 +124,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(AslInstruction instruction) {
-		
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
-		}
+		exposeProblems(instruction);
 	}	
 
 	/**
@@ -199,18 +134,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(AsrInstruction instruction) {
-		
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
-		}
+		exposeProblems(instruction);
 	}	
 
 	/**
@@ -220,18 +144,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(BitInstruction instruction) {
-		
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
-		}
+		exposeProblems(instruction);
 	}	
 
 	/**
@@ -241,18 +154,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(ClrInstruction instruction) {
-		
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
-		}
+		exposeProblems(instruction);
 	}	
 
 	/**
@@ -262,18 +164,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(CmpInstruction instruction) {
-		
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
-		}
+		exposeProblems(instruction);
 	}	
 
 	/**
@@ -283,7 +174,26 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(ComInstruction instruction) {
-		
+		exposeProblems(instruction);
+	}	
+
+	/**
+	 * Check errors on the CwaiInstruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(CwaiInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Declare problems and warnings detected during the assembly step for an Instruction
+	 * 
+	 * @param instruction reference on the instruction
+	 */
+	private void exposeProblems(Object instruction) {
+
 		// Management of errors after code analyse 
 		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
 		for (AssemblerProblemManagerDescription error : errors) {
@@ -295,5 +205,5 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 		for (AssemblerProblemManagerDescription warning : warnings) {
 			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}
-	}	
+	}
 }

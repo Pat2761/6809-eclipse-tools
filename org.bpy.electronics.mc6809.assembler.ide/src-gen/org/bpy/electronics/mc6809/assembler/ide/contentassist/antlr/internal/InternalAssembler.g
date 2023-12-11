@@ -5052,6 +5052,45 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__CwaiInstruction__OperandAlternatives_2_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getCwaiInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0()); }
+		ruleImmediatOperand
+		{ after(grammarAccess.getCwaiInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getCwaiInstructionAccess().getOperandDirectOperandParserRuleCall_2_0_1()); }
+		ruleDirectOperand
+		{ after(grammarAccess.getCwaiInstructionAccess().getOperandDirectOperandParserRuleCall_2_0_1()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getCwaiInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0_2()); }
+		ruleIndexedOperand
+		{ after(grammarAccess.getCwaiInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0_2()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getCwaiInstructionAccess().getOperandExtendedOperandParserRuleCall_2_0_3()); }
+		ruleExtendedOperand
+		{ after(grammarAccess.getCwaiInstructionAccess().getOperandExtendedOperandParserRuleCall_2_0_3()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getCwaiInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_0_4()); }
+		ruleExtendedIndirectOperand
+		{ after(grammarAccess.getCwaiInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_0_4()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__ComInstruction__Alternatives
 	@init {
 		int stackSize = keepStackSize();
@@ -20876,9 +20915,9 @@ rule__CwaiInstruction__OperandAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getCwaiInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0()); }
-		ruleImmediatOperand
-		{ after(grammarAccess.getCwaiInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0()); }
+		{ before(grammarAccess.getCwaiInstructionAccess().getOperandAlternatives_2_0()); }
+		(rule__CwaiInstruction__OperandAlternatives_2_0)
+		{ after(grammarAccess.getCwaiInstructionAccess().getOperandAlternatives_2_0()); }
 	)
 ;
 finally {

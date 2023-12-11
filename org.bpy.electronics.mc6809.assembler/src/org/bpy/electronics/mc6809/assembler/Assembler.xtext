@@ -1150,7 +1150,11 @@ DaaInstruction:
 CwaiInstruction:
  	instruction = ('CWAI')
 	WS operand = ( 
-		ImmediatOperand  
+		ImmediatOperand |  
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
 	)
 ;
 
