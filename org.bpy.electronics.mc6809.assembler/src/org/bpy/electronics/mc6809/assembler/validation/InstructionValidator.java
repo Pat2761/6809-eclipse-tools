@@ -32,6 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.eclipse.xtext.validation.Check;
@@ -184,6 +185,16 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(CwaiInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+
+	/**
+	 * Check errors on the DaaInstruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(DaaInstruction instruction) {
 		exposeProblems(instruction);
 	}	
 	
