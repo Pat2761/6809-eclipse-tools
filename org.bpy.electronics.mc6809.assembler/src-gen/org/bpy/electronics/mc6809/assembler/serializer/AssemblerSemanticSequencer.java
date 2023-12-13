@@ -824,7 +824,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         instruction='ASRA' | 
 	 *         instruction='ASRB' | 
-	 *         (instruction='ASR' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *         (
+	 *             instruction='ASR' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
 	 *     )
 	 * </pre>
 	 */
@@ -1273,7 +1276,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         instruction='COMA' | 
 	 *         instruction='COMB' | 
-	 *         (instruction='COM' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *         (
+	 *             instruction='COM' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
 	 *     )
 	 * </pre>
 	 */
@@ -1384,7 +1390,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         instruction='DECA' | 
 	 *         instruction='DECB' | 
-	 *         (instruction='DEC' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *         (
+	 *             instruction='DEC' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
 	 *     )
 	 * </pre>
 	 */
@@ -1806,7 +1815,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         instruction='INCA' | 
 	 *         instruction='INCB' | 
-	 *         (instruction='INC' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *         (
+	 *             instruction='INC' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
 	 *     )
 	 * </pre>
 	 */
@@ -1932,7 +1944,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     JmpInstruction returns JmpInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='JMP' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     (
+	 *         instruction='JMP' 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_JmpInstruction(ISerializationContext context, JmpInstruction semanticObject) {
@@ -1946,7 +1961,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     JsrInstruction returns JsrInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='JSR' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *     (
+	 *         instruction='JSR' 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_JsrInstruction(ISerializationContext context, JsrInstruction semanticObject) {

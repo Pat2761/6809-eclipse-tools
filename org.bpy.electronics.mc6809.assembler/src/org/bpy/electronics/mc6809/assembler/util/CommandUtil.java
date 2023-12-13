@@ -49,6 +49,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
+import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
@@ -796,10 +798,52 @@ public class CommandUtil {
 	}
 
 	/**
-	 * Return the comment associated to a INC instruction
+	 * Return the comment associated to a INC instruction.
+	 * 
+	 * @param instruction reference on the INC instruction
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(IncInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a JMP instruction.
+	 * 
+	 * @param instruction reference on the JMP instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(JmpInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a JMP instruction.
+	 * 
+	 * @param instruction reference on the JMP instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(JmpInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a JSR instruction.
+	 * 
+	 * @param instruction reference on the JSR instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(JsrInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a JSR instruction.
+	 * 
+	 * @param instruction reference on the JSR instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(JsrInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

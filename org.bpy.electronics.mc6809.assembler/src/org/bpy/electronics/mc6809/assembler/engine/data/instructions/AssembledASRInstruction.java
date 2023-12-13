@@ -125,7 +125,7 @@ public class AssembledASRInstruction extends AbstractInstructionAssemblyLine {
 		switch (mode) {
 			case IMMEDIATE:
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-						"Immediat mode is not valid for the ASR instruction" , 
+						"Immediate mode is not valid for the ASR instruction" , 
 						AssemblerPackage.Literals.ASR_INSTRUCTION__OPERAND, 
 						InstructionValidator.ILLEGAL_MODE);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);

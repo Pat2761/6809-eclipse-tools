@@ -41,6 +41,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssem
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledINCInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -710,6 +711,36 @@ public class TestINCInstruction {
       this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), 
         AssemblerEngine.DUPLICATE_LABEL, 
         "Label Start is already defined");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  @Test
+  public void testINCWithImmediateMode() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tINC\t\t  \t\t#25           ; Check illegal mode");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getIncInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Immediate mode is not valid for the INC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check State", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledINCInstruction line = ((AssembledINCInstruction) _assembledLine);
+      Assert.assertEquals("Check Opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check Opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check Operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; Check illegal mode", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

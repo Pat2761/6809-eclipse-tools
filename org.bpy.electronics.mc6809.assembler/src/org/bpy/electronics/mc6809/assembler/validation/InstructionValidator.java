@@ -39,6 +39,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
+import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.eclipse.xtext.validation.Check;
 
@@ -233,6 +235,26 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	public void checkInstructionLine(ExgInstruction instruction) {
 		exposeProblems(instruction);
 	}	
+
+	/**
+	 * Check errors on the IncInstruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(IncInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the JmpInstruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(JmpInstruction instruction) {
+		exposeProblems(instruction);
+	}	
 	
 	/**
 	 * Check errors on the TfrInstruction line
@@ -245,12 +267,12 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	}	
 	
 	/**
-	 * Check errors on the IncInstruction line
+	 * Check errors on the JsrInstruction line
 	 * 
 	 * @param instruction reference on the instruction line
 	 */
 	@Check
-	public void checkInstructionLine(IncInstruction instruction) {
+	public void checkInstructionLine(JsrInstruction instruction) {
 		exposeProblems(instruction);
 	}	
 	

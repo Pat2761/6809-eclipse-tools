@@ -49,6 +49,8 @@ import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLInstruction
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLAInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -446,6 +448,31 @@ class TestASLInstruction {
 			AssemblerEngine::DUPLICATE_LABEL,
 			"Label Start is already defined"
 		)
+	}
+	
+	@Test 
+	def void testASLWithImmediateMode() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ASL		  		#25           ; Check illegal mode
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.aslInstruction,
+			InstructionValidator.ILLEGAL_MODE,
+			"Immediate mode is not valid for the ASL instruction"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check State", 0x8001, engine.currentPcValue)
+		
+		
+		val line = engine.getAssembledLine(2) as AssembledASLInstruction
+		Assert.assertEquals("Check Opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check Opcode value", 0x3F, line.opcode.get(0))
+		Assert.assertEquals("Check Operand length", 0, line.operand.length)
+		Assert.assertEquals("Check label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; Check illegal mode", line.comment)
 	}
 	
 	/**

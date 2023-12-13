@@ -933,6 +933,7 @@ Ld8Instruction:
 JsrInstruction:
  	instruction = ('JSR')
 	WS operand = ( 
+		ImmediatOperand |
 		DirectOperand  |
 		IndexedOperand | 
 		ExtendedOperand |
@@ -955,6 +956,7 @@ JsrInstruction:
 JmpInstruction:
  	instruction = ('JMP')
 	WS operand = ( 
+		ImmediatOperand |
 		DirectOperand  |
 		IndexedOperand | 
 		ExtendedOperand |
@@ -989,6 +991,7 @@ IncInstruction:
 	(
 	 	instruction = ('INC')
 		WS operand = ( 
+			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |
@@ -1077,6 +1080,7 @@ DecInstruction:
 	(
 	 	instruction = ('DEC')
 		WS operand = ( 
+			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |
@@ -1185,7 +1189,8 @@ ComInstruction:
 	|  
 	(
 	 	instruction = ('COM')
-		WS operand = ( 
+		WS operand = (
+			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |
@@ -1654,6 +1659,7 @@ AsrInstruction:
 	(
 	 	instruction = ('ASR')
 		WS operand = ( 
+			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |

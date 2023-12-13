@@ -49,6 +49,7 @@ import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRInstruction
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -446,6 +447,31 @@ class TestASRInstruction {
 			AssemblerEngine::DUPLICATE_LABEL,
 			"Label Start is already defined"
 		)
+	}
+	
+	@Test 
+	def void testASRWithImmediateMode() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	ASR		  		#25           ; Check illegal mode
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.asrInstruction,
+			InstructionValidator.ILLEGAL_MODE,
+			"Immediate mode is not valid for the ASR instruction"
+		)
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check State", 0x8001, engine.currentPcValue)
+		
+		
+		val line = engine.getAssembledLine(2) as AssembledASRInstruction
+		Assert.assertEquals("Check Opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check Opcode value", 0x3F, line.opcode.get(0))
+		Assert.assertEquals("Check Operand length", 0, line.operand.length)
+		Assert.assertEquals("Check label", "Start", line.label)
+		Assert.assertEquals("Check comment", "; Check illegal mode", line.comment)
 	}
 	
 	/**
