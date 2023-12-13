@@ -66,6 +66,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledBlankLine;
@@ -125,6 +126,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEO
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEORBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEXGInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -318,12 +320,38 @@ public class AssemblerEngine {
 			
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
+			parse((TfrInstruction)instructionLine.getInstruction());
 				
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
 	}
 
+	/**	
+	 * Parse the TFR instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(TfrInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledTFRInstruction();
+    	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the EXG instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
 	private void parse(ExgInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledEXGInstruction();
     	((AssembledEXGInstruction) line).parse(instruction, currentPcValue, lineNumber);

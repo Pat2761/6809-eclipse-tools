@@ -1023,7 +1023,7 @@ ExgInstruction:
 ;
 
 /*
- * EOR
+ * EORTFTR
  * 
  * Exclusive OR
  * Source Form		: EORA P; EORB P

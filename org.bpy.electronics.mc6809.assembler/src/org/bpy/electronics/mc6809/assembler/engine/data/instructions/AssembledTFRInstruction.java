@@ -19,7 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -28,15 +28,15 @@ import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescripti
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 /**
- * Allow to parse an EXG Instruction
+ * Allow to parse an TFR Instruction
  * 
  * @author briand
  *
  */
-public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
+public class AssembledTFRInstruction extends AbstractInstructionAssemblyLine {
 
 	/** Reference on the instruction */
-	private ExgInstruction instruction;
+	private TfrInstruction instruction;
 	
 	/**
 	 * Allow to parse the instruction and define its parameters.
@@ -45,7 +45,7 @@ public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
 	 * @param currentPcValue state of the current PC
 	 * @param lineNumber line number in assembly file
 	 */
-	public void parse(ExgInstruction instruction, int currentPcValue, int lineNumber) {
+	public void parse(TfrInstruction instruction, int currentPcValue, int lineNumber) {
 		this.label = CommandUtil.getLabel(instruction);
 		this.comment = CommandUtil.getComment(instruction);
 		this.instruction = instruction;
@@ -57,13 +57,13 @@ public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
 	 * 
 	 * @return reference on the editor instruction line.
 	 */
-	public ExgInstruction getInstruction() {
+	public TfrInstruction getInstruction() {
 		return instruction;
 	}
 
 	@Override
 	public void setOpcode(AddressingMode mode) {
-		opcodeBytes =  new int[] {0x1E};
+		opcodeBytes =  new int[] {0x1F};
 	}
 
 	@Override
@@ -75,7 +75,7 @@ public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
 		if (reg1 == reg2) {
 			AssemblerWarningDescription warning = new AssemblerWarningDescription(
 					"Exchanging the register " + reg1.getLiteral() + " with itself has no effect",
-					AssemblerPackage.Literals.EXG_INSTRUCTION__REG2,
+					AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
 					InstructionValidator.ILLEGAL_EXCHANGE);
 			AssemblerErrorManager.getInstance().addWarning(instruction, warning);
 		}
@@ -86,7 +86,7 @@ public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
 			if (reg2==Register.D) {
 				AssemblerWarningDescription warning = new AssemblerWarningDescription(
 						"Exchanging the register " + reg1.getLiteral() + " with a part of itself is suspicious",
-						AssemblerPackage.Literals.EXG_INSTRUCTION__REG2,
+						AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
 						InstructionValidator.ILLEGAL_EXCHANGE);
 				AssemblerErrorManager.getInstance().addWarning(instruction, warning);
        			
@@ -99,7 +99,7 @@ public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
 			if (reg2==Register.D) {
 				AssemblerWarningDescription warning = new AssemblerWarningDescription(
 						"Exchanging the register " + reg1.getLiteral() + " with a part of itself is suspicious",
-						AssemblerPackage.Literals.EXG_INSTRUCTION__REG2,
+						AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
 						InstructionValidator.ILLEGAL_EXCHANGE);
 				AssemblerErrorManager.getInstance().addWarning(instruction, warning);
        			
@@ -115,7 +115,7 @@ public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
 			if (reg2==Register.A || reg2==Register.B) {
 				AssemblerWarningDescription warning = new AssemblerWarningDescription(
 						"Exchanging the register " + reg1.getLiteral() + " with a part of itself is suspicious",
-						AssemblerPackage.Literals.EXG_INSTRUCTION__REG2,
+						AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
 						InstructionValidator.ILLEGAL_EXCHANGE);
 				AssemblerErrorManager.getInstance().addWarning(instruction, warning);
 			} else {
@@ -197,7 +197,7 @@ public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
 
 				AssemblerWarningDescription warning = new AssemblerWarningDescription(
 						"Exchanging the register " + reg1.getLiteral() + " with a 8 bits register is suspicious",
-						AssemblerPackage.Literals.EXG_INSTRUCTION__REG2,
+						AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
 						InstructionValidator.ILLEGAL_EXCHANGE);
 				AssemblerErrorManager.getInstance().addWarning(instruction, warning);
 			}
@@ -213,7 +213,7 @@ public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
 
 			AssemblerWarningDescription warning = new AssemblerWarningDescription(
 					"Exchanging the register " + reg1.getLiteral() + " with a 16 bits register is suspicious",
-					AssemblerPackage.Literals.EXG_INSTRUCTION__REG2,
+					AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
 					InstructionValidator.ILLEGAL_EXCHANGE);
 			AssemblerErrorManager.getInstance().addWarning(instruction, warning);
 		}

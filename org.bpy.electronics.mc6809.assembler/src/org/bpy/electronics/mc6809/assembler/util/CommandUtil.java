@@ -59,6 +59,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 
@@ -800,6 +801,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(NopInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an TFR instruction.
+	 * 
+	 * @param instruction reference on the TFR instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(TfrInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an TFR instruction.
+	 * 
+	 * @param instruction reference on the TFR instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(TfrInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
