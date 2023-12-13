@@ -53,6 +53,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
@@ -125,6 +126,9 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDE
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEORAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEORBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEXGInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledINCAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledINCBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledINCInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -318,6 +322,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof ExgInstruction) {
 			parse((ExgInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof IncInstruction) {
+			parse((IncInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 			
@@ -337,6 +344,34 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the INC instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(IncInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("INCA".equals(instruction.getInstruction())) {
+			line = new AssembledINCAInstruction();
+			((AssembledINCAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("INCB".equals(instruction.getInstruction())) {
+			line = new AssembledINCBInstruction();
+			((AssembledINCBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			line = new AssembledINCInstruction();
+			((AssembledINCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		}
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);

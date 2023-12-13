@@ -47,6 +47,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
@@ -781,6 +782,24 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(ExgInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a INC instruction.
+	 * 
+	 * @param instruction reference on the INC instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(IncInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a INC instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(IncInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
