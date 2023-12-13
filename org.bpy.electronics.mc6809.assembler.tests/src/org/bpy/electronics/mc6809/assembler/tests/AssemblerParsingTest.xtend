@@ -123,6 +123,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestCOMBInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestDECAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestDECBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEORAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEORBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -201,8 +202,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEORAInstructi
 	 TestDECBInstruction,
 	 TestDECInstruction,
 	 TestEORAInstruction,	
-		
-
+	 TestEORBInstruction,
 	 TestEXGInstruction,
 	 TestINCInstruction,
 	 TestJMPInstruction,

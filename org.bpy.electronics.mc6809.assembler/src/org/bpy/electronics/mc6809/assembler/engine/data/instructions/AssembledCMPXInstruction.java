@@ -92,7 +92,6 @@ public class AssembledCMPXInstruction extends AbstractInstructionAssemblyLine {
 	 * @param lineNumber line number in assembly file
 	 */
 	public void parse(CmpInstruction instruction, int currentPcValue, int lineNumber) {
-		
 		this.label = CommandUtil.getLabel(instruction);
 		this.comment = CommandUtil.getComment(instruction);
 		this.instruction = instruction;

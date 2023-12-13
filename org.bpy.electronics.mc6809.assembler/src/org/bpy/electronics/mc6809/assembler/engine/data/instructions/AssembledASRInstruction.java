@@ -95,7 +95,6 @@ public class AssembledASRInstruction extends AbstractInstructionAssemblyLine {
 	 * @param lineNumber line number in assembly file
 	 */
 	public void parse(AsrInstruction instruction, int currentPcValue, int lineNumber) {
-		
 		this.label = CommandUtil.getLabel(instruction);
 		this.comment = CommandUtil.getComment(instruction);
 		this.instruction = instruction;

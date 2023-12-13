@@ -41,15 +41,10 @@ public class AssembledASRBInstruction extends AbstractInstructionAssemblyLine {
 	 * @param lineNumber line number in assembly file
 	 */
 	public void parse(AsrInstruction instruction, int currentPcValue, int lineNumber) {
-		super.parse(currentPcValue, lineNumber);
-
 		this.label = CommandUtil.getLabel(instruction);
 		this.comment = CommandUtil.getComment(instruction);
 		this.instruction = instruction;
-		
-		setOpcode(null);
-		setOperand(null);
-		setCyclesNumber(null);
+		super.parse(currentPcValue, lineNumber);
 	}
 
 	/**

@@ -41,6 +41,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
@@ -759,6 +760,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(EorInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a EXG instruction.
+	 * 
+	 * @param instruction reference on the EXG instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(ExgInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a EXG instruction.
+	 * 
+	 * @param instruction reference on the EXG instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(ExgInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

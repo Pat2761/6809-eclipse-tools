@@ -36,6 +36,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.eclipse.xtext.validation.Check;
 
@@ -48,6 +49,7 @@ import org.eclipse.xtext.validation.Check;
 public class InstructionValidator extends AbstractAssemblerValidator  {
 
 	public static final String ILLEGAL_MODE = "illegalMode";
+	public static final String ILLEGAL_EXCHANGE = "illegalExchange";
 
 	/**
 	 * Check duplicate labels
@@ -217,6 +219,16 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(EorInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the ExgInstruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(ExgInstruction instruction) {
 		exposeProblems(instruction);
 	}	
 	
