@@ -45,6 +45,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.eclipse.xtext.validation.Check;
 
@@ -317,6 +318,16 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(LsrInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the MulInstruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(MulInstruction instruction) {
 		exposeProblems(instruction);
 	}	
 	

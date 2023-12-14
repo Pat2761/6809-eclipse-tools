@@ -238,9 +238,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRBInstructi
 	 TestLSRAInstruction,
 	 TestLSRBInstruction,
 	 TestLSRInstruction,
+	 TestMULInstruction,
 	 
-//	 TestLSRInstruction,
-//	 TestMULInstruction,
 //	 TestNegInstruction,
 //	 TestNOPInstruction,
 //	 TestORInstruction,

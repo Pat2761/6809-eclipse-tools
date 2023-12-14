@@ -62,6 +62,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
@@ -154,6 +155,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLS
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSRAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSRBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSRInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledMULInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -368,6 +370,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof LsrInstruction) {
 			parse((LsrInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof MulInstruction) {
+			parse((MulInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 			
@@ -387,6 +392,24 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the MUL instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(MulInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledMULInstruction();
+    	((AssembledMULInstruction) line).parse(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
