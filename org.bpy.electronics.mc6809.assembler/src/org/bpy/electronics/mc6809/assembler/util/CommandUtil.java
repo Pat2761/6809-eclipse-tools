@@ -54,6 +54,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
@@ -907,6 +908,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(LslInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a LSR instruction.
+	 * 
+	 * @param instruction reference on the LST instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(LsrInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a LSR instruction.
+	 * 
+	 * @param instruction reference on the LSR instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(LsrInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
