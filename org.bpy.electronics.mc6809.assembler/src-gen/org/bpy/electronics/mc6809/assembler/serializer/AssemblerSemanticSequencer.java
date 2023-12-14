@@ -2254,7 +2254,14 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     NegInstruction returns NegInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='NEGA' | instruction='NEGB' | (instruction='NEG' (operand=DirectOperand | operand=ExtendedOperand)))
+	 *     (
+	 *         instruction='NEGA' | 
+	 *         instruction='NEGB' | 
+	 *         (
+	 *             instruction='NEG' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_NegInstruction(ISerializationContext context, NegInstruction semanticObject) {

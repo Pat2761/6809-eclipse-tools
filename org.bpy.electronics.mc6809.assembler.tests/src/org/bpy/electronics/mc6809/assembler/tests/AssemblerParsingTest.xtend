@@ -72,7 +72,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestJSRInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSLInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestMULInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNegInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNOPInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORCCInstruction
@@ -137,6 +136,10 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSLAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSLBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASRAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASRBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNEGAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNEGBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -175,6 +178,9 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRBInstructi
 	 TestANDBInstruction,
 	 TestASLAInstruction,
 	 TestASLBInstruction,
+	 TestASLInstruction,
+	 TestASRAInstruction,
+	 TestASRBInstruction,
 	 TestASRInstruction,
 	 TestBCCInstruction,
 	 TestBCSInstruction,
@@ -239,6 +245,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRBInstructi
 	 TestLSRBInstruction,
 	 TestLSRInstruction,
 	 TestMULInstruction,
+	 TestNEGAInstruction,
+	 TestNEGBInstruction,
 	 
 //	 TestNegInstruction,
 //	 TestNOPInstruction,

@@ -4409,15 +4409,33 @@ rule__NegInstruction__OperandAlternatives_1_2_0
 	}
 :
 	(
-		{ before(grammarAccess.getNegInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0()); }
-		ruleDirectOperand
-		{ after(grammarAccess.getNegInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0()); }
+		{ before(grammarAccess.getNegInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0()); }
+		ruleImmediatOperand
+		{ after(grammarAccess.getNegInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getNegInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_1()); }
+		{ before(grammarAccess.getNegInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1()); }
+		ruleDirectOperand
+		{ after(grammarAccess.getNegInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getNegInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2()); }
+		ruleIndexedOperand
+		{ after(grammarAccess.getNegInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getNegInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3()); }
 		ruleExtendedOperand
-		{ after(grammarAccess.getNegInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_1()); }
+		{ after(grammarAccess.getNegInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getNegInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4()); }
+		ruleExtendedIndirectOperand
+		{ after(grammarAccess.getNegInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4()); }
 	)
 ;
 finally {

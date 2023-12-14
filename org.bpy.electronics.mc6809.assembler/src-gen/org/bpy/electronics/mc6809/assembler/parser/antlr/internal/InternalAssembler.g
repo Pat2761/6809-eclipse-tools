@@ -3831,9 +3831,9 @@ ruleNegInstruction returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getNegInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0());
+							newCompositeNode(grammarAccess.getNegInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0());
 						}
-						lv_operand_3_1=ruleDirectOperand
+						lv_operand_3_1=ruleImmediatOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getNegInstructionRule());
@@ -3842,14 +3842,14 @@ ruleNegInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_1,
-								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+								"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
 							afterParserOrEnumRuleCall();
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getNegInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_1());
+							newCompositeNode(grammarAccess.getNegInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1());
 						}
-						lv_operand_3_2=ruleExtendedOperand
+						lv_operand_3_2=ruleDirectOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getNegInstructionRule());
@@ -3858,7 +3858,55 @@ ruleNegInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_2,
+								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getNegInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2());
+						}
+						lv_operand_3_3=ruleIndexedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getNegInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_3,
+								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getNegInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3());
+						}
+						lv_operand_3_4=ruleExtendedOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getNegInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_4,
 								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getNegInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4());
+						}
+						lv_operand_3_5=ruleExtendedIndirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getNegInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_5,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
 							afterParserOrEnumRuleCall();
 						}
 					)

@@ -29,27 +29,27 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
-import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction
+import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledMULInstruction
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGAInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
 
-class TestMULInstruction {
+class TestNEGAInstruction {
 	@Inject ParseHelper<Model> parseHelper
 	@Inject extension ValidationTestHelper
 	
 	/**
-	 * Check MUL with extra space
+	 * Check NEGA with extra space
 	 */
 	@Test 
-	def void testSimpleMULWithExtraSpace() {
+	def void testSimpleNEGAWithExtraSpace() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    		$8000
-			       MUL  
+			       NEGA  
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -60,20 +60,20 @@ class TestMULInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof MulInstruction)
-		val MulInstruction = instructionLine.instruction as MulInstruction
-		Assert.assertEquals("Must be an MUL instruction", "MUL", MulInstruction.instruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof NegInstruction)
+		val NegInstruction = instructionLine.instruction as NegInstruction
+		Assert.assertEquals("Must be an NEGA instruction", "NEGA", NegInstruction.instruction)
 	}
 	
 	/**
-	 * Check MUL with extra space
+	 * Check NEGA with extra space
 	 */
 	@Test 
-	def void testSimpleMULWithoutExtraSpace() {
+	def void testSimpleNEGAWithoutExtraSpace() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-			       MUL
+			       NEGA
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -84,20 +84,20 @@ class TestMULInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof MulInstruction)
-		val MulInstruction = instructionLine.instruction as MulInstruction
-		Assert.assertEquals("Must be an MUL instruction", "MUL", MulInstruction.instruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof NegInstruction)
+		val NegInstruction = instructionLine.instruction as NegInstruction
+		Assert.assertEquals("Must be an NEGA instruction", "NEGA", NegInstruction.instruction)
 	}
 	
 	/**
-	 * Check MUL with extra space
+	 * Check NEGA with extra space
 	 */
 	@Test 
-	def void testSimpleMULWithExtraSpaceWithComment() {
+	def void testSimpleNEGAWithExtraSpaceWithComment() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    	$8000
-			       MUL  			; It is a comment 
+			       NEGA  			; It is a comment 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -108,20 +108,20 @@ class TestMULInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof MulInstruction)
-		val MulInstruction = instructionLine.instruction as MulInstruction
-		Assert.assertEquals("Must be an MUL instruction", "MUL", MulInstruction.instruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof NegInstruction)
+		val NegInstruction = instructionLine.instruction as NegInstruction
+		Assert.assertEquals("Must be an NEGA instruction", "NEGA", NegInstruction.instruction)
 	}
 	
 	/**
-	 * Check MUL with extra space
+	 * Check NEGA with extra space
 	 */
 	@Test 
-	def void testSimpleMULWithoutExtraSpaceWithComment() {
+	def void testSimpleNEGAWithoutExtraSpaceWithComment() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 			       ORG    $8000
-			       MUL					; It is a comment
+			       NEGA					; It is a comment
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -132,23 +132,23 @@ class TestMULInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof MulInstruction)
-		val mulInstruction = instructionLine.instruction as MulInstruction
-		Assert.assertEquals("Must be an MUL instruction", "MUL", mulInstruction.instruction)
+		Assert.assertTrue("Must be an NEG Accumulateur line", instructionLine.instruction instanceof NegInstruction)
+		val NegInstruction = instructionLine.instruction as NegInstruction
+		Assert.assertEquals("Must be an NEGA instruction", "NEGA", NegInstruction.instruction)
 	}
 	
 	/**
-	 * Check MUL instruction with duplicate label 
+	 * Check NEGA instruction with duplicate label 
 	 */
 	@Test 
-	def void testMULWithDuplicateLabel() {
+	def void testNEGAWithDuplicateLabel() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 				   	ORG    			$8000
 		Const	   	EQU          	5
 		Start		NOP
 					NOP    
-		Start      	MUL		  	
+		Start      	NEGA		  	
 		''')
 		Assert.assertNotNull(result)
 		result.assertError(AssemblerPackage.eINSTANCE.instructionLine,
@@ -158,25 +158,25 @@ class TestMULInstruction {
 	}
 	
 	/**
-	 * Check MUL assembly instruction  
+	 * Check NEGA assembly instruction  
 	 */
 	@Test 
-	def void testMULAssembly() {
+	def void testNEGAAssembly() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
 				   	ORG    			$8000
-		Start      	MUL		  		    ; 3D   MUL
+		Start      	NEGA		  		    ; 40   NEGA
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 		
 		val engine = AssemblerEngine.instance
 		Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.currentPcValue)
-		val line = engine.getAssembledLine(2) as AssembledMULInstruction
+		val line = engine.getAssembledLine(2) as AssembledNEGAInstruction
 		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
-		Assert.assertEquals("Check opcode", 0x3D, line.opcode.get(0))
+		Assert.assertEquals("Check opcode", 0x40, line.opcode.get(0))
 		Assert.assertEquals("Check operand length", 0, line.operand.length)
 		Assert.assertEquals("Check label", "Start" , line.label)
-		Assert.assertEquals("Check comment", "; 3D   MUL" , line.comment)
+		Assert.assertEquals("Check comment", "; 40   NEGA" , line.comment)
 	}
 }

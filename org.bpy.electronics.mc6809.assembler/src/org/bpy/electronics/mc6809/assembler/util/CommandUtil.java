@@ -57,6 +57,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
@@ -969,6 +970,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(NopInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an NEG instruction.
+	 * 
+	 * @param instruction reference on the NEG instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(NegInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an NEG instruction.
+	 * 
+	 * @param instruction reference on the NEG instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(NegInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

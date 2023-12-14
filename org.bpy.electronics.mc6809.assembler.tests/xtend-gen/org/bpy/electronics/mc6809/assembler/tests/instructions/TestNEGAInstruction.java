@@ -21,11 +21,11 @@ import com.google.inject.Inject;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
-import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledMULInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -44,7 +44,7 @@ import org.junit.runner.RunWith;
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 @SuppressWarnings("all")
-public class TestMULInstruction {
+public class TestNEGAInstruction {
   @Inject
   private ParseHelper<Model> parseHelper;
 
@@ -53,10 +53,10 @@ public class TestMULInstruction {
   private ValidationTestHelper _validationTestHelper;
 
   /**
-   * Check MUL with extra space
+   * Check NEGA with extra space
    */
   @Test
-  public void testSimpleMULWithExtraSpace() {
+  public void testSimpleNEGAWithExtraSpace() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -65,7 +65,7 @@ public class TestMULInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("MUL  ");
+      _builder.append("NEGA  ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -80,20 +80,20 @@ public class TestMULInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an Lsr Accumulateur line", (_instruction instanceof MulInstruction));
+      Assert.assertTrue("Must be an Lsr Accumulateur line", (_instruction instanceof NegInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final MulInstruction MulInstruction = ((org.bpy.electronics.mc6809.assembler.assembler.MulInstruction) _instruction_1);
-      Assert.assertEquals("Must be an MUL instruction", "MUL", MulInstruction.getInstruction());
+      final NegInstruction NegInstruction = ((org.bpy.electronics.mc6809.assembler.assembler.NegInstruction) _instruction_1);
+      Assert.assertEquals("Must be an NEGA instruction", "NEGA", NegInstruction.getInstruction());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check MUL with extra space
+   * Check NEGA with extra space
    */
   @Test
-  public void testSimpleMULWithoutExtraSpace() {
+  public void testSimpleNEGAWithoutExtraSpace() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -102,7 +102,7 @@ public class TestMULInstruction {
       _builder.append("ORG    $8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("MUL");
+      _builder.append("NEGA");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -117,20 +117,20 @@ public class TestMULInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an Lsr Accumulateur line", (_instruction instanceof MulInstruction));
+      Assert.assertTrue("Must be an Lsr Accumulateur line", (_instruction instanceof NegInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final MulInstruction MulInstruction = ((org.bpy.electronics.mc6809.assembler.assembler.MulInstruction) _instruction_1);
-      Assert.assertEquals("Must be an MUL instruction", "MUL", MulInstruction.getInstruction());
+      final NegInstruction NegInstruction = ((org.bpy.electronics.mc6809.assembler.assembler.NegInstruction) _instruction_1);
+      Assert.assertEquals("Must be an NEGA instruction", "NEGA", NegInstruction.getInstruction());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check MUL with extra space
+   * Check NEGA with extra space
    */
   @Test
-  public void testSimpleMULWithExtraSpaceWithComment() {
+  public void testSimpleNEGAWithExtraSpaceWithComment() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -139,7 +139,7 @@ public class TestMULInstruction {
       _builder.append("ORG    \t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("MUL  \t\t\t; It is a comment ");
+      _builder.append("NEGA  \t\t\t; It is a comment ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -154,20 +154,20 @@ public class TestMULInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an Lsr Accumulateur line", (_instruction instanceof MulInstruction));
+      Assert.assertTrue("Must be an Lsr Accumulateur line", (_instruction instanceof NegInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final MulInstruction MulInstruction = ((org.bpy.electronics.mc6809.assembler.assembler.MulInstruction) _instruction_1);
-      Assert.assertEquals("Must be an MUL instruction", "MUL", MulInstruction.getInstruction());
+      final NegInstruction NegInstruction = ((org.bpy.electronics.mc6809.assembler.assembler.NegInstruction) _instruction_1);
+      Assert.assertEquals("Must be an NEGA instruction", "NEGA", NegInstruction.getInstruction());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check MUL with extra space
+   * Check NEGA with extra space
    */
   @Test
-  public void testSimpleMULWithoutExtraSpaceWithComment() {
+  public void testSimpleNEGAWithoutExtraSpaceWithComment() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -176,7 +176,7 @@ public class TestMULInstruction {
       _builder.append("ORG    $8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("MUL\t\t\t\t\t; It is a comment");
+      _builder.append("NEGA\t\t\t\t\t; It is a comment");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -191,20 +191,20 @@ public class TestMULInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an Lsr Accumulateur line", (_instruction instanceof MulInstruction));
+      Assert.assertTrue("Must be an NEG Accumulateur line", (_instruction instanceof NegInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final MulInstruction mulInstruction = ((MulInstruction) _instruction_1);
-      Assert.assertEquals("Must be an MUL instruction", "MUL", mulInstruction.getInstruction());
+      final NegInstruction NegInstruction = ((org.bpy.electronics.mc6809.assembler.assembler.NegInstruction) _instruction_1);
+      Assert.assertEquals("Must be an NEGA instruction", "NEGA", NegInstruction.getInstruction());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check MUL instruction with duplicate label
+   * Check NEGA instruction with duplicate label
    */
   @Test
-  public void testMULWithDuplicateLabel() {
+  public void testNEGAWithDuplicateLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -219,7 +219,7 @@ public class TestMULInstruction {
       _builder.append("\t\t\t");
       _builder.append("NOP    ");
       _builder.newLine();
-      _builder.append("Start      \tMUL\t\t  \t");
+      _builder.append("Start      \tNEGA\t\t  \t");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -232,10 +232,10 @@ public class TestMULInstruction {
   }
 
   /**
-   * Check MUL assembly instruction
+   * Check NEGA assembly instruction
    */
   @Test
-  public void testMULAssembly() {
+  public void testNEGAAssembly() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -243,7 +243,7 @@ public class TestMULInstruction {
       _builder.append("\t\t   \t");
       _builder.append("ORG    \t\t\t$8000");
       _builder.newLine();
-      _builder.append("Start      \tMUL\t\t  \t\t    ; 3D   MUL");
+      _builder.append("Start      \tNEGA\t\t  \t\t    ; 40   NEGA");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -251,12 +251,12 @@ public class TestMULInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledMULInstruction line = ((AssembledMULInstruction) _assembledLine);
+      final AssembledNEGAInstruction line = ((AssembledNEGAInstruction) _assembledLine);
       Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode", 0x3D, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0x40, line.getOpcode()[0]);
       Assert.assertEquals("Check operand length", 0, line.getOperand().length);
       Assert.assertEquals("Check label", "Start", line.getLabel());
-      Assert.assertEquals("Check comment", "; 3D   MUL", line.getComment());
+      Assert.assertEquals("Check comment", "; 40   NEGA", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

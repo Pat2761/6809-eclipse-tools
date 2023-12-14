@@ -739,8 +739,11 @@ NegInstruction:
 	(
 	 	instruction = ('NEG')
 		WS operand = ( 
+			ImmediatOperand |
 			DirectOperand  |
-			ExtendedOperand 
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
 		)
 	)   
 ;
