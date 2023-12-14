@@ -78,8 +78,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Ld16Instruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Ld8Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
@@ -388,14 +387,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass ld16InstructionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass ld8InstructionEClass = null;
+  private EClass ldInstructionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -2153,9 +2145,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EClass getLd16Instruction()
+  public EClass getLdInstruction()
   {
-    return ld16InstructionEClass;
+    return ldInstructionEClass;
   }
 
   /**
@@ -2164,9 +2156,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getLd16Instruction_Instruction()
+  public EAttribute getLdInstruction_Instruction()
   {
-    return (EAttribute)ld16InstructionEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)ldInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -2175,42 +2167,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getLd16Instruction_Operand()
+  public EReference getLdInstruction_Operand()
   {
-    return (EReference)ld16InstructionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getLd8Instruction()
-  {
-    return ld8InstructionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getLd8Instruction_Instruction()
-  {
-    return (EAttribute)ld8InstructionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getLd8Instruction_Operand()
-  {
-    return (EReference)ld8InstructionEClass.getEStructuralFeatures().get(1);
+    return (EReference)ldInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5417,13 +5376,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEAttribute(leaInstructionEClass, LEA_INSTRUCTION__INSTRUCTION);
     createEReference(leaInstructionEClass, LEA_INSTRUCTION__OPERAND);
 
-    ld16InstructionEClass = createEClass(LD16_INSTRUCTION);
-    createEAttribute(ld16InstructionEClass, LD16_INSTRUCTION__INSTRUCTION);
-    createEReference(ld16InstructionEClass, LD16_INSTRUCTION__OPERAND);
-
-    ld8InstructionEClass = createEClass(LD8_INSTRUCTION);
-    createEAttribute(ld8InstructionEClass, LD8_INSTRUCTION__INSTRUCTION);
-    createEReference(ld8InstructionEClass, LD8_INSTRUCTION__OPERAND);
+    ldInstructionEClass = createEClass(LD_INSTRUCTION);
+    createEAttribute(ldInstructionEClass, LD_INSTRUCTION__INSTRUCTION);
+    createEReference(ldInstructionEClass, LD_INSTRUCTION__OPERAND);
 
     jsrInstructionEClass = createEClass(JSR_INSTRUCTION);
     createEAttribute(jsrInstructionEClass, JSR_INSTRUCTION__INSTRUCTION);
@@ -5966,13 +5921,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getLeaInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, LeaInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getLeaInstruction_Operand(), this.getIndexedOperand(), null, "operand", null, 0, 1, LeaInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(ld16InstructionEClass, Ld16Instruction.class, "Ld16Instruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLd16Instruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, Ld16Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getLd16Instruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, Ld16Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(ld8InstructionEClass, Ld8Instruction.class, "Ld8Instruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLd8Instruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, Ld8Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getLd8Instruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, Ld8Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(ldInstructionEClass, LdInstruction.class, "LdInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getLdInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, LdInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getLdInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, LdInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(jsrInstructionEClass, JsrInstruction.class, "JsrInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getJsrInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, JsrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -103,8 +103,7 @@ InstructionLine:
 		instruction = IncInstruction			|			
 		instruction = JmpInstruction			|			
 		instruction = JsrInstruction			|			
-		instruction = Ld8Instruction			|			
-		instruction = Ld16Instruction			|			
+		instruction = LdInstruction			    |			
 		instruction = LeaInstruction			|			
 		instruction = LslInstruction			|		
 		instruction = LsrInstruction			|						
@@ -860,34 +859,6 @@ LeaInstruction:
 ;
 
 /*
- * LD (16 bits)
- * 
- * Load Register from Memory
- * Source Form		: LDA P, LDB P 
- * Operation		: R <- M:M+1
- * Condition Codes	: H - Not affected.
- * 					  N - Set if the result is negative; cleared otherwise.
- * 					  Z - Set if the result Is zero; cleared otherwise,
- *                    V - Always cleared.
- * 					  C - Not affected.
- * Description		: Loads the contents of memory location M:M+1 into the designated 16 bits register.
- * Addressing Mode	: Immediate
- * 					  Extended
- *                    Direct
- *                    Indexed
- */
-Ld16Instruction:
- 	instruction = ('LDD' | 'LDX' | 'LDY' | 'LDS' | 'LDU')
-	WS operand = ( 
-		ImmediatOperand |
-		DirectOperand  |
-		IndexedOperand | 
-		ExtendedOperand |
-		ExtendedIndirectOperand 
-	)
-;
-
-/*
  * LD (8 bits)
  * 
  * Load Register from Memory
@@ -904,8 +875,8 @@ Ld16Instruction:
  *                    Direct
  *                    Indexed
  */
-Ld8Instruction:
- 	instruction = ('LDA' | 'LDB')
+LdInstruction:
+ 	instruction = ('LDA' | 'LDB'| 'LDD' | 'LDX' | 'LDY' | 'LDS' | 'LDU')
 	WS operand = ( 
 		ImmediatOperand |
 		DirectOperand  |

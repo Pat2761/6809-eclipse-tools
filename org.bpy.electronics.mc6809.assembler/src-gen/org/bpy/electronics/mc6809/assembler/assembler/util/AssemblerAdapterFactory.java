@@ -241,14 +241,9 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createLeaInstructionAdapter();
       }
       @Override
-      public Adapter caseLd16Instruction(Ld16Instruction object)
+      public Adapter caseLdInstruction(LdInstruction object)
       {
-        return createLd16InstructionAdapter();
-      }
-      @Override
-      public Adapter caseLd8Instruction(Ld8Instruction object)
-      {
-        return createLd8InstructionAdapter();
+        return createLdInstructionAdapter();
       }
       @Override
       public Adapter caseJsrInstruction(JsrInstruction object)
@@ -1233,31 +1228,16 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Ld16Instruction <em>Ld16 Instruction</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.LdInstruction <em>Ld Instruction</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Ld16Instruction
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LdInstruction
    * @generated
    */
-  public Adapter createLd16InstructionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Ld8Instruction <em>Ld8 Instruction</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.Ld8Instruction
-   * @generated
-   */
-  public Adapter createLd8InstructionAdapter()
+  public Adapter createLdInstructionAdapter()
   {
     return null;
   }

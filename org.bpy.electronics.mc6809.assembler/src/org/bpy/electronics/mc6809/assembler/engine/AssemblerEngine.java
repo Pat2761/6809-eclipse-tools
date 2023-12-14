@@ -57,6 +57,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
@@ -133,6 +134,13 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledIN
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledINCInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledJMPInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledJSRInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDDInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDSInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDUInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDXInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDYInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -335,6 +343,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof JsrInstruction) {
 			parse((JsrInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof LdInstruction) {
+			parse((LdInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 			
@@ -354,6 +365,49 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the LDx instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(LdInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("LDA".equals(instruction.getInstruction())) {
+			line = new AssembledLDAInstruction();
+			((AssembledLDAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDB".equals(instruction.getInstruction())) {
+			line = new AssembledLDBInstruction();
+			((AssembledLDBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDD".equals(instruction.getInstruction())) {
+			line = new AssembledLDDInstruction();
+			((AssembledLDDInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDS".equals(instruction.getInstruction())) {
+			line = new AssembledLDSInstruction();
+			((AssembledLDSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDU".equals(instruction.getInstruction())) {
+			line = new AssembledLDUInstruction();
+			((AssembledLDUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDX".equals(instruction.getInstruction())) {
+			line = new AssembledLDXInstruction();
+			((AssembledLDXInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDY".equals(instruction.getInstruction())) {
+			line = new AssembledLDYInstruction();
+			((AssembledLDYInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+//			line = new AssembledINCInstruction();
+//			((AssembledINCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		}
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);

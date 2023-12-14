@@ -78,8 +78,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Ld16Instruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Ld8Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
@@ -402,11 +401,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.JSR_INSTRUCTION:
 				sequence_JsrInstruction(context, (JsrInstruction) semanticObject); 
 				return; 
-			case AssemblerPackage.LD16_INSTRUCTION:
-				sequence_Ld16Instruction(context, (Ld16Instruction) semanticObject); 
-				return; 
-			case AssemblerPackage.LD8_INSTRUCTION:
-				sequence_Ld8Instruction(context, (Ld8Instruction) semanticObject); 
+			case AssemblerPackage.LD_INSTRUCTION:
+				sequence_LdInstruction(context, (LdInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.LEA_INSTRUCTION:
 				sequence_LeaInstruction(context, (LeaInstruction) semanticObject); 
@@ -1898,8 +1894,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=IncInstruction | 
 	 *             instruction=JmpInstruction | 
 	 *             instruction=JsrInstruction | 
-	 *             instruction=Ld8Instruction | 
-	 *             instruction=Ld16Instruction | 
+	 *             instruction=LdInstruction | 
 	 *             instruction=LeaInstruction | 
 	 *             instruction=LslInstruction | 
 	 *             instruction=LsrInstruction | 
@@ -1975,33 +1970,24 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Ld16Instruction returns Ld16Instruction
+	 *     LdInstruction returns LdInstruction
 	 *
 	 * Constraint:
 	 *     (
-	 *         (instruction='LDD' | instruction='LDX' | instruction='LDY' | instruction='LDS' | instruction='LDU') 
+	 *         (
+	 *             instruction='LDA' | 
+	 *             instruction='LDB' | 
+	 *             instruction='LDD' | 
+	 *             instruction='LDX' | 
+	 *             instruction='LDY' | 
+	 *             instruction='LDS' | 
+	 *             instruction='LDU'
+	 *         ) 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_Ld16Instruction(ISerializationContext context, Ld16Instruction semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     Ld8Instruction returns Ld8Instruction
-	 *
-	 * Constraint:
-	 *     (
-	 *         (instruction='LDA' | instruction='LDB') 
-	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
-	 *     )
-	 * </pre>
-	 */
-	protected void sequence_Ld8Instruction(ISerializationContext context, Ld8Instruction semanticObject) {
+	protected void sequence_LdInstruction(ISerializationContext context, LdInstruction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

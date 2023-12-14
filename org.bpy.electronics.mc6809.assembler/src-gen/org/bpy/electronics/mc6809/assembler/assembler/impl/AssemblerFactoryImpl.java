@@ -99,8 +99,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.LSR_INSTRUCTION: return createLsrInstruction();
       case AssemblerPackage.LSL_INSTRUCTION: return createLslInstruction();
       case AssemblerPackage.LEA_INSTRUCTION: return createLeaInstruction();
-      case AssemblerPackage.LD16_INSTRUCTION: return createLd16Instruction();
-      case AssemblerPackage.LD8_INSTRUCTION: return createLd8Instruction();
+      case AssemblerPackage.LD_INSTRUCTION: return createLdInstruction();
       case AssemblerPackage.JSR_INSTRUCTION: return createJsrInstruction();
       case AssemblerPackage.JMP_INSTRUCTION: return createJmpInstruction();
       case AssemblerPackage.INC_INSTRUCTION: return createIncInstruction();
@@ -639,22 +638,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public Ld16Instruction createLd16Instruction()
+  public LdInstruction createLdInstruction()
   {
-    Ld16InstructionImpl ld16Instruction = new Ld16InstructionImpl();
-    return ld16Instruction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Ld8Instruction createLd8Instruction()
-  {
-    Ld8InstructionImpl ld8Instruction = new Ld8InstructionImpl();
-    return ld8Instruction;
+    LdInstructionImpl ldInstruction = new LdInstructionImpl();
+    return ldInstruction;
   }
 
   /**

@@ -321,22 +321,13 @@ public interface AssemblerFactory extends EFactory
   LeaInstruction createLeaInstruction();
 
   /**
-   * Returns a new object of class '<em>Ld16 Instruction</em>'.
+   * Returns a new object of class '<em>Ld Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Ld16 Instruction</em>'.
+   * @return a new object of class '<em>Ld Instruction</em>'.
    * @generated
    */
-  Ld16Instruction createLd16Instruction();
-
-  /**
-   * Returns a new object of class '<em>Ld8 Instruction</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>Ld8 Instruction</em>'.
-   * @generated
-   */
-  Ld8Instruction createLd8Instruction();
+  LdInstruction createLdInstruction();
 
   /**
    * Returns a new object of class '<em>Jsr Instruction</em>'.

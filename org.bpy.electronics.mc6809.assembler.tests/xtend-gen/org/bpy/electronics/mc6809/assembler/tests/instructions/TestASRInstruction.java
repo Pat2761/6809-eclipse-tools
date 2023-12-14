@@ -36,8 +36,12 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -714,16 +718,32 @@ public class TestASRInstruction {
 
   @Test
   public void testASRWithImmediateMode() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t\t#25           ; Check illegal mode");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Immediate mode is not valid for the ASR instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check State", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check Opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check Opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check Operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; Check illegal mode", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -731,18 +751,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRDirectInstruction1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t<Const*2  ; 8000   07 0A        START:    ASR   <Const*2 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x07, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x0A, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   07 0A        START:    ASR   <Const*2 ", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -750,10 +785,27 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRDirectInstruction2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t<-129");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value -129 is below the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -761,10 +813,25 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRDirectInstruction3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t<-128");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -772,10 +839,25 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRDirectInstruction4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t<127");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -783,10 +865,27 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRDirectInstruction5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t<128");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value 128 is greater than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -794,20 +893,34 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRExtendedInstruction1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t>Const*1000  ; 8000   77 13 88     START:    ASR   >Const*1000 ");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x77, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x13, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x88, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   77 13 88     START:    ASR   >Const*1000 ", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -815,12 +928,28 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRExtendedInstruction2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t>-32769");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value -32769 is below the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -828,12 +957,26 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRExtendedInstruction3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t>-32768");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -841,12 +984,26 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRExtendedInstruction4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t>65535");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -854,12 +1011,28 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRExtendedInstruction5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t>65536");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value 65536 is greater than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -867,22 +1040,35 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRExtendedIndirectInstruction1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[Const*1000]  ; 8000   AB 9F 13 88  START:    ASR   [Const*1000]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode", 0x9F, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x13, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x88, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   AB 9F 13 88  START:    ASR   [Const*1000]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -890,12 +1076,28 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRExtendedIndirectInstruction2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32769]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value -32769 is below the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -903,12 +1105,26 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRExtendedIndirectInstruction3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32768]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -916,12 +1132,26 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRExtendedIndirectInstruction4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[65535]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -929,12 +1159,28 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRExtendedIndirectInstruction5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[65536]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value 65536 is greater than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -942,18 +1188,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tA,X  ; 8000   AB 86        START:    ASR   A,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x86, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   AB 86        START:    ASR   A,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -961,18 +1222,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tA,Y  ; 8000   \t67 A6        START:    ASR   A,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA6, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A6        START:    ASR   A,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -980,18 +1256,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tA,U  ; 8000   \t67 C6        START:    ASR   A,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC6, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C6        START:    ASR   A,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -999,18 +1290,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tA,S  ; 8000   \t67 E6        START:    ASR   A,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE6, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E6        START:    ASR   A,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1018,18 +1324,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tB,X  ; 8000   AB 85        START:    ASR   B,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x85, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   AB 85        START:    ASR   B,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1037,18 +1358,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode6() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tB,Y  ; 8000   \t67 A5        START:    ASR   B,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA5, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A5        START:    ASR   B,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1056,18 +1392,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode7() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tB,U  ; 8000   \t67 C5        START:    ASR   B,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC5, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C5        START:    ASR   B,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1075,18 +1426,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode8() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tB,S  ; 8000   \t67 E5        START:    ASR   B,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE5, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E5        START:    ASR   B,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1094,18 +1460,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode9() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tD,X  ; 8000   AB 8B        START:    ASR   D,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x8B, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   AB 8B        START:    ASR   D,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1113,18 +1494,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode10() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tD,Y  ; 8000   \t67 AB        START:    ASR   D,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xAB, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 AB        START:    ASR   D,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1132,18 +1528,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode11() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tD,U  ; 8000   \t67 CB        START:    ASR   D,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xCB, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 CB        START:    ASR   D,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1151,18 +1562,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAccumulatorMovingMode12() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \tD,S  ; 8000   \t67 EB        START:    ASR   D,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xEB, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 EB        START:    ASR   D,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1170,18 +1596,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndorectAccumulatorMovingMode1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[A,X]  ; 8000   AB 96        START:    ASR   [A,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x96, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   AB 96        START:    ASR   [A,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1189,18 +1630,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[A,Y]  ; 8000   \t67 B6        START:    ASR   [A,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB6, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B6        START:    ASR   [A,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1208,18 +1664,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[A,U]  ; 8000   \t67 D6        START:    ASR   [A,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD6, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D6        START:    ASR   [A,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1227,18 +1698,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[A,S]  ; 8000   \t67 F6        START:    ASR   [A,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF6, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F6        START:    ASR   [A,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1246,18 +1732,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[B,X]  ; 8000   AB 95        START:    ASR   [B,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x95, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   AB 95        START:    ASR   [B,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1265,18 +1766,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode6() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[B,Y]  ; 8000   \t67 B5        START:    ASR   [B,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB5, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B5        START:    ASR   [B,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1284,18 +1800,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode7() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[B,U]  ; 8000   \t67 D5        START:    ASR   [B,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD5, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D5        START:    ASR   [B,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1303,18 +1834,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode8() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[B,S]  ; 8000   \t67 F5        START:    ASR   [B,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF5, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F5        START:    ASR   [B,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1322,18 +1868,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode9() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[D,X]  ; 8000   AB 9B        START:    ASR   [D,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x9B, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   AB 9B        START:    ASR   [D,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1341,18 +1902,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode10() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[D,Y]  ; 8000   \t67 BB        START:    ASR   [D,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xBB, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 BB        START:    ASR   [D,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1360,18 +1936,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode11() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[D,U]  ; 8000   \t67 DB        START:    ASR   [D,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xDB, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 DB        START:    ASR   [D,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1379,18 +1970,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedIndirectAccumulatorMovingMode12() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[D,S]  ; 8000   \t67 FB        START:    ASR   [D,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xFB, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 FB        START:    ASR   [D,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1398,18 +2004,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,X+  ; 8000   \t67 80        START:    ASR   ,X+");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 80        START:    ASR   ,X+", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1417,18 +2038,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,X++  ; 8000   \t67 81        START:    ASR   ,X++");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x81, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 81        START:    ASR   ,X++", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1436,18 +2072,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,Y+  ; 8000   \t67 A0        START:    ASR   ,Y+");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA0, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A0        START:    ASR   ,Y+", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1455,18 +2106,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,Y++  ; 8000   \t67 A1        START:    ASR   ,Y++");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA1, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A1        START:    ASR   ,Y++", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1474,18 +2140,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,S+  ; 8000   \t67 E0        START:    ASR   ,S+");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE0, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E0        START:    ASR   ,S+", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1493,18 +2174,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode6() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,S++  ; 8000   \t67 E1        START:    ASR   ,S++");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE1, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E1        START:    ASR   ,S++", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1512,18 +2208,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode7() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,U+  ; 8000   \t67 C0        START:    ASR   ,U+");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC0, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C0        START:    ASR   ,U+", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1531,18 +2242,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode8() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,U++  ; 8000   \t67 C1        START:    ASR   ,U++");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC1, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C1        START:    ASR   ,U++", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1550,18 +2276,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode9() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,-X  ; 8000   \t67 82        START:    ASR   ,-X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x82, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 82        START:    ASR   ,-X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1569,18 +2310,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode10() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,--X  ; 8000   \t67 83        START:    ASR   ,--X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x83, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 83        START:    ASR   ,--X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1588,18 +2344,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode11() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,-Y  ; 8000   \t67 A2        START:    ASR   ,-Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA2, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A2        START:    ASR   ,-Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1607,18 +2378,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode12() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,--Y  ; 8000   \t67 A3        START:    ASR   ,--Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA3, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A3        START:    ASR   ,--Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1626,18 +2412,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode13() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,-S  ; 8000   \t67 E2        START:    ASR   ,-S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE2, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E2        START:    ASR   ,-S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1645,18 +2446,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode14() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,--S  ; 8000   \t67 E3        START:    ASR   ,--S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE3, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E3        START:    ASR   ,--S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1664,18 +2480,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode15() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,-U  ; 8000   \t67 C2        START:    ASR   ,-U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC2, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C2        START:    ASR   ,-U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1683,18 +2514,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementMode16() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,--U  ; 8000   \t67 C3        START:    ASR   ,--U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC3, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C3        START:    ASR   ,--U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1729,18 +2575,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementIndirectMode2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,X++]  ; 8000   \t67 91        START:    ASR   [,X++]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x91, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 91        START:    ASR   [,X++]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1775,18 +2636,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementIndirectMode4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,Y++]  ; 8000   \t67 B1        START:    ASR   [,Y++]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB1, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B1        START:    ASR   [,Y++]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1821,18 +2697,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementIndirectMode6() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,S++]  ; 8000   \t67 F1        START:    ASR   [,S++]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF1, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F1        START:    ASR   [,S++]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1867,18 +2758,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementindirectMode8() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,U++]  ; 8000   \t67 D1        START:    ASR   [,U++]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD1, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D1        START:    ASR   [,U++]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1913,18 +2819,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementIndirectMode10() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,--X]  ; 8000   \t67 93        START:    ASR   [,--X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x93, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 93        START:    ASR   [,--X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -1959,18 +2880,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementIndirectMode12() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,--Y]  ; 8000   \t67 B3        START:    ASR   [,--Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB3, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B3        START:    ASR   [,--Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2005,18 +2941,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementIndirectMode14() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,--S]  ; 8000   \t67 F3        START:    ASR   [,--S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF3, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F3        START:    ASR   [,--S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2051,18 +3002,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedAutoIncrementDecrementIndirectMode16() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,--U]  ; 8000   \t67 D3        START:    ASR   [,--U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD3, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D3        START:    ASR   [,--U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2070,22 +3036,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t1234,X  ; 8000   \t67 89 04 D2            ASR   1234,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 89 04 D2            ASR   1234,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2093,22 +3070,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t1234,Y  ; 8000   \t67 A9 04 D2            ASR   1234,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A9 04 D2            ASR   1234,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2116,22 +3104,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t1234,U  ; 8000   \t67 C9 04 D2            ASR   1234,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C9 04 D2            ASR   1234,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2139,22 +3138,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t1234,S  ; 8000   \t67 E9 04 D2            ASR   1234,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E9 04 D2            ASR   1234,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2162,20 +3172,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t34,X  ; 8000   \t67 88 22            ASR   34,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x88, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 88 22            ASR   34,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2183,20 +3205,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove6() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t34,Y  ; 8000   \t67 A8 22            ASR   34,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A8 22            ASR   34,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2204,20 +3238,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove7() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t34,U  ; 8000   \t67 C8 22            ASR   34,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C8 22            ASR   34,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2225,20 +3271,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove8() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t34,S  ; 8000   \t67 E8 22            ASR   34,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E8 22            ASR   34,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2246,18 +3304,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove9() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,X  ; 8000   \t67 84            ASR   ,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x84, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 84            ASR   ,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2265,18 +3336,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove10() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,Y  ; 8000   \t67 A4            ASR   ,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A4            ASR   ,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2284,18 +3368,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove11() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,U  ; 8000   \t67 C4            ASR   ,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C4            ASR   ,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2303,18 +3400,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove12() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t,S  ; 8000   \t67 E4            ASR   ,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E4            ASR   ,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2322,18 +3432,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove13() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t0,X  ; 8000   \t67 84            ASR   0,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x84, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 84            ASR   0,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2341,18 +3464,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove14() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t0,Y  ; 8000   \t67 A4            ASR   0,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A4            ASR   0,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2360,18 +3496,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove15() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t0,U  ; 8000   \t67 C4            ASR   0,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C4            ASR   0,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2379,18 +3528,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove16() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t0,S  ; 8000   \t67 E4            ASR   0,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E4            ASR   0,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2398,18 +3560,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove17() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-16,X  ; 8000   \t67 10            ASR   -16,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x10, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 10            ASR   -16,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2417,18 +3592,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove19() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t1,X  ; 8000   \t67 01            ASR   1,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x01, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 01            ASR   1,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2436,18 +3624,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove20() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t15,X  ; 8000   \t67 0F            ASR   15,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x0F, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 0F            ASR   15,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2455,18 +3656,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove21() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-16,Y  ; 8000   \t67 30            ASR   -16,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x30, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 30            ASR   -16,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2474,18 +3688,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove23() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t1,Y  ; 8000   \t67 21            ASR   1,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x21, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 21            ASR   1,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2493,18 +3720,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove24() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t15,Y  ; 8000   \t67 2F            ASR   15,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x2F, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 2F            ASR   15,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2512,18 +3752,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove25() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-16,U  ; 8000   \t67 50            ASR   -16,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x50, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 50            ASR   -16,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2531,18 +3784,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove26() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t1,U  ; 8000   \t67 41            ASR   1,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x41, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 41            ASR   1,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2550,18 +3816,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove27() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t15,U  ; 8000   \t67 4F            ASR   15,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x4F, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 4F            ASR   15,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2569,18 +3848,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove28() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-16,S  ; 8000   \t67 70            ASR   -16,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x70, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 70            ASR   -16,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2588,18 +3880,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove29() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t1,S  ; 8000   \t67 61            ASR   1,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x61, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 61            ASR   1,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2607,18 +3912,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove30() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t15,S  ; 8000   \t67 6F            ASR   15,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x6F, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 6F            ASR   15,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2626,20 +3944,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove31() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-128,X  ; 8000   \t67 88 80            ASR   -128,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x88, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 88 80            ASR   -128,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2647,20 +3977,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove32() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t127,X  ; 8000   \t67 88 7F            ASR   127,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x88, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 88 7F            ASR   127,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2668,20 +4010,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove33() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-128,Y  ; 8000   \t67 A8 80            ASR   -128,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A8 80            ASR   -128,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2689,20 +4043,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove34() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t127,Y  ; 8000   \t67 A8 7F            ASR   127,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A8 7F            ASR   127,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2710,20 +4076,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove35() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-128,U  ; 8000   \t67 C8 80            ASR   -128,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C8 80            ASR   -128,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2731,20 +4109,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove36() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t127,U  ; 8000   \t67 C8 7F            ASR   127,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C8 7F            ASR   127,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2752,20 +4142,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove37() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-128,S  ; 8000   \t67 E8 80            ASR   -128,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E8 80            ASR   -128,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2773,20 +4175,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove38() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t127,S  ; 8000   \t67 E8 7F            ASR   127,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E8 7F            ASR   127,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2794,22 +4208,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove39() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-32768,X  ; 8000   \t67 89 80 00             ASR   -32768,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 89 80 00             ASR   -32768,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2817,22 +4242,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove40() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  32767,X  ; 8000   \t67 89 7F FF             ASR   32767,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 89 7F FF             ASR   32767,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2840,22 +4276,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove41() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-32768,Y  ; 8000   \t67 A9 80 00             ASR   -32768,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A9 80 00             ASR   -32768,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2863,22 +4310,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove42() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  32767,Y  ; 8000   \t67 A9 7F FF             ASR   32767,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A9 7F FF             ASR   32767,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2886,22 +4344,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove43() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-32768,U  ; 8000   \t67 C9 80 00             ASR   -32768,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C9 80 00             ASR   -32768,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2909,22 +4378,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove44() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  32767,U  ; 8000   \t67 C9 7F FF             ASR   32767,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C9 7F FF             ASR   32767,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2932,22 +4412,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove45() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-32768,S  ; 8000   \t67 E9 80 00             ASR   -32768,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E9 80 00             ASR   -32768,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2955,22 +4446,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove46() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  32767,S  ; 8000   \t67 E9 7F FF             ASR   32767,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E9 7F FF             ASR   32767,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -2978,22 +4480,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove47() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-32769,X  ; 8000   \t67 89 80 00             ASR   -32769,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value -32769 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 89 80 00             ASR   -32769,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3001,22 +4517,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove48() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  32768,X  ; 8000   \t67 89 7F FF             ASR   32768,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value 32768 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x89, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 89 7F FF             ASR   32768,X", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3024,22 +4554,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove49() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-32769,Y  ; 8000   \t67 A9 80 00             ASR   -32769,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value -32769 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A9 80 00             ASR   -32769,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3047,22 +4591,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove50() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  32768,Y  ; 8000   \t67 A9 7F FF             ASR   32768,Y");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value 32768 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xA9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 A9 7F FF             ASR   32768,Y", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3070,22 +4628,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove51() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-32769,U  ; 8000   \t67 C9 80 00             ASR   -32769,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value -32769 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C9 80 00             ASR   -32769,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3093,22 +4665,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove52() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  32768,U  ; 8000   \t67 C9 7F FF             ASR   32768,U");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value 32768 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xC9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 C9 7F FF             ASR   32768,U", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3116,22 +4702,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove53() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-32769,S  ; 8000   \t67 E9 80 00             ASR   -32769,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value -32769 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E9 80 00             ASR   -32769,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3139,22 +4739,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantMove54() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  32768,S  ; 8000   \t67 E9 7F FF             ASR   32768,S");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value 32768 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xE9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 E9 7F FF             ASR   32768,S", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3162,22 +4776,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[1234,X]  ; 8000   \t67 99 04 D2            ASR   [1234,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x99, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 99 04 D2            ASR   [1234,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3185,22 +4810,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[1234,Y]  ; 8000   \t67 B9 04 D2            ASR   [1234,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B9 04 D2            ASR   [1234,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3208,22 +4844,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[1234,U]  ; 8000   \t67 D9 04 D2            ASR   [1234,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D9 04 D2            ASR   [1234,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3231,22 +4878,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[1234,S]  ; 8000   \t67 F9 04 D2            ASR   [1234,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F9 04 D2            ASR   [1234,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3254,20 +4912,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[34,X]  ; 8000   \t67 98 22            ASR   [34,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 98 22            ASR   [34,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3275,20 +4945,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove6() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[34,Y]  ; 8000   \t67 B8 22            ASR   [34,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B8 22            ASR   [34,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3296,20 +4978,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove7() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[34,U]  ; 8000   \t67 D8 22            ASR   [34,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D8 22            ASR   [34,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3317,20 +5011,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove8() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[34,S]  ; 8000   \t67 F8 22            ASR   [34,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F8 22            ASR   [34,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3338,18 +5044,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove9() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,X]  ; 8000   \t67 94            ASR   [,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x94, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 94            ASR   [,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3357,18 +5076,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove10() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,Y]  ; 8000   \t67 B4            ASR   [,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B4            ASR   [,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3376,18 +5108,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove11() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,U]  ; 8000   \t67 D4            ASR   [,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D4            ASR   [,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3395,18 +5140,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove12() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[,S]  ; 8000   \t67 F4            ASR   [,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F4            ASR   [,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3414,18 +5172,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove13() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[0,X]  ; 8000   \t67 94            ASR   [0,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x94, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 94            ASR   [0,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3433,18 +5204,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove14() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[0,Y]  ; 8000   \t67 B4            ASR   [0,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B4            ASR   [0,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3452,18 +5236,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove15() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[0,U]  ; 8000   \t67 D4            ASR   [0,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D4            ASR   [0,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3471,18 +5268,31 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove16() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[0,S]  ; 8000   \t67 F4            ASR   [0,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF4, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F4            ASR   [0,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3490,20 +5300,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove17() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-16,X]  ; 8000   \t67 98 F0            ASR   [-16,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 98 F0            ASR   [-16,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3511,20 +5333,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove18() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[15,X]  ; 8000   \t67 98 0F            ASR   [15,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 98 0F            ASR   [15,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3532,20 +5366,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove19() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-16,Y]  ; 8000   \t67 B8 F0            ASR   [-16,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B8 F0            ASR   [-16,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3553,20 +5399,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove20() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[15,Y]  ; 8000   \t67 B8 0F            ASR   [15,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B8 0F            ASR   [15,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3574,20 +5432,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove21() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-16,U]  ; 8000   \t67 D8 F0            ASR   [-16,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D8 F0            ASR   [-16,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3595,20 +5465,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove22() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[15,U]  ; 8000   \t67 D8 0F            ASR   [15,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D8 0F            ASR   [15,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3616,20 +5498,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove23() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-16,S]  ; 8000   \t67 F8 F0            ASR   [-16,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F8 F0            ASR   [-16,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3637,20 +5531,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove24() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[15,S]  ; 8000   \t67 F8 0F            ASR   [15,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F8 0F            ASR   [15,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3658,20 +5564,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove31() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-128,X]  ; 8000   \t67 98 80            ASR   [-128,X}");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 98 80            ASR   [-128,X}", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3679,20 +5597,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove32() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[127,X]  ; 8000   \t67 98 7F            ASR   [127,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 98 7F            ASR   [127,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3700,20 +5630,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove33() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-128,Y]  ; 8000   \t67 B8 80            ASR   [-128,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B8 80            ASR   [-128,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3721,20 +5663,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove34() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[127,Y]  ; 8000   \t67 B8 7F            ASR   [127,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B8 7F            ASR   [127,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3742,20 +5696,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove35() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-128,U]  ; 8000   \t67 D8 80            ASR   [-128,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D8 80            ASR   [-128,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3763,20 +5729,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove36() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[127,U]  ; 8000   \t67 D8 7F            ASR   [127,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D8 7F            ASR   [127,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3784,20 +5762,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove37() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-128,S]  ; 8000   \t67 F8 80            ASR   [-128,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F8 80            ASR   [-128,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3805,20 +5795,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove38() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[127,S]  ; 8000   \t67 F8 7F            ASR   [127,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F8 7F            ASR   [127,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3826,22 +5828,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove39() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32768,X]  ; 8000   \t67 99 80 00             ASR   [-32768,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x99, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 99 80 00             ASR   [-32768,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3849,22 +5862,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove40() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  [32767,X]  ; 8000   \t67 99 7F FF             ASR   [32767,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x99, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 99 7F FF             ASR   [32767,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3872,22 +5896,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove41() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32768,Y]  ; 8000   \t67 B9 80 00             ASR   [-32768,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B9 80 00             ASR   [-32768,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3895,22 +5930,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove42() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  [32767,Y]  ; 8000   \t67 B9 7F FF             ASR   [32767,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B9 7F FF             ASR   [32767,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3918,22 +5964,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove43() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32768,U]  ; 8000   \t67 D9 80 00             ASR   [-32768,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D9 80 00             ASR   [-32768,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3941,22 +5998,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove44() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  [32767,U]  ; 8000   \t67 D9 7F FF             ASR   [32767,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D9 7F FF             ASR   [32767,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3964,22 +6032,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove45() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32768,S]  ; 8000   \t67 F9 80 00             ASR   [-32768,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F9 80 00             ASR   [-32768,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -3987,22 +6066,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove46() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  [32767,S]  ; 8000   \t67 F9 7F FF             ASR   [32767,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F9 7F FF             ASR   [32767,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4010,22 +6100,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove47() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32769,X]  ; 8000   \t67 99 80 00             ASR   [-32769,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value -32769 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x99, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 99 80 00             ASR   [-32769,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4033,22 +6137,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove48() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  [32768,X]  ; 8000   \t67 99 7F FF             ASR   [32768,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value 32768 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x99, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 99 7F FF             ASR   [32768,X]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4056,22 +6174,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove49() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32769,Y]  ; 8000   \t67 B9 80 00             ASR   [-32769,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value -32769 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B9 80 00             ASR   [-32769,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4079,22 +6211,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove50() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  [32768,Y]  ; 8000   \t67 B9 7F FF             ASR   [32768,Y]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value 32768 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xB9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 B9 7F FF             ASR   [32768,Y]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4102,22 +6248,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove51() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32769,U]  ; 8000   \t67 D9 80 00             ASR   [-32769,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value -32769 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D9 80 00             ASR   [-32769,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4125,22 +6285,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove52() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  [32768,U]  ; 8000   \t67 D9 7F FF             ASR   [32768,U]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value 32768 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xD9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 D9 7F FF             ASR   [32768,U]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4148,22 +6322,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove53() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32769,S]  ; 8000   \t67 F9 80 00             ASR   [-32769,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value -32769 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F9 80 00             ASR   [-32769,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4171,22 +6359,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedConstantIndirectMove54() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  [32768,S]  ; 8000   \t67 F9 7F FF             ASR   [32768,S]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow detected for value 32768 , data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0xF9, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 F9 7F FF             ASR   [32768,S]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4194,20 +6396,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifToPCMove1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t0,PCR  ; 8000   \t67 8C 00            ASR   0,PCR");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 8C 00            ASR   0,PCR", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4215,20 +6429,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifToPCMove2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-128,PCR  ; 8000   \t67 8C 80            ASR   -128,PCR");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 8C 80            ASR   -128,PCR", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4236,20 +6462,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifToPCMove3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t127,PCR  ; 8000   \t67 8C 7F            ASR   127,PCR");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 8C 7F            ASR   127,PCR", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4257,22 +6495,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifToPCMove4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-129,PCR  ; 8000   \t67 8D FF 7F            ASR   -129,PCR");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 8D FF 7F            ASR   -129,PCR", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4280,22 +6529,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifToPCMove5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t128,PCR  ; 8000   \t67 8D 00 80            ASR   128,PCR");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 8D 00 80            ASR   128,PCR", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4303,22 +6563,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifToPCMove6() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-32768,PCR  ; 8000   \t67 8D 80 00            ASR   -32768,PCR");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 8D 80 00            ASR   -32768,PCR", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4326,22 +6597,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifToPCMove7() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t32767,PCR  ; 8000   \t67 8D 7F FF            ASR   32767,PCR");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 8D 7F FF            ASR   32767,PCR", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4349,22 +6631,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifToPCMove8() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t-32769,PCR  ; 8000   \t67 8D 80 00            ASR   -32769,PCR");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "The value -32769 is out than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 8D 80 00            ASR   -32769,PCR", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4372,22 +6668,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifToPCMove9() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t32768,PCR  ; 8000   \t67 8D 7F FF            ASR   32768,PCR");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "The value 32768 is out than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 8D 7F FF            ASR   32768,PCR", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4395,20 +6705,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifIndirectToPCMove1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[0,PCR]  ; 8000   \t67 9C 00            ASR   [0,PCR]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 9C 00            ASR   [0,PCR]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4416,20 +6738,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifIndirectToPCMove2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-128,PCR]  ; 8000   \t67 9C 80            ASR   [-128,PCR]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 9C 80            ASR   [-128,PCR]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4437,20 +6771,32 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifIndirectToPCMove3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[127,PCR]  ; 8000   \t67 9C 7F            ASR   [127,PCR]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 9C 7F            ASR   [127,PCR]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4458,22 +6804,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifIndirectToPCMove4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-129,PCR]  ; 8000   \t67 9D FF 7F            ASR   [-129,PCR]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 9D FF 7F            ASR   [-129,PCR]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4481,22 +6838,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifIndirectToPCMove5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[128,PCR]  ; 8000   \t67 9D 00 80            ASR   [128,PCR]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 9D 00 80            ASR   [128,PCR]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4504,22 +6872,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifIndirectToPCMove6() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32768,PCR]  ; 8000   \t67 9D 80 00            ASR   [-32768,PCR]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 9D 80 00            ASR   [-32768,PCR]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4527,22 +6906,33 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifIndirectToPCMove7() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[32767,PCR]  ; 8000   \t67 9D 7F FF            ASR   [32767,PCR]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 9D 7F FF            ASR   [32767,PCR]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4550,22 +6940,36 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifIndirectToPCMove8() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[-32769,PCR]  ; 8000   \t67 9D 80 00            ASR   [-32769,PCR]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "The value -32769 is out than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 9D 80 00            ASR   [-32769,PCR]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -4573,21 +6977,35 @@ public class TestASRInstruction {
    */
   @Test
   public void testASRIndexedRelatifIndirectToPCMove9() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledASRInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tASR\t\t  \t[32768,PCR]  ; 8000   \t67 9D 7F FF            ASR   [32768,PCR]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAsrInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "The value 32768 is out than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledASRInstruction line = ((AssembledASRInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x67, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
+      Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   \t67 9D 7F FF            ASR   [32768,PCR]", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

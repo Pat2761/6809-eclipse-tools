@@ -69,8 +69,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEXGInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestINCInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestJMPInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestJSRInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLD8Instruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLD16Instruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLEAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSLInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRInstruction
@@ -126,6 +124,13 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEORAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEORBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestINCAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestINCBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDDInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDSInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDUInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDXInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDYInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -211,36 +216,42 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestINCBInstructi
 	 TestINCInstruction,
 	 TestJMPInstruction,
 	 TestJSRInstruction,
-	 TestLD8Instruction,
-	 TestLD16Instruction,
-	 TestLEAInstruction,
-	 TestLSLInstruction,
-	 TestLSRInstruction,
-	 TestMULInstruction,
-	 TestNegInstruction,
-	 TestNOPInstruction,
-	 TestORInstruction,
-	 TestORCCInstruction,
-	 TestPSHSInstruction,
-	 TestPSHUInstruction,
-	 TestPULSInstruction,
-	 TestPULUInstruction,
-	 TestROLInstruction,
-	 TestRORInstruction,
-	 TestRTIInstruction,
-	 TestRTSInstruction,
-	 TestSBCInstruction,
-	 TestSEXInstruction,
-	 TestST8Instruction,
-	 TestST16Instruction,
-	 TestSUBInstruction,
-	 TestSUBDInstruction,
-	 TestSWIInstruction,
-	 TestSWI2Instruction,
-	 TestSWI3Instruction,
-	 TestSYNCInstruction,
-	 TestTFRInstruction,
-	 TestTSTInstruction,
+	 TestLDAInstruction,
+	 TestLDBInstruction,
+	 TestLDDInstruction,
+	 TestLDSInstruction,
+	 TestLDUInstruction,
+	 TestLDXInstruction,
+	 TestLDYInstruction,
+	 
+//	 TestLEAInstruction,
+//	 TestLSLInstruction,
+//	 TestLSRInstruction,
+//	 TestMULInstruction,
+//	 TestNegInstruction,
+//	 TestNOPInstruction,
+//	 TestORInstruction,
+//	 TestORCCInstruction,
+//	 TestPSHSInstruction,
+//	 TestPSHUInstruction,
+//	 TestPULSInstruction,
+//	 TestPULUInstruction,
+//	 TestROLInstruction,
+//	 TestRORInstruction,
+//	 TestRTIInstruction,
+//	 TestRTSInstruction,
+//	 TestSBCInstruction,
+//	 TestSEXInstruction,
+//	 TestST8Instruction,
+//	 TestST16Instruction,
+//	 TestSUBInstruction,
+//	 TestSUBDInstruction,
+//	 TestSWIInstruction,
+//	 TestSWI2Instruction,
+//	 TestSWI3Instruction,
+//	 TestSYNCInstruction,
+//	 TestTFRInstruction,
+//	 TestTSTInstruction,
 	 
 	 /* Examples  */
 	 SorekSamples

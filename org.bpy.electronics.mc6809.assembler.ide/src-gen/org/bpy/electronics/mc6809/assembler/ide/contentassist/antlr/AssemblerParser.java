@@ -67,10 +67,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLslInstructionAccess().getInstructionAlternatives_0_0(), "rule__LslInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getLslInstructionAccess().getOperandAlternatives_1_2_0(), "rule__LslInstruction__OperandAlternatives_1_2_0");
 			builder.put(grammarAccess.getLeaInstructionAccess().getInstructionAlternatives_0_0(), "rule__LeaInstruction__InstructionAlternatives_0_0");
-			builder.put(grammarAccess.getLd16InstructionAccess().getInstructionAlternatives_0_0(), "rule__Ld16Instruction__InstructionAlternatives_0_0");
-			builder.put(grammarAccess.getLd16InstructionAccess().getOperandAlternatives_2_0(), "rule__Ld16Instruction__OperandAlternatives_2_0");
-			builder.put(grammarAccess.getLd8InstructionAccess().getInstructionAlternatives_0_0(), "rule__Ld8Instruction__InstructionAlternatives_0_0");
-			builder.put(grammarAccess.getLd8InstructionAccess().getOperandAlternatives_2_0(), "rule__Ld8Instruction__OperandAlternatives_2_0");
+			builder.put(grammarAccess.getLdInstructionAccess().getInstructionAlternatives_0_0(), "rule__LdInstruction__InstructionAlternatives_0_0");
+			builder.put(grammarAccess.getLdInstructionAccess().getOperandAlternatives_2_0(), "rule__LdInstruction__OperandAlternatives_2_0");
 			builder.put(grammarAccess.getJsrInstructionAccess().getOperandAlternatives_2_0(), "rule__JsrInstruction__OperandAlternatives_2_0");
 			builder.put(grammarAccess.getJmpInstructionAccess().getOperandAlternatives_2_0(), "rule__JmpInstruction__OperandAlternatives_2_0");
 			builder.put(grammarAccess.getIncInstructionAccess().getAlternatives(), "rule__IncInstruction__Alternatives");
@@ -187,8 +185,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLsrInstructionAccess().getGroup_1(), "rule__LsrInstruction__Group_1__0");
 			builder.put(grammarAccess.getLslInstructionAccess().getGroup_1(), "rule__LslInstruction__Group_1__0");
 			builder.put(grammarAccess.getLeaInstructionAccess().getGroup(), "rule__LeaInstruction__Group__0");
-			builder.put(grammarAccess.getLd16InstructionAccess().getGroup(), "rule__Ld16Instruction__Group__0");
-			builder.put(grammarAccess.getLd8InstructionAccess().getGroup(), "rule__Ld8Instruction__Group__0");
+			builder.put(grammarAccess.getLdInstructionAccess().getGroup(), "rule__LdInstruction__Group__0");
 			builder.put(grammarAccess.getJsrInstructionAccess().getGroup(), "rule__JsrInstruction__Group__0");
 			builder.put(grammarAccess.getJmpInstructionAccess().getGroup(), "rule__JmpInstruction__Group__0");
 			builder.put(grammarAccess.getIncInstructionAccess().getGroup_1(), "rule__IncInstruction__Group_1__0");
@@ -385,7 +382,6 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_65(), "rule__InstructionLine__InstructionAssignment_2_65");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_66(), "rule__InstructionLine__InstructionAssignment_2_66");
 			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_67(), "rule__InstructionLine__InstructionAssignment_2_67");
-			builder.put(grammarAccess.getInstructionLineAccess().getInstructionAssignment_2_68(), "rule__InstructionLine__InstructionAssignment_2_68");
 			builder.put(grammarAccess.getInstructionLineAccess().getCommentAssignment_3_1(), "rule__InstructionLine__CommentAssignment_3_1");
 			builder.put(grammarAccess.getTstInstructionAccess().getInstructionAssignment_0(), "rule__TstInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getTstInstructionAccess().getInstructionAssignment_1_0(), "rule__TstInstruction__InstructionAssignment_1_0");
@@ -449,10 +445,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLslInstructionAccess().getOperandAssignment_1_2(), "rule__LslInstruction__OperandAssignment_1_2");
 			builder.put(grammarAccess.getLeaInstructionAccess().getInstructionAssignment_0(), "rule__LeaInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getLeaInstructionAccess().getOperandAssignment_2(), "rule__LeaInstruction__OperandAssignment_2");
-			builder.put(grammarAccess.getLd16InstructionAccess().getInstructionAssignment_0(), "rule__Ld16Instruction__InstructionAssignment_0");
-			builder.put(grammarAccess.getLd16InstructionAccess().getOperandAssignment_2(), "rule__Ld16Instruction__OperandAssignment_2");
-			builder.put(grammarAccess.getLd8InstructionAccess().getInstructionAssignment_0(), "rule__Ld8Instruction__InstructionAssignment_0");
-			builder.put(grammarAccess.getLd8InstructionAccess().getOperandAssignment_2(), "rule__Ld8Instruction__OperandAssignment_2");
+			builder.put(grammarAccess.getLdInstructionAccess().getInstructionAssignment_0(), "rule__LdInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getLdInstructionAccess().getOperandAssignment_2(), "rule__LdInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getJsrInstructionAccess().getInstructionAssignment_0(), "rule__JsrInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getJsrInstructionAccess().getOperandAssignment_2(), "rule__JsrInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getJmpInstructionAccess().getInstructionAssignment_0(), "rule__JmpInstruction__InstructionAssignment_0");
