@@ -59,6 +59,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
@@ -146,6 +147,9 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLE
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAUInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAXInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAYInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -354,6 +358,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof LeaInstruction) {
 			parse((LeaInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof LslInstruction) {
+			parse((LslInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 			
@@ -373,6 +380,36 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the LSL instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(LslInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("LSLA".equals(instruction.getInstruction())) {
+			line = new AssembledLSLAInstruction();
+			((AssembledLSLAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LSLB".equals(instruction.getInstruction())) {
+			line = new AssembledLSLBInstruction();
+			((AssembledLSLBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LSL".equals(instruction.getInstruction())) {
+			line = new AssembledLSLInstruction();
+			((AssembledLSLInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			// not possible 
+		}
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);

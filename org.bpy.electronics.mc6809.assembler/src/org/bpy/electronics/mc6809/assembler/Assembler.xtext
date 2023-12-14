@@ -791,6 +791,7 @@ LsrInstruction:
 	(
 	 	instruction = ('LSR')
 		WS operand = ( 
+			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |
@@ -826,6 +827,7 @@ LslInstruction:
 	(
 	 	instruction = ('LSL')
 		WS operand = ( 
+			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |

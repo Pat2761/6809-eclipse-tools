@@ -43,6 +43,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.eclipse.xtext.validation.Check;
 
@@ -298,6 +299,15 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 		exposeProblems(instruction);
 	}	
 	
+	/**
+	 * Check errors on the LslInstruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(LslInstruction instruction) {
+		exposeProblems(instruction);
+	}	
 	/**
 	 * Declare problems and warnings detected during the assembly step for an Instruction
 	 * 

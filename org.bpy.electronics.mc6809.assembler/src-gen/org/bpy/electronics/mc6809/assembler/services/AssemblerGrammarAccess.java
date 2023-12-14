@@ -2885,10 +2885,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
-		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
-		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
-		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
-		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_4 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(4);
 		
 		///*
 		// * LSR
@@ -2916,6 +2917,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    (
 		//         instruction = ('LSR')
 		//        WS operand = (
+		//            ImmediatOperand |
 		//            DirectOperand  |
 		//            IndexedOperand |
 		//            ExtendedOperand |
@@ -2932,6 +2934,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//(
 		//     instruction = ('LSR')
 		//    WS operand = (
+		//        ImmediatOperand |
 		//        DirectOperand  |
 		//        IndexedOperand |
 		//        ExtendedOperand |
@@ -2957,6 +2960,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//(
 		//     instruction = ('LSR')
 		//    WS operand = (
+		//        ImmediatOperand |
 		//        DirectOperand  |
 		//        IndexedOperand |
 		//        ExtendedOperand |
@@ -2975,6 +2979,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
 		
 		//operand = (
+		//           ImmediatOperand |
 		//           DirectOperand  |
 		//           IndexedOperand |
 		//           ExtendedOperand |
@@ -2983,6 +2988,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
 		
 		//(
+		//           ImmediatOperand |
 		//           DirectOperand  |
 		//           IndexedOperand |
 		//           ExtendedOperand |
@@ -2990,17 +2996,20 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//       )
 		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
 		
+		//ImmediatOperand
+		public RuleCall getOperandImmediatOperandParserRuleCall_1_2_0_0() { return cOperandImmediatOperandParserRuleCall_1_2_0_0; }
+		
 		//DirectOperand
-		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_1() { return cOperandDirectOperandParserRuleCall_1_2_0_1; }
 		
 		//IndexedOperand
-		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_2() { return cOperandIndexedOperandParserRuleCall_1_2_0_2; }
 		
 		//ExtendedOperand
-		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_3() { return cOperandExtendedOperandParserRuleCall_1_2_0_3; }
 		
 		//ExtendedIndirectOperand
-		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_4; }
 	}
 	public class LslInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LslInstruction");
@@ -3015,10 +3024,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cWSTerminalRuleCall_1_1 = (RuleCall)cGroup_1.eContents().get(1);
 		private final Assignment cOperandAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final Alternatives cOperandAlternatives_1_2_0 = (Alternatives)cOperandAssignment_1_2.eContents().get(0);
-		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
-		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
-		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
-		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_1_2_0_0 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_1_2_0_1 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_1_2_0_2 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_1_2_0_3 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_1_2_0_4 = (RuleCall)cOperandAlternatives_1_2_0.eContents().get(4);
 		
 		///*
 		// * LSL
@@ -3047,6 +3057,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    (
 		//         instruction = ('LSL')
 		//        WS operand = (
+		//            ImmediatOperand |
 		//            DirectOperand  |
 		//            IndexedOperand |
 		//            ExtendedOperand |
@@ -3063,6 +3074,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//(
 		//     instruction = ('LSL')
 		//    WS operand = (
+		//        ImmediatOperand |
 		//        DirectOperand  |
 		//        IndexedOperand |
 		//        ExtendedOperand |
@@ -3088,6 +3100,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//(
 		//     instruction = ('LSL')
 		//    WS operand = (
+		//        ImmediatOperand |
 		//        DirectOperand  |
 		//        IndexedOperand |
 		//        ExtendedOperand |
@@ -3106,6 +3119,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		public RuleCall getWSTerminalRuleCall_1_1() { return cWSTerminalRuleCall_1_1; }
 		
 		//operand = (
+		//           ImmediatOperand |
 		//           DirectOperand  |
 		//           IndexedOperand |
 		//           ExtendedOperand |
@@ -3114,6 +3128,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		public Assignment getOperandAssignment_1_2() { return cOperandAssignment_1_2; }
 		
 		//(
+		//           ImmediatOperand |
 		//           DirectOperand  |
 		//           IndexedOperand |
 		//           ExtendedOperand |
@@ -3121,17 +3136,20 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//       )
 		public Alternatives getOperandAlternatives_1_2_0() { return cOperandAlternatives_1_2_0; }
 		
+		//ImmediatOperand
+		public RuleCall getOperandImmediatOperandParserRuleCall_1_2_0_0() { return cOperandImmediatOperandParserRuleCall_1_2_0_0; }
+		
 		//DirectOperand
-		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_0() { return cOperandDirectOperandParserRuleCall_1_2_0_0; }
+		public RuleCall getOperandDirectOperandParserRuleCall_1_2_0_1() { return cOperandDirectOperandParserRuleCall_1_2_0_1; }
 		
 		//IndexedOperand
-		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_1() { return cOperandIndexedOperandParserRuleCall_1_2_0_1; }
+		public RuleCall getOperandIndexedOperandParserRuleCall_1_2_0_2() { return cOperandIndexedOperandParserRuleCall_1_2_0_2; }
 		
 		//ExtendedOperand
-		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_2() { return cOperandExtendedOperandParserRuleCall_1_2_0_2; }
+		public RuleCall getOperandExtendedOperandParserRuleCall_1_2_0_3() { return cOperandExtendedOperandParserRuleCall_1_2_0_3; }
 		
 		//ExtendedIndirectOperand
-		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_3; }
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_1_2_0_4; }
 	}
 	public class LeaInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LeaInstruction");
@@ -10957,6 +10975,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    (
 	//         instruction = ('LSR')
 	//        WS operand = (
+	//            ImmediatOperand |
 	//            DirectOperand  |
 	//            IndexedOperand |
 	//            ExtendedOperand |
@@ -10999,6 +11018,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    (
 	//         instruction = ('LSL')
 	//        WS operand = (
+	//            ImmediatOperand |
 	//            DirectOperand  |
 	//            IndexedOperand |
 	//            ExtendedOperand |

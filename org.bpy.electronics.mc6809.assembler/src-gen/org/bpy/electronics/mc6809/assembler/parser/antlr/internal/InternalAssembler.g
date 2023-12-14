@@ -3966,9 +3966,9 @@ ruleLsrInstruction returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getLsrInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0());
+							newCompositeNode(grammarAccess.getLsrInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0());
 						}
-						lv_operand_3_1=ruleDirectOperand
+						lv_operand_3_1=ruleImmediatOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getLsrInstructionRule());
@@ -3977,14 +3977,14 @@ ruleLsrInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_1,
-								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+								"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
 							afterParserOrEnumRuleCall();
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getLsrInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1());
+							newCompositeNode(grammarAccess.getLsrInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1());
 						}
-						lv_operand_3_2=ruleIndexedOperand
+						lv_operand_3_2=ruleDirectOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getLsrInstructionRule());
@@ -3993,14 +3993,14 @@ ruleLsrInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_2,
-								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
 							afterParserOrEnumRuleCall();
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getLsrInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2());
+							newCompositeNode(grammarAccess.getLsrInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2());
 						}
-						lv_operand_3_3=ruleExtendedOperand
+						lv_operand_3_3=ruleIndexedOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getLsrInstructionRule());
@@ -4009,14 +4009,14 @@ ruleLsrInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_3,
-								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
 							afterParserOrEnumRuleCall();
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getLsrInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3());
+							newCompositeNode(grammarAccess.getLsrInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3());
 						}
-						lv_operand_3_4=ruleExtendedIndirectOperand
+						lv_operand_3_4=ruleExtendedOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getLsrInstructionRule());
@@ -4025,6 +4025,22 @@ ruleLsrInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_4,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getLsrInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4());
+						}
+						lv_operand_3_5=ruleExtendedIndirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getLsrInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_5,
 								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
 							afterParserOrEnumRuleCall();
 						}
@@ -4102,9 +4118,9 @@ ruleLslInstruction returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getLslInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0());
+							newCompositeNode(grammarAccess.getLslInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0());
 						}
-						lv_operand_3_1=ruleDirectOperand
+						lv_operand_3_1=ruleImmediatOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getLslInstructionRule());
@@ -4113,14 +4129,14 @@ ruleLslInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_1,
-								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
+								"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
 							afterParserOrEnumRuleCall();
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getLslInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1());
+							newCompositeNode(grammarAccess.getLslInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1());
 						}
-						lv_operand_3_2=ruleIndexedOperand
+						lv_operand_3_2=ruleDirectOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getLslInstructionRule());
@@ -4129,14 +4145,14 @@ ruleLslInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_2,
-								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
+								"org.bpy.electronics.mc6809.assembler.Assembler.DirectOperand");
 							afterParserOrEnumRuleCall();
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getLslInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2());
+							newCompositeNode(grammarAccess.getLslInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2());
 						}
-						lv_operand_3_3=ruleExtendedOperand
+						lv_operand_3_3=ruleIndexedOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getLslInstructionRule());
@@ -4145,14 +4161,14 @@ ruleLslInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_3,
-								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+								"org.bpy.electronics.mc6809.assembler.Assembler.IndexedOperand");
 							afterParserOrEnumRuleCall();
 						}
 						    |
 						{
-							newCompositeNode(grammarAccess.getLslInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3());
+							newCompositeNode(grammarAccess.getLslInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3());
 						}
-						lv_operand_3_4=ruleExtendedIndirectOperand
+						lv_operand_3_4=ruleExtendedOperand
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getLslInstructionRule());
@@ -4161,6 +4177,22 @@ ruleLslInstruction returns [EObject current=null]
 								$current,
 								"operand",
 								lv_operand_3_4,
+								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedOperand");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getLslInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4());
+						}
+						lv_operand_3_5=ruleExtendedIndirectOperand
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getLslInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_5,
 								"org.bpy.electronics.mc6809.assembler.Assembler.ExtendedIndirectOperand");
 							afterParserOrEnumRuleCall();
 						}

@@ -53,6 +53,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
@@ -870,10 +871,10 @@ public class CommandUtil {
 	}
 
 	/**
-	 * Return the comment associated to a LEA instruction.
+	 * Return the label associated to a LEA instruction.
 	 * 
 	 * @param instruction reference on the LEA instruction
-	 * @return value of the comment, <b>null</b> if not found
+	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(LeaInstruction instruction) {
 		return getLabel((InstructionLine)instruction.eContainer());
@@ -886,6 +887,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(LeaInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a LSL instruction.
+	 * 
+	 * @param instruction reference on the LSL instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(LslInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a LSL instruction.
+	 * 
+	 * @param instruction reference on the LSL instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(LslInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
