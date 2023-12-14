@@ -1998,7 +1998,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     LeaInstruction returns LeaInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='LEAX' | instruction='LEAY' | instruction='LEAS' | instruction='LEAU') operand=IndexedOperand)
+	 *     (
+	 *         (instruction='LEAX' | instruction='LEAY' | instruction='LEAS' | instruction='LEAU') 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_LeaInstruction(ISerializationContext context, LeaInstruction semanticObject) {

@@ -52,6 +52,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
@@ -865,6 +866,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(LdInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a LEA instruction.
+	 * 
+	 * @param instruction reference on the LEA instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getLabel(LeaInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a LEA instruction.
+	 * 
+	 * @param instruction reference on the LEA instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(LeaInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

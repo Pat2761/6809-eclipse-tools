@@ -25,7 +25,11 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDCCInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -95,14 +99,31 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCDirectAddressingMode() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG  \t  \t\t$8000");
+      _builder.newLine();
+      _builder.append("Label\t       ANDCC\t\t  \t<124 ; SWI instruction");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Direct mode is not valid for the ANDCC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
+      Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check comment", "; SWI instruction", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -110,14 +131,32 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCExtendedAddressingMode() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG  \t  \t\t$8000");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ANDCC\t\t  \t[124]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Extended mode is not valid for the ANDCC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
+      Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
+      Assert.assertNull("Check label", line.getLabel());
+      Assert.assertNull("Check comment", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -125,14 +164,34 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCConstantOffsetIndexed() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ANDCC\t\t  \tConst,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the ANDCC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
+      Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
+      Assert.assertNull("Check label", line.getLabel());
+      Assert.assertNull("Check comment", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -140,14 +199,34 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCConstantOffsetIndexedIndirect() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ANDCC\t\t  \t[Const,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the ANDCC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
+      Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
+      Assert.assertNull("Check label", line.getLabel());
+      Assert.assertNull("Check comment", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -155,14 +234,34 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCAccumulatorIndexed() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ANDCC\t\t  \tA,X");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the ANDCC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
+      Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
+      Assert.assertNull("Check label", line.getLabel());
+      Assert.assertNull("Check comment", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -170,14 +269,34 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCAccumulatorIndexedIndirect() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ANDCC\t\t  \t[A,X]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the ANDCC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
+      Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
+      Assert.assertNull("Check label", line.getLabel());
+      Assert.assertNull("Check comment", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -185,14 +304,34 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCAutoINcrementIndexed() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ANDCC\t\t  \t,X++");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the ANDCC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
+      Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
+      Assert.assertNull("Check label", line.getLabel());
+      Assert.assertNull("Check comment", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -200,14 +339,34 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCAutoINcrementIndexedIndirect() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ANDCC\t\t  \t[,X++]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the ANDCC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
+      Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
+      Assert.assertNull("Check label", line.getLabel());
+      Assert.assertNull("Check comment", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -215,14 +374,34 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCRelativeToPCIndexed() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ANDCC\t\t  \tConst,PC");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the ANDCC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
+      Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
+      Assert.assertNull("Check label", line.getLabel());
+      Assert.assertNull("Check comment", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -230,14 +409,34 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCRelativeToPCIndexedIndirect() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ANDCC\t\t  \t[Const,PC]");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the ANDCC instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check size instruction", 0x1, line.getOpcode().length);
+      Assert.assertEquals("Check replacement by SWI instruction", 0x3F, line.getOpcode()[0]);
+      Assert.assertNull("Check label", line.getLabel());
+      Assert.assertNull("Check comment", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -276,18 +475,33 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCImmediatInstruction1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tANDCC\t\t  \t#Const+2  ; 8000   1C 07        START:    ANDCC");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x1C, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x07, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   1C 07        START:    ANDCC", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -295,10 +509,27 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCImmediatInstruction2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tANDCC\t\t  \t#-129");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value -129 is below the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -306,10 +537,25 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCImmediatInstruction3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tANDCC\t\t  \t#-128");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -317,10 +563,25 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCImmediatInstruction4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tANDCC\t\t  \t#127");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -328,9 +589,26 @@ public class TestANDCCInstruction {
    */
   @Test
   public void testANDCCImmediatInstruction5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledANDCCInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tANDCC\t\t  \t#128");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAndCCInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value 128 is greater than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledANDCCInstruction line = ((AssembledANDCCInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

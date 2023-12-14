@@ -3144,7 +3144,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cInstructionLEAUKeyword_0_0_3 = (Keyword)cInstructionAlternatives_0_0.eContents().get(3);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
 		
 		///*
 		// * LEA
@@ -3167,12 +3172,24 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//LeaInstruction:
 		//     instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
-		//    WS operand = IndexedOperand
+		//    WS operand = (
+		//        ImmediatOperand |
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		// instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
-		//WS operand = IndexedOperand
+		//WS operand = (
+		//    ImmediatOperand |
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
 		public Group getGroup() { return cGroup; }
 		
 		//instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
@@ -3196,11 +3213,38 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
 		
-		//operand = IndexedOperand
+		//operand = (
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
 		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
+		//(
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
+		
+		//ImmediatOperand
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
+		
 		//IndexedOperand
-		public RuleCall getOperandIndexedOperandParserRuleCall_2_0() { return cOperandIndexedOperandParserRuleCall_2_0; }
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
 	}
 	public class LdInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LdInstruction");
@@ -10991,7 +11035,13 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//LeaInstruction:
 	//     instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
-	//    WS operand = IndexedOperand
+	//    WS operand = (
+	//        ImmediatOperand |
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
 	//;
 	public LeaInstructionElements getLeaInstructionAccess() {
 		return pLeaInstruction;

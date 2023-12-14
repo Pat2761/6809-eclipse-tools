@@ -4607,6 +4607,45 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__LeaInstruction__OperandAlternatives_2_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getLeaInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0()); }
+		ruleImmediatOperand
+		{ after(grammarAccess.getLeaInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getLeaInstructionAccess().getOperandDirectOperandParserRuleCall_2_0_1()); }
+		ruleDirectOperand
+		{ after(grammarAccess.getLeaInstructionAccess().getOperandDirectOperandParserRuleCall_2_0_1()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getLeaInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0_2()); }
+		ruleIndexedOperand
+		{ after(grammarAccess.getLeaInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0_2()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getLeaInstructionAccess().getOperandExtendedOperandParserRuleCall_2_0_3()); }
+		ruleExtendedOperand
+		{ after(grammarAccess.getLeaInstructionAccess().getOperandExtendedOperandParserRuleCall_2_0_3()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getLeaInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_0_4()); }
+		ruleExtendedIndirectOperand
+		{ after(grammarAccess.getLeaInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_2_0_4()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__LdInstruction__InstructionAlternatives_0_0
 	@init {
 		int stackSize = keepStackSize();
@@ -20418,9 +20457,9 @@ rule__LeaInstruction__OperandAssignment_2
 	}
 :
 	(
-		{ before(grammarAccess.getLeaInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0()); }
-		ruleIndexedOperand
-		{ after(grammarAccess.getLeaInstructionAccess().getOperandIndexedOperandParserRuleCall_2_0()); }
+		{ before(grammarAccess.getLeaInstructionAccess().getOperandAlternatives_2_0()); }
+		(rule__LeaInstruction__OperandAlternatives_2_0)
+		{ after(grammarAccess.getLeaInstructionAccess().getOperandAlternatives_2_0()); }
 	)
 ;
 finally {

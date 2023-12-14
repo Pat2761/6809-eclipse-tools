@@ -67,6 +67,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getLslInstructionAccess().getInstructionAlternatives_0_0(), "rule__LslInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getLslInstructionAccess().getOperandAlternatives_1_2_0(), "rule__LslInstruction__OperandAlternatives_1_2_0");
 			builder.put(grammarAccess.getLeaInstructionAccess().getInstructionAlternatives_0_0(), "rule__LeaInstruction__InstructionAlternatives_0_0");
+			builder.put(grammarAccess.getLeaInstructionAccess().getOperandAlternatives_2_0(), "rule__LeaInstruction__OperandAlternatives_2_0");
 			builder.put(grammarAccess.getLdInstructionAccess().getInstructionAlternatives_0_0(), "rule__LdInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getLdInstructionAccess().getOperandAlternatives_2_0(), "rule__LdInstruction__OperandAlternatives_2_0");
 			builder.put(grammarAccess.getJsrInstructionAccess().getOperandAlternatives_2_0(), "rule__JsrInstruction__OperandAlternatives_2_0");

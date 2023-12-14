@@ -855,7 +855,13 @@ LslInstruction:
  */
 LeaInstruction:
  	instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
-	WS operand = IndexedOperand
+	WS operand = ( 
+		ImmediatOperand |
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
 ;
 
 /*

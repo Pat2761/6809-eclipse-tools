@@ -69,7 +69,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestEXGInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestINCInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestJMPInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestJSRInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLEAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSLInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestMULInstruction
@@ -131,6 +130,9 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDSInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDUInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDXInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDYInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLEASInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLEAUInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLEAXInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -223,6 +225,9 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDYInstructio
 	 TestLDUInstruction,
 	 TestLDXInstruction,
 	 TestLDYInstruction,
+	 TestLEASInstruction,
+	 TestLEAUInstruction,
+	 TestLEAXInstruction,
 	 
 //	 TestLEAInstruction,
 //	 TestLSLInstruction,

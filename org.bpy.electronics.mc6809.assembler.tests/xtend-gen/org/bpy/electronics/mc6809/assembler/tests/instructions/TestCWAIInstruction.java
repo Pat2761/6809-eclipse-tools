@@ -25,7 +25,11 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCWAIInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -95,16 +99,33 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIDirectAddressingMode() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("Label\t   CWAI\t\t  \t<124       ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Direct mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -112,16 +133,33 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIExtendedAddressingMode1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("Label      CWAI\t\t  \t$1234         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Extended mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -129,16 +167,33 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIExtendedAddressingMode2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("Label      CWAI\t\t  \t>$1234         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Extended mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -146,16 +201,33 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIExtendedIndirectAddressingMode1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("Label      CWAI\t\t  \t[$1234]         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -163,16 +235,35 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIConstantOffsetIndexed() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("Label      \tCWAI\t\t  \tConst,X         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -180,16 +271,35 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIConstantOffsetIndexedIndirect() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("Label      \tCWAI\t\t  \t[Const,X]         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -197,16 +307,35 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIAccumulatorIndexed() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("Label      \tCWAI\t\t  \tA,X         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -214,16 +343,35 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIAccumulatorIndexedIndirect() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("Label      \tCWAI\t\t  \t[A,X]         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -231,16 +379,35 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIAutoIncrementIndexed() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("Label      \tCWAI\t\t  \t,--X         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -248,16 +415,35 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIAutoIncrementIndexedIndirect() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("Label      \tCWAI\t\t  \t[,--X]         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -265,16 +451,35 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIRelativePCIndexed() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("Label      \tCWAI\t\t  \t0,PC         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -282,16 +487,35 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIRelativePCIndexedIndirect() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5    ");
+      _builder.newLine();
+      _builder.append("Label      \tCWAI\t\t  \t[0,PC]         ; Illegal CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        InstructionValidator.ILLEGAL_MODE, 
+        "Indexed mode is not valid for the CWAI instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Label", line.getLabel());
+      Assert.assertEquals("Check operand length", "; Illegal CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -330,18 +554,33 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIImmediatInstruction1() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Const\t   \tEQU          \t5");
+      _builder.newLine();
+      _builder.append("Start      \tCWAI\t\t  \t#Const+2  ; 8000   3C 07        START:    CWAI");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after the instruction", 0x8002, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x3C, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x07, line.getOperand()[0]);
+      Assert.assertEquals("Check Label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 8000   3C 07        START:    CWAI", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -349,10 +588,27 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIImmediatInstruction2() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tCWAI\t\t  \t#-129");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value -129 is below the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -360,10 +616,25 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIImmediatInstruction3() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tCWAI\t\t  \t#-128");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -371,10 +642,25 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIImmediatInstruction4() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tCWAI\t\t  \t#127");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 
   /**
@@ -382,9 +668,26 @@ public class TestCWAIInstruction {
    */
   @Test
   public void testCWAIImmediatInstruction5() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledCWAIInstruction cannot be resolved to a type."
-      + "\noperand cannot be resolved"
-      + "\nget cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tCWAI\t\t  \t#128");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCwaiInstruction(), 
+        ExpressionParser.OVERFLOW_ERROR, 
+        "The value 128 is greater than the possible limit, data may be lost");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledCWAIInstruction line = ((AssembledCWAIInstruction) _assembledLine);
+      Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

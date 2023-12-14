@@ -4,13 +4,13 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -60,7 +60,7 @@ public class LeaInstructionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    * @ordered
    */
-  protected IndexedOperand operand;
+  protected EObject operand;
 
   /**
    * <!-- begin-user-doc -->
@@ -114,7 +114,7 @@ public class LeaInstructionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public IndexedOperand getOperand()
+  public EObject getOperand()
   {
     return operand;
   }
@@ -124,9 +124,9 @@ public class LeaInstructionImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOperand(IndexedOperand newOperand, NotificationChain msgs)
+  public NotificationChain basicSetOperand(EObject newOperand, NotificationChain msgs)
   {
-    IndexedOperand oldOperand = operand;
+    EObject oldOperand = operand;
     operand = newOperand;
     if (eNotificationRequired())
     {
@@ -142,7 +142,7 @@ public class LeaInstructionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
-  public void setOperand(IndexedOperand newOperand)
+  public void setOperand(EObject newOperand)
   {
     if (newOperand != operand)
     {
@@ -206,7 +206,7 @@ public class LeaInstructionImpl extends MinimalEObjectImpl.Container implements 
         setInstruction((String)newValue);
         return;
       case AssemblerPackage.LEA_INSTRUCTION__OPERAND:
-        setOperand((IndexedOperand)newValue);
+        setOperand((EObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -226,7 +226,7 @@ public class LeaInstructionImpl extends MinimalEObjectImpl.Container implements 
         setInstruction(INSTRUCTION_EDEFAULT);
         return;
       case AssemblerPackage.LEA_INSTRUCTION__OPERAND:
-        setOperand((IndexedOperand)null);
+        setOperand((EObject)null);
         return;
     }
     super.eUnset(featureID);

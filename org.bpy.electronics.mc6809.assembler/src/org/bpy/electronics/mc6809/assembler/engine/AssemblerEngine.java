@@ -58,6 +58,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
@@ -141,6 +142,10 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLD
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDUInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDXInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDYInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEASInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAUInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAXInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAYInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -346,6 +351,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof LdInstruction) {
 			parse((LdInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof LeaInstruction) {
+			parse((LeaInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
 			
@@ -376,10 +384,38 @@ public class AssemblerEngine {
 	}
 
 	/**	
-	 * Parse the LDx instruction.
+	 * Parse the LEA instruction.
 	 * 
 	 * @param instruction reference of the instruction
 	 */
+	private void parse(LeaInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("LEAS".equals(instruction.getInstruction())) {
+			line = new AssembledLEASInstruction();
+			((AssembledLEASInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LEAU".equals(instruction.getInstruction())) {
+			line = new AssembledLEAUInstruction();
+			((AssembledLEAUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LEAX".equals(instruction.getInstruction())) {
+			line = new AssembledLEAXInstruction();
+			((AssembledLEAXInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LEAY".equals(instruction.getInstruction())) {
+			line = new AssembledLEAYInstruction();
+			((AssembledLEAYInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			// not possible 
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
 	private void parse(LdInstruction instruction) {
 		AbstractAssemblyLine line=null;
 
