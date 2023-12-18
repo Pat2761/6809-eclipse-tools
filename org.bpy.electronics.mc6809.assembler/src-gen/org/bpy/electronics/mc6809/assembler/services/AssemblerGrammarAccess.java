@@ -2380,8 +2380,10 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cInstructionPSHUKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cOperandAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAssignment_2_0.eContents().get(0);
+		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
+		private final Keyword cNumberSignKeyword_2_0_0 = (Keyword)cGroup_2_0.eContents().get(0);
+		private final Assignment cOperandAssignment_2_0_1 = (Assignment)cGroup_2_0.eContents().get(1);
+		private final RuleCall cOperandIdentifierValueParserRuleCall_2_0_1_0 = (RuleCall)cOperandAssignment_2_0_1.eContents().get(0);
 		private final Group cGroup_2_1 = (Group)cAlternatives_2.eContents().get(1);
 		private final Assignment cRegistersAssignment_2_1_0 = (Assignment)cGroup_2_1.eContents().get(0);
 		private final RuleCall cRegistersRegisterEnumRuleCall_2_1_0_0 = (RuleCall)cRegistersAssignment_2_1_0.eContents().get(0);
@@ -2405,7 +2407,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = 'PSHU'
 		//    WS
 		//    (
-		//           (operand = ImmediatOperand)
+		//          '#' (operand = IdentifierValue)
 		//        |  ( registers+=Register (',' registers+=Register)*)
 		//    )
 		//;
@@ -2414,7 +2416,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//instruction = 'PSHU'
 		//WS
 		//(
-		//       (operand = ImmediatOperand)
+		//      '#' (operand = IdentifierValue)
 		//    |  ( registers+=Register (',' registers+=Register)*)
 		//)
 		public Group getGroup() { return cGroup; }
@@ -2429,16 +2431,22 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
 		
 		//(
-		//       (operand = ImmediatOperand)
+		//      '#' (operand = IdentifierValue)
 		//    |  ( registers+=Register (',' registers+=Register)*)
 		//)
 		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//(operand = ImmediatOperand)
-		public Assignment getOperandAssignment_2_0() { return cOperandAssignment_2_0; }
+		//'#' (operand = IdentifierValue)
+		public Group getGroup_2_0() { return cGroup_2_0; }
 		
-		//ImmediatOperand
-		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
+		//'#'
+		public Keyword getNumberSignKeyword_2_0_0() { return cNumberSignKeyword_2_0_0; }
+		
+		//(operand = IdentifierValue)
+		public Assignment getOperandAssignment_2_0_1() { return cOperandAssignment_2_0_1; }
+		
+		//IdentifierValue
+		public RuleCall getOperandIdentifierValueParserRuleCall_2_0_1_0() { return cOperandIdentifierValueParserRuleCall_2_0_1_0; }
 		
 		//( registers+=Register (',' registers+=Register)*)
 		public Group getGroup_2_1() { return cGroup_2_1; }
@@ -10839,7 +10847,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    instruction = 'PSHU'
 	//    WS
 	//    (
-	//           (operand = ImmediatOperand)
+	//          '#' (operand = IdentifierValue)
 	//        |  ( registers+=Register (',' registers+=Register)*)
 	//    )
 	//;

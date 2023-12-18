@@ -3368,22 +3368,28 @@ rulePshuInstruction returns [EObject current=null]
 		}
 		(
 			(
+				otherlv_2='#'
+				{
+					newLeafNode(otherlv_2, grammarAccess.getPshuInstructionAccess().getNumberSignKeyword_2_0_0());
+				}
 				(
-					{
-						newCompositeNode(grammarAccess.getPshuInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0_0());
-					}
-					lv_operand_2_0=ruleImmediatOperand
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getPshuInstructionRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getPshuInstructionAccess().getOperandIdentifierValueParserRuleCall_2_0_1_0());
 						}
-						set(
-							$current,
-							"operand",
-							lv_operand_2_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.ImmediatOperand");
-						afterParserOrEnumRuleCall();
-					}
+						lv_operand_3_0=ruleIdentifierValue
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getPshuInstructionRule());
+							}
+							set(
+								$current,
+								"operand",
+								lv_operand_3_0,
+								"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
 			)
 			    |
@@ -3393,7 +3399,7 @@ rulePshuInstruction returns [EObject current=null]
 						{
 							newCompositeNode(grammarAccess.getPshuInstructionAccess().getRegistersRegisterEnumRuleCall_2_1_0_0());
 						}
-						lv_registers_3_0=ruleRegister
+						lv_registers_4_0=ruleRegister
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getPshuInstructionRule());
@@ -3401,23 +3407,23 @@ rulePshuInstruction returns [EObject current=null]
 							add(
 								$current,
 								"registers",
-								lv_registers_3_0,
+								lv_registers_4_0,
 								"org.bpy.electronics.mc6809.assembler.Assembler.Register");
 							afterParserOrEnumRuleCall();
 						}
 					)
 				)
 				(
-					otherlv_4=','
+					otherlv_5=','
 					{
-						newLeafNode(otherlv_4, grammarAccess.getPshuInstructionAccess().getCommaKeyword_2_1_1_0());
+						newLeafNode(otherlv_5, grammarAccess.getPshuInstructionAccess().getCommaKeyword_2_1_1_0());
 					}
 					(
 						(
 							{
 								newCompositeNode(grammarAccess.getPshuInstructionAccess().getRegistersRegisterEnumRuleCall_2_1_1_1_0());
 							}
-							lv_registers_5_0=ruleRegister
+							lv_registers_6_0=ruleRegister
 							{
 								if ($current==null) {
 									$current = createModelElementForParent(grammarAccess.getPshuInstructionRule());
@@ -3425,7 +3431,7 @@ rulePshuInstruction returns [EObject current=null]
 								add(
 									$current,
 									"registers",
-									lv_registers_5_0,
+									lv_registers_6_0,
 									"org.bpy.electronics.mc6809.assembler.Assembler.Register");
 								afterParserOrEnumRuleCall();
 							}

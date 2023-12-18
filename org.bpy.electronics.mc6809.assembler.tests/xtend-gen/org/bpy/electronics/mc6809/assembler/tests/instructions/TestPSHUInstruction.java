@@ -18,12 +18,16 @@
 package org.bpy.electronics.mc6809.assembler.tests.instructions;
 
 import com.google.inject.Inject;
-import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPSHUInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -50,45 +54,7 @@ public class TestPSHUInstruction {
   private ValidationTestHelper _validationTestHelper;
 
   /**
-   * Check PHSH immediat
-   */
-  @Test
-  public void testPSHUImemdiatAddressingMode1() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("; -----------------------------------------");
-      _builder.newLine();
-      _builder.append("\t       ");
-      _builder.append("ORG    \t\t$8000");
-      _builder.newLine();
-      _builder.append("\t       ");
-      _builder.append("PSHU\t\t  \t#124");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
-      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final SourceLine line = result.getSourceLines().get(2);
-      EObject _lineContent = line.getLineContent();
-      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
-      EObject _lineContent_1 = line.getLineContent();
-      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
-      EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an PSHU directive line", (_instruction instanceof PshuInstruction));
-      EObject _instruction_1 = instructionLine.getInstruction();
-      final PshuInstruction pshuInstruction = ((PshuInstruction) _instruction_1);
-      ImmediatOperand _operand = pshuInstruction.getOperand();
-      Assert.assertTrue("Must be an immediate addressing mode", (_operand instanceof ImmediatOperand));
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
-   * Check PHSH immediat
+   * Check PHSH immediate
    */
   @Test
   public void testPSHUImemdiatAddressingMode2() {
@@ -117,17 +83,17 @@ public class TestPSHUInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an PSHU directive line", (_instruction instanceof PshuInstruction));
+      Assert.assertTrue("Must be an PSHU instruction line", (_instruction instanceof PshuInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check PHSH immediat
+   * Check PHSH A
    */
   @Test
-  public void testPSHUImemdiatAddressingMode3() {
+  public void testPSHUImemdiate1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -136,7 +102,7 @@ public class TestPSHUInstruction {
       _builder.append("ORG    \t\t$8000");
       _builder.newLine();
       _builder.append("\t       ");
-      _builder.append("PSHU\t\t  \tPC,U,Y,X,DP,B,A,CC");
+      _builder.append("PSHU\t\t  \tPC,S,Y,X,DP,B,A,CC");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -151,10 +117,460 @@ public class TestPSHUInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an PSHU directive line", (_instruction instanceof PshuInstruction));
+      Assert.assertTrue("Must be an PSHU instruction line", (_instruction instanceof PshuInstruction));
       EObject _instruction_1 = instructionLine.getInstruction();
-      final PshuInstruction pshuInstruction = ((PshuInstruction) _instruction_1);
-      Assert.assertEquals("Must be an PSHU instruction", pshuInstruction.getInstruction(), "PSHU");
+      final PshuInstruction phshInstruction = ((PshuInstruction) _instruction_1);
+      Assert.assertEquals("Must be an PSHU instruction", phshInstruction.getInstruction(), "PSHU");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PHSH from REG instruction
+   */
+  @Test
+  public void testPSHUImemdiatAddressingMode3() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       \t\t");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("RegDir     \t\tREG\t\t\tA,B,X,Y\t       ");
+      _builder.newLine();
+      _builder.append("PushPull        PSHU\t\t#RegDir       ; push register");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(3);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x8002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x36, line.getOperand()[0]);
+      Assert.assertEquals("Check label", "PushPull", line.getLabel());
+      Assert.assertEquals("Check comment", "; push register", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PHSH missing REG instruction
+   */
+  @Test
+  public void testPSHUMissingReg() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("Pshs       PSHU\t\t  \t#RegDir       ; push register");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getPshuInstruction(), 
+        InstructionValidator.MISSING_DIRECTIVE, 
+        "REG RegDir directive is not defined");
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC COunter", 0x8001, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x3F, line.getOpcode()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with D and A register
+   */
+  @Test
+  public void testInstructionWithAAndDRegister() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test PSHU without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU    A,D \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getPshuInstruction(), InstructionValidator.DUPLICATE_OPTION, "D register overwrite the A register in the REG Directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with D and B register
+   */
+  @Test
+  public void testInstructionWithBAndDRegister() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU    B,D \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getPshuInstruction(), InstructionValidator.DUPLICATE_OPTION, "D register overwrite the B register in the REG Directive");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with duplicate label
+   */
+  @Test
+  public void testInstructionWithDuplicateLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("Lab1\t\tNOP\t\t \t");
+      _builder.newLine();
+      _builder.append("Lab1\t \tPSHU    \tB,A \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), AssemblerEngine.DUPLICATE_LABEL, "Label Lab1 is already defined");
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with CC register
+   */
+  @Test
+  public void testInstructionOperandCC() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   CC \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x01, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with A register
+   */
+  @Test
+  public void testInstructionOperandA() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   A \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x02, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with B register
+   */
+  @Test
+  public void testInstructionOperandB() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   B \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x04, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with D register
+   */
+  @Test
+  public void testInstructionOperandD() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   D \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x06, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with DP register
+   */
+  @Test
+  public void testInstructionOperandDP() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   DP \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x08, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with X register
+   */
+  @Test
+  public void testInstructionOperandX() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   X \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x10, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with Y register
+   */
+  @Test
+  public void testInstructionOperandY() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   Y \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x20, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with U register
+   */
+  @Test
+  public void testInstructionOperandU() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   U \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getPshuInstruction(), 
+        InstructionValidator.ILLEGAL_REGISTER, 
+        "U register can\'t be push for a PSHU instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x40, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with S register
+   */
+  @Test
+  public void testInstructionOperandS() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   S \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x40, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with S register
+   */
+  @Test
+  public void testInstructionOperandRegS() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("REG_U\t\tREG\t\tU");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   \t#REG_U \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getPshuInstruction(), 
+        InstructionValidator.ILLEGAL_REGISTER, 
+        "U register can\'t be push for a PSHU instruction");
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x40, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check PSHU instruction with PC register
+   */
+  @Test
+  public void testInstructionOperandPC() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; test REG without label");
+      _builder.newLine();
+      _builder.append("\t \t    ");
+      _builder.append("PSHU   PC \t\t ; Oups");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(1);
+      final AssembledPSHUInstruction line = ((AssembledPSHUInstruction) _assembledLine);
+      Assert.assertEquals("Check PC Counter", 0x0002, engine.getCurrentPcValue());
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

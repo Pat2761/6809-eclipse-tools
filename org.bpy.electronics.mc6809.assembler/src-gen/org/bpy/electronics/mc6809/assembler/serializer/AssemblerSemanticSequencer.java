@@ -2550,7 +2550,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PshuInstruction returns PshuInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PSHU' (operand=ImmediatOperand | (registers+=Register registers+=Register*)))
+	 *     (instruction='PSHU' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PshuInstruction(ISerializationContext context, PshuInstruction semanticObject) {

@@ -625,7 +625,7 @@ PshuInstruction:
 	instruction = 'PSHU'
 	WS  
 	( 
-		   (operand = ImmediatOperand)
+		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
 	)
 ;

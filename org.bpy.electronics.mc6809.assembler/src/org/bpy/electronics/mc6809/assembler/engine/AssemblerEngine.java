@@ -72,6 +72,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
@@ -168,6 +169,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledOR
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORCCInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPSHSInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPSHUInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -402,6 +404,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof PshsInstruction) {
 			parse((PshsInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof PshuInstruction) {
+			parse((PshuInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
 			parse((TfrInstruction)instructionLine.getInstruction());
 				
@@ -418,6 +423,24 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the PSHU instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(PshuInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledPSHUInstruction();
+    	((AssembledPSHUInstruction) line).parse(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);

@@ -54,12 +54,12 @@ public interface PshuInstruction extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference.
-   * @see #setOperand(ImmediatOperand)
+   * @see #setOperand(IdentifierValue)
    * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getPshuInstruction_Operand()
    * @model containment="true"
    * @generated
    */
-  ImmediatOperand getOperand();
+  IdentifierValue getOperand();
 
   /**
    * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction#getOperand <em>Operand</em>}' containment reference.
@@ -69,7 +69,7 @@ public interface PshuInstruction extends EObject
    * @see #getOperand()
    * @generated
    */
-  void setOperand(ImmediatOperand value);
+  void setOperand(IdentifierValue value);
 
   /**
    * Returns the value of the '<em><b>Registers</b></em>' attribute list.

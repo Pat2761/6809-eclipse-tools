@@ -65,6 +65,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
@@ -1057,6 +1058,26 @@ public class CommandUtil {
 	}
 
 	/**
+	 * Return the label associated to an PSHU instruction.
+	 * 
+	 * @param instruction reference on the PSHU instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(PshuInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an PSHU instruction.
+	 * 
+	 * @param instruction reference on the PSHU instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(PshuInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
 	 * Return the label associated to an TFR instruction.
 	 * 
 	 * @param instruction reference on the TFR instruction
@@ -1109,6 +1130,15 @@ public class CommandUtil {
 	}
 
 	public static List<String> getRegisters(PshsInstruction instruction) {
+		List<String> registers = new ArrayList<>();
+		EList<Register> options = instruction.getRegisters();
+		for (Register option : options) {
+			registers.add(option.getLiteral());
+		}
+		return registers;
+	}
+
+	public static List<String> getRegisters(PshuInstruction instruction) {
 		List<String> registers = new ArrayList<>();
 		EList<Register> options = instruction.getRegisters();
 		for (Register option : options) {
