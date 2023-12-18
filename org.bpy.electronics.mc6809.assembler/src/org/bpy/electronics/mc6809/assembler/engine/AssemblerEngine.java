@@ -410,6 +410,24 @@ public class AssemblerEngine {
 	}
 
 	/**	
+	 * Parse the NOP instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(NopInstruction instruction) {
+		AssembledNOPInstruction line = new AssembledNOPInstruction();
+		line.parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+    }
+
+	/**	
 	 * Parse the NEG instruction.
 	 * 
 	 * @param instruction reference of the instruction
@@ -1012,19 +1030,6 @@ public class AssemblerEngine {
 				instruction.eContainer(),
 				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
-
-	private void parse(NopInstruction instruction) {
-		AssembledNOPInstruction line = new AssembledNOPInstruction();
-		line.parse(instruction, currentPcValue, lineNumber);
-
-		assemblyLines.add(line);
-		assembledLinesMap.put(instruction, line);
-		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
-		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
-}
 
 	/**
 	 * Parse an ADC directive line.
