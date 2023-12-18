@@ -71,6 +71,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
@@ -166,6 +167,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNO
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORCCInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPSHSInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -197,6 +199,8 @@ public class AssemblerEngine {
 	
 	/** Contains the collection of label which reference assembly line */
 	private Map<String, AbstractAssemblyLine> labelsPositionObject;
+	/** Contains the collection of Register definition */
+	private Map<String, Integer> regDefintionValues;
 	/** Contains the collection of Labels which define values */
 	private Map<String, AbstractAssemblyLine> labelsEquSet;
 	/** Contains the collection of assembled line  */
@@ -236,6 +240,7 @@ public class AssemblerEngine {
 		labelsPositionObject = new HashMap<>();
 		labelsEquSet = new HashMap<>();
 		assembledLinesMap = new HashMap<>();
+		regDefintionValues = new HashMap<>();
 	}
 
 	/**
@@ -268,7 +273,7 @@ public class AssemblerEngine {
 	 */
 	public void engine(Model model) {
 		lineNumber = 1;
-		currentPcValue = -1;
+		currentPcValue = 0;
 		assemblyLines = new ArrayList<>();
 
 		AssemblerErrorManager.getInstance().clear();
@@ -394,6 +399,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof OrCCInstruction) {
 			parse((OrCCInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof PshsInstruction) {
+			parse((PshsInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
 			parse((TfrInstruction)instructionLine.getInstruction());
 				
@@ -410,6 +418,24 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the PSHS instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(PshsInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledPSHSInstruction();
+    	((AssembledPSHSInstruction) line).parse(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -1344,8 +1370,10 @@ public class AssemblerEngine {
 					DUPLICATE_LABEL);
 			AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 		} else {
+			regDefintionValues.put(label, line.getValue());	
 			labelsEquSet.put(label, line);
 		}
+		
 	}
 
 	/**
@@ -1600,6 +1628,20 @@ public class AssemblerEngine {
 	 * @param value value of the label
 	 * @return value pointed by the label
 	 */
+	public Integer getRegDefintionValue(String value) {
+		if (regDefintionValues.containsKey(value)) {
+			return regDefintionValues.get(value);
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Get the value for a label 
+	 * 
+	 * @param value value of the label
+	 * @return value pointed by the label
+	 */
 	public Integer getEquSetLabelValue(String value) {
 		
 		AbstractAssemblyLine assemblyLine = labelsEquSet.get(value);
@@ -1623,5 +1665,4 @@ public class AssemblerEngine {
 	public int getCurrentDPPage() {
 		return currentDPPage;
 	}
-
 }

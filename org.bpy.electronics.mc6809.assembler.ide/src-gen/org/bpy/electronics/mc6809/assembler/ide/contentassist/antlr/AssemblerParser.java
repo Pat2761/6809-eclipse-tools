@@ -179,6 +179,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPshuInstructionAccess().getGroup_2_1(), "rule__PshuInstruction__Group_2_1__0");
 			builder.put(grammarAccess.getPshuInstructionAccess().getGroup_2_1_1(), "rule__PshuInstruction__Group_2_1_1__0");
 			builder.put(grammarAccess.getPshsInstructionAccess().getGroup(), "rule__PshsInstruction__Group__0");
+			builder.put(grammarAccess.getPshsInstructionAccess().getGroup_2_0(), "rule__PshsInstruction__Group_2_0__0");
 			builder.put(grammarAccess.getPshsInstructionAccess().getGroup_2_1(), "rule__PshsInstruction__Group_2_1__0");
 			builder.put(grammarAccess.getPshsInstructionAccess().getGroup_2_1_1(), "rule__PshsInstruction__Group_2_1_1__0");
 			builder.put(grammarAccess.getOrCCInstructionAccess().getGroup(), "rule__OrCCInstruction__Group__0");
@@ -427,7 +428,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPshuInstructionAccess().getRegistersAssignment_2_1_0(), "rule__PshuInstruction__RegistersAssignment_2_1_0");
 			builder.put(grammarAccess.getPshuInstructionAccess().getRegistersAssignment_2_1_1_1(), "rule__PshuInstruction__RegistersAssignment_2_1_1_1");
 			builder.put(grammarAccess.getPshsInstructionAccess().getInstructionAssignment_0(), "rule__PshsInstruction__InstructionAssignment_0");
-			builder.put(grammarAccess.getPshsInstructionAccess().getOperandAssignment_2_0(), "rule__PshsInstruction__OperandAssignment_2_0");
+			builder.put(grammarAccess.getPshsInstructionAccess().getOperandAssignment_2_0_1(), "rule__PshsInstruction__OperandAssignment_2_0_1");
 			builder.put(grammarAccess.getPshsInstructionAccess().getRegistersAssignment_2_1_0(), "rule__PshsInstruction__RegistersAssignment_2_1_0");
 			builder.put(grammarAccess.getPshsInstructionAccess().getRegistersAssignment_2_1_1_1(), "rule__PshsInstruction__RegistersAssignment_2_1_1_1");
 			builder.put(grammarAccess.getOrCCInstructionAccess().getInstructionAssignment_0(), "rule__OrCCInstruction__InstructionAssignment_0");

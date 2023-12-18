@@ -18,6 +18,7 @@
  */
 package org.bpy.electronics.mc6809.assembler.validation;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
@@ -27,6 +28,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
@@ -49,7 +51,14 @@ import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRegDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 
 /**
@@ -62,6 +71,10 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 
 	public static final String ILLEGAL_MODE = "illegalMode";
 	public static final String ILLEGAL_EXCHANGE = "illegalExchange";
+	public static final String MISSING_DIRECTIVE = "missingDirective";
+	public static final String MISSING_OPTION = "missingOption";
+	public static final String DUPLICATE_OPTION = "duplicateOption";
+	public static final String ILLEGAL_REGISTER = "illegalRegister";
 
 	/**
 	 * Check duplicate labels
@@ -361,6 +374,65 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(OrCCInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the PSHS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(PshsInstruction instruction) {
+		
+		if (instruction.getOperand() == null) {
+			List<String> regs = CommandUtil.getRegisters(instruction);
+			List<String> testReg = new ArrayList<>();
+			
+			if (regs.isEmpty()) {
+				error("no register defined in the PSHS instruction",
+						AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+						MISSING_OPTION);
+				
+			} else {
+				for (String reg : regs) {
+					if (testReg.contains(reg)) {
+						error("Register " + reg + " is duplicate in the REG Directive",
+								AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+								DUPLICATE_OPTION);
+						break;
+					} else {
+						testReg.add(reg);
+					}
+		 		}
+			}
+
+			if (regs.contains("A") && regs.contains("D")) {
+				error("D register overwrite the A register in the REG Directive",
+						AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+						DUPLICATE_OPTION);
+			}
+			if (regs.contains("B") && regs.contains("D")) {
+				error("D register overwrite the B register in the REG Directive",
+						AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+						DUPLICATE_OPTION);
+			}
+			if (regs.contains("S")) {
+				error("S register can't be push for a PSHS instruction",
+						AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+						ILLEGAL_REGISTER);
+			}
+		} else {
+			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getLabelsEquSet().get(instruction.getOperand().getValue());
+			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine )) {
+				if (((AssembledRegDirectiveLine)regInstruction).checkRegister(Register.S)) {
+					error("S register can't be push for a PSHS instruction",
+							AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+							ILLEGAL_REGISTER);
+				}
+			}
+		}
+		
 		exposeProblems(instruction);
 	}	
 	

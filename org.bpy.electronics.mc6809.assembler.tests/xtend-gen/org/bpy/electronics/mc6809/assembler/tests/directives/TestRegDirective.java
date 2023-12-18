@@ -335,16 +335,17 @@ public class TestRegDirective {
       Assert.assertEquals("Check value X", 16, regLineX.getValue());
       AbstractAssemblyLine _assembledLine_6 = engine.getAssembledLine(7);
       final AssembledRegDirectiveLine regLineY = ((AssembledRegDirectiveLine) _assembledLine_6);
-      Assert.assertEquals("Check value X", 32, regLineY.getValue());
+      Assert.assertEquals("Check value Y", 32, regLineY.getValue());
       AbstractAssemblyLine _assembledLine_7 = engine.getAssembledLine(8);
       final AssembledRegDirectiveLine regLineU = ((AssembledRegDirectiveLine) _assembledLine_7);
       Assert.assertEquals("Check value U", 64, regLineU.getValue());
       AbstractAssemblyLine _assembledLine_8 = engine.getAssembledLine(9);
       final AssembledRegDirectiveLine regLineS = ((AssembledRegDirectiveLine) _assembledLine_8);
-      Assert.assertEquals("Check value U", 64, regLineS.getValue());
+      Assert.assertEquals("Check value S", 64, regLineS.getValue());
       AbstractAssemblyLine _assembledLine_9 = engine.getAssembledLine(10);
       final AssembledRegDirectiveLine regLinePC = ((AssembledRegDirectiveLine) _assembledLine_9);
       Assert.assertEquals("Check value PC", 128, regLinePC.getValue());
+      Assert.assertEquals("Check memorization", 128, (engine.getRegDefintionValue("L_PC")).intValue());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

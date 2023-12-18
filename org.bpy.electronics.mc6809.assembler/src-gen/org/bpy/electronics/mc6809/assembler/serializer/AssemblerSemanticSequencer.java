@@ -2536,7 +2536,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PshsInstruction returns PshsInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PSHS' (operand=ImmediatOperand | (registers+=Register registers+=Register*)))
+	 *     (instruction='PSHS' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PshsInstruction(ISerializationContext context, PshsInstruction semanticObject) {

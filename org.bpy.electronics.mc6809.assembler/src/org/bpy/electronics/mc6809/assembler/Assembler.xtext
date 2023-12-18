@@ -645,14 +645,14 @@ PshsInstruction:
 	instruction = 'PSHS'
 	WS  
 	( 
-		   (operand = ImmediatOperand)
+		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
 	)
 ;
 
 /*
  * ORCC
- * 
+ * s
  * Inclusive OR Memory Immediate Into Condition Code Register
  * Source Form		: ORCC #XX
  * Operation		: R'— RvMi

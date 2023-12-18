@@ -251,7 +251,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORBInstructio
 	 TestNOPInstruction,
 	 TestORAInstruction,
 	 TestORBInstruction,
-//	 TestORCCInstruction,
+	 TestORCCInstruction,
 //	 TestPSHSInstruction,
 //	 TestPSHUInstruction,
 //	 TestPULSInstruction,
