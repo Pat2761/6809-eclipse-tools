@@ -55,6 +55,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPulsInstructionAccess().getAlternatives_2(), "rule__PulsInstruction__Alternatives_2");
 			builder.put(grammarAccess.getPshuInstructionAccess().getAlternatives_2(), "rule__PshuInstruction__Alternatives_2");
 			builder.put(grammarAccess.getPshsInstructionAccess().getAlternatives_2(), "rule__PshsInstruction__Alternatives_2");
+			builder.put(grammarAccess.getOrCCInstructionAccess().getOperandAlternatives_2_0(), "rule__OrCCInstruction__OperandAlternatives_2_0");
 			builder.put(grammarAccess.getOrInstructionAccess().getInstructionAlternatives_0_0(), "rule__OrInstruction__InstructionAlternatives_0_0");
 			builder.put(grammarAccess.getOrInstructionAccess().getOperandAlternatives_2_0(), "rule__OrInstruction__OperandAlternatives_2_0");
 			builder.put(grammarAccess.getNegInstructionAccess().getAlternatives(), "rule__NegInstruction__Alternatives");
@@ -180,7 +181,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPshsInstructionAccess().getGroup(), "rule__PshsInstruction__Group__0");
 			builder.put(grammarAccess.getPshsInstructionAccess().getGroup_2_1(), "rule__PshsInstruction__Group_2_1__0");
 			builder.put(grammarAccess.getPshsInstructionAccess().getGroup_2_1_1(), "rule__PshsInstruction__Group_2_1_1__0");
-			builder.put(grammarAccess.getOrccInstructionAccess().getGroup(), "rule__OrccInstruction__Group__0");
+			builder.put(grammarAccess.getOrCCInstructionAccess().getGroup(), "rule__OrCCInstruction__Group__0");
 			builder.put(grammarAccess.getOrInstructionAccess().getGroup(), "rule__OrInstruction__Group__0");
 			builder.put(grammarAccess.getNegInstructionAccess().getGroup_1(), "rule__NegInstruction__Group_1__0");
 			builder.put(grammarAccess.getLsrInstructionAccess().getGroup_1(), "rule__LsrInstruction__Group_1__0");
@@ -429,8 +430,8 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getPshsInstructionAccess().getOperandAssignment_2_0(), "rule__PshsInstruction__OperandAssignment_2_0");
 			builder.put(grammarAccess.getPshsInstructionAccess().getRegistersAssignment_2_1_0(), "rule__PshsInstruction__RegistersAssignment_2_1_0");
 			builder.put(grammarAccess.getPshsInstructionAccess().getRegistersAssignment_2_1_1_1(), "rule__PshsInstruction__RegistersAssignment_2_1_1_1");
-			builder.put(grammarAccess.getOrccInstructionAccess().getInstructionAssignment_0(), "rule__OrccInstruction__InstructionAssignment_0");
-			builder.put(grammarAccess.getOrccInstructionAccess().getOperandAssignment_2(), "rule__OrccInstruction__OperandAssignment_2");
+			builder.put(grammarAccess.getOrCCInstructionAccess().getInstructionAssignment_0(), "rule__OrCCInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getOrCCInstructionAccess().getOperandAssignment_2(), "rule__OrCCInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getOrInstructionAccess().getInstructionAssignment_0(), "rule__OrInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getOrInstructionAccess().getOperandAssignment_2(), "rule__OrInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getNopInstructionAccess().getInstructionAssignment(), "rule__NopInstruction__InstructionAssignment");

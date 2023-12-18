@@ -118,9 +118,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="registers" unique="false"
         upperBound="-1" eType="#//Register"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OrccInstruction">
+  <eClassifiers xsi:type="ecore:EClass" name="OrCCInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//ImmediatOperand"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrInstruction">

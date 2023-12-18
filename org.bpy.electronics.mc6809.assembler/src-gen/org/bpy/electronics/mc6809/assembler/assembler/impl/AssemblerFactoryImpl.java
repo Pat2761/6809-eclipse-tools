@@ -91,7 +91,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.PULS_INSTRUCTION: return createPulsInstruction();
       case AssemblerPackage.PSHU_INSTRUCTION: return createPshuInstruction();
       case AssemblerPackage.PSHS_INSTRUCTION: return createPshsInstruction();
-      case AssemblerPackage.ORCC_INSTRUCTION: return createOrccInstruction();
+      case AssemblerPackage.OR_CC_INSTRUCTION: return createOrCCInstruction();
       case AssemblerPackage.OR_INSTRUCTION: return createOrInstruction();
       case AssemblerPackage.NOP_INSTRUCTION: return createNopInstruction();
       case AssemblerPackage.NEG_INSTRUCTION: return createNegInstruction();
@@ -542,10 +542,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public OrccInstruction createOrccInstruction()
+  public OrCCInstruction createOrCCInstruction()
   {
-    OrccInstructionImpl orccInstruction = new OrccInstructionImpl();
-    return orccInstruction;
+    OrCCInstructionImpl orCCInstruction = new OrCCInstructionImpl();
+    return orCCInstruction;
   }
 
   /**

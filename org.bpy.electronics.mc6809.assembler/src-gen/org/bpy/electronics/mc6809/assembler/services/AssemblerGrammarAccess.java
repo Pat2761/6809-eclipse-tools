@@ -276,7 +276,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cInstructionAssignment_2_46 = (Assignment)cAlternatives_2.eContents().get(46);
 		private final RuleCall cInstructionOrInstructionParserRuleCall_2_46_0 = (RuleCall)cInstructionAssignment_2_46.eContents().get(0);
 		private final Assignment cInstructionAssignment_2_47 = (Assignment)cAlternatives_2.eContents().get(47);
-		private final RuleCall cInstructionOrccInstructionParserRuleCall_2_47_0 = (RuleCall)cInstructionAssignment_2_47.eContents().get(0);
+		private final RuleCall cInstructionOrCCInstructionParserRuleCall_2_47_0 = (RuleCall)cInstructionAssignment_2_47.eContents().get(0);
 		private final Assignment cInstructionAssignment_2_48 = (Assignment)cAlternatives_2.eContents().get(48);
 		private final RuleCall cInstructionPshsInstructionParserRuleCall_2_48_0 = (RuleCall)cInstructionAssignment_2_48.eContents().get(0);
 		private final Assignment cInstructionAssignment_2_49 = (Assignment)cAlternatives_2.eContents().get(49);
@@ -377,7 +377,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        instruction = NegInstruction            |
 		//        instruction = NopInstruction            |
 		//        instruction = OrInstruction                |
-		//        instruction = OrccInstruction            |
+		//        instruction = OrCCInstruction            |
 		//        instruction = PshsInstruction            |
 		//        instruction = PshuInstruction            |
 		//        instruction = PulsInstruction            |
@@ -453,7 +453,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = NegInstruction            |
 		//    instruction = NopInstruction            |
 		//    instruction = OrInstruction                |
-		//    instruction = OrccInstruction            |
+		//    instruction = OrCCInstruction            |
 		//    instruction = PshsInstruction            |
 		//    instruction = PshuInstruction            |
 		//    instruction = PulsInstruction            |
@@ -536,7 +536,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = NegInstruction            |
 		//    instruction = NopInstruction            |
 		//    instruction = OrInstruction                |
-		//    instruction = OrccInstruction            |
+		//    instruction = OrCCInstruction            |
 		//    instruction = PshsInstruction            |
 		//    instruction = PshuInstruction            |
 		//    instruction = PulsInstruction            |
@@ -842,11 +842,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//OrInstruction
 		public RuleCall getInstructionOrInstructionParserRuleCall_2_46_0() { return cInstructionOrInstructionParserRuleCall_2_46_0; }
 		
-		//instruction = OrccInstruction
+		//instruction = OrCCInstruction
 		public Assignment getInstructionAssignment_2_47() { return cInstructionAssignment_2_47; }
 		
-		//OrccInstruction
-		public RuleCall getInstructionOrccInstructionParserRuleCall_2_47_0() { return cInstructionOrccInstructionParserRuleCall_2_47_0; }
+		//OrCCInstruction
+		public RuleCall getInstructionOrCCInstructionParserRuleCall_2_47_0() { return cInstructionOrCCInstructionParserRuleCall_2_47_0; }
 		
 		//instruction = PshsInstruction
 		public Assignment getInstructionAssignment_2_48() { return cInstructionAssignment_2_48; }
@@ -2549,14 +2549,19 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//Register
 		public RuleCall getRegistersRegisterEnumRuleCall_2_1_1_1_0() { return cRegistersRegisterEnumRuleCall_2_1_1_1_0; }
 	}
-	public class OrccInstructionElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OrccInstruction");
+	public class OrCCInstructionElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OrCCInstruction");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cInstructionORCCKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
 		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
+		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
+		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
+		private final RuleCall cOperandDirectOperandParserRuleCall_2_0_1 = (RuleCall)cOperandAlternatives_2_0.eContents().get(1);
+		private final RuleCall cOperandIndexedOperandParserRuleCall_2_0_2 = (RuleCall)cOperandAlternatives_2_0.eContents().get(2);
+		private final RuleCall cOperandExtendedOperandParserRuleCall_2_0_3 = (RuleCall)cOperandAlternatives_2_0.eContents().get(3);
+		private final RuleCall cOperandExtendedIndirectOperandParserRuleCall_2_0_4 = (RuleCall)cOperandAlternatives_2_0.eContents().get(4);
 		
 		///*
 		// * ORCC
@@ -2569,14 +2574,26 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// *                    piaced in the condition code register. This instruction may be used to set interrupt maslcs (disable interrupts) or any other bit(s).
 		// * Addressing Mode    : Immediate
 		// */
-		//OrccInstruction:
+		//OrCCInstruction:
 		//    instruction = 'ORCC'
-		//    WS operand = ImmediatOperand
+		//    WS operand = (
+		//        ImmediatOperand |
+		//        DirectOperand  |
+		//        IndexedOperand |
+		//        ExtendedOperand |
+		//        ExtendedIndirectOperand
+		//    )
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//instruction = 'ORCC'
-		//WS operand = ImmediatOperand
+		//WS operand = (
+		//    ImmediatOperand |
+		//    DirectOperand  |
+		//    IndexedOperand |
+		//    ExtendedOperand |
+		//    ExtendedIndirectOperand
+		//)
 		public Group getGroup() { return cGroup; }
 		
 		//instruction = 'ORCC'
@@ -2588,11 +2605,38 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//WS
 		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
 		
-		//operand = ImmediatOperand
+		//operand = (
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
 		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
 		
+		//(
+		//       ImmediatOperand |
+		//       DirectOperand  |
+		//       IndexedOperand |
+		//       ExtendedOperand |
+		//       ExtendedIndirectOperand
+		//   )
+		public Alternatives getOperandAlternatives_2_0() { return cOperandAlternatives_2_0; }
+		
 		//ImmediatOperand
-		public RuleCall getOperandImmediatOperandParserRuleCall_2_0() { return cOperandImmediatOperandParserRuleCall_2_0; }
+		public RuleCall getOperandImmediatOperandParserRuleCall_2_0_0() { return cOperandImmediatOperandParserRuleCall_2_0_0; }
+		
+		//DirectOperand
+		public RuleCall getOperandDirectOperandParserRuleCall_2_0_1() { return cOperandDirectOperandParserRuleCall_2_0_1; }
+		
+		//IndexedOperand
+		public RuleCall getOperandIndexedOperandParserRuleCall_2_0_2() { return cOperandIndexedOperandParserRuleCall_2_0_2; }
+		
+		//ExtendedOperand
+		public RuleCall getOperandExtendedOperandParserRuleCall_2_0_3() { return cOperandExtendedOperandParserRuleCall_2_0_3; }
+		
+		//ExtendedIndirectOperand
+		public RuleCall getOperandExtendedIndirectOperandParserRuleCall_2_0_4() { return cOperandExtendedIndirectOperandParserRuleCall_2_0_4; }
 	}
 	public class OrInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.OrInstruction");
@@ -9739,7 +9783,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final PulsInstructionElements pPulsInstruction;
 	private final PshuInstructionElements pPshuInstruction;
 	private final PshsInstructionElements pPshsInstruction;
-	private final OrccInstructionElements pOrccInstruction;
+	private final OrCCInstructionElements pOrCCInstruction;
 	private final OrInstructionElements pOrInstruction;
 	private final NopInstructionElements pNopInstruction;
 	private final NegInstructionElements pNegInstruction;
@@ -9884,7 +9928,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pPulsInstruction = new PulsInstructionElements();
 		this.pPshuInstruction = new PshuInstructionElements();
 		this.pPshsInstruction = new PshsInstructionElements();
-		this.pOrccInstruction = new OrccInstructionElements();
+		this.pOrCCInstruction = new OrCCInstructionElements();
 		this.pOrInstruction = new OrInstructionElements();
 		this.pNopInstruction = new NopInstructionElements();
 		this.pNegInstruction = new NegInstructionElements();
@@ -10140,7 +10184,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        instruction = NegInstruction            |
 	//        instruction = NopInstruction            |
 	//        instruction = OrInstruction                |
-	//        instruction = OrccInstruction            |
+	//        instruction = OrCCInstruction            |
 	//        instruction = PshsInstruction            |
 	//        instruction = PshuInstruction            |
 	//        instruction = PulsInstruction            |
@@ -10837,16 +10881,22 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// *                    piaced in the condition code register. This instruction may be used to set interrupt maslcs (disable interrupts) or any other bit(s).
 	// * Addressing Mode    : Immediate
 	// */
-	//OrccInstruction:
+	//OrCCInstruction:
 	//    instruction = 'ORCC'
-	//    WS operand = ImmediatOperand
+	//    WS operand = (
+	//        ImmediatOperand |
+	//        DirectOperand  |
+	//        IndexedOperand |
+	//        ExtendedOperand |
+	//        ExtendedIndirectOperand
+	//    )
 	//;
-	public OrccInstructionElements getOrccInstructionAccess() {
-		return pOrccInstruction;
+	public OrCCInstructionElements getOrCCInstructionAccess() {
+		return pOrCCInstruction;
 	}
 	
-	public ParserRule getOrccInstructionRule() {
-		return getOrccInstructionAccess().getRule();
+	public ParserRule getOrCCInstructionRule() {
+		return getOrCCInstructionAccess().getRule();
 	}
 	
 	///*

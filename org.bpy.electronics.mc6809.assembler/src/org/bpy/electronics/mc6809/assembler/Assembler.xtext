@@ -111,7 +111,7 @@ InstructionLine:
 		instruction = NegInstruction			|						
 		instruction = NopInstruction			|
 		instruction = OrInstruction				|	   
-		instruction = OrccInstruction			|			   
+		instruction = OrCCInstruction			|			   
 		instruction = PshsInstruction			|			   
 		instruction = PshuInstruction			|		   
 		instruction = PulsInstruction			|			   
@@ -658,12 +658,18 @@ PshsInstruction:
  * Operation		: R'— RvMi
  * Condition Codes	: Affected according to the operation.
  * Description		: Performs an inclusive OR operation between the contents of the condition code registers and the immediate value, and the result is
- *                    piaced in the condition code register. This instruction may be used to set interrupt maslcs (disable interrupts) or any other bit(s).
+ *                    placed in the condition code register. This instruction may be used to set interrupt maslcs (disable interrupts) or any other bit(s).
  * Addressing Mode	: Immediate
  */
-OrccInstruction:
+OrCCInstruction:
 	instruction = 'ORCC'
-	WS operand = ImmediatOperand
+	WS operand = ( 
+		ImmediatOperand | 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
 ;
 
 /*

@@ -948,14 +948,14 @@ public interface AssemblerPackage extends EPackage
   int PSHS_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrccInstructionImpl <em>Orcc Instruction</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrCCInstructionImpl <em>Or CC Instruction</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OrccInstructionImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrccInstruction()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OrCCInstructionImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrCCInstruction()
    * @generated
    */
-  int ORCC_INSTRUCTION = 25;
+  int OR_CC_INSTRUCTION = 25;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -964,7 +964,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ORCC_INSTRUCTION__INSTRUCTION = 0;
+  int OR_CC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -973,16 +973,16 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ORCC_INSTRUCTION__OPERAND = 1;
+  int OR_CC_INSTRUCTION__OPERAND = 1;
 
   /**
-   * The number of structural features of the '<em>Orcc Instruction</em>' class.
+   * The number of structural features of the '<em>Or CC Instruction</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ORCC_INSTRUCTION_FEATURE_COUNT = 2;
+  int OR_CC_INSTRUCTION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrInstructionImpl <em>Or Instruction</em>}' class.
@@ -5643,36 +5643,36 @@ public interface AssemblerPackage extends EPackage
   EAttribute getPshsInstruction_Registers();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction <em>Orcc Instruction</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction <em>Or CC Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>Orcc Instruction</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction
+   * @return the meta object for class '<em>Or CC Instruction</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction
    * @generated
    */
-  EClass getOrccInstruction();
+  EClass getOrCCInstruction();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction#getInstruction <em>Instruction</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getInstruction <em>Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Instruction</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction#getInstruction()
-   * @see #getOrccInstruction()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getInstruction()
+   * @see #getOrCCInstruction()
    * @generated
    */
-  EAttribute getOrccInstruction_Instruction();
+  EAttribute getOrCCInstruction_Instruction();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction#getOperand <em>Operand</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Operand</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction#getOperand()
-   * @see #getOrccInstruction()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getOperand()
+   * @see #getOrCCInstruction()
    * @generated
    */
-  EReference getOrccInstruction_Operand();
+  EReference getOrCCInstruction_Operand();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.OrInstruction <em>Or Instruction</em>}'.
@@ -9502,14 +9502,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute PSHS_INSTRUCTION__REGISTERS = eINSTANCE.getPshsInstruction_Registers();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrccInstructionImpl <em>Orcc Instruction</em>}' class.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrCCInstructionImpl <em>Or CC Instruction</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OrccInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrccInstruction()
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OrCCInstructionImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrCCInstruction()
      * @generated
      */
-    EClass ORCC_INSTRUCTION = eINSTANCE.getOrccInstruction();
+    EClass OR_CC_INSTRUCTION = eINSTANCE.getOrCCInstruction();
 
     /**
      * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
@@ -9517,7 +9517,7 @@ public interface AssemblerPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ORCC_INSTRUCTION__INSTRUCTION = eINSTANCE.getOrccInstruction_Instruction();
+    EAttribute OR_CC_INSTRUCTION__INSTRUCTION = eINSTANCE.getOrCCInstruction_Instruction();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9525,7 +9525,7 @@ public interface AssemblerPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ORCC_INSTRUCTION__OPERAND = eINSTANCE.getOrccInstruction_Operand();
+    EReference OR_CC_INSTRUCTION__OPERAND = eINSTANCE.getOrCCInstruction_Operand();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrInstructionImpl <em>Or Instruction</em>}' class.

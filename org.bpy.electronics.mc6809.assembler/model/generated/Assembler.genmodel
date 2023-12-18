@@ -124,9 +124,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PshsInstruction/operand"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshsInstruction/registers"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//OrccInstruction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrccInstruction/instruction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OrccInstruction/operand"/>
+    <genClasses ecoreClass="Assembler.ecore#//OrCCInstruction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrCCInstruction/instruction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OrCCInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//OrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrInstruction/instruction"/>

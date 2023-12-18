@@ -249,13 +249,13 @@ public interface AssemblerFactory extends EFactory
   PshsInstruction createPshsInstruction();
 
   /**
-   * Returns a new object of class '<em>Orcc Instruction</em>'.
+   * Returns a new object of class '<em>Or CC Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>Orcc Instruction</em>'.
+   * @return a new object of class '<em>Or CC Instruction</em>'.
    * @generated
    */
-  OrccInstruction createOrccInstruction();
+  OrCCInstruction createOrCCInstruction();
 
   /**
    * Returns a new object of class '<em>Or Instruction</em>'.

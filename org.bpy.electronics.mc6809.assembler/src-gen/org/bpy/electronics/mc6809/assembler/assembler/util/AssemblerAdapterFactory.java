@@ -201,9 +201,9 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createPshsInstructionAdapter();
       }
       @Override
-      public Adapter caseOrccInstruction(OrccInstruction object)
+      public Adapter caseOrCCInstruction(OrCCInstruction object)
       {
-        return createOrccInstructionAdapter();
+        return createOrCCInstructionAdapter();
       }
       @Override
       public Adapter caseOrInstruction(OrInstruction object)
@@ -1108,16 +1108,16 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction <em>Orcc Instruction</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction <em>Or CC Instruction</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction
    * @generated
    */
-  public Adapter createOrccInstructionAdapter()
+  public Adapter createOrCCInstructionAdapter()
   {
     return null;
   }

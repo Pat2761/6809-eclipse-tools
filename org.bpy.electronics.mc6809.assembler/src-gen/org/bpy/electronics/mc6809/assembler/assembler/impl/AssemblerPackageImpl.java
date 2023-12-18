@@ -96,8 +96,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.NumericalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
+import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
@@ -331,7 +331,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass orccInstructionEClass = null;
+  private EClass orCCInstructionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1903,9 +1903,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EClass getOrccInstruction()
+  public EClass getOrCCInstruction()
   {
-    return orccInstructionEClass;
+    return orCCInstructionEClass;
   }
 
   /**
@@ -1914,9 +1914,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getOrccInstruction_Instruction()
+  public EAttribute getOrCCInstruction_Instruction()
   {
-    return (EAttribute)orccInstructionEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)orCCInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1925,9 +1925,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getOrccInstruction_Operand()
+  public EReference getOrCCInstruction_Operand()
   {
-    return (EReference)orccInstructionEClass.getEStructuralFeatures().get(1);
+    return (EReference)orCCInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5346,9 +5346,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(pshsInstructionEClass, PSHS_INSTRUCTION__OPERAND);
     createEAttribute(pshsInstructionEClass, PSHS_INSTRUCTION__REGISTERS);
 
-    orccInstructionEClass = createEClass(ORCC_INSTRUCTION);
-    createEAttribute(orccInstructionEClass, ORCC_INSTRUCTION__INSTRUCTION);
-    createEReference(orccInstructionEClass, ORCC_INSTRUCTION__OPERAND);
+    orCCInstructionEClass = createEClass(OR_CC_INSTRUCTION);
+    createEAttribute(orCCInstructionEClass, OR_CC_INSTRUCTION__INSTRUCTION);
+    createEReference(orCCInstructionEClass, OR_CC_INSTRUCTION__OPERAND);
 
     orInstructionEClass = createEClass(OR_INSTRUCTION);
     createEAttribute(orInstructionEClass, OR_INSTRUCTION__INSTRUCTION);
@@ -5891,9 +5891,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getPshsInstruction_Operand(), this.getImmediatOperand(), null, "operand", null, 0, 1, PshsInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getPshsInstruction_Registers(), this.getRegister(), "registers", null, 0, -1, PshsInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(orccInstructionEClass, OrccInstruction.class, "OrccInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getOrccInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, OrccInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getOrccInstruction_Operand(), this.getImmediatOperand(), null, "operand", null, 0, 1, OrccInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(orCCInstructionEClass, OrCCInstruction.class, "OrCCInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getOrCCInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, OrCCInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getOrCCInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, OrCCInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(orInstructionEClass, OrInstruction.class, "OrInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getOrInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, OrInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
