@@ -60,6 +60,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
@@ -990,6 +991,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(NegInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an OR instruction.
+	 * 
+	 * @param instruction reference on the OR instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(OrInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an OR instruction.
+	 * 
+	 * @param instruction reference on the OR instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(OrInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
