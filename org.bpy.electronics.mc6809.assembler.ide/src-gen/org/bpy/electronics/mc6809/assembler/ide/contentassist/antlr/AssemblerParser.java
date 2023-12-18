@@ -170,9 +170,11 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRorInstructionAccess().getGroup_1(), "rule__RorInstruction__Group_1__0");
 			builder.put(grammarAccess.getRolInstructionAccess().getGroup_1(), "rule__RolInstruction__Group_1__0");
 			builder.put(grammarAccess.getPuluInstructionAccess().getGroup(), "rule__PuluInstruction__Group__0");
+			builder.put(grammarAccess.getPuluInstructionAccess().getGroup_2_0(), "rule__PuluInstruction__Group_2_0__0");
 			builder.put(grammarAccess.getPuluInstructionAccess().getGroup_2_1(), "rule__PuluInstruction__Group_2_1__0");
 			builder.put(grammarAccess.getPuluInstructionAccess().getGroup_2_1_1(), "rule__PuluInstruction__Group_2_1_1__0");
 			builder.put(grammarAccess.getPulsInstructionAccess().getGroup(), "rule__PulsInstruction__Group__0");
+			builder.put(grammarAccess.getPulsInstructionAccess().getGroup_2_0(), "rule__PulsInstruction__Group_2_0__0");
 			builder.put(grammarAccess.getPulsInstructionAccess().getGroup_2_1(), "rule__PulsInstruction__Group_2_1__0");
 			builder.put(grammarAccess.getPulsInstructionAccess().getGroup_2_1_1(), "rule__PulsInstruction__Group_2_1_1__0");
 			builder.put(grammarAccess.getPshuInstructionAccess().getGroup(), "rule__PshuInstruction__Group__0");
@@ -417,11 +419,11 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRolInstructionAccess().getInstructionAssignment_1_0(), "rule__RolInstruction__InstructionAssignment_1_0");
 			builder.put(grammarAccess.getRolInstructionAccess().getOperandAssignment_1_2(), "rule__RolInstruction__OperandAssignment_1_2");
 			builder.put(grammarAccess.getPuluInstructionAccess().getInstructionAssignment_0(), "rule__PuluInstruction__InstructionAssignment_0");
-			builder.put(grammarAccess.getPuluInstructionAccess().getOperandAssignment_2_0(), "rule__PuluInstruction__OperandAssignment_2_0");
+			builder.put(grammarAccess.getPuluInstructionAccess().getOperandAssignment_2_0_1(), "rule__PuluInstruction__OperandAssignment_2_0_1");
 			builder.put(grammarAccess.getPuluInstructionAccess().getRegistersAssignment_2_1_0(), "rule__PuluInstruction__RegistersAssignment_2_1_0");
 			builder.put(grammarAccess.getPuluInstructionAccess().getRegistersAssignment_2_1_1_1(), "rule__PuluInstruction__RegistersAssignment_2_1_1_1");
 			builder.put(grammarAccess.getPulsInstructionAccess().getInstructionAssignment_0(), "rule__PulsInstruction__InstructionAssignment_0");
-			builder.put(grammarAccess.getPulsInstructionAccess().getOperandAssignment_2_0(), "rule__PulsInstruction__OperandAssignment_2_0");
+			builder.put(grammarAccess.getPulsInstructionAccess().getOperandAssignment_2_0_1(), "rule__PulsInstruction__OperandAssignment_2_0_1");
 			builder.put(grammarAccess.getPulsInstructionAccess().getRegistersAssignment_2_1_0(), "rule__PulsInstruction__RegistersAssignment_2_1_0");
 			builder.put(grammarAccess.getPulsInstructionAccess().getRegistersAssignment_2_1_1_1(), "rule__PulsInstruction__RegistersAssignment_2_1_1_1");
 			builder.put(grammarAccess.getPshuInstructionAccess().getInstructionAssignment_0(), "rule__PshuInstruction__InstructionAssignment_0");

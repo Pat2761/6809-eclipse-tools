@@ -585,7 +585,7 @@ PuluInstruction:
 	instruction = 'PULU'
 	WS  
 	( 
-		   (operand = ImmediatOperand)
+		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
 	)
 ;
@@ -605,7 +605,7 @@ PulsInstruction:
 	instruction = 'PULS'
 	WS  
 	( 
-		   (operand = ImmediatOperand)
+		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
 	)
 ;

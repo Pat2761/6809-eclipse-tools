@@ -66,6 +66,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
@@ -1078,6 +1080,46 @@ public class CommandUtil {
 	}
 
 	/**
+	 * Return the label associated to an PULS instruction.
+	 * 
+	 * @param instruction reference on the PULS instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(PulsInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an PULS instruction.
+	 * 
+	 * @param instruction reference on the PULS instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(PulsInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an PULU instruction.
+	 * 
+	 * @param instruction reference on the PULU instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(PuluInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an PULU instruction.
+	 * 
+	 * @param instruction reference on the PULU instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(PuluInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
 	 * Return the label associated to an TFR instruction.
 	 * 
 	 * @param instruction reference on the TFR instruction
@@ -1139,6 +1181,24 @@ public class CommandUtil {
 	}
 
 	public static List<String> getRegisters(PshuInstruction instruction) {
+		List<String> registers = new ArrayList<>();
+		EList<Register> options = instruction.getRegisters();
+		for (Register option : options) {
+			registers.add(option.getLiteral());
+		}
+		return registers;
+	}
+
+	public static List<String> getRegisters(PulsInstruction instruction) {
+		List<String> registers = new ArrayList<>();
+		EList<Register> options = instruction.getRegisters();
+		for (Register option : options) {
+			registers.add(option.getLiteral());
+		}
+		return registers;
+	}
+
+	public static List<String> getRegisters(PuluInstruction instruction) {
 		List<String> registers = new ArrayList<>();
 		EList<Register> options = instruction.getRegisters();
 		for (Register option : options) {

@@ -2564,7 +2564,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PulsInstruction returns PulsInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PULS' (operand=ImmediatOperand | (registers+=Register registers+=Register*)))
+	 *     (instruction='PULS' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PulsInstruction(ISerializationContext context, PulsInstruction semanticObject) {
@@ -2578,7 +2578,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PuluInstruction returns PuluInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PULU' (operand=ImmediatOperand | (registers+=Register registers+=Register*)))
+	 *     (instruction='PULU' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PuluInstruction(ISerializationContext context, PuluInstruction semanticObject) {

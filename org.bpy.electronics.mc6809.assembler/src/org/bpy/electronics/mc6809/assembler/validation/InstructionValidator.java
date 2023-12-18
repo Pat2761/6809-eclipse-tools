@@ -36,7 +36,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
@@ -53,13 +52,14 @@ import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRegDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.validation.Check;
 
 /**
@@ -488,6 +488,124 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 				if (((AssembledRegDirectiveLine)regInstruction).checkRegister(Register.U)) {
 					error("U register can't be push for a PSHU instruction",
 							AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND,
+							ILLEGAL_REGISTER);
+				}
+			}
+		}
+		
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the PULS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(PulsInstruction instruction) {
+		
+		if (instruction.getOperand() == null) {
+			List<String> regs = CommandUtil.getRegisters(instruction);
+			List<String> testReg = new ArrayList<>();
+			
+			if (regs.isEmpty()) {
+				error("no register defined in the PULS instruction",
+						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+						MISSING_OPTION);
+				
+			} else {
+				for (String reg : regs) {
+					if (testReg.contains(reg)) {
+						error("Register " + reg + " is duplicate in the REG Directive",
+								AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+								DUPLICATE_OPTION);
+						break;
+					} else {
+						testReg.add(reg);
+					}
+		 		}
+			}
+
+			if (regs.contains("A") && regs.contains("D")) {
+				error("D register overwrite the A register in the REG Directive",
+						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+						DUPLICATE_OPTION);
+			}
+			if (regs.contains("B") && regs.contains("D")) {
+				error("D register overwrite the B register in the REG Directive",
+						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+						DUPLICATE_OPTION);
+			}
+			if (regs.contains("S")) {
+				error("S register can't be push for a PULS instruction",
+						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+						ILLEGAL_REGISTER);
+			}
+		} else {
+			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getLabelsEquSet().get(instruction.getOperand().getValue());
+			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine )) {
+				if (((AssembledRegDirectiveLine)regInstruction).checkRegister(Register.S)) {
+					error("S register can't be pull for a PULS instruction",
+							AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+							ILLEGAL_REGISTER);
+				}
+			}
+		}
+		
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the PULS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(PuluInstruction instruction) {
+		
+		if (instruction.getOperand() == null) {
+			List<String> regs = CommandUtil.getRegisters(instruction);
+			List<String> testReg = new ArrayList<>();
+			
+			if (regs.isEmpty()) {
+				error("no register defined in the PULU instruction",
+						AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
+						MISSING_OPTION);
+				
+			} else {
+				for (String reg : regs) {
+					if (testReg.contains(reg)) {
+						error("Register " + reg + " is duplicate in the REG Directive",
+								AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
+								DUPLICATE_OPTION);
+						break;
+					} else {
+						testReg.add(reg);
+					}
+		 		}
+			}
+
+			if (regs.contains("A") && regs.contains("D")) {
+				error("D register overwrite the A register in the REG Directive",
+						AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
+						DUPLICATE_OPTION);
+			}
+			if (regs.contains("B") && regs.contains("D")) {
+				error("D register overwrite the B register in the REG Directive",
+						AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
+						DUPLICATE_OPTION);
+			}
+			if (regs.contains("U")) {
+				error("U register can't be pull for a PULU instruction",
+						AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
+						ILLEGAL_REGISTER);
+			}
+		} else {
+			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getLabelsEquSet().get(instruction.getOperand().getValue());
+			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine )) {
+				if (((AssembledRegDirectiveLine)regInstruction).checkRegister(Register.U)) {
+					error("U register can't be pull for a PULU instruction",
+							AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
 							ILLEGAL_REGISTER);
 				}
 			}

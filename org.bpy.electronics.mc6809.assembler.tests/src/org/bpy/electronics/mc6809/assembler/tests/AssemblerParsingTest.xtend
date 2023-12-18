@@ -77,7 +77,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORCCInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPSHSInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPSHUInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPULSInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPULUInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTIInstruction
