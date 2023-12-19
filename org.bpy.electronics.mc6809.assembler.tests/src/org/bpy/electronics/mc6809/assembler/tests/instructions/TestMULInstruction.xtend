@@ -30,6 +30,9 @@ import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
 import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledMULInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -45,7 +48,7 @@ class TestMULInstruction {
 	def void testSimpleMULWithExtraSpace() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
+			       ORG    		$8000
 			       MUL  
 		''')
 		Assert.assertNotNull(result)
@@ -57,7 +60,9 @@ class TestMULInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an MUL directive line", instructionLine.instruction instanceof MulInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof MulInstruction)
+		val MulInstruction = instructionLine.instruction as MulInstruction
+		Assert.assertEquals("Must be an MUL instruction", "MUL", MulInstruction.instruction)
 	}
 	
 	/**
@@ -79,7 +84,9 @@ class TestMULInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an MUL directive line", instructionLine.instruction instanceof MulInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof MulInstruction)
+		val MulInstruction = instructionLine.instruction as MulInstruction
+		Assert.assertEquals("Must be an MUL instruction", "MUL", MulInstruction.instruction)
 	}
 	
 	/**
@@ -89,7 +96,7 @@ class TestMULInstruction {
 	def void testSimpleMULWithExtraSpaceWithComment() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
+			       ORG    	$8000
 			       MUL  			; It is a comment 
 		''')
 		Assert.assertNotNull(result)
@@ -101,7 +108,9 @@ class TestMULInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an MUL directive line", instructionLine.instruction instanceof MulInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof MulInstruction)
+		val MulInstruction = instructionLine.instruction as MulInstruction
+		Assert.assertEquals("Must be an MUL instruction", "MUL", MulInstruction.instruction)
 	}
 	
 	/**
@@ -123,7 +132,51 @@ class TestMULInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an MUL directive line", instructionLine.instruction instanceof MulInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof MulInstruction)
+		val mulInstruction = instructionLine.instruction as MulInstruction
+		Assert.assertEquals("Must be an MUL instruction", "MUL", mulInstruction.instruction)
 	}
 	
+	/**
+	 * Check MUL instruction with duplicate label 
+	 */
+	@Test 
+	def void testMULWithDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start		NOP
+					NOP    
+		Start      	MUL		  	
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.instructionLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Start is already defined"
+		)
+	}
+	
+	/**
+	 * Check MUL assembly instruction  
+	 */
+	@Test 
+	def void testMULAssembly() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	MUL		  		    ; 3D   MUL
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.currentPcValue)
+		val line = engine.getAssembledLine(2) as AssembledMULInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode", 0x3D, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 0, line.operand.length)
+		Assert.assertEquals("Check label", "Start" , line.label)
+		Assert.assertEquals("Check comment", "; 3D   MUL" , line.comment)
+	}
 }

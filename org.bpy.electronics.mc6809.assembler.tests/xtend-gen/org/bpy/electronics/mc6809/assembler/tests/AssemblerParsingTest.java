@@ -44,6 +44,9 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDBInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestANDCCInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLBInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASLInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASRAInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASRBInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestASRInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBCCInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestBCSInstruction;
@@ -91,42 +94,37 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestINCBInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestINCInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestJMPInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestJSRInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLD16Instruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLD8Instruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLEAInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDAInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDBInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDDInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDSInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDUInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDXInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLDYInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLEASInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLEAUInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLEAXInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSLAInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSLBInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSLInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRAInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRBInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLSRInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestMULInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNEGAInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNEGBInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNOPInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNegInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORAInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORBInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORCCInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPSHSInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPSHUInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPULSInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPULUInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTIInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTSInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSEXInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestST16Instruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestST8Instruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBDInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWI2Instruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWI3Instruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWIInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSYNCInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTFRInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.samples.SorekSamples;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses({ CheckNumberValidation.class, TestComment.class, TestBszDirective.class, TestEndDirective.class, TestEquDirective.class, TestFailDirective.class, TestFcbDirective.class, TestFccDirective.class, TestFdbDirective.class, TestFillDirective.class, TestNamDirective.class, TestOptDirective.class, TestOrgDirective.class, TestPagDirective.class, TestRegDirective.class, TestRmbDirective.class, TestSetDirective.class, TestSpcDirective.class, TestSetDirective.class, TestSetDPDirective.class, TestADCAInstruction.class, TestADDAInstruction.class, TestADDBInstruction.class, TestADDDInstruction.class, TestANDCCInstruction.class, TestANDAInstruction.class, TestANDBInstruction.class, TestASLAInstruction.class, TestASLBInstruction.class, TestASRInstruction.class, TestBCCInstruction.class, TestBCSInstruction.class, TestBEQInstruction.class, TestBGEInstruction.class, TestBGTInstruction.class, TestBHIInstruction.class, TestBHSInstruction.class, TestBITAInstruction.class, TestBITBInstruction.class, TestBLEInstruction.class, TestBLOInstruction.class, TestBLSInstruction.class, TestBLTInstruction.class, TestBMIInstruction.class, TestBNEInstruction.class, TestBPLInstruction.class, TestBRAInstruction.class, TestBRNInstruction.class, TestBSRInstruction.class, TestBVCInstruction.class, TestBVSInstruction.class, TestCLRAInstruction.class, TestCLRBInstruction.class, TestCLRInstruction.class, TestCMPAInstruction.class, TestCMPBInstruction.class, TestCMPDInstruction.class, TestCMPSInstruction.class, TestCMPUInstruction.class, TestCMPXInstruction.class, TestCOMAInstruction.class, TestCOMBInstruction.class, TestCOMInstruction.class, TestCWAIInstruction.class, TestDAAInstruction.class, TestDECAInstruction.class, TestDECBInstruction.class, TestDECInstruction.class, TestEORAInstruction.class, TestEORBInstruction.class, TestEXGInstruction.class, TestINCAInstruction.class, TestINCBInstruction.class, TestINCInstruction.class, TestJMPInstruction.class, TestJSRInstruction.class, TestLD8Instruction.class, TestLD16Instruction.class, TestLEAInstruction.class, TestLSLInstruction.class, TestLSRInstruction.class, TestMULInstruction.class, TestNegInstruction.class, TestNOPInstruction.class, TestORInstruction.class, TestORCCInstruction.class, TestPSHSInstruction.class, TestPSHUInstruction.class, TestPULSInstruction.class, TestPULUInstruction.class, TestROLInstruction.class, TestRORInstruction.class, TestRTIInstruction.class, TestRTSInstruction.class, TestSBCInstruction.class, TestSEXInstruction.class, TestST8Instruction.class, TestST16Instruction.class, TestSUBInstruction.class, TestSUBDInstruction.class, TestSWIInstruction.class, TestSWI2Instruction.class, TestSWI3Instruction.class, TestSYNCInstruction.class, TestTFRInstruction.class, TestTSTInstruction.class, SorekSamples.class })
+@Suite.SuiteClasses({ CheckNumberValidation.class, TestComment.class, TestBszDirective.class, TestEndDirective.class, TestEquDirective.class, TestFailDirective.class, TestFcbDirective.class, TestFccDirective.class, TestFdbDirective.class, TestFillDirective.class, TestNamDirective.class, TestOptDirective.class, TestOrgDirective.class, TestPagDirective.class, TestRegDirective.class, TestRmbDirective.class, TestSetDirective.class, TestSpcDirective.class, TestSetDirective.class, TestSetDPDirective.class, TestADCAInstruction.class, TestADDAInstruction.class, TestADDBInstruction.class, TestADDDInstruction.class, TestANDCCInstruction.class, TestANDAInstruction.class, TestANDBInstruction.class, TestASLAInstruction.class, TestASLBInstruction.class, TestASLInstruction.class, TestASRAInstruction.class, TestASRBInstruction.class, TestASRInstruction.class, TestBCCInstruction.class, TestBCSInstruction.class, TestBEQInstruction.class, TestBGEInstruction.class, TestBGTInstruction.class, TestBHIInstruction.class, TestBHSInstruction.class, TestBITAInstruction.class, TestBITBInstruction.class, TestBLEInstruction.class, TestBLOInstruction.class, TestBLSInstruction.class, TestBLTInstruction.class, TestBMIInstruction.class, TestBNEInstruction.class, TestBPLInstruction.class, TestBRAInstruction.class, TestBRNInstruction.class, TestBSRInstruction.class, TestBVCInstruction.class, TestBVSInstruction.class, TestCLRAInstruction.class, TestCLRBInstruction.class, TestCLRInstruction.class, TestCMPAInstruction.class, TestCMPBInstruction.class, TestCMPDInstruction.class, TestCMPSInstruction.class, TestCMPUInstruction.class, TestCMPXInstruction.class, TestCOMAInstruction.class, TestCOMBInstruction.class, TestCOMInstruction.class, TestCWAIInstruction.class, TestDAAInstruction.class, TestDECAInstruction.class, TestDECBInstruction.class, TestDECInstruction.class, TestEORAInstruction.class, TestEORBInstruction.class, TestEXGInstruction.class, TestINCAInstruction.class, TestINCBInstruction.class, TestINCInstruction.class, TestJMPInstruction.class, TestJSRInstruction.class, TestLDAInstruction.class, TestLDBInstruction.class, TestLDDInstruction.class, TestLDSInstruction.class, TestLDUInstruction.class, TestLDXInstruction.class, TestLDYInstruction.class, TestLEASInstruction.class, TestLEAUInstruction.class, TestLEAXInstruction.class, TestLSLAInstruction.class, TestLSLBInstruction.class, TestLSLInstruction.class, TestLSRAInstruction.class, TestLSRBInstruction.class, TestLSRInstruction.class, TestMULInstruction.class, TestNEGAInstruction.class, TestNEGBInstruction.class, TestNOPInstruction.class, TestORAInstruction.class, TestORBInstruction.class, TestORCCInstruction.class, TestPSHSInstruction.class, TestPSHUInstruction.class, SorekSamples.class })
 @SuppressWarnings("all")
 public class AssemblerParsingTest {
 }

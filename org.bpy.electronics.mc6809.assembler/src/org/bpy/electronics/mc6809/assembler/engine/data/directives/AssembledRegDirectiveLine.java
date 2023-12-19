@@ -22,6 +22,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.eclipse.emf.common.util.EList;
 
 /**
  * Used to store information about REG directive
@@ -53,24 +54,8 @@ public class AssembledRegDirectiveLine extends AbstractAssemblyLine {
 		this.label = CommandUtil.getLabel(directive);
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
-		
-		value = 0;
-		for (Register regValue : directive.getOptions()) {
-			switch (regValue.getLiteral()) {
-				case "A"  : value |= 0x02; break;
-				case "B"  : value |= 0x04; break;
-				case "D"  : value |= 0x06; break;
-				case "U"  : value |= 0x40; break;
-				case "S"  : value |= 0x40; break;
-				case "X"  : value |= 0x10; break;
-				case "Y"  : value |= 0x20; break;
-				case "PC" : value |= 0x80; break;
-				case "DP" : value |= 0x08; break;
-				case "CC" : value |= 0x01; break;
-			default		:
-				// nothing to do , protected by the grammar 
-			}	
-		}
+	
+		value = getRegisterConvertionValue(directive.getOptions());
 	}
 
 	public RegDirective getDirective() {
@@ -92,5 +77,14 @@ public class AssembledRegDirectiveLine extends AbstractAssemblyLine {
 	@Override
 	public int getPcIncrement() {
 		return 0;
+	}
+
+	public boolean checkRegister(Register s) {
+		for (Register register : directive.getOptions()) {
+			if (register.equals(s)) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

@@ -248,10 +248,10 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case AssemblerPackage.ORCC_INSTRUCTION:
+      case AssemblerPackage.OR_CC_INSTRUCTION:
       {
-        OrccInstruction orccInstruction = (OrccInstruction)theEObject;
-        T result = caseOrccInstruction(orccInstruction);
+        OrCCInstruction orCCInstruction = (OrCCInstruction)theEObject;
+        T result = caseOrCCInstruction(orCCInstruction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -304,17 +304,10 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case AssemblerPackage.LD16_INSTRUCTION:
+      case AssemblerPackage.LD_INSTRUCTION:
       {
-        Ld16Instruction ld16Instruction = (Ld16Instruction)theEObject;
-        T result = caseLd16Instruction(ld16Instruction);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case AssemblerPackage.LD8_INSTRUCTION:
-      {
-        Ld8Instruction ld8Instruction = (Ld8Instruction)theEObject;
-        T result = caseLd8Instruction(ld8Instruction);
+        LdInstruction ldInstruction = (LdInstruction)theEObject;
+        T result = caseLdInstruction(ldInstruction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1385,17 +1378,17 @@ public class AssemblerSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Orcc Instruction</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Or CC Instruction</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Orcc Instruction</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Or CC Instruction</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseOrccInstruction(OrccInstruction object)
+  public T caseOrCCInstruction(OrCCInstruction object)
   {
     return null;
   }
@@ -1513,33 +1506,17 @@ public class AssemblerSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>Ld16 Instruction</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>Ld Instruction</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Ld16 Instruction</em>'.
+   * @return the result of interpreting the object as an instance of '<em>Ld Instruction</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseLd16Instruction(Ld16Instruction object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>Ld8 Instruction</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>Ld8 Instruction</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseLd8Instruction(Ld8Instruction object)
+  public T caseLdInstruction(LdInstruction object)
   {
     return null;
   }

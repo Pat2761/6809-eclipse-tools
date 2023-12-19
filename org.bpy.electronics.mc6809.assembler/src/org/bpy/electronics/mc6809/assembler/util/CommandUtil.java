@@ -51,11 +51,23 @@ import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
@@ -848,6 +860,106 @@ public class CommandUtil {
 	}
 
 	/**
+	 * Return the label associated to a LD instruction.
+	 * 
+	 * @param instruction reference on the LD instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(LdInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a LD instruction.
+	 * 
+	 * @param instruction reference on the LD instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(LdInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a LEA instruction.
+	 * 
+	 * @param instruction reference on the LEA instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(LeaInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a LEA instruction.
+	 * 
+	 * @param instruction reference on the LEA instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(LeaInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a LSL instruction.
+	 * 
+	 * @param instruction reference on the LSL instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(LslInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a LSL instruction.
+	 * 
+	 * @param instruction reference on the LSL instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(LslInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a LSR instruction.
+	 * 
+	 * @param instruction reference on the LSR instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(LsrInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a LSR instruction.
+	 * 
+	 * @param instruction reference on the LSR instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(LsrInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to a MUL instruction.
+	 * 
+	 * @param instruction reference on the MUL instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(MulInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to a MUL instruction.
+	 * 
+	 * @param instruction reference on the MUL instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(MulInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
 	 * Return the label associated to an NOP instruction.
 	 * 
 	 * @param instruction reference on the NOP instruction
@@ -864,6 +976,146 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(NopInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an NEG instruction.
+	 * 
+	 * @param instruction reference on the NEG instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(NegInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an NEG instruction.
+	 * 
+	 * @param instruction reference on the NEG instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(NegInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an OR instruction.
+	 * 
+	 * @param instruction reference on the OR instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(OrInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an OR instruction.
+	 * 
+	 * @param instruction reference on the OR instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(OrInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an ORCC instruction.
+	 * 
+	 * @param instruction reference on the ORCC instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(OrCCInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an ORCC instruction.
+	 * 
+	 * @param instruction reference on the ORCC instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(OrCCInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an PSHS instruction.
+	 * 
+	 * @param instruction reference on the PSHS instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(PshsInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an PSHS instruction.
+	 * 
+	 * @param instruction reference on the PSHS instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(PshsInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an PSHU instruction.
+	 * 
+	 * @param instruction reference on the PSHU instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(PshuInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an PSHU instruction.
+	 * 
+	 * @param instruction reference on the PSHU instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(PshuInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an PULS instruction.
+	 * 
+	 * @param instruction reference on the PULS instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(PulsInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an PULS instruction.
+	 * 
+	 * @param instruction reference on the PULS instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(PulsInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an PULU instruction.
+	 * 
+	 * @param instruction reference on the PULU instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(PuluInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an PULU instruction.
+	 * 
+	 * @param instruction reference on the PULU instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(PuluInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
@@ -913,6 +1165,42 @@ public class CommandUtil {
 	public static List<String> getRegisters(RegDirective regDirective) {
 		List<String> registers = new ArrayList<>();
 		EList<Register> options = regDirective.getOptions();
+		for (Register option : options) {
+			registers.add(option.getLiteral());
+		}
+		return registers;
+	}
+
+	public static List<String> getRegisters(PshsInstruction instruction) {
+		List<String> registers = new ArrayList<>();
+		EList<Register> options = instruction.getRegisters();
+		for (Register option : options) {
+			registers.add(option.getLiteral());
+		}
+		return registers;
+	}
+
+	public static List<String> getRegisters(PshuInstruction instruction) {
+		List<String> registers = new ArrayList<>();
+		EList<Register> options = instruction.getRegisters();
+		for (Register option : options) {
+			registers.add(option.getLiteral());
+		}
+		return registers;
+	}
+
+	public static List<String> getRegisters(PulsInstruction instruction) {
+		List<String> registers = new ArrayList<>();
+		EList<Register> options = instruction.getRegisters();
+		for (Register option : options) {
+			registers.add(option.getLiteral());
+		}
+		return registers;
+	}
+
+	public static List<String> getRegisters(PuluInstruction instruction) {
+		List<String> registers = new ArrayList<>();
+		EList<Register> options = instruction.getRegisters();
 		for (Register option : options) {
 			registers.add(option.getLiteral());
 		}

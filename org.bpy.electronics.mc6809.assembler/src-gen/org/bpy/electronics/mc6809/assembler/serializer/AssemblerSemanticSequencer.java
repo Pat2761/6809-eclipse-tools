@@ -78,8 +78,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Ld16Instruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Ld8Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
@@ -97,8 +96,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.NumericalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Or;
+import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
@@ -402,11 +401,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.JSR_INSTRUCTION:
 				sequence_JsrInstruction(context, (JsrInstruction) semanticObject); 
 				return; 
-			case AssemblerPackage.LD16_INSTRUCTION:
-				sequence_Ld16Instruction(context, (Ld16Instruction) semanticObject); 
-				return; 
-			case AssemblerPackage.LD8_INSTRUCTION:
-				sequence_Ld8Instruction(context, (Ld8Instruction) semanticObject); 
+			case AssemblerPackage.LD_INSTRUCTION:
+				sequence_LdInstruction(context, (LdInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.LEA_INSTRUCTION:
 				sequence_LeaInstruction(context, (LeaInstruction) semanticObject); 
@@ -459,11 +455,11 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.OR:
 				sequence_Or(context, (Or) semanticObject); 
 				return; 
+			case AssemblerPackage.OR_CC_INSTRUCTION:
+				sequence_OrCCInstruction(context, (OrCCInstruction) semanticObject); 
+				return; 
 			case AssemblerPackage.OR_INSTRUCTION:
 				sequence_OrInstruction(context, (OrInstruction) semanticObject); 
-				return; 
-			case AssemblerPackage.ORCC_INSTRUCTION:
-				sequence_OrccInstruction(context, (OrccInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.ORG_DIRECTIVE:
 				sequence_OrgDirective(context, (OrgDirective) semanticObject); 
@@ -1898,8 +1894,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=IncInstruction | 
 	 *             instruction=JmpInstruction | 
 	 *             instruction=JsrInstruction | 
-	 *             instruction=Ld8Instruction | 
-	 *             instruction=Ld16Instruction | 
+	 *             instruction=LdInstruction | 
 	 *             instruction=LeaInstruction | 
 	 *             instruction=LslInstruction | 
 	 *             instruction=LsrInstruction | 
@@ -1907,7 +1902,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=NegInstruction | 
 	 *             instruction=NopInstruction | 
 	 *             instruction=OrInstruction | 
-	 *             instruction=OrccInstruction | 
+	 *             instruction=OrCCInstruction | 
 	 *             instruction=PshsInstruction | 
 	 *             instruction=PshuInstruction | 
 	 *             instruction=PulsInstruction | 
@@ -1975,33 +1970,24 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Ld16Instruction returns Ld16Instruction
+	 *     LdInstruction returns LdInstruction
 	 *
 	 * Constraint:
 	 *     (
-	 *         (instruction='LDD' | instruction='LDX' | instruction='LDY' | instruction='LDS' | instruction='LDU') 
+	 *         (
+	 *             instruction='LDA' | 
+	 *             instruction='LDB' | 
+	 *             instruction='LDD' | 
+	 *             instruction='LDX' | 
+	 *             instruction='LDY' | 
+	 *             instruction='LDS' | 
+	 *             instruction='LDU'
+	 *         ) 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_Ld16Instruction(ISerializationContext context, Ld16Instruction semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     Ld8Instruction returns Ld8Instruction
-	 *
-	 * Constraint:
-	 *     (
-	 *         (instruction='LDA' | instruction='LDB') 
-	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
-	 *     )
-	 * </pre>
-	 */
-	protected void sequence_Ld8Instruction(ISerializationContext context, Ld8Instruction semanticObject) {
+	protected void sequence_LdInstruction(ISerializationContext context, LdInstruction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2012,7 +1998,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     LeaInstruction returns LeaInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='LEAX' | instruction='LEAY' | instruction='LEAS' | instruction='LEAU') operand=IndexedOperand)
+	 *     (
+	 *         (instruction='LEAX' | instruction='LEAY' | instruction='LEAS' | instruction='LEAU') 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_LeaInstruction(ISerializationContext context, LeaInstruction semanticObject) {
@@ -2086,7 +2075,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         instruction='LSLA' | 
 	 *         instruction='LSLB' | 
-	 *         (instruction='LSL' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *         (
+	 *             instruction='LSL' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
 	 *     )
 	 * </pre>
 	 */
@@ -2104,7 +2096,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         instruction='LSRA' | 
 	 *         instruction='LSRB' | 
-	 *         (instruction='LSR' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *         (
+	 *             instruction='LSR' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
 	 *     )
 	 * </pre>
 	 */
@@ -2259,7 +2254,14 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     NegInstruction returns NegInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='NEGA' | instruction='NEGB' | (instruction='NEG' (operand=DirectOperand | operand=ExtendedOperand)))
+	 *     (
+	 *         instruction='NEGA' | 
+	 *         instruction='NEGB' | 
+	 *         (
+	 *             instruction='NEG' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_NegInstruction(ISerializationContext context, NegInstruction semanticObject) {
@@ -2345,6 +2347,23 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     OrCCInstruction returns OrCCInstruction
+	 *
+	 * Constraint:
+	 *     (
+	 *         instruction='ORCC' 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_OrCCInstruction(ISerializationContext context, OrCCInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     OrInstruction returns OrInstruction
 	 *
 	 * Constraint:
@@ -2398,29 +2417,6 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getOrAccess().getOrLeftAction_1_0(), semanticObject.getLeft());
 		feeder.accept(grammarAccess.getOrAccess().getRightXorParserRuleCall_1_2_0(), semanticObject.getRight());
-		feeder.finish();
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     OrccInstruction returns OrccInstruction
-	 *
-	 * Constraint:
-	 *     (instruction='ORCC' operand=ImmediatOperand)
-	 * </pre>
-	 */
-	protected void sequence_OrccInstruction(ISerializationContext context, OrccInstruction semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ORCC_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ORCC_INSTRUCTION__INSTRUCTION));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ORCC_INSTRUCTION__OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ORCC_INSTRUCTION__OPERAND));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getOrccInstructionAccess().getInstructionORCCKeyword_0_0(), semanticObject.getInstruction());
-		feeder.accept(grammarAccess.getOrccInstructionAccess().getOperandImmediatOperandParserRuleCall_2_0(), semanticObject.getOperand());
 		feeder.finish();
 	}
 	
@@ -2540,7 +2536,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PshsInstruction returns PshsInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PSHS' (operand=ImmediatOperand | (registers+=Register registers+=Register*)))
+	 *     (instruction='PSHS' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PshsInstruction(ISerializationContext context, PshsInstruction semanticObject) {
@@ -2554,7 +2550,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PshuInstruction returns PshuInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PSHU' (operand=ImmediatOperand | (registers+=Register registers+=Register*)))
+	 *     (instruction='PSHU' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PshuInstruction(ISerializationContext context, PshuInstruction semanticObject) {
@@ -2568,7 +2564,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PulsInstruction returns PulsInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PULS' (operand=ImmediatOperand | (registers+=Register registers+=Register*)))
+	 *     (instruction='PULS' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PulsInstruction(ISerializationContext context, PulsInstruction semanticObject) {
@@ -2582,7 +2578,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PuluInstruction returns PuluInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PULU' (operand=ImmediatOperand | (registers+=Register registers+=Register*)))
+	 *     (instruction='PULU' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PuluInstruction(ISerializationContext context, PuluInstruction semanticObject) {

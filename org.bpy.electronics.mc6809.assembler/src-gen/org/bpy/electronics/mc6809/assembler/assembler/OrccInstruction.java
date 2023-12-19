@@ -7,22 +7,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Orcc Instruction</b></em>'.
+ * A representation of the model object '<em><b>Or CC Instruction</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction#getInstruction <em>Instruction</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getInstruction <em>Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getOperand <em>Operand</em>}</li>
  * </ul>
  *
- * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOrccInstruction()
+ * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOrCCInstruction()
  * @model
  * @generated
  */
-public interface OrccInstruction extends EObject
+public interface OrCCInstruction extends EObject
 {
   /**
    * Returns the value of the '<em><b>Instruction</b></em>' attribute.
@@ -30,14 +30,14 @@ public interface OrccInstruction extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Instruction</em>' attribute.
    * @see #setInstruction(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOrccInstruction_Instruction()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOrCCInstruction_Instruction()
    * @model
    * @generated
    */
   String getInstruction();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction#getInstruction <em>Instruction</em>}' attribute.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getInstruction <em>Instruction</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Instruction</em>' attribute.
@@ -51,21 +51,21 @@ public interface OrccInstruction extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference.
-   * @see #setOperand(ImmediatOperand)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOrccInstruction_Operand()
+   * @see #setOperand(EObject)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOrCCInstruction_Operand()
    * @model containment="true"
    * @generated
    */
-  ImmediatOperand getOperand();
+  EObject getOperand();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction#getOperand <em>Operand</em>}' containment reference.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getOperand <em>Operand</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Operand</em>' containment reference.
    * @see #getOperand()
    * @generated
    */
-  void setOperand(ImmediatOperand value);
+  void setOperand(EObject value);
 
-} // OrccInstruction
+} // OrCCInstruction

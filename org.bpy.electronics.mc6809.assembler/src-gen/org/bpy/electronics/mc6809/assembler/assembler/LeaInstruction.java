@@ -51,12 +51,12 @@ public interface LeaInstruction extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference.
-   * @see #setOperand(IndexedOperand)
+   * @see #setOperand(EObject)
    * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getLeaInstruction_Operand()
    * @model containment="true"
    * @generated
    */
-  IndexedOperand getOperand();
+  EObject getOperand();
 
   /**
    * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction#getOperand <em>Operand</em>}' containment reference.
@@ -66,6 +66,6 @@ public interface LeaInstruction extends EObject
    * @see #getOperand()
    * @generated
    */
-  void setOperand(IndexedOperand value);
+  void setOperand(EObject value);
 
 } // LeaInstruction

@@ -103,8 +103,7 @@ InstructionLine:
 		instruction = IncInstruction			|			
 		instruction = JmpInstruction			|			
 		instruction = JsrInstruction			|			
-		instruction = Ld8Instruction			|			
-		instruction = Ld16Instruction			|			
+		instruction = LdInstruction			    |			
 		instruction = LeaInstruction			|			
 		instruction = LslInstruction			|		
 		instruction = LsrInstruction			|						
@@ -112,7 +111,7 @@ InstructionLine:
 		instruction = NegInstruction			|						
 		instruction = NopInstruction			|
 		instruction = OrInstruction				|	   
-		instruction = OrccInstruction			|			   
+		instruction = OrCCInstruction			|			   
 		instruction = PshsInstruction			|			   
 		instruction = PshuInstruction			|		   
 		instruction = PulsInstruction			|			   
@@ -586,7 +585,7 @@ PuluInstruction:
 	instruction = 'PULU'
 	WS  
 	( 
-		   (operand = ImmediatOperand)
+		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
 	)
 ;
@@ -606,7 +605,7 @@ PulsInstruction:
 	instruction = 'PULS'
 	WS  
 	( 
-		   (operand = ImmediatOperand)
+		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
 	)
 ;
@@ -626,7 +625,7 @@ PshuInstruction:
 	instruction = 'PSHU'
 	WS  
 	( 
-		   (operand = ImmediatOperand)
+		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
 	)
 ;
@@ -646,25 +645,31 @@ PshsInstruction:
 	instruction = 'PSHS'
 	WS  
 	( 
-		   (operand = ImmediatOperand)
+		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
 	)
 ;
 
 /*
  * ORCC
- * 
+ * s
  * Inclusive OR Memory Immediate Into Condition Code Register
  * Source Form		: ORCC #XX
  * Operation		: R'— RvMi
  * Condition Codes	: Affected according to the operation.
  * Description		: Performs an inclusive OR operation between the contents of the condition code registers and the immediate value, and the result is
- *                    piaced in the condition code register. This instruction may be used to set interrupt maslcs (disable interrupts) or any other bit(s).
+ *                    placed in the condition code register. This instruction may be used to set interrupt maslcs (disable interrupts) or any other bit(s).
  * Addressing Mode	: Immediate
  */
-OrccInstruction:
+OrCCInstruction:
 	instruction = 'ORCC'
-	WS operand = ImmediatOperand
+	WS operand = ( 
+		ImmediatOperand | 
+		DirectOperand  |
+		IndexedOperand | 
+		ExtendedOperand |
+		ExtendedIndirectOperand 
+	)
 ;
 
 /*
@@ -740,8 +745,11 @@ NegInstruction:
 	(
 	 	instruction = ('NEG')
 		WS operand = ( 
+			ImmediatOperand |
 			DirectOperand  |
-			ExtendedOperand 
+			IndexedOperand | 
+			ExtendedOperand |
+			ExtendedIndirectOperand 
 		)
 	)   
 ;
@@ -792,6 +800,7 @@ LsrInstruction:
 	(
 	 	instruction = ('LSR')
 		WS operand = ( 
+			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |
@@ -827,6 +836,7 @@ LslInstruction:
 	(
 	 	instruction = ('LSL')
 		WS operand = ( 
+			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |
@@ -856,28 +866,6 @@ LslInstruction:
  */
 LeaInstruction:
  	instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
-	WS operand = IndexedOperand
-;
-
-/*
- * LD (16 bits)
- * 
- * Load Register from Memory
- * Source Form		: LDA P, LDB P 
- * Operation		: R <- M:M+1
- * Condition Codes	: H - Not affected.
- * 					  N - Set if the result is negative; cleared otherwise.
- * 					  Z - Set if the result Is zero; cleared otherwise,
- *                    V - Always cleared.
- * 					  C - Not affected.
- * Description		: Loads the contents of memory location M:M+1 into the designated 16 bits register.
- * Addressing Mode	: Immediate
- * 					  Extended
- *                    Direct
- *                    Indexed
- */
-Ld16Instruction:
- 	instruction = ('LDD' | 'LDX' | 'LDY' | 'LDS' | 'LDU')
 	WS operand = ( 
 		ImmediatOperand |
 		DirectOperand  |
@@ -904,8 +892,8 @@ Ld16Instruction:
  *                    Direct
  *                    Indexed
  */
-Ld8Instruction:
- 	instruction = ('LDA' | 'LDB')
+LdInstruction:
+ 	instruction = ('LDA' | 'LDB'| 'LDD' | 'LDX' | 'LDY' | 'LDS' | 'LDU')
 	WS operand = ( 
 		ImmediatOperand |
 		DirectOperand  |

@@ -57,12 +57,24 @@ import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
@@ -133,7 +145,35 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledIN
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledINCInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledJMPInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledJSRInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDDInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDSInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDUInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDXInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDYInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEASInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAUInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAXInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAYInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSRAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSRBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSRInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledMULInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORCCInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPSHSInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPSHUInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPULSInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPULUInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -165,6 +205,8 @@ public class AssemblerEngine {
 	
 	/** Contains the collection of label which reference assembly line */
 	private Map<String, AbstractAssemblyLine> labelsPositionObject;
+	/** Contains the collection of Register definition */
+	private Map<String, Integer> regDefintionValues;
 	/** Contains the collection of Labels which define values */
 	private Map<String, AbstractAssemblyLine> labelsEquSet;
 	/** Contains the collection of assembled line  */
@@ -204,6 +246,7 @@ public class AssemblerEngine {
 		labelsPositionObject = new HashMap<>();
 		labelsEquSet = new HashMap<>();
 		assembledLinesMap = new HashMap<>();
+		regDefintionValues = new HashMap<>();
 	}
 
 	/**
@@ -236,7 +279,7 @@ public class AssemblerEngine {
 	 */
 	public void engine(Model model) {
 		lineNumber = 1;
-		currentPcValue = -1;
+		currentPcValue = 0;
 		assemblyLines = new ArrayList<>();
 
 		AssemblerErrorManager.getInstance().clear();
@@ -335,8 +378,44 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof JsrInstruction) {
 			parse((JsrInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof LdInstruction) {
+			parse((LdInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof LeaInstruction) {
+			parse((LeaInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof LslInstruction) {
+			parse((LslInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof LsrInstruction) {
+			parse((LsrInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof MulInstruction) {
+			parse((MulInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof NegInstruction) {
+			parse((NegInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
 			parse((NopInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof OrInstruction) {
+			parse((OrInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof OrCCInstruction) {
+			parse((OrCCInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof PshsInstruction) {
+			parse((PshsInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof PshuInstruction) {
+			parse((PshuInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof PulsInstruction) {
+			parse((PulsInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof PuluInstruction) {
+			parse((PuluInstruction)instructionLine.getInstruction());
 			
 		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
 			parse((TfrInstruction)instructionLine.getInstruction());
@@ -354,6 +433,320 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the PULU instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(PuluInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledPULUInstruction();
+    	((AssembledPULUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the PULS instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(PulsInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledPULSInstruction();
+    	((AssembledPULSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the PSHU instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(PshuInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledPSHUInstruction();
+    	((AssembledPSHUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the PSHS instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(PshsInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledPSHSInstruction();
+    	((AssembledPSHSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the ORCC instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(OrCCInstruction instruction) {
+		AssembledORCCInstruction line = new AssembledORCCInstruction();
+		line.parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the OR instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(OrInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("ORA".equals(instruction.getInstruction())) {
+			line = new AssembledORAInstruction();
+			((AssembledORAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("ORB".equals(instruction.getInstruction())) {
+			line = new AssembledORBInstruction();
+			((AssembledORBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			// not possible 
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the NOP instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(NopInstruction instruction) {
+		AssembledNOPInstruction line = new AssembledNOPInstruction();
+		line.parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+    }
+
+	/**	
+	 * Parse the NEG instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(NegInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("NEGA".equals(instruction.getInstruction())) {
+			line = new AssembledNEGAInstruction();
+			((AssembledNEGAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("NEGB".equals(instruction.getInstruction())) {
+			line = new AssembledNEGBInstruction();
+			((AssembledNEGBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("NEG".equals(instruction.getInstruction())) {
+			line = new AssembledNEGInstruction();
+			((AssembledNEGInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			// not possible 
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the MUL instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(MulInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledMULInstruction();
+    	((AssembledMULInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the LSR instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(LsrInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("LSRA".equals(instruction.getInstruction())) {
+			line = new AssembledLSRAInstruction();
+			((AssembledLSRAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LSRB".equals(instruction.getInstruction())) {
+			line = new AssembledLSRBInstruction();
+			((AssembledLSRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LSR".equals(instruction.getInstruction())) {
+			line = new AssembledLSRInstruction();
+			((AssembledLSRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			// not possible 
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the LSL instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(LslInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("LSLA".equals(instruction.getInstruction())) {
+			line = new AssembledLSLAInstruction();
+			((AssembledLSLAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LSLB".equals(instruction.getInstruction())) {
+			line = new AssembledLSLBInstruction();
+			((AssembledLSLBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LSL".equals(instruction.getInstruction())) {
+			line = new AssembledLSLInstruction();
+			((AssembledLSLInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			// not possible 
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the LEA instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(LeaInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("LEAS".equals(instruction.getInstruction())) {
+			line = new AssembledLEASInstruction();
+			((AssembledLEASInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LEAU".equals(instruction.getInstruction())) {
+			line = new AssembledLEAUInstruction();
+			((AssembledLEAUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LEAX".equals(instruction.getInstruction())) {
+			line = new AssembledLEAXInstruction();
+			((AssembledLEAXInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LEAY".equals(instruction.getInstruction())) {
+			line = new AssembledLEAYInstruction();
+			((AssembledLEAYInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			// not possible 
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	private void parse(LdInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("LDA".equals(instruction.getInstruction())) {
+			line = new AssembledLDAInstruction();
+			((AssembledLDAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDB".equals(instruction.getInstruction())) {
+			line = new AssembledLDBInstruction();
+			((AssembledLDBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDD".equals(instruction.getInstruction())) {
+			line = new AssembledLDDInstruction();
+			((AssembledLDDInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDS".equals(instruction.getInstruction())) {
+			line = new AssembledLDSInstruction();
+			((AssembledLDSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDU".equals(instruction.getInstruction())) {
+			line = new AssembledLDUInstruction();
+			((AssembledLDUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDX".equals(instruction.getInstruction())) {
+			line = new AssembledLDXInstruction();
+			((AssembledLDXInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("LDY".equals(instruction.getInstruction())) {
+			line = new AssembledLDYInstruction();
+			((AssembledLDYInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+//			line = new AssembledINCInstruction();
+//			((AssembledINCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		}
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -789,19 +1182,6 @@ public class AssemblerEngine {
 				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
-	private void parse(NopInstruction instruction) {
-		AssembledNOPInstruction line = new AssembledNOPInstruction();
-		line.parse(instruction, currentPcValue, lineNumber);
-
-		assemblyLines.add(line);
-		assembledLinesMap.put(instruction, line);
-		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
-		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
-}
-
 	/**
 	 * Parse an ADC directive line.
 	 *  
@@ -1059,8 +1439,10 @@ public class AssemblerEngine {
 					DUPLICATE_LABEL);
 			AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 		} else {
+			regDefintionValues.put(label, line.getValue());	
 			labelsEquSet.put(label, line);
 		}
+		
 	}
 
 	/**
@@ -1315,6 +1697,20 @@ public class AssemblerEngine {
 	 * @param value value of the label
 	 * @return value pointed by the label
 	 */
+	public Integer getRegDefintionValue(String value) {
+		if (regDefintionValues.containsKey(value)) {
+			return regDefintionValues.get(value);
+		} else {
+			return null;
+		}
+	}
+
+	/**
+	 * Get the value for a label 
+	 * 
+	 * @param value value of the label
+	 * @return value pointed by the label
+	 */
 	public Integer getEquSetLabelValue(String value) {
 		
 		AbstractAssemblyLine assemblyLine = labelsEquSet.get(value);
@@ -1338,5 +1734,4 @@ public class AssemblerEngine {
 	public int getCurrentDPPage() {
 		return currentDPPage;
 	}
-
 }

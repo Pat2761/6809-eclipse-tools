@@ -4,13 +4,13 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.OrccInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -18,19 +18,19 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Orcc Instruction</b></em>'.
+ * An implementation of the model object '<em><b>Or CC Instruction</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrccInstructionImpl#getInstruction <em>Instruction</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrccInstructionImpl#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrCCInstructionImpl#getInstruction <em>Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrCCInstructionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements OrccInstruction
+public class OrCCInstructionImpl extends MinimalEObjectImpl.Container implements OrCCInstruction
 {
   /**
    * The default value of the '{@link #getInstruction() <em>Instruction</em>}' attribute.
@@ -60,14 +60,14 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected ImmediatOperand operand;
+  protected EObject operand;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  protected OrccInstructionImpl()
+  protected OrCCInstructionImpl()
   {
     super();
   }
@@ -80,7 +80,7 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ORCC_INSTRUCTION;
+    return AssemblerPackage.Literals.OR_CC_INSTRUCTION;
   }
 
   /**
@@ -105,7 +105,7 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
     String oldInstruction = instruction;
     instruction = newInstruction;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ORCC_INSTRUCTION__INSTRUCTION, oldInstruction, instruction));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OR_CC_INSTRUCTION__INSTRUCTION, oldInstruction, instruction));
   }
 
   /**
@@ -114,7 +114,7 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public ImmediatOperand getOperand()
+  public EObject getOperand()
   {
     return operand;
   }
@@ -124,13 +124,13 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOperand(ImmediatOperand newOperand, NotificationChain msgs)
+  public NotificationChain basicSetOperand(EObject newOperand, NotificationChain msgs)
   {
-    ImmediatOperand oldOperand = operand;
+    EObject oldOperand = operand;
     operand = newOperand;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.ORCC_INSTRUCTION__OPERAND, oldOperand, newOperand);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.OR_CC_INSTRUCTION__OPERAND, oldOperand, newOperand);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -142,20 +142,20 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public void setOperand(ImmediatOperand newOperand)
+  public void setOperand(EObject newOperand)
   {
     if (newOperand != operand)
     {
       NotificationChain msgs = null;
       if (operand != null)
-        msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.ORCC_INSTRUCTION__OPERAND, null, msgs);
+        msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.OR_CC_INSTRUCTION__OPERAND, null, msgs);
       if (newOperand != null)
-        msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.ORCC_INSTRUCTION__OPERAND, null, msgs);
+        msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.OR_CC_INSTRUCTION__OPERAND, null, msgs);
       msgs = basicSetOperand(newOperand, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ORCC_INSTRUCTION__OPERAND, newOperand, newOperand));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OR_CC_INSTRUCTION__OPERAND, newOperand, newOperand));
   }
 
   /**
@@ -168,7 +168,7 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case AssemblerPackage.ORCC_INSTRUCTION__OPERAND:
+      case AssemblerPackage.OR_CC_INSTRUCTION__OPERAND:
         return basicSetOperand(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -184,9 +184,9 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case AssemblerPackage.ORCC_INSTRUCTION__INSTRUCTION:
+      case AssemblerPackage.OR_CC_INSTRUCTION__INSTRUCTION:
         return getInstruction();
-      case AssemblerPackage.ORCC_INSTRUCTION__OPERAND:
+      case AssemblerPackage.OR_CC_INSTRUCTION__OPERAND:
         return getOperand();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -202,11 +202,11 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case AssemblerPackage.ORCC_INSTRUCTION__INSTRUCTION:
+      case AssemblerPackage.OR_CC_INSTRUCTION__INSTRUCTION:
         setInstruction((String)newValue);
         return;
-      case AssemblerPackage.ORCC_INSTRUCTION__OPERAND:
-        setOperand((ImmediatOperand)newValue);
+      case AssemblerPackage.OR_CC_INSTRUCTION__OPERAND:
+        setOperand((EObject)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -222,11 +222,11 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case AssemblerPackage.ORCC_INSTRUCTION__INSTRUCTION:
+      case AssemblerPackage.OR_CC_INSTRUCTION__INSTRUCTION:
         setInstruction(INSTRUCTION_EDEFAULT);
         return;
-      case AssemblerPackage.ORCC_INSTRUCTION__OPERAND:
-        setOperand((ImmediatOperand)null);
+      case AssemblerPackage.OR_CC_INSTRUCTION__OPERAND:
+        setOperand((EObject)null);
         return;
     }
     super.eUnset(featureID);
@@ -242,9 +242,9 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
   {
     switch (featureID)
     {
-      case AssemblerPackage.ORCC_INSTRUCTION__INSTRUCTION:
+      case AssemblerPackage.OR_CC_INSTRUCTION__INSTRUCTION:
         return INSTRUCTION_EDEFAULT == null ? instruction != null : !INSTRUCTION_EDEFAULT.equals(instruction);
-      case AssemblerPackage.ORCC_INSTRUCTION__OPERAND:
+      case AssemblerPackage.OR_CC_INSTRUCTION__OPERAND:
         return operand != null;
     }
     return super.eIsSet(featureID);
@@ -267,4 +267,4 @@ public class OrccInstructionImpl extends MinimalEObjectImpl.Container implements
     return result.toString();
   }
 
-} //OrccInstructionImpl
+} //OrCCInstructionImpl

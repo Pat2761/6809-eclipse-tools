@@ -91,7 +91,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.PULS_INSTRUCTION: return createPulsInstruction();
       case AssemblerPackage.PSHU_INSTRUCTION: return createPshuInstruction();
       case AssemblerPackage.PSHS_INSTRUCTION: return createPshsInstruction();
-      case AssemblerPackage.ORCC_INSTRUCTION: return createOrccInstruction();
+      case AssemblerPackage.OR_CC_INSTRUCTION: return createOrCCInstruction();
       case AssemblerPackage.OR_INSTRUCTION: return createOrInstruction();
       case AssemblerPackage.NOP_INSTRUCTION: return createNopInstruction();
       case AssemblerPackage.NEG_INSTRUCTION: return createNegInstruction();
@@ -99,8 +99,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.LSR_INSTRUCTION: return createLsrInstruction();
       case AssemblerPackage.LSL_INSTRUCTION: return createLslInstruction();
       case AssemblerPackage.LEA_INSTRUCTION: return createLeaInstruction();
-      case AssemblerPackage.LD16_INSTRUCTION: return createLd16Instruction();
-      case AssemblerPackage.LD8_INSTRUCTION: return createLd8Instruction();
+      case AssemblerPackage.LD_INSTRUCTION: return createLdInstruction();
       case AssemblerPackage.JSR_INSTRUCTION: return createJsrInstruction();
       case AssemblerPackage.JMP_INSTRUCTION: return createJmpInstruction();
       case AssemblerPackage.INC_INSTRUCTION: return createIncInstruction();
@@ -543,10 +542,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public OrccInstruction createOrccInstruction()
+  public OrCCInstruction createOrCCInstruction()
   {
-    OrccInstructionImpl orccInstruction = new OrccInstructionImpl();
-    return orccInstruction;
+    OrCCInstructionImpl orCCInstruction = new OrCCInstructionImpl();
+    return orCCInstruction;
   }
 
   /**
@@ -639,22 +638,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public Ld16Instruction createLd16Instruction()
+  public LdInstruction createLdInstruction()
   {
-    Ld16InstructionImpl ld16Instruction = new Ld16InstructionImpl();
-    return ld16Instruction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public Ld8Instruction createLd8Instruction()
-  {
-    Ld8InstructionImpl ld8Instruction = new Ld8InstructionImpl();
-    return ld8Instruction;
+    LdInstructionImpl ldInstruction = new LdInstructionImpl();
+    return ldInstruction;
   }
 
   /**

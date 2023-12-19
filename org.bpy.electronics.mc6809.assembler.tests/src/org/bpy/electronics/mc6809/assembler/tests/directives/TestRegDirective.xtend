@@ -230,12 +230,13 @@ class TestRegDirective {
 		val regLineX = engine.getAssembledLine(6) as AssembledRegDirectiveLine
 		Assert.assertEquals("Check value X", 16, regLineX.value)
 		val regLineY = engine.getAssembledLine(7) as AssembledRegDirectiveLine
-		Assert.assertEquals("Check value X", 32, regLineY.value)
+		Assert.assertEquals("Check value Y", 32, regLineY.value)
 		val regLineU = engine.getAssembledLine(8) as AssembledRegDirectiveLine
 		Assert.assertEquals("Check value U", 64, regLineU.value)
 		val regLineS = engine.getAssembledLine(9) as AssembledRegDirectiveLine
-		Assert.assertEquals("Check value U", 64, regLineS.value)
+		Assert.assertEquals("Check value S", 64, regLineS.value)
 		val regLinePC = engine.getAssembledLine(10) as AssembledRegDirectiveLine
 		Assert.assertEquals("Check value PC", 128, regLinePC.value)
+		Assert.assertEquals("Check memorization", 128, engine.getRegDefintionValue("L_PC"))
 	}
 }

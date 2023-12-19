@@ -92,35 +92,35 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PuluInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//ImmediatOperand"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//IdentifierValue"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="registers" unique="false"
         upperBound="-1" eType="#//Register"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PulsInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//ImmediatOperand"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//IdentifierValue"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="registers" unique="false"
         upperBound="-1" eType="#//Register"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PshuInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//ImmediatOperand"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//IdentifierValue"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="registers" unique="false"
         upperBound="-1" eType="#//Register"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PshsInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//ImmediatOperand"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//IdentifierValue"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="registers" unique="false"
         upperBound="-1" eType="#//Register"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OrccInstruction">
+  <eClassifiers xsi:type="ecore:EClass" name="OrCCInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//ImmediatOperand"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OrInstruction">
@@ -151,15 +151,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="LeaInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="#//IndexedOperand"
-        containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Ld16Instruction">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Ld8Instruction">
+  <eClassifiers xsi:type="ecore:EClass" name="LdInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="operand" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>

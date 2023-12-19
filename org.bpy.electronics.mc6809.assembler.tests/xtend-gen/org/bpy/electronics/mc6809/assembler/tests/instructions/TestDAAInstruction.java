@@ -24,6 +24,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDAAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -234,15 +236,29 @@ public class TestDAAInstruction {
    */
   @Test
   public void testDAAAssembly() {
-    throw new Error("Unresolved compilation problems:"
-      + "\nAssembledDAAInstruction cannot be resolved to a type."
-      + "\nopcode cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nopcode cannot be resolved"
-      + "\nget cannot be resolved"
-      + "\noperand cannot be resolved"
-      + "\nlength cannot be resolved"
-      + "\nlabel cannot be resolved"
-      + "\ncomment cannot be resolved");
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t   \t");
+      _builder.append("ORG    \t\t\t$8000");
+      _builder.newLine();
+      _builder.append("Start      \tDAA\t\t  \t\t    ; 19   DAA");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledDAAInstruction line = ((AssembledDAAInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode", 0x19, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 0, line.getOperand().length);
+      Assert.assertEquals("Check label", "Start", line.getLabel());
+      Assert.assertEquals("Check comment", "; 19   DAA", line.getComment());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
   }
 }

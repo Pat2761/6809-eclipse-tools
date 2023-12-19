@@ -124,9 +124,9 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PshsInstruction/operand"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshsInstruction/registers"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//OrccInstruction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrccInstruction/instruction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OrccInstruction/operand"/>
+    <genClasses ecoreClass="Assembler.ecore#//OrCCInstruction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrCCInstruction/instruction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OrCCInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//OrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrInstruction/instruction"/>
@@ -154,13 +154,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LeaInstruction/instruction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LeaInstruction/operand"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//Ld16Instruction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//Ld16Instruction/instruction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Ld16Instruction/operand"/>
-    </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//Ld8Instruction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//Ld8Instruction/instruction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Ld8Instruction/operand"/>
+    <genClasses ecoreClass="Assembler.ecore#//LdInstruction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LdInstruction/instruction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LdInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//JsrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//JsrInstruction/instruction"/>

@@ -6,7 +6,7 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 import java.util.Collection;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 
@@ -68,7 +68,7 @@ public class PshuInstructionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    * @ordered
    */
-  protected ImmediatOperand operand;
+  protected IdentifierValue operand;
 
   /**
    * The cached value of the '{@link #getRegisters() <em>Registers</em>}' attribute list.
@@ -132,7 +132,7 @@ public class PshuInstructionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public ImmediatOperand getOperand()
+  public IdentifierValue getOperand()
   {
     return operand;
   }
@@ -142,9 +142,9 @@ public class PshuInstructionImpl extends MinimalEObjectImpl.Container implements
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOperand(ImmediatOperand newOperand, NotificationChain msgs)
+  public NotificationChain basicSetOperand(IdentifierValue newOperand, NotificationChain msgs)
   {
-    ImmediatOperand oldOperand = operand;
+    IdentifierValue oldOperand = operand;
     operand = newOperand;
     if (eNotificationRequired())
     {
@@ -160,7 +160,7 @@ public class PshuInstructionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public void setOperand(ImmediatOperand newOperand)
+  public void setOperand(IdentifierValue newOperand)
   {
     if (newOperand != operand)
     {
@@ -242,7 +242,7 @@ public class PshuInstructionImpl extends MinimalEObjectImpl.Container implements
         setInstruction((String)newValue);
         return;
       case AssemblerPackage.PSHU_INSTRUCTION__OPERAND:
-        setOperand((ImmediatOperand)newValue);
+        setOperand((IdentifierValue)newValue);
         return;
       case AssemblerPackage.PSHU_INSTRUCTION__REGISTERS:
         getRegisters().clear();
@@ -266,7 +266,7 @@ public class PshuInstructionImpl extends MinimalEObjectImpl.Container implements
         setInstruction(INSTRUCTION_EDEFAULT);
         return;
       case AssemblerPackage.PSHU_INSTRUCTION__OPERAND:
-        setOperand((ImmediatOperand)null);
+        setOperand((IdentifierValue)null);
         return;
       case AssemblerPackage.PSHU_INSTRUCTION__REGISTERS:
         getRegisters().clear();
