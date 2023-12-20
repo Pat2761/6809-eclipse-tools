@@ -81,7 +81,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTIInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTSInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSEXInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestST8Instruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestST16Instruction
@@ -145,6 +144,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLBInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPULUInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -268,8 +269,9 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORBInstructi
 	 TestRORInstruction,
 	 TestRTIInstruction,
 	 TestRTSInstruction,
-//	 TestSBCInstruction,
-//	 TestSEXInstruction,
+	 TestSBCAInstruction,
+	 TestSBCBInstruction,
+	 //	 TestSEXInstruction,
 //	 TestST8Instruction,
 //	 TestST16Instruction,
 //	 TestSUBInstruction,

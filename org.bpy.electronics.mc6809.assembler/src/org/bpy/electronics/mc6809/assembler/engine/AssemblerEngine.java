@@ -81,6 +81,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
@@ -186,6 +187,8 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRO
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRORInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRTIInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRTSInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSBCAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSBCBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -441,6 +444,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof RtsInstruction) {
 			parse((RtsInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof SbcInstruction) {
+			parse((SbcInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
 			parse((TfrInstruction)instructionLine.getInstruction());
 				
@@ -457,6 +463,33 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the SBC instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(SbcInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("SBCA".equals(instruction.getInstruction())) {
+			line = new AssembledSBCAInstruction();
+			((AssembledSBCAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("SBCB".equals(instruction.getInstruction())) {
+			line = new AssembledSBCBInstruction();
+			((AssembledSBCBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			// not possible 
+		}
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
