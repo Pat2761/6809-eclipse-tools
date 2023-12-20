@@ -72,6 +72,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
@@ -1137,6 +1138,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(RolInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an ROR instruction.
+	 * 
+	 * @param instruction reference on the ROR instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(RorInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an ROR instruction.
+	 * 
+	 * @param instruction reference on the ROR instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(RorInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

@@ -529,6 +529,7 @@ RorInstruction:
 	(
 	 	instruction = ('ROR')
 		WS operand = ( 
+			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |
