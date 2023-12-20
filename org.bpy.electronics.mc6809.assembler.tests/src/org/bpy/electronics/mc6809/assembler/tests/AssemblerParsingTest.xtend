@@ -142,6 +142,9 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORAInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPULUInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -255,14 +258,16 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLBInstructi
 	 TestORCCInstruction,
 	 TestPSHSInstruction,
 	 TestPSHUInstruction,
+	 TestPULSInstruction,
+	 TestPULUInstruction,
 	 TestROLAInstruction,
 	 TestROLBInstruction,
-//	 TestPULSInstruction,
-//	 TestPULUInstruction,
-//	 TestROLInstruction,
-//	 TestRORInstruction,
-//	 TestRTIInstruction,
-//	 TestRTSInstruction,
+	 TestROLInstruction,
+	 TestRORAInstruction,
+	 TestRORBInstruction,
+	 TestRORInstruction,
+	 TestRTIInstruction,
+	 TestRTSInstruction,
 //	 TestSBCInstruction,
 //	 TestSEXInstruction,
 //	 TestST8Instruction,

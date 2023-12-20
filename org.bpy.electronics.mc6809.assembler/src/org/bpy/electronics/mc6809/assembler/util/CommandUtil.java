@@ -73,6 +73,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
@@ -1158,6 +1160,46 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(RorInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an RTI instruction.
+	 * 
+	 * @param instruction reference on the RTI instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(RtiInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an RTI instruction.
+	 * 
+	 * @param instruction reference on the RTI instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(RtiInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an RTS instruction.
+	 * 
+	 * @param instruction reference on the RTS instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getLabel(RtsInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an RTS instruction.
+	 * 
+	 * @param instruction reference on the RTS instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(RtsInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
