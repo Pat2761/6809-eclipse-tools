@@ -55,6 +55,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
+import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
@@ -611,6 +612,16 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 			}
 		}
 		
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the ROL Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(RolInstruction instruction) {
 		exposeProblems(instruction);
 	}	
 	

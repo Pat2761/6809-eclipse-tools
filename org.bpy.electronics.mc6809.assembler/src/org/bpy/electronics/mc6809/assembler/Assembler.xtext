@@ -562,6 +562,7 @@ RolInstruction:
 	(
 	 	instruction = ('ROL')
 		WS operand = ( 
+			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |

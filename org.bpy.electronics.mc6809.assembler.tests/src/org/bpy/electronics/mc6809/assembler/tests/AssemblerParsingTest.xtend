@@ -140,6 +140,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNEGAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNEGBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -253,6 +255,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORBInstructio
 	 TestORCCInstruction,
 	 TestPSHSInstruction,
 	 TestPSHUInstruction,
+	 TestROLAInstruction,
+	 TestROLBInstruction,
 //	 TestPULSInstruction,
 //	 TestPULUInstruction,
 //	 TestROLInstruction,

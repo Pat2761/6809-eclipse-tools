@@ -2708,7 +2708,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         instruction='ROLA' | 
 	 *         instruction='ROLB' | 
-	 *         (instruction='ROL' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *         (
+	 *             instruction='ROL' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
 	 *     )
 	 * </pre>
 	 */

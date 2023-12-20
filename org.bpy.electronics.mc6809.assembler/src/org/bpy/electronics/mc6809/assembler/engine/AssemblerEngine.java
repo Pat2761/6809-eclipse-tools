@@ -77,6 +77,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
@@ -174,6 +175,9 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPS
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPSHUInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPULSInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPULUInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledROLAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledROLBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledROLInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -417,6 +421,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof PuluInstruction) {
 			parse((PuluInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof RolInstruction) {
+			parse((RolInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
 			parse((TfrInstruction)instructionLine.getInstruction());
 				
@@ -433,6 +440,36 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the ROL instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(RolInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("ROLA".equals(instruction.getInstruction())) {
+			line = new AssembledROLAInstruction();
+			((AssembledROLAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("ROLB".equals(instruction.getInstruction())) {
+			line = new AssembledROLBInstruction();
+			((AssembledROLBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("ROL".equals(instruction.getInstruction())) {
+			line = new AssembledROLInstruction();
+			((AssembledROLInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			// not possible 
+		}
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);

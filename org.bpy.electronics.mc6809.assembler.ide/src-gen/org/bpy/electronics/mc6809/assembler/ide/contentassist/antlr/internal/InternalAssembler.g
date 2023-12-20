@@ -4190,27 +4190,33 @@ rule__RolInstruction__OperandAlternatives_1_2_0
 	}
 :
 	(
-		{ before(grammarAccess.getRolInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0()); }
+		{ before(grammarAccess.getRolInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0()); }
+		ruleImmediatOperand
+		{ after(grammarAccess.getRolInstructionAccess().getOperandImmediatOperandParserRuleCall_1_2_0_0()); }
+	)
+	|
+	(
+		{ before(grammarAccess.getRolInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1()); }
 		ruleDirectOperand
-		{ after(grammarAccess.getRolInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_0()); }
+		{ after(grammarAccess.getRolInstructionAccess().getOperandDirectOperandParserRuleCall_1_2_0_1()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getRolInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1()); }
+		{ before(grammarAccess.getRolInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2()); }
 		ruleIndexedOperand
-		{ after(grammarAccess.getRolInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_1()); }
+		{ after(grammarAccess.getRolInstructionAccess().getOperandIndexedOperandParserRuleCall_1_2_0_2()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getRolInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2()); }
+		{ before(grammarAccess.getRolInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3()); }
 		ruleExtendedOperand
-		{ after(grammarAccess.getRolInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_2()); }
+		{ after(grammarAccess.getRolInstructionAccess().getOperandExtendedOperandParserRuleCall_1_2_0_3()); }
 	)
 	|
 	(
-		{ before(grammarAccess.getRolInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3()); }
+		{ before(grammarAccess.getRolInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4()); }
 		ruleExtendedIndirectOperand
-		{ after(grammarAccess.getRolInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_3()); }
+		{ after(grammarAccess.getRolInstructionAccess().getOperandExtendedIndirectOperandParserRuleCall_1_2_0_4()); }
 	)
 ;
 finally {
