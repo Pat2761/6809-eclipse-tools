@@ -141,22 +141,13 @@ public interface AssemblerFactory extends EFactory
   SubInstruction createSubInstruction();
 
   /**
-   * Returns a new object of class '<em>St16 Instruction</em>'.
+   * Returns a new object of class '<em>St Instruction</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return a new object of class '<em>St16 Instruction</em>'.
+   * @return a new object of class '<em>St Instruction</em>'.
    * @generated
    */
-  St16Instruction createSt16Instruction();
-
-  /**
-   * Returns a new object of class '<em>St8 Instruction</em>'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return a new object of class '<em>St8 Instruction</em>'.
-   * @generated
-   */
-  St8Instruction createSt8Instruction();
+  StInstruction createStInstruction();
 
   /**
    * Returns a new object of class '<em>Sex Instruction</em>'.

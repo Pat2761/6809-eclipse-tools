@@ -7,22 +7,22 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>St16 Instruction</b></em>'.
+ * A representation of the model object '<em><b>St Instruction</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.St16Instruction#getInstruction <em>Instruction</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.St16Instruction#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getInstruction <em>Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getOperand <em>Operand</em>}</li>
  * </ul>
  *
- * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSt16Instruction()
+ * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getStInstruction()
  * @model
  * @generated
  */
-public interface St16Instruction extends EObject
+public interface StInstruction extends EObject
 {
   /**
    * Returns the value of the '<em><b>Instruction</b></em>' attribute.
@@ -30,14 +30,14 @@ public interface St16Instruction extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Instruction</em>' attribute.
    * @see #setInstruction(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSt16Instruction_Instruction()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getStInstruction_Instruction()
    * @model
    * @generated
    */
   String getInstruction();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.St16Instruction#getInstruction <em>Instruction</em>}' attribute.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getInstruction <em>Instruction</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Instruction</em>' attribute.
@@ -52,14 +52,14 @@ public interface St16Instruction extends EObject
    * <!-- end-user-doc -->
    * @return the value of the '<em>Operand</em>' containment reference.
    * @see #setOperand(EObject)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSt16Instruction_Operand()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getStInstruction_Operand()
    * @model containment="true"
    * @generated
    */
   EObject getOperand();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.St16Instruction#getOperand <em>Operand</em>}' containment reference.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getOperand <em>Operand</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Operand</em>' containment reference.
@@ -68,4 +68,4 @@ public interface St16Instruction extends EObject
    */
   void setOperand(EObject value);
 
-} // St16Instruction
+} // StInstruction

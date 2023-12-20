@@ -4,7 +4,7 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.St8Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -18,19 +18,19 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>St8 Instruction</b></em>'.
+ * An implementation of the model object '<em><b>St Instruction</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.St8InstructionImpl#getInstruction <em>Instruction</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.St8InstructionImpl#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StInstructionImpl#getInstruction <em>Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StInstructionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class St8InstructionImpl extends MinimalEObjectImpl.Container implements St8Instruction
+public class StInstructionImpl extends MinimalEObjectImpl.Container implements StInstruction
 {
   /**
    * The default value of the '{@link #getInstruction() <em>Instruction</em>}' attribute.
@@ -67,7 +67,7 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
    * <!-- end-user-doc -->
    * @generated
    */
-  protected St8InstructionImpl()
+  protected StInstructionImpl()
   {
     super();
   }
@@ -80,7 +80,7 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ST8_INSTRUCTION;
+    return AssemblerPackage.Literals.ST_INSTRUCTION;
   }
 
   /**
@@ -105,7 +105,7 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
     String oldInstruction = instruction;
     instruction = newInstruction;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ST8_INSTRUCTION__INSTRUCTION, oldInstruction, instruction));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ST_INSTRUCTION__INSTRUCTION, oldInstruction, instruction));
   }
 
   /**
@@ -130,7 +130,7 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
     operand = newOperand;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.ST8_INSTRUCTION__OPERAND, oldOperand, newOperand);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.ST_INSTRUCTION__OPERAND, oldOperand, newOperand);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -148,14 +148,14 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
     {
       NotificationChain msgs = null;
       if (operand != null)
-        msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.ST8_INSTRUCTION__OPERAND, null, msgs);
+        msgs = ((InternalEObject)operand).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.ST_INSTRUCTION__OPERAND, null, msgs);
       if (newOperand != null)
-        msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.ST8_INSTRUCTION__OPERAND, null, msgs);
+        msgs = ((InternalEObject)newOperand).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.ST_INSTRUCTION__OPERAND, null, msgs);
       msgs = basicSetOperand(newOperand, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ST8_INSTRUCTION__OPERAND, newOperand, newOperand));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.ST_INSTRUCTION__OPERAND, newOperand, newOperand));
   }
 
   /**
@@ -168,7 +168,7 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.ST8_INSTRUCTION__OPERAND:
+      case AssemblerPackage.ST_INSTRUCTION__OPERAND:
         return basicSetOperand(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -184,9 +184,9 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.ST8_INSTRUCTION__INSTRUCTION:
+      case AssemblerPackage.ST_INSTRUCTION__INSTRUCTION:
         return getInstruction();
-      case AssemblerPackage.ST8_INSTRUCTION__OPERAND:
+      case AssemblerPackage.ST_INSTRUCTION__OPERAND:
         return getOperand();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -202,10 +202,10 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.ST8_INSTRUCTION__INSTRUCTION:
+      case AssemblerPackage.ST_INSTRUCTION__INSTRUCTION:
         setInstruction((String)newValue);
         return;
-      case AssemblerPackage.ST8_INSTRUCTION__OPERAND:
+      case AssemblerPackage.ST_INSTRUCTION__OPERAND:
         setOperand((EObject)newValue);
         return;
     }
@@ -222,10 +222,10 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.ST8_INSTRUCTION__INSTRUCTION:
+      case AssemblerPackage.ST_INSTRUCTION__INSTRUCTION:
         setInstruction(INSTRUCTION_EDEFAULT);
         return;
-      case AssemblerPackage.ST8_INSTRUCTION__OPERAND:
+      case AssemblerPackage.ST_INSTRUCTION__OPERAND:
         setOperand((EObject)null);
         return;
     }
@@ -242,9 +242,9 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
   {
     switch (featureID)
     {
-      case AssemblerPackage.ST8_INSTRUCTION__INSTRUCTION:
+      case AssemblerPackage.ST_INSTRUCTION__INSTRUCTION:
         return INSTRUCTION_EDEFAULT == null ? instruction != null : !INSTRUCTION_EDEFAULT.equals(instruction);
-      case AssemblerPackage.ST8_INSTRUCTION__OPERAND:
+      case AssemblerPackage.ST_INSTRUCTION__OPERAND:
         return operand != null;
     }
     return super.eIsSet(featureID);
@@ -267,4 +267,4 @@ public class St8InstructionImpl extends MinimalEObjectImpl.Container implements 
     return result.toString();
   }
 
-} //St8InstructionImpl
+} //StInstructionImpl

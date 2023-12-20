@@ -82,8 +82,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTIInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTSInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSEXInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestST8Instruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestST16Instruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBDInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWIInstruction
@@ -146,6 +144,13 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTDInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTSInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTUInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTXInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTYInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -272,7 +277,14 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCBInstructi
 	 TestSBCAInstruction,
 	 TestSBCBInstruction,
 	 TestSEXInstruction,
-//	 TestST8Instruction,
+	 TestSTAInstruction,
+	 TestSTBInstruction,
+	 TestSTDInstruction,
+	 TestSTSInstruction,
+	 TestSTUInstruction,
+	 TestSTXInstruction,
+	 TestSTYInstruction,
+	 
 //	 TestST16Instruction,
 //	 TestSUBInstruction,
 //	 TestSUBDInstruction,

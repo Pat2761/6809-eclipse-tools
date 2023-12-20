@@ -87,6 +87,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
@@ -191,6 +192,13 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRT
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSBCAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSBCBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSEXInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTDInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTSInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTUInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTXInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTYInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -452,6 +460,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof SexInstruction) {
 			parse((SexInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof StInstruction) {
+			parse((StInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
 			parse((TfrInstruction)instructionLine.getInstruction());
 				
@@ -468,6 +479,42 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	private void parse(StInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("STA".equals(instruction.getInstruction())) {
+			line = new AssembledSTAInstruction();
+			((AssembledSTAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("STB".equals(instruction.getInstruction())) {
+			line = new AssembledSTBInstruction();
+			((AssembledSTBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("STD".equals(instruction.getInstruction())) {
+			line = new AssembledSTDInstruction();
+			((AssembledSTDInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("STS".equals(instruction.getInstruction())) {
+			line = new AssembledSTSInstruction();
+			((AssembledSTSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("STU".equals(instruction.getInstruction())) {
+			line = new AssembledSTUInstruction();
+			((AssembledSTUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("STX".equals(instruction.getInstruction())) {
+			line = new AssembledSTXInstruction();
+			((AssembledSTXInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("STY".equals(instruction.getInstruction())) {
+			line = new AssembledSTYInstruction();
+			((AssembledSTYInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+		}
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -920,8 +967,6 @@ public class AssemblerEngine {
 			line = new AssembledLDYInstruction();
 			((AssembledLDYInstruction) line).parse(instruction, currentPcValue, lineNumber);
 		} else {
-//			line = new AssembledINCInstruction();
-//			((AssembledINCInstruction) line).parse(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);

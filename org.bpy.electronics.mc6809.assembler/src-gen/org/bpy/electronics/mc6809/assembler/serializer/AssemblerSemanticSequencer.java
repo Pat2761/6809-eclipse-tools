@@ -120,8 +120,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.St16Instruction;
-import org.bpy.electronics.mc6809.assembler.assembler.St8Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
@@ -527,11 +526,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.SPC_DIRECTIVE:
 				sequence_SpcDirective(context, (SpcDirective) semanticObject); 
 				return; 
-			case AssemblerPackage.ST16_INSTRUCTION:
-				sequence_St16Instruction(context, (St16Instruction) semanticObject); 
-				return; 
-			case AssemblerPackage.ST8_INSTRUCTION:
-				sequence_St8Instruction(context, (St8Instruction) semanticObject); 
+			case AssemblerPackage.ST_INSTRUCTION:
+				sequence_StInstruction(context, (StInstruction) semanticObject); 
 				return; 
 			case AssemblerPackage.STRING_VALUE:
 				sequence_StringValue(context, (StringValue) semanticObject); 
@@ -1913,8 +1909,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=RtsInstruction | 
 	 *             instruction=SbcInstruction | 
 	 *             instruction=SexInstruction | 
-	 *             instruction=St8Instruction | 
-	 *             instruction=St16Instruction | 
+	 *             instruction=StInstruction | 
 	 *             instruction=SubInstruction | 
 	 *             instruction=SubdInstruction | 
 	 *             instruction=SwiInstruction | 
@@ -2877,33 +2872,24 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     St16Instruction returns St16Instruction
+	 *     StInstruction returns StInstruction
 	 *
 	 * Constraint:
 	 *     (
-	 *         (instruction='STD' | instruction='STX' | instruction='STY' | instruction='STS' | instruction='STU') 
-	 *         (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         (
+	 *             instruction='STA' | 
+	 *             instruction='STB' | 
+	 *             instruction='STD' | 
+	 *             instruction='STX' | 
+	 *             instruction='STY' | 
+	 *             instruction='STS' | 
+	 *             instruction='STU'
+	 *         ) 
+	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
 	 */
-	protected void sequence_St16Instruction(ISerializationContext context, St16Instruction semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     St8Instruction returns St8Instruction
-	 *
-	 * Constraint:
-	 *     (
-	 *         (instruction='STA' | instruction='STB') 
-	 *         (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
-	 *     )
-	 * </pre>
-	 */
-	protected void sequence_St8Instruction(ISerializationContext context, St8Instruction semanticObject) {
+	protected void sequence_StInstruction(ISerializationContext context, StInstruction semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

@@ -164,17 +164,10 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
-      case AssemblerPackage.ST16_INSTRUCTION:
+      case AssemblerPackage.ST_INSTRUCTION:
       {
-        St16Instruction st16Instruction = (St16Instruction)theEObject;
-        T result = caseSt16Instruction(st16Instruction);
-        if (result == null) result = defaultCase(theEObject);
-        return result;
-      }
-      case AssemblerPackage.ST8_INSTRUCTION:
-      {
-        St8Instruction st8Instruction = (St8Instruction)theEObject;
-        T result = caseSt8Instruction(st8Instruction);
+        StInstruction stInstruction = (StInstruction)theEObject;
+        T result = caseStInstruction(stInstruction);
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
@@ -1186,33 +1179,17 @@ public class AssemblerSwitch<T> extends Switch<T>
   }
 
   /**
-   * Returns the result of interpreting the object as an instance of '<em>St16 Instruction</em>'.
+   * Returns the result of interpreting the object as an instance of '<em>St Instruction</em>'.
    * <!-- begin-user-doc -->
    * This implementation returns null;
    * returning a non-null result will terminate the switch.
    * <!-- end-user-doc -->
    * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>St16 Instruction</em>'.
+   * @return the result of interpreting the object as an instance of '<em>St Instruction</em>'.
    * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
    * @generated
    */
-  public T caseSt16Instruction(St16Instruction object)
-  {
-    return null;
-  }
-
-  /**
-   * Returns the result of interpreting the object as an instance of '<em>St8 Instruction</em>'.
-   * <!-- begin-user-doc -->
-   * This implementation returns null;
-   * returning a non-null result will terminate the switch.
-   * <!-- end-user-doc -->
-   * @param object the target of the switch.
-   * @return the result of interpreting the object as an instance of '<em>St8 Instruction</em>'.
-   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-   * @generated
-   */
-  public T caseSt8Instruction(St8Instruction object)
+  public T caseStInstruction(StInstruction object)
   {
     return null;
   }

@@ -75,13 +75,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SubInstruction/instruction"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SubInstruction/operand"/>
     </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//St16Instruction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//St16Instruction/instruction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//St16Instruction/operand"/>
-    </genClasses>
-    <genClasses ecoreClass="Assembler.ecore#//St8Instruction">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//St8Instruction/instruction"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//St8Instruction/operand"/>
+    <genClasses ecoreClass="Assembler.ecore#//StInstruction">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//StInstruction/instruction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//StInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SexInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SexInstruction/instruction"/>

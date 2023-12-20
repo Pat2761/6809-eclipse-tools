@@ -122,8 +122,7 @@ InstructionLine:
 		instruction = RtsInstruction			|			   
 		instruction = SbcInstruction			|			   
 		instruction = SexInstruction			|			   
-		instruction = St8Instruction			|			   
-		instruction = St16Instruction			|			   
+		instruction = StInstruction				|			   
 		instruction = SubInstruction			|			   
 		instruction = SubdInstruction			|			   
 		instruction = SwiInstruction			|			   
@@ -362,32 +361,6 @@ SubInstruction:
 ;
 
 /*
- * ST (16 bits)
- * 
- * store Register into Memory
- * Source Form		: STD P, STX P, STY P, STS P, STU P
- * Operation		: M:%+1 <- R
- * Condition Codes	: H - Not affected.
- * 					  N - Set if the result is negative; cleared otherwise.
- * 					  Z - Set if the result Is zero; cleared otherwise,
- *                    V - Always cleared.
- * 					  C - Not affected.
- * Description		: Writes the contents of a 16-bit register into two consecutive memory locations.
- * Addressing Mode	: Extended
- *                    Direct
- *                    Indexed
- */
-St16Instruction:
- 	instruction = ('STD' | 'STX' | 'STY' | 'STS' | 'STU')
-	WS operand = ( 
-		DirectOperand  |
-		IndexedOperand | 
-		ExtendedOperand |
-		ExtendedIndirectOperand 
-	)
-;
-
-/*
  * ST (8 bits)
  * 
  * store Register into Memory
@@ -403,9 +376,10 @@ St16Instruction:
  *                    Direct
  *                    Indexed
  */
-St8Instruction:
- 	instruction = ('STA' | 'STB')
+StInstruction:
+ 	instruction = ('STA' | 'STB' | 'STD' | 'STX' | 'STY' | 'STS' | 'STU')
 	WS operand = ( 
+		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
 		ExtendedOperand |

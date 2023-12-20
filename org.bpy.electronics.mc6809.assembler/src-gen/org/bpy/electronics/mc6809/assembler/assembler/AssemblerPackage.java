@@ -495,14 +495,14 @@ public interface AssemblerPackage extends EPackage
   int SUB_INSTRUCTION_FEATURE_COUNT = 2;
 
   /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.St16InstructionImpl <em>St16 Instruction</em>}' class.
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StInstructionImpl <em>St Instruction</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.St16InstructionImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSt16Instruction()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.StInstructionImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStInstruction()
    * @generated
    */
-  int ST16_INSTRUCTION = 13;
+  int ST_INSTRUCTION = 13;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -511,7 +511,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ST16_INSTRUCTION__INSTRUCTION = 0;
+  int ST_INSTRUCTION__INSTRUCTION = 0;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -520,53 +520,16 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ST16_INSTRUCTION__OPERAND = 1;
+  int ST_INSTRUCTION__OPERAND = 1;
 
   /**
-   * The number of structural features of the '<em>St16 Instruction</em>' class.
+   * The number of structural features of the '<em>St Instruction</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ST16_INSTRUCTION_FEATURE_COUNT = 2;
-
-  /**
-   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.St8InstructionImpl <em>St8 Instruction</em>}' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.St8InstructionImpl
-   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSt8Instruction()
-   * @generated
-   */
-  int ST8_INSTRUCTION = 14;
-
-  /**
-   * The feature id for the '<em><b>Instruction</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ST8_INSTRUCTION__INSTRUCTION = 0;
-
-  /**
-   * The feature id for the '<em><b>Operand</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ST8_INSTRUCTION__OPERAND = 1;
-
-  /**
-   * The number of structural features of the '<em>St8 Instruction</em>' class.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ST8_INSTRUCTION_FEATURE_COUNT = 2;
+  int ST_INSTRUCTION_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SexInstructionImpl <em>Sex Instruction</em>}' class.
@@ -576,7 +539,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSexInstruction()
    * @generated
    */
-  int SEX_INSTRUCTION = 15;
+  int SEX_INSTRUCTION = 14;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -604,7 +567,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSbcInstruction()
    * @generated
    */
-  int SBC_INSTRUCTION = 16;
+  int SBC_INSTRUCTION = 15;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -641,7 +604,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRtsInstruction()
    * @generated
    */
-  int RTS_INSTRUCTION = 17;
+  int RTS_INSTRUCTION = 16;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -669,7 +632,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRtiInstruction()
    * @generated
    */
-  int RTI_INSTRUCTION = 18;
+  int RTI_INSTRUCTION = 17;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -697,7 +660,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRorInstruction()
    * @generated
    */
-  int ROR_INSTRUCTION = 19;
+  int ROR_INSTRUCTION = 18;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -734,7 +697,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRolInstruction()
    * @generated
    */
-  int ROL_INSTRUCTION = 20;
+  int ROL_INSTRUCTION = 19;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -771,7 +734,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPuluInstruction()
    * @generated
    */
-  int PULU_INSTRUCTION = 21;
+  int PULU_INSTRUCTION = 20;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -817,7 +780,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPulsInstruction()
    * @generated
    */
-  int PULS_INSTRUCTION = 22;
+  int PULS_INSTRUCTION = 21;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -863,7 +826,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPshuInstruction()
    * @generated
    */
-  int PSHU_INSTRUCTION = 23;
+  int PSHU_INSTRUCTION = 22;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -909,7 +872,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPshsInstruction()
    * @generated
    */
-  int PSHS_INSTRUCTION = 24;
+  int PSHS_INSTRUCTION = 23;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -955,7 +918,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrCCInstruction()
    * @generated
    */
-  int OR_CC_INSTRUCTION = 25;
+  int OR_CC_INSTRUCTION = 24;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -992,7 +955,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrInstruction()
    * @generated
    */
-  int OR_INSTRUCTION = 26;
+  int OR_INSTRUCTION = 25;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1029,7 +992,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNopInstruction()
    * @generated
    */
-  int NOP_INSTRUCTION = 27;
+  int NOP_INSTRUCTION = 26;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1057,7 +1020,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNegInstruction()
    * @generated
    */
-  int NEG_INSTRUCTION = 28;
+  int NEG_INSTRUCTION = 27;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1094,7 +1057,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMulInstruction()
    * @generated
    */
-  int MUL_INSTRUCTION = 29;
+  int MUL_INSTRUCTION = 28;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1122,7 +1085,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLsrInstruction()
    * @generated
    */
-  int LSR_INSTRUCTION = 30;
+  int LSR_INSTRUCTION = 29;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1159,7 +1122,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLslInstruction()
    * @generated
    */
-  int LSL_INSTRUCTION = 31;
+  int LSL_INSTRUCTION = 30;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1196,7 +1159,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeaInstruction()
    * @generated
    */
-  int LEA_INSTRUCTION = 32;
+  int LEA_INSTRUCTION = 31;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1233,7 +1196,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLdInstruction()
    * @generated
    */
-  int LD_INSTRUCTION = 33;
+  int LD_INSTRUCTION = 32;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1270,7 +1233,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getJsrInstruction()
    * @generated
    */
-  int JSR_INSTRUCTION = 34;
+  int JSR_INSTRUCTION = 33;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1307,7 +1270,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getJmpInstruction()
    * @generated
    */
-  int JMP_INSTRUCTION = 35;
+  int JMP_INSTRUCTION = 34;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1344,7 +1307,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIncInstruction()
    * @generated
    */
-  int INC_INSTRUCTION = 36;
+  int INC_INSTRUCTION = 35;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1381,7 +1344,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExgInstruction()
    * @generated
    */
-  int EXG_INSTRUCTION = 37;
+  int EXG_INSTRUCTION = 36;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1427,7 +1390,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEorInstruction()
    * @generated
    */
-  int EOR_INSTRUCTION = 38;
+  int EOR_INSTRUCTION = 37;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1464,7 +1427,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecInstruction()
    * @generated
    */
-  int DEC_INSTRUCTION = 39;
+  int DEC_INSTRUCTION = 38;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1501,7 +1464,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDaaInstruction()
    * @generated
    */
-  int DAA_INSTRUCTION = 40;
+  int DAA_INSTRUCTION = 39;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1529,7 +1492,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCwaiInstruction()
    * @generated
    */
-  int CWAI_INSTRUCTION = 41;
+  int CWAI_INSTRUCTION = 40;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1566,7 +1529,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getComInstruction()
    * @generated
    */
-  int COM_INSTRUCTION = 42;
+  int COM_INSTRUCTION = 41;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1603,7 +1566,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCmpInstruction()
    * @generated
    */
-  int CMP_INSTRUCTION = 43;
+  int CMP_INSTRUCTION = 42;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1640,7 +1603,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getClrInstruction()
    * @generated
    */
-  int CLR_INSTRUCTION = 44;
+  int CLR_INSTRUCTION = 43;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1677,7 +1640,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBvsInstruction()
    * @generated
    */
-  int BVS_INSTRUCTION = 45;
+  int BVS_INSTRUCTION = 44;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1714,7 +1677,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBvcInstruction()
    * @generated
    */
-  int BVC_INSTRUCTION = 46;
+  int BVC_INSTRUCTION = 45;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1751,7 +1714,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBsrInstruction()
    * @generated
    */
-  int BSR_INSTRUCTION = 47;
+  int BSR_INSTRUCTION = 46;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1788,7 +1751,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBrnInstruction()
    * @generated
    */
-  int BRN_INSTRUCTION = 48;
+  int BRN_INSTRUCTION = 47;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1825,7 +1788,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBraInstruction()
    * @generated
    */
-  int BRA_INSTRUCTION = 49;
+  int BRA_INSTRUCTION = 48;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1862,7 +1825,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBplInstruction()
    * @generated
    */
-  int BPL_INSTRUCTION = 50;
+  int BPL_INSTRUCTION = 49;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1899,7 +1862,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBneInstruction()
    * @generated
    */
-  int BNE_INSTRUCTION = 51;
+  int BNE_INSTRUCTION = 50;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1936,7 +1899,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBmiInstruction()
    * @generated
    */
-  int BMI_INSTRUCTION = 52;
+  int BMI_INSTRUCTION = 51;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1973,7 +1936,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBltInstruction()
    * @generated
    */
-  int BLT_INSTRUCTION = 53;
+  int BLT_INSTRUCTION = 52;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2010,7 +1973,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBlsInstruction()
    * @generated
    */
-  int BLS_INSTRUCTION = 54;
+  int BLS_INSTRUCTION = 53;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2047,7 +2010,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBloInstruction()
    * @generated
    */
-  int BLO_INSTRUCTION = 55;
+  int BLO_INSTRUCTION = 54;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2084,7 +2047,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBleInstruction()
    * @generated
    */
-  int BLE_INSTRUCTION = 56;
+  int BLE_INSTRUCTION = 55;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2121,7 +2084,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBitInstruction()
    * @generated
    */
-  int BIT_INSTRUCTION = 57;
+  int BIT_INSTRUCTION = 56;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2158,7 +2121,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBhsInstruction()
    * @generated
    */
-  int BHS_INSTRUCTION = 58;
+  int BHS_INSTRUCTION = 57;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2195,7 +2158,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBhiInstruction()
    * @generated
    */
-  int BHI_INSTRUCTION = 59;
+  int BHI_INSTRUCTION = 58;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2232,7 +2195,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBgtInstruction()
    * @generated
    */
-  int BGT_INSTRUCTION = 60;
+  int BGT_INSTRUCTION = 59;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2269,7 +2232,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBgeInstruction()
    * @generated
    */
-  int BGE_INSTRUCTION = 61;
+  int BGE_INSTRUCTION = 60;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2306,7 +2269,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBeqInstruction()
    * @generated
    */
-  int BEQ_INSTRUCTION = 62;
+  int BEQ_INSTRUCTION = 61;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2343,7 +2306,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBcsInstruction()
    * @generated
    */
-  int BCS_INSTRUCTION = 63;
+  int BCS_INSTRUCTION = 62;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2380,7 +2343,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBccInstruction()
    * @generated
    */
-  int BCC_INSTRUCTION = 64;
+  int BCC_INSTRUCTION = 63;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2417,7 +2380,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAsrInstruction()
    * @generated
    */
-  int ASR_INSTRUCTION = 65;
+  int ASR_INSTRUCTION = 64;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2454,7 +2417,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAslInstruction()
    * @generated
    */
-  int ASL_INSTRUCTION = 66;
+  int ASL_INSTRUCTION = 65;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2491,7 +2454,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAndCCInstruction()
    * @generated
    */
-  int AND_CC_INSTRUCTION = 67;
+  int AND_CC_INSTRUCTION = 66;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2528,7 +2491,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAndInstruction()
    * @generated
    */
-  int AND_INSTRUCTION = 68;
+  int AND_INSTRUCTION = 67;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2565,7 +2528,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAdddInstruction()
    * @generated
    */
-  int ADDD_INSTRUCTION = 69;
+  int ADDD_INSTRUCTION = 68;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2602,7 +2565,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddInstruction()
    * @generated
    */
-  int ADD_INSTRUCTION = 70;
+  int ADD_INSTRUCTION = 69;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2639,7 +2602,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAdcInstruction()
    * @generated
    */
-  int ADC_INSTRUCTION = 71;
+  int ADC_INSTRUCTION = 70;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2676,7 +2639,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAbxInstruction()
    * @generated
    */
-  int ABX_INSTRUCTION = 72;
+  int ABX_INSTRUCTION = 71;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2704,7 +2667,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExtendedIndirectOperand()
    * @generated
    */
-  int EXTENDED_INDIRECT_OPERAND = 73;
+  int EXTENDED_INDIRECT_OPERAND = 72;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -2732,7 +2695,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExtendedOperand()
    * @generated
    */
-  int EXTENDED_OPERAND = 74;
+  int EXTENDED_OPERAND = 73;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -2760,7 +2723,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectOperand()
    * @generated
    */
-  int DIRECT_OPERAND = 75;
+  int DIRECT_OPERAND = 74;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -2788,7 +2751,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getImmediatOperand()
    * @generated
    */
-  int IMMEDIAT_OPERAND = 76;
+  int IMMEDIAT_OPERAND = 75;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -2816,7 +2779,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIndexedOperand()
    * @generated
    */
-  int INDEXED_OPERAND = 77;
+  int INDEXED_OPERAND = 76;
 
   /**
    * The feature id for the '<em><b>Mode</b></em>' containment reference.
@@ -2844,7 +2807,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getConstantIndexedMode()
    * @generated
    */
-  int CONSTANT_INDEXED_MODE = 78;
+  int CONSTANT_INDEXED_MODE = 77;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
@@ -2881,7 +2844,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getConstantIndexedMovingIndirectMode()
    * @generated
    */
-  int CONSTANT_INDEXED_MOVING_INDIRECT_MODE = 79;
+  int CONSTANT_INDEXED_MOVING_INDIRECT_MODE = 78;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
@@ -2918,7 +2881,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAccumulatorMovingMode()
    * @generated
    */
-  int ACCUMULATOR_MOVING_MODE = 80;
+  int ACCUMULATOR_MOVING_MODE = 79;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' attribute.
@@ -2955,7 +2918,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAccumulatorMovingIndirectMode()
    * @generated
    */
-  int ACCUMULATOR_MOVING_INDIRECT_MODE = 81;
+  int ACCUMULATOR_MOVING_INDIRECT_MODE = 80;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' attribute.
@@ -2992,7 +2955,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAutoIncDecMode()
    * @generated
    */
-  int AUTO_INC_DEC_MODE = 82;
+  int AUTO_INC_DEC_MODE = 81;
 
   /**
    * The feature id for the '<em><b>Decrement</b></em>' attribute.
@@ -3038,7 +3001,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAutoIncDecIndirectMode()
    * @generated
    */
-  int AUTO_INC_DEC_INDIRECT_MODE = 83;
+  int AUTO_INC_DEC_INDIRECT_MODE = 82;
 
   /**
    * The feature id for the '<em><b>Decrement</b></em>' attribute.
@@ -3084,7 +3047,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelatifToPCMode()
    * @generated
    */
-  int RELATIF_TO_PC_MODE = 84;
+  int RELATIF_TO_PC_MODE = 83;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
@@ -3121,7 +3084,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelatifToPCIndirectMode()
    * @generated
    */
-  int RELATIF_TO_PC_INDIRECT_MODE = 85;
+  int RELATIF_TO_PC_INDIRECT_MODE = 84;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
@@ -3158,7 +3121,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelativeMode()
    * @generated
    */
-  int RELATIVE_MODE = 86;
+  int RELATIVE_MODE = 85;
 
   /**
    * The feature id for the '<em><b>Is Pc Relative</b></em>' attribute.
@@ -3195,7 +3158,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectiveLine()
    * @generated
    */
-  int DIRECTIVE_LINE = 87;
+  int DIRECTIVE_LINE = 86;
 
   /**
    * The feature id for the '<em><b>Name</b></em>' containment reference.
@@ -3241,7 +3204,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSetDPDirective()
    * @generated
    */
-  int SET_DP_DIRECTIVE = 88;
+  int SET_DP_DIRECTIVE = 87;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3278,7 +3241,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFccDirective()
    * @generated
    */
-  int FCC_DIRECTIVE = 89;
+  int FCC_DIRECTIVE = 88;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3315,7 +3278,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRegDirective()
    * @generated
    */
-  int REG_DIRECTIVE = 90;
+  int REG_DIRECTIVE = 89;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3352,7 +3315,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSpcDirective()
    * @generated
    */
-  int SPC_DIRECTIVE = 91;
+  int SPC_DIRECTIVE = 90;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3398,7 +3361,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNamDirective()
    * @generated
    */
-  int NAM_DIRECTIVE = 92;
+  int NAM_DIRECTIVE = 91;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3435,7 +3398,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPagDirective()
    * @generated
    */
-  int PAG_DIRECTIVE = 93;
+  int PAG_DIRECTIVE = 92;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3472,7 +3435,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOptDirective()
    * @generated
    */
-  int OPT_DIRECTIVE = 94;
+  int OPT_DIRECTIVE = 93;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3509,7 +3472,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFailDirective()
    * @generated
    */
-  int FAIL_DIRECTIVE = 95;
+  int FAIL_DIRECTIVE = 94;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3537,7 +3500,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSetDirective()
    * @generated
    */
-  int SET_DIRECTIVE = 96;
+  int SET_DIRECTIVE = 95;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3583,7 +3546,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFillDirective()
    * @generated
    */
-  int FILL_DIRECTIVE = 97;
+  int FILL_DIRECTIVE = 96;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3629,7 +3592,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBszDirective()
    * @generated
    */
-  int BSZ_DIRECTIVE = 98;
+  int BSZ_DIRECTIVE = 97;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3666,7 +3629,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFdbDirective()
    * @generated
    */
-  int FDB_DIRECTIVE = 99;
+  int FDB_DIRECTIVE = 98;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3703,7 +3666,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFcbDirective()
    * @generated
    */
-  int FCB_DIRECTIVE = 100;
+  int FCB_DIRECTIVE = 99;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3740,7 +3703,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRmbDirective()
    * @generated
    */
-  int RMB_DIRECTIVE = 101;
+  int RMB_DIRECTIVE = 100;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3786,7 +3749,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEndDirective()
    * @generated
    */
-  int END_DIRECTIVE = 102;
+  int END_DIRECTIVE = 101;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3823,7 +3786,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrgDirective()
    * @generated
    */
-  int ORG_DIRECTIVE = 103;
+  int ORG_DIRECTIVE = 102;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3869,7 +3832,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEquDirective()
    * @generated
    */
-  int EQU_DIRECTIVE = 104;
+  int EQU_DIRECTIVE = 103;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3915,7 +3878,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getListOfExpression()
    * @generated
    */
-  int LIST_OF_EXPRESSION = 105;
+  int LIST_OF_EXPRESSION = 104;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -3952,7 +3915,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCommaExpression()
    * @generated
    */
-  int COMMA_EXPRESSION = 106;
+  int COMMA_EXPRESSION = 105;
 
   /**
    * The feature id for the '<em><b>Comma</b></em>' attribute.
@@ -3989,7 +3952,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 107;
+  int EXPRESSION = 106;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4026,7 +3989,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNumericalValue()
    * @generated
    */
-  int NUMERICAL_VALUE = 108;
+  int NUMERICAL_VALUE = 107;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -4054,7 +4017,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifierValue()
    * @generated
    */
-  int IDENTIFIER_VALUE = 109;
+  int IDENTIFIER_VALUE = 108;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4082,7 +4045,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStringValue()
    * @generated
    */
-  int STRING_VALUE = 110;
+  int STRING_VALUE = 109;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4110,7 +4073,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecimalValue()
    * @generated
    */
-  int DECIMAL_VALUE = 111;
+  int DECIMAL_VALUE = 110;
 
   /**
    * The feature id for the '<em><b>Sign</b></em>' attribute.
@@ -4147,7 +4110,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getHexaDecimalValue()
    * @generated
    */
-  int HEXA_DECIMAL_VALUE = 112;
+  int HEXA_DECIMAL_VALUE = 111;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4175,7 +4138,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOctalValue()
    * @generated
    */
-  int OCTAL_VALUE = 113;
+  int OCTAL_VALUE = 112;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4203,7 +4166,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBinaryValue()
    * @generated
    */
-  int BINARY_VALUE = 114;
+  int BINARY_VALUE = 113;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4231,7 +4194,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCharacterValue()
    * @generated
    */
-  int CHARACTER_VALUE = 115;
+  int CHARACTER_VALUE = 114;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4259,7 +4222,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 116;
+  int MULTIPLICATION = 115;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4323,7 +4286,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDivision()
    * @generated
    */
-  int DIVISION = 117;
+  int DIVISION = 116;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4387,7 +4350,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getModulo()
    * @generated
    */
-  int MODULO = 118;
+  int MODULO = 117;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4451,7 +4414,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 119;
+  int ADDITION = 118;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4506,7 +4469,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubstraction()
    * @generated
    */
-  int SUBSTRACTION = 120;
+  int SUBSTRACTION = 119;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4561,7 +4524,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeftShift()
    * @generated
    */
-  int LEFT_SHIFT = 121;
+  int LEFT_SHIFT = 120;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4616,7 +4579,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRightShift()
    * @generated
    */
-  int RIGHT_SHIFT = 122;
+  int RIGHT_SHIFT = 121;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4671,7 +4634,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAnd()
    * @generated
    */
-  int AND = 123;
+  int AND = 122;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4726,7 +4689,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOr()
    * @generated
    */
-  int OR = 124;
+  int OR = 123;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4781,7 +4744,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getXor()
    * @generated
    */
-  int XOR = 125;
+  int XOR = 124;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4836,7 +4799,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNot()
    * @generated
    */
-  int NOT = 126;
+  int NOT = 125;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4873,7 +4836,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAssemblyOption()
    * @generated
    */
-  int ASSEMBLY_OPTION = 127;
+  int ASSEMBLY_OPTION = 126;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.Register <em>Register</em>}' enum.
@@ -4883,7 +4846,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRegister()
    * @generated
    */
-  int REGISTER = 128;
+  int REGISTER = 127;
 
 
   /**
@@ -5248,68 +5211,36 @@ public interface AssemblerPackage extends EPackage
   EReference getSubInstruction_Operand();
 
   /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.St16Instruction <em>St16 Instruction</em>}'.
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.StInstruction <em>St Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for class '<em>St16 Instruction</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.St16Instruction
+   * @return the meta object for class '<em>St Instruction</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.StInstruction
    * @generated
    */
-  EClass getSt16Instruction();
+  EClass getStInstruction();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.St16Instruction#getInstruction <em>Instruction</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getInstruction <em>Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the attribute '<em>Instruction</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.St16Instruction#getInstruction()
-   * @see #getSt16Instruction()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getInstruction()
+   * @see #getStInstruction()
    * @generated
    */
-  EAttribute getSt16Instruction_Instruction();
+  EAttribute getStInstruction_Instruction();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.St16Instruction#getOperand <em>Operand</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the meta object for the containment reference '<em>Operand</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.St16Instruction#getOperand()
-   * @see #getSt16Instruction()
+   * @see org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getOperand()
+   * @see #getStInstruction()
    * @generated
    */
-  EReference getSt16Instruction_Operand();
-
-  /**
-   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.St8Instruction <em>St8 Instruction</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for class '<em>St8 Instruction</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.St8Instruction
-   * @generated
-   */
-  EClass getSt8Instruction();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.St8Instruction#getInstruction <em>Instruction</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Instruction</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.St8Instruction#getInstruction()
-   * @see #getSt8Instruction()
-   * @generated
-   */
-  EAttribute getSt8Instruction_Instruction();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.St8Instruction#getOperand <em>Operand</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Operand</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.St8Instruction#getOperand()
-   * @see #getSt8Instruction()
-   * @generated
-   */
-  EReference getSt8Instruction_Operand();
+  EReference getStInstruction_Operand();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.SexInstruction <em>Sex Instruction</em>}'.
@@ -9182,14 +9113,14 @@ public interface AssemblerPackage extends EPackage
     EReference SUB_INSTRUCTION__OPERAND = eINSTANCE.getSubInstruction_Operand();
 
     /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.St16InstructionImpl <em>St16 Instruction</em>}' class.
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StInstructionImpl <em>St Instruction</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.St16InstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSt16Instruction()
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.StInstructionImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStInstruction()
      * @generated
      */
-    EClass ST16_INSTRUCTION = eINSTANCE.getSt16Instruction();
+    EClass ST_INSTRUCTION = eINSTANCE.getStInstruction();
 
     /**
      * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
@@ -9197,7 +9128,7 @@ public interface AssemblerPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute ST16_INSTRUCTION__INSTRUCTION = eINSTANCE.getSt16Instruction_Instruction();
+    EAttribute ST_INSTRUCTION__INSTRUCTION = eINSTANCE.getStInstruction_Instruction();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9205,33 +9136,7 @@ public interface AssemblerPackage extends EPackage
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference ST16_INSTRUCTION__OPERAND = eINSTANCE.getSt16Instruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.St8InstructionImpl <em>St8 Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.St8InstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSt8Instruction()
-     * @generated
-     */
-    EClass ST8_INSTRUCTION = eINSTANCE.getSt8Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ST8_INSTRUCTION__INSTRUCTION = eINSTANCE.getSt8Instruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ST8_INSTRUCTION__OPERAND = eINSTANCE.getSt8Instruction_Operand();
+    EReference ST_INSTRUCTION__OPERAND = eINSTANCE.getStInstruction_Operand();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SexInstructionImpl <em>Sex Instruction</em>}' class.
