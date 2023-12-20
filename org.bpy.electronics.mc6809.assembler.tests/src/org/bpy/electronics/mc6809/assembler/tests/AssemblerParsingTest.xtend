@@ -271,7 +271,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCBInstructi
 	 TestRTSInstruction,
 	 TestSBCAInstruction,
 	 TestSBCBInstruction,
-	 //	 TestSEXInstruction,
+	 TestSEXInstruction,
 //	 TestST8Instruction,
 //	 TestST16Instruction,
 //	 TestSUBInstruction,

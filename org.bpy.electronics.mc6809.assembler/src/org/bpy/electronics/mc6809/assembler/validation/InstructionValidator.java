@@ -60,6 +60,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
@@ -666,6 +667,16 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(SbcInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SEX Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(SexInstruction instruction) {
 		exposeProblems(instruction);
 	}	
 	

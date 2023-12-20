@@ -78,6 +78,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.eclipse.emf.common.util.EList;
@@ -1221,6 +1222,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(SbcInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SEX instruction.
+	 * 
+	 * @param instruction reference on the SEX instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SexInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SEX instruction.
+	 * 
+	 * @param instruction reference on the SEX instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SexInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
