@@ -82,6 +82,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
@@ -1284,6 +1285,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(SubInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SUBD instruction.
+	 * 
+	 * @param instruction reference on the SUBD instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SubdInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SUBD instruction.
+	 * 
+	 * @param instruction reference on the SUBD instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SubdInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

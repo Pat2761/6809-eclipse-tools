@@ -82,7 +82,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTIInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTSInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSEXInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBDInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWIInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWI2Instruction
