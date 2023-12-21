@@ -88,6 +88,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
@@ -199,6 +200,8 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledST
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTUInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTXInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTYInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSUBAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSUBBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -463,6 +466,9 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof StInstruction) {
 			parse((StInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof SubInstruction) {
+			parse((SubInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
 			parse((TfrInstruction)instructionLine.getInstruction());
 				
@@ -489,6 +495,38 @@ public class AssemblerEngine {
 				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
+	/**	
+	 * Parse the SUB instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(SubInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("SUBA".equals(instruction.getInstruction())) {
+			line = new AssembledSUBAInstruction();
+			((AssembledSUBAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("SUBB".equals(instruction.getInstruction())) {
+			line = new AssembledSUBBInstruction();
+			((AssembledSUBBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			// not possible
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the ST instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
 	private void parse(StInstruction instruction) {
 		AbstractAssemblyLine line=null;
 
