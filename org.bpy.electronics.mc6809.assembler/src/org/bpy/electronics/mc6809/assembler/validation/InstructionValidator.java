@@ -69,6 +69,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRegDirectiveLine;
@@ -754,6 +755,16 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(SyncInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the TST Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(TstInstruction instruction) {
 		exposeProblems(instruction);
 	}	
 	

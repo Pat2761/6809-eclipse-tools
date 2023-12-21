@@ -3106,7 +3106,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     (
 	 *         instruction='TSTA' | 
 	 *         instruction='TSTB' | 
-	 *         (instruction='TST' (operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand))
+	 *         (
+	 *             instruction='TST' 
+	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
+	 *         )
 	 *     )
 	 * </pre>
 	 */

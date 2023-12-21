@@ -95,6 +95,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledBlankLine;
@@ -115,104 +116,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRmbD
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDPDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledABXInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADCAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADCBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDDInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDCCInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASRInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBITAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBITBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCLRAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCLRBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCLRInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPDInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPSInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPUInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPXInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPYInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCOMAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCOMBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCOMInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCWAIInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDAAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDECAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDECBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDECInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEORAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEORBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEXGInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledINCAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledINCBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledINCInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledJMPInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledJSRInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDDInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDSInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDUInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDXInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDYInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEASInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAUInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAXInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEAYInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSRAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSRBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSRInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledMULInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORCCInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPSHSInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPSHUInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPULSInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledPULUInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledROLAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledROLBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledROLInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRORAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRORBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRORInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRTIInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRTSInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSBCAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSBCBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSEXInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTDInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTSInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTUInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTXInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTYInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSUBAInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSUBBInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSUBDInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSWI2Instruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSWI3Instruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSWIInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSYNCInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.*;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -497,9 +401,40 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
 			parse((TfrInstruction)instructionLine.getInstruction());
 				
+		} else if (instructionLine.getInstruction() instanceof TstInstruction) {
+			parse((TstInstruction)instructionLine.getInstruction());
+				
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**	
+	 * Parse the TST instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(TstInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("TSTA".equals(instruction.getInstruction())) {
+			line = new AssembledTSTAInstruction();
+			((AssembledTSTAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else if ("TSTB".equals(instruction.getInstruction())) {
+			line = new AssembledTSTBInstruction();
+			((AssembledTSTBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		} else {
+			line = new AssembledTSTInstruction();
+			((AssembledTSTInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**	

@@ -162,7 +162,8 @@ TstInstruction:
 	|  
 	(
 	 	instruction = ('TST')
-		WS operand = ( 
+		WS operand = (
+			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
 			ExtendedOperand |
