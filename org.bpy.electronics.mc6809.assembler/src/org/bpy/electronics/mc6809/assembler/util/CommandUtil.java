@@ -83,6 +83,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
@@ -1305,6 +1309,86 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(SubdInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SWI instruction.
+	 * 
+	 * @param instruction reference on the SWI instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SwiInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SWI instruction.
+	 * 
+	 * @param instruction reference on the SWI instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SwiInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SWI2 instruction.
+	 * 
+	 * @param instruction reference on the SWI2 instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(Swi2Instruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SWI2 instruction.
+	 * 
+	 * @param instruction reference on the SWI2 instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(Swi2Instruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SWI3 instruction.
+	 * 
+	 * @param instruction reference on the SWI3 instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(Swi3Instruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SWI3 instruction.
+	 * 
+	 * @param instruction reference on the SWI3 instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(Swi3Instruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SYNC instruction.
+	 * 
+	 * @param instruction reference on the SYNC instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SyncInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SYNC instruction.
+	 * 
+	 * @param instruction reference on the SYNC instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SyncInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

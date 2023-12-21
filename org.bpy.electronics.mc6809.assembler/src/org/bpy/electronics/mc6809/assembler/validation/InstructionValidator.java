@@ -64,6 +64,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
@@ -710,6 +714,46 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(SubdInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SWI Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(SwiInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SWI2 Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(Swi2Instruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SWI3 Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(Swi3Instruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SYNC Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(SyncInstruction instruction) {
 		exposeProblems(instruction);
 	}	
 	

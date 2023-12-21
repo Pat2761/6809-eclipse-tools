@@ -30,6 +30,9 @@ import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSYNCInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -45,7 +48,7 @@ class TestSYNCInstruction {
 	def void testSimpleSYNCWithExtraSpace() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
+			       ORG    		$8000
 			       SYNC  
 		''')
 		Assert.assertNotNull(result)
@@ -57,7 +60,9 @@ class TestSYNCInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an SYNC directive line", instructionLine.instruction instanceof SyncInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof SyncInstruction)
+		val SyncInstruction = instructionLine.instruction as SyncInstruction
+		Assert.assertEquals("Must be an SYNC instruction", "SYNC", SyncInstruction.instruction)
 	}
 	
 	/**
@@ -79,7 +84,9 @@ class TestSYNCInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an SYNC directive line", instructionLine.instruction instanceof SyncInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof SyncInstruction)
+		val SyncInstruction = instructionLine.instruction as SyncInstruction
+		Assert.assertEquals("Must be an SYNC instruction", "SYNC", SyncInstruction.instruction)
 	}
 	
 	/**
@@ -89,7 +96,7 @@ class TestSYNCInstruction {
 	def void testSimpleSYNCWithExtraSpaceWithComment() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
+			       ORG    	$8000
 			       SYNC  			; It is a comment 
 		''')
 		Assert.assertNotNull(result)
@@ -101,7 +108,9 @@ class TestSYNCInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an SYNC directive line", instructionLine.instruction instanceof SyncInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof SyncInstruction)
+		val SyncInstruction = instructionLine.instruction as SyncInstruction
+		Assert.assertEquals("Must be an SYNC instruction", "SYNC", SyncInstruction.instruction)
 	}
 	
 	/**
@@ -123,7 +132,51 @@ class TestSYNCInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an SYNC directive line", instructionLine.instruction instanceof SyncInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof SyncInstruction)
+		val SyncInstruction = instructionLine.instruction as SyncInstruction
+		Assert.assertEquals("Must be an SYNC instruction", "SYNC", SyncInstruction.instruction)
 	}
 	
+	/**
+	 * Check SYNC instruction with duplicate label 
+	 */
+	@Test 
+	def void testSYNCWithDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start		NOP
+					NOP    
+		Start      	SYNC		  	
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.instructionLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Start is already defined"
+		)
+	}
+	
+	/**
+	 * Check SYNC assembly instruction  
+	 */
+	@Test 
+	def void testSYNCAssembly() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	SYNC		  		    ; 13   SYNC
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.currentPcValue)
+		val line = engine.getAssembledLine(2) as AssembledSYNCInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode", 0x13, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 0, line.operand.length)
+		Assert.assertEquals("Check label", "Start" , line.label)
+		Assert.assertEquals("Check comment", "; 13   SYNC" , line.comment)
+	}
 }

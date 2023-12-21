@@ -151,6 +151,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTUInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTXInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTYInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBBInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -285,12 +286,12 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBAInstructi
 	 TestSTXInstruction,
 	 TestSTYInstruction,
 	 TestSUBAInstruction,
-	 	 
-//	 TestSUBInstruction,
-//	 TestSUBDInstruction,
-//	 TestSWIInstruction,
-//	 TestSWI2Instruction,
-//	 TestSWI3Instruction,
+	 TestSUBBInstruction,
+	 TestSUBDInstruction,
+	 TestSWIInstruction,
+	 TestSWI2Instruction,
+	 TestSWI3Instruction,
+
 //	 TestSYNCInstruction,
 //	 TestTFRInstruction,
 //	 TestTSTInstruction,

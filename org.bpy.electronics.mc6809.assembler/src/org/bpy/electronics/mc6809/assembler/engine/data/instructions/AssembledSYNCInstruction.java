@@ -18,20 +18,20 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
-import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 
 /**
- * Allow to pars an SEX Instruction
+ * Allow to pars an SWI Instruction
  * 
  * @author briand
  *
  */
-public class AssembledSEXInstruction extends AbstractInstructionAssemblyLine {
+public class AssembledSYNCInstruction extends AbstractInstructionAssemblyLine {
 
 	/** Reference on the instruction */
-	private SexInstruction instruction;
+	private SyncInstruction instruction;
 	
 	/**
 	 * Allow to parse the instruction and define its parameters.
@@ -40,7 +40,7 @@ public class AssembledSEXInstruction extends AbstractInstructionAssemblyLine {
 	 * @param currentPcValue state of the current PC
 	 * @param lineNumber line number in assembly file
 	 */
-	public void parse(SexInstruction instruction, int currentPcValue, int lineNumber) {
+	public void parse(SyncInstruction instruction, int currentPcValue, int lineNumber) {
 		this.label = CommandUtil.getLabel(instruction);
 		this.comment = CommandUtil.getComment(instruction);
 		this.instruction = instruction;
@@ -52,13 +52,13 @@ public class AssembledSEXInstruction extends AbstractInstructionAssemblyLine {
 	 * 
 	 * @return reference on the editor instruction line.
 	 */
-	public SexInstruction getInstruction() {
+	public SyncInstruction getInstruction() {
 		return instruction;
 	}
 
 	@Override
 	public void setOpcode(AddressingMode mode) {
-		opcodeBytes =  new int[] {0x1D};
+		opcodeBytes =  new int[] {0x13};
 	}
 
 	@Override

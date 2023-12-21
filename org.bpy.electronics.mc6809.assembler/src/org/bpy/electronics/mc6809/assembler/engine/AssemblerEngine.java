@@ -90,6 +90,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
@@ -204,6 +208,10 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledST
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSUBAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSUBBInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSUBDInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSWI2Instruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSWI3Instruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSWIInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSYNCInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledTFRInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -474,6 +482,18 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof SubdInstruction) {
 			parse((SubdInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof SwiInstruction) {
+			parse((SwiInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof Swi2Instruction) {
+			parse((Swi2Instruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof Swi3Instruction) {
+			parse((Swi3Instruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof SyncInstruction) {
+			parse((SyncInstruction)instructionLine.getInstruction());
+			
 		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
 			parse((TfrInstruction)instructionLine.getInstruction());
 				
@@ -490,6 +510,78 @@ public class AssemblerEngine {
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
     	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the SYNC instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(SyncInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledSYNCInstruction();
+    	((AssembledSYNCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the SWI3 instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(Swi3Instruction instruction) {
+		AbstractAssemblyLine line=new AssembledSWI3Instruction();
+    	((AssembledSWI3Instruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the SWI2 instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(Swi2Instruction instruction) {
+		AbstractAssemblyLine line=new AssembledSWI2Instruction();
+    	((AssembledSWI2Instruction) line).parse(instruction, currentPcValue, lineNumber);
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the SWI instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parse(SwiInstruction instruction) {
+		AbstractAssemblyLine line=new AssembledSWIInstruction();
+    	((AssembledSWIInstruction) line).parse(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);

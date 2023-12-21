@@ -31,7 +31,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndir
 import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
