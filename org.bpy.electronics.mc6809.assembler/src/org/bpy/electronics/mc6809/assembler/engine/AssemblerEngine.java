@@ -43,6 +43,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
+import org.bpy.electronics.mc6809.assembler.assembler.BleInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BloInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
@@ -304,7 +306,91 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BhsInstruction) {
 			parsePass2((BhsInstruction)instructionLine.getInstruction());
 
+		} else if (instructionLine.getInstruction() instanceof BleInstruction) {
+			parsePass2((BleInstruction)instructionLine.getInstruction());
+
+		} else if (instructionLine.getInstruction() instanceof BloInstruction) {
+			parsePass2((BloInstruction)instructionLine.getInstruction());
+
 		}		
+	}
+
+	/**
+	 * Second step of the assembly of a BLO Instruction. 
+	 * Compute the jump 
+	 * 
+	 * @param instruction reference on the EMF instruction
+	 */
+	private void parsePass2(BloInstruction instruction) {
+		String label = instruction.getOperand().getOffset().getValue();
+		if (label != null) {
+			
+			AbstractAssemblyLine targetLine = labelsPositionObject.get(label);
+			if (targetLine != null) {
+				
+				if ("BLO".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.BYTE_MODE,
+							AssemblerPackage.Literals.BLO_INSTRUCTION__OPERAND
+							);
+
+				} else if ("LBLO".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.WORD_MODE,
+							AssemblerPackage.Literals.BLO_INSTRUCTION__OPERAND
+							);
+
+				}
+			} else {
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+						AssemblerPackage.Literals.BLO_INSTRUCTION__OPERAND,
+						InstructionValidator.MISSING_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+			}
+		}
+	}
+
+	/**
+	 * Second step of the assembly of a BLE Instruction. 
+	 * Compute the jump 
+	 * 
+	 * @param instruction reference on the EMF instruction
+	 */
+	private void parsePass2(BleInstruction instruction) {
+		String label = instruction.getOperand().getOffset().getValue();
+		if (label != null) {
+			
+			AbstractAssemblyLine targetLine = labelsPositionObject.get(label);
+			if (targetLine != null) {
+				
+				if ("BLE".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.BYTE_MODE,
+							AssemblerPackage.Literals.BLE_INSTRUCTION__OPERAND
+							);
+
+				} else if ("LBLE".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.WORD_MODE,
+							AssemblerPackage.Literals.BLE_INSTRUCTION__OPERAND
+							);
+
+				}
+			} else {
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+						AssemblerPackage.Literals.BLE_INSTRUCTION__OPERAND,
+						InstructionValidator.MISSING_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+			}
+		}
 	}
 
 	/**
@@ -752,9 +838,71 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BhsInstruction) {
 			parsePass1((BhsInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof BleInstruction) {
+			parsePass1((BleInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof BloInstruction) {
+			parsePass1((BloInstruction)instructionLine.getInstruction());
+			
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**	
+	 * Parse the BLO instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parsePass1(BloInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("BLO".equals(instruction.getInstruction())) {
+			line = new AssembledBLOInstruction();
+			((AssembledBLOInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 2;
+		} else if ("LBLO".equals(instruction.getInstruction())) {
+			line = new AssembledLBLOInstruction();
+			((AssembledLBLOInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 4;
+		} else {
+			// not possible
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the BLE instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parsePass1(BleInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("BLE".equals(instruction.getInstruction())) {
+			line = new AssembledBLEInstruction();
+			((AssembledBLEInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 2;
+		} else if ("LBLE".equals(instruction.getInstruction())) {
+			line = new AssembledLBLEInstruction();
+			((AssembledLBLEInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 4;
+		} else {
+			// not possible
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**	
