@@ -26332,7 +26332,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRelativeMode"
-    // InternalAssembler.g:9797:1: ruleRelativeMode returns [EObject current=null] : ( ( (lv_isPcRelative_0_0= '*' ) )? ( (lv_offset_1_0= ruleExpression ) ) ) ;
+    // InternalAssembler.g:9797:1: ruleRelativeMode returns [EObject current=null] : ( ( (lv_isPcRelative_0_0= '*' ) )? ( (lv_offset_1_0= ruleIdentifierValue ) ) ) ;
     public final EObject ruleRelativeMode() throws RecognitionException {
         EObject current = null;
 
@@ -26344,11 +26344,11 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalAssembler.g:9803:2: ( ( ( (lv_isPcRelative_0_0= '*' ) )? ( (lv_offset_1_0= ruleExpression ) ) ) )
-            // InternalAssembler.g:9804:2: ( ( (lv_isPcRelative_0_0= '*' ) )? ( (lv_offset_1_0= ruleExpression ) ) )
+            // InternalAssembler.g:9803:2: ( ( ( (lv_isPcRelative_0_0= '*' ) )? ( (lv_offset_1_0= ruleIdentifierValue ) ) ) )
+            // InternalAssembler.g:9804:2: ( ( (lv_isPcRelative_0_0= '*' ) )? ( (lv_offset_1_0= ruleIdentifierValue ) ) )
             {
-            // InternalAssembler.g:9804:2: ( ( (lv_isPcRelative_0_0= '*' ) )? ( (lv_offset_1_0= ruleExpression ) ) )
-            // InternalAssembler.g:9805:3: ( (lv_isPcRelative_0_0= '*' ) )? ( (lv_offset_1_0= ruleExpression ) )
+            // InternalAssembler.g:9804:2: ( ( (lv_isPcRelative_0_0= '*' ) )? ( (lv_offset_1_0= ruleIdentifierValue ) ) )
+            // InternalAssembler.g:9805:3: ( (lv_isPcRelative_0_0= '*' ) )? ( (lv_offset_1_0= ruleIdentifierValue ) )
             {
             // InternalAssembler.g:9805:3: ( (lv_isPcRelative_0_0= '*' ) )?
             int alt127=2;
@@ -26364,7 +26364,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                     // InternalAssembler.g:9806:4: (lv_isPcRelative_0_0= '*' )
                     // InternalAssembler.g:9807:5: lv_isPcRelative_0_0= '*'
                     {
-                    lv_isPcRelative_0_0=(Token)match(input,171,FOLLOW_15); if (state.failed) return current;
+                    lv_isPcRelative_0_0=(Token)match(input,171,FOLLOW_12); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       					newLeafNode(lv_isPcRelative_0_0, grammarAccess.getRelativeModeAccess().getIsPcRelativeAsteriskKeyword_0_0());
@@ -26387,19 +26387,19 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalAssembler.g:9819:3: ( (lv_offset_1_0= ruleExpression ) )
-            // InternalAssembler.g:9820:4: (lv_offset_1_0= ruleExpression )
+            // InternalAssembler.g:9819:3: ( (lv_offset_1_0= ruleIdentifierValue ) )
+            // InternalAssembler.g:9820:4: (lv_offset_1_0= ruleIdentifierValue )
             {
-            // InternalAssembler.g:9820:4: (lv_offset_1_0= ruleExpression )
-            // InternalAssembler.g:9821:5: lv_offset_1_0= ruleExpression
+            // InternalAssembler.g:9820:4: (lv_offset_1_0= ruleIdentifierValue )
+            // InternalAssembler.g:9821:5: lv_offset_1_0= ruleIdentifierValue
             {
             if ( state.backtracking==0 ) {
 
-              					newCompositeNode(grammarAccess.getRelativeModeAccess().getOffsetExpressionParserRuleCall_1_0());
+              					newCompositeNode(grammarAccess.getRelativeModeAccess().getOffsetIdentifierValueParserRuleCall_1_0());
               				
             }
             pushFollow(FOLLOW_2);
-            lv_offset_1_0=ruleExpression();
+            lv_offset_1_0=ruleIdentifierValue();
 
             state._fsp--;
             if (state.failed) return current;
@@ -26412,7 +26412,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               						current,
               						"offset",
               						lv_offset_1_0,
-              						"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
+              						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
               					afterParserOrEnumRuleCall();
               				
             }
@@ -29120,7 +29120,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
             }
 
-            this_WS_1=(Token)match(input,RULE_WS,FOLLOW_14); if (state.failed) return current;
+            this_WS_1=(Token)match(input,RULE_WS,FOLLOW_27); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(this_WS_1, grammarAccess.getSetDirectiveAccess().getWSTerminalRuleCall_1());
@@ -30153,7 +30153,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                 case 1 :
                     // InternalAssembler.g:11175:4: this_WS_1= RULE_WS ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) )
                     {
-                    this_WS_1=(Token)match(input,RULE_WS,FOLLOW_14); if (state.failed) return current;
+                    this_WS_1=(Token)match(input,RULE_WS,FOLLOW_27); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       				newLeafNode(this_WS_1, grammarAccess.getRmbDirectiveAccess().getWSTerminalRuleCall_1_0());
@@ -30542,7 +30542,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                 case 1 :
                     // InternalAssembler.g:11307:4: this_WS_1= RULE_WS ( ( ( (lv_isRelativeToPC_2_0= '*' ) )? ( (lv_operand_3_0= ruleExpression ) ) ) | ( (lv_isRelativeToPC_4_0= '*' ) ) )
                     {
-                    this_WS_1=(Token)match(input,RULE_WS,FOLLOW_14); if (state.failed) return current;
+                    this_WS_1=(Token)match(input,RULE_WS,FOLLOW_27); if (state.failed) return current;
                     if ( state.backtracking==0 ) {
 
                       				newLeafNode(this_WS_1, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_1_0());
@@ -30817,7 +30817,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
 
             }
 
-            this_WS_1=(Token)match(input,RULE_WS,FOLLOW_14); if (state.failed) return current;
+            this_WS_1=(Token)match(input,RULE_WS,FOLLOW_27); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(this_WS_1, grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_1());
@@ -31235,7 +31235,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             // InternalAssembler.g:11530:4: (lv_comma_0_0= ',' )
             // InternalAssembler.g:11531:5: lv_comma_0_0= ','
             {
-            lv_comma_0_0=(Token)match(input,17,FOLLOW_27); if (state.failed) return current;
+            lv_comma_0_0=(Token)match(input,17,FOLLOW_28); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               					newLeafNode(lv_comma_0_0, grammarAccess.getCommaExpressionAccess().getCommaCommaKeyword_0_0());
@@ -31502,7 +31502,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newCompositeNode(grammarAccess.getMultiplicationAccess().getDivisionParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_28);
+            pushFollow(FOLLOW_29);
             this_Division_0=ruleDivision();
 
             state._fsp--;
@@ -31578,7 +31578,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      						newCompositeNode(grammarAccess.getMultiplicationAccess().getRightDivisionParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_28);
+            	    pushFollow(FOLLOW_29);
             	    lv_right_3_0=ruleDivision();
 
             	    state._fsp--;
@@ -31701,7 +31701,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newCompositeNode(grammarAccess.getDivisionAccess().getModuloParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_29);
+            pushFollow(FOLLOW_30);
             this_Modulo_0=ruleModulo();
 
             state._fsp--;
@@ -31777,7 +31777,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      						newCompositeNode(grammarAccess.getDivisionAccess().getRightModuloParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_29);
+            	    pushFollow(FOLLOW_30);
             	    lv_right_3_0=ruleModulo();
 
             	    state._fsp--;
@@ -31900,7 +31900,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newCompositeNode(grammarAccess.getModuloAccess().getAdditionParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_30);
+            pushFollow(FOLLOW_31);
             this_Addition_0=ruleAddition();
 
             state._fsp--;
@@ -31976,7 +31976,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      						newCompositeNode(grammarAccess.getModuloAccess().getRightAdditionParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_30);
+            	    pushFollow(FOLLOW_31);
             	    lv_right_3_0=ruleAddition();
 
             	    state._fsp--;
@@ -32099,7 +32099,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newCompositeNode(grammarAccess.getAdditionAccess().getSubstractionParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_31);
+            pushFollow(FOLLOW_32);
             this_Substraction_0=ruleSubstraction();
 
             state._fsp--;
@@ -32155,7 +32155,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      						newCompositeNode(grammarAccess.getAdditionAccess().getRightSubstractionParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_31);
+            	    pushFollow(FOLLOW_32);
             	    lv_right_3_0=ruleSubstraction();
 
             	    state._fsp--;
@@ -32278,7 +32278,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newCompositeNode(grammarAccess.getSubstractionAccess().getLeftShiftParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_32);
+            pushFollow(FOLLOW_33);
             this_LeftShift_0=ruleLeftShift();
 
             state._fsp--;
@@ -32340,7 +32340,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      						newCompositeNode(grammarAccess.getSubstractionAccess().getRightLeftShiftParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_32);
+            	    pushFollow(FOLLOW_33);
             	    lv_right_3_0=ruleLeftShift();
 
             	    state._fsp--;
@@ -32463,7 +32463,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newCompositeNode(grammarAccess.getLeftShiftAccess().getRightShiftParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_33);
+            pushFollow(FOLLOW_34);
             this_RightShift_0=ruleRightShift();
 
             state._fsp--;
@@ -32519,7 +32519,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      						newCompositeNode(grammarAccess.getLeftShiftAccess().getRightRightShiftParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_33);
+            	    pushFollow(FOLLOW_34);
             	    lv_right_3_0=ruleRightShift();
 
             	    state._fsp--;
@@ -32642,7 +32642,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newCompositeNode(grammarAccess.getRightShiftAccess().getAndParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_34);
+            pushFollow(FOLLOW_35);
             this_And_0=ruleAnd();
 
             state._fsp--;
@@ -32698,7 +32698,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      						newCompositeNode(grammarAccess.getRightShiftAccess().getRightAndParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_34);
+            	    pushFollow(FOLLOW_35);
             	    lv_right_3_0=ruleAnd();
 
             	    state._fsp--;
@@ -32821,7 +32821,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newCompositeNode(grammarAccess.getAndAccess().getOrParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_35);
+            pushFollow(FOLLOW_36);
             this_Or_0=ruleOr();
 
             state._fsp--;
@@ -32877,7 +32877,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      						newCompositeNode(grammarAccess.getAndAccess().getRightOrParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_35);
+            	    pushFollow(FOLLOW_36);
             	    lv_right_3_0=ruleOr();
 
             	    state._fsp--;
@@ -33000,7 +33000,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newCompositeNode(grammarAccess.getOrAccess().getXorParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_36);
+            pushFollow(FOLLOW_37);
             this_Xor_0=ruleXor();
 
             state._fsp--;
@@ -33056,7 +33056,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      						newCompositeNode(grammarAccess.getOrAccess().getRightXorParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_36);
+            	    pushFollow(FOLLOW_37);
             	    lv_right_3_0=ruleXor();
 
             	    state._fsp--;
@@ -33179,7 +33179,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
               			newCompositeNode(grammarAccess.getXorAccess().getPrimaryParserRuleCall_0());
               		
             }
-            pushFollow(FOLLOW_37);
+            pushFollow(FOLLOW_38);
             this_Primary_0=rulePrimary();
 
             state._fsp--;
@@ -33235,7 +33235,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             	      						newCompositeNode(grammarAccess.getXorAccess().getRightPrimaryParserRuleCall_1_2_0());
             	      					
             	    }
-            	    pushFollow(FOLLOW_37);
+            	    pushFollow(FOLLOW_38);
             	    lv_right_3_0=rulePrimary();
 
             	    state._fsp--;
@@ -33747,7 +33747,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                       				newCompositeNode(grammarAccess.getPrimaryAccess().getMultiplicationParserRuleCall_7_1());
                       			
                     }
-                    pushFollow(FOLLOW_38);
+                    pushFollow(FOLLOW_39);
                     this_Multiplication_10=ruleMultiplication();
 
                     state._fsp--;
@@ -34372,7 +34372,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                         case 1 :
                             // InternalAssembler.g:12606:6: lv_sign_0_1= '-'
                             {
-                            lv_sign_0_1=(Token)match(input,165,FOLLOW_39); if (state.failed) return current;
+                            lv_sign_0_1=(Token)match(input,165,FOLLOW_40); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                               						newLeafNode(lv_sign_0_1, grammarAccess.getDecimalValueAccess().getSignHyphenMinusKeyword_0_0_0());
@@ -34392,7 +34392,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
                         case 2 :
                             // InternalAssembler.g:12617:6: lv_sign_0_2= '+'
                             {
-                            lv_sign_0_2=(Token)match(input,167,FOLLOW_39); if (state.failed) return current;
+                            lv_sign_0_2=(Token)match(input,167,FOLLOW_40); if (state.failed) return current;
                             if ( state.backtracking==0 ) {
 
                               						newLeafNode(lv_sign_0_2, grammarAccess.getDecimalValueAccess().getSignPlusSignKeyword_0_0_1());
@@ -34638,7 +34638,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             // InternalAssembler.g:12701:2: (otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) ) )
             // InternalAssembler.g:12702:3: otherlv_0= '@' ( (lv_value_1_0= RULE_NUMBERS ) )
             {
-            otherlv_0=(Token)match(input,201,FOLLOW_39); if (state.failed) return current;
+            otherlv_0=(Token)match(input,201,FOLLOW_40); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_0, grammarAccess.getOctalValueAccess().getCommercialAtKeyword_0());
@@ -34756,7 +34756,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
             // InternalAssembler.g:12742:2: (otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) ) )
             // InternalAssembler.g:12743:3: otherlv_0= '%' ( (lv_value_1_0= RULE_NUMBERS ) )
             {
-            otherlv_0=(Token)match(input,192,FOLLOW_39); if (state.failed) return current;
+            otherlv_0=(Token)match(input,192,FOLLOW_40); if (state.failed) return current;
             if ( state.backtracking==0 ) {
 
               			newLeafNode(otherlv_0, grammarAccess.getBinaryValueAccess().getPercentSignKeyword_0());
@@ -36326,7 +36326,7 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_11 = new BitSet(new long[]{0x0000100000000000L,0x0000000000000000L,0x0000021FC0000000L,0x0000000000030000L});
     public static final BitSet FOLLOW_12 = new BitSet(new long[]{0x0000000000000080L});
     public static final BitSet FOLLOW_13 = new BitSet(new long[]{0x0000000000020002L});
-    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000000780L,0x0000000000000000L,0x000008A010000000L,0x00000000000002C1L});
+    public static final BitSet FOLLOW_14 = new BitSet(new long[]{0x0000000000000080L,0x0000000000000000L,0x0000080000000000L});
     public static final BitSet FOLLOW_15 = new BitSet(new long[]{0x0000000000000780L,0x0000000000000000L,0x000000A010000000L,0x00000000000002C1L});
     public static final BitSet FOLLOW_16 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000008000000L});
     public static final BitSet FOLLOW_17 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x00000003C0000000L});
@@ -36339,18 +36339,19 @@ public class InternalAssemblerParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_24 = new BitSet(new long[]{0x0000000000000012L});
     public static final BitSet FOLLOW_25 = new BitSet(new long[]{0x0000000000000040L});
     public static final BitSet FOLLOW_26 = new BitSet(new long[]{0x0008000000000000L,0x0000000000000000L,0x0004000000000000L,0x000000000000FC00L});
-    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000000782L,0x0000000000000000L,0x000000A010000000L,0x00000000000002C1L});
-    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000080000000000L});
-    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x8000000000000000L});
-    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000008000000000L});
-    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000002000000000L});
-    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000002L});
-    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000004L});
-    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000008L});
-    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000010L});
-    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000020L});
-    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000000L,0x0000000000000100L});
-    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000000000100L});
+    public static final BitSet FOLLOW_27 = new BitSet(new long[]{0x0000000000000780L,0x0000000000000000L,0x000008A010000000L,0x00000000000002C1L});
+    public static final BitSet FOLLOW_28 = new BitSet(new long[]{0x0000000000000782L,0x0000000000000000L,0x000000A010000000L,0x00000000000002C1L});
+    public static final BitSet FOLLOW_29 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000080000000000L});
+    public static final BitSet FOLLOW_30 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x8000000000000000L});
+    public static final BitSet FOLLOW_31 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000001L});
+    public static final BitSet FOLLOW_32 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000008000000000L});
+    public static final BitSet FOLLOW_33 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000002000000000L});
+    public static final BitSet FOLLOW_34 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_35 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000004L});
+    public static final BitSet FOLLOW_36 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000008L});
+    public static final BitSet FOLLOW_37 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000010L});
+    public static final BitSet FOLLOW_38 = new BitSet(new long[]{0x0000000000000002L,0x0000000000000000L,0x0000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_39 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000000L,0x0000000000000000L,0x0000000000000100L});
+    public static final BitSet FOLLOW_40 = new BitSet(new long[]{0x0000000000000100L});
 
 }

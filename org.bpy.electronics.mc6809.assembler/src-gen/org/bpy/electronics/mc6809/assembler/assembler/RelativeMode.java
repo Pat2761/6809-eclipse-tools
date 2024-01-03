@@ -51,12 +51,12 @@ public interface RelativeMode extends EObject
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @return the value of the '<em>Offset</em>' containment reference.
-   * @see #setOffset(Expression)
+   * @see #setOffset(IdentifierValue)
    * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getRelativeMode_Offset()
    * @model containment="true"
    * @generated
    */
-  Expression getOffset();
+  IdentifierValue getOffset();
 
   /**
    * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.RelativeMode#getOffset <em>Offset</em>}' containment reference.
@@ -66,6 +66,6 @@ public interface RelativeMode extends EObject
    * @see #getOffset()
    * @generated
    */
-  void setOffset(Expression value);
+  void setOffset(IdentifierValue value);
 
 } // RelativeMode

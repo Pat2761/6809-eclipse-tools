@@ -405,7 +405,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RelativeMode">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPcRelative" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="offset" eType="#//Expression"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="offset" eType="#//IdentifierValue"
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DirectiveLine">

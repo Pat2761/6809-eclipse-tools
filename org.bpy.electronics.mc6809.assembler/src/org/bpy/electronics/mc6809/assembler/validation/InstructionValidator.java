@@ -29,6 +29,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
@@ -90,6 +91,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	public static final String MISSING_OPTION = "missingOption";
 	public static final String DUPLICATE_OPTION = "duplicateOption";
 	public static final String ILLEGAL_REGISTER = "illegalRegister";
+	public static final String MISSING_LABEL = "missingLabel";
 
 	/**
 	 * Check duplicate labels
@@ -765,6 +767,16 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	 */
 	@Check
 	public void checkInstructionLine(TstInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BCC Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BccInstruction instruction) {
 		exposeProblems(instruction);
 	}	
 	

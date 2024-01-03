@@ -7414,14 +7414,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cIsPcRelativeAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cIsPcRelativeAsteriskKeyword_0_0 = (Keyword)cIsPcRelativeAssignment_0.eContents().get(0);
 		private final Assignment cOffsetAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cOffsetExpressionParserRuleCall_1_0 = (RuleCall)cOffsetAssignment_1.eContents().get(0);
+		private final RuleCall cOffsetIdentifierValueParserRuleCall_1_0 = (RuleCall)cOffsetAssignment_1.eContents().get(0);
 		
 		//RelativeMode:
-		//    isPcRelative?='*'? offset=Expression
+		//    isPcRelative?='*'? offset=IdentifierValue
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//isPcRelative?='*'? offset=Expression
+		//isPcRelative?='*'? offset=IdentifierValue
 		public Group getGroup() { return cGroup; }
 		
 		//isPcRelative?='*'?
@@ -7430,11 +7430,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'*'
 		public Keyword getIsPcRelativeAsteriskKeyword_0_0() { return cIsPcRelativeAsteriskKeyword_0_0; }
 		
-		//offset=Expression
+		//offset=IdentifierValue
 		public Assignment getOffsetAssignment_1() { return cOffsetAssignment_1; }
 		
-		//Expression
-		public RuleCall getOffsetExpressionParserRuleCall_1_0() { return cOffsetExpressionParserRuleCall_1_0; }
+		//IdentifierValue
+		public RuleCall getOffsetIdentifierValueParserRuleCall_1_0() { return cOffsetIdentifierValueParserRuleCall_1_0; }
 	}
 	public class DirectiveLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DirectiveLine");
@@ -12547,7 +12547,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//RelativeMode:
-	//    isPcRelative?='*'? offset=Expression
+	//    isPcRelative?='*'? offset=IdentifierValue
 	//;
 	public RelativeModeElements getRelativeModeAccess() {
 		return pRelativeMode;

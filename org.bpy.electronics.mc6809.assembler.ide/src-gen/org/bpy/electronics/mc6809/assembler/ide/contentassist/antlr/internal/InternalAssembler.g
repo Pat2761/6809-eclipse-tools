@@ -22550,9 +22550,9 @@ rule__RelativeMode__OffsetAssignment_1
 	}
 :
 	(
-		{ before(grammarAccess.getRelativeModeAccess().getOffsetExpressionParserRuleCall_1_0()); }
-		ruleExpression
-		{ after(grammarAccess.getRelativeModeAccess().getOffsetExpressionParserRuleCall_1_0()); }
+		{ before(grammarAccess.getRelativeModeAccess().getOffsetIdentifierValueParserRuleCall_1_0()); }
+		ruleIdentifierValue
+		{ after(grammarAccess.getRelativeModeAccess().getOffsetIdentifierValueParserRuleCall_1_0()); }
 	)
 ;
 finally {

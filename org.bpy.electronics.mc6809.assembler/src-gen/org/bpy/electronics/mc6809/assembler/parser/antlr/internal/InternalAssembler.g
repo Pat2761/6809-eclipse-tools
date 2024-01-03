@@ -9819,9 +9819,9 @@ ruleRelativeMode returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getRelativeModeAccess().getOffsetExpressionParserRuleCall_1_0());
+					newCompositeNode(grammarAccess.getRelativeModeAccess().getOffsetIdentifierValueParserRuleCall_1_0());
 				}
-				lv_offset_1_0=ruleExpression
+				lv_offset_1_0=ruleIdentifierValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRelativeModeRule());
@@ -9830,7 +9830,7 @@ ruleRelativeMode returns [EObject current=null]
 						$current,
 						"offset",
 						lv_offset_1_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
 					afterParserOrEnumRuleCall();
 				}
 			)

@@ -154,6 +154,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBCCInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -197,6 +198,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTAInstructi
 	 TestASRBInstruction,
 	 TestASRInstruction,
 	 TestBCCInstruction,
+	 TestLBCCInstruction,
 	 TestBCSInstruction,
 	 TestBEQInstruction,
 	 TestBGEInstruction,

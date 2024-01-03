@@ -34,6 +34,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
@@ -121,6 +122,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EReference;
 
 /**
@@ -220,11 +222,18 @@ public class AssemblerEngine {
 	 * @param model reference on the EMF model of the AS9 file
 	 */
 	public void engine(Model model) {
-		lineNumber = 1;
 		currentPcValue = 0;
 		assemblyLines = new ArrayList<>();
 
 		AssemblerErrorManager.getInstance().clear();
+
+		assemblePass1(model);
+		assemblePass2(model);
+		
+	}
+	
+	private void assemblePass1(Model model) {
+		lineNumber = 1;
 
 		List<SourceLine> sourceLines = model.getSourceLines();
 		for (SourceLine sourceLine : sourceLines) {
@@ -245,7 +254,7 @@ public class AssemblerEngine {
 			
 			} else if (sourceLine.getLineContent() instanceof InstructionLine) {
 				InstructionLine instructionLine = (InstructionLine) sourceLine.getLineContent();
-				parseInstructionLine(instructionLine);
+				parseInstructionLinePass1(instructionLine);
 				
 			} else {
 				logger.log(Level.SEVERE,"Unknow directive {0}" + sourceLine.getLineContent().getClass().getSimpleName());
@@ -253,13 +262,65 @@ public class AssemblerEngine {
 			lineNumber++;
 		}
 	}
-	
+
+	private void assemblePass2(Model model) {
+		lineNumber = 1;
+
+		List<SourceLine> sourceLines = model.getSourceLines();
+		for (SourceLine sourceLine : sourceLines) {
+			if (sourceLine.getLineContent() instanceof InstructionLine) {
+				InstructionLine instructionLine = (InstructionLine) sourceLine.getLineContent();
+				parseInstructionLinePass2(instructionLine);
+			}
+			lineNumber++;
+		}
+	}
+
+	private void parseInstructionLinePass2(InstructionLine instructionLine) {
+		if (instructionLine.getInstruction() instanceof BccInstruction) {
+			parsePass2((BccInstruction)instructionLine.getInstruction());
+		}
+	}
+
+	private void parsePass2(BccInstruction instruction) {
+		String label = instruction.getOperand().getOffset().getValue();
+		if (label != null) {
+			
+			AbstractAssemblyLine targetLine = labelsPositionObject.get(label);
+			if (targetLine != null) {
+				
+				if ("BCC".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.BYTE_MODE,
+							AssemblerPackage.Literals.BCC_INSTRUCTION__OPERAND
+							);
+
+				} else if ("LBCC".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.WORD_MODE,
+							AssemblerPackage.Literals.BCC_INSTRUCTION__OPERAND
+							);
+
+				}
+			} else {
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+						AssemblerPackage.Literals.BCC_INSTRUCTION__OPERAND,
+						InstructionValidator.MISSING_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+			}
+		}
+	}
+
 	/**
 	 * Allow to parse an instruction line.
 	 * 
 	 * @param instructionLine reference on the instruction line
 	 */
-	private void parseInstructionLine(InstructionLine instructionLine) {
+	private void parseInstructionLinePass1(InstructionLine instructionLine) {
 		if (instructionLine.getInstruction() instanceof AbxInstruction) {
 			parse((AbxInstruction)instructionLine.getInstruction());
 			
@@ -404,9 +465,41 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof TstInstruction) {
 			parse((TstInstruction)instructionLine.getInstruction());
 				
+		// Start branch instruction
+		} else if (instructionLine.getInstruction() instanceof BccInstruction) {
+			parsePass1((BccInstruction)instructionLine.getInstruction());
+			
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**	
+	 * Parse the BCC instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parsePass1(BccInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("BCC".equals(instruction.getInstruction())) {
+			line = new AssembledBCCInstruction();
+			((AssembledBCCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 2;
+		} else if ("LBCC".equals(instruction.getInstruction())) {
+			line = new AssembledLBCCInstruction();
+			((AssembledLBCCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 4;
+		} else {
+			// not possible
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**	

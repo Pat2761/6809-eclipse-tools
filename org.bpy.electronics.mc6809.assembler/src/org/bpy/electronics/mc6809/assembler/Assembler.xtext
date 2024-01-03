@@ -1939,7 +1939,7 @@ RelatifToPCIndirectMode:
 ;
 
 RelativeMode:
-	isPcRelative?='*'? offset=Expression
+	isPcRelative?='*'? offset=IdentifierValue
 ;
 
 /*
