@@ -32,6 +32,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
@@ -1493,6 +1494,26 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(BeqInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BGE instruction.
+	 * 
+	 * @param instruction reference on the BGE instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BgeInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BGE instruction.
+	 * 
+	 * @param instruction reference on the BGE instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BgeInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

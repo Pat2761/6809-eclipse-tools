@@ -37,6 +37,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
@@ -288,7 +289,49 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BeqInstruction) {
 			parsePass2((BeqInstruction)instructionLine.getInstruction());
 
+		} else if (instructionLine.getInstruction() instanceof BgeInstruction) {
+			parsePass2((BgeInstruction)instructionLine.getInstruction());
+
 		}		
+	}
+
+	/**
+	 * Second step of the assembly of a BGE Instruction. 
+	 * Compute the jump 
+	 * 
+	 * @param instruction reference on the EMF instruction
+	 */
+	private void parsePass2(BgeInstruction instruction) {
+		String label = instruction.getOperand().getOffset().getValue();
+		if (label != null) {
+			
+			AbstractAssemblyLine targetLine = labelsPositionObject.get(label);
+			if (targetLine != null) {
+				
+				if ("BGE".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.BYTE_MODE,
+							AssemblerPackage.Literals.BGE_INSTRUCTION__OPERAND
+							);
+
+				} else if ("LBGE".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.WORD_MODE,
+							AssemblerPackage.Literals.BGE_INSTRUCTION__OPERAND
+							);
+
+				}
+			} else {
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+						AssemblerPackage.Literals.BGE_INSTRUCTION__OPERAND,
+						InstructionValidator.MISSING_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+			}
+		}
 	}
 
 	/**
@@ -568,9 +611,40 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BeqInstruction) {
 			parsePass1((BeqInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof BgeInstruction) {
+			parsePass1((BgeInstruction)instructionLine.getInstruction());
+			
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**	
+	 * Parse the BGE instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parsePass1(BgeInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("BGE".equals(instruction.getInstruction())) {
+			line = new AssembledBGEInstruction();
+			((AssembledBGEInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 2;
+		} else if ("LBGE".equals(instruction.getInstruction())) {
+			line = new AssembledLBGEInstruction();
+			((AssembledLBGEInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 4;
+		} else {
+			// not possible
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**	
