@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBEQInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLBEQInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.common.util.EList;
@@ -46,7 +46,7 @@ import org.junit.runner.RunWith;
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 @SuppressWarnings("all")
-public class TestBEQInstruction {
+public class TestLBEQInstruction {
   @Inject
   private ParseHelper<Model> parseHelper;
 
@@ -55,10 +55,10 @@ public class TestBEQInstruction {
   private ValidationTestHelper _validationTestHelper;
 
   /**
-   * Check BEQ
+   * Check LBEQ
    */
   @Test
-  public void testSimpleBEQWithExtraSpace() {
+  public void testSimpleLBEQWithExtraSpace() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -72,7 +72,7 @@ public class TestBEQInstruction {
       _builder.append("ASLB");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BEQ\t\tJump ");
+      _builder.append("LBEQ\t\tJump ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -87,17 +87,17 @@ public class TestBEQInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an BEQ directive line", (_instruction instanceof BeqInstruction));
+      Assert.assertTrue("Must be an LBEQ directive line", (_instruction instanceof BeqInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check BEQ
+   * Check LBEQ
    */
   @Test
-  public void testSimpleBEQWithoutExtraSpace() {
+  public void testSimpleLBEQWithoutExtraSpace() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -111,11 +111,10 @@ public class TestBEQInstruction {
       _builder.append("ASLB");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BEQ\t\tJump");
+      _builder.append("LBEQ\t\tJump");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -126,55 +125,17 @@ public class TestBEQInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an BEQ directive line", (_instruction instanceof BeqInstruction));
+      Assert.assertTrue("Must be an LBEQ directive line", (_instruction instanceof BeqInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check BEQ
+   * Check LBEQ with duplicate label
    */
   @Test
-  public void testSimpleBEQWithWithLabel() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("; -----------------------------------------");
-      _builder.newLine();
-      _builder.append("\t        ");
-      _builder.append("ORG     $8000");
-      _builder.newLine();
-      _builder.append("Jump\t    ASLA");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ASLB");
-      _builder.newLine();
-      _builder.append("MyBanch\t\tBEQ\t\tJump");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
-      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final SourceLine line = result.getSourceLines().get(4);
-      EObject _lineContent = line.getLineContent();
-      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
-      EObject _lineContent_1 = line.getLineContent();
-      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
-      EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an BEQ directive line", (_instruction instanceof BeqInstruction));
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
-   * Check BEQ with duplicate label
-   */
-  @Test
-  public void testSimpleBEQWithDuplicateLabel() {
+  public void testSimpleLBEQWithDuplicateLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -187,7 +148,7 @@ public class TestBEQInstruction {
       _builder.append("\t\t\t");
       _builder.append("NOP");
       _builder.newLine();
-      _builder.append("Jump\t\tBEQ\t\tJump\t\t; Jump=3FFF");
+      _builder.append("Jump\t\tLBEQ\t\tJump\t\t; Jump=3FFF");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -204,10 +165,10 @@ public class TestBEQInstruction {
   }
 
   /**
-   * Check BEQ with bad label
+   * Check LBEQ with bad label
    */
   @Test
-  public void testSimpleBEQWithBadLabel() {
+  public void testSimpleLBEQWithBadLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -220,7 +181,7 @@ public class TestBEQInstruction {
       _builder.append("\t\t\t");
       _builder.append("NOP");
       _builder.newLine();
-      _builder.append("Jump\t\tBEQ\t\tJump2\t\t; Jump=3FFF");
+      _builder.append("Jump\t\tLBEQ\t\tJump2\t\t; Jump=3FFF");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -237,10 +198,10 @@ public class TestBEQInstruction {
   }
 
   /**
-   * Check BEQ negative jump
+   * Check LBEQ
    */
   @Test
-  public void testSimpleBEQWithNegativeJump() {
+  public void testSimpleLBEQWithWithLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -248,12 +209,12 @@ public class TestBEQInstruction {
       _builder.append("\t        ");
       _builder.append("ORG     $8000");
       _builder.newLine();
-      _builder.append("Jump\t    LDA\t\t#25");
+      _builder.append("Jump\t    ASLA");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("NOP");
+      _builder.append("ASLB");
       _builder.newLine();
-      _builder.append("MyBanch\t\tBEQ\t\tJump\t\t; ");
+      _builder.append("MyBanch\t\tLBEQ\t\tJump");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -262,24 +223,108 @@ public class TestBEQInstruction {
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final AssemblerEngine engine = AssemblerEngine.getInstance();
-      Assert.assertEquals("Check PC counter", 0x8005, engine.getCurrentPcValue());
-      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
-      final AssembledBEQInstruction line = ((AssembledBEQInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
-      Assert.assertEquals("Check operand value", 0xFB, line.getOperand()[0]);
+      final SourceLine line = result.getSourceLines().get(4);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an LBEQ directive line", (_instruction instanceof BeqInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check BEQ positive jump
+   * Check LBEQ negative jump
    */
   @Test
-  public void testSimpleBEQWithPositiveJump() {
+  public void testSimpleLBEQWithNegativeJump1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8004");
+      _builder.newLine();
+      _builder.append("Jump\t    LDA\t\t#25");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8080");
+      _builder.newLine();
+      _builder.append("MyBanch\t\tLBEQ\tJump\t\t; Jump=1024FF80");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, 
+        AssemblerPackage.eINSTANCE.getBeqInstruction(), 
+        AbstractInstructionAssemblyLine.RELATIVE_SHORT_BRANCH, 
+        "You can use a short branch");
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
+      final AssembledLBEQInstruction line = ((AssembledLBEQInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x80, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check LBEQ negative jump
+   */
+  @Test
+  public void testSimpleLBEQWithNegativeJump2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8003");
+      _builder.newLine();
+      _builder.append("Jump\t    LDA\t\t#25");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8080");
+      _builder.newLine();
+      _builder.append("MyBanch\t\tLBEQ\tJump\t\t; Jump=1024FF7F");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoIssues(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
+      final AssembledLBEQInstruction line = ((AssembledLBEQInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x7F, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check LBEQ positive jump
+   */
+  @Test
+  public void testSimpleLBEQWithPositiveJump1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -287,10 +332,95 @@ public class TestBEQInstruction {
       _builder.append("\t        ");
       _builder.append("ORG     $8000");
       _builder.newLine();
-      _builder.append("MyBanch\t\tBEQ\t\tJump\t\t; ");
+      _builder.append("MyBanch\t\tLBEQ\t\tJump\t\t; Jump=1024007F");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("NOP");
+      _builder.append("ORG\t\t$8083");
+      _builder.newLine();
+      _builder.append("Jump\t\tRTS\t\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, 
+        AssemblerPackage.eINSTANCE.getBeqInstruction(), 
+        AbstractInstructionAssemblyLine.RELATIVE_SHORT_BRANCH, 
+        "You can use a short branch");
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledLBEQInstruction line = ((AssembledLBEQInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x00, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x7F, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check LBEQ positive jump
+   */
+  @Test
+  public void testSimpleLBEQWithPositiveJump2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8000");
+      _builder.newLine();
+      _builder.append("MyBanch\t\tLBEQ\t\tJump\t\t; Jump=10240080");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG\t\t$8084");
+      _builder.newLine();
+      _builder.append("Jump\t\tRTS\t\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoIssues(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8085, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledLBEQInstruction line = ((AssembledLBEQInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x00, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x80, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check LBEQ positive limit jump
+   */
+  @Test
+  public void testSimpleLBEQWithPositiveLimitJump1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $0000");
+      _builder.newLine();
+      _builder.append("MyBranch\tLBEQ\t\tJump\t\t; Jump=10257FFF");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG     $8003");
       _builder.newLine();
       _builder.append("Jump\t\tRTS\t\t\t");
       _builder.newLine();
@@ -304,114 +434,38 @@ public class TestBEQInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledBEQInstruction line = ((AssembledBEQInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
-      Assert.assertEquals("Check operand value", 0x01, line.getOperand()[0]);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
-   * Check BEQ positive limit jump
-   */
-  @Test
-  public void testSimpleBEQWithPositiveLimitJump1() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("; -----------------------------------------");
-      _builder.newLine();
-      _builder.append("\t        ");
-      _builder.append("ORG     $8000");
-      _builder.newLine();
-      _builder.append("MyBanch\t\tBEQ\t\tJump\t\t; ");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ORG     $8081");
-      _builder.newLine();
-      _builder.append("Jump\t\tRTS\t\t\t");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
-      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final AssemblerEngine engine = AssemblerEngine.getInstance();
-      Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
-      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledBEQInstruction line = ((AssembledBEQInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      final AssembledLBEQInstruction line = ((AssembledLBEQInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
       Assert.assertEquals("Check operand value", 0x7F, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[1]);
+      Assert.assertEquals("Check label", "MyBranch", line.getLabel());
+      Assert.assertEquals("Check comment", "; Jump=10257FFF", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check BEQ positive limit jump
+   * Check LBEQ positive limit jump
    */
   @Test
-  public void testSimpleBEQWithPositiveLimitJump2() {
+  public void testSimpleLBEQWithPositiveLimitJump2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
       _builder.newLine();
       _builder.append("\t        ");
-      _builder.append("ORG     $8000");
+      _builder.append("ORG     $0000");
       _builder.newLine();
-      _builder.append("MyBanch\t\tBEQ\t\tJump\t\t; ");
+      _builder.append("MyBanch\t\tLBEQ\tJump\t\t; Jump=10248000");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ORG     $8082");
+      _builder.append("ORG     $8004");
       _builder.newLine();
       _builder.append("Jump\t\tRTS\t\t\t");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getBeqInstruction(), 
-        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
-        "Overflow error, you should use long branch");
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
-      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final AssemblerEngine engine = AssemblerEngine.getInstance();
-      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledBEQInstruction line = ((AssembledBEQInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
-      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[0]);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
-   * Check BEQ negative limit jump
-   */
-  @Test
-  public void testSimpleBEQWithNegativeLimitJump1() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("; -----------------------------------------");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ORG\t\t$8002");
-      _builder.newLine();
-      _builder.append("JUMP\t\tRTS\t\t\t\t\t");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ORG\t\t$8080\t\t;");
-      _builder.newLine();
-      _builder.append("VVV\t\t\tBEQ\t\tJUMP\t\t;\t\t");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -421,55 +475,96 @@ public class TestBEQInstruction {
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
       final AssemblerEngine engine = AssemblerEngine.getInstance();
-      Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
-      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
-      final AssembledBEQInstruction line = ((AssembledBEQInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledLBEQInstruction line = ((AssembledLBEQInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
       Assert.assertEquals("Check operand value", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x00, line.getOperand()[1]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check BEQ negative limit jump
+   * Check LBEQ negative limit jump
    */
   @Test
-  public void testSimpleBEQWithNegativeLimitJump2() {
+  public void testSimpleLBEQWithNegativeLimitJump1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ORG\t\t$8001");
+      _builder.append("ORG\t\t$0004");
       _builder.newLine();
       _builder.append("JUMP\t\tRTS\t\t\t\t\t");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ORG\t\t$8080\t\t;");
+      _builder.append("ORG\t\t$8000\t\t;");
       _builder.newLine();
-      _builder.append("VVV\t\t\tBEQ\t\tJUMP\t\t;\t\t");
+      _builder.append("VVV\t\t\tLBEQ\t\tJUMP\t\t;\t\t");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getBeqInstruction(), 
-        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
-        "Overflow error, you should use long branch");
+      this._validationTestHelper.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
       final AssemblerEngine engine = AssemblerEngine.getInstance();
-      Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
+      Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
-      final AssembledBEQInstruction line = ((AssembledBEQInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
-      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[0]);
+      final AssembledLBEQInstruction line = ((AssembledLBEQInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x00, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check LBEQ negative limit jump
+   */
+  @Test
+  public void testSimpleLBEQWithNegativeLimitJump2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG\t\t$0003");
+      _builder.newLine();
+      _builder.append("JUMP\t\tRTS\t\t\t\t\t");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG\t\t$8000\t\t;");
+      _builder.newLine();
+      _builder.append("VVV\t\t\tLBEQ\t\tJUMP\t\t;\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
+      final AssembledLBEQInstruction line = ((AssembledLBEQInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x27, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x7F, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[1]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
