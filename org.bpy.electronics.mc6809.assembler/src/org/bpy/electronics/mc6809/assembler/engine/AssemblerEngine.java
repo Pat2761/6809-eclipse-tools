@@ -40,6 +40,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
@@ -300,7 +301,49 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BhiInstruction) {
 			parsePass2((BhiInstruction)instructionLine.getInstruction());
 
+		} else if (instructionLine.getInstruction() instanceof BhsInstruction) {
+			parsePass2((BhsInstruction)instructionLine.getInstruction());
+
 		}		
+	}
+
+	/**
+	 * Second step of the assembly of a BHS Instruction. 
+	 * Compute the jump 
+	 * 
+	 * @param instruction reference on the EMF instruction
+	 */
+	private void parsePass2(BhsInstruction instruction) {
+		String label = instruction.getOperand().getOffset().getValue();
+		if (label != null) {
+			
+			AbstractAssemblyLine targetLine = labelsPositionObject.get(label);
+			if (targetLine != null) {
+				
+				if ("BHS".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.BYTE_MODE,
+							AssemblerPackage.Literals.BHS_INSTRUCTION__OPERAND
+							);
+
+				} else if ("LBHS".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.WORD_MODE,
+							AssemblerPackage.Literals.BHS_INSTRUCTION__OPERAND
+							);
+
+				}
+			} else {
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+						AssemblerPackage.Literals.BHS_INSTRUCTION__OPERAND,
+						InstructionValidator.MISSING_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+			}
+		}
 	}
 
 	/**
@@ -706,9 +749,40 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BhiInstruction) {
 			parsePass1((BhiInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof BhsInstruction) {
+			parsePass1((BhsInstruction)instructionLine.getInstruction());
+			
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**	
+	 * Parse the BHS instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parsePass1(BhsInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("BHS".equals(instruction.getInstruction())) {
+			line = new AssembledBHSInstruction();
+			((AssembledBHSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 2;
+		} else if ("LBHS".equals(instruction.getInstruction())) {
+			line = new AssembledLBHSInstruction();
+			((AssembledLBHSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 4;
+		} else {
+			// not possible
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**	

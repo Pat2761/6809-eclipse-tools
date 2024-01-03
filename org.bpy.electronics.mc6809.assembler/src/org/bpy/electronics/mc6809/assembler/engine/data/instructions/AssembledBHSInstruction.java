@@ -18,19 +18,19 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
-import org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 
 /**
- * Allow to parse an BHI Instruction
+ * Allow to parse an BHS Instruction
  * 
  * @author briand
  *
  */
-public class AssembledBHIInstruction extends AbstractRelativeBranchInstruction {
+public class AssembledBHSInstruction extends AbstractRelativeBranchInstruction {
 
 	/** Reference on the instruction */
-	private BhiInstruction instruction;
+	private BhsInstruction instruction;
 	
 	/**
 	 * Allow to parse the instruction and define its parameters.
@@ -39,7 +39,7 @@ public class AssembledBHIInstruction extends AbstractRelativeBranchInstruction {
 	 * @param currentPcValue state of the current PC
 	 * @param lineNumber line number in assembly file
 	 */
-	public void parse(BhiInstruction instruction, int currentPcValue, int lineNumber) {
+	public void parse(BhsInstruction instruction, int currentPcValue, int lineNumber) {
 		this.label = CommandUtil.getLabel(instruction);
 		this.comment = CommandUtil.getComment(instruction);
 		this.instruction = instruction;
@@ -51,13 +51,13 @@ public class AssembledBHIInstruction extends AbstractRelativeBranchInstruction {
 	 * 
 	 * @return reference on the editor instruction line.
 	 */
-	public BhiInstruction getInstruction() {
+	public BhsInstruction getInstruction() {
 		return instruction;
 	}
 
 	@Override
 	public void setOpcode(AddressingMode mode) {
-		opcodeBytes =  new int[] {0x22};
+		opcodeBytes =  new int[] {0x24};
 	}
 
 	@Override
