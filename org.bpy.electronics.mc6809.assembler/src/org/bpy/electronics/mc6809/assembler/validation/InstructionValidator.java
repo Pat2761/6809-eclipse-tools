@@ -33,6 +33,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
@@ -803,6 +804,16 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 		exposeProblems(instruction);
 	}	
 	
+	/**
+	 * Check errors on the BGT Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BgtInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+
 	/**
 	 * Check errors on the BGE Instruction line
 	 * 
