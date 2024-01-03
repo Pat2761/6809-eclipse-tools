@@ -35,6 +35,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
@@ -279,9 +281,100 @@ public class AssemblerEngine {
 	private void parseInstructionLinePass2(InstructionLine instructionLine) {
 		if (instructionLine.getInstruction() instanceof BccInstruction) {
 			parsePass2((BccInstruction)instructionLine.getInstruction());
+		
+		} else if (instructionLine.getInstruction() instanceof BcsInstruction) {
+			parsePass2((BcsInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof BeqInstruction) {
+			parsePass2((BeqInstruction)instructionLine.getInstruction());
+
+		}		
+	}
+
+	/**
+	 * Second step of the assembly of a BEQ Instruction. 
+	 * Compute the jump 
+	 * 
+	 * @param instruction reference on the EMF instruction
+	 */
+	private void parsePass2(BeqInstruction instruction) {
+		String label = instruction.getOperand().getOffset().getValue();
+		if (label != null) {
+			
+			AbstractAssemblyLine targetLine = labelsPositionObject.get(label);
+			if (targetLine != null) {
+				
+				if ("BEQ".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.BYTE_MODE,
+							AssemblerPackage.Literals.BEQ_INSTRUCTION__OPERAND
+							);
+
+				} else if ("LBEQ".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.WORD_MODE,
+							AssemblerPackage.Literals.BEQ_INSTRUCTION__OPERAND
+							);
+
+				}
+			} else {
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+						AssemblerPackage.Literals.BEQ_INSTRUCTION__OPERAND,
+						InstructionValidator.MISSING_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+			}
 		}
 	}
 
+	/**
+	 * Second step of the assembly of a BCS Instruction. 
+	 * Compute the jump 
+	 * 
+	 * @param instruction reference on the EMF instruction
+	 */
+	private void parsePass2(BcsInstruction instruction) {
+		String label = instruction.getOperand().getOffset().getValue();
+		if (label != null) {
+			
+			AbstractAssemblyLine targetLine = labelsPositionObject.get(label);
+			if (targetLine != null) {
+				
+				if ("BCS".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.BYTE_MODE,
+							AssemblerPackage.Literals.BCS_INSTRUCTION__OPERAND
+							);
+
+				} else if ("LBCS".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.WORD_MODE,
+							AssemblerPackage.Literals.BCS_INSTRUCTION__OPERAND
+							);
+
+				}
+			} else {
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+						AssemblerPackage.Literals.BCS_INSTRUCTION__OPERAND,
+						InstructionValidator.MISSING_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+			}
+		}
+	}
+
+	/**
+	 * Second step of the assembly of a BCC Instruction. 
+	 * Compute the jump 
+	 * 
+	 * @param instruction reference on the EMF instruction
+	 */
 	private void parsePass2(BccInstruction instruction) {
 		String label = instruction.getOperand().getOffset().getValue();
 		if (label != null) {
@@ -469,9 +562,71 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BccInstruction) {
 			parsePass1((BccInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof BcsInstruction) {
+			parsePass1((BcsInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof BeqInstruction) {
+			parsePass1((BeqInstruction)instructionLine.getInstruction());
+			
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**	
+	 * Parse the BEQ instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parsePass1(BeqInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("BEQ".equals(instruction.getInstruction())) {
+			line = new AssembledBEQInstruction();
+			((AssembledBEQInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 2;
+		} else if ("LBEQ".equals(instruction.getInstruction())) {
+			line = new AssembledLBEQInstruction();
+			((AssembledLBEQInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 4;
+		} else {
+			// not possible
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the BCS instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parsePass1(BcsInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("BCS".equals(instruction.getInstruction())) {
+			line = new AssembledBCSInstruction();
+			((AssembledBCSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 2;
+		} else if ("LBCS".equals(instruction.getInstruction())) {
+			line = new AssembledLBCSInstruction();
+			((AssembledLBCSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 4;
+		} else {
+			// not possible
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**	
