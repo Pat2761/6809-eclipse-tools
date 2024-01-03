@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBHIInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLBHIInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.common.util.EList;
@@ -46,7 +46,7 @@ import org.junit.runner.RunWith;
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 @SuppressWarnings("all")
-public class TestBHIInstruction {
+public class TestLBHIInstruction {
   @Inject
   private ParseHelper<Model> parseHelper;
 
@@ -55,10 +55,10 @@ public class TestBHIInstruction {
   private ValidationTestHelper _validationTestHelper;
 
   /**
-   * Check BHI
+   * Check LBHI
    */
   @Test
-  public void testSimpleBHIWithExtraSpace() {
+  public void testSimpleLBHIWithExtraSpace() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -72,7 +72,7 @@ public class TestBHIInstruction {
       _builder.append("ASLB");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BHI\t\tJump ");
+      _builder.append("LBHI\t\tJump ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -87,17 +87,17 @@ public class TestBHIInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an BHI directive line", (_instruction instanceof BhiInstruction));
+      Assert.assertTrue("Must be an LBHI directive line", (_instruction instanceof BhiInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check BHI
+   * Check LBHI
    */
   @Test
-  public void testSimpleBHIWithoutExtraSpace() {
+  public void testSimpleLBHIWithoutExtraSpace() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -111,11 +111,10 @@ public class TestBHIInstruction {
       _builder.append("ASLB");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("BHI\t\tJump");
+      _builder.append("LBHI\t\tJump");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
@@ -126,55 +125,17 @@ public class TestBHIInstruction {
       EObject _lineContent_1 = line.getLineContent();
       final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
       EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an BHI directive line", (_instruction instanceof BhiInstruction));
+      Assert.assertTrue("Must be an LBHI directive line", (_instruction instanceof BhiInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check BHI
+   * Check LBHI with duplicate label
    */
   @Test
-  public void testSimpleBHIWithWithLabel() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("; -----------------------------------------");
-      _builder.newLine();
-      _builder.append("\t        ");
-      _builder.append("ORG     $8000");
-      _builder.newLine();
-      _builder.append("Jump\t    ASLA");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ASLB");
-      _builder.newLine();
-      _builder.append("MyBanch\t\tBHI\t\tJump");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
-      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final SourceLine line = result.getSourceLines().get(4);
-      EObject _lineContent = line.getLineContent();
-      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
-      EObject _lineContent_1 = line.getLineContent();
-      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
-      EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an BHI directive line", (_instruction instanceof BhiInstruction));
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
-   * Check BHI with duplicate label
-   */
-  @Test
-  public void testSimpleBHIWithDuplicateLabel() {
+  public void testSimpleLBHIWithDuplicateLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -187,7 +148,7 @@ public class TestBHIInstruction {
       _builder.append("\t\t\t");
       _builder.append("NOP");
       _builder.newLine();
-      _builder.append("Jump\t\tBHI\t\tJump\t\t; Jump=3FFF");
+      _builder.append("Jump\t\tLBHI\t\tJump\t\t; Jump=3FFF");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -204,10 +165,10 @@ public class TestBHIInstruction {
   }
 
   /**
-   * Check BHI with bad label
+   * Check LBHI with bad label
    */
   @Test
-  public void testSimpleBHIWithBadLabel() {
+  public void testSimpleLBHIWithBadLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -220,7 +181,7 @@ public class TestBHIInstruction {
       _builder.append("\t\t\t");
       _builder.append("NOP");
       _builder.newLine();
-      _builder.append("Jump\t\tBHI\t\tJump2\t\t; Jump=3FFF");
+      _builder.append("Jump\t\tLBHI\t\tJump2\t\t; Jump=3FFF");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -237,10 +198,10 @@ public class TestBHIInstruction {
   }
 
   /**
-   * Check BHI negative jump
+   * Check LBHI
    */
   @Test
-  public void testSimpleBHIWithNegativeJump() {
+  public void testSimpleLBHIWithWithLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -248,12 +209,12 @@ public class TestBHIInstruction {
       _builder.append("\t        ");
       _builder.append("ORG     $8000");
       _builder.newLine();
-      _builder.append("Jump\t    LDA\t\t#25");
+      _builder.append("Jump\t    ASLA");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("NOP");
+      _builder.append("ASLB");
       _builder.newLine();
-      _builder.append("MyBanch\t\tBHI\t\tJump\t\t; ");
+      _builder.append("MyBanch\t\tLBHI\t\tJump");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -262,24 +223,108 @@ public class TestBHIInstruction {
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final AssemblerEngine engine = AssemblerEngine.getInstance();
-      Assert.assertEquals("Check PC counter", 0x8005, engine.getCurrentPcValue());
-      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
-      final AssembledBHIInstruction line = ((AssembledBHIInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
-      Assert.assertEquals("Check operand value", 0xFB, line.getOperand()[0]);
+      final SourceLine line = result.getSourceLines().get(4);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an LBHI directive line", (_instruction instanceof BhiInstruction));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check BHI positive jump
+   * Check LBHI negative jump
    */
   @Test
-  public void testSimpleBHIWithPositiveJump() {
+  public void testSimpleLBHIWithNegativeJump1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8004");
+      _builder.newLine();
+      _builder.append("Jump\t    LDA\t\t#25");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8080");
+      _builder.newLine();
+      _builder.append("MyBanch\t\tLBHI\tJump\t\t; Jump=1024FF80");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, 
+        AssemblerPackage.eINSTANCE.getBhiInstruction(), 
+        AbstractInstructionAssemblyLine.RELATIVE_SHORT_BRANCH, 
+        "You can use a short branch");
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
+      final AssembledLBHIInstruction line = ((AssembledLBHIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x80, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check LBHI negative jump
+   */
+  @Test
+  public void testSimpleLBHIWithNegativeJump2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8003");
+      _builder.newLine();
+      _builder.append("Jump\t    LDA\t\t#25");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8080");
+      _builder.newLine();
+      _builder.append("MyBanch\t\tLBHI\tJump\t\t; Jump=1024FF7F");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoIssues(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
+      final AssembledLBHIInstruction line = ((AssembledLBHIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x7F, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check LBHI positive jump
+   */
+  @Test
+  public void testSimpleLBHIWithPositiveJump1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
@@ -287,10 +332,95 @@ public class TestBHIInstruction {
       _builder.append("\t        ");
       _builder.append("ORG     $8000");
       _builder.newLine();
-      _builder.append("MyBanch\t\tBHI\t\tJump\t\t; ");
+      _builder.append("MyBanch\t\tLBHI\t\tJump\t\t; Jump=1024007F");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("NOP");
+      _builder.append("ORG\t\t$8083");
+      _builder.newLine();
+      _builder.append("Jump\t\tRTS\t\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertWarning(result, 
+        AssemblerPackage.eINSTANCE.getBhiInstruction(), 
+        AbstractInstructionAssemblyLine.RELATIVE_SHORT_BRANCH, 
+        "You can use a short branch");
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8084, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledLBHIInstruction line = ((AssembledLBHIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x00, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x7F, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check LBHI positive jump
+   */
+  @Test
+  public void testSimpleLBHIWithPositiveJump2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8000");
+      _builder.newLine();
+      _builder.append("MyBanch\t\tLBHI\t\tJump\t\t; Jump=10240080");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG\t\t$8084");
+      _builder.newLine();
+      _builder.append("Jump\t\tRTS\t\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoIssues(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8085, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledLBHIInstruction line = ((AssembledLBHIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x00, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x80, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check LBHI positive limit jump
+   */
+  @Test
+  public void testSimpleLBHIWithPositiveLimitJump1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $0000");
+      _builder.newLine();
+      _builder.append("MyBranch\tLBHI\t\tJump\t\t; Jump=10257FFF");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG     $8003");
       _builder.newLine();
       _builder.append("Jump\t\tRTS\t\t\t");
       _builder.newLine();
@@ -304,114 +434,38 @@ public class TestBHIInstruction {
       final AssemblerEngine engine = AssemblerEngine.getInstance();
       Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledBHIInstruction line = ((AssembledBHIInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
-      Assert.assertEquals("Check operand value", 0x01, line.getOperand()[0]);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
-   * Check BHI positive limit jump
-   */
-  @Test
-  public void testSimpleBHIWithPositiveLimitJump1() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("; -----------------------------------------");
-      _builder.newLine();
-      _builder.append("\t        ");
-      _builder.append("ORG     $8000");
-      _builder.newLine();
-      _builder.append("MyBanch\t\tBHI\t\tJump\t\t; ");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ORG     $8081");
-      _builder.newLine();
-      _builder.append("Jump\t\tRTS\t\t\t");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
-      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final AssemblerEngine engine = AssemblerEngine.getInstance();
-      Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
-      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledBHIInstruction line = ((AssembledBHIInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      final AssembledLBHIInstruction line = ((AssembledLBHIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
       Assert.assertEquals("Check operand value", 0x7F, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[1]);
+      Assert.assertEquals("Check label", "MyBranch", line.getLabel());
+      Assert.assertEquals("Check comment", "; Jump=10257FFF", line.getComment());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check BHI positive limit jump
+   * Check LBHI positive limit jump
    */
   @Test
-  public void testSimpleBHIWithPositiveLimitJump2() {
+  public void testSimpleLBHIWithPositiveLimitJump2() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
       _builder.newLine();
       _builder.append("\t        ");
-      _builder.append("ORG     $8000");
+      _builder.append("ORG     $0000");
       _builder.newLine();
-      _builder.append("MyBanch\t\tBHI\t\tJump\t\t; ");
+      _builder.append("MyBanch\t\tLBHI\tJump\t\t; Jump=10248000");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ORG     $8082");
+      _builder.append("ORG     $8004");
       _builder.newLine();
       _builder.append("Jump\t\tRTS\t\t\t");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getBhiInstruction(), 
-        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
-        "Overflow error, you should use long branch");
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
-      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final AssemblerEngine engine = AssemblerEngine.getInstance();
-      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
-      final AssembledBHIInstruction line = ((AssembledBHIInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
-      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[0]);
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
-   * Check BHI negative limit jump
-   */
-  @Test
-  public void testSimpleBHIWithNegativeLimitJump1() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("; -----------------------------------------");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ORG\t\t$8002");
-      _builder.newLine();
-      _builder.append("JUMP\t\tRTS\t\t\t\t\t");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ORG\t\t$8080\t\t;");
-      _builder.newLine();
-      _builder.append("VVV\t\t\tBHI\t\tJUMP\t\t;\t\t");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -421,55 +475,96 @@ public class TestBHIInstruction {
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
       final AssemblerEngine engine = AssemblerEngine.getInstance();
-      Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
-      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
-      final AssembledBHIInstruction line = ((AssembledBHIInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledLBHIInstruction line = ((AssembledLBHIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
       Assert.assertEquals("Check operand value", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x00, line.getOperand()[1]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
   }
 
   /**
-   * Check BHI negative limit jump
+   * Check LBHI negative limit jump
    */
   @Test
-  public void testSimpleBHIWithNegativeLimitJump2() {
+  public void testSimpleLBHIWithNegativeLimitJump1() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ORG\t\t$8001");
+      _builder.append("ORG\t\t$0004");
       _builder.newLine();
       _builder.append("JUMP\t\tRTS\t\t\t\t\t");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("ORG\t\t$8080\t\t;");
+      _builder.append("ORG\t\t$8000\t\t;");
       _builder.newLine();
-      _builder.append("VVV\t\t\tBHI\t\tJUMP\t\t;\t\t");
+      _builder.append("VVV\t\t\tLBHI\t\tJUMP\t\t;\t\t");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
-      this._validationTestHelper.assertError(result, 
-        AssemblerPackage.eINSTANCE.getBhiInstruction(), 
-        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
-        "Overflow error, you should use long branch");
+      this._validationTestHelper.assertNoErrors(result);
       final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
       final AssemblerEngine engine = AssemblerEngine.getInstance();
-      Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
+      Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
       AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
-      final AssembledBHIInstruction line = ((AssembledBHIInstruction) _assembledLine);
-      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
-      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
-      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[0]);
+      final AssembledLBHIInstruction line = ((AssembledLBHIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x80, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0x00, line.getOperand()[1]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check LBHI negative limit jump
+   */
+  @Test
+  public void testSimpleLBHIWithNegativeLimitJump2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG\t\t$0003");
+      _builder.newLine();
+      _builder.append("JUMP\t\tRTS\t\t\t\t\t");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG\t\t$8000\t\t;");
+      _builder.newLine();
+      _builder.append("VVV\t\t\tLBHI\t\tJUMP\t\t;\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
+      final AssembledLBHIInstruction line = ((AssembledLBHIInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 2, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x10, line.getOpcode()[0]);
+      Assert.assertEquals("Check opcode value", 0x22, line.getOpcode()[1]);
+      Assert.assertEquals("Check operand length", 2, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x7F, line.getOperand()[0]);
+      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[1]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

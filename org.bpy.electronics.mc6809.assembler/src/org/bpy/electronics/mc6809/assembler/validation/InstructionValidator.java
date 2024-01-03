@@ -34,7 +34,21 @@ import org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BleInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BloInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BlsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BltInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BmiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BneInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BplInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BraInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
@@ -803,6 +817,16 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	public void checkInstructionLine(BeqInstruction instruction) {
 		exposeProblems(instruction);
 	}	
+
+	/**
+	 * Check errors on the BGE Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BgeInstruction instruction) {
+		exposeProblems(instruction);
+	}	
 	
 	/**
 	 * Check errors on the BGT Instruction line
@@ -815,12 +839,142 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	}	
 
 	/**
-	 * Check errors on the BGE Instruction line
+	 * Check errors on the BHI Instruction line
 	 * 
 	 * @param instruction reference on the instruction line
 	 */
 	@Check
-	public void checkInstructionLine(BgeInstruction instruction) {
+	public void checkInstructionLine(BhiInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BHS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BhsInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BLE Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BleInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the Blo Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BloInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BLS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BlsInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BLT Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BltInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BMI Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BmiInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BNE Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BneInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BPL Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BplInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BRA Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BraInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BRN Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BrnInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BSR Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BsrInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BVC Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BvcInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BVS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BvsInstruction instruction) {
 		exposeProblems(instruction);
 	}	
 
