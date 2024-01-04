@@ -179,7 +179,7 @@
   <commands xmi:id="_tvJ-cFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.openperspective" commandName="Open perspective"/>
   <commands xmi:id="_DMcmcFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.closeperspective" commandName="Close perspective"/>
   <commands xmi:id="_M0mMcFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.closeallperspectives" commandName="Close all perspectives"/>
-  <commands xmi:id="_Yzb9AFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.command.preferences" commandName="Preferences"/>
+  <commands xmi:id="_Yzb9AFShEe6mOd8G26vrew" elementId="org.eclipse.ui.window.preferences" commandName="Preferences"/>
   <addons xmi:id="_6wlLcsgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.core.commands.service" contributionURI="bundleclass://org.eclipse.e4.core.commands/org.eclipse.e4.core.commands.CommandServiceAddon"/>
   <addons xmi:id="_6wlLc8gZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.contexts.service" contributionURI="bundleclass://org.eclipse.e4.ui.services/org.eclipse.e4.ui.services.ContextServiceAddon"/>
   <addons xmi:id="_6wlLdMgZEeSyMNYR5xypkQ" elementId="org.eclipse.e4.ui.bindings.service" contributionURI="bundleclass://org.eclipse.e4.ui.bindings/org.eclipse.e4.ui.bindings.BindingServiceAddon"/>
