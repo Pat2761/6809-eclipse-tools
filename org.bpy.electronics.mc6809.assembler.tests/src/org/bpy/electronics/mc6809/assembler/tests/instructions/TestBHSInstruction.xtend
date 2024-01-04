@@ -30,6 +30,11 @@ import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
 import org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBHSInstruction
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -49,30 +54,6 @@ class TestBHSInstruction {
 		Jump	    ASLA
 					ASLB
 					BHS		Jump 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
-		
-		val line = result.sourceLines.get(4)
-		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
-		
-		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an BHS directive line", instructionLine.instruction instanceof BhsInstruction)
-	}
-	
-	/**
-	 * Check LBHS
-	 */
-	@Test 
-	def void testSimpleLBHSWithExtraSpace() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			        ORG     	$8000
-		Jump	    ASLA
-					ASLB
-					LBHS		Jump 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
@@ -109,30 +90,7 @@ class TestBHSInstruction {
 		val instructionLine = line.lineContent as InstructionLine
 		Assert.assertTrue("Must be an BHS directive line", instructionLine.instruction instanceof BhsInstruction)
 	}
-	
-	/**
-	 * Check LBHS
-	 */
-	@Test 
-	def void testSimpleLBHSWithoutExtraSpace() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			        ORG     	$8000
-		Jump	    ASLA
-					ASLB
-					LBHS		Jump
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
-		
-		val line = result.sourceLines.get(4)
-		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
-		
-		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an BHS directive line", instructionLine.instruction instanceof BhsInstruction)
-	}
+
 	/**
 	 * Check BHS
 	 */
@@ -156,28 +114,223 @@ class TestBHSInstruction {
 		val instructionLine = line.lineContent as InstructionLine
 		Assert.assertTrue("Must be an BHS directive line", instructionLine.instruction instanceof BhsInstruction)
 	}
-	
+
 	/**
-	 * Check LBHS
+	 * Check BHS with duplicate label
 	 */
 	@Test 
-	def void testSimpleLBHSWithComment() {
+	def void testSimpleBHSWithDuplicateLabel() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			        ORG     	$8000
-		Jump	    ASLA
-					ASLB
-					LBHS		Jump			; My Branch comment
+			        ORG     $8000
+		Jump	    LDA		#25
+					NOP
+		Jump		BHS		Jump		; Jump=3FFF
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.instructionLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Jump is already defined"
+		)
+	
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	}
+
+	/**
+	 * Check BHS with bad label
+	 */
+	@Test 
+	def void testSimpleBHSWithBadLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			        ORG     $8000
+		Jump1	    LDA		#25
+					NOP
+		Jump		BHS		Jump2		; Jump=3FFF
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.bhsInstruction,
+			InstructionValidator.MISSING_LABEL,
+			"Label Jump2 isn't defined"
+		)
+	
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	}
+	
+	/**
+	 * Check BHS negative jump
+	 */
+	@Test 
+	def void testSimpleBHSWithNegativeJump() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			        ORG     $8000
+		Jump	    LDA		#25
+					NOP
+		MyBanch		BHS		Jump		; 
 		''')
 		Assert.assertNotNull(result)
 		result.assertNoErrors
 		val errors = result.eResource.errors
 		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+
+		val engine=AssemblerEngine.instance
+		Assert.assertEquals("Check PC counter", 0x8005, engine.currentPcValue)
 		
-		val line = result.sourceLines.get(4)
-		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		val line = engine.getAssembledLine(4) as AssembledBHSInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode value", 0x24, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 1, line.operand.length)
+		Assert.assertEquals("Check operand value", 0xFB, line.operand.get(0))
+	}
+	
+	/**
+	 * Check BHS positive jump
+	 */
+	@Test 
+	def void testSimpleBHSWithPositiveJump() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			        ORG     $8000
+		MyBanch		BHS		Jump		; 
+					NOP
+		Jump		RTS			
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+
+		val engine=AssemblerEngine.instance
+		Assert.assertEquals("Check PC counter", 0x8004, engine.currentPcValue)
 		
-		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an BHS directive line", instructionLine.instruction instanceof BhsInstruction)
+		val line = engine.getAssembledLine(2) as AssembledBHSInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode value", 0x24, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 1, line.operand.length)
+		Assert.assertEquals("Check operand value", 0x01, line.operand.get(0))
+	}
+	
+	/**
+	 * Check BHS positive limit jump
+	 */
+	@Test 
+	def void testSimpleBHSWithPositiveLimitJump1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			        ORG     $8000
+		MyBanch		BHS		Jump		; 
+					ORG     $8081
+		Jump		RTS			
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+
+		val engine=AssemblerEngine.instance
+		Assert.assertEquals("Check PC counter", 0x8082, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(2) as AssembledBHSInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode value", 0x24, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 1, line.operand.length)
+		Assert.assertEquals("Check operand value", 0x7F, line.operand.get(0))
+	}
+	
+	/**
+	 * Check BHS positive limit jump
+	 */
+	@Test 
+	def void testSimpleBHSWithPositiveLimitJump2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+			        ORG     $8000
+		MyBanch		BHS		Jump		; 
+					ORG     $8082
+		Jump		RTS			
+		''')
+		Assert.assertNotNull(result)
+
+		result.assertError(
+			AssemblerPackage.eINSTANCE.bhsInstruction,
+			AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+			"Overflow error, you should use long branch"
+		)
+
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+
+		val engine=AssemblerEngine.instance
+		
+		val line = engine.getAssembledLine(2) as AssembledBHSInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode value", 0x3F, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 1, line.operand.length)
+		Assert.assertEquals("Check operand value", 0xFF, line.operand.get(0))
+	}
+	
+	/**
+	 * Check BHS negative limit jump
+	 */
+	@Test 
+	def void testSimpleBHSWithNegativeLimitJump1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					ORG		$8002
+		JUMP		RTS					
+					ORG		$8080		;
+		VVV			BHS		JUMP		;		
+		''')
+
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+
+		val engine=AssemblerEngine.instance
+		Assert.assertEquals("Check PC counter", 0x8082, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(4) as AssembledBHSInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode value", 0x24, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 1, line.operand.length)
+		Assert.assertEquals("Check operand value", 0x80, line.operand.get(0))
+	}
+	
+	/**
+	 * Check BHS negative limit jump
+	 */
+	@Test 
+	def void testSimpleBHSWithNegativeLimitJump2() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+					ORG		$8001
+		JUMP		RTS					
+					ORG		$8080		;
+		VVV			BHS		JUMP		;		
+		''')
+		Assert.assertNotNull(result)
+
+		result.assertError(
+			AssemblerPackage.eINSTANCE.bhsInstruction,
+			AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+			"Overflow error, you should use long branch"
+		)
+
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+
+		val engine=AssemblerEngine.instance
+		Assert.assertEquals("Check PC counter", 0x8082, engine.currentPcValue)
+		
+		val line = engine.getAssembledLine(4) as AssembledBHSInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode value", 0x3F, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 1, line.operand.length)
+		Assert.assertEquals("Check operand value", 0xFF, line.operand.get(0))
 	}
 }

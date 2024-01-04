@@ -4,7 +4,7 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -60,7 +60,7 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    * @ordered
    */
-  protected Expression offset;
+  protected IdentifierValue offset;
 
   /**
    * <!-- begin-user-doc -->
@@ -114,7 +114,7 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    */
   @Override
-  public Expression getOffset()
+  public IdentifierValue getOffset()
   {
     return offset;
   }
@@ -124,9 +124,9 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOffset(Expression newOffset, NotificationChain msgs)
+  public NotificationChain basicSetOffset(IdentifierValue newOffset, NotificationChain msgs)
   {
-    Expression oldOffset = offset;
+    IdentifierValue oldOffset = offset;
     offset = newOffset;
     if (eNotificationRequired())
     {
@@ -142,7 +142,7 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    */
   @Override
-  public void setOffset(Expression newOffset)
+  public void setOffset(IdentifierValue newOffset)
   {
     if (newOffset != offset)
     {
@@ -206,7 +206,7 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
         setIsPcRelative((Boolean)newValue);
         return;
       case AssemblerPackage.RELATIVE_MODE__OFFSET:
-        setOffset((Expression)newValue);
+        setOffset((IdentifierValue)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -226,7 +226,7 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
         setIsPcRelative(IS_PC_RELATIVE_EDEFAULT);
         return;
       case AssemblerPackage.RELATIVE_MODE__OFFSET:
-        setOffset((Expression)null);
+        setOffset((IdentifierValue)null);
         return;
     }
     super.eUnset(featureID);

@@ -141,14 +141,9 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createSubInstructionAdapter();
       }
       @Override
-      public Adapter caseSt16Instruction(St16Instruction object)
+      public Adapter caseStInstruction(StInstruction object)
       {
-        return createSt16InstructionAdapter();
-      }
-      @Override
-      public Adapter caseSt8Instruction(St8Instruction object)
-      {
-        return createSt8InstructionAdapter();
+        return createStInstructionAdapter();
       }
       @Override
       public Adapter caseSexInstruction(SexInstruction object)
@@ -928,31 +923,16 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
   }
 
   /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.St16Instruction <em>St16 Instruction</em>}'.
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.StInstruction <em>St Instruction</em>}'.
    * <!-- begin-user-doc -->
    * This default implementation returns null so that we can easily ignore cases;
    * it's useful to ignore a case when inheritance will catch all the cases anyway.
    * <!-- end-user-doc -->
    * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.St16Instruction
+   * @see org.bpy.electronics.mc6809.assembler.assembler.StInstruction
    * @generated
    */
-  public Adapter createSt16InstructionAdapter()
-  {
-    return null;
-  }
-
-  /**
-   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.St8Instruction <em>St8 Instruction</em>}'.
-   * <!-- begin-user-doc -->
-   * This default implementation returns null so that we can easily ignore cases;
-   * it's useful to ignore a case when inheritance will catch all the cases anyway.
-   * <!-- end-user-doc -->
-   * @return the new adapter.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.St8Instruction
-   * @generated
-   */
-  public Adapter createSt8InstructionAdapter()
+  public Adapter createStInstructionAdapter()
   {
     return null;
   }

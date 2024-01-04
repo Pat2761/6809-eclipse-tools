@@ -29,7 +29,26 @@ import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BleInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BloInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BlsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BltInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BmiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BneInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BplInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BraInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
@@ -55,7 +74,21 @@ import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
+import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRegDirectiveLine;
@@ -76,6 +109,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	public static final String MISSING_OPTION = "missingOption";
 	public static final String DUPLICATE_OPTION = "duplicateOption";
 	public static final String ILLEGAL_REGISTER = "illegalRegister";
+	public static final String MISSING_LABEL = "missingLabel";
 
 	/**
 	 * Check duplicate labels
@@ -614,6 +648,336 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 		exposeProblems(instruction);
 	}	
 	
+	/**
+	 * Check errors on the ROL Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(RolInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the ROR Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(RorInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the RTI Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(RtiInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the RTS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(RtsInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SBC Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(SbcInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SEX Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(SexInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the ST. Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(StInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SUB Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(SubInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SUBD Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(SubdInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SWI Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(SwiInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SWI2 Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(Swi2Instruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SWI3 Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(Swi3Instruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the SYNC Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(SyncInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the TST Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(TstInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BCC Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BccInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BCS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BcsInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BEQ Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BeqInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+
+	/**
+	 * Check errors on the BGE Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BgeInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BGT Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BgtInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+
+	/**
+	 * Check errors on the BHI Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BhiInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BHS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BhsInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BLE Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BleInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the Blo Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BloInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BLS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BlsInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BLT Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BltInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BMI Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BmiInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BNE Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BneInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BPL Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BplInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BRA Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BraInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BRN Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BrnInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BSR Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BsrInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BVC Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BvcInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+	
+	/**
+	 * Check errors on the BVS Instruction line
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkInstructionLine(BvsInstruction instruction) {
+		exposeProblems(instruction);
+	}	
+
 	/**
 	 * Declare problems and warnings detected during the assembly step for an Instruction
 	 * 

@@ -52,7 +52,8 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	
 	public static final String ILLEGAL_DECREMENT = "illegalDecrement";
 	public static final String ILLEGAL_INCREMENT = "illegalIncrement";
-	public static final String OVERFLOW_ERROR = "illegalIncrement";
+	public static final String OVERFLOW_ERROR = "overflowError";
+	public static final String RELATIVE_SHORT_BRANCH = "relativeShortBranch";
 
 	/** OPcode of the instruction */
 	protected int[] opcodeBytes;

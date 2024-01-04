@@ -29,8 +29,27 @@ import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BleInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BloInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BlsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BltInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BmiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BneInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BplInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BraInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
@@ -71,10 +90,24 @@ import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 
@@ -1120,6 +1153,266 @@ public class CommandUtil {
 	}
 
 	/**
+	 * Return the label associated to an ROL instruction.
+	 * 
+	 * @param instruction reference on the ROL instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(RolInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an ROL instruction.
+	 * 
+	 * @param instruction reference on the ROL instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(RolInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an ROR instruction.
+	 * 
+	 * @param instruction reference on the ROR instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(RorInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an ROR instruction.
+	 * 
+	 * @param instruction reference on the ROR instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(RorInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an RTI instruction.
+	 * 
+	 * @param instruction reference on the RTI instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(RtiInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an RTI instruction.
+	 * 
+	 * @param instruction reference on the RTI instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(RtiInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an RTS instruction.
+	 * 
+	 * @param instruction reference on the RTS instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(RtsInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an RTS instruction.
+	 * 
+	 * @param instruction reference on the RTS instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(RtsInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SBC instruction.
+	 * 
+	 * @param instruction reference on the SBC instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SbcInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SBC instruction.
+	 * 
+	 * @param instruction reference on the SBC instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SbcInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SEX instruction.
+	 * 
+	 * @param instruction reference on the SEX instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SexInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SEX instruction.
+	 * 
+	 * @param instruction reference on the SEX instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SexInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an ST instruction.
+	 * 
+	 * @param instruction reference on the ST instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(StInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an ST instruction.
+	 * 
+	 * @param instruction reference on the ST instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(StInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SUB instruction.
+	 * 
+	 * @param instruction reference on the SUB instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SubInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SUB instruction.
+	 * 
+	 * @param instruction reference on the SUB instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SubInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SUBD instruction.
+	 * 
+	 * @param instruction reference on the SUBD instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SubdInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SUBD instruction.
+	 * 
+	 * @param instruction reference on the SUBD instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SubdInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SWI instruction.
+	 * 
+	 * @param instruction reference on the SWI instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SwiInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SWI instruction.
+	 * 
+	 * @param instruction reference on the SWI instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SwiInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SWI2 instruction.
+	 * 
+	 * @param instruction reference on the SWI2 instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(Swi2Instruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SWI2 instruction.
+	 * 
+	 * @param instruction reference on the SWI2 instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(Swi2Instruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SWI3 instruction.
+	 * 
+	 * @param instruction reference on the SWI3 instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(Swi3Instruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SWI3 instruction.
+	 * 
+	 * @param instruction reference on the SWI3 instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(Swi3Instruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an SYNC instruction.
+	 * 
+	 * @param instruction reference on the SYNC instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(SyncInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an SYNC instruction.
+	 * 
+	 * @param instruction reference on the SYNC instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(SyncInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
 	 * Return the label associated to an TFR instruction.
 	 * 
 	 * @param instruction reference on the TFR instruction
@@ -1136,6 +1429,406 @@ public class CommandUtil {
 	 * @return value of the comment, <b>null</b> if not found
 	 */
 	public static String getComment(TfrInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an TST instruction.
+	 * 
+	 * @param instruction reference on the TST instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(TstInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an TST instruction.
+	 * 
+	 * @param instruction reference on the TST instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(TstInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BCC instruction.
+	 * 
+	 * @param instruction reference on the BCC instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BccInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BCC instruction.
+	 * 
+	 * @param instruction reference on the BCC instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BccInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BCS instruction.
+	 * 
+	 * @param instruction reference on the BCS instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BcsInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BCS instruction.
+	 * 
+	 * @param instruction reference on the BCS instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BcsInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BEQ instruction.
+	 * 
+	 * @param instruction reference on the BEQ instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BeqInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BEQ instruction.
+	 * 
+	 * @param instruction reference on the BEQ instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BeqInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BGE instruction.
+	 * 
+	 * @param instruction reference on the BGE instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BgeInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BGE instruction.
+	 * 
+	 * @param instruction reference on the BGE instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BgeInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BGT instruction.
+	 * 
+	 * @param instruction reference on the BGT instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BgtInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BGT instruction.
+	 * 
+	 * @param instruction reference on the BGT instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BgtInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BHI instruction.
+	 * 
+	 * @param instruction reference on the BHI instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BhiInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BHI instruction.
+	 * 
+	 * @param instruction reference on the BHI instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BhiInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BHS instruction.
+	 * 
+	 * @param instruction reference on the BHS instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BhsInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BHS instruction.
+	 * 
+	 * @param instruction reference on the BHS instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BhsInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BLE instruction.
+	 * 
+	 * @param instruction reference on the BLE instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BleInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BLE instruction.
+	 * 
+	 * @param instruction reference on the BLE instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BleInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BLO instruction.
+	 * 
+	 * @param instruction reference on the BLO instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BloInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BLO instruction.
+	 * 
+	 * @param instruction reference on the BLO instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BloInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BLS instruction.
+	 * 
+	 * @param instruction reference on the BLS instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BlsInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BLS instruction.
+	 * 
+	 * @param instruction reference on the BLS instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BlsInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BLT instruction.
+	 * 
+	 * @param instruction reference on the BLT instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BltInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BLT instruction.
+	 * 
+	 * @param instruction reference on the BLT instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BltInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BMI instruction.
+	 * 
+	 * @param instruction reference on the BMI instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BmiInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BMI instruction.
+	 * 
+	 * @param instruction reference on the BMI instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BmiInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BNE instruction.
+	 * 
+	 * @param instruction reference on the BNE instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BneInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BNE instruction.
+	 * 
+	 * @param instruction reference on the BNE instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BneInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BPL instruction.
+	 * 
+	 * @param instruction reference on the BPL instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BplInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BPL instruction.
+	 * 
+	 * @param instruction reference on the BPL instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BplInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BRA instruction.
+	 * 
+	 * @param instruction reference on the BRA instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BraInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BRA instruction.
+	 * 
+	 * @param instruction reference on the BRA instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BraInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BRN instruction.
+	 * 
+	 * @param instruction reference on the BRN instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BrnInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BRN instruction.
+	 * 
+	 * @param instruction reference on the BRN instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BrnInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BSR instruction.
+	 * 
+	 * @param instruction reference on the BSR instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BsrInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BSR instruction.
+	 * 
+	 * @param instruction reference on the BSR instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BsrInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BVC instruction.
+	 * 
+	 * @param instruction reference on the BVC instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BvcInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BVC instruction.
+	 * 
+	 * @param instruction reference on the BVC instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BvcInstruction instruction) {
+		return getComment((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the label associated to an BVS instruction.
+	 * 
+	 * @param instruction reference on the BVS instruction
+	 * @return value of the label, <b>null</b> if not found
+	 */
+	public static String getLabel(BvsInstruction instruction) {
+		return getLabel((InstructionLine)instruction.eContainer());
+	}
+
+	/**
+	 * Return the comment associated to an BVS instruction.
+	 * 
+	 * @param instruction reference on the BVS instruction
+	 * @return value of the comment, <b>null</b> if not found
+	 */
+	public static String getComment(BvsInstruction instruction) {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 

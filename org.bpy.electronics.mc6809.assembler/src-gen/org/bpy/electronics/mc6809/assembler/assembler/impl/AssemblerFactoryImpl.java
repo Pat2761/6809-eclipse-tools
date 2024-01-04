@@ -79,8 +79,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
       case AssemblerPackage.SWI_INSTRUCTION: return createSwiInstruction();
       case AssemblerPackage.SUBD_INSTRUCTION: return createSubdInstruction();
       case AssemblerPackage.SUB_INSTRUCTION: return createSubInstruction();
-      case AssemblerPackage.ST16_INSTRUCTION: return createSt16Instruction();
-      case AssemblerPackage.ST8_INSTRUCTION: return createSt8Instruction();
+      case AssemblerPackage.ST_INSTRUCTION: return createStInstruction();
       case AssemblerPackage.SEX_INSTRUCTION: return createSexInstruction();
       case AssemblerPackage.SBC_INSTRUCTION: return createSbcInstruction();
       case AssemblerPackage.RTS_INSTRUCTION: return createRtsInstruction();
@@ -398,22 +397,10 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
    * @generated
    */
   @Override
-  public St16Instruction createSt16Instruction()
+  public StInstruction createStInstruction()
   {
-    St16InstructionImpl st16Instruction = new St16InstructionImpl();
-    return st16Instruction;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public St8Instruction createSt8Instruction()
-  {
-    St8InstructionImpl st8Instruction = new St8InstructionImpl();
-    return st8Instruction;
+    StInstructionImpl stInstruction = new StInstructionImpl();
+    return stInstruction;
   }
 
   /**

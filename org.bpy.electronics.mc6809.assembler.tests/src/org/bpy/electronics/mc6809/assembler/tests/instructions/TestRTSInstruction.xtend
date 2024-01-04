@@ -30,6 +30,9 @@ import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
 import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRTSInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -45,7 +48,7 @@ class TestRTSInstruction {
 	def void testSimpleRTSWithExtraSpace() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
+			       ORG    		$8000
 			       RTS  
 		''')
 		Assert.assertNotNull(result)
@@ -57,7 +60,9 @@ class TestRTSInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RTS directive line", instructionLine.instruction instanceof RtsInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof RtsInstruction)
+		val RtsInstruction = instructionLine.instruction as RtsInstruction
+		Assert.assertEquals("Must be an RTS instruction", "RTS", RtsInstruction.instruction)
 	}
 	
 	/**
@@ -79,7 +84,9 @@ class TestRTSInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RTS directive line", instructionLine.instruction instanceof RtsInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof RtsInstruction)
+		val RtsInstruction = instructionLine.instruction as RtsInstruction
+		Assert.assertEquals("Must be an RTS instruction", "RTS", RtsInstruction.instruction)
 	}
 	
 	/**
@@ -89,7 +96,7 @@ class TestRTSInstruction {
 	def void testSimpleRTSWithExtraSpaceWithComment() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
+			       ORG    	$8000
 			       RTS  			; It is a comment 
 		''')
 		Assert.assertNotNull(result)
@@ -101,7 +108,9 @@ class TestRTSInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RTS directive line", instructionLine.instruction instanceof RtsInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof RtsInstruction)
+		val RtsInstruction = instructionLine.instruction as RtsInstruction
+		Assert.assertEquals("Must be an RTS instruction", "RTS", RtsInstruction.instruction)
 	}
 	
 	/**
@@ -123,7 +132,51 @@ class TestRTSInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RTS directive line", instructionLine.instruction instanceof RtsInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof RtsInstruction)
+		val RtsInstruction = instructionLine.instruction as RtsInstruction
+		Assert.assertEquals("Must be an RTS instruction", "RTS", RtsInstruction.instruction)
 	}
 	
+	/**
+	 * Check RTS instruction with duplicate label 
+	 */
+	@Test 
+	def void testRTSWithDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start		NOP
+					NOP    
+		Start      	RTS		  	
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.instructionLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Start is already defined"
+		)
+	}
+	
+	/**
+	 * Check RTS assembly instruction  
+	 */
+	@Test 
+	def void testRTSAssembly() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	RTS		  		    ; 39   RTS
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.currentPcValue)
+		val line = engine.getAssembledLine(2) as AssembledRTSInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode", 0x39, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 0, line.operand.length)
+		Assert.assertEquals("Check label", "Start" , line.label)
+		Assert.assertEquals("Check comment", "; 39   RTS" , line.comment)
+	}
 }

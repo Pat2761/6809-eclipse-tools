@@ -30,6 +30,9 @@ import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
 import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSWIInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -45,7 +48,7 @@ class TestSWIInstruction {
 	def void testSimpleSWIWithExtraSpace() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
+			       ORG    		$8000
 			       SWI  
 		''')
 		Assert.assertNotNull(result)
@@ -57,7 +60,9 @@ class TestSWIInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an SWI directive line", instructionLine.instruction instanceof SwiInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof SwiInstruction)
+		val SwiInstruction = instructionLine.instruction as SwiInstruction
+		Assert.assertEquals("Must be an SWI instruction", "SWI", SwiInstruction.instruction)
 	}
 	
 	/**
@@ -79,7 +84,9 @@ class TestSWIInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an SWI directive line", instructionLine.instruction instanceof SwiInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof SwiInstruction)
+		val SwiInstruction = instructionLine.instruction as SwiInstruction
+		Assert.assertEquals("Must be an SWI instruction", "SWI", SwiInstruction.instruction)
 	}
 	
 	/**
@@ -89,7 +96,7 @@ class TestSWIInstruction {
 	def void testSimpleSWIWithExtraSpaceWithComment() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
+			       ORG    	$8000
 			       SWI  			; It is a comment 
 		''')
 		Assert.assertNotNull(result)
@@ -101,7 +108,9 @@ class TestSWIInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an SWI directive line", instructionLine.instruction instanceof SwiInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof SwiInstruction)
+		val SwiInstruction = instructionLine.instruction as SwiInstruction
+		Assert.assertEquals("Must be an SWI instruction", "SWI", SwiInstruction.instruction)
 	}
 	
 	/**
@@ -123,7 +132,51 @@ class TestSWIInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an SWI directive line", instructionLine.instruction instanceof SwiInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof SwiInstruction)
+		val SwiInstruction = instructionLine.instruction as SwiInstruction
+		Assert.assertEquals("Must be an SWI instruction", "SWI", SwiInstruction.instruction)
 	}
 	
+	/**
+	 * Check SWI instruction with duplicate label 
+	 */
+	@Test 
+	def void testSWIWithDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start		NOP
+					NOP    
+		Start      	SWI		  	
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.instructionLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Start is already defined"
+		)
+	}
+	
+	/**
+	 * Check SWI assembly instruction  
+	 */
+	@Test 
+	def void testSWIAssembly() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	SWI		  		    ; 3F   SWI
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.currentPcValue)
+		val line = engine.getAssembledLine(2) as AssembledSWIInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode", 0x3F, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 0, line.operand.length)
+		Assert.assertEquals("Check label", "Start" , line.label)
+		Assert.assertEquals("Check comment", "; 3F   SWI" , line.comment)
+	}
 }

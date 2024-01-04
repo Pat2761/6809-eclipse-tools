@@ -81,11 +81,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLInstructio
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTIInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRTSInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSEXInstruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestST8Instruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestST16Instruction
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBDInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWIInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWI2Instruction
@@ -140,6 +136,33 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNEGAInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestNEGBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestROLBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestPULUInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestRORBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSBCBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTDInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTSInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTUInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTXInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSTYInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSUBBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTBInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTAInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBCCInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBCSInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBEQInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBGEInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBGTInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBHIInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBHSInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBLEInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBLOInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -183,16 +206,25 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORBInstructio
 	 TestASRBInstruction,
 	 TestASRInstruction,
 	 TestBCCInstruction,
+	 TestLBCCInstruction,
 	 TestBCSInstruction,
+	 TestLBCSInstruction,
 	 TestBEQInstruction,
+	 TestLBEQInstruction,
 	 TestBGEInstruction,
+	 TestLBGEInstruction,
 	 TestBGTInstruction,
+	 TestLBGTInstruction,
 	 TestBHIInstruction,
+	 TestLBHIInstruction,
 	 TestBHSInstruction,
+	 TestLBHSInstruction,
 	 TestBITAInstruction,
 	 TestBITBInstruction,
 	 TestBLEInstruction,
+	 TestLBLEInstruction,
 	 TestBLOInstruction,
+	 TestLBLOInstruction,
 	 TestBLSInstruction,
 	 TestBLTInstruction,
 	 TestBMIInstruction,
@@ -253,23 +285,36 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestORBInstructio
 	 TestORCCInstruction,
 	 TestPSHSInstruction,
 	 TestPSHUInstruction,
-//	 TestPULSInstruction,
-//	 TestPULUInstruction,
-//	 TestROLInstruction,
-//	 TestRORInstruction,
-//	 TestRTIInstruction,
-//	 TestRTSInstruction,
-//	 TestSBCInstruction,
-//	 TestSEXInstruction,
-//	 TestST8Instruction,
-//	 TestST16Instruction,
-//	 TestSUBInstruction,
-//	 TestSUBDInstruction,
-//	 TestSWIInstruction,
-//	 TestSWI2Instruction,
-//	 TestSWI3Instruction,
-//	 TestSYNCInstruction,
-//	 TestTFRInstruction,
+	 TestPULSInstruction,
+	 TestPULUInstruction,
+	 TestROLAInstruction,
+	 TestROLBInstruction,
+	 TestROLInstruction,
+	 TestRORAInstruction,
+	 TestRORBInstruction,
+	 TestRORInstruction,
+	 TestRTIInstruction,
+	 TestRTSInstruction,
+	 TestSBCAInstruction,
+	 TestSBCBInstruction,
+	 TestSEXInstruction,
+	 TestSTAInstruction,
+	 TestSTBInstruction,
+	 TestSTDInstruction,
+	 TestSTSInstruction,
+	 TestSTUInstruction,
+	 TestSTXInstruction,
+	 TestSTYInstruction,
+	 TestSUBAInstruction,
+	 TestSUBBInstruction,
+	 TestSUBDInstruction,
+	 TestSWIInstruction,
+	 TestSWI2Instruction,
+	 TestSWI3Instruction,
+	 TestSYNCInstruction,
+	 TestTFRInstruction,
+	 TestTSTAInstruction,
+	 TestTSTBInstruction,
 //	 TestTSTInstruction,
 	 
 	 /* Examples  */

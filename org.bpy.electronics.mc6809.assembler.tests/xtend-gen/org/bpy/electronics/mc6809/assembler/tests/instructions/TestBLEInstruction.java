@@ -18,11 +18,17 @@
 package org.bpy.electronics.mc6809.assembler.tests.instructions;
 
 import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BleInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBLEInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -88,45 +94,6 @@ public class TestBLEInstruction {
   }
 
   /**
-   * Check LBLE
-   */
-  @Test
-  public void testSimpleLBLEWithExtraSpace() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("; -----------------------------------------");
-      _builder.newLine();
-      _builder.append("\t        ");
-      _builder.append("ORG     \t$8000");
-      _builder.newLine();
-      _builder.append("Jump\t    ASLA");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ASLB");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("LBLE\t\tJump ");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
-      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final SourceLine line = result.getSourceLines().get(4);
-      EObject _lineContent = line.getLineContent();
-      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
-      EObject _lineContent_1 = line.getLineContent();
-      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
-      EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an BLE directive line", (_instruction instanceof BleInstruction));
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
    * Check BLE
    */
   @Test
@@ -145,45 +112,6 @@ public class TestBLEInstruction {
       _builder.newLine();
       _builder.append("\t\t\t");
       _builder.append("BLE\t\tJump");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
-      Assert.assertNotNull(result);
-      this._validationTestHelper.assertNoErrors(result);
-      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
-      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final SourceLine line = result.getSourceLines().get(4);
-      EObject _lineContent = line.getLineContent();
-      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
-      EObject _lineContent_1 = line.getLineContent();
-      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
-      EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an BLE directive line", (_instruction instanceof BleInstruction));
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  /**
-   * Check LBLE
-   */
-  @Test
-  public void testSimpleLBLEWithoutExtraSpace() {
-    try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("; -----------------------------------------");
-      _builder.newLine();
-      _builder.append("\t        ");
-      _builder.append("ORG     \t$8000");
-      _builder.newLine();
-      _builder.append("Jump\t    ASLA");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ASLB");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("LBLE\t\tJump");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -243,24 +171,89 @@ public class TestBLEInstruction {
   }
 
   /**
-   * Check LBLE
+   * Check BLE with duplicate label
    */
   @Test
-  public void testSimpleLBLEWithComment() {
+  public void testSimpleBLEWithDuplicateLabel() {
     try {
       StringConcatenation _builder = new StringConcatenation();
       _builder.append("; -----------------------------------------");
       _builder.newLine();
       _builder.append("\t        ");
-      _builder.append("ORG     \t$8000");
+      _builder.append("ORG     $8000");
       _builder.newLine();
-      _builder.append("Jump\t    ASLA");
-      _builder.newLine();
-      _builder.append("\t\t\t");
-      _builder.append("ASLB");
+      _builder.append("Jump\t    LDA\t\t#25");
       _builder.newLine();
       _builder.append("\t\t\t");
-      _builder.append("LBLE\t\tJump\t\t\t; My Branch comment");
+      _builder.append("NOP");
+      _builder.newLine();
+      _builder.append("Jump\t\tBLE\t\tJump\t\t; Jump=3FFF");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), 
+        AssemblerEngine.DUPLICATE_LABEL, 
+        "Label Jump is already defined");
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BLE with bad label
+   */
+  @Test
+  public void testSimpleBLEWithBadLabel() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8000");
+      _builder.newLine();
+      _builder.append("Jump1\t    LDA\t\t#25");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("NOP");
+      _builder.newLine();
+      _builder.append("Jump\t\tBLE\t\tJump2\t\t; Jump=3FFF");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBleInstruction(), 
+        InstructionValidator.MISSING_LABEL, 
+        "Label Jump2 isn\'t defined");
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BLE negative jump
+   */
+  @Test
+  public void testSimpleBLEWithNegativeJump() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8000");
+      _builder.newLine();
+      _builder.append("Jump\t    LDA\t\t#25");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("NOP");
+      _builder.newLine();
+      _builder.append("MyBanch\t\tBLE\t\tJump\t\t; ");
       _builder.newLine();
       final Model result = this.parseHelper.parse(_builder);
       Assert.assertNotNull(result);
@@ -269,13 +262,214 @@ public class TestBLEInstruction {
       StringConcatenation _builder_1 = new StringConcatenation();
       _builder_1.append("Unexpected errors: �errors.join(\", \")�");
       Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
-      final SourceLine line = result.getSourceLines().get(4);
-      EObject _lineContent = line.getLineContent();
-      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
-      EObject _lineContent_1 = line.getLineContent();
-      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
-      EObject _instruction = instructionLine.getInstruction();
-      Assert.assertTrue("Must be an BLE directive line", (_instruction instanceof BleInstruction));
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8005, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
+      final AssembledBLEInstruction line = ((AssembledBLEInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x2F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0xFB, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BLE positive jump
+   */
+  @Test
+  public void testSimpleBLEWithPositiveJump() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8000");
+      _builder.newLine();
+      _builder.append("MyBanch\t\tBLE\t\tJump\t\t; ");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("NOP");
+      _builder.newLine();
+      _builder.append("Jump\t\tRTS\t\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8004, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledBLEInstruction line = ((AssembledBLEInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x2F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x01, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BLE positive limit jump
+   */
+  @Test
+  public void testSimpleBLEWithPositiveLimitJump1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8000");
+      _builder.newLine();
+      _builder.append("MyBanch\t\tBLE\t\tJump\t\t; ");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG     $8081");
+      _builder.newLine();
+      _builder.append("Jump\t\tRTS\t\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledBLEInstruction line = ((AssembledBLEInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x2F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x7F, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BLE positive limit jump
+   */
+  @Test
+  public void testSimpleBLEWithPositiveLimitJump2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t        ");
+      _builder.append("ORG     $8000");
+      _builder.newLine();
+      _builder.append("MyBanch\t\tBLE\t\tJump\t\t; ");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG     $8082");
+      _builder.newLine();
+      _builder.append("Jump\t\tRTS\t\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getBleInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow error, you should use long branch");
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(2);
+      final AssembledBLEInstruction line = ((AssembledBLEInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BLE negative limit jump
+   */
+  @Test
+  public void testSimpleBLEWithNegativeLimitJump1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG\t\t$8002");
+      _builder.newLine();
+      _builder.append("JUMP\t\tRTS\t\t\t\t\t");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG\t\t$8080\t\t;");
+      _builder.newLine();
+      _builder.append("VVV\t\t\tBLE\t\tJUMP\t\t;\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
+      final AssembledBLEInstruction line = ((AssembledBLEInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x2F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0x80, line.getOperand()[0]);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check BLE negative limit jump
+   */
+  @Test
+  public void testSimpleBLEWithNegativeLimitJump2() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG\t\t$8001");
+      _builder.newLine();
+      _builder.append("JUMP\t\tRTS\t\t\t\t\t");
+      _builder.newLine();
+      _builder.append("\t\t\t");
+      _builder.append("ORG\t\t$8080\t\t;");
+      _builder.newLine();
+      _builder.append("VVV\t\t\tBLE\t\tJUMP\t\t;\t\t");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertError(result, 
+        AssemblerPackage.eINSTANCE.getBleInstruction(), 
+        AbstractInstructionAssemblyLine.OVERFLOW_ERROR, 
+        "Overflow error, you should use long branch");
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final AssemblerEngine engine = AssemblerEngine.getInstance();
+      Assert.assertEquals("Check PC counter", 0x8082, engine.getCurrentPcValue());
+      AbstractAssemblyLine _assembledLine = engine.getAssembledLine(4);
+      final AssembledBLEInstruction line = ((AssembledBLEInstruction) _assembledLine);
+      Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
+      Assert.assertEquals("Check opcode value", 0x3F, line.getOpcode()[0]);
+      Assert.assertEquals("Check operand length", 1, line.getOperand().length);
+      Assert.assertEquals("Check operand value", 0xFF, line.getOperand()[0]);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

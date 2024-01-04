@@ -30,6 +30,9 @@ import org.junit.Assert
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 import org.junit.Test
 import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRTIInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
@@ -45,7 +48,7 @@ class TestRTIInstruction {
 	def void testSimpleRTIWithExtraSpace() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
+			       ORG    		$8000
 			       RTI  
 		''')
 		Assert.assertNotNull(result)
@@ -57,7 +60,9 @@ class TestRTIInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RTI directive line", instructionLine.instruction instanceof RtiInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof RtiInstruction)
+		val RtiInstruction = instructionLine.instruction as RtiInstruction
+		Assert.assertEquals("Must be an RTI instruction", "RTI", RtiInstruction.instruction)
 	}
 	
 	/**
@@ -79,7 +84,9 @@ class TestRTIInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RTI directive line", instructionLine.instruction instanceof RtiInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof RtiInstruction)
+		val RtiInstruction = instructionLine.instruction as RtiInstruction
+		Assert.assertEquals("Must be an RTI instruction", "RTI", RtiInstruction.instruction)
 	}
 	
 	/**
@@ -89,7 +96,7 @@ class TestRTIInstruction {
 	def void testSimpleRTIWithExtraSpaceWithComment() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------
-			       ORG    $8000
+			       ORG    	$8000
 			       RTI  			; It is a comment 
 		''')
 		Assert.assertNotNull(result)
@@ -101,7 +108,9 @@ class TestRTIInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RTI directive line", instructionLine.instruction instanceof RtiInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof RtiInstruction)
+		val RtiInstruction = instructionLine.instruction as RtiInstruction
+		Assert.assertEquals("Must be an RTI instruction", "RTI", RtiInstruction.instruction)
 	}
 	
 	/**
@@ -123,7 +132,51 @@ class TestRTIInstruction {
 		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
 		
 		val instructionLine = line.lineContent as InstructionLine
-		Assert.assertTrue("Must be an RTI directive line", instructionLine.instruction instanceof RtiInstruction)
+		Assert.assertTrue("Must be an Lsr Accumulateur line", instructionLine.instruction instanceof RtiInstruction)
+		val RtiInstruction = instructionLine.instruction as RtiInstruction
+		Assert.assertEquals("Must be an RTI instruction", "RTI", RtiInstruction.instruction)
 	}
 	
+	/**
+	 * Check RTI instruction with duplicate label 
+	 */
+	@Test 
+	def void testRTIWithDuplicateLabel() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Const	   	EQU          	5
+		Start		NOP
+					NOP    
+		Start      	RTI		  	
+		''')
+		Assert.assertNotNull(result)
+		result.assertError(AssemblerPackage.eINSTANCE.instructionLine,
+			AssemblerEngine::DUPLICATE_LABEL,
+			"Label Start is already defined"
+		)
+	}
+	
+	/**
+	 * Check RTI assembly instruction  
+	 */
+	@Test 
+	def void testRTIAssembly() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+				   	ORG    			$8000
+		Start      	RTI		  		    ; 3B   RTI
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		
+		val engine = AssemblerEngine.instance
+		Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.currentPcValue)
+		val line = engine.getAssembledLine(2) as AssembledRTIInstruction
+		Assert.assertEquals("Check opcode length", 1, line.opcode.length)
+		Assert.assertEquals("Check opcode", 0x3B, line.opcode.get(0))
+		Assert.assertEquals("Check operand length", 0, line.operand.length)
+		Assert.assertEquals("Check label", "Start" , line.label)
+		Assert.assertEquals("Check comment", "; 3B   RTI" , line.comment)
+	}
 }

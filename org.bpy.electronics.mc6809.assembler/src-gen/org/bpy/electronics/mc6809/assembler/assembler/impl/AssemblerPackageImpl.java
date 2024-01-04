@@ -121,8 +121,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.St16Instruction;
-import org.bpy.electronics.mc6809.assembler.assembler.St8Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
@@ -247,14 +246,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass st16InstructionEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass st8InstructionEClass = null;
+  private EClass stInstructionEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1496,9 +1488,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EClass getSt16Instruction()
+  public EClass getStInstruction()
   {
-    return st16InstructionEClass;
+    return stInstructionEClass;
   }
 
   /**
@@ -1507,9 +1499,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getSt16Instruction_Instruction()
+  public EAttribute getStInstruction_Instruction()
   {
-    return (EAttribute)st16InstructionEClass.getEStructuralFeatures().get(0);
+    return (EAttribute)stInstructionEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -1518,42 +1510,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getSt16Instruction_Operand()
+  public EReference getStInstruction_Operand()
   {
-    return (EReference)st16InstructionEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EClass getSt8Instruction()
-  {
-    return st8InstructionEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EAttribute getSt8Instruction_Instruction()
-  {
-    return (EAttribute)st8InstructionEClass.getEStructuralFeatures().get(0);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public EReference getSt8Instruction_Operand()
-  {
-    return (EReference)st8InstructionEClass.getEStructuralFeatures().get(1);
+    return (EReference)stInstructionEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5297,13 +5256,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEAttribute(subInstructionEClass, SUB_INSTRUCTION__INSTRUCTION);
     createEReference(subInstructionEClass, SUB_INSTRUCTION__OPERAND);
 
-    st16InstructionEClass = createEClass(ST16_INSTRUCTION);
-    createEAttribute(st16InstructionEClass, ST16_INSTRUCTION__INSTRUCTION);
-    createEReference(st16InstructionEClass, ST16_INSTRUCTION__OPERAND);
-
-    st8InstructionEClass = createEClass(ST8_INSTRUCTION);
-    createEAttribute(st8InstructionEClass, ST8_INSTRUCTION__INSTRUCTION);
-    createEReference(st8InstructionEClass, ST8_INSTRUCTION__OPERAND);
+    stInstructionEClass = createEClass(ST_INSTRUCTION);
+    createEAttribute(stInstructionEClass, ST_INSTRUCTION__INSTRUCTION);
+    createEReference(stInstructionEClass, ST_INSTRUCTION__OPERAND);
 
     sexInstructionEClass = createEClass(SEX_INSTRUCTION);
     createEAttribute(sexInstructionEClass, SEX_INSTRUCTION__INSTRUCTION);
@@ -5842,13 +5797,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getSubInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, SubInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getSubInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, SubInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(st16InstructionEClass, St16Instruction.class, "St16Instruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSt16Instruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, St16Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSt16Instruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, St16Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(st8InstructionEClass, St8Instruction.class, "St8Instruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getSt8Instruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, St8Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSt8Instruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, St8Instruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(stInstructionEClass, StInstruction.class, "StInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, StInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getStInstruction_Operand(), ecorePackage.getEObject(), null, "operand", null, 0, 1, StInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(sexInstructionEClass, SexInstruction.class, "SexInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getSexInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, SexInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -6131,7 +6082,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(relativeModeEClass, RelativeMode.class, "RelativeMode", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRelativeMode_IsPcRelative(), ecorePackage.getEBoolean(), "isPcRelative", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getRelativeMode_Offset(), this.getExpression(), null, "offset", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getRelativeMode_Offset(), this.getIdentifierValue(), null, "offset", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDirectiveLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
