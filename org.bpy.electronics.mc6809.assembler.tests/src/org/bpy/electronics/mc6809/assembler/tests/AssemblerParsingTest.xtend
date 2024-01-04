@@ -170,6 +170,8 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBPLInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBRAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBRNInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBSRInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBVCInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBVSInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
@@ -249,7 +251,9 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBSRInstructi
 	 TestBSRInstruction,
 	 TestLBSRInstruction,
 	 TestBVCInstruction,
+	 TestLBVCInstruction,
 	 TestBVSInstruction,
+	 TestLBVSInstruction,
 	 TestCLRAInstruction,
 	 TestCLRBInstruction,
 	 TestCLRInstruction,
