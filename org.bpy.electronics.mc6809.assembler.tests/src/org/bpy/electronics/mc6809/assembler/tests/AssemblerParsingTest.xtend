@@ -226,6 +226,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBLOInstructi
 	 TestBLOInstruction,
 	 TestLBLOInstruction,
 	 TestBLSInstruction,
+	 TestLBLOInstruction,
 	 TestBLTInstruction,
 	 TestBMIInstruction,
 	 TestBNEInstruction,
