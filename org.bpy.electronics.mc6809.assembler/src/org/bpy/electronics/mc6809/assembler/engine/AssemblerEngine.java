@@ -51,6 +51,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.BmiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BneInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BplInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BraInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
@@ -336,7 +338,91 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BraInstruction) {
 			parsePass2((BraInstruction)instructionLine.getInstruction());
 
+		} else if (instructionLine.getInstruction() instanceof BrnInstruction) {
+			parsePass2((BrnInstruction)instructionLine.getInstruction());
+
+		} else if (instructionLine.getInstruction() instanceof BsrInstruction) {
+			parsePass2((BsrInstruction)instructionLine.getInstruction());
+
 		}		
+	}
+
+	/**
+	 * Second step of the assembly of a BSR Instruction. 
+	 * Compute the jump 
+	 * 
+	 * @param instruction reference on the EMF instruction
+	 */
+	private void parsePass2(BsrInstruction instruction) {
+		String label = instruction.getOperand().getOffset().getValue();
+		if (label != null) {
+			
+			AbstractAssemblyLine targetLine = labelsPositionObject.get(label);
+			if (targetLine != null) {
+				
+				if ("BSR".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.BYTE_MODE,
+							AssemblerPackage.Literals.BSR_INSTRUCTION__OPERAND
+							);
+
+				} else if ("LBSR".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.WORD_MODE,
+							AssemblerPackage.Literals.BSR_INSTRUCTION__OPERAND
+							);
+
+				}
+			} else {
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+						AssemblerPackage.Literals.BSR_INSTRUCTION__OPERAND,
+						InstructionValidator.MISSING_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+			}
+		}
+	}
+
+	/**
+	 * Second step of the assembly of a BRN Instruction. 
+	 * Compute the jump 
+	 * 
+	 * @param instruction reference on the EMF instruction
+	 */
+	private void parsePass2(BrnInstruction instruction) {
+		String label = instruction.getOperand().getOffset().getValue();
+		if (label != null) {
+			
+			AbstractAssemblyLine targetLine = labelsPositionObject.get(label);
+			if (targetLine != null) {
+				
+				if ("BRN".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.BYTE_MODE,
+							AssemblerPackage.Literals.BRN_INSTRUCTION__OPERAND
+							);
+
+				} else if ("LBRN".equals(instruction.getInstruction())) {
+					
+					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
+					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
+							AbstractRelativeBranchInstruction.WORD_MODE,
+							AssemblerPackage.Literals.BRN_INSTRUCTION__OPERAND
+							);
+
+				}
+			} else {
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+						AssemblerPackage.Literals.BRN_INSTRUCTION__OPERAND,
+						InstructionValidator.MISSING_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+			}
+		}
 	}
 
 	/**
@@ -1120,9 +1206,71 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BraInstruction) {
 			parsePass1((BraInstruction)instructionLine.getInstruction());
 			
+		} else if (instructionLine.getInstruction() instanceof BrnInstruction) {
+			parsePass1((BrnInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof BsrInstruction) {
+			parsePass1((BsrInstruction)instructionLine.getInstruction());
+			
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
 		}
+	}
+
+	/**	
+	 * Parse the BSR instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parsePass1(BsrInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("BSR".equals(instruction.getInstruction())) {
+			line = new AssembledBSRInstruction();
+			((AssembledBSRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 2;
+		} else if ("LBSR".equals(instruction.getInstruction())) {
+			line = new AssembledLBSRInstruction();
+			((AssembledLBSRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 3;
+		} else {
+			// not possible
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+	}
+
+	/**	
+	 * Parse the BRN instruction.
+	 * 
+	 * @param instruction reference of the instruction
+	 */
+	private void parsePass1(BrnInstruction instruction) {
+		AbstractAssemblyLine line=null;
+
+		if ("BRN".equals(instruction.getInstruction())) {
+			line = new AssembledBRNInstruction();
+			((AssembledBRNInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 2;
+		} else if ("LBRN".equals(instruction.getInstruction())) {
+			line = new AssembledLBRNInstruction();
+			((AssembledLBRNInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			currentPcValue += 4;
+		} else {
+			// not possible
+		}
+
+		assemblyLines.add(line);
+		assembledLinesMap.put(instruction, line);
+		
+		registerLabelPosition(line, 
+				instruction.eContainer(),
+				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
 	}
 
 	/**	
