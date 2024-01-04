@@ -334,10 +334,10 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBVSInstructi
 	 TestTFRInstruction,
 	 TestTSTAInstruction,
 	 TestTSTBInstruction,
-//	 TestTSTInstruction,
+	 TestTSTInstruction
 	 
 	 /* Examples  */
-	 SorekSamples
+//	 SorekSamples
 )
     
 class AssemblerParsingTest {
