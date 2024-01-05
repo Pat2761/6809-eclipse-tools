@@ -51,6 +51,32 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		spinner.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
 		spinner.setMaximum(10);
 		spinner.setMinimum(1);
+		new Label(container, SWT.NONE);
+		new Label(container, SWT.NONE);
+		
+		Label lblLabelSize = new Label(container, SWT.NONE);
+		lblLabelSize.setText("Label size");
+		
+		Spinner spinner_1 = new Spinner(container, SWT.BORDER);
+		spinner_1.setMaximum(15);
+		spinner_1.setMinimum(5);
+		spinner_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		
+		Label lblOperandSize = new Label(container, SWT.NONE);
+		lblOperandSize.setText("Instruction size");
+		
+		Spinner spinner_1_1 = new Spinner(container, SWT.BORDER);
+		spinner_1_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		spinner_1_1.setMaximum(10);
+		spinner_1_1.setMinimum(6);
+		
+		Label lblOperandSize_1 = new Label(container, SWT.NONE);
+		lblOperandSize_1.setText("Operand size");
+		
+		Spinner spinner_1_1_1 = new Spinner(container, SWT.BORDER);
+		spinner_1_1_1.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1));
+		spinner_1_1_1.setMaximum(40);
+		spinner_1_1_1.setMinimum(15);
 
 		return container;
 	}
