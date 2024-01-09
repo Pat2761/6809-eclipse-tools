@@ -83,19 +83,24 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		operandSize.setMaximum(40);
 		operandSize.setMinimum(15);
 
-		String value = PreferenceManager.getInstance().getStringPreferenceValue(PreferenceManager.TAB_POLICY);
 		tabPolicy.setText(PreferenceManager.getInstance().getStringPreferenceValue(PreferenceManager.TAB_POLICY));
 		tabSize.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.TAB_SIZE));
-		tabSize.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.LABEL_SIZE));
-		tabSize.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.INSTRUCTION_SIZE));
-		tabSize.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.OPERAND_SIZE));
+		labelSize.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.LABEL_SIZE));
+		instructionSize.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.INSTRUCTION_SIZE));
+		operandSize.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.OPERAND_SIZE));
 
 		return container;
 	}
 
 	@Override
 	protected void performApply() {
-		PreferenceManager.getInstance().savePreference(PreferenceManager.TAB_POLICY, tabPolicy.getText());
+//		PreferenceManager.getInstance().savePreference(PreferenceManager.TAB_POLICY, tabPolicy.getText());
+	}
+
+	@Override
+	protected void performDefaults() {
+		// TODO Auto-generated method stub
+		super.performDefaults();
 	}
 
 	/**

@@ -3,6 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: MC6809 Eclipse Toolkit
 Bundle-SymbolicName: org.bpy.electronics.mc6809.rcp;singleton:=true
 Bundle-Version: 1.0.0.qualifier
+Export-Package: org.bpy.electronics.mc6809.rcp.preferences
 Bundle-Activator: org.bpy.electronics.mc6809.rcp.Activator
 Bundle-Vendor: Patrick BRIAND
 Require-Bundle: javax.inject;bundle-version="0.0.0",

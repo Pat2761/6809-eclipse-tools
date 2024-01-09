@@ -39,7 +39,6 @@
 	<modules>
 		<module>./parent</module>
 		<module>../org.bpy.electronics.mc6809.target</module>  
-		<module>../org.bpy.electronics.mc6809.rcp</module>
 		<module>../org.bpy.electronics.mc6809.feature</module>
 		<module>../org.bpy.electronics.mc6809.assembler</module>
 		<module>../org.bpy.electronics.mc6809.assembler.ide</module>
@@ -48,6 +47,8 @@
 		<module>../org.bpy.electronics.mc6809.assembler.ui.tests</module>
 		<!-- <module>../org.bpy.electronics.mc6809.assembler.engine</module>
 		<module>../org.bpy.electronics.mc6809.assembler.engine.tests</module>-->
+		<module>../org.bpy.electronics.mc6809.rcp</module>
+		<module>../org.bpy.electronics.mc6809.rcp.tests</module>
 		<module>../org.bpy.electronics.mc6809.help</module>
 	</modules>
 	

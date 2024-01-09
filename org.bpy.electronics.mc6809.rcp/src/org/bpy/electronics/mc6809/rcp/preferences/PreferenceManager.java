@@ -18,16 +18,10 @@
  */
 package org.bpy.electronics.mc6809.rcp.preferences;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.osgi.service.prefs.Preferences;
+import org.bpy.electronics.mc6809.rcp.Activator;
+import org.eclipse.jface.preference.IPreferenceStore;
 
 public class PreferenceManager {
-	private static final String PREFERENCE_NAME = "org.bpy.electronics.mc6809.application"; //$NON-NLS-1$
-
 	public static final String TAB_POLICY = "tabPolicy";
 	public static final String TAB_ONLY = "Tab only";
 	public static final String SPACE_ONLY = "Space only";
@@ -39,12 +33,8 @@ public class PreferenceManager {
 	public static final String OPERAND_SIZE = "operandSize";
 	
 	public static PreferenceManager eInstance;
-	
-	private Map<String,Object> preferenceValues;
-	
+
 	private PreferenceManager() {
-		preferenceValues = new HashMap<>();
-		initializePreferences();
 	}
 	
 	public static PreferenceManager getInstance() {
@@ -54,61 +44,23 @@ public class PreferenceManager {
 		return eInstance;
 	}
 	
-	private void initializePreferences() {
-		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(PREFERENCE_NAME);
-		
-		readStringPreferenceValue(preferences, TAB_POLICY,SPACE_ONLY);
-		readIntPreferenceValue(preferences, TAB_SIZE,"3");
-		readIntPreferenceValue(preferences, LABEL_SIZE,"15");
-		readIntPreferenceValue(preferences, INSTRUCTION_SIZE,"6");
-		readIntPreferenceValue(preferences, OPERAND_SIZE,"18");
+	public String getStringPreferenceValue(String key) {
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		return store.getString(key); 
 	}
 
-	public String getStringPreferenceValue(String key) {
-		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(PREFERENCE_NAME);
-		Preferences prefValue = preferences.node(key);
-		return prefValue.get(key, "");
+	public void setPreferenceValue(String key, String value) {
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		store.setValue(key, value); 
 	}
 
 	public int getIntPreferenceValue(String key) {
-		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(PREFERENCE_NAME);
-		Preferences prefValue = preferences.node(key);
-		String strVal = prefValue.get(key, "0");
-		return Integer.parseInt(strVal);
-	}
-	
-	public void savePreference(String key, String value) {
-		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(PREFERENCE_NAME);
-		Preferences node = preferences.node(key);
-		node.put(key, value);
-		preferenceValues.put(key, value);
-	}
-	
-	public void savePreference(String key, int value) {
-		IEclipsePreferences preferences = InstanceScope.INSTANCE.getNode(PREFERENCE_NAME);
-		preferences.put(key, "" + value);
-		preferenceValues.put(key, "" + value);
-	}
-	
-	private void readStringPreferenceValue(IEclipsePreferences preferences, String key, String defaultValue) {
-		Preferences prefValue = preferences.node(key);
-		if (prefValue == null) {
-			preferences.put(key, defaultValue);
-		}
-		preferenceValues.put(key, prefValue.get(key, defaultValue));
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		return store.getInt(key); 
 	}
 
-	private void readIntPreferenceValue(IEclipsePreferences preferences, String key, String defaultValue) {
-		Preferences prefValue = preferences.node(key);
-		if (prefValue == null) {
-			preferences.put(key, defaultValue);
-		}
-		try {
-			int value = Integer.parseInt(prefValue.get(key, defaultValue));
-			preferenceValues.put(key, value);
-		} catch(NumberFormatException ex) {
-			// nothing to do
-		}
+	public void setPreferenceValue(String key, int value) {
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		store.setValue(key, value); 
 	}
-	
 }
