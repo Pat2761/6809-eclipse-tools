@@ -1,6 +1,6 @@
 package org.bpy.electronics.mc6809.rcp;
 
-import org.bpy.electronics.mc6809.rcp.preferences.PreferenceManager;
+import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;

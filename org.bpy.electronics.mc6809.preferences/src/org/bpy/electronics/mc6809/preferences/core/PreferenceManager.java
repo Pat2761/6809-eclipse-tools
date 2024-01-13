@@ -16,12 +16,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package org.bpy.electronics.mc6809.rcp.preferences;
+package org.bpy.electronics.mc6809.preferences.core;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bpy.electronics.mc6809.rcp.Activator;
+import org.bpy.electronics.mc6809.preferences.Activator;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.osgi.service.prefs.BackingStoreException;

@@ -45,25 +45,5 @@
          </run>
       </runtime>
    </extension>
-   <extension
-         point="org.eclipse.ui.preferencePages">
-      <page
-            class="org.bpy.electronics.mc6809.rcp.preferences.MainPreferencePage"
-            id="org.bpy.electronics.mc6809.rcp.mainpage"
-            name="6809 toolkit">
-      </page>
-      <page
-            category="org.bpy.electronics.mc6809.rcp.mainpage"
-            class="org.bpy.electronics.mc6809.rcp.preferences.FormattingPreferences"
-            id="org.bpy.electronics.mc6809.rcp.preference.formatting"
-            name="Formatting">
-      </page>
-   </extension>
-   <extension
-         point="org.eclipse.core.runtime.preferences">
-      <initializer
-            class="org.bpy.electronics.mc6809.rcp.preferences.PreferenceInitializer">
-      </initializer>
-   </extension>
 
 </plugin>

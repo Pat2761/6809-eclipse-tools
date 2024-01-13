@@ -16,8 +16,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package org.bpy.electronics.mc6809.rcp.preferences;
+package org.bpy.electronics.mc6809.preferences.ui;
 
+import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;

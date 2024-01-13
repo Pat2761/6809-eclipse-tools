@@ -1,6 +1,6 @@
 package org.bpy.electronics.mc6809.rcp.tests;
 
-import org.bpy.electronics.mc6809.rcp.preferences.PreferenceManager;
+import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 import org.junit.Assert;
 import org.junit.FixMethodOrder;
 import org.junit.runners.MethodSorters;

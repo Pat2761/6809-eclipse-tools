@@ -1,4 +1,4 @@
-package org.bpy.electronics.mc6809.rcp.preferences;
+package org.bpy.electronics.mc6809.preferences.ui;
 
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.jface.resource.ImageDescriptor;

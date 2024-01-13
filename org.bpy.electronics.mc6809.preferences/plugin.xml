@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.bpy.electronics.mc6809.preferences.core.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="org.bpy.electronics.mc6809.preferences.ui.MainPreferencePage"
+            id="org.bpy.electronics.mc6809.preferences.mainpage"
+            name="6809 toolkit">
+      </page>
+      <page
+            category="org.bpy.electronics.mc6809.preferences.mainpage"
+            class="org.bpy.electronics.mc6809.preferences.ui.FormattingPreferences"
+            id="org.bpy.electronics.mc6809.rcp.preference.formatting"
+            name="Formatter">
+      </page>
+   </extension>
+
+</plugin>

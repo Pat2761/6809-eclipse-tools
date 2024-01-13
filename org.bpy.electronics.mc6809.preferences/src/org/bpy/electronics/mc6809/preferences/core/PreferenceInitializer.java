@@ -1,6 +1,6 @@
-package org.bpy.electronics.mc6809.rcp.preferences;
+package org.bpy.electronics.mc6809.preferences.core;
 
-import org.bpy.electronics.mc6809.rcp.Activator;
+import org.bpy.electronics.mc6809.preferences.Activator;
 import org.eclipse.core.internal.preferences.InstancePreferences;
 import org.eclipse.core.runtime.preferences.AbstractPreferenceInitializer;
 import org.eclipse.core.runtime.preferences.InstanceScope;
