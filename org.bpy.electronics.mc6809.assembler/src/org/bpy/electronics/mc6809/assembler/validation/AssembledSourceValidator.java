@@ -3,13 +3,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.validation;
 
-import java.util.List;
 
-import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.BinaryValue;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
-import org.bpy.electronics.mc6809.assembler.assembler.OctalValue;
-import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.ComposedChecks;
 

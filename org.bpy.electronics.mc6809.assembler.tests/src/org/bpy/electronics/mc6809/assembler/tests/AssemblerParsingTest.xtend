@@ -89,8 +89,6 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSWI3Instructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestSYNCInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTFRInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestTSTInstruction
-import org.bpy.electronics.mc6809.assembler.tests.samples.SorekSamples
-import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADCAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.directives.TestSetDPDirective
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADDBInstruction
@@ -172,6 +170,7 @@ import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBRNInstructi
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBSRInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBVCInstruction
 import org.bpy.electronics.mc6809.assembler.tests.instructions.TestLBVSInstruction
+import org.bpy.electronics.mc6809.assembler.tests.instructions.TestADCAInstruction
 
 @RunWith(Suite)
 @Suite.SuiteClasses(

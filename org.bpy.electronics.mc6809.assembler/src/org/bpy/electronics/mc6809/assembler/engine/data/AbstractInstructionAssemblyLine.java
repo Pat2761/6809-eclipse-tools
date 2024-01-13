@@ -20,7 +20,6 @@ package org.bpy.electronics.mc6809.assembler.engine.data;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
-import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
 import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
@@ -448,7 +447,6 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	}
 
 	protected void setRelatifToPCMode(EObject instruction, RelatifToPCMode mode, EReference eReference) {
-		int postByte = 0;
 		int offset = 0;
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
@@ -481,7 +479,6 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	}
 
 	protected void setRelatifToPCIndirectMode(EObject instruction, RelatifToPCIndirectMode mode, EReference eReference) {
-		int postByte = 0;
 		int offset = 0;
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 

@@ -22,7 +22,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
-import org.eclipse.emf.common.util.EList;
 
 /**
  * Used to store information about REG directive

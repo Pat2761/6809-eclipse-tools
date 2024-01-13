@@ -37,7 +37,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCWAIInstruction
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator
 
 @RunWith(XtextRunner)

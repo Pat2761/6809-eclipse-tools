@@ -50,7 +50,6 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledJM
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator
-import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)

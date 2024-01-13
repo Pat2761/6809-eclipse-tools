@@ -2,6 +2,7 @@ package org.bpy.electronics.mc6809.assembler.engine.tests.directives;
 
 import com.google.inject.Inject;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
@@ -13,8 +14,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-@RunWith(XtextRunner.class)/* 
-@InjectWith(_AssemblerInjectorProvider) */
+@RunWith(XtextRunner.class)
+@InjectWith(AssemblerInjectorProvider.class)
 @SuppressWarnings("all")
 public class OrgDirectiveTest {
   @Inject

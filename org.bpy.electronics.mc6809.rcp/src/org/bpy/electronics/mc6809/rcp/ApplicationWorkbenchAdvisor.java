@@ -2,10 +2,7 @@ package org.bpy.electronics.mc6809.rcp;
 
 import java.net.URL;
 
-import org.bpy.electronics.mc6809.rcp.preferences.PreferenceManager;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.preferences.IEclipsePreferences;
-import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.application.IWorkbenchConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;

@@ -59,5 +59,11 @@
             name="Formatting">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.bpy.electronics.mc6809.rcp.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
 
 </plugin>

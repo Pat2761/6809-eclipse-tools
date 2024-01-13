@@ -40,7 +40,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledBszDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFcbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFdbDirectiveLine;

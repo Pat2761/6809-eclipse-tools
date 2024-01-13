@@ -18,13 +18,9 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
 /**
  * Used to store information about FCC directive
