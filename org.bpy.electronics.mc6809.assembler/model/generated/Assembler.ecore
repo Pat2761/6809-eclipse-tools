@@ -18,11 +18,15 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="InstructionLine">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//Label"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="instruction" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Label">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TstInstruction">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="instruction" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -409,7 +413,7 @@
         containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DirectiveLine">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="name" eType="#//IdentifierValue"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//Label"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="directive" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>

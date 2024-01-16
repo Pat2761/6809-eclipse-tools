@@ -21,65 +21,7 @@
         </children>
       </children>
     </children>
-    <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu">
-      <children xsi:type="menu:Menu" xmi:id="_6wlLisgZEeSyMNYR5xypkQ" elementId="file" label="File">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_XnOzAFO5Ee6ggawT6I3rHw" elementId="org.bpy.electronics.mc6809.rcp.file.new" label="New" command="_z9CncFO4Ee6ggawT6I3rHw"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLi8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.file.open" label="Open" iconURI="platform:/plugin/org.bpy.electronics.mc6809.rcp/icons/open_in_app.png" command="_6wlLgMgZEeSyMNYR5xypkQ"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_G6wHMFSAEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.openprojectfromfilesystem" label="Open project from file system" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/etool16/importdir_wiz.png" command="_RGBd0FR_Ee6TPtBXK_y6xg"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_J_yTkFSCEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.recentfiles" label="Recent files" command="_C32nkFSCEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_6dDbAFO8Ee6ggawT6I3rHw" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.0"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_M4BPgFSDEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.closeeditor" label="Close editor" command="__LVdEFSCEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_wv7uAFSDEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.closealleditors" label="Close all editors" command="_l-KNgFSDEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_5G6nEFSDEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.1"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_NxicAFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.save" label="Save" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/save_edit.png" command="_GbbKEFSEEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_gan3AFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.saveas" label="Save as" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/saveas_edit.png" command="_X6uSgFSEEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_yz1qAFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.saveall" label="Save all" iconURI="platform:/plugin/org.eclipse.ui/icons/full/dtool16/saveall_edit.png" command="_tjOsAFSEEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_EIPxEFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.3"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_FGpTAFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.rename" label="Rename" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/editor_area.png" command="_56eVgFSEEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_c15WkFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.refresh" label="Refresh" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/elcl16/refresh_nav.png" command="_XPiLAFSFEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_WQN4gFSEEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.2"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_x9bJ8FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.import" label="Import" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/import_wiz.png" command="_ro6e8FSFEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_9_Ou8FSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.export" label="Export" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/etool16/export_wiz.png" command="_4_tg8FSFEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_qfnUkFSFEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.4"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_OcFi8FSGEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.properties" label="Properties" command="_KWe_gFSGEe6TPtBXK_y6xg"/>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_JeUocFSGEe6TPtBXK_y6xg" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.5"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLjcgZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.quit" label="Exit" command="_6wlLfMgZEeSyMNYR5xypkQ"/>
-      </children>
-      <children xsi:type="menu:Menu" xmi:id="_Q_aj4FSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menu.edit" label="Edit">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_bA7FEFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.undo" label="Undo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/undo_edit.png" command="_VhqAAFSdEe6mOd8G26vrew"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_qdAYkFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.redo" label="Redo" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/redo_edit.png" command="_mMygkFSdEe6mOd8G26vrew"/>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_uk0igFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.6"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_8OdoAFSdEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.cut" label="Cut" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/cut_edit.png" command="_xvPQEFSdEe6mOd8G26vrew"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_GEt7cFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.copy" label="Copy" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/copy_edit.png" command="_BE-rAFSeEe6mOd8G26vrew"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_P9f-cFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.paste" label="Paste" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/paste_edit.png" command="_LAWvAFSeEe6mOd8G26vrew"/>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_VkPkgFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.7"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_bQPeAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.delete" label="Delete" iconURI="platform:/plugin/org.eclipse.ui/icons/full/obj16/delete_obj.png" command="_WYMxAFSeEe6mOd8G26vrew"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_lqIqAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.selectall" label="Select all" command="_gy2yAFSeEe6mOd8G26vrew"/>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_pH2HAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.8"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_xvmnAFSeEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.findreplace" label="Find/Replace" command="_p68-8FSeEe6mOd8G26vrew"/>
-      </children>
-      <children xsi:type="menu:Menu" xmi:id="_Nuc3gFSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menu.search" label="Search">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_h01W8FSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.search" label="Search" iconURI="platform:/plugin/org.eclipse.ui.ide/icons/full/etool16/search_src.png" command="_cFkHAFSfEe6mOd8G26vrew"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_u6io8FSfEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.searchfile" label="Search file" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/help_search.png" command="_pKCp8FSfEe6mOd8G26vrew"/>
-      </children>
-      <children xsi:type="menu:Menu" xmi:id="_M35NgFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menu.window" label="Window">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_WLXkAFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.showview" label="Show view" command="_RB2FcFSgEe6mOd8G26vrew"/>
-        <children xsi:type="menu:Menu" xmi:id="_bUG_cFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menu.perspective" label="Perspective">
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_0pghcFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.openperspective" label="Open perspective" command="_tvJ-cFSgEe6mOd8G26vrew"/>
-          <children xsi:type="menu:MenuSeparator" xmi:id="_AZ60cFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.10"/>
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_loNsgFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.resetperspective" label="Reset perspective" command="_gHCi8FSgEe6mOd8G26vrew"/>
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_Idvg8FShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.closeperspective" label="Close perspective" command="_DMcmcFShEe6mOd8G26vrew"/>
-          <children xsi:type="menu:HandledMenuItem" xmi:id="_SDTF8FShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.closeallperspectives" label="Close all perspectives" command="_M0mMcFShEe6mOd8G26vrew"/>
-        </children>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_XrBjcFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.11"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_dm0McFShEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.preferences" label="Preferences" command="_Yzb9AFShEe6mOd8G26vrew"/>
-      </children>
-      <children xsi:type="menu:Menu" xmi:id="_6wlLjsgZEeSyMNYR5xypkQ" elementId="help" label="Help">
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_DLnVcFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.handledmenuitem.helpcontent" label="Help content" iconURI="platform:/plugin/org.eclipse.ui/icons/full/etool16/help_contents.png" command="_7238gFSfEe6mOd8G26vrew"/>
-        <children xsi:type="menu:MenuSeparator" xmi:id="_LEAOAFSgEe6mOd8G26vrew" elementId="org.bpy.electronics.mc6809.rcp.menuseparator.9"/>
-        <children xsi:type="menu:HandledMenuItem" xmi:id="_6wlLj8gZEeSyMNYR5xypkQ" elementId="org.bpy.electronics.mc6809.rcp.handleditem.about" label="About" command="_6wlLhsgZEeSyMNYR5xypkQ"/>
-      </children>
-    </mainMenu>
+    <mainMenu xmi:id="_6wlLicgZEeSyMNYR5xypkQ" elementId="org.eclipse.ui.main.menu"/>
     <sharedElements xsi:type="basic:Part" xmi:id="_uw5FEFIrEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.navigator.ProjectExplorer" contributionURI="bundleclass://org.eclipse.ui.workbench/org.eclipse.ui.internal.e4.compatibility.CompatibilityView" label="Project Explorer" iconURI="platform:/plugin/org.eclipse.ui/icons/full/eview16/filenav_nav.png">
       <menus xmi:id="_Pt5NcFIzEe6eVsmWy5WKeQ" elementId="org.eclipse.ui.navigator.ProjectExplorer">
         <tags>ViewMenu</tags>

@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getName <em>Name</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getLabel <em>Label</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getInstruction <em>Instruction</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getComment <em>Comment</em>}</li>
  * </ul>
@@ -26,26 +26,26 @@ import org.eclipse.emf.ecore.EObject;
 public interface InstructionLine extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Name</b></em>' containment reference.
+   * Returns the value of the '<em><b>Label</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Name</em>' containment reference.
-   * @see #setName(IdentifierValue)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getInstructionLine_Name()
+   * @return the value of the '<em>Label</em>' containment reference.
+   * @see #setLabel(Label)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getInstructionLine_Label()
    * @model containment="true"
    * @generated
    */
-  IdentifierValue getName();
+  Label getLabel();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getName <em>Name</em>}' containment reference.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getLabel <em>Label</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Name</em>' containment reference.
-   * @see #getName()
+   * @param value the new value of the '<em>Label</em>' containment reference.
+   * @see #getLabel()
    * @generated
    */
-  void setName(IdentifierValue value);
+  void setLabel(Label value);
 
   /**
    * Returns the value of the '<em><b>Instruction</b></em>' containment reference.

@@ -334,33 +334,29 @@ ruleInstructionLine returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getInstructionLineAccess().getNameIdentifierValueParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getInstructionLineAccess().getLabelLabelParserRuleCall_0_0());
 				}
-				lv_name_0_0=ruleIdentifierValue
+				lv_label_0_0=ruleLabel
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
 					}
 					set(
 						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+						"label",
+						lv_label_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Label");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_1());
-		}
+		)
 		(
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAbxInstructionParserRuleCall_2_0_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAbxInstructionParserRuleCall_1_0_0());
 					}
-					lv_instruction_2_0=ruleAbxInstruction
+					lv_instruction_1_0=ruleAbxInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -368,7 +364,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_2_0,
+							lv_instruction_1_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.AbxInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -378,9 +374,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAdcInstructionParserRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAdcInstructionParserRuleCall_1_1_0());
 					}
-					lv_instruction_3_0=ruleAdcInstruction
+					lv_instruction_2_0=ruleAdcInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -388,7 +384,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_3_0,
+							lv_instruction_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.AdcInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -398,9 +394,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAddInstructionParserRuleCall_2_2_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAddInstructionParserRuleCall_1_2_0());
 					}
-					lv_instruction_4_0=ruleAddInstruction
+					lv_instruction_3_0=ruleAddInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -408,7 +404,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_4_0,
+							lv_instruction_3_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.AddInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -418,9 +414,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAdddInstructionParserRuleCall_2_3_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAdddInstructionParserRuleCall_1_3_0());
 					}
-					lv_instruction_5_0=ruleAdddInstruction
+					lv_instruction_4_0=ruleAdddInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -428,7 +424,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_5_0,
+							lv_instruction_4_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.AdddInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -438,9 +434,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAndInstructionParserRuleCall_2_4_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAndInstructionParserRuleCall_1_4_0());
 					}
-					lv_instruction_6_0=ruleAndInstruction
+					lv_instruction_5_0=ruleAndInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -448,7 +444,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_6_0,
+							lv_instruction_5_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.AndInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -458,9 +454,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAndCCInstructionParserRuleCall_2_5_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAndCCInstructionParserRuleCall_1_5_0());
 					}
-					lv_instruction_7_0=ruleAndCCInstruction
+					lv_instruction_6_0=ruleAndCCInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -468,7 +464,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_7_0,
+							lv_instruction_6_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.AndCCInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -478,9 +474,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAslInstructionParserRuleCall_2_6_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAslInstructionParserRuleCall_1_6_0());
 					}
-					lv_instruction_8_0=ruleAslInstruction
+					lv_instruction_7_0=ruleAslInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -488,7 +484,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_8_0,
+							lv_instruction_7_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.AslInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -498,9 +494,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAsrInstructionParserRuleCall_2_7_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionAsrInstructionParserRuleCall_1_7_0());
 					}
-					lv_instruction_9_0=ruleAsrInstruction
+					lv_instruction_8_0=ruleAsrInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -508,7 +504,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_9_0,
+							lv_instruction_8_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.AsrInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -518,9 +514,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBccInstructionParserRuleCall_2_8_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBccInstructionParserRuleCall_1_8_0());
 					}
-					lv_instruction_10_0=ruleBccInstruction
+					lv_instruction_9_0=ruleBccInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -528,7 +524,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_10_0,
+							lv_instruction_9_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BccInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -538,9 +534,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBcsInstructionParserRuleCall_2_9_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBcsInstructionParserRuleCall_1_9_0());
 					}
-					lv_instruction_11_0=ruleBcsInstruction
+					lv_instruction_10_0=ruleBcsInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -548,7 +544,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_11_0,
+							lv_instruction_10_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BcsInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -558,9 +554,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBeqInstructionParserRuleCall_2_10_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBeqInstructionParserRuleCall_1_10_0());
 					}
-					lv_instruction_12_0=ruleBeqInstruction
+					lv_instruction_11_0=ruleBeqInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -568,7 +564,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_12_0,
+							lv_instruction_11_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BeqInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -578,9 +574,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBgeInstructionParserRuleCall_2_11_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBgeInstructionParserRuleCall_1_11_0());
 					}
-					lv_instruction_13_0=ruleBgeInstruction
+					lv_instruction_12_0=ruleBgeInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -588,7 +584,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_13_0,
+							lv_instruction_12_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BgeInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -598,9 +594,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBgtInstructionParserRuleCall_2_12_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBgtInstructionParserRuleCall_1_12_0());
 					}
-					lv_instruction_14_0=ruleBgtInstruction
+					lv_instruction_13_0=ruleBgtInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -608,7 +604,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_14_0,
+							lv_instruction_13_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BgtInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -618,9 +614,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBhiInstructionParserRuleCall_2_13_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBhiInstructionParserRuleCall_1_13_0());
 					}
-					lv_instruction_15_0=ruleBhiInstruction
+					lv_instruction_14_0=ruleBhiInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -628,7 +624,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_15_0,
+							lv_instruction_14_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BhiInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -638,9 +634,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBhsInstructionParserRuleCall_2_14_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBhsInstructionParserRuleCall_1_14_0());
 					}
-					lv_instruction_16_0=ruleBhsInstruction
+					lv_instruction_15_0=ruleBhsInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -648,7 +644,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_16_0,
+							lv_instruction_15_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BhsInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -658,9 +654,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBitInstructionParserRuleCall_2_15_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBitInstructionParserRuleCall_1_15_0());
 					}
-					lv_instruction_17_0=ruleBitInstruction
+					lv_instruction_16_0=ruleBitInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -668,7 +664,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_17_0,
+							lv_instruction_16_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BitInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -678,9 +674,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBleInstructionParserRuleCall_2_16_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBleInstructionParserRuleCall_1_16_0());
 					}
-					lv_instruction_18_0=ruleBleInstruction
+					lv_instruction_17_0=ruleBleInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -688,7 +684,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_18_0,
+							lv_instruction_17_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BleInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -698,9 +694,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBloInstructionParserRuleCall_2_17_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBloInstructionParserRuleCall_1_17_0());
 					}
-					lv_instruction_19_0=ruleBloInstruction
+					lv_instruction_18_0=ruleBloInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -708,7 +704,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_19_0,
+							lv_instruction_18_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BloInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -718,9 +714,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBlsInstructionParserRuleCall_2_18_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBlsInstructionParserRuleCall_1_18_0());
 					}
-					lv_instruction_20_0=ruleBlsInstruction
+					lv_instruction_19_0=ruleBlsInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -728,7 +724,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_20_0,
+							lv_instruction_19_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BlsInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -738,9 +734,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBltInstructionParserRuleCall_2_19_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBltInstructionParserRuleCall_1_19_0());
 					}
-					lv_instruction_21_0=ruleBltInstruction
+					lv_instruction_20_0=ruleBltInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -748,7 +744,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_21_0,
+							lv_instruction_20_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BltInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -758,9 +754,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBmiInstructionParserRuleCall_2_20_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBmiInstructionParserRuleCall_1_20_0());
 					}
-					lv_instruction_22_0=ruleBmiInstruction
+					lv_instruction_21_0=ruleBmiInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -768,7 +764,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_22_0,
+							lv_instruction_21_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BmiInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -778,9 +774,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBneInstructionParserRuleCall_2_21_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBneInstructionParserRuleCall_1_21_0());
 					}
-					lv_instruction_23_0=ruleBneInstruction
+					lv_instruction_22_0=ruleBneInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -788,7 +784,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_23_0,
+							lv_instruction_22_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BneInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -798,9 +794,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBplInstructionParserRuleCall_2_22_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBplInstructionParserRuleCall_1_22_0());
 					}
-					lv_instruction_24_0=ruleBplInstruction
+					lv_instruction_23_0=ruleBplInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -808,7 +804,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_24_0,
+							lv_instruction_23_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BplInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -818,9 +814,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBraInstructionParserRuleCall_2_23_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBraInstructionParserRuleCall_1_23_0());
 					}
-					lv_instruction_25_0=ruleBraInstruction
+					lv_instruction_24_0=ruleBraInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -828,7 +824,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_25_0,
+							lv_instruction_24_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BraInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -838,9 +834,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBrnInstructionParserRuleCall_2_24_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBrnInstructionParserRuleCall_1_24_0());
 					}
-					lv_instruction_26_0=ruleBrnInstruction
+					lv_instruction_25_0=ruleBrnInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -848,7 +844,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_26_0,
+							lv_instruction_25_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BrnInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -858,9 +854,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBsrInstructionParserRuleCall_2_25_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBsrInstructionParserRuleCall_1_25_0());
 					}
-					lv_instruction_27_0=ruleBsrInstruction
+					lv_instruction_26_0=ruleBsrInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -868,7 +864,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_27_0,
+							lv_instruction_26_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BsrInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -878,9 +874,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBvcInstructionParserRuleCall_2_26_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBvcInstructionParserRuleCall_1_26_0());
 					}
-					lv_instruction_28_0=ruleBvcInstruction
+					lv_instruction_27_0=ruleBvcInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -888,7 +884,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_28_0,
+							lv_instruction_27_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BvcInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -898,9 +894,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBvsInstructionParserRuleCall_2_27_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionBvsInstructionParserRuleCall_1_27_0());
 					}
-					lv_instruction_29_0=ruleBvsInstruction
+					lv_instruction_28_0=ruleBvsInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -908,7 +904,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_29_0,
+							lv_instruction_28_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BvsInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -918,9 +914,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionClrInstructionParserRuleCall_2_28_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionClrInstructionParserRuleCall_1_28_0());
 					}
-					lv_instruction_30_0=ruleClrInstruction
+					lv_instruction_29_0=ruleClrInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -928,7 +924,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_30_0,
+							lv_instruction_29_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ClrInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -938,9 +934,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionCmpInstructionParserRuleCall_2_29_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionCmpInstructionParserRuleCall_1_29_0());
 					}
-					lv_instruction_31_0=ruleCmpInstruction
+					lv_instruction_30_0=ruleCmpInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -948,7 +944,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_31_0,
+							lv_instruction_30_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.CmpInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -958,9 +954,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionComInstructionParserRuleCall_2_30_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionComInstructionParserRuleCall_1_30_0());
 					}
-					lv_instruction_32_0=ruleComInstruction
+					lv_instruction_31_0=ruleComInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -968,7 +964,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_32_0,
+							lv_instruction_31_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ComInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -978,9 +974,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionCwaiInstructionParserRuleCall_2_31_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionCwaiInstructionParserRuleCall_1_31_0());
 					}
-					lv_instruction_33_0=ruleCwaiInstruction
+					lv_instruction_32_0=ruleCwaiInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -988,7 +984,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_33_0,
+							lv_instruction_32_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.CwaiInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -998,9 +994,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionDaaInstructionParserRuleCall_2_32_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionDaaInstructionParserRuleCall_1_32_0());
 					}
-					lv_instruction_34_0=ruleDaaInstruction
+					lv_instruction_33_0=ruleDaaInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1008,7 +1004,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_34_0,
+							lv_instruction_33_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.DaaInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1018,9 +1014,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionDecInstructionParserRuleCall_2_33_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionDecInstructionParserRuleCall_1_33_0());
 					}
-					lv_instruction_35_0=ruleDecInstruction
+					lv_instruction_34_0=ruleDecInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1028,7 +1024,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_35_0,
+							lv_instruction_34_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.DecInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1038,9 +1034,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionEorInstructionParserRuleCall_2_34_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionEorInstructionParserRuleCall_1_34_0());
 					}
-					lv_instruction_36_0=ruleEorInstruction
+					lv_instruction_35_0=ruleEorInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1048,7 +1044,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_36_0,
+							lv_instruction_35_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.EorInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1058,9 +1054,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionExgInstructionParserRuleCall_2_35_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionExgInstructionParserRuleCall_1_35_0());
 					}
-					lv_instruction_37_0=ruleExgInstruction
+					lv_instruction_36_0=ruleExgInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1068,7 +1064,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_37_0,
+							lv_instruction_36_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ExgInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1078,9 +1074,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionIncInstructionParserRuleCall_2_36_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionIncInstructionParserRuleCall_1_36_0());
 					}
-					lv_instruction_38_0=ruleIncInstruction
+					lv_instruction_37_0=ruleIncInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1088,7 +1084,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_38_0,
+							lv_instruction_37_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.IncInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1098,9 +1094,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionJmpInstructionParserRuleCall_2_37_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionJmpInstructionParserRuleCall_1_37_0());
 					}
-					lv_instruction_39_0=ruleJmpInstruction
+					lv_instruction_38_0=ruleJmpInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1108,7 +1104,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_39_0,
+							lv_instruction_38_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.JmpInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1118,9 +1114,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionJsrInstructionParserRuleCall_2_38_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionJsrInstructionParserRuleCall_1_38_0());
 					}
-					lv_instruction_40_0=ruleJsrInstruction
+					lv_instruction_39_0=ruleJsrInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1128,7 +1124,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_40_0,
+							lv_instruction_39_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.JsrInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1138,9 +1134,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionLdInstructionParserRuleCall_2_39_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionLdInstructionParserRuleCall_1_39_0());
 					}
-					lv_instruction_41_0=ruleLdInstruction
+					lv_instruction_40_0=ruleLdInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1148,7 +1144,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_41_0,
+							lv_instruction_40_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.LdInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1158,9 +1154,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionLeaInstructionParserRuleCall_2_40_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionLeaInstructionParserRuleCall_1_40_0());
 					}
-					lv_instruction_42_0=ruleLeaInstruction
+					lv_instruction_41_0=ruleLeaInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1168,7 +1164,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_42_0,
+							lv_instruction_41_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.LeaInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1178,9 +1174,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionLslInstructionParserRuleCall_2_41_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionLslInstructionParserRuleCall_1_41_0());
 					}
-					lv_instruction_43_0=ruleLslInstruction
+					lv_instruction_42_0=ruleLslInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1188,7 +1184,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_43_0,
+							lv_instruction_42_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.LslInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1198,9 +1194,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionLsrInstructionParserRuleCall_2_42_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionLsrInstructionParserRuleCall_1_42_0());
 					}
-					lv_instruction_44_0=ruleLsrInstruction
+					lv_instruction_43_0=ruleLsrInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1208,7 +1204,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_44_0,
+							lv_instruction_43_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.LsrInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1218,9 +1214,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionMulInstructionParserRuleCall_2_43_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionMulInstructionParserRuleCall_1_43_0());
 					}
-					lv_instruction_45_0=ruleMulInstruction
+					lv_instruction_44_0=ruleMulInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1228,7 +1224,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_45_0,
+							lv_instruction_44_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.MulInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1238,9 +1234,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionNegInstructionParserRuleCall_2_44_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionNegInstructionParserRuleCall_1_44_0());
 					}
-					lv_instruction_46_0=ruleNegInstruction
+					lv_instruction_45_0=ruleNegInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1248,7 +1244,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_46_0,
+							lv_instruction_45_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.NegInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1258,9 +1254,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionNopInstructionParserRuleCall_2_45_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionNopInstructionParserRuleCall_1_45_0());
 					}
-					lv_instruction_47_0=ruleNopInstruction
+					lv_instruction_46_0=ruleNopInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1268,7 +1264,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_47_0,
+							lv_instruction_46_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.NopInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1278,9 +1274,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionOrInstructionParserRuleCall_2_46_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionOrInstructionParserRuleCall_1_46_0());
 					}
-					lv_instruction_48_0=ruleOrInstruction
+					lv_instruction_47_0=ruleOrInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1288,7 +1284,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_48_0,
+							lv_instruction_47_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.OrInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1298,9 +1294,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionOrCCInstructionParserRuleCall_2_47_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionOrCCInstructionParserRuleCall_1_47_0());
 					}
-					lv_instruction_49_0=ruleOrCCInstruction
+					lv_instruction_48_0=ruleOrCCInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1308,7 +1304,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_49_0,
+							lv_instruction_48_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.OrCCInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1318,9 +1314,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionPshsInstructionParserRuleCall_2_48_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionPshsInstructionParserRuleCall_1_48_0());
 					}
-					lv_instruction_50_0=rulePshsInstruction
+					lv_instruction_49_0=rulePshsInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1328,7 +1324,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_50_0,
+							lv_instruction_49_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.PshsInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1338,9 +1334,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionPshuInstructionParserRuleCall_2_49_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionPshuInstructionParserRuleCall_1_49_0());
 					}
-					lv_instruction_51_0=rulePshuInstruction
+					lv_instruction_50_0=rulePshuInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1348,7 +1344,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_51_0,
+							lv_instruction_50_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.PshuInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1358,9 +1354,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionPulsInstructionParserRuleCall_2_50_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionPulsInstructionParserRuleCall_1_50_0());
 					}
-					lv_instruction_52_0=rulePulsInstruction
+					lv_instruction_51_0=rulePulsInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1368,7 +1364,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_52_0,
+							lv_instruction_51_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.PulsInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1378,9 +1374,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionPuluInstructionParserRuleCall_2_51_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionPuluInstructionParserRuleCall_1_51_0());
 					}
-					lv_instruction_53_0=rulePuluInstruction
+					lv_instruction_52_0=rulePuluInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1388,7 +1384,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_53_0,
+							lv_instruction_52_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.PuluInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1398,9 +1394,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRolInstructionParserRuleCall_2_52_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRolInstructionParserRuleCall_1_52_0());
 					}
-					lv_instruction_54_0=ruleRolInstruction
+					lv_instruction_53_0=ruleRolInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1408,7 +1404,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_54_0,
+							lv_instruction_53_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.RolInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1418,9 +1414,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRorInstructionParserRuleCall_2_53_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRorInstructionParserRuleCall_1_53_0());
 					}
-					lv_instruction_55_0=ruleRorInstruction
+					lv_instruction_54_0=ruleRorInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1428,7 +1424,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_55_0,
+							lv_instruction_54_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.RorInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1438,9 +1434,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRtiInstructionParserRuleCall_2_54_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRtiInstructionParserRuleCall_1_54_0());
 					}
-					lv_instruction_56_0=ruleRtiInstruction
+					lv_instruction_55_0=ruleRtiInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1448,7 +1444,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_56_0,
+							lv_instruction_55_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.RtiInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1458,9 +1454,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRtsInstructionParserRuleCall_2_55_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionRtsInstructionParserRuleCall_1_55_0());
 					}
-					lv_instruction_57_0=ruleRtsInstruction
+					lv_instruction_56_0=ruleRtsInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1468,7 +1464,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_57_0,
+							lv_instruction_56_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.RtsInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1478,9 +1474,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSbcInstructionParserRuleCall_2_56_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSbcInstructionParserRuleCall_1_56_0());
 					}
-					lv_instruction_58_0=ruleSbcInstruction
+					lv_instruction_57_0=ruleSbcInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1488,7 +1484,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_58_0,
+							lv_instruction_57_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.SbcInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1498,9 +1494,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSexInstructionParserRuleCall_2_57_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSexInstructionParserRuleCall_1_57_0());
 					}
-					lv_instruction_59_0=ruleSexInstruction
+					lv_instruction_58_0=ruleSexInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1508,7 +1504,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_59_0,
+							lv_instruction_58_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.SexInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1518,9 +1514,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionStInstructionParserRuleCall_2_58_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionStInstructionParserRuleCall_1_58_0());
 					}
-					lv_instruction_60_0=ruleStInstruction
+					lv_instruction_59_0=ruleStInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1528,7 +1524,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_60_0,
+							lv_instruction_59_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.StInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1538,9 +1534,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSubInstructionParserRuleCall_2_59_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSubInstructionParserRuleCall_1_59_0());
 					}
-					lv_instruction_61_0=ruleSubInstruction
+					lv_instruction_60_0=ruleSubInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1548,7 +1544,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_61_0,
+							lv_instruction_60_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.SubInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1558,9 +1554,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSubdInstructionParserRuleCall_2_60_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSubdInstructionParserRuleCall_1_60_0());
 					}
-					lv_instruction_62_0=ruleSubdInstruction
+					lv_instruction_61_0=ruleSubdInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1568,7 +1564,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_62_0,
+							lv_instruction_61_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.SubdInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1578,9 +1574,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSwiInstructionParserRuleCall_2_61_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSwiInstructionParserRuleCall_1_61_0());
 					}
-					lv_instruction_63_0=ruleSwiInstruction
+					lv_instruction_62_0=ruleSwiInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1588,7 +1584,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_63_0,
+							lv_instruction_62_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.SwiInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1598,9 +1594,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSwi2InstructionParserRuleCall_2_62_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSwi2InstructionParserRuleCall_1_62_0());
 					}
-					lv_instruction_64_0=ruleSwi2Instruction
+					lv_instruction_63_0=ruleSwi2Instruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1608,7 +1604,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_64_0,
+							lv_instruction_63_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.Swi2Instruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1618,9 +1614,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSwi3InstructionParserRuleCall_2_63_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSwi3InstructionParserRuleCall_1_63_0());
 					}
-					lv_instruction_65_0=ruleSwi3Instruction
+					lv_instruction_64_0=ruleSwi3Instruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1628,7 +1624,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_65_0,
+							lv_instruction_64_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.Swi3Instruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1638,9 +1634,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSyncInstructionParserRuleCall_2_64_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionSyncInstructionParserRuleCall_1_64_0());
 					}
-					lv_instruction_66_0=ruleSyncInstruction
+					lv_instruction_65_0=ruleSyncInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1648,7 +1644,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_66_0,
+							lv_instruction_65_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.SyncInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1658,9 +1654,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionTfrInstructionParserRuleCall_2_65_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionTfrInstructionParserRuleCall_1_65_0());
 					}
-					lv_instruction_67_0=ruleTfrInstruction
+					lv_instruction_66_0=ruleTfrInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1668,7 +1664,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_67_0,
+							lv_instruction_66_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.TfrInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1678,9 +1674,9 @@ ruleInstructionLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionTstInstructionParserRuleCall_2_66_0());
+						newCompositeNode(grammarAccess.getInstructionLineAccess().getInstructionTstInstructionParserRuleCall_1_66_0());
 					}
-					lv_instruction_68_0=ruleTstInstruction
+					lv_instruction_67_0=ruleTstInstruction
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getInstructionLineRule());
@@ -1688,7 +1684,7 @@ ruleInstructionLine returns [EObject current=null]
 						set(
 							$current,
 							"instruction",
-							lv_instruction_68_0,
+							lv_instruction_67_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.TstInstruction");
 						afterParserOrEnumRuleCall();
 					}
@@ -1696,15 +1692,15 @@ ruleInstructionLine returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_69=RULE_WS
+			this_WS_68=RULE_WS
 			{
-				newLeafNode(this_WS_69, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_68, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_2_0());
 			}
 			(
 				(
-					lv_comment_70_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					lv_comment_69_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
 					{
-						newLeafNode(lv_comment_70_0, grammarAccess.getInstructionLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
+						newLeafNode(lv_comment_69_0, grammarAccess.getInstructionLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_1_0());
 					}
 					{
 						if ($current==null) {
@@ -1713,24 +1709,73 @@ ruleInstructionLine returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"comment",
-							lv_comment_70_0,
+							lv_comment_69_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
 					}
 				)
 			)
 		)?
 		(
-			this_WS_71=RULE_WS
+			this_WS_70=RULE_WS
 			{
-				newLeafNode(this_WS_71, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_4());
+				newLeafNode(this_WS_70, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_3());
 			}
 		)?
 		{
-			newCompositeNode(grammarAccess.getInstructionLineAccess().getEndOfLineParserRuleCall_5());
+			newCompositeNode(grammarAccess.getInstructionLineAccess().getEndOfLineParserRuleCall_4());
 		}
 		ruleEndOfLine
 		{
 			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleLabel
+entryRuleLabel returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getLabelRule()); }
+	iv_ruleLabel=ruleLabel
+	{ $current=$iv_ruleLabel.current; }
+	EOF;
+
+// Rule Label
+ruleLabel returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				$current = forceCreateModelElement(
+					grammarAccess.getLabelAccess().getLabelAction_0(),
+					$current);
+			}
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getLabelAccess().getNameIdentifierValueParserRuleCall_1_0());
+				}
+				lv_name_1_0=ruleIdentifierValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getLabelRule());
+					}
+					set(
+						$current,
+						"name",
+						lv_name_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)?
+		this_WS_2=RULE_WS
+		{
+			newLeafNode(this_WS_2, grammarAccess.getLabelAccess().getWSTerminalRuleCall_2());
 		}
 	)
 ;
@@ -9857,33 +9902,29 @@ ruleDirectiveLine returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getDirectiveLineAccess().getNameIdentifierValueParserRuleCall_0_0());
+					newCompositeNode(grammarAccess.getDirectiveLineAccess().getLabelLabelParserRuleCall_0_0());
 				}
-				lv_name_0_0=ruleIdentifierValue
+				lv_label_0_0=ruleLabel
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
 					}
 					set(
 						$current,
-						"name",
-						lv_name_0_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+						"label",
+						lv_label_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Label");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)?
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_1());
-		}
+		)
 		(
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveEquDirectiveParserRuleCall_2_0_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveEquDirectiveParserRuleCall_1_0_0());
 					}
-					lv_directive_2_0=ruleEquDirective
+					lv_directive_1_0=ruleEquDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -9891,7 +9932,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_2_0,
+							lv_directive_1_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.EquDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -9901,9 +9942,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveOrgDirectiveParserRuleCall_2_1_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveOrgDirectiveParserRuleCall_1_1_0());
 					}
-					lv_directive_3_0=ruleOrgDirective
+					lv_directive_2_0=ruleOrgDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -9911,7 +9952,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_3_0,
+							lv_directive_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.OrgDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -9921,9 +9962,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveBszDirectiveParserRuleCall_2_2_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveBszDirectiveParserRuleCall_1_2_0());
 					}
-					lv_directive_4_0=ruleBszDirective
+					lv_directive_3_0=ruleBszDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -9931,7 +9972,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_4_0,
+							lv_directive_3_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.BszDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -9941,9 +9982,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveEndDirectiveParserRuleCall_2_3_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveEndDirectiveParserRuleCall_1_3_0());
 					}
-					lv_directive_5_0=ruleEndDirective
+					lv_directive_4_0=ruleEndDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -9951,7 +9992,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_5_0,
+							lv_directive_4_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.EndDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -9961,9 +10002,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFailDirectiveParserRuleCall_2_4_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFailDirectiveParserRuleCall_1_4_0());
 					}
-					lv_directive_6_0=ruleFailDirective
+					lv_directive_5_0=ruleFailDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -9971,7 +10012,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_6_0,
+							lv_directive_5_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.FailDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -9981,9 +10022,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFillDirectiveParserRuleCall_2_5_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFillDirectiveParserRuleCall_1_5_0());
 					}
-					lv_directive_7_0=ruleFillDirective
+					lv_directive_6_0=ruleFillDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -9991,7 +10032,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_7_0,
+							lv_directive_6_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.FillDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10001,9 +10042,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveOptDirectiveParserRuleCall_2_6_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveOptDirectiveParserRuleCall_1_6_0());
 					}
-					lv_directive_8_0=ruleOptDirective
+					lv_directive_7_0=ruleOptDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10011,7 +10052,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_8_0,
+							lv_directive_7_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.OptDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10021,9 +10062,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectivePagDirectiveParserRuleCall_2_7_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectivePagDirectiveParserRuleCall_1_7_0());
 					}
-					lv_directive_9_0=rulePagDirective
+					lv_directive_8_0=rulePagDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10031,7 +10072,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_9_0,
+							lv_directive_8_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.PagDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10041,9 +10082,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveNamDirectiveParserRuleCall_2_8_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveNamDirectiveParserRuleCall_1_8_0());
 					}
-					lv_directive_10_0=ruleNamDirective
+					lv_directive_9_0=ruleNamDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10051,7 +10092,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_10_0,
+							lv_directive_9_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.NamDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10061,9 +10102,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveSetDirectiveParserRuleCall_2_9_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveSetDirectiveParserRuleCall_1_9_0());
 					}
-					lv_directive_11_0=ruleSetDirective
+					lv_directive_10_0=ruleSetDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10071,7 +10112,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_11_0,
+							lv_directive_10_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.SetDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10081,9 +10122,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveSpcDirectiveParserRuleCall_2_10_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveSpcDirectiveParserRuleCall_1_10_0());
 					}
-					lv_directive_12_0=ruleSpcDirective
+					lv_directive_11_0=ruleSpcDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10091,7 +10132,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_12_0,
+							lv_directive_11_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.SpcDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10101,9 +10142,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveRegDirectiveParserRuleCall_2_11_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveRegDirectiveParserRuleCall_1_11_0());
 					}
-					lv_directive_13_0=ruleRegDirective
+					lv_directive_12_0=ruleRegDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10111,7 +10152,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_13_0,
+							lv_directive_12_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.RegDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10121,9 +10162,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFcbDirectiveParserRuleCall_2_12_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFcbDirectiveParserRuleCall_1_12_0());
 					}
-					lv_directive_14_0=ruleFcbDirective
+					lv_directive_13_0=ruleFcbDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10131,7 +10172,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_14_0,
+							lv_directive_13_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.FcbDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10141,9 +10182,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFdbDirectiveParserRuleCall_2_13_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFdbDirectiveParserRuleCall_1_13_0());
 					}
-					lv_directive_15_0=ruleFdbDirective
+					lv_directive_14_0=ruleFdbDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10151,7 +10192,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_15_0,
+							lv_directive_14_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.FdbDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10161,9 +10202,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFccDirectiveParserRuleCall_2_14_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveFccDirectiveParserRuleCall_1_14_0());
 					}
-					lv_directive_16_0=ruleFccDirective
+					lv_directive_15_0=ruleFccDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10171,7 +10212,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_16_0,
+							lv_directive_15_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.FccDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10181,9 +10222,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveRmbDirectiveParserRuleCall_2_15_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveRmbDirectiveParserRuleCall_1_15_0());
 					}
-					lv_directive_17_0=ruleRmbDirective
+					lv_directive_16_0=ruleRmbDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10191,7 +10232,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_17_0,
+							lv_directive_16_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.RmbDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10201,9 +10242,9 @@ ruleDirectiveLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveSetDPDirectiveParserRuleCall_2_16_0());
+						newCompositeNode(grammarAccess.getDirectiveLineAccess().getDirectiveSetDPDirectiveParserRuleCall_1_16_0());
 					}
-					lv_directive_18_0=ruleSetDPDirective
+					lv_directive_17_0=ruleSetDPDirective
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getDirectiveLineRule());
@@ -10211,7 +10252,7 @@ ruleDirectiveLine returns [EObject current=null]
 						set(
 							$current,
 							"directive",
-							lv_directive_18_0,
+							lv_directive_17_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.SetDPDirective");
 						afterParserOrEnumRuleCall();
 					}
@@ -10219,15 +10260,15 @@ ruleDirectiveLine returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_19=RULE_WS
+			this_WS_18=RULE_WS
 			{
-				newLeafNode(this_WS_19, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_3_0());
+				newLeafNode(this_WS_18, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_2_0());
 			}
 			(
 				(
-					lv_comment_20_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					lv_comment_19_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
 					{
-						newLeafNode(lv_comment_20_0, grammarAccess.getDirectiveLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
+						newLeafNode(lv_comment_19_0, grammarAccess.getDirectiveLineAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_1_0());
 					}
 					{
 						if ($current==null) {
@@ -10236,20 +10277,20 @@ ruleDirectiveLine returns [EObject current=null]
 						setWithLastConsumed(
 							$current,
 							"comment",
-							lv_comment_20_0,
+							lv_comment_19_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
 					}
 				)
 			)
 		)?
 		(
-			this_WS_21=RULE_WS
+			this_WS_20=RULE_WS
 			{
-				newLeafNode(this_WS_21, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_4());
+				newLeafNode(this_WS_20, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_3());
 			}
 		)?
 		{
-			newCompositeNode(grammarAccess.getDirectiveLineAccess().getEndOfLineParserRuleCall_5());
+			newCompositeNode(grammarAccess.getDirectiveLineAccess().getEndOfLineParserRuleCall_4());
 		}
 		ruleEndOfLine
 		{

@@ -5,7 +5,7 @@ package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
-import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
+import org.bpy.electronics.mc6809.assembler.assembler.Label;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl#getDirective <em>Directive</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl#getComment <em>Comment</em>}</li>
  * </ul>
@@ -35,14 +35,14 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements DirectiveLine
 {
   /**
-   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
+   * The cached value of the '{@link #getLabel() <em>Label</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getName()
+   * @see #getLabel()
    * @generated
    * @ordered
    */
-  protected IdentifierValue name;
+  protected Label label;
 
   /**
    * The cached value of the '{@link #getDirective() <em>Directive</em>}' containment reference.
@@ -101,9 +101,9 @@ public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements D
    * @generated
    */
   @Override
-  public IdentifierValue getName()
+  public Label getLabel()
   {
-    return name;
+    return label;
   }
 
   /**
@@ -111,13 +111,13 @@ public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements D
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetName(IdentifierValue newName, NotificationChain msgs)
+  public NotificationChain basicSetLabel(Label newLabel, NotificationChain msgs)
   {
-    IdentifierValue oldName = name;
-    name = newName;
+    Label oldLabel = label;
+    label = newLabel;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.DIRECTIVE_LINE__NAME, oldName, newName);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.DIRECTIVE_LINE__LABEL, oldLabel, newLabel);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -129,20 +129,20 @@ public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements D
    * @generated
    */
   @Override
-  public void setName(IdentifierValue newName)
+  public void setLabel(Label newLabel)
   {
-    if (newName != name)
+    if (newLabel != label)
     {
       NotificationChain msgs = null;
-      if (name != null)
-        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.DIRECTIVE_LINE__NAME, null, msgs);
-      if (newName != null)
-        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.DIRECTIVE_LINE__NAME, null, msgs);
-      msgs = basicSetName(newName, msgs);
+      if (label != null)
+        msgs = ((InternalEObject)label).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.DIRECTIVE_LINE__LABEL, null, msgs);
+      if (newLabel != null)
+        msgs = ((InternalEObject)newLabel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.DIRECTIVE_LINE__LABEL, null, msgs);
+      msgs = basicSetLabel(newLabel, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.DIRECTIVE_LINE__NAME, newName, newName));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.DIRECTIVE_LINE__LABEL, newLabel, newLabel));
   }
 
   /**
@@ -230,8 +230,8 @@ public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements D
   {
     switch (featureID)
     {
-      case AssemblerPackage.DIRECTIVE_LINE__NAME:
-        return basicSetName(null, msgs);
+      case AssemblerPackage.DIRECTIVE_LINE__LABEL:
+        return basicSetLabel(null, msgs);
       case AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE:
         return basicSetDirective(null, msgs);
     }
@@ -248,8 +248,8 @@ public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements D
   {
     switch (featureID)
     {
-      case AssemblerPackage.DIRECTIVE_LINE__NAME:
-        return getName();
+      case AssemblerPackage.DIRECTIVE_LINE__LABEL:
+        return getLabel();
       case AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE:
         return getDirective();
       case AssemblerPackage.DIRECTIVE_LINE__COMMENT:
@@ -268,8 +268,8 @@ public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements D
   {
     switch (featureID)
     {
-      case AssemblerPackage.DIRECTIVE_LINE__NAME:
-        setName((IdentifierValue)newValue);
+      case AssemblerPackage.DIRECTIVE_LINE__LABEL:
+        setLabel((Label)newValue);
         return;
       case AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE:
         setDirective((EObject)newValue);
@@ -291,8 +291,8 @@ public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements D
   {
     switch (featureID)
     {
-      case AssemblerPackage.DIRECTIVE_LINE__NAME:
-        setName((IdentifierValue)null);
+      case AssemblerPackage.DIRECTIVE_LINE__LABEL:
+        setLabel((Label)null);
         return;
       case AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE:
         setDirective((EObject)null);
@@ -314,8 +314,8 @@ public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements D
   {
     switch (featureID)
     {
-      case AssemblerPackage.DIRECTIVE_LINE__NAME:
-        return name != null;
+      case AssemblerPackage.DIRECTIVE_LINE__LABEL:
+        return label != null;
       case AssemblerPackage.DIRECTIVE_LINE__DIRECTIVE:
         return directive != null;
       case AssemblerPackage.DIRECTIVE_LINE__COMMENT:

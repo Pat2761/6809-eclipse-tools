@@ -101,6 +101,11 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createInstructionLineAdapter();
       }
       @Override
+      public Adapter caseLabel(Label object)
+      {
+        return createLabelAdapter();
+      }
+      @Override
       public Adapter caseTstInstruction(TstInstruction object)
       {
         return createTstInstructionAdapter();
@@ -798,6 +803,21 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createInstructionLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.Label <em>Label</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Label
+   * @generated
+   */
+  public Adapter createLabelAdapter()
   {
     return null;
   }

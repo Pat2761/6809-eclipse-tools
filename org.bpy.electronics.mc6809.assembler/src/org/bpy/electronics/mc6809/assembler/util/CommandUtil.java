@@ -70,6 +70,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Label;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
@@ -126,8 +127,9 @@ public class CommandUtil {
 	 * @return value of the label, <b>null</b> if not found
 	 */
 	public static String getLabel(DirectiveLine directive) {
-		if ( directive.getName() != null) {
-			return directive.getName().getValue();
+		Label label = directive.getLabel();
+		if ( label.getName() != null) {
+			return label.getName().getValue();
 		} else {
 			return null;
 		}
@@ -149,12 +151,13 @@ public class CommandUtil {
 	/**
 	 * Return the label associated to an instruction line.
 	 * 
-	 * @param directive reference on the instruction line
+	 * @param instruction reference on the instruction line
 	 * @return value of the label, <b>null</b> if not found
 	 */
-	public static String getLabel(InstructionLine directive) {
-		if ( directive.getName() != null) {
-			return directive.getName().getValue();
+	public static String getLabel(InstructionLine instruction) {
+		Label label = instruction.getLabel();
+		if ( label.getName() != null) {
+			return label.getName().getValue();
 		} else {
 			return null;
 		}

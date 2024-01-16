@@ -74,54 +74,54 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkDirectiveLine(DirectiveLine directiveLine) {
-		if ((directiveLine.getDirective() instanceof BszDirective) && (directiveLine.getName() == null)) {
+		if ((directiveLine.getDirective() instanceof BszDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			warning("No label defined for BSZ directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 				MISSING_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof EquDirective) && (directiveLine.getName() == null)) {
+		} else if ((directiveLine.getDirective() instanceof EquDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			error("No label defined for EQU directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 				MISSING_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof SetDirective) && (directiveLine.getName() == null)) {
+		} else if ((directiveLine.getDirective() instanceof SetDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			error("No label defined for SET directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 				MISSING_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof EndDirective) && (directiveLine.getName() != null)) {		
+		} else if ((directiveLine.getDirective() instanceof EndDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for END directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof SpcDirective) && (directiveLine.getName() != null)) {		
+		} else if ((directiveLine.getDirective() instanceof SpcDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for SPC directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof PagDirective) && (directiveLine.getName() != null)) {		
+		} else if ((directiveLine.getDirective() instanceof PagDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for PAG directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof RegDirective) && (directiveLine.getName() == null)) {
+		} else if ((directiveLine.getDirective() instanceof RegDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			error("No label defined for REG directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 				MISSING_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof OptDirective) && (directiveLine.getName() != null)) {		
+		} else if ((directiveLine.getDirective() instanceof OptDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for OPT directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
    			
-   		} else if ((directiveLine.getDirective() instanceof NamDirective) && (directiveLine.getName() != null)) {		
+   		} else if ((directiveLine.getDirective() instanceof NamDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for NAM directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
    			
-		} else if ((directiveLine.getDirective() instanceof SetDPDirective) && (directiveLine.getName() != null)) {		
+		} else if ((directiveLine.getDirective() instanceof SetDPDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for SETDP directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
 		
    		} else {

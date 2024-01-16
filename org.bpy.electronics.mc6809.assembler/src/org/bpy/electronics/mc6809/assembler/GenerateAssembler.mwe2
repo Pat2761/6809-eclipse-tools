@@ -44,7 +44,8 @@ Workflow {
 				generateDeprecationValidation = true
 			}
 			formatter={
- 			   generateStub=true
+ 			   generateStub = true
+ 			   generateXtendStub = true
 			}
 			generator = {
 				generateXtendStub = true

@@ -177,156 +177,155 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	public class InstructionLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.InstructionLine");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cInstructionAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final RuleCall cInstructionAbxInstructionParserRuleCall_2_0_0 = (RuleCall)cInstructionAssignment_2_0.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cInstructionAdcInstructionParserRuleCall_2_1_0 = (RuleCall)cInstructionAssignment_2_1.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
-		private final RuleCall cInstructionAddInstructionParserRuleCall_2_2_0 = (RuleCall)cInstructionAssignment_2_2.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_3 = (Assignment)cAlternatives_2.eContents().get(3);
-		private final RuleCall cInstructionAdddInstructionParserRuleCall_2_3_0 = (RuleCall)cInstructionAssignment_2_3.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_4 = (Assignment)cAlternatives_2.eContents().get(4);
-		private final RuleCall cInstructionAndInstructionParserRuleCall_2_4_0 = (RuleCall)cInstructionAssignment_2_4.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_5 = (Assignment)cAlternatives_2.eContents().get(5);
-		private final RuleCall cInstructionAndCCInstructionParserRuleCall_2_5_0 = (RuleCall)cInstructionAssignment_2_5.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_6 = (Assignment)cAlternatives_2.eContents().get(6);
-		private final RuleCall cInstructionAslInstructionParserRuleCall_2_6_0 = (RuleCall)cInstructionAssignment_2_6.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_7 = (Assignment)cAlternatives_2.eContents().get(7);
-		private final RuleCall cInstructionAsrInstructionParserRuleCall_2_7_0 = (RuleCall)cInstructionAssignment_2_7.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_8 = (Assignment)cAlternatives_2.eContents().get(8);
-		private final RuleCall cInstructionBccInstructionParserRuleCall_2_8_0 = (RuleCall)cInstructionAssignment_2_8.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_9 = (Assignment)cAlternatives_2.eContents().get(9);
-		private final RuleCall cInstructionBcsInstructionParserRuleCall_2_9_0 = (RuleCall)cInstructionAssignment_2_9.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_10 = (Assignment)cAlternatives_2.eContents().get(10);
-		private final RuleCall cInstructionBeqInstructionParserRuleCall_2_10_0 = (RuleCall)cInstructionAssignment_2_10.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_11 = (Assignment)cAlternatives_2.eContents().get(11);
-		private final RuleCall cInstructionBgeInstructionParserRuleCall_2_11_0 = (RuleCall)cInstructionAssignment_2_11.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_12 = (Assignment)cAlternatives_2.eContents().get(12);
-		private final RuleCall cInstructionBgtInstructionParserRuleCall_2_12_0 = (RuleCall)cInstructionAssignment_2_12.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_13 = (Assignment)cAlternatives_2.eContents().get(13);
-		private final RuleCall cInstructionBhiInstructionParserRuleCall_2_13_0 = (RuleCall)cInstructionAssignment_2_13.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_14 = (Assignment)cAlternatives_2.eContents().get(14);
-		private final RuleCall cInstructionBhsInstructionParserRuleCall_2_14_0 = (RuleCall)cInstructionAssignment_2_14.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_15 = (Assignment)cAlternatives_2.eContents().get(15);
-		private final RuleCall cInstructionBitInstructionParserRuleCall_2_15_0 = (RuleCall)cInstructionAssignment_2_15.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_16 = (Assignment)cAlternatives_2.eContents().get(16);
-		private final RuleCall cInstructionBleInstructionParserRuleCall_2_16_0 = (RuleCall)cInstructionAssignment_2_16.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_17 = (Assignment)cAlternatives_2.eContents().get(17);
-		private final RuleCall cInstructionBloInstructionParserRuleCall_2_17_0 = (RuleCall)cInstructionAssignment_2_17.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_18 = (Assignment)cAlternatives_2.eContents().get(18);
-		private final RuleCall cInstructionBlsInstructionParserRuleCall_2_18_0 = (RuleCall)cInstructionAssignment_2_18.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_19 = (Assignment)cAlternatives_2.eContents().get(19);
-		private final RuleCall cInstructionBltInstructionParserRuleCall_2_19_0 = (RuleCall)cInstructionAssignment_2_19.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_20 = (Assignment)cAlternatives_2.eContents().get(20);
-		private final RuleCall cInstructionBmiInstructionParserRuleCall_2_20_0 = (RuleCall)cInstructionAssignment_2_20.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_21 = (Assignment)cAlternatives_2.eContents().get(21);
-		private final RuleCall cInstructionBneInstructionParserRuleCall_2_21_0 = (RuleCall)cInstructionAssignment_2_21.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_22 = (Assignment)cAlternatives_2.eContents().get(22);
-		private final RuleCall cInstructionBplInstructionParserRuleCall_2_22_0 = (RuleCall)cInstructionAssignment_2_22.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_23 = (Assignment)cAlternatives_2.eContents().get(23);
-		private final RuleCall cInstructionBraInstructionParserRuleCall_2_23_0 = (RuleCall)cInstructionAssignment_2_23.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_24 = (Assignment)cAlternatives_2.eContents().get(24);
-		private final RuleCall cInstructionBrnInstructionParserRuleCall_2_24_0 = (RuleCall)cInstructionAssignment_2_24.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_25 = (Assignment)cAlternatives_2.eContents().get(25);
-		private final RuleCall cInstructionBsrInstructionParserRuleCall_2_25_0 = (RuleCall)cInstructionAssignment_2_25.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_26 = (Assignment)cAlternatives_2.eContents().get(26);
-		private final RuleCall cInstructionBvcInstructionParserRuleCall_2_26_0 = (RuleCall)cInstructionAssignment_2_26.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_27 = (Assignment)cAlternatives_2.eContents().get(27);
-		private final RuleCall cInstructionBvsInstructionParserRuleCall_2_27_0 = (RuleCall)cInstructionAssignment_2_27.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_28 = (Assignment)cAlternatives_2.eContents().get(28);
-		private final RuleCall cInstructionClrInstructionParserRuleCall_2_28_0 = (RuleCall)cInstructionAssignment_2_28.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_29 = (Assignment)cAlternatives_2.eContents().get(29);
-		private final RuleCall cInstructionCmpInstructionParserRuleCall_2_29_0 = (RuleCall)cInstructionAssignment_2_29.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_30 = (Assignment)cAlternatives_2.eContents().get(30);
-		private final RuleCall cInstructionComInstructionParserRuleCall_2_30_0 = (RuleCall)cInstructionAssignment_2_30.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_31 = (Assignment)cAlternatives_2.eContents().get(31);
-		private final RuleCall cInstructionCwaiInstructionParserRuleCall_2_31_0 = (RuleCall)cInstructionAssignment_2_31.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_32 = (Assignment)cAlternatives_2.eContents().get(32);
-		private final RuleCall cInstructionDaaInstructionParserRuleCall_2_32_0 = (RuleCall)cInstructionAssignment_2_32.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_33 = (Assignment)cAlternatives_2.eContents().get(33);
-		private final RuleCall cInstructionDecInstructionParserRuleCall_2_33_0 = (RuleCall)cInstructionAssignment_2_33.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_34 = (Assignment)cAlternatives_2.eContents().get(34);
-		private final RuleCall cInstructionEorInstructionParserRuleCall_2_34_0 = (RuleCall)cInstructionAssignment_2_34.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_35 = (Assignment)cAlternatives_2.eContents().get(35);
-		private final RuleCall cInstructionExgInstructionParserRuleCall_2_35_0 = (RuleCall)cInstructionAssignment_2_35.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_36 = (Assignment)cAlternatives_2.eContents().get(36);
-		private final RuleCall cInstructionIncInstructionParserRuleCall_2_36_0 = (RuleCall)cInstructionAssignment_2_36.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_37 = (Assignment)cAlternatives_2.eContents().get(37);
-		private final RuleCall cInstructionJmpInstructionParserRuleCall_2_37_0 = (RuleCall)cInstructionAssignment_2_37.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_38 = (Assignment)cAlternatives_2.eContents().get(38);
-		private final RuleCall cInstructionJsrInstructionParserRuleCall_2_38_0 = (RuleCall)cInstructionAssignment_2_38.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_39 = (Assignment)cAlternatives_2.eContents().get(39);
-		private final RuleCall cInstructionLdInstructionParserRuleCall_2_39_0 = (RuleCall)cInstructionAssignment_2_39.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_40 = (Assignment)cAlternatives_2.eContents().get(40);
-		private final RuleCall cInstructionLeaInstructionParserRuleCall_2_40_0 = (RuleCall)cInstructionAssignment_2_40.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_41 = (Assignment)cAlternatives_2.eContents().get(41);
-		private final RuleCall cInstructionLslInstructionParserRuleCall_2_41_0 = (RuleCall)cInstructionAssignment_2_41.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_42 = (Assignment)cAlternatives_2.eContents().get(42);
-		private final RuleCall cInstructionLsrInstructionParserRuleCall_2_42_0 = (RuleCall)cInstructionAssignment_2_42.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_43 = (Assignment)cAlternatives_2.eContents().get(43);
-		private final RuleCall cInstructionMulInstructionParserRuleCall_2_43_0 = (RuleCall)cInstructionAssignment_2_43.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_44 = (Assignment)cAlternatives_2.eContents().get(44);
-		private final RuleCall cInstructionNegInstructionParserRuleCall_2_44_0 = (RuleCall)cInstructionAssignment_2_44.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_45 = (Assignment)cAlternatives_2.eContents().get(45);
-		private final RuleCall cInstructionNopInstructionParserRuleCall_2_45_0 = (RuleCall)cInstructionAssignment_2_45.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_46 = (Assignment)cAlternatives_2.eContents().get(46);
-		private final RuleCall cInstructionOrInstructionParserRuleCall_2_46_0 = (RuleCall)cInstructionAssignment_2_46.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_47 = (Assignment)cAlternatives_2.eContents().get(47);
-		private final RuleCall cInstructionOrCCInstructionParserRuleCall_2_47_0 = (RuleCall)cInstructionAssignment_2_47.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_48 = (Assignment)cAlternatives_2.eContents().get(48);
-		private final RuleCall cInstructionPshsInstructionParserRuleCall_2_48_0 = (RuleCall)cInstructionAssignment_2_48.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_49 = (Assignment)cAlternatives_2.eContents().get(49);
-		private final RuleCall cInstructionPshuInstructionParserRuleCall_2_49_0 = (RuleCall)cInstructionAssignment_2_49.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_50 = (Assignment)cAlternatives_2.eContents().get(50);
-		private final RuleCall cInstructionPulsInstructionParserRuleCall_2_50_0 = (RuleCall)cInstructionAssignment_2_50.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_51 = (Assignment)cAlternatives_2.eContents().get(51);
-		private final RuleCall cInstructionPuluInstructionParserRuleCall_2_51_0 = (RuleCall)cInstructionAssignment_2_51.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_52 = (Assignment)cAlternatives_2.eContents().get(52);
-		private final RuleCall cInstructionRolInstructionParserRuleCall_2_52_0 = (RuleCall)cInstructionAssignment_2_52.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_53 = (Assignment)cAlternatives_2.eContents().get(53);
-		private final RuleCall cInstructionRorInstructionParserRuleCall_2_53_0 = (RuleCall)cInstructionAssignment_2_53.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_54 = (Assignment)cAlternatives_2.eContents().get(54);
-		private final RuleCall cInstructionRtiInstructionParserRuleCall_2_54_0 = (RuleCall)cInstructionAssignment_2_54.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_55 = (Assignment)cAlternatives_2.eContents().get(55);
-		private final RuleCall cInstructionRtsInstructionParserRuleCall_2_55_0 = (RuleCall)cInstructionAssignment_2_55.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_56 = (Assignment)cAlternatives_2.eContents().get(56);
-		private final RuleCall cInstructionSbcInstructionParserRuleCall_2_56_0 = (RuleCall)cInstructionAssignment_2_56.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_57 = (Assignment)cAlternatives_2.eContents().get(57);
-		private final RuleCall cInstructionSexInstructionParserRuleCall_2_57_0 = (RuleCall)cInstructionAssignment_2_57.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_58 = (Assignment)cAlternatives_2.eContents().get(58);
-		private final RuleCall cInstructionStInstructionParserRuleCall_2_58_0 = (RuleCall)cInstructionAssignment_2_58.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_59 = (Assignment)cAlternatives_2.eContents().get(59);
-		private final RuleCall cInstructionSubInstructionParserRuleCall_2_59_0 = (RuleCall)cInstructionAssignment_2_59.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_60 = (Assignment)cAlternatives_2.eContents().get(60);
-		private final RuleCall cInstructionSubdInstructionParserRuleCall_2_60_0 = (RuleCall)cInstructionAssignment_2_60.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_61 = (Assignment)cAlternatives_2.eContents().get(61);
-		private final RuleCall cInstructionSwiInstructionParserRuleCall_2_61_0 = (RuleCall)cInstructionAssignment_2_61.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_62 = (Assignment)cAlternatives_2.eContents().get(62);
-		private final RuleCall cInstructionSwi2InstructionParserRuleCall_2_62_0 = (RuleCall)cInstructionAssignment_2_62.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_63 = (Assignment)cAlternatives_2.eContents().get(63);
-		private final RuleCall cInstructionSwi3InstructionParserRuleCall_2_63_0 = (RuleCall)cInstructionAssignment_2_63.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_64 = (Assignment)cAlternatives_2.eContents().get(64);
-		private final RuleCall cInstructionSyncInstructionParserRuleCall_2_64_0 = (RuleCall)cInstructionAssignment_2_64.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_65 = (Assignment)cAlternatives_2.eContents().get(65);
-		private final RuleCall cInstructionTfrInstructionParserRuleCall_2_65_0 = (RuleCall)cInstructionAssignment_2_65.eContents().get(0);
-		private final Assignment cInstructionAssignment_2_66 = (Assignment)cAlternatives_2.eContents().get(66);
-		private final RuleCall cInstructionTstInstructionParserRuleCall_2_66_0 = (RuleCall)cInstructionAssignment_2_66.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Assignment cLabelAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cLabelLabelParserRuleCall_0_0 = (RuleCall)cLabelAssignment_0.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cInstructionAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cInstructionAbxInstructionParserRuleCall_1_0_0 = (RuleCall)cInstructionAssignment_1_0.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final RuleCall cInstructionAdcInstructionParserRuleCall_1_1_0 = (RuleCall)cInstructionAssignment_1_1.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_2 = (Assignment)cAlternatives_1.eContents().get(2);
+		private final RuleCall cInstructionAddInstructionParserRuleCall_1_2_0 = (RuleCall)cInstructionAssignment_1_2.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_3 = (Assignment)cAlternatives_1.eContents().get(3);
+		private final RuleCall cInstructionAdddInstructionParserRuleCall_1_3_0 = (RuleCall)cInstructionAssignment_1_3.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_4 = (Assignment)cAlternatives_1.eContents().get(4);
+		private final RuleCall cInstructionAndInstructionParserRuleCall_1_4_0 = (RuleCall)cInstructionAssignment_1_4.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_5 = (Assignment)cAlternatives_1.eContents().get(5);
+		private final RuleCall cInstructionAndCCInstructionParserRuleCall_1_5_0 = (RuleCall)cInstructionAssignment_1_5.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_6 = (Assignment)cAlternatives_1.eContents().get(6);
+		private final RuleCall cInstructionAslInstructionParserRuleCall_1_6_0 = (RuleCall)cInstructionAssignment_1_6.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_7 = (Assignment)cAlternatives_1.eContents().get(7);
+		private final RuleCall cInstructionAsrInstructionParserRuleCall_1_7_0 = (RuleCall)cInstructionAssignment_1_7.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_8 = (Assignment)cAlternatives_1.eContents().get(8);
+		private final RuleCall cInstructionBccInstructionParserRuleCall_1_8_0 = (RuleCall)cInstructionAssignment_1_8.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_9 = (Assignment)cAlternatives_1.eContents().get(9);
+		private final RuleCall cInstructionBcsInstructionParserRuleCall_1_9_0 = (RuleCall)cInstructionAssignment_1_9.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_10 = (Assignment)cAlternatives_1.eContents().get(10);
+		private final RuleCall cInstructionBeqInstructionParserRuleCall_1_10_0 = (RuleCall)cInstructionAssignment_1_10.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_11 = (Assignment)cAlternatives_1.eContents().get(11);
+		private final RuleCall cInstructionBgeInstructionParserRuleCall_1_11_0 = (RuleCall)cInstructionAssignment_1_11.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_12 = (Assignment)cAlternatives_1.eContents().get(12);
+		private final RuleCall cInstructionBgtInstructionParserRuleCall_1_12_0 = (RuleCall)cInstructionAssignment_1_12.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_13 = (Assignment)cAlternatives_1.eContents().get(13);
+		private final RuleCall cInstructionBhiInstructionParserRuleCall_1_13_0 = (RuleCall)cInstructionAssignment_1_13.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_14 = (Assignment)cAlternatives_1.eContents().get(14);
+		private final RuleCall cInstructionBhsInstructionParserRuleCall_1_14_0 = (RuleCall)cInstructionAssignment_1_14.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_15 = (Assignment)cAlternatives_1.eContents().get(15);
+		private final RuleCall cInstructionBitInstructionParserRuleCall_1_15_0 = (RuleCall)cInstructionAssignment_1_15.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_16 = (Assignment)cAlternatives_1.eContents().get(16);
+		private final RuleCall cInstructionBleInstructionParserRuleCall_1_16_0 = (RuleCall)cInstructionAssignment_1_16.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_17 = (Assignment)cAlternatives_1.eContents().get(17);
+		private final RuleCall cInstructionBloInstructionParserRuleCall_1_17_0 = (RuleCall)cInstructionAssignment_1_17.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_18 = (Assignment)cAlternatives_1.eContents().get(18);
+		private final RuleCall cInstructionBlsInstructionParserRuleCall_1_18_0 = (RuleCall)cInstructionAssignment_1_18.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_19 = (Assignment)cAlternatives_1.eContents().get(19);
+		private final RuleCall cInstructionBltInstructionParserRuleCall_1_19_0 = (RuleCall)cInstructionAssignment_1_19.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_20 = (Assignment)cAlternatives_1.eContents().get(20);
+		private final RuleCall cInstructionBmiInstructionParserRuleCall_1_20_0 = (RuleCall)cInstructionAssignment_1_20.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_21 = (Assignment)cAlternatives_1.eContents().get(21);
+		private final RuleCall cInstructionBneInstructionParserRuleCall_1_21_0 = (RuleCall)cInstructionAssignment_1_21.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_22 = (Assignment)cAlternatives_1.eContents().get(22);
+		private final RuleCall cInstructionBplInstructionParserRuleCall_1_22_0 = (RuleCall)cInstructionAssignment_1_22.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_23 = (Assignment)cAlternatives_1.eContents().get(23);
+		private final RuleCall cInstructionBraInstructionParserRuleCall_1_23_0 = (RuleCall)cInstructionAssignment_1_23.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_24 = (Assignment)cAlternatives_1.eContents().get(24);
+		private final RuleCall cInstructionBrnInstructionParserRuleCall_1_24_0 = (RuleCall)cInstructionAssignment_1_24.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_25 = (Assignment)cAlternatives_1.eContents().get(25);
+		private final RuleCall cInstructionBsrInstructionParserRuleCall_1_25_0 = (RuleCall)cInstructionAssignment_1_25.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_26 = (Assignment)cAlternatives_1.eContents().get(26);
+		private final RuleCall cInstructionBvcInstructionParserRuleCall_1_26_0 = (RuleCall)cInstructionAssignment_1_26.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_27 = (Assignment)cAlternatives_1.eContents().get(27);
+		private final RuleCall cInstructionBvsInstructionParserRuleCall_1_27_0 = (RuleCall)cInstructionAssignment_1_27.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_28 = (Assignment)cAlternatives_1.eContents().get(28);
+		private final RuleCall cInstructionClrInstructionParserRuleCall_1_28_0 = (RuleCall)cInstructionAssignment_1_28.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_29 = (Assignment)cAlternatives_1.eContents().get(29);
+		private final RuleCall cInstructionCmpInstructionParserRuleCall_1_29_0 = (RuleCall)cInstructionAssignment_1_29.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_30 = (Assignment)cAlternatives_1.eContents().get(30);
+		private final RuleCall cInstructionComInstructionParserRuleCall_1_30_0 = (RuleCall)cInstructionAssignment_1_30.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_31 = (Assignment)cAlternatives_1.eContents().get(31);
+		private final RuleCall cInstructionCwaiInstructionParserRuleCall_1_31_0 = (RuleCall)cInstructionAssignment_1_31.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_32 = (Assignment)cAlternatives_1.eContents().get(32);
+		private final RuleCall cInstructionDaaInstructionParserRuleCall_1_32_0 = (RuleCall)cInstructionAssignment_1_32.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_33 = (Assignment)cAlternatives_1.eContents().get(33);
+		private final RuleCall cInstructionDecInstructionParserRuleCall_1_33_0 = (RuleCall)cInstructionAssignment_1_33.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_34 = (Assignment)cAlternatives_1.eContents().get(34);
+		private final RuleCall cInstructionEorInstructionParserRuleCall_1_34_0 = (RuleCall)cInstructionAssignment_1_34.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_35 = (Assignment)cAlternatives_1.eContents().get(35);
+		private final RuleCall cInstructionExgInstructionParserRuleCall_1_35_0 = (RuleCall)cInstructionAssignment_1_35.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_36 = (Assignment)cAlternatives_1.eContents().get(36);
+		private final RuleCall cInstructionIncInstructionParserRuleCall_1_36_0 = (RuleCall)cInstructionAssignment_1_36.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_37 = (Assignment)cAlternatives_1.eContents().get(37);
+		private final RuleCall cInstructionJmpInstructionParserRuleCall_1_37_0 = (RuleCall)cInstructionAssignment_1_37.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_38 = (Assignment)cAlternatives_1.eContents().get(38);
+		private final RuleCall cInstructionJsrInstructionParserRuleCall_1_38_0 = (RuleCall)cInstructionAssignment_1_38.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_39 = (Assignment)cAlternatives_1.eContents().get(39);
+		private final RuleCall cInstructionLdInstructionParserRuleCall_1_39_0 = (RuleCall)cInstructionAssignment_1_39.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_40 = (Assignment)cAlternatives_1.eContents().get(40);
+		private final RuleCall cInstructionLeaInstructionParserRuleCall_1_40_0 = (RuleCall)cInstructionAssignment_1_40.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_41 = (Assignment)cAlternatives_1.eContents().get(41);
+		private final RuleCall cInstructionLslInstructionParserRuleCall_1_41_0 = (RuleCall)cInstructionAssignment_1_41.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_42 = (Assignment)cAlternatives_1.eContents().get(42);
+		private final RuleCall cInstructionLsrInstructionParserRuleCall_1_42_0 = (RuleCall)cInstructionAssignment_1_42.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_43 = (Assignment)cAlternatives_1.eContents().get(43);
+		private final RuleCall cInstructionMulInstructionParserRuleCall_1_43_0 = (RuleCall)cInstructionAssignment_1_43.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_44 = (Assignment)cAlternatives_1.eContents().get(44);
+		private final RuleCall cInstructionNegInstructionParserRuleCall_1_44_0 = (RuleCall)cInstructionAssignment_1_44.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_45 = (Assignment)cAlternatives_1.eContents().get(45);
+		private final RuleCall cInstructionNopInstructionParserRuleCall_1_45_0 = (RuleCall)cInstructionAssignment_1_45.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_46 = (Assignment)cAlternatives_1.eContents().get(46);
+		private final RuleCall cInstructionOrInstructionParserRuleCall_1_46_0 = (RuleCall)cInstructionAssignment_1_46.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_47 = (Assignment)cAlternatives_1.eContents().get(47);
+		private final RuleCall cInstructionOrCCInstructionParserRuleCall_1_47_0 = (RuleCall)cInstructionAssignment_1_47.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_48 = (Assignment)cAlternatives_1.eContents().get(48);
+		private final RuleCall cInstructionPshsInstructionParserRuleCall_1_48_0 = (RuleCall)cInstructionAssignment_1_48.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_49 = (Assignment)cAlternatives_1.eContents().get(49);
+		private final RuleCall cInstructionPshuInstructionParserRuleCall_1_49_0 = (RuleCall)cInstructionAssignment_1_49.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_50 = (Assignment)cAlternatives_1.eContents().get(50);
+		private final RuleCall cInstructionPulsInstructionParserRuleCall_1_50_0 = (RuleCall)cInstructionAssignment_1_50.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_51 = (Assignment)cAlternatives_1.eContents().get(51);
+		private final RuleCall cInstructionPuluInstructionParserRuleCall_1_51_0 = (RuleCall)cInstructionAssignment_1_51.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_52 = (Assignment)cAlternatives_1.eContents().get(52);
+		private final RuleCall cInstructionRolInstructionParserRuleCall_1_52_0 = (RuleCall)cInstructionAssignment_1_52.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_53 = (Assignment)cAlternatives_1.eContents().get(53);
+		private final RuleCall cInstructionRorInstructionParserRuleCall_1_53_0 = (RuleCall)cInstructionAssignment_1_53.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_54 = (Assignment)cAlternatives_1.eContents().get(54);
+		private final RuleCall cInstructionRtiInstructionParserRuleCall_1_54_0 = (RuleCall)cInstructionAssignment_1_54.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_55 = (Assignment)cAlternatives_1.eContents().get(55);
+		private final RuleCall cInstructionRtsInstructionParserRuleCall_1_55_0 = (RuleCall)cInstructionAssignment_1_55.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_56 = (Assignment)cAlternatives_1.eContents().get(56);
+		private final RuleCall cInstructionSbcInstructionParserRuleCall_1_56_0 = (RuleCall)cInstructionAssignment_1_56.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_57 = (Assignment)cAlternatives_1.eContents().get(57);
+		private final RuleCall cInstructionSexInstructionParserRuleCall_1_57_0 = (RuleCall)cInstructionAssignment_1_57.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_58 = (Assignment)cAlternatives_1.eContents().get(58);
+		private final RuleCall cInstructionStInstructionParserRuleCall_1_58_0 = (RuleCall)cInstructionAssignment_1_58.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_59 = (Assignment)cAlternatives_1.eContents().get(59);
+		private final RuleCall cInstructionSubInstructionParserRuleCall_1_59_0 = (RuleCall)cInstructionAssignment_1_59.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_60 = (Assignment)cAlternatives_1.eContents().get(60);
+		private final RuleCall cInstructionSubdInstructionParserRuleCall_1_60_0 = (RuleCall)cInstructionAssignment_1_60.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_61 = (Assignment)cAlternatives_1.eContents().get(61);
+		private final RuleCall cInstructionSwiInstructionParserRuleCall_1_61_0 = (RuleCall)cInstructionAssignment_1_61.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_62 = (Assignment)cAlternatives_1.eContents().get(62);
+		private final RuleCall cInstructionSwi2InstructionParserRuleCall_1_62_0 = (RuleCall)cInstructionAssignment_1_62.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_63 = (Assignment)cAlternatives_1.eContents().get(63);
+		private final RuleCall cInstructionSwi3InstructionParserRuleCall_1_63_0 = (RuleCall)cInstructionAssignment_1_63.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_64 = (Assignment)cAlternatives_1.eContents().get(64);
+		private final RuleCall cInstructionSyncInstructionParserRuleCall_1_64_0 = (RuleCall)cInstructionAssignment_1_64.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_65 = (Assignment)cAlternatives_1.eContents().get(65);
+		private final RuleCall cInstructionTfrInstructionParserRuleCall_1_65_0 = (RuleCall)cInstructionAssignment_1_65.eContents().get(0);
+		private final Assignment cInstructionAssignment_1_66 = (Assignment)cAlternatives_1.eContents().get(66);
+		private final RuleCall cInstructionTstInstructionParserRuleCall_1_66_0 = (RuleCall)cInstructionAssignment_1_66.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final RuleCall cWSTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final Assignment cCommentAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_1_0 = (RuleCall)cCommentAssignment_2_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cEndOfLineParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		///*
 		// * Definition of the list possible instructions
 		// */
 		//InstructionLine:
-		//    (name = IdentifierValue)? WS
+		//    label = Label
 		//    (
 		//        instruction = AbxInstruction            |
 		//        instruction = AdcInstruction            |
@@ -401,7 +400,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS
+		//label = Label
 		//(
 		//    instruction = AbxInstruction            |
 		//    instruction = AdcInstruction            |
@@ -475,14 +474,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//label = Label
+		public Assignment getLabelAssignment_0() { return cLabelAssignment_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		//Label
+		public RuleCall getLabelLabelParserRuleCall_0_0() { return cLabelLabelParserRuleCall_0_0; }
 		
 		//(
 		//    instruction = AbxInstruction            |
@@ -553,427 +549,455 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = TfrInstruction            |
 		//    instruction = TstInstruction
 		//)
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//instruction = AbxInstruction
-		public Assignment getInstructionAssignment_2_0() { return cInstructionAssignment_2_0; }
+		public Assignment getInstructionAssignment_1_0() { return cInstructionAssignment_1_0; }
 		
 		//AbxInstruction
-		public RuleCall getInstructionAbxInstructionParserRuleCall_2_0_0() { return cInstructionAbxInstructionParserRuleCall_2_0_0; }
+		public RuleCall getInstructionAbxInstructionParserRuleCall_1_0_0() { return cInstructionAbxInstructionParserRuleCall_1_0_0; }
 		
 		//instruction = AdcInstruction
-		public Assignment getInstructionAssignment_2_1() { return cInstructionAssignment_2_1; }
+		public Assignment getInstructionAssignment_1_1() { return cInstructionAssignment_1_1; }
 		
 		//AdcInstruction
-		public RuleCall getInstructionAdcInstructionParserRuleCall_2_1_0() { return cInstructionAdcInstructionParserRuleCall_2_1_0; }
+		public RuleCall getInstructionAdcInstructionParserRuleCall_1_1_0() { return cInstructionAdcInstructionParserRuleCall_1_1_0; }
 		
 		//instruction = AddInstruction
-		public Assignment getInstructionAssignment_2_2() { return cInstructionAssignment_2_2; }
+		public Assignment getInstructionAssignment_1_2() { return cInstructionAssignment_1_2; }
 		
 		//AddInstruction
-		public RuleCall getInstructionAddInstructionParserRuleCall_2_2_0() { return cInstructionAddInstructionParserRuleCall_2_2_0; }
+		public RuleCall getInstructionAddInstructionParserRuleCall_1_2_0() { return cInstructionAddInstructionParserRuleCall_1_2_0; }
 		
 		//instruction = AdddInstruction
-		public Assignment getInstructionAssignment_2_3() { return cInstructionAssignment_2_3; }
+		public Assignment getInstructionAssignment_1_3() { return cInstructionAssignment_1_3; }
 		
 		//AdddInstruction
-		public RuleCall getInstructionAdddInstructionParserRuleCall_2_3_0() { return cInstructionAdddInstructionParserRuleCall_2_3_0; }
+		public RuleCall getInstructionAdddInstructionParserRuleCall_1_3_0() { return cInstructionAdddInstructionParserRuleCall_1_3_0; }
 		
 		//instruction = AndInstruction
-		public Assignment getInstructionAssignment_2_4() { return cInstructionAssignment_2_4; }
+		public Assignment getInstructionAssignment_1_4() { return cInstructionAssignment_1_4; }
 		
 		//AndInstruction
-		public RuleCall getInstructionAndInstructionParserRuleCall_2_4_0() { return cInstructionAndInstructionParserRuleCall_2_4_0; }
+		public RuleCall getInstructionAndInstructionParserRuleCall_1_4_0() { return cInstructionAndInstructionParserRuleCall_1_4_0; }
 		
 		//instruction = AndCCInstruction
-		public Assignment getInstructionAssignment_2_5() { return cInstructionAssignment_2_5; }
+		public Assignment getInstructionAssignment_1_5() { return cInstructionAssignment_1_5; }
 		
 		//AndCCInstruction
-		public RuleCall getInstructionAndCCInstructionParserRuleCall_2_5_0() { return cInstructionAndCCInstructionParserRuleCall_2_5_0; }
+		public RuleCall getInstructionAndCCInstructionParserRuleCall_1_5_0() { return cInstructionAndCCInstructionParserRuleCall_1_5_0; }
 		
 		//instruction = AslInstruction
-		public Assignment getInstructionAssignment_2_6() { return cInstructionAssignment_2_6; }
+		public Assignment getInstructionAssignment_1_6() { return cInstructionAssignment_1_6; }
 		
 		//AslInstruction
-		public RuleCall getInstructionAslInstructionParserRuleCall_2_6_0() { return cInstructionAslInstructionParserRuleCall_2_6_0; }
+		public RuleCall getInstructionAslInstructionParserRuleCall_1_6_0() { return cInstructionAslInstructionParserRuleCall_1_6_0; }
 		
 		//instruction = AsrInstruction
-		public Assignment getInstructionAssignment_2_7() { return cInstructionAssignment_2_7; }
+		public Assignment getInstructionAssignment_1_7() { return cInstructionAssignment_1_7; }
 		
 		//AsrInstruction
-		public RuleCall getInstructionAsrInstructionParserRuleCall_2_7_0() { return cInstructionAsrInstructionParserRuleCall_2_7_0; }
+		public RuleCall getInstructionAsrInstructionParserRuleCall_1_7_0() { return cInstructionAsrInstructionParserRuleCall_1_7_0; }
 		
 		//instruction = BccInstruction
-		public Assignment getInstructionAssignment_2_8() { return cInstructionAssignment_2_8; }
+		public Assignment getInstructionAssignment_1_8() { return cInstructionAssignment_1_8; }
 		
 		//BccInstruction
-		public RuleCall getInstructionBccInstructionParserRuleCall_2_8_0() { return cInstructionBccInstructionParserRuleCall_2_8_0; }
+		public RuleCall getInstructionBccInstructionParserRuleCall_1_8_0() { return cInstructionBccInstructionParserRuleCall_1_8_0; }
 		
 		//instruction = BcsInstruction
-		public Assignment getInstructionAssignment_2_9() { return cInstructionAssignment_2_9; }
+		public Assignment getInstructionAssignment_1_9() { return cInstructionAssignment_1_9; }
 		
 		//BcsInstruction
-		public RuleCall getInstructionBcsInstructionParserRuleCall_2_9_0() { return cInstructionBcsInstructionParserRuleCall_2_9_0; }
+		public RuleCall getInstructionBcsInstructionParserRuleCall_1_9_0() { return cInstructionBcsInstructionParserRuleCall_1_9_0; }
 		
 		//instruction = BeqInstruction
-		public Assignment getInstructionAssignment_2_10() { return cInstructionAssignment_2_10; }
+		public Assignment getInstructionAssignment_1_10() { return cInstructionAssignment_1_10; }
 		
 		//BeqInstruction
-		public RuleCall getInstructionBeqInstructionParserRuleCall_2_10_0() { return cInstructionBeqInstructionParserRuleCall_2_10_0; }
+		public RuleCall getInstructionBeqInstructionParserRuleCall_1_10_0() { return cInstructionBeqInstructionParserRuleCall_1_10_0; }
 		
 		//instruction = BgeInstruction
-		public Assignment getInstructionAssignment_2_11() { return cInstructionAssignment_2_11; }
+		public Assignment getInstructionAssignment_1_11() { return cInstructionAssignment_1_11; }
 		
 		//BgeInstruction
-		public RuleCall getInstructionBgeInstructionParserRuleCall_2_11_0() { return cInstructionBgeInstructionParserRuleCall_2_11_0; }
+		public RuleCall getInstructionBgeInstructionParserRuleCall_1_11_0() { return cInstructionBgeInstructionParserRuleCall_1_11_0; }
 		
 		//instruction = BgtInstruction
-		public Assignment getInstructionAssignment_2_12() { return cInstructionAssignment_2_12; }
+		public Assignment getInstructionAssignment_1_12() { return cInstructionAssignment_1_12; }
 		
 		//BgtInstruction
-		public RuleCall getInstructionBgtInstructionParserRuleCall_2_12_0() { return cInstructionBgtInstructionParserRuleCall_2_12_0; }
+		public RuleCall getInstructionBgtInstructionParserRuleCall_1_12_0() { return cInstructionBgtInstructionParserRuleCall_1_12_0; }
 		
 		//instruction = BhiInstruction
-		public Assignment getInstructionAssignment_2_13() { return cInstructionAssignment_2_13; }
+		public Assignment getInstructionAssignment_1_13() { return cInstructionAssignment_1_13; }
 		
 		//BhiInstruction
-		public RuleCall getInstructionBhiInstructionParserRuleCall_2_13_0() { return cInstructionBhiInstructionParserRuleCall_2_13_0; }
+		public RuleCall getInstructionBhiInstructionParserRuleCall_1_13_0() { return cInstructionBhiInstructionParserRuleCall_1_13_0; }
 		
 		//instruction = BhsInstruction
-		public Assignment getInstructionAssignment_2_14() { return cInstructionAssignment_2_14; }
+		public Assignment getInstructionAssignment_1_14() { return cInstructionAssignment_1_14; }
 		
 		//BhsInstruction
-		public RuleCall getInstructionBhsInstructionParserRuleCall_2_14_0() { return cInstructionBhsInstructionParserRuleCall_2_14_0; }
+		public RuleCall getInstructionBhsInstructionParserRuleCall_1_14_0() { return cInstructionBhsInstructionParserRuleCall_1_14_0; }
 		
 		//instruction = BitInstruction
-		public Assignment getInstructionAssignment_2_15() { return cInstructionAssignment_2_15; }
+		public Assignment getInstructionAssignment_1_15() { return cInstructionAssignment_1_15; }
 		
 		//BitInstruction
-		public RuleCall getInstructionBitInstructionParserRuleCall_2_15_0() { return cInstructionBitInstructionParserRuleCall_2_15_0; }
+		public RuleCall getInstructionBitInstructionParserRuleCall_1_15_0() { return cInstructionBitInstructionParserRuleCall_1_15_0; }
 		
 		//instruction = BleInstruction
-		public Assignment getInstructionAssignment_2_16() { return cInstructionAssignment_2_16; }
+		public Assignment getInstructionAssignment_1_16() { return cInstructionAssignment_1_16; }
 		
 		//BleInstruction
-		public RuleCall getInstructionBleInstructionParserRuleCall_2_16_0() { return cInstructionBleInstructionParserRuleCall_2_16_0; }
+		public RuleCall getInstructionBleInstructionParserRuleCall_1_16_0() { return cInstructionBleInstructionParserRuleCall_1_16_0; }
 		
 		//instruction = BloInstruction
-		public Assignment getInstructionAssignment_2_17() { return cInstructionAssignment_2_17; }
+		public Assignment getInstructionAssignment_1_17() { return cInstructionAssignment_1_17; }
 		
 		//BloInstruction
-		public RuleCall getInstructionBloInstructionParserRuleCall_2_17_0() { return cInstructionBloInstructionParserRuleCall_2_17_0; }
+		public RuleCall getInstructionBloInstructionParserRuleCall_1_17_0() { return cInstructionBloInstructionParserRuleCall_1_17_0; }
 		
 		//instruction = BlsInstruction
-		public Assignment getInstructionAssignment_2_18() { return cInstructionAssignment_2_18; }
+		public Assignment getInstructionAssignment_1_18() { return cInstructionAssignment_1_18; }
 		
 		//BlsInstruction
-		public RuleCall getInstructionBlsInstructionParserRuleCall_2_18_0() { return cInstructionBlsInstructionParserRuleCall_2_18_0; }
+		public RuleCall getInstructionBlsInstructionParserRuleCall_1_18_0() { return cInstructionBlsInstructionParserRuleCall_1_18_0; }
 		
 		//instruction = BltInstruction
-		public Assignment getInstructionAssignment_2_19() { return cInstructionAssignment_2_19; }
+		public Assignment getInstructionAssignment_1_19() { return cInstructionAssignment_1_19; }
 		
 		//BltInstruction
-		public RuleCall getInstructionBltInstructionParserRuleCall_2_19_0() { return cInstructionBltInstructionParserRuleCall_2_19_0; }
+		public RuleCall getInstructionBltInstructionParserRuleCall_1_19_0() { return cInstructionBltInstructionParserRuleCall_1_19_0; }
 		
 		//instruction = BmiInstruction
-		public Assignment getInstructionAssignment_2_20() { return cInstructionAssignment_2_20; }
+		public Assignment getInstructionAssignment_1_20() { return cInstructionAssignment_1_20; }
 		
 		//BmiInstruction
-		public RuleCall getInstructionBmiInstructionParserRuleCall_2_20_0() { return cInstructionBmiInstructionParserRuleCall_2_20_0; }
+		public RuleCall getInstructionBmiInstructionParserRuleCall_1_20_0() { return cInstructionBmiInstructionParserRuleCall_1_20_0; }
 		
 		//instruction = BneInstruction
-		public Assignment getInstructionAssignment_2_21() { return cInstructionAssignment_2_21; }
+		public Assignment getInstructionAssignment_1_21() { return cInstructionAssignment_1_21; }
 		
 		//BneInstruction
-		public RuleCall getInstructionBneInstructionParserRuleCall_2_21_0() { return cInstructionBneInstructionParserRuleCall_2_21_0; }
+		public RuleCall getInstructionBneInstructionParserRuleCall_1_21_0() { return cInstructionBneInstructionParserRuleCall_1_21_0; }
 		
 		//instruction = BplInstruction
-		public Assignment getInstructionAssignment_2_22() { return cInstructionAssignment_2_22; }
+		public Assignment getInstructionAssignment_1_22() { return cInstructionAssignment_1_22; }
 		
 		//BplInstruction
-		public RuleCall getInstructionBplInstructionParserRuleCall_2_22_0() { return cInstructionBplInstructionParserRuleCall_2_22_0; }
+		public RuleCall getInstructionBplInstructionParserRuleCall_1_22_0() { return cInstructionBplInstructionParserRuleCall_1_22_0; }
 		
 		//instruction = BraInstruction
-		public Assignment getInstructionAssignment_2_23() { return cInstructionAssignment_2_23; }
+		public Assignment getInstructionAssignment_1_23() { return cInstructionAssignment_1_23; }
 		
 		//BraInstruction
-		public RuleCall getInstructionBraInstructionParserRuleCall_2_23_0() { return cInstructionBraInstructionParserRuleCall_2_23_0; }
+		public RuleCall getInstructionBraInstructionParserRuleCall_1_23_0() { return cInstructionBraInstructionParserRuleCall_1_23_0; }
 		
 		//instruction = BrnInstruction
-		public Assignment getInstructionAssignment_2_24() { return cInstructionAssignment_2_24; }
+		public Assignment getInstructionAssignment_1_24() { return cInstructionAssignment_1_24; }
 		
 		//BrnInstruction
-		public RuleCall getInstructionBrnInstructionParserRuleCall_2_24_0() { return cInstructionBrnInstructionParserRuleCall_2_24_0; }
+		public RuleCall getInstructionBrnInstructionParserRuleCall_1_24_0() { return cInstructionBrnInstructionParserRuleCall_1_24_0; }
 		
 		//instruction = BsrInstruction
-		public Assignment getInstructionAssignment_2_25() { return cInstructionAssignment_2_25; }
+		public Assignment getInstructionAssignment_1_25() { return cInstructionAssignment_1_25; }
 		
 		//BsrInstruction
-		public RuleCall getInstructionBsrInstructionParserRuleCall_2_25_0() { return cInstructionBsrInstructionParserRuleCall_2_25_0; }
+		public RuleCall getInstructionBsrInstructionParserRuleCall_1_25_0() { return cInstructionBsrInstructionParserRuleCall_1_25_0; }
 		
 		//instruction = BvcInstruction
-		public Assignment getInstructionAssignment_2_26() { return cInstructionAssignment_2_26; }
+		public Assignment getInstructionAssignment_1_26() { return cInstructionAssignment_1_26; }
 		
 		//BvcInstruction
-		public RuleCall getInstructionBvcInstructionParserRuleCall_2_26_0() { return cInstructionBvcInstructionParserRuleCall_2_26_0; }
+		public RuleCall getInstructionBvcInstructionParserRuleCall_1_26_0() { return cInstructionBvcInstructionParserRuleCall_1_26_0; }
 		
 		//instruction = BvsInstruction
-		public Assignment getInstructionAssignment_2_27() { return cInstructionAssignment_2_27; }
+		public Assignment getInstructionAssignment_1_27() { return cInstructionAssignment_1_27; }
 		
 		//BvsInstruction
-		public RuleCall getInstructionBvsInstructionParserRuleCall_2_27_0() { return cInstructionBvsInstructionParserRuleCall_2_27_0; }
+		public RuleCall getInstructionBvsInstructionParserRuleCall_1_27_0() { return cInstructionBvsInstructionParserRuleCall_1_27_0; }
 		
 		//instruction = ClrInstruction
-		public Assignment getInstructionAssignment_2_28() { return cInstructionAssignment_2_28; }
+		public Assignment getInstructionAssignment_1_28() { return cInstructionAssignment_1_28; }
 		
 		//ClrInstruction
-		public RuleCall getInstructionClrInstructionParserRuleCall_2_28_0() { return cInstructionClrInstructionParserRuleCall_2_28_0; }
+		public RuleCall getInstructionClrInstructionParserRuleCall_1_28_0() { return cInstructionClrInstructionParserRuleCall_1_28_0; }
 		
 		//instruction = CmpInstruction
-		public Assignment getInstructionAssignment_2_29() { return cInstructionAssignment_2_29; }
+		public Assignment getInstructionAssignment_1_29() { return cInstructionAssignment_1_29; }
 		
 		//CmpInstruction
-		public RuleCall getInstructionCmpInstructionParserRuleCall_2_29_0() { return cInstructionCmpInstructionParserRuleCall_2_29_0; }
+		public RuleCall getInstructionCmpInstructionParserRuleCall_1_29_0() { return cInstructionCmpInstructionParserRuleCall_1_29_0; }
 		
 		//instruction = ComInstruction
-		public Assignment getInstructionAssignment_2_30() { return cInstructionAssignment_2_30; }
+		public Assignment getInstructionAssignment_1_30() { return cInstructionAssignment_1_30; }
 		
 		//ComInstruction
-		public RuleCall getInstructionComInstructionParserRuleCall_2_30_0() { return cInstructionComInstructionParserRuleCall_2_30_0; }
+		public RuleCall getInstructionComInstructionParserRuleCall_1_30_0() { return cInstructionComInstructionParserRuleCall_1_30_0; }
 		
 		//instruction = CwaiInstruction
-		public Assignment getInstructionAssignment_2_31() { return cInstructionAssignment_2_31; }
+		public Assignment getInstructionAssignment_1_31() { return cInstructionAssignment_1_31; }
 		
 		//CwaiInstruction
-		public RuleCall getInstructionCwaiInstructionParserRuleCall_2_31_0() { return cInstructionCwaiInstructionParserRuleCall_2_31_0; }
+		public RuleCall getInstructionCwaiInstructionParserRuleCall_1_31_0() { return cInstructionCwaiInstructionParserRuleCall_1_31_0; }
 		
 		//instruction = DaaInstruction
-		public Assignment getInstructionAssignment_2_32() { return cInstructionAssignment_2_32; }
+		public Assignment getInstructionAssignment_1_32() { return cInstructionAssignment_1_32; }
 		
 		//DaaInstruction
-		public RuleCall getInstructionDaaInstructionParserRuleCall_2_32_0() { return cInstructionDaaInstructionParserRuleCall_2_32_0; }
+		public RuleCall getInstructionDaaInstructionParserRuleCall_1_32_0() { return cInstructionDaaInstructionParserRuleCall_1_32_0; }
 		
 		//instruction = DecInstruction
-		public Assignment getInstructionAssignment_2_33() { return cInstructionAssignment_2_33; }
+		public Assignment getInstructionAssignment_1_33() { return cInstructionAssignment_1_33; }
 		
 		//DecInstruction
-		public RuleCall getInstructionDecInstructionParserRuleCall_2_33_0() { return cInstructionDecInstructionParserRuleCall_2_33_0; }
+		public RuleCall getInstructionDecInstructionParserRuleCall_1_33_0() { return cInstructionDecInstructionParserRuleCall_1_33_0; }
 		
 		//instruction = EorInstruction
-		public Assignment getInstructionAssignment_2_34() { return cInstructionAssignment_2_34; }
+		public Assignment getInstructionAssignment_1_34() { return cInstructionAssignment_1_34; }
 		
 		//EorInstruction
-		public RuleCall getInstructionEorInstructionParserRuleCall_2_34_0() { return cInstructionEorInstructionParserRuleCall_2_34_0; }
+		public RuleCall getInstructionEorInstructionParserRuleCall_1_34_0() { return cInstructionEorInstructionParserRuleCall_1_34_0; }
 		
 		//instruction = ExgInstruction
-		public Assignment getInstructionAssignment_2_35() { return cInstructionAssignment_2_35; }
+		public Assignment getInstructionAssignment_1_35() { return cInstructionAssignment_1_35; }
 		
 		//ExgInstruction
-		public RuleCall getInstructionExgInstructionParserRuleCall_2_35_0() { return cInstructionExgInstructionParserRuleCall_2_35_0; }
+		public RuleCall getInstructionExgInstructionParserRuleCall_1_35_0() { return cInstructionExgInstructionParserRuleCall_1_35_0; }
 		
 		//instruction = IncInstruction
-		public Assignment getInstructionAssignment_2_36() { return cInstructionAssignment_2_36; }
+		public Assignment getInstructionAssignment_1_36() { return cInstructionAssignment_1_36; }
 		
 		//IncInstruction
-		public RuleCall getInstructionIncInstructionParserRuleCall_2_36_0() { return cInstructionIncInstructionParserRuleCall_2_36_0; }
+		public RuleCall getInstructionIncInstructionParserRuleCall_1_36_0() { return cInstructionIncInstructionParserRuleCall_1_36_0; }
 		
 		//instruction = JmpInstruction
-		public Assignment getInstructionAssignment_2_37() { return cInstructionAssignment_2_37; }
+		public Assignment getInstructionAssignment_1_37() { return cInstructionAssignment_1_37; }
 		
 		//JmpInstruction
-		public RuleCall getInstructionJmpInstructionParserRuleCall_2_37_0() { return cInstructionJmpInstructionParserRuleCall_2_37_0; }
+		public RuleCall getInstructionJmpInstructionParserRuleCall_1_37_0() { return cInstructionJmpInstructionParserRuleCall_1_37_0; }
 		
 		//instruction = JsrInstruction
-		public Assignment getInstructionAssignment_2_38() { return cInstructionAssignment_2_38; }
+		public Assignment getInstructionAssignment_1_38() { return cInstructionAssignment_1_38; }
 		
 		//JsrInstruction
-		public RuleCall getInstructionJsrInstructionParserRuleCall_2_38_0() { return cInstructionJsrInstructionParserRuleCall_2_38_0; }
+		public RuleCall getInstructionJsrInstructionParserRuleCall_1_38_0() { return cInstructionJsrInstructionParserRuleCall_1_38_0; }
 		
 		//instruction = LdInstruction
-		public Assignment getInstructionAssignment_2_39() { return cInstructionAssignment_2_39; }
+		public Assignment getInstructionAssignment_1_39() { return cInstructionAssignment_1_39; }
 		
 		//LdInstruction
-		public RuleCall getInstructionLdInstructionParserRuleCall_2_39_0() { return cInstructionLdInstructionParserRuleCall_2_39_0; }
+		public RuleCall getInstructionLdInstructionParserRuleCall_1_39_0() { return cInstructionLdInstructionParserRuleCall_1_39_0; }
 		
 		//instruction = LeaInstruction
-		public Assignment getInstructionAssignment_2_40() { return cInstructionAssignment_2_40; }
+		public Assignment getInstructionAssignment_1_40() { return cInstructionAssignment_1_40; }
 		
 		//LeaInstruction
-		public RuleCall getInstructionLeaInstructionParserRuleCall_2_40_0() { return cInstructionLeaInstructionParserRuleCall_2_40_0; }
+		public RuleCall getInstructionLeaInstructionParserRuleCall_1_40_0() { return cInstructionLeaInstructionParserRuleCall_1_40_0; }
 		
 		//instruction = LslInstruction
-		public Assignment getInstructionAssignment_2_41() { return cInstructionAssignment_2_41; }
+		public Assignment getInstructionAssignment_1_41() { return cInstructionAssignment_1_41; }
 		
 		//LslInstruction
-		public RuleCall getInstructionLslInstructionParserRuleCall_2_41_0() { return cInstructionLslInstructionParserRuleCall_2_41_0; }
+		public RuleCall getInstructionLslInstructionParserRuleCall_1_41_0() { return cInstructionLslInstructionParserRuleCall_1_41_0; }
 		
 		//instruction = LsrInstruction
-		public Assignment getInstructionAssignment_2_42() { return cInstructionAssignment_2_42; }
+		public Assignment getInstructionAssignment_1_42() { return cInstructionAssignment_1_42; }
 		
 		//LsrInstruction
-		public RuleCall getInstructionLsrInstructionParserRuleCall_2_42_0() { return cInstructionLsrInstructionParserRuleCall_2_42_0; }
+		public RuleCall getInstructionLsrInstructionParserRuleCall_1_42_0() { return cInstructionLsrInstructionParserRuleCall_1_42_0; }
 		
 		//instruction = MulInstruction
-		public Assignment getInstructionAssignment_2_43() { return cInstructionAssignment_2_43; }
+		public Assignment getInstructionAssignment_1_43() { return cInstructionAssignment_1_43; }
 		
 		//MulInstruction
-		public RuleCall getInstructionMulInstructionParserRuleCall_2_43_0() { return cInstructionMulInstructionParserRuleCall_2_43_0; }
+		public RuleCall getInstructionMulInstructionParserRuleCall_1_43_0() { return cInstructionMulInstructionParserRuleCall_1_43_0; }
 		
 		//instruction = NegInstruction
-		public Assignment getInstructionAssignment_2_44() { return cInstructionAssignment_2_44; }
+		public Assignment getInstructionAssignment_1_44() { return cInstructionAssignment_1_44; }
 		
 		//NegInstruction
-		public RuleCall getInstructionNegInstructionParserRuleCall_2_44_0() { return cInstructionNegInstructionParserRuleCall_2_44_0; }
+		public RuleCall getInstructionNegInstructionParserRuleCall_1_44_0() { return cInstructionNegInstructionParserRuleCall_1_44_0; }
 		
 		//instruction = NopInstruction
-		public Assignment getInstructionAssignment_2_45() { return cInstructionAssignment_2_45; }
+		public Assignment getInstructionAssignment_1_45() { return cInstructionAssignment_1_45; }
 		
 		//NopInstruction
-		public RuleCall getInstructionNopInstructionParserRuleCall_2_45_0() { return cInstructionNopInstructionParserRuleCall_2_45_0; }
+		public RuleCall getInstructionNopInstructionParserRuleCall_1_45_0() { return cInstructionNopInstructionParserRuleCall_1_45_0; }
 		
 		//instruction = OrInstruction
-		public Assignment getInstructionAssignment_2_46() { return cInstructionAssignment_2_46; }
+		public Assignment getInstructionAssignment_1_46() { return cInstructionAssignment_1_46; }
 		
 		//OrInstruction
-		public RuleCall getInstructionOrInstructionParserRuleCall_2_46_0() { return cInstructionOrInstructionParserRuleCall_2_46_0; }
+		public RuleCall getInstructionOrInstructionParserRuleCall_1_46_0() { return cInstructionOrInstructionParserRuleCall_1_46_0; }
 		
 		//instruction = OrCCInstruction
-		public Assignment getInstructionAssignment_2_47() { return cInstructionAssignment_2_47; }
+		public Assignment getInstructionAssignment_1_47() { return cInstructionAssignment_1_47; }
 		
 		//OrCCInstruction
-		public RuleCall getInstructionOrCCInstructionParserRuleCall_2_47_0() { return cInstructionOrCCInstructionParserRuleCall_2_47_0; }
+		public RuleCall getInstructionOrCCInstructionParserRuleCall_1_47_0() { return cInstructionOrCCInstructionParserRuleCall_1_47_0; }
 		
 		//instruction = PshsInstruction
-		public Assignment getInstructionAssignment_2_48() { return cInstructionAssignment_2_48; }
+		public Assignment getInstructionAssignment_1_48() { return cInstructionAssignment_1_48; }
 		
 		//PshsInstruction
-		public RuleCall getInstructionPshsInstructionParserRuleCall_2_48_0() { return cInstructionPshsInstructionParserRuleCall_2_48_0; }
+		public RuleCall getInstructionPshsInstructionParserRuleCall_1_48_0() { return cInstructionPshsInstructionParserRuleCall_1_48_0; }
 		
 		//instruction = PshuInstruction
-		public Assignment getInstructionAssignment_2_49() { return cInstructionAssignment_2_49; }
+		public Assignment getInstructionAssignment_1_49() { return cInstructionAssignment_1_49; }
 		
 		//PshuInstruction
-		public RuleCall getInstructionPshuInstructionParserRuleCall_2_49_0() { return cInstructionPshuInstructionParserRuleCall_2_49_0; }
+		public RuleCall getInstructionPshuInstructionParserRuleCall_1_49_0() { return cInstructionPshuInstructionParserRuleCall_1_49_0; }
 		
 		//instruction = PulsInstruction
-		public Assignment getInstructionAssignment_2_50() { return cInstructionAssignment_2_50; }
+		public Assignment getInstructionAssignment_1_50() { return cInstructionAssignment_1_50; }
 		
 		//PulsInstruction
-		public RuleCall getInstructionPulsInstructionParserRuleCall_2_50_0() { return cInstructionPulsInstructionParserRuleCall_2_50_0; }
+		public RuleCall getInstructionPulsInstructionParserRuleCall_1_50_0() { return cInstructionPulsInstructionParserRuleCall_1_50_0; }
 		
 		//instruction = PuluInstruction
-		public Assignment getInstructionAssignment_2_51() { return cInstructionAssignment_2_51; }
+		public Assignment getInstructionAssignment_1_51() { return cInstructionAssignment_1_51; }
 		
 		//PuluInstruction
-		public RuleCall getInstructionPuluInstructionParserRuleCall_2_51_0() { return cInstructionPuluInstructionParserRuleCall_2_51_0; }
+		public RuleCall getInstructionPuluInstructionParserRuleCall_1_51_0() { return cInstructionPuluInstructionParserRuleCall_1_51_0; }
 		
 		//instruction = RolInstruction
-		public Assignment getInstructionAssignment_2_52() { return cInstructionAssignment_2_52; }
+		public Assignment getInstructionAssignment_1_52() { return cInstructionAssignment_1_52; }
 		
 		//RolInstruction
-		public RuleCall getInstructionRolInstructionParserRuleCall_2_52_0() { return cInstructionRolInstructionParserRuleCall_2_52_0; }
+		public RuleCall getInstructionRolInstructionParserRuleCall_1_52_0() { return cInstructionRolInstructionParserRuleCall_1_52_0; }
 		
 		//instruction = RorInstruction
-		public Assignment getInstructionAssignment_2_53() { return cInstructionAssignment_2_53; }
+		public Assignment getInstructionAssignment_1_53() { return cInstructionAssignment_1_53; }
 		
 		//RorInstruction
-		public RuleCall getInstructionRorInstructionParserRuleCall_2_53_0() { return cInstructionRorInstructionParserRuleCall_2_53_0; }
+		public RuleCall getInstructionRorInstructionParserRuleCall_1_53_0() { return cInstructionRorInstructionParserRuleCall_1_53_0; }
 		
 		//instruction = RtiInstruction
-		public Assignment getInstructionAssignment_2_54() { return cInstructionAssignment_2_54; }
+		public Assignment getInstructionAssignment_1_54() { return cInstructionAssignment_1_54; }
 		
 		//RtiInstruction
-		public RuleCall getInstructionRtiInstructionParserRuleCall_2_54_0() { return cInstructionRtiInstructionParserRuleCall_2_54_0; }
+		public RuleCall getInstructionRtiInstructionParserRuleCall_1_54_0() { return cInstructionRtiInstructionParserRuleCall_1_54_0; }
 		
 		//instruction = RtsInstruction
-		public Assignment getInstructionAssignment_2_55() { return cInstructionAssignment_2_55; }
+		public Assignment getInstructionAssignment_1_55() { return cInstructionAssignment_1_55; }
 		
 		//RtsInstruction
-		public RuleCall getInstructionRtsInstructionParserRuleCall_2_55_0() { return cInstructionRtsInstructionParserRuleCall_2_55_0; }
+		public RuleCall getInstructionRtsInstructionParserRuleCall_1_55_0() { return cInstructionRtsInstructionParserRuleCall_1_55_0; }
 		
 		//instruction = SbcInstruction
-		public Assignment getInstructionAssignment_2_56() { return cInstructionAssignment_2_56; }
+		public Assignment getInstructionAssignment_1_56() { return cInstructionAssignment_1_56; }
 		
 		//SbcInstruction
-		public RuleCall getInstructionSbcInstructionParserRuleCall_2_56_0() { return cInstructionSbcInstructionParserRuleCall_2_56_0; }
+		public RuleCall getInstructionSbcInstructionParserRuleCall_1_56_0() { return cInstructionSbcInstructionParserRuleCall_1_56_0; }
 		
 		//instruction = SexInstruction
-		public Assignment getInstructionAssignment_2_57() { return cInstructionAssignment_2_57; }
+		public Assignment getInstructionAssignment_1_57() { return cInstructionAssignment_1_57; }
 		
 		//SexInstruction
-		public RuleCall getInstructionSexInstructionParserRuleCall_2_57_0() { return cInstructionSexInstructionParserRuleCall_2_57_0; }
+		public RuleCall getInstructionSexInstructionParserRuleCall_1_57_0() { return cInstructionSexInstructionParserRuleCall_1_57_0; }
 		
 		//instruction = StInstruction
-		public Assignment getInstructionAssignment_2_58() { return cInstructionAssignment_2_58; }
+		public Assignment getInstructionAssignment_1_58() { return cInstructionAssignment_1_58; }
 		
 		//StInstruction
-		public RuleCall getInstructionStInstructionParserRuleCall_2_58_0() { return cInstructionStInstructionParserRuleCall_2_58_0; }
+		public RuleCall getInstructionStInstructionParserRuleCall_1_58_0() { return cInstructionStInstructionParserRuleCall_1_58_0; }
 		
 		//instruction = SubInstruction
-		public Assignment getInstructionAssignment_2_59() { return cInstructionAssignment_2_59; }
+		public Assignment getInstructionAssignment_1_59() { return cInstructionAssignment_1_59; }
 		
 		//SubInstruction
-		public RuleCall getInstructionSubInstructionParserRuleCall_2_59_0() { return cInstructionSubInstructionParserRuleCall_2_59_0; }
+		public RuleCall getInstructionSubInstructionParserRuleCall_1_59_0() { return cInstructionSubInstructionParserRuleCall_1_59_0; }
 		
 		//instruction = SubdInstruction
-		public Assignment getInstructionAssignment_2_60() { return cInstructionAssignment_2_60; }
+		public Assignment getInstructionAssignment_1_60() { return cInstructionAssignment_1_60; }
 		
 		//SubdInstruction
-		public RuleCall getInstructionSubdInstructionParserRuleCall_2_60_0() { return cInstructionSubdInstructionParserRuleCall_2_60_0; }
+		public RuleCall getInstructionSubdInstructionParserRuleCall_1_60_0() { return cInstructionSubdInstructionParserRuleCall_1_60_0; }
 		
 		//instruction = SwiInstruction
-		public Assignment getInstructionAssignment_2_61() { return cInstructionAssignment_2_61; }
+		public Assignment getInstructionAssignment_1_61() { return cInstructionAssignment_1_61; }
 		
 		//SwiInstruction
-		public RuleCall getInstructionSwiInstructionParserRuleCall_2_61_0() { return cInstructionSwiInstructionParserRuleCall_2_61_0; }
+		public RuleCall getInstructionSwiInstructionParserRuleCall_1_61_0() { return cInstructionSwiInstructionParserRuleCall_1_61_0; }
 		
 		//instruction = Swi2Instruction
-		public Assignment getInstructionAssignment_2_62() { return cInstructionAssignment_2_62; }
+		public Assignment getInstructionAssignment_1_62() { return cInstructionAssignment_1_62; }
 		
 		//Swi2Instruction
-		public RuleCall getInstructionSwi2InstructionParserRuleCall_2_62_0() { return cInstructionSwi2InstructionParserRuleCall_2_62_0; }
+		public RuleCall getInstructionSwi2InstructionParserRuleCall_1_62_0() { return cInstructionSwi2InstructionParserRuleCall_1_62_0; }
 		
 		//instruction = Swi3Instruction
-		public Assignment getInstructionAssignment_2_63() { return cInstructionAssignment_2_63; }
+		public Assignment getInstructionAssignment_1_63() { return cInstructionAssignment_1_63; }
 		
 		//Swi3Instruction
-		public RuleCall getInstructionSwi3InstructionParserRuleCall_2_63_0() { return cInstructionSwi3InstructionParserRuleCall_2_63_0; }
+		public RuleCall getInstructionSwi3InstructionParserRuleCall_1_63_0() { return cInstructionSwi3InstructionParserRuleCall_1_63_0; }
 		
 		//instruction = SyncInstruction
-		public Assignment getInstructionAssignment_2_64() { return cInstructionAssignment_2_64; }
+		public Assignment getInstructionAssignment_1_64() { return cInstructionAssignment_1_64; }
 		
 		//SyncInstruction
-		public RuleCall getInstructionSyncInstructionParserRuleCall_2_64_0() { return cInstructionSyncInstructionParserRuleCall_2_64_0; }
+		public RuleCall getInstructionSyncInstructionParserRuleCall_1_64_0() { return cInstructionSyncInstructionParserRuleCall_1_64_0; }
 		
 		//instruction = TfrInstruction
-		public Assignment getInstructionAssignment_2_65() { return cInstructionAssignment_2_65; }
+		public Assignment getInstructionAssignment_1_65() { return cInstructionAssignment_1_65; }
 		
 		//TfrInstruction
-		public RuleCall getInstructionTfrInstructionParserRuleCall_2_65_0() { return cInstructionTfrInstructionParserRuleCall_2_65_0; }
+		public RuleCall getInstructionTfrInstructionParserRuleCall_1_65_0() { return cInstructionTfrInstructionParserRuleCall_1_65_0; }
 		
 		//instruction = TstInstruction
-		public Assignment getInstructionAssignment_2_66() { return cInstructionAssignment_2_66; }
+		public Assignment getInstructionAssignment_1_66() { return cInstructionAssignment_1_66; }
 		
 		//TstInstruction
-		public RuleCall getInstructionTstInstructionParserRuleCall_2_66_0() { return cInstructionTstInstructionParserRuleCall_2_66_0; }
+		public RuleCall getInstructionTstInstructionParserRuleCall_1_66_0() { return cInstructionTstInstructionParserRuleCall_1_66_0; }
 		
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2() { return cGroup_2; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_2_0() { return cWSTerminalRuleCall_2_0; }
 		
 		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
+		public Assignment getCommentAssignment_2_1() { return cCommentAssignment_2_1; }
 		
 		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_1_0; }
 		
 		//WS?
-		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
+		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
 		
 		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+		public RuleCall getEndOfLineParserRuleCall_4() { return cEndOfLineParserRuleCall_4; }
+	}
+	public class LabelElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.Label");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Action cLabelAction_0 = (Action)cGroup.eContents().get(0);
+		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cNameIdentifierValueParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		
+		//Label:
+		//    {Label} name = IdentifierValue? WS
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//{Label} name = IdentifierValue? WS
+		public Group getGroup() { return cGroup; }
+		
+		//{Label}
+		public Action getLabelAction_0() { return cLabelAction_0; }
+		
+		//name = IdentifierValue?
+		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		
+		//IdentifierValue
+		public RuleCall getNameIdentifierValueParserRuleCall_1_0() { return cNameIdentifierValueParserRuleCall_1_0; }
+		
+		//WS
+		public RuleCall getWSTerminalRuleCall_2() { return cWSTerminalRuleCall_2; }
 	}
 	public class TstInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.TstInstruction");
@@ -7439,56 +7463,55 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	public class DirectiveLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.DirectiveLine");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Assignment cNameAssignment_0 = (Assignment)cGroup.eContents().get(0);
-		private final RuleCall cNameIdentifierValueParserRuleCall_0_0 = (RuleCall)cNameAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
-		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
-		private final Assignment cDirectiveAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
-		private final RuleCall cDirectiveEquDirectiveParserRuleCall_2_0_0 = (RuleCall)cDirectiveAssignment_2_0.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_1 = (Assignment)cAlternatives_2.eContents().get(1);
-		private final RuleCall cDirectiveOrgDirectiveParserRuleCall_2_1_0 = (RuleCall)cDirectiveAssignment_2_1.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_2 = (Assignment)cAlternatives_2.eContents().get(2);
-		private final RuleCall cDirectiveBszDirectiveParserRuleCall_2_2_0 = (RuleCall)cDirectiveAssignment_2_2.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_3 = (Assignment)cAlternatives_2.eContents().get(3);
-		private final RuleCall cDirectiveEndDirectiveParserRuleCall_2_3_0 = (RuleCall)cDirectiveAssignment_2_3.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_4 = (Assignment)cAlternatives_2.eContents().get(4);
-		private final RuleCall cDirectiveFailDirectiveParserRuleCall_2_4_0 = (RuleCall)cDirectiveAssignment_2_4.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_5 = (Assignment)cAlternatives_2.eContents().get(5);
-		private final RuleCall cDirectiveFillDirectiveParserRuleCall_2_5_0 = (RuleCall)cDirectiveAssignment_2_5.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_6 = (Assignment)cAlternatives_2.eContents().get(6);
-		private final RuleCall cDirectiveOptDirectiveParserRuleCall_2_6_0 = (RuleCall)cDirectiveAssignment_2_6.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_7 = (Assignment)cAlternatives_2.eContents().get(7);
-		private final RuleCall cDirectivePagDirectiveParserRuleCall_2_7_0 = (RuleCall)cDirectiveAssignment_2_7.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_8 = (Assignment)cAlternatives_2.eContents().get(8);
-		private final RuleCall cDirectiveNamDirectiveParserRuleCall_2_8_0 = (RuleCall)cDirectiveAssignment_2_8.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_9 = (Assignment)cAlternatives_2.eContents().get(9);
-		private final RuleCall cDirectiveSetDirectiveParserRuleCall_2_9_0 = (RuleCall)cDirectiveAssignment_2_9.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_10 = (Assignment)cAlternatives_2.eContents().get(10);
-		private final RuleCall cDirectiveSpcDirectiveParserRuleCall_2_10_0 = (RuleCall)cDirectiveAssignment_2_10.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_11 = (Assignment)cAlternatives_2.eContents().get(11);
-		private final RuleCall cDirectiveRegDirectiveParserRuleCall_2_11_0 = (RuleCall)cDirectiveAssignment_2_11.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_12 = (Assignment)cAlternatives_2.eContents().get(12);
-		private final RuleCall cDirectiveFcbDirectiveParserRuleCall_2_12_0 = (RuleCall)cDirectiveAssignment_2_12.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_13 = (Assignment)cAlternatives_2.eContents().get(13);
-		private final RuleCall cDirectiveFdbDirectiveParserRuleCall_2_13_0 = (RuleCall)cDirectiveAssignment_2_13.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_14 = (Assignment)cAlternatives_2.eContents().get(14);
-		private final RuleCall cDirectiveFccDirectiveParserRuleCall_2_14_0 = (RuleCall)cDirectiveAssignment_2_14.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_15 = (Assignment)cAlternatives_2.eContents().get(15);
-		private final RuleCall cDirectiveRmbDirectiveParserRuleCall_2_15_0 = (RuleCall)cDirectiveAssignment_2_15.eContents().get(0);
-		private final Assignment cDirectiveAssignment_2_16 = (Assignment)cAlternatives_2.eContents().get(16);
-		private final RuleCall cDirectiveSetDPDirectiveParserRuleCall_2_16_0 = (RuleCall)cDirectiveAssignment_2_16.eContents().get(0);
-		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
-		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
-		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
+		private final Assignment cLabelAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final RuleCall cLabelLabelParserRuleCall_0_0 = (RuleCall)cLabelAssignment_0.eContents().get(0);
+		private final Alternatives cAlternatives_1 = (Alternatives)cGroup.eContents().get(1);
+		private final Assignment cDirectiveAssignment_1_0 = (Assignment)cAlternatives_1.eContents().get(0);
+		private final RuleCall cDirectiveEquDirectiveParserRuleCall_1_0_0 = (RuleCall)cDirectiveAssignment_1_0.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_1 = (Assignment)cAlternatives_1.eContents().get(1);
+		private final RuleCall cDirectiveOrgDirectiveParserRuleCall_1_1_0 = (RuleCall)cDirectiveAssignment_1_1.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_2 = (Assignment)cAlternatives_1.eContents().get(2);
+		private final RuleCall cDirectiveBszDirectiveParserRuleCall_1_2_0 = (RuleCall)cDirectiveAssignment_1_2.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_3 = (Assignment)cAlternatives_1.eContents().get(3);
+		private final RuleCall cDirectiveEndDirectiveParserRuleCall_1_3_0 = (RuleCall)cDirectiveAssignment_1_3.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_4 = (Assignment)cAlternatives_1.eContents().get(4);
+		private final RuleCall cDirectiveFailDirectiveParserRuleCall_1_4_0 = (RuleCall)cDirectiveAssignment_1_4.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_5 = (Assignment)cAlternatives_1.eContents().get(5);
+		private final RuleCall cDirectiveFillDirectiveParserRuleCall_1_5_0 = (RuleCall)cDirectiveAssignment_1_5.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_6 = (Assignment)cAlternatives_1.eContents().get(6);
+		private final RuleCall cDirectiveOptDirectiveParserRuleCall_1_6_0 = (RuleCall)cDirectiveAssignment_1_6.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_7 = (Assignment)cAlternatives_1.eContents().get(7);
+		private final RuleCall cDirectivePagDirectiveParserRuleCall_1_7_0 = (RuleCall)cDirectiveAssignment_1_7.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_8 = (Assignment)cAlternatives_1.eContents().get(8);
+		private final RuleCall cDirectiveNamDirectiveParserRuleCall_1_8_0 = (RuleCall)cDirectiveAssignment_1_8.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_9 = (Assignment)cAlternatives_1.eContents().get(9);
+		private final RuleCall cDirectiveSetDirectiveParserRuleCall_1_9_0 = (RuleCall)cDirectiveAssignment_1_9.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_10 = (Assignment)cAlternatives_1.eContents().get(10);
+		private final RuleCall cDirectiveSpcDirectiveParserRuleCall_1_10_0 = (RuleCall)cDirectiveAssignment_1_10.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_11 = (Assignment)cAlternatives_1.eContents().get(11);
+		private final RuleCall cDirectiveRegDirectiveParserRuleCall_1_11_0 = (RuleCall)cDirectiveAssignment_1_11.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_12 = (Assignment)cAlternatives_1.eContents().get(12);
+		private final RuleCall cDirectiveFcbDirectiveParserRuleCall_1_12_0 = (RuleCall)cDirectiveAssignment_1_12.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_13 = (Assignment)cAlternatives_1.eContents().get(13);
+		private final RuleCall cDirectiveFdbDirectiveParserRuleCall_1_13_0 = (RuleCall)cDirectiveAssignment_1_13.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_14 = (Assignment)cAlternatives_1.eContents().get(14);
+		private final RuleCall cDirectiveFccDirectiveParserRuleCall_1_14_0 = (RuleCall)cDirectiveAssignment_1_14.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_15 = (Assignment)cAlternatives_1.eContents().get(15);
+		private final RuleCall cDirectiveRmbDirectiveParserRuleCall_1_15_0 = (RuleCall)cDirectiveAssignment_1_15.eContents().get(0);
+		private final Assignment cDirectiveAssignment_1_16 = (Assignment)cAlternatives_1.eContents().get(16);
+		private final RuleCall cDirectiveSetDPDirectiveParserRuleCall_1_16_0 = (RuleCall)cDirectiveAssignment_1_16.eContents().get(0);
+		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
+		private final RuleCall cWSTerminalRuleCall_2_0 = (RuleCall)cGroup_2.eContents().get(0);
+		private final Assignment cCommentAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_1_0 = (RuleCall)cCommentAssignment_2_1.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cEndOfLineParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		///*
 		// * Definition of the list possible directives
 		// */
 		//DirectiveLine:
-		//    (name = IdentifierValue)? WS
+		//    label = Label
 		//    (
 		//            directive = EquDirective
 		//        |  directive = OrgDirective
@@ -7513,7 +7536,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//(name = IdentifierValue)? WS
+		//label = Label
 		//(
 		//        directive = EquDirective
 		//    |  directive = OrgDirective
@@ -7537,14 +7560,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//(name = IdentifierValue)?
-		public Assignment getNameAssignment_0() { return cNameAssignment_0; }
+		//label = Label
+		public Assignment getLabelAssignment_0() { return cLabelAssignment_0; }
 		
-		//IdentifierValue
-		public RuleCall getNameIdentifierValueParserRuleCall_0_0() { return cNameIdentifierValueParserRuleCall_0_0; }
-		
-		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		//Label
+		public RuleCall getLabelLabelParserRuleCall_0_0() { return cLabelLabelParserRuleCall_0_0; }
 		
 		//(
 		//        directive = EquDirective
@@ -7565,127 +7585,127 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    |  directive = RmbDirective
 		//    |  directive = SetDPDirective
 		//)
-		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		public Alternatives getAlternatives_1() { return cAlternatives_1; }
 		
 		//directive = EquDirective
-		public Assignment getDirectiveAssignment_2_0() { return cDirectiveAssignment_2_0; }
+		public Assignment getDirectiveAssignment_1_0() { return cDirectiveAssignment_1_0; }
 		
 		//EquDirective
-		public RuleCall getDirectiveEquDirectiveParserRuleCall_2_0_0() { return cDirectiveEquDirectiveParserRuleCall_2_0_0; }
+		public RuleCall getDirectiveEquDirectiveParserRuleCall_1_0_0() { return cDirectiveEquDirectiveParserRuleCall_1_0_0; }
 		
 		//directive = OrgDirective
-		public Assignment getDirectiveAssignment_2_1() { return cDirectiveAssignment_2_1; }
+		public Assignment getDirectiveAssignment_1_1() { return cDirectiveAssignment_1_1; }
 		
 		//OrgDirective
-		public RuleCall getDirectiveOrgDirectiveParserRuleCall_2_1_0() { return cDirectiveOrgDirectiveParserRuleCall_2_1_0; }
+		public RuleCall getDirectiveOrgDirectiveParserRuleCall_1_1_0() { return cDirectiveOrgDirectiveParserRuleCall_1_1_0; }
 		
 		//directive = BszDirective
-		public Assignment getDirectiveAssignment_2_2() { return cDirectiveAssignment_2_2; }
+		public Assignment getDirectiveAssignment_1_2() { return cDirectiveAssignment_1_2; }
 		
 		//BszDirective
-		public RuleCall getDirectiveBszDirectiveParserRuleCall_2_2_0() { return cDirectiveBszDirectiveParserRuleCall_2_2_0; }
+		public RuleCall getDirectiveBszDirectiveParserRuleCall_1_2_0() { return cDirectiveBszDirectiveParserRuleCall_1_2_0; }
 		
 		//directive = EndDirective
-		public Assignment getDirectiveAssignment_2_3() { return cDirectiveAssignment_2_3; }
+		public Assignment getDirectiveAssignment_1_3() { return cDirectiveAssignment_1_3; }
 		
 		//EndDirective
-		public RuleCall getDirectiveEndDirectiveParserRuleCall_2_3_0() { return cDirectiveEndDirectiveParserRuleCall_2_3_0; }
+		public RuleCall getDirectiveEndDirectiveParserRuleCall_1_3_0() { return cDirectiveEndDirectiveParserRuleCall_1_3_0; }
 		
 		//directive = FailDirective
-		public Assignment getDirectiveAssignment_2_4() { return cDirectiveAssignment_2_4; }
+		public Assignment getDirectiveAssignment_1_4() { return cDirectiveAssignment_1_4; }
 		
 		//FailDirective
-		public RuleCall getDirectiveFailDirectiveParserRuleCall_2_4_0() { return cDirectiveFailDirectiveParserRuleCall_2_4_0; }
+		public RuleCall getDirectiveFailDirectiveParserRuleCall_1_4_0() { return cDirectiveFailDirectiveParserRuleCall_1_4_0; }
 		
 		//directive = FillDirective
-		public Assignment getDirectiveAssignment_2_5() { return cDirectiveAssignment_2_5; }
+		public Assignment getDirectiveAssignment_1_5() { return cDirectiveAssignment_1_5; }
 		
 		//FillDirective
-		public RuleCall getDirectiveFillDirectiveParserRuleCall_2_5_0() { return cDirectiveFillDirectiveParserRuleCall_2_5_0; }
+		public RuleCall getDirectiveFillDirectiveParserRuleCall_1_5_0() { return cDirectiveFillDirectiveParserRuleCall_1_5_0; }
 		
 		//directive = OptDirective
-		public Assignment getDirectiveAssignment_2_6() { return cDirectiveAssignment_2_6; }
+		public Assignment getDirectiveAssignment_1_6() { return cDirectiveAssignment_1_6; }
 		
 		//OptDirective
-		public RuleCall getDirectiveOptDirectiveParserRuleCall_2_6_0() { return cDirectiveOptDirectiveParserRuleCall_2_6_0; }
+		public RuleCall getDirectiveOptDirectiveParserRuleCall_1_6_0() { return cDirectiveOptDirectiveParserRuleCall_1_6_0; }
 		
 		//directive = PagDirective
-		public Assignment getDirectiveAssignment_2_7() { return cDirectiveAssignment_2_7; }
+		public Assignment getDirectiveAssignment_1_7() { return cDirectiveAssignment_1_7; }
 		
 		//PagDirective
-		public RuleCall getDirectivePagDirectiveParserRuleCall_2_7_0() { return cDirectivePagDirectiveParserRuleCall_2_7_0; }
+		public RuleCall getDirectivePagDirectiveParserRuleCall_1_7_0() { return cDirectivePagDirectiveParserRuleCall_1_7_0; }
 		
 		//directive = NamDirective
-		public Assignment getDirectiveAssignment_2_8() { return cDirectiveAssignment_2_8; }
+		public Assignment getDirectiveAssignment_1_8() { return cDirectiveAssignment_1_8; }
 		
 		//NamDirective
-		public RuleCall getDirectiveNamDirectiveParserRuleCall_2_8_0() { return cDirectiveNamDirectiveParserRuleCall_2_8_0; }
+		public RuleCall getDirectiveNamDirectiveParserRuleCall_1_8_0() { return cDirectiveNamDirectiveParserRuleCall_1_8_0; }
 		
 		//directive = SetDirective
-		public Assignment getDirectiveAssignment_2_9() { return cDirectiveAssignment_2_9; }
+		public Assignment getDirectiveAssignment_1_9() { return cDirectiveAssignment_1_9; }
 		
 		//SetDirective
-		public RuleCall getDirectiveSetDirectiveParserRuleCall_2_9_0() { return cDirectiveSetDirectiveParserRuleCall_2_9_0; }
+		public RuleCall getDirectiveSetDirectiveParserRuleCall_1_9_0() { return cDirectiveSetDirectiveParserRuleCall_1_9_0; }
 		
 		//directive = SpcDirective
-		public Assignment getDirectiveAssignment_2_10() { return cDirectiveAssignment_2_10; }
+		public Assignment getDirectiveAssignment_1_10() { return cDirectiveAssignment_1_10; }
 		
 		//SpcDirective
-		public RuleCall getDirectiveSpcDirectiveParserRuleCall_2_10_0() { return cDirectiveSpcDirectiveParserRuleCall_2_10_0; }
+		public RuleCall getDirectiveSpcDirectiveParserRuleCall_1_10_0() { return cDirectiveSpcDirectiveParserRuleCall_1_10_0; }
 		
 		//directive = RegDirective
-		public Assignment getDirectiveAssignment_2_11() { return cDirectiveAssignment_2_11; }
+		public Assignment getDirectiveAssignment_1_11() { return cDirectiveAssignment_1_11; }
 		
 		//RegDirective
-		public RuleCall getDirectiveRegDirectiveParserRuleCall_2_11_0() { return cDirectiveRegDirectiveParserRuleCall_2_11_0; }
+		public RuleCall getDirectiveRegDirectiveParserRuleCall_1_11_0() { return cDirectiveRegDirectiveParserRuleCall_1_11_0; }
 		
 		//directive = FcbDirective
-		public Assignment getDirectiveAssignment_2_12() { return cDirectiveAssignment_2_12; }
+		public Assignment getDirectiveAssignment_1_12() { return cDirectiveAssignment_1_12; }
 		
 		//FcbDirective
-		public RuleCall getDirectiveFcbDirectiveParserRuleCall_2_12_0() { return cDirectiveFcbDirectiveParserRuleCall_2_12_0; }
+		public RuleCall getDirectiveFcbDirectiveParserRuleCall_1_12_0() { return cDirectiveFcbDirectiveParserRuleCall_1_12_0; }
 		
 		//directive = FdbDirective
-		public Assignment getDirectiveAssignment_2_13() { return cDirectiveAssignment_2_13; }
+		public Assignment getDirectiveAssignment_1_13() { return cDirectiveAssignment_1_13; }
 		
 		//FdbDirective
-		public RuleCall getDirectiveFdbDirectiveParserRuleCall_2_13_0() { return cDirectiveFdbDirectiveParserRuleCall_2_13_0; }
+		public RuleCall getDirectiveFdbDirectiveParserRuleCall_1_13_0() { return cDirectiveFdbDirectiveParserRuleCall_1_13_0; }
 		
 		//directive = FccDirective
-		public Assignment getDirectiveAssignment_2_14() { return cDirectiveAssignment_2_14; }
+		public Assignment getDirectiveAssignment_1_14() { return cDirectiveAssignment_1_14; }
 		
 		//FccDirective
-		public RuleCall getDirectiveFccDirectiveParserRuleCall_2_14_0() { return cDirectiveFccDirectiveParserRuleCall_2_14_0; }
+		public RuleCall getDirectiveFccDirectiveParserRuleCall_1_14_0() { return cDirectiveFccDirectiveParserRuleCall_1_14_0; }
 		
 		//directive = RmbDirective
-		public Assignment getDirectiveAssignment_2_15() { return cDirectiveAssignment_2_15; }
+		public Assignment getDirectiveAssignment_1_15() { return cDirectiveAssignment_1_15; }
 		
 		//RmbDirective
-		public RuleCall getDirectiveRmbDirectiveParserRuleCall_2_15_0() { return cDirectiveRmbDirectiveParserRuleCall_2_15_0; }
+		public RuleCall getDirectiveRmbDirectiveParserRuleCall_1_15_0() { return cDirectiveRmbDirectiveParserRuleCall_1_15_0; }
 		
 		//directive = SetDPDirective
-		public Assignment getDirectiveAssignment_2_16() { return cDirectiveAssignment_2_16; }
+		public Assignment getDirectiveAssignment_1_16() { return cDirectiveAssignment_1_16; }
 		
 		//SetDPDirective
-		public RuleCall getDirectiveSetDPDirectiveParserRuleCall_2_16_0() { return cDirectiveSetDPDirectiveParserRuleCall_2_16_0; }
+		public RuleCall getDirectiveSetDPDirectiveParserRuleCall_1_16_0() { return cDirectiveSetDPDirectiveParserRuleCall_1_16_0; }
 		
 		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		public Group getGroup_3() { return cGroup_3; }
+		public Group getGroup_2() { return cGroup_2; }
 		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWSTerminalRuleCall_2_0() { return cWSTerminalRuleCall_2_0; }
 		
 		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
+		public Assignment getCommentAssignment_2_1() { return cCommentAssignment_2_1; }
 		
 		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
+		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_1_0; }
 		
 		//WS?
-		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
+		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
 		
 		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
+		public RuleCall getEndOfLineParserRuleCall_4() { return cEndOfLineParserRuleCall_4; }
 	}
 	public class SetDPDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.SetDPDirective");
@@ -9733,6 +9753,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	private final BlankLineElements pBlankLine;
 	private final CommentLineElements pCommentLine;
 	private final InstructionLineElements pInstructionLine;
+	private final LabelElements pLabel;
 	private final TstInstructionElements pTstInstruction;
 	private final TfrInstructionElements pTfrInstruction;
 	private final SyncInstructionElements pSyncInstruction;
@@ -9877,6 +9898,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		this.pBlankLine = new BlankLineElements();
 		this.pCommentLine = new CommentLineElements();
 		this.pInstructionLine = new InstructionLineElements();
+		this.pLabel = new LabelElements();
 		this.pTstInstruction = new TstInstructionElements();
 		this.pTfrInstruction = new TfrInstructionElements();
 		this.pSyncInstruction = new SyncInstructionElements();
@@ -10103,7 +10125,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Definition of the list possible instructions
 	// */
 	//InstructionLine:
-	//    (name = IdentifierValue)? WS
+	//    label = Label
 	//    (
 	//        instruction = AbxInstruction            |
 	//        instruction = AdcInstruction            |
@@ -10182,6 +10204,17 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	public ParserRule getInstructionLineRule() {
 		return getInstructionLineAccess().getRule();
+	}
+	
+	//Label:
+	//    {Label} name = IdentifierValue? WS
+	//;
+	public LabelElements getLabelAccess() {
+		return pLabel;
+	}
+	
+	public ParserRule getLabelRule() {
+		return getLabelAccess().getRule();
 	}
 	
 	///*
@@ -12561,7 +12594,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Definition of the list possible directives
 	// */
 	//DirectiveLine:
-	//    (name = IdentifierValue)? WS
+	//    label = Label
 	//    (
 	//            directive = EquDirective
 	//        |  directive = OrgDirective

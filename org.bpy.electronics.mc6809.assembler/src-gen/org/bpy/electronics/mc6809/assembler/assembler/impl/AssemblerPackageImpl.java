@@ -78,6 +78,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Label;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
@@ -184,6 +185,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass instructionLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass labelEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1224,7 +1232,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getInstructionLine_Name()
+  public EReference getInstructionLine_Label()
   {
     return (EReference)instructionLineEClass.getEStructuralFeatures().get(0);
   }
@@ -1249,6 +1257,28 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EAttribute getInstructionLine_Comment()
   {
     return (EAttribute)instructionLineEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLabel()
+  {
+    return labelEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLabel_Name()
+  {
+    return (EReference)labelEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -3853,7 +3883,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getDirectiveLine_Name()
+  public EReference getDirectiveLine_Label()
   {
     return (EReference)directiveLineEClass.getEStructuralFeatures().get(0);
   }
@@ -5223,9 +5253,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEAttribute(commentLineEClass, COMMENT_LINE__COMMENT);
 
     instructionLineEClass = createEClass(INSTRUCTION_LINE);
-    createEReference(instructionLineEClass, INSTRUCTION_LINE__NAME);
+    createEReference(instructionLineEClass, INSTRUCTION_LINE__LABEL);
     createEReference(instructionLineEClass, INSTRUCTION_LINE__INSTRUCTION);
     createEAttribute(instructionLineEClass, INSTRUCTION_LINE__COMMENT);
+
+    labelEClass = createEClass(LABEL);
+    createEReference(labelEClass, LABEL__NAME);
 
     tstInstructionEClass = createEClass(TST_INSTRUCTION);
     createEAttribute(tstInstructionEClass, TST_INSTRUCTION__INSTRUCTION);
@@ -5544,7 +5577,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEReference(relativeModeEClass, RELATIVE_MODE__OFFSET);
 
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
-    createEReference(directiveLineEClass, DIRECTIVE_LINE__NAME);
+    createEReference(directiveLineEClass, DIRECTIVE_LINE__LABEL);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__DIRECTIVE);
     createEAttribute(directiveLineEClass, DIRECTIVE_LINE__COMMENT);
 
@@ -5764,9 +5797,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getCommentLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, CommentLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(instructionLineEClass, InstructionLine.class, "InstructionLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getInstructionLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getInstructionLine_Label(), this.getLabel(), null, "label", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstructionLine_Instruction(), ecorePackage.getEObject(), null, "instruction", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getInstructionLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(labelEClass, Label.class, "Label", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLabel_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, Label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(tstInstructionEClass, TstInstruction.class, "TstInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTstInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, TstInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -6085,7 +6121,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEReference(getRelativeMode_Offset(), this.getIdentifierValue(), null, "offset", null, 0, 1, RelativeMode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getDirectiveLine_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getDirectiveLine_Label(), this.getLabel(), null, "label", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDirectiveLine_Directive(), ecorePackage.getEObject(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDirectiveLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

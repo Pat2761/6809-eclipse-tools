@@ -78,6 +78,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Label;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
@@ -399,6 +400,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.JSR_INSTRUCTION:
 				sequence_JsrInstruction(context, (JsrInstruction) semanticObject); 
+				return; 
+			case AssemblerPackage.LABEL:
+				sequence_Label(context, (Label) semanticObject); 
 				return; 
 			case AssemblerPackage.LD_INSTRUCTION:
 				sequence_LdInstruction(context, (LdInstruction) semanticObject); 
@@ -1435,7 +1439,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=IdentifierValue? 
+	 *         label=Label 
 	 *         (
 	 *             directive=EquDirective | 
 	 *             directive=OrgDirective | 
@@ -1849,7 +1853,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=IdentifierValue? 
+	 *         label=Label 
 	 *         (
 	 *             instruction=AbxInstruction | 
 	 *             instruction=AdcInstruction | 
@@ -1958,6 +1962,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * </pre>
 	 */
 	protected void sequence_JsrInstruction(ISerializationContext context, JsrInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Label returns Label
+	 *
+	 * Constraint:
+	 *     name=IdentifierValue?
+	 * </pre>
+	 */
+	protected void sequence_Label(ISerializationContext context, Label semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

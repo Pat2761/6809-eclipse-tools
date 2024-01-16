@@ -42,9 +42,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CommentLine/comment"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//InstructionLine">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/label"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/instruction"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//InstructionLine/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//Label">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Label/name"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//TstInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TstInstruction/instruction"/>
@@ -363,7 +366,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RelativeMode/offset"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/label"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DirectiveLine/comment"/>
     </genClasses>

@@ -1334,7 +1334,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1362,7 +1362,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1390,7 +1390,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1418,7 +1418,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1446,7 +1446,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1474,7 +1474,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1502,7 +1502,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1530,7 +1530,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1558,7 +1558,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1586,7 +1586,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1614,7 +1614,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1642,7 +1642,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1670,7 +1670,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1698,7 +1698,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1726,7 +1726,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1754,7 +1754,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1782,7 +1782,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1810,7 +1810,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1838,7 +1838,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1866,7 +1866,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1884,7 +1884,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1902,7 +1902,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1920,7 +1920,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1938,7 +1938,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1956,7 +1956,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -1974,7 +1974,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2001,7 +2001,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2042,7 +2042,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2060,7 +2060,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2087,7 +2087,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2105,7 +2105,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2123,7 +2123,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2153,7 +2153,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2183,7 +2183,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2201,7 +2201,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2219,7 +2219,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2237,7 +2237,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2255,7 +2255,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2273,7 +2273,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2300,7 +2300,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2318,7 +2318,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
     }
 
 	/**	
@@ -2348,7 +2348,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2366,7 +2366,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2396,7 +2396,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2426,7 +2426,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2459,7 +2459,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	private void parse(LdInstruction instruction) {
@@ -2495,7 +2495,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2513,7 +2513,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2531,7 +2531,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2559,7 +2559,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2577,7 +2577,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**	
@@ -2602,7 +2602,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2630,7 +2630,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	private void parse(DaaInstruction instruction) {
@@ -2643,7 +2643,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2661,7 +2661,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2689,7 +2689,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2729,7 +2729,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2757,7 +2757,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2783,7 +2783,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2811,7 +2811,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2839,7 +2839,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2857,7 +2857,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2884,7 +2884,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	private void parse(AdddInstruction instruction) {
@@ -2898,7 +2898,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	private void parse(AddInstruction instruction) {
@@ -2920,7 +2920,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2947,7 +2947,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -2964,7 +2964,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__NAME);
+				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
 	}
 
 	/**
@@ -3088,7 +3088,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
 	}
 
 	/**
@@ -3105,7 +3105,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
 	}
 
 	/**
@@ -3122,7 +3122,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
 	}
 
 	/**
@@ -3139,7 +3139,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
 	}
 
 	/**
@@ -3156,7 +3156,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
 	}
 
 	/**
@@ -3176,7 +3176,7 @@ public class AssemblerEngine {
 	
 			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
 					"The label " + label + " for an REG directive is already defined", 
-					AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+					AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 					DUPLICATE_LABEL);
 			AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 		} else {
@@ -3252,7 +3252,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
 	}
 
 	/**
@@ -3274,7 +3274,7 @@ public class AssemblerEngine {
 	
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
 						"The label " + line.getTarget() + " Can't be found", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 						DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 				line.setValue(0);
@@ -3299,7 +3299,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				bszDirective.eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
 	}
 
 	/**
@@ -3321,7 +3321,7 @@ public class AssemblerEngine {
 			if (element instanceof AssembledEquDirectiveLine) {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
 						"The label " + label + " for an SET directive is already defined", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 						DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 			} else {
@@ -3352,7 +3352,7 @@ public class AssemblerEngine {
 			if (element instanceof AssembledSetDirectiveLine) {
 				AssemblerWarningDescription warningDescription = new AssemblerWarningDescription(
 						"The label " + label + " for an EQU directive is already defined by a SET directive", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 						DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addWarning(line.getDirective().eContainer(), warningDescription);
 	
@@ -3362,7 +3362,7 @@ public class AssemblerEngine {
 			
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
 						"The label " + label + " for an EQU directive is already defined", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 						DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 			}
@@ -3389,7 +3389,7 @@ public class AssemblerEngine {
 
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME);
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
 	}
 
 	/**
