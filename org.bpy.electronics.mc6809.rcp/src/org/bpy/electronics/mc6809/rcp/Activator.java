@@ -1,30 +1,35 @@
 package org.bpy.electronics.mc6809.rcp;
 
-import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-public class Activator extends AbstractUIPlugin /*BundleActivator*/ {
+/**
+ * The activator class controls the plug-in life cycle
+ */
+public class Activator extends AbstractUIPlugin {
 
-	public static final String PLUGIN_ID = "org.bpy.electronics.mc6809.rcp";
+	// The plug-in ID
+	public static final String PLUGIN_ID = "org.bpy.electronics.mc6809.rcp"; //$NON-NLS-1$
+
+	// The shared instance
+	private static Activator plugin;
 	
-	private static BundleContext context;
-
-	static BundleContext getContext() {
-		return context;
+	/**
+	 * The constructor
+	 */
+	public Activator() {
 	}
 
-	private static Activator plugin;
-
-	public void start(BundleContext bundleContext) throws Exception {
-		Activator.context = bundleContext;
+	@Override
+	public void start(BundleContext context) throws Exception {
+		super.start(context);
 		plugin = this;
 	}
 
-	public void stop(BundleContext bundleContext) throws Exception {
-		Activator.context = null;
-		plugin=null;
+	@Override
+	public void stop(BundleContext context) throws Exception {
+		plugin = null;
+		super.stop(context);
 	}
 
 	/**
@@ -36,15 +41,4 @@ public class Activator extends AbstractUIPlugin /*BundleActivator*/ {
 		return plugin;
 	}
 
-	@Override
-	protected void initializeDefaultPreferences(IPreferenceStore store) {
-
-		
-		store.setDefault(PreferenceManager.TAB_POLICY, PreferenceManager.SPACE_ONLY);
-		store.setDefault(PreferenceManager.TAB_SIZE, 3);
-		store.setDefault(PreferenceManager.LABEL_SIZE, 15);
-		store.setDefault(PreferenceManager.INSTRUCTION_SIZE, 6);
-		store.setDefault(PreferenceManager.OPERAND_SIZE, 20);
-	}
-	
 }

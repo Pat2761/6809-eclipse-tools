@@ -1,53 +1,52 @@
 package org.bpy.electronics.mc6809.rcp;
 
-import java.net.URL;
+import java.io.PrintStream;
 
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.ui.application.IWorkbenchConfigurer;
 import org.eclipse.ui.application.IWorkbenchWindowConfigurer;
 import org.eclipse.ui.application.WorkbenchAdvisor;
 import org.eclipse.ui.application.WorkbenchWindowAdvisor;
+import org.eclipse.ui.console.ConsolePlugin;
+import org.eclipse.ui.console.IConsole;
+import org.eclipse.ui.console.MessageConsole;
+import org.eclipse.ui.console.MessageConsoleStream;
 import org.eclipse.ui.ide.IDE;
-import org.eclipse.ui.internal.ide.IDEWorkbenchPlugin;
-import org.osgi.framework.Bundle;
 
 public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
-	
-	private static final String PERSPECTIVE_ID = "6809.perspective"; //$NON-NLS-1$
 
+	private static final String PERSPECTIVE_ID = "org.bpy.electronics.mc6809.rcp.perspective";
+	   
+	@Override
+	public void initialize(IWorkbenchConfigurer configurer) {
+		configurer.setSaveAndRestore(true);
+		IDE.registerAdapters();
+
+		MessageConsole myConsole = new MessageConsole("Console", null); //$NON-NLS-1$
+
+		ConsolePlugin.getDefault().getConsoleManager().addConsoles(new IConsole[] { myConsole });
+		MessageConsoleStream stream = myConsole.newMessageStream();
+
+		PrintStream myS = new PrintStream(stream);
+		System.setOut(myS); // link standard output stream to the console
+		System.setErr(myS); // link error output stream to the console
+	}
+
+	@Override
 	public WorkbenchWindowAdvisor createWorkbenchWindowAdvisor(
 			IWorkbenchWindowConfigurer configurer) {
 		return new ApplicationWorkbenchWindowAdvisor(configurer);
 	}
-
+	
+	@Override
 	public String getInitialWindowPerspectiveId() {
 		return PERSPECTIVE_ID;
 	}
 
 	@Override
-	public void initialize(IWorkbenchConfigurer configurer) {
-		super.initialize(configurer);
-		// inserted: register workbench adapters
-		IDE.registerAdapters();
-
-		// inserted: register images for rendering explorer view
-		final String ICONS_PATH = "icons/full/";
-		final String PATH_OBJECT = ICONS_PATH + "obj16/";
-		Bundle ideBundle = Platform.getBundle(IDEWorkbenchPlugin.IDE_WORKBENCH);
-		declareWorkbenchImage(configurer, ideBundle,
-				IDE.SharedImages.IMG_OBJ_PROJECT, PATH_OBJECT + "prj_obj.gif",
-				true);
-		declareWorkbenchImage(configurer, ideBundle,
-				IDE.SharedImages.IMG_OBJ_PROJECT_CLOSED, PATH_OBJECT
-						+ "cprj_obj.gif", true);
+	public IAdaptable getDefaultPageInput() {
+	
+		return ResourcesPlugin.getWorkspace().getRoot();
 	}
-
-	private void declareWorkbenchImage(IWorkbenchConfigurer configurer_p,
-			Bundle ideBundle, String symbolicName, String path, boolean shared) {
-		URL url = ideBundle.getEntry(path);
-		ImageDescriptor desc = ImageDescriptor.createFromURL(url);
-		configurer_p.declareImage(symbolicName, desc, shared);
-	}
-
 }
