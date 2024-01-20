@@ -84,8 +84,251 @@
          <menu
                label="File">
             <command
+                  commandId="org.eclipse.ui.newWizard"
+                  label="New"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.eclipse.ui.file.open"
+                  label="Open"
+                  style="push"
+                  tooltip="Open a file">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.openProjectFromFileSystem"
+                  label="Open Projects from file system"
+                  style="push"
+                  tooltip="Open a project from the file system">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.recentfiles"
+                  label="Recent files"
+                  style="push"
+                  tooltip="Open a recent file">
+            </command>
+            <separator
+                  name="file.separator.1"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.closeeditor"
+                  label="Close editor"
+                  style="push"
+                  tooltip="Close the current editor">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.closealleditors"
+                  label="Close all editors"
+                  style="push"
+                  tooltip="Close all open editors">
+            </command>
+            <separator
+                  name="file_separator.2"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.save"
+                  label="Save"
+                  style="push"
+                  tooltip="Save current editor">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.saveas"
+                  label="Save as"
+                  style="push"
+                  tooltip="Save an editor under an another name">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.saveall"
+                  label="Save all"
+                  style="push"
+                  tooltip="Save all modified editors">
+            </command>
+            <separator
+                  name="file_separator.3"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.rename"
+                  label="Rename"
+                  style="push"
+                  tooltip="Rename a file">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.refresh"
+                  label="Refresh"
+                  style="push">
+            </command>
+            <separator
+                  name="file.separator.4"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.import"
+                  label="Import"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.export"
+                  label="Export"
+                  style="push">
+            </command>
+            <separator
+                  name="file.separator.5"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.properties"
+                  label="Properties"
+                  style="push">
+            </command>
+            <separator
+                  name="file.separator.6">
+            </separator>
+            <command
                   commandId="org.eclipse.ui.file.exit"
                   label="Exit">
+            </command>
+         </menu>
+         <menu
+               id="org.bpy.electronics.mc6809.rcp.menu.edit"
+               label="Edit">
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.undo"
+                  label="Undo"
+                  style="push"
+                  tooltip="for undo something">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.redo"
+                  label="Redo"
+                  style="push">
+            </command>
+            <separator
+                  name="edit.separator.1"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.cut"
+                  label="Cut"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.copy"
+                  label="Copy"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.paste"
+                  label="Paste"
+                  style="push">
+            </command>
+            <separator
+                  name="edit.separator.2"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.delete"
+                  label="Delete"
+                  style="push">
+            </command>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.selectall"
+                  label="Select all"
+                  style="push">
+            </command>
+            <separator
+                  name="edit.separator.3"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.findreplace"
+                  label="Find/Replace"
+                  style="push">
+            </command>
+         </menu>
+         <menu
+               id="org.bpy.electronics.mc6809.rcp.menu.search"
+               label="Search">
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.search"
+                  label="Search"
+                  style="push">
+            </command>
+            <separator
+                  name="search.separator.1"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.searchfile"
+                  label="Search file"
+                  style="push">
+            </command>
+         </menu>
+         <menu
+               id="org.bpy.electronics.mc6809.rcp.menu.window"
+               label="Window">
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.showview"
+                  label="Show view"
+                  style="push">
+            </command>
+            <separator
+                  name="window.separator.1"
+                  visible="true">
+            </separator>
+            <menu
+                  label="Perspective">
+               <command
+                     commandId="org.bpy.electronics.mc6809.rcp.command.openperspective"
+                     label="Open perspective"
+                     style="push">
+               </command>
+               <separator
+                     name="perspective.separator.1"
+                     visible="true">
+               </separator>
+               <command
+                     commandId="org.bpy.electronics.mc6809.rcp.command.resetperspective"
+                     label="Reset perspective"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.bpy.electronics.mc6809.rcp.command.closeperspective"
+                     label="Close perspective"
+                     style="push">
+               </command>
+               <command
+                     commandId="org.bpy.electronics.mc6809.rcp.command.closeallperspectives"
+                     label="Close all perspectives"
+                     style="push">
+               </command>
+            </menu>
+            <separator
+                  name="window.separator.2"
+                  visible="true">
+            </separator>
+            <command
+                  commandId="org.eclipse.ui.window.preferences"
+                  label="Preferences"
+                  style="push">
+            </command>
+         </menu>
+         <menu
+               id="org.bpy.electronics.mc6809.rcp.menu.help"
+               label="Help">
+            <command
+                  commandId="org.bpy.electronics.mc6809.rcp.command.helpContents"
+                  label="Help content"
+                  style="push">
+            </command>
+            <separator
+                  name="help.separator.1">
+            </separator>
+            <command
+                  commandId="org.eclipse.ui.help.aboutAction"
+                  label="About"
+                  style="push">
             </command>
          </menu>
       </menuContribution>
@@ -108,6 +351,265 @@
       <viewerContentBinding
             viewerId="org.eclipse.ui.navigator.ProjectExplorer">
       </viewerContentBinding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.eclipse.ui.newWizard"
+            name="New">
+      </command>
+      <command
+            id="org.eclipse.ui.file.open"
+            name="Open">
+      </command>
+      <command
+            id="org.eclipse.ui.window.preferences"
+            name="Preferences">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.openProjectFromFileSystem"
+            name="Open Projects from file system">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.recentfiles"
+            name="Recent file">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.closeeditor"
+            name="Close editor">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.closealleditors"
+            name="Close all editors">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.save"
+            name="Save">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.saveas"
+            name="Save as">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.saveall"
+            name="Save all">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.rename"
+            name="Rename">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.refresh"
+            name="Refresh">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.import"
+            name="Import">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.export"
+            name="Export">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.properties"
+            name="Properties">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.undo"
+            name="Undo">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.redo"
+            name="Redo">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.cut"
+            name="Cut">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.copy"
+            name="Copy">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.paste"
+            name="Paste">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.delete"
+            name="Delete">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.selectall"
+            name="Select all">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.findreplace"
+            name="Find/Replace">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.search"
+            name="Search">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.searchfile"
+            name="Search file">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.showview"
+            name="Show view">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.openperspective"
+            name="Open perspective">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.resetperspective"
+            name="Reset perspective">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.closeperspective"
+            name="Close perspective">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.closeallperspectives"
+            name="Close all perspectives">
+      </command>
+      <command
+            id="org.bpy.electronics.mc6809.rcp.command.helpContents"
+            name="Help content">
+      </command>
+      <command
+            id="org.eclipse.ui.help.aboutAction"
+            name="About">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            commandId="org.eclipse.ui.window.preferences">
+      </handler>
+      <handler
+            commandId="org.eclipse.ui.newWizard">
+      </handler>
+      <handler
+            commandId="org.eclipse.ui.file.open">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.openProjectFromFileSystem">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.recentfiles">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.closeeditor">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.closealleditors">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.save">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.saveas">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.saveall">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.rename">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.refresh">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.import">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.export">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.properties">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.undo">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.redo">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.cut">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.copy">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.paste">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.delete">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.selectall">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.findreplace">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.search">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.searchfile">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.showview">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.openperspective">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.resetperspective">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.closeperspective">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.closeallperspectives">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.bpy.electronics.mc6809.rcp.command.helpContents">
+      </handler>
+      <handler
+            class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
+            commandId="org.eclipse.ui.help.aboutAction">
+      </handler>
    </extension>
 
 </plugin>

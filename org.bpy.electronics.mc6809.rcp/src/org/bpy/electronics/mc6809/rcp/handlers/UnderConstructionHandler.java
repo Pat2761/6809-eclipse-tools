@@ -28,13 +28,13 @@ public class UnderConstructionHandler implements IHandler {
 	@Override
 	public boolean isEnabled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public boolean isHandled() {
 		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
