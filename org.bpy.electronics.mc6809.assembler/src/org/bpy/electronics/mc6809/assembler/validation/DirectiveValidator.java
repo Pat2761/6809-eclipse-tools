@@ -30,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
@@ -136,6 +137,21 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 
 		// Management of warnings after code analyse 
 		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(directiveLine);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+	}
+	
+	@Check
+	public void checkLabelLine(LabelLine labelLine) {
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(labelLine);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(labelLine);
 		for (AssemblerProblemManagerDescription warning : warnings) {
 			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}

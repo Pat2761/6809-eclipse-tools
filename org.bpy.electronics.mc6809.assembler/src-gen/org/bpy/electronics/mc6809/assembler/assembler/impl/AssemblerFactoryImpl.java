@@ -68,6 +68,7 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
     {
       case AssemblerPackage.MODEL: return createModel();
       case AssemblerPackage.SOURCE_LINE: return createSourceLine();
+      case AssemblerPackage.LABEL_LINE: return createLabelLine();
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
       case AssemblerPackage.INSTRUCTION_LINE: return createInstructionLine();
@@ -258,6 +259,18 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     SourceLineImpl sourceLine = new SourceLineImpl();
     return sourceLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public LabelLine createLabelLine()
+  {
+    LabelLineImpl labelLine = new LabelLineImpl();
+    return labelLine;
   }
 
   /**

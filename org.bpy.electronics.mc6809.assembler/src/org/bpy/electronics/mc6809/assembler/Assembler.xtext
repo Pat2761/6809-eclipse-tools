@@ -36,10 +36,17 @@ Model:
 SourceLine:
 	(
 		  (lineContent = BlankLine)
-		| (lineContent = CommentLine) 
+		| (lineContent = CommentLine)
+		| -> (lineLabel =  LabelLine)	 
 		| (lineContent = DirectiveLine)
 		| (lineContent = InstructionLine)
 	) 
+;
+
+LabelLine:
+	label = Label
+	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	WS? EndOfLine	
 ;
 
 /*
@@ -62,7 +69,7 @@ CommentLine:
  * Definition of the list possible instructions
  */
 InstructionLine:
-	label = Label
+	label = Label WS
 	(
 		instruction = AbxInstruction            |
 		instruction = AdcInstruction            |
@@ -137,7 +144,7 @@ InstructionLine:
 ;
 
 Label:
-	{Label} name = IdentifierValue? WS 
+	{Label} name = IdentifierValue? ':'? 
 ;
 
 /*
@@ -1950,7 +1957,7 @@ RelativeMode:
  * Definition of the list possible directives
  */
 DirectiveLine:
-	label = Label
+	label = Label WS
 	(
 	 	   directive = EquDirective
 		|  directive = OrgDirective

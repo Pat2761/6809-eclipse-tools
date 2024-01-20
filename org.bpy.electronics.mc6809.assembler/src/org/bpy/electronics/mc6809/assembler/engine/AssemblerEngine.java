@@ -76,6 +76,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
@@ -119,6 +120,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledBlankLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledCommentLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledLabelLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledBszDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledEndDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledEquDirectiveLine;
@@ -262,6 +264,10 @@ public class AssemblerEngine {
 			} else if (sourceLine.getLineContent() instanceof CommentLine) {
 				CommentLine commentLine = (CommentLine)sourceLine.getLineContent(); 
 				parseCommentLine(commentLine);
+				
+			} else if (sourceLine.getLineContent() instanceof LabelLine) {
+				LabelLine labelLine = (LabelLine)sourceLine.getLineContent(); 
+				parseLabelLine(labelLine);
 				
 			} else if (sourceLine.getLineContent() instanceof DirectiveLine) {
 				DirectiveLine directiveLine = (DirectiveLine)sourceLine.getLineContent();
@@ -2992,6 +2998,24 @@ public class AssemblerEngine {
 	}
 
 	/**
+	 * Parse a comment line 
+	 * 
+	 * @param labelLine reference on the label line
+	 */
+	private void parseLabelLine(LabelLine labelLine) {
+		String label = labelLine.getLabel().getName().getValue();
+		AssembledLabelLine assembledLabelLine = new AssembledLabelLine();
+		assembledLabelLine.parse(labelLine, currentPcValue, lineNumber);
+		assemblyLines.add(assembledLabelLine);
+		
+		registerLabelPosition(assembledLabelLine, 
+				labelLine,
+				AssemblerPackage.Literals.LABEL_LINE__LABEL);
+		
+	}
+
+
+	/**
 	 * Parse a directive line
 	 * 
 	 * @param directiveLine reference on the directive line
@@ -3396,7 +3420,6 @@ public class AssemblerEngine {
 	 * Register the label position, and send an error if thelabel is duplicate
 	 * @param directive reference on the directive
 	 * @param objectWithProblem reference on EMF object which has the problem
-	 * @param message Error message
 	 * @param reference EMF reference of the object
 	 */
 	private void registerLabelPosition(AbstractAssemblyLine directive,Object objectWithProblem, EReference reference) {

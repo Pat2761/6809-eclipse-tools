@@ -79,6 +79,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Label;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
@@ -164,6 +165,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   private EClass sourceLineEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass labelLineEClass = null;
 
   /**
    * <!-- begin-user-doc -->
@@ -1158,6 +1166,50 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EReference getSourceLine_LineContent()
   {
     return (EReference)sourceLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getSourceLine_LineLabel()
+  {
+    return (EReference)sourceLineEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EClass getLabelLine()
+  {
+    return labelLineEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EReference getLabelLine_Label()
+  {
+    return (EReference)labelLineEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLabelLine_Comment()
+  {
+    return (EAttribute)labelLineEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5244,6 +5296,11 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     sourceLineEClass = createEClass(SOURCE_LINE);
     createEReference(sourceLineEClass, SOURCE_LINE__LINE_CONTENT);
+    createEReference(sourceLineEClass, SOURCE_LINE__LINE_LABEL);
+
+    labelLineEClass = createEClass(LABEL_LINE);
+    createEReference(labelLineEClass, LABEL_LINE__LABEL);
+    createEAttribute(labelLineEClass, LABEL_LINE__COMMENT);
 
     blankLineEClass = createEClass(BLANK_LINE);
     createEAttribute(blankLineEClass, BLANK_LINE__BLANK_LINE);
@@ -5788,6 +5845,11 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(sourceLineEClass, SourceLine.class, "SourceLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSourceLine_LineContent(), ecorePackage.getEObject(), null, "lineContent", null, 0, 1, SourceLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getSourceLine_LineLabel(), this.getLabelLine(), null, "lineLabel", null, 0, 1, SourceLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(labelLineEClass, LabelLine.class, "LabelLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getLabelLine_Label(), this.getLabel(), null, "label", null, 0, 1, LabelLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLabelLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, LabelLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blankLineEClass, BlankLine.class, "BlankLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBlankLine_BlankLine(), ecorePackage.getEString(), "blankLine", null, 0, 1, BlankLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

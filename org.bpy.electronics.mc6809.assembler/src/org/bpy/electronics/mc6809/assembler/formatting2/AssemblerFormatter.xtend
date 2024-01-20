@@ -12,6 +12,7 @@ import org.eclipse.xtext.formatting2.IFormattableDocument
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager
+import com.google.common.base.Strings
 
 class AssemblerFormatter extends AbstractFormatter2 {
 	
@@ -51,7 +52,10 @@ class AssemblerFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(CommentLine commentLine, extension IFormattableDocument document) {
 		if (commentLine.startingSpace !== null) {
-			commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT).prepend[computeCommentPosition(commentLine.startingSpace)]
+			val spaceBeforeComment = computeCommentPosition(commentLine.startingSpace)
+//			val textReplacement = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).replaceWith(spaceBeforeComment)
+//			textReplacement.format
+			commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT).prepend[space = spaceBeforeComment]
 		}	
 	}
 	
@@ -59,12 +63,10 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		val commentPosition = labelSize + instructionSize + operandSize - startingSpace.length;
 		
 		if (PreferenceManager::SPACE_ONLY.equals(tabPolicy)) {
-			val char[] charSpaces = newCharArrayOfSize(commentPosition)
-			charSpaces.toString.replace('\u0000', '')
+			Strings.repeat(' ', commentPosition)
 
 		} else if (PreferenceManager::TAB_ONLY.equals(tabPolicy))  {
-			val char[] charSpaces = newCharArrayOfSize(commentPosition/tabSize)
-			charSpaces.toString.replace('\u0000', '')
+			Strings.repeat(' ', commentPosition/tabSize)
 			
 		} else {
 			

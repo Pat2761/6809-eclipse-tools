@@ -79,6 +79,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Label;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
@@ -403,6 +404,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.LABEL:
 				sequence_Label(context, (Label) semanticObject); 
+				return; 
+			case AssemblerPackage.LABEL_LINE:
+				sequence_LabelLine(context, (LabelLine) semanticObject); 
 				return; 
 			case AssemblerPackage.LD_INSTRUCTION:
 				sequence_LdInstruction(context, (LdInstruction) semanticObject); 
@@ -1969,6 +1973,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     LabelLine returns LabelLine
+	 *
+	 * Constraint:
+	 *     (label=Label comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 * </pre>
+	 */
+	protected void sequence_LabelLine(ISerializationContext context, LabelLine semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Label returns Label
 	 *
 	 * Constraint:
@@ -2865,7 +2883,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     SourceLine returns SourceLine
 	 *
 	 * Constraint:
-	 *     (lineContent=BlankLine | lineContent=CommentLine | lineContent=DirectiveLine | lineContent=InstructionLine)
+	 *     (lineContent=BlankLine | lineContent=CommentLine | lineLabel=LabelLine | lineContent=DirectiveLine | lineContent=InstructionLine)
 	 * </pre>
 	 */
 	protected void sequence_SourceLine(ISerializationContext context, SourceLine semanticObject) {

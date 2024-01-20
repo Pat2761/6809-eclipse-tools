@@ -9,6 +9,13 @@
   <eClassifiers xsi:type="ecore:EClass" name="SourceLine">
     <eStructuralFeatures xsi:type="ecore:EReference" name="lineContent" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="lineLabel" eType="#//LabelLine"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LabelLine">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="label" eType="#//Label"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="comment" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BlankLine">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="blankLine" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -4,6 +4,7 @@
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -25,6 +26,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl#getLineContent <em>Line Content</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl#getLineLabel <em>Line Label</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,6 +42,16 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
    * @ordered
    */
   protected EObject lineContent;
+
+  /**
+   * The cached value of the '{@link #getLineLabel() <em>Line Label</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getLineLabel()
+   * @generated
+   * @ordered
+   */
+  protected LabelLine lineLabel;
 
   /**
    * <!-- begin-user-doc -->
@@ -118,12 +130,64 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
    * @generated
    */
   @Override
+  public LabelLine getLineLabel()
+  {
+    return lineLabel;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public NotificationChain basicSetLineLabel(LabelLine newLineLabel, NotificationChain msgs)
+  {
+    LabelLine oldLineLabel = lineLabel;
+    lineLabel = newLineLabel;
+    if (eNotificationRequired())
+    {
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.SOURCE_LINE__LINE_LABEL, oldLineLabel, newLineLabel);
+      if (msgs == null) msgs = notification; else msgs.add(notification);
+    }
+    return msgs;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setLineLabel(LabelLine newLineLabel)
+  {
+    if (newLineLabel != lineLabel)
+    {
+      NotificationChain msgs = null;
+      if (lineLabel != null)
+        msgs = ((InternalEObject)lineLabel).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SOURCE_LINE__LINE_LABEL, null, msgs);
+      if (newLineLabel != null)
+        msgs = ((InternalEObject)newLineLabel).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.SOURCE_LINE__LINE_LABEL, null, msgs);
+      msgs = basicSetLineLabel(newLineLabel, msgs);
+      if (msgs != null) msgs.dispatch();
+    }
+    else if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SOURCE_LINE__LINE_LABEL, newLineLabel, newLineLabel));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
     {
       case AssemblerPackage.SOURCE_LINE__LINE_CONTENT:
         return basicSetLineContent(null, msgs);
+      case AssemblerPackage.SOURCE_LINE__LINE_LABEL:
+        return basicSetLineLabel(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -140,6 +204,8 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
     {
       case AssemblerPackage.SOURCE_LINE__LINE_CONTENT:
         return getLineContent();
+      case AssemblerPackage.SOURCE_LINE__LINE_LABEL:
+        return getLineLabel();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -156,6 +222,9 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
     {
       case AssemblerPackage.SOURCE_LINE__LINE_CONTENT:
         setLineContent((EObject)newValue);
+        return;
+      case AssemblerPackage.SOURCE_LINE__LINE_LABEL:
+        setLineLabel((LabelLine)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -174,6 +243,9 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
       case AssemblerPackage.SOURCE_LINE__LINE_CONTENT:
         setLineContent((EObject)null);
         return;
+      case AssemblerPackage.SOURCE_LINE__LINE_LABEL:
+        setLineLabel((LabelLine)null);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -190,6 +262,8 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
     {
       case AssemblerPackage.SOURCE_LINE__LINE_CONTENT:
         return lineContent != null;
+      case AssemblerPackage.SOURCE_LINE__LINE_LABEL:
+        return lineLabel != null;
     }
     return super.eIsSet(featureID);
   }

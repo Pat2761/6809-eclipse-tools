@@ -20,18 +20,22 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AssemblerGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_DirectiveLine_WSTerminalRuleCall_3_q;
+	protected AbstractElementAlias match_DirectiveLine_WSTerminalRuleCall_4_q;
 	protected AbstractElementAlias match_ExtendedOperand_GreaterThanSignKeyword_0_q;
-	protected AbstractElementAlias match_InstructionLine_WSTerminalRuleCall_3_q;
+	protected AbstractElementAlias match_InstructionLine_WSTerminalRuleCall_4_q;
+	protected AbstractElementAlias match_LabelLine_WSTerminalRuleCall_2_q;
+	protected AbstractElementAlias match_Label_ColonKeyword_2_q;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_7_0_a;
 	protected AbstractElementAlias match_Primary_LeftParenthesisKeyword_7_0_p;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AssemblerGrammarAccess) access;
-		match_DirectiveLine_WSTerminalRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_3());
+		match_DirectiveLine_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_4());
 		match_ExtendedOperand_GreaterThanSignKeyword_0_q = new TokenAlias(false, true, grammarAccess.getExtendedOperandAccess().getGreaterThanSignKeyword_0());
-		match_InstructionLine_WSTerminalRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_3());
+		match_InstructionLine_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_4());
+		match_LabelLine_WSTerminalRuleCall_2_q = new TokenAlias(false, true, grammarAccess.getLabelLineAccess().getWSTerminalRuleCall_2());
+		match_Label_ColonKeyword_2_q = new TokenAlias(false, true, grammarAccess.getLabelAccess().getColonKeyword_2());
 		match_Primary_LeftParenthesisKeyword_7_0_a = new TokenAlias(true, true, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_7_0());
 		match_Primary_LeftParenthesisKeyword_7_0_p = new TokenAlias(true, false, grammarAccess.getPrimaryAccess().getLeftParenthesisKeyword_7_0());
 	}
@@ -69,12 +73,16 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_DirectiveLine_WSTerminalRuleCall_3_q.equals(syntax))
-				emit_DirectiveLine_WSTerminalRuleCall_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_DirectiveLine_WSTerminalRuleCall_4_q.equals(syntax))
+				emit_DirectiveLine_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ExtendedOperand_GreaterThanSignKeyword_0_q.equals(syntax))
 				emit_ExtendedOperand_GreaterThanSignKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_InstructionLine_WSTerminalRuleCall_3_q.equals(syntax))
-				emit_InstructionLine_WSTerminalRuleCall_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_InstructionLine_WSTerminalRuleCall_4_q.equals(syntax))
+				emit_InstructionLine_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_LabelLine_WSTerminalRuleCall_2_q.equals(syntax))
+				emit_LabelLine_WSTerminalRuleCall_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Label_ColonKeyword_2_q.equals(syntax))
+				emit_Label_ColonKeyword_2_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_7_0_a.equals(syntax))
 				emit_Primary_LeftParenthesisKeyword_7_0_a(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_Primary_LeftParenthesisKeyword_7_0_p.equals(syntax))
@@ -110,7 +118,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 
 	 * </pre>
 	 */
-	protected void emit_DirectiveLine_WSTerminalRuleCall_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_DirectiveLine_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -205,7 +213,37 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	 
 	 * </pre>
 	 */
-	protected void emit_InstructionLine_WSTerminalRuleCall_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_InstructionLine_WSTerminalRuleCall_4_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
+	 *     label=Label (ambiguity) EndOfLine (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_LabelLine_WSTerminalRuleCall_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     ':'?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     (rule start) (ambiguity) (rule start)
+	 *     name=IdentifierValue (ambiguity) (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_Label_ColonKeyword_2_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

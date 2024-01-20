@@ -86,6 +86,11 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
         return createSourceLineAdapter();
       }
       @Override
+      public Adapter caseLabelLine(LabelLine object)
+      {
+        return createLabelLineAdapter();
+      }
+      @Override
       public Adapter caseBlankLine(BlankLine object)
       {
         return createBlankLineAdapter();
@@ -758,6 +763,21 @@ public class AssemblerAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createSourceLineAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine <em>Label Line</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelLine
+   * @generated
+   */
+  public Adapter createLabelLineAdapter()
   {
     return null;
   }

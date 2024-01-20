@@ -33,6 +33,11 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SourceLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SourceLine/lineContent"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SourceLine/lineLabel"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//LabelLine">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LabelLine/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelLine/comment"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BlankLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BlankLine/blankLine"/>
