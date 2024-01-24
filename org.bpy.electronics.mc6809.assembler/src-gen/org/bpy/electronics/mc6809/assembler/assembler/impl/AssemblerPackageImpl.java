@@ -1174,17 +1174,6 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getSourceLine_LineLabel()
-  {
-    return (EReference)sourceLineEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EClass getLabelLine()
   {
     return labelLineEClass;
@@ -1207,9 +1196,31 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getLabelLine_Comment()
+  public EAttribute getLabelLine_Ws1()
   {
     return (EAttribute)labelLineEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLabelLine_Comment()
+  {
+    return (EAttribute)labelLineEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLabelLine_Ws2()
+  {
+    return (EAttribute)labelLineEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1295,9 +1306,31 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EAttribute getInstructionLine_Ws1()
+  {
+    return (EAttribute)instructionLineEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getInstructionLine_Instruction()
   {
-    return (EReference)instructionLineEClass.getEStructuralFeatures().get(1);
+    return (EReference)instructionLineEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getInstructionLine_Ws2()
+  {
+    return (EAttribute)instructionLineEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -1308,7 +1341,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getInstructionLine_Comment()
   {
-    return (EAttribute)instructionLineEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)instructionLineEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -1331,6 +1364,17 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EReference getLabel_Name()
   {
     return (EReference)labelEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getLabel_Point()
+  {
+    return (EAttribute)labelEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -5296,11 +5340,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     sourceLineEClass = createEClass(SOURCE_LINE);
     createEReference(sourceLineEClass, SOURCE_LINE__LINE_CONTENT);
-    createEReference(sourceLineEClass, SOURCE_LINE__LINE_LABEL);
 
     labelLineEClass = createEClass(LABEL_LINE);
     createEReference(labelLineEClass, LABEL_LINE__LABEL);
+    createEAttribute(labelLineEClass, LABEL_LINE__WS1);
     createEAttribute(labelLineEClass, LABEL_LINE__COMMENT);
+    createEAttribute(labelLineEClass, LABEL_LINE__WS2);
 
     blankLineEClass = createEClass(BLANK_LINE);
     createEAttribute(blankLineEClass, BLANK_LINE__BLANK_LINE);
@@ -5311,11 +5356,14 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     instructionLineEClass = createEClass(INSTRUCTION_LINE);
     createEReference(instructionLineEClass, INSTRUCTION_LINE__LABEL);
+    createEAttribute(instructionLineEClass, INSTRUCTION_LINE__WS1);
     createEReference(instructionLineEClass, INSTRUCTION_LINE__INSTRUCTION);
+    createEAttribute(instructionLineEClass, INSTRUCTION_LINE__WS2);
     createEAttribute(instructionLineEClass, INSTRUCTION_LINE__COMMENT);
 
     labelEClass = createEClass(LABEL);
     createEReference(labelEClass, LABEL__NAME);
+    createEAttribute(labelEClass, LABEL__POINT);
 
     tstInstructionEClass = createEClass(TST_INSTRUCTION);
     createEAttribute(tstInstructionEClass, TST_INSTRUCTION__INSTRUCTION);
@@ -5845,11 +5893,12 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(sourceLineEClass, SourceLine.class, "SourceLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getSourceLine_LineContent(), ecorePackage.getEObject(), null, "lineContent", null, 0, 1, SourceLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getSourceLine_LineLabel(), this.getLabelLine(), null, "lineLabel", null, 0, 1, SourceLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(labelLineEClass, LabelLine.class, "LabelLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLabelLine_Label(), this.getLabel(), null, "label", null, 0, 1, LabelLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLabelLine_Ws1(), ecorePackage.getEString(), "ws1", null, 0, 1, LabelLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getLabelLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, LabelLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLabelLine_Ws2(), ecorePackage.getEString(), "ws2", null, 0, 1, LabelLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(blankLineEClass, BlankLine.class, "BlankLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getBlankLine_BlankLine(), ecorePackage.getEString(), "blankLine", null, 0, 1, BlankLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -5860,11 +5909,14 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(instructionLineEClass, InstructionLine.class, "InstructionLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getInstructionLine_Label(), this.getLabel(), null, "label", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInstructionLine_Ws1(), ecorePackage.getEString(), "ws1", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getInstructionLine_Instruction(), ecorePackage.getEObject(), null, "instruction", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getInstructionLine_Ws2(), ecorePackage.getEString(), "ws2", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getInstructionLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, InstructionLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(labelEClass, Label.class, "Label", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLabel_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, Label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLabel_Point(), ecorePackage.getEBoolean(), "point", null, 0, 1, Label.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(tstInstructionEClass, TstInstruction.class, "TstInstruction", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getTstInstruction_Instruction(), ecorePackage.getEString(), "instruction", null, 0, 1, TstInstruction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

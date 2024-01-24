@@ -15,7 +15,6 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getLineContent <em>Line Content</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getLineLabel <em>Line Label</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSourceLine()
@@ -45,27 +44,5 @@ public interface SourceLine extends EObject
    * @generated
    */
   void setLineContent(EObject value);
-
-  /**
-   * Returns the value of the '<em><b>Line Label</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Line Label</em>' containment reference.
-   * @see #setLineLabel(LabelLine)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getSourceLine_LineLabel()
-   * @model containment="true"
-   * @generated
-   */
-  LabelLine getLineLabel();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getLineLabel <em>Line Label</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Line Label</em>' containment reference.
-   * @see #getLineLabel()
-   * @generated
-   */
-  void setLineLabel(LabelLine value);
 
 } // SourceLine

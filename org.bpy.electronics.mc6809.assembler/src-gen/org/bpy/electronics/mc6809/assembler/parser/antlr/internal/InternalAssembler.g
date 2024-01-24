@@ -158,17 +158,17 @@ ruleSourceLine returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getSourceLineAccess().getLineLabelLabelLineParserRuleCall_2_0_0());
+						newCompositeNode(grammarAccess.getSourceLineAccess().getLineContentLabelLineParserRuleCall_2_0_0());
 					}
-					lv_lineLabel_2_0=ruleLabelLine
+					lv_lineContent_2_0=ruleLabelLine
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getSourceLineRule());
 						}
 						set(
 							$current,
-							"lineLabel",
-							lv_lineLabel_2_0,
+							"lineContent",
+							lv_lineContent_2_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.LabelLine");
 						afterParserOrEnumRuleCall();
 					}
@@ -254,10 +254,24 @@ ruleLabelLine returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getLabelLineAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws1_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws1_1_0, grammarAccess.getLabelLineAccess().getWs1WSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getLabelLineRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws1",
+							lv_ws1_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					lv_comment_2_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
@@ -278,10 +292,22 @@ ruleLabelLine returns [EObject current=null]
 			)
 		)?
 		(
-			this_WS_3=RULE_WS
-			{
-				newLeafNode(this_WS_3, grammarAccess.getLabelLineAccess().getWSTerminalRuleCall_2());
-			}
+			(
+				lv_ws2_3_0=RULE_WS
+				{
+					newLeafNode(lv_ws2_3_0, grammarAccess.getLabelLineAccess().getWs2WSTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getLabelLineRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws2",
+						lv_ws2_3_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
 		)?
 		{
 			newCompositeNode(grammarAccess.getLabelLineAccess().getEndOfLineParserRuleCall_3());
@@ -448,10 +474,24 @@ ruleInstructionLine returns [EObject current=null]
 				}
 			)
 		)
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_1());
-		}
+		(
+			(
+				lv_ws1_1_0=RULE_WS
+				{
+					newLeafNode(lv_ws1_1_0, grammarAccess.getInstructionLineAccess().getWs1WSTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getInstructionLineRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws1",
+						lv_ws1_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)
 		(
 			(
 				(
@@ -1794,10 +1834,24 @@ ruleInstructionLine returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_69=RULE_WS
-			{
-				newLeafNode(this_WS_69, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_3_0());
-			}
+			(
+				(
+					lv_ws2_69_0=RULE_WS
+					{
+						newLeafNode(lv_ws2_69_0, grammarAccess.getInstructionLineAccess().getWs2WSTerminalRuleCall_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getInstructionLineRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws2",
+							lv_ws2_69_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					lv_comment_70_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
@@ -1876,10 +1930,18 @@ ruleLabel returns [EObject current=null]
 			)
 		)?
 		(
-			otherlv_2=':'
-			{
-				newLeafNode(otherlv_2, grammarAccess.getLabelAccess().getColonKeyword_2());
-			}
+			(
+				lv_point_2_0=':'
+				{
+					newLeafNode(lv_point_2_0, grammarAccess.getLabelAccess().getPointColonKeyword_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getLabelRule());
+					}
+					setWithLastConsumed($current, "point", lv_point_2_0 != null, ":");
+				}
+			)
 		)?
 	)
 ;

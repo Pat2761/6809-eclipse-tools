@@ -48,23 +48,23 @@ public class PreferenceManager {
 	
 	/** Key of the preference which store the tab size */
 	public static final String TAB_SIZE = "tabSize";
-	/** Key of the preference which store the label size */
-	public static final String LABEL_SIZE = "labelSize";
-	/** Key of the preference which store the instruction size */
-	public static final String INSTRUCTION_SIZE = "instructionSize";
-	/** Key of the preference which store the operand size */
-	public static final String OPERAND_SIZE = "operandSize";
+	/** Key of the preference which store the instruction starting column */
+	public static final String INSTRUCTION_POSITION = "instructionPosition";
+	/** Key of the preference which store the operand starting column */
+	public static final String OPERAND_POSITION = "operandPosition";
+	/** Key of the preference which store the comment starting column */
+	public static final String COMMENT_POSITION = "commentPosition";
 	
 	/** Define the default value of the Tab policy preference */
 	public static final String TAB_POLICY_DEFAULT_VALUE = SPACE_ONLY;
 	/** Define the default value of the tab size preference */
 	public static final int TAB_SIZE_DEFAULT_VALUE = 3;
-	/** Define the default value of the label size preference */
-	public static final int LABEL_SIZE_DEFAULT_VALUE = 15;
 	/** Define the default value of the instruction size preference */
-	public static final int INSTRUCTION_SIZE_DEFAULT_VALUE = 6;
+	public static final int INSTRUCTION_POSITION_DEFAULT_VALUE = 10;
 	/** Define the default value of the operand size preference */
-	public static final int OPERAND_SIZE_DEFAULT_VALUE = 20;
+	public static final int OPERAND_POSITION_DEFAULT_VALUE = 26;
+	/** Define the default value of the operand size preference */
+	public static final int COMMENT_POSITION_DEFAULT_VALUE = 52;
 	
 	/** Instance of the preference manager singleton */ 
 	public static PreferenceManager eInstance;
@@ -86,9 +86,9 @@ public class PreferenceManager {
 		
 		defaultsValues.put(TAB_POLICY, SPACE_ONLY);
 		defaultsValues.put(TAB_SIZE, "" + TAB_SIZE_DEFAULT_VALUE);
-		defaultsValues.put(LABEL_SIZE,""+  LABEL_SIZE_DEFAULT_VALUE);
-		defaultsValues.put(INSTRUCTION_SIZE,"" + INSTRUCTION_SIZE_DEFAULT_VALUE);
-		defaultsValues.put(OPERAND_SIZE,"" + OPERAND_SIZE_DEFAULT_VALUE);
+		defaultsValues.put(INSTRUCTION_POSITION,""+  INSTRUCTION_POSITION_DEFAULT_VALUE);
+		defaultsValues.put(OPERAND_POSITION,"" + OPERAND_POSITION_DEFAULT_VALUE);
+		defaultsValues.put(COMMENT_POSITION,"" + COMMENT_POSITION_DEFAULT_VALUE);
 	}
 	
 	/**

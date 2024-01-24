@@ -26,7 +26,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl#getWs1 <em>Ws1</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl#getInstruction <em>Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl#getWs2 <em>Ws2</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl#getComment <em>Comment</em>}</li>
  * </ul>
  *
@@ -45,6 +47,26 @@ public class InstructionLineImpl extends MinimalEObjectImpl.Container implements
   protected Label label;
 
   /**
+   * The default value of the '{@link #getWs1() <em>Ws1</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs1()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS1_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs1() <em>Ws1</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs1()
+   * @generated
+   * @ordered
+   */
+  protected String ws1 = WS1_EDEFAULT;
+
+  /**
    * The cached value of the '{@link #getInstruction() <em>Instruction</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -53,6 +75,26 @@ public class InstructionLineImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected EObject instruction;
+
+  /**
+   * The default value of the '{@link #getWs2() <em>Ws2</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs2()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS2_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs2() <em>Ws2</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs2()
+   * @generated
+   * @ordered
+   */
+  protected String ws2 = WS2_EDEFAULT;
 
   /**
    * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
@@ -151,6 +193,31 @@ public class InstructionLineImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
+  public String getWs1()
+  {
+    return ws1;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs1(String newWs1)
+  {
+    String oldWs1 = ws1;
+    ws1 = newWs1;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.INSTRUCTION_LINE__WS1, oldWs1, ws1));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EObject getInstruction()
   {
     return instruction;
@@ -193,6 +260,31 @@ public class InstructionLineImpl extends MinimalEObjectImpl.Container implements
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.INSTRUCTION_LINE__INSTRUCTION, newInstruction, newInstruction));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getWs2()
+  {
+    return ws2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs2(String newWs2)
+  {
+    String oldWs2 = ws2;
+    ws2 = newWs2;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.INSTRUCTION_LINE__WS2, oldWs2, ws2));
   }
 
   /**
@@ -250,8 +342,12 @@ public class InstructionLineImpl extends MinimalEObjectImpl.Container implements
     {
       case AssemblerPackage.INSTRUCTION_LINE__LABEL:
         return getLabel();
+      case AssemblerPackage.INSTRUCTION_LINE__WS1:
+        return getWs1();
       case AssemblerPackage.INSTRUCTION_LINE__INSTRUCTION:
         return getInstruction();
+      case AssemblerPackage.INSTRUCTION_LINE__WS2:
+        return getWs2();
       case AssemblerPackage.INSTRUCTION_LINE__COMMENT:
         return getComment();
     }
@@ -271,8 +367,14 @@ public class InstructionLineImpl extends MinimalEObjectImpl.Container implements
       case AssemblerPackage.INSTRUCTION_LINE__LABEL:
         setLabel((Label)newValue);
         return;
+      case AssemblerPackage.INSTRUCTION_LINE__WS1:
+        setWs1((String)newValue);
+        return;
       case AssemblerPackage.INSTRUCTION_LINE__INSTRUCTION:
         setInstruction((EObject)newValue);
+        return;
+      case AssemblerPackage.INSTRUCTION_LINE__WS2:
+        setWs2((String)newValue);
         return;
       case AssemblerPackage.INSTRUCTION_LINE__COMMENT:
         setComment((String)newValue);
@@ -294,8 +396,14 @@ public class InstructionLineImpl extends MinimalEObjectImpl.Container implements
       case AssemblerPackage.INSTRUCTION_LINE__LABEL:
         setLabel((Label)null);
         return;
+      case AssemblerPackage.INSTRUCTION_LINE__WS1:
+        setWs1(WS1_EDEFAULT);
+        return;
       case AssemblerPackage.INSTRUCTION_LINE__INSTRUCTION:
         setInstruction((EObject)null);
+        return;
+      case AssemblerPackage.INSTRUCTION_LINE__WS2:
+        setWs2(WS2_EDEFAULT);
         return;
       case AssemblerPackage.INSTRUCTION_LINE__COMMENT:
         setComment(COMMENT_EDEFAULT);
@@ -316,8 +424,12 @@ public class InstructionLineImpl extends MinimalEObjectImpl.Container implements
     {
       case AssemblerPackage.INSTRUCTION_LINE__LABEL:
         return label != null;
+      case AssemblerPackage.INSTRUCTION_LINE__WS1:
+        return WS1_EDEFAULT == null ? ws1 != null : !WS1_EDEFAULT.equals(ws1);
       case AssemblerPackage.INSTRUCTION_LINE__INSTRUCTION:
         return instruction != null;
+      case AssemblerPackage.INSTRUCTION_LINE__WS2:
+        return WS2_EDEFAULT == null ? ws2 != null : !WS2_EDEFAULT.equals(ws2);
       case AssemblerPackage.INSTRUCTION_LINE__COMMENT:
         return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
     }
@@ -335,7 +447,11 @@ public class InstructionLineImpl extends MinimalEObjectImpl.Container implements
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (comment: ");
+    result.append(" (ws1: ");
+    result.append(ws1);
+    result.append(", ws2: ");
+    result.append(ws2);
+    result.append(", comment: ");
     result.append(comment);
     result.append(')');
     return result.toString();

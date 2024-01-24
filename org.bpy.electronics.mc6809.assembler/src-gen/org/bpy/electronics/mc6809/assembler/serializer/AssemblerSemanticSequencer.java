@@ -1858,6 +1858,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         label=Label 
+	 *         ws1=WS 
 	 *         (
 	 *             instruction=AbxInstruction | 
 	 *             instruction=AdcInstruction | 
@@ -1927,7 +1928,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=TfrInstruction | 
 	 *             instruction=TstInstruction
 	 *         ) 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *         (ws2=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
 	 *     )
 	 * </pre>
 	 */
@@ -1976,7 +1977,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     LabelLine returns LabelLine
 	 *
 	 * Constraint:
-	 *     (label=Label comment=ANY_EXCEPT_COMMENT_END_OF_LINE?)
+	 *     (label=Label (ws1=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? ws2=WS?)
 	 * </pre>
 	 */
 	protected void sequence_LabelLine(ISerializationContext context, LabelLine semanticObject) {
@@ -1990,7 +1991,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     Label returns Label
 	 *
 	 * Constraint:
-	 *     name=IdentifierValue?
+	 *     (name=IdentifierValue? point?=':'?)
 	 * </pre>
 	 */
 	protected void sequence_Label(ISerializationContext context, Label semanticObject) {
@@ -2883,7 +2884,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     SourceLine returns SourceLine
 	 *
 	 * Constraint:
-	 *     (lineContent=BlankLine | lineContent=CommentLine | lineLabel=LabelLine | lineContent=DirectiveLine | lineContent=InstructionLine)
+	 *     (lineContent=BlankLine | lineContent=CommentLine | lineContent=LabelLine | lineContent=DirectiveLine | lineContent=InstructionLine)
 	 * </pre>
 	 */
 	protected void sequence_SourceLine(ISerializationContext context, SourceLine semanticObject) {

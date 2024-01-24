@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelImpl#isPoint <em>Point</em>}</li>
  * </ul>
  *
  * @generated
@@ -40,6 +41,26 @@ public class LabelImpl extends MinimalEObjectImpl.Container implements Label
    * @ordered
    */
   protected IdentifierValue name;
+
+  /**
+   * The default value of the '{@link #isPoint() <em>Point</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isPoint()
+   * @generated
+   * @ordered
+   */
+  protected static final boolean POINT_EDEFAULT = false;
+
+  /**
+   * The cached value of the '{@link #isPoint() <em>Point</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #isPoint()
+   * @generated
+   * @ordered
+   */
+  protected boolean point = POINT_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -118,6 +139,31 @@ public class LabelImpl extends MinimalEObjectImpl.Container implements Label
    * @generated
    */
   @Override
+  public boolean isPoint()
+  {
+    return point;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setPoint(boolean newPoint)
+  {
+    boolean oldPoint = point;
+    point = newPoint;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.LABEL__POINT, oldPoint, point));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -140,6 +186,8 @@ public class LabelImpl extends MinimalEObjectImpl.Container implements Label
     {
       case AssemblerPackage.LABEL__NAME:
         return getName();
+      case AssemblerPackage.LABEL__POINT:
+        return isPoint();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -156,6 +204,9 @@ public class LabelImpl extends MinimalEObjectImpl.Container implements Label
     {
       case AssemblerPackage.LABEL__NAME:
         setName((IdentifierValue)newValue);
+        return;
+      case AssemblerPackage.LABEL__POINT:
+        setPoint((Boolean)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -174,6 +225,9 @@ public class LabelImpl extends MinimalEObjectImpl.Container implements Label
       case AssemblerPackage.LABEL__NAME:
         setName((IdentifierValue)null);
         return;
+      case AssemblerPackage.LABEL__POINT:
+        setPoint(POINT_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -190,8 +244,27 @@ public class LabelImpl extends MinimalEObjectImpl.Container implements Label
     {
       case AssemblerPackage.LABEL__NAME:
         return name != null;
+      case AssemblerPackage.LABEL__POINT:
+        return point != POINT_EDEFAULT;
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuilder result = new StringBuilder(super.toString());
+    result.append(" (point: ");
+    result.append(point);
+    result.append(')');
+    return result.toString();
   }
 
 } //LabelImpl

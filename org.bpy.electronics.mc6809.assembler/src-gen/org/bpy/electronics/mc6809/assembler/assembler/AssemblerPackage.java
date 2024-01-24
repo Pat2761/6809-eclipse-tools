@@ -106,22 +106,13 @@ public interface AssemblerPackage extends EPackage
   int SOURCE_LINE__LINE_CONTENT = 0;
 
   /**
-   * The feature id for the '<em><b>Line Label</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int SOURCE_LINE__LINE_LABEL = 1;
-
-  /**
    * The number of structural features of the '<em>Source Line</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SOURCE_LINE_FEATURE_COUNT = 2;
+  int SOURCE_LINE_FEATURE_COUNT = 1;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl <em>Label Line</em>}' class.
@@ -143,13 +134,31 @@ public interface AssemblerPackage extends EPackage
   int LABEL_LINE__LABEL = 0;
 
   /**
+   * The feature id for the '<em><b>Ws1</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL_LINE__WS1 = 1;
+
+  /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LABEL_LINE__COMMENT = 1;
+  int LABEL_LINE__COMMENT = 2;
+
+  /**
+   * The feature id for the '<em><b>Ws2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL_LINE__WS2 = 3;
 
   /**
    * The number of structural features of the '<em>Label Line</em>' class.
@@ -158,7 +167,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LABEL_LINE_FEATURE_COUNT = 2;
+  int LABEL_LINE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl <em>Blank Line</em>}' class.
@@ -245,13 +254,31 @@ public interface AssemblerPackage extends EPackage
   int INSTRUCTION_LINE__LABEL = 0;
 
   /**
+   * The feature id for the '<em><b>Ws1</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION_LINE__WS1 = 1;
+
+  /**
    * The feature id for the '<em><b>Instruction</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INSTRUCTION_LINE__INSTRUCTION = 1;
+  int INSTRUCTION_LINE__INSTRUCTION = 2;
+
+  /**
+   * The feature id for the '<em><b>Ws2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION_LINE__WS2 = 3;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -260,7 +287,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION_LINE__COMMENT = 2;
+  int INSTRUCTION_LINE__COMMENT = 4;
 
   /**
    * The number of structural features of the '<em>Instruction Line</em>' class.
@@ -269,7 +296,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION_LINE_FEATURE_COUNT = 3;
+  int INSTRUCTION_LINE_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelImpl <em>Label</em>}' class.
@@ -291,13 +318,22 @@ public interface AssemblerPackage extends EPackage
   int LABEL__NAME = 0;
 
   /**
+   * The feature id for the '<em><b>Point</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL__POINT = 1;
+
+  /**
    * The number of structural features of the '<em>Label</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LABEL_FEATURE_COUNT = 1;
+  int LABEL_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TstInstructionImpl <em>Tst Instruction</em>}' class.
@@ -4966,17 +5002,6 @@ public interface AssemblerPackage extends EPackage
   EReference getSourceLine_LineContent();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getLineLabel <em>Line Label</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Line Label</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.SourceLine#getLineLabel()
-   * @see #getSourceLine()
-   * @generated
-   */
-  EReference getSourceLine_LineLabel();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine <em>Label Line</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4998,6 +5023,17 @@ public interface AssemblerPackage extends EPackage
   EReference getLabelLine_Label();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs1 <em>Ws1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws1</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs1()
+   * @see #getLabelLine()
+   * @generated
+   */
+  EAttribute getLabelLine_Ws1();
+
+  /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getComment <em>Comment</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5007,6 +5043,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getLabelLine_Comment();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs2 <em>Ws2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws2</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs2()
+   * @see #getLabelLine()
+   * @generated
+   */
+  EAttribute getLabelLine_Ws2();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.BlankLine <em>Blank Line</em>}'.
@@ -5083,6 +5130,17 @@ public interface AssemblerPackage extends EPackage
   EReference getInstructionLine_Label();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getWs1 <em>Ws1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws1</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getWs1()
+   * @see #getInstructionLine()
+   * @generated
+   */
+  EAttribute getInstructionLine_Ws1();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getInstruction <em>Instruction</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5092,6 +5150,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EReference getInstructionLine_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getWs2 <em>Ws2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws2</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getWs2()
+   * @see #getInstructionLine()
+   * @generated
+   */
+  EAttribute getInstructionLine_Ws2();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getComment <em>Comment</em>}'.
@@ -5124,6 +5193,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EReference getLabel_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.Label#isPoint <em>Point</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Point</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Label#isPoint()
+   * @see #getLabel()
+   * @generated
+   */
+  EAttribute getLabel_Point();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.TstInstruction <em>Tst Instruction</em>}'.
@@ -8989,14 +9069,6 @@ public interface AssemblerPackage extends EPackage
     EReference SOURCE_LINE__LINE_CONTENT = eINSTANCE.getSourceLine_LineContent();
 
     /**
-     * The meta object literal for the '<em><b>Line Label</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SOURCE_LINE__LINE_LABEL = eINSTANCE.getSourceLine_LineLabel();
-
-    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl <em>Label Line</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9015,12 +9087,28 @@ public interface AssemblerPackage extends EPackage
     EReference LABEL_LINE__LABEL = eINSTANCE.getLabelLine_Label();
 
     /**
+     * The meta object literal for the '<em><b>Ws1</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LABEL_LINE__WS1 = eINSTANCE.getLabelLine_Ws1();
+
+    /**
      * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute LABEL_LINE__COMMENT = eINSTANCE.getLabelLine_Comment();
+
+    /**
+     * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LABEL_LINE__WS2 = eINSTANCE.getLabelLine_Ws2();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl <em>Blank Line</em>}' class.
@@ -9085,12 +9173,28 @@ public interface AssemblerPackage extends EPackage
     EReference INSTRUCTION_LINE__LABEL = eINSTANCE.getInstructionLine_Label();
 
     /**
+     * The meta object literal for the '<em><b>Ws1</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INSTRUCTION_LINE__WS1 = eINSTANCE.getInstructionLine_Ws1();
+
+    /**
      * The meta object literal for the '<em><b>Instruction</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference INSTRUCTION_LINE__INSTRUCTION = eINSTANCE.getInstructionLine_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INSTRUCTION_LINE__WS2 = eINSTANCE.getInstructionLine_Ws2();
 
     /**
      * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
@@ -9117,6 +9221,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EReference LABEL__NAME = eINSTANCE.getLabel_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Point</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LABEL__POINT = eINSTANCE.getLabel_Point();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TstInstructionImpl <em>Tst Instruction</em>}' class.

@@ -13,6 +13,11 @@ import org.bpy.electronics.mc6809.assembler.assembler.CommentLine
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager
 import com.google.common.base.Strings
+import org.eclipse.xtext.formatting2.IHiddenRegionFormatting
+import org.eclipse.xtext.formatting2.internal.HiddenRegionFormatting
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine
+import org.bpy.electronics.mc6809.assembler.assembler.Label
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine
 
 class AssemblerFormatter extends AbstractFormatter2 {
 	
@@ -24,20 +29,20 @@ class AssemblerFormatter extends AbstractFormatter2 {
 	
 	int tabSize
 	
-	int labelSize
+	int instructionPosition
 	
-	int instructionSize
+	int operandPosition
 	
-	int operandSize
+	int commentPosition
 
 	def dispatch void format(Model model, extension IFormattableDocument document) {
 		
 		preferenceManager = PreferenceManager.instance
 		tabPolicy = preferenceManager.getStringPreferenceValue(PreferenceManager::TAB_POLICY)
 		tabSize = preferenceManager.getIntPreferenceValue(PreferenceManager::TAB_SIZE)
-		labelSize = preferenceManager.getIntPreferenceValue(PreferenceManager::LABEL_SIZE)
-		instructionSize = preferenceManager.getIntPreferenceValue(PreferenceManager::INSTRUCTION_SIZE)
-		operandSize = preferenceManager.getIntPreferenceValue(PreferenceManager::OPERAND_SIZE)
+		instructionPosition = preferenceManager.getIntPreferenceValue(PreferenceManager::INSTRUCTION_POSITION)
+		operandPosition = preferenceManager.getIntPreferenceValue(PreferenceManager::OPERAND_POSITION)
+		commentPosition = preferenceManager.getIntPreferenceValue(PreferenceManager::COMMENT_POSITION)
 
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
 		for (sourceLine : model.sourceLines) {
@@ -49,29 +54,76 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
 		sourceLine.lineContent.format
 	}
-
+	
 	def dispatch void format(CommentLine commentLine, extension IFormattableDocument document) {
+		
 		if (commentLine.startingSpace !== null) {
-			val spaceBeforeComment = computeCommentPosition(commentLine.startingSpace)
-//			val textReplacement = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).replaceWith(spaceBeforeComment)
-//			textReplacement.format
-			commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT).prepend[space = spaceBeforeComment]
+
+			if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+				val fmt = document.formatter.createHiddenRegionFormatting => [ it.space = " " ]
+				val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).createWhitespaceReplacer(fmt)
+				document.addReplacer(replacer)
+
+				val strPosition = Strings.repeat(' ', commentPosition-1)
+				commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT).prepend[space = strPosition]
+			
+			} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+				
+			} else {
+				
+			}
 		}	
 	}
 	
-	def String computeCommentPosition(String startingSpace) {
-		val commentPosition = labelSize + instructionSize + operandSize - startingSpace.length;
-		
-		if (PreferenceManager::SPACE_ONLY.equals(tabPolicy)) {
-			Strings.repeat(' ', commentPosition)
+	def dispatch void format(LabelLine labelLine, extension IFormattableDocument document) {
+		if (labelLine.comment !== null) {
+			
+			if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+				var wsSpace=0
+				if (labelLine.ws1 !== null) {
+					val fmt = document.formatter.createHiddenRegionFormatting => [ it.space = " " ]
+					val replacer = labelLine.regionFor.feature(AssemblerPackage.Literals.LABEL_LINE__WS1).createWhitespaceReplacer(fmt)
+					document.addReplacer(replacer)
+					wsSpace=1
+				}
 
-		} else if (PreferenceManager::TAB_ONLY.equals(tabPolicy))  {
-			Strings.repeat(' ', commentPosition/tabSize)
+				var labelLength = labelLine.label.name.value.length + wsSpace
+				if (labelLine.label.point) {
+					labelLength++
+				}
+				val strPosition = Strings.repeat(' ', commentPosition-labelLength-1)
+				labelLine.regionFor.feature(AssemblerPackage.Literals.LABEL_LINE__COMMENT).prepend[space = strPosition]
 			
-		} else {
-			
+			} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+				
+			} else {
+				
+			}
 		}
 	}
-		
+
+	def dispatch void format(InstructionLine instructionLine, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			var wsSpace=0
+			if (instructionLine.ws1 !== null) {
+					val fmt = document.formatter.createHiddenRegionFormatting => [ it.space = " " ]
+					val replacer = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).createWhitespaceReplacer(fmt)
+					document.addReplacer(replacer)
+					wsSpace=1
+			}
+			if (instructionLine.ws2 !== null) {
+					val fmt = document.formatter.createHiddenRegionFormatting => [ it.space = " " ]
+					val replacer = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).createWhitespaceReplacer(fmt)
+					document.addReplacer(replacer)
+					wsSpace++
+			}
+
+			var labelLength = instructionLine.label.name.value.length + wsSpace
+			if (instructionLine.label.point) {
+					labelLength++
+			}
+
+		}
+	}
 	// TODO: implement for InstructionLine, TstInstruction, SubdInstruction, SubInstruction, StInstruction, SbcInstruction, RorInstruction, RolInstruction, PuluInstruction, PulsInstruction, PshuInstruction, PshsInstruction, OrCCInstruction, OrInstruction, NegInstruction, LsrInstruction, LslInstruction, LeaInstruction, LdInstruction, JsrInstruction, JmpInstruction, IncInstruction, EorInstruction, DecInstruction, CwaiInstruction, ComInstruction, CmpInstruction, ClrInstruction, BvsInstruction, BvcInstruction, BsrInstruction, BrnInstruction, BraInstruction, BplInstruction, BneInstruction, BmiInstruction, BltInstruction, BlsInstruction, BloInstruction, BleInstruction, BitInstruction, BhsInstruction, BhiInstruction, BgtInstruction, BgeInstruction, BeqInstruction, BcsInstruction, BccInstruction, AsrInstruction, AslInstruction, AndCCInstruction, AndInstruction, AdddInstruction, AddInstruction, AdcInstruction, ExtendedIndirectOperand, ExtendedOperand, DirectOperand, ImmediatOperand, IndexedOperand, ConstantIndexedMode, ConstantIndexedMovingIndirectMode, RelatifToPCMode, RelatifToPCIndirectMode, RelativeMode, DirectiveLine, SetDPDirective, SpcDirective, NamDirective, PagDirective, SetDirective, FillDirective, BszDirective, FdbDirective, FcbDirective, RmbDirective, EndDirective, OrgDirective, EquDirective, ListOfExpression, CommaExpression, Expression, Multiplication, Division, Modulo, Addition, Substraction, LeftShift, RightShift, And, Or, Xor, Not, NumericalValue
 }

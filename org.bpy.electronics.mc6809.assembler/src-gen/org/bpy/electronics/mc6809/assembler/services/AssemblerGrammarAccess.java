@@ -51,8 +51,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cLineContentAssignment_1 = (Assignment)cAlternatives.eContents().get(1);
 		private final RuleCall cLineContentCommentLineParserRuleCall_1_0 = (RuleCall)cLineContentAssignment_1.eContents().get(0);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
-		private final Assignment cLineLabelAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
-		private final RuleCall cLineLabelLabelLineParserRuleCall_2_0_0 = (RuleCall)cLineLabelAssignment_2_0.eContents().get(0);
+		private final Assignment cLineContentAssignment_2_0 = (Assignment)cGroup_2.eContents().get(0);
+		private final RuleCall cLineContentLabelLineParserRuleCall_2_0_0 = (RuleCall)cLineContentAssignment_2_0.eContents().get(0);
 		private final Assignment cLineContentAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
 		private final RuleCall cLineContentDirectiveLineParserRuleCall_3_0 = (RuleCall)cLineContentAssignment_3.eContents().get(0);
 		private final Assignment cLineContentAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
@@ -66,7 +66,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    (
 		//          (lineContent = BlankLine)
 		//        | (lineContent = CommentLine)
-		//        | -> (lineLabel =  LabelLine)
+		//        | -> (lineContent = LabelLine)
 		//        | (lineContent = DirectiveLine)
 		//        | (lineContent = InstructionLine)
 		//    )
@@ -76,7 +76,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//(
 		//      (lineContent = BlankLine)
 		//    | (lineContent = CommentLine)
-		//    | -> (lineLabel =  LabelLine)
+		//    | -> (lineContent = LabelLine)
 		//    | (lineContent = DirectiveLine)
 		//    | (lineContent = InstructionLine)
 		//)
@@ -94,14 +94,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//CommentLine
 		public RuleCall getLineContentCommentLineParserRuleCall_1_0() { return cLineContentCommentLineParserRuleCall_1_0; }
 		
-		//-> (lineLabel =  LabelLine)
+		//-> (lineContent = LabelLine)
 		public Group getGroup_2() { return cGroup_2; }
 		
-		//lineLabel =  LabelLine
-		public Assignment getLineLabelAssignment_2_0() { return cLineLabelAssignment_2_0; }
+		//lineContent = LabelLine
+		public Assignment getLineContentAssignment_2_0() { return cLineContentAssignment_2_0; }
 		
 		//LabelLine
-		public RuleCall getLineLabelLabelLineParserRuleCall_2_0_0() { return cLineLabelLabelLineParserRuleCall_2_0_0; }
+		public RuleCall getLineContentLabelLineParserRuleCall_2_0_0() { return cLineContentLabelLineParserRuleCall_2_0_0; }
 		
 		//(lineContent = DirectiveLine)
 		public Assignment getLineContentAssignment_3() { return cLineContentAssignment_3; }
@@ -121,22 +121,24 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cLabelAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cLabelLabelParserRuleCall_0_0 = (RuleCall)cLabelAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWs1Assignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWs1WSTerminalRuleCall_1_0_0 = (RuleCall)cWs1Assignment_1_0.eContents().get(0);
 		private final Assignment cCommentAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_1_1_0 = (RuleCall)cCommentAssignment_1_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
+		private final Assignment cWs2Assignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cWs2WSTerminalRuleCall_2_0 = (RuleCall)cWs2Assignment_2.eContents().get(0);
 		private final RuleCall cEndOfLineParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//LabelLine:
 		//    label = Label
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    WS? EndOfLine
+		//    (ws1=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    ws2=WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//label = Label
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//WS? EndOfLine
+		//(ws1=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//ws2=WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
 		//label = Label
@@ -145,11 +147,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//Label
 		public RuleCall getLabelLabelParserRuleCall_0_0() { return cLabelLabelParserRuleCall_0_0; }
 		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//(ws1=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws1=WS
+		public Assignment getWs1Assignment_1_0() { return cWs1Assignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWs1WSTerminalRuleCall_1_0_0() { return cWs1WSTerminalRuleCall_1_0_0; }
 		
 		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
 		public Assignment getCommentAssignment_1_1() { return cCommentAssignment_1_1; }
@@ -157,8 +162,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//ANY_EXCEPT_COMMENT_END_OF_LINE
 		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_1_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_1_1_0; }
 		
-		//WS?
-		public RuleCall getWSTerminalRuleCall_2() { return cWSTerminalRuleCall_2; }
+		//ws2=WS?
+		public Assignment getWs2Assignment_2() { return cWs2Assignment_2; }
+		
+		//WS
+		public RuleCall getWs2WSTerminalRuleCall_2_0() { return cWs2WSTerminalRuleCall_2_0; }
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_3() { return cEndOfLineParserRuleCall_3; }
@@ -241,7 +249,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cLabelAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final RuleCall cLabelLabelParserRuleCall_0_0 = (RuleCall)cLabelAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cWs1Assignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cWs1WSTerminalRuleCall_1_0 = (RuleCall)cWs1Assignment_1.eContents().get(0);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Assignment cInstructionAssignment_2_0 = (Assignment)cAlternatives_2.eContents().get(0);
 		private final RuleCall cInstructionAbxInstructionParserRuleCall_2_0_0 = (RuleCall)cInstructionAssignment_2_0.eContents().get(0);
@@ -378,7 +387,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cInstructionAssignment_2_66 = (Assignment)cAlternatives_2.eContents().get(66);
 		private final RuleCall cInstructionTstInstructionParserRuleCall_2_66_0 = (RuleCall)cInstructionAssignment_2_66.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
-		private final RuleCall cWSTerminalRuleCall_3_0 = (RuleCall)cGroup_3.eContents().get(0);
+		private final Assignment cWs2Assignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
+		private final RuleCall cWs2WSTerminalRuleCall_3_0_0 = (RuleCall)cWs2Assignment_3_0.eContents().get(0);
 		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
 		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
@@ -388,7 +398,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * Definition of the list possible instructions
 		// */
 		//InstructionLine:
-		//    label = Label WS
+		//    label = Label ws1=WS
 		//    (
 		//        instruction = AbxInstruction            |
 		//        instruction = AdcInstruction            |
@@ -458,12 +468,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//        instruction = TfrInstruction            |
 		//        instruction = TstInstruction
 		//    )
-		//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    (ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//label = Label WS
+		//label = Label ws1=WS
 		//(
 		//    instruction = AbxInstruction            |
 		//    instruction = AdcInstruction            |
@@ -533,7 +543,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//    instruction = TfrInstruction            |
 		//    instruction = TstInstruction
 		//)
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//(ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
@@ -543,8 +553,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//Label
 		public RuleCall getLabelLabelParserRuleCall_0_0() { return cLabelLabelParserRuleCall_0_0; }
 		
+		//ws1=WS
+		public Assignment getWs1Assignment_1() { return cWs1Assignment_1; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		public RuleCall getWs1WSTerminalRuleCall_1_0() { return cWs1WSTerminalRuleCall_1_0; }
 		
 		//(
 		//    instruction = AbxInstruction            |
@@ -1019,11 +1032,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//TstInstruction
 		public RuleCall getInstructionTstInstructionParserRuleCall_2_66_0() { return cInstructionTstInstructionParserRuleCall_2_66_0; }
 		
-		//(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//(ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_3() { return cGroup_3; }
 		
+		//ws2=WS
+		public Assignment getWs2Assignment_3_0() { return cWs2Assignment_3_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_3_0() { return cWSTerminalRuleCall_3_0; }
+		public RuleCall getWs2WSTerminalRuleCall_3_0_0() { return cWs2WSTerminalRuleCall_3_0_0; }
 		
 		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
 		public Assignment getCommentAssignment_3_1() { return cCommentAssignment_3_1; }
@@ -1043,14 +1059,15 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Action cLabelAction_0 = (Action)cGroup.eContents().get(0);
 		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cNameIdentifierValueParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cColonKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cPointAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final Keyword cPointColonKeyword_2_0 = (Keyword)cPointAssignment_2.eContents().get(0);
 		
 		//Label:
-		//    {Label} name = IdentifierValue? ':'?
+		//    {Label} name = IdentifierValue? point?=':'?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{Label} name = IdentifierValue? ':'?
+		//{Label} name = IdentifierValue? point?=':'?
 		public Group getGroup() { return cGroup; }
 		
 		//{Label}
@@ -1062,8 +1079,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//IdentifierValue
 		public RuleCall getNameIdentifierValueParserRuleCall_1_0() { return cNameIdentifierValueParserRuleCall_1_0; }
 		
-		//':'?
-		public Keyword getColonKeyword_2() { return cColonKeyword_2; }
+		//point?=':'?
+		public Assignment getPointAssignment_2() { return cPointAssignment_2; }
+		
+		//':'
+		public Keyword getPointColonKeyword_2_0() { return cPointColonKeyword_2_0; }
 	}
 	public class TstInstructionElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.TstInstruction");
@@ -10151,7 +10171,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//    (
 	//          (lineContent = BlankLine)
 	//        | (lineContent = CommentLine)
-	//        | -> (lineLabel =  LabelLine)
+	//        | -> (lineContent = LabelLine)
 	//        | (lineContent = DirectiveLine)
 	//        | (lineContent = InstructionLine)
 	//    )
@@ -10166,8 +10186,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	
 	//LabelLine:
 	//    label = Label
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    WS? EndOfLine
+	//    (ws1=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    ws2=WS? EndOfLine
 	//;
 	public LabelLineElements getLabelLineAccess() {
 		return pLabelLine;
@@ -10211,7 +10231,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Definition of the list possible instructions
 	// */
 	//InstructionLine:
-	//    label = Label WS
+	//    label = Label ws1=WS
 	//    (
 	//        instruction = AbxInstruction            |
 	//        instruction = AdcInstruction            |
@@ -10281,7 +10301,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//        instruction = TfrInstruction            |
 	//        instruction = TstInstruction
 	//    )
-	//    (WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    (ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    WS? EndOfLine
 	//;
 	public InstructionLineElements getInstructionLineAccess() {
@@ -10293,7 +10313,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//Label:
-	//    {Label} name = IdentifierValue? ':'?
+	//    {Label} name = IdentifierValue? point?=':'?
 	//;
 	public LabelElements getLabelAccess() {
 		return pLabel;

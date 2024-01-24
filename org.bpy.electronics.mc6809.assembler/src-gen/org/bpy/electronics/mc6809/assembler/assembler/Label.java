@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.Label#getName <em>Name</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.Label#isPoint <em>Point</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getLabel()
@@ -44,5 +45,27 @@ public interface Label extends EObject
    * @generated
    */
   void setName(IdentifierValue value);
+
+  /**
+   * Returns the value of the '<em><b>Point</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Point</em>' attribute.
+   * @see #setPoint(boolean)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getLabel_Point()
+   * @model
+   * @generated
+   */
+  boolean isPoint();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.Label#isPoint <em>Point</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Point</em>' attribute.
+   * @see #isPoint()
+   * @generated
+   */
+  void setPoint(boolean value);
 
 } // Label

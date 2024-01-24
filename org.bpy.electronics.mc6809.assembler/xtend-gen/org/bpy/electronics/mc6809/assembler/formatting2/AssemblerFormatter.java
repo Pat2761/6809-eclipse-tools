@@ -3,11 +3,14 @@
  */
 package org.bpy.electronics.mc6809.assembler.formatting2;
 
+import com.google.common.base.Objects;
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import java.util.Arrays;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.services.AssemblerGrammarAccess;
@@ -17,8 +20,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.AbstractFormatter2;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatter;
+import org.eclipse.xtext.formatting2.IHiddenRegionFormatting;
+import org.eclipse.xtext.formatting2.ITextReplacer;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 @SuppressWarnings("all")
@@ -33,19 +39,19 @@ public class AssemblerFormatter extends AbstractFormatter2 {
 
   private int tabSize;
 
-  private int labelSize;
+  private int instructionPosition;
 
-  private int instructionSize;
+  private int operandPosition;
 
-  private int operandSize;
+  private int commentPosition;
 
   protected void _format(final Model model, @Extension final IFormattableDocument document) {
     this.preferenceManager = PreferenceManager.getInstance();
     this.tabPolicy = this.preferenceManager.getStringPreferenceValue(PreferenceManager.TAB_POLICY);
     this.tabSize = this.preferenceManager.getIntPreferenceValue(PreferenceManager.TAB_SIZE);
-    this.labelSize = this.preferenceManager.getIntPreferenceValue(PreferenceManager.LABEL_SIZE);
-    this.instructionSize = this.preferenceManager.getIntPreferenceValue(PreferenceManager.INSTRUCTION_SIZE);
-    this.operandSize = this.preferenceManager.getIntPreferenceValue(PreferenceManager.OPERAND_SIZE);
+    this.instructionPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.INSTRUCTION_POSITION);
+    this.operandPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.OPERAND_POSITION);
+    this.commentPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.COMMENT_POSITION);
     EList<SourceLine> _sourceLines = model.getSourceLines();
     for (final SourceLine sourceLine : _sourceLines) {
       document.<SourceLine>format(sourceLine);
@@ -60,36 +66,103 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     String _startingSpace = commentLine.getStartingSpace();
     boolean _tripleNotEquals = (_startingSpace != null);
     if (_tripleNotEquals) {
-      final String spaceBeforeComment = this.computeCommentPosition(commentLine.getStartingSpace());
-      final Procedure1<IHiddenRegionFormatter> _function = (IHiddenRegionFormatter it) -> {
-        it.setSpace(spaceBeforeComment);
-      };
-      document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT), _function);
+      boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+      if (_equals) {
+        IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+        final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
+          it.setSpace(" ");
+        };
+        final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+        final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), fmt);
+        document.addReplacer(replacer);
+        final String strPosition = Strings.repeat(" ", (this.commentPosition - 1));
+        final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+          it.setSpace(strPosition);
+        };
+        document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT), _function_1);
+      } else {
+        boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+        if (_equals_1) {
+        } else {
+        }
+      }
     }
   }
 
-  public String computeCommentPosition(final String startingSpace) {
-    String _xblockexpression = null;
-    {
-      int _length = startingSpace.length();
-      final int commentPosition = (((this.labelSize + this.instructionSize) + this.operandSize) - _length);
-      String _xifexpression = null;
-      boolean _equals = PreferenceManager.SPACE_ONLY.equals(this.tabPolicy);
+  protected void _format(final LabelLine labelLine, @Extension final IFormattableDocument document) {
+    String _comment = labelLine.getComment();
+    boolean _tripleNotEquals = (_comment != null);
+    if (_tripleNotEquals) {
+      boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
       if (_equals) {
-        _xifexpression = Strings.repeat(" ", commentPosition);
-      } else {
-        String _xifexpression_1 = null;
-        boolean _equals_1 = PreferenceManager.TAB_ONLY.equals(this.tabPolicy);
-        if (_equals_1) {
-          _xifexpression_1 = Strings.repeat(" ", (commentPosition / this.tabSize));
-        } else {
-          _xifexpression_1 = null;
+        int wsSpace = 0;
+        String _ws1 = labelLine.getWs1();
+        boolean _tripleNotEquals_1 = (_ws1 != null);
+        if (_tripleNotEquals_1) {
+          IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+          final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
+            it.setSpace(" ");
+          };
+          final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+          final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__WS1), fmt);
+          document.addReplacer(replacer);
+          wsSpace = 1;
         }
-        _xifexpression = _xifexpression_1;
+        int _length = labelLine.getLabel().getName().getValue().length();
+        int labelLength = (_length + wsSpace);
+        boolean _isPoint = labelLine.getLabel().isPoint();
+        if (_isPoint) {
+          labelLength++;
+        }
+        final String strPosition = Strings.repeat(" ", ((this.commentPosition - labelLength) - 1));
+        final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+          it.setSpace(strPosition);
+        };
+        document.prepend(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__COMMENT), _function_1);
+      } else {
+        boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+        if (_equals_1) {
+        } else {
+        }
       }
-      _xblockexpression = _xifexpression;
     }
-    return _xblockexpression;
+  }
+
+  protected void _format(final InstructionLine instructionLine, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      int wsSpace = 0;
+      String _ws1 = instructionLine.getWs1();
+      boolean _tripleNotEquals = (_ws1 != null);
+      if (_tripleNotEquals) {
+        IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+        final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
+          it.setSpace(" ");
+        };
+        final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+        final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt);
+        document.addReplacer(replacer);
+        wsSpace = 1;
+      }
+      String _ws2 = instructionLine.getWs2();
+      boolean _tripleNotEquals_1 = (_ws2 != null);
+      if (_tripleNotEquals_1) {
+        IHiddenRegionFormatting _createHiddenRegionFormatting_1 = document.getFormatter().createHiddenRegionFormatting();
+        final Procedure1<IHiddenRegionFormatting> _function_1 = (IHiddenRegionFormatting it) -> {
+          it.setSpace(" ");
+        };
+        final IHiddenRegionFormatting fmt_1 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting_1, _function_1);
+        final ITextReplacer replacer_1 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), fmt_1);
+        document.addReplacer(replacer_1);
+        wsSpace++;
+      }
+      int _length = instructionLine.getLabel().getName().getValue().length();
+      int labelLength = (_length + wsSpace);
+      boolean _isPoint = instructionLine.getLabel().isPoint();
+      if (_isPoint) {
+        labelLength++;
+      }
+    }
   }
 
   public void format(final Object commentLine, final IFormattableDocument document) {
@@ -98,6 +171,12 @@ public class AssemblerFormatter extends AbstractFormatter2 {
       return;
     } else if (commentLine instanceof CommentLine) {
       _format((CommentLine)commentLine, document);
+      return;
+    } else if (commentLine instanceof InstructionLine) {
+      _format((InstructionLine)commentLine, document);
+      return;
+    } else if (commentLine instanceof LabelLine) {
+      _format((LabelLine)commentLine, document);
       return;
     } else if (commentLine instanceof Model) {
       _format((Model)commentLine, document);

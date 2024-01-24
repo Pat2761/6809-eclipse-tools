@@ -479,7 +479,7 @@
             name="Help content">
       </command>
       <command
-            id="org.eclipse.ui.help.aboutAction"
+            id="org.bpy.electronics.mc6809.rcp.command.about"
             name="About">
       </command>
    </extension>
@@ -608,7 +608,7 @@
       </handler>
       <handler
             class="org.bpy.electronics.mc6809.rcp.handlers.UnderConstructionHandler"
-            commandId="org.eclipse.ui.help.aboutAction">
+            commandId="org.bpy.electronics.mc6809.rcp.command.about">
       </handler>
    </extension>
 

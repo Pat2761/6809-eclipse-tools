@@ -170,7 +170,7 @@ public class AssemblerEngine {
 	/** Contains the collection of label which reference assembly line */
 	private Map<String, AbstractAssemblyLine> labelsPositionObject;
 	/** Contains the collection of Register definition */
-	private Map<String, Integer> regDefintionValues;
+	private Map<String, Integer> regDefinitionValues;
 	/** Contains the collection of Labels which define values */
 	private Map<String, AbstractAssemblyLine> labelsEquSet;
 	/** Contains the collection of assembled line  */
@@ -210,7 +210,7 @@ public class AssemblerEngine {
 		labelsPositionObject = new HashMap<>();
 		labelsEquSet = new HashMap<>();
 		assembledLinesMap = new HashMap<>();
-		regDefintionValues = new HashMap<>();
+		regDefinitionValues = new HashMap<>();
 	}
 
 	/**
@@ -3204,7 +3204,7 @@ public class AssemblerEngine {
 					DUPLICATE_LABEL);
 			AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 		} else {
-			regDefintionValues.put(label, line.getValue());	
+			regDefinitionValues.put(label, line.getValue());	
 			labelsEquSet.put(label, line);
 		}
 		
@@ -3462,8 +3462,8 @@ public class AssemblerEngine {
 	 * @return value pointed by the label
 	 */
 	public Integer getRegDefintionValue(String value) {
-		if (regDefintionValues.containsKey(value)) {
-			return regDefintionValues.get(value);
+		if (regDefinitionValues.containsKey(value)) {
+			return regDefinitionValues.get(value);
 		} else {
 			return null;
 		}

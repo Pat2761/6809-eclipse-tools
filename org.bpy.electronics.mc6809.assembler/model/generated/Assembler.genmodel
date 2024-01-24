@@ -33,11 +33,12 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SourceLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SourceLine/lineContent"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SourceLine/lineLabel"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//LabelLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LabelLine/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelLine/ws1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelLine/comment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelLine/ws2"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BlankLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BlankLine/blankLine"/>
@@ -48,11 +49,14 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//InstructionLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//InstructionLine/ws1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//InstructionLine/ws2"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//InstructionLine/comment"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//Label">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Label/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//Label/point"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//TstInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TstInstruction/instruction"/>

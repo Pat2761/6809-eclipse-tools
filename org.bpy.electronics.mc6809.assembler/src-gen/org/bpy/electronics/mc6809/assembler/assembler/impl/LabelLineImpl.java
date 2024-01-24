@@ -25,7 +25,9 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl#getLabel <em>Label</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl#getWs1 <em>Ws1</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl#getComment <em>Comment</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl#getWs2 <em>Ws2</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,6 +43,26 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
    * @ordered
    */
   protected Label label;
+
+  /**
+   * The default value of the '{@link #getWs1() <em>Ws1</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs1()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS1_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs1() <em>Ws1</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs1()
+   * @generated
+   * @ordered
+   */
+  protected String ws1 = WS1_EDEFAULT;
 
   /**
    * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
@@ -61,6 +83,26 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
    * @ordered
    */
   protected String comment = COMMENT_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWs2() <em>Ws2</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs2()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS2_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs2() <em>Ws2</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs2()
+   * @generated
+   * @ordered
+   */
+  protected String ws2 = WS2_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -139,6 +181,31 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
    * @generated
    */
   @Override
+  public String getWs1()
+  {
+    return ws1;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs1(String newWs1)
+  {
+    String oldWs1 = ws1;
+    ws1 = newWs1;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.LABEL_LINE__WS1, oldWs1, ws1));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public String getComment()
   {
     return comment;
@@ -156,6 +223,31 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
     comment = newComment;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.LABEL_LINE__COMMENT, oldComment, comment));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getWs2()
+  {
+    return ws2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs2(String newWs2)
+  {
+    String oldWs2 = ws2;
+    ws2 = newWs2;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.LABEL_LINE__WS2, oldWs2, ws2));
   }
 
   /**
@@ -186,8 +278,12 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
     {
       case AssemblerPackage.LABEL_LINE__LABEL:
         return getLabel();
+      case AssemblerPackage.LABEL_LINE__WS1:
+        return getWs1();
       case AssemblerPackage.LABEL_LINE__COMMENT:
         return getComment();
+      case AssemblerPackage.LABEL_LINE__WS2:
+        return getWs2();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -205,8 +301,14 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
       case AssemblerPackage.LABEL_LINE__LABEL:
         setLabel((Label)newValue);
         return;
+      case AssemblerPackage.LABEL_LINE__WS1:
+        setWs1((String)newValue);
+        return;
       case AssemblerPackage.LABEL_LINE__COMMENT:
         setComment((String)newValue);
+        return;
+      case AssemblerPackage.LABEL_LINE__WS2:
+        setWs2((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -225,8 +327,14 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
       case AssemblerPackage.LABEL_LINE__LABEL:
         setLabel((Label)null);
         return;
+      case AssemblerPackage.LABEL_LINE__WS1:
+        setWs1(WS1_EDEFAULT);
+        return;
       case AssemblerPackage.LABEL_LINE__COMMENT:
         setComment(COMMENT_EDEFAULT);
+        return;
+      case AssemblerPackage.LABEL_LINE__WS2:
+        setWs2(WS2_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -244,8 +352,12 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
     {
       case AssemblerPackage.LABEL_LINE__LABEL:
         return label != null;
+      case AssemblerPackage.LABEL_LINE__WS1:
+        return WS1_EDEFAULT == null ? ws1 != null : !WS1_EDEFAULT.equals(ws1);
       case AssemblerPackage.LABEL_LINE__COMMENT:
         return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
+      case AssemblerPackage.LABEL_LINE__WS2:
+        return WS2_EDEFAULT == null ? ws2 != null : !WS2_EDEFAULT.equals(ws2);
     }
     return super.eIsSet(featureID);
   }
@@ -261,8 +373,12 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
     if (eIsProxy()) return super.toString();
 
     StringBuilder result = new StringBuilder(super.toString());
-    result.append(" (comment: ");
+    result.append(" (ws1: ");
+    result.append(ws1);
+    result.append(", comment: ");
     result.append(comment);
+    result.append(", ws2: ");
+    result.append(ws2);
     result.append(')');
     return result.toString();
   }
