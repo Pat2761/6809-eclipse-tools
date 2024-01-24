@@ -29,22 +29,48 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 @SuppressWarnings("all")
 public class AssemblerFormatter extends AbstractFormatter2 {
+  /**
+   * Reference on grammar acces
+   */
   @Inject
   @Extension
   private AssemblerGrammarAccess _assemblerGrammarAccess;
 
+  /**
+   * Reference on the preference manager
+   */
   private PreferenceManager preferenceManager;
 
+  /**
+   * Current value of the tab policy
+   */
   private String tabPolicy;
 
+  /**
+   * Current value of the tab size
+   */
   private int tabSize;
 
+  /**
+   * Current column value of the instruction
+   */
   private int instructionPosition;
 
+  /**
+   * Current column value of the operand
+   */
   private int operandPosition;
 
+  /**
+   * Current column value of the comment
+   */
   private int commentPosition;
 
+  /**
+   * Allow to initialize the formatter.
+   * read formatter preference
+   * call formatter for all children of the model
+   */
   protected void _format(final Model model, @Extension final IFormattableDocument document) {
     this.preferenceManager = PreferenceManager.getInstance();
     this.tabPolicy = this.preferenceManager.getStringPreferenceValue(PreferenceManager.TAB_POLICY);
@@ -58,74 +84,193 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     }
   }
 
+  /**
+   * Call the formatter for a source line
+   */
   protected void _format(final SourceLine sourceLine, @Extension final IFormattableDocument document) {
     document.<EObject>format(sourceLine.getLineContent());
   }
 
+  /**
+   * Call the formatter for a line which start with space and contains only a comment
+   */
   protected void _format(final CommentLine commentLine, @Extension final IFormattableDocument document) {
     String _startingSpace = commentLine.getStartingSpace();
     boolean _tripleNotEquals = (_startingSpace != null);
     if (_tripleNotEquals) {
       boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
       if (_equals) {
-        IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
-        final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
-          it.setSpace(" ");
-        };
-        final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
-        final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), fmt);
-        document.addReplacer(replacer);
-        final String strPosition = Strings.repeat(" ", (this.commentPosition - 1));
-        final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
-          it.setSpace(strPosition);
-        };
-        document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT), _function_1);
+        this.formatSpaceOnly(commentLine, document);
       } else {
         boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
         if (_equals_1) {
+          this.formatTabOnly(commentLine, document);
         } else {
+          this.formatMixed(commentLine, document);
         }
       }
     }
   }
 
+  /**
+   * Format a comment line when the tab policy is Space only
+   */
+  private void formatSpaceOnly(final CommentLine commentLine, @Extension final IFormattableDocument document) {
+    IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+    final Procedure1<IHiddenRegionFormatting> _function = new Procedure1<IHiddenRegionFormatting>() {
+      public void apply(final IHiddenRegionFormatting it) {
+        it.setSpace(" ");
+      }
+    };
+    final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+    final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), fmt);
+    document.addReplacer(replacer);
+    final String strPosition = Strings.repeat(" ", (this.commentPosition - 1));
+    final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
+      public void apply(final IHiddenRegionFormatter it) {
+        it.setSpace(strPosition);
+      }
+    };
+    document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT), _function_1);
+  }
+
+  /**
+   * Format a comment line when the tab policy is Tab only
+   */
+  private void formatTabOnly(final CommentLine commentLine, @Extension final IFormattableDocument document) {
+    final int nbTabs = (this.commentPosition / this.tabSize);
+    IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+    final Procedure1<IHiddenRegionFormatting> _function = new Procedure1<IHiddenRegionFormatting>() {
+      public void apply(final IHiddenRegionFormatting it) {
+        it.setSpace("\t");
+      }
+    };
+    final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+    final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), fmt);
+    document.addReplacer(replacer);
+    final String strPosition = Strings.repeat("\t", (nbTabs - 1));
+    final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
+      public void apply(final IHiddenRegionFormatter it) {
+        it.setSpace(strPosition);
+      }
+    };
+    document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT), _function_1);
+  }
+
+  /**
+   * Format a comment line when the tab policy is a mixed of space and tab
+   */
+  private void formatMixed(final CommentLine commentLine, @Extension final IFormattableDocument document) {
+    final int nbTabs = (this.commentPosition / this.tabSize);
+    final int nbSpaces = (this.commentPosition - (this.tabSize * nbTabs));
+    IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+    final Procedure1<IHiddenRegionFormatting> _function = new Procedure1<IHiddenRegionFormatting>() {
+      public void apply(final IHiddenRegionFormatting it) {
+        it.setSpace("\t");
+      }
+    };
+    final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+    final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), fmt);
+    document.addReplacer(replacer);
+    String strPosition = Strings.repeat("\t", (nbTabs - 1));
+    if ((nbSpaces != 0)) {
+      String _strPosition = strPosition;
+      String _repeat = Strings.repeat(" ", nbSpaces);
+      strPosition = (_strPosition + _repeat);
+    }
+    final String spaces = strPosition;
+    final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
+      public void apply(final IHiddenRegionFormatter it) {
+        it.setSpace(spaces);
+      }
+    };
+    document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT), _function_1);
+  }
+
+  /**
+   * Call the formatter for a line which start with a label and contains only comments
+   */
   protected void _format(final LabelLine labelLine, @Extension final IFormattableDocument document) {
     String _comment = labelLine.getComment();
     boolean _tripleNotEquals = (_comment != null);
     if (_tripleNotEquals) {
       boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
       if (_equals) {
-        int wsSpace = 0;
-        String _ws1 = labelLine.getWs1();
-        boolean _tripleNotEquals_1 = (_ws1 != null);
-        if (_tripleNotEquals_1) {
-          IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
-          final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
-            it.setSpace(" ");
-          };
-          final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
-          final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__WS1), fmt);
-          document.addReplacer(replacer);
-          wsSpace = 1;
-        }
-        int _length = labelLine.getLabel().getName().getValue().length();
-        int labelLength = (_length + wsSpace);
-        boolean _isPoint = labelLine.getLabel().isPoint();
-        if (_isPoint) {
-          labelLength++;
-        }
-        final String strPosition = Strings.repeat(" ", ((this.commentPosition - labelLength) - 1));
-        final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
-          it.setSpace(strPosition);
-        };
-        document.prepend(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__COMMENT), _function_1);
+        this.formatSpaceOnly(labelLine, document);
       } else {
         boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
         if (_equals_1) {
+          this.formatTabOnly(labelLine, document);
         } else {
+          this.formatMixed(labelLine, document);
         }
       }
     }
+  }
+
+  private void formatMixed(final LabelLine labelLine, @Extension final IFormattableDocument document) {
+  }
+
+  private void formatTabOnly(final LabelLine labelLine, @Extension final IFormattableDocument document) {
+    int wsSpace = 0;
+    String _ws1 = labelLine.getWs1();
+    boolean _tripleNotEquals = (_ws1 != null);
+    if (_tripleNotEquals) {
+      IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+      final Procedure1<IHiddenRegionFormatting> _function = new Procedure1<IHiddenRegionFormatting>() {
+        public void apply(final IHiddenRegionFormatting it) {
+          it.setSpace(" ");
+        }
+      };
+      final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+      final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__WS1), fmt);
+      document.addReplacer(replacer);
+      wsSpace = 1;
+    }
+    int _length = labelLine.getLabel().getName().getValue().length();
+    int labelLength = (_length + wsSpace);
+    boolean _isPoint = labelLine.getLabel().isPoint();
+    if (_isPoint) {
+      labelLength++;
+    }
+    final String strPosition = Strings.repeat(" ", ((this.commentPosition - labelLength) - 1));
+    final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
+      public void apply(final IHiddenRegionFormatter it) {
+        it.setSpace(strPosition);
+      }
+    };
+    document.prepend(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__COMMENT), _function_1);
+  }
+
+  private void formatSpaceOnly(final LabelLine labelLine, @Extension final IFormattableDocument document) {
+    int wsSpace = 0;
+    String _ws1 = labelLine.getWs1();
+    boolean _tripleNotEquals = (_ws1 != null);
+    if (_tripleNotEquals) {
+      IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+      final Procedure1<IHiddenRegionFormatting> _function = new Procedure1<IHiddenRegionFormatting>() {
+        public void apply(final IHiddenRegionFormatting it) {
+          it.setSpace(" ");
+        }
+      };
+      final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+      final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__WS1), fmt);
+      document.addReplacer(replacer);
+      wsSpace = 1;
+    }
+    int _length = labelLine.getLabel().getName().getValue().length();
+    int labelLength = (_length + wsSpace);
+    boolean _isPoint = labelLine.getLabel().isPoint();
+    if (_isPoint) {
+      labelLength++;
+    }
+    final String strPosition = Strings.repeat(" ", ((this.commentPosition - labelLength) - 1));
+    final Procedure1<IHiddenRegionFormatter> _function_1 = new Procedure1<IHiddenRegionFormatter>() {
+      public void apply(final IHiddenRegionFormatter it) {
+        it.setSpace(strPosition);
+      }
+    };
+    document.prepend(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__COMMENT), _function_1);
   }
 
   protected void _format(final InstructionLine instructionLine, @Extension final IFormattableDocument document) {
@@ -136,8 +281,10 @@ public class AssemblerFormatter extends AbstractFormatter2 {
       boolean _tripleNotEquals = (_ws1 != null);
       if (_tripleNotEquals) {
         IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
-        final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
-          it.setSpace(" ");
+        final Procedure1<IHiddenRegionFormatting> _function = new Procedure1<IHiddenRegionFormatting>() {
+          public void apply(final IHiddenRegionFormatting it) {
+            it.setSpace(" ");
+          }
         };
         final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
         final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt);
@@ -148,8 +295,10 @@ public class AssemblerFormatter extends AbstractFormatter2 {
       boolean _tripleNotEquals_1 = (_ws2 != null);
       if (_tripleNotEquals_1) {
         IHiddenRegionFormatting _createHiddenRegionFormatting_1 = document.getFormatter().createHiddenRegionFormatting();
-        final Procedure1<IHiddenRegionFormatting> _function_1 = (IHiddenRegionFormatting it) -> {
-          it.setSpace(" ");
+        final Procedure1<IHiddenRegionFormatting> _function_1 = new Procedure1<IHiddenRegionFormatting>() {
+          public void apply(final IHiddenRegionFormatting it) {
+            it.setSpace(" ");
+          }
         };
         final IHiddenRegionFormatting fmt_1 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting_1, _function_1);
         final ITextReplacer replacer_1 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), fmt_1);

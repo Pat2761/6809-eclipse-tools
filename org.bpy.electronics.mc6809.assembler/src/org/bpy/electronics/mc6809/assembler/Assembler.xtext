@@ -62,7 +62,7 @@ BlankLine:
  */
 CommentLine:
 	{CommentLine}
-	startingSpace = WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine 
+	startingSpace=WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine 
 ;
 
 /*
