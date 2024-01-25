@@ -9,6 +9,7 @@
 .metadata
 bin/
 tmp/
+*.xtendbin
 *.tmp
 *.bak
 *.swp
