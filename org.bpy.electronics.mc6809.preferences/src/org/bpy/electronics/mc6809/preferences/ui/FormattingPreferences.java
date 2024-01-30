@@ -19,8 +19,8 @@
 package org.bpy.electronics.mc6809.preferences.ui;
 
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
-import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.preference.PreferencePage;
+import org.eclipse.nebula.widgets.richtext.RichTextViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
@@ -54,9 +54,12 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 	private Spinner tabSize;
 	/** Allow to define the size maximum of an instruction */
 	private Spinner instructionPosition;
-	/** Allow to define the size maximum of an operand */
+	/** Allow to define the column position of an operand */
 	private Spinner operandPosition;
+	/** Allow to define the column position of the comment */
 	private Spinner commentPosition;
+	/** Widget for display information message */
+	private RichTextViewer statusViewer;
 
 	/**
 	 * Create the preference page.
@@ -74,6 +77,12 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 	public Control createContents(Composite parent) {
 		Composite container = new Composite(parent, SWT.NULL);
 		container.setLayout(new GridLayout(1, false));
+		
+		statusViewer = new RichTextViewer(container, SWT.NONE);
+		statusViewer.setText("No problem found");
+		GridData gd_statusViewer = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gd_statusViewer.heightHint = 95;
+		statusViewer.setLayoutData(gd_statusViewer);
 
 		Group grpTabPreferences = new Group(container, SWT.BORDER | SWT.SHADOW_ETCHED_OUT);
 		grpTabPreferences.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD));
@@ -94,7 +103,6 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		tabPolicy.setItems(
 				new String[] { PreferenceManager.SPACE_ONLY, PreferenceManager.TAB_ONLY, PreferenceManager.MIXED });
 		tabPolicy.select(0);
-		tabPolicy.addModifyListener(this);
 
 		Label lblTabSize = new Label(grpTabPreferences, SWT.NONE);
 		lblTabSize.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
@@ -147,18 +155,17 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		GridData gd_commentPosition = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_commentPosition.widthHint = 40;
 		commentPosition.setLayoutData(gd_commentPosition);
-	
-
+		
 		initFields();
-		operandPosition.addModifyListener(this);
-		instructionPosition.addModifyListener(this);
-		commentPosition.addModifyListener(this);
+		validateValues();
+		addListener();
 
 		return container;
 	}
 
 	@Override
 	protected void performApply() {
+		System.out.println("performApply");
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_POLICY, tabPolicy.getText());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_SIZE, tabSize.getSelection());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.INSTRUCTION_POSITION,instructionPosition.getSelection());
@@ -168,6 +175,7 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 
 	@Override
 	protected void performDefaults() {
+		System.out.println("performDefaults");
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_POLICY,
 				PreferenceManager.TAB_POLICY_DEFAULT_VALUE);
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_SIZE,
@@ -179,7 +187,13 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_POSITION,
 				PreferenceManager.COMMENT_POSITION_DEFAULT_VALUE);
 
-		initFields();
+		instructionPosition.setSelection(PreferenceManager.INSTRUCTION_POSITION_DEFAULT_VALUE);
+		operandPosition.setSelection(PreferenceManager.OPERAND_POSITION_DEFAULT_VALUE);
+		commentPosition.setSelection(PreferenceManager.COMMENT_POSITION_DEFAULT_VALUE);
+
+		validateValues();
+		addListener();
+		
 		super.performDefaults();
 	}
 
@@ -194,65 +208,72 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 	 * 
 	 */
 	private void initFields() {
+		System.out.println("initFields");
 		tabPolicy.setText(PreferenceManager.getInstance().getStringPreferenceValue(PreferenceManager.TAB_POLICY));
 		tabSize.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.TAB_SIZE));
+
 		instructionPosition.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.INSTRUCTION_POSITION));
 		operandPosition.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.OPERAND_POSITION));
 		commentPosition.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.COMMENT_POSITION));
 	}
 
-	@Override
-	public void modifyText(ModifyEvent e) {
+	public void validateValues() {
+		
 		if (PreferenceManager.TAB_ONLY.equals(tabPolicy.getText())) {
+			boolean problemDetected = false;
 			int newInstructionPosition = instructionPosition.getSelection();
 			int newOperandPosition = operandPosition.getSelection();
 			int newCommentPosition = commentPosition.getSelection();
 			int tabSizeValue = tabSize.getSelection();
-			boolean modificationRequest = false;
 
-			StringBuilder strBuilder = new StringBuilder("Inconsistency values are found for tabs only policies\n");
+			StringBuilder strBuilder = new StringBuilder("<p>Problems have been detected with tab policy<b>Tab Only</b></p>");
 
 			int instructionPositionRest = instructionPosition.getSelection() % tabSize.getSelection();
-			if (instructionPositionRest > 0) {
-				int instructionPositionTab = (instructionPosition.getSelection() / tabSize.getSelection()) + 1;
-				newInstructionPosition = instructionPositionTab * tabSizeValue;
-				strBuilder.append("Instruction position may be set to " + newInstructionPosition + "\n");
-				modificationRequest = true;
+			if (instructionPositionRest != 1) {
+				int instructionPositionTab = (instructionPosition.getSelection() / tabSize.getSelection());
+				newInstructionPosition = instructionPositionTab * tabSizeValue+1;
+				strBuilder.append("<p>Instruction position may be set to <b>" + newInstructionPosition + "</b></p>");
+				problemDetected = true;
 			}
 
 			int operandPositionRest = operandPosition.getSelection() % tabSize.getSelection();
-			if (operandPositionRest > 0) {
-				int operandPositionTab = (operandPosition.getSelection() / tabSize.getSelection()) + 1;
-				newOperandPosition = operandPositionTab * tabSizeValue;
-				strBuilder.append("Operand position may be set to " + newOperandPosition + "\n");
-				modificationRequest = true;
+			if (operandPositionRest != 1) {
+				int operandPositionTab = (operandPosition.getSelection() / tabSize.getSelection());
+				newOperandPosition = operandPositionTab * tabSizeValue+1;
+				strBuilder.append("<p>Operand position may be set to <b>" + newOperandPosition + "</b></p>");
+				problemDetected = true;
 			}
 
 			int commentPositionRest = commentPosition.getSelection() % tabSize.getSelection();
-			if (commentPositionRest > 0) {
-				int commentPositionTab = (commentPosition.getSelection() / tabSize.getSelection()) + 1;
-				newCommentPosition = commentPositionTab * tabSizeValue;
-				strBuilder.append("Comment position may be set to " + newCommentPosition + "\n");
-				modificationRequest = true;
+			if (commentPositionRest != 1) {
+				int commentPositionTab = (commentPosition.getSelection() / tabSize.getSelection());
+				newCommentPosition = commentPositionTab * tabSizeValue+1;
+				strBuilder.append("<p>Comment position may be set to <b>" + newCommentPosition + "</b></p>");
+				problemDetected = true;
 			}
+			
+			if (problemDetected) {
+				statusViewer.setText(strBuilder.toString());
+				setValid(false);
+				return;
+			}	
+		}	
+		setValid(true);
+		statusViewer.setText("No problem found");
+		
+	}
 
-			if (modificationRequest) {
+	@Override
+	public void modifyText(ModifyEvent e) {
+		validateValues();
+	}
 
-				operandPosition.removeModifyListener(this);
-				instructionPosition.removeModifyListener(this);
-				commentPosition.removeModifyListener(this);
-				
-				boolean response = MessageDialog.openQuestion(this.getShell(), "Inconsistency values",strBuilder.toString());
-				if (response) {
-					instructionPosition.setSelection(newInstructionPosition);
-					operandPosition.setSelection(newOperandPosition);
-					commentPosition.setSelection(newCommentPosition);
-				}
+	private void addListener() {
+		tabPolicy.addModifyListener(this);
+		tabSize.addModifyListener(this);
 
-				operandPosition.addModifyListener(this);
-				instructionPosition.addModifyListener(this);
-				commentPosition.addModifyListener(this);
-			}
-		}
+		operandPosition.addModifyListener(this);
+		instructionPosition.addModifyListener(this);
+		commentPosition.addModifyListener(this);
 	}
 }

@@ -10,7 +10,8 @@ Bundle-Activator: org.bpy.electronics.mc6809.preferences.Activator
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.swt,
  org.eclipse.jface,
- org.eclipse.ui
+ org.eclipse.ui,
+ org.eclipse.nebula.widgets.richtext;bundle-version="1.5.1"
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: org.bpy.electronics.mc6809.preferences
 Bundle-ActivationPolicy: lazy
