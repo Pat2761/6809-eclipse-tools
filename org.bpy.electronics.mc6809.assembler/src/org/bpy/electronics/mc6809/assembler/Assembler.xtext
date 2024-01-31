@@ -26,7 +26,7 @@ generate assembler "http://www.bpy.org/electronics/mc6809/assembler/Assembler"
  * Entry point of an as9 file
  */
 Model:
-	sourceLines += SourceLine*
+	sourceLines += (SourceLine)* 
 ;
 	
 /*
@@ -173,7 +173,7 @@ TstInstruction:
 	|  
 	(
 	 	instruction = ('TST')
-		WS operand = (
+		wsOperand=WS operand = (
 			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
@@ -205,7 +205,7 @@ TstInstruction:
  */
 TfrInstruction:
 	instruction = ('TFR' )
-	WS reg1=Register ',' reg2=Register	
+	wsOperand=WS reg1=Register ',' reg2=Register	
 ;
 
 /*
@@ -334,7 +334,7 @@ SwiInstruction:
  */
 SubdInstruction:
 	instruction = 'SUBD'
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -363,7 +363,7 @@ SubdInstruction:
  */
 SubInstruction:
 	instruction = ('SUBA' | 'SUBB')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -390,7 +390,7 @@ SubInstruction:
  */
 StInstruction:
  	instruction = ('STA' | 'STB' | 'STD' | 'STX' | 'STY' | 'STS' | 'STU')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -438,7 +438,7 @@ SexInstruction:
  */
 SbcInstruction:
  	instruction = ('SBCA' | 'SBCB')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand |
 		DirectOperand  |
 		IndexedOperand | 
@@ -514,7 +514,7 @@ RorInstruction:
 	|  
 	(
 	 	instruction = ('ROR')
-		WS operand = ( 
+		wsOperand=WS operand = ( 
 			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
@@ -548,7 +548,7 @@ RolInstruction:
 	|  
 	(
 	 	instruction = ('ROL')
-		WS operand = ( 
+		wsOperand=WS operand = ( 
 			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
@@ -571,7 +571,7 @@ RolInstruction:
  */
 PuluInstruction:
 	instruction = 'PULU'
-	WS  
+	wsOperand=WS  
 	( 
 		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
@@ -591,7 +591,7 @@ PuluInstruction:
  */
 PulsInstruction:
 	instruction = 'PULS'
-	WS  
+	wsOperand=WS  
 	( 
 		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
@@ -611,7 +611,7 @@ PulsInstruction:
  */
 PshuInstruction:
 	instruction = 'PSHU'
-	WS  
+	wsOperand=WS  
 	( 
 		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
@@ -631,7 +631,7 @@ PshuInstruction:
  */
 PshsInstruction:
 	instruction = 'PSHS'
-	WS  
+	wsOperand=WS  
 	( 
 		  '#' (operand = IdentifierValue)
 		|  ( registers+=Register (',' registers+=Register)*)
@@ -651,7 +651,7 @@ PshsInstruction:
  */
 OrCCInstruction:
 	instruction = 'ORCC'
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -680,7 +680,7 @@ OrCCInstruction:
  */
 OrInstruction:
 	instruction = ('ORA' | 'ORB')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -732,7 +732,7 @@ NegInstruction:
 	|  
 	(
 	 	instruction = ('NEG')
-		WS operand = ( 
+		wsOperand=WS operand = ( 
 			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
@@ -787,7 +787,7 @@ LsrInstruction:
 	|  
 	(
 	 	instruction = ('LSR')
-		WS operand = ( 
+		wsOperand=WS operand = ( 
 			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
@@ -823,7 +823,7 @@ LslInstruction:
 	|  
 	(
 	 	instruction = ('LSL')
-		WS operand = ( 
+		wsOperand=WS operand = ( 
 			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
@@ -854,7 +854,7 @@ LslInstruction:
  */
 LeaInstruction:
  	instruction = ('LEAX' | 'LEAY' | 'LEAS' | 'LEAU' )
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand |
 		DirectOperand  |
 		IndexedOperand | 
@@ -882,7 +882,7 @@ LeaInstruction:
  */
 LdInstruction:
  	instruction = ('LDA' | 'LDB'| 'LDD' | 'LDX' | 'LDY' | 'LDS' | 'LDU')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand |
 		DirectOperand  |
 		IndexedOperand | 
@@ -908,7 +908,7 @@ LdInstruction:
  */
 JsrInstruction:
  	instruction = ('JSR')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand |
 		DirectOperand  |
 		IndexedOperand | 
@@ -966,7 +966,7 @@ IncInstruction:
 	|  
 	(
 	 	instruction = ('INC')
-		WS operand = ( 
+		wsOperand=WS operand = ( 
 			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
@@ -998,7 +998,7 @@ IncInstruction:
  */
 ExgInstruction:
 	instruction = ('EXG' )
-	WS reg1=Register ',' reg2=Register	
+	wsOperand=WS reg1=Register ',' reg2=Register	
 ;
 
 /*
@@ -1020,7 +1020,7 @@ ExgInstruction:
  */
 EorInstruction:
 	instruction = ('EORA' | 'EORB')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -1055,7 +1055,7 @@ DecInstruction:
 	|  
 	(
 	 	instruction = ('DEC')
-		WS operand = ( 
+		wsOperand=WS operand = ( 
 			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
@@ -1129,7 +1129,7 @@ DaaInstruction:
  */
 CwaiInstruction:
  	instruction = ('CWAI')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand |  
 		DirectOperand  |
 		IndexedOperand | 
@@ -1165,7 +1165,7 @@ ComInstruction:
 	|  
 	(
 	 	instruction = ('COM')
-		WS operand = (
+		wsOperand=WS operand = (
 			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
@@ -1196,7 +1196,7 @@ ComInstruction:
  */
 CmpInstruction:
  	instruction = ('CMPA' | 'CMPB' | 'CMPD' | 'CMPS' | 'CMPU' | 'CMPX' | 'CMPY')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand      |
 		DirectOperand  |
 		IndexedOperand | 
@@ -1231,7 +1231,7 @@ ClrInstruction:
 	|  
 	(
 	 	instruction = ('CLR')
-		WS operand = ( 
+		wsOperand=WS operand = ( 
 			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
@@ -1256,7 +1256,7 @@ ClrInstruction:
  */
 BvsInstruction:
  	instruction = ('BVS' | 'LBVS')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1274,7 +1274,7 @@ BvsInstruction:
  */
 BvcInstruction:
  	instruction = ('BVC' | 'LBVC')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1293,7 +1293,7 @@ BvcInstruction:
  */
 BsrInstruction:
  	instruction = ('BSR' | 'LBSR')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1308,7 +1308,7 @@ BsrInstruction:
  */
 BrnInstruction:
  	instruction = ('BRN' | 'LBRN')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1324,7 +1324,7 @@ BrnInstruction:
  */
 BraInstruction:
  	instruction = ('BRA' | 'LBRA')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1341,7 +1341,7 @@ BraInstruction:
  */
 BplInstruction:
  	instruction = ('BPL' | 'LBPL')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1359,7 +1359,7 @@ BplInstruction:
  */
 BneInstruction:
  	instruction = ('BNE' | 'LBNE')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1376,7 +1376,7 @@ BneInstruction:
  */
 BmiInstruction:
  	instruction = ('BMI' | 'LBMI')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1395,7 +1395,7 @@ BmiInstruction:
  */
 BltInstruction:
  	instruction = ('BLT' | 'LBLT')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1413,7 +1413,7 @@ BltInstruction:
  */
 BlsInstruction:
  	instruction = ('BLS' | 'LBLS')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1430,7 +1430,7 @@ BlsInstruction:
  */
 BloInstruction:
  	instruction = ('BLO' | 'LBLO')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1449,7 +1449,7 @@ BloInstruction:
  */
 BleInstruction:
  	instruction = ('BLE' | 'LBLE')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1472,7 +1472,7 @@ BleInstruction:
  */
 BitInstruction:
 	instruction = ('BITA' | 'BITB')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand |
 		DirectOperand  |
 		IndexedOperand | 
@@ -1556,7 +1556,7 @@ BgtInstruction:
  */
 BgeInstruction:
  	instruction = ('BGE' | 'LBGE')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1575,7 +1575,7 @@ BgeInstruction:
  */
 BeqInstruction:
  	instruction = ('BEQ' | 'LBEQ')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1591,7 +1591,7 @@ BeqInstruction:
  */
 BcsInstruction:
  	instruction = ('BCS' | 'LBCS')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1607,7 +1607,7 @@ BcsInstruction:
  */
 BccInstruction:
  	instruction = ('BCC' | 'LBCC')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1634,7 +1634,7 @@ AsrInstruction:
 	|  
 	(
 	 	instruction = ('ASR')
-		WS operand = ( 
+		wsOperand=WS operand = ( 
 			ImmediatOperand |
 			DirectOperand  |
 			IndexedOperand | 
@@ -1666,7 +1666,7 @@ AslInstruction:
 	|  
 	(
 	 	instruction = ('ASL')
-		WS operand = (
+		wsOperand=WS operand = (
 			ImmediatOperand | 
 			DirectOperand  |
 			IndexedOperand | 
@@ -1689,7 +1689,7 @@ AslInstruction:
  */
 AndCCInstruction:
 	instruction = ('ANDCC')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -1718,7 +1718,7 @@ AndCCInstruction:
  */
 AndInstruction:
 	instruction = ('ANDA' | 'ANDB')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -1746,7 +1746,7 @@ AndInstruction:
  */
 AdddInstruction:
 	instruction = ('ADDD')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -1774,7 +1774,7 @@ AdddInstruction:
  */
 AddInstruction:
 	instruction = ('ADDA' | 'ADDB')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -1802,7 +1802,7 @@ AddInstruction:
  */
 AdcInstruction:
 	instruction = ('ADCA' | 'ADCB')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand | 
 		DirectOperand  |
 		IndexedOperand | 
@@ -2446,7 +2446,7 @@ terminal NUMBERS 								: ('0'..'9')+;
 //terminal BINARY 							: '0''b'('0'..'1')+;
 terminal CHARACTER							: '\'' ('\u0020'..'\u007F');
 
-EndOfLine: CR | END_OF_FILE;
+EndOfLine: CR;
 
 terminal STRING:
 			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' 
@@ -2454,5 +2454,4 @@ terminal STRING:
 	
 terminal ANY_EXCEPT_COMMENT_END_OF_LINE  	: ';' !('\n' | '\r')*;
 terminal WS         						: (' '|'\t')+;
-terminal CR          						: '\r'? '\n';
-terminal END_OF_FILE 						: EOF;		
+terminal CR          						: ('\r'? '\n');

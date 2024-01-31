@@ -10,12 +10,7 @@
    <extension
          point="org.eclipse.ui.preferencePages">
       <page
-            class="org.bpy.electronics.mc6809.preferences.ui.MainPreferencePage"
-            id="org.bpy.electronics.mc6809.preferences.mainpage"
-            name="6809 toolkit">
-      </page>
-      <page
-            category="org.bpy.electronics.mc6809.preferences.mainpage"
+            category="org.bpy.electronics.mc6809.assembler.Assembler"
             class="org.bpy.electronics.mc6809.preferences.ui.FormattingPreferences"
             id="org.bpy.electronics.mc6809.rcp.preference.formatting"
             name="Formatter">

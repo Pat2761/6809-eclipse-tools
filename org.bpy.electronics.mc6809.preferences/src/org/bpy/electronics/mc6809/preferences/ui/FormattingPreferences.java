@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.preferences.ui;
 
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.nebula.widgets.richtext.RichTextViewer;
 import org.eclipse.swt.SWT;
@@ -28,6 +29,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
+import org.eclipse.ui.editors.text.EditorsUI;
+import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
@@ -165,12 +168,15 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 
 	@Override
 	protected void performApply() {
-		System.out.println("performApply");
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_POLICY, tabPolicy.getText());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_SIZE, tabSize.getSelection());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.INSTRUCTION_POSITION,instructionPosition.getSelection());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.OPERAND_POSITION,operandPosition.getSelection());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_POSITION,commentPosition.getSelection());
+		
+		// Update the general editor tab size preferences
+		IPreferenceStore store = EditorsUI.getPreferenceStore();
+		store.setValue(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_TAB_WIDTH, tabSize.getSelection());
 	}
 
 	@Override

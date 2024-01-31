@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.JsrInstructionImpl#getInstruction <em>Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.JsrInstructionImpl#getWsOperand <em>Ws Operand</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.JsrInstructionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
@@ -51,6 +52,26 @@ public class JsrInstructionImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected String instruction = INSTRUCTION_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWsOperand() <em>Ws Operand</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWsOperand()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS_OPERAND_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWsOperand() <em>Ws Operand</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWsOperand()
+   * @generated
+   * @ordered
+   */
+  protected String wsOperand = WS_OPERAND_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference.
@@ -106,6 +127,31 @@ public class JsrInstructionImpl extends MinimalEObjectImpl.Container implements 
     instruction = newInstruction;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.JSR_INSTRUCTION__INSTRUCTION, oldInstruction, instruction));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getWsOperand()
+  {
+    return wsOperand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWsOperand(String newWsOperand)
+  {
+    String oldWsOperand = wsOperand;
+    wsOperand = newWsOperand;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.JSR_INSTRUCTION__WS_OPERAND, oldWsOperand, wsOperand));
   }
 
   /**
@@ -186,6 +232,8 @@ public class JsrInstructionImpl extends MinimalEObjectImpl.Container implements 
     {
       case AssemblerPackage.JSR_INSTRUCTION__INSTRUCTION:
         return getInstruction();
+      case AssemblerPackage.JSR_INSTRUCTION__WS_OPERAND:
+        return getWsOperand();
       case AssemblerPackage.JSR_INSTRUCTION__OPERAND:
         return getOperand();
     }
@@ -204,6 +252,9 @@ public class JsrInstructionImpl extends MinimalEObjectImpl.Container implements 
     {
       case AssemblerPackage.JSR_INSTRUCTION__INSTRUCTION:
         setInstruction((String)newValue);
+        return;
+      case AssemblerPackage.JSR_INSTRUCTION__WS_OPERAND:
+        setWsOperand((String)newValue);
         return;
       case AssemblerPackage.JSR_INSTRUCTION__OPERAND:
         setOperand((EObject)newValue);
@@ -225,6 +276,9 @@ public class JsrInstructionImpl extends MinimalEObjectImpl.Container implements 
       case AssemblerPackage.JSR_INSTRUCTION__INSTRUCTION:
         setInstruction(INSTRUCTION_EDEFAULT);
         return;
+      case AssemblerPackage.JSR_INSTRUCTION__WS_OPERAND:
+        setWsOperand(WS_OPERAND_EDEFAULT);
+        return;
       case AssemblerPackage.JSR_INSTRUCTION__OPERAND:
         setOperand((EObject)null);
         return;
@@ -244,6 +298,8 @@ public class JsrInstructionImpl extends MinimalEObjectImpl.Container implements 
     {
       case AssemblerPackage.JSR_INSTRUCTION__INSTRUCTION:
         return INSTRUCTION_EDEFAULT == null ? instruction != null : !INSTRUCTION_EDEFAULT.equals(instruction);
+      case AssemblerPackage.JSR_INSTRUCTION__WS_OPERAND:
+        return WS_OPERAND_EDEFAULT == null ? wsOperand != null : !WS_OPERAND_EDEFAULT.equals(wsOperand);
       case AssemblerPackage.JSR_INSTRUCTION__OPERAND:
         return operand != null;
     }
@@ -263,6 +319,8 @@ public class JsrInstructionImpl extends MinimalEObjectImpl.Container implements 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (instruction: ");
     result.append(instruction);
+    result.append(", wsOperand: ");
+    result.append(wsOperand);
     result.append(')');
     return result.toString();
   }

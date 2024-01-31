@@ -7,12 +7,78 @@ import com.google.common.base.Objects;
 import com.google.common.base.Strings;
 import com.google.inject.Inject;
 import java.util.Arrays;
+import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BleInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BloInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BlsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BltInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BmiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BneInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BplInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BraInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
+import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.IdentifierValue;
+import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
+import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
+import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.services.AssemblerGrammarAccess;
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 import org.eclipse.emf.common.util.EList;
@@ -22,8 +88,10 @@ import org.eclipse.xtext.formatting2.IFormattableDocument;
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatter;
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatting;
 import org.eclipse.xtext.formatting2.ITextReplacer;
+import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegion;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
@@ -123,7 +191,13 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
     final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), fmt);
     document.addReplacer(replacer);
-    final String strPosition = Strings.repeat(" ", (this.commentPosition - 1));
+    int _xifexpression = (int) 0;
+    if (((this.commentPosition - 1) > 1)) {
+      _xifexpression = (this.commentPosition - 1);
+    } else {
+      _xifexpression = 1;
+    }
+    final String strPosition = Strings.repeat(" ", _xifexpression);
     final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
       it.setSpace(strPosition);
     };
@@ -142,7 +216,13 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
     final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), fmt);
     document.addReplacer(replacer);
-    final String strPosition = Strings.repeat("\t", (nbTabs - 1));
+    int _xifexpression = (int) 0;
+    if (((nbTabs - 1) > 1)) {
+      _xifexpression = (nbTabs - 1);
+    } else {
+      _xifexpression = 1;
+    }
+    final String strPosition = Strings.repeat("\t", _xifexpression);
     final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
       it.setSpace(strPosition);
     };
@@ -162,7 +242,13 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
     final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), fmt);
     document.addReplacer(replacer);
-    String strPosition = Strings.repeat("\t", (nbTabs - 1));
+    int _xifexpression = (int) 0;
+    if (((nbTabs - 1) > 1)) {
+      _xifexpression = (nbTabs - 1);
+    } else {
+      _xifexpression = 1;
+    }
+    String strPosition = Strings.repeat("\t", _xifexpression);
     if ((nbSpaces != 0)) {
       String _strPosition = strPosition;
       String _repeat = Strings.repeat(" ", nbSpaces);
@@ -256,71 +342,801 @@ public class AssemblerFormatter extends AbstractFormatter2 {
   protected void _format(final InstructionLine instructionLine, @Extension final IFormattableDocument document) {
     boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
     if (_equals) {
-      int wsSpace = 0;
-      String _ws1 = instructionLine.getWs1();
-      boolean _tripleNotEquals = (_ws1 != null);
-      if (_tripleNotEquals) {
-        IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
-        final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
-          it.setSpace(" ");
-        };
-        final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
-        final ITextReplacer replacer = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt);
-        document.addReplacer(replacer);
-        wsSpace = 1;
+      this.formatSpaceOnly(instructionLine, document);
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnly(instructionLine, document);
+      } else {
+        boolean _equals_2 = Objects.equal(PreferenceManager.MIXED, this.tabPolicy);
+        if (_equals_2) {
+          this.formatMixed(instructionLine, document);
+        }
       }
-      String _ws2 = instructionLine.getWs2();
-      boolean _tripleNotEquals_1 = (_ws2 != null);
-      if (_tripleNotEquals_1) {
-        IHiddenRegionFormatting _createHiddenRegionFormatting_1 = document.getFormatter().createHiddenRegionFormatting();
-        final Procedure1<IHiddenRegionFormatting> _function_1 = (IHiddenRegionFormatting it) -> {
-          it.setSpace(" ");
-        };
-        final IHiddenRegionFormatting fmt_1 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting_1, _function_1);
-        final ITextReplacer replacer_1 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), fmt_1);
-        document.addReplacer(replacer_1);
-        wsSpace++;
+    }
+  }
+
+  /**
+   * Format an instructionLine Object when the tab policy is Space only
+   */
+  private void formatSpaceOnly(final InstructionLine instructionLine, @Extension final IFormattableDocument document) {
+    IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+    final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
+      it.setSpace(" ");
+    };
+    final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+    final ITextReplacer replacer1 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt);
+    document.addReplacer(replacer1);
+    String _ws2 = instructionLine.getWs2();
+    boolean _tripleNotEquals = (_ws2 != null);
+    if (_tripleNotEquals) {
+      final ITextReplacer replacer2 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), fmt);
+      if ((replacer2 != null)) {
+        document.addReplacer(replacer2);
       }
-      int _length = instructionLine.getLabel().getName().getValue().length();
-      int labelLength = (_length + wsSpace);
+    }
+    int labelLength = 0;
+    IdentifierValue _name = instructionLine.getLabel().getName();
+    boolean _tripleNotEquals_1 = (_name != null);
+    if (_tripleNotEquals_1) {
+      labelLength = instructionLine.getLabel().getName().getValue().length();
+      boolean _isPoint = instructionLine.getLabel().isPoint();
+      if (_isPoint) {
+        labelLength++;
+      }
+      labelLength++;
+    }
+    final String spacesBeforeInstruction = Strings.repeat(" ", ((this.instructionPosition - labelLength) - 1));
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.setSpace(spacesBeforeInstruction);
+    };
+    document.append(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), _function_1);
+    document.<EObject>format(instructionLine.getInstruction());
+    String _ws2_1 = instructionLine.getWs2();
+    boolean _tripleNotEquals_2 = (_ws2_1 != null);
+    if (_tripleNotEquals_2) {
+      final ISemanticRegion lastNodeInstruction = this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).getPreviousSemanticRegion();
+      ISemanticRegion firstNodeInstruction = this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).getNextSemanticRegion();
+      int nbSpaces = 0;
+      if ((firstNodeInstruction == lastNodeInstruction)) {
+        int _length = firstNodeInstruction.getText().trim().length();
+        int _minus = (this.commentPosition - _length);
+        int _minus_1 = (_minus - this.instructionPosition);
+        int _minus_2 = (_minus_1 - 1);
+        nbSpaces = _minus_2;
+      } else {
+        int _length_1 = lastNodeInstruction.getText().trim().length();
+        int _minus_3 = (this.commentPosition - _length_1);
+        int _minus_4 = (_minus_3 - this.operandPosition);
+        int _minus_5 = (_minus_4 - 2);
+        nbSpaces = _minus_5;
+      }
+      final String spacesAfterInstruction = Strings.repeat(" ", nbSpaces);
+      final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+        it.setSpace(spacesAfterInstruction);
+      };
+      document.append(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), _function_2);
+    }
+  }
+
+  /**
+   * Format an instructionLine Object when the tab policy is Space only
+   */
+  private void formatTabOnly(final InstructionLine instructionLine, @Extension final IFormattableDocument document) {
+    IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+    final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
+      it.setSpace("\t");
+    };
+    final IHiddenRegionFormatting fmt1 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+    final ITextReplacer replacer1 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt1);
+    document.addReplacer(replacer1);
+    String _ws2 = instructionLine.getWs2();
+    boolean _tripleNotEquals = (_ws2 != null);
+    if (_tripleNotEquals) {
+      IHiddenRegionFormatting _createHiddenRegionFormatting_1 = document.getFormatter().createHiddenRegionFormatting();
+      final Procedure1<IHiddenRegionFormatting> _function_1 = (IHiddenRegionFormatting it) -> {
+        it.setSpace("\t");
+      };
+      final IHiddenRegionFormatting fmt2 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting_1, _function_1);
+      final ITextReplacer replacer2 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), fmt2);
+      if ((replacer2 != null)) {
+        document.addReplacer(replacer2);
+      }
+    }
+    int labelLength = 0;
+    IdentifierValue _name = instructionLine.getLabel().getName();
+    boolean _tripleNotEquals_1 = (_name != null);
+    if (_tripleNotEquals_1) {
+      labelLength = instructionLine.getLabel().getName().getValue().trim().length();
       boolean _isPoint = instructionLine.getLabel().isPoint();
       if (_isPoint) {
         labelLength++;
       }
     }
+    final int estimatedPosition = (labelLength + this.tabSize);
+    int _xifexpression = (int) 0;
+    if (((estimatedPosition % this.tabSize) == 0)) {
+      _xifexpression = estimatedPosition;
+    } else {
+      _xifexpression = ((estimatedPosition / this.tabSize) * this.tabSize);
+    }
+    final int labelEndPosition = _xifexpression;
+    int nbTabNeeded = ((this.instructionPosition - labelEndPosition) / this.tabSize);
+    IdentifierValue _name_1 = instructionLine.getLabel().getName();
+    boolean _tripleEquals = (_name_1 == null);
+    if (_tripleEquals) {
+      nbTabNeeded++;
+    }
+    final String tabsBeforeInstruction = Strings.repeat("\t", nbTabNeeded);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.setSpace(tabsBeforeInstruction);
+    };
+    document.append(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), _function_2);
+    document.<EObject>format(instructionLine.getInstruction());
+    String _ws2_1 = instructionLine.getWs2();
+    boolean _tripleNotEquals_2 = (_ws2_1 != null);
+    if (_tripleNotEquals_2) {
+      final ISemanticRegion lastNodeInstruction = this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).getPreviousSemanticRegion();
+      ISemanticRegion firstNodeInstruction = this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).getNextSemanticRegion();
+      int nbTabs = 0;
+      if ((firstNodeInstruction == lastNodeInstruction)) {
+        int _length = firstNodeInstruction.getText().trim().length();
+        int _minus = (this.commentPosition - _length);
+        int _minus_1 = (_minus - this.instructionPosition);
+        int _minus_2 = (_minus_1 - 1);
+        int _divide = (_minus_2 / this.tabSize);
+        nbTabs = _divide;
+      } else {
+        int _length_1 = lastNodeInstruction.getText().trim().length();
+        int _minus_3 = (this.commentPosition - _length_1);
+        int _minus_4 = (_minus_3 - this.operandPosition);
+        int _minus_5 = (_minus_4 - 2);
+        int _divide_1 = (_minus_5 / this.tabSize);
+        nbTabs = _divide_1;
+      }
+      final String spacesAfterInstruction = Strings.repeat("\t", nbTabs);
+      final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+        it.setSpace(spacesAfterInstruction);
+      };
+      document.append(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), _function_3);
+    }
   }
 
-  public void format(final Object commentLine, final IFormattableDocument document) {
-    if (commentLine instanceof XtextResource) {
-      _format((XtextResource)commentLine, document);
+  /**
+   * Format an instructionLine Object when the tab policy is Space only
+   */
+  private void formatMixed(final InstructionLine instructionLine, @Extension final IFormattableDocument document) {
+    IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+    final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
+      it.setSpace("\t");
+    };
+    final IHiddenRegionFormatting fmt1 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+    final ITextReplacer replacer1 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt1);
+    document.addReplacer(replacer1);
+    String _ws2 = instructionLine.getWs2();
+    boolean _tripleNotEquals = (_ws2 != null);
+    if (_tripleNotEquals) {
+      IHiddenRegionFormatting _createHiddenRegionFormatting_1 = document.getFormatter().createHiddenRegionFormatting();
+      final Procedure1<IHiddenRegionFormatting> _function_1 = (IHiddenRegionFormatting it) -> {
+        it.setSpace("\t");
+      };
+      final IHiddenRegionFormatting fmt2 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting_1, _function_1);
+      final ITextReplacer replacer2 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), fmt2);
+      if ((replacer2 != null)) {
+        document.addReplacer(replacer2);
+      }
+    }
+    int labelLength = 0;
+    IdentifierValue _name = instructionLine.getLabel().getName();
+    boolean _tripleNotEquals_1 = (_name != null);
+    if (_tripleNotEquals_1) {
+      labelLength = instructionLine.getLabel().getName().getValue().trim().length();
+      boolean _isPoint = instructionLine.getLabel().isPoint();
+      if (_isPoint) {
+        labelLength++;
+      }
+    }
+    final int estimatedPosition = (labelLength + this.tabSize);
+    int _xifexpression = (int) 0;
+    if (((estimatedPosition % this.tabSize) == 0)) {
+      _xifexpression = estimatedPosition;
+    } else {
+      _xifexpression = ((estimatedPosition / this.tabSize) * this.tabSize);
+    }
+    final int labelEndPosition = _xifexpression;
+    int nbTabNeeded = ((this.instructionPosition - labelEndPosition) / this.tabSize);
+    IdentifierValue _name_1 = instructionLine.getLabel().getName();
+    boolean _tripleEquals = (_name_1 == null);
+    if (_tripleEquals) {
+      nbTabNeeded++;
+    }
+    final String tabsBeforeInstruction = Strings.repeat("\t", nbTabNeeded);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      it.setSpace(tabsBeforeInstruction);
+    };
+    document.append(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), _function_2);
+    document.<EObject>format(instructionLine.getInstruction());
+    String _ws2_1 = instructionLine.getWs2();
+    boolean _tripleNotEquals_2 = (_ws2_1 != null);
+    if (_tripleNotEquals_2) {
+      final ISemanticRegion lastNodeInstruction = this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).getPreviousSemanticRegion();
+      ISemanticRegion firstNodeInstruction = this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).getNextSemanticRegion();
+      int nbTabs = 0;
+      if ((firstNodeInstruction == lastNodeInstruction)) {
+        int _length = firstNodeInstruction.getText().trim().length();
+        int _minus = (this.commentPosition - _length);
+        int _minus_1 = (_minus - this.instructionPosition);
+        int _minus_2 = (_minus_1 - 1);
+        int _divide = (_minus_2 / this.tabSize);
+        nbTabs = _divide;
+      } else {
+        int _length_1 = lastNodeInstruction.getText().trim().length();
+        int _minus_3 = (this.commentPosition - _length_1);
+        int _minus_4 = (_minus_3 - this.operandPosition);
+        int _minus_5 = (_minus_4 - 2);
+        int _divide_1 = (_minus_5 / this.tabSize);
+        nbTabs = _divide_1;
+      }
+      final String spacesAfterInstruction = Strings.repeat("\t", nbTabs);
+      final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
+        it.setSpace(spacesAfterInstruction);
+      };
+      document.append(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), _function_3);
+    }
+  }
+
+  /**
+   * Format an Adc instruction Object
+   */
+  protected void _format(final AdcInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ADC_INSTRUCTION__WS_OPERAND), instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ADC_INSTRUCTION__WS_OPERAND), instruction.getInstruction().length());
+      } else {
+      }
+    }
+  }
+
+  /**
+   * Allow to format the space between the instruction and the operand in case of tab policy
+   * based on the space only policy
+   */
+  public void formatSpaceOnlyInstruction(final IFormattableDocument document, final ISemanticRegion region, final int instructionSize) {
+    IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+    final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
+      it.setSpace(" ");
+    };
+    final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+    final ITextReplacer replacer1 = this.createWhitespaceReplacer(region, fmt);
+    document.addReplacer(replacer1);
+    int nbSpacesNeeded = this.operandPosition;
+    int _nbSpacesNeeded = nbSpacesNeeded;
+    nbSpacesNeeded = (_nbSpacesNeeded - instructionSize);
+    int _nbSpacesNeeded_1 = nbSpacesNeeded;
+    nbSpacesNeeded = (_nbSpacesNeeded_1 - this.instructionPosition);
+    final String spacesAfterInstruction = Strings.repeat(" ", (nbSpacesNeeded - 1));
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.setSpace(spacesAfterInstruction);
+    };
+    final Procedure1<IHiddenRegionFormatter> function = _function_1;
+    document.append(region, function);
+  }
+
+  /**
+   * Allow to format the space between the instruction and the operand in case of tab policy
+   * based on the tab only policy
+   */
+  public void formatTabOnlyInstruction(final IFormattableDocument document, final ISemanticRegion region, final int instructionSize) {
+    IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
+    final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
+      it.setSpace("\t");
+    };
+    final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+    final ITextReplacer replacer1 = this.createWhitespaceReplacer(region, fmt);
+    document.addReplacer(replacer1);
+    final int estimatedPosition = ((this.instructionPosition + instructionSize) + this.tabSize);
+    int _xifexpression = (int) 0;
+    if (((estimatedPosition % this.tabSize) == 0)) {
+      _xifexpression = estimatedPosition;
+    } else {
+      _xifexpression = ((estimatedPosition / this.tabSize) * this.tabSize);
+    }
+    final int realInstructionPosition = _xifexpression;
+    int nbTabNeeded = ((this.operandPosition - realInstructionPosition) / this.tabSize);
+    final String spacesAfterInstruction = Strings.repeat("\t", nbTabNeeded);
+    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+      it.setSpace(spacesAfterInstruction);
+    };
+    final Procedure1<IHiddenRegionFormatter> function = _function_1;
+    document.append(region, function);
+  }
+
+  protected void _format(final AdddInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final AndInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final AndCCInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final AslInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final AsrInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BccInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BcsInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BeqInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BgeInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BgtInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BhiInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BhsInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BitInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BleInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BloInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BlsInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BltInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BmiInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BneInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BplInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BraInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BrnInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BsrInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BvcInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final BvsInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final ClrInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final CmpInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final ComInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final CwaiInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final DaaInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final DecInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final EorInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final ExgInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final IncInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final JmpInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final JsrInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final LdInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final LeaInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final LslInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final LsrInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final MulInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final NegInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final NopInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final OrInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final OrCCInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final PshsInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final PshuInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final PulsInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final PuluInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final RolInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final RorInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final RtiInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final RtsInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final SbcInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final SexInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final StInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ST");
+  }
+
+  protected void _format(final SubInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final SubdInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final SwiInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final Swi2Instruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final Swi3Instruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final SyncInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final TfrInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  protected void _format(final TstInstruction instruction, @Extension final IFormattableDocument document) {
+    InputOutput.<String>println("ABX");
+  }
+
+  public void format(final Object instruction, final IFormattableDocument document) {
+    if (instruction instanceof XtextResource) {
+      _format((XtextResource)instruction, document);
       return;
-    } else if (commentLine instanceof CommentLine) {
-      _format((CommentLine)commentLine, document);
+    } else if (instruction instanceof AdcInstruction) {
+      _format((AdcInstruction)instruction, document);
       return;
-    } else if (commentLine instanceof InstructionLine) {
-      _format((InstructionLine)commentLine, document);
+    } else if (instruction instanceof AdddInstruction) {
+      _format((AdddInstruction)instruction, document);
       return;
-    } else if (commentLine instanceof LabelLine) {
-      _format((LabelLine)commentLine, document);
+    } else if (instruction instanceof AndCCInstruction) {
+      _format((AndCCInstruction)instruction, document);
       return;
-    } else if (commentLine instanceof Model) {
-      _format((Model)commentLine, document);
+    } else if (instruction instanceof AndInstruction) {
+      _format((AndInstruction)instruction, document);
       return;
-    } else if (commentLine instanceof SourceLine) {
-      _format((SourceLine)commentLine, document);
+    } else if (instruction instanceof AslInstruction) {
+      _format((AslInstruction)instruction, document);
       return;
-    } else if (commentLine instanceof EObject) {
-      _format((EObject)commentLine, document);
+    } else if (instruction instanceof AsrInstruction) {
+      _format((AsrInstruction)instruction, document);
       return;
-    } else if (commentLine == null) {
+    } else if (instruction instanceof BccInstruction) {
+      _format((BccInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BcsInstruction) {
+      _format((BcsInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BeqInstruction) {
+      _format((BeqInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BgeInstruction) {
+      _format((BgeInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BgtInstruction) {
+      _format((BgtInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BhiInstruction) {
+      _format((BhiInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BhsInstruction) {
+      _format((BhsInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BitInstruction) {
+      _format((BitInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BleInstruction) {
+      _format((BleInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BloInstruction) {
+      _format((BloInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BlsInstruction) {
+      _format((BlsInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BltInstruction) {
+      _format((BltInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BmiInstruction) {
+      _format((BmiInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BneInstruction) {
+      _format((BneInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BplInstruction) {
+      _format((BplInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BraInstruction) {
+      _format((BraInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BrnInstruction) {
+      _format((BrnInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BsrInstruction) {
+      _format((BsrInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BvcInstruction) {
+      _format((BvcInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof BvsInstruction) {
+      _format((BvsInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof ClrInstruction) {
+      _format((ClrInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof CmpInstruction) {
+      _format((CmpInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof ComInstruction) {
+      _format((ComInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof CommentLine) {
+      _format((CommentLine)instruction, document);
+      return;
+    } else if (instruction instanceof CwaiInstruction) {
+      _format((CwaiInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof DaaInstruction) {
+      _format((DaaInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof DecInstruction) {
+      _format((DecInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof EorInstruction) {
+      _format((EorInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof ExgInstruction) {
+      _format((ExgInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof IncInstruction) {
+      _format((IncInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof InstructionLine) {
+      _format((InstructionLine)instruction, document);
+      return;
+    } else if (instruction instanceof JmpInstruction) {
+      _format((JmpInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof JsrInstruction) {
+      _format((JsrInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof LabelLine) {
+      _format((LabelLine)instruction, document);
+      return;
+    } else if (instruction instanceof LdInstruction) {
+      _format((LdInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof LeaInstruction) {
+      _format((LeaInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof LslInstruction) {
+      _format((LslInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof LsrInstruction) {
+      _format((LsrInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof Model) {
+      _format((Model)instruction, document);
+      return;
+    } else if (instruction instanceof MulInstruction) {
+      _format((MulInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof NegInstruction) {
+      _format((NegInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof NopInstruction) {
+      _format((NopInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof OrCCInstruction) {
+      _format((OrCCInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof OrInstruction) {
+      _format((OrInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof PshsInstruction) {
+      _format((PshsInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof PshuInstruction) {
+      _format((PshuInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof PulsInstruction) {
+      _format((PulsInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof PuluInstruction) {
+      _format((PuluInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof RolInstruction) {
+      _format((RolInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof RorInstruction) {
+      _format((RorInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof RtiInstruction) {
+      _format((RtiInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof RtsInstruction) {
+      _format((RtsInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof SbcInstruction) {
+      _format((SbcInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof SexInstruction) {
+      _format((SexInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof SourceLine) {
+      _format((SourceLine)instruction, document);
+      return;
+    } else if (instruction instanceof StInstruction) {
+      _format((StInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof SubInstruction) {
+      _format((SubInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof SubdInstruction) {
+      _format((SubdInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof Swi2Instruction) {
+      _format((Swi2Instruction)instruction, document);
+      return;
+    } else if (instruction instanceof Swi3Instruction) {
+      _format((Swi3Instruction)instruction, document);
+      return;
+    } else if (instruction instanceof SwiInstruction) {
+      _format((SwiInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof SyncInstruction) {
+      _format((SyncInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof TfrInstruction) {
+      _format((TfrInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof TstInstruction) {
+      _format((TstInstruction)instruction, document);
+      return;
+    } else if (instruction instanceof EObject) {
+      _format((EObject)instruction, document);
+      return;
+    } else if (instruction == null) {
       _format((Void)null, document);
       return;
-    } else if (commentLine != null) {
-      _format(commentLine, document);
+    } else if (instruction != null) {
+      _format(instruction, document);
       return;
     } else {
       throw new IllegalArgumentException("Unhandled parameter types: " +
-        Arrays.<Object>asList(commentLine, document).toString());
+        Arrays.<Object>asList(instruction, document).toString());
     }
   }
 }

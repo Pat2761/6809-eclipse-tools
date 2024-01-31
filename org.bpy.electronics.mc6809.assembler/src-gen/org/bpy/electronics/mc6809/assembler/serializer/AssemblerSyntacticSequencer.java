@@ -46,7 +46,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	}
 	
 	/**
-	 * EndOfLine: CR | END_OF_FILE;
+	 * EndOfLine: CR;
 	 */
 	protected String getEndOfLineToken(EObject semanticObject, RuleCall ruleCall, INode node) {
 		if (node != null)

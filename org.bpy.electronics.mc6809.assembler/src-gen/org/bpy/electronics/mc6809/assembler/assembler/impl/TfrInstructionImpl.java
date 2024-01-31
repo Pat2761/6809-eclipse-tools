@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TfrInstructionImpl#getInstruction <em>Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TfrInstructionImpl#getWsOperand <em>Ws Operand</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TfrInstructionImpl#getReg1 <em>Reg1</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TfrInstructionImpl#getReg2 <em>Reg2</em>}</li>
  * </ul>
@@ -50,6 +51,26 @@ public class TfrInstructionImpl extends MinimalEObjectImpl.Container implements 
    * @ordered
    */
   protected String instruction = INSTRUCTION_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWsOperand() <em>Ws Operand</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWsOperand()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS_OPERAND_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWsOperand() <em>Ws Operand</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWsOperand()
+   * @generated
+   * @ordered
+   */
+  protected String wsOperand = WS_OPERAND_EDEFAULT;
 
   /**
    * The default value of the '{@link #getReg1() <em>Reg1</em>}' attribute.
@@ -143,6 +164,31 @@ public class TfrInstructionImpl extends MinimalEObjectImpl.Container implements 
    * @generated
    */
   @Override
+  public String getWsOperand()
+  {
+    return wsOperand;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWsOperand(String newWsOperand)
+  {
+    String oldWsOperand = wsOperand;
+    wsOperand = newWsOperand;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.TFR_INSTRUCTION__WS_OPERAND, oldWsOperand, wsOperand));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public Register getReg1()
   {
     return reg1;
@@ -199,6 +245,8 @@ public class TfrInstructionImpl extends MinimalEObjectImpl.Container implements 
     {
       case AssemblerPackage.TFR_INSTRUCTION__INSTRUCTION:
         return getInstruction();
+      case AssemblerPackage.TFR_INSTRUCTION__WS_OPERAND:
+        return getWsOperand();
       case AssemblerPackage.TFR_INSTRUCTION__REG1:
         return getReg1();
       case AssemblerPackage.TFR_INSTRUCTION__REG2:
@@ -219,6 +267,9 @@ public class TfrInstructionImpl extends MinimalEObjectImpl.Container implements 
     {
       case AssemblerPackage.TFR_INSTRUCTION__INSTRUCTION:
         setInstruction((String)newValue);
+        return;
+      case AssemblerPackage.TFR_INSTRUCTION__WS_OPERAND:
+        setWsOperand((String)newValue);
         return;
       case AssemblerPackage.TFR_INSTRUCTION__REG1:
         setReg1((Register)newValue);
@@ -243,6 +294,9 @@ public class TfrInstructionImpl extends MinimalEObjectImpl.Container implements 
       case AssemblerPackage.TFR_INSTRUCTION__INSTRUCTION:
         setInstruction(INSTRUCTION_EDEFAULT);
         return;
+      case AssemblerPackage.TFR_INSTRUCTION__WS_OPERAND:
+        setWsOperand(WS_OPERAND_EDEFAULT);
+        return;
       case AssemblerPackage.TFR_INSTRUCTION__REG1:
         setReg1(REG1_EDEFAULT);
         return;
@@ -265,6 +319,8 @@ public class TfrInstructionImpl extends MinimalEObjectImpl.Container implements 
     {
       case AssemblerPackage.TFR_INSTRUCTION__INSTRUCTION:
         return INSTRUCTION_EDEFAULT == null ? instruction != null : !INSTRUCTION_EDEFAULT.equals(instruction);
+      case AssemblerPackage.TFR_INSTRUCTION__WS_OPERAND:
+        return WS_OPERAND_EDEFAULT == null ? wsOperand != null : !WS_OPERAND_EDEFAULT.equals(wsOperand);
       case AssemblerPackage.TFR_INSTRUCTION__REG1:
         return reg1 != REG1_EDEFAULT;
       case AssemblerPackage.TFR_INSTRUCTION__REG2:
@@ -286,6 +342,8 @@ public class TfrInstructionImpl extends MinimalEObjectImpl.Container implements 
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (instruction: ");
     result.append(instruction);
+    result.append(", wsOperand: ");
+    result.append(wsOperand);
     result.append(", reg1: ");
     result.append(reg1);
     result.append(", reg2: ");
