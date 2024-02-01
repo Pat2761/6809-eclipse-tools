@@ -83,6 +83,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction
 import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegion
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatter
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1
+import org.bpy.electronics.mc6809.assembler.assembler.Label
 
 class AssemblerFormatter extends AbstractFormatter2 {
 
@@ -106,7 +107,7 @@ class AssemblerFormatter extends AbstractFormatter2 {
 
 	/** Current column value of the comment */
 	int commentPosition
-	
+
 	/**
 	 * Allow to initialize the formatter.
 	 * read formatter preference
@@ -157,7 +158,8 @@ class AssemblerFormatter extends AbstractFormatter2 {
 	 */
 	def private void formatSpaceOnly(CommentLine commentLine, extension IFormattableDocument document) {
 		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = " "]
-		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).createWhitespaceReplacer(fmt)
+		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).
+			createWhitespaceReplacer(fmt)
 		document.addReplacer(replacer)
 
 		val strPosition = Strings.repeat(' ', (commentPosition - 1) > 1 ? (commentPosition - 1) : 1)
@@ -173,7 +175,8 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		val nbTabs = commentPosition / tabSize
 
 		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = "\t"]
-		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).createWhitespaceReplacer(fmt)
+		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).
+			createWhitespaceReplacer(fmt)
 		document.addReplacer(replacer)
 
 		val strPosition = Strings.repeat('\t', (nbTabs - 1) > 1 ? (nbTabs - 1) : 1)
@@ -190,7 +193,8 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		val nbSpaces = commentPosition - (tabSize * nbTabs);
 
 		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = "\t"]
-		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).createWhitespaceReplacer(fmt)
+		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).
+			createWhitespaceReplacer(fmt)
 		document.addReplacer(replacer)
 
 		var strPosition = Strings.repeat('\t', (nbTabs - 1) > 1 ? (nbTabs - 1) : 1)
@@ -264,13 +268,13 @@ class AssemblerFormatter extends AbstractFormatter2 {
 	def dispatch void format(InstructionLine instructionLine, extension IFormattableDocument document) {
 		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
 			instructionLine.formatSpaceOnly(document)
-			
+
 		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
 			instructionLine.formatTabOnly(document)
-	
+
 		} else if (PreferenceManager::MIXED == tabPolicy) {
 			instructionLine.formatMixed(document)
-			
+
 		}
 	}
 
@@ -280,11 +284,13 @@ class AssemblerFormatter extends AbstractFormatter2 {
 	 */
 	def private void formatSpaceOnly(InstructionLine instructionLine, extension IFormattableDocument document) {
 		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = ' ']
-		val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).createWhitespaceReplacer(fmt)
+		val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).
+			createWhitespaceReplacer(fmt)
 		document.addReplacer(replacer1)
 
 		if (instructionLine.ws2 !== null) {
-			val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).createWhitespaceReplacer(fmt)
+			val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).
+				createWhitespaceReplacer(fmt)
 			if (replacer2 !== null) {
 				document.addReplacer(replacer2)
 			}
@@ -298,7 +304,7 @@ class AssemblerFormatter extends AbstractFormatter2 {
 			}
 			labelLength++
 		}
-		val spacesBeforeInstruction = Strings.repeat(' ', instructionPosition - labelLength-1)
+		val spacesBeforeInstruction = Strings.repeat(' ', instructionPosition - labelLength - 1)
 		instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
 			space = spacesBeforeInstruction
 		]
@@ -306,16 +312,18 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		instructionLine.instruction.format
 
 		if (instructionLine.ws2 !== null) {
-			val lastNodeInstruction = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).previousSemanticRegion
-			var firstNodeInstruction = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).nextSemanticRegion
-	
+			val lastNodeInstruction = instructionLine.regionFor.feature(
+				AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).previousSemanticRegion
+			var firstNodeInstruction = instructionLine.regionFor.feature(
+				AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).nextSemanticRegion
+
 			var nbSpaces = 0
 			if (firstNodeInstruction === lastNodeInstruction) {
-				nbSpaces = commentPosition - firstNodeInstruction.text.trim.length - (instructionPosition)-1
+				nbSpaces = commentPosition - firstNodeInstruction.text.trim.length - (instructionPosition) - 1
 			} else {
-				nbSpaces = commentPosition - lastNodeInstruction.text.trim.length - (operandPosition)-2
-			}	
-			val spacesAfterInstruction = Strings.repeat(' ',nbSpaces)
+				nbSpaces = commentPosition - lastNodeInstruction.text.trim.length - (operandPosition) - 2
+			}
+			val spacesAfterInstruction = Strings.repeat(' ', nbSpaces)
 			instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).append [
 				space = spacesAfterInstruction
 			]
@@ -328,12 +336,14 @@ class AssemblerFormatter extends AbstractFormatter2 {
 	 */
 	def private void formatTabOnly(InstructionLine instructionLine, extension IFormattableDocument document) {
 		val fmt1 = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
-		val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).createWhitespaceReplacer(fmt1)
+		val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).
+			createWhitespaceReplacer(fmt1)
 		document.addReplacer(replacer1)
 
 		if (instructionLine.ws2 !== null) {
 			val fmt2 = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
-			val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).createWhitespaceReplacer(fmt2)
+			val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).
+				createWhitespaceReplacer(fmt2)
 			if (replacer2 !== null) {
 				document.addReplacer(replacer2)
 			}
@@ -346,14 +356,14 @@ class AssemblerFormatter extends AbstractFormatter2 {
 				labelLength++
 			}
 		}
-		
+
 		val estimatedPosition = labelLength + tabSize;
-		val labelEndPosition = (estimatedPosition%tabSize==0 ? estimatedPosition : (estimatedPosition/tabSize)*tabSize)  
-		var nbTabNeeded = (instructionPosition-labelEndPosition)/tabSize
+		val labelEndPosition = (estimatedPosition % tabSize == 0 ? estimatedPosition : (estimatedPosition / tabSize) * tabSize)
+		var nbTabNeeded = (instructionPosition - labelEndPosition) / tabSize
 		if (instructionLine.label.name === null) {
 			nbTabNeeded++
 		}
-			
+
 		val tabsBeforeInstruction = Strings.repeat('\t', nbTabNeeded)
 		instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
 			space = tabsBeforeInstruction
@@ -362,75 +372,107 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		instructionLine.instruction.format
 
 		if (instructionLine.ws2 !== null) {
-			val lastNodeInstruction = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).previousSemanticRegion
-			var firstNodeInstruction = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).nextSemanticRegion
-	
+			val lastNodeInstruction = instructionLine.regionFor.feature(
+				AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).previousSemanticRegion
+			var firstNodeInstruction = instructionLine.regionFor.feature(
+				AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).nextSemanticRegion
+
 			var nbTabs = 0
 			if (firstNodeInstruction === lastNodeInstruction) {
-				nbTabs = (commentPosition - firstNodeInstruction.text.trim.length - (instructionPosition)-1)/tabSize
+				nbTabs = (commentPosition - firstNodeInstruction.text.trim.length - (instructionPosition) - 1) / tabSize
 			} else {
-				nbTabs = (commentPosition - lastNodeInstruction.text.trim.length - (operandPosition)-2)/tabSize
-			}	
-			val spacesAfterInstruction = Strings.repeat('\t',nbTabs)
+				nbTabs = (commentPosition - lastNodeInstruction.text.trim.length - (operandPosition) - 2) / tabSize
+			}
+			val spacesAfterInstruction = Strings.repeat('\t', nbTabs)
 			instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).append [
 				space = spacesAfterInstruction
 			]
 		}
 	}
-	
+
 	/**
 	 * Format an instructionLine Object when the tab policy is Space only
 	 * 
 	 */
 	def private void formatMixed(InstructionLine instructionLine, extension IFormattableDocument document) {
-		val fmt1 = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
-		val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).createWhitespaceReplacer(fmt1)
-		document.addReplacer(replacer1)
 
-		if (instructionLine.ws2 !== null) {
-			val fmt2 = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
-			val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).createWhitespaceReplacer(fmt2)
-			if (replacer2 !== null) {
-				document.addReplacer(replacer2)
-			}
-		}
+		val labelLength = instructionLine.label.length()
+		val nbSpacesNeeded = instructionPosition - labelLength-1
+		if (nbSpacesNeeded < tabSize) {
+			val fmt1 = document.formatter.createHiddenRegionFormatting => [it.space = ' ']
+			val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).
+				createWhitespaceReplacer(fmt1)
+			document.addReplacer(replacer1)
 
-		var labelLength = 0;
-		if (instructionLine.label.name !== null) {
-			labelLength = instructionLine.label.name.value.trim.length
-			if (instructionLine.label.point) {
-				labelLength++
+			val spaceNeeded = Strings.repeat(' ', nbSpacesNeeded)
+			instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
+				space = spaceNeeded
+			]
+			
+		} else {
+			val fmt1 = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
+			val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).createWhitespaceReplacer(fmt1)
+			document.addReplacer(replacer1)
+
+			val estimatedPosition = (labelLength == 0 ? 0 :labelLength + tabSize);
+			val labelEndPosition = (estimatedPosition % tabSize == 0 ? estimatedPosition : (estimatedPosition / tabSize) * tabSize)
+	
+			val tabsToInsert = Strings.repeat('\t', (instructionPosition-labelEndPosition) / tabSize);
+			val rest = (instructionPosition-labelEndPosition) % tabSize
+			if (rest !== 0) {
+				val spacesToInsert = Strings.repeat(' ', rest);
+				instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
+					space = tabsToInsert + spacesToInsert
+				]
+			} else {
+				instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
+					space = tabsToInsert
+				]
 			}
 		}
 		
-		val estimatedPosition = labelLength + tabSize;
-		val labelEndPosition = (estimatedPosition%tabSize==0 ? estimatedPosition : (estimatedPosition/tabSize)*tabSize)  
-		var nbTabNeeded = (instructionPosition-labelEndPosition)/tabSize
-		if (instructionLine.label.name === null) {
-			nbTabNeeded++
-		}
-			
-		val tabsBeforeInstruction = Strings.repeat('\t', nbTabNeeded)
-		instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
-			space = tabsBeforeInstruction
-		]
-
-		instructionLine.instruction.format
-
 		if (instructionLine.ws2 !== null) {
+			// a comment is defined
 			val lastNodeInstruction = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).previousSemanticRegion
-			var firstNodeInstruction = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).nextSemanticRegion
-	
-			var nbTabs = 0
-			if (firstNodeInstruction === lastNodeInstruction) {
-				nbTabs = (commentPosition - firstNodeInstruction.text.trim.length - (instructionPosition)-1)/tabSize
+			val firstNodeInstruction = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).nextSemanticRegion
+			
+			var nbSpacesToComplete = 0; 
+			if (lastNodeInstruction == firstNodeInstruction) {
+				nbSpacesToComplete = commentPosition - firstNodeInstruction.text.trim.length - instructionPosition 
 			} else {
-				nbTabs = (commentPosition - lastNodeInstruction.text.trim.length - (operandPosition)-2)/tabSize
-			}	
-			val spacesAfterInstruction = Strings.repeat('\t',nbTabs)
-			instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).append [
-				space = spacesAfterInstruction
-			]
+				nbSpacesToComplete = commentPosition - lastNodeInstruction.text.trim.length - operandPosition 
+			}
+			
+			if (nbSpacesToComplete < tabSize) {
+				val fmt2 = document.formatter.createHiddenRegionFormatting => [it.space = ' ']
+				val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).createWhitespaceReplacer(fmt2)
+				document.addReplacer(replacer2)
+				nbSpacesToComplete--
+				
+				val spaceNeeded = Strings.repeat(' ', nbSpacesToComplete)
+				instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
+					space = spaceNeeded
+				]
+				
+			} else {
+				val fmt2 = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
+				val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).createWhitespaceReplacer(fmt2)
+				document.addReplacer(replacer2)
+				nbSpacesToComplete -= 3
+
+				val tabsToInsert = Strings.repeat('\t', nbSpacesToComplete / tabSize);
+				val rest = nbSpacesToComplete % tabSize
+				if (rest !== 0) {
+					val spacesToInsert = Strings.repeat(' ', rest);
+					instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).append [
+						space = tabsToInsert + spacesToInsert
+					]
+				} else {
+					instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).append [
+						space = tabsToInsert
+					]
+				}
+			} 
 		}
 	}
 
@@ -440,53 +482,57 @@ class AssemblerFormatter extends AbstractFormatter2 {
 	 */
 	def dispatch void format(AdcInstruction instruction, extension IFormattableDocument document) {
 		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
-			document.formatSpaceOnlyInstruction(instruction.regionFor.feature(AssemblerPackage.Literals.ADC_INSTRUCTION__WS_OPERAND), instruction.instruction.length)
-			
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ADC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
 		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
-			document.formatTabOnlyInstruction(instruction.regionFor.feature(AssemblerPackage.Literals.ADC_INSTRUCTION__WS_OPERAND), instruction.instruction.length)
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ADC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
 
 		} else {
 		}
 	}
-	
+
 	/**
 	 * Allow to format the space between the instruction and the operand in case of tab policy 
 	 * based on the space only policy
 	 */
 	def void formatSpaceOnlyInstruction(IFormattableDocument document, ISemanticRegion region, int instructionSize) {
-			val fmt = document.formatter.createHiddenRegionFormatting => [it.space = ' ']
-			val replacer1 = region.createWhitespaceReplacer(fmt)
-			document.addReplacer(replacer1)
-		
-			var nbSpacesNeeded = operandPosition
-			nbSpacesNeeded -= instructionSize
-			nbSpacesNeeded -= instructionPosition
+		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = ' ']
+		val replacer1 = region.createWhitespaceReplacer(fmt)
+		document.addReplacer(replacer1)
 
-			val spacesAfterInstruction = Strings.repeat(' ',nbSpacesNeeded-1)
-			val Procedure1<IHiddenRegionFormatter> function = [
-				it.space = spacesAfterInstruction
-			]
-			document.append(region, function)
+		var nbSpacesNeeded = operandPosition
+		nbSpacesNeeded -= instructionSize
+		nbSpacesNeeded -= instructionPosition
+
+		val spacesAfterInstruction = Strings.repeat(' ', nbSpacesNeeded - 1)
+		val Procedure1<IHiddenRegionFormatter> function = [
+			it.space = spacesAfterInstruction
+		]
+		document.append(region, function)
 	}
-	
+
 	/**
 	 * Allow to format the space between the instruction and the operand in case of tab policy 
 	 * based on the tab only policy
 	 */
 	def void formatTabOnlyInstruction(IFormattableDocument document, ISemanticRegion region, int instructionSize) {
-			val fmt = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
-			val replacer1 = region.createWhitespaceReplacer(fmt)
-			document.addReplacer(replacer1)
-		
-			val estimatedPosition = instructionPosition + instructionSize + tabSize;
-			val realInstructionPosition = (estimatedPosition%tabSize==0 ? estimatedPosition : (estimatedPosition/tabSize)*tabSize)  
-			var nbTabNeeded = (operandPosition-realInstructionPosition)/tabSize
+		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
+		val replacer1 = region.createWhitespaceReplacer(fmt)
+		document.addReplacer(replacer1)
 
-			val spacesAfterInstruction = Strings.repeat('\t',nbTabNeeded)
-			val Procedure1<IHiddenRegionFormatter> function = [
-				it.space = spacesAfterInstruction
-			]
-			document.append(region, function)
+		val estimatedPosition = instructionPosition + instructionSize + tabSize;
+		val realInstructionPosition = (estimatedPosition % tabSize == 0 ? estimatedPosition : (estimatedPosition /	tabSize) * tabSize)
+		var nbTabNeeded = (operandPosition - realInstructionPosition) / tabSize
+
+		val spacesAfterInstruction = Strings.repeat('\t', nbTabNeeded)
+		val Procedure1<IHiddenRegionFormatter> function = [
+			it.space = spacesAfterInstruction
+		]
+		document.append(region, function)
 	}
 
 	def dispatch void format(AdddInstruction instruction, extension IFormattableDocument document) {
@@ -744,6 +790,18 @@ class AssemblerFormatter extends AbstractFormatter2 {
 	def dispatch void format(TstInstruction instruction, extension IFormattableDocument document) {
 		println("ABX")
 	}
+
+	def int length(Label label) {
+		var labelLength = 0;
+		if (label.name !== null) {
+			labelLength = label.name.value.trim.length
+			if (label.point) {
+				labelLength++
+			}
+		}
+		labelLength
+	}
+
 
 // TODO: implement for InstructionLine, TstInstruction, SubdInstruction, SubInstruction, StInstruction, SbcInstruction, RorInstruction, RolInstruction, PuluInstruction, PulsInstruction, PshuInstruction, PshsInstruction, OrCCInstruction, OrInstruction, NegInstruction, LsrInstruction, LslInstruction, LeaInstruction, LdInstruction, JsrInstruction, JmpInstruction, IncInstruction, EorInstruction, DecInstruction, CwaiInstruction, ComInstruction, CmpInstruction, ClrInstruction, BvsInstruction, BvcInstruction, BsrInstruction, BrnInstruction, BraInstruction, BplInstruction, BneInstruction, BmiInstruction, BltInstruction, BlsInstruction, BloInstruction, BleInstruction, BitInstruction, BhsInstruction, BhiInstruction, BgtInstruction, BgeInstruction, BeqInstruction, BcsInstruction, BccInstruction, AsrInstruction, AslInstruction, AndCCInstruction, AndInstruction, AdddInstruction, AddInstruction, AdcInstruction, ExtendedIndirectOperand, ExtendedOperand, DirectOperand, ImmediatOperand, IndexedOperand, ConstantIndexedMode, ConstantIndexedMovingIndirectMode, RelatifToPCMode, RelatifToPCIndirectMode, RelativeMode, DirectiveLine, SetDPDirective, SpcDirective, NamDirective, PagDirective, SetDirective, FillDirective, BszDirective, FdbDirective, FcbDirective, RmbDirective, EndDirective, OrgDirective, EquDirective, ListOfExpression, CommaExpression, Expression, Multiplication, Division, Modulo, Addition, Substraction, LeftShift, RightShift, And, Or, Xor, Not, NumericalValue
 }
