@@ -192,6 +192,7 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//JmpInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//JmpInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//JmpInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//JmpInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//IncInstruction">
@@ -305,14 +306,17 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BhsInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BhsInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BhsInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BhsInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BhiInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BhiInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BhiInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BhiInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BgtInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BgtInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BgtInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BgtInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BgeInstruction">

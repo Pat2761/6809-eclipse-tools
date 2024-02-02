@@ -939,7 +939,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BgtInstruction returns BgtInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BGT' | instruction='LBGT') operand=RelativeMode)
+	 *     ((instruction='BGT' | instruction='LBGT') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BgtInstruction(ISerializationContext context, BgtInstruction semanticObject) {
@@ -953,7 +953,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BhiInstruction returns BhiInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BHI' | instruction='LBHI') operand=RelativeMode)
+	 *     ((instruction='BHI' | instruction='LBHI') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BhiInstruction(ISerializationContext context, BhiInstruction semanticObject) {
@@ -967,7 +967,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BhsInstruction returns BhsInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BHS' | instruction='LBHS') operand=RelativeMode)
+	 *     ((instruction='BHS' | instruction='LBHS') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BhsInstruction(ISerializationContext context, BhsInstruction semanticObject) {
@@ -1963,6 +1963,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         instruction='JMP' 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>

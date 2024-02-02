@@ -358,7 +358,9 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		}
 
 		val estimatedPosition = labelLength + tabSize;
-		val labelEndPosition = (estimatedPosition % tabSize == 0 ? estimatedPosition : (estimatedPosition / tabSize) * tabSize)
+		val labelEndPosition = (estimatedPosition % tabSize == 0
+				? estimatedPosition
+				: (estimatedPosition / tabSize) * tabSize)
 		var nbTabNeeded = (instructionPosition - labelEndPosition) / tabSize
 		if (instructionLine.label.name === null) {
 			nbTabNeeded++
@@ -397,34 +399,37 @@ class AssemblerFormatter extends AbstractFormatter2 {
 	def private void formatMixed(InstructionLine instructionLine, extension IFormattableDocument document) {
 
 		val labelLength = instructionLine.label.length()
-		val nbSpacesNeeded = instructionPosition - labelLength-1
-		if (nbSpacesNeeded < 1 ) {
+		val nbSpacesNeeded = instructionPosition - labelLength - 1
+		if (nbSpacesNeeded < 1) {
 			val fmt1 = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
 			val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).
 				createWhitespaceReplacer(fmt1)
 			document.addReplacer(replacer1)
 
-		} else	if (nbSpacesNeeded < tabSize) {
+		} else if (nbSpacesNeeded < tabSize) {
 			val fmt1 = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
 			val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).
 				createWhitespaceReplacer(fmt1)
 			document.addReplacer(replacer1)
 
-			val spaceNeeded = Strings.repeat('\t', (nbSpacesNeeded-tabSize)/tabSize)
+			val spaceNeeded = Strings.repeat('\t', (nbSpacesNeeded - tabSize) / tabSize)
 			instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
 				space = spaceNeeded
 			]
-			
+
 		} else {
 			val fmt1 = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
-			val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).createWhitespaceReplacer(fmt1)
+			val replacer1 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).
+				createWhitespaceReplacer(fmt1)
 			document.addReplacer(replacer1)
 
-			val estimatedPosition = (labelLength == 0 ? 0 :labelLength + tabSize);
-			val labelEndPosition = (estimatedPosition % tabSize == 0 ? estimatedPosition : (estimatedPosition / tabSize) * tabSize)
-	
-			val tabsToInsert = Strings.repeat('\t', (instructionPosition-labelEndPosition) / tabSize);
-			val rest = (instructionPosition-labelEndPosition-1) % tabSize
+			val estimatedPosition = (labelLength == 0 ? 0 : labelLength + tabSize);
+			val labelEndPosition = (estimatedPosition % tabSize == 0
+					? estimatedPosition
+					: (estimatedPosition / tabSize) * tabSize)
+
+			val tabsToInsert = Strings.repeat('\t', (instructionPosition - labelEndPosition) / tabSize);
+			val rest = (instructionPosition - labelEndPosition - 1) % tabSize
 			if (rest !== 0) {
 				val spacesToInsert = Strings.repeat(' ', rest);
 				instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
@@ -438,44 +443,49 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		}
 
 		instructionLine.instruction.format
-		
+
 		if (instructionLine.ws2 !== null) {
 			// a comment is defined
-			val lastNodeInstruction = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).previousSemanticRegion
-			val firstNodeInstruction = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).nextSemanticRegion
-			
-			var nbSpacesToComplete = 0; 
+			val lastNodeInstruction = instructionLine.regionFor.feature(
+				AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).previousSemanticRegion
+			val firstNodeInstruction = instructionLine.regionFor.feature(
+				AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).nextSemanticRegion
+
+			var nbSpacesToComplete = 0;
 			if (lastNodeInstruction == firstNodeInstruction) {
-				nbSpacesToComplete = commentPosition - firstNodeInstruction.text.trim.length - instructionPosition 
+				nbSpacesToComplete = commentPosition - firstNodeInstruction.text.trim.length - instructionPosition
 			} else {
-				nbSpacesToComplete = commentPosition - lastNodeInstruction.text.trim.length - operandPosition 
+				nbSpacesToComplete = commentPosition - lastNodeInstruction.text.trim.length - operandPosition
 			}
-			
+
 			if (nbSpacesToComplete < tabSize) {
 				val fmt2 = document.formatter.createHiddenRegionFormatting => [it.space = ' ']
-				val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).createWhitespaceReplacer(fmt2)
+				val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).
+					createWhitespaceReplacer(fmt2)
 				document.addReplacer(replacer2)
 				nbSpacesToComplete--
-				
+
 				val spaceNeeded = Strings.repeat(' ', nbSpacesToComplete)
 				instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
 					space = spaceNeeded
 				]
-				
+
 			} else {
 				val fmt2 = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
-				val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).createWhitespaceReplacer(fmt2)
+				val replacer2 = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).
+					createWhitespaceReplacer(fmt2)
 				document.addReplacer(replacer2)
 
 				var estimatedPosition = 0
 				if (lastNodeInstruction == firstNodeInstruction) {
-					estimatedPosition = instructionPosition + firstNodeInstruction.text.trim.length + tabSize 
+					estimatedPosition = instructionPosition + firstNodeInstruction.text.trim.length + tabSize
 				} else {
-					estimatedPosition = operandPosition + lastNodeInstruction.text.trim.length + tabSize 
+					estimatedPosition = operandPosition + lastNodeInstruction.text.trim.length + tabSize
 				}
-				
-				val realInstructionPosition = (estimatedPosition % tabSize == 0 ? estimatedPosition : (estimatedPosition /	tabSize) * tabSize)
-				val leftSapces = commentPosition - realInstructionPosition -1
+
+				val realInstructionPosition = (estimatedPosition % tabSize ==
+						0 ? estimatedPosition : (estimatedPosition / tabSize) * tabSize)
+				val leftSapces = commentPosition - realInstructionPosition - 1
 
 				val tabsToInsert = Strings.repeat('\t', leftSapces / tabSize);
 				val rest = leftSapces % tabSize
@@ -489,7 +499,7 @@ class AssemblerFormatter extends AbstractFormatter2 {
 						space = tabsToInsert
 					]
 				}
-			} 
+			}
 		}
 	}
 
@@ -511,6 +521,978 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		} else {
 			document.formatMixedInstruction(
 				instruction.regionFor.feature(AssemblerPackage.Literals.ADC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(AdddInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ADDD_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ADDD_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ADDD_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(AndInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.AND_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.AND_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.AND_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(AndCCInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.AND_CC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.AND_CC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.AND_CC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(AslInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ASL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ASL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ASL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(AsrInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ASR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ASR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ASR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BccInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BCC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BCC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BCC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BcsInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BCS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BCS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BCS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BeqInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BEQ_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BEQ_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BEQ_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BgeInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BGE_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BGE_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BGE_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BgtInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BGT_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BGT_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BGT_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BhiInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BHI_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BHI_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BHI_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BhsInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BHS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BHS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BHS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BitInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BIT_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BIT_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BIT_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BleInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLE_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLE_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLE_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BloInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLO_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLO_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLO_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BlsInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BltInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLT_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLT_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BLT_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BmiInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BMI_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BMI_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BMI_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BneInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BNE_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BNE_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BNE_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BplInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BPL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BPL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BPL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BraInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BRA_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BRA_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BRA_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BrnInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BRN_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BRN_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BRN_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BsrInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BSR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BSR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BSR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BvcInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BVC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BVC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BVC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(BvsInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BVS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BVS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.BVS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(ClrInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.CLR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.CLR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.CLR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(CmpInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.CMP_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.CMP_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.CMP_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(ComInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.COM_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.COM_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.COM_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(CwaiInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.CWAI_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.CWAI_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.CWAI_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(DecInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.DEC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.DEC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.DEC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(EorInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.EOR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.EOR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.EOR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(ExgInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(IncInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.INC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.INC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.INC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(JmpInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.JMP_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.JMP_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.JMP_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(JsrInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.JSR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.JSR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.JSR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(LdInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LD_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LD_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LD_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(LeaInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LEA_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LEA_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LEA_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(LslInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LSL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LSL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LSL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(LsrInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LSR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LSR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.LSR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(NegInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.NEG_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.NEG_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.NEG_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(OrInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.OR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.OR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.OR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(OrCCInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.OR_CC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.OR_CC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.OR_CC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(PshsInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PSHS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PSHS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PSHS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(PshuInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PSHU_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PSHU_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PSHU_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(PulsInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PULS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PULS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PULS_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(PuluInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PULU_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PULU_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.PULU_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(RolInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ROL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ROL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ROL_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(RorInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ROR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ROR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ROR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(SbcInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.SBC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.SBC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.SBC_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(StInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ST_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ST_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.ST_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(SubInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.SUB_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.SUB_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.SUB_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(SubdInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.SUBD_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.SUBD_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.SUBD_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(TfrInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+		}
+	}
+
+	def dispatch void format(TstInstruction instruction, extension IFormattableDocument document) {
+		if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+			document.formatSpaceOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.TST_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+			document.formatTabOnlyInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.TST_INSTRUCTION__WS_OPERAND),
+				instruction.instruction.length)
+
+		} else {
+			document.formatMixedInstruction(
+				instruction.regionFor.feature(AssemblerPackage.Literals.TST_INSTRUCTION__WS_OPERAND),
 				instruction.instruction.length)
 		}
 	}
@@ -545,7 +1527,9 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		document.addReplacer(replacer1)
 
 		val estimatedPosition = instructionPosition + instructionSize + tabSize;
-		val realInstructionPosition = (estimatedPosition % tabSize == 0 ? estimatedPosition : (estimatedPosition /	tabSize) * tabSize)
+		val realInstructionPosition = (estimatedPosition % tabSize == 0
+				? estimatedPosition
+				: (estimatedPosition / tabSize) * tabSize)
 		var nbTabNeeded = (operandPosition - realInstructionPosition) / tabSize
 
 		val spacesAfterInstruction = Strings.repeat('\t', nbTabNeeded)
@@ -561,7 +1545,7 @@ class AssemblerFormatter extends AbstractFormatter2 {
 	 */
 	def void formatMixedInstruction(IFormattableDocument document, ISemanticRegion region, int instructionSize) {
 		val nbSapcesToFill = operandPosition - instructionPosition - instructionSize
-		
+
 		if (nbSapcesToFill < 1) {
 			val fmt = document.formatter.createHiddenRegionFormatting => [it.space = ' ']
 			val replacer1 = region.createWhitespaceReplacer(fmt)
@@ -572,24 +1556,26 @@ class AssemblerFormatter extends AbstractFormatter2 {
 			val fmt = document.formatter.createHiddenRegionFormatting => [it.space = ' ']
 			val replacer1 = region.createWhitespaceReplacer(fmt)
 			document.addReplacer(replacer1)
-			
-			val spacesAfterInstruction = Strings.repeat(' ', nbSapcesToFill-1)
+
+			val spacesAfterInstruction = Strings.repeat(' ', nbSapcesToFill - 1)
 			val Procedure1<IHiddenRegionFormatter> function = [
 				it.space = spacesAfterInstruction
 			]
 			document.append(region, function)
-		
+
 		} else {
 			val fmt = document.formatter.createHiddenRegionFormatting => [it.space = '\t']
 			val replacer1 = region.createWhitespaceReplacer(fmt)
 			document.addReplacer(replacer1)
-			
+
 			val estimatedPosition = instructionPosition + instructionSize + tabSize;
-			val realInstructionPosition = (estimatedPosition % tabSize == 0 ? estimatedPosition : (estimatedPosition /	tabSize) * tabSize)
-			val leftSapces = operandPosition - realInstructionPosition -1
-			
-			val tabsAfterInstruction = Strings.repeat('\t', leftSapces/tabSize)
-			val spacesAfterTabs = Strings.repeat(' ', leftSapces%tabSize)
+			val realInstructionPosition = (estimatedPosition % tabSize == 0
+					? estimatedPosition
+					: (estimatedPosition / tabSize) * tabSize)
+			val leftSapces = operandPosition - realInstructionPosition - 1
+
+			val tabsAfterInstruction = Strings.repeat('\t', leftSapces / tabSize)
+			val spacesAfterTabs = Strings.repeat(' ', leftSapces % tabSize)
 			val Procedure1<IHiddenRegionFormatter> function = [
 				it.space = tabsAfterInstruction + spacesAfterTabs
 			]
@@ -597,262 +1583,11 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		}
 	}
 
-	def dispatch void format(AdddInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(AndInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(AndCCInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(AslInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(AsrInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BccInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BcsInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BeqInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BgeInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BgtInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BhiInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BhsInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BitInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BleInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BloInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BlsInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BltInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BmiInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BneInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BplInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BraInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BrnInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BsrInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BvcInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(BvsInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(ClrInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(CmpInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(ComInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(CwaiInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(DaaInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(DecInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(EorInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(ExgInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(IncInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(JmpInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(JsrInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(LdInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(LeaInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(LslInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(LsrInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(MulInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(NegInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(NopInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(OrInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(OrCCInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(PshsInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(PshuInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(PulsInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(PuluInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(RolInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(RorInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(RtiInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(RtsInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(SbcInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(SexInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(StInstruction instruction, extension IFormattableDocument document) {
-		println("ST")
-	}
-
-	def dispatch void format(SubInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(SubdInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(SwiInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(Swi2Instruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(Swi3Instruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(SyncInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(TfrInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
-	def dispatch void format(TstInstruction instruction, extension IFormattableDocument document) {
-		println("ABX")
-	}
-
+	/**
+	 * Compute the length of a label object
+	 * @param label reference on the label
+	 * @return length of the label 
+	 */
 	def int length(Label label) {
 		var labelLength = 0;
 		if (label.name !== null) {
@@ -863,7 +1598,6 @@ class AssemblerFormatter extends AbstractFormatter2 {
 		}
 		labelLength
 	}
-
 
 // TODO: implement for InstructionLine, TstInstruction, SubdInstruction, SubInstruction, StInstruction, SbcInstruction, RorInstruction, RolInstruction, PuluInstruction, PulsInstruction, PshuInstruction, PshsInstruction, OrCCInstruction, OrInstruction, NegInstruction, LsrInstruction, LslInstruction, LeaInstruction, LdInstruction, JsrInstruction, JmpInstruction, IncInstruction, EorInstruction, DecInstruction, CwaiInstruction, ComInstruction, CmpInstruction, ClrInstruction, BvsInstruction, BvcInstruction, BsrInstruction, BrnInstruction, BraInstruction, BplInstruction, BneInstruction, BmiInstruction, BltInstruction, BlsInstruction, BloInstruction, BleInstruction, BitInstruction, BhsInstruction, BhiInstruction, BgtInstruction, BgeInstruction, BeqInstruction, BcsInstruction, BccInstruction, AsrInstruction, AslInstruction, AndCCInstruction, AndInstruction, AdddInstruction, AddInstruction, AdcInstruction, ExtendedIndirectOperand, ExtendedOperand, DirectOperand, ImmediatOperand, IndexedOperand, ConstantIndexedMode, ConstantIndexedMovingIndirectMode, RelatifToPCMode, RelatifToPCIndirectMode, RelativeMode, DirectiveLine, SetDPDirective, SpcDirective, NamDirective, PagDirective, SetDirective, FillDirective, BszDirective, FdbDirective, FcbDirective, RmbDirective, EndDirective, OrgDirective, EquDirective, ListOfExpression, CommaExpression, Expression, Multiplication, Division, Modulo, Addition, Substraction, LeftShift, RightShift, And, Or, Xor, Not, NumericalValue
 }

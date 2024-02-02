@@ -39,7 +39,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
@@ -55,9 +54,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
-import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
@@ -66,18 +63,11 @@ import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
-import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.services.AssemblerGrammarAccess;
@@ -92,7 +82,6 @@ import org.eclipse.xtext.formatting2.ITextReplacer;
 import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegion;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
@@ -577,8 +566,10 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     String _ws2 = instructionLine.getWs2();
     boolean _tripleNotEquals = (_ws2 != null);
     if (_tripleNotEquals) {
-      final ISemanticRegion lastNodeInstruction = this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).getPreviousSemanticRegion();
-      final ISemanticRegion firstNodeInstruction = this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).getNextSemanticRegion();
+      final ISemanticRegion lastNodeInstruction = this.textRegionExtensions.regionFor(instructionLine).feature(
+        AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).getPreviousSemanticRegion();
+      final ISemanticRegion firstNodeInstruction = this.textRegionExtensions.regionFor(instructionLine).feature(
+        AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).getNextSemanticRegion();
       int nbSpacesToComplete = 0;
       boolean _equals = Objects.equal(lastNodeInstruction, firstNodeInstruction);
       if (_equals) {
@@ -628,7 +619,8 @@ public class AssemblerFormatter extends AbstractFormatter2 {
           estimatedPosition_1 = _plus_3;
         }
         int _xifexpression_2 = (int) 0;
-        if (((estimatedPosition_1 % this.tabSize) == 0)) {
+        if (((estimatedPosition_1 % this.tabSize) == 
+          0)) {
           _xifexpression_2 = estimatedPosition_1;
         } else {
           _xifexpression_2 = ((estimatedPosition_1 / this.tabSize) * this.tabSize);
@@ -671,6 +663,1086 @@ public class AssemblerFormatter extends AbstractFormatter2 {
       } else {
         this.formatMixedInstruction(document, 
           this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ADC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final AdddInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ADDD_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ADDD_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ADDD_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final AndInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.AND_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.AND_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.AND_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final AndCCInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.AND_CC_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.AND_CC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.AND_CC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final AslInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ASL_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ASL_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ASL_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final AsrInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ASR_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ASR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ASR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BccInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BCC_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BCC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BCC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BcsInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BCS_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BCS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BCS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BeqInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BEQ_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BEQ_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BEQ_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BgeInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BGE_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BGE_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BGE_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BgtInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BGT_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BGT_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BGT_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BhiInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BHI_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BHI_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BHI_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BhsInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BHS_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BHS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BHS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BitInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BIT_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BIT_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BIT_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BleInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLE_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLE_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLE_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BloInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLO_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLO_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLO_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BlsInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLS_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BltInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLT_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLT_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BLT_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BmiInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BMI_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BMI_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BMI_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BneInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BNE_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BNE_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BNE_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BplInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BPL_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BPL_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BPL_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BraInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BRA_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BRA_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BRA_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BrnInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BRN_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BRN_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BRN_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BsrInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BSR_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BSR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BSR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BvcInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BVC_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BVC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BVC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final BvsInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BVS_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BVS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.BVS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final ClrInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.CLR_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.CLR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.CLR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final CmpInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.CMP_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.CMP_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.CMP_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final ComInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.COM_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.COM_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.COM_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final CwaiInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.CWAI_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.CWAI_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.CWAI_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final DecInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.DEC_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.DEC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.DEC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final EorInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.EOR_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.EOR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.EOR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final ExgInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final IncInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.INC_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.INC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.INC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final JmpInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.JMP_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.JMP_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.JMP_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final JsrInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.JSR_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.JSR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.JSR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final LdInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LD_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LD_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LD_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final LeaInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LEA_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LEA_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LEA_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final LslInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LSL_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LSL_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LSL_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final LsrInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LSR_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LSR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.LSR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final NegInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.NEG_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.NEG_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.NEG_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final OrInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.OR_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.OR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.OR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final OrCCInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.OR_CC_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.OR_CC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.OR_CC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final PshsInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PSHS_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PSHS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PSHS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final PshuInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PSHU_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PSHU_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PSHU_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final PulsInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PULS_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PULS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PULS_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final PuluInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PULU_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PULU_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.PULU_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final RolInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ROL_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ROL_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ROL_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final RorInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ROR_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ROR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ROR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final SbcInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.SBC_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.SBC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.SBC_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final StInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ST_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ST_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.ST_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final SubInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.SUB_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.SUB_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.SUB_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final SubdInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.SUBD_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.SUBD_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.SUBD_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final TfrInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      }
+    }
+  }
+
+  protected void _format(final TstInstruction instruction, @Extension final IFormattableDocument document) {
+    boolean _equals = Objects.equal(PreferenceManager.SPACE_ONLY, this.tabPolicy);
+    if (_equals) {
+      this.formatSpaceOnlyInstruction(document, 
+        this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.TST_INSTRUCTION__WS_OPERAND), 
+        instruction.getInstruction().length());
+    } else {
+      boolean _equals_1 = Objects.equal(PreferenceManager.TAB_ONLY, this.tabPolicy);
+      if (_equals_1) {
+        this.formatTabOnlyInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.TST_INSTRUCTION__WS_OPERAND), 
+          instruction.getInstruction().length());
+      } else {
+        this.formatMixedInstruction(document, 
+          this.textRegionExtensions.regionFor(instruction).feature(AssemblerPackage.Literals.TST_INSTRUCTION__WS_OPERAND), 
           instruction.getInstruction().length());
       }
     }
@@ -786,262 +1858,11 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     }
   }
 
-  protected void _format(final AdddInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final AndInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final AndCCInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final AslInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final AsrInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BccInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BcsInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BeqInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BgeInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BgtInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BhiInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BhsInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BitInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BleInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BloInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BlsInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BltInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BmiInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BneInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BplInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BraInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BrnInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BsrInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BvcInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final BvsInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final ClrInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final CmpInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final ComInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final CwaiInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final DaaInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final DecInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final EorInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final ExgInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final IncInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final JmpInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final JsrInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final LdInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final LeaInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final LslInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final LsrInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final MulInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final NegInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final NopInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final OrInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final OrCCInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final PshsInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final PshuInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final PulsInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final PuluInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final RolInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final RorInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final RtiInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final RtsInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final SbcInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final SexInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final StInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ST");
-  }
-
-  protected void _format(final SubInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final SubdInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final SwiInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final Swi2Instruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final Swi3Instruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final SyncInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final TfrInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
-  protected void _format(final TstInstruction instruction, @Extension final IFormattableDocument document) {
-    InputOutput.<String>println("ABX");
-  }
-
+  /**
+   * Compute the length of a label object
+   * @param label reference on the label
+   * @return length of the label
+   */
   public int length(final Label label) {
     int _xblockexpression = (int) 0;
     {
@@ -1157,9 +1978,6 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     } else if (instruction instanceof CwaiInstruction) {
       _format((CwaiInstruction)instruction, document);
       return;
-    } else if (instruction instanceof DaaInstruction) {
-      _format((DaaInstruction)instruction, document);
-      return;
     } else if (instruction instanceof DecInstruction) {
       _format((DecInstruction)instruction, document);
       return;
@@ -1199,14 +2017,8 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     } else if (instruction instanceof Model) {
       _format((Model)instruction, document);
       return;
-    } else if (instruction instanceof MulInstruction) {
-      _format((MulInstruction)instruction, document);
-      return;
     } else if (instruction instanceof NegInstruction) {
       _format((NegInstruction)instruction, document);
-      return;
-    } else if (instruction instanceof NopInstruction) {
-      _format((NopInstruction)instruction, document);
       return;
     } else if (instruction instanceof OrCCInstruction) {
       _format((OrCCInstruction)instruction, document);
@@ -1232,17 +2044,8 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     } else if (instruction instanceof RorInstruction) {
       _format((RorInstruction)instruction, document);
       return;
-    } else if (instruction instanceof RtiInstruction) {
-      _format((RtiInstruction)instruction, document);
-      return;
-    } else if (instruction instanceof RtsInstruction) {
-      _format((RtsInstruction)instruction, document);
-      return;
     } else if (instruction instanceof SbcInstruction) {
       _format((SbcInstruction)instruction, document);
-      return;
-    } else if (instruction instanceof SexInstruction) {
-      _format((SexInstruction)instruction, document);
       return;
     } else if (instruction instanceof SourceLine) {
       _format((SourceLine)instruction, document);
@@ -1255,18 +2058,6 @@ public class AssemblerFormatter extends AbstractFormatter2 {
       return;
     } else if (instruction instanceof SubdInstruction) {
       _format((SubdInstruction)instruction, document);
-      return;
-    } else if (instruction instanceof Swi2Instruction) {
-      _format((Swi2Instruction)instruction, document);
-      return;
-    } else if (instruction instanceof Swi3Instruction) {
-      _format((Swi3Instruction)instruction, document);
-      return;
-    } else if (instruction instanceof SwiInstruction) {
-      _format((SwiInstruction)instruction, document);
-      return;
-    } else if (instruction instanceof SyncInstruction) {
-      _format((SyncInstruction)instruction, document);
       return;
     } else if (instruction instanceof TfrInstruction) {
       _format((TfrInstruction)instruction, document);

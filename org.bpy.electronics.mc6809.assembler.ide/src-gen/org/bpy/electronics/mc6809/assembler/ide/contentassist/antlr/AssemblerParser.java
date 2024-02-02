@@ -482,6 +482,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getJsrInstructionAccess().getWsOperandAssignment_1(), "rule__JsrInstruction__WsOperandAssignment_1");
 			builder.put(grammarAccess.getJsrInstructionAccess().getOperandAssignment_2(), "rule__JsrInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getJmpInstructionAccess().getInstructionAssignment_0(), "rule__JmpInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getJmpInstructionAccess().getWsOperandAssignment_1(), "rule__JmpInstruction__WsOperandAssignment_1");
 			builder.put(grammarAccess.getJmpInstructionAccess().getOperandAssignment_2(), "rule__JmpInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getIncInstructionAccess().getInstructionAssignment_0(), "rule__IncInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getIncInstructionAccess().getInstructionAssignment_1_0(), "rule__IncInstruction__InstructionAssignment_1_0");
@@ -553,10 +554,13 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getBitInstructionAccess().getWsOperandAssignment_1(), "rule__BitInstruction__WsOperandAssignment_1");
 			builder.put(grammarAccess.getBitInstructionAccess().getOperandAssignment_2(), "rule__BitInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getBhsInstructionAccess().getInstructionAssignment_0(), "rule__BhsInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getBhsInstructionAccess().getWsOperandAssignment_1(), "rule__BhsInstruction__WsOperandAssignment_1");
 			builder.put(grammarAccess.getBhsInstructionAccess().getOperandAssignment_2(), "rule__BhsInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getBhiInstructionAccess().getInstructionAssignment_0(), "rule__BhiInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getBhiInstructionAccess().getWsOperandAssignment_1(), "rule__BhiInstruction__WsOperandAssignment_1");
 			builder.put(grammarAccess.getBhiInstructionAccess().getOperandAssignment_2(), "rule__BhiInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getBgtInstructionAccess().getInstructionAssignment_0(), "rule__BgtInstruction__InstructionAssignment_0");
+			builder.put(grammarAccess.getBgtInstructionAccess().getWsOperandAssignment_1(), "rule__BgtInstruction__WsOperandAssignment_1");
 			builder.put(grammarAccess.getBgtInstructionAccess().getOperandAssignment_2(), "rule__BgtInstruction__OperandAssignment_2");
 			builder.put(grammarAccess.getBgeInstructionAccess().getInstructionAssignment_0(), "rule__BgeInstruction__InstructionAssignment_0");
 			builder.put(grammarAccess.getBgeInstructionAccess().getWsOperandAssignment_1(), "rule__BgeInstruction__WsOperandAssignment_1");

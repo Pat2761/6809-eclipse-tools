@@ -931,7 +931,7 @@ JsrInstruction:
  */
 JmpInstruction:
  	instruction = ('JMP')
-	WS operand = ( 
+	wsOperand=WS operand = ( 
 		ImmediatOperand |
 		DirectOperand  |
 		IndexedOperand | 
@@ -1497,7 +1497,7 @@ BitInstruction:
  */
 BhsInstruction:
  	instruction = ('BHS' | 'LBHS')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1516,7 +1516,7 @@ BhsInstruction:
  */
 BhiInstruction:
  	instruction = ('BHI' | 'LBHI')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*
@@ -1536,7 +1536,7 @@ BhiInstruction:
  */
 BgtInstruction:
  	instruction = ('BGT' | 'LBGT')
-	WS operand = RelativeMode
+	wsOperand=WS operand = RelativeMode
 ;
 
 /*

@@ -3716,7 +3716,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cInstructionAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cInstructionJMPKeyword_0_0 = (Keyword)cInstructionAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cWsOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cWsOperandWSTerminalRuleCall_1_0 = (RuleCall)cWsOperandAssignment_1.eContents().get(0);
 		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final Alternatives cOperandAlternatives_2_0 = (Alternatives)cOperandAssignment_2.eContents().get(0);
 		private final RuleCall cOperandImmediatOperandParserRuleCall_2_0_0 = (RuleCall)cOperandAlternatives_2_0.eContents().get(0);
@@ -3739,7 +3740,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//JmpInstruction:
 		//     instruction = ('JMP')
-		//    WS operand = (
+		//    wsOperand=WS operand = (
 		//        ImmediatOperand |
 		//        DirectOperand  |
 		//        IndexedOperand |
@@ -3750,7 +3751,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		@Override public ParserRule getRule() { return rule; }
 		
 		// instruction = ('JMP')
-		//WS operand = (
+		//wsOperand=WS operand = (
 		//    ImmediatOperand |
 		//    DirectOperand  |
 		//    IndexedOperand |
@@ -3765,8 +3766,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//('JMP')
 		public Keyword getInstructionJMPKeyword_0_0() { return cInstructionJMPKeyword_0_0; }
 		
+		//wsOperand=WS
+		public Assignment getWsOperandAssignment_1() { return cWsOperandAssignment_1; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		public RuleCall getWsOperandWSTerminalRuleCall_1_0() { return cWsOperandWSTerminalRuleCall_1_0; }
 		
 		//operand = (
 		//       ImmediatOperand |
@@ -5658,7 +5662,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
 		private final Keyword cInstructionBHSKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
 		private final Keyword cInstructionLBHSKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cWsOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cWsOperandWSTerminalRuleCall_1_0 = (RuleCall)cWsOperandAssignment_1.eContents().get(0);
 		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOperandRelativeModeParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
 		
@@ -5678,12 +5683,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//BhsInstruction:
 		//     instruction = ('BHS' | 'LBHS')
-		//    WS operand = RelativeMode
+		//    wsOperand=WS operand = RelativeMode
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		// instruction = ('BHS' | 'LBHS')
-		//WS operand = RelativeMode
+		//wsOperand=WS operand = RelativeMode
 		public Group getGroup() { return cGroup; }
 		
 		//instruction = ('BHS' | 'LBHS')
@@ -5698,8 +5703,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'LBHS'
 		public Keyword getInstructionLBHSKeyword_0_0_1() { return cInstructionLBHSKeyword_0_0_1; }
 		
+		//wsOperand=WS
+		public Assignment getWsOperandAssignment_1() { return cWsOperandAssignment_1; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		public RuleCall getWsOperandWSTerminalRuleCall_1_0() { return cWsOperandWSTerminalRuleCall_1_0; }
 		
 		//operand = RelativeMode
 		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
@@ -5714,7 +5722,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
 		private final Keyword cInstructionBHIKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
 		private final Keyword cInstructionLBHIKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cWsOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cWsOperandWSTerminalRuleCall_1_0 = (RuleCall)cWsOperandAssignment_1.eContents().get(0);
 		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOperandRelativeModeParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
 		
@@ -5734,12 +5743,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//BhiInstruction:
 		//     instruction = ('BHI' | 'LBHI')
-		//    WS operand = RelativeMode
+		//    wsOperand=WS operand = RelativeMode
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		// instruction = ('BHI' | 'LBHI')
-		//WS operand = RelativeMode
+		//wsOperand=WS operand = RelativeMode
 		public Group getGroup() { return cGroup; }
 		
 		//instruction = ('BHI' | 'LBHI')
@@ -5754,8 +5763,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'LBHI'
 		public Keyword getInstructionLBHIKeyword_0_0_1() { return cInstructionLBHIKeyword_0_0_1; }
 		
+		//wsOperand=WS
+		public Assignment getWsOperandAssignment_1() { return cWsOperandAssignment_1; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		public RuleCall getWsOperandWSTerminalRuleCall_1_0() { return cWsOperandWSTerminalRuleCall_1_0; }
 		
 		//operand = RelativeMode
 		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
@@ -5770,7 +5782,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Alternatives cInstructionAlternatives_0_0 = (Alternatives)cInstructionAssignment_0.eContents().get(0);
 		private final Keyword cInstructionBGTKeyword_0_0_0 = (Keyword)cInstructionAlternatives_0_0.eContents().get(0);
 		private final Keyword cInstructionLBGTKeyword_0_0_1 = (Keyword)cInstructionAlternatives_0_0.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cWsOperandAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cWsOperandWSTerminalRuleCall_1_0 = (RuleCall)cWsOperandAssignment_1.eContents().get(0);
 		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOperandRelativeModeParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
 		
@@ -5791,12 +5804,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//BgtInstruction:
 		//     instruction = ('BGT' | 'LBGT')
-		//    WS operand = RelativeMode
+		//    wsOperand=WS operand = RelativeMode
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		// instruction = ('BGT' | 'LBGT')
-		//WS operand = RelativeMode
+		//wsOperand=WS operand = RelativeMode
 		public Group getGroup() { return cGroup; }
 		
 		//instruction = ('BGT' | 'LBGT')
@@ -5811,8 +5824,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'LBGT'
 		public Keyword getInstructionLBGTKeyword_0_0_1() { return cInstructionLBGTKeyword_0_0_1; }
 		
+		//wsOperand=WS
+		public Assignment getWsOperandAssignment_1() { return cWsOperandAssignment_1; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		public RuleCall getWsOperandWSTerminalRuleCall_1_0() { return cWsOperandWSTerminalRuleCall_1_0; }
 		
 		//operand = RelativeMode
 		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
@@ -11508,7 +11524,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//JmpInstruction:
 	//     instruction = ('JMP')
-	//    WS operand = (
+	//    wsOperand=WS operand = (
 	//        ImmediatOperand |
 	//        DirectOperand  |
 	//        IndexedOperand |
@@ -12235,7 +12251,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//BhsInstruction:
 	//     instruction = ('BHS' | 'LBHS')
-	//    WS operand = RelativeMode
+	//    wsOperand=WS operand = RelativeMode
 	//;
 	public BhsInstructionElements getBhsInstructionAccess() {
 		return pBhsInstruction;
@@ -12261,7 +12277,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//BhiInstruction:
 	//     instruction = ('BHI' | 'LBHI')
-	//    WS operand = RelativeMode
+	//    wsOperand=WS operand = RelativeMode
 	//;
 	public BhiInstructionElements getBhiInstructionAccess() {
 		return pBhiInstruction;
@@ -12288,7 +12304,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//BgtInstruction:
 	//     instruction = ('BGT' | 'LBGT')
-	//    WS operand = RelativeMode
+	//    wsOperand=WS operand = RelativeMode
 	//;
 	public BgtInstructionElements getBgtInstructionAccess() {
 		return pBgtInstruction;
