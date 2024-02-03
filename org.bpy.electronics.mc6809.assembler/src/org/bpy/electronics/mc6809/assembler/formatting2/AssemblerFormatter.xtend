@@ -3,10 +3,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.formatting2
 
-import com.google.inject.Inject
 import org.bpy.electronics.mc6809.assembler.assembler.Model
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine
-import org.bpy.electronics.mc6809.assembler.services.AssemblerGrammarAccess
 import org.eclipse.xtext.formatting2.AbstractFormatter2
 import org.eclipse.xtext.formatting2.IFormattableDocument
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine
@@ -45,7 +43,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction
-import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction
@@ -56,9 +53,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction
-import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction
-import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction
@@ -67,17 +62,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction
-import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction
-import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction
-import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction
-import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction
-import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction
-import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction
-import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction
 import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegion
@@ -88,7 +76,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Label
 class AssemblerFormatter extends AbstractFormatter2 {
 
 	/** Reference on grammar acces */
-	@Inject extension AssemblerGrammarAccess
+	// @Inject extension AssemblerGrammarAccess
 
 	/** Reference on the preference manager */
 	PreferenceManager preferenceManager
@@ -296,15 +284,8 @@ class AssemblerFormatter extends AbstractFormatter2 {
 			}
 		}
 
-		var labelLength = 0;
-		if (instructionLine.label.name !== null) {
-			labelLength = instructionLine.label.name.value.length
-			if (instructionLine.label.point) {
-				labelLength++
-			}
-			labelLength++
-		}
-		val spacesBeforeInstruction = Strings.repeat(' ', instructionPosition - labelLength - 1)
+		val labelLength = instructionLine.label.length;
+		val spacesBeforeInstruction = Strings.repeat(' ', instructionPosition - labelLength-1)
 		instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1).append [
 			space = spacesBeforeInstruction
 		]
@@ -349,19 +330,13 @@ class AssemblerFormatter extends AbstractFormatter2 {
 			}
 		}
 
-		var labelLength = 0;
-		if (instructionLine.label.name !== null) {
-			labelLength = instructionLine.label.name.value.trim.length
-			if (instructionLine.label.point) {
-				labelLength++
-			}
-		}
+		val labelLength = instructionLine.label.length
 
 		val estimatedPosition = labelLength + tabSize;
 		val labelEndPosition = (estimatedPosition % tabSize == 0
 				? estimatedPosition
 				: (estimatedPosition / tabSize) * tabSize)
-		var nbTabNeeded = (instructionPosition - labelEndPosition) / tabSize
+		var nbTabNeeded = ((instructionPosition - 1 - labelEndPosition) / tabSize)-1
 		if (instructionLine.label.name === null) {
 			nbTabNeeded++
 		}

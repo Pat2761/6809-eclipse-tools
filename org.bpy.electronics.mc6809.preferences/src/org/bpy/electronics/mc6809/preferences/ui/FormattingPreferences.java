@@ -145,8 +145,8 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		GridData gd_operandPosition = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_operandPosition.widthHint = 40;
 		operandPosition.setLayoutData(gd_operandPosition);
-		operandPosition.setMaximum(50);
-		operandPosition.setMinimum(26);
+		operandPosition.setMaximum(38);
+		operandPosition.setMinimum(20);
 
 		Label lblCpmmentPosition = new Label(grpLineFormat, SWT.NONE);
 		lblCpmmentPosition.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
@@ -154,7 +154,8 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 
 		commentPosition = new Spinner(grpLineFormat, SWT.BORDER);
 		commentPosition.setToolTipText("define the position of the comment (52 to 100 characters)");
-		commentPosition.setMinimum(52);
+		commentPosition.setMaximum(60);
+		commentPosition.setMinimum(40);
 		GridData gd_commentPosition = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
 		gd_commentPosition.widthHint = 40;
 		commentPosition.setLayoutData(gd_commentPosition);
