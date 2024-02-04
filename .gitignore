@@ -19,6 +19,11 @@ local.properties
 .loadpath
 .recommenders
 
+#xtend ignore
+!**/xtend-gen/**/build
+*._trace
+*.xtendbin
+
 # External tool builders
 .externalToolBuilders/
 
