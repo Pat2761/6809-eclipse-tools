@@ -174,10 +174,6 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.INSTRUCTION_POSITION,instructionPosition.getSelection());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.OPERAND_POSITION,operandPosition.getSelection());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_POSITION,commentPosition.getSelection());
-		
-		// Update the general editor tab size preferences
-		IPreferenceStore store = EditorsUI.getPreferenceStore();
-		store.setValue(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_TAB_WIDTH, tabSize.getSelection());
 	}
 
 	@Override

@@ -24,6 +24,9 @@ import java.util.Map;
 import org.bpy.electronics.mc6809.preferences.Activator;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.ui.editors.text.EditorsUI;
+import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 
@@ -122,11 +125,17 @@ public class PreferenceManager {
 	 * @return Value of the preference, default value if the preference isn't defined
 	 */
 	public int getIntPreferenceValue(String key) {
-		String intValue = preferences.get(key, defaultsValues.get(key));
-		try {
-			return Integer.parseInt(intValue);
-		} catch (NumberFormatException ex) {
-			return 0;
+		if (TAB_SIZE.equals(key)) {
+			IPreferenceStore store = EditorsUI.getPreferenceStore();
+			return store.getInt(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_TAB_WIDTH);
+		} else {
+			
+			String intValue = preferences.get(key, defaultsValues.get(key));
+			try {
+				return Integer.parseInt(intValue);
+			} catch (NumberFormatException ex) {
+				return 0;
+			}
 		}
 	}
 
@@ -146,8 +155,13 @@ public class PreferenceManager {
 	 * @param key Key which define the reference
 	 */
 	public void setPreferenceValue(String key, int value) {
-		preferences.put(key, ""+value);
-		savePreference();
+		if (TAB_SIZE.equals(key)) {
+			IPreferenceStore store = EditorsUI.getPreferenceStore();
+			store.setValue(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_TAB_WIDTH, value);
+		} else {
+			preferences.put(key, ""+value);
+			savePreference();
+		}
 	}
 
 	/**
