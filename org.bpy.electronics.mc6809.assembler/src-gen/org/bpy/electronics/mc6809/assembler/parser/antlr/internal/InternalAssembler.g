@@ -440,16 +440,22 @@ ruleCommentLine returns [EObject current=null]
 ;
 
 // Entry rule entryRuleInstructionLine
-entryRuleInstructionLine returns [EObject current=null]:
+entryRuleInstructionLine returns [EObject current=null]@init {
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+}:
 	{ newCompositeNode(grammarAccess.getInstructionLineRule()); }
 	iv_ruleInstructionLine=ruleInstructionLine
 	{ $current=$iv_ruleInstructionLine.current; }
 	EOF;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule InstructionLine
 ruleInstructionLine returns [EObject current=null]
 @init {
 	enterRule();
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 }
 @after {
 	leaveRule();
@@ -1886,6 +1892,9 @@ ruleInstructionLine returns [EObject current=null]
 		}
 	)
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Entry rule entryRuleLabel
 entryRuleLabel returns [EObject current=null]:

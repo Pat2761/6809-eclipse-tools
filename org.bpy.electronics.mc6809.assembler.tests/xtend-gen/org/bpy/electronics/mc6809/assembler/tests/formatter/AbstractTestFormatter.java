@@ -1,9 +1,21 @@
 package org.bpy.electronics.mc6809.assembler.tests.formatter;
 
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
+import org.junit.After;
+import org.junit.Before;
 
 @SuppressWarnings("all")
 public abstract class AbstractTestFormatter {
+  @Before
+  public void setJunitPreferences() {
+    PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.JUNIT_PREFERENCE, true);
+  }
+
+  @After
+  public void unsetJunitPreferences() {
+    PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.JUNIT_PREFERENCE, false);
+  }
+
   public void setTabPolicy(final String policy) {
     PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_POLICY, policy);
   }

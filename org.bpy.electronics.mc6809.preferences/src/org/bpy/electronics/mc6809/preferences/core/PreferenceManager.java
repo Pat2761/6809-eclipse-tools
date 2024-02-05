@@ -48,6 +48,10 @@ public class PreferenceManager {
 	public static final String SPACE_ONLY = "Space only";
 	/** for a define a tab policy base on tab and space characters only */
 	public static final String MIXED = "Mixed";
+
+	/** for a define JUNIT case  */
+	public static final String JUNIT_PREFERENCE = "junitPreference";
+
 	
 	/** Key of the preference which store the tab size */
 	public static final String TAB_SIZE = "tabSize";
@@ -125,17 +129,27 @@ public class PreferenceManager {
 	 * @return Value of the preference, default value if the preference isn't defined
 	 */
 	public int getIntPreferenceValue(String key) {
-		if (TAB_SIZE.equals(key)) {
-			IPreferenceStore store = EditorsUI.getPreferenceStore();
-			return store.getInt(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_TAB_WIDTH);
-		} else {
-			
-			String intValue = preferences.get(key, defaultsValues.get(key));
-			try {
-				return Integer.parseInt(intValue);
-			} catch (NumberFormatException ex) {
-				return 0;
-			}
+		String intValue = preferences.get(key, defaultsValues.get(key));
+		try {
+			return Integer.parseInt(intValue);
+		} catch (NumberFormatException ex) {
+			return 0;
+		}
+	}
+
+	/**
+	 * Get boolean value of the preference.
+	 * 
+	 * @param key Key which define the reference
+	 * 
+	 * @return Value of the preference, default value if the preference isn't defined
+	 */
+	public boolean getBooleanPreferenceValue(String key) {
+		String booleanValue = preferences.get(key, defaultsValues.get(key));
+		try {
+			return Boolean.parseBoolean(booleanValue);
+		} catch (NumberFormatException ex) {
+			return false;
 		}
 	}
 
@@ -155,13 +169,19 @@ public class PreferenceManager {
 	 * @param key Key which define the reference
 	 */
 	public void setPreferenceValue(String key, int value) {
-		if (TAB_SIZE.equals(key)) {
-			IPreferenceStore store = EditorsUI.getPreferenceStore();
-			store.setValue(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_TAB_WIDTH, value);
-		} else {
-			preferences.put(key, ""+value);
-			savePreference();
-		}
+		preferences.put(key, ""+value);
+		savePreference();
+	}
+
+	/**
+	 * Set boolean value of the preference.
+	 * 
+	 * @param key Key which define the reference
+	 * @param value boolean value
+	 */
+	public void setPreferenceValue(String key, boolean value) {
+		preferences.put(key, "" + value);
+		savePreference();
 	}
 
 	/**

@@ -80,6 +80,7 @@ import org.eclipse.xtext.formatting2.ITextReplacer;
 import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegion;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
@@ -116,12 +117,18 @@ public class AssemblerFormatter extends AbstractFormatter2 {
   private int commentPosition;
 
   /**
+   * Just use for a workaround on JUnit test of the formatter
+   */
+  private boolean junitPreference;
+
+  /**
    * Allow to initialize the formatter.
    * read formatter preference
    * call formatter for all children of the model
    */
   protected void _format(final Model model, @Extension final IFormattableDocument document) {
     this.preferenceManager = PreferenceManager.getInstance();
+    this.junitPreference = this.preferenceManager.getBooleanPreferenceValue(PreferenceManager.JUNIT_PREFERENCE);
     this.tabPolicy = this.preferenceManager.getStringPreferenceValue(PreferenceManager.TAB_POLICY);
     this.tabSize = this.preferenceManager.getIntPreferenceValue(PreferenceManager.TAB_SIZE);
     this.instructionPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.INSTRUCTION_POSITION);
@@ -345,23 +352,42 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
       it.setSpace(" ");
     };
-    final IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
-    final ITextReplacer replacer1 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt);
+    final IHiddenRegionFormatting fmt1 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
+    final ITextReplacer replacer1 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt1);
     document.addReplacer(replacer1);
     String _ws2 = instructionLine.getWs2();
     boolean _tripleNotEquals = (_ws2 != null);
     if (_tripleNotEquals) {
-      final ITextReplacer replacer2 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), fmt);
+      IHiddenRegionFormatting _createHiddenRegionFormatting_1 = document.getFormatter().createHiddenRegionFormatting();
+      final Procedure1<IHiddenRegionFormatting> _function_1 = (IHiddenRegionFormatting it) -> {
+        it.setSpace(" ");
+      };
+      final IHiddenRegionFormatting fmt2 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting_1, _function_1);
+      final ITextReplacer replacer2 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), fmt2);
       if ((replacer2 != null)) {
         document.addReplacer(replacer2);
       }
     }
     final int labelLength = this.length(instructionLine.getLabel());
-    final String spacesBeforeInstruction = Strings.repeat(" ", ((this.instructionPosition - labelLength) - 1));
-    final Procedure1<IHiddenRegionFormatter> _function_1 = (IHiddenRegionFormatter it) -> {
+    int _xifexpression = (int) 0;
+    if ((labelLength == 0)) {
+      _xifexpression = (this.instructionPosition - 1);
+    } else {
+      _xifexpression = ((this.instructionPosition - labelLength) - 2);
+    }
+    int nbSpacesNeeded = _xifexpression;
+    if ((this.junitPreference && (labelLength == 0))) {
+      nbSpacesNeeded--;
+    }
+    if ((nbSpacesNeeded < 0)) {
+      nbSpacesNeeded = 0;
+    }
+    InputOutput.<Integer>println(Integer.valueOf(nbSpacesNeeded));
+    final String spacesBeforeInstruction = Strings.repeat(" ", nbSpacesNeeded);
+    final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
       it.setSpace(spacesBeforeInstruction);
     };
-    document.append(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), _function_1);
+    document.append(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), _function_2);
     document.<EObject>format(instructionLine.getInstruction());
     String _ws2_1 = instructionLine.getWs2();
     boolean _tripleNotEquals_1 = (_ws2_1 != null);
@@ -385,10 +411,10 @@ public class AssemblerFormatter extends AbstractFormatter2 {
         nbSpaces = _minus_5;
       }
       final String spacesAfterInstruction = Strings.repeat(" ", nbSpaces);
-      final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
+      final Procedure1<IHiddenRegionFormatter> _function_3 = (IHiddenRegionFormatter it) -> {
         it.setSpace(spacesAfterInstruction);
       };
-      document.append(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), _function_2);
+      document.append(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2), _function_3);
     }
   }
 

@@ -29,7 +29,7 @@ public class TestAbxInstructionFormatter extends AbstractTestFormatter {
   private ISerializer _iSerializer;
 
   @Test
-  public void testFormatterSpaceOnly01() {
+  public void testFormatterSpaceOnly() {
     try {
       this.setTabPolicy(PreferenceManager.SPACE_ONLY);
       this.setInstructionPosition(10);
@@ -37,75 +37,37 @@ public class TestAbxInstructionFormatter extends AbstractTestFormatter {
       this.setCommentPosition(40);
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(" ");
-      _builder.append("ABX  ; comment");
+      _builder.append("ABX ; Instruction without operand");
       _builder.newLine();
-      final String test = _builder.toString();
-      final String result = this._iSerializer.serialize(this.parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
-      Assert.assertEquals("Check spaces before instruction", "         ", result.substring(0, 9));
-      Assert.assertEquals("Check spaces after instruction", "ABX                          ", result.substring(10, 39));
-      Assert.assertEquals("Check comment", "; comment", result.substring(40, 49));
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  @Test
-  public void testFormatterSpaceOnly02() {
-    try {
-      this.setTabPolicy(PreferenceManager.SPACE_ONLY);
-      this.setInstructionPosition(10);
-      this.setOperandPosition(22);
-      this.setCommentPosition(40);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Label ABX  ; comment");
-      _builder.newLine();
-      final String test = _builder.toString();
-      final String result = this._iSerializer.serialize(this.parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
-      Assert.assertEquals("Check spaces before instruction", "Label    ", result.substring(0, 9));
-      Assert.assertEquals("Check spaces after instruction", "ABX                          ", result.substring(10, 39));
-      Assert.assertEquals("Check comment", "; comment", result.substring(40, 49));
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  @Test
-  public void testFormatterSpaceOnly03() {
-    try {
-      this.setTabPolicy(PreferenceManager.SPACE_ONLY);
-      this.setInstructionPosition(10);
-      this.setOperandPosition(22);
-      this.setCommentPosition(40);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Label: ABX  ; comment");
-      _builder.newLine();
-      final String test = _builder.toString();
-      final String result = this._iSerializer.serialize(this.parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
-      Assert.assertEquals("Check spaces before instruction", "Label:   ", result.substring(0, 9));
-      Assert.assertEquals("Check spaces after instruction", "ABX                          ", result.substring(10, 39));
-      Assert.assertEquals("Check comment", "; comment", result.substring(40, 49));
-    } catch (Throwable _e) {
-      throw Exceptions.sneakyThrow(_e);
-    }
-  }
-
-  @Test
-  public void testFormatterTabOnly01() {
-    try {
-      this.setTabPolicy(PreferenceManager.TAB_ONLY);
-      this.setTabSize(3);
-      this.setInstructionPosition(10);
-      this.setOperandPosition(25);
-      this.setCommentPosition(49);
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append(" ");
-      _builder.append("ABX  ; comment");
-      _builder.newLine();
-      final String test = _builder.toString();
-      final String result = this._iSerializer.serialize(this.parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
-      Assert.assertEquals("Check spaces before instruction", "\t\t\tA", result.substring(0, 4));
-      Assert.assertEquals("Check spaces after instruction", "ABX\t\t\t\t\t\t\t\t\t\t\t\t;", result.substring(3, 19));
-      Assert.assertEquals("Check comment", "; comment", result.substring(19, 25));
+      final String test1 = _builder.toString();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("W ABX ; Instruction without operand");
+      _builder_1.newLine();
+      final String test2 = _builder_1.toString();
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.append("W2: ABX ; Instruction without operand");
+      _builder_2.newLine();
+      final String test3 = _builder_2.toString();
+      StringConcatenation _builder_3 = new StringConcatenation();
+      _builder_3.append("Wait1234: ABX ; Instruction without operand");
+      _builder_3.newLine();
+      final String test4 = _builder_3.toString();
+      final String result1 = this._iSerializer.serialize(this.parseHelper.parse(test1), SaveOptions.newBuilder().format().getOptions());
+      Assert.assertEquals("Check spaces before instruction", "         A", result1.substring(0, 10));
+      Assert.assertEquals("Check spaces after instruction", "ABX                           ;", result1.substring(9, 40));
+      Assert.assertEquals("Check comment", "; Instruction without operand", result1.substring(39, 68));
+      final String result2 = this._iSerializer.serialize(this.parseHelper.parse(test2), SaveOptions.newBuilder().format().getOptions());
+      Assert.assertEquals("Check spaces before instruction", "W        A", result2.substring(0, 10));
+      Assert.assertEquals("Check spaces after instruction", "ABX                           ;", result2.substring(9, 40));
+      Assert.assertEquals("Check comment", "; Instruction without operand", result1.substring(39, 68));
+      final String result3 = this._iSerializer.serialize(this.parseHelper.parse(test3), SaveOptions.newBuilder().format().getOptions());
+      Assert.assertEquals("Check spaces before instruction", "W2:      A", result3.substring(0, 10));
+      Assert.assertEquals("Check spaces after instruction", "ABX                           ;", result3.substring(9, 40));
+      Assert.assertEquals("Check comment", "; Instruction without operand", result1.substring(39, 68));
+      final String result4 = this._iSerializer.serialize(this.parseHelper.parse(test4), SaveOptions.newBuilder().format().getOptions());
+      Assert.assertEquals("Check spaces before instruction", "Wait1234: A", result4.substring(0, 11));
+      Assert.assertEquals("Check spaces after instruction", "ABX                           ;", result4.substring(10, 41));
+      Assert.assertEquals("Check comment", "; Instruction without operand", result4.substring(40, 69));
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

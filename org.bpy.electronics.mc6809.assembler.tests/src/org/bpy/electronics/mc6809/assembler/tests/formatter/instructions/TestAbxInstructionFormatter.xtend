@@ -16,73 +16,46 @@ import org.bpy.electronics.mc6809.assembler.tests.formatter.AbstractTestFormatte
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
+
 class TestAbxInstructionFormatter extends AbstractTestFormatter {
 	 
 	@Inject ParseHelper<Model> parseHelper
 	@Inject extension ISerializer
 	
 	@Test
-	def void  testFormatterSpaceOnly01() {
+	def void  testFormatterSpaceOnly() {
 		tabPolicy = PreferenceManager::SPACE_ONLY
 		instructionPosition = 10
 		operandPosition = 22
 		commentPosition = 40
 		
-		val test = ''' ABX  ; comment
+		val test1 = ''' ABX ; Instruction without operand
+		''' 
+		val test2 = '''W ABX ; Instruction without operand
 		'''
-		
-		val result = parseHelper.parse(test).serialize(SaveOptions.newBuilder.format().getOptions())
-		Assert.assertEquals("Check spaces before instruction","         ",result.substring(0,9))
-		Assert.assertEquals("Check spaces after instruction","ABX                          ",result.substring(10,39))
-		Assert.assertEquals("Check comment","; comment",result.substring(40,49))
-	}
-	
-	@Test
-	def void  testFormatterSpaceOnly02() {
-		tabPolicy = PreferenceManager::SPACE_ONLY
-		instructionPosition = 10
-		operandPosition = 22
-		commentPosition = 40
-		
-		val test = '''Label ABX  ; comment
+		val test3 = '''W2: ABX ; Instruction without operand
 		'''
-		
-		val result = parseHelper.parse(test).serialize(SaveOptions.newBuilder.format().getOptions())
-		Assert.assertEquals("Check spaces before instruction","Label    ",result.substring(0,9))
-		Assert.assertEquals("Check spaces after instruction","ABX                          ",result.substring(10,39))
-		Assert.assertEquals("Check comment","; comment",result.substring(40,49))
-	}
-	
-	@Test
-	def void  testFormatterSpaceOnly03() {
-		tabPolicy = PreferenceManager::SPACE_ONLY
-		instructionPosition = 10
-		operandPosition = 22
-		commentPosition = 40
-		
-		val test = '''Label: ABX  ; comment
+		val test4 = '''Wait1234: ABX ; Instruction without operand
 		'''
+
+		val result1 = parseHelper.parse(test1).serialize(SaveOptions.newBuilder.format().getOptions())
+		Assert.assertEquals("Check spaces before instruction","         A",result1.substring(0,10))
+		Assert.assertEquals("Check spaces after instruction","ABX                           ;",result1.substring(9,40))
+		Assert.assertEquals("Check comment","; Instruction without operand",result1.substring(39,68))
 		
-		val result = parseHelper.parse(test).serialize(SaveOptions.newBuilder.format().getOptions())
-		Assert.assertEquals("Check spaces before instruction","Label:   ",result.substring(0,9))
-		Assert.assertEquals("Check spaces after instruction","ABX                          ",result.substring(10,39))
-		Assert.assertEquals("Check comment","; comment",result.substring(40,49))
-	}
-	
-	@Test
-	def void  testFormatterTabOnly01() {
-		tabPolicy = PreferenceManager::TAB_ONLY
-		tabSize = 3
-		instructionPosition = 10
-		operandPosition = 25
-		commentPosition = 49
+		val result2 = parseHelper.parse(test2).serialize(SaveOptions.newBuilder.format().getOptions())
+		Assert.assertEquals("Check spaces before instruction","W        A",result2.substring(0,10))
+		Assert.assertEquals("Check spaces after instruction","ABX                           ;",result2.substring(9,40))
+		Assert.assertEquals("Check comment","; Instruction without operand",result1.substring(39,68))
 		
-		val test = ''' ABX  ; comment
-		'''
+		val result3 = parseHelper.parse(test3).serialize(SaveOptions.newBuilder.format().getOptions())
+		Assert.assertEquals("Check spaces before instruction","W2:      A",result3.substring(0,10))
+		Assert.assertEquals("Check spaces after instruction","ABX                           ;",result3.substring(9,40))
+		Assert.assertEquals("Check comment","; Instruction without operand",result1.substring(39,68))
 		
-		val result = parseHelper.parse(test).serialize(SaveOptions.newBuilder.format().getOptions())
-		Assert.assertEquals("Check spaces before instruction","\t\t\tA",result.substring(0,4))
-		Assert.assertEquals("Check spaces after instruction","ABX\t\t\t\t\t\t\t\t\t\t\t\t;",result.substring(3,19))
-		Assert.assertEquals("Check comment","; comment",result.substring(19,25))
+		val result4 = parseHelper.parse(test4).serialize(SaveOptions.newBuilder.format().getOptions())
+		Assert.assertEquals("Check spaces before instruction","Wait1234: A",result4.substring(0,11))
+		Assert.assertEquals("Check spaces after instruction","ABX                           ;",result4.substring(10,41))
+		Assert.assertEquals("Check comment","; Instruction without operand",result4.substring(40,69))
 	}
 }

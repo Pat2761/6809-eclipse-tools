@@ -177,16 +177,23 @@ finally {
 
 // Entry rule entryRuleInstructionLine
 entryRuleInstructionLine
+@init { 
+	HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
+}
 :
 { before(grammarAccess.getInstructionLineRule()); }
 	 ruleInstructionLine
 { after(grammarAccess.getInstructionLineRule()); } 
 	 EOF 
 ;
+finally {
+	myHiddenTokenState.restore();
+}
 
 // Rule InstructionLine
 ruleInstructionLine 
 	@init {
+		HiddenTokens myHiddenTokenState = ((XtextTokenStream)input).setHiddenTokens();
 		int stackSize = keepStackSize();
 	}
 	:
@@ -198,6 +205,7 @@ ruleInstructionLine
 ;
 finally {
 	restoreStackSize(stackSize);
+	myHiddenTokenState.restore();
 }
 
 // Entry rule entryRuleLabel
