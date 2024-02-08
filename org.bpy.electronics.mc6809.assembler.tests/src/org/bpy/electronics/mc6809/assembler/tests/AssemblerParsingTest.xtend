@@ -173,12 +173,17 @@ import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestTFRI
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestTSTAInstruction
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestTSTBInstruction
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestTSTInstruction
+import org.bpy.electronics.mc6809.assembler.tests.formatter.instructions.TestAbxInstructionFormatter
 
 @RunWith(Suite)
 @Suite.SuiteClasses(
 	
 	 /* general */
 	 CheckNumberValidation,	
+
+	 // -----------------------------------------------	
+	 // Test the language and the validation 
+	 // -----------------------------------------------	
 	
 	 /* Directives */
 	 TestComment,
@@ -334,8 +339,12 @@ import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestTSTI
 	 TestTFRInstruction,
 	 TestTSTAInstruction,
 	 TestTSTBInstruction,
-	 TestTSTInstruction
+	 TestTSTInstruction,
 	 
+	 // -----------------------------------------------	
+	 // Test the formatter 
+	 // -----------------------------------------------	
+	 TestAbxInstructionFormatter	
 	 /* Examples  */
 //	 SorekSamples
 )
