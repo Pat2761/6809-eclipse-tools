@@ -397,7 +397,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		///*
 		// * Definition of the list possible instructions
 		// */
-		//InstructionLine hidden() :
+		//InstructionLine :
 		//    label = Label ws1=WS
 		//    (
 		//        instruction = AbxInstruction            |
@@ -10444,7 +10444,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	///*
 	// * Definition of the list possible instructions
 	// */
-	//InstructionLine hidden() :
+	//InstructionLine :
 	//    label = Label ws1=WS
 	//    (
 	//        instruction = AbxInstruction            |

@@ -134,6 +134,13 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     this.instructionPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.INSTRUCTION_POSITION);
     this.operandPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.OPERAND_POSITION);
     this.commentPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.COMMENT_POSITION);
+    InputOutput.<String>println("--------------------------------------------------------------");
+    InputOutput.<String>println("Use formatter with following paramaters: ");
+    InputOutput.<String>print(("Tab policy = " + this.tabPolicy));
+    InputOutput.<String>print((": Tab size = " + Integer.valueOf(this.tabSize)));
+    InputOutput.<String>print((": Instruction position = " + Integer.valueOf(this.instructionPosition)));
+    InputOutput.<String>print((": Operand position " + Integer.valueOf(this.operandPosition)));
+    InputOutput.<String>println((": Comment position " + Integer.valueOf(this.commentPosition)));
     EList<SourceLine> _sourceLines = model.getSourceLines();
     for (final SourceLine sourceLine : _sourceLines) {
       document.<SourceLine>format(sourceLine);
@@ -382,7 +389,6 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     if ((nbSpacesNeeded < 0)) {
       nbSpacesNeeded = 0;
     }
-    InputOutput.<Integer>println(Integer.valueOf(nbSpacesNeeded));
     final String spacesBeforeInstruction = Strings.repeat(" ", nbSpacesNeeded);
     final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
       it.setSpace(spacesBeforeInstruction);
@@ -443,7 +449,10 @@ public class AssemblerFormatter extends AbstractFormatter2 {
       }
     }
     final int labelLength = this.length(instructionLine.getLabel());
-    final int estimatedPosition = (labelLength + this.tabSize);
+    int estimatedPosition = (labelLength + this.tabSize);
+    if (((labelLength == 0) && (!this.junitPreference))) {
+      estimatedPosition = 0;
+    }
     int _xifexpression = (int) 0;
     if (((estimatedPosition % this.tabSize) == 0)) {
       _xifexpression = estimatedPosition;
@@ -451,11 +460,9 @@ public class AssemblerFormatter extends AbstractFormatter2 {
       _xifexpression = ((estimatedPosition / this.tabSize) * this.tabSize);
     }
     final int labelEndPosition = _xifexpression;
-    int nbTabNeeded = ((((this.instructionPosition - 1) - labelEndPosition) / this.tabSize) - 1);
-    IdentifierValue _name = instructionLine.getLabel().getName();
-    boolean _tripleEquals = (_name == null);
-    if (_tripleEquals) {
-      nbTabNeeded++;
+    int nbTabNeeded = (((this.instructionPosition - 1) - labelEndPosition) / this.tabSize);
+    if ((nbTabNeeded < 0)) {
+      nbTabNeeded = 0;
     }
     final String tabsBeforeInstruction = Strings.repeat("\t", nbTabNeeded);
     final Procedure1<IHiddenRegionFormatter> _function_2 = (IHiddenRegionFormatter it) -> {
@@ -503,7 +510,7 @@ public class AssemblerFormatter extends AbstractFormatter2 {
     if ((nbSpacesNeeded < 1)) {
       IHiddenRegionFormatting _createHiddenRegionFormatting = document.getFormatter().createHiddenRegionFormatting();
       final Procedure1<IHiddenRegionFormatting> _function = (IHiddenRegionFormatting it) -> {
-        it.setSpace("\t");
+        it.setSpace(" ");
       };
       final IHiddenRegionFormatting fmt1 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting, _function);
       final ITextReplacer replacer1 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt1);
@@ -512,7 +519,7 @@ public class AssemblerFormatter extends AbstractFormatter2 {
       if ((nbSpacesNeeded < this.tabSize)) {
         IHiddenRegionFormatting _createHiddenRegionFormatting_1 = document.getFormatter().createHiddenRegionFormatting();
         final Procedure1<IHiddenRegionFormatting> _function_1 = (IHiddenRegionFormatting it) -> {
-          it.setSpace("\t");
+          it.setSpace(" ");
         };
         final IHiddenRegionFormatting fmt1_1 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting_1, _function_1);
         final ITextReplacer replacer1_1 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt1_1);
@@ -530,20 +537,17 @@ public class AssemblerFormatter extends AbstractFormatter2 {
         final IHiddenRegionFormatting fmt1_2 = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(_createHiddenRegionFormatting_2, _function_3);
         final ITextReplacer replacer1_2 = this.createWhitespaceReplacer(this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS1), fmt1_2);
         document.addReplacer(replacer1_2);
+        int estimatedPosition = (labelLength + this.tabSize);
+        if (((labelLength == 0) && (!this.junitPreference))) {
+          estimatedPosition = 0;
+        }
         int _xifexpression = (int) 0;
-        if ((labelLength == 0)) {
-          _xifexpression = 0;
-        } else {
-          _xifexpression = (labelLength + this.tabSize);
-        }
-        final int estimatedPosition = _xifexpression;
-        int _xifexpression_1 = (int) 0;
         if (((estimatedPosition % this.tabSize) == 0)) {
-          _xifexpression_1 = estimatedPosition;
+          _xifexpression = estimatedPosition;
         } else {
-          _xifexpression_1 = ((estimatedPosition / this.tabSize) * this.tabSize);
+          _xifexpression = ((estimatedPosition / this.tabSize) * this.tabSize);
         }
-        final int labelEndPosition = _xifexpression_1;
+        final int labelEndPosition = _xifexpression;
         final String tabsToInsert = Strings.repeat("\t", ((this.instructionPosition - labelEndPosition) / this.tabSize));
         final int rest = (((this.instructionPosition - labelEndPosition) - 1) % this.tabSize);
         if ((rest != 0)) {
@@ -616,14 +620,14 @@ public class AssemblerFormatter extends AbstractFormatter2 {
           int _plus_3 = (_plus_2 + this.tabSize);
           estimatedPosition_1 = _plus_3;
         }
-        int _xifexpression_2 = (int) 0;
+        int _xifexpression_1 = (int) 0;
         if (((estimatedPosition_1 % this.tabSize) == 
           0)) {
-          _xifexpression_2 = estimatedPosition_1;
+          _xifexpression_1 = estimatedPosition_1;
         } else {
-          _xifexpression_2 = ((estimatedPosition_1 / this.tabSize) * this.tabSize);
+          _xifexpression_1 = ((estimatedPosition_1 / this.tabSize) * this.tabSize);
         }
-        final int realInstructionPosition = _xifexpression_2;
+        final int realInstructionPosition = _xifexpression_1;
         final int leftSapces = ((this.commentPosition - realInstructionPosition) - 1);
         final String tabsToInsert_1 = Strings.repeat("\t", (leftSapces / this.tabSize));
         final int rest_1 = (leftSapces % this.tabSize);

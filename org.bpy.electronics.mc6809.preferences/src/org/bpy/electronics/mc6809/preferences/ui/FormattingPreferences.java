@@ -211,7 +211,6 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 	 * 
 	 */
 	private void initFields() {
-		System.out.println("initFields");
 		tabPolicy.setText(PreferenceManager.getInstance().getStringPreferenceValue(PreferenceManager.TAB_POLICY));
 		tabSize.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.TAB_SIZE));
 
