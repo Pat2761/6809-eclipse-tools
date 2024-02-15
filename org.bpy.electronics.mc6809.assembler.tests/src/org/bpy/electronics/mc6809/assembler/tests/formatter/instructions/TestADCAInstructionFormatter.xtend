@@ -40,29 +40,29 @@ class TestADCAInstructionFormatter extends AbstractTestFormatter {
 		val test5 = '''Wait1234: ADCA #$25+$A ; Instruction with operand
 		'''
 
-//		val result1 = parseHelper.parse(test1).serialize(SaveOptions.newBuilder.format().getOptions())
-//		Assert.assertEquals("Check spaces before instruction","         A",result1.substring(0,10))
-//		Assert.assertEquals("Check spaces after instruction","A        #",result1.substring(12,22))
-//		Assert.assertEquals("Check spaces after operand","#$25              ;",result1.substring(21,40))
-//		Assert.assertEquals("Check comment","; Instruction with operand",result1.substring(39,65))
-//		
-//		val result2 = parseHelper.parse(test2).serialize(SaveOptions.newBuilder.format().getOptions())
-//		Assert.assertEquals("Check spaces before instruction","W        A",result2.substring(0,10))
-//		Assert.assertEquals("Check spaces after instruction","A        #",result2.substring(12,22))
-//		Assert.assertEquals("Check spaces after operand","#$25              ;",result2.substring(21,40))
-//		Assert.assertEquals("Check comment","; Instruction with operand",result2.substring(39,65))
-//		
-//		val result3 = parseHelper.parse(test3).serialize(SaveOptions.newBuilder.format().getOptions())
-//		Assert.assertEquals("Check spaces before instruction","W2:      A",result3.substring(0,10))
-//		Assert.assertEquals("Check spaces after instruction","A        #",result3.substring(12,22))
-//		Assert.assertEquals("Check spaces after operand","#$25              ;",result3.substring(21,40))
-//		Assert.assertEquals("Check comment","; Instruction with operand",result3.substring(39,65))
-//		
-//		val result4 = parseHelper.parse(test4).serialize(SaveOptions.newBuilder.format().getOptions())
-//		Assert.assertEquals("Check spaces before instruction","Wait1234: A",result4.substring(0,11))
-//		Assert.assertEquals("Check spaces after instruction","A        #",result4.substring(13,23))
-//		Assert.assertEquals("Check spaces after operand","#$25              ;",result4.substring(22,41))
-//		Assert.assertEquals("Check comment","; Instruction with operand",result4.substring(40,66))
+		val result1 = parseHelper.parse(test1).serialize(SaveOptions.newBuilder.format().getOptions())
+		Assert.assertEquals("Check spaces before instruction","         A",result1.substring(0,10))
+		Assert.assertEquals("Check spaces after instruction","A        #",result1.substring(12,22))
+		Assert.assertEquals("Check spaces after operand","#$25              ;",result1.substring(21,40))
+		Assert.assertEquals("Check comment","; Instruction with operand",result1.substring(39,65))
+		
+		val result2 = parseHelper.parse(test2).serialize(SaveOptions.newBuilder.format().getOptions())
+		Assert.assertEquals("Check spaces before instruction","W        A",result2.substring(0,10))
+		Assert.assertEquals("Check spaces after instruction","A        #",result2.substring(12,22))
+		Assert.assertEquals("Check spaces after operand","#$25              ;",result2.substring(21,40))
+		Assert.assertEquals("Check comment","; Instruction with operand",result2.substring(39,65))
+		
+		val result3 = parseHelper.parse(test3).serialize(SaveOptions.newBuilder.format().getOptions())
+		Assert.assertEquals("Check spaces before instruction","W2:      A",result3.substring(0,10))
+		Assert.assertEquals("Check spaces after instruction","A        #",result3.substring(12,22))
+		Assert.assertEquals("Check spaces after operand","#$25              ;",result3.substring(21,40))
+		Assert.assertEquals("Check comment","; Instruction with operand",result3.substring(39,65))
+		
+		val result4 = parseHelper.parse(test4).serialize(SaveOptions.newBuilder.format().getOptions())
+		Assert.assertEquals("Check spaces before instruction","Wait1234: A",result4.substring(0,11))
+		Assert.assertEquals("Check spaces after instruction","A        #",result4.substring(13,23))
+		Assert.assertEquals("Check spaces after operand","#$25              ;",result4.substring(22,41))
+		Assert.assertEquals("Check comment","; Instruction with operand",result4.substring(40,66))
 		
 		val result5 = parseHelper.parse(test5).serialize(SaveOptions.newBuilder.format().getOptions())
 		Assert.assertEquals("Check spaces before instruction","Wait1234: A",result5.substring(0,11))

@@ -28,6 +28,7 @@ class TestAbxInstructionFormatter extends AbstractTestFormatter {
 		instructionPosition = 10
 		operandPosition = 22
 		commentPosition = 40
+		setJunitPreferences()
 		
 		val test1 = ''' ABX ; Instruction without operand
 		''' 

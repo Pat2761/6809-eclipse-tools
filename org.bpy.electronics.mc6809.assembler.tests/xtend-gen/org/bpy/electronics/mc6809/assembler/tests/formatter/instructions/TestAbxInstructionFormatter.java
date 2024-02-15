@@ -35,6 +35,7 @@ public class TestAbxInstructionFormatter extends AbstractTestFormatter {
       this.setInstructionPosition(10);
       this.setOperandPosition(22);
       this.setCommentPosition(40);
+      this.setJunitPreferences();
       StringConcatenation _builder = new StringConcatenation();
       _builder.append(" ");
       _builder.append("ABX ; Instruction without operand");
