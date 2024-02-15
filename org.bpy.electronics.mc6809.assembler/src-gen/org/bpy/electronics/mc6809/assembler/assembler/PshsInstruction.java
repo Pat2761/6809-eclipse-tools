@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getInstruction <em>Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getWsOperand <em>Ws Operand</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getOperand <em>Operand</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getRegisters <em>Registers</em>}</li>
  * </ul>
@@ -48,6 +49,28 @@ public interface PshsInstruction extends EObject
    * @generated
    */
   void setInstruction(String value);
+
+  /**
+   * Returns the value of the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ws Operand</em>' attribute.
+   * @see #setWsOperand(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getPshsInstruction_WsOperand()
+   * @model
+   * @generated
+   */
+  String getWsOperand();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getWsOperand <em>Ws Operand</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ws Operand</em>' attribute.
+   * @see #getWsOperand()
+   * @generated
+   */
+  void setWsOperand(String value);
 
   /**
    * Returns the value of the '<em><b>Operand</b></em>' containment reference.

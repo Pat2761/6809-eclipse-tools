@@ -142,7 +142,7 @@
 
 	<dependencyManagement>
 		<dependencies>
-		
+		<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 			<!-- https://mvnrepository.com/artifact/org.eclipse.tycho/tycho-p2-publisher-plugin -->
 			<dependency>
 			    <groupId>org.eclipse.tycho</groupId>

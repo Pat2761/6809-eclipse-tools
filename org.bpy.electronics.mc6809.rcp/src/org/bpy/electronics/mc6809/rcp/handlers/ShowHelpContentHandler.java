@@ -1,23 +1,46 @@
- 
 package org.bpy.electronics.mc6809.rcp.handlers;
 
-import org.eclipse.e4.core.di.annotations.CanExecute;
-import org.eclipse.e4.core.di.annotations.Execute;
-import org.eclipse.swt.custom.BusyIndicator;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.IHandler;
+import org.eclipse.core.commands.IHandlerListener;
 
-public class ShowHelpContentHandler {
-	
-	@Execute
-	public void execute() {
-		System.out.println("BPY:");
-		BusyIndicator.showWhile(null, () -> PlatformUI.getWorkbench().getHelpSystem().displayHelp());
-		System.out.println("BPY:");
+public class ShowHelpContentHandler implements IHandler {
+
+	@Override
+	public void addHandlerListener(IHandlerListener handlerListener) {
+		// TODO Auto-generated method stub
+
 	}
-		
-	
-	@CanExecute
-	public boolean canExecute() {
-		return true;
+
+	@Override
+	public void dispose() {
+		// TODO Auto-generated method stub
+
 	}
+
+	@Override
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean isEnabled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean isHandled() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public void removeHandlerListener(IHandlerListener handlerListener) {
+		// TODO Auto-generated method stub
+
+	}
+
 }

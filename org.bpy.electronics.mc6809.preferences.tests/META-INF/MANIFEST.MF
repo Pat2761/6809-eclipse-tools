@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Tests
+Bundle-SymbolicName: org.bpy.electronics.mc6809.preferences.tests
+Bundle-Version: 1.0.0.qualifier
+Automatic-Module-Name: org.bpy.electronics.mc6809.rcp.tests
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Require-Bundle: org.junit,
+ org.bpy.electronics.mc6809.preferences;bundle-version="1.0.0"

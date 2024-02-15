@@ -34,6 +34,12 @@
     <genClasses ecoreClass="Assembler.ecore#//SourceLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SourceLine/lineContent"/>
     </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//LabelLine">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LabelLine/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelLine/ws1"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelLine/comment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelLine/ws2"/>
+    </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BlankLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BlankLine/blankLine"/>
     </genClasses>
@@ -42,16 +48,24 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CommentLine/comment"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//InstructionLine">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//InstructionLine/ws1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//InstructionLine/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//InstructionLine/ws2"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//InstructionLine/comment"/>
+    </genClasses>
+    <genClasses ecoreClass="Assembler.ecore#//Label">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//Label/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//Label/point"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//TstInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TstInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TstInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//TstInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//TfrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TfrInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TfrInstruction/wsOperand"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TfrInstruction/reg1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//TfrInstruction/reg2"/>
     </genClasses>
@@ -69,14 +83,17 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SubdInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SubdInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SubdInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SubdInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SubInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SubInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SubInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SubInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//StInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//StInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//StInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//StInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SexInstruction">
@@ -84,6 +101,7 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SbcInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SbcInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SbcInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SbcInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//RtsInstruction">
@@ -94,38 +112,46 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//RorInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RorInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RorInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RorInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//RolInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RolInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RolInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RolInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//PuluInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PuluInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PuluInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PuluInstruction/operand"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PuluInstruction/registers"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//PulsInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PulsInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PulsInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PulsInstruction/operand"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PulsInstruction/registers"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//PshuInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshuInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshuInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PshuInstruction/operand"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshuInstruction/registers"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//PshsInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshsInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshsInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PshsInstruction/operand"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PshsInstruction/registers"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//OrCCInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrCCInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrCCInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OrCCInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//OrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OrInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//NopInstruction">
@@ -133,6 +159,7 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//NegInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//NegInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//NegInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//NegInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//MulInstruction">
@@ -140,43 +167,53 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//LsrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LsrInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LsrInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LsrInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//LslInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LslInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LslInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LslInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//LeaInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LeaInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LeaInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LeaInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//LdInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LdInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LdInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LdInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//JsrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//JsrInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//JsrInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//JsrInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//JmpInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//JmpInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//JmpInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//JmpInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//IncInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//IncInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//IncInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//IncInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//ExgInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ExgInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ExgInstruction/wsOperand"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ExgInstruction/reg1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ExgInstruction/reg2"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//EorInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EorInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EorInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//EorInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//DecInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DecInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DecInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DecInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//DaaInstruction">
@@ -184,126 +221,157 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//CwaiInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CwaiInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CwaiInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//CwaiInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//ComInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ComInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ComInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ComInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//CmpInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CmpInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//CmpInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//CmpInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//ClrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ClrInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//ClrInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//ClrInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BvsInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BvsInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BvsInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BvsInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BvcInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BvcInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BvcInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BvcInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BsrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BsrInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BsrInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BsrInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BrnInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BrnInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BrnInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BrnInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BraInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BraInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BraInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BraInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BplInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BplInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BplInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BplInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BneInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BneInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BneInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BneInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BmiInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BmiInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BmiInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BmiInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BltInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BltInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BltInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BltInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BlsInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BlsInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BlsInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BlsInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BloInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BloInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BloInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BloInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BleInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BleInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BleInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BleInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BitInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BitInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BitInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BitInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BhsInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BhsInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BhsInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BhsInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BhiInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BhiInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BhiInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BhiInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BgtInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BgtInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BgtInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BgtInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BgeInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BgeInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BgeInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BgeInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BeqInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BeqInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BeqInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BeqInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BcsInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BcsInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BcsInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BcsInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BccInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BccInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BccInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BccInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AsrInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AsrInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AsrInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AsrInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AslInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AslInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AslInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AslInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AndCCInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AndCCInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AndCCInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AndCCInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AndInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AndInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AndInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AndInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AdddInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AdddInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AdddInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AdddInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AddInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AddInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AddInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AddInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AdcInstruction">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AdcInstruction/instruction"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//AdcInstruction/wsOperand"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//AdcInstruction/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//AbxInstruction">
@@ -363,7 +431,7 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RelativeMode/offset"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/label"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DirectiveLine/comment"/>
     </genClasses>

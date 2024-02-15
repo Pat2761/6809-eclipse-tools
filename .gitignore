@@ -9,6 +9,7 @@
 .metadata
 bin/
 tmp/
+*.xtendbin
 *.tmp
 *.bak
 *.swp
@@ -17,6 +18,11 @@ local.properties
 .settings/
 .loadpath
 .recommenders
+
+#xtend ignore
+!**/xtend-gen/**/build
+*._trace
+*.xtendbin
 
 # External tool builders
 .externalToolBuilders/

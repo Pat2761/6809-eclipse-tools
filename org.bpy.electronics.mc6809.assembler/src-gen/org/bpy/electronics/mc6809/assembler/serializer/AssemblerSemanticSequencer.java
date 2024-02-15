@@ -78,6 +78,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Label;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
@@ -400,6 +402,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.JSR_INSTRUCTION:
 				sequence_JsrInstruction(context, (JsrInstruction) semanticObject); 
 				return; 
+			case AssemblerPackage.LABEL:
+				sequence_Label(context, (Label) semanticObject); 
+				return; 
+			case AssemblerPackage.LABEL_LINE:
+				sequence_LabelLine(context, (LabelLine) semanticObject); 
+				return; 
 			case AssemblerPackage.LD_INSTRUCTION:
 				sequence_LdInstruction(context, (LdInstruction) semanticObject); 
 				return; 
@@ -623,6 +631,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         (instruction='ADCA' | instruction='ADCB') 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -640,6 +649,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         (instruction='ADDA' | instruction='ADDB') 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -657,6 +667,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         instruction='ADDD' 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -717,6 +728,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         instruction='ANDCC' 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -734,6 +746,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         (instruction='ANDA' | instruction='ANDB') 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -797,6 +810,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='ASLB' | 
 	 *         (
 	 *             instruction='ASL' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -818,6 +832,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='ASRB' | 
 	 *         (
 	 *             instruction='ASR' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -868,7 +883,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BccInstruction returns BccInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BCC' | instruction='LBCC') operand=RelativeMode)
+	 *     ((instruction='BCC' | instruction='LBCC') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BccInstruction(ISerializationContext context, BccInstruction semanticObject) {
@@ -882,7 +897,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BcsInstruction returns BcsInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BCS' | instruction='LBCS') operand=RelativeMode)
+	 *     ((instruction='BCS' | instruction='LBCS') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BcsInstruction(ISerializationContext context, BcsInstruction semanticObject) {
@@ -896,7 +911,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BeqInstruction returns BeqInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BEQ' | instruction='LBEQ') operand=RelativeMode)
+	 *     ((instruction='BEQ' | instruction='LBEQ') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BeqInstruction(ISerializationContext context, BeqInstruction semanticObject) {
@@ -910,7 +925,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BgeInstruction returns BgeInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BGE' | instruction='LBGE') operand=RelativeMode)
+	 *     ((instruction='BGE' | instruction='LBGE') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BgeInstruction(ISerializationContext context, BgeInstruction semanticObject) {
@@ -924,7 +939,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BgtInstruction returns BgtInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BGT' | instruction='LBGT') operand=RelativeMode)
+	 *     ((instruction='BGT' | instruction='LBGT') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BgtInstruction(ISerializationContext context, BgtInstruction semanticObject) {
@@ -938,7 +953,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BhiInstruction returns BhiInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BHI' | instruction='LBHI') operand=RelativeMode)
+	 *     ((instruction='BHI' | instruction='LBHI') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BhiInstruction(ISerializationContext context, BhiInstruction semanticObject) {
@@ -952,7 +967,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BhsInstruction returns BhsInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BHS' | instruction='LBHS') operand=RelativeMode)
+	 *     ((instruction='BHS' | instruction='LBHS') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BhsInstruction(ISerializationContext context, BhsInstruction semanticObject) {
@@ -988,6 +1003,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         (instruction='BITA' | instruction='BITB') 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -1017,7 +1033,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BleInstruction returns BleInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BLE' | instruction='LBLE') operand=RelativeMode)
+	 *     ((instruction='BLE' | instruction='LBLE') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BleInstruction(ISerializationContext context, BleInstruction semanticObject) {
@@ -1031,7 +1047,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BloInstruction returns BloInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BLO' | instruction='LBLO') operand=RelativeMode)
+	 *     ((instruction='BLO' | instruction='LBLO') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BloInstruction(ISerializationContext context, BloInstruction semanticObject) {
@@ -1045,7 +1061,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BlsInstruction returns BlsInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BLS' | instruction='LBLS') operand=RelativeMode)
+	 *     ((instruction='BLS' | instruction='LBLS') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BlsInstruction(ISerializationContext context, BlsInstruction semanticObject) {
@@ -1059,7 +1075,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BltInstruction returns BltInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BLT' | instruction='LBLT') operand=RelativeMode)
+	 *     ((instruction='BLT' | instruction='LBLT') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BltInstruction(ISerializationContext context, BltInstruction semanticObject) {
@@ -1073,7 +1089,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BmiInstruction returns BmiInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BMI' | instruction='LBMI') operand=RelativeMode)
+	 *     ((instruction='BMI' | instruction='LBMI') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BmiInstruction(ISerializationContext context, BmiInstruction semanticObject) {
@@ -1087,7 +1103,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BneInstruction returns BneInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BNE' | instruction='LBNE') operand=RelativeMode)
+	 *     ((instruction='BNE' | instruction='LBNE') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BneInstruction(ISerializationContext context, BneInstruction semanticObject) {
@@ -1101,7 +1117,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BplInstruction returns BplInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BPL' | instruction='LBPL') operand=RelativeMode)
+	 *     ((instruction='BPL' | instruction='LBPL') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BplInstruction(ISerializationContext context, BplInstruction semanticObject) {
@@ -1115,7 +1131,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BraInstruction returns BraInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BRA' | instruction='LBRA') operand=RelativeMode)
+	 *     ((instruction='BRA' | instruction='LBRA') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BraInstruction(ISerializationContext context, BraInstruction semanticObject) {
@@ -1129,7 +1145,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BrnInstruction returns BrnInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BRN' | instruction='LBRN') operand=RelativeMode)
+	 *     ((instruction='BRN' | instruction='LBRN') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BrnInstruction(ISerializationContext context, BrnInstruction semanticObject) {
@@ -1143,7 +1159,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BsrInstruction returns BsrInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BSR' | instruction='LBSR') operand=RelativeMode)
+	 *     ((instruction='BSR' | instruction='LBSR') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BsrInstruction(ISerializationContext context, BsrInstruction semanticObject) {
@@ -1171,7 +1187,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BvcInstruction returns BvcInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BVC' | instruction='LBVC') operand=RelativeMode)
+	 *     ((instruction='BVC' | instruction='LBVC') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BvcInstruction(ISerializationContext context, BvcInstruction semanticObject) {
@@ -1185,7 +1201,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BvsInstruction returns BvsInstruction
 	 *
 	 * Constraint:
-	 *     ((instruction='BVS' | instruction='LBVS') operand=RelativeMode)
+	 *     ((instruction='BVS' | instruction='LBVS') wsOperand=WS operand=RelativeMode)
 	 * </pre>
 	 */
 	protected void sequence_BvsInstruction(ISerializationContext context, BvsInstruction semanticObject) {
@@ -1224,6 +1240,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='CLRB' | 
 	 *         (
 	 *             instruction='CLR' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -1250,6 +1267,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction='CMPX' | 
 	 *             instruction='CMPY'
 	 *         ) 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -1270,6 +1288,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='COMB' | 
 	 *         (
 	 *             instruction='COM' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -1344,6 +1363,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         instruction='CWAI' 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -1384,6 +1404,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='DECB' | 
 	 *         (
 	 *             instruction='DEC' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -1435,7 +1456,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=IdentifierValue? 
+	 *         label=Label 
 	 *         (
 	 *             directive=EquDirective | 
 	 *             directive=OrgDirective | 
@@ -1532,6 +1553,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         (instruction='EORA' | instruction='EORB') 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -1561,13 +1583,15 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     ExgInstruction returns ExgInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='EXG' reg1=Register reg2=Register)
+	 *     (instruction='EXG' wsOperand=WS reg1=Register reg2=Register)
 	 * </pre>
 	 */
 	protected void sequence_ExgInstruction(ISerializationContext context, ExgInstruction semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND));
 			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG1) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG1));
 			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG2) == ValueTransient.YES)
@@ -1575,6 +1599,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExgInstructionAccess().getInstructionEXGKeyword_0_0(), semanticObject.getInstruction());
+		feeder.accept(grammarAccess.getExgInstructionAccess().getWsOperandWSTerminalRuleCall_1_0(), semanticObject.getWsOperand());
 		feeder.accept(grammarAccess.getExgInstructionAccess().getReg1RegisterEnumRuleCall_2_0(), semanticObject.getReg1());
 		feeder.accept(grammarAccess.getExgInstructionAccess().getReg2RegisterEnumRuleCall_4_0(), semanticObject.getReg2());
 		feeder.finish();
@@ -1809,6 +1834,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='INCB' | 
 	 *         (
 	 *             instruction='INC' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -1849,7 +1875,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=IdentifierValue? 
+	 *         label=Label 
+	 *         ws1=WS 
 	 *         (
 	 *             instruction=AbxInstruction | 
 	 *             instruction=AdcInstruction | 
@@ -1919,7 +1946,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction=TfrInstruction | 
 	 *             instruction=TstInstruction
 	 *         ) 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *         (ws2=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
 	 *     )
 	 * </pre>
 	 */
@@ -1936,6 +1963,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         instruction='JMP' 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -1953,11 +1981,40 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         instruction='JSR' 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
 	 */
 	protected void sequence_JsrInstruction(ISerializationContext context, JsrInstruction semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     LabelLine returns LabelLine
+	 *
+	 * Constraint:
+	 *     (label=Label (ws1=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? ws2=WS?)
+	 * </pre>
+	 */
+	protected void sequence_LabelLine(ISerializationContext context, LabelLine semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Label returns Label
+	 *
+	 * Constraint:
+	 *     (name=IdentifierValue? point?=':'?)
+	 * </pre>
+	 */
+	protected void sequence_Label(ISerializationContext context, Label semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -1978,6 +2035,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction='LDS' | 
 	 *             instruction='LDU'
 	 *         ) 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -1995,6 +2053,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         (instruction='LEAX' | instruction='LEAY' | instruction='LEAS' | instruction='LEAU') 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -2072,6 +2131,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='LSLB' | 
 	 *         (
 	 *             instruction='LSL' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -2093,6 +2153,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='LSRB' | 
 	 *         (
 	 *             instruction='LSR' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -2254,6 +2315,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='NEGB' | 
 	 *         (
 	 *             instruction='NEG' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -2347,6 +2409,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         instruction='ORCC' 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -2364,6 +2427,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         (instruction='ORA' | instruction='ORB') 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -2531,7 +2595,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PshsInstruction returns PshsInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PSHS' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
+	 *     (instruction='PSHS' wsOperand=WS (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PshsInstruction(ISerializationContext context, PshsInstruction semanticObject) {
@@ -2545,7 +2609,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PshuInstruction returns PshuInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PSHU' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
+	 *     (instruction='PSHU' wsOperand=WS (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PshuInstruction(ISerializationContext context, PshuInstruction semanticObject) {
@@ -2559,7 +2623,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PulsInstruction returns PulsInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PULS' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
+	 *     (instruction='PULS' wsOperand=WS (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PulsInstruction(ISerializationContext context, PulsInstruction semanticObject) {
@@ -2573,7 +2637,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PuluInstruction returns PuluInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='PULU' (operand=IdentifierValue | (registers+=Register registers+=Register*)))
+	 *     (instruction='PULU' wsOperand=WS (operand=IdentifierValue | (registers+=Register registers+=Register*)))
 	 * </pre>
 	 */
 	protected void sequence_PuluInstruction(ISerializationContext context, PuluInstruction semanticObject) {
@@ -2705,6 +2769,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='ROLB' | 
 	 *         (
 	 *             instruction='ROL' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -2726,6 +2791,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='RORB' | 
 	 *         (
 	 *             instruction='ROR' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )
@@ -2784,6 +2850,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         (instruction='SBCA' | instruction='SBCB') 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -2847,7 +2914,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     SourceLine returns SourceLine
 	 *
 	 * Constraint:
-	 *     (lineContent=BlankLine | lineContent=CommentLine | lineContent=DirectiveLine | lineContent=InstructionLine)
+	 *     (lineContent=BlankLine | lineContent=CommentLine | lineContent=LabelLine | lineContent=DirectiveLine | lineContent=InstructionLine)
 	 * </pre>
 	 */
 	protected void sequence_SourceLine(ISerializationContext context, SourceLine semanticObject) {
@@ -2885,6 +2952,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             instruction='STS' | 
 	 *             instruction='STU'
 	 *         ) 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -2922,6 +2990,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         (instruction='SUBA' | instruction='SUBB') 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -2939,6 +3008,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         instruction='SUBD' 
+	 *         wsOperand=WS 
 	 *         (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *     )
 	 * </pre>
@@ -3077,13 +3147,15 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     TfrInstruction returns TfrInstruction
 	 *
 	 * Constraint:
-	 *     (instruction='TFR' reg1=Register reg2=Register)
+	 *     (instruction='TFR' wsOperand=WS reg1=Register reg2=Register)
 	 * </pre>
 	 */
 	protected void sequence_TfrInstruction(ISerializationContext context, TfrInstruction semanticObject) {
 		if (errorAcceptor != null) {
 			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND));
 			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG1) == ValueTransient.YES)
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG1));
 			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG2) == ValueTransient.YES)
@@ -3091,6 +3163,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTfrInstructionAccess().getInstructionTFRKeyword_0_0(), semanticObject.getInstruction());
+		feeder.accept(grammarAccess.getTfrInstructionAccess().getWsOperandWSTerminalRuleCall_1_0(), semanticObject.getWsOperand());
 		feeder.accept(grammarAccess.getTfrInstructionAccess().getReg1RegisterEnumRuleCall_2_0(), semanticObject.getReg1());
 		feeder.accept(grammarAccess.getTfrInstructionAccess().getReg2RegisterEnumRuleCall_4_0(), semanticObject.getReg2());
 		feeder.finish();
@@ -3108,6 +3181,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         instruction='TSTB' | 
 	 *         (
 	 *             instruction='TST' 
+	 *             wsOperand=WS 
 	 *             (operand=ImmediatOperand | operand=DirectOperand | operand=IndexedOperand | operand=ExtendedOperand | operand=ExtendedIndirectOperand)
 	 *         )
 	 *     )

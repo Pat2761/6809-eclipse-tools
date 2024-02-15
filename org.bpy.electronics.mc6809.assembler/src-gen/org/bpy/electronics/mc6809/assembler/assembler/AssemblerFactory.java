@@ -42,6 +42,15 @@ public interface AssemblerFactory extends EFactory
   SourceLine createSourceLine();
 
   /**
+   * Returns a new object of class '<em>Label Line</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Label Line</em>'.
+   * @generated
+   */
+  LabelLine createLabelLine();
+
+  /**
    * Returns a new object of class '<em>Blank Line</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -67,6 +76,15 @@ public interface AssemblerFactory extends EFactory
    * @generated
    */
   InstructionLine createInstructionLine();
+
+  /**
+   * Returns a new object of class '<em>Label</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Label</em>'.
+   * @generated
+   */
+  Label createLabel();
 
   /**
    * Returns a new object of class '<em>Tst Instruction</em>'.

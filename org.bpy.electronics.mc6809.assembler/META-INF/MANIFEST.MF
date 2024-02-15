@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.xtext,
  org.eclipse.emf.common,
  org.antlr.runtime;bundle-version="[3.2.0,3.2.1)",
  org.eclipse.e4.core.di.annotations,
- org.eclipse.osgi
+ org.eclipse.osgi,
+ org.bpy.electronics.mc6809.preferences;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Export-Package: org.bpy.electronics.mc6809.assembler,
  org.bpy.electronics.mc6809.assembler.assembler,
@@ -33,7 +34,8 @@ Export-Package: org.bpy.electronics.mc6809.assembler,
  org.bpy.electronics.mc6809.assembler.serializer,
  org.bpy.electronics.mc6809.assembler.services,
  org.bpy.electronics.mc6809.assembler.util,
- org.bpy.electronics.mc6809.assembler.validation
+ org.bpy.electronics.mc6809.assembler.validation,
+ org.bpy.electronics.mc6809.assembler.formatting2
 Import-Package: org.apache.log4j,
  org.eclipse.core.runtime;version="3.7.0",
  org.eclipse.e4.core.contexts;version="1.7.0",

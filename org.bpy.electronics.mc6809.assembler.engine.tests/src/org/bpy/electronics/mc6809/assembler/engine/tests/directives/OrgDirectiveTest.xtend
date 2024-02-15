@@ -10,7 +10,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model
 import org.eclipse.xtext.testing.validation.ValidationTestHelper
 import org.junit.Test
 import org.junit.Assert
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)

@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getInstruction <em>Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getWsOperand <em>Ws Operand</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getReg1 <em>Reg1</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getReg2 <em>Reg2</em>}</li>
  * </ul>
@@ -46,6 +47,28 @@ public interface TfrInstruction extends EObject
    * @generated
    */
   void setInstruction(String value);
+
+  /**
+   * Returns the value of the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ws Operand</em>' attribute.
+   * @see #setWsOperand(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getTfrInstruction_WsOperand()
+   * @model
+   * @generated
+   */
+  String getWsOperand();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getWsOperand <em>Ws Operand</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ws Operand</em>' attribute.
+   * @see #getWsOperand()
+   * @generated
+   */
+  void setWsOperand(String value);
 
   /**
    * Returns the value of the '<em><b>Reg1</b></em>' attribute.

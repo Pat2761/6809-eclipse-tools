@@ -30,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
@@ -40,7 +41,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledBszDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFcbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFdbDirectiveLine;
@@ -75,54 +75,54 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	 */
 	@Check
 	public void checkDirectiveLine(DirectiveLine directiveLine) {
-		if ((directiveLine.getDirective() instanceof BszDirective) && (directiveLine.getName() == null)) {
+		if ((directiveLine.getDirective() instanceof BszDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			warning("No label defined for BSZ directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 				MISSING_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof EquDirective) && (directiveLine.getName() == null)) {
+		} else if ((directiveLine.getDirective() instanceof EquDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			error("No label defined for EQU directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 				MISSING_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof SetDirective) && (directiveLine.getName() == null)) {
+		} else if ((directiveLine.getDirective() instanceof SetDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			error("No label defined for SET directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 				MISSING_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof EndDirective) && (directiveLine.getName() != null)) {		
+		} else if ((directiveLine.getDirective() instanceof EndDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for END directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof SpcDirective) && (directiveLine.getName() != null)) {		
+		} else if ((directiveLine.getDirective() instanceof SpcDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for SPC directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof PagDirective) && (directiveLine.getName() != null)) {		
+		} else if ((directiveLine.getDirective() instanceof PagDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for PAG directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof RegDirective) && (directiveLine.getName() == null)) {
+		} else if ((directiveLine.getDirective() instanceof RegDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			error("No label defined for REG directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
 				MISSING_LABEL);
 		
-		} else if ((directiveLine.getDirective() instanceof OptDirective) && (directiveLine.getName() != null)) {		
+		} else if ((directiveLine.getDirective() instanceof OptDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for OPT directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
    			
-   		} else if ((directiveLine.getDirective() instanceof NamDirective) && (directiveLine.getName() != null)) {		
+   		} else if ((directiveLine.getDirective() instanceof NamDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for NAM directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
    			
-		} else if ((directiveLine.getDirective() instanceof SetDPDirective) && (directiveLine.getName() != null)) {		
+		} else if ((directiveLine.getDirective() instanceof SetDPDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for SETDP directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__NAME,
+   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
    				UNEXPECTED_LABEL);
 		
    		} else {
@@ -137,6 +137,21 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 
 		// Management of warnings after code analyse 
 		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(directiveLine);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+	}
+	
+	@Check
+	public void checkLabelLine(LabelLine labelLine) {
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(labelLine);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(labelLine);
 		for (AssemblerProblemManagerDescription warning : warnings) {
 			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}

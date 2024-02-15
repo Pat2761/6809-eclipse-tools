@@ -115,6 +115,61 @@ public interface AssemblerPackage extends EPackage
   int SOURCE_LINE_FEATURE_COUNT = 1;
 
   /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl <em>Label Line</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLabelLine()
+   * @generated
+   */
+  int LABEL_LINE = 2;
+
+  /**
+   * The feature id for the '<em><b>Label</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL_LINE__LABEL = 0;
+
+  /**
+   * The feature id for the '<em><b>Ws1</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL_LINE__WS1 = 1;
+
+  /**
+   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL_LINE__COMMENT = 2;
+
+  /**
+   * The feature id for the '<em><b>Ws2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL_LINE__WS2 = 3;
+
+  /**
+   * The number of structural features of the '<em>Label Line</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL_LINE_FEATURE_COUNT = 4;
+
+  /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl <em>Blank Line</em>}' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -122,7 +177,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBlankLine()
    * @generated
    */
-  int BLANK_LINE = 2;
+  int BLANK_LINE = 3;
 
   /**
    * The feature id for the '<em><b>Blank Line</b></em>' attribute.
@@ -150,7 +205,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCommentLine()
    * @generated
    */
-  int COMMENT_LINE = 3;
+  int COMMENT_LINE = 4;
 
   /**
    * The feature id for the '<em><b>Starting Space</b></em>' attribute.
@@ -187,16 +242,25 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getInstructionLine()
    * @generated
    */
-  int INSTRUCTION_LINE = 4;
+  int INSTRUCTION_LINE = 5;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * The feature id for the '<em><b>Label</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INSTRUCTION_LINE__NAME = 0;
+  int INSTRUCTION_LINE__LABEL = 0;
+
+  /**
+   * The feature id for the '<em><b>Ws1</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION_LINE__WS1 = 1;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' containment reference.
@@ -205,7 +269,16 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION_LINE__INSTRUCTION = 1;
+  int INSTRUCTION_LINE__INSTRUCTION = 2;
+
+  /**
+   * The feature id for the '<em><b>Ws2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INSTRUCTION_LINE__WS2 = 3;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -214,7 +287,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION_LINE__COMMENT = 2;
+  int INSTRUCTION_LINE__COMMENT = 4;
 
   /**
    * The number of structural features of the '<em>Instruction Line</em>' class.
@@ -223,7 +296,44 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INSTRUCTION_LINE_FEATURE_COUNT = 3;
+  int INSTRUCTION_LINE_FEATURE_COUNT = 5;
+
+  /**
+   * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelImpl <em>Label</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LabelImpl
+   * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLabel()
+   * @generated
+   */
+  int LABEL = 6;
+
+  /**
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL__NAME = 0;
+
+  /**
+   * The feature id for the '<em><b>Point</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL__POINT = 1;
+
+  /**
+   * The number of structural features of the '<em>Label</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LABEL_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TstInstructionImpl <em>Tst Instruction</em>}' class.
@@ -233,7 +343,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getTstInstruction()
    * @generated
    */
-  int TST_INSTRUCTION = 5;
+  int TST_INSTRUCTION = 7;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -245,13 +355,22 @@ public interface AssemblerPackage extends EPackage
   int TST_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TST_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TST_INSTRUCTION__OPERAND = 1;
+  int TST_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Tst Instruction</em>' class.
@@ -260,7 +379,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TST_INSTRUCTION_FEATURE_COUNT = 2;
+  int TST_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TfrInstructionImpl <em>Tfr Instruction</em>}' class.
@@ -270,7 +389,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getTfrInstruction()
    * @generated
    */
-  int TFR_INSTRUCTION = 6;
+  int TFR_INSTRUCTION = 8;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -282,13 +401,22 @@ public interface AssemblerPackage extends EPackage
   int TFR_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int TFR_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Reg1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int TFR_INSTRUCTION__REG1 = 1;
+  int TFR_INSTRUCTION__REG1 = 2;
 
   /**
    * The feature id for the '<em><b>Reg2</b></em>' attribute.
@@ -297,7 +425,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TFR_INSTRUCTION__REG2 = 2;
+  int TFR_INSTRUCTION__REG2 = 3;
 
   /**
    * The number of structural features of the '<em>Tfr Instruction</em>' class.
@@ -306,7 +434,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int TFR_INSTRUCTION_FEATURE_COUNT = 3;
+  int TFR_INSTRUCTION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SyncInstructionImpl <em>Sync Instruction</em>}' class.
@@ -316,7 +444,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSyncInstruction()
    * @generated
    */
-  int SYNC_INSTRUCTION = 7;
+  int SYNC_INSTRUCTION = 9;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -344,7 +472,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSwi3Instruction()
    * @generated
    */
-  int SWI3_INSTRUCTION = 8;
+  int SWI3_INSTRUCTION = 10;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -372,7 +500,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSwi2Instruction()
    * @generated
    */
-  int SWI2_INSTRUCTION = 9;
+  int SWI2_INSTRUCTION = 11;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -400,7 +528,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSwiInstruction()
    * @generated
    */
-  int SWI_INSTRUCTION = 10;
+  int SWI_INSTRUCTION = 12;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -428,7 +556,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubdInstruction()
    * @generated
    */
-  int SUBD_INSTRUCTION = 11;
+  int SUBD_INSTRUCTION = 13;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -440,13 +568,22 @@ public interface AssemblerPackage extends EPackage
   int SUBD_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUBD_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SUBD_INSTRUCTION__OPERAND = 1;
+  int SUBD_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Subd Instruction</em>' class.
@@ -455,7 +592,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SUBD_INSTRUCTION_FEATURE_COUNT = 2;
+  int SUBD_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SubInstructionImpl <em>Sub Instruction</em>}' class.
@@ -465,7 +602,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubInstruction()
    * @generated
    */
-  int SUB_INSTRUCTION = 12;
+  int SUB_INSTRUCTION = 14;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -477,13 +614,22 @@ public interface AssemblerPackage extends EPackage
   int SUB_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SUB_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SUB_INSTRUCTION__OPERAND = 1;
+  int SUB_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Sub Instruction</em>' class.
@@ -492,7 +638,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SUB_INSTRUCTION_FEATURE_COUNT = 2;
+  int SUB_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StInstructionImpl <em>St Instruction</em>}' class.
@@ -502,7 +648,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStInstruction()
    * @generated
    */
-  int ST_INSTRUCTION = 13;
+  int ST_INSTRUCTION = 15;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -514,13 +660,22 @@ public interface AssemblerPackage extends EPackage
   int ST_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ST_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ST_INSTRUCTION__OPERAND = 1;
+  int ST_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>St Instruction</em>' class.
@@ -529,7 +684,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ST_INSTRUCTION_FEATURE_COUNT = 2;
+  int ST_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SexInstructionImpl <em>Sex Instruction</em>}' class.
@@ -539,7 +694,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSexInstruction()
    * @generated
    */
-  int SEX_INSTRUCTION = 14;
+  int SEX_INSTRUCTION = 16;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -567,7 +722,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSbcInstruction()
    * @generated
    */
-  int SBC_INSTRUCTION = 15;
+  int SBC_INSTRUCTION = 17;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -579,13 +734,22 @@ public interface AssemblerPackage extends EPackage
   int SBC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SBC_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SBC_INSTRUCTION__OPERAND = 1;
+  int SBC_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Sbc Instruction</em>' class.
@@ -594,7 +758,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SBC_INSTRUCTION_FEATURE_COUNT = 2;
+  int SBC_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RtsInstructionImpl <em>Rts Instruction</em>}' class.
@@ -604,7 +768,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRtsInstruction()
    * @generated
    */
-  int RTS_INSTRUCTION = 16;
+  int RTS_INSTRUCTION = 18;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -632,7 +796,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRtiInstruction()
    * @generated
    */
-  int RTI_INSTRUCTION = 17;
+  int RTI_INSTRUCTION = 19;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -660,7 +824,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRorInstruction()
    * @generated
    */
-  int ROR_INSTRUCTION = 18;
+  int ROR_INSTRUCTION = 20;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -672,13 +836,22 @@ public interface AssemblerPackage extends EPackage
   int ROR_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROR_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROR_INSTRUCTION__OPERAND = 1;
+  int ROR_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Ror Instruction</em>' class.
@@ -687,7 +860,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROR_INSTRUCTION_FEATURE_COUNT = 2;
+  int ROR_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RolInstructionImpl <em>Rol Instruction</em>}' class.
@@ -697,7 +870,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRolInstruction()
    * @generated
    */
-  int ROL_INSTRUCTION = 19;
+  int ROL_INSTRUCTION = 21;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -709,13 +882,22 @@ public interface AssemblerPackage extends EPackage
   int ROL_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ROL_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ROL_INSTRUCTION__OPERAND = 1;
+  int ROL_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Rol Instruction</em>' class.
@@ -724,7 +906,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ROL_INSTRUCTION_FEATURE_COUNT = 2;
+  int ROL_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PuluInstructionImpl <em>Pulu Instruction</em>}' class.
@@ -734,7 +916,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPuluInstruction()
    * @generated
    */
-  int PULU_INSTRUCTION = 20;
+  int PULU_INSTRUCTION = 22;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -746,13 +928,22 @@ public interface AssemblerPackage extends EPackage
   int PULU_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PULU_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PULU_INSTRUCTION__OPERAND = 1;
+  int PULU_INSTRUCTION__OPERAND = 2;
 
   /**
    * The feature id for the '<em><b>Registers</b></em>' attribute list.
@@ -761,7 +952,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PULU_INSTRUCTION__REGISTERS = 2;
+  int PULU_INSTRUCTION__REGISTERS = 3;
 
   /**
    * The number of structural features of the '<em>Pulu Instruction</em>' class.
@@ -770,7 +961,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PULU_INSTRUCTION_FEATURE_COUNT = 3;
+  int PULU_INSTRUCTION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PulsInstructionImpl <em>Puls Instruction</em>}' class.
@@ -780,7 +971,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPulsInstruction()
    * @generated
    */
-  int PULS_INSTRUCTION = 21;
+  int PULS_INSTRUCTION = 23;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -792,13 +983,22 @@ public interface AssemblerPackage extends EPackage
   int PULS_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PULS_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PULS_INSTRUCTION__OPERAND = 1;
+  int PULS_INSTRUCTION__OPERAND = 2;
 
   /**
    * The feature id for the '<em><b>Registers</b></em>' attribute list.
@@ -807,7 +1007,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PULS_INSTRUCTION__REGISTERS = 2;
+  int PULS_INSTRUCTION__REGISTERS = 3;
 
   /**
    * The number of structural features of the '<em>Puls Instruction</em>' class.
@@ -816,7 +1016,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PULS_INSTRUCTION_FEATURE_COUNT = 3;
+  int PULS_INSTRUCTION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PshuInstructionImpl <em>Pshu Instruction</em>}' class.
@@ -826,7 +1026,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPshuInstruction()
    * @generated
    */
-  int PSHU_INSTRUCTION = 22;
+  int PSHU_INSTRUCTION = 24;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -838,13 +1038,22 @@ public interface AssemblerPackage extends EPackage
   int PSHU_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PSHU_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PSHU_INSTRUCTION__OPERAND = 1;
+  int PSHU_INSTRUCTION__OPERAND = 2;
 
   /**
    * The feature id for the '<em><b>Registers</b></em>' attribute list.
@@ -853,7 +1062,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PSHU_INSTRUCTION__REGISTERS = 2;
+  int PSHU_INSTRUCTION__REGISTERS = 3;
 
   /**
    * The number of structural features of the '<em>Pshu Instruction</em>' class.
@@ -862,7 +1071,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PSHU_INSTRUCTION_FEATURE_COUNT = 3;
+  int PSHU_INSTRUCTION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PshsInstructionImpl <em>Pshs Instruction</em>}' class.
@@ -872,7 +1081,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPshsInstruction()
    * @generated
    */
-  int PSHS_INSTRUCTION = 23;
+  int PSHS_INSTRUCTION = 25;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -884,13 +1093,22 @@ public interface AssemblerPackage extends EPackage
   int PSHS_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PSHS_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PSHS_INSTRUCTION__OPERAND = 1;
+  int PSHS_INSTRUCTION__OPERAND = 2;
 
   /**
    * The feature id for the '<em><b>Registers</b></em>' attribute list.
@@ -899,7 +1117,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PSHS_INSTRUCTION__REGISTERS = 2;
+  int PSHS_INSTRUCTION__REGISTERS = 3;
 
   /**
    * The number of structural features of the '<em>Pshs Instruction</em>' class.
@@ -908,7 +1126,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PSHS_INSTRUCTION_FEATURE_COUNT = 3;
+  int PSHS_INSTRUCTION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrCCInstructionImpl <em>Or CC Instruction</em>}' class.
@@ -918,7 +1136,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrCCInstruction()
    * @generated
    */
-  int OR_CC_INSTRUCTION = 24;
+  int OR_CC_INSTRUCTION = 26;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -930,13 +1148,22 @@ public interface AssemblerPackage extends EPackage
   int OR_CC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_CC_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OR_CC_INSTRUCTION__OPERAND = 1;
+  int OR_CC_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Or CC Instruction</em>' class.
@@ -945,7 +1172,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int OR_CC_INSTRUCTION_FEATURE_COUNT = 2;
+  int OR_CC_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrInstructionImpl <em>Or Instruction</em>}' class.
@@ -955,7 +1182,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrInstruction()
    * @generated
    */
-  int OR_INSTRUCTION = 25;
+  int OR_INSTRUCTION = 27;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -967,13 +1194,22 @@ public interface AssemblerPackage extends EPackage
   int OR_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OR_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OR_INSTRUCTION__OPERAND = 1;
+  int OR_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Or Instruction</em>' class.
@@ -982,7 +1218,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int OR_INSTRUCTION_FEATURE_COUNT = 2;
+  int OR_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NopInstructionImpl <em>Nop Instruction</em>}' class.
@@ -992,7 +1228,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNopInstruction()
    * @generated
    */
-  int NOP_INSTRUCTION = 26;
+  int NOP_INSTRUCTION = 28;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1020,7 +1256,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNegInstruction()
    * @generated
    */
-  int NEG_INSTRUCTION = 27;
+  int NEG_INSTRUCTION = 29;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1032,13 +1268,22 @@ public interface AssemblerPackage extends EPackage
   int NEG_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NEG_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NEG_INSTRUCTION__OPERAND = 1;
+  int NEG_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Neg Instruction</em>' class.
@@ -1047,7 +1292,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NEG_INSTRUCTION_FEATURE_COUNT = 2;
+  int NEG_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MulInstructionImpl <em>Mul Instruction</em>}' class.
@@ -1057,7 +1302,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMulInstruction()
    * @generated
    */
-  int MUL_INSTRUCTION = 28;
+  int MUL_INSTRUCTION = 30;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1085,7 +1330,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLsrInstruction()
    * @generated
    */
-  int LSR_INSTRUCTION = 29;
+  int LSR_INSTRUCTION = 31;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1097,13 +1342,22 @@ public interface AssemblerPackage extends EPackage
   int LSR_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LSR_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LSR_INSTRUCTION__OPERAND = 1;
+  int LSR_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Lsr Instruction</em>' class.
@@ -1112,7 +1366,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LSR_INSTRUCTION_FEATURE_COUNT = 2;
+  int LSR_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LslInstructionImpl <em>Lsl Instruction</em>}' class.
@@ -1122,7 +1376,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLslInstruction()
    * @generated
    */
-  int LSL_INSTRUCTION = 30;
+  int LSL_INSTRUCTION = 32;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1134,13 +1388,22 @@ public interface AssemblerPackage extends EPackage
   int LSL_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LSL_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LSL_INSTRUCTION__OPERAND = 1;
+  int LSL_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Lsl Instruction</em>' class.
@@ -1149,7 +1412,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LSL_INSTRUCTION_FEATURE_COUNT = 2;
+  int LSL_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LeaInstructionImpl <em>Lea Instruction</em>}' class.
@@ -1159,7 +1422,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeaInstruction()
    * @generated
    */
-  int LEA_INSTRUCTION = 31;
+  int LEA_INSTRUCTION = 33;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1171,13 +1434,22 @@ public interface AssemblerPackage extends EPackage
   int LEA_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LEA_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LEA_INSTRUCTION__OPERAND = 1;
+  int LEA_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Lea Instruction</em>' class.
@@ -1186,7 +1458,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LEA_INSTRUCTION_FEATURE_COUNT = 2;
+  int LEA_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LdInstructionImpl <em>Ld Instruction</em>}' class.
@@ -1196,7 +1468,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLdInstruction()
    * @generated
    */
-  int LD_INSTRUCTION = 32;
+  int LD_INSTRUCTION = 34;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1208,13 +1480,22 @@ public interface AssemblerPackage extends EPackage
   int LD_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LD_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LD_INSTRUCTION__OPERAND = 1;
+  int LD_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Ld Instruction</em>' class.
@@ -1223,7 +1504,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int LD_INSTRUCTION_FEATURE_COUNT = 2;
+  int LD_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.JsrInstructionImpl <em>Jsr Instruction</em>}' class.
@@ -1233,7 +1514,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getJsrInstruction()
    * @generated
    */
-  int JSR_INSTRUCTION = 33;
+  int JSR_INSTRUCTION = 35;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1245,13 +1526,22 @@ public interface AssemblerPackage extends EPackage
   int JSR_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JSR_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int JSR_INSTRUCTION__OPERAND = 1;
+  int JSR_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Jsr Instruction</em>' class.
@@ -1260,7 +1550,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int JSR_INSTRUCTION_FEATURE_COUNT = 2;
+  int JSR_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.JmpInstructionImpl <em>Jmp Instruction</em>}' class.
@@ -1270,7 +1560,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getJmpInstruction()
    * @generated
    */
-  int JMP_INSTRUCTION = 34;
+  int JMP_INSTRUCTION = 36;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1282,13 +1572,22 @@ public interface AssemblerPackage extends EPackage
   int JMP_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int JMP_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int JMP_INSTRUCTION__OPERAND = 1;
+  int JMP_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Jmp Instruction</em>' class.
@@ -1297,7 +1596,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int JMP_INSTRUCTION_FEATURE_COUNT = 2;
+  int JMP_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IncInstructionImpl <em>Inc Instruction</em>}' class.
@@ -1307,7 +1606,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIncInstruction()
    * @generated
    */
-  int INC_INSTRUCTION = 35;
+  int INC_INSTRUCTION = 37;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1319,13 +1618,22 @@ public interface AssemblerPackage extends EPackage
   int INC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int INC_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int INC_INSTRUCTION__OPERAND = 1;
+  int INC_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Inc Instruction</em>' class.
@@ -1334,7 +1642,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int INC_INSTRUCTION_FEATURE_COUNT = 2;
+  int INC_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExgInstructionImpl <em>Exg Instruction</em>}' class.
@@ -1344,7 +1652,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExgInstruction()
    * @generated
    */
-  int EXG_INSTRUCTION = 36;
+  int EXG_INSTRUCTION = 38;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1356,13 +1664,22 @@ public interface AssemblerPackage extends EPackage
   int EXG_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EXG_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Reg1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXG_INSTRUCTION__REG1 = 1;
+  int EXG_INSTRUCTION__REG1 = 2;
 
   /**
    * The feature id for the '<em><b>Reg2</b></em>' attribute.
@@ -1371,7 +1688,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXG_INSTRUCTION__REG2 = 2;
+  int EXG_INSTRUCTION__REG2 = 3;
 
   /**
    * The number of structural features of the '<em>Exg Instruction</em>' class.
@@ -1380,7 +1697,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXG_INSTRUCTION_FEATURE_COUNT = 3;
+  int EXG_INSTRUCTION_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EorInstructionImpl <em>Eor Instruction</em>}' class.
@@ -1390,7 +1707,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEorInstruction()
    * @generated
    */
-  int EOR_INSTRUCTION = 37;
+  int EOR_INSTRUCTION = 39;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1402,13 +1719,22 @@ public interface AssemblerPackage extends EPackage
   int EOR_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EOR_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EOR_INSTRUCTION__OPERAND = 1;
+  int EOR_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Eor Instruction</em>' class.
@@ -1417,7 +1743,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EOR_INSTRUCTION_FEATURE_COUNT = 2;
+  int EOR_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DecInstructionImpl <em>Dec Instruction</em>}' class.
@@ -1427,7 +1753,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecInstruction()
    * @generated
    */
-  int DEC_INSTRUCTION = 38;
+  int DEC_INSTRUCTION = 40;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1439,13 +1765,22 @@ public interface AssemblerPackage extends EPackage
   int DEC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DEC_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DEC_INSTRUCTION__OPERAND = 1;
+  int DEC_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Dec Instruction</em>' class.
@@ -1454,7 +1789,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DEC_INSTRUCTION_FEATURE_COUNT = 2;
+  int DEC_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DaaInstructionImpl <em>Daa Instruction</em>}' class.
@@ -1464,7 +1799,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDaaInstruction()
    * @generated
    */
-  int DAA_INSTRUCTION = 39;
+  int DAA_INSTRUCTION = 41;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1492,7 +1827,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCwaiInstruction()
    * @generated
    */
-  int CWAI_INSTRUCTION = 40;
+  int CWAI_INSTRUCTION = 42;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1504,13 +1839,22 @@ public interface AssemblerPackage extends EPackage
   int CWAI_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CWAI_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CWAI_INSTRUCTION__OPERAND = 1;
+  int CWAI_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Cwai Instruction</em>' class.
@@ -1519,7 +1863,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CWAI_INSTRUCTION_FEATURE_COUNT = 2;
+  int CWAI_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ComInstructionImpl <em>Com Instruction</em>}' class.
@@ -1529,7 +1873,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getComInstruction()
    * @generated
    */
-  int COM_INSTRUCTION = 41;
+  int COM_INSTRUCTION = 43;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1541,13 +1885,22 @@ public interface AssemblerPackage extends EPackage
   int COM_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int COM_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int COM_INSTRUCTION__OPERAND = 1;
+  int COM_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Com Instruction</em>' class.
@@ -1556,7 +1909,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int COM_INSTRUCTION_FEATURE_COUNT = 2;
+  int COM_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CmpInstructionImpl <em>Cmp Instruction</em>}' class.
@@ -1566,7 +1919,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCmpInstruction()
    * @generated
    */
-  int CMP_INSTRUCTION = 42;
+  int CMP_INSTRUCTION = 44;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1578,13 +1931,22 @@ public interface AssemblerPackage extends EPackage
   int CMP_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CMP_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CMP_INSTRUCTION__OPERAND = 1;
+  int CMP_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Cmp Instruction</em>' class.
@@ -1593,7 +1955,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CMP_INSTRUCTION_FEATURE_COUNT = 2;
+  int CMP_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ClrInstructionImpl <em>Clr Instruction</em>}' class.
@@ -1603,7 +1965,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getClrInstruction()
    * @generated
    */
-  int CLR_INSTRUCTION = 43;
+  int CLR_INSTRUCTION = 45;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1615,13 +1977,22 @@ public interface AssemblerPackage extends EPackage
   int CLR_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CLR_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int CLR_INSTRUCTION__OPERAND = 1;
+  int CLR_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Clr Instruction</em>' class.
@@ -1630,7 +2001,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int CLR_INSTRUCTION_FEATURE_COUNT = 2;
+  int CLR_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BvsInstructionImpl <em>Bvs Instruction</em>}' class.
@@ -1640,7 +2011,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBvsInstruction()
    * @generated
    */
-  int BVS_INSTRUCTION = 44;
+  int BVS_INSTRUCTION = 46;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1652,13 +2023,22 @@ public interface AssemblerPackage extends EPackage
   int BVS_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BVS_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BVS_INSTRUCTION__OPERAND = 1;
+  int BVS_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bvs Instruction</em>' class.
@@ -1667,7 +2047,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BVS_INSTRUCTION_FEATURE_COUNT = 2;
+  int BVS_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BvcInstructionImpl <em>Bvc Instruction</em>}' class.
@@ -1677,7 +2057,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBvcInstruction()
    * @generated
    */
-  int BVC_INSTRUCTION = 45;
+  int BVC_INSTRUCTION = 47;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1689,13 +2069,22 @@ public interface AssemblerPackage extends EPackage
   int BVC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BVC_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BVC_INSTRUCTION__OPERAND = 1;
+  int BVC_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bvc Instruction</em>' class.
@@ -1704,7 +2093,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BVC_INSTRUCTION_FEATURE_COUNT = 2;
+  int BVC_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BsrInstructionImpl <em>Bsr Instruction</em>}' class.
@@ -1714,7 +2103,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBsrInstruction()
    * @generated
    */
-  int BSR_INSTRUCTION = 46;
+  int BSR_INSTRUCTION = 48;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1726,13 +2115,22 @@ public interface AssemblerPackage extends EPackage
   int BSR_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BSR_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BSR_INSTRUCTION__OPERAND = 1;
+  int BSR_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bsr Instruction</em>' class.
@@ -1741,7 +2139,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BSR_INSTRUCTION_FEATURE_COUNT = 2;
+  int BSR_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BrnInstructionImpl <em>Brn Instruction</em>}' class.
@@ -1751,7 +2149,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBrnInstruction()
    * @generated
    */
-  int BRN_INSTRUCTION = 47;
+  int BRN_INSTRUCTION = 49;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1763,13 +2161,22 @@ public interface AssemblerPackage extends EPackage
   int BRN_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BRN_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BRN_INSTRUCTION__OPERAND = 1;
+  int BRN_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Brn Instruction</em>' class.
@@ -1778,7 +2185,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BRN_INSTRUCTION_FEATURE_COUNT = 2;
+  int BRN_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BraInstructionImpl <em>Bra Instruction</em>}' class.
@@ -1788,7 +2195,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBraInstruction()
    * @generated
    */
-  int BRA_INSTRUCTION = 48;
+  int BRA_INSTRUCTION = 50;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1800,13 +2207,22 @@ public interface AssemblerPackage extends EPackage
   int BRA_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BRA_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BRA_INSTRUCTION__OPERAND = 1;
+  int BRA_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bra Instruction</em>' class.
@@ -1815,7 +2231,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BRA_INSTRUCTION_FEATURE_COUNT = 2;
+  int BRA_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BplInstructionImpl <em>Bpl Instruction</em>}' class.
@@ -1825,7 +2241,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBplInstruction()
    * @generated
    */
-  int BPL_INSTRUCTION = 49;
+  int BPL_INSTRUCTION = 51;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1837,13 +2253,22 @@ public interface AssemblerPackage extends EPackage
   int BPL_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BPL_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BPL_INSTRUCTION__OPERAND = 1;
+  int BPL_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bpl Instruction</em>' class.
@@ -1852,7 +2277,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BPL_INSTRUCTION_FEATURE_COUNT = 2;
+  int BPL_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BneInstructionImpl <em>Bne Instruction</em>}' class.
@@ -1862,7 +2287,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBneInstruction()
    * @generated
    */
-  int BNE_INSTRUCTION = 50;
+  int BNE_INSTRUCTION = 52;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1874,13 +2299,22 @@ public interface AssemblerPackage extends EPackage
   int BNE_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BNE_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BNE_INSTRUCTION__OPERAND = 1;
+  int BNE_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bne Instruction</em>' class.
@@ -1889,7 +2323,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BNE_INSTRUCTION_FEATURE_COUNT = 2;
+  int BNE_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BmiInstructionImpl <em>Bmi Instruction</em>}' class.
@@ -1899,7 +2333,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBmiInstruction()
    * @generated
    */
-  int BMI_INSTRUCTION = 51;
+  int BMI_INSTRUCTION = 53;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1911,13 +2345,22 @@ public interface AssemblerPackage extends EPackage
   int BMI_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BMI_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BMI_INSTRUCTION__OPERAND = 1;
+  int BMI_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bmi Instruction</em>' class.
@@ -1926,7 +2369,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BMI_INSTRUCTION_FEATURE_COUNT = 2;
+  int BMI_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BltInstructionImpl <em>Blt Instruction</em>}' class.
@@ -1936,7 +2379,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBltInstruction()
    * @generated
    */
-  int BLT_INSTRUCTION = 52;
+  int BLT_INSTRUCTION = 54;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1948,13 +2391,22 @@ public interface AssemblerPackage extends EPackage
   int BLT_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BLT_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BLT_INSTRUCTION__OPERAND = 1;
+  int BLT_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Blt Instruction</em>' class.
@@ -1963,7 +2415,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BLT_INSTRUCTION_FEATURE_COUNT = 2;
+  int BLT_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlsInstructionImpl <em>Bls Instruction</em>}' class.
@@ -1973,7 +2425,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBlsInstruction()
    * @generated
    */
-  int BLS_INSTRUCTION = 53;
+  int BLS_INSTRUCTION = 55;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -1985,13 +2437,22 @@ public interface AssemblerPackage extends EPackage
   int BLS_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BLS_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BLS_INSTRUCTION__OPERAND = 1;
+  int BLS_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bls Instruction</em>' class.
@@ -2000,7 +2461,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BLS_INSTRUCTION_FEATURE_COUNT = 2;
+  int BLS_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BloInstructionImpl <em>Blo Instruction</em>}' class.
@@ -2010,7 +2471,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBloInstruction()
    * @generated
    */
-  int BLO_INSTRUCTION = 54;
+  int BLO_INSTRUCTION = 56;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2022,13 +2483,22 @@ public interface AssemblerPackage extends EPackage
   int BLO_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BLO_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BLO_INSTRUCTION__OPERAND = 1;
+  int BLO_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Blo Instruction</em>' class.
@@ -2037,7 +2507,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BLO_INSTRUCTION_FEATURE_COUNT = 2;
+  int BLO_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BleInstructionImpl <em>Ble Instruction</em>}' class.
@@ -2047,7 +2517,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBleInstruction()
    * @generated
    */
-  int BLE_INSTRUCTION = 55;
+  int BLE_INSTRUCTION = 57;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2059,13 +2529,22 @@ public interface AssemblerPackage extends EPackage
   int BLE_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BLE_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BLE_INSTRUCTION__OPERAND = 1;
+  int BLE_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Ble Instruction</em>' class.
@@ -2074,7 +2553,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BLE_INSTRUCTION_FEATURE_COUNT = 2;
+  int BLE_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BitInstructionImpl <em>Bit Instruction</em>}' class.
@@ -2084,7 +2563,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBitInstruction()
    * @generated
    */
-  int BIT_INSTRUCTION = 56;
+  int BIT_INSTRUCTION = 58;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2096,13 +2575,22 @@ public interface AssemblerPackage extends EPackage
   int BIT_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BIT_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BIT_INSTRUCTION__OPERAND = 1;
+  int BIT_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bit Instruction</em>' class.
@@ -2111,7 +2599,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BIT_INSTRUCTION_FEATURE_COUNT = 2;
+  int BIT_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BhsInstructionImpl <em>Bhs Instruction</em>}' class.
@@ -2121,7 +2609,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBhsInstruction()
    * @generated
    */
-  int BHS_INSTRUCTION = 57;
+  int BHS_INSTRUCTION = 59;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2133,13 +2621,22 @@ public interface AssemblerPackage extends EPackage
   int BHS_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BHS_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BHS_INSTRUCTION__OPERAND = 1;
+  int BHS_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bhs Instruction</em>' class.
@@ -2148,7 +2645,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BHS_INSTRUCTION_FEATURE_COUNT = 2;
+  int BHS_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BhiInstructionImpl <em>Bhi Instruction</em>}' class.
@@ -2158,7 +2655,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBhiInstruction()
    * @generated
    */
-  int BHI_INSTRUCTION = 58;
+  int BHI_INSTRUCTION = 60;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2170,13 +2667,22 @@ public interface AssemblerPackage extends EPackage
   int BHI_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BHI_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BHI_INSTRUCTION__OPERAND = 1;
+  int BHI_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bhi Instruction</em>' class.
@@ -2185,7 +2691,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BHI_INSTRUCTION_FEATURE_COUNT = 2;
+  int BHI_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BgtInstructionImpl <em>Bgt Instruction</em>}' class.
@@ -2195,7 +2701,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBgtInstruction()
    * @generated
    */
-  int BGT_INSTRUCTION = 59;
+  int BGT_INSTRUCTION = 61;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2207,13 +2713,22 @@ public interface AssemblerPackage extends EPackage
   int BGT_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BGT_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BGT_INSTRUCTION__OPERAND = 1;
+  int BGT_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bgt Instruction</em>' class.
@@ -2222,7 +2737,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BGT_INSTRUCTION_FEATURE_COUNT = 2;
+  int BGT_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BgeInstructionImpl <em>Bge Instruction</em>}' class.
@@ -2232,7 +2747,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBgeInstruction()
    * @generated
    */
-  int BGE_INSTRUCTION = 60;
+  int BGE_INSTRUCTION = 62;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2244,13 +2759,22 @@ public interface AssemblerPackage extends EPackage
   int BGE_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BGE_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BGE_INSTRUCTION__OPERAND = 1;
+  int BGE_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bge Instruction</em>' class.
@@ -2259,7 +2783,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BGE_INSTRUCTION_FEATURE_COUNT = 2;
+  int BGE_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BeqInstructionImpl <em>Beq Instruction</em>}' class.
@@ -2269,7 +2793,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBeqInstruction()
    * @generated
    */
-  int BEQ_INSTRUCTION = 61;
+  int BEQ_INSTRUCTION = 63;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2281,13 +2805,22 @@ public interface AssemblerPackage extends EPackage
   int BEQ_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BEQ_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BEQ_INSTRUCTION__OPERAND = 1;
+  int BEQ_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Beq Instruction</em>' class.
@@ -2296,7 +2829,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BEQ_INSTRUCTION_FEATURE_COUNT = 2;
+  int BEQ_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BcsInstructionImpl <em>Bcs Instruction</em>}' class.
@@ -2306,7 +2839,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBcsInstruction()
    * @generated
    */
-  int BCS_INSTRUCTION = 62;
+  int BCS_INSTRUCTION = 64;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2318,13 +2851,22 @@ public interface AssemblerPackage extends EPackage
   int BCS_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BCS_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BCS_INSTRUCTION__OPERAND = 1;
+  int BCS_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bcs Instruction</em>' class.
@@ -2333,7 +2875,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BCS_INSTRUCTION_FEATURE_COUNT = 2;
+  int BCS_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BccInstructionImpl <em>Bcc Instruction</em>}' class.
@@ -2343,7 +2885,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBccInstruction()
    * @generated
    */
-  int BCC_INSTRUCTION = 63;
+  int BCC_INSTRUCTION = 65;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2355,13 +2897,22 @@ public interface AssemblerPackage extends EPackage
   int BCC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BCC_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BCC_INSTRUCTION__OPERAND = 1;
+  int BCC_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bcc Instruction</em>' class.
@@ -2370,7 +2921,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BCC_INSTRUCTION_FEATURE_COUNT = 2;
+  int BCC_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AsrInstructionImpl <em>Asr Instruction</em>}' class.
@@ -2380,7 +2931,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAsrInstruction()
    * @generated
    */
-  int ASR_INSTRUCTION = 64;
+  int ASR_INSTRUCTION = 66;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2392,13 +2943,22 @@ public interface AssemblerPackage extends EPackage
   int ASR_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASR_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASR_INSTRUCTION__OPERAND = 1;
+  int ASR_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Asr Instruction</em>' class.
@@ -2407,7 +2967,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASR_INSTRUCTION_FEATURE_COUNT = 2;
+  int ASR_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AslInstructionImpl <em>Asl Instruction</em>}' class.
@@ -2417,7 +2977,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAslInstruction()
    * @generated
    */
-  int ASL_INSTRUCTION = 65;
+  int ASL_INSTRUCTION = 67;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2429,13 +2989,22 @@ public interface AssemblerPackage extends EPackage
   int ASL_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ASL_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ASL_INSTRUCTION__OPERAND = 1;
+  int ASL_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Asl Instruction</em>' class.
@@ -2444,7 +3013,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ASL_INSTRUCTION_FEATURE_COUNT = 2;
+  int ASL_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndCCInstructionImpl <em>And CC Instruction</em>}' class.
@@ -2454,7 +3023,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAndCCInstruction()
    * @generated
    */
-  int AND_CC_INSTRUCTION = 66;
+  int AND_CC_INSTRUCTION = 68;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2466,13 +3035,22 @@ public interface AssemblerPackage extends EPackage
   int AND_CC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_CC_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AND_CC_INSTRUCTION__OPERAND = 1;
+  int AND_CC_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>And CC Instruction</em>' class.
@@ -2481,7 +3059,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AND_CC_INSTRUCTION_FEATURE_COUNT = 2;
+  int AND_CC_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndInstructionImpl <em>And Instruction</em>}' class.
@@ -2491,7 +3069,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAndInstruction()
    * @generated
    */
-  int AND_INSTRUCTION = 67;
+  int AND_INSTRUCTION = 69;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2503,13 +3081,22 @@ public interface AssemblerPackage extends EPackage
   int AND_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int AND_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int AND_INSTRUCTION__OPERAND = 1;
+  int AND_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>And Instruction</em>' class.
@@ -2518,7 +3105,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int AND_INSTRUCTION_FEATURE_COUNT = 2;
+  int AND_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdddInstructionImpl <em>Addd Instruction</em>}' class.
@@ -2528,7 +3115,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAdddInstruction()
    * @generated
    */
-  int ADDD_INSTRUCTION = 68;
+  int ADDD_INSTRUCTION = 70;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2540,13 +3127,22 @@ public interface AssemblerPackage extends EPackage
   int ADDD_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADDD_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ADDD_INSTRUCTION__OPERAND = 1;
+  int ADDD_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Addd Instruction</em>' class.
@@ -2555,7 +3151,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADDD_INSTRUCTION_FEATURE_COUNT = 2;
+  int ADDD_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AddInstructionImpl <em>Add Instruction</em>}' class.
@@ -2565,7 +3161,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddInstruction()
    * @generated
    */
-  int ADD_INSTRUCTION = 69;
+  int ADD_INSTRUCTION = 71;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2577,13 +3173,22 @@ public interface AssemblerPackage extends EPackage
   int ADD_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADD_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ADD_INSTRUCTION__OPERAND = 1;
+  int ADD_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Add Instruction</em>' class.
@@ -2592,7 +3197,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADD_INSTRUCTION_FEATURE_COUNT = 2;
+  int ADD_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdcInstructionImpl <em>Adc Instruction</em>}' class.
@@ -2602,7 +3207,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAdcInstruction()
    * @generated
    */
-  int ADC_INSTRUCTION = 70;
+  int ADC_INSTRUCTION = 72;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2614,13 +3219,22 @@ public interface AssemblerPackage extends EPackage
   int ADC_INSTRUCTION__INSTRUCTION = 0;
 
   /**
+   * The feature id for the '<em><b>Ws Operand</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ADC_INSTRUCTION__WS_OPERAND = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ADC_INSTRUCTION__OPERAND = 1;
+  int ADC_INSTRUCTION__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Adc Instruction</em>' class.
@@ -2629,7 +3243,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ADC_INSTRUCTION_FEATURE_COUNT = 2;
+  int ADC_INSTRUCTION_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AbxInstructionImpl <em>Abx Instruction</em>}' class.
@@ -2639,7 +3253,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAbxInstruction()
    * @generated
    */
-  int ABX_INSTRUCTION = 71;
+  int ABX_INSTRUCTION = 73;
 
   /**
    * The feature id for the '<em><b>Instruction</b></em>' attribute.
@@ -2667,7 +3281,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExtendedIndirectOperand()
    * @generated
    */
-  int EXTENDED_INDIRECT_OPERAND = 72;
+  int EXTENDED_INDIRECT_OPERAND = 74;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -2695,7 +3309,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExtendedOperand()
    * @generated
    */
-  int EXTENDED_OPERAND = 73;
+  int EXTENDED_OPERAND = 75;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -2723,7 +3337,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectOperand()
    * @generated
    */
-  int DIRECT_OPERAND = 74;
+  int DIRECT_OPERAND = 76;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -2751,7 +3365,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getImmediatOperand()
    * @generated
    */
-  int IMMEDIAT_OPERAND = 75;
+  int IMMEDIAT_OPERAND = 77;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -2779,7 +3393,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIndexedOperand()
    * @generated
    */
-  int INDEXED_OPERAND = 76;
+  int INDEXED_OPERAND = 78;
 
   /**
    * The feature id for the '<em><b>Mode</b></em>' containment reference.
@@ -2807,7 +3421,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getConstantIndexedMode()
    * @generated
    */
-  int CONSTANT_INDEXED_MODE = 77;
+  int CONSTANT_INDEXED_MODE = 79;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
@@ -2844,7 +3458,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getConstantIndexedMovingIndirectMode()
    * @generated
    */
-  int CONSTANT_INDEXED_MOVING_INDIRECT_MODE = 78;
+  int CONSTANT_INDEXED_MOVING_INDIRECT_MODE = 80;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
@@ -2881,7 +3495,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAccumulatorMovingMode()
    * @generated
    */
-  int ACCUMULATOR_MOVING_MODE = 79;
+  int ACCUMULATOR_MOVING_MODE = 81;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' attribute.
@@ -2918,7 +3532,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAccumulatorMovingIndirectMode()
    * @generated
    */
-  int ACCUMULATOR_MOVING_INDIRECT_MODE = 80;
+  int ACCUMULATOR_MOVING_INDIRECT_MODE = 82;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' attribute.
@@ -2955,7 +3569,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAutoIncDecMode()
    * @generated
    */
-  int AUTO_INC_DEC_MODE = 81;
+  int AUTO_INC_DEC_MODE = 83;
 
   /**
    * The feature id for the '<em><b>Decrement</b></em>' attribute.
@@ -3001,7 +3615,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAutoIncDecIndirectMode()
    * @generated
    */
-  int AUTO_INC_DEC_INDIRECT_MODE = 82;
+  int AUTO_INC_DEC_INDIRECT_MODE = 84;
 
   /**
    * The feature id for the '<em><b>Decrement</b></em>' attribute.
@@ -3047,7 +3661,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelatifToPCMode()
    * @generated
    */
-  int RELATIF_TO_PC_MODE = 83;
+  int RELATIF_TO_PC_MODE = 85;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
@@ -3084,7 +3698,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelatifToPCIndirectMode()
    * @generated
    */
-  int RELATIF_TO_PC_INDIRECT_MODE = 84;
+  int RELATIF_TO_PC_INDIRECT_MODE = 86;
 
   /**
    * The feature id for the '<em><b>Deplacement</b></em>' containment reference.
@@ -3121,7 +3735,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelativeMode()
    * @generated
    */
-  int RELATIVE_MODE = 85;
+  int RELATIVE_MODE = 87;
 
   /**
    * The feature id for the '<em><b>Is Pc Relative</b></em>' attribute.
@@ -3158,16 +3772,16 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectiveLine()
    * @generated
    */
-  int DIRECTIVE_LINE = 86;
+  int DIRECTIVE_LINE = 88;
 
   /**
-   * The feature id for the '<em><b>Name</b></em>' containment reference.
+   * The feature id for the '<em><b>Label</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DIRECTIVE_LINE__NAME = 0;
+  int DIRECTIVE_LINE__LABEL = 0;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' containment reference.
@@ -3204,7 +3818,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSetDPDirective()
    * @generated
    */
-  int SET_DP_DIRECTIVE = 87;
+  int SET_DP_DIRECTIVE = 89;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3241,7 +3855,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFccDirective()
    * @generated
    */
-  int FCC_DIRECTIVE = 88;
+  int FCC_DIRECTIVE = 90;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3278,7 +3892,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRegDirective()
    * @generated
    */
-  int REG_DIRECTIVE = 89;
+  int REG_DIRECTIVE = 91;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3315,7 +3929,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSpcDirective()
    * @generated
    */
-  int SPC_DIRECTIVE = 90;
+  int SPC_DIRECTIVE = 92;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3361,7 +3975,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNamDirective()
    * @generated
    */
-  int NAM_DIRECTIVE = 91;
+  int NAM_DIRECTIVE = 93;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3398,7 +4012,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPagDirective()
    * @generated
    */
-  int PAG_DIRECTIVE = 92;
+  int PAG_DIRECTIVE = 94;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3435,7 +4049,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOptDirective()
    * @generated
    */
-  int OPT_DIRECTIVE = 93;
+  int OPT_DIRECTIVE = 95;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3472,7 +4086,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFailDirective()
    * @generated
    */
-  int FAIL_DIRECTIVE = 94;
+  int FAIL_DIRECTIVE = 96;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3500,7 +4114,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSetDirective()
    * @generated
    */
-  int SET_DIRECTIVE = 95;
+  int SET_DIRECTIVE = 97;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3546,7 +4160,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFillDirective()
    * @generated
    */
-  int FILL_DIRECTIVE = 96;
+  int FILL_DIRECTIVE = 98;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3592,7 +4206,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBszDirective()
    * @generated
    */
-  int BSZ_DIRECTIVE = 97;
+  int BSZ_DIRECTIVE = 99;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3629,7 +4243,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFdbDirective()
    * @generated
    */
-  int FDB_DIRECTIVE = 98;
+  int FDB_DIRECTIVE = 100;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3666,7 +4280,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFcbDirective()
    * @generated
    */
-  int FCB_DIRECTIVE = 99;
+  int FCB_DIRECTIVE = 101;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3703,7 +4317,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRmbDirective()
    * @generated
    */
-  int RMB_DIRECTIVE = 100;
+  int RMB_DIRECTIVE = 102;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3749,7 +4363,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEndDirective()
    * @generated
    */
-  int END_DIRECTIVE = 101;
+  int END_DIRECTIVE = 103;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3786,7 +4400,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrgDirective()
    * @generated
    */
-  int ORG_DIRECTIVE = 102;
+  int ORG_DIRECTIVE = 104;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3832,7 +4446,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEquDirective()
    * @generated
    */
-  int EQU_DIRECTIVE = 103;
+  int EQU_DIRECTIVE = 105;
 
   /**
    * The feature id for the '<em><b>Directive</b></em>' attribute.
@@ -3878,7 +4492,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getListOfExpression()
    * @generated
    */
-  int LIST_OF_EXPRESSION = 104;
+  int LIST_OF_EXPRESSION = 106;
 
   /**
    * The feature id for the '<em><b>Expression</b></em>' containment reference.
@@ -3915,7 +4529,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCommaExpression()
    * @generated
    */
-  int COMMA_EXPRESSION = 105;
+  int COMMA_EXPRESSION = 107;
 
   /**
    * The feature id for the '<em><b>Comma</b></em>' attribute.
@@ -3952,7 +4566,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpression()
    * @generated
    */
-  int EXPRESSION = 106;
+  int EXPRESSION = 108;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -3989,7 +4603,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNumericalValue()
    * @generated
    */
-  int NUMERICAL_VALUE = 107;
+  int NUMERICAL_VALUE = 109;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
@@ -4017,7 +4631,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifierValue()
    * @generated
    */
-  int IDENTIFIER_VALUE = 108;
+  int IDENTIFIER_VALUE = 110;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4045,7 +4659,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStringValue()
    * @generated
    */
-  int STRING_VALUE = 109;
+  int STRING_VALUE = 111;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4073,7 +4687,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecimalValue()
    * @generated
    */
-  int DECIMAL_VALUE = 110;
+  int DECIMAL_VALUE = 112;
 
   /**
    * The feature id for the '<em><b>Sign</b></em>' attribute.
@@ -4110,7 +4724,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getHexaDecimalValue()
    * @generated
    */
-  int HEXA_DECIMAL_VALUE = 111;
+  int HEXA_DECIMAL_VALUE = 113;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4138,7 +4752,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOctalValue()
    * @generated
    */
-  int OCTAL_VALUE = 112;
+  int OCTAL_VALUE = 114;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4166,7 +4780,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBinaryValue()
    * @generated
    */
-  int BINARY_VALUE = 113;
+  int BINARY_VALUE = 115;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4194,7 +4808,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCharacterValue()
    * @generated
    */
-  int CHARACTER_VALUE = 114;
+  int CHARACTER_VALUE = 116;
 
   /**
    * The feature id for the '<em><b>Value</b></em>' attribute.
@@ -4222,7 +4836,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMultiplication()
    * @generated
    */
-  int MULTIPLICATION = 115;
+  int MULTIPLICATION = 117;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4286,7 +4900,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDivision()
    * @generated
    */
-  int DIVISION = 116;
+  int DIVISION = 118;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4350,7 +4964,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getModulo()
    * @generated
    */
-  int MODULO = 117;
+  int MODULO = 119;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4414,7 +5028,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddition()
    * @generated
    */
-  int ADDITION = 118;
+  int ADDITION = 120;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4469,7 +5083,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubstraction()
    * @generated
    */
-  int SUBSTRACTION = 119;
+  int SUBSTRACTION = 121;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4524,7 +5138,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeftShift()
    * @generated
    */
-  int LEFT_SHIFT = 120;
+  int LEFT_SHIFT = 122;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4579,7 +5193,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRightShift()
    * @generated
    */
-  int RIGHT_SHIFT = 121;
+  int RIGHT_SHIFT = 123;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4634,7 +5248,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAnd()
    * @generated
    */
-  int AND = 122;
+  int AND = 124;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4689,7 +5303,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOr()
    * @generated
    */
-  int OR = 123;
+  int OR = 125;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4744,7 +5358,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getXor()
    * @generated
    */
-  int XOR = 124;
+  int XOR = 126;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4799,7 +5413,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNot()
    * @generated
    */
-  int NOT = 125;
+  int NOT = 127;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4836,7 +5450,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAssemblyOption()
    * @generated
    */
-  int ASSEMBLY_OPTION = 126;
+  int ASSEMBLY_OPTION = 128;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.Register <em>Register</em>}' enum.
@@ -4846,7 +5460,7 @@ public interface AssemblerPackage extends EPackage
    * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRegister()
    * @generated
    */
-  int REGISTER = 127;
+  int REGISTER = 129;
 
 
   /**
@@ -4890,6 +5504,60 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EReference getSourceLine_LineContent();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine <em>Label Line</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Label Line</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelLine
+   * @generated
+   */
+  EClass getLabelLine();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getLabel <em>Label</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Label</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getLabel()
+   * @see #getLabelLine()
+   * @generated
+   */
+  EReference getLabelLine_Label();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs1 <em>Ws1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws1</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs1()
+   * @see #getLabelLine()
+   * @generated
+   */
+  EAttribute getLabelLine_Ws1();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getComment <em>Comment</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getComment()
+   * @see #getLabelLine()
+   * @generated
+   */
+  EAttribute getLabelLine_Comment();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs2 <em>Ws2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws2</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs2()
+   * @see #getLabelLine()
+   * @generated
+   */
+  EAttribute getLabelLine_Ws2();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.BlankLine <em>Blank Line</em>}'.
@@ -4955,15 +5623,26 @@ public interface AssemblerPackage extends EPackage
   EClass getInstructionLine();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getName <em>Name</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getLabel <em>Label</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getName()
+   * @return the meta object for the containment reference '<em>Label</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getLabel()
    * @see #getInstructionLine()
    * @generated
    */
-  EReference getInstructionLine_Name();
+  EReference getInstructionLine_Label();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getWs1 <em>Ws1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws1</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getWs1()
+   * @see #getInstructionLine()
+   * @generated
+   */
+  EAttribute getInstructionLine_Ws1();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getInstruction <em>Instruction</em>}'.
@@ -4977,6 +5656,17 @@ public interface AssemblerPackage extends EPackage
   EReference getInstructionLine_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getWs2 <em>Ws2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws2</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getWs2()
+   * @see #getInstructionLine()
+   * @generated
+   */
+  EAttribute getInstructionLine_Ws2();
+
+  /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.InstructionLine#getComment <em>Comment</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -4986,6 +5676,38 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getInstructionLine_Comment();
+
+  /**
+   * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.Label <em>Label</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Label</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Label
+   * @generated
+   */
+  EClass getLabel();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.Label#getName <em>Name</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Label#getName()
+   * @see #getLabel()
+   * @generated
+   */
+  EReference getLabel_Name();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.Label#isPoint <em>Point</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Point</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.Label#isPoint()
+   * @see #getLabel()
+   * @generated
+   */
+  EAttribute getLabel_Point();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.TstInstruction <em>Tst Instruction</em>}'.
@@ -5007,6 +5729,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getTstInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.TstInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.TstInstruction#getWsOperand()
+   * @see #getTstInstruction()
+   * @generated
+   */
+  EAttribute getTstInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.TstInstruction#getOperand <em>Operand</em>}'.
@@ -5039,6 +5772,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getTfrInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getWsOperand()
+   * @see #getTfrInstruction()
+   * @generated
+   */
+  EAttribute getTfrInstruction_WsOperand();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction#getReg1 <em>Reg1</em>}'.
@@ -5168,6 +5912,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getSubdInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction#getWsOperand()
+   * @see #getSubdInstruction()
+   * @generated
+   */
+  EAttribute getSubdInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5200,6 +5955,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getSubInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SubInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SubInstruction#getWsOperand()
+   * @see #getSubInstruction()
+   * @generated
+   */
+  EAttribute getSubInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SubInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5230,6 +5996,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getStInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getWsOperand()
+   * @see #getStInstruction()
+   * @generated
+   */
+  EAttribute getStInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.StInstruction#getOperand <em>Operand</em>}'.
@@ -5283,6 +6060,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getSbcInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction#getWsOperand()
+   * @see #getSbcInstruction()
+   * @generated
+   */
+  EAttribute getSbcInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction#getOperand <em>Operand</em>}'.
@@ -5359,6 +6147,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getRorInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RorInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RorInstruction#getWsOperand()
+   * @see #getRorInstruction()
+   * @generated
+   */
+  EAttribute getRorInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RorInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5391,6 +6190,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getRolInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RolInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RolInstruction#getWsOperand()
+   * @see #getRolInstruction()
+   * @generated
+   */
+  EAttribute getRolInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.RolInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5421,6 +6231,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getPuluInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction#getWsOperand()
+   * @see #getPuluInstruction()
+   * @generated
+   */
+  EAttribute getPuluInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction#getOperand <em>Operand</em>}'.
@@ -5466,6 +6287,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getPulsInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction#getWsOperand()
+   * @see #getPulsInstruction()
+   * @generated
+   */
+  EAttribute getPulsInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5507,6 +6339,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getPshuInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction#getWsOperand()
+   * @see #getPshuInstruction()
+   * @generated
+   */
+  EAttribute getPshuInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction#getOperand <em>Operand</em>}'.
@@ -5552,6 +6395,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getPshsInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getWsOperand()
+   * @see #getPshsInstruction()
+   * @generated
+   */
+  EAttribute getPshsInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5595,6 +6449,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getOrCCInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getWsOperand()
+   * @see #getOrCCInstruction()
+   * @generated
+   */
+  EAttribute getOrCCInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5625,6 +6490,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getOrInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OrInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OrInstruction#getWsOperand()
+   * @see #getOrInstruction()
+   * @generated
+   */
+  EAttribute getOrInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.OrInstruction#getOperand <em>Operand</em>}'.
@@ -5680,6 +6556,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getNegInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.NegInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.NegInstruction#getWsOperand()
+   * @see #getNegInstruction()
+   * @generated
+   */
+  EAttribute getNegInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.NegInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5733,6 +6620,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getLsrInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction#getWsOperand()
+   * @see #getLsrInstruction()
+   * @generated
+   */
+  EAttribute getLsrInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5763,6 +6661,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getLslInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LslInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LslInstruction#getWsOperand()
+   * @see #getLslInstruction()
+   * @generated
+   */
+  EAttribute getLslInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.LslInstruction#getOperand <em>Operand</em>}'.
@@ -5797,6 +6706,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getLeaInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction#getWsOperand()
+   * @see #getLeaInstruction()
+   * @generated
+   */
+  EAttribute getLeaInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5827,6 +6747,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getLdInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LdInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.LdInstruction#getWsOperand()
+   * @see #getLdInstruction()
+   * @generated
+   */
+  EAttribute getLdInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.LdInstruction#getOperand <em>Operand</em>}'.
@@ -5861,6 +6792,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getJsrInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction#getWsOperand()
+   * @see #getJsrInstruction()
+   * @generated
+   */
+  EAttribute getJsrInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5891,6 +6833,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getJmpInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction#getWsOperand()
+   * @see #getJmpInstruction()
+   * @generated
+   */
+  EAttribute getJmpInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction#getOperand <em>Operand</em>}'.
@@ -5925,6 +6878,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getIncInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.IncInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.IncInstruction#getWsOperand()
+   * @see #getIncInstruction()
+   * @generated
+   */
+  EAttribute getIncInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.IncInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5955,6 +6919,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getExgInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction#getWsOperand()
+   * @see #getExgInstruction()
+   * @generated
+   */
+  EAttribute getExgInstruction_WsOperand();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction#getReg1 <em>Reg1</em>}'.
@@ -6000,6 +6975,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getEorInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EorInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EorInstruction#getWsOperand()
+   * @see #getEorInstruction()
+   * @generated
+   */
+  EAttribute getEorInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.EorInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6030,6 +7016,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getDecInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.DecInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DecInstruction#getWsOperand()
+   * @see #getDecInstruction()
+   * @generated
+   */
+  EAttribute getDecInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.DecInstruction#getOperand <em>Operand</em>}'.
@@ -6085,6 +7082,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getCwaiInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction#getWsOperand()
+   * @see #getCwaiInstruction()
+   * @generated
+   */
+  EAttribute getCwaiInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6115,6 +7123,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getComInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.ComInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ComInstruction#getWsOperand()
+   * @see #getComInstruction()
+   * @generated
+   */
+  EAttribute getComInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.ComInstruction#getOperand <em>Operand</em>}'.
@@ -6149,6 +7168,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getCmpInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction#getWsOperand()
+   * @see #getCmpInstruction()
+   * @generated
+   */
+  EAttribute getCmpInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6179,6 +7209,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getClrInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction#getWsOperand()
+   * @see #getClrInstruction()
+   * @generated
+   */
+  EAttribute getClrInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction#getOperand <em>Operand</em>}'.
@@ -6213,6 +7254,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBvsInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction#getWsOperand()
+   * @see #getBvsInstruction()
+   * @generated
+   */
+  EAttribute getBvsInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6243,6 +7295,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getBvcInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction#getWsOperand()
+   * @see #getBvcInstruction()
+   * @generated
+   */
+  EAttribute getBvcInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction#getOperand <em>Operand</em>}'.
@@ -6277,6 +7340,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBsrInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction#getWsOperand()
+   * @see #getBsrInstruction()
+   * @generated
+   */
+  EAttribute getBsrInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6307,6 +7381,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getBrnInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction#getWsOperand()
+   * @see #getBrnInstruction()
+   * @generated
+   */
+  EAttribute getBrnInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction#getOperand <em>Operand</em>}'.
@@ -6341,6 +7426,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBraInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BraInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BraInstruction#getWsOperand()
+   * @see #getBraInstruction()
+   * @generated
+   */
+  EAttribute getBraInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BraInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6371,6 +7467,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getBplInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BplInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BplInstruction#getWsOperand()
+   * @see #getBplInstruction()
+   * @generated
+   */
+  EAttribute getBplInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BplInstruction#getOperand <em>Operand</em>}'.
@@ -6405,6 +7512,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBneInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BneInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BneInstruction#getWsOperand()
+   * @see #getBneInstruction()
+   * @generated
+   */
+  EAttribute getBneInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BneInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6435,6 +7553,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getBmiInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BmiInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BmiInstruction#getWsOperand()
+   * @see #getBmiInstruction()
+   * @generated
+   */
+  EAttribute getBmiInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BmiInstruction#getOperand <em>Operand</em>}'.
@@ -6469,6 +7598,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBltInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BltInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BltInstruction#getWsOperand()
+   * @see #getBltInstruction()
+   * @generated
+   */
+  EAttribute getBltInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BltInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6499,6 +7639,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getBlsInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BlsInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BlsInstruction#getWsOperand()
+   * @see #getBlsInstruction()
+   * @generated
+   */
+  EAttribute getBlsInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BlsInstruction#getOperand <em>Operand</em>}'.
@@ -6533,6 +7684,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBloInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BloInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BloInstruction#getWsOperand()
+   * @see #getBloInstruction()
+   * @generated
+   */
+  EAttribute getBloInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BloInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6563,6 +7725,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getBleInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BleInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BleInstruction#getWsOperand()
+   * @see #getBleInstruction()
+   * @generated
+   */
+  EAttribute getBleInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BleInstruction#getOperand <em>Operand</em>}'.
@@ -6597,6 +7770,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBitInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BitInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BitInstruction#getWsOperand()
+   * @see #getBitInstruction()
+   * @generated
+   */
+  EAttribute getBitInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BitInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6627,6 +7811,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getBhsInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction#getWsOperand()
+   * @see #getBhsInstruction()
+   * @generated
+   */
+  EAttribute getBhsInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction#getOperand <em>Operand</em>}'.
@@ -6661,6 +7856,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBhiInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction#getWsOperand()
+   * @see #getBhiInstruction()
+   * @generated
+   */
+  EAttribute getBhiInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6691,6 +7897,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getBgtInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction#getWsOperand()
+   * @see #getBgtInstruction()
+   * @generated
+   */
+  EAttribute getBgtInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction#getOperand <em>Operand</em>}'.
@@ -6725,6 +7942,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBgeInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction#getWsOperand()
+   * @see #getBgeInstruction()
+   * @generated
+   */
+  EAttribute getBgeInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6755,6 +7983,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getBeqInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction#getWsOperand()
+   * @see #getBeqInstruction()
+   * @generated
+   */
+  EAttribute getBeqInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction#getOperand <em>Operand</em>}'.
@@ -6789,6 +8028,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBcsInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction#getWsOperand()
+   * @see #getBcsInstruction()
+   * @generated
+   */
+  EAttribute getBcsInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6819,6 +8069,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getBccInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BccInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BccInstruction#getWsOperand()
+   * @see #getBccInstruction()
+   * @generated
+   */
+  EAttribute getBccInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BccInstruction#getOperand <em>Operand</em>}'.
@@ -6853,6 +8114,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getAsrInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction#getWsOperand()
+   * @see #getAsrInstruction()
+   * @generated
+   */
+  EAttribute getAsrInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6883,6 +8155,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getAslInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AslInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AslInstruction#getWsOperand()
+   * @see #getAslInstruction()
+   * @generated
+   */
+  EAttribute getAslInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AslInstruction#getOperand <em>Operand</em>}'.
@@ -6917,6 +8200,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getAndCCInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction#getWsOperand()
+   * @see #getAndCCInstruction()
+   * @generated
+   */
+  EAttribute getAndCCInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -6947,6 +8241,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getAndInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getWsOperand()
+   * @see #getAndInstruction()
+   * @generated
+   */
+  EAttribute getAndInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AndInstruction#getOperand <em>Operand</em>}'.
@@ -6981,6 +8286,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getAdddInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction#getWsOperand()
+   * @see #getAdddInstruction()
+   * @generated
+   */
+  EAttribute getAdddInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -7013,6 +8329,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getAddInstruction_Instruction();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AddInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AddInstruction#getWsOperand()
+   * @see #getAddInstruction()
+   * @generated
+   */
+  EAttribute getAddInstruction_WsOperand();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AddInstruction#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -7043,6 +8370,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getAdcInstruction_Instruction();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getWsOperand <em>Ws Operand</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws Operand</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getWsOperand()
+   * @see #getAdcInstruction()
+   * @generated
+   */
+  EAttribute getAdcInstruction_WsOperand();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction#getOperand <em>Operand</em>}'.
@@ -7502,15 +8840,15 @@ public interface AssemblerPackage extends EPackage
   EClass getDirectiveLine();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getName <em>Name</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getLabel <em>Label</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Name</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getName()
+   * @return the meta object for the containment reference '<em>Label</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getLabel()
    * @see #getDirectiveLine()
    * @generated
    */
-  EReference getDirectiveLine_Name();
+  EReference getDirectiveLine_Label();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getDirective <em>Directive</em>}'.
@@ -8851,6 +10189,48 @@ public interface AssemblerPackage extends EPackage
     EReference SOURCE_LINE__LINE_CONTENT = eINSTANCE.getSourceLine_LineContent();
 
     /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl <em>Label Line</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLabelLine()
+     * @generated
+     */
+    EClass LABEL_LINE = eINSTANCE.getLabelLine();
+
+    /**
+     * The meta object literal for the '<em><b>Label</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LABEL_LINE__LABEL = eINSTANCE.getLabelLine_Label();
+
+    /**
+     * The meta object literal for the '<em><b>Ws1</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LABEL_LINE__WS1 = eINSTANCE.getLabelLine_Ws1();
+
+    /**
+     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LABEL_LINE__COMMENT = eINSTANCE.getLabelLine_Comment();
+
+    /**
+     * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LABEL_LINE__WS2 = eINSTANCE.getLabelLine_Ws2();
+
+    /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl <em>Blank Line</em>}' class.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -8905,12 +10285,20 @@ public interface AssemblerPackage extends EPackage
     EClass INSTRUCTION_LINE = eINSTANCE.getInstructionLine();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Label</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference INSTRUCTION_LINE__NAME = eINSTANCE.getInstructionLine_Name();
+    EReference INSTRUCTION_LINE__LABEL = eINSTANCE.getInstructionLine_Label();
+
+    /**
+     * The meta object literal for the '<em><b>Ws1</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INSTRUCTION_LINE__WS1 = eINSTANCE.getInstructionLine_Ws1();
 
     /**
      * The meta object literal for the '<em><b>Instruction</b></em>' containment reference feature.
@@ -8921,12 +10309,46 @@ public interface AssemblerPackage extends EPackage
     EReference INSTRUCTION_LINE__INSTRUCTION = eINSTANCE.getInstructionLine_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INSTRUCTION_LINE__WS2 = eINSTANCE.getInstructionLine_Ws2();
+
+    /**
      * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EAttribute INSTRUCTION_LINE__COMMENT = eINSTANCE.getInstructionLine_Comment();
+
+    /**
+     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelImpl <em>Label</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LabelImpl
+     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLabel()
+     * @generated
+     */
+    EClass LABEL = eINSTANCE.getLabel();
+
+    /**
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference LABEL__NAME = eINSTANCE.getLabel_Name();
+
+    /**
+     * The meta object literal for the '<em><b>Point</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LABEL__POINT = eINSTANCE.getLabel_Point();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TstInstructionImpl <em>Tst Instruction</em>}' class.
@@ -8945,6 +10367,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute TST_INSTRUCTION__INSTRUCTION = eINSTANCE.getTstInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TST_INSTRUCTION__WS_OPERAND = eINSTANCE.getTstInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -8971,6 +10401,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute TFR_INSTRUCTION__INSTRUCTION = eINSTANCE.getTfrInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute TFR_INSTRUCTION__WS_OPERAND = eINSTANCE.getTfrInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Reg1</b></em>' attribute feature.
@@ -9079,6 +10517,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute SUBD_INSTRUCTION__INSTRUCTION = eINSTANCE.getSubdInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SUBD_INSTRUCTION__WS_OPERAND = eINSTANCE.getSubdInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9105,6 +10551,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute SUB_INSTRUCTION__INSTRUCTION = eINSTANCE.getSubInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SUB_INSTRUCTION__WS_OPERAND = eINSTANCE.getSubInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9129,6 +10583,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute ST_INSTRUCTION__INSTRUCTION = eINSTANCE.getStInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ST_INSTRUCTION__WS_OPERAND = eINSTANCE.getStInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9173,6 +10635,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute SBC_INSTRUCTION__INSTRUCTION = eINSTANCE.getSbcInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute SBC_INSTRUCTION__WS_OPERAND = eINSTANCE.getSbcInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9237,6 +10707,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute ROR_INSTRUCTION__INSTRUCTION = eINSTANCE.getRorInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ROR_INSTRUCTION__WS_OPERAND = eINSTANCE.getRorInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9263,6 +10741,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute ROL_INSTRUCTION__INSTRUCTION = eINSTANCE.getRolInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ROL_INSTRUCTION__WS_OPERAND = eINSTANCE.getRolInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9287,6 +10773,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute PULU_INSTRUCTION__INSTRUCTION = eINSTANCE.getPuluInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PULU_INSTRUCTION__WS_OPERAND = eINSTANCE.getPuluInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9323,6 +10817,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute PULS_INSTRUCTION__INSTRUCTION = eINSTANCE.getPulsInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PULS_INSTRUCTION__WS_OPERAND = eINSTANCE.getPulsInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9355,6 +10857,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute PSHU_INSTRUCTION__INSTRUCTION = eINSTANCE.getPshuInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PSHU_INSTRUCTION__WS_OPERAND = eINSTANCE.getPshuInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9391,6 +10901,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute PSHS_INSTRUCTION__INSTRUCTION = eINSTANCE.getPshsInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute PSHS_INSTRUCTION__WS_OPERAND = eINSTANCE.getPshsInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9425,6 +10943,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute OR_CC_INSTRUCTION__INSTRUCTION = eINSTANCE.getOrCCInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OR_CC_INSTRUCTION__WS_OPERAND = eINSTANCE.getOrCCInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9449,6 +10975,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute OR_INSTRUCTION__INSTRUCTION = eINSTANCE.getOrInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute OR_INSTRUCTION__WS_OPERAND = eINSTANCE.getOrInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9495,6 +11029,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute NEG_INSTRUCTION__INSTRUCTION = eINSTANCE.getNegInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute NEG_INSTRUCTION__WS_OPERAND = eINSTANCE.getNegInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9539,6 +11081,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute LSR_INSTRUCTION__INSTRUCTION = eINSTANCE.getLsrInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LSR_INSTRUCTION__WS_OPERAND = eINSTANCE.getLsrInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9563,6 +11113,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute LSL_INSTRUCTION__INSTRUCTION = eINSTANCE.getLslInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LSL_INSTRUCTION__WS_OPERAND = eINSTANCE.getLslInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9591,6 +11149,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute LEA_INSTRUCTION__INSTRUCTION = eINSTANCE.getLeaInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LEA_INSTRUCTION__WS_OPERAND = eINSTANCE.getLeaInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9615,6 +11181,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute LD_INSTRUCTION__INSTRUCTION = eINSTANCE.getLdInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LD_INSTRUCTION__WS_OPERAND = eINSTANCE.getLdInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9643,6 +11217,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute JSR_INSTRUCTION__INSTRUCTION = eINSTANCE.getJsrInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute JSR_INSTRUCTION__WS_OPERAND = eINSTANCE.getJsrInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9667,6 +11249,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute JMP_INSTRUCTION__INSTRUCTION = eINSTANCE.getJmpInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute JMP_INSTRUCTION__WS_OPERAND = eINSTANCE.getJmpInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9695,6 +11285,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute INC_INSTRUCTION__INSTRUCTION = eINSTANCE.getIncInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute INC_INSTRUCTION__WS_OPERAND = eINSTANCE.getIncInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9719,6 +11317,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute EXG_INSTRUCTION__INSTRUCTION = eINSTANCE.getExgInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EXG_INSTRUCTION__WS_OPERAND = eINSTANCE.getExgInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Reg1</b></em>' attribute feature.
@@ -9755,6 +11361,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute EOR_INSTRUCTION__INSTRUCTION = eINSTANCE.getEorInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EOR_INSTRUCTION__WS_OPERAND = eINSTANCE.getEorInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9779,6 +11393,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute DEC_INSTRUCTION__INSTRUCTION = eINSTANCE.getDecInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DEC_INSTRUCTION__WS_OPERAND = eINSTANCE.getDecInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9825,6 +11447,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute CWAI_INSTRUCTION__INSTRUCTION = eINSTANCE.getCwaiInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CWAI_INSTRUCTION__WS_OPERAND = eINSTANCE.getCwaiInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9849,6 +11479,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute COM_INSTRUCTION__INSTRUCTION = eINSTANCE.getComInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute COM_INSTRUCTION__WS_OPERAND = eINSTANCE.getComInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9877,6 +11515,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute CMP_INSTRUCTION__INSTRUCTION = eINSTANCE.getCmpInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CMP_INSTRUCTION__WS_OPERAND = eINSTANCE.getCmpInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9901,6 +11547,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute CLR_INSTRUCTION__INSTRUCTION = eINSTANCE.getClrInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CLR_INSTRUCTION__WS_OPERAND = eINSTANCE.getClrInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9929,6 +11583,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute BVS_INSTRUCTION__INSTRUCTION = eINSTANCE.getBvsInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BVS_INSTRUCTION__WS_OPERAND = eINSTANCE.getBvsInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -9953,6 +11615,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute BVC_INSTRUCTION__INSTRUCTION = eINSTANCE.getBvcInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BVC_INSTRUCTION__WS_OPERAND = eINSTANCE.getBvcInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -9981,6 +11651,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute BSR_INSTRUCTION__INSTRUCTION = eINSTANCE.getBsrInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BSR_INSTRUCTION__WS_OPERAND = eINSTANCE.getBsrInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10005,6 +11683,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute BRN_INSTRUCTION__INSTRUCTION = eINSTANCE.getBrnInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BRN_INSTRUCTION__WS_OPERAND = eINSTANCE.getBrnInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10033,6 +11719,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute BRA_INSTRUCTION__INSTRUCTION = eINSTANCE.getBraInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BRA_INSTRUCTION__WS_OPERAND = eINSTANCE.getBraInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10057,6 +11751,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute BPL_INSTRUCTION__INSTRUCTION = eINSTANCE.getBplInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BPL_INSTRUCTION__WS_OPERAND = eINSTANCE.getBplInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10085,6 +11787,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute BNE_INSTRUCTION__INSTRUCTION = eINSTANCE.getBneInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BNE_INSTRUCTION__WS_OPERAND = eINSTANCE.getBneInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10109,6 +11819,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute BMI_INSTRUCTION__INSTRUCTION = eINSTANCE.getBmiInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BMI_INSTRUCTION__WS_OPERAND = eINSTANCE.getBmiInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10137,6 +11855,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute BLT_INSTRUCTION__INSTRUCTION = eINSTANCE.getBltInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BLT_INSTRUCTION__WS_OPERAND = eINSTANCE.getBltInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10161,6 +11887,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute BLS_INSTRUCTION__INSTRUCTION = eINSTANCE.getBlsInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BLS_INSTRUCTION__WS_OPERAND = eINSTANCE.getBlsInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10189,6 +11923,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute BLO_INSTRUCTION__INSTRUCTION = eINSTANCE.getBloInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BLO_INSTRUCTION__WS_OPERAND = eINSTANCE.getBloInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10213,6 +11955,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute BLE_INSTRUCTION__INSTRUCTION = eINSTANCE.getBleInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BLE_INSTRUCTION__WS_OPERAND = eINSTANCE.getBleInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10241,6 +11991,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute BIT_INSTRUCTION__INSTRUCTION = eINSTANCE.getBitInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BIT_INSTRUCTION__WS_OPERAND = eINSTANCE.getBitInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10265,6 +12023,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute BHS_INSTRUCTION__INSTRUCTION = eINSTANCE.getBhsInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BHS_INSTRUCTION__WS_OPERAND = eINSTANCE.getBhsInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10293,6 +12059,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute BHI_INSTRUCTION__INSTRUCTION = eINSTANCE.getBhiInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BHI_INSTRUCTION__WS_OPERAND = eINSTANCE.getBhiInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10317,6 +12091,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute BGT_INSTRUCTION__INSTRUCTION = eINSTANCE.getBgtInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BGT_INSTRUCTION__WS_OPERAND = eINSTANCE.getBgtInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10345,6 +12127,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute BGE_INSTRUCTION__INSTRUCTION = eINSTANCE.getBgeInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BGE_INSTRUCTION__WS_OPERAND = eINSTANCE.getBgeInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10369,6 +12159,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute BEQ_INSTRUCTION__INSTRUCTION = eINSTANCE.getBeqInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BEQ_INSTRUCTION__WS_OPERAND = eINSTANCE.getBeqInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10397,6 +12195,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute BCS_INSTRUCTION__INSTRUCTION = eINSTANCE.getBcsInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BCS_INSTRUCTION__WS_OPERAND = eINSTANCE.getBcsInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10421,6 +12227,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute BCC_INSTRUCTION__INSTRUCTION = eINSTANCE.getBccInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute BCC_INSTRUCTION__WS_OPERAND = eINSTANCE.getBccInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10449,6 +12263,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute ASR_INSTRUCTION__INSTRUCTION = eINSTANCE.getAsrInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASR_INSTRUCTION__WS_OPERAND = eINSTANCE.getAsrInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10473,6 +12295,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute ASL_INSTRUCTION__INSTRUCTION = eINSTANCE.getAslInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ASL_INSTRUCTION__WS_OPERAND = eINSTANCE.getAslInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10501,6 +12331,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute AND_CC_INSTRUCTION__INSTRUCTION = eINSTANCE.getAndCCInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute AND_CC_INSTRUCTION__WS_OPERAND = eINSTANCE.getAndCCInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10525,6 +12363,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute AND_INSTRUCTION__INSTRUCTION = eINSTANCE.getAndInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute AND_INSTRUCTION__WS_OPERAND = eINSTANCE.getAndInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10553,6 +12399,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute ADDD_INSTRUCTION__INSTRUCTION = eINSTANCE.getAdddInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ADDD_INSTRUCTION__WS_OPERAND = eINSTANCE.getAdddInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10579,6 +12433,14 @@ public interface AssemblerPackage extends EPackage
     EAttribute ADD_INSTRUCTION__INSTRUCTION = eINSTANCE.getAddInstruction_Instruction();
 
     /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ADD_INSTRUCTION__WS_OPERAND = eINSTANCE.getAddInstruction_WsOperand();
+
+    /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
@@ -10603,6 +12465,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute ADC_INSTRUCTION__INSTRUCTION = eINSTANCE.getAdcInstruction_Instruction();
+
+    /**
+     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute ADC_INSTRUCTION__WS_OPERAND = eINSTANCE.getAdcInstruction_WsOperand();
 
     /**
      * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
@@ -10981,12 +12851,12 @@ public interface AssemblerPackage extends EPackage
     EClass DIRECTIVE_LINE = eINSTANCE.getDirectiveLine();
 
     /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Label</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference DIRECTIVE_LINE__NAME = eINSTANCE.getDirectiveLine_Name();
+    EReference DIRECTIVE_LINE__LABEL = eINSTANCE.getDirectiveLine_Label();
 
     /**
      * The meta object literal for the '<em><b>Directive</b></em>' containment reference feature.
