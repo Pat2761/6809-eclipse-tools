@@ -410,8 +410,9 @@ public class AssemblerFormatter extends AbstractFormatter2 {
         int _minus_2 = (_minus_1 - 1);
         nbSpaces = _minus_2;
       } else {
-        int _length_1 = lastNodeInstruction.getText().trim().length();
-        int _minus_3 = (this.commentPosition - _length_1);
+        final ISemanticRegion endOfOperand = this.textRegionExtensions.regionFor(instructionLine).feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2);
+        int _operandSize = this.getOperandSize(lastNodeInstruction);
+        int _minus_3 = (this.commentPosition - _operandSize);
         int _minus_4 = (_minus_3 - this.operandPosition);
         int _minus_5 = (_minus_4 - 2);
         nbSpaces = _minus_5;
@@ -486,8 +487,8 @@ public class AssemblerFormatter extends AbstractFormatter2 {
         int _divide = (_minus_2 / this.tabSize);
         nbTabs = _divide;
       } else {
-        int _length_1 = lastNodeInstruction.getText().trim().length();
-        int _minus_3 = (this.commentPosition - _length_1);
+        int _operandSize = this.getOperandSize(lastNodeInstruction);
+        int _minus_3 = (this.commentPosition - _operandSize);
         int _minus_4 = (_minus_3 - this.operandPosition);
         int _minus_5 = (_minus_4 - 2);
         int _divide_1 = (_minus_5 / this.tabSize);
@@ -645,6 +646,30 @@ public class AssemblerFormatter extends AbstractFormatter2 {
         }
       }
     }
+  }
+
+  public int getOperandSize(final ISemanticRegion start) {
+    int _xblockexpression = (int) 0;
+    {
+      int length = 0;
+      ISemanticRegion currentNode = start;
+      boolean end = false;
+      while ((!end)) {
+        {
+          String _text = currentNode.getText();
+          String _plus = ("region = " + _text);
+          InputOutput.<String>println(_plus);
+          int _length = length;
+          int _length_1 = currentNode.getText().length();
+          length = (_length + _length_1);
+          currentNode = currentNode.getPreviousSemanticRegion();
+          end = (currentNode.getText().contains(" ") || currentNode.getText().contains("\t"));
+        }
+      }
+      InputOutput.<Integer>println(Integer.valueOf(length));
+      _xblockexpression = length;
+    }
+    return _xblockexpression;
   }
 
   /**

@@ -329,7 +329,8 @@ class AssemblerFormatter extends AbstractFormatter2 {
 			if (firstNodeInstruction === lastNodeInstruction) {
 				nbSpaces = commentPosition - firstNodeInstruction.text.trim.length - (instructionPosition) - 1
 			} else {
-				nbSpaces = commentPosition - lastNodeInstruction.text.trim.length - (operandPosition) - 2
+				val endOfOperand = instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2)
+				nbSpaces = commentPosition - getOperandSize(lastNodeInstruction) - (operandPosition) - 2
 			}
 			val spacesAfterInstruction = Strings.repeat(' ', nbSpaces)
 			instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).append [
@@ -337,7 +338,7 @@ class AssemblerFormatter extends AbstractFormatter2 {
 			]
 		}
 	}
-
+	
 	/**
 	 * Format an instructionLine Object when the tab policy is Space only
 	 * 
@@ -387,7 +388,7 @@ class AssemblerFormatter extends AbstractFormatter2 {
 			if (firstNodeInstruction === lastNodeInstruction) {
 				nbTabs = (commentPosition - firstNodeInstruction.text.trim.length - (instructionPosition) - 1) / tabSize
 			} else {
-				nbTabs = (commentPosition - lastNodeInstruction.text.trim.length - (operandPosition) - 2) / tabSize
+				nbTabs = (commentPosition - getOperandSize(lastNodeInstruction) - (operandPosition) - 2) / tabSize
 			}
 			val spacesAfterInstruction = Strings.repeat('\t', nbTabs)
 			instructionLine.regionFor.feature(AssemblerPackage.Literals.INSTRUCTION_LINE__WS2).append [
@@ -509,6 +510,20 @@ class AssemblerFormatter extends AbstractFormatter2 {
 				}
 			}
 		}
+	}
+
+	def getOperandSize(ISemanticRegion start) {
+		var length = 0
+		var currentNode = start
+		var end = false
+		while (!end) {
+			println("region = " + currentNode.text	)
+			length += currentNode.text.length
+			currentNode = currentNode.previousSemanticRegion
+			end = currentNode.text.contains(' ') || currentNode.text.contains('\t') 
+		}
+		println(length)
+		length		
 	}
 
 	/**
