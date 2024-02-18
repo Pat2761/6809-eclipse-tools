@@ -32,7 +32,7 @@ class TestAbxInstructionFormatter extends AbstractTestFormatter {
 		
 		val test1 = ''' ABX ; Instruction without operand
 		''' 
-		val test2 = '''W ABX ; Instruction without operand
+		val test2 = '''W ABX ; Instruction without operandt
 		'''
 		val test3 = '''W2: ABX ; Instruction without operand
 		'''

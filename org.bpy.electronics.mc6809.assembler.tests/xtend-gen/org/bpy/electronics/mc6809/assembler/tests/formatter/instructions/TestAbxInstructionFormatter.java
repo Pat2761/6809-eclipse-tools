@@ -42,7 +42,7 @@ public class TestAbxInstructionFormatter extends AbstractTestFormatter {
       _builder.newLine();
       final String test1 = _builder.toString();
       StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append("W ABX ; Instruction without operand");
+      _builder_1.append("W ABX ; Instruction without operandt");
       _builder_1.newLine();
       final String test2 = _builder_1.toString();
       StringConcatenation _builder_2 = new StringConcatenation();
