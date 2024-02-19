@@ -358,7 +358,24 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof BvsInstruction) {
 			parsePass2((BvsInstruction)instructionLine.getInstruction());
 
-		}		
+		} else if (instructionLine.getInstruction() instanceof JmpInstruction) {
+			parsePass2((JmpInstruction)instructionLine.getInstruction());
+			
+		} else if (instructionLine.getInstruction() instanceof JsrInstruction) {
+			parsePass2((JsrInstruction)instructionLine.getInstruction());
+			
+		}
+	}
+
+	private void parsePass2(JsrInstruction instruction) {
+		AssembledJSRInstruction currentAssembledLine = (AssembledJSRInstruction)assembledLinesMap.get(instruction);
+		currentAssembledLine.computeOperand(labelsPositionObject);
+
+	}
+
+	private void parsePass2(JmpInstruction instruction) {
+		AssembledJMPInstruction currentAssembledLine = (AssembledJMPInstruction) assembledLinesMap.get(instruction);
+		currentAssembledLine.computeOperand(labelsPositionObject);
 	}
 
 	/**

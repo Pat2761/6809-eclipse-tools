@@ -18,6 +18,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
+import java.util.Map;
+
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
@@ -144,7 +146,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	/** 
 	 * Allow to assemble the instruction
 	 */
-	private void assembleInstruction() {
+	protected void assembleInstruction() {
 		resolveAddressingMode(getInstructionOperand());
 		setOpcode(addressingMode);
 		setOperand(addressingMode);
@@ -200,6 +202,11 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 
 	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,EReference eReference) {
 		int value = ExpressionParser.parse(extendedOperand, eReference, instruction); 
+		operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF};
+	}
+
+	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,Map<String, AbstractAssemblyLine> labelsPositionObject, EReference eReference) {
+		int value = ExpressionParser.parse(extendedOperand, eReference, labelsPositionObject, instruction); 
 		operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF};
 	}
 

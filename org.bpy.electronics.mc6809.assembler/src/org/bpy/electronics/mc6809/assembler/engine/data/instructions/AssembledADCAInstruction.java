@@ -123,7 +123,7 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 	public void setOperand(AddressingMode mode) {
 		switch (mode) {
 			case IMMEDIATE:
-				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND, -128, 127);
+				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.ADC_INSTRUCTION__OPERAND, -128, 255);
 				break;
 				
 			case DIRECT:

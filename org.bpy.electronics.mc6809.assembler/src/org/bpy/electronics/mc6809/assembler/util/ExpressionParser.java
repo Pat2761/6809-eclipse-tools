@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.util;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -61,6 +62,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.eclipse.emf.ecore.EObject;
@@ -88,6 +90,7 @@ public class ExpressionParser {
 
 	/** Looger of the class */
 	private static Logger logger = Logger.getLogger("ExpressionParser");
+	private static Map<String, AbstractAssemblyLine> labelsPosition;
 
 	/** 
 	 *  Parse the operand of an FDB directive.
@@ -225,6 +228,48 @@ public class ExpressionParser {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
+		labelsPosition = null;
+		
+		int value = 0;		
+		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
+			EObject operand = extendedOperand.getOperand().getOperand();
+			value = resolveExpression((Expression)operand);
+		}
+		
+		if (value < Short.MIN_VALUE) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + value + " is below the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			value = Short.MIN_VALUE;
+		} else if (value > 65535) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"The value " + value + " is greater than the possible limit, data may be lost" , 
+					eReference, 
+					OVERFLOW_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			value = 65535;
+		}
+		
+		return value & 0xFFFF;
+	}
+
+	/** 
+	 * Parse the value of the instruction operand.
+	 *  
+	 * @param extendedOperand reference on the instruction operand
+	 * @param instructionReference used in a case of error detection 
+	 * @param labelsPositionObject list of label and their values
+	 * @param instruction reference on the instruction
+	 * @return value of the operand 
+	 */
+	public static int parse(ExtendedOperand extendedOperand, EReference instructionReference,
+			Map<String, AbstractAssemblyLine> labelsPositionObject, EObject instruction) {
+		
+		eReference = instructionReference;
+		assemblyLine = instruction;
+		labelsPosition = labelsPositionObject;
 		
 		int value = 0;		
 		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
@@ -602,11 +647,27 @@ public class ExpressionParser {
 		if (value != null) {
 			return value.intValue();
 		} else {
-			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-					"Can't find " + labelValue.getValue() + " definition", 
-					eReference, 
-					EXPRESSION_ERROR);
-			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			
+			if (labelsPosition != null) {
+				AbstractAssemblyLine targetAssemblyLine = labelsPosition.get(labelValue.getValue());
+				if (targetAssemblyLine == null) {
+					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+							"Can't find " + labelValue.getValue() + " definition", 
+							eReference, 
+							EXPRESSION_ERROR);
+					AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+					
+				} else {
+					return targetAssemblyLine.getPcAddress();
+				}
+			} else {
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						"Can't find " + labelValue.getValue() + " definition", 
+						eReference, 
+						EXPRESSION_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+			}
+			
 		}
 		return 0;
 	}

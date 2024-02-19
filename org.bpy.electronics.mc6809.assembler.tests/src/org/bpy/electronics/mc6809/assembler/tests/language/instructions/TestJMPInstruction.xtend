@@ -114,6 +114,32 @@ class TestJMPInstruction {
 	 * Check JMP extended mode 
 	 */
 	@Test 
+	def void testJMPExtendedAddressingMode1_1() {
+		val result = parseHelper.parse('''
+		; -----------------------------------------
+		START      ORG    		$8000
+			       JMP		  	START
+		''')
+		Assert.assertNotNull(result)
+		result.assertNoErrors
+		val errors = result.eResource.errors
+		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		
+		val line = result.sourceLines.get(2)
+		Assert.assertTrue("Must be an Instruction line", line.lineContent instanceof InstructionLine)
+		
+		val instructionLine = line.lineContent as InstructionLine
+		Assert.assertTrue("Must be an JMP directive line", instructionLine.instruction instanceof JmpInstruction)
+
+		val jmpInstruction = instructionLine.instruction as JmpInstruction
+		assertEquals("Must be an JMP instruction", jmpInstruction.instruction,"JMP")
+		assertTrue("Must be a extended addressing mode", jmpInstruction.operand instanceof ExtendedOperand)
+	}
+
+	/**
+	 * Check JMP extended mode 
+	 */
+	@Test 
 	def void testJMPExtendedAddressingMode2() {
 		val result = parseHelper.parse('''
 		; -----------------------------------------

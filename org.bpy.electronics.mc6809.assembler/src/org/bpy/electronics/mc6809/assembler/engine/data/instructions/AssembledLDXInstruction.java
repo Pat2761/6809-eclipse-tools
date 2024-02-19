@@ -122,7 +122,7 @@ public class AssembledLDXInstruction extends AbstractInstructionAssemblyLine {
 	public void setOperand(AddressingMode mode) {
 		switch (mode) {
 			case IMMEDIATE:
-				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND, -32768, 32767);
+				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND, -32768, 65535);
 				break;
 				
 			case DIRECT:

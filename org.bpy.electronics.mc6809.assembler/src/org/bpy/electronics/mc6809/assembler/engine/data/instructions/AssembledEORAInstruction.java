@@ -122,7 +122,7 @@ public class AssembledEORAInstruction extends AbstractInstructionAssemblyLine {
 	public void setOperand(AddressingMode mode) {
 		switch (mode) {
 			case IMMEDIATE:
-				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.EOR_INSTRUCTION__OPERAND, -128, 127);
+				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.EOR_INSTRUCTION__OPERAND, -128, 255);
 				break;
 				
 			case DIRECT:

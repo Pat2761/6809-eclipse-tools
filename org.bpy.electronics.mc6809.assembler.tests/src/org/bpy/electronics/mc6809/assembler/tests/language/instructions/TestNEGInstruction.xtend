@@ -53,11 +53,7 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator
 
 @RunWith(XtextRunner)
 @InjectWith(AssemblerInjectorProvider)
-<<<<<<< HEAD:org.bpy.electronics.mc6809.assembler.tests/src/org/bpy/electronics/mc6809/assembler/tests/instructions/TestNEGInstruction.xtend
 
-=======
-    
->>>>>>> Formatting:org.bpy.electronics.mc6809.assembler.tests/src/org/bpy/electronics/mc6809/assembler/tests/language/instructions/TestNEGInstruction.xtend
 class TestNEGInstruction {
 	@Inject ParseHelper<Model> parseHelper
 	@Inject extension ValidationTestHelper

@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
@@ -34,6 +35,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -47,7 +49,7 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
  * @author briand
  *
  */
-public class AssembledJMPInstruction extends AbstractInstructionAssemblyLine {
+public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 
 	/** contains the opcodes for each addressing mode */
 	private static final EnumMap<AddressingMode,int[]> OP_CODE = new EnumMap<>(AddressingMode.class);
@@ -118,6 +120,78 @@ public class AssembledJMPInstruction extends AbstractInstructionAssemblyLine {
 	@Override
 	public void setOpcode(AddressingMode mode) {
 		opcodeBytes = OP_CODE.get(mode);
+	}
+	
+	public void computeOperand(Map<String, AbstractAssemblyLine> labelsPositionObject) {
+		switch (addressingMode) {
+		case IMMEDIATE:
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"Immediate mode is not valid for the JSR instruction",
+					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND, InstructionValidator.ILLEGAL_MODE);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			break;
+
+		case DIRECT:
+			setDirectOperand(instruction, (DirectOperand) instruction.getOperand(),
+					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+			break;
+
+		case EXTENDED:
+			setExtendedOperand(instruction, (ExtendedOperand) instruction.getOperand(), labelsPositionObject,
+					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+			break;
+
+		case EXTENDED_INDIRECT:
+			setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand) instruction.getOperand(),
+					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+			break;
+
+		case INDEXED_ACCUMULATOR_MOVING_MODE:
+			setIndexedAccumulatorMovingMode(
+					(AccumulatorMovingMode) ((IndexedOperand) instruction.getOperand()).getMode());
+			break;
+
+		case INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE:
+			setIndexedAccumulatorMovingMode(
+					(AccumulatorMovingIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode());
+			break;
+
+		case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
+			setIndexedAccumulatorMovingMode(instruction,
+					(AutoIncDecIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
+					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+			break;
+
+		case INDEXED_AUTO_DEC_INC_MODE:
+			setIndexedAccumulatorMovingMode((AutoIncDecMode) ((IndexedOperand) instruction.getOperand()).getMode());
+			break;
+
+		case INDEXED_CONSTANT_MODE:
+			setIndexedConstantMode(instruction,
+					(ConstantIndexedMode) ((IndexedOperand) instruction.getOperand()).getMode(),
+					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+			break;
+
+		case INDEXED_CONSTANT_INDIRECT_MODE:
+			setIndexedConstantIndirectMode(instruction,
+					(ConstantIndexedMovingIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
+					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+			break;
+
+		case INDEXED_RELATIF_TO_PC:
+			setRelatifToPCMode(instruction, (RelatifToPCMode) ((IndexedOperand) instruction.getOperand()).getMode(),
+					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+			break;
+
+		case INDEXED_RELATIF_TO_PC_INDIRECT_MODE:
+			setRelatifToPCIndirectMode(instruction,
+					(RelatifToPCIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
+					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+			break;
+
+		default:
+			break;
+		}
 	}
 
 	@Override

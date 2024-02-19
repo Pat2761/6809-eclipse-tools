@@ -149,6 +149,44 @@ public class TestJMPInstruction {
    * Check JMP extended mode
    */
   @Test
+  public void testJMPExtendedAddressingMode1_1() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("; -----------------------------------------");
+      _builder.newLine();
+      _builder.append("START      ORG    \t\t$8000");
+      _builder.newLine();
+      _builder.append("\t       ");
+      _builder.append("JMP\t\t  \tSTART");
+      _builder.newLine();
+      final Model result = this.parseHelper.parse(_builder);
+      Assert.assertNotNull(result);
+      this._validationTestHelper.assertNoErrors(result);
+      final EList<Resource.Diagnostic> errors = result.eResource().getErrors();
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("Unexpected errors: �errors.join(\", \")�");
+      Assert.assertTrue(_builder_1.toString(), errors.isEmpty());
+      final SourceLine line = result.getSourceLines().get(2);
+      EObject _lineContent = line.getLineContent();
+      Assert.assertTrue("Must be an Instruction line", (_lineContent instanceof InstructionLine));
+      EObject _lineContent_1 = line.getLineContent();
+      final InstructionLine instructionLine = ((InstructionLine) _lineContent_1);
+      EObject _instruction = instructionLine.getInstruction();
+      Assert.assertTrue("Must be an JMP directive line", (_instruction instanceof JmpInstruction));
+      EObject _instruction_1 = instructionLine.getInstruction();
+      final JmpInstruction jmpInstruction = ((JmpInstruction) _instruction_1);
+      Assert.assertEquals("Must be an JMP instruction", jmpInstruction.getInstruction(), "JMP");
+      EObject _operand = jmpInstruction.getOperand();
+      Assert.assertTrue("Must be a extended addressing mode", (_operand instanceof ExtendedOperand));
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+
+  /**
+   * Check JMP extended mode
+   */
+  @Test
   public void testJMPExtendedAddressingMode2() {
     try {
       StringConcatenation _builder = new StringConcatenation();

@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
 import java.util.EnumMap;
+import java.util.Map;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
@@ -34,7 +35,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -47,32 +48,31 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
  * @author briand
  *
  */
-public class AssembledJSRInstruction extends AbstractInstructionAssemblyLine {
+public class AssembledJSRInstruction extends AbstractJmpJsrInstruction {
 
 	/** contains the opcodes for each addressing mode */
-	private static final EnumMap<AddressingMode,int[]> OP_CODE = new EnumMap<>(AddressingMode.class);
-
+	private static final EnumMap<AddressingMode, int[]> OP_CODE = new EnumMap<>(AddressingMode.class);
 
 	/** contains the base of cycle needed for each addressing mode */
-	private static final EnumMap<AddressingMode,Integer> CYCLES = new EnumMap<>(AddressingMode.class);
-	
+	private static final EnumMap<AddressingMode, Integer> CYCLES = new EnumMap<>(AddressingMode.class);
+
 	static {
-		OP_CODE.put(AddressingMode.IMMEDIATE, new int[] {0x3F});
-		OP_CODE.put(AddressingMode.DIRECT, new int[] {0x9D});
-		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, new int[] {0xAD});
-		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_MODE, new int[] {0xAD});
-		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, new int[] {0xAD});
-		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_MODE, new int[] {0xAD});
-		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_MODE, new int[] {0xAD});
-		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE, new int[] {0xAD});
-		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC, new int[] {0xAD});
-		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, new int[] {0xAD});
-		OP_CODE.put(AddressingMode.EXTENDED_INDIRECT, new int[] {0xAD, 0x9F});
-		OP_CODE.put(AddressingMode.EXTENDED, new int[] { 0xBD});
+		OP_CODE.put(AddressingMode.IMMEDIATE, new int[] { 0x3F });
+		OP_CODE.put(AddressingMode.DIRECT, new int[] { 0x9D });
+		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, new int[] { 0xAD });
+		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_MODE, new int[] { 0xAD });
+		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, new int[] { 0xAD });
+		OP_CODE.put(AddressingMode.INDEXED_AUTO_DEC_INC_MODE, new int[] { 0xAD });
+		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_MODE, new int[] { 0xAD });
+		OP_CODE.put(AddressingMode.INDEXED_CONSTANT_INDIRECT_MODE, new int[] { 0xAD });
+		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC, new int[] { 0xAD });
+		OP_CODE.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, new int[] { 0xAD });
+		OP_CODE.put(AddressingMode.EXTENDED_INDIRECT, new int[] { 0xAD, 0x9F });
+		OP_CODE.put(AddressingMode.EXTENDED, new int[] { 0xBD });
 
 		CYCLES.put(AddressingMode.IMMEDIATE, 2);
 		CYCLES.put(AddressingMode.DIRECT, 4);
-		CYCLES.put(AddressingMode.EXTENDED,5);
+		CYCLES.put(AddressingMode.EXTENDED, 5);
 		CYCLES.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, -1);
 		CYCLES.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_MODE, -1);
 		CYCLES.put(AddressingMode.INDEXED_AUTO_DEC_INC_INDIRECT_MODE, -1);
@@ -83,16 +83,16 @@ public class AssembledJSRInstruction extends AbstractInstructionAssemblyLine {
 		CYCLES.put(AddressingMode.INDEXED_RELATIF_TO_PC_INDIRECT_MODE, -1);
 		CYCLES.put(AddressingMode.EXTENDED_INDIRECT, -1);
 	}
-	
+
 	/** reference on the instruction */
 	private JsrInstruction instruction;
-	
+
 	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
-	 * @param instruction reference on the EMF instruction line
+	 * @param instruction    reference on the EMF instruction line
 	 * @param currentPcValue state of the current PC
-	 * @param lineNumber line number in assembly file
+	 * @param lineNumber     line number in assembly file
 	 */
 	public void parse(JsrInstruction instruction, int currentPcValue, int lineNumber) {
 		this.label = CommandUtil.getLabel(instruction);
@@ -100,7 +100,7 @@ public class AssembledJSRInstruction extends AbstractInstructionAssemblyLine {
 		this.instruction = instruction;
 		super.parse(currentPcValue, lineNumber);
 	}
-	
+
 	@Override
 	public Object getInstructionOperand() {
 		return instruction.getOperand();
@@ -120,68 +120,85 @@ public class AssembledJSRInstruction extends AbstractInstructionAssemblyLine {
 		opcodeBytes = OP_CODE.get(mode);
 	}
 
+	public void computeOperand(Map<String, AbstractAssemblyLine> labelsPositionObject) {
+		switch (addressingMode) {
+		case IMMEDIATE:
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"Immediate mode is not valid for the JSR instruction",
+					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND, InstructionValidator.ILLEGAL_MODE);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			break;
+
+		case DIRECT:
+			setDirectOperand(instruction, (DirectOperand) instruction.getOperand(),
+					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+			break;
+
+		case EXTENDED:
+			setExtendedOperand(instruction, (ExtendedOperand) instruction.getOperand(), labelsPositionObject,
+					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+			break;
+
+		case EXTENDED_INDIRECT:
+			setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand) instruction.getOperand(),
+					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+			break;
+
+		case INDEXED_ACCUMULATOR_MOVING_MODE:
+			setIndexedAccumulatorMovingMode(
+					(AccumulatorMovingMode) ((IndexedOperand) instruction.getOperand()).getMode());
+			break;
+
+		case INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE:
+			setIndexedAccumulatorMovingMode(
+					(AccumulatorMovingIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode());
+			break;
+
+		case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
+			setIndexedAccumulatorMovingMode(instruction,
+					(AutoIncDecIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
+					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+			break;
+
+		case INDEXED_AUTO_DEC_INC_MODE:
+			setIndexedAccumulatorMovingMode((AutoIncDecMode) ((IndexedOperand) instruction.getOperand()).getMode());
+			break;
+
+		case INDEXED_CONSTANT_MODE:
+			setIndexedConstantMode(instruction,
+					(ConstantIndexedMode) ((IndexedOperand) instruction.getOperand()).getMode(),
+					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+			break;
+
+		case INDEXED_CONSTANT_INDIRECT_MODE:
+			setIndexedConstantIndirectMode(instruction,
+					(ConstantIndexedMovingIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
+					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+			break;
+
+		case INDEXED_RELATIF_TO_PC:
+			setRelatifToPCMode(instruction, (RelatifToPCMode) ((IndexedOperand) instruction.getOperand()).getMode(),
+					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+			break;
+
+		case INDEXED_RELATIF_TO_PC_INDIRECT_MODE:
+			setRelatifToPCIndirectMode(instruction,
+					(RelatifToPCIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
+					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+			break;
+
+		default:
+			break;
+		}
+	}
+
 	@Override
 	public void setOperand(AddressingMode mode) {
-		switch (mode) {
-			case IMMEDIATE:
-				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-						"Immediate mode is not valid for the JSR instruction" , 
-						AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND, 
-						InstructionValidator.ILLEGAL_MODE);
-				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
-				break;
-				
-			case DIRECT:
-				setDirectOperand(instruction, (DirectOperand)instruction.getOperand(), AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
-				break;
-			
-			case EXTENDED:
-				setExtendedOperand(instruction, (ExtendedOperand)instruction.getOperand(), AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
-				break;
-				
-			case EXTENDED_INDIRECT:
-				setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand)instruction.getOperand(), AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
-				break;
-				
-			case INDEXED_ACCUMULATOR_MOVING_MODE:
-				setIndexedAccumulatorMovingMode((AccumulatorMovingMode)((IndexedOperand)instruction.getOperand()).getMode());
-				break;
-				
-			case INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE:
-				setIndexedAccumulatorMovingMode((AccumulatorMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode());
-				break;
-				
-			case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
-				setIndexedAccumulatorMovingMode(instruction, (AutoIncDecIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
-				break;
-				
-			case INDEXED_AUTO_DEC_INC_MODE:
-				setIndexedAccumulatorMovingMode((AutoIncDecMode)((IndexedOperand)instruction.getOperand()).getMode());
-				break;
-				
-			case INDEXED_CONSTANT_MODE:
-				setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
-				break;
-				
-			case INDEXED_CONSTANT_INDIRECT_MODE:
-				setIndexedConstantIndirectMode(instruction, (ConstantIndexedMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
-				break;
-				
-			case INDEXED_RELATIF_TO_PC:
-				setRelatifToPCMode(instruction, (RelatifToPCMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
-				break;
-				
-			case INDEXED_RELATIF_TO_PC_INDIRECT_MODE:
-				setRelatifToPCIndirectMode(instruction, (RelatifToPCIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
-				break;
-
-			default:
-				break;
-		}
 	}
 
 	@Override
 	public void setCyclesNumber(AddressingMode mode) {
 		// TODO Auto-generated method stub
 	}
+
 }
