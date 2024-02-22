@@ -42,6 +42,33 @@ public interface AssemblerFactory extends EFactory
   SourceLine createSourceLine();
 
   /**
+   * Returns a new object of class '<em>Other Kind Of Instructions</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Other Kind Of Instructions</em>'.
+   * @generated
+   */
+  OtherKindOfInstructions createOtherKindOfInstructions();
+
+  /**
+   * Returns a new object of class '<em>Special Functions</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Special Functions</em>'.
+   * @generated
+   */
+  SpecialFunctions createSpecialFunctions();
+
+  /**
+   * Returns a new object of class '<em>Macro Definition</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Macro Definition</em>'.
+   * @generated
+   */
+  MacroDefinition createMacroDefinition();
+
+  /**
    * Returns a new object of class '<em>Label Line</em>'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->

@@ -86,6 +86,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.LeftShift;
 import org.bpy.electronics.mc6809.assembler.assembler.ListOfExpression;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.Modulo;
 import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
@@ -101,6 +102,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Or;
 import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
@@ -122,6 +124,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
@@ -426,6 +429,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 			case AssemblerPackage.LSR_INSTRUCTION:
 				sequence_LsrInstruction(context, (LsrInstruction) semanticObject); 
 				return; 
+			case AssemblerPackage.MACRO_DEFINITION:
+				sequence_MacroDefinition(context, (MacroDefinition) semanticObject); 
+				return; 
 			case AssemblerPackage.MODEL:
 				sequence_Model(context, (Model) semanticObject); 
 				return; 
@@ -470,6 +476,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.ORG_DIRECTIVE:
 				sequence_OrgDirective(context, (OrgDirective) semanticObject); 
+				return; 
+			case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS:
+				sequence_OtherKindOfInstructions(context, (OtherKindOfInstructions) semanticObject); 
 				return; 
 			case AssemblerPackage.PAG_DIRECTIVE:
 				sequence_PagDirective(context, (PagDirective) semanticObject); 
@@ -533,6 +542,9 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 				return; 
 			case AssemblerPackage.SPC_DIRECTIVE:
 				sequence_SpcDirective(context, (SpcDirective) semanticObject); 
+				return; 
+			case AssemblerPackage.SPECIAL_FUNCTIONS:
+				sequence_SpecialFunctions(context, (SpecialFunctions) semanticObject); 
 				return; 
 			case AssemblerPackage.ST_INSTRUCTION:
 				sequence_StInstruction(context, (StInstruction) semanticObject); 
@@ -2167,6 +2179,28 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	/**
 	 * <pre>
 	 * Contexts:
+	 *     MacroDefinition returns MacroDefinition
+	 *
+	 * Constraint:
+	 *     (
+	 *         ws1=WS 
+	 *         ws2=WS 
+	 *         name=IdentifierValue 
+	 *         (ws3=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
+	 *         ws4=WS? 
+	 *         instructions+=InstructionLine+ 
+	 *         ws5=WS
+	 *     )
+	 * </pre>
+	 */
+	protected void sequence_MacroDefinition(ISerializationContext context, MacroDefinition semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
 	 *     Model returns Model
 	 *
 	 * Constraint:
@@ -2490,6 +2524,20 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * </pre>
 	 */
 	protected void sequence_OrgDirective(ISerializationContext context, OrgDirective semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     OtherKindOfInstructions returns OtherKindOfInstructions
+	 *
+	 * Constraint:
+	 *     (label=Label ws1=WS otherInstruction=IdentifierValue (ws2=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? ws3=WS?)
+	 * </pre>
+	 */
+	protected void sequence_OtherKindOfInstructions(ISerializationContext context, OtherKindOfInstructions semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	
@@ -2914,7 +2962,15 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     SourceLine returns SourceLine
 	 *
 	 * Constraint:
-	 *     (lineContent=BlankLine | lineContent=CommentLine | lineContent=LabelLine | lineContent=DirectiveLine | lineContent=InstructionLine)
+	 *     (
+	 *         lineContent=BlankLine | 
+	 *         lineContent=CommentLine | 
+	 *         lineContent=LabelLine | 
+	 *         lineContent=DirectiveLine | 
+	 *         lineContent=InstructionLine | 
+	 *         lineContent=SpecialFunctions | 
+	 *         lineContent=OtherKindOfInstructions
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_SourceLine(ISerializationContext context, SourceLine semanticObject) {
@@ -2933,6 +2989,26 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_SpcDirective(ISerializationContext context, SpcDirective semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     SpecialFunctions returns SpecialFunctions
+	 *
+	 * Constraint:
+	 *     specialFuntion=MacroDefinition
+	 * </pre>
+	 */
+	protected void sequence_SpecialFunctions(ISerializationContext context, SpecialFunctions semanticObject) {
+		if (errorAcceptor != null) {
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SPECIAL_FUNCTIONS__SPECIAL_FUNTION) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SPECIAL_FUNCTIONS__SPECIAL_FUNTION));
+		}
+		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
+		feeder.accept(grammarAccess.getSpecialFunctionsAccess().getSpecialFuntionMacroDefinitionParserRuleCall_0(), semanticObject.getSpecialFuntion());
+		feeder.finish();
 	}
 	
 	

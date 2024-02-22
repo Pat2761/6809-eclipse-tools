@@ -3,65 +3,216 @@
  */
 package org.bpy.electronics.mc6809.assembler.ui.outline;
 
+import java.util.LinkedList;
+
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
+import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions;
+import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
-import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 
 /**
  * Customization of the default outline structure.
  *
- * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
+ * See
+ * https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#outline
  */
 public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
+	public Image macroImage = null; 
+	public Image instructionImage = null; 
+	public Image directiveImage = null; 
+	public Image otherImage = null; 
+	
+	private LinkedList<EObject> stack = null;
+	private DocumentRootNode parentNode;
+	private IOutlineNode currentNode = null;
+	
 	@Override
 	protected void _createChildren(DocumentRootNode parentNode, EObject modelElement) {
 
+		this.parentNode = parentNode;
+		this.currentNode = null;
+		
+		stack = new LinkedList<>();
 		if (modelElement instanceof Model) {
+
+			stack.addAll(((Model) modelElement).getSourceLines());
+			while (!stack.isEmpty()) {
+
+				manageSourceLine();
+			}	
+		}
+	}
+
+	private void manageSourceLine() {
+		
+		EObject sourceLine = stack.pop();
+		EObject line = ((SourceLine) sourceLine).getLineContent();
+
+		if (line instanceof InstructionLine) {
+			currentNode = manageInstructionLine((InstructionLine) line, parentNode, currentNode);
+
+		} else if (line instanceof LabelLine) {
+			currentNode = manageLabelLine((LabelLine) line, parentNode, currentNode);
+
+		} else if (line instanceof DirectiveLine) {
+			String label = getLabel((DirectiveLine) line);
+			if (label != null) {
+				currentNode = (IOutlineNode) createEObjectNode(parentNode, line, getDirectiveImage(), label, true);
+			}
+
+		} else if (line instanceof SpecialFunctions) {
+			String label = getLabel((SpecialFunctions) line);
+			currentNode = (IOutlineNode) createEObjectNode(parentNode, line, getMacroImage(), label, true);
+			createSpecialFunctionsNode((SpecialFunctions)line, currentNode);
+
+		} else if (line instanceof OtherKindOfInstructions) {
+			String label = getLabel((OtherKindOfInstructions) line);
+			if (label != null) {
+				currentNode = (IOutlineNode) createEObjectNode(parentNode, line, null, label, true);
+			}
+		}
+	}
+	
+
+	private IOutlineNode manageLabelLine(LabelLine line, IOutlineNode parentNode, IOutlineNode currentNode) {
+		String label = getLabel((LabelLine) line);
+		if (label != null) {
+			for (int i=0; i<stack.size(); i++) {
+				EObject sourceLine = stack.get(i);
+				EObject nextLine = ((SourceLine) sourceLine).getLineContent();
+				Image image = getImage(nextLine);
+				if (image != null) {
+					currentNode = (IOutlineNode) createEObjectNode(parentNode, line, getImage(nextLine), label, true);
+					break;
+				} 
+			}
+		} 
+		return currentNode;
+	}
+
+	private IOutlineNode manageInstructionLine(InstructionLine line, IOutlineNode parentNode, IOutlineNode currentNode) {
+
+		String label = getLabel((InstructionLine) line);
+		if (label != null) {
+			currentNode = (IOutlineNode) createEObjectNode(parentNode, line, getImage(line), label, true);
+		}	
+		
+		if (currentNode != null) {
+			createEObjectNode(currentNode, line, getImage(line), CommandUtil.getInstructionName(line), true);
+		} else {
+			createEObjectNode(parentNode, line,getImage(line), CommandUtil.getInstructionName(line), true);
+		}
+		
+		return currentNode;
+	}
+
+	private Image getImage(Object line) {
+		if (line instanceof InstructionLine) {
+				return getInstructionImage();
+		} else if (line instanceof DirectiveLine) {
+			return getDirectiveImage();
+		} else if (line instanceof MacroDefinition) {
+			return getMacroImage();
+		} else if (line instanceof OtherKindOfInstructions) {
+			return getOtherImage();
+		} else {
+			return null;
+		}
+	}
+
+	private Image getOtherImage() {
+		if (otherImage == null) {
+			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin("org.bpy.electronics.mc6809.assembler.ui", "icons/O-blue.16.png");
+			otherImage = mDescriptor.createImage();
+		}
+		return otherImage;
+	}
+
+	private Image getMacroImage() {
+		if (macroImage == null) {
+			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin("org.bpy.electronics.mc6809.assembler.ui", "icons/M-gold.16.png");
+			macroImage = mDescriptor.createImage();
+		}
+		return macroImage;
+	}
+
+	private Image getDirectiveImage() {
+		if (directiveImage == null) {
+			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin("org.bpy.electronics.mc6809.assembler.ui", "icons/D-pink.16.png");
+			directiveImage = mDescriptor.createImage();
+		}
+		return directiveImage;
+	}
+
+	private Image getInstructionImage() {
+		if (instructionImage == null) {
+			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin("org.bpy.electronics.mc6809.assembler.ui", "icons/I-green.16.png");
+			instructionImage = mDescriptor.createImage();
+		}
+		return instructionImage;
+	}
+
+	private void createSpecialFunctionsNode(SpecialFunctions line, IOutlineNode currentNode) {
+		if (line.getSpecialFuntion() instanceof MacroDefinition) {
+			MacroDefinition macroDefinition = (MacroDefinition)line.getSpecialFuntion();
 			
-			for (SourceLine sourceLine : ((Model) modelElement).getSourceLines()) {
-				EObject line = sourceLine.getLineContent();
-				
-				if (line instanceof InstructionLine) {
-					
-					String label = getLabel((InstructionLine)line);
-					if (label != null) {
-						createNode(parentNode, (InstructionLine)line);
-					}
-					
-				} else if (sourceLine instanceof DirectiveLine) {
-					
-				}
+			for (InstructionLine instruction : macroDefinition.getInstructions()) {
+				createEObjectNode(currentNode, instruction, null, CommandUtil.getInstructionName(instruction.getInstruction()), true);
 			}
 		}
 	}
 
-	private String getLabel(InstructionLine line) {
-		if (line.getLabel()!= null && line.getLabel().getName() != null) {
+	private String getLabel(OtherKindOfInstructions line) {
+		
+		if (line.getLabel() != null && line.getLabel().getName() != null) {
 			return line.getLabel().getName().getValue();
 		} else {
 			return null;
 		}
 	}
 
-	public Object _text(Model model) {
-		return "file";
+	private String getLabel(SpecialFunctions line) {
+		if (line.getSpecialFuntion() instanceof MacroDefinition) {
+			MacroDefinition macroDefinition = (MacroDefinition)line.getSpecialFuntion();
+			return macroDefinition.getName().getValue();
+		}
+		return "";
 	}
 
-	public Object _text(InstructionLine instructionLine) {
-		if ((instructionLine.getLabel() != null) && 
-			(instructionLine.getLabel().getName() != null)	) {
-			System.out.println(instructionLine.getLabel().getName().getValue());
-			return instructionLine.getLabel().getName().getValue();
+	private String getLabel(DirectiveLine line) {
+		if (line.getLabel() != null && line.getLabel().getName() != null) {
+			return line.getLabel().getName().getValue();
 		} else {
-			return "vide";
+			return null;
 		}
 	}
-	
+
+	private String getLabel(LabelLine line) {
+		if (line.getLabel() != null && line.getLabel().getName() != null) {
+			return line.getLabel().getName().getValue();
+		} else {
+			return null;
+		}
+	}
+
+	private String getLabel(InstructionLine line) {
+		if (line.getLabel() != null && line.getLabel().getName() != null) {
+			return line.getLabel().getName().getValue();
+		} else {
+			return null;
+		}
+	}
 }

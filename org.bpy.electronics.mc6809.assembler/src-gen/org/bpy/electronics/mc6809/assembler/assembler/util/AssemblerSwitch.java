@@ -87,6 +87,27 @@ public class AssemblerSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS:
+      {
+        OtherKindOfInstructions otherKindOfInstructions = (OtherKindOfInstructions)theEObject;
+        T result = caseOtherKindOfInstructions(otherKindOfInstructions);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.SPECIAL_FUNCTIONS:
+      {
+        SpecialFunctions specialFunctions = (SpecialFunctions)theEObject;
+        T result = caseSpecialFunctions(specialFunctions);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case AssemblerPackage.MACRO_DEFINITION:
+      {
+        MacroDefinition macroDefinition = (MacroDefinition)theEObject;
+        T result = caseMacroDefinition(macroDefinition);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       case AssemblerPackage.LABEL_LINE:
       {
         LabelLine labelLine = (LabelLine)theEObject;
@@ -1012,6 +1033,54 @@ public class AssemblerSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseSourceLine(SourceLine object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Other Kind Of Instructions</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Other Kind Of Instructions</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseOtherKindOfInstructions(OtherKindOfInstructions object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Special Functions</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Special Functions</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseSpecialFunctions(SpecialFunctions object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Macro Definition</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Macro Definition</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseMacroDefinition(MacroDefinition object)
   {
     return null;
   }

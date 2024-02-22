@@ -40,7 +40,35 @@ SourceLine:
 		| -> (lineContent = LabelLine)	 
 		| (lineContent = DirectiveLine)
 		| (lineContent = InstructionLine)
+		| (lineContent = SpecialFunctions)
+		| (lineContent = OtherKindOfInstructions)
 	) 
+;
+
+OtherKindOfInstructions:
+	label=Label ws1=WS otherInstruction=IdentifierValue 
+	(ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	ws3=WS? EndOfLine
+;
+
+/*
+ * allow to insert specials functions which arn't a directive or an instruction 
+ */
+SpecialFunctions:
+	specialFuntion = MacroDefinition
+;
+
+/**
+ * A macro is a list of instruction which can be reused in the assembler code like an 
+ * inline C function
+ */
+MacroDefinition:
+	ws1=WS '.macro' ws2=WS name=IdentifierValue 
+	(ws3=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	ws4=WS? EndOfLine
+	
+	instructions += InstructionLine+
+	ws5=WS '.endm'  
 ;
 
 LabelLine:

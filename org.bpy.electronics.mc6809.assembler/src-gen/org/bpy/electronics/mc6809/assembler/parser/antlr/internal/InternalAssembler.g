@@ -215,6 +215,402 @@ ruleSourceLine returns [EObject current=null]
 				}
 			)
 		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSourceLineAccess().getLineContentSpecialFunctionsParserRuleCall_5_0());
+				}
+				lv_lineContent_5_0=ruleSpecialFunctions
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSourceLineRule());
+					}
+					set(
+						$current,
+						"lineContent",
+						lv_lineContent_5_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.SpecialFunctions");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		    |
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getSourceLineAccess().getLineContentOtherKindOfInstructionsParserRuleCall_6_0());
+				}
+				lv_lineContent_6_0=ruleOtherKindOfInstructions
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getSourceLineRule());
+					}
+					set(
+						$current,
+						"lineContent",
+						lv_lineContent_6_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.OtherKindOfInstructions");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+	)
+;
+
+// Entry rule entryRuleOtherKindOfInstructions
+entryRuleOtherKindOfInstructions returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getOtherKindOfInstructionsRule()); }
+	iv_ruleOtherKindOfInstructions=ruleOtherKindOfInstructions
+	{ $current=$iv_ruleOtherKindOfInstructions.current; }
+	EOF;
+
+// Rule OtherKindOfInstructions
+ruleOtherKindOfInstructions returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getOtherKindOfInstructionsAccess().getLabelLabelParserRuleCall_0_0());
+				}
+				lv_label_0_0=ruleLabel
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getOtherKindOfInstructionsRule());
+					}
+					set(
+						$current,
+						"label",
+						lv_label_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.Label");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				lv_ws1_1_0=RULE_WS
+				{
+					newLeafNode(lv_ws1_1_0, grammarAccess.getOtherKindOfInstructionsAccess().getWs1WSTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getOtherKindOfInstructionsRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws1",
+						lv_ws1_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getOtherKindOfInstructionsAccess().getOtherInstructionIdentifierValueParserRuleCall_2_0());
+				}
+				lv_otherInstruction_2_0=ruleIdentifierValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getOtherKindOfInstructionsRule());
+					}
+					set(
+						$current,
+						"otherInstruction",
+						lv_otherInstruction_2_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				(
+					lv_ws2_3_0=RULE_WS
+					{
+						newLeafNode(lv_ws2_3_0, grammarAccess.getOtherKindOfInstructionsAccess().getWs2WSTerminalRuleCall_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getOtherKindOfInstructionsRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws2",
+							lv_ws2_3_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
+			(
+				(
+					lv_comment_4_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					{
+						newLeafNode(lv_comment_4_0, grammarAccess.getOtherKindOfInstructionsAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getOtherKindOfInstructionsRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"comment",
+							lv_comment_4_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
+					}
+				)
+			)
+		)?
+		(
+			(
+				lv_ws3_5_0=RULE_WS
+				{
+					newLeafNode(lv_ws3_5_0, grammarAccess.getOtherKindOfInstructionsAccess().getWs3WSTerminalRuleCall_4_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getOtherKindOfInstructionsRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws3",
+						lv_ws3_5_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)?
+		{
+			newCompositeNode(grammarAccess.getOtherKindOfInstructionsAccess().getEndOfLineParserRuleCall_5());
+		}
+		ruleEndOfLine
+		{
+			afterParserOrEnumRuleCall();
+		}
+	)
+;
+
+// Entry rule entryRuleSpecialFunctions
+entryRuleSpecialFunctions returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getSpecialFunctionsRule()); }
+	iv_ruleSpecialFunctions=ruleSpecialFunctions
+	{ $current=$iv_ruleSpecialFunctions.current; }
+	EOF;
+
+// Rule SpecialFunctions
+ruleSpecialFunctions returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			{
+				newCompositeNode(grammarAccess.getSpecialFunctionsAccess().getSpecialFuntionMacroDefinitionParserRuleCall_0());
+			}
+			lv_specialFuntion_0_0=ruleMacroDefinition
+			{
+				if ($current==null) {
+					$current = createModelElementForParent(grammarAccess.getSpecialFunctionsRule());
+				}
+				set(
+					$current,
+					"specialFuntion",
+					lv_specialFuntion_0_0,
+					"org.bpy.electronics.mc6809.assembler.Assembler.MacroDefinition");
+				afterParserOrEnumRuleCall();
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleMacroDefinition
+entryRuleMacroDefinition returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getMacroDefinitionRule()); }
+	iv_ruleMacroDefinition=ruleMacroDefinition
+	{ $current=$iv_ruleMacroDefinition.current; }
+	EOF;
+
+// Rule MacroDefinition
+ruleMacroDefinition returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			(
+				lv_ws1_0_0=RULE_WS
+				{
+					newLeafNode(lv_ws1_0_0, grammarAccess.getMacroDefinitionAccess().getWs1WSTerminalRuleCall_0_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMacroDefinitionRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws1",
+						lv_ws1_0_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)
+		otherlv_1='.macro'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getMacroDefinitionAccess().getMacroKeyword_1());
+		}
+		(
+			(
+				lv_ws2_2_0=RULE_WS
+				{
+					newLeafNode(lv_ws2_2_0, grammarAccess.getMacroDefinitionAccess().getWs2WSTerminalRuleCall_2_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMacroDefinitionRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws2",
+						lv_ws2_2_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getMacroDefinitionAccess().getNameIdentifierValueParserRuleCall_3_0());
+				}
+				lv_name_3_0=ruleIdentifierValue
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getMacroDefinitionRule());
+					}
+					set(
+						$current,
+						"name",
+						lv_name_3_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			(
+				(
+					lv_ws3_4_0=RULE_WS
+					{
+						newLeafNode(lv_ws3_4_0, grammarAccess.getMacroDefinitionAccess().getWs3WSTerminalRuleCall_4_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMacroDefinitionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws3",
+							lv_ws3_4_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
+			(
+				(
+					lv_comment_5_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					{
+						newLeafNode(lv_comment_5_0, grammarAccess.getMacroDefinitionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMacroDefinitionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"comment",
+							lv_comment_5_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
+					}
+				)
+			)
+		)?
+		(
+			(
+				lv_ws4_6_0=RULE_WS
+				{
+					newLeafNode(lv_ws4_6_0, grammarAccess.getMacroDefinitionAccess().getWs4WSTerminalRuleCall_5_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMacroDefinitionRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws4",
+						lv_ws4_6_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)?
+		{
+			newCompositeNode(grammarAccess.getMacroDefinitionAccess().getEndOfLineParserRuleCall_6());
+		}
+		ruleEndOfLine
+		{
+			afterParserOrEnumRuleCall();
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getMacroDefinitionAccess().getInstructionsInstructionLineParserRuleCall_7_0());
+				}
+				lv_instructions_8_0=ruleInstructionLine
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getMacroDefinitionRule());
+					}
+					add(
+						$current,
+						"instructions",
+						lv_instructions_8_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.InstructionLine");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)+
+		(
+			(
+				lv_ws5_9_0=RULE_WS
+				{
+					newLeafNode(lv_ws5_9_0, grammarAccess.getMacroDefinitionAccess().getWs5WSTerminalRuleCall_8_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMacroDefinitionRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws5",
+						lv_ws5_9_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)
+		otherlv_10='.endm'
+		{
+			newLeafNode(otherlv_10, grammarAccess.getMacroDefinitionAccess().getEndmKeyword_9());
+		}
 	)
 ;
 

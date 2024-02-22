@@ -81,6 +81,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
@@ -107,6 +108,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
@@ -275,7 +277,10 @@ public class AssemblerEngine {
 				if (needStop) {
 					break;
 				}
-			
+			} else if(sourceLine.getLineContent() instanceof SpecialFunctions) {
+				SpecialFunctions specialFuntions = (SpecialFunctions)sourceLine.getLineContent();
+				parse(specialFuntions);
+				
 			} else if (sourceLine.getLineContent() instanceof InstructionLine) {
 				InstructionLine instructionLine = (InstructionLine) sourceLine.getLineContent();
 				parseInstructionLinePass1(instructionLine);
@@ -285,6 +290,27 @@ public class AssemblerEngine {
 			}
 			lineNumber++;
 		}
+	}
+
+	/**
+	 * Allow to parse and assemble specials funtions
+	 * 
+	 * @param specialFuntions
+	 */
+	private void parse(SpecialFunctions specialFuntions) {
+		if (specialFuntions.getSpecialFuntion() instanceof MacroDefinition) {
+			MacroDefinition macroDefinition = (MacroDefinition)specialFuntions.getSpecialFuntion();
+			parse(macroDefinition);
+		}
+	}
+
+	/**
+	 * Allow to parse a macro definition
+	 * 
+	 * @param macroDefinition reference on the macro definition
+	 */
+	private void parse(MacroDefinition macroDefinition) {
+		// TODO : Manage macro definition	
 	}
 
 	private void assemblePass2(Model model) {

@@ -68,6 +68,9 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
     {
       case AssemblerPackage.MODEL: return createModel();
       case AssemblerPackage.SOURCE_LINE: return createSourceLine();
+      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS: return createOtherKindOfInstructions();
+      case AssemblerPackage.SPECIAL_FUNCTIONS: return createSpecialFunctions();
+      case AssemblerPackage.MACRO_DEFINITION: return createMacroDefinition();
       case AssemblerPackage.LABEL_LINE: return createLabelLine();
       case AssemblerPackage.BLANK_LINE: return createBlankLine();
       case AssemblerPackage.COMMENT_LINE: return createCommentLine();
@@ -259,6 +262,42 @@ public class AssemblerFactoryImpl extends EFactoryImpl implements AssemblerFacto
   {
     SourceLineImpl sourceLine = new SourceLineImpl();
     return sourceLine;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public OtherKindOfInstructions createOtherKindOfInstructions()
+  {
+    OtherKindOfInstructionsImpl otherKindOfInstructions = new OtherKindOfInstructionsImpl();
+    return otherKindOfInstructions;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public SpecialFunctions createSpecialFunctions()
+  {
+    SpecialFunctionsImpl specialFunctions = new SpecialFunctionsImpl();
+    return specialFunctions;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public MacroDefinition createMacroDefinition()
+  {
+    MacroDefinitionImpl macroDefinition = new MacroDefinitionImpl();
+    return macroDefinition;
   }
 
   /**

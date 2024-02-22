@@ -62,6 +62,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
@@ -120,6 +121,252 @@ import org.eclipse.emf.ecore.EReference;
  */
 public class CommandUtil {
 
+	public static String getDirectiveName(Object directive) {
+		if (directive instanceof EquDirective) {
+			return ((EquDirective)directive).getDirective();
+		} else	if (directive instanceof OrgDirective) {
+			return ((OrgDirective)directive).getDirective();
+		} else	if (directive instanceof BszDirective) {
+			return ((BszDirective)directive).getDirective();
+		} else	if (directive instanceof EndDirective) {
+			return ((EndDirective)directive).getDirective();
+		} else	if (directive instanceof FailDirective) {
+			return ((FailDirective)directive).getDirective();
+		} else	if (directive instanceof FillDirective) {
+			return ((FillDirective)directive).getDirective();
+		} else	if (directive instanceof OptDirective) {
+			return ((OptDirective)directive).getDirective();
+		} else	if (directive instanceof PagDirective) {
+			return ((PagDirective)directive).getDirective();
+		} else	if (directive instanceof NamDirective) {
+			return ((NamDirective)directive).getDirective();
+		} else	if (directive instanceof SetDirective) {
+			return ((SetDirective)directive).getDirective();
+		} else	if (directive instanceof SpcDirective) {
+			return ((SpcDirective)directive).getDirective();
+		} else	if (directive instanceof RegDirective) {
+			return ((RegDirective)directive).getDirective();
+		} else	if (directive instanceof FcbDirective) {
+			return ((FcbDirective)directive).getDirective();
+		} else	if (directive instanceof FdbDirective) {
+			return ((FdbDirective)directive).getDirective();
+		} else	if (directive instanceof FccDirective) {
+			return ((FccDirective)directive).getDirective();
+		} else	if (directive instanceof RmbDirective) {
+			return ((RmbDirective)directive).getDirective();
+		} else	if (directive instanceof SetDPDirective) {
+			return ((SetDPDirective)directive).getDirective();
+		} else {
+			// TODO error management
+		}
+		return "Not found";
+	}
+	
+	public static String getInstructionName(Object instruction) {
+		if (instruction instanceof AbxInstruction) {
+			return ((AbxInstruction)instruction).getInstruction();
+					
+		} else if (instruction instanceof AdcInstruction) { 
+			return ((AbxInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof AddInstruction) { 
+			return ((AddInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof AndInstruction) { 
+			return ((AndInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof AndCCInstruction) { 
+			return ((AndCCInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof AslInstruction) { 
+			return ((AslInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof AsrInstruction) { 
+			return ((AsrInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BccInstruction) { 
+			return ((BccInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BcsInstruction) { 
+			return ((BcsInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BeqInstruction) { 
+			return ((BeqInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BgeInstruction) { 
+			return ((BgeInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BgtInstruction) { 
+			return ((BgtInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BhiInstruction) { 
+			return ((BhiInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BhsInstruction) { 
+			return ((BhsInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BitInstruction) { 
+			return ((BitInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BleInstruction) { 
+			return ((BleInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BloInstruction) { 
+			return ((BloInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BlsInstruction) { 
+			return ((BlsInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BltInstruction) { 
+			return ((BltInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BmiInstruction) { 
+			return ((BmiInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BneInstruction) { 
+			return ((BneInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BplInstruction) { 
+			return ((BplInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BraInstruction) { 
+			return ((BraInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BrnInstruction) { 
+			return ((BrnInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BsrInstruction) { 
+			return ((BsrInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BvcInstruction) { 
+			return ((BvcInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof BvsInstruction) { 
+			return ((BvsInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof ClrInstruction) { 
+			return ((ClrInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof CmpInstruction) { 
+			return ((CmpInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof ComInstruction) { 
+			return ((ComInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof CwaiInstruction) { 
+			return ((CwaiInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof DaaInstruction) { 
+			return ((DaaInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof DecInstruction) { 
+			return ((DecInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof EorInstruction) { 
+			return ((EorInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof ExgInstruction) { 
+			return ((ExgInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof IncInstruction) { 
+			return ((IncInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof JmpInstruction) { 
+			return ((JmpInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof JsrInstruction) { 
+			return ((JsrInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof LdInstruction) { 
+			return ((LdInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof LeaInstruction) { 
+			return ((LeaInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof LslInstruction) { 
+			return ((LslInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof LsrInstruction) { 
+			return ((LsrInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof MulInstruction) { 
+			return ((MulInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof NegInstruction) { 
+			return ((NegInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof NopInstruction) { 
+			return ((NopInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof OrInstruction) { 
+			return ((OrInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof OrCCInstruction) { 
+			return ((OrCCInstruction)instruction).getInstruction();
+		
+		} else if (instruction instanceof PshsInstruction) { 
+			return ((PshsInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof PshuInstruction) { 
+			return ((PshuInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof PulsInstruction) { 
+			return ((PulsInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof PuluInstruction) { 
+			return ((PuluInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof RolInstruction) { 
+			return ((RolInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof RorInstruction) { 
+			return ((RorInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof RtiInstruction) { 
+			return ((RtiInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof RtsInstruction) { 
+			return ((RtsInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof SbcInstruction) { 
+			return ((SbcInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof SexInstruction) { 
+			return ((SexInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof StInstruction) { 
+			return ((StInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof SubInstruction) { 
+			return ((SubInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof SubdInstruction) { 
+			return ((SubdInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof SwiInstruction) { 
+			return ((SwiInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof Swi2Instruction) { 
+			return ((Swi2Instruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof Swi3Instruction) { 
+			return ((Swi3Instruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof SyncInstruction) { 
+			return ((SyncInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof TfrInstruction) { 
+			return ((TfrInstruction)instruction).getInstruction();
+			
+		} else if (instruction instanceof TstInstruction) { 
+			return ((TstInstruction)instruction).getInstruction();
+			
+		} else {
+			// TODO error management
+		}
+		return "Not found";
+	}
+	
 	/**
 	 * Return the label associated to a directive line.
 	 * 
