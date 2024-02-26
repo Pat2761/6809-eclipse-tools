@@ -171,6 +171,9 @@ public class CommandUtil {
 			
 		} else if (instruction instanceof AddInstruction) { 
 			return ((AddInstruction)instruction).getInstruction();
+
+		} else if (instruction instanceof AdddInstruction) { 
+			return ((AdddInstruction)instruction).getInstruction();
 			
 		} else if (instruction instanceof AndInstruction) { 
 			return ((AndInstruction)instruction).getInstruction();
