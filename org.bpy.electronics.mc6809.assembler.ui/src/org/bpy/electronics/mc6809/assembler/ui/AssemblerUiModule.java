@@ -3,7 +3,15 @@
  */
 package org.bpy.electronics.mc6809.assembler.ui;
 
+import org.bpy.electronics.mc6809.assembler.ui.outline.FilterDirectiveContribution;
+import org.bpy.electronics.mc6809.assembler.ui.outline.FilterInstructionContribution;
+import org.bpy.electronics.mc6809.assembler.ui.outline.FilterMacroContribution;
+import org.bpy.electronics.mc6809.assembler.ui.outline.FilterOtherContribution;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.ui.editor.outline.actions.IOutlineContribution;
+
+import com.google.inject.Binder;
+import com.google.inject.name.Names;
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -13,4 +21,18 @@ public class AssemblerUiModule extends AbstractAssemblerUiModule {
 	public AssemblerUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
-}
+	
+	public void configureFilterOperationsContribution(Binder binder) {
+		  binder.bind(IOutlineContribution.class).annotatedWith(
+			      Names.named("FilterOperationsContribution"))
+			    .to(FilterInstructionContribution.class);
+		  binder.bind(IOutlineContribution.class).annotatedWith(
+			      Names.named("FilterDirectiveContribution"))
+			    .to(FilterDirectiveContribution.class);
+		  binder.bind(IOutlineContribution.class).annotatedWith(
+			      Names.named("FilterMacroContribution"))
+			    .to(FilterMacroContribution.class);
+		  binder.bind(IOutlineContribution.class).annotatedWith(
+			      Names.named("FilterOtherContribution"))
+			    .to(FilterOtherContribution.class);
+		}}
