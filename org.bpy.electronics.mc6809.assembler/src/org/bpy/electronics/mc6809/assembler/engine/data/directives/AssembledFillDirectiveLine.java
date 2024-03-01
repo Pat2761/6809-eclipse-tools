@@ -27,7 +27,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /**
  * Used to store information about FILL directive
  */
-public class AssembledFillDirectiveLine extends AbstractAssemblyLine {
+public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the FILL directive in the edited file */
 	private FillDirective directive;

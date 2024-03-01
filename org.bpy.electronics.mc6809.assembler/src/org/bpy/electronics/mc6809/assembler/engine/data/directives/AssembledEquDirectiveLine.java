@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /**
  * Used to store information about EQU directive
  */
-public class AssembledEquDirectiveLine extends AbstractAssemblyLine {
+public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the EQU directive in the edited file */
 	private EquDirective directive;

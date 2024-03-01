@@ -28,7 +28,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /**
  * Used to store information about FDB directive
  */
-public class AssembledFdbDirectiveLine extends AbstractAssemblyLine {
+public class AssembledFdbDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the FDB directive in the edited file */
 	private FdbDirective directive;

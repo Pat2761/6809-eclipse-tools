@@ -8,5 +8,4 @@ package org.bpy.electronics.mc6809.assembler;
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
 public class AssemblerRuntimeModule extends AbstractAssemblerRuntimeModule {
-
 }

@@ -1,19 +1,24 @@
 package org.bpy.electronics.mc6809.rcp;
 
+import java.util.logging.Logger;
+
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+
 
 /**
  * The activator class controls the plug-in life cycle
  */
 public class Activator extends AbstractUIPlugin {
-
+	
+	private static final Logger logger = Logger.getLogger(Activator.class.getName());
+	
 	// The plug-in ID
 	public static final String PLUGIN_ID = "org.bpy.electronics.mc6809.rcp"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
-	
+
 	/**
 	 * The constructor
 	 */

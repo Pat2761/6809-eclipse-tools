@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /**
  * Used to store information about PAG directive
  */
-public class AssembledPagDirectiveLine extends AbstractAssemblyLine {
+public class AssembledPagDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the PAG directive in the edited file */
 	private PagDirective directive;

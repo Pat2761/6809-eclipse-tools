@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /**
  * Used to store information about BSZ directive
  */
-public class AssembledBszDirectiveLine extends AbstractAssemblyLine {
+public class AssembledBszDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the BSZ directive in the edited file */
 	private BszDirective directive;

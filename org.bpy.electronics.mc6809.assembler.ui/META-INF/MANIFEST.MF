@@ -18,7 +18,8 @@ Require-Bundle: org.bpy.electronics.mc6809.assembler,
  org.eclipse.xtext.builder
 Import-Package: org.apache.log4j
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Export-Package: org.bpy.electronics.mc6809.assembler.ui.contentassist,
+Export-Package: org.bpy.electronics.mc6809.assembler.ui,
+ org.bpy.electronics.mc6809.assembler.ui.contentassist,
  org.bpy.electronics.mc6809.assembler.ui.internal,
  org.bpy.electronics.mc6809.assembler.ui.quickfix
 Bundle-Activator: org.bpy.electronics.mc6809.assembler.ui.internal.AssemblerActivator

@@ -25,7 +25,7 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 /**
  * Used to store information about END directive
  */
-public class AssembledEndDirectiveLine extends AbstractAssemblyLine {
+public class AssembledEndDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the END directive in the edited file */
 	private EndDirective directive;

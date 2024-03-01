@@ -215,6 +215,10 @@ public class AssemblerEngine {
 		regDefinitionValues = new HashMap<>();
 	}
 
+	public List<AbstractAssemblyLine> getAssembledLine() {
+		return assemblyLines;
+	}
+	
 	/**
 	 * Return the value of the current PC pointer
 	 * @return value of the current PC pointer

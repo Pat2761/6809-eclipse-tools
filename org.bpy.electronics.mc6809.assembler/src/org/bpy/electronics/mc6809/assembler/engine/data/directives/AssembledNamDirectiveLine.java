@@ -25,7 +25,7 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 /**
  * Used to store information about NAM directive
  */
-public class AssembledNamDirectiveLine extends AbstractAssemblyLine {
+public class AssembledNamDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the NAM directive in the edited file */
 	private NamDirective directive;

@@ -11,7 +11,13 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.navigator;bundle-version="3.10.300",
  org.eclipse.ui.navigator.resources;bundle-version="3.8.400",
  org.eclipse.ui.console;bundle-version="3.11.300",
- org.eclipse.help.ui;bundle-version="4.4.100"
+ org.eclipse.help.ui;bundle-version="4.4.100",
+ org.eclipse.nebula.widgets.grid;bundle-version="1.1.1",
+ org.bpy.electronics.mc6809.assembler,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.text,
+ org.eclipse.xtext,
+ org.bpy.electronics.mc6809.assembler.ui;bundle-version="1.0.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-17
 Automatic-Module-Name: org.bpy.electronics.mc6809.rcp
 Import-Package: javax.inject,

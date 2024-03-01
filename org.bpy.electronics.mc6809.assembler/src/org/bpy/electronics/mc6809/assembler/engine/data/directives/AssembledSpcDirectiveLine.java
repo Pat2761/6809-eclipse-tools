@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /**
  * Used to store information about SPC directive
  */
-public class AssembledSpcDirectiveLine extends AbstractAssemblyLine {
+public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the SPC directive in the edited file */
 	private SpcDirective directive;

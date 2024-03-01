@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /*
  * Used to store information about ORG directive
  */
-public class AssembledOrgDirectiveLine extends AbstractAssemblyLine {
+public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the ORG directive in the edited file */
 	private OrgDirective directive;

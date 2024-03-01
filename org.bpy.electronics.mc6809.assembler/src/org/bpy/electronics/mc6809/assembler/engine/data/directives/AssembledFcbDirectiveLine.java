@@ -28,7 +28,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /**
  * Used to store information about FCB directive
  */
-public class AssembledFcbDirectiveLine extends AbstractAssemblyLine {
+public class AssembledFcbDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the FCB directive in the edited file */
 	private FcbDirective directive;

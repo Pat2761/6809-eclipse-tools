@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 /**
  * Used to store information about OPT directive
  */
-public class AssembledOptDirectiveLine extends AbstractAssemblyLine {
+public class AssembledOptDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** Integer value defined by the EQU directive */ 
 	private String[] values;	

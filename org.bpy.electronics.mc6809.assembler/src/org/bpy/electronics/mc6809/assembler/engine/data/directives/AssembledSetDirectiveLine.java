@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /**
  * Used to store information about SET directive
  */
-public class AssembledSetDirectiveLine extends AbstractAssemblyLine {
+public class AssembledSetDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** Integer value defined by the EQU directive */ 
 	private int value;	

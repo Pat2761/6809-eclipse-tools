@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /**
  * Used to store information about RMB directive
  */
-public class AssembledRmbDirectiveLine extends AbstractAssemblyLine {
+public class AssembledRmbDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the Rmb directive in the edited file */
 	private RmbDirective directive;

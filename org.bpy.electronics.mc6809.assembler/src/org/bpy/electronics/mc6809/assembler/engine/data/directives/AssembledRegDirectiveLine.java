@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 /**
  * Used to store information about REG directive
  */
-public class AssembledRegDirectiveLine extends AbstractAssemblyLine {
+public class AssembledRegDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the REG directive in the edited file */
 	private RegDirective directive;

@@ -26,7 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 /**
  * Used to store information about SETDP directive
  */
-public class AssembledSetDPDirectiveLine extends AbstractAssemblyLine {
+public class AssembledSetDPDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the SETDP directive in the edited file */
 	private SetDPDirective directive;

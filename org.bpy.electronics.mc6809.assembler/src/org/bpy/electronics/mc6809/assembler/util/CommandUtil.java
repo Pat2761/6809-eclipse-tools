@@ -167,7 +167,7 @@ public class CommandUtil {
 			return ((AbxInstruction)instruction).getInstruction();
 					
 		} else if (instruction instanceof AdcInstruction) { 
-			return ((AbxInstruction)instruction).getInstruction();
+			return ((AdcInstruction)instruction).getInstruction();
 			
 		} else if (instruction instanceof AddInstruction) { 
 			return ((AddInstruction)instruction).getInstruction();

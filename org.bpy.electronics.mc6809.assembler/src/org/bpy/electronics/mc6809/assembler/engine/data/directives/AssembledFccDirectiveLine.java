@@ -25,7 +25,7 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 /**
  * Used to store information about FCC directive
  */
-public class AssembledFccDirectiveLine extends AbstractAssemblyLine {
+public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the FCC directive in the edited file */
 	private FccDirective directive;
