@@ -235,6 +235,8 @@ public class AssemblyView extends ViewPart {
 		 if (assembledLine.getLabel() != null) {
 			 item.setText(LABEL_COLUMN, assembledLine.getLabel());
 		 }
+		 
+		 item.setText(INSTRUCTION_COLUMN, assembledLine.getInstructionName());
 		 if (assembledLine.getComment() != null) {
 			 item.setText(COMMENT_COLUMN, assembledLine.getComment());
 		 }

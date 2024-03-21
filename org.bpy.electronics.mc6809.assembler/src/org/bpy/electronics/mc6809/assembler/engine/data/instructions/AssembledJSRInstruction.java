@@ -201,4 +201,14 @@ public class AssembledJSRInstruction extends AbstractJmpJsrInstruction {
 		// TODO Auto-generated method stub
 	}
 
+	@Override
+	public String getInstructionName() {
+		return getInstruction().getInstruction();
+	}
+	
+	@Override
+	public String getOperandString() {
+		return getOperand(instruction.getOperand());
+	}
+
 }

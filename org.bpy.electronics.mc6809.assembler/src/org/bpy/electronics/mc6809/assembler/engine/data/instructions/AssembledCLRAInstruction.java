@@ -75,4 +75,14 @@ public class AssembledCLRAInstruction extends AbstractInstructionAssemblyLine {
 	public Object getInstructionOperand() {
 		return null;
 	}
+
+	@Override
+	public String getInstructionName() {
+		return instruction.getInstruction();
+	}
+	
+	@Override
+	public String getOperandString() {
+		return getOperand(instruction.getOperand());
+	}
 }

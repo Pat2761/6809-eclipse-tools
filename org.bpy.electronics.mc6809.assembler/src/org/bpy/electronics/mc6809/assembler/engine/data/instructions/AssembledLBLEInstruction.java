@@ -78,4 +78,15 @@ public class AssembledLBLEInstruction extends AbstractRelativeBranchInstruction 
 	protected Object getLocalInstruction() {
 		return instruction;
 	}
+	
+	@Override
+	public String getInstructionName() {
+		return instruction.getInstruction();
+	}
+	
+	@Override
+	public String getOperandString() {
+		return getOperand(instruction.getOperand());
+	}
+
 }

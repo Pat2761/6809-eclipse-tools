@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
 import java.util.EnumMap;
 
+import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
@@ -37,6 +38,11 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xtext.generator.grammarAccess.GrammarAccessExtensions;
+
+import com.google.inject.Inject;
 
 /**
  * Allow to pasre an ADCA instruction
@@ -178,5 +184,15 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 	@Override
 	public void setCyclesNumber(AddressingMode mode) {
 		// TODO Auto-generated method stub
+	}
+
+	@Override
+	public String getInstructionName() {
+		return instruction.getInstruction();
+	}
+	
+	@Override
+	public String getOperandString() {
+		return getOperand(instruction.getOperand());
 	}
 }

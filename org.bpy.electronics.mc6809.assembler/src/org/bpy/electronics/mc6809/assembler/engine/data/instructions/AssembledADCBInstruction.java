@@ -171,4 +171,15 @@ public class AssembledADCBInstruction extends AbstractInstructionAssemblyLine {
 	public Object getInstructionOperand() {
 		return instruction.getOperand();
 	}
+
+	@Override
+	public String getInstructionName() {
+		return instruction.getInstruction();
+	}
+
+	@Override	
+	public String getOperandString() {
+		return getOperand(instruction.getOperand());
+	}
+
 }

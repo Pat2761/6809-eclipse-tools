@@ -75,4 +75,15 @@ public class AssembledNOPInstruction extends AbstractInstructionAssemblyLine {
 	public Object getInstructionOperand() {
 		return null;
 	}
+	
+	@Override
+	public String getInstructionName() {
+		return instruction.getInstruction();
+	}
+	
+	@Override
+	public String getOperandString() {
+		return "";
+	}
+
 }

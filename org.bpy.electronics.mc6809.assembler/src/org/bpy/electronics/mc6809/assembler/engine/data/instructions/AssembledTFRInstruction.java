@@ -228,4 +228,15 @@ public class AssembledTFRInstruction extends AbstractInstructionAssemblyLine {
 	public Object getInstructionOperand() {
 		return null;
 	}
+	
+	@Override
+	public String getInstructionName() {
+		return instruction.getInstruction();
+	}
+	
+	@Override
+	public String getOperandString() {
+		return instruction.getReg1().getLiteral() + "," + instruction.getReg2().getLiteral();
+	}
+
 }

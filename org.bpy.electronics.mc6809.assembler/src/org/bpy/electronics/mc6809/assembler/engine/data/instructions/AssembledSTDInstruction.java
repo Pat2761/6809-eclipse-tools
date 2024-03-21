@@ -184,4 +184,15 @@ public class AssembledSTDInstruction extends AbstractInstructionAssemblyLine {
 	public void setCyclesNumber(AddressingMode mode) {
 		// TODO Auto-generated method stub
 	}
+	
+	@Override
+	public String getInstructionName() {
+		return instruction.getInstruction();
+	}
+	
+	@Override
+	public String getOperandString() {
+		return getOperand(instruction.getOperand());
+	}
+
 }

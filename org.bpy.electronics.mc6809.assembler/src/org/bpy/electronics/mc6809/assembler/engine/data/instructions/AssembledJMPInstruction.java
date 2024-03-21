@@ -258,4 +258,14 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 	public void setCyclesNumber(AddressingMode mode) {
 		// TODO Auto-generated method stub
 	}
+
+	@Override
+	public String getInstructionName() {
+		return getInstruction().getInstruction();
+	}
+	
+	@Override
+	public String getOperandString() {
+		return getOperand(instruction.getOperand());
+	}
 }
