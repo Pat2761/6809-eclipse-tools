@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+	<modelVersion>4.0.0</modelVersion>
 
-    <artifactId>org.bpy.electronics.mc6809.assembler</artifactId>
-   	<packaging>eclipse-plugin</packaging>
+	<artifactId>org.bpy.electronics.mc6809.assembler</artifactId>
+	<packaging>eclipse-plugin</packaging>
 
 	<parent>
 		<groupId>org.bpy.electronics.mc6809</groupId>
@@ -11,9 +11,17 @@
 		<relativePath>../org.bpy.electronics.mc6809.build/parent/pom.xml</relativePath>
 	</parent>
 
-  <build>
+	<dependencies>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+		</dependency>
+	</dependencies>
 
-    <plugins>
+	<build>
+
+		<plugins>
 
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -37,7 +45,7 @@
 					</arguments>
 					<classpathScope>compile</classpathScope>
 					<includePluginDependencies>true</includePluginDependencies>
-					<cleanupDaemonThreads>false</cleanupDaemonThreads><!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=475098#c3 -->
+					<cleanupDaemonThreads>false</cleanupDaemonThreads> <!-- see https://bugs.eclipse.org/bugs/show_bug.cgi?id=475098#c3 -->
 				</configuration>
 				<dependencies>
 					<dependency>
@@ -52,7 +60,7 @@
 				<groupId>org.eclipse.xtend</groupId>
 				<artifactId>xtend-maven-plugin</artifactId>
 			</plugin>
-	
+
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-clean-plugin</artifactId>
@@ -95,9 +103,9 @@
 				</configuration>
 			</plugin>
 
-    	</plugins>
-    
-    	<pluginManagement>
+		</plugins>
+
+		<pluginManagement>
 			<plugins>
 				<plugin>
 					<groupId>org.eclipse.m2e</groupId>
@@ -132,6 +140,6 @@
 			</plugins>
 		</pluginManagement>
 
-  </build>
+	</build>
 
 </project>
