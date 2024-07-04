@@ -13,6 +13,6 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.nebula.widgets.richtext,
  org.eclipse.ui.editors
-Bundle-RequiredExecutionEnvironment: JavaSE-17
+Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: org.bpy.electronics.mc6809.preferences
 Bundle-ActivationPolicy: lazy

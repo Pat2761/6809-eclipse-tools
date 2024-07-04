@@ -126,8 +126,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- Plugins versions settings -->
-		<tycho.version>3.0.1</tycho.version>
-		<tycho.surefire.version>3.0.1</tycho.surefire.version>
+		<tycho.version>2.5.0</tycho.version>
+		<tycho.surefire.version>2.5.0</tycho.surefire.version>
 		
 		<!-- XText version -->
 		<xtextVersion>2.28.0</xtextVersion>
@@ -305,7 +305,7 @@
 				<artifactId>target-platform-configuration</artifactId>
 				<version>${tycho.version}</version>
 				<configuration>
-					<executionEnvironment>JavaSE-17</executionEnvironment>
+					<executionEnvironment>JavaSE-11</executionEnvironment>
 					<resolver>p2</resolver>
 					<pomDependencies>consider</pomDependencies>
 					<target>
