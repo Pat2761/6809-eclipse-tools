@@ -164,16 +164,16 @@ public class ExpressionParser {
 					eReference, 
 					OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
-			value = min;
+			return min;
 		} else if (value > max) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is greater than the possible limit, data may be lost" , 
 					eReference, 
 					OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
-			value = max;
+			return max;
 		}
-		return value & ((max<<1) | 1);
+		return value;
 	}
 
 	/** 
