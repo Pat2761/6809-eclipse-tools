@@ -31,28 +31,28 @@ import org.eclipse.xtext.xbase.lib.Extension;
 import org.junit.Assert;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.junit.Test;
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledABXInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledASLBInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 
-public class TestABXInstruction {
+public class TestASLBInstruction {
 	@Inject ParseHelper<Model> parseHelper;
 	@Inject @Extension private ValidationTestHelper validationTestHelper;
 	
 	/**
-	 * Check ABX with extra space
+	 * Check ASLB with extra space
 	 */
 	@Test 
-	public void testSimpleABXWithExtraSpace() {
+	public void testSimpleASLBWithExtraSpace() {
 		
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    $8000\n");
-		strBuilder.append("	       ABX \n"); 
+		strBuilder.append("	       ASLB \n"); 
 		Model result;
 		try {
 			result = parseHelper.parse(strBuilder.toString());
@@ -61,25 +61,25 @@ public class TestABXInstruction {
 			validationTestHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			
-		    SourceLine line = result.getSourceLines().get(2);
+		   SourceLine line = result.getSourceLines().get(2);
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an ABX directive line", instructionLine.getInstruction() instanceof AbxInstruction);
+			Assert.assertTrue("Must be an ASLB directive line", instructionLine.getInstruction() instanceof AslInstruction);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check ABX with extra space
+	 * Check ASLB with extra space
 	 */
 	@Test 
-	public void testSimpleABXWithoutExtraSpace() {
+	public void testSimpleASLBWithoutExtraSpace() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    $8000\n");
-		strBuilder.append("	       ABX\n"); 
+		strBuilder.append("	       ASLB\n"); 
 		Model result;
 		try {
 			result = parseHelper.parse(strBuilder.toString());
@@ -88,25 +88,25 @@ public class TestABXInstruction {
 			validationTestHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			
-		    SourceLine line = result.getSourceLines().get(2);
+		   SourceLine line = result.getSourceLines().get(2);
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an ABX directive line", instructionLine.getInstruction() instanceof AbxInstruction);
+			Assert.assertTrue("Must be an ASLB directive line", instructionLine.getInstruction() instanceof AslInstruction);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check ABX with extra space
+	 * Check ASLB with extra space
 	 */
 	@Test 
-	public void testSimpleABXWithExtraSpaceWithComment() {
+	public void testSimpleASLBWithExtraSpaceWithComment() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       ABX  			; It is a comment\n");
-		strBuilder.append("	       ABX\n"); 
+		strBuilder.append("	       ASLB  			; It is a comment\n");
+		strBuilder.append("	       ASLB\n"); 
 		Model result;
 		try {
 			result = parseHelper.parse(strBuilder.toString());
@@ -115,25 +115,25 @@ public class TestABXInstruction {
 			validationTestHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			
-		    SourceLine line = result.getSourceLines().get(2);
+		   SourceLine line = result.getSourceLines().get(2);
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an ABX directive line", instructionLine.getInstruction() instanceof AbxInstruction);
+			Assert.assertTrue("Must be an ASLB directive line", instructionLine.getInstruction() instanceof AslInstruction);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check ABX with extra space
+	 * Check ASLB with extra space
 	 */
 	@Test 
-	public void testSimpleABXWithoutExtraSpaceWithComment() {
+	public void testSimpleASLBWithoutExtraSpaceWithComment() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    $8000\n");
-		strBuilder.append("	       ABX					; It is a comment\n"); 
+		strBuilder.append("	       ASLB					; It is a comment\n"); 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -141,18 +141,18 @@ public class TestABXInstruction {
 			validationTestHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 		
-		    SourceLine line = result.getSourceLines().get(2);
+		   SourceLine line = result.getSourceLines().get(2);
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an ABX directive line", instructionLine.getInstruction() instanceof AbxInstruction);
+			Assert.assertTrue("Must be an ASLB directive line", instructionLine.getInstruction() instanceof AslInstruction);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 		
 	/**
-	 * Check ABX instruction with duplicate label 
+	 * Check ASLB instruction with duplicate label 
 	 */
 	@Test 
 	public void testASLBWithDuplicateLabel() {
@@ -162,7 +162,7 @@ public class TestABXInstruction {
 		strBuilder.append("Const	   EQU          	5\n");
 		strBuilder.append("Start		NOP\n");
 		strBuilder.append("			   NOP    \n");
-		strBuilder.append("Start      ABX		  	\n");
+		strBuilder.append("Start      ASLB		  	\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -178,14 +178,14 @@ public class TestABXInstruction {
 	}
 	
 	/**
-	 * Check Assembled ABX
+	 * Check Assembled ASLB
 	 */
 	@Test 
-	public void testAssembledABX() {
+	public void testAssembledASLB() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	      	ORG    $8000\n");
-		strBuilder.append("LabelAbx	ABX					; Abx comment\n");
+		strBuilder.append("LabelAslb	ASLB					; Aslb comment\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -197,9 +197,9 @@ public class TestABXInstruction {
 			
 			Assert.assertEquals("Check PC after instruction", 0x8001, engine.getCurrentPcValue());
 			
-			AssembledABXInstruction line = (AssembledABXInstruction)engine.getAssembledLine(2);
-			Assert.assertEquals("Check label", "LabelAbx" , line.getLabel());
-			Assert.assertEquals("Check comment", "; Abx comment" , line.getComment());
+			AssembledASLBInstruction line = (AssembledASLBInstruction)engine.getAssembledLine(2);
+			Assert.assertEquals("Check label", "LabelAslb" , line.getLabel());
+			Assert.assertEquals("Check comment", "; Aslb comment" , line.getComment());
 			Assert.assertEquals("Check lineNumber", 3 , line.getLineNumber());
 			Assert.assertEquals("Check cycle number", 3 , line.getCyclesNumber());
 			
@@ -207,7 +207,7 @@ public class TestABXInstruction {
 			int[] operand = line.getOperand();
 			
 			Assert.assertEquals("Check Opcode size",1,code.length);
-			Assert.assertEquals("Check Opcode code",0x3A,code[0]);
+			Assert.assertEquals("Check Opcode code",0x58,code[0]);
 			Assert.assertEquals("Check Operand size",0,operand.length);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
