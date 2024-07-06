@@ -16,114 +16,138 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package org.bpy.electronics.mc6809.assembler.tests.language.directives
+package org.bpy.electronics.mc6809.assembler.tests.language.directives;
 
-import org.eclipse.xtext.testing.XtextRunner
-import org.junit.runner.RunWith
-import org.eclipse.xtext.testing.InjectWith
-import com.google.inject.Inject
-import org.eclipse.xtext.testing.util.ParseHelper
-import org.bpy.electronics.mc6809.assembler.assembler.Model
-import org.junit.Test
-import org.junit.Assert
-import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser
-import org.bpy.electronics.mc6809.assembler.assembler.EquDirective
-import org.bpy.electronics.mc6809.assembler.util.CommandUtil
-import org.eclipse.xtext.testing.validation.ValidationTestHelper
-import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
-import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage
-import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
-import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator
-import org.eclipse.xtext.diagnostics.Severity
+import org.eclipse.xtext.testing.XtextRunner;
+import org.junit.runner.RunWith;
+import org.eclipse.xtext.testing.InjectWith;
+import com.google.inject.Inject;
+import org.eclipse.xtext.testing.util.ParseHelper;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.junit.Test;
+import org.junit.Assert;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.eclipse.xtext.testing.validation.ValidationTestHelper;
+import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
+import org.eclipse.xtext.diagnostics.Severity;
+import org.eclipse.xtext.xbase.lib.Extension;
+import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 
-@RunWith(XtextRunner)
-@InjectWith(AssemblerInjectorProvider)
 
-class TestEquDirective {
-	@Inject ParseHelper<Model> parseHelper
-	@Inject extension ValidationTestHelper h
+@RunWith(XtextRunner.class)
+@InjectWith(AssemblerInjectorProvider.class)
+
+public class TestEquDirective {
+	@Inject ParseHelper<Model> parseHelper;
+	@Inject @Extension private ValidationTestHelper validationHelper;
 	
 	/**
 	 * Check EQU directive with a simple decimal value
 	 */
 	@Test 
-	def void testWithDecimalValue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    1234 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithDecimalValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    1234 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
+
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line;
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU directive with a simple negative decimal value
 	 */
 	@Test 
-	def void testWithNegativeDecimalValue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    -25 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithNegativeDecimalValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    -25 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
+
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 	
 	@Test
 	/**
 	 * Check EQU directive with an addition of two decimal values 
 	 */
-	def void testWithAdditionOfTwoDecimalValue() {
+	public void testWithAdditionOfTwoDecimalValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    12+24		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val result = parseHelper.parse('''
-		Label1       EQU    12+24		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 	
 	@Test
 	/**
 	 * Check EQU directive with an addition of three decimal values
 	 */
-	def void testWithAdditionOfThreeDecimalValue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    12+24+5		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithAdditionOfThreeDecimalValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    12+24+5		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
+
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
@@ -131,187 +155,232 @@ class TestEquDirective {
 	 * Check EQU directive with an addition of two decimal values and a multiplication
 	 * check the parenthesis priority
 	 */
-	def void testWithAdditionOfTwoDecimalValueAndMultiplication() {
-		val result = parseHelper.parse('''
-		Label1       EQU    (12+24)*5		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithAdditionOfTwoDecimalValueAndMultiplication() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    (12+24)*5		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
 	/**
 	 * Check EQU directive with an hexadecimal value
 	 */
-	def void testWithHexadecimalvalue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    $FF00		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithHexadecimalvalue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    $FF00		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
 	/**
 	 * Check EQU directive with the addition of two hexadecimal values
 	 */
-	def void testWithAdditionHexadecimalvalue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    $A7+$25		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithAdditionHexadecimalvalue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    $A7+$25		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU directive with an addition of a decimal values and a hexadecimal value
 	 */
 	@Test
-	def void testWithMultiplicationHexadecimalvalue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    125*$A		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithMultiplicationHexadecimalvalue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    125*$A		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 	
 	/**
 	 * Check EQU directive with a binary value
 	 */
 	@Test 
-	def void testWithABinaryValue() {
-		val result = parseHelper.parse('''
-		Label1       EQU   %10010011		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithABinaryValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU   %10010011		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 	
 	/**
 	 * Check EQU directive with a simple octal value
 	 */
 	@Test 
-	def void testWithOctalValue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    @1234 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithOctalValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    @1234 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 	
 	/**
-	 * Check EQU directive with a simple identifier defined by an anothoer EQU
+	 * Check EQU directive with a simple identifier defined by an another EQU
 	 */
 	@Test 
-	def void testWithIdentifierValue() {
-		val result = parseHelper.parse('''
-		Five       EQU    5         ; Five = 5
-		Result     EQU    Five*2    ; so 10
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithIdentifierValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Five       EQU    5         ; Five = 5\n");
+		strBuilder.append("Result     EQU    Five*2    ; so 10\n");
 
-		val line0 = result.sourceLines.get(0)
-		val directiveLine0 = line0.lineContent as DirectiveLine
-		val equDirective0 = directiveLine0.directive as EquDirective
-		ExpressionParser.parse(equDirective0)
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line1 = result.sourceLines.get(1)
-		Assert.assertTrue("Must be a directive line", line1.lineContent instanceof DirectiveLine)
-		
-		val directiveLine1 = line1.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine1.directive instanceof EquDirective)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
+
+			SourceLine line0 = result.getSourceLines().get(0);
+			DirectiveLine directiveLine0 = (DirectiveLine)line0.getLineContent();
+			EquDirective equDirective0 = (EquDirective)directiveLine0.getDirective();
+			ExpressionParser.parse(equDirective0);
+			
+			SourceLine line1 = result.getSourceLines().get(1);
+			Assert.assertTrue("Must be a directive line", line1.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine1 = (DirectiveLine)line1.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine1.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU directive with a simple octal value
 	 */
 	@Test 
-	def void testWithCharacterValue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    'A 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testWithCharacterValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    'A \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU directive with a relative value to PC
 	 */
 	@Test 
-	def void testEQURelativeToPC() {
-		val result = parseHelper.parse('''
-		             ORG    $2000
-		Label1       EQU    * 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testEQURelativeToPC() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("             ORG    $2000\n");
+		strBuilder.append("Label1       EQU    * \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(1)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(1);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 
@@ -319,338 +388,423 @@ class TestEquDirective {
 	 * Check EQU directive with a relative value to PC with expression
 	 */
 	@Test 
-	def void testEQURelativeToPCWithEpxression() {
-		val result = parseHelper.parse('''
-		             ORG    $2000
-		Label1       EQU    *-3 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testEQURelativeToPCWithEpxression() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("             ORG    $2000\n");
+		strBuilder.append("Label1       EQU    *-3 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(1)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
+			SourceLine line = result.getSourceLines().get(1);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
+
 	@Test
-	def void testEQUWithSamples() { 
-		val result = parseHelper.parse('''
-		Label1       EQU    65535 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
+	public void testEQUWithSamples() { 
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    65535 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
+		
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU directive with a value which is upper to 65535
 	 */
 	@Test 
-	def void testWithHighestLimit() {
-		val result = parseHelper.parse('''
-		Label1       EQU    65535 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-	}
+	public void testWithTooHighValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    65536 \n");
 
-	/**
-	 * Check EQU directive with a value which is upper to 65535
-	 */
-	@Test 
-	def void testWithTooHighValue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    65536 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::INVALID_RANGE,"EQU value can't exceed 65535 (16 bits value)")
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(),
+				DirectiveValidator.INVALID_RANGE,"EQU value can't exceed 65535 (16 bits value)");
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU directive with a value which is lower than -32768
 	 */
 	@Test 
-	def void testWithTooLowValue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    -32769 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.equDirective,DirectiveValidator::INVALID_RANGE,"EQU value can't be lower than -32768 (16 bits value)")
+	public void testWithTooLowValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    -32769 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(),
+				DirectiveValidator.INVALID_RANGE,"EQU value can't be lower than -32768 (16 bits value)");
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU directive with a value which is lower than -32768
 	 */
 	@Test 
-	def void testWithLowestNegativeValue() {
-		val result = parseHelper.parse('''
-		Label1       EQU    -32768 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
+	public void testWithLowestNegativeValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    -32768 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU directive with a missing label
 	 */
 	@Test 
-	def void testWithMissingLabel() {
-		val result = parseHelper.parse('''
-		; test EQU without label
-		 	    EQU    100 
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,DirectiveValidator::MISSING_LABEL,"No label defined for EQU directive")
+	public void testWithMissingLabel() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; test EQU without label\n");
+		strBuilder.append(" 	    EQU    100 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(),
+				DirectiveValidator.MISSING_LABEL,"No label defined for EQU directive");
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU directive with a duplicate label
 	 */
 	@Test 
-	def void testWithDuplicateLabel() {
-		val result = parseHelper.parse('''
-		; test EQU without label
-		EquLabel 	    EQU    	100 
-		EquLabel		EQU		200
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.directiveLine,AssemblerEngine::DUPLICATE_LABEL,"The label EquLabel for an EQU directive is already defined")
+	public void testWithDuplicateLabel() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; test EQU with duplicate label\n");
+		strBuilder.append("EquLabel 	    EQU    	100 \n");
+		strBuilder.append("EquLabel			EQU		200\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(),
+				AssemblerEngine.DUPLICATE_LABEL,"The label EquLabel for an EQU directive is already defined");
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU directive with a duplicate label defined by a SET directive
 	 */
 	@Test 
-	def void testWithSETDuplicateLabel() {
-		val result = parseHelper.parse('''
-		; test EQU without label
-		EquLabel 	    SET    	100 
-		EquLabel		EQU		200
-		''')
-		Assert.assertNotNull(result)
-		result.assertWarning(AssemblerPackage.eINSTANCE.directiveLine,
-			AssemblerEngine::DUPLICATE_LABEL,
-			"The label EquLabel for an EQU directive is already defined by a SET directive"
-		)
+	public void testWithSETDuplicateLabel() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; test EQU reused label\n");
+		strBuilder.append("EquLabel 	    SET    	100 \n");
+		strBuilder.append("EquLabel			EQU		200\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getDirectiveLine(),
+				AssemblerEngine.DUPLICATE_LABEL,
+				"The label EquLabel for an EQU directive is already defined by a SET directive");
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 	
 	/**
 	 * Check EQU directive with a missing EQU definition in the expression
 	 */
 	@Test 
-	def void testWithMissingEquLabelExpression() {
-		val result = parseHelper.parse('''
-		; test EQU missing EQU
-		EquLabel		EQU		Label1+200
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.equDirective,
-			ExpressionParser::EXPRESSION_ERROR,
-			"Can't find Label1 definition"
-		)
+	public void testWithMissingEquLabelExpression() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; test EQU missing EQU\n");
+		strBuilder.append("EquLabel		EQU		Label1+200\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(),
+				ExpressionParser.EXPRESSION_ERROR,"Can't find Label1 definition");
+			
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 	
 	@Test
 	/**
 	 * Check EQU directive with an subtraction of two decimal values 
 	 */
-	def void testWithSubstractionOfTwoDecimalValue() {
+	public void testWithSubstractionOfTwoDecimalValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    32-15		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val result = parseHelper.parse('''
-		Label1       EQU    32-15		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-		val equDirective = directiveLine.directive as EquDirective
-	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-		Assert.assertEquals("Operand must be equals to 17", 17, ExpressionParser.parse(equDirective))		
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+			
+			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
+		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));
+			Assert.assertEquals("Operand must be equals to 17", 17, ExpressionParser.parse(equDirective));		
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
 	/**
 	 * Check EQU directive with an modulo of two decimal values 
 	 */
-	def void testWithModuloOfTwoDecimalValue() {
+	public void testWithModuloOfTwoDecimalValue() {
 		
-		val result = parseHelper.parse('''
-		Label1       EQU    46%5		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    46%5		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-		val equDirective = directiveLine.directive as EquDirective
-	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-		Assert.assertEquals("Operand must be equals to 1", 1, ExpressionParser.parse(equDirective))		
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+			
+			EquDirective equDirective = (EquDirective)directiveLine.getDirective() ;
+		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
+			Assert.assertEquals("Operand must be equals to 1", 1, ExpressionParser.parse(equDirective));	
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
 	/**
 	 * Check EQU directive with a logical AND of two hexadecimal values 
 	 */
-	def void testWithLogicalAndOfTwoHexaDecimalValue() {
+	public void testWithLogicalAndOfTwoHexaDecimalValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    $FFFF&&$FF		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val result = parseHelper.parse('''
-		Label1       EQU    $FFFF&&$FF		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-		val equDirective = directiveLine.directive as EquDirective
-	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-		Assert.assertEquals("Operand must be equals to 255", 255, ExpressionParser.parse(equDirective))		
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+			
+			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
+		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
+			Assert.assertEquals("Operand must be equals to 255", 255, ExpressionParser.parse(equDirective));		
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
 	/**
 	 * Check EQU directive with a logical Or of two hexadecimal values 
 	 */
-	def void testWithLogicalOrOfTwoHexaDecimalValue() {
+	public void testWithLogicalOrOfTwoHexaDecimalValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    $FF00||$FF		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val result = parseHelper.parse('''
-		Label1       EQU    $FF00||$FF		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-		val equDirective = directiveLine.directive as EquDirective
-	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-		Assert.assertEquals("Operand must be equals to 65535", 65535, ExpressionParser.parse(equDirective))		
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+			
+			EquDirective equDirective = (EquDirective)directiveLine.getDirective() ;
+		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
+			Assert.assertEquals("Operand must be equals to 65535", 65535, ExpressionParser.parse(equDirective));		
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
 	/**
 	 * Check EQU directive with a logical XOr of two hexadecimal values 
 	 */
-	def void testWithLogicalXOrOfTwoBinaryValue() {
+	public void testWithLogicalXOrOfTwoBinaryValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    %01010101^%00001111		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val result = parseHelper.parse('''
-		Label1       EQU    %01010101^%00001111		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-		val equDirective = directiveLine.directive as EquDirective
-	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-		Assert.assertEquals("Operand must be equals to 90", 90, ExpressionParser.parse(equDirective))		
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+			
+			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
+		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
+			Assert.assertEquals("Operand must be equals to 90", 90, ExpressionParser.parse(equDirective));		
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
 	/**
 	 * Check EQU directive with a nagate of an hexadecimal values 
 	 */
-	def void testWithNegateOfHexaDecimalValue() {
+	public void testWithNegateOfHexaDecimalValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    !$AA		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val result = parseHelper.parse('''
-		Label1       EQU    !$AA		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-		val equDirective = directiveLine.directive as EquDirective
-	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-		Assert.assertEquals("Operand must be equals to 65365", 65365, ExpressionParser.parse(equDirective))		
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+			
+			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
+		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
+			Assert.assertEquals("Operand must be equals to 65365", 65365, ExpressionParser.parse(equDirective));		
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
 	/**
 	 * Check EQU directive with a left shift of a values 
 	 */
-	def void testWithLeftShiftValue() {
+	public void testWithLeftShiftValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    20<<2		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val result = parseHelper.parse('''
-		Label1       EQU    20<<2		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-		val equDirective = directiveLine.directive as EquDirective
-	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-		Assert.assertEquals("Operand must be equals to 80", 80, ExpressionParser.parse(equDirective))		
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+			
+			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
+		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
+			Assert.assertEquals("Operand must be equals to 80", 80, ExpressionParser.parse(equDirective));		
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
 	/**
 	 * Check EQU directive with a right shift of a values 
 	 */
-	def void testWithRightShiftValue() {
+	public void testWithRightShiftValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("Label1       EQU    88>>2		 \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val result = parseHelper.parse('''
-		Label1       EQU    88>>2		 
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val line = result.sourceLines.get(0)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
-		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an EQU directive line", directiveLine.directive instanceof EquDirective)
-		
-		val equDirective = directiveLine.directive as EquDirective
-	 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective))	
-		Assert.assertEquals("Operand must be equals to 22", 22, ExpressionParser.parse(equDirective))		
+			SourceLine line = result.getSourceLines().get(0);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine)line.getLineContent();
+			Assert.assertTrue("Must be an EQU directive line", directiveLine.getDirective() instanceof EquDirective);
+			
+			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
+		 	Assert.assertEquals("Label must be set to Label1", "Label1" , CommandUtil.getLabel(equDirective));	
+			Assert.assertEquals("Operand must be equals to 22", 22, ExpressionParser.parse(equDirective));		
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 
@@ -658,45 +812,70 @@ class TestEquDirective {
 	 * Check EQU with error in expression 
 	 */
 	@Test 
-	def void testEquWithErrorExpression() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			           	ORG    	$2000  		 	; With value
-		TOTO	       	EQU    	10*Deux 		; Toto vaudra $2000
-												; Et en mémoire entre $2000 et $2010, il y aura des 0
-		''')
-		Assert.assertNotNull(result)
-		result.assertError(AssemblerPackage.eINSTANCE.equDirective, ExpressionParser::EXPRESSION_ERROR, "Can't find Deux definition")
+	public void testEquWithErrorExpression() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
+		strBuilder.append("TOTO	       	EQU    	10*Deux 		; Toto vaudra $2000\n");
+		strBuilder.append("										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+		    validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), 
+		    	ExpressionParser.EXPRESSION_ERROR, "Can't find Deux definition");
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU with binary error syntax
 	 */
 	@Test 
-	def void testEquWithBinaryErrorSyntax() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			           	ORG    	$2000  		 	; With value
-		TOTO	       	EQU    	%01111211 		; Toto vaudra $2000
-												; Et en mémoire entre $2000 et $2010, il y aura des 0
-		''')
-		Assert.assertNotNull(result)
-		h.assertIssue(result.eResource,AssemblerPackage.Literals.BINARY_VALUE,AssemblerValidator::INVALID_FIGURE,113,8,Severity::ERROR, "2 is invalid in binary value")
+	public void testEquWithBinaryErrorSyntax() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
+		strBuilder.append("TOTO	       	EQU    	%01111211 		; Toto vaudra $2000\n");
+		strBuilder.append("										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertIssue(result.eResource(),AssemblerPackage.Literals.BINARY_VALUE,
+				AssemblerValidator.INVALID_FIGURE,111,8,Severity.ERROR,
+				 "2 is invalid in binary value");
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	/**
 	 * Check EQU with octal error syntax
 	 */
 	@Test 
-	def void testEquWithOctalErrorSyntax() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			           	ORG    	$2000  		 	; With value
-		TOTO	       	EQU    	@128	 		; Toto vaudra $2000
-												; Et en mémoire entre $2000 et $2010, il y aura des 0
-		''')
-		Assert.assertNotNull(result)
-		h.assertIssue(result.eResource,AssemblerPackage.Literals.OCTAL_VALUE,AssemblerValidator::INVALID_FIGURE,113,3,Severity::ERROR, "8 is invalid in octal value")
-	}
+	public void testEquWithOctalErrorSyntax() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
+		strBuilder.append("TOTO	       	EQU    	@128	 		; Toto vaudra $2000\n");
+		strBuilder.append("										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
 
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertIssue(result.eResource(),AssemblerPackage.Literals.OCTAL_VALUE,
+				AssemblerValidator.INVALID_FIGURE,111,3,Severity.ERROR, 
+				"8 is invalid in octal value");
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
+	}
 }

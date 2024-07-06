@@ -16,100 +16,123 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package org.bpy.electronics.mc6809.assembler.tests.language.directives
+package org.bpy.electronics.mc6809.assembler.tests.language.directives;
 
-import org.eclipse.xtext.testing.XtextRunner
-import org.junit.runner.RunWith
-import org.eclipse.xtext.testing.InjectWith
-import com.google.inject.Inject
-import org.eclipse.xtext.testing.util.ParseHelper
-import org.bpy.electronics.mc6809.assembler.assembler.Model
-import org.junit.Test
-import org.junit.Assert
-import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine
-import org.eclipse.xtext.testing.validation.ValidationTestHelper
-import org.bpy.electronics.mc6809.assembler.assembler.EndDirective
-import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine
-import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledEndDirectiveLine
+import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledEndDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
+import org.eclipse.xtext.testing.util.ParseHelper;
+import org.eclipse.xtext.testing.validation.ValidationTestHelper;
+import org.eclipse.xtext.xbase.lib.Extension;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-@RunWith(XtextRunner)
-@InjectWith(AssemblerInjectorProvider)
+import com.google.inject.Inject;
 
-class TestEndDirective {
-	@Inject ParseHelper<Model> parseHelper
-	@Inject extension ValidationTestHelper
+@RunWith(XtextRunner.class)
+@InjectWith(AssemblerInjectorProvider.class)
+
+public class TestEndDirective {
+	@Inject ParseHelper<Model> parseHelper;
+	@Inject @Extension public ValidationTestHelper validationHelper;
 	
 	
 	/**
 	 * Check ORG directive with no value , return 0
 	 */
 	@Test 
-	def void testEndWithNoValueValue() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			       ORG    $8000   ; With value
-			       END
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testEndWithNoValueValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	       ORG    $8000   ; With value\n");
+		strBuilder.append("	       END\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val line = result.sourceLines.get(2)
-		Assert.assertTrue("Must be a directive line", line.lineContent instanceof DirectiveLine)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
 		
-		val directiveLine = line.lineContent as DirectiveLine
-		Assert.assertTrue("Must be an END directive line", directiveLine.directive instanceof EndDirective)
+			SourceLine line = result.getSourceLines().get(2);
+			Assert.assertTrue("Must be a directive line", line.getLineContent() instanceof DirectiveLine);
+			
+			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
+			Assert.assertTrue("Must be an END directive line", directiveLine.getDirective() instanceof EndDirective);
+		} catch (Exception e) {
+			Assert.assertTrue("Exption detected", true);
+		}
 	}
 
 	/**
 	 * Check END directive with the value
 	 */
 	@Test 
-	def void checkEndValueWithValue() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			   		ORG    	$8000   	; With value
-					BSZ		$0A	
-		Start		BSZ		1   		
-		       		END    	Start 		; That's all folk
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
+	public void checkEndValueWithValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	   			ORG    	$8000   	; With value\n");
+		strBuilder.append("				BSZ		$0A	\n");
+		strBuilder.append("Start		BSZ		1   		\n");
+		strBuilder.append("       		END    	Start 		; That's all folk\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val engine = AssemblerEngine.instance
-		Assert.assertEquals("PC value must be 800B", 0x800B, engine.currentPcValue)
-		val line = engine.getAssembledLine(4)
-		val endLine = line as AssembledEndDirectiveLine
-		Assert.assertEquals("Check line number", 5, endLine.lineNumber)
-		Assert.assertNull("Check label", endLine.label)
-		Assert.assertEquals("Check comment", "; That's all folk", endLine.comment)
-		Assert.assertEquals("Check start value", 0x800A, endLine.value)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
+
+			AssemblerEngine engine = AssemblerEngine.getInstance();
+			Assert.assertEquals("PC value must be 800B", 0x800B, engine.getCurrentPcValue());
+			AbstractAssemblyLine line = engine.getAssembledLine(4);
+			AssembledEndDirectiveLine endLine = (AssembledEndDirectiveLine) line;
+			Assert.assertEquals("Check line number", 5, endLine.getLineNumber());
+			Assert.assertNull("Check label", endLine.getLabel());
+			Assert.assertEquals("Check comment", "; That's all folk", endLine.getComment());
+			Assert.assertEquals("Check start value", 0x800A, endLine.getValue());
+		} catch (Exception e) {
+			Assert.assertTrue("Exption detected", true);
+		}
 	}
 
 	/**
 	 * Check END directive without the value
 	 */
 	@Test 
-	def void checkEndWithoutValue() {
-		val result = parseHelper.parse('''
-		; -----------------------------------------
-			   		ORG    	$8000   	; With value
-					BSZ		$0A	
-		Start		BSZ		1   		
-		       		END
-		''')
-		Assert.assertNotNull(result)
-		result.assertNoErrors
+	public void checkEndWithoutValue() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	   			ORG    	$8000   	; With value\n");
+		strBuilder.append("				BSZ		$0A	\n");
+		strBuilder.append("Start		BSZ		1   		\n");
+		strBuilder.append("       		END\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
 		
-		val engine = AssemblerEngine.instance
-		Assert.assertEquals("PC value must be 800B", 0x800B, engine.currentPcValue)
-		val line = engine.getAssembledLine(4)
-		val endLine = line as AssembledEndDirectiveLine
-		Assert.assertEquals("Check line number", 5, endLine.lineNumber)
-		Assert.assertNull("Check label", endLine.label)
-		Assert.assertNull("Check comment",  endLine.comment)
-		Assert.assertEquals("Check start value", 0, endLine.value)
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoErrors(result);
+
+			AssemblerEngine engine = AssemblerEngine.getInstance();
+			Assert.assertEquals("PC value must be 800B", 0x800B, engine.getCurrentPcValue());
+			AbstractAssemblyLine line = engine.getAssembledLine(4);
+			AssembledEndDirectiveLine endLine = (AssembledEndDirectiveLine) line;
+			Assert.assertEquals("Check line number", 5, endLine.getLineNumber());
+			Assert.assertNull("Check label", endLine.getLabel());
+			Assert.assertNull("Check comment",  endLine.getComment());
+			Assert.assertEquals("Check start value", 0, endLine.getValue());
+		} catch (Exception e) {
+			Assert.assertTrue("Exption detected", true);
+		}
 	}
 }

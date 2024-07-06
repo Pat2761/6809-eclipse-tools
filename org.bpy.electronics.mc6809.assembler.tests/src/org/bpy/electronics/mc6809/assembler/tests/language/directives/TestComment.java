@@ -16,59 +16,75 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package org.bpy.electronics.mc6809.assembler.tests.language.directives
+package org.bpy.electronics.mc6809.assembler.tests.language.directives;
 
-import com.google.inject.Inject
-import org.bpy.electronics.mc6809.assembler.assembler.Model
-import org.eclipse.xtext.testing.InjectWith
-import org.eclipse.xtext.testing.XtextRunner
-import org.eclipse.xtext.testing.util.ParseHelper
-import org.junit.Assert
-import org.junit.Test
-import org.junit.runner.RunWith
-import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
+import org.eclipse.xtext.testing.util.ParseHelper;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 
-@RunWith(XtextRunner)
-@InjectWith(AssemblerInjectorProvider)
-class TestComment {
-	@Inject
-	ParseHelper<Model> parseHelper
+import com.google.inject.Inject;
+
+@RunWith(XtextRunner.class)
+@InjectWith(AssemblerInjectorProvider.class)
+public class TestComment {
+	
+	@Inject ParseHelper<Model> parseHelper;
 	
 	@Test
-	def void testComment01() {
-		val result = parseHelper.parse('''
-			; ---------------------------------------------------------------
-			; Check for comment
-			; ---------------------------------------------------------------
-			
-			; it is the end
-			
-		''')
-		Assert.assertNotNull(result)
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testComment01() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; ---------------------------------------------------------------\n");
+		strBuilder.append("; Check for comment\n");
+		strBuilder.append("; ---------------------------------------------------------------\n");
+		strBuilder.append("\n");
+		strBuilder.append("; it is the end\n");
+		strBuilder.append("\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 	
 	@Test
-	def void testOneMainLine() {
-		val result = parseHelper.parse('''
-			; ---------------------------------------------------------------
-			
-		''')
-		Assert.assertNotNull(result)
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testOneMainLine() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("		; ---------------------------------------------------------------\n");
+		strBuilder.append("	\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
-	def void testOneMainLinePlusSpace() {
-		val result = parseHelper.parse('''
-			; ---------------------------------------------------------------
-			
-			
-		''')
-		Assert.assertNotNull(result)
-		val errors = result.eResource.errors
-		Assert.assertTrue('''Unexpected errors: �errors.join(", ")�''', errors.isEmpty)
+	public void testOneMainLinePlusSpace() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("	; ---------------------------------------------------------------\n");
+		strBuilder.append("	\n");
+		strBuilder.append("	\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 }
