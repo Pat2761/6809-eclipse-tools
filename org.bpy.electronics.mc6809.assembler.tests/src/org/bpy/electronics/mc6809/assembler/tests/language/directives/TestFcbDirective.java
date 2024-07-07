@@ -18,28 +18,29 @@
  */
 package org.bpy.electronics.mc6809.assembler.tests.language.directives;
 
-import org.eclipse.xtext.testing.XtextRunner;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
-import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
-import org.junit.runner.RunWith;
-import org.eclipse.xtext.testing.InjectWith;
-import com.google.inject.Inject;
-import org.eclipse.xtext.testing.util.ParseHelper;
-import org.bpy.electronics.mc6809.assembler.assembler.Model;
-import org.junit.Test;
-import org.junit.Assert;
-import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
-import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
-import org.eclipse.xtext.testing.validation.ValidationTestHelper;
-import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
-import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFcbDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
+import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.eclipse.xtext.diagnostics.Severity;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
+import org.eclipse.xtext.testing.util.ParseHelper;
+import org.eclipse.xtext.testing.validation.ValidationTestHelper;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.junit.Assert;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import com.google.inject.Inject;
 
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
