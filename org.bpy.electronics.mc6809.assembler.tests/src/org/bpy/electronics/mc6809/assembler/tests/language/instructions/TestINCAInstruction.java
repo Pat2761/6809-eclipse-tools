@@ -19,12 +19,12 @@
 package org.bpy.electronics.mc6809.assembler.tests.language.instructions;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDECBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledINCAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
@@ -40,19 +40,19 @@ import com.google.inject.Inject;
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 
-public class TestDECBInstruction {
+public class TestINCAInstruction {
 	@Inject ParseHelper<Model> parseHelper;
 	@Inject @Extension private ValidationTestHelper validationHelper;
 	
 	/**
-	 * Check DECB with extra space
+	 * Check INCA with extra space
 	 */
 	@Test 
-	public void testSimpleDECBWithExtraSpace() {
+	public void testSimpleINCAWithExtraSpace() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    		$8000\n");
-		strBuilder.append("	       DECB  \n");
+		strBuilder.append("	       INCA  \n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -60,28 +60,28 @@ public class TestDECBInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
-		
+
 			SourceLine line = result.getSourceLines().get(2);
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an DEC Accumulator line", instructionLine.getInstruction() instanceof DecInstruction);
-			DecInstruction decbInstruction = (DecInstruction) instructionLine.getInstruction();
-			Assert.assertEquals("Must be an DECB instruction", "DECB", decbInstruction.getInstruction());
+			Assert.assertTrue("Must be an INC Accumulator line", instructionLine.getInstruction() instanceof IncInstruction);
+			IncInstruction incInstruction = (IncInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an INCA instruction", "INCA", incInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check DECB with extra space
+	 * Check INCA with extra space
 	 */
 	@Test 
-	public void testSimpleDECBWithoutExtraSpace() {
+	public void testSimpleINCAWithoutExtraSpace() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    $8000\n");
-		strBuilder.append("	       DECB\n");
+		strBuilder.append("	       INCA\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -94,23 +94,23 @@ public class TestDECBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an DEC Accumulator line", instructionLine.getInstruction() instanceof DecInstruction);
-			DecInstruction decbInstruction = (DecInstruction) instructionLine.getInstruction();
-			Assert.assertEquals("Must be an DECB instruction", "DECB", decbInstruction.getInstruction());
+			Assert.assertTrue("Must be an INC Accumulator line", instructionLine.getInstruction() instanceof IncInstruction);
+			IncInstruction incInstruction = (IncInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an INCA instruction", "INCA", incInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check DECB with extra space
+	 * Check INCA with extra space
 	 */
 	@Test 
-	public void testSimpleDECBWithExtraSpaceWithComment() {
+	public void testSimpleINCAWithExtraSpaceWithComment() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    	$8000\n");
-		strBuilder.append("	       DECB  			; It is a comment \n");
+		strBuilder.append("	       INCA  			; It is a comment \n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -123,23 +123,23 @@ public class TestDECBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an DEC Accumulator line", instructionLine.getInstruction() instanceof DecInstruction);
-			DecInstruction decbInstruction = (DecInstruction) instructionLine.getInstruction();
-			Assert.assertEquals("Must be an DECB instruction", "DECB", decbInstruction.getInstruction());
+			Assert.assertTrue("Must be an INC Accumulator line", instructionLine.getInstruction() instanceof IncInstruction);
+			IncInstruction incInstruction = (IncInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an INCA instruction", "INCA", incInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check DECB with extra space
+	 * Check INCA with extra space
 	 */
 	@Test 
-	public void testSimpleDECBWithoutExtraSpaceWithComment() {
+	public void testSimpleINCAWithoutExtraSpaceWithComment() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    $8000\n");
-		strBuilder.append("	       DECB					; It is a comment\n");
+		strBuilder.append("	       INCA					; It is a comment\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -150,28 +150,28 @@ public class TestDECBInstruction {
 		
 			SourceLine line = result.getSourceLines().get(2);
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
-			
+		
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an DEC Accumulator line", instructionLine.getInstruction() instanceof DecInstruction);
-			DecInstruction decbInstruction = (DecInstruction) instructionLine.getInstruction();
-			Assert.assertEquals("Must be an DECB instruction", "DECB", decbInstruction.getInstruction());
+			Assert.assertTrue("Must be an INC Accumulator line", instructionLine.getInstruction() instanceof IncInstruction);
+			IncInstruction incInstruction = (IncInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an INCA instruction", "INCA", incInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check DECB instruction with duplicate label 
+	 * Check INCA instruction with duplicate label 
 	 */
 	@Test 
-	public void testDECBWithDuplicateLabel() {
+	public void testINCAWithDuplicateLabel() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
+		strBuilder.append("		   	   ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start			NOP\n");
-		strBuilder.append("					NOP    \n");
-		strBuilder.append("Start      	DECB		  	\n");
+		strBuilder.append("Start		   NOP\n");
+		strBuilder.append("			      NOP    \n");
+		strBuilder.append("Start      	INCA		  	\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -186,14 +186,14 @@ public class TestDECBInstruction {
 	}
 	
 	/**
-	 * Check DECB assembly instruction  
+	 * Check INCA assembly instruction  
 	 */
 	@Test 
-	public void testDECBAssembly() {
+	public void testINCAAssembly() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	DECB		  		    ; 5A   DECB\n");
+		strBuilder.append("Start      	INCA		  		    ; 4C   INCA\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -201,15 +201,15 @@ public class TestDECBInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
-
+		
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.getCurrentPcValue());
-			AssembledDECBInstruction line = (AssembledDECBInstruction)engine.getAssembledLine(2);
+			AssembledINCAInstruction line = (AssembledINCAInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x5A, line.getOpcode()[0]);
+			Assert.assertEquals("Check opcode", 0x4C, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand length", 0, line.getOperand().length);
 			Assert.assertEquals("Check label", "Start" , line.getLabel());
-			Assert.assertEquals("Check comment", "; 5A   DECB" , line.getComment());
+			Assert.assertEquals("Check comment", "; 4C   INCA" , line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
