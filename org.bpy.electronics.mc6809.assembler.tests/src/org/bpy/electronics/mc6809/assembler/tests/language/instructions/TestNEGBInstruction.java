@@ -19,12 +19,12 @@
 package org.bpy.electronics.mc6809.assembler.tests.language.instructions;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGBInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
@@ -40,19 +40,19 @@ import com.google.inject.Inject;
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 
-public class TestLSLBInstruction {
+public class TestNEGBInstruction {
 	@Inject ParseHelper<Model> parseHelper;
 	@Inject @Extension private ValidationTestHelper validationHelper;
 	
 	/**
-	 * Check LSLB with extra space
+	 * Check NEGB with extra space
 	 */
 	@Test 
-	public void testSimpleLSLBWithExtraSpace() {
+	public void testSimpleNEGBWithExtraSpace() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    		$8000\n");
-		strBuilder.append("	       LSLB  \n");
+		strBuilder.append("	       NEGB  \n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -65,23 +65,23 @@ public class TestLSLBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an LSL Accumulator line", instructionLine.getInstruction() instanceof LslInstruction);
-			LslInstruction lslInstruction = (LslInstruction)instructionLine.getInstruction();
-			Assert.assertEquals("Must be an LSLB instruction", "LSLB", lslInstruction.getInstruction());
+			Assert.assertTrue("Must be an NEG Accumulator line", instructionLine.getInstruction() instanceof NegInstruction);
+			NegInstruction negInstruction = (NegInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an NEGB instruction", "NEGB", negInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check LSLB with extra space
+	 * Check NEGB with extra space
 	 */
 	@Test 
-	public void testSimpleLSLBWithoutExtraSpace() {
+	public void testSimpleNEGBWithoutExtraSpace() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    $8000\n");
-		strBuilder.append("	       LSLB\n");
+		strBuilder.append("	       NEGB\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -94,23 +94,23 @@ public class TestLSLBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an LSL Accumulator line", instructionLine.getInstruction() instanceof LslInstruction);
-			LslInstruction lslInstruction = (LslInstruction)instructionLine.getInstruction();
-			Assert.assertEquals("Must be an LSLB instruction", "LSLB", lslInstruction.getInstruction());
+			Assert.assertTrue("Must be an NEG Accumulator line", instructionLine.getInstruction() instanceof NegInstruction);
+			NegInstruction negInstruction = (NegInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an NEGB instruction", "NEGB", negInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check LSLB with extra space
+	 * Check NEGB with extra space
 	 */
 	@Test 
-	public void testSimpleLSLBWithExtraSpaceWithComment() {
+	public void testSimpleNEGBWithExtraSpaceWithComment() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    	$8000\n");
-		strBuilder.append("	       LSLB  			; It is a comment \n");
+		strBuilder.append("	       NEGB  			; It is a comment \n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -123,23 +123,23 @@ public class TestLSLBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an LSL Accumulator line", instructionLine.getInstruction() instanceof LslInstruction);
-			LslInstruction lslInstruction = (LslInstruction)instructionLine.getInstruction();
-			Assert.assertEquals("Must be an LSLB instruction", "LSLB", lslInstruction.getInstruction());
+			Assert.assertTrue("Must be an NEG Accumulator line", instructionLine.getInstruction() instanceof NegInstruction);
+			NegInstruction negInstruction = (NegInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an NEGB instruction", "NEGB", negInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check LSLB with extra space
+	 * Check NEGB with extra space
 	 */
 	@Test 
-	public void testSimpleLSLBWithoutExtraSpaceWithComment() {
+	public void testSimpleNEGBWithoutExtraSpaceWithComment() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    $8000\n");
-		strBuilder.append("	       LSLB					; It is a comment\n");
+		strBuilder.append("	       NEGB					; It is a comment\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -152,26 +152,26 @@ public class TestLSLBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 		
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an LSL Accumulator line", instructionLine.getInstruction() instanceof LslInstruction);
-			LslInstruction lslInstruction = (LslInstruction)instructionLine.getInstruction();
-			Assert.assertEquals("Must be an LSLB instruction", "LSLB", lslInstruction.getInstruction());
+			Assert.assertTrue("Must be an NEG Accumulator line", instructionLine.getInstruction() instanceof NegInstruction);
+			NegInstruction negInstruction = (NegInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an NEGB instruction", "NEGB", negInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check LSLB instruction with duplicate label 
+	 * Check NEGB instruction with duplicate label 
 	 */
 	@Test 
-	public void testLSLBWithDuplicateLabel() {
+	public void testNEGBWithDuplicateLabel() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   	   ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
 		strBuilder.append("Start		   NOP\n");
 		strBuilder.append("			      NOP    \n");
-		strBuilder.append("Start      	LSLB		  	\n");
+		strBuilder.append("Start      	NEGB		  	\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -186,14 +186,14 @@ public class TestLSLBInstruction {
 	}
 	
 	/**
-	 * Check LSLB assembly instruction  
+	 * Check NEGB assembly instruction  
 	 */
 	@Test 
-	public void testLSLBAssembly() {
+	public void testNEGBAssembly() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	LSLB		  		    ; 58   LSLB\n");
+		strBuilder.append("Start      	NEGB		  		    ; 50   NEGB\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -204,12 +204,12 @@ public class TestLSLBInstruction {
 		
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.getCurrentPcValue());
-			AssembledLSLBInstruction line = (AssembledLSLBInstruction)engine.getAssembledLine(2);
+			AssembledNEGBInstruction line = (AssembledNEGBInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x58, line.getOpcode()[0]);
+			Assert.assertEquals("Check opcode", 0x50, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand length", 0, line.getOperand().length);
 			Assert.assertEquals("Check label", "Start" , line.getLabel());
-			Assert.assertEquals("Check comment", "; 58   LSLB" , line.getComment());
+			Assert.assertEquals("Check comment", "; 50   NEGB" , line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 

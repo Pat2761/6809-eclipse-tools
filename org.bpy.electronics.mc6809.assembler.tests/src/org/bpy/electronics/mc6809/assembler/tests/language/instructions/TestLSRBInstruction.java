@@ -65,7 +65,7 @@ public class TestLSRBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an INC Accumulator line", instructionLine.getInstruction() instanceof LsrInstruction);
+			Assert.assertTrue("Must be an LSR Accumulator line", instructionLine.getInstruction() instanceof LsrInstruction);
 			LsrInstruction lsrInstruction = (LsrInstruction)instructionLine.getInstruction();
 			Assert.assertEquals("Must be an LSRB instruction", "LSRB", lsrInstruction.getInstruction());
 		} catch (Exception e) {
@@ -94,7 +94,7 @@ public class TestLSRBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an INC Accumulator line", instructionLine.getInstruction() instanceof LsrInstruction);
+			Assert.assertTrue("Must be an LSR Accumulator line", instructionLine.getInstruction() instanceof LsrInstruction);
 			LsrInstruction lsrInstruction = (LsrInstruction)instructionLine.getInstruction();
 			Assert.assertEquals("Must be an LSRB instruction", "LSRB", lsrInstruction.getInstruction());
 		} catch (Exception e) {
@@ -123,7 +123,7 @@ public class TestLSRBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an INC Accumulator line", instructionLine.getInstruction() instanceof LsrInstruction);
+			Assert.assertTrue("Must be an LSR Accumulator line", instructionLine.getInstruction() instanceof LsrInstruction);
 			LsrInstruction lsrInstruction = (LsrInstruction)instructionLine.getInstruction();
 			Assert.assertEquals("Must be an LSRB instruction", "LSRB", lsrInstruction.getInstruction());
 		} catch (Exception e) {
@@ -152,7 +152,7 @@ public class TestLSRBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 		
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an INC Accumulator line", instructionLine.getInstruction() instanceof LsrInstruction);
+			Assert.assertTrue("Must be an LSR Accumulator line", instructionLine.getInstruction() instanceof LsrInstruction);
 			LsrInstruction lsrInstruction = (LsrInstruction)instructionLine.getInstruction();
 			Assert.assertEquals("Must be an LSRB instruction", "LSRB", lsrInstruction.getInstruction());
 		} catch (Exception e) {

@@ -19,12 +19,12 @@
 package org.bpy.electronics.mc6809.assembler.tests.language.instructions;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLSLBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNOPInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
@@ -40,19 +40,19 @@ import com.google.inject.Inject;
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
 
-public class TestLSLBInstruction {
+public class TestNOPInstruction {
 	@Inject ParseHelper<Model> parseHelper;
 	@Inject @Extension private ValidationTestHelper validationHelper;
 	
 	/**
-	 * Check LSLB with extra space
+	 * Check NOP with extra space
 	 */
 	@Test 
-	public void testSimpleLSLBWithExtraSpace() {
+	public void testSimpleNOPWithExtraSpace() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    		$8000\n");
-		strBuilder.append("	       LSLB  \n");
+		strBuilder.append("	       NOP  \n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -65,23 +65,23 @@ public class TestLSLBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an LSL Accumulator line", instructionLine.getInstruction() instanceof LslInstruction);
-			LslInstruction lslInstruction = (LslInstruction)instructionLine.getInstruction();
-			Assert.assertEquals("Must be an LSLB instruction", "LSLB", lslInstruction.getInstruction());
+			Assert.assertTrue("Must be an NOP Accumulator line", instructionLine.getInstruction() instanceof NopInstruction);
+			NopInstruction nopInstruction = (NopInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an NOP instruction", "NOP", nopInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check LSLB with extra space
+	 * Check NOP with extra space
 	 */
 	@Test 
-	public void testSimpleLSLBWithoutExtraSpace() {
+	public void testSimpleNOPWithoutExtraSpace() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    $8000\n");
-		strBuilder.append("	       LSLB\n");
+		strBuilder.append("	       NOP\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -94,23 +94,23 @@ public class TestLSLBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an LSL Accumulator line", instructionLine.getInstruction() instanceof LslInstruction);
-			LslInstruction lslInstruction = (LslInstruction)instructionLine.getInstruction();
-			Assert.assertEquals("Must be an LSLB instruction", "LSLB", lslInstruction.getInstruction());
+			Assert.assertTrue("Must be an NOP Accumulator line", instructionLine.getInstruction() instanceof NopInstruction);
+			NopInstruction nopInstruction = (NopInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an NOP instruction", "NOP", nopInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check LSLB with extra space
+	 * Check NOP with extra space
 	 */
 	@Test 
-	public void testSimpleLSLBWithExtraSpaceWithComment() {
+	public void testSimpleNOPWithExtraSpaceWithComment() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    	$8000\n");
-		strBuilder.append("	       LSLB  			; It is a comment \n");
+		strBuilder.append("	       NOP  			; It is a comment \n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -123,23 +123,23 @@ public class TestLSLBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 			
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an LSL Accumulator line", instructionLine.getInstruction() instanceof LslInstruction);
-			LslInstruction lslInstruction = (LslInstruction)instructionLine.getInstruction();
-			Assert.assertEquals("Must be an LSLB instruction", "LSLB", lslInstruction.getInstruction());
+			Assert.assertTrue("Must be an NOP Accumulator line", instructionLine.getInstruction() instanceof NopInstruction);
+			NopInstruction nopInstruction = (NopInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an NOP instruction", "NOP", nopInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check LSLB with extra space
+	 * Check NOP with extra space
 	 */
 	@Test 
-	public void testSimpleLSLBWithoutExtraSpaceWithComment() {
+	public void testSimpleNOPWithoutExtraSpaceWithComment() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    $8000\n");
-		strBuilder.append("	       LSLB					; It is a comment\n");
+		strBuilder.append("	       NOP					; It is a comment\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -152,26 +152,26 @@ public class TestLSLBInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 		
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
-			Assert.assertTrue("Must be an LSL Accumulator line", instructionLine.getInstruction() instanceof LslInstruction);
-			LslInstruction lslInstruction = (LslInstruction)instructionLine.getInstruction();
-			Assert.assertEquals("Must be an LSLB instruction", "LSLB", lslInstruction.getInstruction());
+			Assert.assertTrue("Must be an NOP Accumulator line", instructionLine.getInstruction() instanceof NopInstruction);
+			NopInstruction nopInstruction = (NopInstruction)instructionLine.getInstruction();
+			Assert.assertEquals("Must be an NOP instruction", "NOP", nopInstruction.getInstruction());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
 	}
 	
 	/**
-	 * Check LSLB instruction with duplicate label 
+	 * Check NOP instruction with duplicate label 
 	 */
 	@Test 
-	public void testLSLBWithDuplicateLabel() {
+	public void testNOPWithDuplicateLabel() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   	   ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
 		strBuilder.append("Start		   NOP\n");
 		strBuilder.append("			      NOP    \n");
-		strBuilder.append("Start      	LSLB		  	\n");
+		strBuilder.append("Start      	NOP		  	\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -186,14 +186,14 @@ public class TestLSLBInstruction {
 	}
 	
 	/**
-	 * Check LSLB assembly instruction  
+	 * Check NOP assembly instruction  
 	 */
 	@Test 
-	public void testLSLBAssembly() {
+	public void testNOPAssembly() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	LSLB		  		    ; 58   LSLB\n");
+		strBuilder.append("Start      	NOP		 				    ; 12   NOP\n");
 		
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -204,12 +204,12 @@ public class TestLSLBInstruction {
 		
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after instruction", 0x8001, engine.getCurrentPcValue());
-			AssembledLSLBInstruction line = (AssembledLSLBInstruction)engine.getAssembledLine(2);
+			AssembledNOPInstruction line = (AssembledNOPInstruction)engine.getAssembledLine(2);
 			Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x58, line.getOpcode()[0]);
+			Assert.assertEquals("Check opcode", 0x12, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand length", 0, line.getOperand().length);
 			Assert.assertEquals("Check label", "Start" , line.getLabel());
-			Assert.assertEquals("Check comment", "; 58   LSLB" , line.getComment());
+			Assert.assertEquals("Check comment", "; 12   NOP" , line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 
