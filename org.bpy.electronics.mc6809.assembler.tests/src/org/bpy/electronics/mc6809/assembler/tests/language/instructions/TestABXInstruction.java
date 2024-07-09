@@ -18,23 +18,24 @@
  */
 package org.bpy.electronics.mc6809.assembler.tests.language.instructions;
 
-import org.junit.runner.RunWith;
-import org.eclipse.xtext.testing.XtextRunner;
-import org.eclipse.xtext.testing.InjectWith;
-import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
-import com.google.inject.Inject;
-import org.eclipse.xtext.testing.util.ParseHelper;
+import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledABXInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.eclipse.xtext.testing.InjectWith;
+import org.eclipse.xtext.testing.XtextRunner;
+import org.eclipse.xtext.testing.util.ParseHelper;
 import org.eclipse.xtext.testing.validation.ValidationTestHelper;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.junit.Assert;
-import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.junit.Test;
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledABXInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.junit.runner.RunWith;
+
+import com.google.inject.Inject;
 
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
