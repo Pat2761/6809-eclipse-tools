@@ -42,7 +42,7 @@ import org.bpy.electronics.mc6809.assembler.tests.language.directives.TestSetDPD
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestADCAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestADDAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestADDBInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestADDDInstruction;
+import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestADDDInstruction_old;
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestANDCCInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestANDAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.TestANDBInstruction;
@@ -209,7 +209,7 @@ import org.bpy.electronics.mc6809.assembler.tests.formatter.instructions.TestAbx
 	 TestADCAInstruction.class,
 	 TestADDAInstruction.class,
 	 TestADDBInstruction.class,
-	 TestADDDInstruction.class,
+	 TestADDDInstruction_old.class,
 	 TestANDCCInstruction.class,
 	 TestANDAInstruction.class,
 	 TestANDBInstruction.class,

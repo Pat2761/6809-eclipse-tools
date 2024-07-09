@@ -209,8 +209,14 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	}
 	
 	protected void setImmediateOperand(EObject instruction,ImmediatOperand immediatOperand, EReference eReference, int min, int max) {
-		int value = ExpressionParser.parse(immediatOperand, eReference, instruction, min, max); 
-		operandBytes = new int[] {value};
+		int value = ExpressionParser.parse(immediatOperand, eReference, instruction, min, max);
+		if (max <256) {
+			operandBytes = new int[] {value};
+		} else if ( max<65536) {
+			operandBytes = new int[] {(value&0xFFFF)>>8, (value&0xFFFF)%256};
+		} else {
+			
+		}
 	}
 
 	protected void setDirectOperand(EObject instruction, DirectOperand directOperand, EReference eReference) {
