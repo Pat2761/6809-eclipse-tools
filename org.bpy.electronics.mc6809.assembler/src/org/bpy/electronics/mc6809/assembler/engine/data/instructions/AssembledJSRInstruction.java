@@ -127,6 +127,8 @@ public class AssembledJSRInstruction extends AbstractJmpJsrInstruction {
 					"Immediate mode is not valid for the JSR instruction",
 					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND, InstructionValidator.ILLEGAL_MODE);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			operandBytes = new int[0];
+			opcodeBytes = new int[] {0x3F};
 			break;
 
 		case DIRECT:
