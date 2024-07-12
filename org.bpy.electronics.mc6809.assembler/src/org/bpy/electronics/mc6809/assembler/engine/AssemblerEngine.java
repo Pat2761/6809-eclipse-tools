@@ -400,12 +400,13 @@ public class AssemblerEngine {
 	private void parsePass2(JsrInstruction instruction) {
 		AssembledJSRInstruction currentAssembledLine = (AssembledJSRInstruction)assembledLinesMap.get(instruction);
 		currentAssembledLine.computeOperand(labelsPositionObject);
-
+		currentPcValue += ((AbstractInstructionAssemblyLine)currentAssembledLine).getPcIncrement();
 	}
 
 	private void parsePass2(JmpInstruction instruction) {
 		AssembledJMPInstruction currentAssembledLine = (AssembledJMPInstruction) assembledLinesMap.get(instruction);
 		currentAssembledLine.computeOperand(labelsPositionObject);
+		currentPcValue += ((AbstractInstructionAssemblyLine)currentAssembledLine).getPcIncrement();
 	}
 
 	/**
@@ -2562,7 +2563,6 @@ public class AssemblerEngine {
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
-		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
@@ -2580,7 +2580,6 @@ public class AssemblerEngine {
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
-		currentPcValue += ((AbstractInstructionAssemblyLine)line).getPcIncrement();
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),

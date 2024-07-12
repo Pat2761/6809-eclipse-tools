@@ -23,7 +23,6 @@ import java.util.Map;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
-import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
@@ -33,10 +32,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -126,9 +125,11 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 		switch (addressingMode) {
 		case IMMEDIATE:
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-					"Immediate mode is not valid for the JSR instruction",
+					"Immediate mode is not valid for the JMP instruction",
 					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND, InstructionValidator.ILLEGAL_MODE);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			operandBytes = new int[0];
+			opcodeBytes = new int[] {0x3F};
 			break;
 
 		case DIRECT:
