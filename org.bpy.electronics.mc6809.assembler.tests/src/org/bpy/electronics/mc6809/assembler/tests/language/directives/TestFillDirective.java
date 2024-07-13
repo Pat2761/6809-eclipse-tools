@@ -391,9 +391,9 @@ public class TestFillDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertIssue(result.eResource(),AssemblerPackage.Literals.BINARY_VALUE,
 				AssemblerValidator.INVALID_FIGURE,111,8,Severity.ERROR, "2 is invalid in binary value");
-	} catch (Exception e) {
-		Assert.assertTrue("Exception",true);
-	} 
+		} catch (Exception e) {
+			Assert.assertTrue("Exception",true);
+		} 
 	}
 
 	/**
