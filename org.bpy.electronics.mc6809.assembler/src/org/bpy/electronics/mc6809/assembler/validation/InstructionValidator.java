@@ -571,7 +571,7 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 						DUPLICATE_OPTION);
 			}
 			if (regs.contains("S")) {
-				error("S register can't be push for a PULS instruction",
+				error("S register can't be pull for a PULS instruction",
 						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
 						ILLEGAL_REGISTER);
 			}
