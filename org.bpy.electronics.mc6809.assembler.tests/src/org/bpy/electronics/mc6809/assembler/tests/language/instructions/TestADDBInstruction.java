@@ -587,7 +587,7 @@ public class TestADDBInstruction {
 					"The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledADDBInstruction line = (AssembledADDBInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check operand", -128, line.getOperand()[0]);
+			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -611,7 +611,7 @@ public class TestADDBInstruction {
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledADDBInstruction line = (AssembledADDBInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check operand", -128, line.getOperand()[0]);
+			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}

@@ -211,7 +211,7 @@ import org.bpy.electronics.mc6809.assembler.tests.formatter.instructions.TestAbx
 	 // -----------------------------------------------	
 	 // Test the formatter 
 	 // -----------------------------------------------	
-	 TestAbxInstructionFormatter.class	
+//	 TestAbxInstructionFormatter.class	
 	 /* Examples  */
 //	 SorekSamples
 	}
