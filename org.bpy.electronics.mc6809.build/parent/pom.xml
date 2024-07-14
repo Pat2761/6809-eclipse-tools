@@ -55,7 +55,16 @@
 			<url>https://download.eclipse.org/nebula/releases/latest/</url>
 			<layout>p2</layout>
 		</repository>
-		
+	
+<!--		<repository>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>-->
+	
 		<repository>
 			<id>codehaus-snapshots</id>
 			<name>disable dead 'Codehaus Snapshots' repository, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=481478</name>
@@ -126,8 +135,8 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- Plugins versions settings -->
-		<tycho.version>2.5.0</tycho.version>
-		<tycho.surefire.version>2.5.0</tycho.surefire.version>
+		<tycho.version>2.7.5</tycho.version>
+		<tycho.surefire.version>2.7.5</tycho.surefire.version>
 		
 		<!-- XText version -->
 		<xtextVersion>2.28.0</xtextVersion>

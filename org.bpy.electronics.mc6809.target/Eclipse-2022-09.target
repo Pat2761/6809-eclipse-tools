@@ -79,6 +79,7 @@
 		<plugin id="com.sun.jna.platform"/>
 		<plugin id="com.sun.jna.platform.source"/>
 		<plugin id="com.sun.jna.source"/>
+        <plugin id="com.google.guava" version="31.1.0.jre"/>
 		<plugin id="javax.annotation"/>
 		<plugin id="javax.annotation.source"/>
 		<plugin id="javax.inject"/>

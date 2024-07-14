@@ -22,39 +22,22 @@
    </launcher>
 
    <vm>
-      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11</windows>
+      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17</windows>
    </vm>
 
    <plugins>
-      <plugin id="ch.qos.logback.classic"/>
-      <plugin id="ch.qos.logback.core"/>
-      <plugin id="ch.qos.logback.slf4j" fragment="true"/>
-      <plugin id="com.google.gson"/>
-      <plugin id="com.google.inject"/>
+      <plugin id="com.google.guava" version="31.1.0.jre"/>
       <plugin id="com.ibm.icu"/>
-      <plugin id="com.jcraft.jsch"/>
       <plugin id="com.sun.jna"/>
       <plugin id="com.sun.jna.platform"/>
       <plugin id="io.github.classgraph"/>
       <plugin id="jakarta.servlet-api"/>
       <plugin id="javax.annotation"/>
-      <plugin id="javax.el"/>
       <plugin id="javax.inject"/>
-      <plugin id="javax.servlet.jsp-api"/>
-      <plugin id="javax.xml"/>
-      <plugin id="junit-platform-commons"/>
-      <plugin id="junit-platform-engine"/>
-      <plugin id="junit-platform-launcher"/>
-      <plugin id="org.antlr.runtime"/>
-      <plugin id="org.aopalliance"/>
-      <plugin id="org.apache.ant"/>
       <plugin id="org.apache.batik.constants"/>
       <plugin id="org.apache.batik.css"/>
       <plugin id="org.apache.batik.i18n"/>
       <plugin id="org.apache.batik.util"/>
-      <plugin id="org.apache.commons.cli"/>
-      <plugin id="org.apache.commons.codec"/>
-      <plugin id="org.apache.commons.commons-io"/>
       <plugin id="org.apache.commons.io"/>
       <plugin id="org.apache.commons.jxpath"/>
       <plugin id="org.apache.commons.logging"/>
