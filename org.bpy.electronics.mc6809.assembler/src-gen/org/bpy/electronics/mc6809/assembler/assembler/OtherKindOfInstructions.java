@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getLabel <em>Label</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getWs1 <em>Ws1</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getOtherInstruction <em>Other Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getWs2 <em>Ws2</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getComment <em>Comment</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getWs3 <em>Ws3</em>}</li>
@@ -73,26 +73,26 @@ public interface OtherKindOfInstructions extends EObject
   void setWs1(String value);
 
   /**
-   * Returns the value of the '<em><b>Other Instruction</b></em>' containment reference.
+   * Returns the value of the '<em><b>Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Other Instruction</em>' containment reference.
-   * @see #setOtherInstruction(IdentifierValue)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOtherKindOfInstructions_OtherInstruction()
+   * @return the value of the '<em>Name</em>' containment reference.
+   * @see #setName(IdentifierValue)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOtherKindOfInstructions_Name()
    * @model containment="true"
    * @generated
    */
-  IdentifierValue getOtherInstruction();
+  IdentifierValue getName();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getOtherInstruction <em>Other Instruction</em>}' containment reference.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getName <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Other Instruction</em>' containment reference.
-   * @see #getOtherInstruction()
+   * @param value the new value of the '<em>Name</em>' containment reference.
+   * @see #getName()
    * @generated
    */
-  void setOtherInstruction(IdentifierValue value);
+  void setName(IdentifierValue value);
 
   /**
    * Returns the value of the '<em><b>Ws2</b></em>' attribute.

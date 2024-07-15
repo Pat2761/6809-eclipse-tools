@@ -314,17 +314,17 @@ ruleOtherKindOfInstructions returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getOtherKindOfInstructionsAccess().getOtherInstructionIdentifierValueParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getOtherKindOfInstructionsAccess().getNameIdentifierValueParserRuleCall_2_0());
 				}
-				lv_otherInstruction_2_0=ruleIdentifierValue
+				lv_name_2_0=ruleIdentifierValue
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getOtherKindOfInstructionsRule());
 					}
 					set(
 						$current,
-						"otherInstruction",
-						lv_otherInstruction_2_0,
+						"name",
+						lv_name_2_0,
 						"org.bpy.electronics.mc6809.assembler.Assembler.IdentifierValue");
 					afterParserOrEnumRuleCall();
 				}
@@ -528,9 +528,9 @@ ruleMacroDefinition returns [EObject current=null]
 			)
 			(
 				(
-					lv_comment_5_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					lv_comment1_5_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
 					{
-						newLeafNode(lv_comment_5_0, grammarAccess.getMacroDefinitionAccess().getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
+						newLeafNode(lv_comment1_5_0, grammarAccess.getMacroDefinitionAccess().getComment1ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0());
 					}
 					{
 						if ($current==null) {
@@ -538,8 +538,8 @@ ruleMacroDefinition returns [EObject current=null]
 						}
 						setWithLastConsumed(
 							$current,
-							"comment",
-							lv_comment_5_0,
+							"comment1",
+							lv_comment1_5_0,
 							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
 					}
 				)
@@ -588,7 +588,7 @@ ruleMacroDefinition returns [EObject current=null]
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)+
+		)*
 		(
 			(
 				lv_ws5_9_0=RULE_WS
@@ -610,6 +610,69 @@ ruleMacroDefinition returns [EObject current=null]
 		otherlv_10='.endm'
 		{
 			newLeafNode(otherlv_10, grammarAccess.getMacroDefinitionAccess().getEndmKeyword_9());
+		}
+		(
+			(
+				(
+					lv_ws6_11_0=RULE_WS
+					{
+						newLeafNode(lv_ws6_11_0, grammarAccess.getMacroDefinitionAccess().getWs6WSTerminalRuleCall_10_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMacroDefinitionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws6",
+							lv_ws6_11_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
+			(
+				(
+					lv_comment2_12_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
+					{
+						newLeafNode(lv_comment2_12_0, grammarAccess.getMacroDefinitionAccess().getComment2ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_10_1_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getMacroDefinitionRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"comment2",
+							lv_comment2_12_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.ANY_EXCEPT_COMMENT_END_OF_LINE");
+					}
+				)
+			)
+		)?
+		(
+			(
+				lv_ws7_13_0=RULE_WS
+				{
+					newLeafNode(lv_ws7_13_0, grammarAccess.getMacroDefinitionAccess().getWs7WSTerminalRuleCall_11_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getMacroDefinitionRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws7",
+						lv_ws7_13_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)?
+		{
+			newCompositeNode(grammarAccess.getMacroDefinitionAccess().getEndOfLineParserRuleCall_12());
+		}
+		ruleEndOfLine
+		{
+			afterParserOrEnumRuleCall();
 		}
 	)
 ;
@@ -825,8 +888,14 @@ ruleCommentLine returns [EObject current=null]
 				}
 			)
 		)
+		(
+			this_WS_3=RULE_WS
+			{
+				newLeafNode(this_WS_3, grammarAccess.getCommentLineAccess().getWSTerminalRuleCall_3());
+			}
+		)?
 		{
-			newCompositeNode(grammarAccess.getCommentLineAccess().getEndOfLineParserRuleCall_3());
+			newCompositeNode(grammarAccess.getCommentLineAccess().getEndOfLineParserRuleCall_4());
 		}
 		ruleEndOfLine
 		{

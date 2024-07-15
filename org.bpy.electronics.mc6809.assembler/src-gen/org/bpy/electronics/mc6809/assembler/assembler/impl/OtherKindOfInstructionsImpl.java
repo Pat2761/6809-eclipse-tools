@@ -27,7 +27,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getWs1 <em>Ws1</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getOtherInstruction <em>Other Instruction</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getWs2 <em>Ws2</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getComment <em>Comment</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getWs3 <em>Ws3</em>}</li>
@@ -68,14 +68,14 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
   protected String ws1 = WS1_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getOtherInstruction() <em>Other Instruction</em>}' containment reference.
+   * The cached value of the '{@link #getName() <em>Name</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getOtherInstruction()
+   * @see #getName()
    * @generated
    * @ordered
    */
-  protected IdentifierValue otherInstruction;
+  protected IdentifierValue name;
 
   /**
    * The default value of the '{@link #getWs2() <em>Ws2</em>}' attribute.
@@ -239,9 +239,9 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public IdentifierValue getOtherInstruction()
+  public IdentifierValue getName()
   {
-    return otherInstruction;
+    return name;
   }
 
   /**
@@ -249,13 +249,13 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
    * <!-- end-user-doc -->
    * @generated
    */
-  public NotificationChain basicSetOtherInstruction(IdentifierValue newOtherInstruction, NotificationChain msgs)
+  public NotificationChain basicSetName(IdentifierValue newName, NotificationChain msgs)
   {
-    IdentifierValue oldOtherInstruction = otherInstruction;
-    otherInstruction = newOtherInstruction;
+    IdentifierValue oldName = name;
+    name = newName;
     if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION, oldOtherInstruction, newOtherInstruction);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__NAME, oldName, newName);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -267,20 +267,20 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public void setOtherInstruction(IdentifierValue newOtherInstruction)
+  public void setName(IdentifierValue newName)
   {
-    if (newOtherInstruction != otherInstruction)
+    if (newName != name)
     {
       NotificationChain msgs = null;
-      if (otherInstruction != null)
-        msgs = ((InternalEObject)otherInstruction).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION, null, msgs);
-      if (newOtherInstruction != null)
-        msgs = ((InternalEObject)newOtherInstruction).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION, null, msgs);
-      msgs = basicSetOtherInstruction(newOtherInstruction, msgs);
+      if (name != null)
+        msgs = ((InternalEObject)name).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__NAME, null, msgs);
+      if (newName != null)
+        msgs = ((InternalEObject)newName).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__NAME, null, msgs);
+      msgs = basicSetName(newName, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION, newOtherInstruction, newOtherInstruction));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__NAME, newName, newName));
   }
 
   /**
@@ -370,8 +370,8 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
     {
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__LABEL:
         return basicSetLabel(null, msgs);
-      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION:
-        return basicSetOtherInstruction(null, msgs);
+      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__NAME:
+        return basicSetName(null, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -390,8 +390,8 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
         return getLabel();
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS1:
         return getWs1();
-      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION:
-        return getOtherInstruction();
+      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__NAME:
+        return getName();
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS2:
         return getWs2();
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__COMMENT:
@@ -418,8 +418,8 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS1:
         setWs1((String)newValue);
         return;
-      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION:
-        setOtherInstruction((IdentifierValue)newValue);
+      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__NAME:
+        setName((IdentifierValue)newValue);
         return;
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS2:
         setWs2((String)newValue);
@@ -450,8 +450,8 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS1:
         setWs1(WS1_EDEFAULT);
         return;
-      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION:
-        setOtherInstruction((IdentifierValue)null);
+      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__NAME:
+        setName((IdentifierValue)null);
         return;
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS2:
         setWs2(WS2_EDEFAULT);
@@ -480,8 +480,8 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
         return label != null;
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS1:
         return WS1_EDEFAULT == null ? ws1 != null : !WS1_EDEFAULT.equals(ws1);
-      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION:
-        return otherInstruction != null;
+      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__NAME:
+        return name != null;
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS2:
         return WS2_EDEFAULT == null ? ws2 != null : !WS2_EDEFAULT.equals(ws2);
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__COMMENT:

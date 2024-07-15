@@ -36,10 +36,13 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getWs2 <em>Ws2</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getWs3 <em>Ws3</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getComment <em>Comment</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getComment1 <em>Comment1</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getWs4 <em>Ws4</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getInstructions <em>Instructions</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getWs5 <em>Ws5</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getWs6 <em>Ws6</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getComment2 <em>Comment2</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getWs7 <em>Ws7</em>}</li>
  * </ul>
  *
  * @generated
@@ -117,24 +120,24 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
   protected String ws3 = WS3_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getComment() <em>Comment</em>}' attribute.
+   * The default value of the '{@link #getComment1() <em>Comment1</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getComment()
+   * @see #getComment1()
    * @generated
    * @ordered
    */
-  protected static final String COMMENT_EDEFAULT = null;
+  protected static final String COMMENT1_EDEFAULT = null;
 
   /**
-   * The cached value of the '{@link #getComment() <em>Comment</em>}' attribute.
+   * The cached value of the '{@link #getComment1() <em>Comment1</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getComment()
+   * @see #getComment1()
    * @generated
    * @ordered
    */
-  protected String comment = COMMENT_EDEFAULT;
+  protected String comment1 = COMMENT1_EDEFAULT;
 
   /**
    * The default value of the '{@link #getWs4() <em>Ws4</em>}' attribute.
@@ -185,6 +188,66 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected String ws5 = WS5_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWs6() <em>Ws6</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs6()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS6_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs6() <em>Ws6</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs6()
+   * @generated
+   * @ordered
+   */
+  protected String ws6 = WS6_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getComment2() <em>Comment2</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComment2()
+   * @generated
+   * @ordered
+   */
+  protected static final String COMMENT2_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getComment2() <em>Comment2</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getComment2()
+   * @generated
+   * @ordered
+   */
+  protected String comment2 = COMMENT2_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWs7() <em>Ws7</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs7()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS7_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs7() <em>Ws7</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs7()
+   * @generated
+   * @ordered
+   */
+  protected String ws7 = WS7_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -338,9 +401,9 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public String getComment()
+  public String getComment1()
   {
-    return comment;
+    return comment1;
   }
 
   /**
@@ -349,12 +412,12 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public void setComment(String newComment)
+  public void setComment1(String newComment1)
   {
-    String oldComment = comment;
-    comment = newComment;
+    String oldComment1 = comment1;
+    comment1 = newComment1;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.MACRO_DEFINITION__COMMENT, oldComment, comment));
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.MACRO_DEFINITION__COMMENT1, oldComment1, comment1));
   }
 
   /**
@@ -428,6 +491,81 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
+  public String getWs6()
+  {
+    return ws6;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs6(String newWs6)
+  {
+    String oldWs6 = ws6;
+    ws6 = newWs6;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.MACRO_DEFINITION__WS6, oldWs6, ws6));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getComment2()
+  {
+    return comment2;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setComment2(String newComment2)
+  {
+    String oldComment2 = comment2;
+    comment2 = newComment2;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.MACRO_DEFINITION__COMMENT2, oldComment2, comment2));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getWs7()
+  {
+    return ws7;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs7(String newWs7)
+  {
+    String oldWs7 = ws7;
+    ws7 = newWs7;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.MACRO_DEFINITION__WS7, oldWs7, ws7));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -458,14 +596,20 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
         return getName();
       case AssemblerPackage.MACRO_DEFINITION__WS3:
         return getWs3();
-      case AssemblerPackage.MACRO_DEFINITION__COMMENT:
-        return getComment();
+      case AssemblerPackage.MACRO_DEFINITION__COMMENT1:
+        return getComment1();
       case AssemblerPackage.MACRO_DEFINITION__WS4:
         return getWs4();
       case AssemblerPackage.MACRO_DEFINITION__INSTRUCTIONS:
         return getInstructions();
       case AssemblerPackage.MACRO_DEFINITION__WS5:
         return getWs5();
+      case AssemblerPackage.MACRO_DEFINITION__WS6:
+        return getWs6();
+      case AssemblerPackage.MACRO_DEFINITION__COMMENT2:
+        return getComment2();
+      case AssemblerPackage.MACRO_DEFINITION__WS7:
+        return getWs7();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -493,8 +637,8 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
       case AssemblerPackage.MACRO_DEFINITION__WS3:
         setWs3((String)newValue);
         return;
-      case AssemblerPackage.MACRO_DEFINITION__COMMENT:
-        setComment((String)newValue);
+      case AssemblerPackage.MACRO_DEFINITION__COMMENT1:
+        setComment1((String)newValue);
         return;
       case AssemblerPackage.MACRO_DEFINITION__WS4:
         setWs4((String)newValue);
@@ -505,6 +649,15 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
         return;
       case AssemblerPackage.MACRO_DEFINITION__WS5:
         setWs5((String)newValue);
+        return;
+      case AssemblerPackage.MACRO_DEFINITION__WS6:
+        setWs6((String)newValue);
+        return;
+      case AssemblerPackage.MACRO_DEFINITION__COMMENT2:
+        setComment2((String)newValue);
+        return;
+      case AssemblerPackage.MACRO_DEFINITION__WS7:
+        setWs7((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -532,8 +685,8 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
       case AssemblerPackage.MACRO_DEFINITION__WS3:
         setWs3(WS3_EDEFAULT);
         return;
-      case AssemblerPackage.MACRO_DEFINITION__COMMENT:
-        setComment(COMMENT_EDEFAULT);
+      case AssemblerPackage.MACRO_DEFINITION__COMMENT1:
+        setComment1(COMMENT1_EDEFAULT);
         return;
       case AssemblerPackage.MACRO_DEFINITION__WS4:
         setWs4(WS4_EDEFAULT);
@@ -543,6 +696,15 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
         return;
       case AssemblerPackage.MACRO_DEFINITION__WS5:
         setWs5(WS5_EDEFAULT);
+        return;
+      case AssemblerPackage.MACRO_DEFINITION__WS6:
+        setWs6(WS6_EDEFAULT);
+        return;
+      case AssemblerPackage.MACRO_DEFINITION__COMMENT2:
+        setComment2(COMMENT2_EDEFAULT);
+        return;
+      case AssemblerPackage.MACRO_DEFINITION__WS7:
+        setWs7(WS7_EDEFAULT);
         return;
     }
     super.eUnset(featureID);
@@ -566,14 +728,20 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
         return name != null;
       case AssemblerPackage.MACRO_DEFINITION__WS3:
         return WS3_EDEFAULT == null ? ws3 != null : !WS3_EDEFAULT.equals(ws3);
-      case AssemblerPackage.MACRO_DEFINITION__COMMENT:
-        return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
+      case AssemblerPackage.MACRO_DEFINITION__COMMENT1:
+        return COMMENT1_EDEFAULT == null ? comment1 != null : !COMMENT1_EDEFAULT.equals(comment1);
       case AssemblerPackage.MACRO_DEFINITION__WS4:
         return WS4_EDEFAULT == null ? ws4 != null : !WS4_EDEFAULT.equals(ws4);
       case AssemblerPackage.MACRO_DEFINITION__INSTRUCTIONS:
         return instructions != null && !instructions.isEmpty();
       case AssemblerPackage.MACRO_DEFINITION__WS5:
         return WS5_EDEFAULT == null ? ws5 != null : !WS5_EDEFAULT.equals(ws5);
+      case AssemblerPackage.MACRO_DEFINITION__WS6:
+        return WS6_EDEFAULT == null ? ws6 != null : !WS6_EDEFAULT.equals(ws6);
+      case AssemblerPackage.MACRO_DEFINITION__COMMENT2:
+        return COMMENT2_EDEFAULT == null ? comment2 != null : !COMMENT2_EDEFAULT.equals(comment2);
+      case AssemblerPackage.MACRO_DEFINITION__WS7:
+        return WS7_EDEFAULT == null ? ws7 != null : !WS7_EDEFAULT.equals(ws7);
     }
     return super.eIsSet(featureID);
   }
@@ -595,12 +763,18 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
     result.append(ws2);
     result.append(", ws3: ");
     result.append(ws3);
-    result.append(", comment: ");
-    result.append(comment);
+    result.append(", comment1: ");
+    result.append(comment1);
     result.append(", ws4: ");
     result.append(ws4);
     result.append(", ws5: ");
     result.append(ws5);
+    result.append(", ws6: ");
+    result.append(ws6);
+    result.append(", comment2: ");
+    result.append(comment2);
+    result.append(", ws7: ");
+    result.append(ws7);
     result.append(')');
     return result.toString();
   }

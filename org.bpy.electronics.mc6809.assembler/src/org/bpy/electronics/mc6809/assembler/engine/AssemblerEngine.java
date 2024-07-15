@@ -91,6 +91,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions;
 import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
@@ -140,6 +141,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetD
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.*;
+import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroAssembledElement;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -161,12 +163,14 @@ public class AssemblerEngine {
 	
 	/** String marker for the error manager in case of duplicate label */
 	public static final String DUPLICATE_LABEL = "duplicateLabel";
-	
+
 	/** State of the current PC */
 	private int currentPcValue;
 	/** memorize the current line number */ 
 	private int lineNumber;
+	/** List assembled lines for the parsed file */
 	private List<AbstractAssemblyLine> assemblyLines;
+	/** Instance on the assembler engine */
 	private static AssemblerEngine eInstance;
 	
 	/** Contains the collection of label which reference assembly line */
@@ -175,8 +179,12 @@ public class AssemblerEngine {
 	private Map<String, Integer> regDefinitionValues;
 	/** Contains the collection of Labels which define values */
 	private Map<String, AbstractAssemblyLine> labelsEquSet;
+	/** Contains the collection of macro definition */
+	private Map<String, MacroDefinition> macroDefinitions;
 	/** Contains the collection of assembled line  */
 	private Map<Object, AbstractAssemblyLine> assembledLinesMap;
+	/** Contains counter for macro calls  */
+	private Map<String, Integer> macroCallsCounter;
 	/** Contains the current DP Page */
 	private int currentDPPage;
 	
@@ -213,6 +221,8 @@ public class AssemblerEngine {
 		labelsEquSet = new HashMap<>();
 		assembledLinesMap = new HashMap<>();
 		regDefinitionValues = new HashMap<>();
+		macroDefinitions = new HashMap<>();
+		macroCallsCounter =new HashMap<>();
 	}
 
 	public List<AbstractAssemblyLine> getAssembledLine() {
@@ -260,39 +270,70 @@ public class AssemblerEngine {
 	
 	private void assemblePass1(Model model) {
 		lineNumber = 1;
+		assemblePass1(model.getSourceLines());
+	}	
 
-		List<SourceLine> sourceLines = model.getSourceLines();
+	private void assemblePass1(List<SourceLine> sourceLines ) {	
 		for (SourceLine sourceLine : sourceLines) {
-			if (sourceLine.getLineContent() instanceof BlankLine) {
-				BlankLine blankLine = (BlankLine)sourceLine.getLineContent();
+			
+			if (sourceLine.getLineContent() instanceof BlankLine blankLine) {
 				parseBlankLine(blankLine);
 				
-			} else if (sourceLine.getLineContent() instanceof CommentLine) {
-				CommentLine commentLine = (CommentLine)sourceLine.getLineContent(); 
+			} else if (sourceLine.getLineContent() instanceof CommentLine commentLine) {
 				parseCommentLine(commentLine);
 				
-			} else if (sourceLine.getLineContent() instanceof LabelLine) {
-				LabelLine labelLine = (LabelLine)sourceLine.getLineContent(); 
+			} else if (sourceLine.getLineContent() instanceof LabelLine labelLine) {
 				parseLabelLine(labelLine);
 				
-			} else if (sourceLine.getLineContent() instanceof DirectiveLine) {
-				DirectiveLine directiveLine = (DirectiveLine)sourceLine.getLineContent();
+			} else if (sourceLine.getLineContent() instanceof DirectiveLine directiveLine) {
 				boolean needStop = parseDirectiveLine(directiveLine);
 				if (needStop) {
 					break;
 				}
-			} else if(sourceLine.getLineContent() instanceof SpecialFunctions) {
-				SpecialFunctions specialFuntions = (SpecialFunctions)sourceLine.getLineContent();
-				parse(specialFuntions);
+			} else if(sourceLine.getLineContent() instanceof SpecialFunctions specialFunctions) {
+				parse(specialFunctions);
 				
-			} else if (sourceLine.getLineContent() instanceof InstructionLine) {
-				InstructionLine instructionLine = (InstructionLine) sourceLine.getLineContent();
+			} else if (sourceLine.getLineContent() instanceof InstructionLine instructionLine) {
 				parseInstructionLinePass1(instructionLine);
 				
+			} else if (sourceLine.getLineContent() instanceof OtherKindOfInstructions otherInstruction) {
+				parseOtherInstructionLinePass1(otherInstruction);
+				
 			} else {
-				logger.log(Level.SEVERE,"Unknow directive {0}" + sourceLine.getLineContent().getClass().getSimpleName());
+				
+				logger.log(Level.SEVERE,"Unknow directive {0}", sourceLine.getLineContent().getClass().getSimpleName());
 			}
 			lineNumber++;
+		}
+	}
+
+	private void parseOtherInstructionLinePass1(OtherKindOfInstructions otherInstruction) {
+		String instructionName = otherInstruction.getName().getValue(); 
+		if (macroDefinitions.containsKey(instructionName)) {
+
+			MacroDefinition macroDefinition = macroDefinitions.get(instructionName);
+
+			MacroAssembledElement assembledMacro = new MacroAssembledElement();
+			assembledMacro.parse(macroDefinition);
+			
+			for(int i=0; i< assembledMacro.getInstructionLines().size(); i++) {
+
+				InstructionLine instruction = assembledMacro.getInstructionLines().get(i);
+				parseInstructionLinePass1(instruction);
+				int assembledInstructionPosition = assemblyLines.size();
+				AbstractAssemblyLine assembledLine = assemblyLines.get(assembledInstructionPosition-1);
+				
+				assembledMacro.addAssembledInstruction(assembledLine);
+				assemblyLines.remove(assembledInstructionPosition-1);
+			}
+			
+			assemblyLines.add(assembledMacro);
+			
+		} else {
+			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("The instruction " + instructionName + " is not recognized",
+					AssemblerPackage.Literals.OTHER_KIND_OF_INSTRUCTIONS__NAME,
+					InstructionValidator.UNRECOGNIZED_INSTRUCTION);
+			AssemblerErrorManager.getInstance().addProblem(otherInstruction, problemDescription);
 		}
 	}
 
@@ -303,8 +344,9 @@ public class AssemblerEngine {
 	 */
 	private void parse(SpecialFunctions specialFuntions) {
 		if (specialFuntions.getSpecialFuntion() instanceof MacroDefinition) {
-			MacroDefinition macroDefinition = (MacroDefinition)specialFuntions.getSpecialFuntion();
-			parse(macroDefinition);
+			parse(specialFuntions.getSpecialFuntion());
+		}else {
+			logger.log(Level.SEVERE,"Unknow special function {0}", specialFuntions.getSpecialFuntion().getClass().getSimpleName());
 		}
 	}
 
@@ -314,7 +356,22 @@ public class AssemblerEngine {
 	 * @param macroDefinition reference on the macro definition
 	 */
 	private void parse(MacroDefinition macroDefinition) {
-		// TODO : Manage macro definition	
+		String macroName = macroDefinition.getName().getValue();
+		if (macroDefinitions.containsKey(macroName)) {
+			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Macro " + macroName + " is already defined",
+					AssemblerPackage.Literals.MACRO_DEFINITION__NAME,
+					InstructionValidator.DUPLICATE_MACRO);
+			AssemblerErrorManager.getInstance().addProblem(macroDefinition, problemDescription);
+
+		} else {
+			if (macroDefinition.getInstructions().isEmpty()) {
+				AssemblerWarningDescription problemDescription = new AssemblerWarningDescription("Macro " + macroName + " can't be empty",
+						AssemblerPackage.Literals.MACRO_DEFINITION__NAME,
+						InstructionValidator.EMPTY_MACRO);
+				AssemblerErrorManager.getInstance().addWarning(macroDefinition, problemDescription);
+			}
+			macroDefinitions.put(macroName, macroDefinition);
+		}
 	}
 
 	private void assemblePass2(Model model) {
@@ -322,12 +379,15 @@ public class AssemblerEngine {
 
 		List<SourceLine> sourceLines = model.getSourceLines();
 		for (SourceLine sourceLine : sourceLines) {
-			if (sourceLine.getLineContent() instanceof InstructionLine) {
-				InstructionLine instructionLine = (InstructionLine) sourceLine.getLineContent();
+			if (sourceLine.getLineContent() instanceof InstructionLine instructionLine) {
 				parseInstructionLinePass2(instructionLine);
-			}
-			lineNumber++;
+			
+			} else if (sourceLine.getLineContent() instanceof OtherKindOfInstructions instructionLine) {
+				parseOtherKindLinePass2(instructionLine);
+
+			} 	
 		}
+		lineNumber++;
 	}
 
 	private void parseInstructionLinePass2(InstructionLine instructionLine) {
@@ -1255,23 +1315,23 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof PuluInstruction) {
 			parse((PuluInstruction)instructionLine.getInstruction());
 			
-		} else if (instructionLine.getInstruction() instanceof RolInstruction) {
-			parse((RolInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof RolInstruction rolInstruction) {
+			parse(rolInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof RorInstruction) {
-			parse((RorInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof RorInstruction rorInstruction) {
+			parse(rorInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof RtiInstruction) {
-			parse((RtiInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof RtiInstruction rtiInstruction) {
+			parse(rtiInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof RtsInstruction) {
-			parse((RtsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof RtsInstruction rtsInstruction) {
+			parse(rtsInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof SbcInstruction) {
-			parse((SbcInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof SbcInstruction sbcInstruction) {
+			parse(sbcInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof SexInstruction) {
-			parse((SexInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof SexInstruction sexInstruction) {
+			parse(sexInstruction);
 			
 		} else if (instructionLine.getInstruction() instanceof StInstruction) {
 			parse((StInstruction)instructionLine.getInstruction());

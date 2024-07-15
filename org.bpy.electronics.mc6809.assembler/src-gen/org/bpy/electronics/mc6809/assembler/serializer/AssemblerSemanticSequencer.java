@@ -2186,10 +2186,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         ws1=WS 
 	 *         ws2=WS 
 	 *         name=IdentifierValue 
-	 *         (ws3=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
+	 *         (ws3=WS comment1=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
 	 *         ws4=WS? 
-	 *         instructions+=InstructionLine+ 
-	 *         ws5=WS
+	 *         instructions+=InstructionLine* 
+	 *         ws5=WS 
+	 *         (ws6=WS comment2=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
+	 *         ws7=WS?
 	 *     )
 	 * </pre>
 	 */
@@ -2534,7 +2536,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     OtherKindOfInstructions returns OtherKindOfInstructions
 	 *
 	 * Constraint:
-	 *     (label=Label ws1=WS otherInstruction=IdentifierValue (ws2=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? ws3=WS?)
+	 *     (label=Label ws1=WS name=IdentifierValue (ws2=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? ws3=WS?)
 	 * </pre>
 	 */
 	protected void sequence_OtherKindOfInstructions(ISerializationContext context, OtherKindOfInstructions semanticObject) {

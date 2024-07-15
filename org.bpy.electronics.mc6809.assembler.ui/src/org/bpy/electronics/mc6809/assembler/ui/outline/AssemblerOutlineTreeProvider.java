@@ -113,7 +113,7 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 * @param line reference on the other kind line
 	 */
 	private void manageOtherKingOfInstruction(OtherKindOfInstructions line) {
-		String label = line.getOtherInstruction().getValue();
+		String label = line.getName().getValue();
 		if (currentNode != null) {
 			createEObjectNode(currentNode, line, getImage(line), label, true);
 		} else {

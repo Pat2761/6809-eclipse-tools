@@ -1231,7 +1231,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EReference getOtherKindOfInstructions_OtherInstruction()
+  public EReference getOtherKindOfInstructions_Name()
   {
     return (EReference)otherKindOfInstructionsEClass.getEStructuralFeatures().get(2);
   }
@@ -1352,7 +1352,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getMacroDefinition_Comment()
+  public EAttribute getMacroDefinition_Comment1()
   {
     return (EAttribute)macroDefinitionEClass.getEStructuralFeatures().get(4);
   }
@@ -1388,6 +1388,39 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   public EAttribute getMacroDefinition_Ws5()
   {
     return (EAttribute)macroDefinitionEClass.getEStructuralFeatures().get(7);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getMacroDefinition_Ws6()
+  {
+    return (EAttribute)macroDefinitionEClass.getEStructuralFeatures().get(8);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getMacroDefinition_Comment2()
+  {
+    return (EAttribute)macroDefinitionEClass.getEStructuralFeatures().get(9);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getMacroDefinition_Ws7()
+  {
+    return (EAttribute)macroDefinitionEClass.getEStructuralFeatures().get(10);
   }
 
   /**
@@ -6182,7 +6215,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     otherKindOfInstructionsEClass = createEClass(OTHER_KIND_OF_INSTRUCTIONS);
     createEReference(otherKindOfInstructionsEClass, OTHER_KIND_OF_INSTRUCTIONS__LABEL);
     createEAttribute(otherKindOfInstructionsEClass, OTHER_KIND_OF_INSTRUCTIONS__WS1);
-    createEReference(otherKindOfInstructionsEClass, OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION);
+    createEReference(otherKindOfInstructionsEClass, OTHER_KIND_OF_INSTRUCTIONS__NAME);
     createEAttribute(otherKindOfInstructionsEClass, OTHER_KIND_OF_INSTRUCTIONS__WS2);
     createEAttribute(otherKindOfInstructionsEClass, OTHER_KIND_OF_INSTRUCTIONS__COMMENT);
     createEAttribute(otherKindOfInstructionsEClass, OTHER_KIND_OF_INSTRUCTIONS__WS3);
@@ -6195,10 +6228,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     createEAttribute(macroDefinitionEClass, MACRO_DEFINITION__WS2);
     createEReference(macroDefinitionEClass, MACRO_DEFINITION__NAME);
     createEAttribute(macroDefinitionEClass, MACRO_DEFINITION__WS3);
-    createEAttribute(macroDefinitionEClass, MACRO_DEFINITION__COMMENT);
+    createEAttribute(macroDefinitionEClass, MACRO_DEFINITION__COMMENT1);
     createEAttribute(macroDefinitionEClass, MACRO_DEFINITION__WS4);
     createEReference(macroDefinitionEClass, MACRO_DEFINITION__INSTRUCTIONS);
     createEAttribute(macroDefinitionEClass, MACRO_DEFINITION__WS5);
+    createEAttribute(macroDefinitionEClass, MACRO_DEFINITION__WS6);
+    createEAttribute(macroDefinitionEClass, MACRO_DEFINITION__COMMENT2);
+    createEAttribute(macroDefinitionEClass, MACRO_DEFINITION__WS7);
 
     labelLineEClass = createEClass(LABEL_LINE);
     createEReference(labelLineEClass, LABEL_LINE__LABEL);
@@ -6812,7 +6848,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEClass(otherKindOfInstructionsEClass, OtherKindOfInstructions.class, "OtherKindOfInstructions", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getOtherKindOfInstructions_Label(), this.getLabel(), null, "label", null, 0, 1, OtherKindOfInstructions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOtherKindOfInstructions_Ws1(), ecorePackage.getEString(), "ws1", null, 0, 1, OtherKindOfInstructions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getOtherKindOfInstructions_OtherInstruction(), this.getIdentifierValue(), null, "otherInstruction", null, 0, 1, OtherKindOfInstructions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getOtherKindOfInstructions_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, OtherKindOfInstructions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOtherKindOfInstructions_Ws2(), ecorePackage.getEString(), "ws2", null, 0, 1, OtherKindOfInstructions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOtherKindOfInstructions_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, OtherKindOfInstructions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getOtherKindOfInstructions_Ws3(), ecorePackage.getEString(), "ws3", null, 0, 1, OtherKindOfInstructions.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -6825,10 +6861,13 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
     initEAttribute(getMacroDefinition_Ws2(), ecorePackage.getEString(), "ws2", null, 0, 1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMacroDefinition_Name(), this.getIdentifierValue(), null, "name", null, 0, 1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMacroDefinition_Ws3(), ecorePackage.getEString(), "ws3", null, 0, 1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getMacroDefinition_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMacroDefinition_Comment1(), ecorePackage.getEString(), "comment1", null, 0, 1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMacroDefinition_Ws4(), ecorePackage.getEString(), "ws4", null, 0, 1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getMacroDefinition_Instructions(), this.getInstructionLine(), null, "instructions", null, 0, -1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getMacroDefinition_Ws5(), ecorePackage.getEString(), "ws5", null, 0, 1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMacroDefinition_Ws6(), ecorePackage.getEString(), "ws6", null, 0, 1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMacroDefinition_Comment2(), ecorePackage.getEString(), "comment2", null, 0, 1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getMacroDefinition_Ws7(), ecorePackage.getEString(), "ws7", null, 0, 1, MacroDefinition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(labelLineEClass, LabelLine.class, "LabelLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getLabelLine_Label(), this.getLabel(), null, "label", null, 0, 1, LabelLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

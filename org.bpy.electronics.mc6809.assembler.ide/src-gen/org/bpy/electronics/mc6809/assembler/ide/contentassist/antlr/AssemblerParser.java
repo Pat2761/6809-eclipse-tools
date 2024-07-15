@@ -158,6 +158,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOtherKindOfInstructionsAccess().getGroup_3(), "rule__OtherKindOfInstructions__Group_3__0");
 			builder.put(grammarAccess.getMacroDefinitionAccess().getGroup(), "rule__MacroDefinition__Group__0");
 			builder.put(grammarAccess.getMacroDefinitionAccess().getGroup_4(), "rule__MacroDefinition__Group_4__0");
+			builder.put(grammarAccess.getMacroDefinitionAccess().getGroup_10(), "rule__MacroDefinition__Group_10__0");
 			builder.put(grammarAccess.getLabelLineAccess().getGroup(), "rule__LabelLine__Group__0");
 			builder.put(grammarAccess.getLabelLineAccess().getGroup_1(), "rule__LabelLine__Group_1__0");
 			builder.put(grammarAccess.getBlankLineAccess().getGroup(), "rule__BlankLine__Group__0");
@@ -325,7 +326,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getSourceLineAccess().getLineContentAssignment_6(), "rule__SourceLine__LineContentAssignment_6");
 			builder.put(grammarAccess.getOtherKindOfInstructionsAccess().getLabelAssignment_0(), "rule__OtherKindOfInstructions__LabelAssignment_0");
 			builder.put(grammarAccess.getOtherKindOfInstructionsAccess().getWs1Assignment_1(), "rule__OtherKindOfInstructions__Ws1Assignment_1");
-			builder.put(grammarAccess.getOtherKindOfInstructionsAccess().getOtherInstructionAssignment_2(), "rule__OtherKindOfInstructions__OtherInstructionAssignment_2");
+			builder.put(grammarAccess.getOtherKindOfInstructionsAccess().getNameAssignment_2(), "rule__OtherKindOfInstructions__NameAssignment_2");
 			builder.put(grammarAccess.getOtherKindOfInstructionsAccess().getWs2Assignment_3_0(), "rule__OtherKindOfInstructions__Ws2Assignment_3_0");
 			builder.put(grammarAccess.getOtherKindOfInstructionsAccess().getCommentAssignment_3_1(), "rule__OtherKindOfInstructions__CommentAssignment_3_1");
 			builder.put(grammarAccess.getOtherKindOfInstructionsAccess().getWs3Assignment_4(), "rule__OtherKindOfInstructions__Ws3Assignment_4");
@@ -334,10 +335,13 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getMacroDefinitionAccess().getWs2Assignment_2(), "rule__MacroDefinition__Ws2Assignment_2");
 			builder.put(grammarAccess.getMacroDefinitionAccess().getNameAssignment_3(), "rule__MacroDefinition__NameAssignment_3");
 			builder.put(grammarAccess.getMacroDefinitionAccess().getWs3Assignment_4_0(), "rule__MacroDefinition__Ws3Assignment_4_0");
-			builder.put(grammarAccess.getMacroDefinitionAccess().getCommentAssignment_4_1(), "rule__MacroDefinition__CommentAssignment_4_1");
+			builder.put(grammarAccess.getMacroDefinitionAccess().getComment1Assignment_4_1(), "rule__MacroDefinition__Comment1Assignment_4_1");
 			builder.put(grammarAccess.getMacroDefinitionAccess().getWs4Assignment_5(), "rule__MacroDefinition__Ws4Assignment_5");
 			builder.put(grammarAccess.getMacroDefinitionAccess().getInstructionsAssignment_7(), "rule__MacroDefinition__InstructionsAssignment_7");
 			builder.put(grammarAccess.getMacroDefinitionAccess().getWs5Assignment_8(), "rule__MacroDefinition__Ws5Assignment_8");
+			builder.put(grammarAccess.getMacroDefinitionAccess().getWs6Assignment_10_0(), "rule__MacroDefinition__Ws6Assignment_10_0");
+			builder.put(grammarAccess.getMacroDefinitionAccess().getComment2Assignment_10_1(), "rule__MacroDefinition__Comment2Assignment_10_1");
+			builder.put(grammarAccess.getMacroDefinitionAccess().getWs7Assignment_11(), "rule__MacroDefinition__Ws7Assignment_11");
 			builder.put(grammarAccess.getLabelLineAccess().getLabelAssignment_0(), "rule__LabelLine__LabelAssignment_0");
 			builder.put(grammarAccess.getLabelLineAccess().getWs1Assignment_1_0(), "rule__LabelLine__Ws1Assignment_1_0");
 			builder.put(grammarAccess.getLabelLineAccess().getCommentAssignment_1_1(), "rule__LabelLine__CommentAssignment_1_1");

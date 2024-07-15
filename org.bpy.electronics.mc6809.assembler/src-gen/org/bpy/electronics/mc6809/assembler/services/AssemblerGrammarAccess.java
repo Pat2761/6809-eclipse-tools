@@ -142,8 +142,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cLabelLabelParserRuleCall_0_0 = (RuleCall)cLabelAssignment_0.eContents().get(0);
 		private final Assignment cWs1Assignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cWs1WSTerminalRuleCall_1_0 = (RuleCall)cWs1Assignment_1.eContents().get(0);
-		private final Assignment cOtherInstructionAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cOtherInstructionIdentifierValueParserRuleCall_2_0 = (RuleCall)cOtherInstructionAssignment_2.eContents().get(0);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameIdentifierValueParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Assignment cWs2Assignment_3_0 = (Assignment)cGroup_3.eContents().get(0);
 		private final RuleCall cWs2WSTerminalRuleCall_3_0_0 = (RuleCall)cWs2Assignment_3_0.eContents().get(0);
@@ -154,13 +154,13 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//OtherKindOfInstructions:
-		//    label=Label ws1=WS otherInstruction=IdentifierValue
+		//    label=Label ws1=WS name=IdentifierValue
 		//    (ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    ws3=WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//label=Label ws1=WS otherInstruction=IdentifierValue
+		//label=Label ws1=WS name=IdentifierValue
 		//(ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//ws3=WS? EndOfLine
 		public Group getGroup() { return cGroup; }
@@ -177,11 +177,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//WS
 		public RuleCall getWs1WSTerminalRuleCall_1_0() { return cWs1WSTerminalRuleCall_1_0; }
 		
-		//otherInstruction=IdentifierValue
-		public Assignment getOtherInstructionAssignment_2() { return cOtherInstructionAssignment_2; }
+		//name=IdentifierValue
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//IdentifierValue
-		public RuleCall getOtherInstructionIdentifierValueParserRuleCall_2_0() { return cOtherInstructionIdentifierValueParserRuleCall_2_0; }
+		public RuleCall getNameIdentifierValueParserRuleCall_2_0() { return cNameIdentifierValueParserRuleCall_2_0; }
 		
 		//(ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_3() { return cGroup_3; }
@@ -239,8 +239,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
 		private final Assignment cWs3Assignment_4_0 = (Assignment)cGroup_4.eContents().get(0);
 		private final RuleCall cWs3WSTerminalRuleCall_4_0_0 = (RuleCall)cWs3Assignment_4_0.eContents().get(0);
-		private final Assignment cCommentAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cCommentAssignment_4_1.eContents().get(0);
+		private final Assignment cComment1Assignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cComment1ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cComment1Assignment_4_1.eContents().get(0);
 		private final Assignment cWs4Assignment_5 = (Assignment)cGroup.eContents().get(5);
 		private final RuleCall cWs4WSTerminalRuleCall_5_0 = (RuleCall)cWs4Assignment_5.eContents().get(0);
 		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
@@ -249,6 +249,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cWs5Assignment_8 = (Assignment)cGroup.eContents().get(8);
 		private final RuleCall cWs5WSTerminalRuleCall_8_0 = (RuleCall)cWs5Assignment_8.eContents().get(0);
 		private final Keyword cEndmKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
+		private final Assignment cWs6Assignment_10_0 = (Assignment)cGroup_10.eContents().get(0);
+		private final RuleCall cWs6WSTerminalRuleCall_10_0_0 = (RuleCall)cWs6Assignment_10_0.eContents().get(0);
+		private final Assignment cComment2Assignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
+		private final RuleCall cComment2ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_10_1_0 = (RuleCall)cComment2Assignment_10_1.eContents().get(0);
+		private final Assignment cWs7Assignment_11 = (Assignment)cGroup.eContents().get(11);
+		private final RuleCall cWs7WSTerminalRuleCall_11_0 = (RuleCall)cWs7Assignment_11.eContents().get(0);
+		private final RuleCall cEndOfLineParserRuleCall_12 = (RuleCall)cGroup.eContents().get(12);
 		
 		///**
 		// * A macro is a list of instruction which can be reused in the assembler code like an
@@ -256,18 +264,20 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//MacroDefinition:
 		//    ws1=WS '.macro' ws2=WS name=IdentifierValue
-		//    (ws3=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    (ws3=WS (comment1=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    ws4=WS? EndOfLine
-		//    instructions += InstructionLine+
-		//    ws5=WS '.endm'
+		//    instructions += InstructionLine*
+		//    ws5=WS '.endm' (ws6=WS (comment2=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//    ws7=WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//ws1=WS '.macro' ws2=WS name=IdentifierValue
-		//(ws3=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//(ws3=WS (comment1=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//ws4=WS? EndOfLine
-		//instructions += InstructionLine+
-		//ws5=WS '.endm'
+		//instructions += InstructionLine*
+		//ws5=WS '.endm' (ws6=WS (comment2=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//ws7=WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
 		//ws1=WS
@@ -291,7 +301,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//IdentifierValue
 		public RuleCall getNameIdentifierValueParserRuleCall_3_0() { return cNameIdentifierValueParserRuleCall_3_0; }
 		
-		//(ws3=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		//(ws3=WS (comment1=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		public Group getGroup_4() { return cGroup_4; }
 		
 		//ws3=WS
@@ -300,11 +310,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//WS
 		public RuleCall getWs3WSTerminalRuleCall_4_0_0() { return cWs3WSTerminalRuleCall_4_0_0; }
 		
-		//(comment=ANY_EXCEPT_COMMENT_END_OF_LINE)
-		public Assignment getCommentAssignment_4_1() { return cCommentAssignment_4_1; }
+		//(comment1=ANY_EXCEPT_COMMENT_END_OF_LINE)
+		public Assignment getComment1Assignment_4_1() { return cComment1Assignment_4_1; }
 		
 		//ANY_EXCEPT_COMMENT_END_OF_LINE
-		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
+		public RuleCall getComment1ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cComment1ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
 		
 		//ws4=WS?
 		public Assignment getWs4Assignment_5() { return cWs4Assignment_5; }
@@ -315,7 +325,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
 		
-		//instructions += InstructionLine+
+		//instructions += InstructionLine*
 		public Assignment getInstructionsAssignment_7() { return cInstructionsAssignment_7; }
 		
 		//InstructionLine
@@ -329,6 +339,30 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//'.endm'
 		public Keyword getEndmKeyword_9() { return cEndmKeyword_9; }
+		
+		//(ws6=WS (comment2=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+		public Group getGroup_10() { return cGroup_10; }
+		
+		//ws6=WS
+		public Assignment getWs6Assignment_10_0() { return cWs6Assignment_10_0; }
+		
+		//WS
+		public RuleCall getWs6WSTerminalRuleCall_10_0_0() { return cWs6WSTerminalRuleCall_10_0_0; }
+		
+		//(comment2=ANY_EXCEPT_COMMENT_END_OF_LINE)
+		public Assignment getComment2Assignment_10_1() { return cComment2Assignment_10_1; }
+		
+		//ANY_EXCEPT_COMMENT_END_OF_LINE
+		public RuleCall getComment2ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_10_1_0() { return cComment2ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_10_1_0; }
+		
+		//ws7=WS?
+		public Assignment getWs7Assignment_11() { return cWs7Assignment_11; }
+		
+		//WS
+		public RuleCall getWs7WSTerminalRuleCall_11_0() { return cWs7WSTerminalRuleCall_11_0; }
+		
+		//EndOfLine
+		public RuleCall getEndOfLineParserRuleCall_12() { return cEndOfLineParserRuleCall_12; }
 	}
 	public class LabelLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.LabelLine");
@@ -425,7 +459,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cStartingSpaceWSTerminalRuleCall_1_0 = (RuleCall)cStartingSpaceAssignment_1.eContents().get(0);
 		private final Assignment cCommentAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_0 = (RuleCall)cCommentAssignment_2.eContents().get(0);
-		private final RuleCall cEndOfLineParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cWSTerminalRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
+		private final RuleCall cEndOfLineParserRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		
 		///*
 		// * definition of a comment line
@@ -433,12 +468,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//CommentLine:
 		//    {CommentLine}
-		//    startingSpace=WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
+		//    startingSpace=WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{CommentLine}
-		//startingSpace=WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
+		//startingSpace=WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
 		//{CommentLine}
@@ -456,8 +491,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//ANY_EXCEPT_COMMENT_END_OF_LINE
 		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_2_0; }
 		
+		//WS?
+		public RuleCall getWSTerminalRuleCall_3() { return cWSTerminalRuleCall_3; }
+		
 		//EndOfLine
-		public RuleCall getEndOfLineParserRuleCall_3() { return cEndOfLineParserRuleCall_3; }
+		public RuleCall getEndOfLineParserRuleCall_4() { return cEndOfLineParserRuleCall_4; }
 	}
 	public class InstructionLineElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.InstructionLine");
@@ -10622,7 +10660,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	}
 	
 	//OtherKindOfInstructions:
-	//    label=Label ws1=WS otherInstruction=IdentifierValue
+	//    label=Label ws1=WS name=IdentifierValue
 	//    (ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    ws3=WS? EndOfLine
 	//;
@@ -10654,10 +10692,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//MacroDefinition:
 	//    ws1=WS '.macro' ws2=WS name=IdentifierValue
-	//    (ws3=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    (ws3=WS (comment1=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    ws4=WS? EndOfLine
-	//    instructions += InstructionLine+
-	//    ws5=WS '.endm'
+	//    instructions += InstructionLine*
+	//    ws5=WS '.endm' (ws6=WS (comment2=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	//    ws7=WS? EndOfLine
 	//;
 	public MacroDefinitionElements getMacroDefinitionAccess() {
 		return pMacroDefinition;
@@ -10700,7 +10739,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//CommentLine:
 	//    {CommentLine}
-	//    startingSpace=WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE EndOfLine
+	//    startingSpace=WS? comment=ANY_EXCEPT_COMMENT_END_OF_LINE WS? EndOfLine
 	//;
 	public CommentLineElements getCommentLineAccess() {
 		return pCommentLine;

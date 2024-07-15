@@ -65,10 +65,12 @@ import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
@@ -80,6 +82,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
@@ -110,6 +113,13 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	public static final String DUPLICATE_OPTION = "duplicateOption";
 	public static final String ILLEGAL_REGISTER = "illegalRegister";
 	public static final String MISSING_LABEL = "missingLabel";
+
+	/** String marker for the error manager in case of duplicate macro */
+	public static final String DUPLICATE_MACRO = "duplicateMacro";
+	/** String marker for the error manager in case of empty macro */
+	public static final String EMPTY_MACRO = "emptyMacro";
+	/** String marker for the error manager in unrecognized instruction */
+	public static final String UNRECOGNIZED_INSTRUCTION = "unRecognizedInstruction";
 
 	/**
 	 * Check duplicate labels
@@ -977,6 +987,26 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	public void checkInstructionLine(BvsInstruction instruction) {
 		exposeProblems(instruction);
 	}	
+	
+	/**
+	 * Check the macro declaration.
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkSpecialFunction(MacroDefinition macroDefinition) {
+		exposeProblems(macroDefinition);
+	}
+
+	/**
+	 * Check the macro declaration.
+	 * 
+	 * @param instruction reference on the instruction line
+	 */
+	@Check
+	public void checkUnrecognizedFunction(OtherKindOfInstructions instruction) {
+		exposeProblems(instruction);
+	}
 
 	/**
 	 * Declare problems and warnings detected during the assembly step for an Instruction

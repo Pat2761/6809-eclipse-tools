@@ -20,10 +20,13 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs2 <em>Ws2</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs3 <em>Ws3</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment <em>Comment</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment1 <em>Comment1</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs4 <em>Ws4</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getInstructions <em>Instructions</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs5 <em>Ws5</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs6 <em>Ws6</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment2 <em>Comment2</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs7 <em>Ws7</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getMacroDefinition()
@@ -121,26 +124,26 @@ public interface MacroDefinition extends EObject
   void setWs3(String value);
 
   /**
-   * Returns the value of the '<em><b>Comment</b></em>' attribute.
+   * Returns the value of the '<em><b>Comment1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Comment</em>' attribute.
-   * @see #setComment(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getMacroDefinition_Comment()
+   * @return the value of the '<em>Comment1</em>' attribute.
+   * @see #setComment1(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getMacroDefinition_Comment1()
    * @model
    * @generated
    */
-  String getComment();
+  String getComment1();
 
   /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment <em>Comment</em>}' attribute.
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment1 <em>Comment1</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Comment</em>' attribute.
-   * @see #getComment()
+   * @param value the new value of the '<em>Comment1</em>' attribute.
+   * @see #getComment1()
    * @generated
    */
-  void setComment(String value);
+  void setComment1(String value);
 
   /**
    * Returns the value of the '<em><b>Ws4</b></em>' attribute.
@@ -197,5 +200,71 @@ public interface MacroDefinition extends EObject
    * @generated
    */
   void setWs5(String value);
+
+  /**
+   * Returns the value of the '<em><b>Ws6</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ws6</em>' attribute.
+   * @see #setWs6(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getMacroDefinition_Ws6()
+   * @model
+   * @generated
+   */
+  String getWs6();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs6 <em>Ws6</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ws6</em>' attribute.
+   * @see #getWs6()
+   * @generated
+   */
+  void setWs6(String value);
+
+  /**
+   * Returns the value of the '<em><b>Comment2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Comment2</em>' attribute.
+   * @see #setComment2(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getMacroDefinition_Comment2()
+   * @model
+   * @generated
+   */
+  String getComment2();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment2 <em>Comment2</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Comment2</em>' attribute.
+   * @see #getComment2()
+   * @generated
+   */
+  void setComment2(String value);
+
+  /**
+   * Returns the value of the '<em><b>Ws7</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ws7</em>' attribute.
+   * @see #setWs7(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getMacroDefinition_Ws7()
+   * @model
+   * @generated
+   */
+  String getWs7();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs7 <em>Ws7</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ws7</em>' attribute.
+   * @see #getWs7()
+   * @generated
+   */
+  void setWs7(String value);
 
 } // MacroDefinition

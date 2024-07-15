@@ -143,13 +143,13 @@ public interface AssemblerPackage extends EPackage
   int OTHER_KIND_OF_INSTRUCTIONS__WS1 = 1;
 
   /**
-   * The feature id for the '<em><b>Other Instruction</b></em>' containment reference.
+   * The feature id for the '<em><b>Name</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION = 2;
+  int OTHER_KIND_OF_INSTRUCTIONS__NAME = 2;
 
   /**
    * The feature id for the '<em><b>Ws2</b></em>' attribute.
@@ -262,13 +262,13 @@ public interface AssemblerPackage extends EPackage
   int MACRO_DEFINITION__WS3 = 3;
 
   /**
-   * The feature id for the '<em><b>Comment</b></em>' attribute.
+   * The feature id for the '<em><b>Comment1</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MACRO_DEFINITION__COMMENT = 4;
+  int MACRO_DEFINITION__COMMENT1 = 4;
 
   /**
    * The feature id for the '<em><b>Ws4</b></em>' attribute.
@@ -298,13 +298,40 @@ public interface AssemblerPackage extends EPackage
   int MACRO_DEFINITION__WS5 = 7;
 
   /**
+   * The feature id for the '<em><b>Ws6</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MACRO_DEFINITION__WS6 = 8;
+
+  /**
+   * The feature id for the '<em><b>Comment2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MACRO_DEFINITION__COMMENT2 = 9;
+
+  /**
+   * The feature id for the '<em><b>Ws7</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int MACRO_DEFINITION__WS7 = 10;
+
+  /**
    * The number of structural features of the '<em>Macro Definition</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MACRO_DEFINITION_FEATURE_COUNT = 8;
+  int MACRO_DEFINITION_FEATURE_COUNT = 11;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl <em>Label Line</em>}' class.
@@ -5730,15 +5757,15 @@ public interface AssemblerPackage extends EPackage
   EAttribute getOtherKindOfInstructions_Ws1();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getOtherInstruction <em>Other Instruction</em>}'.
+   * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getName <em>Name</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Other Instruction</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getOtherInstruction()
+   * @return the meta object for the containment reference '<em>Name</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getName()
    * @see #getOtherKindOfInstructions()
    * @generated
    */
-  EReference getOtherKindOfInstructions_OtherInstruction();
+  EReference getOtherKindOfInstructions_Name();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getWs2 <em>Ws2</em>}'.
@@ -5849,15 +5876,15 @@ public interface AssemblerPackage extends EPackage
   EAttribute getMacroDefinition_Ws3();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment <em>Comment</em>}'.
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment1 <em>Comment1</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Comment</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment()
+   * @return the meta object for the attribute '<em>Comment1</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment1()
    * @see #getMacroDefinition()
    * @generated
    */
-  EAttribute getMacroDefinition_Comment();
+  EAttribute getMacroDefinition_Comment1();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs4 <em>Ws4</em>}'.
@@ -5891,6 +5918,39 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getMacroDefinition_Ws5();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs6 <em>Ws6</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws6</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs6()
+   * @see #getMacroDefinition()
+   * @generated
+   */
+  EAttribute getMacroDefinition_Ws6();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment2 <em>Comment2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Comment2</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment2()
+   * @see #getMacroDefinition()
+   * @generated
+   */
+  EAttribute getMacroDefinition_Comment2();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs7 <em>Ws7</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws7</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs7()
+   * @see #getMacroDefinition()
+   * @generated
+   */
+  EAttribute getMacroDefinition_Ws7();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine <em>Label Line</em>}'.
@@ -10602,12 +10662,12 @@ public interface AssemblerPackage extends EPackage
     EAttribute OTHER_KIND_OF_INSTRUCTIONS__WS1 = eINSTANCE.getOtherKindOfInstructions_Ws1();
 
     /**
-     * The meta object literal for the '<em><b>Other Instruction</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EReference OTHER_KIND_OF_INSTRUCTIONS__OTHER_INSTRUCTION = eINSTANCE.getOtherKindOfInstructions_OtherInstruction();
+    EReference OTHER_KIND_OF_INSTRUCTIONS__NAME = eINSTANCE.getOtherKindOfInstructions_Name();
 
     /**
      * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
@@ -10694,12 +10754,12 @@ public interface AssemblerPackage extends EPackage
     EAttribute MACRO_DEFINITION__WS3 = eINSTANCE.getMacroDefinition_Ws3();
 
     /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Comment1</b></em>' attribute feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute MACRO_DEFINITION__COMMENT = eINSTANCE.getMacroDefinition_Comment();
+    EAttribute MACRO_DEFINITION__COMMENT1 = eINSTANCE.getMacroDefinition_Comment1();
 
     /**
      * The meta object literal for the '<em><b>Ws4</b></em>' attribute feature.
@@ -10724,6 +10784,30 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute MACRO_DEFINITION__WS5 = eINSTANCE.getMacroDefinition_Ws5();
+
+    /**
+     * The meta object literal for the '<em><b>Ws6</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MACRO_DEFINITION__WS6 = eINSTANCE.getMacroDefinition_Ws6();
+
+    /**
+     * The meta object literal for the '<em><b>Comment2</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MACRO_DEFINITION__COMMENT2 = eINSTANCE.getMacroDefinition_Comment2();
+
+    /**
+     * The meta object literal for the '<em><b>Ws7</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute MACRO_DEFINITION__WS7 = eINSTANCE.getMacroDefinition_Ws7();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl <em>Label Line</em>}' class.

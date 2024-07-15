@@ -20,6 +20,7 @@ import org.eclipse.xtext.serializer.sequencer.AbstractSyntacticSequencer;
 public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected AssemblerGrammarAccess grammarAccess;
+	protected AbstractElementAlias match_CommentLine_WSTerminalRuleCall_3_q;
 	protected AbstractElementAlias match_DirectiveLine_WSTerminalRuleCall_4_q;
 	protected AbstractElementAlias match_ExtendedOperand_GreaterThanSignKeyword_0_q;
 	protected AbstractElementAlias match_InstructionLine_WSTerminalRuleCall_4_q;
@@ -29,6 +30,7 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (AssemblerGrammarAccess) access;
+		match_CommentLine_WSTerminalRuleCall_3_q = new TokenAlias(false, true, grammarAccess.getCommentLineAccess().getWSTerminalRuleCall_3());
 		match_DirectiveLine_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_4());
 		match_ExtendedOperand_GreaterThanSignKeyword_0_q = new TokenAlias(false, true, grammarAccess.getExtendedOperandAccess().getGreaterThanSignKeyword_0());
 		match_InstructionLine_WSTerminalRuleCall_4_q = new TokenAlias(false, true, grammarAccess.getInstructionLineAccess().getWSTerminalRuleCall_4());
@@ -69,7 +71,9 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_DirectiveLine_WSTerminalRuleCall_4_q.equals(syntax))
+			if (match_CommentLine_WSTerminalRuleCall_3_q.equals(syntax))
+				emit_CommentLine_WSTerminalRuleCall_3_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_DirectiveLine_WSTerminalRuleCall_4_q.equals(syntax))
 				emit_DirectiveLine_WSTerminalRuleCall_4_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else if (match_ExtendedOperand_GreaterThanSignKeyword_0_q.equals(syntax))
 				emit_ExtendedOperand_GreaterThanSignKeyword_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
@@ -83,6 +87,20 @@ public class AssemblerSyntacticSequencer extends AbstractSyntacticSequencer {
 		}
 	}
 
+	/**
+	 * <pre>
+	 * Ambiguous syntax:
+	 *     WS?
+	 *
+	 * This ambiguous syntax occurs at:
+	 *     comment=ANY_EXCEPT_COMMENT_END_OF_LINE (ambiguity) EndOfLine (rule end)
+	 
+	 * </pre>
+	 */
+	protected void emit_CommentLine_WSTerminalRuleCall_3_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+		acceptNodes(transition, nodes);
+	}
+	
 	/**
 	 * <pre>
 	 * Ambiguous syntax:

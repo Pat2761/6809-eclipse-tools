@@ -37,7 +37,7 @@
     <genClasses ecoreClass="Assembler.ecore#//OtherKindOfInstructions">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OtherKindOfInstructions/label"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OtherKindOfInstructions/ws1"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OtherKindOfInstructions/otherInstruction"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OtherKindOfInstructions/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OtherKindOfInstructions/ws2"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OtherKindOfInstructions/comment"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OtherKindOfInstructions/ws3"/>
@@ -50,10 +50,13 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/ws2"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//MacroDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/ws3"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/comment"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/comment1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/ws4"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//MacroDefinition/instructions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/ws5"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/ws6"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/comment2"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/ws7"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//LabelLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LabelLine/label"/>
