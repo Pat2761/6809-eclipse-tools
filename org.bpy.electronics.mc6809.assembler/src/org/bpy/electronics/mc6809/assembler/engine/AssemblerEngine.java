@@ -308,13 +308,22 @@ public class AssemblerEngine {
 	}
 
 	private void parseOtherInstructionLinePass1(OtherKindOfInstructions otherInstruction) {
-		String instructionName = otherInstruction.getName().getValue(); 
+		String instructionName = otherInstruction.getName().getValue();
+		
+		int callCounter = 1;
+		if (macroCallsCounter.containsKey(instructionName)) {
+			callCounter = macroCallsCounter.get(instructionName);
+			callCounter++;
+		} 
+		macroCallsCounter.put(instructionName, callCounter);
+		
 		if (macroDefinitions.containsKey(instructionName)) {
 
 			MacroDefinition macroDefinition = macroDefinitions.get(instructionName);
 
 			MacroAssembledElement assembledMacro = new MacroAssembledElement();
-			assembledMacro.parse(macroDefinition);
+			assembledMacro.parse(macroDefinition, callCounter);
+			assembledMacro.setPcAddress(currentPcValue);
 			
 			for(int i=0; i< assembledMacro.getInstructionLines().size(); i++) {
 
@@ -328,6 +337,7 @@ public class AssemblerEngine {
 			}
 			
 			assemblyLines.add(assembledMacro);
+			assembledLinesMap.put(otherInstruction, assembledMacro);
 			
 		} else {
 			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("The instruction " + instructionName + " is not recognized",
@@ -388,6 +398,17 @@ public class AssemblerEngine {
 			} 	
 		}
 		lineNumber++;
+	}
+
+	
+	private void parseOtherKindLinePass2(OtherKindOfInstructions instructionLine) {
+		AbstractAssemblyLine assembledLine = assembledLinesMap.get(instructionLine);
+		
+		if (assembledLine instanceof MacroAssembledElement macro) {
+			for (InstructionLine instruction : macro.getInstructionLines()) {
+				parseInstructionLinePass2(instruction);
+			}
+		}
 	}
 
 	private void parseInstructionLinePass2(InstructionLine instructionLine) {
