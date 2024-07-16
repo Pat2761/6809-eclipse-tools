@@ -1,3 +1,21 @@
+/*
+ * MC6809 Toolkit
+ * Copyright (C) 2023  Patrick BRIAND
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package org.bpy.electronics.mc6809.assembler.engine.data.others;
 
 import java.util.ArrayList;
@@ -30,42 +48,60 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
+/**
+ * Use to store the assembled code of the macro.
+ * 
+ * @author Patrick BRIAND
+ *
+ */
 public class MacroAssembledElement extends AbstractAssemblyLine {
 
+	/** memorize the macro definition */
 	private MacroDefinition macroDefinition;
+	
+	/** contains the assembled lines */
 	private List<AbstractAssemblyLine> assemblyLines;
+	/** Contains the cloned instruction lines */
 	private List<InstructionLine> instructionLines;
+	/** Memorize the internals labels */
 	private Map<String,String> internalLabels;
-	
-	private int callCounter = 1;
-	
+
+	/**
+	 * Constructor of the class.
+	 */
 	public MacroAssembledElement() {
 		assemblyLines = new ArrayList<>();
 		instructionLines = new ArrayList<>();
 		internalLabels = new HashMap<>();
 	}
 	
+	/**
+	 * Return the assembly lines.
+    *
+	 * @return List of assembly lines
+	 */
 	public List<AbstractAssemblyLine> getAssemblyLines() {
 		return assemblyLines;
 	}
 
+	/** 
+	 * Assemble the content of the macro.
+	 * Update all internals labels and their references.
+	 * 
+	 * @param macroDefinition reference on the macro definition
+	 * @param callCounter number of use
+	 */
 	public void parse(MacroDefinition macroDefinition, int callCounter) {
-		this.callCounter = callCounter;
 		this.macroDefinition = macroDefinition;
 
-		// update the labels
-		for (InstructionLine instruction : macroDefinition.getInstructions()) {
-			
-			InstructionLine cloneInstruction = EcoreUtil.copy(instruction); 
-			if (cloneInstruction.getLabel() != null && cloneInstruction.getLabel().getName() != null)  {
-				label = cloneInstruction.getLabel().getName().getValue();
-				String newLabel = label + "_" + callCounter; 
-				cloneInstruction.getLabel().getName().setValue(newLabel);
-				internalLabels.put(label,newLabel);
-			}
-			instructionLines.add(cloneInstruction);
-		}
-		
+		updateLabelDefinition(callCounter);
+		updateLabelUsage();
+	}
+
+	/**
+	 * Update the reference to internal labels
+	 */
+	private void updateLabelUsage() {
 		// update the label references to Jump or branch instruction
 		for (InstructionLine instruction : instructionLines) {
 			if (instruction.getInstruction() instanceof BccInstruction bccInstruction) {
@@ -110,6 +146,31 @@ public class MacroAssembledElement extends AbstractAssemblyLine {
 		}	
 	}
 
+	/**
+	 * Update all internal labels.
+	 * 
+	 * @param callCounter number of call
+	 */
+	private void updateLabelDefinition(int callCounter) {
+		// update the labels
+		for (InstructionLine instruction : macroDefinition.getInstructions()) {
+			
+			InstructionLine cloneInstruction = EcoreUtil.copy(instruction); 
+			if (cloneInstruction.getLabel() != null && cloneInstruction.getLabel().getName() != null)  {
+				label = cloneInstruction.getLabel().getName().getValue();
+				String newLabel = label + "_" + callCounter; 
+				cloneInstruction.getLabel().getName().setValue(newLabel);
+				internalLabels.put(label,newLabel);
+			}
+			instructionLines.add(cloneInstruction);
+		}
+	}
+
+	/**
+	 * Change the reference to an internal label.
+	 * 
+	 * @param operand reference on the operand to change
+	 */
 	private void changeReference(RelativeMode operand) {
 		if (operand.getOffset() != null) {
 			String operandString = operand.getOffset().getValue();
@@ -119,14 +180,29 @@ public class MacroAssembledElement extends AbstractAssemblyLine {
 		}	
 	}
 
+	/**
+	 * Return the reference to the macro definition.
+	 * 
+	 * @return reference on the macro definition
+	 */
 	public MacroDefinition getMacroDefinition() {
 		return macroDefinition;
 	}
 	
+	/**
+	 * Get the list of instructions in the macro
+	 * 
+	 * @return list of instructions in the macro
+	 */
 	public List<InstructionLine> getInstructionLines() {
 		return instructionLines;
 	}
 
+	/**
+	 * Add an assembly line for this macro
+	 * 
+	 * @param assemblyLine reference on the assembly line
+	 */
 	public void addAssembledInstruction(AbstractAssemblyLine assemblyLine) {
 		assemblyLines.add(assemblyLine);
 	}
