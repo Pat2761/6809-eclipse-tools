@@ -311,19 +311,68 @@ public class AssemblyView extends ViewPart {
 		 }
 	}
 
+	/** 
+	 * Display specific information about FCB directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledFcbDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
+		 
+		 if (directive.getDirective().getOperand() != null) {
+			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());		 
+			 item.setText(OPERAND_COLUMN, expressionRepresentation);
+		 }
+		 
+		 StringBuilder strBuilder = new StringBuilder();
+		 for (int value : directive.getValues()) {
+				 strBuilder.append(String.format("%02X ", value&0xFF));
+		 }
+		 item.setText(CODE_COLUMN, strBuilder.toString());
 	}
 
+	
+	/** 
+	 * Display specific information about FCC directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledFccDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
+		 
+		 if (directive.getValues().length >0) {
+//			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());		 
+//			 item.setText(OPERAND_COLUMN, expressionRepresentation);
+		 }
+		 
+//		 StringBuilder strBuilder = new StringBuilder();
+//		 for (int value : directive.getValues()) {
+//				 strBuilder.append(String.format("%02X ", value&0xFF));
+//		 }
+//		 item.setText(CODE_COLUMN, strBuilder.toString());
 	}
 
+	/** 
+	 * Display specific information about FDB directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledFdbDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
+		 
+		 if (directive.getDirective().getOperand() != null) {
+			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());		 
+			 item.setText(OPERAND_COLUMN, expressionRepresentation);
+		 }
+		 
+		 StringBuilder strBuilder = new StringBuilder();
+		 for (int value : directive.getValues()) {
+				 strBuilder.append(String.format("%04X ", value&0xFFFF));
+		 }
+		 item.setText(CODE_COLUMN, strBuilder.toString());
 	}
 
 	private void display(GridItem item, AssembledFillDirectiveLine directive) {
