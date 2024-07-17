@@ -3,6 +3,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -15,7 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getDirective <em>Directive</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getString <em>String</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getParameters <em>Parameters</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getFccDirective()
@@ -47,25 +49,15 @@ public interface FccDirective extends EObject
   void setDirective(String value);
 
   /**
-   * Returns the value of the '<em><b>String</b></em>' attribute.
+   * Returns the value of the '<em><b>Parameters</b></em>' containment reference list.
+   * The list contents are of type {@link org.eclipse.emf.ecore.EObject}.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the value of the '<em>String</em>' attribute.
-   * @see #setString(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getFccDirective_String()
-   * @model
+   * @return the value of the '<em>Parameters</em>' containment reference list.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getFccDirective_Parameters()
+   * @model containment="true"
    * @generated
    */
-  String getString();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getString <em>String</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>String</em>' attribute.
-   * @see #getString()
-   * @generated
-   */
-  void setString(String value);
+  EList<EObject> getParameters();
 
 } // FccDirective

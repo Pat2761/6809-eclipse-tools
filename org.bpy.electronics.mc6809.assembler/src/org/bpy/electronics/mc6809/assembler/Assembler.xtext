@@ -2058,7 +2058,8 @@ SetDPDirective:
  */
 FccDirective:
 	directive = 'FCC'
-	(WS string=STRING) 
+//	(WS string=STRING)
+	(WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*) 
 ;
 
 /*

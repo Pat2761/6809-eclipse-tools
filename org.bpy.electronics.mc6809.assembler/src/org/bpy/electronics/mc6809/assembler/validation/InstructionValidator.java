@@ -114,6 +114,11 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	public static final String ILLEGAL_REGISTER = "illegalRegister";
 	public static final String MISSING_LABEL = "missingLabel";
 
+	public static final String ILLEGAL_DECREMENT = "illegalDecrement";
+	public static final String ILLEGAL_INCREMENT = "illegalIncrement";
+	public static final String OVERFLOW_ERROR = "overflowError";
+	public static final String RELATIVE_SHORT_BRANCH = "relativeShortBranch";
+
 	/** String marker for the error manager in case of duplicate macro */
 	public static final String DUPLICATE_MACRO = "duplicateMacro";
 	/** String marker for the error manager in case of empty macro */

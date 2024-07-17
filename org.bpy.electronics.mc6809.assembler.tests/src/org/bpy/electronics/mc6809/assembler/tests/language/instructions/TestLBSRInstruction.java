@@ -24,7 +24,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLBSRInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -205,7 +204,7 @@ public class TestLBSRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
 				AssemblerPackage.eINSTANCE.getBsrInstruction(),
-				AbstractInstructionAssemblyLine.RELATIVE_SHORT_BRANCH,
+				InstructionValidator.RELATIVE_SHORT_BRANCH,
 				"You can use a short branch"
 			);
 		
@@ -275,7 +274,7 @@ public class TestLBSRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result,
 				AssemblerPackage.eINSTANCE.getBsrInstruction(),
-				AbstractInstructionAssemblyLine.RELATIVE_SHORT_BRANCH,
+				InstructionValidator.RELATIVE_SHORT_BRANCH,
 				"You can use a short branch"
 			);
 

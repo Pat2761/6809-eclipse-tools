@@ -3,15 +3,25 @@
  */
 package org.bpy.electronics.mc6809.assembler.assembler.impl;
 
+import java.util.Collection;
+
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -22,7 +32,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl#getDirective <em>Directive</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl#getString <em>String</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  *
  * @generated
@@ -50,24 +60,14 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
   protected String directive = DIRECTIVE_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getString() <em>String</em>}' attribute.
+   * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getString()
+   * @see #getParameters()
    * @generated
    * @ordered
    */
-  protected static final String STRING_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getString() <em>String</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getString()
-   * @generated
-   * @ordered
-   */
-  protected String string = STRING_EDEFAULT;
+  protected EList<EObject> parameters;
 
   /**
    * <!-- begin-user-doc -->
@@ -121,9 +121,13 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
    * @generated
    */
   @Override
-  public String getString()
+  public EList<EObject> getParameters()
   {
-    return string;
+    if (parameters == null)
+    {
+      parameters = new EObjectContainmentEList<EObject>(EObject.class, this, AssemblerPackage.FCC_DIRECTIVE__PARAMETERS);
+    }
+    return parameters;
   }
 
   /**
@@ -132,12 +136,14 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
    * @generated
    */
   @Override
-  public void setString(String newString)
+  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
-    String oldString = string;
-    string = newString;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FCC_DIRECTIVE__STRING, oldString, string));
+    switch (featureID)
+    {
+      case AssemblerPackage.FCC_DIRECTIVE__PARAMETERS:
+        return ((InternalEList<?>)getParameters()).basicRemove(otherEnd, msgs);
+    }
+    return super.eInverseRemove(otherEnd, featureID, msgs);
   }
 
   /**
@@ -152,8 +158,8 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     {
       case AssemblerPackage.FCC_DIRECTIVE__DIRECTIVE:
         return getDirective();
-      case AssemblerPackage.FCC_DIRECTIVE__STRING:
-        return getString();
+      case AssemblerPackage.FCC_DIRECTIVE__PARAMETERS:
+        return getParameters();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -163,6 +169,7 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -171,8 +178,9 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
       case AssemblerPackage.FCC_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
         return;
-      case AssemblerPackage.FCC_DIRECTIVE__STRING:
-        setString((String)newValue);
+      case AssemblerPackage.FCC_DIRECTIVE__PARAMETERS:
+        getParameters().clear();
+        getParameters().addAll((Collection<? extends EObject>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -191,8 +199,8 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
       case AssemblerPackage.FCC_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
-      case AssemblerPackage.FCC_DIRECTIVE__STRING:
-        setString(STRING_EDEFAULT);
+      case AssemblerPackage.FCC_DIRECTIVE__PARAMETERS:
+        getParameters().clear();
         return;
     }
     super.eUnset(featureID);
@@ -210,8 +218,8 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     {
       case AssemblerPackage.FCC_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
-      case AssemblerPackage.FCC_DIRECTIVE__STRING:
-        return STRING_EDEFAULT == null ? string != null : !STRING_EDEFAULT.equals(string);
+      case AssemblerPackage.FCC_DIRECTIVE__PARAMETERS:
+        return parameters != null && !parameters.isEmpty();
     }
     return super.eIsSet(featureID);
   }
@@ -229,8 +237,6 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (directive: ");
     result.append(directive);
-    result.append(", string: ");
-    result.append(string);
     result.append(')');
     return result.toString();
   }

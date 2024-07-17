@@ -50,7 +50,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledJMPInstruction;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 @RunWith(XtextRunner.class)
@@ -2283,7 +2282,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT,
+					InstructionValidator.ILLEGAL_INCREMENT,
 					"Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -2341,7 +2340,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT,
+					InstructionValidator.ILLEGAL_INCREMENT,
 					"Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -2399,7 +2398,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT,
+					InstructionValidator.ILLEGAL_INCREMENT,
 					"Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -2457,7 +2456,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT,
+					InstructionValidator.ILLEGAL_INCREMENT,
 					"Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -2515,7 +2514,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT,
+					InstructionValidator.ILLEGAL_DECREMENT,
 					"Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -2573,7 +2572,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT,
+					InstructionValidator.ILLEGAL_DECREMENT,
 					"Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -2631,7 +2630,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT,
+					InstructionValidator.ILLEGAL_DECREMENT,
 					"Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -2689,7 +2688,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT,
+					InstructionValidator.ILLEGAL_DECREMENT,
 					"Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -4145,7 +4144,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4181,7 +4180,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4217,7 +4216,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4253,7 +4252,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4289,7 +4288,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4325,7 +4324,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4361,7 +4360,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4397,7 +4396,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5730,7 +5729,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5767,7 +5766,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5805,7 +5804,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5842,7 +5841,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5880,7 +5879,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5917,7 +5916,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5955,7 +5954,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5992,7 +5991,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6258,7 +6257,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6295,7 +6294,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6565,7 +6564,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6603,7 +6602,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();

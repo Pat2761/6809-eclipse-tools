@@ -30,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRmbD
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDPDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.nebula.widgets.grid.Grid;
 import org.eclipse.nebula.widgets.grid.GridColumn;
@@ -342,16 +343,23 @@ public class AssemblyView extends ViewPart {
 	private void display(GridItem item, AssembledFccDirectiveLine directive) {
 		 item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
 		 
+		 StringBuilder strBuilder  = new StringBuilder();
 		 if (directive.getValues().length >0) {
-//			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());		 
-//			 item.setText(OPERAND_COLUMN, expressionRepresentation);
+			 for (int value : directive.getValues()) {
+				 strBuilder.append(String.format("%02X ", value & 0xFF));
+			 }
 		 }
+		 item.setText(CODE_COLUMN, strBuilder.toString());
 		 
-//		 StringBuilder strBuilder = new StringBuilder();
-//		 for (int value : directive.getValues()) {
-//				 strBuilder.append(String.format("%02X ", value&0xFF));
-//		 }
-//		 item.setText(CODE_COLUMN, strBuilder.toString());
+		 strBuilder  = new StringBuilder();
+		 for (EObject parameter : directive.getDirective().getParameters()) {
+			 String representation = serializer.serialize(parameter);		 
+			 if (!strBuilder.isEmpty()) {
+				 strBuilder.append(',');
+			 }
+			 strBuilder.append(representation);
+		 }
+		 item.setText(OPERAND_COLUMN,strBuilder.toString());
 	}
 
 	/** 

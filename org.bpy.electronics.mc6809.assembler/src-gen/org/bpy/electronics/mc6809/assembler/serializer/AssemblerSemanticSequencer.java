@@ -1718,20 +1718,11 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FccDirective returns FccDirective
 	 *
 	 * Constraint:
-	 *     (directive='FCC' string=STRING)
+	 *     (directive='FCC' (parameters+=StringValue | parameters+=Expression) parameters+=StringValue? (parameters+=Expression? parameters+=StringValue?)*)
 	 * </pre>
 	 */
 	protected void sequence_FccDirective(ISerializationContext context, FccDirective semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FCC_DIRECTIVE__DIRECTIVE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FCC_DIRECTIVE__DIRECTIVE));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FCC_DIRECTIVE__STRING) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FCC_DIRECTIVE__STRING));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getFccDirectiveAccess().getDirectiveFCCKeyword_0_0(), semanticObject.getDirective());
-		feeder.accept(grammarAccess.getFccDirectiveAccess().getStringSTRINGTerminalRuleCall_1_1_0(), semanticObject.getString());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

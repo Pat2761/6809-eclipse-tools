@@ -8334,8 +8334,16 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cDirectiveFCCKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
 		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
-		private final Assignment cStringAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final RuleCall cStringSTRINGTerminalRuleCall_1_1_0 = (RuleCall)cStringAssignment_1_1.eContents().get(0);
+		private final Assignment cParametersAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
+		private final Alternatives cParametersAlternatives_1_1_0 = (Alternatives)cParametersAssignment_1_1.eContents().get(0);
+		private final RuleCall cParametersStringValueParserRuleCall_1_1_0_0 = (RuleCall)cParametersAlternatives_1_1_0.eContents().get(0);
+		private final RuleCall cParametersExpressionParserRuleCall_1_1_0_1 = (RuleCall)cParametersAlternatives_1_1_0.eContents().get(1);
+		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
+		private final Keyword cCommaKeyword_1_2_0 = (Keyword)cGroup_1_2.eContents().get(0);
+		private final Assignment cParametersAssignment_1_2_1 = (Assignment)cGroup_1_2.eContents().get(1);
+		private final Alternatives cParametersAlternatives_1_2_1_0 = (Alternatives)cParametersAssignment_1_2_1.eContents().get(0);
+		private final RuleCall cParametersStringValueParserRuleCall_1_2_1_0_0 = (RuleCall)cParametersAlternatives_1_2_1_0.eContents().get(0);
+		private final RuleCall cParametersExpressionParserRuleCall_1_2_1_0_1 = (RuleCall)cParametersAlternatives_1_2_1_0.eContents().get(1);
 		
 		///*
 		// * The FCC or Form Constant Character directive allows the programmer to specify a string of ASCII characters
@@ -8365,12 +8373,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//FccDirective:
 		//    directive = 'FCC'
-		//    (WS string=STRING)
+		////    (WS string=STRING)
+		//    (WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//directive = 'FCC'
-		//(WS string=STRING)
+		//    directive = 'FCC'
+		////    (WS string=STRING)
+		//    (WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'FCC'
@@ -8379,17 +8389,42 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'FCC'
 		public Keyword getDirectiveFCCKeyword_0_0() { return cDirectiveFCCKeyword_0_0; }
 		
-		//(WS string=STRING)
+		////    (WS string=STRING)
+		//    (WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
 		public Group getGroup_1() { return cGroup_1; }
 		
 		//WS
 		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
 		
-		//string=STRING
-		public Assignment getStringAssignment_1_1() { return cStringAssignment_1_1; }
+		//parameters+=(StringValue | Expression)
+		public Assignment getParametersAssignment_1_1() { return cParametersAssignment_1_1; }
 		
-		//STRING
-		public RuleCall getStringSTRINGTerminalRuleCall_1_1_0() { return cStringSTRINGTerminalRuleCall_1_1_0; }
+		//(StringValue | Expression)
+		public Alternatives getParametersAlternatives_1_1_0() { return cParametersAlternatives_1_1_0; }
+		
+		//StringValue
+		public RuleCall getParametersStringValueParserRuleCall_1_1_0_0() { return cParametersStringValueParserRuleCall_1_1_0_0; }
+		
+		//Expression
+		public RuleCall getParametersExpressionParserRuleCall_1_1_0_1() { return cParametersExpressionParserRuleCall_1_1_0_1; }
+		
+		//(',' parameters+=(StringValue | Expression))*
+		public Group getGroup_1_2() { return cGroup_1_2; }
+		
+		//','
+		public Keyword getCommaKeyword_1_2_0() { return cCommaKeyword_1_2_0; }
+		
+		//parameters+=(StringValue | Expression)
+		public Assignment getParametersAssignment_1_2_1() { return cParametersAssignment_1_2_1; }
+		
+		//(StringValue | Expression)
+		public Alternatives getParametersAlternatives_1_2_1_0() { return cParametersAlternatives_1_2_1_0; }
+		
+		//StringValue
+		public RuleCall getParametersStringValueParserRuleCall_1_2_1_0_0() { return cParametersStringValueParserRuleCall_1_2_1_0_0; }
+		
+		//Expression
+		public RuleCall getParametersExpressionParserRuleCall_1_2_1_0_1() { return cParametersExpressionParserRuleCall_1_2_1_0_1; }
 	}
 	public class RegDirectiveElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.bpy.electronics.mc6809.assembler.Assembler.RegDirective");
@@ -13308,7 +13343,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//FccDirective:
 	//    directive = 'FCC'
-	//    (WS string=STRING)
+	////    (WS string=STRING)
+	//    (WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
 	//;
 	public FccDirectiveElements getFccDirectiveAccess() {
 		return pFccDirective;

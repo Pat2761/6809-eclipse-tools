@@ -28,6 +28,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
@@ -693,4 +694,35 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 		}
 	}
+	
+	@Check
+	/**
+	 * Check the FCC directive limits 
+	 * 
+	 * @param directive reference on the FCC directive
+	 */
+	public void checkFccConstraints(FccDirective directive) {
+		exposeProblems(directive);
+	}
+	
+	/**
+	 * Declare problems and warnings detected during the assembly step for an Instruction
+	 * 
+	 * @param instruction reference on the instruction
+	 */
+	private void exposeProblems(Object instruction) {
+
+		// Management of errors after code analyse 
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(instruction);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(instruction);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
+	}
+
 }

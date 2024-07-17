@@ -11813,22 +11813,84 @@ ruleFccDirective returns [EObject current=null]
 			}
 			(
 				(
-					lv_string_2_0=RULE_STRING
-					{
-						newLeafNode(lv_string_2_0, grammarAccess.getFccDirectiveAccess().getStringSTRINGTerminalRuleCall_1_1_0());
-					}
-					{
-						if ($current==null) {
-							$current = createModelElement(grammarAccess.getFccDirectiveRule());
+					(
+						{
+							newCompositeNode(grammarAccess.getFccDirectiveAccess().getParametersStringValueParserRuleCall_1_1_0_0());
 						}
-						setWithLastConsumed(
-							$current,
-							"string",
-							lv_string_2_0,
-							"org.bpy.electronics.mc6809.assembler.Assembler.STRING");
-					}
+						lv_parameters_2_1=ruleStringValue
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getFccDirectiveRule());
+							}
+							add(
+								$current,
+								"parameters",
+								lv_parameters_2_1,
+								"org.bpy.electronics.mc6809.assembler.Assembler.StringValue");
+							afterParserOrEnumRuleCall();
+						}
+						    |
+						{
+							newCompositeNode(grammarAccess.getFccDirectiveAccess().getParametersExpressionParserRuleCall_1_1_0_1());
+						}
+						lv_parameters_2_2=ruleExpression
+						{
+							if ($current==null) {
+								$current = createModelElementForParent(grammarAccess.getFccDirectiveRule());
+							}
+							add(
+								$current,
+								"parameters",
+								lv_parameters_2_2,
+								"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
+							afterParserOrEnumRuleCall();
+						}
+					)
 				)
 			)
+			(
+				otherlv_3=','
+				{
+					newLeafNode(otherlv_3, grammarAccess.getFccDirectiveAccess().getCommaKeyword_1_2_0());
+				}
+				(
+					(
+						(
+							{
+								newCompositeNode(grammarAccess.getFccDirectiveAccess().getParametersStringValueParserRuleCall_1_2_1_0_0());
+							}
+							lv_parameters_4_1=ruleStringValue
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getFccDirectiveRule());
+								}
+								add(
+									$current,
+									"parameters",
+									lv_parameters_4_1,
+									"org.bpy.electronics.mc6809.assembler.Assembler.StringValue");
+								afterParserOrEnumRuleCall();
+							}
+							    |
+							{
+								newCompositeNode(grammarAccess.getFccDirectiveAccess().getParametersExpressionParserRuleCall_1_2_1_0_1());
+							}
+							lv_parameters_4_2=ruleExpression
+							{
+								if ($current==null) {
+									$current = createModelElementForParent(grammarAccess.getFccDirectiveRule());
+								}
+								add(
+									$current,
+									"parameters",
+									lv_parameters_4_2,
+									"org.bpy.electronics.mc6809.assembler.Assembler.Expression");
+								afterParserOrEnumRuleCall();
+							}
+						)
+					)
+				)
+			)*
 		)
 	)
 ;
@@ -14039,6 +14101,41 @@ ruleIdentifierValue returns [EObject current=null]
 					"value",
 					lv_value_0_0,
 					"org.bpy.electronics.mc6809.assembler.Assembler.ID");
+			}
+		)
+	)
+;
+
+// Entry rule entryRuleStringValue
+entryRuleStringValue returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getStringValueRule()); }
+	iv_ruleStringValue=ruleStringValue
+	{ $current=$iv_ruleStringValue.current; }
+	EOF;
+
+// Rule StringValue
+ruleStringValue returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			lv_value_0_0=RULE_STRING
+			{
+				newLeafNode(lv_value_0_0, grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0());
+			}
+			{
+				if ($current==null) {
+					$current = createModelElement(grammarAccess.getStringValueRule());
+				}
+				setWithLastConsumed(
+					$current,
+					"value",
+					lv_value_0_0,
+					"org.bpy.electronics.mc6809.assembler.Assembler.STRING");
 			}
 		)
 	)

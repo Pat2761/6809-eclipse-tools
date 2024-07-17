@@ -4938,9 +4938,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getFccDirective_String()
+  public EReference getFccDirective_Parameters()
   {
-    return (EAttribute)fccDirectiveEClass.getEStructuralFeatures().get(1);
+    return (EReference)fccDirectiveEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -6643,7 +6643,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     fccDirectiveEClass = createEClass(FCC_DIRECTIVE);
     createEAttribute(fccDirectiveEClass, FCC_DIRECTIVE__DIRECTIVE);
-    createEAttribute(fccDirectiveEClass, FCC_DIRECTIVE__STRING);
+    createEReference(fccDirectiveEClass, FCC_DIRECTIVE__PARAMETERS);
 
     regDirectiveEClass = createEClass(REG_DIRECTIVE);
     createEAttribute(regDirectiveEClass, REG_DIRECTIVE__DIRECTIVE);
@@ -7276,7 +7276,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(fccDirectiveEClass, FccDirective.class, "FccDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getFccDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEAttribute(getFccDirective_String(), ecorePackage.getEString(), "string", null, 0, 1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getFccDirective_Parameters(), ecorePackage.getEObject(), null, "parameters", null, 0, -1, FccDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(regDirectiveEClass, RegDirective.class, "RegDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getRegDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, RegDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

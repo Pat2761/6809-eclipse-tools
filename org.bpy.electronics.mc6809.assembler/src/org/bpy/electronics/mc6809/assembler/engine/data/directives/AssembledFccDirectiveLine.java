@@ -18,9 +18,21 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Used to store information about FCC directive
@@ -52,10 +64,33 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
 
-		byte[] bytes = directive.getString().getBytes();
-		values = new int[bytes.length];
-		for (int i=0; i<bytes.length; i++) {
-			values[i] = bytes[i];
+		// Parse the values
+		List<Byte> parseValues = new ArrayList<>(); 
+		for (EObject parameter : directive.getParameters()) {
+			if (parameter instanceof StringValue stringValue) {
+				byte[] bytes = stringValue.getValue().getBytes();
+				for (int i=0; i<bytes.length; i++) {
+					parseValues.add(bytes[i]);
+				}
+			} else if (parameter instanceof Expression expression) {
+				int expressionValue = ExpressionParser.resolveExpression(expression.getOperand());
+				if ((expressionValue&0xFFFFF) != 0) {
+					AssemblerWarningDescription warningDescription = new AssemblerWarningDescription("Overflow error, Data may be lost",
+							AssemblerPackage.Literals.FCC_DIRECTIVE__PARAMETERS,
+							InstructionValidator.OVERFLOW_ERROR);
+					AssemblerErrorManager.getInstance().addWarning(directive, warningDescription);
+
+				}
+				parseValues.add((byte)(expressionValue&0xFF));
+			} else {
+				
+			}
+		}
+		values = new int[parseValues.size()];
+		int i=0;
+		for (int value : parseValues) {
+			values[i] = value;
+			i++;;
 		}
 	}
 

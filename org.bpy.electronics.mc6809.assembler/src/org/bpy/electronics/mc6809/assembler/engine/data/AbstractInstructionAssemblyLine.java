@@ -40,6 +40,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AddressingM
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -56,11 +57,6 @@ import com.google.inject.Inject;
  */
 public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLine {
 	
-	public static final String ILLEGAL_DECREMENT = "illegalDecrement";
-	public static final String ILLEGAL_INCREMENT = "illegalIncrement";
-	public static final String OVERFLOW_ERROR = "overflowError";
-	public static final String RELATIVE_SHORT_BRANCH = "relativeShortBranch";
-
 	/** OPcode of the instruction */
 	protected int[] opcodeBytes;
 	/** Operand value of the instruction */ 
@@ -313,7 +309,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 							"Cannot use pre decrement with 1 for indirect mode" , 
 							eReference, 
-							ILLEGAL_DECREMENT);
+							InstructionValidator.ILLEGAL_DECREMENT);
 					AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 					break;
 				case "--" : postByte |= 0x03; break;
@@ -325,7 +321,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 							"Cannot use post increment with 1 for indirect mode" , 
 							eReference, 
-							ILLEGAL_INCREMENT);
+							InstructionValidator.ILLEGAL_INCREMENT);
 					AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 					
 					break; 
@@ -403,7 +399,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"Overflow detected for value " + offset + " , data may be lost" , 
 						eReference, 
-						OVERFLOW_ERROR);
+						InstructionValidator.OVERFLOW_ERROR);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 				
 				switch (mode.getRegister()) {
@@ -459,7 +455,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"Overflow detected for value " + offset + " , data may be lost" , 
 						eReference, 
-						OVERFLOW_ERROR);
+						InstructionValidator.OVERFLOW_ERROR);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 				
 				switch (mode.getRegister()) {
@@ -495,7 +491,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + offset + " is out than the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			operandBytes = new int[] {0x8D, 0x80, 0x00 };
 
@@ -503,7 +499,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + offset + " is out than the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			operandBytes = new int[] {0x8D, 0x7F, 0xFF };
 		}
@@ -527,7 +523,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + offset + " is out than the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			operandBytes = new int[] {0x9D, 0x80, 0x00 };
 
@@ -535,7 +531,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + offset + " is out than the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			operandBytes = new int[] {0x9D, 0x7F, 0xFF };
 		}

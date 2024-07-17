@@ -4,6 +4,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssem
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EStructuralFeature;
 
 public abstract class AbstractRelativeBranchInstruction extends AbstractInstructionAssemblyLine {
@@ -30,7 +31,7 @@ public abstract class AbstractRelativeBranchInstruction extends AbstractInstruct
 			if (offset<-128 || offset>127) {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Overflow error, you should use long branch",
 						eReference,
-						OVERFLOW_ERROR);
+						InstructionValidator.OVERFLOW_ERROR);
 				AssemblerErrorManager.getInstance().addProblem(getLocalInstruction(), problemDescription );
 				opcodeBytes[0] = 0x3F;
 				operandBytes = new int[] {0xFF};
@@ -43,7 +44,7 @@ public abstract class AbstractRelativeBranchInstruction extends AbstractInstruct
 			if (offset>-129 && offset<128) {
 				AssemblerWarningDescription warningDescription = new AssemblerWarningDescription("You can use a short branch",
 						eReference,
-						RELATIVE_SHORT_BRANCH);
+						InstructionValidator.RELATIVE_SHORT_BRANCH);
 				AssemblerErrorManager.getInstance().addWarning(getLocalInstruction(), warningDescription );
 			}
 			operandBytes = new int[] {(offset>>8) & 0xFF  , offset & 0xFF};

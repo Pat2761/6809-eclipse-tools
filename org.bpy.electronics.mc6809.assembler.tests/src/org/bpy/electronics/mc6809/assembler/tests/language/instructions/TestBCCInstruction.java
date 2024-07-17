@@ -24,7 +24,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBCCInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -304,7 +303,7 @@ public class TestBCCInstruction {
 
 			validationHelper.assertError(result,
 				AssemblerPackage.eINSTANCE.getBccInstruction(),
-				AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+				InstructionValidator.OVERFLOW_ERROR,
 				"Overflow error, you should use long branch"
 			);
 	
@@ -371,7 +370,7 @@ public class TestBCCInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result,
 				AssemblerPackage.eINSTANCE.getBccInstruction(),
-				AbstractInstructionAssemblyLine.OVERFLOW_ERROR,
+				InstructionValidator.OVERFLOW_ERROR,
 				"Overflow error, you should use long branch"
 			);
 	

@@ -4086,13 +4086,13 @@ public interface AssemblerPackage extends EPackage
   int FCC_DIRECTIVE__DIRECTIVE = 0;
 
   /**
-   * The feature id for the '<em><b>String</b></em>' attribute.
+   * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FCC_DIRECTIVE__STRING = 1;
+  int FCC_DIRECTIVE__PARAMETERS = 1;
 
   /**
    * The number of structural features of the '<em>Fcc Directive</em>' class.
@@ -9373,15 +9373,15 @@ public interface AssemblerPackage extends EPackage
   EAttribute getFccDirective_Directive();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getString <em>String</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getParameters <em>Parameters</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>String</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getString()
+   * @return the meta object for the containment reference list '<em>Parameters</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getParameters()
    * @see #getFccDirective()
    * @generated
    */
-  EAttribute getFccDirective_String();
+  EReference getFccDirective_Parameters();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.RegDirective <em>Reg Directive</em>}'.
@@ -13540,12 +13540,12 @@ public interface AssemblerPackage extends EPackage
     EAttribute FCC_DIRECTIVE__DIRECTIVE = eINSTANCE.getFccDirective_Directive();
 
     /**
-     * The meta object literal for the '<em><b>String</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute FCC_DIRECTIVE__STRING = eINSTANCE.getFccDirective_String();
+    EReference FCC_DIRECTIVE__PARAMETERS = eINSTANCE.getFccDirective_Parameters();
 
     /**
      * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RegDirectiveImpl <em>Reg Directive</em>}' class.

@@ -515,7 +515,7 @@ public class ExpressionParser {
 	 * @param expression reference on the expression
 	 * @return value of the expression
 	 */
-	private static int resolveExpression(Expression expression) {
+	public static int resolveExpression(Expression expression) {
 		
 		if (expression instanceof Multiplication) {
 			Multiplication multiplication = (Multiplication)expression;

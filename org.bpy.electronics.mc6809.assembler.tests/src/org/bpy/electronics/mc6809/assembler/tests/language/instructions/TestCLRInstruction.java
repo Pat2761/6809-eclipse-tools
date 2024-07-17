@@ -39,7 +39,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCLRInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -2232,7 +2231,7 @@ public class TestCLRInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
+					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -2288,7 +2287,7 @@ public class TestCLRInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
+					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -2345,7 +2344,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
+					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -2401,7 +2400,7 @@ public class TestCLRInstruction {
 			Assert.assertNotNull(result);
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
+					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -2458,7 +2457,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
+					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -2515,7 +2514,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
+					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -2572,7 +2571,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
+					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -2629,7 +2628,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
+					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -4084,7 +4083,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -4119,7 +4118,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -4154,7 +4153,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -4189,7 +4188,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -4224,7 +4223,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -4259,7 +4258,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -4294,7 +4293,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -4329,7 +4328,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -5648,7 +5647,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -5683,7 +5682,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -5718,7 +5717,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -5753,7 +5752,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -5788,7 +5787,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -5823,7 +5822,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -5858,7 +5857,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -5893,7 +5892,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -6156,7 +6155,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -6191,7 +6190,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -6454,7 +6453,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
@@ -6489,7 +6488,7 @@ public class TestCLRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(),
-					AbstractInstructionAssemblyLine.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
