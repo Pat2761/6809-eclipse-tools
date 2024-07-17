@@ -217,6 +217,10 @@ public class AssemblyView extends ViewPart {
 		 GridItem item = new GridItem(grid,SWT.NONE);
 		 item.setText(LINE_NUMBER_COLUMN, ""+line.getLineNumber());
 		 item.setText(ADDRESS_COLUMN, "" + String.format("%04X", line.getPcAddress()));
+		 
+		 if (line.getLabel() != null) {
+			 item.setText(LABEL_COLUMN,line.getLabel());
+		 }
 
 		 if (line instanceof AssembledBszDirectiveLine directive) {
 			 display(item,directive);
@@ -259,19 +263,52 @@ public class AssemblyView extends ViewPart {
 		 }
 	}
 	
+	/** 
+	 * Display specific information about BSZ directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledBszDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
+		 
+		 if (directive.getDirective().getOperand() != null) {
+			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());
+			 item.setText(OPERAND_COLUMN, expressionRepresentation);
+		 }
 	}
 
+	/** 
+	 * Display specific information about END directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledEndDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
+		 
+		 if (directive.getDirective().getOperand() != null) {
+			 item.setText(OPERAND_COLUMN, directive.getDirective().getOperand().getValue());
+		 }
 	}
 
+	/** 
+	 * Display specific information about SETDP directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledEquDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, "EQU");
+		 
+		 if (directive.getDirective().getOperand() != null) {
+			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());
+			 if (directive.getDirective().isIsRelativeToPC()) {
+				 item.setText(OPERAND_COLUMN, '*' + expressionRepresentation);
+			 } else {
+				 item.setText(OPERAND_COLUMN, expressionRepresentation);
+			 }
+		 }
 	}
 
 	private void display(GridItem item, AssembledFcbDirectiveLine directive) {
@@ -324,11 +361,27 @@ public class AssemblyView extends ViewPart {
 		
 	}
 
+	/** 
+	 * Display specific information about SETDP directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledSetDPDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, "SETDP");
+		 
+		 if (directive.getDirective().getOperand() != null) {
+			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());		 
+			 item.setText(OPERAND_COLUMN, expressionRepresentation);
+		 }
 	}
 
+	/** 
+	 * Display specific information about SPC directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledSpcDirectiveLine directive) {
 		 item.setText(INSTRUCTION_COLUMN, "SPC");
 		 StringBuilder strBuilder = new StringBuilder();
@@ -357,8 +410,12 @@ public class AssemblyView extends ViewPart {
 		 item.setText(INSTRUCTION_COLUMN, "ORG");
 
 		 if (directive.getDirective().getOperand() != null) {
-			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());		 
-			 item.setText(OPERAND_COLUMN, expressionRepresentation);
+			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());		
+			 if (directive.getDirective().isIsRelativeToPC()) {
+				 item.setText(OPERAND_COLUMN, '*' + expressionRepresentation);
+			 } else {
+				 item.setText(OPERAND_COLUMN, expressionRepresentation);
+			 }	 
 		 }
 	}
 
