@@ -1,3 +1,21 @@
+/*
+ * MC6809 Toolkit
+ * Copyright (C) 2023  Patrick BRIAND
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You shoust have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package org.bpy.electronics.mc6809.rcp.views;
 
 import java.io.StringReader;
@@ -31,6 +49,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRmbD
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDPDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.*;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.nebula.widgets.grid.Grid;
@@ -57,27 +76,52 @@ import org.eclipse.xtext.xbase.lib.Extension;
 
 import com.google.inject.Inject;
 
+/**
+ * Display the result of the assembly file in a Nebula grid.
+ * 
+ * @author Patrick BRIAND
+ *
+ */
 public class AssemblyView extends ViewPart {
 	
+	/** Logger of the class */
 	private static final Logger logger = Logger.getLogger(AssemblyView.class.getName());
 	
+	/** Format definition for display a byte value */
+	private static final String BYTE_FORMAT = "%02X ";
+	/** Format definition for display a word value */
+	private static final String WORD_FORMAT = "%04X ";
+	
+	/** Column number of the line number */
 	private static final int LINE_NUMBER_COLUMN = 0; 
+	/** Column number of the address of the instruction */
 	private static final int ADDRESS_COLUMN = 1; 
+	/** Column number of the code of the instruction */
 	private static final int CODE_COLUMN = 2; 
+	/** Column number of the label of the instruction */
 	private static final int LABEL_COLUMN = 3; 
+	/** Column number of the instruction name */
 	private static final int INSTRUCTION_COLUMN = 4; 
+	/** Column number of the instruction operand */
 	private static final int OPERAND_COLUMN = 5; 
+	/** Column number of the instruction comment */
 	private static final int COMMENT_COLUMN = 6; 
 
 	/** XText parser reference */
 	@Inject
 	private IParser parser;
+	/** Reference on the serializer */
 	@Inject @Extension private ISerializer serializer;
 	
 	/** Caret Listener */
 	private CaretListener caretListener;
+	/** reference on the grid */
 	private Grid grid;
 	
+	/**
+	 * Constructor of the class.
+	 * Initiate the injector
+	 */
 	public AssemblyView() {
 		com.google.inject.Injector injector = new AssemblerStandaloneSetup().createInjectorAndDoEMFRegistration();
 		injector.injectMembers(this);
@@ -87,7 +131,7 @@ public class AssemblyView extends ViewPart {
 	public void createPartControl(Composite parent) {
 
 	    grid = new Grid(parent,SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
-	    grid.setFont(SWTResourceManager.getFont("Courier New", 10, SWT.BOLD));
+	    grid.setFont(SWTResourceManager.getFont("Courier New", 10, SWT.NORMAL));
 	    grid.setHeaderVisible(true);
 	    GridColumn column = new GridColumn(grid,SWT.NONE);
 	    column.setText("N°");
@@ -115,8 +159,11 @@ public class AssemblyView extends ViewPart {
 	    initializeListener();
 	}
 	
+	/** 
+	 * Initialize the listener needed by this view. 
+	 */
 	private void initializeListener() {
-		caretListener = event -> {updateDisplay();} ;
+		caretListener = event -> updateDisplay();
 		
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(new IPartListener() {
 
@@ -127,8 +174,7 @@ public class AssemblyView extends ViewPart {
 				//assembleCurrent
 				if (currentEditor != null) {
 					Control control = currentEditor.getAdapter(Control.class);
-					if (control instanceof StyledText) {
-						StyledText text = (StyledText) control;
+					if (control instanceof StyledText text) {
 						text.addCaretListener(caretListener);
 						//setCursorPosition(text.getCaretOffset());
 					}
@@ -147,13 +193,10 @@ public class AssemblyView extends ViewPart {
 				IEditorPart currentEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 				if (currentEditor != null) {
 					Control control = currentEditor.getAdapter(Control.class);
-					if (control instanceof StyledText) {
-						StyledText text = (StyledText) control;
+					if (control instanceof StyledText text) {
 						text.removeCaretListener(caretListener);
 					}
 				}
-
-				//clearPanel();
 			}
 
 			@Override
@@ -168,12 +211,14 @@ public class AssemblyView extends ViewPart {
 		});
 	}
 
+	/**
+	 * Update the display when the content editor change.
+	 */
 	private void updateDisplay() {
-		
 		IEditorPart currentEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-		if (currentEditor instanceof ITextEditor) {
-			IEditorInput input = currentEditor.getEditorInput();
-			IDocument document = (((ITextEditor) currentEditor).getDocumentProvider()).getDocument(input);
+		if (currentEditor instanceof ITextEditor textEditor) {
+			IEditorInput input = textEditor.getEditorInput();
+			IDocument document = textEditor.getDocumentProvider().getDocument(input);
 			
 			try {
 				
@@ -188,9 +233,7 @@ public class AssemblyView extends ViewPart {
 			}
 		}
 		
-		
 		grid.clearItems();
-		
 		AssemblerEngine engine = AssemblerEngine.getInstance();
 		for (AbstractAssemblyLine assembledLine : engine.getAssembledLine()) {
 			
@@ -210,11 +253,16 @@ public class AssemblyView extends ViewPart {
 				displayDirective(line);
 				
 			} else {
-				logger.log(Level.SEVERE,"Unkonowned type " + assembledLine.getClass().getName());
+				logger.log(Level.SEVERE,"Unkonowned type {0}" , assembledLine.getClass().getName());
 			}
 		}
  	}	
 
+	/** 
+	 * Display a directive line
+	 * 
+	 * @param line reference on the line
+	 */
 	private void displayDirective(AbstractAssembledDirectiveLine line) {
 		 GridItem item = new GridItem(grid,SWT.NONE);
 		 item.setText(LINE_NUMBER_COLUMN, ""+line.getLineNumber());
@@ -257,7 +305,7 @@ public class AssemblyView extends ViewPart {
 		 } else if (line instanceof AssembledSpcDirectiveLine directive) {
 			 display(item,directive);
 		 } else {
-			 logger.log(Level.SEVERE, "Unknoned directive " + line.getClass().getSimpleName());
+			 logger.log(Level.SEVERE, "Unknoned directive {}", line.getClass().getSimpleName());
 		 }
 
 		 if (line.getComment() != null) {
@@ -327,11 +375,11 @@ public class AssemblyView extends ViewPart {
 			 item.setText(OPERAND_COLUMN, expressionRepresentation);
 		 }
 		 
-		 StringBuilder strBuilder = new StringBuilder();
+		 StringBuilder strBuister = new StringBuilder();
 		 for (int value : directive.getValues()) {
-				 strBuilder.append(String.format("%02X ", value&0xFF));
+				 strBuister.append(String.format(BYTE_FORMAT, value&0xFF));
 		 }
-		 item.setText(CODE_COLUMN, strBuilder.toString());
+		 item.setText(CODE_COLUMN, strBuister.toString());
 	}
 
 	
@@ -344,23 +392,23 @@ public class AssemblyView extends ViewPart {
 	private void display(GridItem item, AssembledFccDirectiveLine directive) {
 		 item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
 		 
-		 StringBuilder strBuilder  = new StringBuilder();
+		 StringBuilder strBuister  = new StringBuilder();
 		 if (directive.getValues().length >0) {
 			 for (int value : directive.getValues()) {
-				 strBuilder.append(String.format("%02X ", value & 0xFF));
+				 strBuister.append(String.format(BYTE_FORMAT, value & 0xFF));
 			 }
 		 }
-		 item.setText(CODE_COLUMN, strBuilder.toString());
+		 item.setText(CODE_COLUMN, strBuister.toString());
 		 
-		 strBuilder  = new StringBuilder();
+		 strBuister  = new StringBuilder();
 		 for (EObject parameter : directive.getDirective().getParameters()) {
 			 String representation = serializer.serialize(parameter);		 
-			 if (!strBuilder.isEmpty()) {
-				 strBuilder.append(',');
+			 if (!strBuister.isEmpty()) {
+				 strBuister.append(',');
 			 }
-			 strBuilder.append(representation);
+			 strBuister.append(representation);
 		 }
-		 item.setText(OPERAND_COLUMN,strBuilder.toString());
+		 item.setText(OPERAND_COLUMN,strBuister.toString());
 	}
 
 	/** 
@@ -377,11 +425,11 @@ public class AssemblyView extends ViewPart {
 			 item.setText(OPERAND_COLUMN, expressionRepresentation);
 		 }
 		 
-		 StringBuilder strBuilder = new StringBuilder();
+		 StringBuilder strBuister = new StringBuilder();
 		 for (int value : directive.getValues()) {
-				 strBuilder.append(String.format("%04X ", value&0xFFFF));
+				 strBuister.append(String.format(WORD_FORMAT, value&0xFFFF));
 		 }
-		 item.setText(CODE_COLUMN, strBuilder.toString());
+		 item.setText(CODE_COLUMN, strBuister.toString());
 	}
 
 	/** 
@@ -393,19 +441,19 @@ public class AssemblyView extends ViewPart {
 	private void display(GridItem item, AssembledFillDirectiveLine directive) {
 		 item.setText(INSTRUCTION_COLUMN, "FILL");
 		 
-		 StringBuilder strBuilder = new StringBuilder();
+		 StringBuilder strBuister = new StringBuilder();
 		 String valueRepresentation = serializer.serialize(directive.getDirective().getValue());
-		 strBuilder.append(valueRepresentation);
-		 strBuilder.append(',');
+		 strBuister.append(valueRepresentation);
+		 strBuister.append(',');
 		 String numberRepresentation = serializer.serialize(directive.getDirective().getNumber());
-		 strBuilder.append(numberRepresentation);
-		 item.setText(OPERAND_COLUMN, strBuilder.toString());
+		 strBuister.append(numberRepresentation);
+		 item.setText(OPERAND_COLUMN, strBuister.toString());
 		 
-		 strBuilder = new StringBuilder();
+		 strBuister = new StringBuilder();
 		 for (int value : directive.getValues()) {
-			 strBuilder.append(String.format("%02X ", value&0xFF));
+			 strBuister.append(String.format(BYTE_FORMAT, value&0xFF));
 		 }
-		 item.setText(CODE_COLUMN, strBuilder.toString());
+		 item.setText(CODE_COLUMN, strBuister.toString());
 	}
 
 	/** 
@@ -428,14 +476,14 @@ public class AssemblyView extends ViewPart {
 	private void display(GridItem item, AssembledOptDirectiveLine directive) {
 		 item.setText(INSTRUCTION_COLUMN, "OPT");
 		 
-		 StringBuilder strBuilder = new StringBuilder();
+		 StringBuilder strBuister = new StringBuilder();
 		 for (String value : directive.getValues()) {
-			 if (!strBuilder.isEmpty()) {
-				 strBuilder.append(',');
+			 if (!strBuister.isEmpty()) {
+				 strBuister.append(',');
 			 }
-			 strBuilder.append(value);
+			 strBuister.append(value);
 		 }
-		 item.setText(OPERAND_COLUMN, strBuilder.toString());
+		 item.setText(OPERAND_COLUMN, strBuister.toString());
 	}
 
 	/** 
@@ -461,14 +509,14 @@ public class AssemblyView extends ViewPart {
 	private void display(GridItem item, AssembledRegDirectiveLine directive) {
 		 item.setText(INSTRUCTION_COLUMN, "REG");
 		 
-		 StringBuilder strBuilder = new StringBuilder();
+		 StringBuilder strBuister = new StringBuilder();
 		 for (Register option : directive.getDirective().getOptions()) {
-			 if (!strBuilder.isEmpty()) {
-				 strBuilder.append(',');
+			 if (!strBuister.isEmpty()) {
+				 strBuister.append(',');
 			 }
-			 strBuilder.append(option.getName());
+			 strBuister.append(option.getName());
 		 }
-		 item.setText(OPERAND_COLUMN, strBuilder.toString());
+		 item.setText(OPERAND_COLUMN, strBuister.toString());
 	}
 
 	/** 
@@ -532,20 +580,20 @@ public class AssemblyView extends ViewPart {
 	 */
 	private void display(GridItem item, AssembledSpcDirectiveLine directive) {
 		 item.setText(INSTRUCTION_COLUMN, "SPC");
-		 StringBuilder strBuilder = new StringBuilder();
+		 StringBuilder strBuister = new StringBuilder();
 		 
 		 if (directive.getDirective().getSpaceCount()!= null) {
 			 String expressionRepresentation = serializer.serialize(directive.getDirective().getSpaceCount());		 
-			 strBuilder.append(expressionRepresentation);
+			 strBuister.append(expressionRepresentation);
 		 }
 	
 		 if (directive.getDirective().getKeepCount()!= null) {
 			 String expressionRepresentation = serializer.serialize(directive.getDirective().getKeepCount());		 
-			 strBuilder.append(',');
-			 strBuilder.append(expressionRepresentation);
+			 strBuister.append(',');
+			 strBuister.append(expressionRepresentation);
 		 }
 
-		 item.setText(OPERAND_COLUMN, strBuilder.toString());
+		 item.setText(OPERAND_COLUMN, strBuister.toString());
 	}
 
 	/** 
@@ -567,6 +615,11 @@ public class AssemblyView extends ViewPart {
 		 }
 	}
 
+	/**
+	 * Display a line of type label (see XText grammar).
+	 * 
+	 * @param assembledLine reference on the assembled line
+	 */
 	private void displayLabelLine(AssembledLabelLine assembledLine) {
 		 GridItem item = new GridItem(grid,SWT.NONE);
 		 item.setText("" + assembledLine.getLineNumber());
@@ -576,12 +629,22 @@ public class AssemblyView extends ViewPart {
 		 }
 	}
 
+	/**
+	 * Display a blank line (see XText grammar).
+	 * 
+	 * @param blankLine reference on the assembled line
+	 */
 	private void displayBlankLine(AssembledBlankLine blankLine) {
 		 GridItem item = new GridItem(grid,SWT.NONE);
 		 item.setColumnSpan(0, 6);
 		 item.setText("" + blankLine.getLineNumber());
 	}
 
+	/**
+	 * Display a comment line (see XText grammar).
+	 * 
+	 * @param blankLine reference on the assembled line
+	 */
 	private void displayCommentLine(AssembledCommentLine assembledLine) {
 		 GridItem item = new GridItem(grid,SWT.NONE);
 		 item.setText("" + assembledLine.getLineNumber());
@@ -593,18 +656,25 @@ public class AssemblyView extends ViewPart {
 		 }
 	}
 
+	/**
+	 * Display an instruction line (see XText grammar).
+	 * 
+	 * @param blankLine reference on the instruction line
+	 */
 	private void displayInstruction(AbstractInstructionAssemblyLine assembledLine) {
 		 GridItem item = new GridItem(grid,SWT.NONE);
-		 item.setText(LINE_NUMBER_COLUMN, ""+assembledLine.getLineNumber());
+		 item.setText(LINE_NUMBER_COLUMN, "" + assembledLine.getLineNumber());
 		 item.setText(ADDRESS_COLUMN, "" + String.format("%04X", assembledLine.getPcAddress()));
 		
 		 StringBuilder code = new StringBuilder();
 		 for (int currentByte : assembledLine.getOpcode()) {
 			 code.append(String.format("%02X", currentByte)) ;
 		 }
+		 
 		 for (int currentByte : assembledLine.getOperand()) {
 			 code.append(String.format("%02X", currentByte)) ;
 		 }
+		 
 		 item.setText(CODE_COLUMN,code.toString());
 		 if (assembledLine.getLabel() != null) {
 			 item.setText(LABEL_COLUMN, assembledLine.getLabel());
@@ -614,12 +684,332 @@ public class AssemblyView extends ViewPart {
 		 if (assembledLine.getComment() != null) {
 			 item.setText(COMMENT_COLUMN, assembledLine.getComment());
 		 }
+		 
+		 setOperandFiest(item, assembledLine);
+	}		 
+
+	private void setOperandFiest(GridItem item, AbstractInstructionAssemblyLine assembledLine) {
+		EObject operand = null;
+		if (assembledLine instanceof AssembledADCAInstruction adcaInstruction) {
+			operand = adcaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledADCBInstruction adcbInstruction) {
+			operand = adcbInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledADDAInstruction addaInstruction) {
+			operand = addaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledADDBInstruction addbInstruction) {
+			operand = addbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledADDDInstruction adddInstruction) {
+			operand = adddInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledANDAInstruction andaInstruction) {
+			operand = andaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledANDBInstruction andbInstruction) {
+			operand = andbInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledANDCCInstruction andccInstruction) {
+			operand = andccInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledASLAInstruction aslaInstruction) {
+			operand = aslaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledASLBInstruction aslbInstruction) {
+			operand = aslbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledASLInstruction aslInstruction) {
+			operand = aslInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledASRAInstruction asraInstruction) {
+			operand = asraInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledASRBInstruction asrbInstruction) {
+			operand = asrbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledASRInstruction asrInstruction) {
+			operand = asrInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBITAInstruction bitaInstruction) {
+			operand = bitaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledBITBInstruction bitbInstruction) {
+			operand = bitbInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledCLRAInstruction clraInstruction) {
+			operand = clraInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledCLRBInstruction clrbInstruction) {
+			operand = clrbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledCLRInstruction clrInstruction) {
+			operand = clrInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledCMPAInstruction cmpaInstruction) {
+			operand = cmpaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledCMPBInstruction cmpbInstruction) {
+			operand = cmpbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledCMPDInstruction cmpdInstruction) {
+			operand = cmpdInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledCMPXInstruction cmpxInstruction) {
+			operand = cmpxInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledCMPYInstruction cmpyInstruction) {
+			operand = cmpyInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledCMPSInstruction cmpsInstruction) {
+			operand = cmpsInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledCMPUInstruction cmpuInstruction) {
+			operand = cmpuInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledCOMAInstruction comaInstruction) {
+			operand = comaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledCOMBInstruction combInstruction) {
+			operand = combInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledCOMInstruction comInstruction) {
+			operand = comInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledCWAIInstruction cwaiInstruction) {
+			operand = cwaiInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledDECAInstruction decaInstruction) {
+			operand = decaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledDECBInstruction decbInstruction) {
+			operand = decbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledDECInstruction decInstruction) {
+			operand = decInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledEORAInstruction eoraInstruction) {
+			operand = eoraInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledEORBInstruction eorbInstruction) {
+			operand = eorbInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledEXGInstruction exgInstruction) {
+			displayRegisterOperand(exgInstruction.getInstruction().getReg1(),exgInstruction.getInstruction().getReg2());
+
+		} else if (assembledLine instanceof AssembledINCAInstruction incaInstruction) {
+			operand = incaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledINCBInstruction incbInstruction) {
+			operand = incbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledINCInstruction incInstruction) {
+			operand = incInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledJMPInstruction jmpInstruction) {
+			operand = jmpInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledJSRInstruction jsrInstruction) {
+			operand = jsrInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledLDAInstruction ldaInstruction) {
+			operand = ldaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLDBInstruction ldbInstruction) {
+			operand = ldbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLDDInstruction lddInstruction) {
+			operand = lddInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledSTXInstruction ldxInstruction) {
+			operand = ldxInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLDYInstruction ldyInstruction) {
+			operand = ldyInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLDSInstruction ldsInstruction) {
+			operand = ldsInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLDUInstruction lduInstruction) {
+			operand = lduInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledLEASInstruction leasInstruction) {
+			operand = leasInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLEAUInstruction leauInstruction) {
+			operand = leauInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLEAXInstruction leaxInstruction) {
+			operand = leaxInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLEAYInstruction leayInstruction) {
+			operand = leayInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledLSLAInstruction lslaInstruction) {
+			operand = lslaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLSLBInstruction lslbInstruction) {
+			operand = lslbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLSLInstruction lslInstruction) {
+			operand = lslInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledLSRAInstruction lsraInstruction) {
+			operand = lsraInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLSRBInstruction lsrbInstruction) {
+			operand = lsrbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLSRInstruction lsrInstruction) {
+			operand = lsrInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledNEGInstruction negInstruction) {
+			operand = negInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledORAInstruction oraInstruction) {
+			operand = oraInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledORBInstruction orbInstruction) {
+			operand = orbInstruction.getInstruction().getOperand();
+	
+		} else if (assembledLine instanceof AssembledORCCInstruction orccInstruction) {
+			operand = orccInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledPSHSInstruction pshsInstruction) {
+			operand = pshsInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledPSHUInstruction pshuInstruction) {
+			operand = pshuInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledPULSInstruction pulsInstruction) {
+			operand = pulsInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledPULUInstruction puluInstruction) {
+			operand = puluInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledROLAInstruction rolaInstruction) {
+			operand = rolaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledROLBInstruction rolbInstruction) {
+			operand = rolbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledROLInstruction rolInstruction) {
+			operand = rolInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledRORAInstruction roraInstruction) {
+			operand = roraInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledRORBInstruction rorbInstruction) {
+			operand = rorbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledRORInstruction rorInstruction) {
+			operand = rorInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledSBCAInstruction sbcaInstruction) {
+			operand = sbcaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledSBCBInstruction sbcbInstruction) {
+			operand = sbcbInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledSTAInstruction staInstruction) {
+			operand = staInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledSTBInstruction stbInstruction) {
+			operand = stbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledSTDInstruction stdInstruction) {
+			operand = stdInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledSTXInstruction stxInstruction) {
+			operand = stxInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledSTYInstruction styInstruction) {
+			operand = styInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledSTSInstruction stsInstruction) {
+			operand = stsInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledSTUInstruction stuInstruction) {
+			operand = stuInstruction.getInstruction().getOperand();
+		
+		} else if (assembledLine instanceof AssembledSUBAInstruction subaInstruction) {
+			operand = subaInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledSUBBInstruction subbInstruction) {
+			operand = subbInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledSUBDInstruction subdInstruction) {
+			operand = subdInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledTFRInstruction tfrInstruction) {
+			displayRegisterOperand(tfrInstruction.getInstruction().getReg1(),tfrInstruction.getInstruction().getReg2());
+
+		} else if (assembledLine instanceof AssembledBCCInstruction bccInstruction) {
+			operand = bccInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBCCInstruction lbccInstruction) {
+			operand = lbccInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBCSInstruction bcsInstruction) {
+			operand = bcsInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBCSInstruction lbcsInstruction) {
+			operand = lbcsInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBEQInstruction beqInstruction) {
+			operand = beqInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBEQInstruction lbeqInstruction) {
+			operand = lbeqInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBGEInstruction bgeInstruction) {
+			operand = bgeInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBGEInstruction lbgeInstruction) {
+			operand = lbgeInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBGTInstruction bgtInstruction) {
+			operand = bgtInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBGTInstruction lbgtInstruction) {
+			operand = lbgtInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBHIInstruction bhiInstruction) {
+			operand = bhiInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBHIInstruction lbhiInstruction) {
+			operand = lbhiInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBHSInstruction bhsInstruction) {
+			operand = bhsInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBHSInstruction lbhsInstruction) {
+			operand = lbhsInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBLEInstruction bleInstruction) {
+			operand = bleInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBLEInstruction lbleInstruction) {
+			operand = lbleInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBLOInstruction bloInstruction) {
+			operand = bloInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBLOInstruction lbloInstruction) {
+			operand = lbloInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBLSInstruction blsInstruction) {
+			operand = blsInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBLSInstruction lblsInstruction) {
+			operand = lblsInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBLTInstruction bltInstruction) {
+			operand = bltInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBLTInstruction lbltInstruction) {
+			operand = lbltInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBMIInstruction bmiInstruction) {
+			operand = bmiInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBMIInstruction lbmiInstruction) {
+			operand = lbmiInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBNEInstruction bneInstruction) {
+			operand = bneInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBNEInstruction lbneInstruction) {
+			operand = lbneInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBPLInstruction bplInstruction) {
+			operand = bplInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBPLInstruction lbplInstruction) {
+			operand = lbplInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBRAInstruction braInstruction) {
+			operand = braInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBRAInstruction lbraInstruction) {
+			operand = lbraInstruction.getInstruction().getOperand();
+		
+		} else if (assembledLine instanceof AssembledBRNInstruction brnInstruction) {
+			operand = brnInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBRNInstruction lbrnInstruction) {
+			operand = lbrnInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBSRInstruction bsrInstruction) {
+			operand = bsrInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBSRInstruction lbsrInstruction) {
+			operand = lbsrInstruction.getInstruction().getOperand();
+
+		} else if (assembledLine instanceof AssembledBVCInstruction bvcInstruction) {
+			operand = bvcInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBVCInstruction lbvcInstruction) {
+			operand = lbvcInstruction.getInstruction().getOperand();
+		
+		} else if (assembledLine instanceof AssembledBVSInstruction bvsInstruction) {
+			operand = bvsInstruction.getInstruction().getOperand();
+		} else if (assembledLine instanceof AssembledLBVSInstruction lbvsInstruction) {
+			operand = lbvsInstruction.getInstruction().getOperand();
+		
+		} else {
+			// Nothing to do
+		}
+
+		if (operand != null) {
+			String operandRepresentation = serializer.serialize(operand);		 
+			item.setText(OPERAND_COLUMN, operandRepresentation);
+		}	
+	}
+
+	private void displayRegisterOperand(Register reg1, Register reg2) {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append(reg1.getName());
+		strBuilder.append(',');
+		strBuilder.append(reg2.getName());
+	}
+
+	private void displayOperand(GridItem item, EObject operand) {
+		String operandRepresentation = serializer.serialize(operand);		 
+		item.setText(OPERAND_COLUMN, operandRepresentation);
 	}
 
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
-
+		// Nothing to do here
 	}
 
 }
