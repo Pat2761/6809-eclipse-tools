@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
@@ -92,7 +93,7 @@ public class AssemblyView extends ViewPart {
 	    column.setText("N°");
 	    column.setWidth(45);
 	    GridColumn column2 = new GridColumn(grid,SWT.NONE);
-	    column2.setText("Add");
+	    column2.setText("Addr");
 	    column2.setWidth(70);
 	    GridColumn column3 = new GridColumn(grid,SWT.NONE);
 	    column3.setText("Code");
@@ -383,39 +384,129 @@ public class AssemblyView extends ViewPart {
 		 item.setText(CODE_COLUMN, strBuilder.toString());
 	}
 
+	/** 
+	 * Display specific information about FILL directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledFillDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, "FILL");
+		 
+		 StringBuilder strBuilder = new StringBuilder();
+		 String valueRepresentation = serializer.serialize(directive.getDirective().getValue());
+		 strBuilder.append(valueRepresentation);
+		 strBuilder.append(',');
+		 String numberRepresentation = serializer.serialize(directive.getDirective().getNumber());
+		 strBuilder.append(numberRepresentation);
+		 item.setText(OPERAND_COLUMN, strBuilder.toString());
+		 
+		 strBuilder = new StringBuilder();
+		 for (int value : directive.getValues()) {
+			 strBuilder.append(String.format("%02X ", value&0xFF));
+		 }
+		 item.setText(CODE_COLUMN, strBuilder.toString());
 	}
 
+	/** 
+	 * Display specific information about NAM directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledNamDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, directive.getDirective().getDirective());
+		 item.setText(OPERAND_COLUMN, directive.getValue());
 	}
 
+	/** 
+	 * Display specific information about OPT directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledOptDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, "OPT");
+		 
+		 StringBuilder strBuilder = new StringBuilder();
+		 for (String value : directive.getValues()) {
+			 if (!strBuilder.isEmpty()) {
+				 strBuilder.append(',');
+			 }
+			 strBuilder.append(value);
+		 }
+		 item.setText(OPERAND_COLUMN, strBuilder.toString());
 	}
 
+	/** 
+	 * Display specific information about PAG directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledPagDirectiveLine directive) {
-		// TODO Auto-generated method stub
+		 item.setText(INSTRUCTION_COLUMN, "PAG");
+		 if (directive.getDirective().getOperand() != null) {
+			 item.setText(OPERAND_COLUMN, serializer.serialize(directive.getDirective().getOperand()));
+		 }
 		
 	}
 
+	/** 
+	 * Display specific information about PAG directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledRegDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, "REG");
+		 
+		 StringBuilder strBuilder = new StringBuilder();
+		 for (Register option : directive.getDirective().getOptions()) {
+			 if (!strBuilder.isEmpty()) {
+				 strBuilder.append(',');
+			 }
+			 strBuilder.append(option.getName());
+		 }
+		 item.setText(OPERAND_COLUMN, strBuilder.toString());
 	}
 
+	/** 
+	 * Display specific information about PAG directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledRmbDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, "RMB");
+
+		 if (directive.getDirective().getOperand() != null) {
+			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());		
+			 if (directive.getDirective().isIsRelativeToPC()) {
+				 item.setText(OPERAND_COLUMN, '*' + expressionRepresentation);
+			 } else {
+				 item.setText(OPERAND_COLUMN, expressionRepresentation);
+			 }	 
+		 }
 	}
 
+	/** 
+	 * Display specific information about PAG directive in the grid.
+	 * 
+	 * @param item Reference to to grid item used for display information
+	 * @param directive Directive to display
+	 */
 	private void display(GridItem item, AssembledSetDirectiveLine directive) {
-		// TODO Auto-generated method stub
-		
+		 item.setText(INSTRUCTION_COLUMN, "SET");
+		 
+		 if (directive.getDirective().getOperand() != null) {
+			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());
+			 if (directive.getDirective().isIsRelativeToPC()) {
+				 item.setText(OPERAND_COLUMN, '*' + expressionRepresentation);
+			 } else {
+				 item.setText(OPERAND_COLUMN, expressionRepresentation);
+			 }
+		 }
 	}
 
 	/** 
