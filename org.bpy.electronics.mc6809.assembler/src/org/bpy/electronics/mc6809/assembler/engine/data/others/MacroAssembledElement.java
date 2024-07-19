@@ -92,6 +92,7 @@ public class MacroAssembledElement extends AbstractAssemblyLine {
 	 * @param callCounter number of use
 	 */
 	public void parse(MacroDefinition macroDefinition, int callCounter) {
+		
 		this.macroDefinition = macroDefinition;
 
 		updateLabelDefinition(callCounter);

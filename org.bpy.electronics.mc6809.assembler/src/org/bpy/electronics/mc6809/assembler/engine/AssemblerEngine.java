@@ -326,6 +326,9 @@ public class AssemblerEngine {
 			MacroAssembledElement assembledMacro = new MacroAssembledElement();
 			assembledMacro.parse(macroDefinition, callCounter);
 			assembledMacro.setPcAddress(currentPcValue);
+			assembledMacro.setLabel(otherInstruction.getLabel().getName().getValue());
+			assembledMacro.setComment(otherInstruction.getComment());
+			assembledMacro.setLineNumber(lineNumber);
 			
 			for(int i=0; i< assembledMacro.getInstructionLines().size(); i++) {
 

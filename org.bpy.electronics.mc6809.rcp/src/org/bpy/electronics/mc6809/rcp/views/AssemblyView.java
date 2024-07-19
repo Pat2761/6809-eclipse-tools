@@ -202,9 +202,11 @@ public class AssemblyView extends ViewPart {
 	    grid = new Grid(parent,SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL);
 	    grid.setFont(SWTResourceManager.getFont("Courier New", 10, SWT.NORMAL));
 	    grid.setHeaderVisible(true);
-	    GridColumn column = new GridColumn(grid,SWT.NONE);
+	    
+	    GridColumn column = new GridColumn(grid,SWT.NONE | SWT.TOGGLE);
 	    column.setText("N°");
 	    column.setWidth(45);
+	    column.setTree(true);
 	    GridColumn column2 = new GridColumn(grid,SWT.NONE);
 	    column2.setText("Addr");
 	    column2.setWidth(70);
@@ -307,7 +309,8 @@ public class AssemblyView extends ViewPart {
 		for (AbstractAssemblyLine assembledLine : engine.getAssembledLine()) {
 			
 			if (assembledLine instanceof AbstractInstructionAssemblyLine line) {
-				displayInstruction(line);
+				GridItem item = new GridItem(grid, SWT.NONE);
+				displayInstruction(item, line);
 				
 			} else if (assembledLine instanceof AssembledBlankLine line) {
 				displayBlankLine(line);
@@ -325,22 +328,42 @@ public class AssemblyView extends ViewPart {
 				displayMacroDeclaration(macroDeclaration);
 				
 			} else if (assembledLine instanceof MacroAssembledElement macroAssembledElement) {	
+				displayAssembledMacro(macroAssembledElement);
 				
 			} else {
 				logger.log(Level.SEVERE,"Unkonowned type {0}" , assembledLine.getClass().getName());
 			}
 		}
-		System.out.println("-----------------------------------");
  	}	
+
+	private void displayAssembledMacro(MacroAssembledElement macroAssembledElement) {
+		GridItem item = new GridItem(grid, SWT.NONE);
+		item.setText(LINE_NUMBER_COLUMN, "" + macroAssembledElement.getLineNumber());
+		item.setText(ADDRESS_COLUMN, String.format("%04X", macroAssembledElement.getPcAddress()));
+		item.setText(INSTRUCTION_COLUMN, macroAssembledElement.getMacroDefinition().getName().getValue());;
+		if (macroAssembledElement.getComment() != null) {
+			item.setText(COMMENT_COLUMN, macroAssembledElement.getComment());
+		}
+		if (macroAssembledElement.getLabel() != null) {
+			item.setText(LABEL_COLUMN, macroAssembledElement.getLabel());
+		}
+		
+		for (AbstractAssemblyLine assembledline : macroAssembledElement.getAssemblyLines()) {
+			if (assembledline instanceof AbstractInstructionAssemblyLine instructionLine) {
+				GridItem subItem = new GridItem(item, SWT.NONE);
+				displayInstruction(subItem, instructionLine);
+			}
+		}
+	}
 
 	private void displayMacroDeclaration(MacroDeclarationElement macroDeclaration) {
 		 GridItem item = new GridItem(grid,SWT.NONE);
-
+		 	
 		item.setText(LINE_NUMBER_COLUMN, "" + macroDeclaration.getLineNumber());
 		item.setText(ADDRESS_COLUMN, String.format("%04X", macroDeclaration.getPcAddress()));
 		item.setText(INSTRUCTION_COLUMN, ".macro");
 		item.setText(OPERAND_COLUMN, macroDeclaration.getMacroDefinition().getName().getValue());
-
+		
 		if (macroDeclaration.getMacroComment() != null) {
 			item.setText(COMMENT_COLUMN, macroDeclaration.getMacroComment());
 		}
@@ -1016,8 +1039,7 @@ public class AssemblyView extends ViewPart {
 	 * 
 	 * @param blankLine reference on the instruction line
 	 */
-	private void displayInstruction(AbstractInstructionAssemblyLine assembledLine) {
-		 GridItem item = new GridItem(grid,SWT.NONE);
+	private void displayInstruction(GridItem item, AbstractInstructionAssemblyLine assembledLine) {
 		 item.setText(LINE_NUMBER_COLUMN, "" + assembledLine.getLineNumber());
 		 item.setText(ADDRESS_COLUMN, "" + String.format("%04X", assembledLine.getPcAddress()));
 		
@@ -1040,10 +1062,10 @@ public class AssemblyView extends ViewPart {
 			 item.setText(COMMENT_COLUMN, assembledLine.getComment());
 		 }
 		 
-		 setOperandFiest(item, assembledLine);
+		 setOperandFirst(item, assembledLine);
 	}		 
 
-	private void setOperandFiest(GridItem item, AbstractInstructionAssemblyLine assembledLine) {
+	private void setOperandFirst(GridItem item, AbstractInstructionAssemblyLine assembledLine) {
 		EObject operand = null;
 		if (assembledLine instanceof AssembledADCAInstruction adcaInstruction) {
 			operand = adcaInstruction.getInstruction().getOperand();
@@ -1355,11 +1377,6 @@ public class AssemblyView extends ViewPart {
 		strBuilder.append(reg1.getName());
 		strBuilder.append(',');
 		strBuilder.append(reg2.getName());
-	}
-
-	private void displayOperand(GridItem item, EObject operand) {
-		String operandRepresentation = serializer.serialize(operand);		 
-		item.setText(OPERAND_COLUMN, operandRepresentation);
 	}
 
 	@Override
