@@ -142,6 +142,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetD
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.*;
 import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroAssembledElement;
+import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroDeclarationElement;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -260,6 +261,7 @@ public class AssemblerEngine {
 	public void engine(Model model) {
 		currentPcValue = 0;
 		assemblyLines = new ArrayList<>();
+		clear();
 
 		AssemblerErrorManager.getInstance().clear();
 
@@ -380,6 +382,10 @@ public class AssemblerEngine {
 						InstructionValidator.EMPTY_MACRO);
 				AssemblerErrorManager.getInstance().addWarning(macroDefinition, problemDescription);
 			}
+			
+			MacroDeclarationElement macroDeclarationElement = new MacroDeclarationElement();
+			macroDeclarationElement.parse(macroDefinition,currentPcValue,lineNumber);
+			assemblyLines.add(macroDeclarationElement);
 			macroDefinitions.put(macroName, macroDefinition);
 		}
 	}

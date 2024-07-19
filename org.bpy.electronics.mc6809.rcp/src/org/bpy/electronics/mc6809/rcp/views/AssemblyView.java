@@ -24,8 +24,63 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
+import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BleInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BloInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BlsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BltInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BmiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BneInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BplInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BraInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
+import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
+import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
@@ -50,6 +105,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetD
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.*;
+import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroDeclarationElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.IDocument;
 import org.eclipse.nebula.widgets.grid.Grid;
@@ -236,6 +292,8 @@ public class AssemblyView extends ViewPart {
 		grid.clearItems();
 		AssemblerEngine engine = AssemblerEngine.getInstance();
 		for (AbstractAssemblyLine assembledLine : engine.getAssembledLine()) {
+			System.out.println(assembledLine);
+			
 			
 			if (assembledLine instanceof AbstractInstructionAssemblyLine line) {
 				displayInstruction(line);
@@ -252,11 +310,200 @@ public class AssemblyView extends ViewPart {
 			} else if (assembledLine instanceof AbstractAssembledDirectiveLine line) {
 				displayDirective(line);
 				
+			} else if (assembledLine instanceof MacroDeclarationElement macroDeclaration) {
+				displayMacroDeclaration(macroDeclaration);
+				
 			} else {
 				logger.log(Level.SEVERE,"Unkonowned type {0}" , assembledLine.getClass().getName());
 			}
 		}
+		System.out.println("-----------------------------------");
  	}	
+
+	private void displayMacroDeclaration(MacroDeclarationElement macroDeclaration) {
+		 GridItem item = new GridItem(grid,SWT.NONE);
+
+		item.setText(LINE_NUMBER_COLUMN, "" + macroDeclaration.getLineNumber());
+		item.setText(ADDRESS_COLUMN, String.format("%04X", macroDeclaration.getPcAddress()));
+		item.setText(INSTRUCTION_COLUMN, ".macro");
+		item.setText(OPERAND_COLUMN, macroDeclaration.getMacroDefinition().getName().getValue());
+
+		if (macroDeclaration.getMacroComment() != null) {
+			item.setText(COMMENT_COLUMN, macroDeclaration.getMacroComment());
+		}
+
+		for (InstructionLine internalInstruction : macroDeclaration.getMacroDefinition().getInstructions()) {
+			GridItem subItem = new GridItem(item, SWT.NONE);
+			
+			EObject operand = null;
+			if (internalInstruction instanceof AdcInstruction adcInstruction) {
+				operand  = adcInstruction.getOperand();
+
+			} else if (internalInstruction instanceof AddInstruction addaInstruction) {
+				operand = addaInstruction.getOperand();
+
+			} else if (internalInstruction instanceof AdddInstruction adddInstruction) {
+				operand = adddInstruction.getOperand();
+
+			} else if (internalInstruction instanceof AndInstruction andInstruction) {
+				operand = andInstruction.getOperand();
+
+			} else if (internalInstruction instanceof AndCCInstruction andccInstruction) {
+				operand = andccInstruction.getOperand();
+
+			} else if (internalInstruction instanceof AslInstruction aslInstruction) {
+				operand = aslInstruction.getOperand();
+
+			} else if (internalInstruction instanceof AsrInstruction asrInstruction) {
+				operand = asrInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BitInstruction bitInstruction) {
+				operand = bitInstruction.getOperand();
+
+			} else if (internalInstruction instanceof ClrInstruction clrInstruction) {
+				operand = clrInstruction.getOperand();
+
+			} else if (internalInstruction instanceof CmpInstruction cmpInstruction) {
+				operand = cmpInstruction.getOperand();
+
+			} else if (internalInstruction instanceof ComInstruction comInstruction) {
+				operand = comInstruction.getOperand();
+
+			} else if (internalInstruction instanceof CwaiInstruction cwaiInstruction) {
+				operand = cwaiInstruction.getOperand();
+
+			} else if (internalInstruction instanceof DecInstruction decInstruction) {
+				operand = decInstruction.getOperand();
+
+			} else if (internalInstruction instanceof EorInstruction eorInstruction) {
+				operand = eorInstruction.getOperand();
+
+			} else if (internalInstruction instanceof ExgInstruction exgInstruction) {
+				displayRegisterOperand(exgInstruction.getReg1(),exgInstruction.getReg2());
+
+			} else if (internalInstruction instanceof IncInstruction incInstruction) {
+				operand = incInstruction.getOperand();
+
+			} else if (internalInstruction instanceof JmpInstruction jmpInstruction) {
+				operand = jmpInstruction.getOperand();
+			} else if (internalInstruction instanceof JsrInstruction jsrInstruction) {
+				operand = jsrInstruction.getOperand();
+
+			} else if (internalInstruction instanceof LdInstruction ldInstruction) {
+				operand = ldInstruction.getOperand();
+
+			} else if (internalInstruction instanceof LeaInstruction leaInstruction) {
+				operand = leaInstruction.getOperand();
+
+			} else if (internalInstruction instanceof LslInstruction lslInstruction) {
+				operand = lslInstruction.getOperand();
+
+			} else if (internalInstruction instanceof LsrInstruction lsrInstruction) {
+				operand = lsrInstruction.getOperand();
+
+			} else if (internalInstruction instanceof NegInstruction negInstruction) {
+				operand = negInstruction.getOperand();
+
+			} else if (internalInstruction instanceof OrInstruction orInstruction) {
+				operand = orInstruction.getOperand();
+		
+			} else if (internalInstruction instanceof OrCCInstruction orccInstruction) {
+				operand = orccInstruction.getOperand();
+
+			} else if (internalInstruction instanceof PshsInstruction pshsInstruction) {
+				operand = pshsInstruction.getOperand();
+			} else if (internalInstruction instanceof PshuInstruction pshuInstruction) {
+				operand = pshuInstruction.getOperand();
+			} else if (internalInstruction instanceof PulsInstruction pulsInstruction) {
+				operand = pulsInstruction.getOperand();
+			} else if (internalInstruction instanceof PuluInstruction puluInstruction) {
+				operand = puluInstruction.getOperand();
+
+			} else if (internalInstruction instanceof RolInstruction rolInstruction) {
+				operand = rolInstruction.getOperand();
+
+			} else if (internalInstruction instanceof RorInstruction rorInstruction) {
+				operand = rorInstruction.getOperand();
+
+			} else if (internalInstruction instanceof SbcInstruction sbcInstruction) {
+				operand = sbcInstruction.getOperand();
+
+			} else if (internalInstruction instanceof StInstruction stInstruction) {
+				operand = stInstruction.getOperand();
+			
+			} else if (internalInstruction instanceof SubInstruction subInstruction) {
+				operand = subInstruction.getOperand();
+
+			} else if (internalInstruction instanceof TfrInstruction tfrInstruction) {
+				displayRegisterOperand(tfrInstruction.getReg1(),tfrInstruction.getReg2());
+
+			} else if (internalInstruction instanceof BccInstruction bccInstruction) {
+				operand = bccInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BcsInstruction bcsInstruction) {
+				operand = bcsInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BeqInstruction beqInstruction) {
+				operand = beqInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BgeInstruction bgeInstruction) {
+				operand = bgeInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BgtInstruction bgtInstruction) {
+				operand = bgtInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BhiInstruction bhiInstruction) {
+				operand = bhiInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BhsInstruction bhsInstruction) {
+				operand = bhsInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BleInstruction bleInstruction) {
+				operand = bleInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BloInstruction bloInstruction) {
+				operand = bloInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BlsInstruction blsInstruction) {
+				operand = blsInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BltInstruction bltInstruction) {
+				operand = bltInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BmiInstruction bmiInstruction) {
+				operand = bmiInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BneInstruction bneInstruction) {
+				operand = bneInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BplInstruction bplInstruction) {
+				operand = bplInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BraInstruction braInstruction) {
+				operand = braInstruction.getOperand();
+			
+			} else if (internalInstruction instanceof BrnInstruction brnInstruction) {
+				operand = brnInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BsrInstruction bsrInstruction) {
+				operand = bsrInstruction.getOperand();
+
+			} else if (internalInstruction instanceof BvcInstruction bvcInstruction) {
+				operand = bvcInstruction.getOperand();
+			
+			} else if (internalInstruction instanceof BvsInstruction bvsInstruction) {
+				operand = bvsInstruction.getOperand();
+			
+			} else {
+				// Nothing to do
+			}
+
+			if (operand != null) {
+				String operandRepresentation = serializer.serialize(operand);		 
+				item.setText(OPERAND_COLUMN, operandRepresentation);
+			}	
+		}
+	}
 
 	/** 
 	 * Display a directive line
@@ -266,7 +513,7 @@ public class AssemblyView extends ViewPart {
 	private void displayDirective(AbstractAssembledDirectiveLine line) {
 		 GridItem item = new GridItem(grid,SWT.NONE);
 		 item.setText(LINE_NUMBER_COLUMN, ""+line.getLineNumber());
-		 item.setText(ADDRESS_COLUMN, "" + String.format("%04X", line.getPcAddress()));
+		 item.setText(ADDRESS_COLUMN, String.format("%04X", line.getPcAddress()));
 		 
 		 if (line.getLabel() != null) {
 			 item.setText(LABEL_COLUMN,line.getLabel());
@@ -606,7 +853,7 @@ public class AssemblyView extends ViewPart {
 		 item.setText(INSTRUCTION_COLUMN, "ORG");
 
 		 if (directive.getDirective().getOperand() != null) {
-			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());		
+			 String expressionRepresentation = serializer.serialize(directive.getDirective().getOperand());
 			 if (directive.getDirective().isIsRelativeToPC()) {
 				 item.setText(OPERAND_COLUMN, '*' + expressionRepresentation);
 			 } else {
