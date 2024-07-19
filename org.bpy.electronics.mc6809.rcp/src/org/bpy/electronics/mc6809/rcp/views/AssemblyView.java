@@ -24,6 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
+import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction;
@@ -55,6 +56,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
@@ -67,7 +69,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrCCInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
@@ -77,10 +81,18 @@ import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
@@ -105,6 +117,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetD
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.*;
+import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroAssembledElement;
 import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroDeclarationElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.IDocument;
@@ -292,8 +305,6 @@ public class AssemblyView extends ViewPart {
 		grid.clearItems();
 		AssemblerEngine engine = AssemblerEngine.getInstance();
 		for (AbstractAssemblyLine assembledLine : engine.getAssembledLine()) {
-			System.out.println(assembledLine);
-			
 			
 			if (assembledLine instanceof AbstractInstructionAssemblyLine line) {
 				displayInstruction(line);
@@ -312,6 +323,8 @@ public class AssemblyView extends ViewPart {
 				
 			} else if (assembledLine instanceof MacroDeclarationElement macroDeclaration) {
 				displayMacroDeclaration(macroDeclaration);
+				
+			} else if (assembledLine instanceof MacroAssembledElement macroAssembledElement) {	
 				
 			} else {
 				logger.log(Level.SEVERE,"Unkonowned type {0}" , assembledLine.getClass().getName());
@@ -336,171 +349,266 @@ public class AssemblyView extends ViewPart {
 			GridItem subItem = new GridItem(item, SWT.NONE);
 			
 			EObject operand = null;
-			if (internalInstruction instanceof AdcInstruction adcInstruction) {
-				operand  = adcInstruction.getOperand();
+			if (internalInstruction.getInstruction() instanceof AbxInstruction abxInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + abxInstruction.getInstruction());
 
-			} else if (internalInstruction instanceof AddInstruction addaInstruction) {
-				operand = addaInstruction.getOperand();
+			} else if (internalInstruction.getInstruction() instanceof AdcInstruction adcInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + adcInstruction.getInstruction());
+					operand  = adcInstruction.getOperand();
 
-			} else if (internalInstruction instanceof AdddInstruction adddInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof AddInstruction addInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + addInstruction.getInstruction());
+				operand = addInstruction.getOperand();
+
+			} else if (internalInstruction.getInstruction() instanceof AdddInstruction adddInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + adddInstruction.getInstruction());
 				operand = adddInstruction.getOperand();
 
-			} else if (internalInstruction instanceof AndInstruction andInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof AndInstruction andInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + andInstruction.getInstruction());
 				operand = andInstruction.getOperand();
 
-			} else if (internalInstruction instanceof AndCCInstruction andccInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof AndCCInstruction andccInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + andccInstruction.getInstruction());
 				operand = andccInstruction.getOperand();
 
-			} else if (internalInstruction instanceof AslInstruction aslInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof AslInstruction aslInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + aslInstruction.getInstruction());
 				operand = aslInstruction.getOperand();
 
-			} else if (internalInstruction instanceof AsrInstruction asrInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof AsrInstruction asrInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + asrInstruction.getInstruction());
 				operand = asrInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BitInstruction bitInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BitInstruction bitInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bitInstruction.getInstruction());
 				operand = bitInstruction.getOperand();
 
-			} else if (internalInstruction instanceof ClrInstruction clrInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof ClrInstruction clrInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + clrInstruction.getInstruction());
 				operand = clrInstruction.getOperand();
 
-			} else if (internalInstruction instanceof CmpInstruction cmpInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof CmpInstruction cmpInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + cmpInstruction.getInstruction());
 				operand = cmpInstruction.getOperand();
 
-			} else if (internalInstruction instanceof ComInstruction comInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof ComInstruction comInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + comInstruction.getInstruction());
 				operand = comInstruction.getOperand();
 
-			} else if (internalInstruction instanceof CwaiInstruction cwaiInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof CwaiInstruction cwaiInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + cwaiInstruction.getInstruction());
 				operand = cwaiInstruction.getOperand();
 
-			} else if (internalInstruction instanceof DecInstruction decInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof DaaInstruction daaInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + daaInstruction.getInstruction());
+
+			} else if (internalInstruction.getInstruction() instanceof DecInstruction decInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + decInstruction.getInstruction());
 				operand = decInstruction.getOperand();
 
-			} else if (internalInstruction instanceof EorInstruction eorInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof EorInstruction eorInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + eorInstruction.getInstruction());
 				operand = eorInstruction.getOperand();
 
-			} else if (internalInstruction instanceof ExgInstruction exgInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof ExgInstruction exgInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + exgInstruction.getInstruction());
 				displayRegisterOperand(exgInstruction.getReg1(),exgInstruction.getReg2());
 
-			} else if (internalInstruction instanceof IncInstruction incInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof IncInstruction incInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + incInstruction.getInstruction());
 				operand = incInstruction.getOperand();
 
-			} else if (internalInstruction instanceof JmpInstruction jmpInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof JmpInstruction jmpInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + jmpInstruction.getInstruction());
 				operand = jmpInstruction.getOperand();
-			} else if (internalInstruction instanceof JsrInstruction jsrInstruction) {
+
+			} else if (internalInstruction.getInstruction() instanceof JsrInstruction jsrInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + jsrInstruction.getInstruction());
 				operand = jsrInstruction.getOperand();
 
-			} else if (internalInstruction instanceof LdInstruction ldInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof LdInstruction ldInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + ldInstruction.getInstruction());
 				operand = ldInstruction.getOperand();
 
-			} else if (internalInstruction instanceof LeaInstruction leaInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof LeaInstruction leaInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + leaInstruction.getInstruction());
 				operand = leaInstruction.getOperand();
 
-			} else if (internalInstruction instanceof LslInstruction lslInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof LslInstruction lslInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + lslInstruction.getInstruction());
 				operand = lslInstruction.getOperand();
 
-			} else if (internalInstruction instanceof LsrInstruction lsrInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof LsrInstruction lsrInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + lsrInstruction.getInstruction());
 				operand = lsrInstruction.getOperand();
 
-			} else if (internalInstruction instanceof NegInstruction negInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof MulInstruction mulInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + mulInstruction.getInstruction());
+
+			} else if (internalInstruction.getInstruction() instanceof NegInstruction negInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + negInstruction.getInstruction());
 				operand = negInstruction.getOperand();
 
-			} else if (internalInstruction instanceof OrInstruction orInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof NopInstruction nopInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + nopInstruction.getInstruction());
+
+			} else if (internalInstruction.getInstruction() instanceof OrInstruction orInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + orInstruction.getInstruction());
 				operand = orInstruction.getOperand();
 		
-			} else if (internalInstruction instanceof OrCCInstruction orccInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof OrCCInstruction orccInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + orccInstruction.getInstruction());
 				operand = orccInstruction.getOperand();
 
-			} else if (internalInstruction instanceof PshsInstruction pshsInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof PshsInstruction pshsInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + pshsInstruction.getInstruction());
 				operand = pshsInstruction.getOperand();
-			} else if (internalInstruction instanceof PshuInstruction pshuInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof PshuInstruction pshuInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + pshuInstruction.getInstruction());
 				operand = pshuInstruction.getOperand();
-			} else if (internalInstruction instanceof PulsInstruction pulsInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof PulsInstruction pulsInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + pulsInstruction.getInstruction());
 				operand = pulsInstruction.getOperand();
-			} else if (internalInstruction instanceof PuluInstruction puluInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof PuluInstruction puluInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + puluInstruction.getInstruction());
 				operand = puluInstruction.getOperand();
 
-			} else if (internalInstruction instanceof RolInstruction rolInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof RolInstruction rolInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + rolInstruction.getInstruction());
 				operand = rolInstruction.getOperand();
 
-			} else if (internalInstruction instanceof RorInstruction rorInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof RtiInstruction rtiInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + rtiInstruction.getInstruction());
+
+			} else if (internalInstruction.getInstruction() instanceof RtsInstruction rtsInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + rtsInstruction.getInstruction());
+
+			} else if (internalInstruction.getInstruction() instanceof RorInstruction rorInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + rorInstruction.getInstruction());
 				operand = rorInstruction.getOperand();
 
-			} else if (internalInstruction instanceof SbcInstruction sbcInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof SbcInstruction sbcInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + sbcInstruction.getInstruction());
 				operand = sbcInstruction.getOperand();
 
-			} else if (internalInstruction instanceof StInstruction stInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof SexInstruction sexInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + sexInstruction.getInstruction());
+
+			} else if (internalInstruction.getInstruction() instanceof StInstruction stInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + stInstruction.getInstruction());
 				operand = stInstruction.getOperand();
 			
-			} else if (internalInstruction instanceof SubInstruction subInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof SubInstruction subInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + subInstruction.getInstruction());
 				operand = subInstruction.getOperand();
 
-			} else if (internalInstruction instanceof TfrInstruction tfrInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof SwiInstruction swiInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + swiInstruction.getInstruction());
+
+			} else if (internalInstruction.getInstruction() instanceof Swi2Instruction swi2Instruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + swi2Instruction.getInstruction());
+
+			} else if (internalInstruction.getInstruction() instanceof Swi3Instruction swi3Instruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + swi3Instruction.getInstruction());
+
+			} else if (internalInstruction.getInstruction() instanceof SyncInstruction syncInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + syncInstruction.getInstruction());
+
+			} else if (internalInstruction.getInstruction() instanceof TfrInstruction tfrInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + tfrInstruction.getInstruction());
 				displayRegisterOperand(tfrInstruction.getReg1(),tfrInstruction.getReg2());
 
-			} else if (internalInstruction instanceof BccInstruction bccInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof TstInstruction tstInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + tstInstruction.getInstruction());
+//				displayRegisterOperand(tst.get);
+
+			} else if (internalInstruction.getInstruction() instanceof BccInstruction bccInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bccInstruction.getInstruction());
 				operand = bccInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BcsInstruction bcsInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BcsInstruction bcsInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bcsInstruction.getInstruction());
 				operand = bcsInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BeqInstruction beqInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BeqInstruction beqInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + beqInstruction.getInstruction());
 				operand = beqInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BgeInstruction bgeInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BgeInstruction bgeInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bgeInstruction.getInstruction());
 				operand = bgeInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BgtInstruction bgtInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BgtInstruction bgtInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bgtInstruction.getInstruction());
 				operand = bgtInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BhiInstruction bhiInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BhiInstruction bhiInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bhiInstruction.getInstruction());
 				operand = bhiInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BhsInstruction bhsInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BhsInstruction bhsInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bhsInstruction.getInstruction());
 				operand = bhsInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BleInstruction bleInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BleInstruction bleInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bleInstruction.getInstruction());
 				operand = bleInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BloInstruction bloInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BloInstruction bloInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bloInstruction.getInstruction());
 				operand = bloInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BlsInstruction blsInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BlsInstruction blsInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + blsInstruction.getInstruction());
 				operand = blsInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BltInstruction bltInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BltInstruction bltInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bltInstruction.getInstruction());
 				operand = bltInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BmiInstruction bmiInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BmiInstruction bmiInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bmiInstruction.getInstruction());
 				operand = bmiInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BneInstruction bneInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BneInstruction bneInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bneInstruction.getInstruction());
 				operand = bneInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BplInstruction bplInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BplInstruction bplInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bplInstruction.getInstruction());
 				operand = bplInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BraInstruction braInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BraInstruction braInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + braInstruction.getInstruction());
 				operand = braInstruction.getOperand();
 			
-			} else if (internalInstruction instanceof BrnInstruction brnInstruction) {
-				operand = brnInstruction.getOperand();
+			} else if (internalInstruction.getInstruction() instanceof BrnInstruction brnInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + brnInstruction.getInstruction());
 
-			} else if (internalInstruction instanceof BsrInstruction bsrInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BsrInstruction bsrInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bsrInstruction.getInstruction());
 				operand = bsrInstruction.getOperand();
 
-			} else if (internalInstruction instanceof BvcInstruction bvcInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BvcInstruction bvcInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bvcInstruction.getInstruction());
 				operand = bvcInstruction.getOperand();
 			
-			} else if (internalInstruction instanceof BvsInstruction bvsInstruction) {
+			} else if (internalInstruction.getInstruction() instanceof BvsInstruction bvsInstruction) {
+				subItem.setText(INSTRUCTION_COLUMN, "" + bvsInstruction.getInstruction());
 				operand = bvsInstruction.getOperand();
 			
 			} else {
 				// Nothing to do
 			}
+			
+			if (internalInstruction.getComment() != null) {
+				subItem.setText(COMMENT_COLUMN, internalInstruction.getComment());
+			}
 
 			if (operand != null) {
 				String operandRepresentation = serializer.serialize(operand);		 
-				item.setText(OPERAND_COLUMN, operandRepresentation);
+				subItem.setText(OPERAND_COLUMN, operandRepresentation);
 			}	
 		}
 	}
