@@ -31,6 +31,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions;
+import org.bpy.electronics.mc6809.assembler.ui.AssemblerUiModule;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -225,7 +226,7 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private Image getOtherImage() {
 		if (otherImage == null) {
-			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin("org.bpy.electronics.mc6809.assembler.ui", "icons/O-blue.16.png");
+			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin(AssemblerUiModule.PLUGIN_ID, "icons/O-blue.16.png");
 			otherImage = mDescriptor.createImage();
 		}
 		return otherImage;
@@ -237,7 +238,7 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private Image getMacroImage() {
 		if (macroImage == null) {
-			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin("org.bpy.electronics.mc6809.assembler.ui", "icons/M-gold.16.png");
+			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin(AssemblerUiModule.PLUGIN_ID, "icons/M-gold.16.png");
 			macroImage = mDescriptor.createImage();
 		}
 		return macroImage;
@@ -249,7 +250,7 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private Image getDirectiveImage() {
 		if (directiveImage == null) {
-			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin("org.bpy.electronics.mc6809.assembler.ui", "icons/D-pink.16.png");
+			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin(AssemblerUiModule.PLUGIN_ID, "icons/D-pink.16.png");
 			directiveImage = mDescriptor.createImage();
 		}
 		return directiveImage;
@@ -261,7 +262,7 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private Image getInstructionImage() {
 		if (instructionImage == null) {
-			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin("org.bpy.electronics.mc6809.assembler.ui", "icons/I-green.16.png");
+			ImageDescriptor mDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin(AssemblerUiModule.PLUGIN_ID, "icons/I-green.16.png");
 			instructionImage = mDescriptor.createImage();
 		}
 		return instructionImage;

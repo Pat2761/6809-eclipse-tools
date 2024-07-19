@@ -18,6 +18,9 @@ import com.google.inject.name.Names;
  */
 public class AssemblerUiModule extends AbstractAssemblerUiModule {
 
+	/** Plugin identifier */
+	public static final String PLUGIN_ID = "org.bpy.electronics.mc6809.assembler.ui";;
+	
 	public AssemblerUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}

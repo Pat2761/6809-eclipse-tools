@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.ui.outline;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.ui.AssemblerUiModule;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -33,12 +34,11 @@ public class FilterOtherContribution extends AbstractFilterOutlineContribution {
 
 	/** preference key for filter */
 	public static final String PREFERENCE_KEY = "ui.outline.filterOther";
-	
+
 	@Override
 	protected boolean apply(IOutlineNode node) {
 		return !(node instanceof EObjectNode)
-		        || !((EObjectNode) node).getEClass()
-		          .equals(AssemblerPackage.Literals.OTHER_KIND_OF_INSTRUCTIONS);
+				|| !((EObjectNode) node).getEClass().equals(AssemblerPackage.Literals.OTHER_KIND_OF_INSTRUCTIONS);
 	}
 
 	@Override
@@ -49,9 +49,10 @@ public class FilterOtherContribution extends AbstractFilterOutlineContribution {
 	@Override
 	protected void configureAction(Action action) {
 		action.setText("Others");
-	    action.setDescription("Others");
-	    action.setToolTipText("Others");
-		ImageDescriptor crossedIcon = AbstractUIPlugin.imageDescriptorFromPlugin("org.bpy.electronics.mc6809.assembler.ui", "icons/O-blue.16-Crossed.png");
-	    action.setImageDescriptor(crossedIcon);
+		action.setDescription("Others");
+		action.setToolTipText("Others");
+		ImageDescriptor crossedIcon = AbstractUIPlugin.imageDescriptorFromPlugin(AssemblerUiModule.PLUGIN_ID,
+				"icons/O-blue.16-Crossed.png");
+		action.setImageDescriptor(crossedIcon);
 	}
 }

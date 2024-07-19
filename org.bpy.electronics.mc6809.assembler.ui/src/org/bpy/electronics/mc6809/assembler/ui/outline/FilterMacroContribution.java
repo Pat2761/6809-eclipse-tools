@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.ui.outline;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.ui.AssemblerUiModule;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -51,7 +52,7 @@ public class FilterMacroContribution extends AbstractFilterOutlineContribution {
 		action.setText("Specials");
 	    action.setDescription("Specials");
 	    action.setToolTipText("Specials");
-		ImageDescriptor crossedIcon = AbstractUIPlugin.imageDescriptorFromPlugin("org.bpy.electronics.mc6809.assembler.ui", "icons/M-gold.16-Crossed.png");
+		ImageDescriptor crossedIcon = AbstractUIPlugin.imageDescriptorFromPlugin(AssemblerUiModule.PLUGIN_ID, "icons/M-gold.16-Crossed.png");
 	    action.setImageDescriptor(crossedIcon);
 	}
 }

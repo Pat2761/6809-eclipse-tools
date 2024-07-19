@@ -180,7 +180,8 @@ public class AssemblyView extends ViewPart {
 	@Inject
 	private IParser parser;
 	/** Reference on the serializer */
-	@Inject @Extension private ISerializer serializer;
+	@Inject @Extension 
+	private ISerializer serializer;
 	
 	/** Caret Listener */
 	private CaretListener caretListener;
@@ -247,9 +248,8 @@ public class AssemblyView extends ViewPart {
 					Control control = currentEditor.getAdapter(Control.class);
 					if (control instanceof StyledText text) {
 						text.addCaretListener(caretListener);
-						//setCursorPosition(text.getCaretOffset());
+						// set Cursor Position text getCaretOffset
 					}
-
 					updateDisplay();
 				}
 			}
@@ -336,11 +336,16 @@ public class AssemblyView extends ViewPart {
 		}
  	}	
 
+	/**
+	 * Display an assembled macro instruction.
+	 * 
+	 * @param macroAssembledElement reference on the assembled element
+	 */
 	private void displayAssembledMacro(MacroAssembledElement macroAssembledElement) {
 		GridItem item = new GridItem(grid, SWT.NONE);
 		item.setText(LINE_NUMBER_COLUMN, "" + macroAssembledElement.getLineNumber());
 		item.setText(ADDRESS_COLUMN, String.format("%04X", macroAssembledElement.getPcAddress()));
-		item.setText(INSTRUCTION_COLUMN, macroAssembledElement.getMacroDefinition().getName().getValue());;
+		item.setText(INSTRUCTION_COLUMN, macroAssembledElement.getMacroDefinition().getName().getValue());
 		if (macroAssembledElement.getComment() != null) {
 			item.setText(COMMENT_COLUMN, macroAssembledElement.getComment());
 		}
@@ -356,6 +361,11 @@ public class AssemblyView extends ViewPart {
 		}
 	}
 
+	/**
+	 * Display an macro declaration.
+	 * 
+	 * @param macroDeclaration reference on the macro definition
+	 */
 	private void displayMacroDeclaration(MacroDeclarationElement macroDeclaration) {
 		 GridItem item = new GridItem(grid,SWT.NONE);
 		 	
@@ -544,7 +554,6 @@ public class AssemblyView extends ViewPart {
 
 			} else if (internalInstruction.getInstruction() instanceof TstInstruction tstInstruction) {
 				subItem.setText(INSTRUCTION_COLUMN, "" + tstInstruction.getInstruction());
-//				displayRegisterOperand(tst.get);
 
 			} else if (internalInstruction.getInstruction() instanceof BccInstruction bccInstruction) {
 				subItem.setText(INSTRUCTION_COLUMN, "" + bccInstruction.getInstruction());
@@ -637,7 +646,7 @@ public class AssemblyView extends ViewPart {
 	}
 
 	/** 
-	 * Display a directive line
+	 * Display a directive line.
 	 * 
 	 * @param line reference on the line
 	 */
@@ -1062,10 +1071,16 @@ public class AssemblyView extends ViewPart {
 			 item.setText(COMMENT_COLUMN, assembledLine.getComment());
 		 }
 		 
-		 setOperandFirst(item, assembledLine);
+		 setOperand(item, assembledLine);
 	}		 
 
-	private void setOperandFirst(GridItem item, AbstractInstructionAssemblyLine assembledLine) {
+	/**
+	 * Display the operand in the grid item.
+	 * 
+	 * @param item Reference on the item
+	 * @param assembledLine reference on the assembled line 
+	 */
+	private void setOperand(GridItem item, AbstractInstructionAssemblyLine assembledLine) {
 		EObject operand = null;
 		if (assembledLine instanceof AssembledADCAInstruction adcaInstruction) {
 			operand = adcaInstruction.getInstruction().getOperand();
@@ -1372,6 +1387,12 @@ public class AssemblyView extends ViewPart {
 		}	
 	}
 
+	/**
+	 * Display an operand of type Register (TRF, EXG)
+	 * 
+	 * @param reg1 reference on the firt register
+	 * @param reg2 reference on the second register
+	 */
 	private void displayRegisterOperand(Register reg1, Register reg2) {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append(reg1.getName());
