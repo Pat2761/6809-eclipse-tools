@@ -38,8 +38,10 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
+import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
+import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 
 /**
  * Customization of the default outline structure.
@@ -49,6 +51,17 @@ import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
  */
 public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
+	public class OutlineContainer extends AbstractOutlineNode {
+
+		protected OutlineContainer(IOutlineNode parent, Image image, Object text, boolean isLeaf) {
+		
+			super(parent, image, text, isLeaf);
+				// TODO Auto-generated constructor stub
+			}
+		
+		
+	}
+	
 	/** reference on the macro icon to display */
 	public Image macroImage = null; 
 	/** reference on the instruction icon to display */
@@ -62,19 +75,29 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	private LinkedList<EObject> stack = null;
 	/** Root node in the outline view */
 	private DocumentRootNode rootNode;
+
 	/** current node in the outline view */
-	private IOutlineNode currentNode = null;
+	private IOutlineNode macrosNode;
+	/** current node in the outline view */
+	private IOutlineNode labelsNode;
+	/** current node in the outline view */
+	private IOutlineNode equsNode;
+	/** current node in the outline view */
+	private IOutlineNode dataNode;
 	
 	@Override
 	protected void _createChildren(DocumentRootNode parentNode, EObject modelElement) {
 
 		this.rootNode = parentNode;
-		this.currentNode = null;
-		
-		stack = new LinkedList<>();
-		if (modelElement instanceof Model) {
+		equsNode = new OutlineContainer(parentNode, getOtherImage(), "Constant", false);
+		dataNode = new OutlineContainer(parentNode, getDirectiveImage(), "Data definition", false);
+		macrosNode = new OutlineContainer(parentNode, getMacroImage(), "Macros definition", false);
+		labelsNode = new OutlineContainer(parentNode, getInstructionImage(), "Labels definition", false);
 
-			stack.addAll(((Model) modelElement).getSourceLines());
+		stack = new LinkedList<>();
+		if (modelElement instanceof Model model) {
+
+			stack.addAll(model.getSourceLines());
 			while (!stack.isEmpty()) {
 
 				EObject sourceLine = stack.pop();
@@ -91,20 +114,20 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 * @param line reference on the line
 	 */
 	private void manageSourceLine(EObject line) {
-		if (line instanceof InstructionLine) {
-			manageInstructionLine((InstructionLine) line);
+		if (line instanceof InstructionLine instruction) {
+//			manageInstructionLine(instruction);
 
-		} else if (line instanceof LabelLine) {
-			manageLabelLine((LabelLine) line);
+		} else if (line instanceof LabelLine label) {
+//			manageLabelLine(label);
 
-		} else if (line instanceof DirectiveLine) {
-			manageDirectiveLine((DirectiveLine) line);
+		} else if (line instanceof DirectiveLine directive) {
+//			manageDirectiveLine(directive);
 
-		} else if (line instanceof SpecialFunctions) {
-			manageSpecialFunctions((SpecialFunctions)line);
+		} else if (line instanceof SpecialFunctions specialFunction) {
+			manageSpecialFunctions(specialFunction.getSpecialFuntion());
 
-		} else if (line instanceof OtherKindOfInstructions) {
-			manageOtherKingOfInstruction((OtherKindOfInstructions)line);
+		} else if (line instanceof OtherKindOfInstructions otherInstruction) {
+//			manageOtherKingOfInstruction(otherInstruction);
 		}
 	}
 	
@@ -114,32 +137,28 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 * @param line reference on the other kind line
 	 */
 	private void manageOtherKingOfInstruction(OtherKindOfInstructions line) {
-		String label = line.getName().getValue();
-		if (currentNode != null) {
-			createEObjectNode(currentNode, line, getImage(line), label, true);
-		} else {
-			currentNode = createEObjectNode(rootNode, line, getImage(line), "", true);
-			createEObjectNode(currentNode, line, getImage(line), label, true);
-		}
+//		String label = line.getName().getValue();
+//		if (currentNode != null) {
+//			createEObjectNode(currentNode, line, getImage(line), label, true);
+//		} else {
+//			currentNode = createEObjectNode(rootNode, line, getImage(line), "", true);
+//			createEObjectNode(currentNode, line, getImage(line), label, true);
+//		}
 		
 	}
 
 	/**
 	 * manage a special function line 
 	 * 
-	 * @param line reference on the special function line
+	 * @param macroDefinition reference on the special function line
 	 */
-	private void manageSpecialFunctions(SpecialFunctions line) {
-		if (line.getSpecialFuntion() instanceof MacroDefinition) {
-			MacroDefinition macroDefintion = (MacroDefinition)line.getSpecialFuntion();
-			String macroName  = getLabel((SpecialFunctions) line);
-			currentNode = (IOutlineNode) createEObjectNode(rootNode, line, getMacroImage(), macroName, true);
+	private void manageSpecialFunctions(MacroDefinition macroDefinition) {
+			String macroName  = macroDefinition.getName().getValue();
+			EObjectNode currentMacroNode = createEObjectNode(macrosNode, macroDefinition, getMacroImage(), macroName, false);
 			
-			for (InstructionLine macroLine : macroDefintion.getInstructions()) {
-				manageSourceLine(macroLine);
+			for (InstructionLine macroLine : macroDefinition.getInstructions()) {
+				manageInstructionLine(currentMacroNode, macroLine);
 			}
-			currentNode= null;
-		}
 	}
 
 	/**
@@ -149,18 +168,18 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 * @param line reference on the label line
 	 */
 	private void manageLabelLine(LabelLine line) {
-		String label = getLabel((LabelLine) line);
-		if (label != null) {
-			for (int i=0; i<stack.size(); i++) {
-				EObject sourceLine = stack.get(i);
-				EObject nextLine = ((SourceLine) sourceLine).getLineContent();
-				Image image = getImage(nextLine);
-				if (image != null) {
-					currentNode = (IOutlineNode) createEObjectNode(rootNode, line, getImage(nextLine), label, true);
-					break;
-				} 
-			}
-		} 
+//		String label = getLabel(line);
+//		if (label != null) {
+//			for (int i=0; i<stack.size(); i++) {
+//				EObject sourceLine = stack.get(i);
+//				EObject nextLine = ((SourceLine) sourceLine).getLineContent();
+//				Image image = getImage(nextLine);
+//				if (image != null) {
+//					currentNode = (IOutlineNode) createEObjectNode(rootNode, line, getImage(nextLine), label, true);
+//					break;
+//				} 
+//			}
+//		} 
 	}
 
 	/**
@@ -170,36 +189,25 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private void manageDirectiveLine(DirectiveLine line) {
 
-		String label = getLabel((DirectiveLine) line);
-		if (label != null) {
-			currentNode = (IOutlineNode) createEObjectNode(rootNode, line, getImage(line), label, true);
-		}	
-		
-		if (currentNode != null) {
-			createEObjectNode(currentNode, line, getImage(line), CommandUtil.getDirectiveName(line.getDirective()), true);
-		} else {
-			currentNode = createEObjectNode(rootNode, line, getImage(line), "", true);
-			createEObjectNode(currentNode, line, getImage(line), CommandUtil.getDirectiveName(line.getDirective()), true);
-		}
+//		String label = getLabel((DirectiveLine) line);
+//		if (label != null) {
+//			currentNode = (IOutlineNode) createEObjectNode(rootNode, line, getImage(line), label, true);
+//		}	
+//		
+//		if (currentNode != null) {
+//			createEObjectNode(currentNode, line, getImage(line), CommandUtil.getDirectiveName(line.getDirective()), true);
+//		} else {
+//			currentNode = createEObjectNode(rootNode, line, getImage(line), "", true);
+//			createEObjectNode(currentNode, line, getImage(line), CommandUtil.getDirectiveName(line.getDirective()), true);
+//		}
 	}
 
 	/**
 	 * Manage an instruction line in the outline view
 	 * @param line reference on the instruction line
 	 */
-	private void manageInstructionLine(InstructionLine line) {
-
-		String label = getLabel((InstructionLine) line);
-		if (label != null) {
-			currentNode = (IOutlineNode) createEObjectNode(rootNode, line, getImage(line), label, true);
-		}	
-		
-		if (currentNode != null) {
-			createEObjectNode(currentNode, line, getImage(line), CommandUtil.getInstructionName(line.getInstruction()), true);
-		} else {
-			currentNode = createEObjectNode(rootNode, line, getImage(line), "", true);
-			createEObjectNode(currentNode, line, getImage(line), CommandUtil.getInstructionName(line.getInstruction()), true);
-		}
+	private void manageInstructionLine(EObjectNode node, InstructionLine line) {
+		createEObjectNode(node, line, getImage(line), CommandUtil.getInstructionName(line.getInstruction()), true);
 	}
 
 	/**
@@ -266,19 +274,6 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			instructionImage = mDescriptor.createImage();
 		}
 		return instructionImage;
-	}
-
-	/** 
-	 * Return name to display in the outline view
-	 * @param line reference on the special function line
-	 * @return label value, <b>null</b> if not defined
-	 */
-	private String getLabel(SpecialFunctions line) {
-		if (line.getSpecialFuntion() instanceof MacroDefinition) {
-			MacroDefinition macroDefinition = (MacroDefinition)line.getSpecialFuntion();
-			return macroDefinition.getName().getValue();
-		}
-		return "";
 	}
 
 	/** 
