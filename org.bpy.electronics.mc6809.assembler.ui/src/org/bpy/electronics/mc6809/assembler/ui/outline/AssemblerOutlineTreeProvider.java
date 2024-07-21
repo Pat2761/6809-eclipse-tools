@@ -24,16 +24,23 @@ package org.bpy.electronics.mc6809.assembler.ui.outline;
 import java.util.LinkedList;
 
 import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
+import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions;
+import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions;
+import org.bpy.electronics.mc6809.assembler.assembler.impl.BszDirectiveImpl;
 import org.bpy.electronics.mc6809.assembler.ui.AssemblerUiModule;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
@@ -205,17 +212,115 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 
 		String label = getLabel(line);
 		
+		/* Manage Constant type instruction */
 		if (line.getDirective() instanceof EquDirective equDirective) {
 			String expressionRepresentation = serializer.serialize(equDirective.getOperand());
 			manageConstantDeclaration(equDirective, "EQU" , label, expressionRepresentation);
 		} else if (line.getDirective() instanceof SetDirective setDirective) {
 			String expressionRepresentation = serializer.serialize(setDirective.getOperand());
 			manageConstantDeclaration(setDirective, "SET" , label, expressionRepresentation);
-		}	
+
+		/* Manage data declaration */	
+		} else if (line.getDirective() instanceof BszDirective bszDirective) {
+			manageBszDirective(bszDirective);
+		} else if (line.getDirective() instanceof FillDirective fillDirective) {
+			manageFillDirective(fillDirective);
+		} else if (line.getDirective() instanceof FcbDirective fcbDirective) {
+			manageFcbDirective(fcbDirective);
+		} else if (line.getDirective() instanceof FdbDirective fdbDirective) {
+			manageFdbDirective(fdbDirective);
+		} else if (line.getDirective() instanceof FccDirective fccDirective) {
+			manageFccDirective(fccDirective);
+		} else if (line.getDirective() instanceof RmbDirective rmbDirective) {
+			manageRmbDirective(rmbDirective);
+			
+		}
+	}
+
+	/**
+	 * Manage data of type RMB.
+	 * 
+	 * @param fillDirective reference on the directive
+	 */
+	private void manageRmbDirective(RmbDirective rmbDirective) {
+		StringBuilder  strBuilder = new StringBuilder("Reseve ");
+		strBuilder.append(serializer.serialize(rmbDirective.getOperand()));
+		strBuilder.append(" memory bytes");
+		
+		createEObjectNode(dataNode, rmbDirective, getDirectiveImage(), strBuilder.toString(), true);
+	}
+
+	/**
+	 * Manage data of type FCC.
+	 * 
+	 * @param fillDirective reference on the directive
+	 */
+	private void manageFccDirective(FccDirective fccDirective) {
+		StringBuilder  strBuilder = new StringBuilder("Force constant String ");
+		for (EObject parameter : fccDirective.getParameters()) {
+			if (!strBuilder.isEmpty()) {
+				strBuilder.append(",");
+			}
+			strBuilder.append(serializer.serialize(parameter));
+		}
+		
+		createEObjectNode(dataNode, fccDirective, getDirectiveImage(), strBuilder.toString(), true);
+	}
+
+
+	/**
+	 * Manage data of type FDB.
+	 * 
+	 * @param fillDirective reference on the directive
+	 */
+	private void manageFdbDirective(FdbDirective fdbDirective) {
+		StringBuilder  strBuilder = new StringBuilder("Force constant Word ");
+		strBuilder.append(serializer.serialize(fdbDirective.getOperand()));
+		
+		createEObjectNode(dataNode, fdbDirective, getDirectiveImage(), strBuilder.toString(), true);
+	}
+
+	/**
+	 * Manage data of type FCB.
+	 * 
+	 * @param fillDirective reference on the directive
+	 */
+	private void manageFcbDirective(FcbDirective fcbDirective) {
+		StringBuilder  strBuilder = new StringBuilder("Force constant Byte ");
+		strBuilder.append(serializer.serialize(fcbDirective.getOperand()));
+
+		createEObjectNode(dataNode, fcbDirective, getDirectiveImage(), strBuilder.toString(), true);
+	}
+
+	/**
+	 * Manage data of type BSZ.
+	 * 
+	 * @param fillDirective reference on the directive
+	 */
+	private void manageBszDirective(BszDirective bszDirective) {
+		StringBuilder  strBuilder = new StringBuilder("Set ");
+		strBuilder.append(serializer.serialize(bszDirective.getOperand()));
+		strBuilder.append(" bytes to 0");
+
+		createEObjectNode(dataNode, bszDirective, getDirectiveImage(), strBuilder.toString(), true);
+	}
+
+	/**
+	 * Manage data of type FILL.
+	 * 
+	 * @param fillDirective reference on the directive
+	 */
+	private void manageFillDirective(FillDirective fillDirective) {
+		StringBuilder  strBuilder = new StringBuilder("Fill ");
+		strBuilder.append(serializer.serialize(fillDirective.getNumber()));
+		strBuilder.append(" bytes with ");
+		strBuilder.append(serializer.serialize(fillDirective.getValue()));
+	
+		createEObjectNode(dataNode, fillDirective, getDirectiveImage(), strBuilder.toString(), true);
 	}
 
 	private void manageConstantDeclaration(EObject equDirective, String directiveName, String label, String expression) {
-		createEObjectNode(equsNode, equDirective, getDirectiveImage(), label + "(" + directiveName + ") = " + expression, true);
+		createEObjectNode(equsNode, equDirective, getDirectiveImage(), label + " = " + expression, true);
 		
 	}
 
