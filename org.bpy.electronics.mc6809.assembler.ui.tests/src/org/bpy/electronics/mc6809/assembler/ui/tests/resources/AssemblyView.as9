@@ -1,0 +1,47 @@
+; --------------------------------------------
+
+					.macro   MyMacro           ;
+					LDA		#$55					;
+Wait				DECA								;
+					BNE		Wait					;
+					.endm								;						
+
+One            EQU      1
+Two				EQU      One+One				; value = 2
+Five				EQU		(Two*Two)+1			; value = 5	
+
+Begin				ORG     	$8000					; start of program
+
+					NAM      Toto              ; It is toto
+					TTL      Titi              ; It is titi
+					
+					; OPT options
+					OPT 								; by default
+					OPT		PAG,CON				; option PAG CON
+					OPT		NOE					; NOE Only
+					
+					; PAG options
+					PAG								; by default
+					PAG		2*2					; page = 4	
+					
+					; RMB options
+					RMB		20						; reserve 20 bytes					
+Rmb1				RMB		6											
+					
+					; REG option
+reg1				REG		A						; A register only
+reg2				REG		A,B,X,Y												
+
+					; SET directive
+Set1				SET		Five+One				; 6					
+					
+Bsz1				BSZ		Five/Two				; Test BSZ 1		
+Bsz				ZMB		100					; Test Zmb 1		
+
+					SETDP								; set DP at 0
+ 					SETDP	   Five*2				; Set DP at 10
+ 
+ 		   		FILL		0,10					; fill instruction
+ 
+ 					END 		Begin					; it is the end
+; --------------------------------------------

@@ -23,12 +23,15 @@ package org.bpy.electronics.mc6809.assembler.ui.outline;
 
 import java.util.LinkedList;
 
+import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions;
 import org.bpy.electronics.mc6809.assembler.ui.AssemblerUiModule;
@@ -37,11 +40,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+import org.eclipse.xtext.serializer.ISerializer;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.AbstractOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.DefaultOutlineTreeProvider;
 import org.eclipse.xtext.ui.editor.outline.impl.DocumentRootNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
+import org.eclipse.xtext.xbase.lib.Extension;
+
+import com.google.inject.Inject;
 
 /**
  * Customization of the default outline structure.
@@ -54,13 +61,15 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	public class OutlineContainer extends AbstractOutlineNode {
 
 		protected OutlineContainer(IOutlineNode parent, Image image, Object text, boolean isLeaf) {
-		
 			super(parent, image, text, isLeaf);
-				// TODO Auto-generated constructor stub
+				// Nothing to do
 			}
-		
-		
 	}
+
+	/** Reference on the serializer */
+	@Inject @Extension 
+	private ISerializer serializer;
+
 	
 	/** reference on the macro icon to display */
 	public Image macroImage = null; 
@@ -84,6 +93,11 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	private IOutlineNode equsNode;
 	/** current node in the outline view */
 	private IOutlineNode dataNode;
+	
+	public AssemblerOutlineTreeProvider() {
+//		com.google.inject.Injector injector = new AssemblerStandaloneSetup().createInjectorAndDoEMFRegistration();
+//		injector.injectMembers(this);
+	}
 	
 	@Override
 	protected void _createChildren(DocumentRootNode parentNode, EObject modelElement) {
@@ -121,7 +135,7 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 //			manageLabelLine(label);
 
 		} else if (line instanceof DirectiveLine directive) {
-//			manageDirectiveLine(directive);
+			manageDirectiveLine(directive);
 
 		} else if (line instanceof SpecialFunctions specialFunction) {
 			manageSpecialFunctions(specialFunction.getSpecialFuntion());
@@ -189,17 +203,20 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private void manageDirectiveLine(DirectiveLine line) {
 
-//		String label = getLabel((DirectiveLine) line);
-//		if (label != null) {
-//			currentNode = (IOutlineNode) createEObjectNode(rootNode, line, getImage(line), label, true);
-//		}	
-//		
-//		if (currentNode != null) {
-//			createEObjectNode(currentNode, line, getImage(line), CommandUtil.getDirectiveName(line.getDirective()), true);
-//		} else {
-//			currentNode = createEObjectNode(rootNode, line, getImage(line), "", true);
-//			createEObjectNode(currentNode, line, getImage(line), CommandUtil.getDirectiveName(line.getDirective()), true);
-//		}
+		String label = getLabel(line);
+		
+		if (line.getDirective() instanceof EquDirective equDirective) {
+			String expressionRepresentation = serializer.serialize(equDirective.getOperand());
+			manageConstantDeclaration(equDirective, "EQU" , label, expressionRepresentation);
+		} else if (line.getDirective() instanceof SetDirective setDirective) {
+			String expressionRepresentation = serializer.serialize(setDirective.getOperand());
+			manageConstantDeclaration(setDirective, "SET" , label, expressionRepresentation);
+		}	
+	}
+
+	private void manageConstantDeclaration(EObject equDirective, String directiveName, String label, String expression) {
+		createEObjectNode(equsNode, equDirective, getDirectiveImage(), label + "(" + directiveName + ") = " + expression, true);
+		
 	}
 
 	/**
