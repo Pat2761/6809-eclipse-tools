@@ -50,9 +50,11 @@ public class FilterDirectiveContribution extends AbstractFilterOutlineContributi
 	@Override
 	protected void configureAction(Action action) {
 		action.setText("Directives");
-	    action.setDescription("Directives");
-	    action.setToolTipText("Directives");
-		ImageDescriptor crossedIcon = AbstractUIPlugin.imageDescriptorFromPlugin(AssemblerUiModule.PLUGIN_ID, "icons/D-pink.16-Crossed.png");
-	    action.setImageDescriptor(crossedIcon);
+	   action.setDescription("Directives");
+	   action.setToolTipText("Directives");
+		
+		IconManager iconManager = IconManager.getInstance();
+		action.setImageDescriptor(iconManager.getImageDescriptor(IconManager.DATA_ICON));
+		action.setDisabledImageDescriptor(iconManager.getImageDescriptor(IconManager.DATA_ICON));
 	}
 }

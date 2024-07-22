@@ -4,7 +4,6 @@
 package org.bpy.electronics.mc6809.assembler.ui;
 
 import org.bpy.electronics.mc6809.assembler.ui.outline.FilterDirectiveContribution;
-import org.bpy.electronics.mc6809.assembler.ui.outline.FilterInstructionContribution;
 import org.bpy.electronics.mc6809.assembler.ui.outline.FilterMacroContribution;
 import org.bpy.electronics.mc6809.assembler.ui.outline.FilterOtherContribution;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
@@ -26,16 +25,16 @@ public class AssemblerUiModule extends AbstractAssemblerUiModule {
 	}
 	
 	public void configureFilterOperationsContribution(Binder binder) {
-		  binder.bind(IOutlineContribution.class).annotatedWith(
-			      Names.named("FilterOperationsContribution"))
-			    .to(FilterInstructionContribution.class);
-		  binder.bind(IOutlineContribution.class).annotatedWith(
-			      Names.named("FilterDirectiveContribution"))
-			    .to(FilterDirectiveContribution.class);
-		  binder.bind(IOutlineContribution.class).annotatedWith(
-			      Names.named("FilterMacroContribution"))
-			    .to(FilterMacroContribution.class);
-		  binder.bind(IOutlineContribution.class).annotatedWith(
-			      Names.named("FilterOtherContribution"))
-			    .to(FilterOtherContribution.class);
+//		  binder.bind(IOutlineContribution.class).annotatedWith(
+//			      Names.named("FilterOperationsContribution"))
+//			    .to(FilterInstructionContribution.class);
+//		  binder.bind(IOutlineContribution.class).annotatedWith(
+//			      Names.named("FilterDirectiveContribution"))
+//			    .to(FilterDirectiveContribution.class);
+//		  binder.bind(IOutlineContribution.class).annotatedWith(
+//			      Names.named("FilterMacroContribution"))
+//			    .to(FilterMacroContribution.class);
+//		  binder.bind(IOutlineContribution.class).annotatedWith(
+//			      Names.named("FilterOtherContribution"))
+//			    .to(FilterOtherContribution.class);
 		}}

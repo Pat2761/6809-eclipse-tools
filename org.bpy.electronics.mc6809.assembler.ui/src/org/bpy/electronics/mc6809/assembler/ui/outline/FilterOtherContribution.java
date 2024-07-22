@@ -51,8 +51,9 @@ public class FilterOtherContribution extends AbstractFilterOutlineContribution {
 		action.setText("Others");
 		action.setDescription("Others");
 		action.setToolTipText("Others");
-		ImageDescriptor crossedIcon = AbstractUIPlugin.imageDescriptorFromPlugin(AssemblerUiModule.PLUGIN_ID,
-				"icons/O-blue.16-Crossed.png");
-		action.setImageDescriptor(crossedIcon);
+
+		IconManager iconManager = IconManager.getInstance();
+		action.setImageDescriptor(iconManager.getImageDescriptor(IconManager.LABEL_ICON));
+		action.setDisabledImageDescriptor(iconManager.getImageDescriptor(IconManager.LABEL_ICON));
 	}
 }

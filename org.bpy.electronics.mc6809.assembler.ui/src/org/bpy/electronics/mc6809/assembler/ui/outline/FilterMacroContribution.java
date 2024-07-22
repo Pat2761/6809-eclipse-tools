@@ -34,12 +34,10 @@ public class FilterMacroContribution extends AbstractFilterOutlineContribution {
 
 	/** preference key for filter */
 	public static final String PREFERENCE_KEY = "ui.outline.filterSpecials";
-	
+
 	@Override
 	protected boolean apply(IOutlineNode node) {
-		return !(node instanceof EObjectNode)
-		        || !((EObjectNode) node).getEClass()
-		          .equals(AssemblerPackage.Literals.SPECIAL_FUNCTIONS);
+		return ((EObjectNode) node).getEClass().equals(AssemblerPackage.Literals.SPECIAL_FUNCTIONS);
 	}
 
 	@Override
@@ -49,10 +47,11 @@ public class FilterMacroContribution extends AbstractFilterOutlineContribution {
 
 	@Override
 	protected void configureAction(Action action) {
-		action.setText("Specials");
-	    action.setDescription("Specials");
-	    action.setToolTipText("Specials");
-		ImageDescriptor crossedIcon = AbstractUIPlugin.imageDescriptorFromPlugin(AssemblerUiModule.PLUGIN_ID, "icons/M-gold.16-Crossed.png");
-	    action.setImageDescriptor(crossedIcon);
+		action.setText("Macros");
+		action.setDescription("Macros");
+		action.setToolTipText("Show or hide macros definition");
+		IconManager iconManager = IconManager.getInstance();
+		action.setImageDescriptor(iconManager.getImageDescriptor(IconManager.MACRO_ICON));
+		action.setDisabledImageDescriptor(iconManager.getImageDescriptor(IconManager.MACRO_ICON));
 	}
 }
