@@ -7,6 +7,7 @@ import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBNEInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDECAInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDAInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroAssembledElement;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -222,9 +223,12 @@ public class TestMacroDefinition {
 
 			// assembled first assembled Macro
 			{
-				AbstractAssemblyLine macro1 = engine.getAssembledLine().get(3);
+				AbstractAssemblyLine macro1 = engine.getAssembledLine().get(8);
 				Assert.assertTrue("Check type of object", macro1 instanceof MacroAssembledElement);
+
 				MacroAssembledElement assembledMacro1 = (MacroAssembledElement)macro1;
+				AbstractAssemblyLine line0 = assembledMacro1.getAssemblyLines().get(0);
+				Assert.assertTrue("Check type of object", line0 instanceof AssembledLDAInstruction);
 				AbstractAssemblyLine line1 = assembledMacro1.getAssemblyLines().get(1);
 				Assert.assertTrue("Check type of object", line1 instanceof AssembledDECAInstruction);
 				AssembledDECAInstruction decaInstruction = (AssembledDECAInstruction) line1;

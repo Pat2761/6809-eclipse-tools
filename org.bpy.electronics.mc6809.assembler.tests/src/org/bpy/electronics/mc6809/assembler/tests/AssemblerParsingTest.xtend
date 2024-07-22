@@ -8,6 +8,7 @@ import org.junit.runners.Suite
 import org.bpy.electronics.mc6809.assembler.tests.language.directives.*
 import org.bpy.electronics.mc6809.assembler.tests.language.CheckNumberValidation
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.*
+import org.bpy.electronics.mc6809.assembler.tests.language.specialFunctions.TestMacroDefinition
 
 @RunWith(Suite)
 @Suite.SuiteClasses( 
@@ -173,7 +174,12 @@ import org.bpy.electronics.mc6809.assembler.tests.language.instructions.*
 	 TestTFRInstruction,
 	 TestTSTAInstruction,
 	 TestTSTBInstruction,
-	 TestTSTInstruction
+	 TestTSTInstruction,
+	 
+	 // -----------------------------------------------	
+	 // Test the special functions 
+	 // -----------------------------------------------	
+	 TestMacroDefinition
 	 
 	 // -----------------------------------------------	
 	 // Test the formatter 
