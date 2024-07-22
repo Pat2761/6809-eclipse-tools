@@ -136,10 +136,10 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private void manageSourceLine(EObject line) {
 		if (line instanceof InstructionLine instruction) {
-//			manageInstructionLine(instruction);
+			manageInstructionLine(instruction);
 
 		} else if (line instanceof LabelLine label) {
-//			manageLabelLine(label);
+			manageLabelLine(label);
 
 		} else if (line instanceof DirectiveLine directive) {
 			manageDirectiveLine(directive);
@@ -148,24 +148,41 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 			manageSpecialFunctions(specialFunction.getSpecialFuntion());
 
 		} else if (line instanceof OtherKindOfInstructions otherInstruction) {
-//			manageOtherKingOfInstruction(otherInstruction);
+			manageOtherKingOfInstruction(otherInstruction);
+
 		}
 	}
 	
+	private void manageInstructionLine(InstructionLine instruction) {
+		if (instruction.getLabel().getName() != null) {
+			String label = instruction.getLabel().getName().getValue();
+			String comment = instruction.getComment();
+			manageLabelElement(instruction, label, comment);
+		}
+	}
+
+	private void manageLabelElement(EObject instruction, String label, String comment) {
+		StringBuilder strBuilder = new StringBuilder(label);
+		if (comment != null) {
+			strBuilder.append(" : ");
+			strBuilder.append(comment.substring(1));
+		}
+		
+		createEObjectNode(labelsNode, instruction, getOtherImage(), strBuilder.toString(), true);
+	}
+
 	/**
 	 * manage other kind of instruction, like call of macro 
 	 * 
 	 * @param line reference on the other kind line
 	 */
 	private void manageOtherKingOfInstruction(OtherKindOfInstructions line) {
-//		String label = line.getName().getValue();
-//		if (currentNode != null) {
-//			createEObjectNode(currentNode, line, getImage(line), label, true);
-//		} else {
-//			currentNode = createEObjectNode(rootNode, line, getImage(line), "", true);
-//			createEObjectNode(currentNode, line, getImage(line), label, true);
-//		}
-		
+		if (line.getLabel().getName() != null) {
+			String labelName =  line.getLabel().getName().getValue();
+			String comment = line.getComment();
+			
+			manageLabelElement(line, labelName, comment);
+		}
 	}
 
 	/**
@@ -189,18 +206,11 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 * @param line reference on the label line
 	 */
 	private void manageLabelLine(LabelLine line) {
-//		String label = getLabel(line);
-//		if (label != null) {
-//			for (int i=0; i<stack.size(); i++) {
-//				EObject sourceLine = stack.get(i);
-//				EObject nextLine = ((SourceLine) sourceLine).getLineContent();
-//				Image image = getImage(nextLine);
-//				if (image != null) {
-//					currentNode = (IOutlineNode) createEObjectNode(rootNode, line, getImage(nextLine), label, true);
-//					break;
-//				} 
-//			}
-//		} 
+		String label = getLabel(line);
+		if (label != null) {
+			String comment = line.getComment();
+			manageLabelElement(line, label, comment);
+		} 
 	}
 
 	/**
@@ -211,6 +221,10 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	private void manageDirectiveLine(DirectiveLine line) {
 
 		String label = getLabel(line);
+		if (label != null) {
+			String comment = line.getComment();
+			manageLabelElement(line, label, comment);
+		}
 		
 		/* Manage Constant type instruction */
 		if (line.getDirective() instanceof EquDirective equDirective) {
