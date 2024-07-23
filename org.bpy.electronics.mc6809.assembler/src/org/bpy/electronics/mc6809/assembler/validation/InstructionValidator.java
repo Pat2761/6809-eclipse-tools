@@ -93,6 +93,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRegDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -125,6 +126,8 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	public static final String EMPTY_MACRO = "emptyMacro";
 	/** String marker for the error manager in unrecognized instruction */
 	public static final String UNRECOGNIZED_INSTRUCTION = "unRecognizedInstruction";
+	/** String marker for the error manager in case of duplicate label */
+	public static final String DUPLICATE_LABEL = "duplicateLabel";
 
 	/**
 	 * Check duplicate labels
@@ -473,13 +476,12 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 						ILLEGAL_REGISTER);
 			}
 		} else {
-			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getLabelsEquSet().get(instruction.getOperand().getValue());
-			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine )) {
-				if (((AssembledRegDirectiveLine)regInstruction).checkRegister(Register.S)) {
+			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getAssemblyLine(instruction);
+			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine regLine) &&
+				  (regLine.checkRegister(Register.S))) {
 					error("S register can't be push for a PSHS instruction",
 							AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
 							ILLEGAL_REGISTER);
-				}
 			}
 		}
 		
@@ -532,13 +534,12 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 						ILLEGAL_REGISTER);
 			}
 		} else {
-			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getLabelsEquSet().get(instruction.getOperand().getValue());
-			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine )) {
-				if (((AssembledRegDirectiveLine)regInstruction).checkRegister(Register.U)) {
+			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getAssemblyLine(instruction);
+			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine regLine) &&
+				  (regLine.checkRegister(Register.U))) {
 					error("U register can't be push for a PSHU instruction",
 							AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND,
 							ILLEGAL_REGISTER);
-				}
 			}
 		}
 		
@@ -591,13 +592,12 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 						ILLEGAL_REGISTER);
 			}
 		} else {
-			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getLabelsEquSet().get(instruction.getOperand().getValue());
-			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine )) {
-				if (((AssembledRegDirectiveLine)regInstruction).checkRegister(Register.S)) {
+			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getAssemblyLine(instruction);
+			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine regLine) &&
+				  (regLine.checkRegister(Register.S))) {
 					error("S register can't be pull for a PULS instruction",
 							AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
 							ILLEGAL_REGISTER);
-				}
 			}
 		}
 		
@@ -650,13 +650,12 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 						ILLEGAL_REGISTER);
 			}
 		} else {
-			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getLabelsEquSet().get(instruction.getOperand().getValue());
-			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine )) {
-				if (((AssembledRegDirectiveLine)regInstruction).checkRegister(Register.U)) {
+			AbstractAssemblyLine regInstruction = AssemblerEngine.getInstance().getAssemblyLine(instruction);
+			if ( (regInstruction!= null) && (regInstruction instanceof AssembledRegDirectiveLine regLine) &&
+				  (regLine.checkRegister(Register.U))) {
 					error("U register can't be pull for a PULU instruction",
 							AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
 							ILLEGAL_REGISTER);
-				}
 			}
 		}
 		

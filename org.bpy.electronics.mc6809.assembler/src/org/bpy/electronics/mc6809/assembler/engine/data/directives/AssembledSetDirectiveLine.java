@@ -74,4 +74,8 @@ public class AssembledSetDirectiveLine extends AbstractAssembledDirectiveLine {
 	public int getPcIncrement() {
 		return 0;
 	}
+
+	public void setValue(Integer value) {
+		this.value = value;
+	}
 }

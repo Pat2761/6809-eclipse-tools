@@ -72,5 +72,9 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 	public int getPcIncrement() {
 		return 0;
 	}
+
+	public void setValue(Integer value) {
+		this.value = value;
+	}
 	
 }

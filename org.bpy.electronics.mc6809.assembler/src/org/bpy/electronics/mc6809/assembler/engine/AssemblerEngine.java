@@ -178,8 +178,6 @@ public class AssemblerEngine {
 	private Map<String, AbstractAssemblyLine> labelsPositionObject;
 	/** Contains the collection of Register definition */
 	private Map<String, Integer> regDefinitionValues;
-	/** Contains the collection of Labels which define values */
-	private Map<String, AbstractAssemblyLine> labelsEquSet;
 	/** Contains the collection of macro definition */
 	private Map<String, MacroDefinition> macroDefinitions;
 	/** Contains the collection of assembled line  */
@@ -219,7 +217,6 @@ public class AssemblerEngine {
 		AssemblerErrorManager.getInstance().clear();
 		
 		labelsPositionObject = new HashMap<>();
-		labelsEquSet = new HashMap<>();
 		assembledLinesMap = new HashMap<>();
 		regDefinitionValues = new HashMap<>();
 		macroDefinitions = new HashMap<>();
@@ -247,14 +244,6 @@ public class AssemblerEngine {
 	}
 
 	/**
-	 * return the collection of Labels which define values
-	 * @return collection of Labels which define values
-	 */
-	public Map<String, AbstractAssemblyLine> getLabelsEquSet() {
-		return labelsEquSet;
-	}
-
-	/**
 	 * Entry point of the engine
 	 * @param model reference on the EMF model of the AS9 file
 	 */
@@ -265,11 +254,63 @@ public class AssemblerEngine {
 
 		AssemblerErrorManager.getInstance().clear();
 
+		assembleParseEquSetDirectives(model);
 		assemblePass1(model);
 		assemblePass2(model);
 		
 	}
 	
+	private void assembleParseEquSetDirectives(Model model) {
+		for (SourceLine sourceLine : model.getSourceLines()) {
+			
+			if (sourceLine.getLineContent() instanceof DirectiveLine directiveLine) {
+				
+				if (directiveLine.getDirective() instanceof EquDirective equDirective) {
+					preParseDirective(equDirective);
+				
+				} else if (directiveLine.getDirective() instanceof SetDirective setDirective) {
+					preParseDirective(setDirective);
+				
+				} else if (directiveLine.getDirective() instanceof RegDirective regDirective) {
+					preParseDirective(regDirective);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Parse an SET directive line.
+	 * Memorize the SET label and check that it don't override EQU label 
+	 *  
+	 * @param setDirective reference on the SET directive
+	 */
+	private void preParseDirective(SetDirective setDirective) {
+		EquSetManager equSetManager = EquSetManager.getInstance();
+		equSetManager.addDirective(setDirective);
+	}
+
+	/**
+	 * Parse an REG directive line.
+	 *  
+	 * @param regDirective reference on the REG directive
+	 */
+	private void preParseDirective(RegDirective regDirective) {
+		EquSetManager equSetManager = EquSetManager.getInstance();
+		equSetManager.addDirective(regDirective);
+	}
+
+	/**
+	 * Parse an EQU directive line.
+	 * Memorize the EQU label and check that there the label 
+	 * isn't duplicate
+	 * 
+	 * @param equDirective reference on the EQU directive
+	 */
+	private void preParseDirective(EquDirective equDirective) {
+		EquSetManager equSetManager = EquSetManager.getInstance();
+		equSetManager.addDirective(equDirective);
+	}
+
 	private void assemblePass1(Model model) {
 		lineNumber = 1;
 		assemblePass1(model.getSourceLines());
@@ -423,68 +464,68 @@ public class AssemblerEngine {
 	}
 
 	private void parseInstructionLinePass2(InstructionLine instructionLine) {
-		if (instructionLine.getInstruction() instanceof BccInstruction) {
-			parsePass2((BccInstruction)instructionLine.getInstruction());
+		if (instructionLine.getInstruction() instanceof BccInstruction bccInstruction) {
+			parsePass2(bccInstruction);
 		
-		} else if (instructionLine.getInstruction() instanceof BcsInstruction) {
-			parsePass2((BcsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BcsInstruction bcsInstruction) {
+			parsePass2(bcsInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BeqInstruction) {
-			parsePass2((BeqInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BeqInstruction beqInstruction) {
+			parsePass2(beqInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BgeInstruction) {
-			parsePass2((BgeInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BgeInstruction bgeInstruction) {
+			parsePass2(bgeInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BgtInstruction) {
-			parsePass2((BgtInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BgtInstruction bgtInstruction) {
+			parsePass2(bgtInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BhiInstruction) {
-			parsePass2((BhiInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BhiInstruction bhiInstruction) {
+			parsePass2(bhiInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BhsInstruction) {
-			parsePass2((BhsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BhsInstruction bhsInstruction) {
+			parsePass2(bhsInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BleInstruction) {
-			parsePass2((BleInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BleInstruction bleInstruction) {
+			parsePass2(bleInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BloInstruction) {
-			parsePass2((BloInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BloInstruction bloInstruction) {
+			parsePass2(bloInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BlsInstruction) {
-			parsePass2((BlsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BlsInstruction blsInstruction) {
+			parsePass2(blsInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BltInstruction) {
-			parsePass2((BltInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BltInstruction bltInstruction) {
+			parsePass2(bltInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BmiInstruction) {
-			parsePass2((BmiInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BmiInstruction bmiInstruction) {
+			parsePass2(bmiInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BneInstruction) {
-			parsePass2((BneInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BneInstruction bneInstruction) {
+			parsePass2(bneInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BplInstruction) {
-			parsePass2((BplInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BplInstruction bplInstruction) {
+			parsePass2(bplInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BraInstruction) {
-			parsePass2((BraInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BraInstruction braInstruction) {
+			parsePass2(braInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BrnInstruction) {
-			parsePass2((BrnInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BrnInstruction brnInstruction) {
+			parsePass2(brnInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BsrInstruction) {
-			parsePass2((BsrInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BsrInstruction bsrInstruction) {
+			parsePass2(bsrInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BvcInstruction) {
-			parsePass2((BvcInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BvcInstruction bvcInstruction) {
+			parsePass2(bvcInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof BvsInstruction) {
-			parsePass2((BvsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BvsInstruction bvsInstruction) {
+			parsePass2(bvsInstruction);
 
-		} else if (instructionLine.getInstruction() instanceof JmpInstruction) {
-			parsePass2((JmpInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof JmpInstruction jmpInstruction) {
+			parsePass2(jmpInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof JsrInstruction) {
-			parsePass2((JsrInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof JsrInstruction jsrInstruction) {
+			parsePass2(jsrInstruction);
 			
 		}
 	}
@@ -3333,19 +3374,8 @@ public class AssemblerEngine {
 		assembledLinesMap.put(regDirective, line);
 		currentPcValue += line.getPcIncrement();
 		
-		String label = line.getLabel();
-		if (labelsEquSet.containsKey(label)) {
-	
-			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
-					"The label " + label + " for an REG directive is already defined", 
-					AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
-					DUPLICATE_LABEL);
-			AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
-		} else {
-			regDefinitionValues.put(label, line.getValue());	
-			labelsEquSet.put(label, line);
-		}
-		
+		EquSetManager equSetManager = EquSetManager.getInstance();
+		line.setValue(equSetManager.getValue(line.getLabel()));
 	}
 
 	/**
@@ -3475,23 +3505,9 @@ public class AssemblerEngine {
 		line.parse(setDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(setDirective, line);
-		
-		String label = line.getLabel();
-		if (labelsEquSet.containsKey(label)) {
-			
-			AbstractAssemblyLine element = labelsEquSet.get(label);
-			if (element instanceof AssembledEquDirectiveLine) {
-				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
-						"The label " + label + " for an SET directive is already defined", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
-						DUPLICATE_LABEL);
-				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
-			} else {
-				labelsEquSet.put(label, line);
-			}
-		} else {
-			labelsEquSet.put(label, line);
-		}
+
+		EquSetManager equSetManager = EquSetManager.getInstance();
+		line.setValue(equSetManager.getValue(line.getLabel()));
 	}
 
 	/**
@@ -3506,31 +3522,9 @@ public class AssemblerEngine {
 		line.parse(equDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(equDirective, line);
-		
-		String label = line.getLabel();
-		if (labelsEquSet.containsKey(label)) {
-			
-			AbstractAssemblyLine element = labelsEquSet.get(label);
-			if (element instanceof AssembledSetDirectiveLine) {
-				AssemblerWarningDescription warningDescription = new AssemblerWarningDescription(
-						"The label " + label + " for an EQU directive is already defined by a SET directive", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
-						DUPLICATE_LABEL);
-				AssemblerErrorManager.getInstance().addWarning(line.getDirective().eContainer(), warningDescription);
-	
-				labelsEquSet.put(label, line);
-				
-			} else {
-			
-				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
-						"The label " + label + " for an EQU directive is already defined", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
-						DUPLICATE_LABEL);
-				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
-			}
-		} else {
-			labelsEquSet.put(label, line);
-		}
+
+		EquSetManager equSetManager = EquSetManager.getInstance();
+		line.setValue(equSetManager.getValue(line.getLabel()));
 	}
 
 	/**
@@ -3610,27 +3604,13 @@ public class AssemblerEngine {
 	/**
 	 * Get the value for a label 
 	 * 
-	 * @param value value of the label
+	 * @param label value of the label
 	 * @return value pointed by the label
 	 */
-	public Integer getEquSetLabelValue(String value) {
-		
-		AbstractAssemblyLine assemblyLine = labelsEquSet.get(value);
-		if (assemblyLine instanceof AssembledEquDirectiveLine) {
-			AssembledEquDirectiveLine equDirectiveLine = (AssembledEquDirectiveLine)assemblyLine;
-			return equDirectiveLine.getValue();
-		
-		} else if (assemblyLine instanceof AssembledSetDirectiveLine) {
-			AssembledSetDirectiveLine setDirectiveLine = (AssembledSetDirectiveLine)assemblyLine;
-			return setDirectiveLine.getValue();
-		
-		} else if (assemblyLine instanceof AssembledRegDirectiveLine) {
-			AssembledRegDirectiveLine regDirectiveLine = (AssembledRegDirectiveLine)assemblyLine;
-			return regDirectiveLine.getValue();
-		
-		} else {
-			return null;
-		}
+	public Integer getEquSetLabelValue(String label) {
+
+		EquSetManager manager = EquSetManager.getInstance();
+		return manager.getValue(label);
 	}
 
 	public int getCurrentDPPage() {
