@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
@@ -56,8 +57,13 @@ public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
 		
-		keepCount = ExpressionParser.getKeepCount(directive);
-		spaceCount = ExpressionParser.getSpaceCount(directive);
+		try {
+			keepCount = ExpressionParser.getKeepCount(directive);
+			spaceCount = ExpressionParser.getSpaceCount(directive);
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public SpcDirective getDirective() {

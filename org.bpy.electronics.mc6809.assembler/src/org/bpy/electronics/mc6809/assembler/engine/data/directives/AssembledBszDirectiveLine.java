@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
@@ -54,14 +55,19 @@ public class AssembledBszDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
 		
-		nbBytes = ExpressionParser.parse(directive);
-		if (nbBytes<0) {
-			values = new int[0];
-		} else {
-			values = new int[nbBytes];
-			for (int i=0; i<nbBytes; i++) {
-				values[i] = 0;
+		try {
+			nbBytes = ExpressionParser.parse(directive);
+			if (nbBytes<0) {
+				values = new int[0];
+			} else {
+				values = new int[nbBytes];
+				for (int i=0; i<nbBytes; i++) {
+					values[i] = 0;
+				}
 			}
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

@@ -37,6 +37,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AddressingMode;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -205,29 +206,53 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	}
 	
 	protected void setImmediateOperand(EObject instruction,ImmediatOperand immediatOperand, EReference eReference, int min, int max) {
-		int value = ExpressionParser.parse(immediatOperand, eReference, instruction, min, max);
-		if (max <256) {
-			operandBytes = new int[] {(value&0xFF)};
-		} else if ( max<65536) {
-			operandBytes = new int[] {(value&0xFFFF)>>8, (value&0xFFFF)%256};
-		} else {
-			
+		int value;
+		try {
+			value = ExpressionParser.parse(immediatOperand, eReference, instruction, min, max);
+			if (max <256) {
+				operandBytes = new int[] {(value&0xFF)};
+			} else if ( max<65536) {
+				operandBytes = new int[] {(value&0xFFFF)>>8, (value&0xFFFF)%256};
+			} else {
+				
+			}
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 
 	protected void setDirectOperand(EObject instruction, DirectOperand directOperand, EReference eReference) {
-		int value = ExpressionParser.parse(directOperand, eReference, instruction); 
-		operandBytes = new int[] {value};
+		int value;
+		try {
+			value = ExpressionParser.parse(directOperand, eReference, instruction);
+			operandBytes = new int[] {value};
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 
 	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,EReference eReference) {
-		int value = ExpressionParser.parse(extendedOperand, eReference, instruction); 
-		operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF};
+		int value;
+		try {
+			value = ExpressionParser.parse(extendedOperand, eReference, instruction);
+			operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF};
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 
 	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,Map<String, AbstractAssemblyLine> labelsPositionObject, EReference eReference) {
-		int value = ExpressionParser.parse(extendedOperand, eReference, labelsPositionObject, instruction); 
-		operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF};
+		int value;
+		try {
+			value = ExpressionParser.parse(extendedOperand, eReference, labelsPositionObject, instruction);
+			operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF};
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 
 	protected void setIndexedAccumulatorMovingMode(AccumulatorMovingMode operand) {
@@ -347,7 +372,12 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		int offset = 0;
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
-			offset = ExpressionParser.parse(deplacement);
+			try {
+				offset = ExpressionParser.parse(deplacement);
+			} catch (UnresolvedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		if ((deplacement == null) || (offset == 0)) {
@@ -422,7 +452,12 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		int offset = 0;
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
-			offset = ExpressionParser.parse(deplacement);
+			try {
+				offset = ExpressionParser.parse(deplacement);
+			} catch (UnresolvedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		
 		if ((deplacement == null) || (offset == 0)) {
@@ -477,7 +512,12 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		int offset = 0;
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
-			offset = ExpressionParser.parse(deplacement);
+			try {
+				offset = ExpressionParser.parse(deplacement);
+			} catch (UnresolvedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			offset = 0;
 		}
@@ -509,7 +549,12 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		int offset = 0;
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
-			offset = ExpressionParser.parse(deplacement);
+			try {
+				offset = ExpressionParser.parse(deplacement);
+			} catch (UnresolvedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		} else {
 			offset = 0;
 		}
@@ -538,8 +583,14 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	}
 
 	protected void setExtendedIndirectOperand(EObject instruction, ExtendedIndirectOperand operand, EReference eReference) {
-		int value = ExpressionParser.parse(operand, eReference, instruction); 
-		operandBytes = new int[] {value/256, value%256};
+		int value;
+		try {
+			value = ExpressionParser.parse(operand, eReference, instruction);
+			operandBytes = new int[] {value/256, value%256};
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 	}
 
 //	@Inject @Extension GrammarAccessExtensions _grammarAccessExtensions;

@@ -143,6 +143,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcD
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.*;
 import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroAssembledElement;
 import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroDeclarationElement;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
@@ -253,11 +254,11 @@ public class AssemblerEngine {
 		clear();
 
 		AssemblerErrorManager.getInstance().clear();
-
+		EquSetManager.getInstance().clear();
+		
 		assembleParseEquSetDirectives(model);
 		assemblePass1(model);
 		assemblePass2(model);
-		
 	}
 	
 	private void assembleParseEquSetDirectives(Model model) {
@@ -276,6 +277,7 @@ public class AssemblerEngine {
 				}
 			}
 		}
+		EquSetManager.getInstance().resolveValues();
 	}
 
 	/**
@@ -1289,104 +1291,104 @@ public class AssemblerEngine {
 	 * @param instructionLine reference on the instruction line
 	 */
 	private void parseInstructionLinePass1(InstructionLine instructionLine) {
-		if (instructionLine.getInstruction() instanceof AbxInstruction) {
-			parse((AbxInstruction)instructionLine.getInstruction());
+		if (instructionLine.getInstruction() instanceof AbxInstruction abxInstruction) {
+			parse(abxInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof AdcInstruction) {
-			parse((AdcInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof AdcInstruction adcInstruction) {
+			parse(adcInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof AddInstruction) {
-			parse((AddInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof AddInstruction addInstruction) {
+			parse(addInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof AdddInstruction) {
-			parse((AdddInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof AdddInstruction adddInstruction) {
+			parse(adddInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof AndInstruction) {
-			parse((AndInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof AndInstruction andInstruction) {
+			parse(andInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof AndCCInstruction) {
-			parse((AndCCInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof AndCCInstruction andccInstruction) {
+			parse(andccInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof AslInstruction) {
-			parse((AslInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof AslInstruction aslInstruction) {
+			parse(aslInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof AsrInstruction) {
-			parse((AsrInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof AsrInstruction asrInstruction) {
+			parse(asrInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof BitInstruction) {
-			parse((BitInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BitInstruction bitInstruction) {
+			parse(bitInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof ClrInstruction) {
-			parse((ClrInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof ClrInstruction clrInstruction) {
+			parse(clrInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof CmpInstruction) {
-			parse((CmpInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof CmpInstruction cmpInstruction) {
+			parse(cmpInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof ComInstruction) {
-			parse((ComInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof ComInstruction comInstruction) {
+			parse(comInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof CwaiInstruction) {
-			parse((CwaiInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof CwaiInstruction cwaiInstruction) {
+			parse(cwaiInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof DaaInstruction) {
-			parse((DaaInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof DaaInstruction daaInstruction) {
+			parse(daaInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof DecInstruction) {
-			parse((DecInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof DecInstruction decInstruction) {
+			parse(decInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof EorInstruction) {
-			parse((EorInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof EorInstruction eorInstruction) {
+			parse(eorInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof ExgInstruction) {
-			parse((ExgInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof ExgInstruction exgInstruction) {
+			parse(exgInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof IncInstruction) {
-			parse((IncInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof IncInstruction incInstruction) {
+			parse(incInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof JmpInstruction) {
-			parse((JmpInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof JmpInstruction jmpInstruction) {
+			parse(jmpInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof JsrInstruction) {
-			parse((JsrInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof JsrInstruction jsrInstruction) {
+			parse(jsrInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof LdInstruction) {
-			parse((LdInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof LdInstruction ldInstruction) {
+			parse(ldInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof LeaInstruction) {
-			parse((LeaInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof LeaInstruction leaInstruction) {
+			parse(leaInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof LslInstruction) {
-			parse((LslInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof LslInstruction lslInstruction) {
+			parse(lslInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof LsrInstruction) {
-			parse((LsrInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof LsrInstruction lsrInstruction) {
+			parse(lsrInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof MulInstruction) {
-			parse((MulInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof MulInstruction mulInstruction) {
+			parse(mulInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof NegInstruction) {
-			parse((NegInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof NegInstruction negInstruction) {
+			parse(negInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof NopInstruction) {
-			parse((NopInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof NopInstruction nopInstruction) {
+			parse(nopInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof OrInstruction) {
-			parse((OrInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof OrInstruction orInstruction) {
+			parse(orInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof OrCCInstruction) {
-			parse((OrCCInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof OrCCInstruction orccInstruction) {
+			parse(orccInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof PshsInstruction) {
-			parse((PshsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof PshsInstruction pshsInstruction) {
+			parse(pshsInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof PshuInstruction) {
-			parse((PshuInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof PshuInstruction pshuInstruction) {
+			parse(pshuInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof PulsInstruction) {
-			parse((PulsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof PulsInstruction pulsInstruction) {
+			parse(pulsInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof PuluInstruction) {
-			parse((PuluInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof PuluInstruction puluInstruction) {
+			parse(puluInstruction);
 			
 		} else if (instructionLine.getInstruction() instanceof RolInstruction rolInstruction) {
 			parse(rolInstruction);
@@ -1406,90 +1408,90 @@ public class AssemblerEngine {
 		} else if (instructionLine.getInstruction() instanceof SexInstruction sexInstruction) {
 			parse(sexInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof StInstruction) {
-			parse((StInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof StInstruction stInstruction ) {
+			parse(stInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof SubInstruction) {
-			parse((SubInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof SubInstruction subInstruction) {
+			parse(subInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof SubdInstruction) {
-			parse((SubdInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof SubdInstruction subdInstruction) {
+			parse(subdInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof SwiInstruction) {
-			parse((SwiInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof SwiInstruction swiInstruction) {
+			parse(swiInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof Swi2Instruction) {
-			parse((Swi2Instruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof Swi2Instruction swi2Instruction) {
+			parse(swi2Instruction);
 			
-		} else if (instructionLine.getInstruction() instanceof Swi3Instruction) {
-			parse((Swi3Instruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof Swi3Instruction swi3Instruction) {
+			parse(swi3Instruction);
 			
-		} else if (instructionLine.getInstruction() instanceof SyncInstruction) {
-			parse((SyncInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof SyncInstruction syncInstruction) {
+			parse(syncInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof TfrInstruction) {
-			parse((TfrInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof TfrInstruction tfrInstruction) {
+			parse(tfrInstruction);
 				
-		} else if (instructionLine.getInstruction() instanceof TstInstruction) {
-			parse((TstInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof TstInstruction tstInstruction) {
+			parse(tstInstruction);
 				
 		// Start branch instruction
-		} else if (instructionLine.getInstruction() instanceof BccInstruction) {
-			parsePass1((BccInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BccInstruction bccINstruction) {
+			parsePass1(bccINstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BcsInstruction) {
-			parsePass1((BcsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BcsInstruction bcsInstruction) {
+			parsePass1(bcsInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BeqInstruction) {
-			parsePass1((BeqInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BeqInstruction beqInstruction) {
+			parsePass1(beqInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BgeInstruction) {
-			parsePass1((BgeInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BgeInstruction bgeInstruction) {
+			parsePass1(bgeInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BgtInstruction) {
-			parsePass1((BgtInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BgtInstruction bgtInstruction) {
+			parsePass1(bgtInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BhiInstruction) {
-			parsePass1((BhiInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BhiInstruction bhiInstruction) {
+			parsePass1(bhiInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BhsInstruction) {
-			parsePass1((BhsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BhsInstruction bhsInstruction) {
+			parsePass1(bhsInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BleInstruction) {
-			parsePass1((BleInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BleInstruction bleInstruction) {
+			parsePass1(bleInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BloInstruction) {
-			parsePass1((BloInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BloInstruction bloInstruction) {
+			parsePass1(bloInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BlsInstruction) {
-			parsePass1((BlsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BlsInstruction blsInstruction) {
+			parsePass1(blsInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BltInstruction) {
-			parsePass1((BltInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BltInstruction bltInstruction) {
+			parsePass1(bltInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BmiInstruction) {
-			parsePass1((BmiInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BmiInstruction bmiInstruction) {
+			parsePass1(bmiInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BneInstruction) {
-			parsePass1((BneInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BneInstruction bneInstruction) {
+			parsePass1(bneInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BplInstruction) {
-			parsePass1((BplInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BplInstruction bplInstruction) {
+			parsePass1(bplInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BraInstruction) {
-			parsePass1((BraInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BraInstruction braInstruction) {
+			parsePass1(braInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BrnInstruction) {
-			parsePass1((BrnInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BrnInstruction brnInstruction) {
+			parsePass1(brnInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BsrInstruction) {
-			parsePass1((BsrInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BsrInstruction bsrInstruction) {
+			parsePass1(bsrInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BvcInstruction) {
-			parsePass1((BvcInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BvcInstruction bvcInstruction) {
+			parsePass1(bvcInstruction);
 			
-		} else if (instructionLine.getInstruction() instanceof BvsInstruction) {
-			parsePass1((BvsInstruction)instructionLine.getInstruction());
+		} else if (instructionLine.getInstruction() instanceof BvsInstruction bvsInstruction) {
+			parsePass1(bvsInstruction);
 			
 		} else {
 			logger.log(Level.SEVERE,"Unknow instruction {0}" + instructionLine.getClass().getSimpleName());
@@ -3199,6 +3201,7 @@ public class AssemblerEngine {
 	 * 
 	 * @param directiveLine reference on the directive line
 	 * @return <b>true</b> stop the assembler,<b>false</b> otherwise continue 
+	 * @throws UnresolvedException 
 	 */
 	private boolean parseDirectiveLine(DirectiveLine directiveLine) {
 		boolean needStop = false;
@@ -3373,9 +3376,6 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(regDirective, line);
 		currentPcValue += line.getPcIncrement();
-		
-		EquSetManager equSetManager = EquSetManager.getInstance();
-		line.setValue(equSetManager.getValue(line.getLabel()));
 	}
 
 	/**
@@ -3505,9 +3505,6 @@ public class AssemblerEngine {
 		line.parse(setDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(setDirective, line);
-
-		EquSetManager equSetManager = EquSetManager.getInstance();
-		line.setValue(equSetManager.getValue(line.getLabel()));
 	}
 
 	/**
@@ -3522,9 +3519,6 @@ public class AssemblerEngine {
 		line.parse(equDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(equDirective, line);
-
-		EquSetManager equSetManager = EquSetManager.getInstance();
-		line.setValue(equSetManager.getValue(line.getLabel()));
 	}
 
 	/**
@@ -3533,10 +3527,15 @@ public class AssemblerEngine {
 	 * isn't duplicate
 	 * 
 	 * @param orgDirective reference on the ORG directive
+	 * @throws UnresolvedException 
 	 */
 	private void parseDirective(OrgDirective directive) {
-		int pcValue = ExpressionParser.parse(directive);
-		currentPcValue = pcValue;
+		try {
+			int pcValue = ExpressionParser.parse(directive);
+			currentPcValue = pcValue;
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+		}
 		
 		AssembledOrgDirectiveLine line = new AssembledOrgDirectiveLine();
 		line.parse(directive, currentPcValue, lineNumber);

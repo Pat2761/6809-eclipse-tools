@@ -8,7 +8,6 @@ import org.eclipse.xtext.formatting2.IFormattableDocument;
 
 @SuppressWarnings("all")
 public class AssemblerFormatter extends AbstractFormatter2 {
-  @Override
   public void format(final Object obj, final IFormattableDocument document) {
   }
 }

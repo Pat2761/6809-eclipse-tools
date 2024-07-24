@@ -21,6 +21,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
@@ -55,14 +56,20 @@ public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.directive = directive;
 		
 		
-		int nbBytes = ExpressionParser.resolveExpression(directive.getNumber().getOperand(), directive, AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER);
-		int value = ExpressionParser.resolveExpression(directive.getValue().getOperand(), directive, AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE);
-		if (nbBytes < 0) {
-			nbBytes = 0;
-		}
-		values = new int[nbBytes];
-		for (int i=0; i<nbBytes; i++) {
-			values[i] = value;
+		int nbBytes;
+		try {
+			nbBytes = ExpressionParser.resolveExpression(directive.getNumber().getOperand(), directive, AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER);
+			int value = ExpressionParser.resolveExpression(directive.getValue().getOperand(), directive, AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE);
+			if (nbBytes < 0) {
+				nbBytes = 0;
+			}
+			values = new int[nbBytes];
+			for (int i=0; i<nbBytes; i++) {
+				values[i] = value;
+			}
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

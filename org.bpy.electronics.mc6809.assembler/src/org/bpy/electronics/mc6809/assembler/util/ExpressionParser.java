@@ -62,7 +62,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedExceptionDescriptor;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.eclipse.emf.ecore.EObject;
@@ -97,8 +100,9 @@ public class ExpressionParser {
 	 *  
 	 *  @param fdbDirective reference on the FDB directive
 	 *  @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static List<Integer> parse(FdbDirective fdbDirective) {
+	public static List<Integer> parse(FdbDirective fdbDirective) throws UnresolvedException {
 		assemblyLine = fdbDirective;
 		eReference = AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND;
 		return parse(fdbDirective.getOperand()); 
@@ -109,14 +113,15 @@ public class ExpressionParser {
 	 *  
 	 *  @param fcbDirective reference on the FCB directive
 	 *  @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static List<Integer> parse(FcbDirective fcbDirective) {
+	public static List<Integer> parse(FcbDirective fcbDirective) throws UnresolvedException {
 		assemblyLine = fcbDirective;
 		eReference = AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND;
 		return parse(fcbDirective.getOperand()); 
 	}
 
-	private static List<Integer> parse(ListOfExpression operand) {
+	private static List<Integer> parse(ListOfExpression operand) throws UnresolvedException {
 		List<Integer> listValues = new ArrayList<>();
 		if (operand != null) {
 			Expression expression = operand.getExpression();
@@ -146,8 +151,9 @@ public class ExpressionParser {
 	 * @param min the minimal value for the this mode
 	 * @param max the maximal value for the this mode
 	 * @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(ImmediatOperand immediatOperand, EReference instructionReference,EObject instruction, int min, int max) {
+	public static int parse(ImmediatOperand immediatOperand, EReference instructionReference,EObject instruction, int min, int max) throws UnresolvedException {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
@@ -185,8 +191,9 @@ public class ExpressionParser {
 	 * @param min the minimal value for the this mode
 	 * @param max the maximal value for the this mode
 	 * @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(DirectOperand directOperand, EReference instructionReference,EObject instruction) {
+	public static int parse(DirectOperand directOperand, EReference instructionReference,EObject instruction) throws UnresolvedException {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
@@ -223,8 +230,9 @@ public class ExpressionParser {
 	 * @param instructionReference used in a case of error detection 
 	 * @param instruction reference on the instruction
 	 * @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(ExtendedOperand extendedOperand, EReference instructionReference, EObject instruction) {
+	public static int parse(ExtendedOperand extendedOperand, EReference instructionReference, EObject instruction) throws UnresolvedException {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
@@ -263,9 +271,10 @@ public class ExpressionParser {
 	 * @param labelsPositionObject list of label and their values
 	 * @param instruction reference on the instruction
 	 * @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
 	public static int parse(ExtendedOperand extendedOperand, EReference instructionReference,
-			Map<String, AbstractAssemblyLine> labelsPositionObject, EObject instruction) {
+			Map<String, AbstractAssemblyLine> labelsPositionObject, EObject instruction) throws UnresolvedException {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
@@ -303,8 +312,9 @@ public class ExpressionParser {
 	 * @param instructionReference used in a case of error detection 
 	 * @param instruction reference on the instruction
 	 * @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(ExtendedIndirectOperand extendedOperand, EReference instructionReference, EObject instruction) {
+	public static int parse(ExtendedIndirectOperand extendedOperand, EReference instructionReference, EObject instruction) throws UnresolvedException {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
@@ -340,8 +350,9 @@ public class ExpressionParser {
 	 * @param equDirective reference on the EQU directive
 	 * @param equDirectiveOperand used in a case of error detection 
 	 * @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(EquDirective equDirective) {
+	public static int parse(EquDirective equDirective) throws UnresolvedException {
 		
 		eReference = AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND;
 		assemblyLine = equDirective;
@@ -359,8 +370,9 @@ public class ExpressionParser {
 	 *  
 	 *  @param setDirective reference on the SET directive
 	 *  @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(SetDirective setDirective) {
+	public static int parse(SetDirective setDirective) throws UnresolvedException {
 		
 		eReference = AssemblerPackage.Literals.SET_DIRECTIVE__OPERAND;
 		assemblyLine = setDirective;
@@ -378,8 +390,9 @@ public class ExpressionParser {
 	 *  
 	 *  @param orgDirective reference on the ORG directive
 	 *  @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(OrgDirective orgDirective) {
+	public static int parse(OrgDirective orgDirective) throws UnresolvedException {
 		assemblyLine = orgDirective;
 		eReference = AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND;
 
@@ -396,8 +409,9 @@ public class ExpressionParser {
 	 *  
 	 *  @param pagDirective reference on the PAG directive
 	 *  @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(PagDirective pagDirective) {
+	public static int parse(PagDirective pagDirective) throws UnresolvedException {
 		
 		assemblyLine = pagDirective;
 		eReference = AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND;
@@ -415,8 +429,9 @@ public class ExpressionParser {
 	 *  
 	 *  @param rmbDirective reference on the RMB directive
 	 *  @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(RmbDirective rmbDirective) {
+	public static int parse(RmbDirective rmbDirective) throws UnresolvedException {
 		assemblyLine = rmbDirective;
 		eReference = AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND;
 		if (rmbDirective.getOperand() != null && rmbDirective.getOperand().getOperand() != null) {
@@ -432,8 +447,9 @@ public class ExpressionParser {
 	 *  
 	 *  @param bszDirective reference on the BSZ directive
 	 *  @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(BszDirective bszDirective) {
+	public static int parse(BszDirective bszDirective) throws UnresolvedException {
 		assemblyLine = bszDirective;
 		eReference = AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND;
 		if (bszDirective.getOperand() != null && bszDirective.getOperand().getOperand() != null) {
@@ -449,8 +465,9 @@ public class ExpressionParser {
 	 *  
 	 *  @param directive reference on the SETDP directive
 	 *  @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int parse(SetDPDirective directive) {
+	public static int parse(SetDPDirective directive) throws UnresolvedException {
 		assemblyLine = directive;
 		eReference = AssemblerPackage.Literals.SET_DP_DIRECTIVE__OPERAND;
 		if (directive.getOperand() != null && directive.getOperand().getOperand() != null) {
@@ -466,8 +483,9 @@ public class ExpressionParser {
 	 *  
 	 *  @param spcDirective reference on the SPC directive
 	 *  @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int getSpaceCount(SpcDirective spcDirective) {
+	public static int getSpaceCount(SpcDirective spcDirective) throws UnresolvedException {
 		assemblyLine = spcDirective;
 		eReference = AssemblerPackage.Literals.SPC_DIRECTIVE__SPACE_COUNT;
 		Expression spaceCount = spcDirective.getSpaceCount();
@@ -483,8 +501,9 @@ public class ExpressionParser {
 	 *  
 	 *  @param spcDirective reference on the SPC directive
 	 *  @return value of the operand 
+	 * @throws UnresolvedException 
 	 */
-	public static int getKeepCount(SpcDirective spcDirective) {
+	public static int getKeepCount(SpcDirective spcDirective) throws UnresolvedException {
 		assemblyLine = spcDirective;
 		eReference = AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT;
 		Expression keepCount = spcDirective.getKeepCount();
@@ -502,8 +521,9 @@ public class ExpressionParser {
 	 * @param directive reference on the directive for the error
 	 * @param currentReference reference on the EMF reference for the error
 	 * @return value of the expression
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Expression expression, FillDirective directive, EReference currentReference) {
+	public static int resolveExpression(Expression expression, FillDirective directive, EReference currentReference) throws UnresolvedException {
 		assemblyLine = directive;
 		eReference = currentReference;
 		return resolveExpression(expression);
@@ -514,8 +534,9 @@ public class ExpressionParser {
 	 * 
 	 * @param expression reference on the expression
 	 * @return value of the expression
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Expression expression) {
+	public static int resolveExpression(Expression expression) throws UnresolvedException {
 		
 		if (expression instanceof Multiplication) {
 			Multiplication multiplication = (Multiplication)expression;
@@ -592,7 +613,7 @@ public class ExpressionParser {
 		}
 	}
 
-	public static int parse(NumericalValue deplacement) {
+	public static int parse(NumericalValue deplacement) throws UnresolvedException {
 		EObject node = deplacement.getValue();
 		if (node instanceof DecimalValue) {
 			return resolveDecimalValue((DecimalValue)node);
@@ -640,36 +661,39 @@ public class ExpressionParser {
 	 * 
 	 * @param value Identifier value to convert
 	 * @return decimal value of the binary expression
+	 * @throws UnresolvedException 
 	 */
-	private static int resolveIdentifierValue(IdentifierValue labelValue) {
-		Integer value = AssemblerEngine.getInstance().getEquSetLabelValue(labelValue.getValue());
+	private static int resolveIdentifierValue(IdentifierValue labelValue) throws UnresolvedException {
+		Integer value = EquSetManager.getInstance().getValue(labelValue.getValue());
 		
 		if (value != null) {
 			return value.intValue();
 		} else {
+			UnresolvedExceptionDescriptor descriptor = new UnresolvedExceptionDescriptor(
+					"Can't find " + labelValue.getValue() + " definition", eReference);
 			
-			if (labelsPosition != null) {
-				AbstractAssemblyLine targetAssemblyLine = labelsPosition.get(labelValue.getValue());
-				if (targetAssemblyLine == null) {
-					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-							"Can't find " + labelValue.getValue() + " definition", 
-							eReference, 
-							EXPRESSION_ERROR);
-					AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
-					
-				} else {
-					return targetAssemblyLine.getPcAddress();
-				}
-			} else {
-				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-						"Can't find " + labelValue.getValue() + " definition", 
-						eReference, 
-						EXPRESSION_ERROR);
-				AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
-			}
+			throw new UnresolvedException(descriptor);
+//			if (labelsPosition != null) {
+//				AbstractAssemblyLine targetAssemblyLine = labelsPosition.get(labelValue.getValue());
+//				if (targetAssemblyLine == null) {
+//					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+//							"Can't find " + labelValue.getValue() + " definition", 
+//							eReference, 
+//							EXPRESSION_ERROR);
+//					AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+//					
+//				} else {
+//					return targetAssemblyLine.getPcAddress();
+//				}
+//			} else {
+//				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+//						"Can't find " + labelValue.getValue() + " definition", 
+//						eReference, 
+//						EXPRESSION_ERROR);
+//				AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+//			}
 			
 		}
-		return 0;
 	}
 
 	/**
@@ -725,8 +749,9 @@ public class ExpressionParser {
 	 * 
 	 * @param multiplication reference on the multiplication expression
 	 * @return a decimal value of the multiplication
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Multiplication multiplication) {
+	public static int resolveExpression(Multiplication multiplication) throws UnresolvedException {
 		int left=1;
 		int right=1;
 		
@@ -744,8 +769,9 @@ public class ExpressionParser {
 	 * 
 	 * @param division reference on the division expression
 	 * @return a decimal value of the division
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Division division) {
+	public static int resolveExpression(Division division) throws UnresolvedException {
 		int left=1;
 		int right=1;
 		
@@ -771,8 +797,9 @@ public class ExpressionParser {
 	 * 
 	 * @param addition reference on the addition expression
 	 * @return  a decimal value of the addition
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Addition addition) {
+	public static int resolveExpression(Addition addition) throws UnresolvedException {
 		int left=1;
 		int right=1;
 		
@@ -790,8 +817,9 @@ public class ExpressionParser {
 	 * 
 	 * @param substraction reference on the addition expression
 	 * @return  a decimal value of the addition
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Substraction substraction) {
+	public static int resolveExpression(Substraction substraction) throws UnresolvedException {
 		int left=0;
 		int right=0;
 		
@@ -809,8 +837,9 @@ public class ExpressionParser {
 	 * 
 	 * @param modulo reference on the addition expression
 	 * @return  a decimal value of the addition
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Modulo modulo) {
+	public static int resolveExpression(Modulo modulo) throws UnresolvedException {
 		int left=0;
 		int right=0;
 		
@@ -837,8 +866,9 @@ public class ExpressionParser {
 	 * 
 	 * @param and reference on the addition expression
 	 * @return  a decimal value of the logical AND
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(And and) {
+	public static int resolveExpression(And and) throws UnresolvedException {
 		int left=0xFFFF;
 		int right=0xFFFF;
 		
@@ -856,8 +886,9 @@ public class ExpressionParser {
 	 * 
 	 * @param or reference on the addition expression
 	 * @return  a decimal value of the logical AND
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Or or) {
+	public static int resolveExpression(Or or) throws UnresolvedException {
 		int left=0;
 		int right=0;
 		
@@ -875,8 +906,9 @@ public class ExpressionParser {
 	 * 
 	 * @param xor reference on the exclusive OR expression
 	 * @return  a decimal value of the logical XOR
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Xor xor) {
+	public static int resolveExpression(Xor xor) throws UnresolvedException {
 		int left=0;
 		int right=0;
 		
@@ -894,8 +926,9 @@ public class ExpressionParser {
 	 * 
 	 * @param not reference on the exclusive NOT expression
 	 * @return  a decimal value of the logical NOT
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(Not not) {
+	public static int resolveExpression(Not not) throws UnresolvedException {
 		
 		int notValue = 0;
 		
@@ -912,8 +945,9 @@ public class ExpressionParser {
 	 * 
 	 * @param leftShift reference on the left shift expression
 	 * @return  a decimal value of the logical left shift
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(LeftShift leftShift) {
+	public static int resolveExpression(LeftShift leftShift) throws UnresolvedException {
 		int left=0;
 		int right=1;
 		
@@ -931,8 +965,9 @@ public class ExpressionParser {
 	 * 
 	 * @param leftShift reference on the left shift expression
 	 * @return  a decimal value of the logical left shift
+	 * @throws UnresolvedException 
 	 */
-	public static int resolveExpression(RightShift rightShift) {
+	public static int resolveExpression(RightShift rightShift) throws UnresolvedException {
 		int left=0;
 		int right=1;
 		

@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
@@ -54,8 +55,6 @@ public class AssembledSetDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.label = CommandUtil.getLabel(directive);
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
-
-		value = ExpressionParser.parse(directive);
 	}
 
 	public SetDirective getDirective() {

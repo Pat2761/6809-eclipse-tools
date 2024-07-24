@@ -50,6 +50,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledPagD
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRmbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSetDPDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledSpcDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.xtext.validation.Check;
 import org.eclipse.xtext.validation.EValidatorRegistrar;
@@ -239,42 +240,48 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	@Check
 	public void checkFillConstraints(FillDirective fillDirective) {
 
-		int valueToSet = CommandUtil.getByteToSet(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE);
-		int quantity = CommandUtil.getQuantity(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER);
-		if (valueToSet > 255) {
-			error("FILL maximum value to set is 255",
-					AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE,
-					INVALID_RANGE);
-		} else if (valueToSet < -128) {
-			error("FILL value minimum value is -128",
-					AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE,
-					INVALID_RANGE);
-		} 		
-			
-		if (quantity < 0) {
-			error("FILL value occurrence can't be negative",
-					AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
-					INVALID_RANGE);
-		} else if (quantity == 0) {
-			warning("FILL occurrence can't be null",
-					AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
-					INVALID_RANGE);
-		} else if (quantity > 65535) {
-			error("FILL value maximum value is $FFFF",
-					AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
-					INVALID_RANGE);
-		}
-
-		// Management of errors after code analyse 
-		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(fillDirective);
-		for (AssemblerProblemManagerDescription error : errors) {
-			error(error.getMessage(), error.getFeature(), error.getIssueData());
-		}
-
-		// Management of warnings after code analyse 
-		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(fillDirective);
-		for (AssemblerProblemManagerDescription warning : warnings) {
-			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		int valueToSet;
+		try {
+			valueToSet = CommandUtil.getByteToSet(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE);
+			int quantity = CommandUtil.getQuantity(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER);
+			if (valueToSet > 255) {
+				error("FILL maximum value to set is 255",
+						AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE,
+						INVALID_RANGE);
+			} else if (valueToSet < -128) {
+				error("FILL value minimum value is -128",
+						AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE,
+						INVALID_RANGE);
+			} 		
+				
+			if (quantity < 0) {
+				error("FILL value occurrence can't be negative",
+						AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
+						INVALID_RANGE);
+			} else if (quantity == 0) {
+				warning("FILL occurrence can't be null",
+						AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
+						INVALID_RANGE);
+			} else if (quantity > 65535) {
+				error("FILL value maximum value is $FFFF",
+						AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
+						INVALID_RANGE);
+			}
+	
+			// Management of errors after code analyse 
+			List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(fillDirective);
+			for (AssemblerProblemManagerDescription error : errors) {
+				error(error.getMessage(), error.getFeature(), error.getIssueData());
+			}
+	
+			// Management of warnings after code analyse 
+			List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(fillDirective);
+			for (AssemblerProblemManagerDescription warning : warnings) {
+				warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+			}
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 
 	}

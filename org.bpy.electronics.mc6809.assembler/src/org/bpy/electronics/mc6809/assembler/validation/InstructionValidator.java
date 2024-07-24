@@ -128,6 +128,8 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 	public static final String UNRECOGNIZED_INSTRUCTION = "unRecognizedInstruction";
 	/** String marker for the error manager in case of duplicate label */
 	public static final String DUPLICATE_LABEL = "duplicateLabel";
+	/** String marker for the error manager in case of unresolvedError */
+	public static final String EXPRESSION_ERROR = "expressionError";
 
 	/**
 	 * Check duplicate labels

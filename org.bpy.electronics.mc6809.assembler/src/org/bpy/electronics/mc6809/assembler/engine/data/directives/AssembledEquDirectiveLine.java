@@ -52,8 +52,6 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
 		this.directive = directive;
-		
-		value = ExpressionParser.parse(directive);
 	}
 
 	public EquDirective getDirective() {

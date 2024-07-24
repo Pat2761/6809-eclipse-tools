@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
@@ -29,7 +30,10 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
@@ -120,7 +124,7 @@ public class EquSetManager {
 	private static EquSetManager eInstance;
 	
 	public EquSetManager() {
-		equContainer = new HashMap<>();
+		clear();
 	}
 
 	public static EquSetManager getInstance() {
@@ -128,6 +132,10 @@ public class EquSetManager {
 			eInstance = new EquSetManager();
 		}
 		return eInstance;
+	}
+
+	public void clear() {
+		equContainer = new HashMap<>();
 	}
 	
 	public void addDirective(EquDirective equDirective) {
@@ -212,7 +220,7 @@ public class EquSetManager {
 				setDefinition.setExpression(setDirective.getOperand());
 				setDefinition.setExpressionResolved(false);
 				setDefinition.setEquType(EquDefinitionContainer.SET_DEFINITION);
-
+				
 				definitions.add(setDefinition);
 			}
  			
@@ -238,6 +246,65 @@ public class EquSetManager {
 	}
 	
 	public Integer getValue(String label) {
+		if (equContainer.containsKey(label)) {
+			 List<EquDefinitionContainer> containers = equContainer.get(label);
+			 EquDefinitionContainer container = containers.get(0);
+			 if (container.isExpressionResolved()) {
+				 return container.getValue();
+			 } else {
+				 resolveValue(container);
+				 if (container.isExpressionResolved()) {
+					 return container.getValue();
+				 }
+			 }
+		}
 		return null;
+	}
+
+	public void resolveValues() {
+		for (Entry<String, List<EquDefinitionContainer>> entry : equContainer.entrySet()) {
+			resolveValue(entry.getKey());
+		}
+ 	}
+
+	public void resolveValue(String key) {
+		List<EquDefinitionContainer> values = equContainer.get(key);
+		for ( EquDefinitionContainer cstDefinition : values) {
+			if (!cstDefinition.isExpressionResolved()) {
+			
+				if (cstDefinition.getEquType() == EquDefinitionContainer.EQU_DEFINITION) {
+					resolveValue(cstDefinition); 
+					
+				} else if (cstDefinition.getEquType() == EquDefinitionContainer.SET_DEFINITION) {
+					resolveValue((SetDirective)cstDefinition.getDirective()); 
+					
+				} if (cstDefinition.getEquType() == EquDefinitionContainer.REG_DEFINITION) {
+					resolveValue((RegDirective)cstDefinition.getDirective()); 
+				}
+			}
+		}
+	}
+
+	private void resolveValue(RegDirective directive) {
+		// TODO Auto-generated method stub
+	}
+
+	private void resolveValue(SetDirective directive) {
+		// TODO Auto-generated method stub
+	}
+
+	private void resolveValue(EquDefinitionContainer container) {
+		EquDirective directive = (EquDirective)container.getDirective();
+		try {
+			int value = ExpressionParser.parse(directive);
+			container.setValue(value);
+			container.setExpressionResolved(true);
+		} catch (UnresolvedException ex) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					ex.getDescriptor().getMessage(), 
+					ex.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(container.getDirective(), errorDescription);
+		}
 	}
 }

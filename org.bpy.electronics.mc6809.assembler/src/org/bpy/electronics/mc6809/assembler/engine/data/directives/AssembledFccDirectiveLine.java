@@ -26,6 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -73,15 +74,21 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 					parseValues.add(bytes[i]);
 				}
 			} else if (parameter instanceof Expression expression) {
-				int expressionValue = ExpressionParser.resolveExpression(expression.getOperand());
-				if ((expressionValue&0xFFFFF) != 0) {
-					AssemblerWarningDescription warningDescription = new AssemblerWarningDescription("Overflow error, Data may be lost",
-							AssemblerPackage.Literals.FCC_DIRECTIVE__PARAMETERS,
-							InstructionValidator.OVERFLOW_ERROR);
-					AssemblerErrorManager.getInstance().addWarning(directive, warningDescription);
+				int expressionValue;
+				try {
+					expressionValue = ExpressionParser.resolveExpression(expression.getOperand());
+					if ((expressionValue&0xFFFFF) != 0) {
+						AssemblerWarningDescription warningDescription = new AssemblerWarningDescription("Overflow error, Data may be lost",
+								AssemblerPackage.Literals.FCC_DIRECTIVE__PARAMETERS,
+								InstructionValidator.OVERFLOW_ERROR);
+						AssemblerErrorManager.getInstance().addWarning(directive, warningDescription);
 
+					}
+					parseValues.add((byte)(expressionValue&0xFF));
+				} catch (UnresolvedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}
-				parseValues.add((byte)(expressionValue&0xFF));
 			} else {
 				
 			}

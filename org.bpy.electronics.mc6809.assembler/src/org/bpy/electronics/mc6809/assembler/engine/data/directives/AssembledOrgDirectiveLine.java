@@ -21,6 +21,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
@@ -55,7 +56,12 @@ public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.directive = directive;
 		this.comment = ((DirectiveLine)directive.eContainer()).getComment();
 		
-		value = ExpressionParser.parse(directive);
+		try {
+			value = ExpressionParser.parse(directive);
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public OrgDirective getDirective() {

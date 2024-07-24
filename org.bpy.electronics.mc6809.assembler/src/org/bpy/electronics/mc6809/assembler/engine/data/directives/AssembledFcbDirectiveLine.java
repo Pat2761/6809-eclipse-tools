@@ -22,6 +22,7 @@ import java.util.List;
 
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 
@@ -55,10 +56,16 @@ public class AssembledFcbDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
 
-		List<Integer> listValues = ExpressionParser.parse(directive);
-		values = new int[listValues.size()];
-		for (int i=0; i<listValues.size(); i++) {
-			values[i] = listValues.get(i);	
+		List<Integer> listValues;
+		try {
+			listValues = ExpressionParser.parse(directive);
+			values = new int[listValues.size()];
+			for (int i=0; i<listValues.size(); i++) {
+				values[i] = listValues.get(i);	
+			}
+		} catch (UnresolvedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 

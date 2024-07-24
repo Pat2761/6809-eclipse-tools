@@ -35,6 +35,7 @@ import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.xbase.lib.Extension;
@@ -514,7 +515,7 @@ public class TestEquDirective {
 	public void testWithDuplicateLabel() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; test EQU with duplicate label\n");
-		strBuilder.append("EquLabel 	    EQU    	100 \n");
+		strBuilder.append("EquLabel 	      EQU    	100 \n");
 		strBuilder.append("EquLabel			EQU		200\n");
 
 		try {
@@ -536,7 +537,7 @@ public class TestEquDirective {
 	public void testWithSETDuplicateLabel() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; test EQU reused label\n");
-		strBuilder.append("EquLabel 	    SET    	100 \n");
+		strBuilder.append("EquLabel 	      SET    	100 \n");
 		strBuilder.append("EquLabel			EQU		200\n");
 
 		try {
@@ -816,8 +817,8 @@ public class TestEquDirective {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
-		strBuilder.append("TOTO	       	EQU    	10*Deux 		; Toto vaudra $2000\n");
-		strBuilder.append("										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+		strBuilder.append("TOTO	       	EQU    	10*Deux 			; Toto vaudra $2000\n");
+		strBuilder.append("													; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -840,7 +841,7 @@ public class TestEquDirective {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
 		strBuilder.append("TOTO	       	EQU    	%01111211 		; Toto vaudra $2000\n");
-		strBuilder.append("										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+		strBuilder.append("			   									; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -863,8 +864,8 @@ public class TestEquDirective {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
-		strBuilder.append("TOTO	       	EQU    	@128	 		; Toto vaudra $2000\n");
-		strBuilder.append("										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+		strBuilder.append("TOTO	       	EQU    	@128   	 		; Toto vaudra $2000\n");
+		strBuilder.append("						         				; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -874,6 +875,59 @@ public class TestEquDirective {
 			validationHelper.assertIssue(result.eResource(),AssemblerPackage.Literals.OCTAL_VALUE,
 				AssemblerValidator.INVALID_FIGURE,111,3,Severity.ERROR, 
 				"8 is invalid in octal value");
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
+	}
+
+	/**
+	 * Check EQU with label before
+	 */
+	@Test 
+	public void testEquWithLabelBefore() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
+		strBuilder.append("DEUX	       	EQU    	2        	 	; 2\n");
+		strBuilder.append("TEN 	       	EQU    	5*DEUX  	 		; Toto vaudra 10\n");
+		strBuilder.append("						         				; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoIssues(result);
+			
+			Assert.assertEquals("Check DEUX", 2, EquSetManager.getInstance().getValue("DEUX").intValue());
+			Assert.assertEquals("Check TEN", 10, EquSetManager.getInstance().getValue("TEN").intValue());
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
+	}
+
+	/**
+	 * Check EQU with label after
+	 */
+	@Test 
+	public void testEquWithLabelAfter() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
+		strBuilder.append("TEN 	       	EQU    	5*DEUX  	 		; Toto vaudra 10\n");
+		strBuilder.append(" 	       		NOP    			  	 		\n");
+		strBuilder.append("DEUX	       	EQU    	2        	 	; 2\n");
+		strBuilder.append("						         				; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+		
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoIssues(result);
+
+			Assert.assertEquals("Check DEUX", 2, EquSetManager.getInstance().getValue("DEUX").intValue());
+			Assert.assertEquals("Check TEN", 10, EquSetManager.getInstance().getValue("TEN").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}

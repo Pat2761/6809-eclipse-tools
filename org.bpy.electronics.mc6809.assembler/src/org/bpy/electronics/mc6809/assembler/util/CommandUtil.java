@@ -110,6 +110,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 
@@ -2085,12 +2086,12 @@ public class CommandUtil {
 		return getComment((InstructionLine)instruction.eContainer());
 	}
 
-	public static int getByteToSet(FillDirective fillDirective, EReference currentReference) {
+	public static int getByteToSet(FillDirective fillDirective, EReference currentReference) throws UnresolvedException {
 		Expression value = fillDirective.getValue().getOperand();
 		return ExpressionParser.resolveExpression(value, fillDirective, currentReference);
 	}
 
-	public static int getQuantity(FillDirective fillDirective, EReference currentReference) {
+	public static int getQuantity(FillDirective fillDirective, EReference currentReference) throws UnresolvedException {
 		Expression value = fillDirective.getNumber().getOperand();
 		return ExpressionParser.resolveExpression(value, fillDirective, currentReference);
 	}
