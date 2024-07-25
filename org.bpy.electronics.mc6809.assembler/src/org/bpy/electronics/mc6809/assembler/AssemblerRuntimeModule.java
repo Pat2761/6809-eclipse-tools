@@ -3,9 +3,18 @@
  */
 package org.bpy.electronics.mc6809.assembler;
 
+import org.eclipse.xtext.validation.ConfigurableIssueCodesProvider;
+import org.eclipse.xtext.xbase.validation.XbaseConfigurableIssueCodes;
 
 /**
  * Use this class to register components to be used at runtime / without the Equinox extension registry.
  */
+@SuppressWarnings("restriction")
 public class AssemblerRuntimeModule extends AbstractAssemblerRuntimeModule {
+
+	// contributed by org.eclipse.xtext.xtext.generator.validation.ValidatorFragment2
+	public Class<? extends ConfigurableIssueCodesProvider> bindConfigurableIssueCodesProvider() {
+		return XbaseConfigurableIssueCodes.class;
+	}
+
 }

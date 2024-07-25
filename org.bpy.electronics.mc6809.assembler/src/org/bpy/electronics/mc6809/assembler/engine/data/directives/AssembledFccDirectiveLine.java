@@ -25,7 +25,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StringValue;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -86,8 +85,11 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 					}
 					parseValues.add((byte)(expressionValue&0xFF));
 				} catch (UnresolvedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+							e.getDescriptor().getMessage(), 
+							e.getDescriptor().getReference(), 
+							InstructionValidator.EXPRESSION_ERROR);
+					AssemblerErrorManager.getInstance().addProblem(directive, errorDescription);
 				}
 			} else {
 				

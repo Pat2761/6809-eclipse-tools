@@ -240,10 +240,26 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	@Check
 	public void checkFillConstraints(FillDirective fillDirective) {
 
-		int valueToSet;
-		try {
-			valueToSet = CommandUtil.getByteToSet(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE);
-			int quantity = CommandUtil.getQuantity(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER);
+		int valueToSet=0;
+			try {
+				valueToSet = CommandUtil.getByteToSet(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE);
+			} catch (UnresolvedException e) {
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						e.getDescriptor().getMessage(), 
+						e.getDescriptor().getReference(), 
+						InstructionValidator.EXPRESSION_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(fillDirective, errorDescription);
+			}
+			int quantity=0;
+			try {
+				quantity = CommandUtil.getQuantity(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER);
+			} catch (UnresolvedException e) {
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						e.getDescriptor().getMessage(), 
+						e.getDescriptor().getReference(), 
+						InstructionValidator.EXPRESSION_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(fillDirective, errorDescription);
+			}
 			if (valueToSet > 255) {
 				error("FILL maximum value to set is 255",
 						AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE,
@@ -279,10 +295,6 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 			for (AssemblerProblemManagerDescription warning : warnings) {
 				warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
 			}
-		} catch (UnresolvedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 
 	}
 

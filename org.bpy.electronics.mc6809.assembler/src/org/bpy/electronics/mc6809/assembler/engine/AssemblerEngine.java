@@ -68,6 +68,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
@@ -127,6 +128,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.comment.AssembledLabelLi
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledBszDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledEndDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledEquDirectiveLine;
+import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFailDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFcbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFccDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFdbDirectiveLine;
@@ -277,7 +279,6 @@ public class AssemblerEngine {
 				}
 			}
 		}
-		EquSetManager.getInstance().resolveValues();
 	}
 
 	/**
@@ -3206,76 +3207,80 @@ public class AssemblerEngine {
 	private boolean parseDirectiveLine(DirectiveLine directiveLine) {
 		boolean needStop = false;
 		
-		if (directiveLine.getDirective() instanceof OrgDirective) {
-			OrgDirective orgDirective = (OrgDirective)directiveLine.getDirective();
+		if (directiveLine.getDirective() instanceof OrgDirective orgDirective) {
 			parseDirective(orgDirective);
 		
-		} else if (directiveLine.getDirective() instanceof EquDirective) {
-			EquDirective equDirective = (EquDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof EquDirective equDirective) {
 			parseDirective(equDirective);
 		
-		} else if (directiveLine.getDirective() instanceof SetDirective) {
-			SetDirective setDirective = (SetDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof SetDirective setDirective) {
 			parseDirective(setDirective);
 		
-		} else if (directiveLine.getDirective() instanceof BszDirective) {
-			BszDirective bszDirective = (BszDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof BszDirective bszDirective) {
 			parseDirective(bszDirective);
 		
-		} else if (directiveLine.getDirective() instanceof EndDirective) {
-			EndDirective endDirective = (EndDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof EndDirective endDirective) {
 			parseDirective(endDirective);
 			needStop = true;
 			
-		} else if (directiveLine.getDirective() instanceof FillDirective) {
-			FillDirective fillDirective = (FillDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof FillDirective fillDirective) {
 			parseDirective(fillDirective);
 
-		} else if (directiveLine.getDirective() instanceof OptDirective) {
-			OptDirective optDirective = (OptDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof OptDirective optDirective) {
 			parseDirective(optDirective);
 
-		} else if (directiveLine.getDirective() instanceof PagDirective) {
-			PagDirective pagDirective = (PagDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof PagDirective pagDirective) {
 			parseDirective(pagDirective);
 
-		} else if (directiveLine.getDirective() instanceof NamDirective) {
-			NamDirective namDirective = (NamDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof NamDirective namDirective) {
 			parseDirective(namDirective);
 
-		} else if (directiveLine.getDirective() instanceof SpcDirective) {
-			SpcDirective spcDirective = (SpcDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof SpcDirective spcDirective) {
 			parseDirective(spcDirective);
 
-		} else if (directiveLine.getDirective() instanceof RegDirective) {
-			RegDirective regDirective = (RegDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof RegDirective regDirective) {
 			parseDirective(regDirective);
 
-		} else if (directiveLine.getDirective() instanceof FcbDirective) {
-			FcbDirective fcbDirective = (FcbDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof FcbDirective fcbDirective) {
 			parseDirective(fcbDirective);
 
-		} else if (directiveLine.getDirective() instanceof FdbDirective) {
-			FdbDirective fdbDirective = (FdbDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof FdbDirective fdbDirective) {
 			parseDirective(fdbDirective);
 
-		} else if (directiveLine.getDirective() instanceof FccDirective) {
-			FccDirective fccDirective = (FccDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof FccDirective fccDirective) {
 			parseDirective(fccDirective);
 
-		} else if (directiveLine.getDirective() instanceof RmbDirective) {
-			RmbDirective rmbDirective = (RmbDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof RmbDirective rmbDirective) {
 			parseDirective(rmbDirective);
 
-		} else if (directiveLine.getDirective() instanceof SetDPDirective) {
-			SetDPDirective setdpDirective = (SetDPDirective)directiveLine.getDirective();
+		} else if (directiveLine.getDirective() instanceof SetDPDirective setdpDirective) {
 			parseDirective(setdpDirective);
+
+		} else if (directiveLine.getDirective() instanceof FailDirective failDirective) {
+			parseDirective(failDirective);
 
 		} else {
 			logger.log(Level.SEVERE,"Unknow directive {0}", directiveLine.getDirective().getClass().getSimpleName());
 		}
 		
 		return needStop;
+	}
+
+	/**
+	 * Parse a FAIL directive line.
+	 *  
+	 * @param failDirective reference on the FAIL directive
+	 */
+	private void parseDirective(FailDirective failDirective) {
+		AssembledFailDirectiveLine line = new AssembledFailDirectiveLine();
+		line.parse(failDirective, currentPcValue, lineNumber);
+		assemblyLines.add(line);
+		assembledLinesMap.put(failDirective, line);
+		currentPcValue += line.getPcIncrement();
+
+		registerLabelPosition(line, 
+				line.getDirective().eContainer(),
+				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
 	}
 
 	/**

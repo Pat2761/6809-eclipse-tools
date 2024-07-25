@@ -19,10 +19,12 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 /**
  * Used to store information about SPC directive
@@ -59,10 +61,22 @@ public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 		
 		try {
 			keepCount = ExpressionParser.getKeepCount(directive);
+		} catch (UnresolvedException e) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					e.getDescriptor().getMessage(), 
+					e.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(directive, errorDescription);
+		}
+
+		try {
 			spaceCount = ExpressionParser.getSpaceCount(directive);
 		} catch (UnresolvedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					e.getDescriptor().getMessage(), 
+					e.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(directive, errorDescription);
 		}
 	}
 

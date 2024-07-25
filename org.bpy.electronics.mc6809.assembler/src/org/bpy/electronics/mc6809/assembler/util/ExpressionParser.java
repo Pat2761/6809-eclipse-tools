@@ -68,6 +68,7 @@ import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedExceptionDescriptor;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 
@@ -274,7 +275,7 @@ public class ExpressionParser {
 	 * @throws UnresolvedException 
 	 */
 	public static int parse(ExtendedOperand extendedOperand, EReference instructionReference,
-			Map<String, AbstractAssemblyLine> labelsPositionObject, EObject instruction) throws UnresolvedException {
+			Map<String, AbstractAssemblyLine> labelsPositionObject, EObject instruction) {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
@@ -283,7 +284,15 @@ public class ExpressionParser {
 		int value = 0;		
 		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
 			EObject operand = extendedOperand.getOperand().getOperand();
-			value = resolveExpression((Expression)operand);
+			try {
+				value = resolveExpression((Expression)operand);
+			} catch (UnresolvedException e) {
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						e.getDescriptor().getMessage(), 
+						e.getDescriptor().getReference(), 
+						InstructionValidator.EXPRESSION_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			}
 		}
 		
 		if (value < Short.MIN_VALUE) {
@@ -538,73 +547,56 @@ public class ExpressionParser {
 	 */
 	public static int resolveExpression(Expression expression) throws UnresolvedException {
 		
-		if (expression instanceof Multiplication) {
-			Multiplication multiplication = (Multiplication)expression;
+		if (expression instanceof Multiplication multiplication) {
 			return resolveExpression(multiplication);
 			
-		} else if (expression instanceof Division) {
-			Division division = (Division)expression;
+		} else if (expression instanceof Division division) {
 			return resolveExpression(division);
 				
-		} else if (expression instanceof Addition) { 	
-			Addition addition = (Addition)expression;
+		} else if (expression instanceof Addition addition) { 	
 			return resolveExpression(addition);
 			
-		} else if (expression instanceof Substraction) { 	
-			Substraction substraction = (Substraction)expression;
+		} else if (expression instanceof Substraction substraction) { 	
 			return resolveExpression(substraction);
 			
-		} else if (expression instanceof Modulo) { 	
-			Modulo modulo = (Modulo)expression;
+		} else if (expression instanceof Modulo modulo) { 	
 			return resolveExpression(modulo);
 			
-		} else if (expression instanceof And) { 	
-			And and = (And)expression;
+		} else if (expression instanceof And and) { 	
 			return resolveExpression(and);
 			
-		} else if (expression instanceof Or) { 	
-			Or or = (Or)expression;
+		} else if (expression instanceof Or or) { 	
 			return resolveExpression(or);
 			
-		} else if (expression instanceof Xor) { 	
-			Xor xor = (Xor)expression;
+		} else if (expression instanceof Xor xor) { 	
 			return resolveExpression(xor);
 			
-		} else if (expression instanceof Not) { 	
-			Not not = (Not)expression;
+		} else if (expression instanceof Not not) { 	
 			return resolveExpression(not);
 			
-		} else if (expression instanceof LeftShift) { 	
-			LeftShift leftshift = (LeftShift)expression;
-			return resolveExpression(leftshift);
+		} else if (expression instanceof LeftShift leftShift) { 	
+			return resolveExpression(leftShift);
 			
-		} else if (expression instanceof RightShift) { 	
-			RightShift rightShift = (RightShift)expression;
+		} else if (expression instanceof RightShift rightShift) { 	
 			return resolveExpression(rightShift);
 			
 		} else {
-			if (expression.getValue() instanceof DecimalValue) {
-				DecimalValue decimalValue = (DecimalValue)expression.getValue();
+			if (expression.getValue() instanceof DecimalValue decimalValue) {
 				return resolveDecimalValue(decimalValue);
 			
-			} else if( expression.getValue() instanceof HexaDecimalValue) {
-				HexaDecimalValue hexaDecimalValue = (HexaDecimalValue)expression.getValue();
-				return resolveHexadecimalValue(hexaDecimalValue);
+			} else if( expression.getValue() instanceof HexaDecimalValue hexadecimalValue) {
+				return resolveHexadecimalValue(hexadecimalValue);
 			
-			} else if( expression.getValue() instanceof BinaryValue) {
-				BinaryValue binaryValue = (BinaryValue)expression.getValue();
+			} else if( expression.getValue() instanceof BinaryValue binaryValue) {
 				return resolveBinaryValue(binaryValue);
 
-			} else if( expression.getValue() instanceof OctalValue) {
-				OctalValue octalValue = (OctalValue)expression.getValue();
+			} else if( expression.getValue() instanceof OctalValue octalValue) {
 				return resolveOctalValue(octalValue);
 
-			} else if( expression.getValue() instanceof IdentifierValue) {
-				IdentifierValue identifierValue = (IdentifierValue)expression.getValue();
+			} else if( expression.getValue() instanceof IdentifierValue identifierValue) {
 				return resolveIdentifierValue(identifierValue);
 
-			} else if( expression.getValue() instanceof CharacterValue) {
-				CharacterValue characterValue = (CharacterValue)expression.getValue();
+			} else if( expression.getValue() instanceof CharacterValue characterValue) {
 				return resolveCharacterValue(characterValue);
 			}
 			
@@ -615,18 +607,18 @@ public class ExpressionParser {
 
 	public static int parse(NumericalValue deplacement) throws UnresolvedException {
 		EObject node = deplacement.getValue();
-		if (node instanceof DecimalValue) {
-			return resolveDecimalValue((DecimalValue)node);
-		} else if (node instanceof HexaDecimalValue) {
-			return resolveHexadecimalValue((HexaDecimalValue)node);
-		} else if (node instanceof OctalValue) {
-			return resolveOctalValue((OctalValue)node);
-		} else if (node instanceof BinaryValue) {
-			return resolveBinaryValue((BinaryValue)node);
-		} else if (node instanceof CharacterValue) {
-			return resolveCharacterValue((CharacterValue)node);
-		} else if (node instanceof IdentifierValue) {
-			return resolveIdentifierValue((IdentifierValue)node);
+		if (node instanceof DecimalValue decimalValue) {
+			return resolveDecimalValue(decimalValue);
+		} else if (node instanceof HexaDecimalValue hexadecimalValue) {
+			return resolveHexadecimalValue(hexadecimalValue);
+		} else if (node instanceof OctalValue octalValue) {
+			return resolveOctalValue(octalValue);
+		} else if (node instanceof BinaryValue binaryValue) {
+			return resolveBinaryValue(binaryValue);
+		} else if (node instanceof CharacterValue characterValue) {
+			return resolveCharacterValue(characterValue);
+		} else if (node instanceof IdentifierValue identifierValue) {
+			return resolveIdentifierValue(identifierValue);
 		}
 		return 0;
 	}
@@ -707,7 +699,7 @@ public class ExpressionParser {
 		try {
 			return Integer.parseInt(strValue, 8);
 		} catch (NumberFormatException ex) {
-			logger.log(Level.SEVERE, ex.getMessage());
+//			logger.log(Level.SEVERE, ex.getMessage());
 		}
  		return 0;
 	}
@@ -723,7 +715,7 @@ public class ExpressionParser {
 		try {
 			return Integer.parseInt(strValue, 2);
 		} catch (NumberFormatException ex) {
-			logger.log(Level.SEVERE, ex.getMessage());
+///			logger.log(Level.SEVERE, ex.getMessage());
 		}
  		return 0;
 	}
@@ -739,7 +731,7 @@ public class ExpressionParser {
 		try {
 			return Integer.parseInt(strValue, 16);
 		} catch (NumberFormatException ex) {
-			logger.log(Level.SEVERE, ex.getMessage());
+//			logger.log(Level.SEVERE, ex.getMessage());
 		}
  		return -1;
 	}

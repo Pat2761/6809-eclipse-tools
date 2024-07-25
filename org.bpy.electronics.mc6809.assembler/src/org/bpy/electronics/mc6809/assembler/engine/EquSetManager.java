@@ -30,7 +30,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -68,65 +67,130 @@ public class EquSetManager {
 		
 		/** Set to true if the expression is resolved */
 		private boolean isExpressionResolved;
-		
+
+		/** memorize the reference to the expression */
 		private Expression expression;
 		
+		/** Reference to the current directive */
 		private EObject directive;
 
+		/** Parse value */
 		private int value;
 		
+		/** Type of object */
 		private int EquType; 
 		
+		/** 
+		 * Return the state of the expression. 
+		 * 
+		 * @return <b>true</b> if the expression is resolved, <b>false</b> otherwise
+		 */
 		public boolean isExpressionResolved() {
 			return isExpressionResolved;
 		}
 
+		/**
+		 * Set the state of the expression.
+		 * 
+		 * @param isExpressionResolved state of the expression
+		 */
 		public void setExpressionResolved(boolean isExpressionResolved) {
 			this.isExpressionResolved = isExpressionResolved;
 		}
 
+		/**
+		 * Get the reference of the expression.
+		 * 
+		 * @return reference on the expression
+		 */
 		public Expression getExpression() {
 			return expression;
 		}
 
+		/**
+		 * Get the reference of the expression.
+		 * 
+		 * @param expression Reference of the expression.
+		 */
 		public void setExpression(Expression expression) {
 			this.expression = expression;
 		}
 
+		/**
+		 * Get the reference on the directive.
+		 * 
+		 * @return reference on the directive
+		 */
 		public EObject getDirective() {
 			return directive;
 		}
 
+		/**
+		 * Set the reference on the directive.
+		 * 
+		 * @param directive reference on the directive
+		 */
 		public void setDirective(EObject directive) {
 			this.directive = directive;
 		}
 
+		/**
+		 * Get the value of the expression.
+		 * 
+		 * @return value of the expression
+		 */
 		public int getValue() {
 			return value;
 		}
 
+		/**
+		 * Set the value of the expression.
+		 * 
+		 * @param value value of the expression
+		 */
 		public void setValue(int value) {
 			this.value = value;
 		}
 
+		/**
+		 * Get the type of object.
+		 * 
+		 * @return type of object (EQU , SET or REG)
+		 */
 		public int getEquType() {
 			return EquType;
 		}
 
+		/**
+		 * Set the type of object.
+		 * 
+		 * @param equType type of object (EQU , SET or REG)
+		 */
 		public void setEquType(int equType) {
 			EquType = equType;
 		}
 		
 	}
 	
+	/** Collection of EQU, SET and REG */
 	private Map<String, List<EquDefinitionContainer>> equContainer;
 	
+	/** Instance on the singleton */
 	private static EquSetManager eInstance;
 	
-	public EquSetManager() {
+	/**
+	 * Constructor of the class.
+	 * 
+	 */
+	private EquSetManager() {
 		clear();
 	}
 
+	/** 
+	 * Return the instance of the singleton.
+	 * 
+	 * @return instance of the singleton 
+	 */
 	public static EquSetManager getInstance() {
 		if (eInstance == null) {
 			eInstance = new EquSetManager();
@@ -134,10 +198,18 @@ public class EquSetManager {
 		return eInstance;
 	}
 
+	/** 
+	 * Initialize fields
+	 */
 	public void clear() {
 		equContainer = new HashMap<>();
 	}
 	
+	/**
+	 * Add an EQU directive in the collection.
+	 * 
+	 * @param equDirective reference on the EQU directive
+	 */
 	public void addDirective(EquDirective equDirective) {
 		
 		String labelName = CommandUtil.getLabel(equDirective);
@@ -174,6 +246,11 @@ public class EquSetManager {
 		}
 	}
 
+	/**
+	 * Add a REG directive.
+	 * 
+	 * @param regDirective reference on the REG directive
+	 */
 	public void addDirective(RegDirective regDirective) {
 		
 		String labelName = CommandUtil.getLabel(regDirective);
@@ -200,6 +277,11 @@ public class EquSetManager {
 		}
 	}
 	
+	/**
+	 * Add a SET directive.
+	 * 
+	 * @param setDirective reference on the SET directive
+	 */
 	public void addDirective(SetDirective setDirective) {
 		String labelName = CommandUtil.getLabel(setDirective);
 		
@@ -237,6 +319,12 @@ public class EquSetManager {
 		}
 	}
 
+	/**
+	 * Return the reference on a store directive.
+	 * 
+	 * @param label Key on the collection (Value of the label)
+	 * @return reference on the directive,<b>null</b> if not found
+	 */
 	public EObject getInstruction(String label) {
 		if (equContainer.containsKey(label)) {
 			List<EquDefinitionContainer> directives = equContainer.get(label);
@@ -245,6 +333,12 @@ public class EquSetManager {
 		return null;
 	}
 	
+	/**
+	 * Get value associated to a label.
+	 * 
+	 * @param label Label value
+	 * @return Integer value, <b>null</b> if not found
+	 */
 	public Integer getValue(String label) {
 		if (equContainer.containsKey(label)) {
 			 List<EquDefinitionContainer> containers = equContainer.get(label);
@@ -252,7 +346,17 @@ public class EquSetManager {
 			 if (container.isExpressionResolved()) {
 				 return container.getValue();
 			 } else {
-				 resolveValue(container);
+				 
+					if (container.getEquType() == EquDefinitionContainer.EQU_DEFINITION) {
+						resolveEquValue(container); 
+						
+					} else if (container.getEquType() == EquDefinitionContainer.SET_DEFINITION) {
+						resolveSetValue(container); 
+						
+					} if (container.getEquType() == EquDefinitionContainer.REG_DEFINITION) {
+						resolveRegValue(container); 
+					}
+				
 				 if (container.isExpressionResolved()) {
 					 return container.getValue();
 				 }
@@ -261,39 +365,59 @@ public class EquSetManager {
 		return null;
 	}
 
-	public void resolveValues() {
-		for (Entry<String, List<EquDefinitionContainer>> entry : equContainer.entrySet()) {
-			resolveValue(entry.getKey());
-		}
- 	}
-
+	/**
+	 * Calculate the value for one element in the collection.
+	 * 
+	 * @param key value of the label
+	 */
 	public void resolveValue(String key) {
 		List<EquDefinitionContainer> values = equContainer.get(key);
 		for ( EquDefinitionContainer cstDefinition : values) {
 			if (!cstDefinition.isExpressionResolved()) {
 			
 				if (cstDefinition.getEquType() == EquDefinitionContainer.EQU_DEFINITION) {
-					resolveValue(cstDefinition); 
+					resolveEquValue(cstDefinition); 
 					
 				} else if (cstDefinition.getEquType() == EquDefinitionContainer.SET_DEFINITION) {
-					resolveValue((SetDirective)cstDefinition.getDirective()); 
+					resolveSetValue(cstDefinition); 
 					
 				} if (cstDefinition.getEquType() == EquDefinitionContainer.REG_DEFINITION) {
-					resolveValue((RegDirective)cstDefinition.getDirective()); 
+					resolveRegValue(cstDefinition); 
 				}
 			}
 		}
 	}
 
-	private void resolveValue(RegDirective directive) {
+	private void resolveRegValue(EquDefinitionContainer container) {
 		// TODO Auto-generated method stub
 	}
 
-	private void resolveValue(SetDirective directive) {
-		// TODO Auto-generated method stub
+	/** 
+	 * Resolve value of an SET directive
+	 * 
+	 * @param container reference on an element of the collection
+	 */
+	private void resolveSetValue(EquDefinitionContainer container) {
+		SetDirective directive = (SetDirective)container.getDirective();
+		try {
+			int value = ExpressionParser.parse(directive);
+			container.setValue(value);
+			container.setExpressionResolved(true);
+		} catch (UnresolvedException ex) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					ex.getDescriptor().getMessage(), 
+					ex.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(container.getDirective(), errorDescription);
+		}
 	}
 
-	private void resolveValue(EquDefinitionContainer container) {
+	/** 
+	 * Resolve value of an EQU directive
+	 * 
+	 * @param container reference on an element of the collection
+	 */
+	private void resolveEquValue(EquDefinitionContainer container) {
 		EquDirective directive = (EquDirective)container.getDirective();
 		try {
 			int value = ExpressionParser.parse(directive);

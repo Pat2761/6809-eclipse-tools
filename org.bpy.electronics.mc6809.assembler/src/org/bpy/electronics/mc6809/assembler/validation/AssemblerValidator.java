@@ -72,13 +72,14 @@ public class AssemblerValidator extends AbstractAssemblerValidator {
 		}
 	}
 
-	@Check
-	public void checkOrgDirective(OrgDirective orgDirective) {
-		List<AssemblerProblemManagerDescription> problems = AssemblerErrorManager.getInstance().getProblems(orgDirective);
-		if (problems != null) {
-			for (AssemblerProblemManagerDescription problem : problems) {
-				System.out.println(problem.getMessage());
-			}
-		}
-	}
+//	@Check
+//	public void checkOrgDirective(OrgDirective orgDirective) {
+//		List<AssemblerProblemManagerDescription> problems = AssemblerErrorManager.getInstance().getProblems(orgDirective);
+//		if (problems != null) {
+//			for (AssemblerProblemManagerDescription problem : problems) {
+//				error(problem.get)
+//				System.out.println(problem.getMessage());
+//			}
+//		}
+//	}
 }

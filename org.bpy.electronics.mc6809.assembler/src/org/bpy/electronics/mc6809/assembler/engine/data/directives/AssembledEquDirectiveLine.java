@@ -19,9 +19,12 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 /**
  * Used to store information about EQU directive
@@ -52,6 +55,16 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(directive);
 		this.directive = directive;
+		
+		try {
+			this.value = ExpressionParser.parse(directive);
+		} catch (UnresolvedException e) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					e.getDescriptor().getMessage(), 
+					e.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(directive, errorDescription);
+		}
 	}
 
 	public EquDirective getDirective() {

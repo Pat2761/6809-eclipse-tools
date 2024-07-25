@@ -20,10 +20,12 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 /*
  * Used to store information about ORG directive
@@ -59,8 +61,11 @@ public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 		try {
 			value = ExpressionParser.parse(directive);
 		} catch (UnresolvedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					e.getDescriptor().getMessage(), 
+					e.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(directive, errorDescription);
 		}
 	}
 

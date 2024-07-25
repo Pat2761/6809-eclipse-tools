@@ -19,7 +19,6 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
-import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 
 /**

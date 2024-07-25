@@ -818,14 +818,13 @@ public class TestEquDirective {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
 		strBuilder.append("TOTO	       	EQU    	10*Deux 			; Toto vaudra $2000\n");
-		strBuilder.append("													; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 		
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-		    validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), 
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), 
 		    	ExpressionParser.EXPRESSION_ERROR, "Can't find Deux definition");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);

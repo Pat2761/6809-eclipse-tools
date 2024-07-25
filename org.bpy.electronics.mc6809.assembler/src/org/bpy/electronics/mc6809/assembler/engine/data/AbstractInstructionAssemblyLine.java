@@ -246,13 +246,8 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 
 	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,Map<String, AbstractAssemblyLine> labelsPositionObject, EReference eReference) {
 		int value;
-		try {
-			value = ExpressionParser.parse(extendedOperand, eReference, labelsPositionObject, instruction);
-			operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF};
-		} catch (UnresolvedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} 
+		value = ExpressionParser.parse(extendedOperand, eReference, labelsPositionObject, instruction);
+		operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF}; 
 	}
 
 	protected void setIndexedAccumulatorMovingMode(AccumulatorMovingMode operand) {

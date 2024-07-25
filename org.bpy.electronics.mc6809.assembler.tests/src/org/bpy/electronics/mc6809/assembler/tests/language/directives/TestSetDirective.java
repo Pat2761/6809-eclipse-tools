@@ -35,6 +35,7 @@ import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.eclipse.xtext.diagnostics.Severity;
@@ -441,6 +442,93 @@ public class TestSetDirective {
 
 			validationHelper.assertIssue(result.eResource(), AssemblerPackage.Literals.OCTAL_VALUE, AssemblerValidator.INVALID_FIGURE, 111, 3,
 					Severity.ERROR, "8 is invalid in octal value");
+		} catch (Exception e) {
+			Assert.assertTrue("Exception", true);
+		}
+	}
+	
+	@Test
+	public void testSetValue01() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
+		strBuilder.append("SetVal       	SET    	128	 			; SetVal vaudra 128\n");
+		strBuilder.append("													; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoIssues(result);
+			
+			Assert.assertEquals("Check the value",128 ,EquSetManager.getInstance().getValue("SetVal").intValue());
+		} catch (Exception e) {
+			Assert.assertTrue("Exception", true);
+		}
+	}
+	
+	@Test
+	public void testSetValue02() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
+		strBuilder.append("EquVal        EQU      128             \n");
+		strBuilder.append("SetVal	     	SET    	EquVal*2	 	   ; SetVal vaudra 256\n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoIssues(result);
+			
+			Assert.assertEquals("Check the value",256 ,EquSetManager.getInstance().getValue("SetVal").intValue());
+		} catch (Exception e) {
+			Assert.assertTrue("Exception", true);
+		}
+	}
+	
+	@Test
+	public void testSetValue03() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
+		strBuilder.append("SetVal	     	SET    	EquVal*2	 	   ; SetVal vaudra 256\n");
+		strBuilder.append("EquVal        EQU      128             \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoIssues(result);
+			
+			Assert.assertEquals("Check the value",256 ,EquSetManager.getInstance().getValue("SetVal").intValue());
+		} catch (Exception e) {
+			Assert.assertTrue("Exception", true);
+		}
+	}
+	
+	@Test
+	public void testSetValue04() {
+		StringBuilder strBuilder = new StringBuilder();
+		strBuilder.append("; -----------------------------------------\n");
+		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
+		strBuilder.append("SetVal	     	SET    	10	 	   		; SetVal vaudra 10\n");
+		strBuilder.append("EquVal1       EQU      SetVal*2       ; \n");
+		strBuilder.append("SetVal	     	SET    	20	 	   		; SetVal vaudra 10\n");
+		strBuilder.append("EquVal2       EQU      SetVal*2       ; \n");
+
+		try {
+			Model result = parseHelper.parse(strBuilder.toString());
+
+			Assert.assertNotNull(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
+			validationHelper.assertNoIssues(result);
+			
+			Assert.assertEquals("Check the value EquVal1",20 ,EquSetManager.getInstance().getValue("EquVal1").intValue());
+			Assert.assertEquals("Check the value EquVal2",40 ,EquSetManager.getInstance().getValue("EquVal2").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
