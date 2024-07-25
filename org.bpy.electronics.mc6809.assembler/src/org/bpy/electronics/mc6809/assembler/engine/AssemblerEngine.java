@@ -3510,6 +3510,8 @@ public class AssemblerEngine {
 		line.parse(setDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(setDirective, line);
+		
+		EquSetManager.getInstance().setSetActive(setDirective);
 	}
 
 	/**

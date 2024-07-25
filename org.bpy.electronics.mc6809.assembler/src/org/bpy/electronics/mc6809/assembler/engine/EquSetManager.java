@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
@@ -79,7 +78,26 @@ public class EquSetManager {
 		
 		/** Type of object */
 		private int EquType; 
-		
+
+		/** indicate if is active Only use in case of SET directive */
+		private boolean isActive;
+
+		/** 
+		 * Indicate if the SET directive is active. 
+		 * 
+		 * @return <b>true</b> active SET directive, <b>false</b> otherwise
+		 */
+		public boolean isActive() {
+			return isActive;
+		}
+
+		/** 
+		 * SET directive active. 
+		 */
+		public void setActive(boolean isActive) {
+			this.isActive = isActive;
+		}
+
 		/** 
 		 * Return the state of the expression. 
 		 * 
@@ -260,7 +278,8 @@ public class EquSetManager {
 			equDefinition.setDirective(regDirective);
 			equDefinition.setExpressionResolved(false);
 			equDefinition.setEquType(EquDefinitionContainer.REG_DEFINITION);
-
+			equDefinition.setActive(true);
+			
 			List<EquDefinitionContainer> list = new ArrayList<>();
 			list.add(equDefinition);
 			equContainer.put(labelName, list);
@@ -333,6 +352,24 @@ public class EquSetManager {
 		return null;
 	}
 	
+	/** 
+	 * Define set SET directive active
+	 * 
+	 * @param directive reference on the directive
+	 */
+	public void setSetActive(SetDirective directive) {
+		String label = CommandUtil.getLabel(directive);
+		if (equContainer.containsKey(label)) {
+			for (EquDefinitionContainer definitionContainer : equContainer.get(label)) {
+				if (definitionContainer.getDirective() == directive) {
+					definitionContainer.setActive(true);
+				} else {
+					definitionContainer.setActive(false);
+				}
+			}
+		}
+	}
+	
 	/**
 	 * Get value associated to a label.
 	 * 
@@ -342,7 +379,7 @@ public class EquSetManager {
 	public Integer getValue(String label) {
 		if (equContainer.containsKey(label)) {
 			 List<EquDefinitionContainer> containers = equContainer.get(label);
-			 EquDefinitionContainer container = containers.get(0);
+			 EquDefinitionContainer container = getActiveContainer(containers);
 			 if (container.isExpressionResolved()) {
 				 return container.getValue();
 			 } else {
@@ -353,7 +390,7 @@ public class EquSetManager {
 					} else if (container.getEquType() == EquDefinitionContainer.SET_DEFINITION) {
 						resolveSetValue(container); 
 						
-					} if (container.getEquType() == EquDefinitionContainer.REG_DEFINITION) {
+					} else if (container.getEquType() == EquDefinitionContainer.REG_DEFINITION) {
 						resolveRegValue(container); 
 					}
 				
@@ -365,27 +402,13 @@ public class EquSetManager {
 		return null;
 	}
 
-	/**
-	 * Calculate the value for one element in the collection.
-	 * 
-	 * @param key value of the label
-	 */
-	public void resolveValue(String key) {
-		List<EquDefinitionContainer> values = equContainer.get(key);
-		for ( EquDefinitionContainer cstDefinition : values) {
-			if (!cstDefinition.isExpressionResolved()) {
-			
-				if (cstDefinition.getEquType() == EquDefinitionContainer.EQU_DEFINITION) {
-					resolveEquValue(cstDefinition); 
-					
-				} else if (cstDefinition.getEquType() == EquDefinitionContainer.SET_DEFINITION) {
-					resolveSetValue(cstDefinition); 
-					
-				} if (cstDefinition.getEquType() == EquDefinitionContainer.REG_DEFINITION) {
-					resolveRegValue(cstDefinition); 
-				}
+	private EquDefinitionContainer getActiveContainer(List<EquDefinitionContainer> containers) {
+		for (EquDefinitionContainer container : containers) {
+			if (container.isActive()) {
+				return container;
 			}
 		}
+		return containers.get(0);
 	}
 
 	private void resolveRegValue(EquDefinitionContainer container) {
@@ -395,9 +418,10 @@ public class EquSetManager {
 	/** 
 	 * Resolve value of an SET directive
 	 * 
-	 * @param container reference on an element of the collection
+	 * @param containers reference on an element of the collection
 	 */
 	private void resolveSetValue(EquDefinitionContainer container) {
+		
 		SetDirective directive = (SetDirective)container.getDirective();
 		try {
 			int value = ExpressionParser.parse(directive);
