@@ -66,6 +66,7 @@ public class AssembledFcbDirectiveLine extends AbstractAssembledDirectiveLine {
 				values[i] = listValues.get(i);	
 			}
 		} catch (UnresolvedException e) {
+			values = new int[0];
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 
 					e.getDescriptor().getReference(), 

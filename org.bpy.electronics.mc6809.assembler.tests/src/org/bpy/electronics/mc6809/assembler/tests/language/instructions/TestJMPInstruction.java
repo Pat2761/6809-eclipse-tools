@@ -132,7 +132,7 @@ public class TestJMPInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("START      ORG    		$8000\n");
-		strBuilder.append("	       JMP		  	START\n");
+		strBuilder.append("	         JMP		  	START\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -625,7 +625,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					ExpressionParser.OVERFLOW_ERROR, "The value -129 is below the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
@@ -698,7 +698,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					ExpressionParser.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"The value 128 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
@@ -758,7 +758,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					ExpressionParser.OVERFLOW_ERROR, "The value -32769 is below the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
@@ -834,7 +834,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					ExpressionParser.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
@@ -897,7 +897,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					ExpressionParser.OVERFLOW_ERROR, "The value -32769 is below the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
@@ -973,7 +973,7 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					ExpressionParser.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);

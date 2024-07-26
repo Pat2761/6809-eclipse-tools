@@ -484,7 +484,7 @@ public class TestANDCCInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result,AssemblerPackage.eINSTANCE.getAndCCInstruction(),
-				ExpressionParser.OVERFLOW_ERROR,	
+				InstructionValidator.OVERFLOW_ERROR,	
 				"The value -129 is below the possible limit, data may be lost"
 			);
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -561,7 +561,7 @@ public class TestANDCCInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result,AssemblerPackage.eINSTANCE.getAndCCInstruction(),
-				ExpressionParser.OVERFLOW_ERROR,	
+				InstructionValidator.OVERFLOW_ERROR,	
 				"The value 256 is greater than the possible limit, data may be lost"
 			);
 			AssemblerEngine engine = AssemblerEngine.getInstance();

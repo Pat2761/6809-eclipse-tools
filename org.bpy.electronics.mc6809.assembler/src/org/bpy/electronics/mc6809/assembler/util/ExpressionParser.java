@@ -61,7 +61,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
@@ -80,9 +79,6 @@ import org.eclipse.emf.ecore.EReference;
  */
 public class ExpressionParser {
 	
-	public static final String EXPRESSION_ERROR = "expressionError";
-	public static final String OVERFLOW_ERROR = "overflowError";
-	
 	private static EReference eReference;
 	private static Object assemblyLine; 
 	
@@ -92,9 +88,8 @@ public class ExpressionParser {
 	private ExpressionParser() {
 	}
 
-	/** Looger of the class */
+	/** Logger of the class */
 	private static Logger logger = Logger.getLogger("ExpressionParser");
-	private static Map<String, AbstractAssemblyLine> labelsPosition;
 
 	/** 
 	 *  Parse the operand of an FDB directive.
@@ -169,14 +164,14 @@ public class ExpressionParser {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is below the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			return min;
 		} else if (value > max) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is greater than the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			return max;
 		}
@@ -209,14 +204,14 @@ public class ExpressionParser {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is below the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			value = -128;
 		} else if (value > 127) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is greater than the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			value = 127;
 		}
@@ -237,7 +232,6 @@ public class ExpressionParser {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
-		labelsPosition = null;
 		
 		int value = 0;		
 		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
@@ -249,14 +243,14 @@ public class ExpressionParser {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is below the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			value = Short.MIN_VALUE;
 		} else if (value > 65535) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is greater than the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			value = 65535;
 		}
@@ -279,7 +273,6 @@ public class ExpressionParser {
 		
 		eReference = instructionReference;
 		assemblyLine = instruction;
-		labelsPosition = labelsPositionObject;
 		
 		int value = 0;		
 		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
@@ -299,14 +292,14 @@ public class ExpressionParser {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is below the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			value = Short.MIN_VALUE;
 		} else if (value > 65535) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is greater than the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			value = 65535;
 		}
@@ -338,14 +331,14 @@ public class ExpressionParser {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is below the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			value = Short.MIN_VALUE;
 		} else if (value > 65535) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"The value " + value + " is greater than the possible limit, data may be lost" , 
 					eReference, 
-					OVERFLOW_ERROR);
+					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			value = 65535;
 		}
@@ -777,7 +770,7 @@ public class ExpressionParser {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"Division by 0 is not allow, the result of the expression will be false", 
 					eReference, 
-					EXPRESSION_ERROR);
+					InstructionValidator.EXPRESSION_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			return 0;
 		}
@@ -846,7 +839,7 @@ public class ExpressionParser {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"Division by 0 is not allow, the result of the expression will be false", 
 					eReference, 
-					EXPRESSION_ERROR);
+					InstructionValidator.EXPRESSION_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
 			return 0;
 		}

@@ -585,7 +585,7 @@ public class TestEORBInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledEORBInstruction line = (AssembledEORBInstruction) engine.getAssembledLine(2);
@@ -682,7 +682,7 @@ public class TestEORBInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 256 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -743,7 +743,7 @@ public class TestEORBInstruction {
 
 			Assert.assertNotNull(result);
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledEORBInstruction line = (AssembledEORBInstruction) engine.getAssembledLine(2);
@@ -816,7 +816,7 @@ public class TestEORBInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 128 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -876,7 +876,7 @@ public class TestEORBInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledEORBInstruction line = (AssembledEORBInstruction) engine.getAssembledLine(2);
@@ -952,7 +952,7 @@ public class TestEORBInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledEORBInstruction line = (AssembledEORBInstruction) engine.getAssembledLine(2);
@@ -1012,7 +1012,7 @@ public class TestEORBInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledEORBInstruction line = (AssembledEORBInstruction) engine.getAssembledLine(2);
@@ -1088,7 +1088,7 @@ public class TestEORBInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getEorInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledEORBInstruction line = (AssembledEORBInstruction) engine.getAssembledLine(2);

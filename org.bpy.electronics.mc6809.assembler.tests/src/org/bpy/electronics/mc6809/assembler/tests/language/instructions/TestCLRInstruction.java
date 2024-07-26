@@ -579,7 +579,7 @@ public class TestCLRInstruction {
 
 			Assert.assertNotNull(result);
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCLRInstruction line = (AssembledCLRInstruction) engine.getAssembledLine(2);
@@ -652,7 +652,7 @@ public class TestCLRInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 128 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -711,7 +711,7 @@ public class TestCLRInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCLRInstruction line = (AssembledCLRInstruction) engine.getAssembledLine(2);
@@ -787,7 +787,7 @@ public class TestCLRInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCLRInstruction line = (AssembledCLRInstruction) engine.getAssembledLine(2);
@@ -847,7 +847,7 @@ public class TestCLRInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCLRInstruction line = (AssembledCLRInstruction) engine.getAssembledLine(2);
@@ -923,7 +923,7 @@ public class TestCLRInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getClrInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCLRInstruction line = (AssembledCLRInstruction) engine.getAssembledLine(2);

@@ -37,7 +37,7 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFillDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.eclipse.xtext.diagnostics.Severity;
 
@@ -367,7 +367,7 @@ public class TestFillDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result,AssemblerPackage.eINSTANCE.getFillDirective(), 
-					ExpressionParser.EXPRESSION_ERROR, "Can't find Deux definition");
+					InstructionValidator.EXPRESSION_ERROR, "Can't find Deux definition");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 

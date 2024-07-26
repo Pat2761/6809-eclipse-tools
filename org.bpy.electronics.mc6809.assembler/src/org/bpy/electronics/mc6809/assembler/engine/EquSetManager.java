@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Logger;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
@@ -45,9 +44,6 @@ import org.eclipse.emf.ecore.EObject;
  *
  */
 public class EquSetManager {
-
-	/** Logger of the class */
-	private static final Logger looger = Logger.getLogger(EquSetManager.class.getSimpleName()); 
 
 	/** 
 	 * 
@@ -286,8 +282,6 @@ public class EquSetManager {
 	
 		} else {
 
-			List<EquDefinitionContainer> directives = equContainer.get(labelName);
-			EquDefinitionContainer equDefinition = directives.get(0);
 			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
 					"The label " + labelName + " for an REG directive is already defined", 
 					AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
@@ -402,6 +396,44 @@ public class EquSetManager {
 		return null;
 	}
 
+	/**
+	 * Set the value of an EQU element.
+	 * 
+	 * @param label Label of the EQU
+	 * @param value Value of the EQU
+	 */
+	public void setValue(String label, int value) {
+		if (equContainer.containsKey(label)) {
+			EquDefinitionContainer container = equContainer.get(label).get(0);
+			container.setExpressionResolved(true);
+			container.setValue(value);
+		}
+	}
+
+	/**
+	 * Set the value of an SET element.
+	 * 
+	 * @param label Label of the SET
+	 * @param value Value of the SET
+	 */
+	public void setValue(SetDirective setDirective, String label, int value) {
+		if (equContainer.containsKey(label)) {
+			List<EquDefinitionContainer> containers = equContainer.get(label);
+			for (EquDefinitionContainer container : containers) {
+				if (container.getDirective() == setDirective) {
+					container.setExpressionResolved(true);
+					container.setValue(value);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Get the active SET container.
+	 * 
+	 * @param containers List of possible containers
+	 * @return Reference on the active container
+	 */
 	private EquDefinitionContainer getActiveContainer(List<EquDefinitionContainer> containers) {
 		for (EquDefinitionContainer container : containers) {
 			if (container.isActive()) {

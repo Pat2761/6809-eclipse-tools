@@ -34,6 +34,7 @@ import org.eclipse.xtext.testing.validation.ValidationTestHelper;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
@@ -568,7 +569,7 @@ public class TestEquDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(),
-				ExpressionParser.EXPRESSION_ERROR,"Can't find Label1 definition");
+				InstructionValidator.EXPRESSION_ERROR,"Can't find Label1 definition");
 			
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
@@ -825,7 +826,7 @@ public class TestEquDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getEquDirective(), 
-		    	ExpressionParser.EXPRESSION_ERROR, "Can't find Deux definition");
+					InstructionValidator.EXPRESSION_ERROR, "Can't find Deux definition");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}

@@ -27,9 +27,9 @@ import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledFcbDirectiveLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
@@ -368,7 +368,6 @@ public class TestFcbDirective {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	           	ORG    	$2000  		 	; With value\n");
 		strBuilder.append("TOTO	       	FCB    	10*Deux 		; Toto vaudra $2000\n");
-		strBuilder.append("										; Et en mémoire entre $2000 et $2010, il y aura des 0\n");
 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -376,7 +375,7 @@ public class TestFcbDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getFcbDirective(), 
-				ExpressionParser.EXPRESSION_ERROR, "Can't find Deux definition");
+					InstructionValidator.EXPRESSION_ERROR, "Can't find Deux definition");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}

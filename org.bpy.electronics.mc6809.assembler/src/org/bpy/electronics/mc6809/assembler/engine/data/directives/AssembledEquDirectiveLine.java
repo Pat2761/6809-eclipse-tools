@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
@@ -58,6 +59,7 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 		
 		try {
 			this.value = ExpressionParser.parse(directive);
+			EquSetManager.getInstance().setValue(label, value);
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 

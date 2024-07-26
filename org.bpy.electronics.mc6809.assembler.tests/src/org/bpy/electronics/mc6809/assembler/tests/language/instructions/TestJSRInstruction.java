@@ -627,7 +627,7 @@ public class TestJSRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJsrInstruction(),
-					ExpressionParser.OVERFLOW_ERROR, "The value -129 is below the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJSRInstruction line = (AssembledJSRInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
@@ -700,7 +700,7 @@ public class TestJSRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJsrInstruction(),
-					ExpressionParser.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"The value 128 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJSRInstruction line = (AssembledJSRInstruction) engine.getAssembledLine(2);
@@ -760,7 +760,7 @@ public class TestJSRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJsrInstruction(),
-					ExpressionParser.OVERFLOW_ERROR, "The value -32769 is below the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJSRInstruction line = (AssembledJSRInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
@@ -836,7 +836,7 @@ public class TestJSRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJsrInstruction(),
-					ExpressionParser.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJSRInstruction line = (AssembledJSRInstruction) engine.getAssembledLine(2);
@@ -899,7 +899,7 @@ public class TestJSRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJsrInstruction(),
-					ExpressionParser.OVERFLOW_ERROR, "The value -32769 is below the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJSRInstruction line = (AssembledJSRInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
@@ -975,7 +975,7 @@ public class TestJSRInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJsrInstruction(),
-					ExpressionParser.OVERFLOW_ERROR,
+					InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledJSRInstruction line = (AssembledJSRInstruction) engine.getAssembledLine(2);

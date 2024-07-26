@@ -533,7 +533,7 @@ public class TestLEAYInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledLEAYInstruction line = (AssembledLEAYInstruction) engine.getAssembledLine(2);
@@ -609,7 +609,7 @@ public class TestLEAYInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledLEAYInstruction line = (AssembledLEAYInstruction) engine.getAssembledLine(2);

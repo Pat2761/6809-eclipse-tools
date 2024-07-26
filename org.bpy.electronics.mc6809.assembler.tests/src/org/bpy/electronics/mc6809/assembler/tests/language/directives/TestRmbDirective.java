@@ -31,6 +31,7 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.xtext.diagnostics.Severity;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
@@ -248,7 +249,7 @@ public class TestRmbDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertIssue(result.eResource(), AssemblerPackage.Literals.RMB_DIRECTIVE, ExpressionParser.EXPRESSION_ERROR, 110,
+			validationHelper.assertIssue(result.eResource(), AssemblerPackage.Literals.RMB_DIRECTIVE, InstructionValidator.EXPRESSION_ERROR, 110,
 					7, Severity.ERROR, "Can't find Deux definition");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);

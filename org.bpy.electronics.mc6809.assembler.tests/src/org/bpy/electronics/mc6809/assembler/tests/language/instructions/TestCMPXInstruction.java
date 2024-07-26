@@ -584,7 +584,7 @@ public class TestCMPXInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCMPXInstruction line = (AssembledCMPXInstruction) engine.getAssembledLine(2);
@@ -685,7 +685,7 @@ public class TestCMPXInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -747,7 +747,7 @@ public class TestCMPXInstruction {
 
 			Assert.assertNotNull(result);
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCMPXInstruction line = (AssembledCMPXInstruction) engine.getAssembledLine(2);
@@ -820,7 +820,7 @@ public class TestCMPXInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 128 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -880,7 +880,7 @@ public class TestCMPXInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCMPXInstruction line = (AssembledCMPXInstruction) engine.getAssembledLine(2);
@@ -956,7 +956,7 @@ public class TestCMPXInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCMPXInstruction line = (AssembledCMPXInstruction) engine.getAssembledLine(2);
@@ -1016,7 +1016,7 @@ public class TestCMPXInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCMPXInstruction line = (AssembledCMPXInstruction) engine.getAssembledLine(2);
@@ -1092,7 +1092,7 @@ public class TestCMPXInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getCmpInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledCMPXInstruction line = (AssembledCMPXInstruction) engine.getAssembledLine(2);

@@ -1522,9 +1522,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1550,9 +1552,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1578,9 +1582,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1606,9 +1612,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+						instruction.eContainer(),
+						AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1634,9 +1642,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1662,9 +1672,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1690,9 +1702,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1717,10 +1731,12 @@ public class AssemblerEngine {
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
-		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1746,9 +1762,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1774,9 +1792,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1802,9 +1822,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}
 	}
 
 	/**	
@@ -1830,9 +1852,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}	
 	}
 
 	/**	
@@ -1858,9 +1882,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
-				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		if (line != null) {
+			registerLabelPosition(line, 
+					instruction.eContainer(),
+					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}	
 	}
 
 	/**	
@@ -1886,9 +1912,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
+		if (line != null) {
+			registerLabelPosition(line, 
 				instruction.eContainer(),
 				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}	
 	}
 
 	/**	
@@ -1914,9 +1942,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
+		if (line != null) {
+			registerLabelPosition(line, 
 				instruction.eContainer(),
 				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}	
 	}
 
 	/**	
@@ -1942,9 +1972,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
+		if (line != null) {
+			registerLabelPosition(line, 
 				instruction.eContainer(),
 				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}	
 	}
 
 	/**	
@@ -1970,9 +2002,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
+		if (line != null) {
+			registerLabelPosition(line, 
 				instruction.eContainer(),
 				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}	
 	}
 
 	/**	
@@ -1998,9 +2032,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
+		if (line != null) {
+			registerLabelPosition(line, 
 				instruction.eContainer(),
 				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}	
 	}
 
 	/**	
@@ -2026,9 +2062,11 @@ public class AssemblerEngine {
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		
-		registerLabelPosition(line, 
+		if (line != null) {
+			registerLabelPosition(line, 
 				instruction.eContainer(),
 				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+		}	
 	}
 
 	/**	
@@ -2224,6 +2262,7 @@ public class AssemblerEngine {
 			line = new AssembledSTYInstruction();
 			((AssembledSTYInstruction) line).parse(instruction, currentPcValue, lineNumber);
 		} else {
+			// nothing to do
 		}
 
 		assemblyLines.add(line);
@@ -3185,7 +3224,6 @@ public class AssemblerEngine {
 	 * @param labelLine reference on the label line
 	 */
 	private void parseLabelLine(LabelLine labelLine) {
-		String label = labelLine.getLabel().getName().getValue();
 		AssembledLabelLine assembledLabelLine = new AssembledLabelLine();
 		assembledLabelLine.parse(labelLine, currentPcValue, lineNumber);
 		assemblyLines.add(assembledLabelLine);
@@ -3510,6 +3548,8 @@ public class AssemblerEngine {
 		line.parse(setDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(setDirective, line);
+		EquSetManager.getInstance().setValue(setDirective, line.getLabel(),  line.getValue().intValue());
+		
 		
 		EquSetManager.getInstance().setSetActive(setDirective);
 	}
@@ -3522,6 +3562,8 @@ public class AssemblerEngine {
 	 * @param equDirective reference on the EQU directive
 	 */
 	private void parseDirective(EquDirective equDirective) {
+		EquSetManager titi = EquSetManager.getInstance();
+		
 		AssembledEquDirectiveLine line = new AssembledEquDirectiveLine();
 		line.parse(equDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
@@ -3619,6 +3661,11 @@ public class AssemblerEngine {
 		return manager.getValue(label);
 	}
 
+	/**
+	 * Return the current DP page value.
+	 * 
+	 * @return vlaue of the DP
+	 */
 	public int getCurrentDPPage() {
 		return currentDPPage;
 	}

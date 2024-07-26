@@ -50,7 +50,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADCAInstruction;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 @RunWith(XtextRunner.class)
@@ -583,7 +582,7 @@ public class TestADCAInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledADCAInstruction line = (AssembledADCAInstruction) engine.getAssembledLine(2);
@@ -680,7 +679,7 @@ public class TestADCAInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 256 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -741,7 +740,7 @@ public class TestADCAInstruction {
 
 			Assert.assertNotNull(result);
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledADCAInstruction line = (AssembledADCAInstruction) engine.getAssembledLine(2);
@@ -814,7 +813,7 @@ public class TestADCAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 128 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -874,7 +873,7 @@ public class TestADCAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledADCAInstruction line = (AssembledADCAInstruction) engine.getAssembledLine(2);
@@ -950,7 +949,7 @@ public class TestADCAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledADCAInstruction line = (AssembledADCAInstruction) engine.getAssembledLine(2);
@@ -1010,7 +1009,7 @@ public class TestADCAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledADCAInstruction line = (AssembledADCAInstruction) engine.getAssembledLine(2);
@@ -1086,7 +1085,7 @@ public class TestADCAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getAdcInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledADCAInstruction line = (AssembledADCAInstruction) engine.getAssembledLine(2);

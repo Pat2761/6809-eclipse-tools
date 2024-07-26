@@ -34,9 +34,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerValidator;
 import org.eclipse.xtext.diagnostics.Severity;
 
@@ -324,7 +324,7 @@ public class TestSetDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), ExpressionParser.EXPRESSION_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), InstructionValidator.EXPRESSION_ERROR,
 					"Can't find Deux definition");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
@@ -346,7 +346,7 @@ public class TestSetDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), ExpressionParser.EXPRESSION_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), InstructionValidator.EXPRESSION_ERROR,
 					"Division by 0 is not allow, the result of the expression will be false");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
@@ -368,7 +368,7 @@ public class TestSetDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), ExpressionParser.EXPRESSION_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), InstructionValidator.EXPRESSION_ERROR,
 					"Division by 0 is not allow, the result of the expression will be false");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
@@ -392,7 +392,7 @@ public class TestSetDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), ExpressionParser.EXPRESSION_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), InstructionValidator.EXPRESSION_ERROR,
 					"Can't find Deux definition");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);

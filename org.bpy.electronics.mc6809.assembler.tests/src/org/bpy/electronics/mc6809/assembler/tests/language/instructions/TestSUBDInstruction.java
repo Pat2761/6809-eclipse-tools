@@ -584,7 +584,7 @@ public class TestSUBDInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledSUBDInstruction line = (AssembledSUBDInstruction) engine.getAssembledLine(2);
@@ -685,7 +685,7 @@ public class TestSUBDInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -745,7 +745,7 @@ public class TestSUBDInstruction {
 
 			Assert.assertNotNull(result);
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledSUBDInstruction line = (AssembledSUBDInstruction) engine.getAssembledLine(2);
@@ -818,7 +818,7 @@ public class TestSUBDInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 128 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -878,7 +878,7 @@ public class TestSUBDInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledSUBDInstruction line = (AssembledSUBDInstruction) engine.getAssembledLine(2);
@@ -954,7 +954,7 @@ public class TestSUBDInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledSUBDInstruction line = (AssembledSUBDInstruction) engine.getAssembledLine(2);
@@ -1014,7 +1014,7 @@ public class TestSUBDInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledSUBDInstruction line = (AssembledSUBDInstruction) engine.getAssembledLine(2);
@@ -1090,7 +1090,7 @@ public class TestSUBDInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), ExpressionParser.OVERFLOW_ERROR,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledSUBDInstruction line = (AssembledSUBDInstruction) engine.getAssembledLine(2);
