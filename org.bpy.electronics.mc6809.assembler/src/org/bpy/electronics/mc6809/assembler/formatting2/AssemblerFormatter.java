@@ -8,6 +8,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
+import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.AbstractJavaFormatter;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatter;
@@ -18,6 +20,12 @@ import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
 import com.google.common.base.Strings;
 
+/**
+ * Formatter.
+ * 
+ * @author Patrick BRIAND
+ *
+ */
 public class AssemblerFormatter extends AbstractJavaFormatter {
 
 	/** Reference on the preference manager */
@@ -41,6 +49,12 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	/** Just use for a workaround on JUnit test of the formatter */
 	private boolean junitPreference;
 
+	/**
+	 * Entry for format all document.
+	 * 
+	 * @param model reference on the model
+	 * @param doc reference on the document
+	 */
 	protected void format(Model model, IFormattableDocument doc) {
 		preferenceManager = PreferenceManager.getInstance();
 		junitPreference = this.preferenceManager.getBooleanPreferenceValue(PreferenceManager.JUNIT_PREFERENCE);
@@ -81,26 +95,63 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 
 			if (PreferenceManager.SPACE_ONLY.equals(tabPolicy)) {
 				formatSpaceOnly(commentLine, doc);
-
 			} else if (PreferenceManager.TAB_ONLY.equals(tabPolicy)) {
 				formatTabOnly(commentLine, doc);
-
 			} else {
 				formatMixed(commentLine, doc);
-
 			}
 		}
 	}
 
+	/** 
+	 * Format comment line in case of tab policy of type mixed.
+	 * 
+	 * @param commentLine reference on the comment line
+	 * @param document reference on the document
+	 */
 	private void formatMixed(CommentLine commentLine, IFormattableDocument document) {
-		// TODO Auto-generated method stub
+		// remove the first white space
+		removeWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE);
 
+		// Insert the expected number of tab
+		int nbTabs = computeNbTabsForSpaces(commentPosition-1);
+		int nbSpaceMissing = computeSpaceMissing(commentPosition-1);
+		StringBuilder strPosition = new StringBuilder(Strings.repeat("\t", nbTabs));
+		if (nbSpaceMissing > 0) {
+			strPosition.append(Strings.repeat(" ", nbSpaceMissing));
+		}
+		
+		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = new Procedure1<IHiddenRegionFormatter>() {
+			public void apply(final IHiddenRegionFormatter it) {
+				it.setSpace(strPosition.toString());
+			}
+		};
+		document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT),
+				setSpaceFunction);
 	}
 
+	/** 
+	 * Format comment line in case of tab policy of type tab only.
+	 * 
+	 * @param commentLine reference on the comment line
+	 * @param document reference on the document
+	 */
 	private void formatTabOnly(CommentLine commentLine, IFormattableDocument document) {
-		// TODO Auto-generated method stub
+		// remove the first white space
+		removeWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE);
 
+		// Insert the expected number of tab
+		int nbTabs = computeNbTabsForSpaces(commentPosition-1);
+		String strPosition = Strings.repeat("\t", nbTabs);
+		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = new Procedure1<IHiddenRegionFormatter>() {
+			public void apply(final IHiddenRegionFormatter it) {
+				it.setSpace(strPosition);
+			}
+		};
+		document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT),
+				setSpaceFunction);
 	}
+
 
 	/**
 	 * Format the comment line with space only.
@@ -111,16 +162,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	private void formatSpaceOnly(CommentLine commentLine, IFormattableDocument document) {
 
 		// remove the first white space
-		IHiddenRegionFormatting hiddenRegion = document.getFormatter().createHiddenRegionFormatting();
-		Procedure1<IHiddenRegionFormatting> oneSpcFunction = new Procedure1<>() {
-			public void apply(final IHiddenRegionFormatting it) {
-				it.setSpace("");
-			}
-		};
-		IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(hiddenRegion, oneSpcFunction);
-		ITextReplacer replacer = createWhitespaceReplacer(
-				textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), fmt);
-		document.addReplacer(replacer);
+		removeWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE);
 
 		// Insert the expected number of space
 		String strPosition = Strings.repeat(" ", commentPosition-1);
@@ -131,6 +173,45 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		};
 		document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT),
 				setSpaceFunction);
+	}
+
+	/** 
+	 * Compute space missing in case of use tab or mixed tab policy.
+	 * 
+	 * @param nbSpaces Number of spaces to generate
+	 * @return nbSpace Number of spaces to generate
+	 */
+	private int computeSpaceMissing(int nbSpaces) {
+		return nbSpaces % tabSize;
+	}
+
+	/**
+	 * Compute the number of tab for a specific number of spaces.
+	 * 
+	 * @param nbSpaces Number of space to create
+	 * @return number of tab needed
+	 */
+	private int computeNbTabsForSpaces(int nbSpaces) {
+		return nbSpaces / tabSize;
+	}
+	
+	/**
+	 * Remove a white space.
+	 *  
+	 * @param document reference on the document
+	 * @param line reference on the instruction or directive line
+	 * @param elementAttribut reference on the white space to remove 
+	 */
+	private void removeWhiteSpace(IFormattableDocument document, EObject line, EAttribute elementAttribut) {
+		IHiddenRegionFormatting hiddenRegion = document.getFormatter().createHiddenRegionFormatting();
+		Procedure1<IHiddenRegionFormatting> oneSpcFunction = new Procedure1<>() {
+			public void apply(final IHiddenRegionFormatting it) {
+				it.setSpace(" ");
+			}
+		};
+		IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(hiddenRegion, oneSpcFunction);
+		ITextReplacer replacer = createWhitespaceReplacer(textRegionExtensions.regionFor(line).feature(elementAttribut), fmt);
+		document.addReplacer(replacer);
 	}
 
 	// TODO: implement for OtherKindOfInstructions, SpecialFunctions,

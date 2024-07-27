@@ -24,44 +24,53 @@ public class TestCommentLineFormatter extends AbstractTestFormatter {
 	
 	@Test
 	public void  testFormatterSpaceOnly01() {
-//		setTabPolicy(PreferenceManager.SPACE_ONLY);
-//		String test = "		; test";
-//		String expectedResult = "                                                    ; test";
-//		String result;
-//		try {
-//			result = serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
-//			Assert.assertEquals(expectedResult,	result);
-//		} catch (Exception e) {
-//			Assert.assertTrue("Exception", true);
-//		}
+		setTabPolicy(PreferenceManager.SPACE_ONLY);
+		setTabSize(5);
+		setInstructionPosition(11);
+		setOperandPosition(26);
+		setCommentPosition(56);
+		String test = "		; test";
+		try {
+			String result = serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
+			char value = result.charAt(55);
+			Assert.assertEquals("; must be at 56", ";", value);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception", true);
+		}
 	}
 
 	@Test
 	public void  testFormatterTabOnly01() {
-//		setTabPolicy(PreferenceManager.TAB_ONLY);
-//		setCommentPosition(54);
-//		String test = "		; test";
-//		String expectedResult = "																		; test";
-//		String result;
-//		try {
-//			result = serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
-//			Assert.assertEquals(expectedResult,	result);
-//		} catch (Exception e) {
-//			Assert.assertTrue("Exception", true);
-//		}
+		setTabPolicy(PreferenceManager.TAB_ONLY);
+		setTabSize(5);
+		setInstructionPosition(11);
+		setOperandPosition(26);
+		setCommentPosition(56);
+		String test = "		; test";
+		try {
+			String result = serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
+			char value = result.charAt(55);
+			Assert.assertEquals("; must be at 11", ";", value);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception", true);
+		}
 	}
 
 	@Test
 	public void  testFormatterMixed01() {
-//		setTabPolicy(PreferenceManager.MIXED);
-//		setCommentPosition(52);
-//		String test = "		; test";
-//		String expectedResult = "																	 ; test";
-//		try {
-//			String result = serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
-//			Assert.assertEquals(expectedResult,	result);
-//		} catch (Exception e) {
-//			Assert.assertTrue("Exception", true);
-//		}
+		setTabPolicy(PreferenceManager.MIXED);
+		setTabSize(5);
+		setInstructionPosition(15);
+		setOperandPosition(27);
+		setCommentPosition(58);
+		String test = "		; test";
+		String expectedResult = "																	 ; test";
+		try {
+			String result = serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
+			char value = result.charAt(13);
+			Assert.assertEquals("; must be at 11", ";", value);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception", true);
+		}
 	}
 }
