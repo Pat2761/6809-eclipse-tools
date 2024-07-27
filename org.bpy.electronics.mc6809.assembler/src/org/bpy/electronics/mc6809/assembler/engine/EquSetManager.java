@@ -27,6 +27,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -35,6 +36,7 @@ import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -272,7 +274,8 @@ public class EquSetManager {
 		if (!equContainer.containsKey(labelName) ) {
 			EquDefinitionContainer equDefinition = new EquDefinitionContainer();
 			equDefinition.setDirective(regDirective);
-			equDefinition.setExpressionResolved(false);
+			equDefinition.setValue(CommandUtil.getRegisterConvertionValue(regDirective.getOptions()));;
+			equDefinition.setExpressionResolved(true);
 			equDefinition.setEquType(EquDefinitionContainer.REG_DEFINITION);
 			equDefinition.setActive(true);
 			
@@ -383,9 +386,6 @@ public class EquSetManager {
 						
 					} else if (container.getEquType() == EquDefinitionContainer.SET_DEFINITION) {
 						resolveSetValue(container); 
-						
-					} else if (container.getEquType() == EquDefinitionContainer.REG_DEFINITION) {
-						resolveRegValue(container); 
 					}
 				
 				 if (container.isExpressionResolved()) {
@@ -441,10 +441,6 @@ public class EquSetManager {
 			}
 		}
 		return containers.get(0);
-	}
-
-	private void resolveRegValue(EquDefinitionContainer container) {
-		// TODO Auto-generated method stub
 	}
 
 	/** 

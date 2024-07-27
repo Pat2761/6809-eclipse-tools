@@ -145,7 +145,7 @@ public class TestPSHUInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       		ORG    		$8000\n");
-		strBuilder.append("Pshs       	PSHU		#RegDir       ; push register\n");
+		strBuilder.append("Pshs       	PSHU		   #RegDir       ; push register\n");
 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -154,16 +154,18 @@ public class TestPSHUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result,
 				AssemblerPackage.eINSTANCE.getPshuInstruction(),
-				InstructionValidator.MISSING_DIRECTIVE,
-				"REG RegDir directive is not defined"
+				InstructionValidator.EXPRESSION_ERROR,
+				"Can't find RegDir definition"
 			);
 	
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledPSHUInstruction line = (AssembledPSHUInstruction)engine.getAssembledLine(2);
 			
-			Assert.assertEquals("Check PC COunter", 0x8001, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC COunter", 0x8002, engine.getCurrentPcValue());
 			Assert.assertEquals("Check opcode length", 1, line.getOpcode().length);		
-			Assert.assertEquals("Check opcode", 0x3F, line.getOpcode()[0]);
+			Assert.assertEquals("Check opcode", 0x36, line.getOpcode()[0]);
+			Assert.assertEquals("Check operand length", 1, line.getOperand().length);		
+			Assert.assertEquals("Check operand", 0x00, line.getOperand()[0]);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -229,7 +231,7 @@ public class TestPSHUInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result,AssemblerPackage.eINSTANCE.getInstructionLine(),
-					AssemblerEngine.DUPLICATE_LABEL,"Label Lab1 is already defined");
+					InstructionValidator.DUPLICATE_LABEL,"Label Lab1 is already defined");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}

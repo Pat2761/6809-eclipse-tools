@@ -61,6 +61,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Substraction;
 import org.bpy.electronics.mc6809.assembler.assembler.Xor;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
@@ -274,6 +275,7 @@ public class ExpressionParser {
 		eReference = instructionReference;
 		assemblyLine = instruction;
 		
+		
 		int value = 0;		
 		if (extendedOperand.getOperand() != null && extendedOperand.getOperand().getOperand() != null) {
 			EObject operand = extendedOperand.getOperand().getOperand();
@@ -480,6 +482,20 @@ public class ExpressionParser {
 		}
 	}
 
+	/**
+	 * resolve an identifier value.
+	 * 
+	 * @param value Reference on an identifier value
+	 * @return Converted value
+	 * 
+	 * @throws UnresolvedException
+	 */
+	public static Integer parseIdentifer(EObject instruction, EReference reference, IdentifierValue value) throws UnresolvedException {
+		assemblyLine = instruction;
+		eReference = reference;
+		return resolveIdentifierValue(value);
+	}
+
 	/** 
 	 *  Parse the space count value of an SPC directive.
 	 *  
@@ -650,35 +666,24 @@ public class ExpressionParser {
 	 */
 	private static int resolveIdentifierValue(IdentifierValue labelValue) throws UnresolvedException {
 		Integer value = EquSetManager.getInstance().getValue(labelValue.getValue());
+		Map<String, AbstractAssemblyLine> labelsPosition = AssemblerEngine.getInstance().getLabelsPositionObject();
 		
 		if (value != null) {
 			return value.intValue();
+			
 		} else {
-			UnresolvedExceptionDescriptor descriptor = new UnresolvedExceptionDescriptor(
-					"Can't find " + labelValue.getValue() + " definition", eReference);
-			
-			throw new UnresolvedException(descriptor);
-//			if (labelsPosition != null) {
-//				AbstractAssemblyLine targetAssemblyLine = labelsPosition.get(labelValue.getValue());
-//				if (targetAssemblyLine == null) {
-//					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-//							"Can't find " + labelValue.getValue() + " definition", 
-//							eReference, 
-//							EXPRESSION_ERROR);
-//					AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
-//					
-//				} else {
-//					return targetAssemblyLine.getPcAddress();
-//				}
-//			} else {
-//				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-//						"Can't find " + labelValue.getValue() + " definition", 
-//						eReference, 
-//						EXPRESSION_ERROR);
-//				AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
-//			}
-			
+				AbstractAssemblyLine targetAssemblyLine = labelsPosition.get(labelValue.getValue());
+				if (targetAssemblyLine == null) {
+					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+							"Can't find " + labelValue.getValue() + " definition", 
+							eReference, 
+							InstructionValidator.EXPRESSION_ERROR);
+					AssemblerErrorManager.getInstance().addProblem(assemblyLine, errorDescription);
+				} else {
+					return targetAssemblyLine.getPcAddress();
+				}
 		}
+		return 0;
 	}
 
 	/**
@@ -964,5 +969,4 @@ public class ExpressionParser {
 		}
 		return left>>right;
 	}
-
 }

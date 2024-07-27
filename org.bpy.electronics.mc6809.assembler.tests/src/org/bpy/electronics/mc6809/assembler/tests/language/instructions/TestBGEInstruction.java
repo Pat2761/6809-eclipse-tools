@@ -151,7 +151,7 @@ public class TestBGEInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(),
-				AssemblerEngine.DUPLICATE_LABEL,
+				InstructionValidator.DUPLICATE_LABEL,
 				"Label Jump is already defined"
 			);
 		

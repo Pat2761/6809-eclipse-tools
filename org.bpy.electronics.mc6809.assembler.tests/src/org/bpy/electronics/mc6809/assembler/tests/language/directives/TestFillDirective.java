@@ -140,7 +140,7 @@ public class TestFillDirective {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result,
 				AssemblerPackage.eINSTANCE.getDirectiveLine(),
-				AssemblerEngine.DUPLICATE_LABEL,
+				InstructionValidator.DUPLICATE_LABEL,
 				"Label Val2 is already defined"
 			);
 		

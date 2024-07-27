@@ -528,7 +528,7 @@ public class TestANDBInstruction {
 
 			Assert.assertNotNull(result);
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), AssemblerEngine.DUPLICATE_LABEL,
+			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), InstructionValidator.DUPLICATE_LABEL,
 					"Label Start is already defined");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);

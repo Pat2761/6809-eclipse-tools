@@ -529,7 +529,7 @@ public class TestCWAIInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result,AssemblerPackage.eINSTANCE.getInstructionLine(),
-					AssemblerEngine.DUPLICATE_LABEL,
+					InstructionValidator.DUPLICATE_LABEL,
 					"Label Start is already defined"
 					);
 		} catch (Exception e) {

@@ -34,7 +34,9 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.validation.DirectiveValidator;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.directives.AssembledRegDirectiveLine;
 
 @RunWith(XtextRunner.class)
@@ -252,7 +254,7 @@ public class TestRegDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), AssemblerEngine.DUPLICATE_LABEL,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), InstructionValidator.DUPLICATE_LABEL,
 					"The label Lab1 for an REG directive is already defined");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
@@ -329,7 +331,7 @@ public class TestRegDirective {
 			Assert.assertEquals("Check value S", 64, regLineS.getValue());
 			AssembledRegDirectiveLine regLinePC = (AssembledRegDirectiveLine) engine.getAssembledLine(10);
 			Assert.assertEquals("Check value PC", 128, regLinePC.getValue());
-			Assert.assertEquals("Check memorization", 128, engine.getRegDefintionValue("L_PC").intValue());
+			Assert.assertEquals("Check memorization", 128, EquSetManager.getInstance().getValue("L_PC").intValue());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}

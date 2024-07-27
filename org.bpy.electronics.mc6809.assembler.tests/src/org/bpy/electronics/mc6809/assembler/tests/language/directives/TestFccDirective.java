@@ -167,7 +167,7 @@ public class TestFccDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(),
-				AssemblerEngine.DUPLICATE_LABEL,
+				InstructionValidator.DUPLICATE_LABEL,
 				"Label Label1 is already defined"
 			);
 		} catch (Exception e) {

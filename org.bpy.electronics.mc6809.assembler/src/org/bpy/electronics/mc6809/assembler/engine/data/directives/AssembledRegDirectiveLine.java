@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
+import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 
 /**
@@ -53,7 +54,7 @@ public class AssembledRegDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.comment = CommandUtil.getComment(directive);
 		this.directive = directive;
 	
-		value = getRegisterConvertionValue(directive.getOptions());
+		value = EquSetManager.getInstance().getValue(label);
 	}
 
 	public RegDirective getDirective() {
@@ -77,12 +78,4 @@ public class AssembledRegDirectiveLine extends AbstractAssembledDirectiveLine {
 		return 0;
 	}
 
-	public boolean checkRegister(Register s) {
-		for (Register register : directive.getOptions()) {
-			if (register.equals(s)) {
-				return true;
-			}
-		}
-		return false;
-	}
 }

@@ -82,24 +82,13 @@ public abstract class AbstractAssemblyLine {
 		}
 	}
 	
-	protected int getRegisterConvertionValue(EList<Register> options) {
-		int value = 0;
-		for (Register regValue : options) {
-			switch (regValue.getLiteral()) {
-				case "A"  : value |= 0x02; break;
-				case "B"  : value |= 0x04; break;
-				case "D"  : value |= 0x06; break;
-				case "U"  : value |= 0x40; break;
-				case "S"  : value |= 0x40; break;
-				case "X"  : value |= 0x10; break;
-				case "Y"  : value |= 0x20; break;
-				case "PC" : value |= 0x80; break;
-				case "DP" : value |= 0x08; break;
-				case "CC" : value |= 0x01; break;
-			default		:
-				// nothing to do , protected by the grammar 
-			}	
+	protected boolean checkUnexpectedRegister(EList<Register> options, Register registerValue) {
+		for (Register register : options) {
+			if (register.equals(registerValue)) {
+				return true;
+			}
 		}
-		return value;
+		return false;
 	}
+
 }

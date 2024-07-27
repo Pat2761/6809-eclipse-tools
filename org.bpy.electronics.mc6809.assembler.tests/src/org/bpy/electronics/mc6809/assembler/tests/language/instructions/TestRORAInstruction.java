@@ -26,6 +26,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledRORAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.testing.util.ParseHelper;
@@ -179,7 +180,7 @@ public class TestRORAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(),
-				AssemblerEngine.DUPLICATE_LABEL,"Label Start is already defined");
+				InstructionValidator.DUPLICATE_LABEL,"Label Start is already defined");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
 		} 

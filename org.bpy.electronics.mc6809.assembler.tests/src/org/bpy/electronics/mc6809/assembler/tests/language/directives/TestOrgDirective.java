@@ -456,7 +456,7 @@ public class TestOrgDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), AssemblerEngine.DUPLICATE_LABEL,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), InstructionValidator.DUPLICATE_LABEL,
 					"Label OrgPos is already defined");
 
 			AssemblerEngine assemblerEngine = AssemblerEngine.getInstance();

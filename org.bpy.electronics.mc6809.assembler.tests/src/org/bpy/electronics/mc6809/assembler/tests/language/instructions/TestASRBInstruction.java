@@ -22,6 +22,8 @@ import org.junit.runner.RunWith;
 import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.testing.InjectWith;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
+
 import com.google.inject.Inject;
 import org.eclipse.xtext.testing.util.ParseHelper;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
@@ -169,7 +171,7 @@ public class TestASRBInstruction {
 			Assert.assertNotNull(result);
 		    validationTestHelper.assertError(result, 
 		    		AssemblerPackage.eINSTANCE.getInstructionLine(), 
-		    		AssemblerEngine.DUPLICATE_LABEL, 
+		    		InstructionValidator.DUPLICATE_LABEL, 
 		    		"Label Start is already defined");
 		    	 
 		} catch (Exception e) {

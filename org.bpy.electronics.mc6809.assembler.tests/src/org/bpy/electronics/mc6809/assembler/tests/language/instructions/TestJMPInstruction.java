@@ -541,7 +541,7 @@ public class TestJMPInstruction {
 
 			Assert.assertNotNull(result);
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(),
-					AssemblerEngine.DUPLICATE_LABEL, "Label Start is already defined");
+					InstructionValidator.DUPLICATE_LABEL, "Label Start is already defined");
 			
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);

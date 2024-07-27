@@ -165,9 +165,6 @@ public class AssemblerEngine {
 	/** Logger of the class */
 	private static final Logger logger = Logger.getLogger(AssemblerEngine.class.getSimpleName());
 	
-	/** String marker for the error manager in case of duplicate label */
-	public static final String DUPLICATE_LABEL = "duplicateLabel";
-
 	/** State of the current PC */
 	private int currentPcValue;
 	/** memorize the current line number */ 
@@ -179,8 +176,6 @@ public class AssemblerEngine {
 	
 	/** Contains the collection of label which reference assembly line */
 	private Map<String, AbstractAssemblyLine> labelsPositionObject;
-	/** Contains the collection of Register definition */
-	private Map<String, Integer> regDefinitionValues;
 	/** Contains the collection of macro definition */
 	private Map<String, MacroDefinition> macroDefinitions;
 	/** Contains the collection of assembled line  */
@@ -221,7 +216,6 @@ public class AssemblerEngine {
 		
 		labelsPositionObject = new HashMap<>();
 		assembledLinesMap = new HashMap<>();
-		regDefinitionValues = new HashMap<>();
 		macroDefinitions = new HashMap<>();
 		macroCallsCounter =new HashMap<>();
 	}
@@ -3510,7 +3504,7 @@ public class AssemblerEngine {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
 						"The label " + line.getTarget() + " Can't be found", 
 						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
-						DUPLICATE_LABEL);
+						InstructionValidator.DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 				line.setValue(0);
 			} else {
@@ -3607,7 +3601,7 @@ public class AssemblerEngine {
 			if (labelsPositionObject.containsKey(directive.getLabel())) {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + directive.getLabel() + " is already defined",
 						reference,
-						DUPLICATE_LABEL);
+						InstructionValidator.DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(objectWithProblem, problemDescription );
 			} else {
 				labelsPositionObject.put(directive.getLabel(), directive);
@@ -3635,20 +3629,6 @@ public class AssemblerEngine {
 		return assembledLinesMap.get(objectLine);
 	}
 	
-	/**
-	 * Get the value for a label 
-	 * 
-	 * @param value value of the label
-	 * @return value pointed by the label
-	 */
-	public Integer getRegDefintionValue(String value) {
-		if (regDefinitionValues.containsKey(value)) {
-			return regDefinitionValues.get(value);
-		} else {
-			return null;
-		}
-	}
-
 	/**
 	 * Get the value for a label 
 	 * 

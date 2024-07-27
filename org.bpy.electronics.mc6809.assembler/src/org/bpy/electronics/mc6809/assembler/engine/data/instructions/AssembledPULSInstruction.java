@@ -20,12 +20,17 @@ package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Register;
+import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Allow to parse an PULS Instruction
@@ -69,21 +74,64 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 	@Override
 	public void setOperand(AddressingMode mode) {
 		if (instruction.getOperand() != null) {
-			Integer convertedValue = AssemblerEngine.getInstance().getRegDefintionValue(instruction.getOperand().getValue());
-			if (convertedValue != null) {
-				operandBytes = new int[] {convertedValue&0xFF};
-			} else {
-				opcodeBytes =  new int[] {0x3F};
-				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
-						"REG " + instruction.getOperand().getValue() + " directive is not defined" , 
-						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND, 
-						InstructionValidator.MISSING_DIRECTIVE);
-				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
-			}
+			parseIdentiferOperand();
 			
 		} else if (instruction.getRegisters() != null) {
-			int convertedValue = getRegisterConvertionValue(instruction.getRegisters());
+			
+			if (checkUnexpectedRegister(instruction.getRegisters(), Register.S)) {
+			
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						"S register can't be pull for a PULS instruction", 
+						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND, 
+						InstructionValidator.ILLEGAL_REGISTER);
+				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+
+			} 
+			int convertedValue = CommandUtil.getRegisterConvertionValue(instruction.getRegisters());
 			operandBytes = new int[] {convertedValue&0xFF};
+		}
+	}
+
+	/**
+	 * Parse the identifier value of PULU instruction  
+	 */
+	private void parseIdentiferOperand() {
+		Integer convertedValue = null;
+
+		EObject directive = EquSetManager.getInstance().getInstruction(instruction.getOperand().getValue());
+		if ((directive != null) && (directive instanceof RegDirective regDirective)) {
+			if (checkUnexpectedRegister(regDirective.getOptions(), Register.S)) {
+				
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						"S register can't be pull for a PULS instruction", 
+						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND, 
+						InstructionValidator.ILLEGAL_REGISTER);
+				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+			}
+		}
+		
+		
+		try {
+			convertedValue = ExpressionParser.parseIdentifer(instruction,
+					AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND
+					,instruction.getOperand());
+		} catch (UnresolvedException e) {
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					e.getDescriptor().getMessage(), 
+					e.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
+		}
+
+		if (convertedValue != null) {
+			operandBytes = new int[] {convertedValue&0xFF};
+		} else {
+			opcodeBytes =  new int[] {0x3F};
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					"REG " + instruction.getOperand().getValue() + " directive is not defined" , 
+					AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND, 
+					InstructionValidator.MISSING_DIRECTIVE);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 		}
 	}
 

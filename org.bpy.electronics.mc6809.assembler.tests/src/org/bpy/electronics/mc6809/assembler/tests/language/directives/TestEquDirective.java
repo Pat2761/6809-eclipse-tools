@@ -525,7 +525,7 @@ public class TestEquDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(),
-				AssemblerEngine.DUPLICATE_LABEL,"The label EquLabel for an EQU directive is already defined");
+				InstructionValidator.DUPLICATE_LABEL,"The label EquLabel for an EQU directive is already defined");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
 		}
@@ -547,7 +547,7 @@ public class TestEquDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getDirectiveLine(),
-				AssemblerEngine.DUPLICATE_LABEL,
+				InstructionValidator.DUPLICATE_LABEL,
 				"The label EquLabel for an EQU directive is already defined by a SET directive");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception detected", true);
