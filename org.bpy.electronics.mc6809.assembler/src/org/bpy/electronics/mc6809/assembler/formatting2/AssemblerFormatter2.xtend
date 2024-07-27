@@ -73,146 +73,142 @@ import org.eclipse.xtext.formatting2.IHiddenRegionFormatter
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1
 import org.bpy.electronics.mc6809.assembler.assembler.Label
 
-class AssemblerFormatter extends AbstractFormatter2 {
+class AssemblerFormatter2 extends AbstractFormatter2 {
 	
-	override format(Object obj, IFormattableDocument document) {
-//		throw new UnsupportedOperationException("TODO: auto-generated method stub")
+	/** Reference on grammar acces */
+//    @Inject extension AssemblerGrammarAccess
+	/** Reference on the preference manager */
+	PreferenceManager preferenceManager
+
+	/** Current value of the tab policy */
+	String tabPolicy
+
+	/** Current value of the tab size */
+	int tabSize
+
+	/** Current column value of the instruction */
+	int instructionPosition
+
+	/** Current column value of the operand */
+	int operandPosition
+
+	/** Current column value of the comment */
+	int commentPosition
+
+	/** Just use for a workaround on JUnit test of the formatter */
+	boolean junitPreference
+
+	/**
+	 * Allow to initialize the formatter.
+	 * read formatter preference
+	 * call formatter for all children of the model 
+	 * 
+	 */
+	def dispatch void format(Model model, extension IFormattableDocument document) {
+		preferenceManager = PreferenceManager.instance
+
+		junitPreference = preferenceManager.getBooleanPreferenceValue(PreferenceManager::JUNIT_PREFERENCE)
+
+		tabPolicy = preferenceManager.getStringPreferenceValue(PreferenceManager::TAB_POLICY)
+		tabSize = preferenceManager.getIntPreferenceValue(PreferenceManager::TAB_SIZE)
+		instructionPosition = preferenceManager.getIntPreferenceValue(PreferenceManager::INSTRUCTION_POSITION)
+		operandPosition = preferenceManager.getIntPreferenceValue(PreferenceManager::OPERAND_POSITION)
+		commentPosition = preferenceManager.getIntPreferenceValue(PreferenceManager::COMMENT_POSITION)
+
+		println("--------------------------------------------------------------")
+		println("Use formatter with following paramaters: ")
+		print("Tab policy = " + tabPolicy)
+		print(": Tab size = " + tabSize)
+		print(": Instruction position = " + instructionPosition)
+		print(": Operand position " + operandPosition)
+		println(": Comment position " + commentPosition)
+
+		for (sourceLine : model.sourceLines) {
+			sourceLine.format
+		}
 	}
 
-//	/** Reference on grammar acces */
-//	// @Inject extension AssemblerGrammarAccess
-//	/** Reference on the preference manager */
-//	PreferenceManager preferenceManager
-//
-//	/** Current value of the tab policy */
-//	String tabPolicy
-//
-//	/** Current value of the tab size */
-//	int tabSize
-//
-//	/** Current column value of the instruction */
-//	int instructionPosition
-//
-//	/** Current column value of the operand */
-//	int operandPosition
-//
-//	/** Current column value of the comment */
-//	int commentPosition
-//
-//	/** Just use for a workaround on JUnit test of the formatter */
-//	boolean junitPreference
-//
-//	/**
-//	 * Allow to initialize the formatter.
-//	 * read formatter preference
-//	 * call formatter for all children of the model 
-//	 * 
-//	 */
-//	def dispatch void format(Model model, extension IFormattableDocument document) {
-//		preferenceManager = PreferenceManager.instance
-//
-//		junitPreference = preferenceManager.getBooleanPreferenceValue(PreferenceManager::JUNIT_PREFERENCE)
-//
-//		tabPolicy = preferenceManager.getStringPreferenceValue(PreferenceManager::TAB_POLICY)
-//		tabSize = preferenceManager.getIntPreferenceValue(PreferenceManager::TAB_SIZE)
-//		instructionPosition = preferenceManager.getIntPreferenceValue(PreferenceManager::INSTRUCTION_POSITION)
-//		operandPosition = preferenceManager.getIntPreferenceValue(PreferenceManager::OPERAND_POSITION)
-//		commentPosition = preferenceManager.getIntPreferenceValue(PreferenceManager::COMMENT_POSITION)
-//
-//		println("--------------------------------------------------------------")
-//		println("Use formatter with following paramaters: ")
-//		print("Tab policy = " + tabPolicy)
-//		print(": Tab size = " + tabSize)
-//		print(": Instruction position = " + instructionPosition)
-//		print(": Operand position " + operandPosition)
-//		println(": Comment position " + commentPosition)
-//
-//		for (sourceLine : model.sourceLines) {
-//			sourceLine.format
-//		}
-//	}
-//
-//	/** 
-//	 * Call the formatter for a source line
-//	 */
-//	def dispatch void format(SourceLine sourceLine, extension IFormattableDocument document) {
-//		sourceLine.lineContent.format
-//	}
-//
-//	/** 
-//	 * Call the formatter for a line which start with space and contains only a comment
-//	 */
-//	def dispatch void format(CommentLine commentLine, extension IFormattableDocument document) {
-//		if (commentLine.startingSpace !== null) {
-//
-//			if (PreferenceManager::SPACE_ONLY == tabPolicy) {
-//				commentLine.formatSpaceOnly(document)
-//
-//			} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
-//				commentLine.formatTabOnly(document)
-//
-//			} else {
-//				commentLine.formatMixed(document)
-//
-//			}
-//		}
-//	}
-//
-//	/**
-//	 * Format a comment line when the tab policy is Space only
-//	 */
-//	def private void formatSpaceOnly(CommentLine commentLine, extension IFormattableDocument document) {
-//		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = " "]
-//		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).
-//			createWhitespaceReplacer(fmt)
-//		document.addReplacer(replacer)
-//
-//		val strPosition = Strings.repeat(' ', (commentPosition - 1) > 1 ? (commentPosition - 1) : 1)
-//		commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT).prepend [
-//			space = strPosition
-//		]
-//	}
-//
-//	/**
-//	 * Format a comment line when the tab policy is Tab only
-//	 */
-//	def private void formatTabOnly(CommentLine commentLine, extension IFormattableDocument document) {
-//		val nbTabs = commentPosition / tabSize
-//
-//		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = "\t"]
-//		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).
-//			createWhitespaceReplacer(fmt)
-//		document.addReplacer(replacer)
-//
-//		val strPosition = Strings.repeat('\t', (nbTabs - 1) > 1 ? (nbTabs - 1) : 1)
-//		commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT).prepend [
-//			space = strPosition
-//		]
-//	}
-//
-//	/**
-//	 * Format a comment line when the tab policy is a mixed of space and tab
-//	 */
-//	def private void formatMixed(CommentLine commentLine, extension IFormattableDocument document) {
-//		val nbTabs = commentPosition / tabSize
-//		val nbSpaces = commentPosition - (tabSize * nbTabs);
-//
-//		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = "\t"]
-//		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).
-//			createWhitespaceReplacer(fmt)
-//		document.addReplacer(replacer)
-//
-//		var strPosition = Strings.repeat('\t', (nbTabs - 1) > 1 ? (nbTabs - 1) : 1)
-//		if (nbSpaces !== 0) {
-//			strPosition += Strings.repeat(' ', nbSpaces)
-//		}
-//
-//		val spaces = strPosition
-//		commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT).prepend [
-//			space = spaces
-//		]
-//	}
-//
+	/** 
+	 * Call the formatter for a source line
+	 */
+	def dispatch void format(SourceLine sourceLine, extension IFormattableDocument document) {
+		sourceLine.lineContent.format
+	}
+
+	/** 
+	 * Call the formatter for a line which start with space and contains only a comment
+	 */
+	def dispatch void format(CommentLine commentLine, extension IFormattableDocument document) {
+		if (commentLine.startingSpace !== null) {
+
+			if (PreferenceManager::SPACE_ONLY == tabPolicy) {
+				commentLine.formatSpaceOnly(document)
+
+			} else if (PreferenceManager::TAB_ONLY == tabPolicy) {
+				commentLine.formatTabOnly(document)
+
+			} else {
+				commentLine.formatMixed(document)
+
+			}
+		}
+	}
+
+	/**
+	 * Format a comment line when the tab policy is Space only
+	 */
+	def private void formatSpaceOnly(CommentLine commentLine, extension IFormattableDocument document) {
+		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = " "]
+		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).
+			createWhitespaceReplacer(fmt)
+		document.addReplacer(replacer)
+
+		val strPosition = Strings.repeat(' ', (commentPosition - 1) > 1 ? (commentPosition - 1) : 1)
+		commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT).prepend [
+			space = strPosition
+		]
+	}
+
+	/**
+	 * Format a comment line when the tab policy is Tab only
+	 */
+	def private void formatTabOnly(CommentLine commentLine, extension IFormattableDocument document) {
+		val nbTabs = commentPosition / tabSize
+
+		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = "\t"]
+		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).
+			createWhitespaceReplacer(fmt)
+		document.addReplacer(replacer)
+
+		val strPosition = Strings.repeat('\t', (nbTabs - 1) > 1 ? (nbTabs - 1) : 1)
+		commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT).prepend [
+			space = strPosition
+		]
+	}
+
+	/**
+	 * Format a comment line when the tab policy is a mixed of space and tab
+	 */
+	def private void formatMixed(CommentLine commentLine, extension IFormattableDocument document) {
+		val nbTabs = commentPosition / tabSize
+		val nbSpaces = commentPosition - (tabSize * nbTabs);
+
+		val fmt = document.formatter.createHiddenRegionFormatting => [it.space = "\t"]
+		val replacer = commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE).
+			createWhitespaceReplacer(fmt)
+		document.addReplacer(replacer)
+
+		var strPosition = Strings.repeat('\t', (nbTabs - 1) > 1 ? (nbTabs - 1) : 1)
+		if (nbSpaces !== 0) {
+			strPosition += Strings.repeat(' ', nbSpaces)
+		}
+
+		val spaces = strPosition
+		commentLine.regionFor.feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT).prepend [
+			space = spaces
+		]
+	}
+
 //	/** 
 //	 * Call the formatter for a line which start with a label and contains only comments
 //	 */
