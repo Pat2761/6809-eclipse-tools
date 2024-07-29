@@ -16,7 +16,7 @@ import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
-public class LabelLineFormatter extends AbstractTestFormatter {
+public class TestLabelLineFormatter extends AbstractTestFormatter {
 	
 	 
 	@Inject ParseHelper<Model> parseHelper;
@@ -24,14 +24,19 @@ public class LabelLineFormatter extends AbstractTestFormatter {
 	
 	@Test
 	public void  TestFormatterSpaceOnly01() {
-//		setTabPolicy(PreferenceManager.SPACE_ONLY);
-//		String test = "TEST:		   ; test ";
-//		String expectedResult = "TEST:                                              ; test ";
-//		try {
-//			Assert.assertEquals(expectedResult,	serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions()));
-//		} catch (Exception e) {
-//			Assert.assertTrue("Exception detected", true);
-//		}
+		setTabPolicy(PreferenceManager.SPACE_ONLY);
+		setTabSize(5);
+		setInstructionPosition(11);
+		setOperandPosition(26);
+		setCommentPosition(56);
+		String test = "TEST:		   ; test ";
+		try {
+			String result = serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
+			char value = result.charAt(55);
+			Assert.assertEquals("; must be at 56", ';', value);
+		} catch (Exception e) {
+			Assert.assertTrue("Exception detected", true);
+		}
 	}
 
 	@Test
@@ -48,6 +53,11 @@ public class LabelLineFormatter extends AbstractTestFormatter {
 	
 	@Test
 	public void  TestFormatterTabOnly01() {
+		setTabPolicy(PreferenceManager.TAB_ONLY);
+		setTabSize(5);
+		setInstructionPosition(11);
+		setOperandPosition(26);
+		setCommentPosition(56);
 //		setTabPolicy(PreferenceManager.TAB_ONLY);
 //		String test = "TEST:		   ; test ";
 //		String expectedResult = "TEST:                                              ; test ";
@@ -60,6 +70,11 @@ public class LabelLineFormatter extends AbstractTestFormatter {
 
 	@Test
 	public void  TestFormatterTabOnly02() {
+		setTabPolicy(PreferenceManager.TAB_ONLY);
+		setTabSize(5);
+		setInstructionPosition(11);
+		setOperandPosition(26);
+		setCommentPosition(56);
 //		setTabPolicy(PreferenceManager.TAB_ONLY);
 //		String test = "TEST		   ; test ";
 //		String expectedResult = "TEST                                               ; test ";

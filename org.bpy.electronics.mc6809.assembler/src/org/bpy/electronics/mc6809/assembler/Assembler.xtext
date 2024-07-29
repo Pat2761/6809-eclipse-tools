@@ -1986,7 +1986,7 @@ RelativeMode:
  * Definition of the list possible directives
  */
 DirectiveLine:
-	label = Label WS
+	label=Label ws1=WS
 	(
 	 	   directive = EquDirective
 		|  directive = OrgDirective
@@ -2006,7 +2006,7 @@ DirectiveLine:
 		|  directive = RmbDirective
 		|  directive = SetDPDirective
 	)
-	(WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
+	(ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	WS? EndOfLine
 ;
 
@@ -2336,7 +2336,7 @@ OrgDirective:
  */
 EquDirective:
 	directive = 'EQU' 
-	WS ( 
+	ws=WS ( 
 		( isRelativeToPC?='*'? operand=Expression) |
 		( isRelativeToPC?='*' )
 		)

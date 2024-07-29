@@ -4861,9 +4861,31 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EAttribute getDirectiveLine_Ws1()
+  {
+    return (EAttribute)directiveLineEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getDirectiveLine_Directive()
   {
-    return (EReference)directiveLineEClass.getEStructuralFeatures().get(1);
+    return (EReference)directiveLineEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public EAttribute getDirectiveLine_Ws2()
+  {
+    return (EAttribute)directiveLineEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -4874,7 +4896,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
   @Override
   public EAttribute getDirectiveLine_Comment()
   {
-    return (EAttribute)directiveLineEClass.getEStructuralFeatures().get(2);
+    return (EAttribute)directiveLineEClass.getEStructuralFeatures().get(4);
   }
 
   /**
@@ -5477,7 +5499,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
-  public EAttribute getEquDirective_IsRelativeToPC()
+  public EAttribute getEquDirective_Ws()
   {
     return (EAttribute)equDirectiveEClass.getEStructuralFeatures().get(1);
   }
@@ -5488,9 +5510,20 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
    * @generated
    */
   @Override
+  public EAttribute getEquDirective_IsRelativeToPC()
+  {
+    return (EAttribute)equDirectiveEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EReference getEquDirective_Operand()
   {
-    return (EReference)equDirectiveEClass.getEStructuralFeatures().get(2);
+    return (EReference)equDirectiveEClass.getEStructuralFeatures().get(3);
   }
 
   /**
@@ -6634,7 +6667,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     directiveLineEClass = createEClass(DIRECTIVE_LINE);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__LABEL);
+    createEAttribute(directiveLineEClass, DIRECTIVE_LINE__WS1);
     createEReference(directiveLineEClass, DIRECTIVE_LINE__DIRECTIVE);
+    createEAttribute(directiveLineEClass, DIRECTIVE_LINE__WS2);
     createEAttribute(directiveLineEClass, DIRECTIVE_LINE__COMMENT);
 
     setDPDirectiveEClass = createEClass(SET_DP_DIRECTIVE);
@@ -6707,6 +6742,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     equDirectiveEClass = createEClass(EQU_DIRECTIVE);
     createEAttribute(equDirectiveEClass, EQU_DIRECTIVE__DIRECTIVE);
+    createEAttribute(equDirectiveEClass, EQU_DIRECTIVE__WS);
     createEAttribute(equDirectiveEClass, EQU_DIRECTIVE__IS_RELATIVE_TO_PC);
     createEReference(equDirectiveEClass, EQU_DIRECTIVE__OPERAND);
 
@@ -7267,7 +7303,9 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(directiveLineEClass, DirectiveLine.class, "DirectiveLine", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEReference(getDirectiveLine_Label(), this.getLabel(), null, "label", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDirectiveLine_Ws1(), ecorePackage.getEString(), "ws1", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getDirectiveLine_Directive(), ecorePackage.getEObject(), null, "directive", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getDirectiveLine_Ws2(), ecorePackage.getEString(), "ws2", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getDirectiveLine_Comment(), ecorePackage.getEString(), "comment", null, 0, 1, DirectiveLine.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(setDPDirectiveEClass, SetDPDirective.class, "SetDPDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -7340,6 +7378,7 @@ public class AssemblerPackageImpl extends EPackageImpl implements AssemblerPacka
 
     initEClass(equDirectiveEClass, EquDirective.class, "EquDirective", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getEquDirective_Directive(), ecorePackage.getEString(), "directive", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getEquDirective_Ws(), ecorePackage.getEString(), "ws", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getEquDirective_IsRelativeToPC(), ecorePackage.getEBoolean(), "isRelativeToPC", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getEquDirective_Operand(), this.getExpression(), null, "operand", null, 0, 1, EquDirective.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

@@ -15481,9 +15481,9 @@ rule__DirectiveLine__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_1()); }
-	RULE_WS
-	{ after(grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_1()); }
+	{ before(grammarAccess.getDirectiveLineAccess().getWs1Assignment_1()); }
+	(rule__DirectiveLine__Ws1Assignment_1)
+	{ after(grammarAccess.getDirectiveLineAccess().getWs1Assignment_1()); }
 )
 ;
 finally {
@@ -15616,9 +15616,9 @@ rule__DirectiveLine__Group_3__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_3_0()); }
-	RULE_WS
-	{ after(grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_3_0()); }
+	{ before(grammarAccess.getDirectiveLineAccess().getWs2Assignment_3_0()); }
+	(rule__DirectiveLine__Ws2Assignment_3_0)
+	{ after(grammarAccess.getDirectiveLineAccess().getWs2Assignment_3_0()); }
 )
 ;
 finally {
@@ -17803,9 +17803,9 @@ rule__EquDirective__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_1()); }
-	RULE_WS
-	{ after(grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_1()); }
+	{ before(grammarAccess.getEquDirectiveAccess().getWsAssignment_1()); }
+	(rule__EquDirective__WsAssignment_1)
+	{ after(grammarAccess.getEquDirectiveAccess().getWsAssignment_1()); }
 )
 ;
 finally {
@@ -25095,6 +25095,21 @@ finally {
 	restoreStackSize(stackSize);
 }
 
+rule__DirectiveLine__Ws1Assignment_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getDirectiveLineAccess().getWs1WSTerminalRuleCall_1_0()); }
+		RULE_WS
+		{ after(grammarAccess.getDirectiveLineAccess().getWs1WSTerminalRuleCall_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
 rule__DirectiveLine__DirectiveAssignment_2_0
 	@init {
 		int stackSize = keepStackSize();
@@ -25344,6 +25359,21 @@ rule__DirectiveLine__DirectiveAssignment_2_16
 		{ before(grammarAccess.getDirectiveLineAccess().getDirectiveSetDPDirectiveParserRuleCall_2_16_0()); }
 		ruleSetDPDirective
 		{ after(grammarAccess.getDirectiveLineAccess().getDirectiveSetDPDirectiveParserRuleCall_2_16_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__DirectiveLine__Ws2Assignment_3_0
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getDirectiveLineAccess().getWs2WSTerminalRuleCall_3_0_0()); }
+		RULE_WS
+		{ after(grammarAccess.getDirectiveLineAccess().getWs2WSTerminalRuleCall_3_0_0()); }
 	)
 ;
 finally {
@@ -26092,6 +26122,21 @@ rule__EquDirective__DirectiveAssignment_0
 			{ after(grammarAccess.getEquDirectiveAccess().getDirectiveEQUKeyword_0_0()); }
 		)
 		{ after(grammarAccess.getEquDirectiveAccess().getDirectiveEQUKeyword_0_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__EquDirective__WsAssignment_1
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getEquDirectiveAccess().getWsWSTerminalRuleCall_1_0()); }
+		RULE_WS
+		{ after(grammarAccess.getEquDirectiveAccess().getWsWSTerminalRuleCall_1_0()); }
 	)
 ;
 finally {

@@ -33,7 +33,7 @@ public class TestCommentLineFormatter extends AbstractTestFormatter {
 		try {
 			String result = serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
 			char value = result.charAt(55);
-			Assert.assertEquals("; must be at 56", ";", value);
+			Assert.assertEquals("; must be at 56", ';', value);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -50,7 +50,7 @@ public class TestCommentLineFormatter extends AbstractTestFormatter {
 		try {
 			String result = serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
 			char value = result.charAt(55);
-			Assert.assertEquals("; must be at 11", ";", value);
+			Assert.assertEquals("; must be at 11", ';', value);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}
@@ -64,11 +64,10 @@ public class TestCommentLineFormatter extends AbstractTestFormatter {
 		setOperandPosition(27);
 		setCommentPosition(58);
 		String test = "		; test";
-		String expectedResult = "																	 ; test";
 		try {
 			String result = serializer.serialize(parseHelper.parse(test), SaveOptions.newBuilder().format().getOptions());
 			char value = result.charAt(13);
-			Assert.assertEquals("; must be at 11", ";", value);
+			Assert.assertEquals("; must be at 11", ';', value);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
 		}

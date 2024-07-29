@@ -3,18 +3,34 @@
  */
 package org.bpy.electronics.mc6809.assembler.formatting2;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
+import org.bpy.electronics.mc6809.assembler.assembler.Label;
+import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.EquFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.FailFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AdcInstructionFormater;
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.xtext.formatting2.AbstractJavaFormatter;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatter;
 import org.eclipse.xtext.formatting2.IHiddenRegionFormatting;
 import org.eclipse.xtext.formatting2.ITextReplacer;
+import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegion;
+import org.eclipse.xtext.formatting2.regionaccess.ISemanticRegionsFinder;
+import org.eclipse.xtext.formatting2.regionaccess.ITextRegionExtensions;
+import org.eclipse.xtext.parsetree.reconstr.Serializer;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
 
@@ -53,7 +69,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * Entry for format all document.
 	 * 
 	 * @param model reference on the model
-	 * @param doc reference on the document
+	 * @param doc   reference on the document
 	 */
 	protected void format(Model model, IFormattableDocument doc) {
 		preferenceManager = PreferenceManager.getInstance();
@@ -65,22 +81,154 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		commentPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.COMMENT_POSITION);
 
 		System.out.println("--------------------------------------------------------------");
-		System.out.print("Use formatter with following paramaters: ");
+		System.out.println("Use formatter with following paramaters: ");
 		System.out.print("Tab policy = " + tabPolicy);
 		System.out.print(": Tab size = " + tabSize);
 		System.out.print(": Instruction position = " + instructionPosition);
 		System.out.print(": Operand position " + operandPosition);
-		System.out.print(": Comment position " + commentPosition);
+		System.out.println(": Comment position " + commentPosition);
 
 		for (SourceLine sourceLine : model.getSourceLines()) {
 			doc.format(sourceLine);
 		}
 	}
 
+	/**
+	 * Format a source line.
+	 * 
+	 * @param sourceLine reference to a source line
+	 * @param doc        reference to the document
+	 */
 	protected void format(SourceLine sourceLine, IFormattableDocument doc) {
 		if (sourceLine.getLineContent() instanceof CommentLine commentLine) {
 			doc.format(commentLine);
+
+		} else if (sourceLine.getLineContent() instanceof LabelLine labelLine) {
+			doc.format(labelLine);
+
+		} else if (sourceLine.getLineContent() instanceof DirectiveLine directiveLine) {
+			doc.format(directiveLine);
+
+		} else if (sourceLine.getLineContent() instanceof InstructionLine instructionLine) {
+			doc.format(instructionLine);
 		}
+	}
+
+	protected void format(InstructionLine line, IFormattableDocument doc) {
+		if (PreferenceManager.SPACE_ONLY.equals(tabPolicy)) {
+			formatInstructionWithSpaceOnly(line, doc);
+		}
+	}
+
+	private void formatInstructionWithSpaceOnly(InstructionLine line, IFormattableDocument doc) {
+		int labelSize = getLabelSize(line.getLabel());
+
+		// remove the first white space
+		final String spaceBeforeKeyword = Strings.repeat(" ", instructionPosition - labelSize - 1);
+		if (line.getWs1() != null) {
+			setWhiteSpace(doc, line, AssemblerPackage.Literals.INSTRUCTION_LINE__WS1, spaceBeforeKeyword);
+		}
+
+		if (line.getInstruction() instanceof AdcInstruction adcInstruction) {
+			AdcInstructionFormater adcFormatter = new AdcInstructionFormater(doc, tabPolicy, tabSize);
+			adcFormatter.format(this, adcInstruction, instructionPosition, operandPosition);
+		}
+
+		if (line.getWs2() != null) {
+			formatCommentPosition(doc, line, AssemblerPackage.Literals.INSTRUCTION_LINE__WS1, AssemblerPackage.Literals.INSTRUCTION_LINE__WS2,
+					AssemblerPackage.Literals.INSTRUCTION_LINE__COMMENT);
+		}
+	}
+
+	/**
+	 * Format a directive line.
+	 * 
+	 * @param line reference on the directive line
+	 * @param doc  reference on the current document
+	 */
+	protected void format(DirectiveLine line, IFormattableDocument doc) {
+		formatDirective(line, doc);
+	}
+
+	/**
+	 * Format a directive line. 
+	 * 
+	 * @param line reference on the directive line
+	 * @param doc  reference on the current document
+	 */
+	private void formatDirective(DirectiveLine line, IFormattableDocument doc) {
+		int labelSize = getLabelSize(line.getLabel());
+
+		// remove the first white space
+		final String spaceBeforeKeyword = Strings.repeat(" ", instructionPosition - labelSize - 1);
+		if (line.getWs1() != null) {
+			setWhiteSpace(doc, line, AssemblerPackage.Literals.DIRECTIVE_LINE__WS1, spaceBeforeKeyword);
+		}
+
+		if (line.getDirective() instanceof EquDirective equDirective) {
+			EquFormatter equFormatter = new EquFormatter(doc, tabPolicy, tabSize);
+			equFormatter.format(this, equDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof FailDirective failDirective) {
+			FailFormatter failFormatter = new FailFormatter(doc, tabPolicy, tabSize);
+			failFormatter.format(this, failDirective, instructionPosition, operandPosition);
+		}
+
+
+		if (line.getWs2() != null) {
+			formatCommentPosition(doc, line, AssemblerPackage.Literals.DIRECTIVE_LINE__WS1, AssemblerPackage.Literals.DIRECTIVE_LINE__WS2,
+					AssemblerPackage.Literals.DIRECTIVE_LINE__COMMENT);
+		}
+	}
+
+	private int getOperandSize(ISemanticRegion start) {
+		int length = 0;
+		ISemanticRegion currentNode = start;
+		boolean end = false;
+		while (!end) {
+			length += currentNode.getText().length();
+			currentNode = currentNode.getPreviousSemanticRegion();
+			currentNode.getText().isBlank();
+			end = currentNode.getText().isBlank();
+		}
+		return length;
+	}
+
+	protected void format(LabelLine labelLine, IFormattableDocument doc) {
+		if (labelLine.getComment() != null) {
+			if (PreferenceManager.SPACE_ONLY.equals(tabPolicy)) {
+				formatSpaceOnly(labelLine, doc);
+			} else if (PreferenceManager.TAB_ONLY.equals(tabPolicy)) {
+				formatTabOnly(labelLine, doc);
+			} else {
+				formatMixed(labelLine, doc);
+			}
+		}
+	}
+
+	private void formatMixed(LabelLine labelLine, IFormattableDocument doc) {
+		int labelSize = labelLine.getLabel().getName().getValue().length();
+		// TODO Auto-generated method stub
+
+	}
+
+	private void formatTabOnly(LabelLine labelLine, IFormattableDocument doc) {
+		int labelSize = labelLine.getLabel().getName().getValue().length();
+
+	}
+
+	private void formatSpaceOnly(LabelLine labelLine, IFormattableDocument doc) {
+		int labelSize = getLabelSize(labelLine.getLabel());
+
+		// remove the first white space
+		if (labelLine.getWs1() != null) {
+			setWhiteSpace(doc, labelLine, AssemblerPackage.Literals.LABEL_LINE__WS1, " ");
+		}
+
+		// Insert the expected number of space
+		String strPosition = Strings.repeat(" ", commentPosition - labelSize - 2);
+		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = it -> it.setSpace(strPosition);
+		doc.prepend(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__COMMENT), setSpaceFunction);
 	}
 
 	/**
@@ -103,55 +251,50 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		}
 	}
 
-	/** 
+	/**
 	 * Format comment line in case of tab policy of type mixed.
 	 * 
 	 * @param commentLine reference on the comment line
-	 * @param document reference on the document
+	 * @param document    reference on the document
 	 */
 	private void formatMixed(CommentLine commentLine, IFormattableDocument document) {
 		// remove the first white space
-		removeWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE);
+		if (commentLine.getStartingSpace() != null) {
+			setWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE, " ");
+		}
 
 		// Insert the expected number of tab
-		int nbTabs = computeNbTabsForSpaces(commentPosition-1);
-		int nbSpaceMissing = computeSpaceMissing(commentPosition-1);
+		int nbTabs = computeNbTabsForSpaces(commentPosition - 1);
+		int nbSpaceMissing = computeSpaceMissing(commentPosition - 1);
 		StringBuilder strPosition = new StringBuilder(Strings.repeat("\t", nbTabs));
 		if (nbSpaceMissing > 0) {
 			strPosition.append(Strings.repeat(" ", nbSpaceMissing));
 		}
-		
-		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = new Procedure1<IHiddenRegionFormatter>() {
-			public void apply(final IHiddenRegionFormatter it) {
-				it.setSpace(strPosition.toString());
-			}
-		};
+
+		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = it -> it.setSpace(strPosition.toString());
 		document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT),
 				setSpaceFunction);
 	}
 
-	/** 
+	/**
 	 * Format comment line in case of tab policy of type tab only.
 	 * 
 	 * @param commentLine reference on the comment line
-	 * @param document reference on the document
+	 * @param document    reference on the document
 	 */
 	private void formatTabOnly(CommentLine commentLine, IFormattableDocument document) {
 		// remove the first white space
-		removeWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE);
+		if (commentLine.getStartingSpace() != null) {
+			setWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE, " ");
+		}
 
 		// Insert the expected number of tab
-		int nbTabs = computeNbTabsForSpaces(commentPosition-1);
+		int nbTabs = computeNbTabsForSpaces(commentPosition - 1);
 		String strPosition = Strings.repeat("\t", nbTabs);
-		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = new Procedure1<IHiddenRegionFormatter>() {
-			public void apply(final IHiddenRegionFormatter it) {
-				it.setSpace(strPosition);
-			}
-		};
+		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = it -> it.setSpace(strPosition);
 		document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT),
 				setSpaceFunction);
 	}
-
 
 	/**
 	 * Format the comment line with space only.
@@ -162,20 +305,57 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	private void formatSpaceOnly(CommentLine commentLine, IFormattableDocument document) {
 
 		// remove the first white space
-		removeWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE);
+		if (commentLine.getStartingSpace() != null) {
+			setWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE, " ");
+		}
 
 		// Insert the expected number of space
-		String strPosition = Strings.repeat(" ", commentPosition-1);
-		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = new Procedure1<IHiddenRegionFormatter>() {
-			public void apply(final IHiddenRegionFormatter it) {
-				it.setSpace(strPosition);
-			}
-		};
+		String strPosition = Strings.repeat(" ", commentPosition - 1);
+		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = it -> it.setSpace(strPosition);
 		document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT),
 				setSpaceFunction);
 	}
 
-	/** 
+	private void formatCommentPosition(IFormattableDocument doc, EObject assemblyLine, EAttribute ws1, EAttribute ws2, EAttribute comment) {
+
+		try {
+			ISemanticRegion lastNodeInstruction = textRegionExtensions.regionFor(assemblyLine).feature(ws2).getPreviousSemanticRegion();
+			ISemanticRegion firstNodeInstruction = this.textRegionExtensions.regionFor(assemblyLine).feature(ws1).getNextSemanticRegion();
+
+			int nbSpaces = 0;
+
+			if (firstNodeInstruction == lastNodeInstruction) {
+				nbSpaces = commentPosition - firstNodeInstruction.getText().trim().length() - (instructionPosition);
+			} else {
+				nbSpaces = commentPosition - getOperandSize(lastNodeInstruction) - (operandPosition);
+			}
+
+			String spacesAfterInstruction = Strings.repeat(" ", nbSpaces);
+			setWhiteSpace(doc, assemblyLine, ws2, spacesAfterInstruction);
+		} catch (Exception e) {
+
+		}
+
+	}
+
+	/**
+	 * Compute the size of a label
+	 * 
+	 * @param label reference on the label
+	 * @return number of chars in the label
+	 */
+	private int getLabelSize(Label label) {
+		if (label.getName() != null) {
+			int size = label.getName().getValue().length();
+			if (label.isPoint()) {
+				size++;
+			}
+			return size;
+		}
+		return 0;
+	}
+
+	/**
 	 * Compute space missing in case of use tab or mixed tab policy.
 	 * 
 	 * @param nbSpaces Number of spaces to generate
@@ -194,24 +374,29 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	private int computeNbTabsForSpaces(int nbSpaces) {
 		return nbSpaces / tabSize;
 	}
-	
+
 	/**
 	 * Remove a white space.
-	 *  
-	 * @param document reference on the document
-	 * @param line reference on the instruction or directive line
-	 * @param elementAttribut reference on the white space to remove 
+	 * 
+	 * @param document        reference on the document
+	 * @param line            reference on the instruction or directive line
+	 * @param elementAttribut reference on the white space to remove
 	 */
-	private void removeWhiteSpace(IFormattableDocument document, EObject line, EAttribute elementAttribut) {
+	private void setWhiteSpace(IFormattableDocument document, EObject line, EAttribute elementAttribut, String spaces) {
 		IHiddenRegionFormatting hiddenRegion = document.getFormatter().createHiddenRegionFormatting();
-		Procedure1<IHiddenRegionFormatting> oneSpcFunction = new Procedure1<>() {
-			public void apply(final IHiddenRegionFormatting it) {
-				it.setSpace(" ");
-			}
-		};
+		Procedure1<IHiddenRegionFormatting> oneSpcFunction = it -> it.setSpace(spaces);
+
 		IHiddenRegionFormatting fmt = ObjectExtensions.<IHiddenRegionFormatting>operator_doubleArrow(hiddenRegion, oneSpcFunction);
 		ITextReplacer replacer = createWhitespaceReplacer(textRegionExtensions.regionFor(line).feature(elementAttribut), fmt);
-		document.addReplacer(replacer);
+		try {
+			document.addReplacer(replacer);
+		} catch (Exception ex) {
+//			System.out.println("Toto");
+		}
+	}
+
+	public ITextRegionExtensions getTextRegionFormatter() {
+		return textRegionExtensions;
 	}
 
 	// TODO: implement for OtherKindOfInstructions, SpecialFunctions,

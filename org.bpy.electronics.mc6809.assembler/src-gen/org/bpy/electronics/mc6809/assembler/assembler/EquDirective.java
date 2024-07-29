@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getWs <em>Ws</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#isIsRelativeToPC <em>Is Relative To PC</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getOperand <em>Operand</em>}</li>
  * </ul>
@@ -46,6 +47,28 @@ public interface EquDirective extends EObject
    * @generated
    */
   void setDirective(String value);
+
+  /**
+   * Returns the value of the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ws</em>' attribute.
+   * @see #setWs(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getEquDirective_Ws()
+   * @model
+   * @generated
+   */
+  String getWs();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getWs <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ws</em>' attribute.
+   * @see #getWs()
+   * @generated
+   */
+  void setWs(String value);
 
   /**
    * Returns the value of the '<em><b>Is Relative To PC</b></em>' attribute.

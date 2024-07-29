@@ -667,6 +667,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRelativeModeAccess().getIsPcRelativeAssignment_0(), "rule__RelativeMode__IsPcRelativeAssignment_0");
 			builder.put(grammarAccess.getRelativeModeAccess().getOffsetAssignment_1(), "rule__RelativeMode__OffsetAssignment_1");
 			builder.put(grammarAccess.getDirectiveLineAccess().getLabelAssignment_0(), "rule__DirectiveLine__LabelAssignment_0");
+			builder.put(grammarAccess.getDirectiveLineAccess().getWs1Assignment_1(), "rule__DirectiveLine__Ws1Assignment_1");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_0(), "rule__DirectiveLine__DirectiveAssignment_2_0");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_1(), "rule__DirectiveLine__DirectiveAssignment_2_1");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_2(), "rule__DirectiveLine__DirectiveAssignment_2_2");
@@ -684,6 +685,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_14(), "rule__DirectiveLine__DirectiveAssignment_2_14");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_15(), "rule__DirectiveLine__DirectiveAssignment_2_15");
 			builder.put(grammarAccess.getDirectiveLineAccess().getDirectiveAssignment_2_16(), "rule__DirectiveLine__DirectiveAssignment_2_16");
+			builder.put(grammarAccess.getDirectiveLineAccess().getWs2Assignment_3_0(), "rule__DirectiveLine__Ws2Assignment_3_0");
 			builder.put(grammarAccess.getDirectiveLineAccess().getCommentAssignment_3_1(), "rule__DirectiveLine__CommentAssignment_3_1");
 			builder.put(grammarAccess.getSetDPDirectiveAccess().getDirectiveAssignment_0(), "rule__SetDPDirective__DirectiveAssignment_0");
 			builder.put(grammarAccess.getSetDPDirectiveAccess().getOperandAssignment_1_1(), "rule__SetDPDirective__OperandAssignment_1_1");
@@ -728,6 +730,7 @@ public class AssemblerParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOrgDirectiveAccess().getOperandAssignment_1_1_0_1(), "rule__OrgDirective__OperandAssignment_1_1_0_1");
 			builder.put(grammarAccess.getOrgDirectiveAccess().getIsRelativeToPCAssignment_1_1_1(), "rule__OrgDirective__IsRelativeToPCAssignment_1_1_1");
 			builder.put(grammarAccess.getEquDirectiveAccess().getDirectiveAssignment_0(), "rule__EquDirective__DirectiveAssignment_0");
+			builder.put(grammarAccess.getEquDirectiveAccess().getWsAssignment_1(), "rule__EquDirective__WsAssignment_1");
 			builder.put(grammarAccess.getEquDirectiveAccess().getIsRelativeToPCAssignment_2_0_0(), "rule__EquDirective__IsRelativeToPCAssignment_2_0_0");
 			builder.put(grammarAccess.getEquDirectiveAccess().getOperandAssignment_2_0_1(), "rule__EquDirective__OperandAssignment_2_0_1");
 			builder.put(grammarAccess.getEquDirectiveAccess().getIsRelativeToPCAssignment_2_1(), "rule__EquDirective__IsRelativeToPCAssignment_2_1");

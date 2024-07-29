@@ -1469,6 +1469,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 * Constraint:
 	 *     (
 	 *         label=Label 
+	 *         ws1=WS 
 	 *         (
 	 *             directive=EquDirective | 
 	 *             directive=OrgDirective | 
@@ -1488,7 +1489,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *             directive=RmbDirective | 
 	 *             directive=SetDPDirective
 	 *         ) 
-	 *         comment=ANY_EXCEPT_COMMENT_END_OF_LINE?
+	 *         (ws2=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?
 	 *     )
 	 * </pre>
 	 */
@@ -1581,7 +1582,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     EquDirective returns EquDirective
 	 *
 	 * Constraint:
-	 *     (directive='EQU' ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*'))
+	 *     (directive='EQU' ws=WS ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*'))
 	 * </pre>
 	 */
 	protected void sequence_EquDirective(ISerializationContext context, EquDirective semanticObject) {

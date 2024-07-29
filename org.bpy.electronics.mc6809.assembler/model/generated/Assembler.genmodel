@@ -456,7 +456,9 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//DirectiveLine">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/label"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DirectiveLine/ws1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//DirectiveLine/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DirectiveLine/ws2"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//DirectiveLine/comment"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SetDPDirective">
@@ -529,6 +531,7 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//EquDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EquDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EquDirective/ws"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EquDirective/isRelativeToPC"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//EquDirective/operand"/>
     </genClasses>

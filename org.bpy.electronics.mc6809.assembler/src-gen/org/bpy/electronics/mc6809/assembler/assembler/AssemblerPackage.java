@@ -4003,13 +4003,31 @@ public interface AssemblerPackage extends EPackage
   int DIRECTIVE_LINE__LABEL = 0;
 
   /**
+   * The feature id for the '<em><b>Ws1</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIRECTIVE_LINE__WS1 = 1;
+
+  /**
    * The feature id for the '<em><b>Directive</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int DIRECTIVE_LINE__DIRECTIVE = 1;
+  int DIRECTIVE_LINE__DIRECTIVE = 2;
+
+  /**
+   * The feature id for the '<em><b>Ws2</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int DIRECTIVE_LINE__WS2 = 3;
 
   /**
    * The feature id for the '<em><b>Comment</b></em>' attribute.
@@ -4018,7 +4036,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DIRECTIVE_LINE__COMMENT = 2;
+  int DIRECTIVE_LINE__COMMENT = 4;
 
   /**
    * The number of structural features of the '<em>Directive Line</em>' class.
@@ -4027,7 +4045,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int DIRECTIVE_LINE_FEATURE_COUNT = 3;
+  int DIRECTIVE_LINE_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SetDPDirectiveImpl <em>Set DP Directive</em>}' class.
@@ -4677,13 +4695,22 @@ public interface AssemblerPackage extends EPackage
   int EQU_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int EQU_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Is Relative To PC</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EQU_DIRECTIVE__IS_RELATIVE_TO_PC = 1;
+  int EQU_DIRECTIVE__IS_RELATIVE_TO_PC = 2;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4692,7 +4719,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EQU_DIRECTIVE__OPERAND = 2;
+  int EQU_DIRECTIVE__OPERAND = 3;
 
   /**
    * The number of structural features of the '<em>Equ Directive</em>' class.
@@ -4701,7 +4728,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EQU_DIRECTIVE_FEATURE_COUNT = 3;
+  int EQU_DIRECTIVE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ListOfExpressionImpl <em>List Of Expression</em>}' class.
@@ -9298,6 +9325,17 @@ public interface AssemblerPackage extends EPackage
   EReference getDirectiveLine_Label();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getWs1 <em>Ws1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws1</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getWs1()
+   * @see #getDirectiveLine()
+   * @generated
+   */
+  EAttribute getDirectiveLine_Ws1();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getDirective <em>Directive</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9307,6 +9345,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EReference getDirectiveLine_Directive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getWs2 <em>Ws2</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws2</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getWs2()
+   * @see #getDirectiveLine()
+   * @generated
+   */
+  EAttribute getDirectiveLine_Ws2();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine#getComment <em>Comment</em>}'.
@@ -9895,6 +9944,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getEquDirective_Directive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EquDirective#getWs()
+   * @see #getEquDirective()
+   * @generated
+   */
+  EAttribute getEquDirective_Ws();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EquDirective#isIsRelativeToPC <em>Is Relative To PC</em>}'.
@@ -13480,12 +13540,28 @@ public interface AssemblerPackage extends EPackage
     EReference DIRECTIVE_LINE__LABEL = eINSTANCE.getDirectiveLine_Label();
 
     /**
+     * The meta object literal for the '<em><b>Ws1</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DIRECTIVE_LINE__WS1 = eINSTANCE.getDirectiveLine_Ws1();
+
+    /**
      * The meta object literal for the '<em><b>Directive</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference DIRECTIVE_LINE__DIRECTIVE = eINSTANCE.getDirectiveLine_Directive();
+
+    /**
+     * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute DIRECTIVE_LINE__WS2 = eINSTANCE.getDirectiveLine_Ws2();
 
     /**
      * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
@@ -13960,6 +14036,14 @@ public interface AssemblerPackage extends EPackage
      * @generated
      */
     EAttribute EQU_DIRECTIVE__DIRECTIVE = eINSTANCE.getEquDirective_Directive();
+
+    /**
+     * The meta object literal for the '<em><b>Ws</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute EQU_DIRECTIVE__WS = eINSTANCE.getEquDirective_Ws();
 
     /**
      * The meta object literal for the '<em><b>Is Relative To PC</b></em>' attribute feature.

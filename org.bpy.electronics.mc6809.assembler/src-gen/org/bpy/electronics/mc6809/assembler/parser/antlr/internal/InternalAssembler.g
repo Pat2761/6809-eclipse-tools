@@ -11333,10 +11333,24 @@ ruleDirectiveLine returns [EObject current=null]
 				}
 			)
 		)
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_1());
-		}
+		(
+			(
+				lv_ws1_1_0=RULE_WS
+				{
+					newLeafNode(lv_ws1_1_0, grammarAccess.getDirectiveLineAccess().getWs1WSTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getDirectiveLineRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws1",
+						lv_ws1_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)
 		(
 			(
 				(
@@ -11679,10 +11693,24 @@ ruleDirectiveLine returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_19=RULE_WS
-			{
-				newLeafNode(this_WS_19, grammarAccess.getDirectiveLineAccess().getWSTerminalRuleCall_3_0());
-			}
+			(
+				(
+					lv_ws2_19_0=RULE_WS
+					{
+						newLeafNode(lv_ws2_19_0, grammarAccess.getDirectiveLineAccess().getWs2WSTerminalRuleCall_3_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getDirectiveLineRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws2",
+							lv_ws2_19_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					lv_comment_20_0=RULE_ANY_EXCEPT_COMMENT_END_OF_LINE
@@ -12916,10 +12944,24 @@ ruleEquDirective returns [EObject current=null]
 				}
 			)
 		)
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getEquDirectiveAccess().getWSTerminalRuleCall_1());
-		}
+		(
+			(
+				lv_ws_1_0=RULE_WS
+				{
+					newLeafNode(lv_ws_1_0, grammarAccess.getEquDirectiveAccess().getWsWSTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getEquDirectiveRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws",
+						lv_ws_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)
 		(
 			(
 				(
