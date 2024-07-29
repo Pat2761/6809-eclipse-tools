@@ -19,7 +19,6 @@
 package org.bpy.electronics.mc6809.preferences.ui;
 
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferencePage;
 import org.eclipse.nebula.widgets.richtext.RichTextViewer;
 import org.eclipse.swt.SWT;
@@ -29,8 +28,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
-import org.eclipse.ui.editors.text.EditorsUI;
-import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
@@ -83,15 +80,15 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		
 		statusViewer = new RichTextViewer(container, SWT.NONE);
 		statusViewer.setText("No problem found");
-		GridData gd_statusViewer = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_statusViewer.heightHint = 95;
-		statusViewer.setLayoutData(gd_statusViewer);
+		GridData gdStatusViewer = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gdStatusViewer.heightHint = 95;
+		statusViewer.setLayoutData(gdStatusViewer);
 
 		Group grpTabPreferences = new Group(container, SWT.BORDER | SWT.SHADOW_ETCHED_OUT);
 		grpTabPreferences.setFont(SWTResourceManager.getFont("Segoe UI", 10, SWT.BOLD));
-		GridData gd_grpTabPreferences = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
-		gd_grpTabPreferences.widthHint = 120;
-		grpTabPreferences.setLayoutData(gd_grpTabPreferences);
+		GridData gdGrpTabPreferences = new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1);
+		gdGrpTabPreferences.widthHint = 120;
+		grpTabPreferences.setLayoutData(gdGrpTabPreferences);
 		grpTabPreferences.setText("Tab preferences");
 		grpTabPreferences.setLayout(new GridLayout(2, false));
 
@@ -100,9 +97,9 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		lblTabPolicy.setText("Tab policy");
 
 		tabPolicy = new Combo(grpTabPreferences, SWT.NONE);
-		GridData gd_tabPolicy = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_tabPolicy.widthHint = 100;
-		tabPolicy.setLayoutData(gd_tabPolicy);
+		GridData gdTabPolicy = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gdTabPolicy.widthHint = 100;
+		tabPolicy.setLayoutData(gdTabPolicy);
 		tabPolicy.setItems(
 				new String[] { PreferenceManager.SPACE_ONLY, PreferenceManager.TAB_ONLY, PreferenceManager.MIXED });
 		tabPolicy.select(0);
@@ -112,9 +109,9 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		lblTabSize.setText("Tab size");
 
 		tabSize = new Spinner(grpTabPreferences, SWT.BORDER);
-		GridData gd_tabSize = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
-		gd_tabSize.widthHint = 40;
-		tabSize.setLayoutData(gd_tabSize);
+		GridData gdTabSize = new GridData(SWT.RIGHT, SWT.CENTER, false, false, 1, 1);
+		gdTabSize.widthHint = 40;
+		tabSize.setLayoutData(gdTabSize);
 		tabSize.setMaximum(5);
 		tabSize.setMinimum(1);
 		tabSize.addModifyListener(this);
@@ -130,21 +127,21 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 
 		instructionPosition = new Spinner(grpLineFormat, SWT.BORDER);
 		instructionPosition.setToolTipText("define the position of the instruction (10 to 25 characters)");
-		GridData gd_instructionPosition = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
-		gd_instructionPosition.widthHint = 40;
-		instructionPosition.setLayoutData(gd_instructionPosition);
+		GridData gdInstructionPosition = new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1);
+		gdInstructionPosition.widthHint = 40;
+		instructionPosition.setLayoutData(gdInstructionPosition);
 		instructionPosition.setMaximum(25);
 		instructionPosition.setMinimum(10);
 
-		Label lblOperandSize_1 = new Label(grpLineFormat, SWT.NONE);
-		lblOperandSize_1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
-		lblOperandSize_1.setText("Operand position");
+		Label lblOperandSize1 = new Label(grpLineFormat, SWT.NONE);
+		lblOperandSize1.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, true, false, 1, 1));
+		lblOperandSize1.setText("Operand position");
 
 		operandPosition = new Spinner(grpLineFormat, SWT.BORDER);
 		operandPosition.setToolTipText("define the position of the operand(26 to 50 characters)");
-		GridData gd_operandPosition = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_operandPosition.widthHint = 40;
-		operandPosition.setLayoutData(gd_operandPosition);
+		GridData gdOperandPosition = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gdOperandPosition.widthHint = 40;
+		operandPosition.setLayoutData(gdOperandPosition);
 		operandPosition.setMaximum(38);
 		operandPosition.setMinimum(20);
 
@@ -156,9 +153,9 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		commentPosition.setToolTipText("define the position of the comment (52 to 100 characters)");
 		commentPosition.setMaximum(60);
 		commentPosition.setMinimum(40);
-		GridData gd_commentPosition = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
-		gd_commentPosition.widthHint = 40;
-		commentPosition.setLayoutData(gd_commentPosition);
+		GridData gdCommentPosition = new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1);
+		gdCommentPosition.widthHint = 40;
+		commentPosition.setLayoutData(gdCommentPosition);
 		
 		initFields();
 		validateValues();
@@ -177,8 +174,13 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 	}
 
 	@Override
+	public boolean performOk() {
+		performApply();
+		return super.performOk();
+	}
+
+	@Override
 	protected void performDefaults() {
-		System.out.println("performDefaults");
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_POLICY,
 				PreferenceManager.TAB_POLICY_DEFAULT_VALUE);
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_SIZE,
@@ -223,9 +225,6 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		
 		if (PreferenceManager.TAB_ONLY.equals(tabPolicy.getText())) {
 			boolean problemDetected = false;
-			int newInstructionPosition = instructionPosition.getSelection();
-			int newOperandPosition = operandPosition.getSelection();
-			int newCommentPosition = commentPosition.getSelection();
 			int tabSizeValue = tabSize.getSelection();
 
 			StringBuilder strBuilder = new StringBuilder("<p>Problems have been detected with tab policy<b>Tab Only</b></p>");
@@ -233,7 +232,7 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 			int instructionPositionRest = instructionPosition.getSelection() % tabSize.getSelection();
 			if (instructionPositionRest != 1) {
 				int instructionPositionTab = (instructionPosition.getSelection() / tabSize.getSelection());
-				newInstructionPosition = instructionPositionTab * tabSizeValue+1;
+				int newInstructionPosition = instructionPositionTab * tabSizeValue+1;
 				strBuilder.append("<p>Instruction position may be set to <b>" + newInstructionPosition + "</b></p>");
 				problemDetected = true;
 			}
@@ -241,7 +240,7 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 			int operandPositionRest = operandPosition.getSelection() % tabSize.getSelection();
 			if (operandPositionRest != 1) {
 				int operandPositionTab = (operandPosition.getSelection() / tabSize.getSelection());
-				newOperandPosition = operandPositionTab * tabSizeValue+1;
+				int newOperandPosition = operandPositionTab * tabSizeValue+1;
 				strBuilder.append("<p>Operand position may be set to <b>" + newOperandPosition + "</b></p>");
 				problemDetected = true;
 			}
@@ -249,7 +248,7 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 			int commentPositionRest = commentPosition.getSelection() % tabSize.getSelection();
 			if (commentPositionRest != 1) {
 				int commentPositionTab = (commentPosition.getSelection() / tabSize.getSelection());
-				newCommentPosition = commentPositionTab * tabSizeValue+1;
+				int newCommentPosition = commentPositionTab * tabSizeValue+1;
 				strBuilder.append("<p>Comment position may be set to <b>" + newCommentPosition + "</b></p>");
 				problemDetected = true;
 			}
