@@ -307,15 +307,17 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 			int nbSpaces = 0;
 
 			int elementReferenceSize;
+			int startPosition = 0;
 			if (firstNodeInstruction == lastNodeInstruction) {
 				elementReferenceSize = firstNodeInstruction.getText().trim().length();
 				nbSpaces = commentPosition - elementReferenceSize - (instructionPosition);
 			} else {
 				elementReferenceSize = getOperandSize(lastNodeInstruction);
 				nbSpaces = commentPosition - elementReferenceSize - (operandPosition);
+				startPosition = operandPosition;
 			}
 
-			String spacesAfterInstruction = buildSpaceStringFromPolicy(elementReferenceSize,nbSpaces);
+			String spacesAfterInstruction = buildSpaceStringFromPolicy(elementReferenceSize,nbSpaces, startPosition);
 			setWhiteSpace(doc, assemblyLine, ws2, spacesAfterInstruction);
 		} catch (Exception e) {
 			// just for avoid unexpected messages 	
@@ -331,7 +333,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param ws EAttribute which define the space element
 	 */
 	private void setFirstWhiteSpace(IFormattableDocument doc, EObject line, int labelSize, EAttribute ws) { 
-		String spaceBeforeKeyword = buildSpaceStringFromPolicy(labelSize, instructionPosition - labelSize - 1);
+		String spaceBeforeKeyword = buildSpaceStringFromPolicy(labelSize, instructionPosition - labelSize - 1, 0);
 		if (labelSize ==0) {
 			setWhiteSpace(doc, line, ws, " ");
 
@@ -350,7 +352,8 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param nbSpacesNeeded number of space needed
 	 * @return string for create space
 	 */
-	private String buildSpaceStringFromPolicy(int elementSize, int nbSpacesNeeded) {
+	private String buildSpaceStringFromPolicy(int elementSize, int nbSpacesNeeded, int startPosition) {
+
 		if (PreferenceManager.SPACE_ONLY.equals(tabPolicy) ) {
 			return Strings.repeat(" ", nbSpacesNeeded);
 		
@@ -362,10 +365,31 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 			return Strings.repeat("\t", nbTabsNeeded);
 		
 		} else {
-			
+
+			StringBuilder strBuilder = new StringBuilder();
+			if (nbSpacesNeeded < tabSize) {
+				strBuilder.append(Strings.repeat(" ", nbSpacesNeeded));
+				return strBuilder.toString();
+
+			} else {
+				int missingSpaces = (startPosition+elementSize)%tabSize;
+				if (missingSpaces != 0) {
+					strBuilder.append("\t");
+					nbSpacesNeeded -= tabSize - missingSpaces;
+				}	
+
+				while (nbSpacesNeeded>0) {
+					if (nbSpacesNeeded >= tabSize) {
+						strBuilder.append("\t");
+						nbSpacesNeeded -= tabSize;
+					} else {
+						strBuilder.append(" ");
+						nbSpacesNeeded -= 1;
+					}
+				}
+				return strBuilder.toString();
+			}
 		}
-		
-		return " ";
 	}
 
 	/** 

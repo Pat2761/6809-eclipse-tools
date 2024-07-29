@@ -71,11 +71,12 @@ public abstract class AbstractObjectFormatter {
 	}
 	
 	private String getSpacesNeeded(int nbSpaces) {
+		int instructionSize = getInstructioName().length();
+
 		if (PreferenceManager.SPACE_ONLY.equals(tabPolicy)) {
 			return Strings.repeat(" ", nbSpaces);
 
 		} else if (PreferenceManager.TAB_ONLY.equals(tabPolicy)) {
-			int instructionSize = getInstructioName().length();
 			int nbTabsNeeded = ((instructionSize%tabSize)==0) ? nbSpaces/tabSize : nbSpaces/tabSize + 1;
 			if (nbTabsNeeded<1) {
 				nbTabsNeeded =1;
@@ -83,7 +84,20 @@ public abstract class AbstractObjectFormatter {
 			return Strings.repeat("\t", nbTabsNeeded);
 
 		} else {
-			return " ";
+			StringBuilder strBuilder = new StringBuilder();
+
+			int nbTabsNeeded = ((instructionSize%tabSize)==0) ? nbSpaces/tabSize -1: nbSpaces/tabSize;
+			if (nbTabsNeeded<0) {
+				nbTabsNeeded =0;
+			}
+			strBuilder.append(Strings.repeat("\t", nbTabsNeeded));
+			int tabRepresentation = nbTabsNeeded*tabSize;
+			int nbSpacesMissing = nbSpaces-tabRepresentation;
+			strBuilder.append(Strings.repeat(" ", instructionSize%tabSize) );
+			if (nbSpacesMissing != 0) {
+				strBuilder.append(Strings.repeat(" ", nbSpacesMissing));
+			}
+			return strBuilder.toString();
 		}
 	}
 
