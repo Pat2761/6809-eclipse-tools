@@ -1,5 +1,6 @@
 package org.bpy.electronics.mc6809.assembler.formatting2;
 
+import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
@@ -52,8 +53,9 @@ public abstract class AbstractObjectFormatter {
 	 * @param elementAttribut reference on the white space to remove 
 	 */
 	private void setWhiteSpace(EObject line, EAttribute elementAttribut, int nbSpaces) {
-
-		String spaces = Strings.repeat(" ", nbSpaces);
+	
+		final String spaces = getSpacesNeeded(nbSpaces);
+		
 		IHiddenRegionFormatting hiddenRegion = document.getFormatter().createHiddenRegionFormatting();
 		Procedure1<IHiddenRegionFormatting> spcFunction = it -> it.setSpace(spaces);
 
@@ -65,6 +67,23 @@ public abstract class AbstractObjectFormatter {
 			document.addReplacer(replacer);
 		} catch (Exception ex) {
 			//	Nothing to do, just for avoid unexpected messages
+		}
+	}
+	
+	private String getSpacesNeeded(int nbSpaces) {
+		if (PreferenceManager.SPACE_ONLY.equals(tabPolicy)) {
+			return Strings.repeat(" ", nbSpaces);
+
+		} else if (PreferenceManager.TAB_ONLY.equals(tabPolicy)) {
+			int instructionSize = getInstructioName().length();
+			int nbTabsNeeded = ((instructionSize%tabSize)==0) ? nbSpaces/tabSize : nbSpaces/tabSize + 1;
+			if (nbTabsNeeded<1) {
+				nbTabsNeeded =1;
+			}
+			return Strings.repeat("\t", nbTabsNeeded);
+
+		} else {
+			return " ";
 		}
 	}
 

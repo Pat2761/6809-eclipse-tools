@@ -306,13 +306,16 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 
 			int nbSpaces = 0;
 
+			int elementReferenceSize;
 			if (firstNodeInstruction == lastNodeInstruction) {
-				nbSpaces = commentPosition - firstNodeInstruction.getText().trim().length() - (instructionPosition);
+				elementReferenceSize = firstNodeInstruction.getText().trim().length();
+				nbSpaces = commentPosition - elementReferenceSize - (instructionPosition);
 			} else {
-				nbSpaces = commentPosition - getOperandSize(lastNodeInstruction) - (operandPosition);
+				elementReferenceSize = getOperandSize(lastNodeInstruction);
+				nbSpaces = commentPosition - elementReferenceSize - (operandPosition);
 			}
 
-			String spacesAfterInstruction = Strings.repeat(" ", nbSpaces);
+			String spacesAfterInstruction = buildSpaceStringFromPolicy(elementReferenceSize,nbSpaces);
 			setWhiteSpace(doc, assemblyLine, ws2, spacesAfterInstruction);
 		} catch (Exception e) {
 			// just for avoid unexpected messages 	
@@ -327,8 +330,8 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param labelSize size of the label
 	 * @param ws EAttribute which define the space element
 	 */
-	private void setFirstWhiteSpace(IFormattableDocument doc, EObject line, int labelSize, EAttribute ws) {
-		String spaceBeforeKeyword = Strings.repeat(" ", instructionPosition - labelSize - 1);
+	private void setFirstWhiteSpace(IFormattableDocument doc, EObject line, int labelSize, EAttribute ws) { 
+		String spaceBeforeKeyword = buildSpaceStringFromPolicy(labelSize, instructionPosition - labelSize - 1);
 		if (labelSize ==0) {
 			setWhiteSpace(doc, line, ws, " ");
 
@@ -338,6 +341,31 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		} else if (ws != null) {
 			setWhiteSpace(doc, line, ws, spaceBeforeKeyword);
 		}
+	}
+
+	/**
+	 * Create a string in function of the tab policy.
+	 * 
+	 * @param labelSize Size of the label
+	 * @param nbSpacesNeeded number of space needed
+	 * @return string for create space
+	 */
+	private String buildSpaceStringFromPolicy(int elementSize, int nbSpacesNeeded) {
+		if (PreferenceManager.SPACE_ONLY.equals(tabPolicy) ) {
+			return Strings.repeat(" ", nbSpacesNeeded);
+		
+		} else if (PreferenceManager.TAB_ONLY.equals(tabPolicy)) {
+			int nbTabsNeeded = ((elementSize%tabSize)==0) ? nbSpacesNeeded/tabSize : nbSpacesNeeded/tabSize + 1;
+			if (nbTabsNeeded<1) {
+				nbTabsNeeded =1;
+			}
+			return Strings.repeat("\t", nbTabsNeeded);
+		
+		} else {
+			
+		}
+		
+		return " ";
 	}
 
 	/** 
