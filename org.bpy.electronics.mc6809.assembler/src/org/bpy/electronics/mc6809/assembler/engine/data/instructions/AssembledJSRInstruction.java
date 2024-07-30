@@ -125,7 +125,7 @@ public class AssembledJSRInstruction extends AbstractJmpJsrInstruction {
 		case IMMEDIATE:
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"Immediate mode is not valid for the JSR instruction",
-					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND, InstructionValidator.ILLEGAL_MODE);
+					AssemblerPackage.eINSTANCE.getJsrInstruction_Operand(), InstructionValidator.ILLEGAL_MODE);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			operandBytes = new int[0];
 			opcodeBytes = new int[] {0x3F};
@@ -133,17 +133,17 @@ public class AssembledJSRInstruction extends AbstractJmpJsrInstruction {
 
 		case DIRECT:
 			setDirectOperand(instruction, (DirectOperand) instruction.getOperand(),
-					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJsrInstruction_Operand());
 			break;
 
 		case EXTENDED:
 			setExtendedOperand(instruction, (ExtendedOperand) instruction.getOperand(), labelsPositionObject,
-					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJsrInstruction_Operand());
 			break;
 
 		case EXTENDED_INDIRECT:
 			setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand) instruction.getOperand(),
-					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJsrInstruction_Operand());
 			break;
 
 		case INDEXED_ACCUMULATOR_MOVING_MODE:
@@ -159,7 +159,7 @@ public class AssembledJSRInstruction extends AbstractJmpJsrInstruction {
 		case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
 			setIndexedAccumulatorMovingMode(instruction,
 					(AutoIncDecIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
-					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJsrInstruction_Operand());
 			break;
 
 		case INDEXED_AUTO_DEC_INC_MODE:
@@ -169,24 +169,24 @@ public class AssembledJSRInstruction extends AbstractJmpJsrInstruction {
 		case INDEXED_CONSTANT_MODE:
 			setIndexedConstantMode(instruction,
 					(ConstantIndexedMode) ((IndexedOperand) instruction.getOperand()).getMode(),
-					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJsrInstruction_Operand());
 			break;
 
 		case INDEXED_CONSTANT_INDIRECT_MODE:
 			setIndexedConstantIndirectMode(instruction,
 					(ConstantIndexedMovingIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
-					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJsrInstruction_Operand());
 			break;
 
 		case INDEXED_RELATIF_TO_PC:
 			setRelatifToPCMode(instruction, (RelatifToPCMode) ((IndexedOperand) instruction.getOperand()).getMode(),
-					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJsrInstruction_Operand());
 			break;
 
 		case INDEXED_RELATIF_TO_PC_INDIRECT_MODE:
 			setRelatifToPCIndirectMode(instruction,
 					(RelatifToPCIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
-					AssemblerPackage.Literals.JSR_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJsrInstruction_Operand());
 			break;
 
 		default:

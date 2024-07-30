@@ -64,7 +64,7 @@ public class OrgFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.ORG_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getOrgDirective_Ws();
 	}
 
 	@Override

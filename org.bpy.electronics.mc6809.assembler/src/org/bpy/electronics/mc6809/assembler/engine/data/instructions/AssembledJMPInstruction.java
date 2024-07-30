@@ -126,7 +126,7 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 		case IMMEDIATE:
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"Immediate mode is not valid for the JMP instruction",
-					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND, InstructionValidator.ILLEGAL_MODE);
+					AssemblerPackage.eINSTANCE.getJmpInstruction_Operand(), InstructionValidator.ILLEGAL_MODE);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			operandBytes = new int[0];
 			opcodeBytes = new int[] {0x3F};
@@ -134,17 +134,17 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 
 		case DIRECT:
 			setDirectOperand(instruction, (DirectOperand) instruction.getOperand(),
-					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 			break;
 
 		case EXTENDED:
 			setExtendedOperand(instruction, (ExtendedOperand) instruction.getOperand(), labelsPositionObject,
-					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 			break;
 
 		case EXTENDED_INDIRECT:
 			setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand) instruction.getOperand(),
-					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 			break;
 
 		case INDEXED_ACCUMULATOR_MOVING_MODE:
@@ -160,7 +160,7 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 		case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
 			setIndexedAccumulatorMovingMode(instruction,
 					(AutoIncDecIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
-					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 			break;
 
 		case INDEXED_AUTO_DEC_INC_MODE:
@@ -170,24 +170,24 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 		case INDEXED_CONSTANT_MODE:
 			setIndexedConstantMode(instruction,
 					(ConstantIndexedMode) ((IndexedOperand) instruction.getOperand()).getMode(),
-					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 			break;
 
 		case INDEXED_CONSTANT_INDIRECT_MODE:
 			setIndexedConstantIndirectMode(instruction,
 					(ConstantIndexedMovingIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
-					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 			break;
 
 		case INDEXED_RELATIF_TO_PC:
 			setRelatifToPCMode(instruction, (RelatifToPCMode) ((IndexedOperand) instruction.getOperand()).getMode(),
-					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 			break;
 
 		case INDEXED_RELATIF_TO_PC_INDIRECT_MODE:
 			setRelatifToPCIndirectMode(instruction,
 					(RelatifToPCIndirectMode) ((IndexedOperand) instruction.getOperand()).getMode(),
-					AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+					AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 			break;
 
 		default:
@@ -201,21 +201,21 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 			case IMMEDIATE:
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"Immediate mode is not valid for the JMP instruction" , 
-						AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND, 
+						AssemblerPackage.eINSTANCE.getJmpInstruction_Operand(), 
 						InstructionValidator.ILLEGAL_MODE);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 				break;
 				
 			case DIRECT:
-				setDirectOperand(instruction, (DirectOperand)instruction.getOperand(), AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+				setDirectOperand(instruction, (DirectOperand)instruction.getOperand(), AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 				break;
 			
 			case EXTENDED:
-				setExtendedOperand(instruction, (ExtendedOperand)instruction.getOperand(), AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+				setExtendedOperand(instruction, (ExtendedOperand)instruction.getOperand(), AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 				break;
 				
 			case EXTENDED_INDIRECT:
-				setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand)instruction.getOperand(), AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+				setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand)instruction.getOperand(), AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 				break;
 				
 			case INDEXED_ACCUMULATOR_MOVING_MODE:
@@ -227,7 +227,7 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 				break;
 				
 			case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
-				setIndexedAccumulatorMovingMode(instruction, (AutoIncDecIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+				setIndexedAccumulatorMovingMode(instruction, (AutoIncDecIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 				break;
 				
 			case INDEXED_AUTO_DEC_INC_MODE:
@@ -235,19 +235,19 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 				break;
 				
 			case INDEXED_CONSTANT_MODE:
-				setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+				setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 				break;
 				
 			case INDEXED_CONSTANT_INDIRECT_MODE:
-				setIndexedConstantIndirectMode(instruction, (ConstantIndexedMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+				setIndexedConstantIndirectMode(instruction, (ConstantIndexedMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 				break;
 				
 			case INDEXED_RELATIF_TO_PC:
-				setRelatifToPCMode(instruction, (RelatifToPCMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+				setRelatifToPCMode(instruction, (RelatifToPCMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 				break;
 				
 			case INDEXED_RELATIF_TO_PC_INDIRECT_MODE:
-				setRelatifToPCIndirectMode(instruction, (RelatifToPCIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.JMP_INSTRUCTION__OPERAND);
+				setRelatifToPCIndirectMode(instruction, (RelatifToPCIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.eINSTANCE.getJmpInstruction_Operand());
 				break;
 
 			default:

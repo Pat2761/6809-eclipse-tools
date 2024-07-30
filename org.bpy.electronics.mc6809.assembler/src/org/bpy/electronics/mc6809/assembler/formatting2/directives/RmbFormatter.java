@@ -64,7 +64,7 @@ public class RmbFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.RMB_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getRmbDirective_Ws();
 	}
 
 	@Override

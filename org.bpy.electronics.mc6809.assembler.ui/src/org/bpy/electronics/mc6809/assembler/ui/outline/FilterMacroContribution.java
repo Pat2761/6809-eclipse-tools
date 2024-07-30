@@ -37,7 +37,7 @@ public class FilterMacroContribution extends AbstractFilterOutlineContribution {
 
 	@Override
 	protected boolean apply(IOutlineNode node) {
-		return ((EObjectNode) node).getEClass().equals(AssemblerPackage.Literals.SPECIAL_FUNCTIONS);
+		return ((EObjectNode) node).getEClass().equals(AssemblerPackage.eINSTANCE.SPECIAL_FUNCTIONS);
 	}
 
 	@Override

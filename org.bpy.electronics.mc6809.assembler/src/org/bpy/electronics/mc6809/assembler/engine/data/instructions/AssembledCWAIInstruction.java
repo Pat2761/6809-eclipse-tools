@@ -113,14 +113,14 @@ public class AssembledCWAIInstruction extends AbstractInstructionAssemblyLine {
 	public void setOperand(AddressingMode mode) {
 		switch (mode) {
 			case IMMEDIATE:
-				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.CWAI_INSTRUCTION__OPERAND, -128, 255);
+				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.eINSTANCE.getCwaiInstruction_Operand(), -128, 255);
 				break;
 
 			case DIRECT:
 			{
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"Direct mode is not valid for the CWAI instruction" , 
-						AssemblerPackage.Literals.CWAI_INSTRUCTION__OPERAND, 
+						AssemblerPackage.eINSTANCE.getCwaiInstruction_Operand(), 
 						InstructionValidator.ILLEGAL_MODE);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 				break;
@@ -131,7 +131,7 @@ public class AssembledCWAIInstruction extends AbstractInstructionAssemblyLine {
 			{
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"Extended mode is not valid for the CWAI instruction" , 
-						AssemblerPackage.Literals.CWAI_INSTRUCTION__OPERAND, 
+						AssemblerPackage.eINSTANCE.getCwaiInstruction_Operand(), 
 						InstructionValidator.ILLEGAL_MODE);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 				break;
@@ -149,7 +149,7 @@ public class AssembledCWAIInstruction extends AbstractInstructionAssemblyLine {
 			{
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"Indexed mode is not valid for the CWAI instruction" , 
-						AssemblerPackage.Literals.CWAI_INSTRUCTION__OPERAND, 
+						AssemblerPackage.eINSTANCE.getCwaiInstruction_Operand(), 
 						InstructionValidator.ILLEGAL_MODE);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 				break;

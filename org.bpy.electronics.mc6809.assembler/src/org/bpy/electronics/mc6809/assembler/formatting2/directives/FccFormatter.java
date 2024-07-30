@@ -74,7 +74,7 @@ public class FccFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.FCC_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getFccDirective_Ws();
 	}
 
 	@Override

@@ -64,7 +64,7 @@ public class BszFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BSZ_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getBszDirective_Ws();
 	}
 
 	@Override

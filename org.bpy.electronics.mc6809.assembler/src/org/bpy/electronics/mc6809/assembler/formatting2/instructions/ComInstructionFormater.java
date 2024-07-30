@@ -65,7 +65,7 @@ public class ComInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.COM_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getComInstruction_WsOperand();
 	}
 
 	@Override

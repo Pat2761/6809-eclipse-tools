@@ -64,7 +64,7 @@ public class EquFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.EQU_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getEquDirective_Ws();
 	}
 
 	@Override

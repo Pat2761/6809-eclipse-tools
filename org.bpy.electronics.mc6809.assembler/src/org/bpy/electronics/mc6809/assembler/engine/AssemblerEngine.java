@@ -386,7 +386,7 @@ public class AssemblerEngine {
 			
 		} else {
 			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("The instruction " + instructionName + " is not recognized",
-					AssemblerPackage.Literals.OTHER_KIND_OF_INSTRUCTIONS__NAME,
+					AssemblerPackage.eINSTANCE.getOtherKindOfInstructions_Name(),
 					InstructionValidator.UNRECOGNIZED_INSTRUCTION);
 			AssemblerErrorManager.getInstance().addProblem(otherInstruction, problemDescription);
 		}
@@ -414,14 +414,14 @@ public class AssemblerEngine {
 		String macroName = macroDefinition.getName().getValue();
 		if (macroDefinitions.containsKey(macroName)) {
 			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Macro " + macroName + " is already defined",
-					AssemblerPackage.Literals.MACRO_DEFINITION__NAME,
+					AssemblerPackage.eINSTANCE.getMacroDefinition_Name(),
 					InstructionValidator.DUPLICATE_MACRO);
 			AssemblerErrorManager.getInstance().addProblem(macroDefinition, problemDescription);
 
 		} else {
 			if (macroDefinition.getInstructions().isEmpty()) {
 				AssemblerWarningDescription problemDescription = new AssemblerWarningDescription("Macro " + macroName + " can't be empty",
-						AssemblerPackage.Literals.MACRO_DEFINITION__NAME,
+						AssemblerPackage.eINSTANCE.getMacroDefinition_Name(),
 						InstructionValidator.EMPTY_MACRO);
 				AssemblerErrorManager.getInstance().addWarning(macroDefinition, problemDescription);
 			}
@@ -557,7 +557,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BVS_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBvsInstruction_Operand()
 							);
 
 				} else if ("LBVS".equals(instruction.getInstruction())) {
@@ -565,13 +565,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BVS_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBvsInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BVS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBvsInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -596,7 +596,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BVC_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBvcInstruction_Operand()
 							);
 
 				} else if ("LBVC".equals(instruction.getInstruction())) {
@@ -604,13 +604,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BVC_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBvcInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BVC_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBvcInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -635,7 +635,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BSR_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBsrInstruction_Operand()
 							);
 
 				} else if ("LBSR".equals(instruction.getInstruction())) {
@@ -643,13 +643,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BSR_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBsrInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BSR_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBsrInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -674,7 +674,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BRN_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBrnInstruction_Operand()
 							);
 
 				} else if ("LBRN".equals(instruction.getInstruction())) {
@@ -682,13 +682,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BRN_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBrnInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BRN_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBrnInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -713,7 +713,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BRA_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBraInstruction_Operand()
 							);
 
 				} else if ("LBRA".equals(instruction.getInstruction())) {
@@ -721,13 +721,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BRA_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBraInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BRA_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBraInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -752,7 +752,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BPL_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBplInstruction_Operand()
 							);
 
 				} else if ("LBPL".equals(instruction.getInstruction())) {
@@ -760,13 +760,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BPL_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBplInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BPL_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBplInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -791,7 +791,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BNE_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBneInstruction_Operand()
 							);
 
 				} else if ("LBNE".equals(instruction.getInstruction())) {
@@ -799,13 +799,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BNE_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBneInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BNE_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBneInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -830,7 +830,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BMI_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBmiInstruction_Operand()
 							);
 
 				} else if ("LBMI".equals(instruction.getInstruction())) {
@@ -838,13 +838,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BMI_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBmiInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BMI_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBmiInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -869,7 +869,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BLT_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBltInstruction_Operand()
 							);
 
 				} else if ("LBLT".equals(instruction.getInstruction())) {
@@ -877,13 +877,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BLT_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBltInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BLT_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBltInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -908,7 +908,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BLS_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBlsInstruction_Operand()
 							);
 
 				} else if ("LBLS".equals(instruction.getInstruction())) {
@@ -916,13 +916,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BLS_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBlsInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BLS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBlsInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -947,7 +947,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BLO_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBloInstruction_Operand()
 							);
 
 				} else if ("LBLO".equals(instruction.getInstruction())) {
@@ -955,13 +955,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BLO_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBloInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BLO_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBloInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -986,7 +986,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BLE_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBleInstruction_Operand()
 							);
 
 				} else if ("LBLE".equals(instruction.getInstruction())) {
@@ -994,13 +994,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BLE_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBleInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BLE_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBleInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -1025,7 +1025,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BHS_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBhsInstruction_Operand()
 							);
 
 				} else if ("LBHS".equals(instruction.getInstruction())) {
@@ -1033,13 +1033,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BHS_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBhsInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BHS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBhsInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -1064,7 +1064,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BHI_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBhiInstruction_Operand()
 							);
 
 				} else if ("LBHI".equals(instruction.getInstruction())) {
@@ -1072,13 +1072,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BHI_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBhiInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BHI_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBhiInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -1103,7 +1103,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BGT_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBgtInstruction_Operand()
 							);
 
 				} else if ("LBGT".equals(instruction.getInstruction())) {
@@ -1111,13 +1111,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BGT_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBgtInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BGT_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBgtInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -1142,7 +1142,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BGE_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBgeInstruction_Operand()
 							);
 
 				} else if ("LBGE".equals(instruction.getInstruction())) {
@@ -1150,13 +1150,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BGE_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBgeInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BGE_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBgeInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -1181,7 +1181,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BEQ_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBeqInstruction_Operand()
 							);
 
 				} else if ("LBEQ".equals(instruction.getInstruction())) {
@@ -1189,13 +1189,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BEQ_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBeqInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BEQ_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBeqInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -1220,7 +1220,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BCS_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBcsInstruction_Operand()
 							);
 
 				} else if ("LBCS".equals(instruction.getInstruction())) {
@@ -1228,13 +1228,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BCS_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBcsInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BCS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBcsInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -1259,7 +1259,7 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.BYTE_MODE,
-							AssemblerPackage.Literals.BCC_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBccInstruction_Operand()
 							);
 
 				} else if ("LBCC".equals(instruction.getInstruction())) {
@@ -1267,13 +1267,13 @@ public class AssemblerEngine {
 					AbstractAssemblyLine currentAssembledLine = assembledLinesMap.get(instruction);
 					((AbstractRelativeBranchInstruction)currentAssembledLine).computeOperand(targetLine.getPcAddress(),
 							AbstractRelativeBranchInstruction.WORD_MODE,
-							AssemblerPackage.Literals.BCC_INSTRUCTION__OPERAND
+							AssemblerPackage.eINSTANCE.getBccInstruction_Operand()
 							);
 
 				}
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
-						AssemblerPackage.Literals.BCC_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getBccInstruction_Operand(),
 						InstructionValidator.MISSING_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
 			}
@@ -1519,7 +1519,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1549,7 +1549,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1579,7 +1579,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1609,7 +1609,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 						instruction.eContainer(),
-						AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+						AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1639,7 +1639,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1669,7 +1669,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1699,7 +1699,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1729,7 +1729,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1759,7 +1759,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1789,7 +1789,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1819,7 +1819,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}
 	}
 
@@ -1849,7 +1849,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}	
 	}
 
@@ -1879,7 +1879,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 					instruction.eContainer(),
-					AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+					AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}	
 	}
 
@@ -1909,7 +1909,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}	
 	}
 
@@ -1939,7 +1939,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}	
 	}
 
@@ -1969,7 +1969,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}	
 	}
 
@@ -1999,7 +1999,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}	
 	}
 
@@ -2029,7 +2029,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}	
 	}
 
@@ -2059,7 +2059,7 @@ public class AssemblerEngine {
 		if (line != null) {
 			registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 		}	
 	}
 
@@ -2088,7 +2088,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2106,7 +2106,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2124,7 +2124,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2142,7 +2142,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2160,7 +2160,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2178,7 +2178,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2196,7 +2196,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2223,7 +2223,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2265,7 +2265,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2283,7 +2283,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2310,7 +2310,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2328,7 +2328,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2346,7 +2346,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2376,7 +2376,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2406,7 +2406,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2424,7 +2424,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2442,7 +2442,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2460,7 +2460,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2478,7 +2478,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2496,7 +2496,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2523,7 +2523,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2541,7 +2541,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
     }
 
 	/**	
@@ -2571,7 +2571,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2589,7 +2589,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2619,7 +2619,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2649,7 +2649,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2682,7 +2682,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	private void parse(LdInstruction instruction) {
@@ -2718,7 +2718,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2735,7 +2735,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2752,7 +2752,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2780,7 +2780,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2798,7 +2798,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**	
@@ -2823,7 +2823,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -2851,7 +2851,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	private void parse(DaaInstruction instruction) {
@@ -2864,7 +2864,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -2882,7 +2882,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -2910,7 +2910,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -2950,7 +2950,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -2978,7 +2978,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -3004,7 +3004,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -3032,7 +3032,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -3060,7 +3060,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -3078,7 +3078,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -3105,7 +3105,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	private void parse(AdddInstruction instruction) {
@@ -3119,7 +3119,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	private void parse(AddInstruction instruction) {
@@ -3141,7 +3141,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -3168,7 +3168,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -3185,7 +3185,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				instruction.eContainer(),
-				AssemblerPackage.Literals.INSTRUCTION_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getInstructionLine_Label());
 	}
 
 	/**
@@ -3224,7 +3224,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(assembledLabelLine, 
 				labelLine,
-				AssemblerPackage.Literals.LABEL_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getLabelLine_Label());
 		
 	}
 
@@ -3312,7 +3312,7 @@ public class AssemblerEngine {
 
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label());
 	}
 
 	/**
@@ -3331,7 +3331,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label());
 	}
 
 	/**
@@ -3348,7 +3348,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label());
 	}
 
 	/**
@@ -3365,7 +3365,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label());
 	}
 
 	/**
@@ -3382,7 +3382,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label());
 	}
 
 	/**
@@ -3399,7 +3399,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label());
 	}
 
 	/**
@@ -3481,7 +3481,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label());
 	}
 
 	/**
@@ -3503,7 +3503,7 @@ public class AssemblerEngine {
 	
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
 						"The label " + line.getTarget() + " Can't be found", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+						AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
 						InstructionValidator.DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
 				line.setValue(0);
@@ -3528,7 +3528,7 @@ public class AssemblerEngine {
 		
 		registerLabelPosition(line, 
 				bszDirective.eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label());
 	}
 
 	/**
@@ -3587,7 +3587,7 @@ public class AssemblerEngine {
 
 		registerLabelPosition(line, 
 				line.getDirective().eContainer(),
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL);
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label());
 	}
 
 	/**

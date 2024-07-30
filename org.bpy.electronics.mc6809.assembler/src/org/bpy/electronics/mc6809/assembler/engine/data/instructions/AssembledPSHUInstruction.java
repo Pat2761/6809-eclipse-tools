@@ -82,7 +82,7 @@ public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
 			
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"U register can't be push for a PSHU instruction", 
-						AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND, 
+						AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(), 
 						InstructionValidator.ILLEGAL_REGISTER);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 
@@ -104,7 +104,7 @@ public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
 				
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"U register can't be push for a PSHU instruction", 
-						AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND, 
+						AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(), 
 						InstructionValidator.ILLEGAL_REGISTER);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			}
@@ -113,7 +113,7 @@ public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
 		
 		try {
 			convertedValue = ExpressionParser.parseIdentifer(instruction,
-					AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND
+					AssemblerPackage.eINSTANCE.getPshuInstruction_Operand()
 					,instruction.getOperand());
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -129,7 +129,7 @@ public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
 			opcodeBytes =  new int[] {0x3F};
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"REG " + instruction.getOperand().getValue() + " directive is not defined" , 
-					AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND, 
+					AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(), 
 					InstructionValidator.MISSING_DIRECTIVE);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 		}

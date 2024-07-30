@@ -65,7 +65,7 @@ public class IncInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.INC_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getIncInstruction_WsOperand();
 	}
 
 	@Override

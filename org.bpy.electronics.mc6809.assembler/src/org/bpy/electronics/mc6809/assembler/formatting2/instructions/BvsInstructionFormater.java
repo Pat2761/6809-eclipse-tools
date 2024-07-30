@@ -65,7 +65,7 @@ public class BvsInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BVS_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBvsInstruction_WsOperand();
 	}
 
 	@Override

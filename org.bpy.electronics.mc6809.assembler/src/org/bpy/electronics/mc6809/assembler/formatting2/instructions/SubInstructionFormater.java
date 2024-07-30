@@ -65,7 +65,7 @@ public class SubInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.SUB_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getSubInstruction_WsOperand();
 	}
 
 	@Override

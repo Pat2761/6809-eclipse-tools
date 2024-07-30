@@ -65,7 +65,7 @@ public class BrnInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BRN_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBrnInstruction_WsOperand();
 	}
 
 	@Override

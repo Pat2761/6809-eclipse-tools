@@ -65,7 +65,7 @@ public class TstInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.TST_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getTstInstruction_WsOperand();
 	}
 
 	@Override

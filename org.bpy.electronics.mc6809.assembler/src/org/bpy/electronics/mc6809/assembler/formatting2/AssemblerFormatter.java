@@ -87,6 +87,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
@@ -169,6 +170,7 @@ import org.bpy.electronics.mc6809.assembler.formatting2.instructions.SbcInstruct
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.SexInstructionFormater;
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.StInstructionFormater;
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.SubInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.SubdInstructionFormater;
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.Swi2InstructionFormater;
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.Swi3InstructionFormater;
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.SwiInstructionFormater;
@@ -275,7 +277,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param doc reference on the document
 	 */
 	protected void format(InstructionLine line, IFormattableDocument doc) {
-		setFirstWhiteSpace(doc, line, getLabelSize(line.getLabel()), AssemblerPackage.Literals.INSTRUCTION_LINE__WS1);
+		setFirstWhiteSpace(doc, line, getLabelSize(line.getLabel()), AssemblerPackage.eINSTANCE.getInstructionLine_Ws1());
 
 		if (line.getInstruction() instanceof AbxInstruction abxInstruction) {
 			AbxInstructionFormater abxFormatter = new AbxInstructionFormater(doc, tabPolicy, tabSize);
@@ -433,6 +435,10 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 			SubInstructionFormater subFormatter = new SubInstructionFormater(doc, tabPolicy, tabSize);
 			subFormatter.format(this, subInstruction, instructionPosition, operandPosition);
 
+		} else if (line.getInstruction() instanceof SubdInstruction subdInstruction) {
+			SubdInstructionFormater subdFormatter = new SubdInstructionFormater(doc, tabPolicy, tabSize);
+			subdFormatter.format(this, subdInstruction, instructionPosition, operandPosition);
+
 		} else if (line.getInstruction() instanceof SwiInstruction swiInstruction) {
 			SwiInstructionFormater swiFormatter = new SwiInstructionFormater(doc, tabPolicy, tabSize);
 			swiFormatter.format(this, swiInstruction, instructionPosition, operandPosition);
@@ -536,7 +542,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		}
 
 		if (line.getWs2() != null) {
-			formatCommentPosition(doc, line, AssemblerPackage.Literals.INSTRUCTION_LINE__WS1, AssemblerPackage.Literals.INSTRUCTION_LINE__WS2);
+			formatCommentPosition(doc, line, AssemblerPackage.eINSTANCE.getInstructionLine_Ws1(), AssemblerPackage.eINSTANCE.getInstructionLine_Ws2());
 		}
 	}
 
@@ -548,7 +554,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 */
 	protected void formatDirective(DirectiveLine line, IFormattableDocument doc) {
 		
-		setFirstWhiteSpace(doc, line, getLabelSize(line.getLabel()), AssemblerPackage.Literals.DIRECTIVE_LINE__WS1);
+		setFirstWhiteSpace(doc, line, getLabelSize(line.getLabel()), AssemblerPackage.eINSTANCE.getDirectiveLine_Ws1());
 
 		if (line.getDirective() instanceof BszDirective bszDirective) {
 			BszFormatter bszFormatter = new BszFormatter(doc, tabPolicy, tabSize);
@@ -621,7 +627,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		}
 
 		if (line.getWs2() != null) {
-			formatCommentPosition(doc, line, AssemblerPackage.Literals.DIRECTIVE_LINE__WS1, AssemblerPackage.Literals.DIRECTIVE_LINE__WS2);
+			formatCommentPosition(doc, line, AssemblerPackage.eINSTANCE.getDirectiveLine_Ws1(), AssemblerPackage.eINSTANCE.getDirectiveLine_Ws2());
 		}
 	}
 
@@ -632,14 +638,14 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param doc reference on the document
 	 */
 	protected void format(LabelLine labelLine, IFormattableDocument doc) {
-		setWhiteSpace(doc, labelLine,  AssemblerPackage.Literals.LABEL_LINE__WS1, " ");
+		setWhiteSpace(doc, labelLine,  AssemblerPackage.eINSTANCE.getLabelLine_Ws1(), " ");
 
 		int nbSpacesNeeded = commentPosition - labelLine.getLabel().getName().getValue().length();
 		String spaces = buildSpaceStringFromPolicy(labelLine.getLabel().getName().getValue().length(), 
 				nbSpacesNeeded-1, 0);
 
 		Procedure1<IHiddenRegionFormatter> spacesFunction = it -> it.setSpace(spaces);
-		doc.append(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__WS1), spacesFunction);
+		doc.append(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.eINSTANCE.getLabelLine_Ws1()), spacesFunction);
 	}
 
 	/**
@@ -650,12 +656,12 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param doc         reference on the document
 	 */
 	protected void format(CommentLine commentLine, IFormattableDocument doc) {
-		setWhiteSpace(doc, commentLine,  AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE, " ");
+		setWhiteSpace(doc, commentLine,  AssemblerPackage.eINSTANCE.getCommentLine_StartingSpace(), " ");
 
 		String spaces = buildSpaceStringFromPolicy(0, commentPosition-1, 0);
 
 		Procedure1<IHiddenRegionFormatter> spacesFunction = it -> it.setSpace(spaces);
-		doc.append(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), spacesFunction);
+		doc.append(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.eINSTANCE.getCommentLine_StartingSpace()), spacesFunction);
 	}
 
 

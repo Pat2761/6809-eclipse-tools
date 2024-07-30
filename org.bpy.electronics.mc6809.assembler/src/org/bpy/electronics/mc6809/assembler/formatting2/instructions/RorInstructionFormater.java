@@ -65,7 +65,7 @@ public class RorInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.ROR_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getRorInstruction_WsOperand();
 	}
 
 	@Override

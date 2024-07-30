@@ -65,7 +65,7 @@ public class AdcInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.ADC_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getAdcInstruction_WsOperand();
 	}
 
 	@Override

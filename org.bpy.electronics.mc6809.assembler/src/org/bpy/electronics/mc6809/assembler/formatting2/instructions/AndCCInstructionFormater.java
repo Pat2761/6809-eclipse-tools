@@ -65,7 +65,7 @@ public class AndCCInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.AND_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getAndCCInstruction_WsOperand();
 	}
 
 	@Override

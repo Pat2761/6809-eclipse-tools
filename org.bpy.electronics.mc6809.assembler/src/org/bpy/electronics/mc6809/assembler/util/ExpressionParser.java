@@ -101,7 +101,7 @@ public class ExpressionParser {
 	 */
 	public static List<Integer> parse(FdbDirective fdbDirective) throws UnresolvedException {
 		assemblyLine = fdbDirective;
-		eReference = AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND;
+		eReference = AssemblerPackage.eINSTANCE.getFdbDirective_Operand();
 		return parse(fdbDirective.getOperand()); 
 	}
 
@@ -114,7 +114,7 @@ public class ExpressionParser {
 	 */
 	public static List<Integer> parse(FcbDirective fcbDirective) throws UnresolvedException {
 		assemblyLine = fcbDirective;
-		eReference = AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND;
+		eReference = AssemblerPackage.eINSTANCE.getFcbDirective_Operand();
 		return parse(fcbDirective.getOperand()); 
 	}
 
@@ -358,7 +358,7 @@ public class ExpressionParser {
 	 */
 	public static int parse(EquDirective equDirective) throws UnresolvedException {
 		
-		eReference = AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND;
+		eReference = AssemblerPackage.eINSTANCE.getEquDirective_Operand();
 		assemblyLine = equDirective;
 		
 		if (equDirective.getOperand() != null && equDirective.getOperand().getOperand() != null) {
@@ -378,7 +378,7 @@ public class ExpressionParser {
 	 */
 	public static int parse(SetDirective setDirective) throws UnresolvedException {
 		
-		eReference = AssemblerPackage.Literals.SET_DIRECTIVE__OPERAND;
+		eReference = AssemblerPackage.eINSTANCE.getSetDirective_Operand();
 		assemblyLine = setDirective;
 
 		if (setDirective.getOperand() != null && setDirective.getOperand().getOperand() != null) {
@@ -398,7 +398,7 @@ public class ExpressionParser {
 	 */
 	public static int parse(OrgDirective orgDirective) throws UnresolvedException {
 		assemblyLine = orgDirective;
-		eReference = AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND;
+		eReference = AssemblerPackage.eINSTANCE.getOrgDirective_Operand();
 
 		if (orgDirective.getOperand() != null && orgDirective.getOperand().getOperand() != null) {
 			EObject operand = orgDirective.getOperand().getOperand();
@@ -418,7 +418,7 @@ public class ExpressionParser {
 	public static int parse(PagDirective pagDirective) throws UnresolvedException {
 		
 		assemblyLine = pagDirective;
-		eReference = AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND;
+		eReference = AssemblerPackage.eINSTANCE.getPagDirective_Operand();
 		
 		if (pagDirective.getOperand() != null && pagDirective.getOperand().getOperand() != null) {
 			EObject operand = pagDirective.getOperand().getOperand();
@@ -437,7 +437,7 @@ public class ExpressionParser {
 	 */
 	public static int parse(RmbDirective rmbDirective) throws UnresolvedException {
 		assemblyLine = rmbDirective;
-		eReference = AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND;
+		eReference = AssemblerPackage.eINSTANCE.getRmbDirective_Operand();
 		if (rmbDirective.getOperand() != null && rmbDirective.getOperand().getOperand() != null) {
 			EObject operand = rmbDirective.getOperand().getOperand();
 			return resolveExpression((Expression)operand);
@@ -455,7 +455,7 @@ public class ExpressionParser {
 	 */
 	public static int parse(BszDirective bszDirective) throws UnresolvedException {
 		assemblyLine = bszDirective;
-		eReference = AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND;
+		eReference = AssemblerPackage.eINSTANCE.getBszDirective_Operand();
 		if (bszDirective.getOperand() != null && bszDirective.getOperand().getOperand() != null) {
 			EObject operand = bszDirective.getOperand().getOperand();
 			return resolveExpression((Expression)operand);
@@ -473,7 +473,7 @@ public class ExpressionParser {
 	 */
 	public static int parse(SetDPDirective directive) throws UnresolvedException {
 		assemblyLine = directive;
-		eReference = AssemblerPackage.Literals.SET_DP_DIRECTIVE__OPERAND;
+		eReference = AssemblerPackage.eINSTANCE.getSetDPDirective_Operand();
 		if (directive.getOperand() != null && directive.getOperand().getOperand() != null) {
 			EObject operand = directive.getOperand().getOperand();
 			return resolveExpression((Expression)operand);
@@ -505,7 +505,7 @@ public class ExpressionParser {
 	 */
 	public static int getSpaceCount(SpcDirective spcDirective) throws UnresolvedException {
 		assemblyLine = spcDirective;
-		eReference = AssemblerPackage.Literals.SPC_DIRECTIVE__SPACE_COUNT;
+		eReference = AssemblerPackage.eINSTANCE.getSpcDirective_SpaceCount();
 		Expression spaceCount = spcDirective.getSpaceCount();
 		if (spaceCount != null) {
 			return resolveExpression(spaceCount.getOperand());
@@ -523,7 +523,7 @@ public class ExpressionParser {
 	 */
 	public static int getKeepCount(SpcDirective spcDirective) throws UnresolvedException {
 		assemblyLine = spcDirective;
-		eReference = AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT;
+		eReference = AssemblerPackage.eINSTANCE.getSpcDirective_KeepCount();
 		Expression keepCount = spcDirective.getKeepCount();
 		if (keepCount != null) {
 			return resolveExpression(keepCount.getOperand());

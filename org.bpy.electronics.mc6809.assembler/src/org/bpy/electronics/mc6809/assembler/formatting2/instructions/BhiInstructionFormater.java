@@ -65,7 +65,7 @@ public class BhiInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BHI_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBhiInstruction_WsOperand();
 	}
 
 	@Override

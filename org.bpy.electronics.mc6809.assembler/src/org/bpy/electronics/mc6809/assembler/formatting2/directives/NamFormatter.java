@@ -64,7 +64,7 @@ public class NamFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.NAM_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getNamDirective_Ws();
 	}
 
 	@Override

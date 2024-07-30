@@ -446,14 +446,14 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 			
 			if (regs.isEmpty()) {
 				error("no register defined in the PSHS instruction",
-						AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPshsInstruction_Operand(),
 						MISSING_OPTION);
 				
 			} else {
 				for (String reg : regs) {
 					if (testReg.contains(reg)) {
 						error("Register " + reg + " is duplicate in the REG Directive",
-								AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+								AssemblerPackage.eINSTANCE.getPshsInstruction_Operand(),
 								DUPLICATE_OPTION);
 						break;
 					} else {
@@ -464,17 +464,17 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 
 			if (regs.contains("A") && regs.contains("D")) {
 				error("D register overwrite the A register in the REG Directive",
-						AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPshsInstruction_Operand(),
 						DUPLICATE_OPTION);
 			}
 			if (regs.contains("B") && regs.contains("D")) {
 				error("D register overwrite the B register in the REG Directive",
-						AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPshsInstruction_Operand(),
 						DUPLICATE_OPTION);
 			}
 			if (regs.contains("S")) {
 				error("S register can't be push for a PSHS instruction",
-						AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPshsInstruction_Operand(),
 						ILLEGAL_REGISTER);
 			}
 		}
@@ -496,14 +496,14 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 			
 			if (regs.isEmpty()) {
 				error("no register defined in the PSHU instruction",
-						AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(),
 						MISSING_OPTION);
 				
 			} else {
 				for (String reg : regs) {
 					if (testReg.contains(reg)) {
 						error("Register " + reg + " is duplicate in the REG Directive",
-								AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND,
+								AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(),
 								DUPLICATE_OPTION);
 						break;
 					} else {
@@ -514,17 +514,17 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 
 			if (regs.contains("A") && regs.contains("D")) {
 				error("D register overwrite the A register in the REG Directive",
-						AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(),
 						DUPLICATE_OPTION);
 			}
 			if (regs.contains("B") && regs.contains("D")) {
 				error("D register overwrite the B register in the REG Directive",
-						AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(),
 						DUPLICATE_OPTION);
 			}
 			if (regs.contains("U")) {
 				error("U register can't be push for a PSHU instruction",
-						AssemblerPackage.Literals.PSHU_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPshuInstruction_Operand(),
 						ILLEGAL_REGISTER);
 			}
 		}
@@ -546,14 +546,14 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 			
 			if (regs.isEmpty()) {
 				error("no register defined in the PULS instruction",
-						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPulsInstruction_Operand(),
 						MISSING_OPTION);
 				
 			} else {
 				for (String reg : regs) {
 					if (testReg.contains(reg)) {
 						error("Register " + reg + " is duplicate in the REG Directive",
-								AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+								AssemblerPackage.eINSTANCE.getPulsInstruction_Operand(),
 								DUPLICATE_OPTION);
 						break;
 					} else {
@@ -564,17 +564,17 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 
 			if (regs.contains("A") && regs.contains("D")) {
 				error("D register overwrite the A register in the REG Directive",
-						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPulsInstruction_Operand(),
 						DUPLICATE_OPTION);
 			}
 			if (regs.contains("B") && regs.contains("D")) {
 				error("D register overwrite the B register in the REG Directive",
-						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPulsInstruction_Operand(),
 						DUPLICATE_OPTION);
 			}
 			if (regs.contains("S")) {
 				error("S register can't be pull for a PULS instruction",
-						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPulsInstruction_Operand(),
 						ILLEGAL_REGISTER);
 			}
 		}
@@ -596,14 +596,14 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 			
 			if (regs.isEmpty()) {
 				error("no register defined in the PULU instruction",
-						AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(),
 						MISSING_OPTION);
 				
 			} else {
 				for (String reg : regs) {
 					if (testReg.contains(reg)) {
 						error("Register " + reg + " is duplicate in the REG Directive",
-								AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
+								AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(),
 								DUPLICATE_OPTION);
 						break;
 					} else {
@@ -614,17 +614,17 @@ public class InstructionValidator extends AbstractAssemblerValidator  {
 
 			if (regs.contains("A") && regs.contains("D")) {
 				error("D register overwrite the A register in the REG Directive",
-						AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(),
 						DUPLICATE_OPTION);
 			}
 			if (regs.contains("B") && regs.contains("D")) {
 				error("D register overwrite the B register in the REG Directive",
-						AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(),
 						DUPLICATE_OPTION);
 			}
 			if (regs.contains("U")) {
 				error("U register can't be pull for a PULU instruction",
-						AssemblerPackage.Literals.PULU_INSTRUCTION__OPERAND,
+						AssemblerPackage.eINSTANCE.getPuluInstruction_Operand(),
 						ILLEGAL_REGISTER);
 			}
 		}

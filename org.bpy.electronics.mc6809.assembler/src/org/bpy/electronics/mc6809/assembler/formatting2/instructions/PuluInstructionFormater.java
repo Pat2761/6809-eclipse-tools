@@ -65,7 +65,7 @@ public class PuluInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.PULU_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getPuluInstruction_WsOperand();
 	}
 
 	@Override

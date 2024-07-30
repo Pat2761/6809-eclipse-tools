@@ -78,7 +78,7 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 					expressionValue = ExpressionParser.resolveExpression(expression.getOperand());
 					if ((expressionValue&0xFFFFF) != 0) {
 						AssemblerWarningDescription warningDescription = new AssemblerWarningDescription("Overflow error, Data may be lost",
-								AssemblerPackage.Literals.FCC_DIRECTIVE__PARAMETERS,
+								AssemblerPackage.eINSTANCE.getFccDirective_Parameters(),
 								InstructionValidator.OVERFLOW_ERROR);
 						AssemblerErrorManager.getInstance().addWarning(directive, warningDescription);
 

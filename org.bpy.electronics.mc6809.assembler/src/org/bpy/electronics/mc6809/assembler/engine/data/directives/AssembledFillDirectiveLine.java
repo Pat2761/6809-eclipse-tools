@@ -60,8 +60,8 @@ public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 		
 		int nbBytes;
 		try {
-			nbBytes = ExpressionParser.resolveExpression(directive.getNumber().getOperand(), directive, AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER);
-			int value = ExpressionParser.resolveExpression(directive.getValue().getOperand(), directive, AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE);
+			nbBytes = ExpressionParser.resolveExpression(directive.getNumber().getOperand(), directive, AssemblerPackage.eINSTANCE.getFillDirective_Number());
+			int value = ExpressionParser.resolveExpression(directive.getValue().getOperand(), directive, AssemblerPackage.eINSTANCE.getFillDirective_Value());
 			if (nbBytes < 0) {
 				nbBytes = 0;
 			}

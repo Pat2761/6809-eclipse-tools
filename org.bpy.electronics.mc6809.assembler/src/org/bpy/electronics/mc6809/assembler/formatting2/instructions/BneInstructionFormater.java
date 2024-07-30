@@ -65,7 +65,7 @@ public class BneInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BNE_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBneInstruction_WsOperand();
 	}
 
 	@Override

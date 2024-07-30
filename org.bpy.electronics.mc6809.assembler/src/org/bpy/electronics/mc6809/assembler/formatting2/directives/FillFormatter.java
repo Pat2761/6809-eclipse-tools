@@ -74,7 +74,7 @@ public class FillFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.FILL_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getFillDirective_Ws();
 	}
 
 	@Override

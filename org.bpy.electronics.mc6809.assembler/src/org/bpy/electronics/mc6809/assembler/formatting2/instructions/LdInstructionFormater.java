@@ -65,7 +65,7 @@ public class LdInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.LD_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getLdInstruction_WsOperand();
 	}
 
 	@Override

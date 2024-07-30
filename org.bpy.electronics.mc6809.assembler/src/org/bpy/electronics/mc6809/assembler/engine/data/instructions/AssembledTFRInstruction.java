@@ -75,7 +75,7 @@ public class AssembledTFRInstruction extends AbstractInstructionAssemblyLine {
 		if (reg1 == reg2) {
 			AssemblerWarningDescription warning = new AssemblerWarningDescription(
 					"Exchanging the register " + reg1.getLiteral() + " with itself has no effect",
-					AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
+					AssemblerPackage.eINSTANCE.getTfrInstruction_Reg2(),
 					InstructionValidator.ILLEGAL_EXCHANGE);
 			AssemblerErrorManager.getInstance().addWarning(instruction, warning);
 		}
@@ -86,7 +86,7 @@ public class AssembledTFRInstruction extends AbstractInstructionAssemblyLine {
 			if (reg2==Register.D) {
 				AssemblerWarningDescription warning = new AssemblerWarningDescription(
 						"Exchanging the register " + reg1.getLiteral() + " with a part of itself is suspicious",
-						AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
+						AssemblerPackage.eINSTANCE.getTfrInstruction_Reg2(),
 						InstructionValidator.ILLEGAL_EXCHANGE);
 				AssemblerErrorManager.getInstance().addWarning(instruction, warning);
        			
@@ -99,7 +99,7 @@ public class AssembledTFRInstruction extends AbstractInstructionAssemblyLine {
 			if (reg2==Register.D) {
 				AssemblerWarningDescription warning = new AssemblerWarningDescription(
 						"Exchanging the register " + reg1.getLiteral() + " with a part of itself is suspicious",
-						AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
+						AssemblerPackage.eINSTANCE.getTfrInstruction_Reg2(),
 						InstructionValidator.ILLEGAL_EXCHANGE);
 				AssemblerErrorManager.getInstance().addWarning(instruction, warning);
        			
@@ -115,7 +115,7 @@ public class AssembledTFRInstruction extends AbstractInstructionAssemblyLine {
 			if (reg2==Register.A || reg2==Register.B) {
 				AssemblerWarningDescription warning = new AssemblerWarningDescription(
 						"Exchanging the register " + reg1.getLiteral() + " with a part of itself is suspicious",
-						AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
+						AssemblerPackage.eINSTANCE.getTfrInstruction_Reg2(),
 						InstructionValidator.ILLEGAL_EXCHANGE);
 				AssemblerErrorManager.getInstance().addWarning(instruction, warning);
 			} else {
@@ -197,7 +197,7 @@ public class AssembledTFRInstruction extends AbstractInstructionAssemblyLine {
 
 				AssemblerWarningDescription warning = new AssemblerWarningDescription(
 						"Exchanging the register " + reg1.getLiteral() + " with a 8 bits register is suspicious",
-						AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
+						AssemblerPackage.eINSTANCE.getTfrInstruction_Reg2(),
 						InstructionValidator.ILLEGAL_EXCHANGE);
 				AssemblerErrorManager.getInstance().addWarning(instruction, warning);
 			}
@@ -213,7 +213,7 @@ public class AssembledTFRInstruction extends AbstractInstructionAssemblyLine {
 
 			AssemblerWarningDescription warning = new AssemblerWarningDescription(
 					"Exchanging the register " + reg1.getLiteral() + " with a 16 bits register is suspicious",
-					AssemblerPackage.Literals.TFR_INSTRUCTION__REG2,
+					AssemblerPackage.eINSTANCE.getTfrInstruction_Reg2(),
 					InstructionValidator.ILLEGAL_EXCHANGE);
 			AssemblerErrorManager.getInstance().addWarning(instruction, warning);
 		}

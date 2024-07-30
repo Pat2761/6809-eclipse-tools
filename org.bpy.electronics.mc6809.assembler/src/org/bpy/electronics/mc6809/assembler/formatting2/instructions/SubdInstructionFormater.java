@@ -1,5 +1,5 @@
 /*
- * MC6809 Toolkit
+PulsInstructionFormater.java * MC6809 Toolkit
  * Copyright (C) 2023  Patrick BRIAND
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -12,13 +12,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You shouor have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 package org.bpy.electronics.mc6809.assembler.formatting2.instructions;
 
-import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.formatting2.AbstractInstructionWithOperand;
 import org.bpy.electronics.mc6809.assembler.formatting2.AssemblerFormatter;
@@ -27,15 +27,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 
 /**
- * Format Asl instruction.
+ * Format Subd instruction.
  * 
  * @author Patrick BRIAND
  *
  */
-public class AslInstructionFormater extends AbstractInstructionWithOperand {
+public class SubdInstructionFormater extends AbstractInstructionWithOperand {
 
 	/** reference on the instruction */
-	private AslInstruction aslInstruction;
+	private SubdInstruction SubdInstruction;
 
 	/**
 	 * Constructor of the class.
@@ -44,14 +44,14 @@ public class AslInstructionFormater extends AbstractInstructionWithOperand {
 	 * @param tabPolicy Tab policy used (Space only, tab only a mixed)
 	 * @param tabSize Size of the tabulation
 	 */
-	public AslInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
+	public SubdInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
 		super(doc, tabPolicy, tabSize);
 	}
 
 	@Override
 	public void format(AssemblerFormatter assemblerFormatter, EObject instruction, int instructionPosition, int operandPosition) {
 		this.assemblerFormatter = assemblerFormatter;
-		this.aslInstruction = (AslInstruction)instruction;
+		this.SubdInstruction = (SubdInstruction)instruction;
 		this.instructionPosition = instructionPosition;
 		this.operandPosition = operandPosition;
 		
@@ -60,21 +60,21 @@ public class AslInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public String getInstructioName() {
-		return aslInstruction.getInstruction();
+		return SubdInstruction.getInstruction();
 	}
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.eINSTANCE.getAslInstruction_WsOperand();
+		return AssemblerPackage.eINSTANCE.getSubdInstruction_WsOperand();
 	}
 
 	@Override
 	public EObject getInstruction() {
-		return aslInstruction;
+		return SubdInstruction;
 	}
 
 	@Override
 	public EObject getOperand() {
-		return aslInstruction.getOperand();
+		return SubdInstruction.getOperand();
 	}
 }

@@ -65,7 +65,7 @@ public class NegInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.NEG_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getNegInstruction_WsOperand();
 	}
 
 	@Override

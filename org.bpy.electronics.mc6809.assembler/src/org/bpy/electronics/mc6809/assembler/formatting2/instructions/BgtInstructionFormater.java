@@ -65,7 +65,7 @@ public class BgtInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BGT_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBgtInstruction_WsOperand();
 	}
 
 	@Override

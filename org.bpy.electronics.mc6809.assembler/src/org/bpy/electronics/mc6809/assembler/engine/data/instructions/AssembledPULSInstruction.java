@@ -82,7 +82,7 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 			
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"S register can't be pull for a PULS instruction", 
-						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND, 
+						AssemblerPackage.eINSTANCE.getPulsInstruction_Operand(), 
 						InstructionValidator.ILLEGAL_REGISTER);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 
@@ -104,7 +104,7 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 				
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"S register can't be pull for a PULS instruction", 
-						AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND, 
+						AssemblerPackage.eINSTANCE.getPulsInstruction_Operand(), 
 						InstructionValidator.ILLEGAL_REGISTER);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			}
@@ -113,7 +113,7 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 		
 		try {
 			convertedValue = ExpressionParser.parseIdentifer(instruction,
-					AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND
+					AssemblerPackage.eINSTANCE.getPulsInstruction_Operand()
 					,instruction.getOperand());
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -129,7 +129,7 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 			opcodeBytes =  new int[] {0x3F};
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"REG " + instruction.getOperand().getValue() + " directive is not defined" , 
-					AssemblerPackage.Literals.PULS_INSTRUCTION__OPERAND, 
+					AssemblerPackage.eINSTANCE.getPulsInstruction_Operand(), 
 					InstructionValidator.MISSING_DIRECTIVE);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 		}

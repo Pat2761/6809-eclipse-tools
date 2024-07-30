@@ -65,7 +65,7 @@ public class BmiInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BMI_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBmiInstruction_WsOperand();
 	}
 
 	@Override

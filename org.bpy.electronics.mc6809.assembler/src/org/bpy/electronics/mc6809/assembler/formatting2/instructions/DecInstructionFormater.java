@@ -65,7 +65,7 @@ public class DecInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.DEC_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getDecInstruction_WsOperand();
 	}
 
 	@Override

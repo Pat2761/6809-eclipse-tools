@@ -65,7 +65,7 @@ public class BccInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BCC_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBccInstruction_WsOperand();
 	}
 
 	@Override

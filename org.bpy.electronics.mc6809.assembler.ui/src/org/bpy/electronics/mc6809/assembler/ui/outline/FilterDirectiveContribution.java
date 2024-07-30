@@ -39,7 +39,7 @@ public class FilterDirectiveContribution extends AbstractFilterOutlineContributi
 	protected boolean apply(IOutlineNode node) {
 		return !(node instanceof EObjectNode)
 		        || !((EObjectNode) node).getEClass()
-		          .equals(AssemblerPackage.Literals.DIRECTIVE_LINE);
+		          .equals(AssemblerPackage.eINSTANCE.DIRECTIVE_LINE);
 	}
 
 	@Override

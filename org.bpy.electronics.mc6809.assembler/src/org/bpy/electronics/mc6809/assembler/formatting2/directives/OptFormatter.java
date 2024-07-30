@@ -74,7 +74,7 @@ public class OptFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.OPT_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getOptDirective_Ws();
 	}
 
 	@Override

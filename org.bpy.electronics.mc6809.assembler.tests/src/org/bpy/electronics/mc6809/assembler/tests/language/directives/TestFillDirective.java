@@ -205,7 +205,7 @@ public class TestFillDirective {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationHelper.assertError(result,AssemblerPackage.Literals.FILL_DIRECTIVE,
+			validationHelper.assertError(result,AssemblerPackage.eINSTANCE.getFillDirective(),
 				DirectiveValidator.INVALID_RANGE,
 				"FILL value minimum value is -128"			
 			);
@@ -228,7 +228,7 @@ public class TestFillDirective {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationHelper.assertError(result,AssemblerPackage.Literals.FILL_DIRECTIVE,
+			validationHelper.assertError(result,AssemblerPackage.eINSTANCE.getFillDirective(),
 				DirectiveValidator.INVALID_RANGE,
 				"FILL maximum value to set is 255"			
 			);
@@ -293,7 +293,7 @@ public class TestFillDirective {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationHelper.assertError(result,AssemblerPackage.Literals.FILL_DIRECTIVE,
+			validationHelper.assertError(result,AssemblerPackage.eINSTANCE.getFillDirective(),
 				DirectiveValidator.INVALID_RANGE,
 				"FILL value occurrence can't be negative"			
 			);
@@ -317,7 +317,7 @@ public class TestFillDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);		
-			validationHelper.assertWarning(result, AssemblerPackage.Literals.FILL_DIRECTIVE,
+			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getFillDirective(),
 				DirectiveValidator.INVALID_RANGE,
 				"FILL occurrence can't be null"			
 			);
@@ -340,7 +340,7 @@ public class TestFillDirective {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationHelper.assertError(result,AssemblerPackage.Literals.FILL_DIRECTIVE,
+			validationHelper.assertError(result,AssemblerPackage.eINSTANCE.getFillDirective(),
 				DirectiveValidator.INVALID_RANGE,
 				"FILL value maximum value is $FFFF"			
 			);
@@ -389,7 +389,7 @@ public class TestFillDirective {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationHelper.assertIssue(result.eResource(),AssemblerPackage.Literals.BINARY_VALUE,
+			validationHelper.assertIssue(result.eResource(),AssemblerPackage.eINSTANCE.getBinaryValue(),
 				AssemblerValidator.INVALID_FIGURE,111,8,Severity.ERROR, "2 is invalid in binary value");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);
@@ -412,7 +412,7 @@ public class TestFillDirective {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationHelper.assertIssue(result.eResource(),AssemblerPackage.Literals.OCTAL_VALUE,
+			validationHelper.assertIssue(result.eResource(),AssemblerPackage.eINSTANCE.getOctalValue(),
 					AssemblerValidator.INVALID_FIGURE,113,3,Severity.ERROR, "8 is invalid in octal value");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception",true);

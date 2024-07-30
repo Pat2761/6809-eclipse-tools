@@ -64,7 +64,7 @@ public class FdbFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.FDB_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getFdbDirective_Ws();
 	}
 
 	@Override

@@ -64,7 +64,7 @@ public class EndFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.END_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getEndDirective_Ws();
 	}
 
 	@Override

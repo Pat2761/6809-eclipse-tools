@@ -65,7 +65,7 @@ public class PshuInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.PSHU_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getPshuInstruction_WsOperand();
 	}
 
 	@Override

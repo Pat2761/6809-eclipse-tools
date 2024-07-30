@@ -249,7 +249,7 @@ public class TestRmbDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertIssue(result.eResource(), AssemblerPackage.Literals.RMB_DIRECTIVE, InstructionValidator.EXPRESSION_ERROR, 110,
+			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getRmbDirective(), InstructionValidator.EXPRESSION_ERROR, 110,
 					7, Severity.ERROR, "Can't find Deux definition");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
@@ -272,7 +272,7 @@ public class TestRmbDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertIssue(result.eResource(), AssemblerPackage.Literals.BINARY_VALUE, AssemblerValidator.INVALID_FIGURE, 111, 8,
+			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getBinaryValue(), AssemblerValidator.INVALID_FIGURE, 111, 8,
 					Severity.ERROR, "2 is invalid in binary value");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);
@@ -295,7 +295,7 @@ public class TestRmbDirective {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationHelper.assertIssue(result.eResource(), AssemblerPackage.Literals.OCTAL_VALUE, AssemblerValidator.INVALID_FIGURE, 111, 3,
+			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getOctalValue(), AssemblerValidator.INVALID_FIGURE, 111, 3,
 					Severity.ERROR, "8 is invalid in octal value");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", true);

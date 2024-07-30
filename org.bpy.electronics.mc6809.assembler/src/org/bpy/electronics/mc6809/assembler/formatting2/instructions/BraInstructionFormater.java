@@ -65,7 +65,7 @@ public class BraInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BRA_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBraInstruction_WsOperand();
 	}
 
 	@Override

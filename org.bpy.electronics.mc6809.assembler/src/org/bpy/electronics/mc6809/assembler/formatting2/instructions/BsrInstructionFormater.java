@@ -65,7 +65,7 @@ public class BsrInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BSR_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBsrInstruction_WsOperand();
 	}
 
 	@Override

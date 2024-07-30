@@ -38,7 +38,7 @@ public class FilterOtherContribution extends AbstractFilterOutlineContribution {
 	@Override
 	protected boolean apply(IOutlineNode node) {
 		return !(node instanceof EObjectNode)
-				|| !((EObjectNode) node).getEClass().equals(AssemblerPackage.Literals.OTHER_KIND_OF_INSTRUCTIONS);
+				|| !((EObjectNode) node).getEClass().equals(AssemblerPackage.eINSTANCE.OTHER_KIND_OF_INSTRUCTIONS);
 	}
 
 	@Override

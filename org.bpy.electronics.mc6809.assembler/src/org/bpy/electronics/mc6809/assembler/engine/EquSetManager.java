@@ -27,7 +27,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.Expression;
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
@@ -36,7 +35,6 @@ import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -248,14 +246,14 @@ public class EquSetManager {
 			if (equDefinition.getEquType() == EquDefinitionContainer.SET_DEFINITION) {
 				AssemblerWarningDescription warningDescription = new AssemblerWarningDescription(
 						"The label " + labelName + " for an EQU directive is already defined by a SET directive", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+						AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
 						InstructionValidator.DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addWarning(equDirective.eContainer(), warningDescription);
 			
 			} else {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
 						"The label " + labelName + " for an EQU directive is already defined", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+						AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
 						InstructionValidator.DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(equDirective.eContainer(), problemDescription );
 			}
@@ -287,7 +285,7 @@ public class EquSetManager {
 
 			AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
 					"The label " + labelName + " for an REG directive is already defined", 
-					AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+					AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
 					InstructionValidator.DUPLICATE_LABEL);
 			AssemblerErrorManager.getInstance().addProblem(regDirective.eContainer(), problemDescription );
 		}
@@ -308,7 +306,7 @@ public class EquSetManager {
 			if (definition.getEquType() == EquDefinitionContainer.EQU_DEFINITION) {
 				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
 						"The label " + labelName + " for an SET directive is already defined", 
-						AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+						AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
 						InstructionValidator.DUPLICATE_LABEL);
 				AssemblerErrorManager.getInstance().addProblem(setDirective.eContainer(), problemDescription );
 		

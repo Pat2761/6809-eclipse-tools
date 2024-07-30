@@ -51,7 +51,7 @@ public class AssemblerValidator extends AbstractAssemblerValidator {
 		for (int i=0;  i<strVal.length(); i++) {
 			if (strVal.charAt(i)!='0' && strVal.charAt(i) != '1') {
 				error(strVal.charAt(i) + " is invalid in binary value",
-						AssemblerPackage.Literals.BINARY_VALUE__VALUE,
+						AssemblerPackage.eINSTANCE.getBinaryValue_Value(),
 						INVALID_FIGURE);
 				break;
 			}
@@ -65,7 +65,7 @@ public class AssemblerValidator extends AbstractAssemblerValidator {
 		for (int i=0;  i<strVal.length(); i++) {
 			if (strVal.charAt(i)<'0' || strVal.charAt(i) > '7') {
 				error(strVal.charAt(i) + " is invalid in octal value",
-						AssemblerPackage.Literals.OCTAL_VALUE__VALUE,
+						AssemblerPackage.eINSTANCE.getOctalValue_Value(),
 						INVALID_FIGURE);
 				break;
 			}

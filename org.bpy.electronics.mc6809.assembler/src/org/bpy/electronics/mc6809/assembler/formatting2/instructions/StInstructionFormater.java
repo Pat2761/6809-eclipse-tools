@@ -65,7 +65,7 @@ public class StInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.ST_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getStInstruction_WsOperand();
 	}
 
 	@Override

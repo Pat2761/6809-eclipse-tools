@@ -65,7 +65,7 @@ public class BltInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BLT_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBltInstruction_WsOperand();
 	}
 
 	@Override

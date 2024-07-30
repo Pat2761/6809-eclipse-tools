@@ -64,7 +64,7 @@ public class SetFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.SET_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getSetDirective_Ws();
 	}
 
 	@Override

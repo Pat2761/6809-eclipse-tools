@@ -84,7 +84,7 @@ public class AssemblerEngine {
 //		line.parse(directive, currentPcValue, lineNumber);
 //		assemblyLines.add(line);
 //
-//		AssemblerWarningDescription problemDescription = new AssemblerWarningDescription("Un message", AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND, AssemblerValidator.INVALID_FIGURE);
+//		AssemblerWarningDescription problemDescription = new AssemblerWarningDescription("Un message", AssemblerPackage.eINSTANCE.ORG_DIRECTIVE__OPERAND, AssemblerValidator.INVALID_FIGURE);
 //		AssemblerErrorManager.getInstance().addProblem(directive, problemDescription );
 	}
 

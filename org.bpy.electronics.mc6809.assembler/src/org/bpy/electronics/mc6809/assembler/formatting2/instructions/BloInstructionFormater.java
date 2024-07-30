@@ -65,7 +65,7 @@ public class BloInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BLO_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBloInstruction_WsOperand();
 	}
 
 	@Override

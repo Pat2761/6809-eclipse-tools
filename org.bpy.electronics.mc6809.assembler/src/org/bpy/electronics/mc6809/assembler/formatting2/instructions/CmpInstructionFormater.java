@@ -65,7 +65,7 @@ public class CmpInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.CMP_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getCmpInstruction_WsOperand();
 	}
 
 	@Override

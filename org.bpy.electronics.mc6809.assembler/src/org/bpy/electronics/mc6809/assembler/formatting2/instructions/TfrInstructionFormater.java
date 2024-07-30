@@ -75,7 +75,7 @@ public class TfrInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getTfrInstruction_WsOperand();
 	}
 
 	@Override

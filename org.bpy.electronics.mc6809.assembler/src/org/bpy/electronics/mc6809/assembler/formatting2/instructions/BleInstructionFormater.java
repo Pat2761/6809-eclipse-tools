@@ -65,7 +65,7 @@ public class BleInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BLE_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBleInstruction_WsOperand();
 	}
 
 	@Override

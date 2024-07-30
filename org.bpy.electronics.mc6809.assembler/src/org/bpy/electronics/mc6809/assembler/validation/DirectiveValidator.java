@@ -79,52 +79,52 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	public void checkDirectiveLine(DirectiveLine directiveLine) {
 		if ((directiveLine.getDirective() instanceof BszDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			warning("No label defined for BSZ directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
 				MISSING_LABEL);
 		
 		} else if ((directiveLine.getDirective() instanceof EquDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			error("No label defined for EQU directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
 				MISSING_LABEL);
 		
 		} else if ((directiveLine.getDirective() instanceof SetDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			error("No label defined for SET directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
 				MISSING_LABEL);
 		
 		} else if ((directiveLine.getDirective() instanceof EndDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for END directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+   				AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
    				UNEXPECTED_LABEL);
 		
 		} else if ((directiveLine.getDirective() instanceof SpcDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for SPC directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+   				AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
    				UNEXPECTED_LABEL);
 		
 		} else if ((directiveLine.getDirective() instanceof PagDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for PAG directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+   				AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
    				UNEXPECTED_LABEL);
 		
 		} else if ((directiveLine.getDirective() instanceof RegDirective) && (CommandUtil.getLabel(directiveLine) == null)) {
 			error("No label defined for REG directive",
-				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+				AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
 				MISSING_LABEL);
 		
 		} else if ((directiveLine.getDirective() instanceof OptDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for OPT directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+   				AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
    				UNEXPECTED_LABEL);
    			
    		} else if ((directiveLine.getDirective() instanceof NamDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for NAM directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+   				AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
    				UNEXPECTED_LABEL);
    			
 		} else if ((directiveLine.getDirective() instanceof SetDPDirective) && (CommandUtil.getLabel(directiveLine) != null)) {		
    			error("No label may be set for SETDP directive",                                                             
-   				AssemblerPackage.Literals.DIRECTIVE_LINE__LABEL,
+   				AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
    				UNEXPECTED_LABEL);
 		
    		} else {
@@ -184,11 +184,11 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		int equValue = AssemblerEngine.getInstance().getEquSetLabelValue(CommandUtil.getLabel(equDirective));
 		if (equValue > 65535) {
 			error("EQU value can't exceed 65535 (16 bits value)",
-					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getEquDirective_Operand(),
 					INVALID_RANGE);
 		} else 	if (equValue < -32768) {
 			error("EQU value can't be lower than -32768 (16 bits value)",
-					AssemblerPackage.Literals.EQU_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getEquDirective_Operand(),
 					INVALID_RANGE);
 		} 
 
@@ -207,11 +207,11 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		int orgValue = assembledLine.getValue();
 		if (orgValue > 0xFFFF) {
 			error("ORG value maximum value is $FFFF",
-					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getOrgDirective_Operand(),
 					INVALID_RANGE);
 		} else if (orgValue < 0) {
 			error("ORG value can't be negative",
-					AssemblerPackage.Literals.ORG_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getOrgDirective_Operand(),
 					INVALID_RANGE);
 		}
 		
@@ -242,7 +242,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 
 		int valueToSet=0;
 			try {
-				valueToSet = CommandUtil.getByteToSet(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE);
+				valueToSet = CommandUtil.getByteToSet(fillDirective,AssemblerPackage.eINSTANCE.getFillDirective_Value());
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						e.getDescriptor().getMessage(), 
@@ -252,7 +252,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 			}
 			int quantity=0;
 			try {
-				quantity = CommandUtil.getQuantity(fillDirective,AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER);
+				quantity = CommandUtil.getQuantity(fillDirective,AssemblerPackage.eINSTANCE.getFillDirective_Number());
 			} catch (UnresolvedException e) {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						e.getDescriptor().getMessage(), 
@@ -262,25 +262,25 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 			}
 			if (valueToSet > 255) {
 				error("FILL maximum value to set is 255",
-						AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE,
+						AssemblerPackage.eINSTANCE.getFillDirective_Value(),
 						INVALID_RANGE);
 			} else if (valueToSet < -128) {
 				error("FILL value minimum value is -128",
-						AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE,
+						AssemblerPackage.eINSTANCE.getFillDirective_Value(),
 						INVALID_RANGE);
 			} 		
 				
 			if (quantity < 0) {
 				error("FILL value occurrence can't be negative",
-						AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
+						AssemblerPackage.eINSTANCE.getFillDirective_Number(),
 						INVALID_RANGE);
 			} else if (quantity == 0) {
 				warning("FILL occurrence can't be null",
-						AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
+						AssemblerPackage.eINSTANCE.getFillDirective_Number(),
 						INVALID_RANGE);
 			} else if (quantity > 65535) {
 				error("FILL value maximum value is $FFFF",
-						AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER,
+						AssemblerPackage.eINSTANCE.getFillDirective_Number(),
 						INVALID_RANGE);
 			}
 	
@@ -313,7 +313,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 			listOfOptions.add(option.getLiteral());
 			if (options.contains(option.getLiteral())) {
 				error("Duplicate option " + option.getLiteral(),
-						AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
+						AssemblerPackage.eINSTANCE.getOptDirective_Options(),
 						DUPLICATE_OPTION);
 			} else { 
 				options.add(option.getLiteral());
@@ -322,22 +322,22 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		
 		if (listOfOptions.contains("PAG") && listOfOptions.contains("NOP")) {
 			error("The OPT directive does not contain at the same time the PAG and NOP options",
-					AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
+					AssemblerPackage.eINSTANCE.getOptDirective_Options(),
 					INCONSISTENCY_ERROR);
 		}
 		if (listOfOptions.contains("CON") && listOfOptions.contains("NOC")) {
 			error("The OPT directive does not contain at the same time the CON and NOC options",
-					AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
+					AssemblerPackage.eINSTANCE.getOptDirective_Options(),
 					INCONSISTENCY_ERROR);
 		}
 		if (listOfOptions.contains("MAC") && listOfOptions.contains("NOM")) {
 			error("The OPT directive does not contain at the same time the MAC and NOM options",
-					AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
+					AssemblerPackage.eINSTANCE.getOptDirective_Options(),
 					INCONSISTENCY_ERROR);
 		}
 		if (listOfOptions.contains("EXP") && listOfOptions.contains("NOE")) {
 			error("The OPT directive does not contain at the same time the EXP and NOE options",
-					AssemblerPackage.Literals.OPT_DIRECTIVE__OPTIONS,
+					AssemblerPackage.eINSTANCE.getOptDirective_Options(),
 					INCONSISTENCY_ERROR);
 		}
 	}
@@ -356,15 +356,15 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		int pagValue = assembledLine.getValue();
 		if (pagValue < 0) {
 			error("PAG value can't be negative",
-					AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getPagDirective_Operand(),
 					INVALID_RANGE);
 		} else if (pagValue == 0) {
 			warning("Null page value is suspicious",
-					AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getPagDirective_Operand(),
 					INVALID_RANGE);
 		} else if (pagValue > 9) {
 			warning("PAG value superior to 9 is suspicious",
-					AssemblerPackage.Literals.PAG_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getPagDirective_Operand(),
 					INVALID_RANGE);
 		}
 
@@ -392,7 +392,7 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		String namValue = CommandUtil.getName(namDirective);
 		if (namValue.length() > 6) {
 			warning("Program name must be defined by 6 characters max",
-					AssemblerPackage.Literals.NAM_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getNamDirective_Operand(),
 					NAME_ERROR);
 		}	
 	}
@@ -410,11 +410,11 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		int bszValue = assembledLine.getNbBytes();
 	    if (bszValue < 0) {
 			error("BSZ value can't be negative",
-					AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getBszDirective_Operand(),
 					INVALID_RANGE);
 		} else if (bszValue == 0) {
 			warning("Reserving no bytes makes no sense",
-					AssemblerPackage.Literals.BSZ_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getBszDirective_Operand(),
 					INVALID_RANGE);
 		}
 
@@ -443,11 +443,11 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		int setDPValue = assembledLine.getValue();
 	    if (setDPValue < 0) {
 			error("SETDP value can't be negative",
-					AssemblerPackage.Literals.SET_DP_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getSetDPDirective_Operand(),
 					INVALID_RANGE);
 		} else if (setDPValue > 255) {
 			error("The SETDP value cannot be greater than 255",
-					AssemblerPackage.Literals.SET_DP_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getSetDPDirective_Operand(),
 					INVALID_RANGE);
 		}
 
@@ -501,11 +501,11 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		int setValue = AssemblerEngine.getInstance().getEquSetLabelValue(CommandUtil.getLabel(setDirective));
 		if (setValue > 65535) {
 			error("SET value can't exceed 65535 (16 bits value)",
-					AssemblerPackage.Literals.SET_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getSetDirective_Operand(),
 					INVALID_RANGE);
 		} else 	if (setValue < -32768) {
 			error("SET value can't be lower than -32768 (16 bits value)",
-					AssemblerPackage.Literals.SET_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getSetDirective_Operand(),
 					INVALID_RANGE);
 		} 
 	}
@@ -524,30 +524,30 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		int spcValue = assembledLine.getSpaceCountValue();
 		if (spcValue < 0) {
 			error("SPC space value can't be negative",
-					AssemblerPackage.Literals.SPC_DIRECTIVE__SPACE_COUNT,
+					AssemblerPackage.eINSTANCE.getSpcDirective_SpaceCount(),
 					INVALID_RANGE);
 		} else if (spcValue == 0) {
 			warning("0 Space count value is suspicious",
-					AssemblerPackage.Literals.SPC_DIRECTIVE__SPACE_COUNT,
+					AssemblerPackage.eINSTANCE.getSpcDirective_SpaceCount(),
 					INVALID_RANGE);
 		} else if (spcValue > 9) {
 			warning("SPC value superior to 9 is suspicious",
-					AssemblerPackage.Literals.SPC_DIRECTIVE__SPACE_COUNT,
+					AssemblerPackage.eINSTANCE.getSpcDirective_SpaceCount(),
 					INVALID_RANGE);
 		}
 		
 		int keepCount = assembledLine.getkeepCountValue();
 		if (keepCount < 0) {
 			error("SPC keep count value can't be negative",
-					AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT,
+					AssemblerPackage.eINSTANCE.getSpcDirective_KeepCount(),
 					INVALID_RANGE);
 		} else if (keepCount == 0) {
 			warning("0 keep count value is suspicious",
-					AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT,
+					AssemblerPackage.eINSTANCE.getSpcDirective_KeepCount(),
 					INVALID_RANGE);
 		} else if (keepCount > 9) {
 			warning("SPC keep count value superior to 9 is suspicious",
-					AssemblerPackage.Literals.SPC_DIRECTIVE__KEEP_COUNT,
+					AssemblerPackage.eINSTANCE.getSpcDirective_KeepCount(),
 					INVALID_RANGE);
 		}
 		
@@ -578,14 +578,14 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		
 		if (regs.isEmpty()) {
 			error("no register defined in the REG Directive",
-					AssemblerPackage.Literals.REG_DIRECTIVE__OPTIONS,
+					AssemblerPackage.eINSTANCE.getRegDirective_Options(),
 					MISSING_OPTION);
 			
 		} else {
 			for (String reg : regs) {
 				if (testReg.contains(reg)) {
 					error("Register " + reg + " is duplicate in the REG Directive",
-							AssemblerPackage.Literals.REG_DIRECTIVE__OPTIONS,
+							AssemblerPackage.eINSTANCE.getRegDirective_Options(),
 							DUPLICATE_OPTION);
 					break;
 				} else {
@@ -596,12 +596,12 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		
 		if (regs.contains("A") && regs.contains("D")) {
 			error("D register overwrite the A register in the REG Directive",
-					AssemblerPackage.Literals.REG_DIRECTIVE__OPTIONS,
+					AssemblerPackage.eINSTANCE.getRegDirective_Options(),
 					DUPLICATE_OPTION);
 		}
 		if (regs.contains("B") && regs.contains("D")) {
 			error("D register overwrite the B register in the REG Directive",
-					AssemblerPackage.Literals.REG_DIRECTIVE__OPTIONS,
+					AssemblerPackage.eINSTANCE.getRegDirective_Options(),
 					DUPLICATE_OPTION);
 		}
 	}
@@ -621,11 +621,11 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		for (Integer fcbValue : fcbValues) {
 			if (fcbValue > 255) {
 				error("FCB value maximum value is $FF at location " + location ,
-						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
+						AssemblerPackage.eINSTANCE.getFcbDirective_Operand(),
 						INVALID_RANGE);
 			} else if (fcbValue < -127) {
 				error("FCB value can't lower than -127 at location " + location,
-						AssemblerPackage.Literals.FCB_DIRECTIVE__OPERAND,
+						AssemblerPackage.eINSTANCE.getFcbDirective_Operand(),
 						INVALID_RANGE);
 			}
 			location++;
@@ -659,11 +659,11 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		for (Integer rmbValue : rmbValues) {
 			if (rmbValue > 65535) {
 				error("FDB value maximum value is 65535 at location " + location ,
-						AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND,
+						AssemblerPackage.eINSTANCE.getFdbDirective_Operand(),
 						INVALID_RANGE);
 			} else if (rmbValue < -32768) {
 				error("FDB value can't lower than -32768 at location " + location,
-						AssemblerPackage.Literals.FDB_DIRECTIVE__OPERAND,
+						AssemblerPackage.eINSTANCE.getFdbDirective_Operand(),
 						INVALID_RANGE);
 			}
 			location++;
@@ -693,11 +693,11 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 		int rmbValue = assembledLine.getNbBytesReserved();
 		if (rmbValue > 0xFFFF) {
 			error("RMB value maximum value is $FFFF",
-					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getRmbDirective_Operand(),
 					INVALID_RANGE);
 		} else if (rmbValue < 1) {
 			error("RMB value can't lower than 1",
-					AssemblerPackage.Literals.RMB_DIRECTIVE__OPERAND,
+					AssemblerPackage.eINSTANCE.getRmbDirective_Operand(),
 					INVALID_RANGE);
 		}
 

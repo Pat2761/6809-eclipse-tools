@@ -82,7 +82,7 @@ public class AssembledPSHSInstruction extends AbstractInstructionAssemblyLine {
 			
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"S register can't be push for a PSHS instruction", 
-						AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND, 
+						AssemblerPackage.eINSTANCE.getPshsInstruction_Operand(), 
 						InstructionValidator.ILLEGAL_REGISTER);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 
@@ -104,7 +104,7 @@ public class AssembledPSHSInstruction extends AbstractInstructionAssemblyLine {
 				
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 						"S register can't be push for a PSHS instruction", 
-						AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND, 
+						AssemblerPackage.eINSTANCE.getPshsInstruction_Operand(), 
 						InstructionValidator.ILLEGAL_REGISTER);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			}
@@ -113,7 +113,7 @@ public class AssembledPSHSInstruction extends AbstractInstructionAssemblyLine {
 		
 		try {
 			convertedValue = ExpressionParser.parseIdentifer(instruction,
-					AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND
+					AssemblerPackage.eINSTANCE.getPshsInstruction_Operand()
 					,instruction.getOperand());
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -129,7 +129,7 @@ public class AssembledPSHSInstruction extends AbstractInstructionAssemblyLine {
 			opcodeBytes =  new int[] {0x3F};
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					"REG " + instruction.getOperand().getValue() + " directive is not defined" , 
-					AssemblerPackage.Literals.PSHS_INSTRUCTION__OPERAND, 
+					AssemblerPackage.eINSTANCE.getPshsInstruction_Operand(), 
 					InstructionValidator.MISSING_DIRECTIVE);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 		}

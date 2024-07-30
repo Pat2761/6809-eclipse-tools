@@ -64,7 +64,7 @@ public class PagFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.PAG_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getPagDirective_Ws();
 	}
 
 	@Override

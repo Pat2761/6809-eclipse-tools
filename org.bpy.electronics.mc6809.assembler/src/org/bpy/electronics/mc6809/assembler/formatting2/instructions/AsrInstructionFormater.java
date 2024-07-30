@@ -65,7 +65,7 @@ public class AsrInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.ASR_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getAsrInstruction_WsOperand();
 	}
 
 	@Override

@@ -65,7 +65,7 @@ public class LeaInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.LEA_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getLeaInstruction_WsOperand();
 	}
 
 	@Override

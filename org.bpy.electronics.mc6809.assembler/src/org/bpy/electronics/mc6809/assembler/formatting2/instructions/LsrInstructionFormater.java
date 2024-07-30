@@ -65,7 +65,7 @@ public class LsrInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.LSR_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getLsrInstruction_WsOperand();
 	}
 
 	@Override

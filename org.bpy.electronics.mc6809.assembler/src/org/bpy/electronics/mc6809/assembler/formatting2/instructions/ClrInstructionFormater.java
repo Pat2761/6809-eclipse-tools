@@ -65,7 +65,7 @@ public class ClrInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.CLR_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getClrInstruction_WsOperand();
 	}
 
 	@Override

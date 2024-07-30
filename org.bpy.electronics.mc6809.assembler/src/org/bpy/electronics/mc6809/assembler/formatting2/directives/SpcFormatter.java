@@ -58,13 +58,23 @@ public class SpcFormatter extends AbstractObjectFormatter {
 	}
 
 	@Override
+	protected void format() {
+		int startWsPosition = instructionPosition + getInstructioName().length();
+		int nbSpacesNeeded = operandPosition-startWsPosition;
+		if (nbSpacesNeeded<1) {
+			nbSpacesNeeded = 1; 
+		}
+		setWhiteSpace(getInstruction(), getSeparatorAttribute(), nbSpacesNeeded);
+	}
+	
+	@Override
 	public String getInstructioName() {
 		return instruction.getDirective();
 	}
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.SPC_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getSpcDirective_Ws();
 	}
 
 	@Override
@@ -74,6 +84,6 @@ public class SpcFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EObject getOperand() {
-		return instruction.getOperand();
+		return null;
 	}
 }

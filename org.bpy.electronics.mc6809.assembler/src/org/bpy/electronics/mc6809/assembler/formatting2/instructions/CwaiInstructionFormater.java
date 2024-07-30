@@ -65,7 +65,7 @@ public class CwaiInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.CWAI_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getCwaiInstruction_WsOperand();
 	}
 
 	@Override

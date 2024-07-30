@@ -122,19 +122,19 @@ public class AssembledLDAInstruction extends AbstractInstructionAssemblyLine {
 	public void setOperand(AddressingMode mode) {
 		switch (mode) {
 			case IMMEDIATE:
-				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND, -128, 255);
+				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.eINSTANCE.getLdInstruction_Operand(), -128, 255);
 				break;
 				
 			case DIRECT:
-				setDirectOperand(instruction, (DirectOperand)instruction.getOperand(), AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND);	
+				setDirectOperand(instruction, (DirectOperand)instruction.getOperand(), AssemblerPackage.eINSTANCE.getLdInstruction_Operand());	
 				break;
 			
 			case EXTENDED:
-				setExtendedOperand(instruction, (ExtendedOperand)instruction.getOperand(), AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND);
+				setExtendedOperand(instruction, (ExtendedOperand)instruction.getOperand(), AssemblerPackage.eINSTANCE.getLdInstruction_Operand());
 				break;
 				
 			case EXTENDED_INDIRECT:
-				setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand)instruction.getOperand(), AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND);
+				setExtendedIndirectOperand(instruction, (ExtendedIndirectOperand)instruction.getOperand(), AssemblerPackage.eINSTANCE.getLdInstruction_Operand());
 				break;
 				
 			case INDEXED_ACCUMULATOR_MOVING_MODE:
@@ -146,7 +146,7 @@ public class AssembledLDAInstruction extends AbstractInstructionAssemblyLine {
 				break;
 				
 			case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
-				setIndexedAccumulatorMovingMode(instruction, (AutoIncDecIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND);
+				setIndexedAccumulatorMovingMode(instruction, (AutoIncDecIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.eINSTANCE.getLdInstruction_Operand());
 				break;
 				
 			case INDEXED_AUTO_DEC_INC_MODE:
@@ -154,19 +154,19 @@ public class AssembledLDAInstruction extends AbstractInstructionAssemblyLine {
 				break;
 				
 			case INDEXED_CONSTANT_MODE:
-				setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND);
+				setIndexedConstantMode(instruction, (ConstantIndexedMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.eINSTANCE.getLdInstruction_Operand());
 				break;
 				
 			case INDEXED_CONSTANT_INDIRECT_MODE:
-				setIndexedConstantIndirectMode(instruction, (ConstantIndexedMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND);
+				setIndexedConstantIndirectMode(instruction, (ConstantIndexedMovingIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(), AssemblerPackage.eINSTANCE.getLdInstruction_Operand());
 				break;
 				
 			case INDEXED_RELATIF_TO_PC:
-				setRelatifToPCMode(instruction, (RelatifToPCMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND);
+				setRelatifToPCMode(instruction, (RelatifToPCMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.eINSTANCE.getLdInstruction_Operand());
 				break;
 				
 			case INDEXED_RELATIF_TO_PC_INDIRECT_MODE:
-				setRelatifToPCIndirectMode(instruction, (RelatifToPCIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.Literals.LD_INSTRUCTION__OPERAND);
+				setRelatifToPCIndirectMode(instruction, (RelatifToPCIndirectMode)((IndexedOperand)instruction.getOperand()).getMode(),AssemblerPackage.eINSTANCE.getLdInstruction_Operand());
 				break;
 
 			default:

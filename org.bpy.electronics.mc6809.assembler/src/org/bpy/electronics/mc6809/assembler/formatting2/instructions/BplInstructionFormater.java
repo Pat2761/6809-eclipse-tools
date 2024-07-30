@@ -65,7 +65,7 @@ public class BplInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BPL_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBplInstruction_WsOperand();
 	}
 
 	@Override

@@ -65,7 +65,7 @@ public class BgeInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BGE_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBgeInstruction_WsOperand();
 	}
 
 	@Override

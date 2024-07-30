@@ -114,14 +114,14 @@ public class AssembledANDCCInstruction extends AbstractInstructionAssemblyLine {
 	public void setOperand(AddressingMode mode) {
 		switch (mode) {
 			case IMMEDIATE:
-				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.Literals.AND_CC_INSTRUCTION__OPERAND, -128, 255);
+				setImmediateOperand(instruction, (ImmediatOperand)instruction.getOperand(), AssemblerPackage.eINSTANCE.getAndCCInstruction_Operand(), -128, 255);
 				break;
 				
 			case DIRECT:
 				{
 					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 							"Direct mode is not valid for the ANDCC instruction" , 
-							AssemblerPackage.Literals.AND_CC_INSTRUCTION__OPERAND, 
+							AssemblerPackage.eINSTANCE.getAndCCInstruction_Operand(), 
 							InstructionValidator.ILLEGAL_MODE);
 					AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 				}
@@ -132,7 +132,7 @@ public class AssembledANDCCInstruction extends AbstractInstructionAssemblyLine {
 				{
 					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 							"Extended mode is not valid for the ANDCC instruction" , 
-							AssemblerPackage.Literals.AND_CC_INSTRUCTION__OPERAND, 
+							AssemblerPackage.eINSTANCE.getAndCCInstruction_Operand(), 
 							InstructionValidator.ILLEGAL_MODE);
 					AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 				}
@@ -149,7 +149,7 @@ public class AssembledANDCCInstruction extends AbstractInstructionAssemblyLine {
 				{
 					AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 							"Indexed mode is not valid for the ANDCC instruction" , 
-							AssemblerPackage.Literals.AND_CC_INSTRUCTION__OPERAND, 
+							AssemblerPackage.eINSTANCE.getAndCCInstruction_Operand(), 
 							InstructionValidator.ILLEGAL_MODE);
 					AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 				}

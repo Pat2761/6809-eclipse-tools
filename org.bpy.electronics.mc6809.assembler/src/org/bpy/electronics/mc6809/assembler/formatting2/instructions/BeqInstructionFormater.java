@@ -65,7 +65,7 @@ public class BeqInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.BEQ_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getBeqInstruction_WsOperand();
 	}
 
 	@Override

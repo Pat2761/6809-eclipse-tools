@@ -74,7 +74,7 @@ public class RegFormatter extends AbstractObjectFormatter {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.REG_DIRECTIVE__WS;
+		return AssemblerPackage.eINSTANCE.getRegDirective_Ws();
 	}
 
 	@Override

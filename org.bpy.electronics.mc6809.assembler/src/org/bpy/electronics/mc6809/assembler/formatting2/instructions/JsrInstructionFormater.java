@@ -65,7 +65,7 @@ public class JsrInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.JSR_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getJsrInstruction_WsOperand();
 	}
 
 	@Override

@@ -65,7 +65,7 @@ public class OrInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.NEG_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getOrInstruction_WsOperand();
 	}
 
 	@Override

@@ -75,7 +75,7 @@ public class ExgInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND;
+		return AssemblerPackage.eINSTANCE.getExgInstruction_WsOperand();
 	}
 
 	@Override

@@ -848,7 +848,7 @@ public class TestEquDirective {
 		
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationHelper.assertIssue(result.eResource(),AssemblerPackage.Literals.BINARY_VALUE,
+			validationHelper.assertIssue(result.eResource(),AssemblerPackage.eINSTANCE.getBinaryValue(),
 				AssemblerValidator.INVALID_FIGURE,111,8,Severity.ERROR,
 				 "2 is invalid in binary value");
 		} catch (Exception e) {
@@ -872,7 +872,7 @@ public class TestEquDirective {
 		
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationHelper.assertIssue(result.eResource(),AssemblerPackage.Literals.OCTAL_VALUE,
+			validationHelper.assertIssue(result.eResource(),AssemblerPackage.eINSTANCE.getOctalValue(),
 				AssemblerValidator.INVALID_FIGURE,111,3,Severity.ERROR, 
 				"8 is invalid in octal value");
 		} catch (Exception e) {
