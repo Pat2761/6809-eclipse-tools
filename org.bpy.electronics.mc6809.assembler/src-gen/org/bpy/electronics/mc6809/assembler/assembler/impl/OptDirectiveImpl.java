@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl#getWs <em>Ws</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl#getOptions <em>Options</em>}</li>
  * </ul>
  *
@@ -55,6 +56,26 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
    * @ordered
    */
   protected String directive = DIRECTIVE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected String ws = WS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getOptions() <em>Options</em>}' attribute list.
@@ -84,7 +105,7 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.OPT_DIRECTIVE;
+    return AssemblerPackage.eINSTANCE.getOptDirective();
   }
 
   /**
@@ -118,6 +139,31 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
    * @generated
    */
   @Override
+  public String getWs()
+  {
+    return ws;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs(String newWs)
+  {
+    String oldWs = ws;
+    ws = newWs;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OPT_DIRECTIVE__WS, oldWs, ws));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<AssemblyOption> getOptions()
   {
     if (options == null)
@@ -139,6 +185,8 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
     {
       case AssemblerPackage.OPT_DIRECTIVE__DIRECTIVE:
         return getDirective();
+      case AssemblerPackage.OPT_DIRECTIVE__WS:
+        return getWs();
       case AssemblerPackage.OPT_DIRECTIVE__OPTIONS:
         return getOptions();
     }
@@ -158,6 +206,9 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
     {
       case AssemblerPackage.OPT_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
+        return;
+      case AssemblerPackage.OPT_DIRECTIVE__WS:
+        setWs((String)newValue);
         return;
       case AssemblerPackage.OPT_DIRECTIVE__OPTIONS:
         getOptions().clear();
@@ -180,6 +231,9 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
       case AssemblerPackage.OPT_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
+      case AssemblerPackage.OPT_DIRECTIVE__WS:
+        setWs(WS_EDEFAULT);
+        return;
       case AssemblerPackage.OPT_DIRECTIVE__OPTIONS:
         getOptions().clear();
         return;
@@ -199,6 +253,8 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
     {
       case AssemblerPackage.OPT_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
+      case AssemblerPackage.OPT_DIRECTIVE__WS:
+        return WS_EDEFAULT == null ? ws != null : !WS_EDEFAULT.equals(ws);
       case AssemblerPackage.OPT_DIRECTIVE__OPTIONS:
         return options != null && !options.isEmpty();
     }
@@ -218,6 +274,8 @@ public class OptDirectiveImpl extends MinimalEObjectImpl.Container implements Op
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (directive: ");
     result.append(directive);
+    result.append(", ws: ");
+    result.append(ws);
     result.append(", options: ");
     result.append(options);
     result.append(')');

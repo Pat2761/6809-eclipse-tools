@@ -101,7 +101,7 @@ public class CwaiInstructionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.CWAI_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getCwaiInstruction();
   }
 
   /**

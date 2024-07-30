@@ -101,7 +101,7 @@ public class RorInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ROR_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getRorInstruction();
   }
 
   /**

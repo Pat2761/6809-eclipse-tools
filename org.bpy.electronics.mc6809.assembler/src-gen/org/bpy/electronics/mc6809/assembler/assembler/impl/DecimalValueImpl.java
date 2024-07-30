@@ -87,7 +87,7 @@ public class DecimalValueImpl extends MinimalEObjectImpl.Container implements De
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.DECIMAL_VALUE;
+    return AssemblerPackage.eINSTANCE.getDecimalValue();
   }
 
   /**

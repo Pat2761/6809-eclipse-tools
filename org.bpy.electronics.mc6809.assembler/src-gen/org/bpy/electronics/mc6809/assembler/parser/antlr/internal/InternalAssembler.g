@@ -369,22 +369,10 @@ ruleOtherKindOfInstructions returns [EObject current=null]
 			)
 		)?
 		(
-			(
-				lv_ws3_5_0=RULE_WS
-				{
-					newLeafNode(lv_ws3_5_0, grammarAccess.getOtherKindOfInstructionsAccess().getWs3WSTerminalRuleCall_4_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getOtherKindOfInstructionsRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"ws3",
-						lv_ws3_5_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
-				}
-			)
+			this_WS_5=RULE_WS
+			{
+				newLeafNode(this_WS_5, grammarAccess.getOtherKindOfInstructionsAccess().getWSTerminalRuleCall_4());
+			}
 		)?
 		{
 			newCompositeNode(grammarAccess.getOtherKindOfInstructionsAccess().getEndOfLineParserRuleCall_5());
@@ -546,22 +534,10 @@ ruleMacroDefinition returns [EObject current=null]
 			)
 		)?
 		(
-			(
-				lv_ws4_6_0=RULE_WS
-				{
-					newLeafNode(lv_ws4_6_0, grammarAccess.getMacroDefinitionAccess().getWs4WSTerminalRuleCall_5_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getMacroDefinitionRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"ws4",
-						lv_ws4_6_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
-				}
-			)
+			this_WS_6=RULE_WS
+			{
+				newLeafNode(this_WS_6, grammarAccess.getMacroDefinitionAccess().getWSTerminalRuleCall_5());
+			}
 		)?
 		{
 			newCompositeNode(grammarAccess.getMacroDefinitionAccess().getEndOfLineParserRuleCall_6());
@@ -751,22 +727,10 @@ ruleLabelLine returns [EObject current=null]
 			)
 		)?
 		(
-			(
-				lv_ws2_3_0=RULE_WS
-				{
-					newLeafNode(lv_ws2_3_0, grammarAccess.getLabelLineAccess().getWs2WSTerminalRuleCall_2_0());
-				}
-				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getLabelLineRule());
-					}
-					setWithLastConsumed(
-						$current,
-						"ws2",
-						lv_ws2_3_0,
-						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
-				}
-			)
+			this_WS_3=RULE_WS
+			{
+				newLeafNode(this_WS_3, grammarAccess.getLabelLineAccess().getWSTerminalRuleCall_2());
+			}
 		)?
 		{
 			newCompositeNode(grammarAccess.getLabelLineAccess().getEndOfLineParserRuleCall_3());
@@ -11777,10 +11741,24 @@ ruleSetDPDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getSetDPDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getSetDPDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getSetDPDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -11835,10 +11813,24 @@ ruleFccDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getFccDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getFccDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFccDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					(
@@ -11954,10 +11946,24 @@ ruleRegDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getRegDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getRegDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRegDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -12037,10 +12043,24 @@ ruleSpcDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getSpcDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getSpcDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getSpcDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -12136,10 +12156,24 @@ ruleNamDirective returns [EObject current=null]
 				)
 			)
 		)
-		this_WS_2=RULE_WS
-		{
-			newLeafNode(this_WS_2, grammarAccess.getNamDirectiveAccess().getWSTerminalRuleCall_1());
-		}
+		(
+			(
+				lv_ws_2_0=RULE_WS
+				{
+					newLeafNode(lv_ws_2_0, grammarAccess.getNamDirectiveAccess().getWsWSTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getNamDirectiveRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws",
+						lv_ws_2_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)
 		(
 			(
 				{
@@ -12193,10 +12227,24 @@ rulePagDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getPagDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getPagDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getPagDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -12251,10 +12299,24 @@ ruleOptDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getOptDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getOptDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getOptDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -12364,10 +12426,24 @@ ruleSetDirective returns [EObject current=null]
 				}
 			)
 		)
-		this_WS_1=RULE_WS
-		{
-			newLeafNode(this_WS_1, grammarAccess.getSetDirectiveAccess().getWSTerminalRuleCall_1());
-		}
+		(
+			(
+				lv_ws_1_0=RULE_WS
+				{
+					newLeafNode(lv_ws_1_0, grammarAccess.getSetDirectiveAccess().getWsWSTerminalRuleCall_1_0());
+				}
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getSetDirectiveRule());
+					}
+					setWithLastConsumed(
+						$current,
+						"ws",
+						lv_ws_1_0,
+						"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+				}
+			)
+		)
 		(
 			(
 				(
@@ -12454,10 +12530,24 @@ ruleFillDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getFillDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getFillDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFillDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -12548,10 +12638,24 @@ ruleBszDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getBszDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getBszDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getBszDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -12606,10 +12710,24 @@ ruleFdbDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getFdbDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getFdbDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFdbDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -12664,10 +12782,24 @@ ruleFcbDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getFcbDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getFcbDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getFcbDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -12722,10 +12854,24 @@ ruleRmbDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getRmbDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getRmbDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getRmbDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					(
@@ -12796,10 +12942,24 @@ ruleEndDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getEndDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getEndDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getEndDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					{
@@ -12854,10 +13014,24 @@ ruleOrgDirective returns [EObject current=null]
 			)
 		)
 		(
-			this_WS_1=RULE_WS
-			{
-				newLeafNode(this_WS_1, grammarAccess.getOrgDirectiveAccess().getWSTerminalRuleCall_1_0());
-			}
+			(
+				(
+					lv_ws_1_0=RULE_WS
+					{
+						newLeafNode(lv_ws_1_0, grammarAccess.getOrgDirectiveAccess().getWsWSTerminalRuleCall_1_0_0());
+					}
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getOrgDirectiveRule());
+						}
+						setWithLastConsumed(
+							$current,
+							"ws",
+							lv_ws_1_0,
+							"org.bpy.electronics.mc6809.assembler.Assembler.WS");
+					}
+				)
+			)
 			(
 				(
 					(

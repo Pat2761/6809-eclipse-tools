@@ -66,7 +66,7 @@ public class AbxInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ABX_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getAbxInstruction();
   }
 
   /**

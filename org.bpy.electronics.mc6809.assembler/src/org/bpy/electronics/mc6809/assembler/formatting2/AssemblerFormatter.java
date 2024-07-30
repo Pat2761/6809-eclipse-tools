@@ -30,6 +30,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.BplInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BraInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BszDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
@@ -40,10 +41,15 @@ import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FccDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.FillDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
@@ -56,20 +62,29 @@ import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OrgDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.PagDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
@@ -78,8 +93,23 @@ import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.BszFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.EndFormatter;
 import org.bpy.electronics.mc6809.assembler.formatting2.directives.EquFormatter;
 import org.bpy.electronics.mc6809.assembler.formatting2.directives.FailFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.FcbFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.FccFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.FdbFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.FillFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.NamFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.OptFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.OrgFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.PagFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.RegFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.RmbFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.SetDPFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.SetFormatter;
+import org.bpy.electronics.mc6809.assembler.formatting2.directives.SpcFormatter;
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AbxInstructionFormater;
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AdcInstructionFormater;
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AddInstructionFormater;
@@ -511,34 +541,84 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	}
 
 	/**
-	 * Format a directive line.
-	 * 
-	 * @param line reference on the directive line
-	 * @param doc  reference on the current document
-	 */
-	protected void format(DirectiveLine line, IFormattableDocument doc) {
-		formatDirective(line, doc);
-	}
-
-	/**
 	 * Format a directive line. 
 	 * 
 	 * @param line reference on the directive line
 	 * @param doc  reference on the current document
 	 */
-	private void formatDirective(DirectiveLine line, IFormattableDocument doc) {
+	protected void formatDirective(DirectiveLine line, IFormattableDocument doc) {
 		
 		setFirstWhiteSpace(doc, line, getLabelSize(line.getLabel()), AssemblerPackage.Literals.DIRECTIVE_LINE__WS1);
 
-		if (line.getDirective() instanceof EquDirective equDirective) {
+		if (line.getDirective() instanceof BszDirective bszDirective) {
+			BszFormatter bszFormatter = new BszFormatter(doc, tabPolicy, tabSize);
+			bszFormatter.format(this, bszDirective, instructionPosition, operandPosition);
+
+		} else if (line.getDirective() instanceof EndDirective endDirective) {
+			EndFormatter endFormatter = new EndFormatter(doc, tabPolicy, tabSize);
+			endFormatter.format(this, endDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof EquDirective equDirective) {
 			EquFormatter equFormatter = new EquFormatter(doc, tabPolicy, tabSize);
 			equFormatter.format(this, equDirective, instructionPosition, operandPosition);
 		
 		} else if (line.getDirective() instanceof FailDirective failDirective) {
 			FailFormatter failFormatter = new FailFormatter(doc, tabPolicy, tabSize);
 			failFormatter.format(this, failDirective, instructionPosition, operandPosition);
-		}
+		
+		} else if (line.getDirective() instanceof FcbDirective fcbDirective) {
+			FcbFormatter fcbFormatter = new FcbFormatter(doc, tabPolicy, tabSize);
+			fcbFormatter.format(this, fcbDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof FccDirective fccDirective) {
+			FccFormatter fccFormatter = new FccFormatter(doc, tabPolicy, tabSize);
+			fccFormatter.format(this, fccDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof FdbDirective fdbDirective) {
+			FdbFormatter fdbFormatter = new FdbFormatter(doc, tabPolicy, tabSize);
+			fdbFormatter.format(this, fdbDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof FillDirective fillDirective) {
+			FillFormatter fillFormatter = new FillFormatter(doc, tabPolicy, tabSize);
+			fillFormatter.format(this, fillDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof NamDirective namDirective) {
+			NamFormatter namFormatter = new NamFormatter(doc, tabPolicy, tabSize);
+			namFormatter.format(this, namDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof OptDirective optDirective) {
+			OptFormatter optFormatter = new OptFormatter(doc, tabPolicy, tabSize);
+			optFormatter.format(this, optDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof OrgDirective orgDirective) {
+			OrgFormatter orgFormatter = new OrgFormatter(doc, tabPolicy, tabSize);
+			orgFormatter.format(this, orgDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof PagDirective pagDirective) {
+			PagFormatter pagFormatter = new PagFormatter(doc, tabPolicy, tabSize);
+			pagFormatter.format(this, pagDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof RegDirective regDirective) {
+			RegFormatter regFormatter = new RegFormatter(doc, tabPolicy, tabSize);
+			regFormatter.format(this, regDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof RmbDirective rmbDirective) {
+			RmbFormatter rmbFormatter = new RmbFormatter(doc, tabPolicy, tabSize);
+			rmbFormatter.format(this, rmbDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof SetDirective setDirective) {
+			SetFormatter setFormatter = new SetFormatter(doc, tabPolicy, tabSize);
+			setFormatter.format(this, setDirective, instructionPosition, operandPosition);
+		
+		} else if (line.getDirective() instanceof SetDPDirective setdpDirective) {
+			SetDPFormatter setdpFormatter = new SetDPFormatter(doc, tabPolicy, tabSize);
+			setdpFormatter.format(this, setdpDirective, instructionPosition, operandPosition);
 
+		} else if (line.getDirective() instanceof SpcDirective spcDirective) {
+			SpcFormatter spcFormatter = new SpcFormatter(doc, tabPolicy, tabSize);
+			spcFormatter.format(this, spcDirective, instructionPosition, operandPosition);
+		
+		}
 
 		if (line.getWs2() != null) {
 			formatCommentPosition(doc, line, AssemblerPackage.Literals.DIRECTIVE_LINE__WS1, AssemblerPackage.Literals.DIRECTIVE_LINE__WS2);

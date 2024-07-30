@@ -69,7 +69,7 @@ public class AdditionImpl extends ExpressionImpl implements Addition
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ADDITION;
+    return AssemblerPackage.eINSTANCE.getAddition();
   }
 
   /**

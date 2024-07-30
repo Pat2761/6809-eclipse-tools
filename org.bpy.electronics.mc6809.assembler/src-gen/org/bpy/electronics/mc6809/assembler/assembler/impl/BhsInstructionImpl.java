@@ -101,7 +101,7 @@ public class BhsInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BHS_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBhsInstruction();
   }
 
   /**

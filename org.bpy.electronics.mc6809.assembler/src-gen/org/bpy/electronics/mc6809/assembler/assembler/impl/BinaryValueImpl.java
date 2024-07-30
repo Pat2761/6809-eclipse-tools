@@ -66,7 +66,7 @@ public class BinaryValueImpl extends MinimalEObjectImpl.Container implements Bin
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BINARY_VALUE;
+    return AssemblerPackage.eINSTANCE.getBinaryValue();
   }
 
   /**

@@ -66,7 +66,7 @@ public class HexaDecimalValueImpl extends MinimalEObjectImpl.Container implement
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.HEXA_DECIMAL_VALUE;
+    return AssemblerPackage.eINSTANCE.getHexaDecimalValue();
   }
 
   /**

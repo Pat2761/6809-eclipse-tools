@@ -19,7 +19,6 @@
 package org.bpy.electronics.mc6809.assembler.formatting2.instructions;
 
 import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.formatting2.AbstractInstructionWithOperand;
 import org.bpy.electronics.mc6809.assembler.formatting2.AssemblerFormatter;

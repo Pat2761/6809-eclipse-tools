@@ -69,7 +69,7 @@ public class OrImpl extends ExpressionImpl implements Or
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.OR;
+    return AssemblerPackage.eINSTANCE.getOr();
   }
 
   /**

@@ -101,7 +101,7 @@ public class BhiInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BHI_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBhiInstruction();
   }
 
   /**

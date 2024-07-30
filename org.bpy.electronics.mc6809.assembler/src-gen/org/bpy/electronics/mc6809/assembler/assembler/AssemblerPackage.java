@@ -170,22 +170,13 @@ public interface AssemblerPackage extends EPackage
   int OTHER_KIND_OF_INSTRUCTIONS__COMMENT = 4;
 
   /**
-   * The feature id for the '<em><b>Ws3</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int OTHER_KIND_OF_INSTRUCTIONS__WS3 = 5;
-
-  /**
    * The number of structural features of the '<em>Other Kind Of Instructions</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OTHER_KIND_OF_INSTRUCTIONS_FEATURE_COUNT = 6;
+  int OTHER_KIND_OF_INSTRUCTIONS_FEATURE_COUNT = 5;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpecialFunctionsImpl <em>Special Functions</em>}' class.
@@ -271,22 +262,13 @@ public interface AssemblerPackage extends EPackage
   int MACRO_DEFINITION__COMMENT1 = 4;
 
   /**
-   * The feature id for the '<em><b>Ws4</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int MACRO_DEFINITION__WS4 = 5;
-
-  /**
    * The feature id for the '<em><b>Instructions</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int MACRO_DEFINITION__INSTRUCTIONS = 6;
+  int MACRO_DEFINITION__INSTRUCTIONS = 5;
 
   /**
    * The feature id for the '<em><b>Ws5</b></em>' attribute.
@@ -295,7 +277,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACRO_DEFINITION__WS5 = 7;
+  int MACRO_DEFINITION__WS5 = 6;
 
   /**
    * The feature id for the '<em><b>Ws6</b></em>' attribute.
@@ -304,7 +286,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACRO_DEFINITION__WS6 = 8;
+  int MACRO_DEFINITION__WS6 = 7;
 
   /**
    * The feature id for the '<em><b>Comment2</b></em>' attribute.
@@ -313,7 +295,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACRO_DEFINITION__COMMENT2 = 9;
+  int MACRO_DEFINITION__COMMENT2 = 8;
 
   /**
    * The feature id for the '<em><b>Ws7</b></em>' attribute.
@@ -322,7 +304,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACRO_DEFINITION__WS7 = 10;
+  int MACRO_DEFINITION__WS7 = 9;
 
   /**
    * The number of structural features of the '<em>Macro Definition</em>' class.
@@ -331,7 +313,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int MACRO_DEFINITION_FEATURE_COUNT = 11;
+  int MACRO_DEFINITION_FEATURE_COUNT = 10;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl <em>Label Line</em>}' class.
@@ -371,22 +353,13 @@ public interface AssemblerPackage extends EPackage
   int LABEL_LINE__COMMENT = 2;
 
   /**
-   * The feature id for the '<em><b>Ws2</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int LABEL_LINE__WS2 = 3;
-
-  /**
    * The number of structural features of the '<em>Label Line</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LABEL_LINE_FEATURE_COUNT = 4;
+  int LABEL_LINE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl <em>Blank Line</em>}' class.
@@ -4067,13 +4040,22 @@ public interface AssemblerPackage extends EPackage
   int SET_DP_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SET_DP_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SET_DP_DIRECTIVE__OPERAND = 1;
+  int SET_DP_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Set DP Directive</em>' class.
@@ -4082,7 +4064,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SET_DP_DIRECTIVE_FEATURE_COUNT = 2;
+  int SET_DP_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl <em>Fcc Directive</em>}' class.
@@ -4104,13 +4086,22 @@ public interface AssemblerPackage extends EPackage
   int FCC_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FCC_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Parameters</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FCC_DIRECTIVE__PARAMETERS = 1;
+  int FCC_DIRECTIVE__PARAMETERS = 2;
 
   /**
    * The number of structural features of the '<em>Fcc Directive</em>' class.
@@ -4119,7 +4110,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FCC_DIRECTIVE_FEATURE_COUNT = 2;
+  int FCC_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RegDirectiveImpl <em>Reg Directive</em>}' class.
@@ -4141,13 +4132,22 @@ public interface AssemblerPackage extends EPackage
   int REG_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int REG_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Options</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int REG_DIRECTIVE__OPTIONS = 1;
+  int REG_DIRECTIVE__OPTIONS = 2;
 
   /**
    * The number of structural features of the '<em>Reg Directive</em>' class.
@@ -4156,7 +4156,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int REG_DIRECTIVE_FEATURE_COUNT = 2;
+  int REG_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl <em>Spc Directive</em>}' class.
@@ -4178,13 +4178,22 @@ public interface AssemblerPackage extends EPackage
   int SPC_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SPC_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Space Count</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SPC_DIRECTIVE__SPACE_COUNT = 1;
+  int SPC_DIRECTIVE__SPACE_COUNT = 2;
 
   /**
    * The feature id for the '<em><b>Keep Count</b></em>' containment reference.
@@ -4193,7 +4202,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPC_DIRECTIVE__KEEP_COUNT = 2;
+  int SPC_DIRECTIVE__KEEP_COUNT = 3;
 
   /**
    * The number of structural features of the '<em>Spc Directive</em>' class.
@@ -4202,7 +4211,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SPC_DIRECTIVE_FEATURE_COUNT = 3;
+  int SPC_DIRECTIVE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NamDirectiveImpl <em>Nam Directive</em>}' class.
@@ -4224,13 +4233,22 @@ public interface AssemblerPackage extends EPackage
   int NAM_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int NAM_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int NAM_DIRECTIVE__OPERAND = 1;
+  int NAM_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Nam Directive</em>' class.
@@ -4239,7 +4257,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int NAM_DIRECTIVE_FEATURE_COUNT = 2;
+  int NAM_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PagDirectiveImpl <em>Pag Directive</em>}' class.
@@ -4261,13 +4279,22 @@ public interface AssemblerPackage extends EPackage
   int PAG_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int PAG_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int PAG_DIRECTIVE__OPERAND = 1;
+  int PAG_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Pag Directive</em>' class.
@@ -4276,7 +4303,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int PAG_DIRECTIVE_FEATURE_COUNT = 2;
+  int PAG_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl <em>Opt Directive</em>}' class.
@@ -4298,13 +4325,22 @@ public interface AssemblerPackage extends EPackage
   int OPT_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int OPT_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Options</b></em>' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int OPT_DIRECTIVE__OPTIONS = 1;
+  int OPT_DIRECTIVE__OPTIONS = 2;
 
   /**
    * The number of structural features of the '<em>Opt Directive</em>' class.
@@ -4313,7 +4349,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int OPT_DIRECTIVE_FEATURE_COUNT = 2;
+  int OPT_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FailDirectiveImpl <em>Fail Directive</em>}' class.
@@ -4363,13 +4399,22 @@ public interface AssemblerPackage extends EPackage
   int SET_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int SET_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Is Relative To PC</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int SET_DIRECTIVE__IS_RELATIVE_TO_PC = 1;
+  int SET_DIRECTIVE__IS_RELATIVE_TO_PC = 2;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4378,7 +4423,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SET_DIRECTIVE__OPERAND = 2;
+  int SET_DIRECTIVE__OPERAND = 3;
 
   /**
    * The number of structural features of the '<em>Set Directive</em>' class.
@@ -4387,7 +4432,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int SET_DIRECTIVE_FEATURE_COUNT = 3;
+  int SET_DIRECTIVE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FillDirectiveImpl <em>Fill Directive</em>}' class.
@@ -4409,13 +4454,22 @@ public interface AssemblerPackage extends EPackage
   int FILL_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FILL_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Value</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FILL_DIRECTIVE__VALUE = 1;
+  int FILL_DIRECTIVE__VALUE = 2;
 
   /**
    * The feature id for the '<em><b>Number</b></em>' containment reference.
@@ -4424,7 +4478,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FILL_DIRECTIVE__NUMBER = 2;
+  int FILL_DIRECTIVE__NUMBER = 3;
 
   /**
    * The number of structural features of the '<em>Fill Directive</em>' class.
@@ -4433,7 +4487,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FILL_DIRECTIVE_FEATURE_COUNT = 3;
+  int FILL_DIRECTIVE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BszDirectiveImpl <em>Bsz Directive</em>}' class.
@@ -4455,13 +4509,22 @@ public interface AssemblerPackage extends EPackage
   int BSZ_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int BSZ_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int BSZ_DIRECTIVE__OPERAND = 1;
+  int BSZ_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Bsz Directive</em>' class.
@@ -4470,7 +4533,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int BSZ_DIRECTIVE_FEATURE_COUNT = 2;
+  int BSZ_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FdbDirectiveImpl <em>Fdb Directive</em>}' class.
@@ -4492,13 +4555,22 @@ public interface AssemblerPackage extends EPackage
   int FDB_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FDB_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FDB_DIRECTIVE__OPERAND = 1;
+  int FDB_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Fdb Directive</em>' class.
@@ -4507,7 +4579,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FDB_DIRECTIVE_FEATURE_COUNT = 2;
+  int FDB_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FcbDirectiveImpl <em>Fcb Directive</em>}' class.
@@ -4529,13 +4601,22 @@ public interface AssemblerPackage extends EPackage
   int FCB_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int FCB_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int FCB_DIRECTIVE__OPERAND = 1;
+  int FCB_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>Fcb Directive</em>' class.
@@ -4544,7 +4625,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int FCB_DIRECTIVE_FEATURE_COUNT = 2;
+  int FCB_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RmbDirectiveImpl <em>Rmb Directive</em>}' class.
@@ -4566,13 +4647,22 @@ public interface AssemblerPackage extends EPackage
   int RMB_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int RMB_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Is Relative To PC</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int RMB_DIRECTIVE__IS_RELATIVE_TO_PC = 1;
+  int RMB_DIRECTIVE__IS_RELATIVE_TO_PC = 2;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4581,7 +4671,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RMB_DIRECTIVE__OPERAND = 2;
+  int RMB_DIRECTIVE__OPERAND = 3;
 
   /**
    * The number of structural features of the '<em>Rmb Directive</em>' class.
@@ -4590,7 +4680,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int RMB_DIRECTIVE_FEATURE_COUNT = 3;
+  int RMB_DIRECTIVE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EndDirectiveImpl <em>End Directive</em>}' class.
@@ -4612,13 +4702,22 @@ public interface AssemblerPackage extends EPackage
   int END_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int END_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int END_DIRECTIVE__OPERAND = 1;
+  int END_DIRECTIVE__OPERAND = 2;
 
   /**
    * The number of structural features of the '<em>End Directive</em>' class.
@@ -4627,7 +4726,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int END_DIRECTIVE_FEATURE_COUNT = 2;
+  int END_DIRECTIVE_FEATURE_COUNT = 3;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl <em>Org Directive</em>}' class.
@@ -4649,13 +4748,22 @@ public interface AssemblerPackage extends EPackage
   int ORG_DIRECTIVE__DIRECTIVE = 0;
 
   /**
+   * The feature id for the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ORG_DIRECTIVE__WS = 1;
+
+  /**
    * The feature id for the '<em><b>Is Relative To PC</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ORG_DIRECTIVE__IS_RELATIVE_TO_PC = 1;
+  int ORG_DIRECTIVE__IS_RELATIVE_TO_PC = 2;
 
   /**
    * The feature id for the '<em><b>Operand</b></em>' containment reference.
@@ -4664,7 +4772,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ORG_DIRECTIVE__OPERAND = 2;
+  int ORG_DIRECTIVE__OPERAND = 3;
 
   /**
    * The number of structural features of the '<em>Org Directive</em>' class.
@@ -4673,7 +4781,7 @@ public interface AssemblerPackage extends EPackage
    * @generated
    * @ordered
    */
-  int ORG_DIRECTIVE_FEATURE_COUNT = 3;
+  int ORG_DIRECTIVE_FEATURE_COUNT = 4;
 
   /**
    * The meta object id for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl <em>Equ Directive</em>}' class.
@@ -5817,17 +5925,6 @@ public interface AssemblerPackage extends EPackage
   EAttribute getOtherKindOfInstructions_Comment();
 
   /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getWs3 <em>Ws3</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Ws3</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getWs3()
-   * @see #getOtherKindOfInstructions()
-   * @generated
-   */
-  EAttribute getOtherKindOfInstructions_Ws3();
-
-  /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions <em>Special Functions</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -5912,17 +6009,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getMacroDefinition_Comment1();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs4 <em>Ws4</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Ws4</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs4()
-   * @see #getMacroDefinition()
-   * @generated
-   */
-  EAttribute getMacroDefinition_Ws4();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getInstructions <em>Instructions</em>}'.
@@ -6021,17 +6107,6 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getLabelLine_Comment();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs2 <em>Ws2</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Ws2</em>'.
-   * @see org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs2()
-   * @see #getLabelLine()
-   * @generated
-   */
-  EAttribute getLabelLine_Ws2();
 
   /**
    * Returns the meta object for class '{@link org.bpy.electronics.mc6809.assembler.assembler.BlankLine <em>Blank Line</em>}'.
@@ -9390,6 +9465,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getSetDPDirective_Directive();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective#getWs()
+   * @see #getSetDPDirective()
+   * @generated
+   */
+  EAttribute getSetDPDirective_Ws();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SetDPDirective#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9420,6 +9506,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getFccDirective_Directive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getWs()
+   * @see #getFccDirective()
+   * @generated
+   */
+  EAttribute getFccDirective_Ws();
 
   /**
    * Returns the meta object for the containment reference list '{@link org.bpy.electronics.mc6809.assembler.assembler.FccDirective#getParameters <em>Parameters</em>}'.
@@ -9454,6 +9551,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getRegDirective_Directive();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RegDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RegDirective#getWs()
+   * @see #getRegDirective()
+   * @generated
+   */
+  EAttribute getRegDirective_Ws();
+
+  /**
    * Returns the meta object for the attribute list '{@link org.bpy.electronics.mc6809.assembler.assembler.RegDirective#getOptions <em>Options</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9484,6 +9592,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getSpcDirective_Directive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SpcDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SpcDirective#getWs()
+   * @see #getSpcDirective()
+   * @generated
+   */
+  EAttribute getSpcDirective_Ws();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.SpcDirective#getSpaceCount <em>Space Count</em>}'.
@@ -9529,6 +9648,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getNamDirective_Directive();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.NamDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.NamDirective#getWs()
+   * @see #getNamDirective()
+   * @generated
+   */
+  EAttribute getNamDirective_Ws();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.NamDirective#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9561,6 +9691,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getPagDirective_Directive();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.PagDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.PagDirective#getWs()
+   * @see #getPagDirective()
+   * @generated
+   */
+  EAttribute getPagDirective_Ws();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.PagDirective#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9591,6 +9732,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getOptDirective_Directive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OptDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OptDirective#getWs()
+   * @see #getOptDirective()
+   * @generated
+   */
+  EAttribute getOptDirective_Ws();
 
   /**
    * Returns the meta object for the attribute list '{@link org.bpy.electronics.mc6809.assembler.assembler.OptDirective#getOptions <em>Options</em>}'.
@@ -9646,6 +9798,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getSetDirective_Directive();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SetDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.SetDirective#getWs()
+   * @see #getSetDirective()
+   * @generated
+   */
+  EAttribute getSetDirective_Ws();
+
+  /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.SetDirective#isIsRelativeToPC <em>Is Relative To PC</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9687,6 +9850,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getFillDirective_Directive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getWs()
+   * @see #getFillDirective()
+   * @generated
+   */
+  EAttribute getFillDirective_Ws();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getValue <em>Value</em>}'.
@@ -9732,6 +9906,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getBszDirective_Directive();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.BszDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.BszDirective#getWs()
+   * @see #getBszDirective()
+   * @generated
+   */
+  EAttribute getBszDirective_Ws();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.BszDirective#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9762,6 +9947,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getFdbDirective_Directive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FdbDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.FdbDirective#getWs()
+   * @see #getFdbDirective()
+   * @generated
+   */
+  EAttribute getFdbDirective_Ws();
 
   /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.FdbDirective#getOperand <em>Operand</em>}'.
@@ -9796,6 +9992,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getFcbDirective_Directive();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.FcbDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.FcbDirective#getWs()
+   * @see #getFcbDirective()
+   * @generated
+   */
+  EAttribute getFcbDirective_Ws();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.FcbDirective#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9826,6 +10033,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getRmbDirective_Directive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RmbDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.RmbDirective#getWs()
+   * @see #getRmbDirective()
+   * @generated
+   */
+  EAttribute getRmbDirective_Ws();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.RmbDirective#isIsRelativeToPC <em>Is Relative To PC</em>}'.
@@ -9871,6 +10089,17 @@ public interface AssemblerPackage extends EPackage
   EAttribute getEndDirective_Directive();
 
   /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getWs()
+   * @see #getEndDirective()
+   * @generated
+   */
+  EAttribute getEndDirective_Ws();
+
+  /**
    * Returns the meta object for the containment reference '{@link org.bpy.electronics.mc6809.assembler.assembler.EndDirective#getOperand <em>Operand</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -9901,6 +10130,17 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   EAttribute getOrgDirective_Directive();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OrgDirective#getWs <em>Ws</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Ws</em>'.
+   * @see org.bpy.electronics.mc6809.assembler.assembler.OrgDirective#getWs()
+   * @see #getOrgDirective()
+   * @generated
+   */
+  EAttribute getOrgDirective_Ws();
 
   /**
    * Returns the meta object for the attribute '{@link org.bpy.electronics.mc6809.assembler.assembler.OrgDirective#isIsRelativeToPC <em>Is Relative To PC</em>}'.
@@ -10644,3967 +10884,5 @@ public interface AssemblerPackage extends EPackage
    * @generated
    */
   AssemblerFactory getAssemblerFactory();
-
-  /**
-   * <!-- begin-user-doc -->
-   * Defines literals for the meta objects that represent
-   * <ul>
-   *   <li>each class,</li>
-   *   <li>each feature of each class,</li>
-   *   <li>each enum,</li>
-   *   <li>and each data type</li>
-   * </ul>
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  interface Literals
-  {
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ModelImpl <em>Model</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ModelImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getModel()
-     * @generated
-     */
-    EClass MODEL = eINSTANCE.getModel();
-
-    /**
-     * The meta object literal for the '<em><b>Source Lines</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MODEL__SOURCE_LINES = eINSTANCE.getModel_SourceLines();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl <em>Source Line</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SourceLineImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSourceLine()
-     * @generated
-     */
-    EClass SOURCE_LINE = eINSTANCE.getSourceLine();
-
-    /**
-     * The meta object literal for the '<em><b>Line Content</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SOURCE_LINE__LINE_CONTENT = eINSTANCE.getSourceLine_LineContent();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl <em>Other Kind Of Instructions</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOtherKindOfInstructions()
-     * @generated
-     */
-    EClass OTHER_KIND_OF_INSTRUCTIONS = eINSTANCE.getOtherKindOfInstructions();
-
-    /**
-     * The meta object literal for the '<em><b>Label</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OTHER_KIND_OF_INSTRUCTIONS__LABEL = eINSTANCE.getOtherKindOfInstructions_Label();
-
-    /**
-     * The meta object literal for the '<em><b>Ws1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OTHER_KIND_OF_INSTRUCTIONS__WS1 = eINSTANCE.getOtherKindOfInstructions_Ws1();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OTHER_KIND_OF_INSTRUCTIONS__NAME = eINSTANCE.getOtherKindOfInstructions_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OTHER_KIND_OF_INSTRUCTIONS__WS2 = eINSTANCE.getOtherKindOfInstructions_Ws2();
-
-    /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OTHER_KIND_OF_INSTRUCTIONS__COMMENT = eINSTANCE.getOtherKindOfInstructions_Comment();
-
-    /**
-     * The meta object literal for the '<em><b>Ws3</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OTHER_KIND_OF_INSTRUCTIONS__WS3 = eINSTANCE.getOtherKindOfInstructions_Ws3();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpecialFunctionsImpl <em>Special Functions</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SpecialFunctionsImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSpecialFunctions()
-     * @generated
-     */
-    EClass SPECIAL_FUNCTIONS = eINSTANCE.getSpecialFunctions();
-
-    /**
-     * The meta object literal for the '<em><b>Special Funtion</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SPECIAL_FUNCTIONS__SPECIAL_FUNTION = eINSTANCE.getSpecialFunctions_SpecialFuntion();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl <em>Macro Definition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMacroDefinition()
-     * @generated
-     */
-    EClass MACRO_DEFINITION = eINSTANCE.getMacroDefinition();
-
-    /**
-     * The meta object literal for the '<em><b>Ws1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MACRO_DEFINITION__WS1 = eINSTANCE.getMacroDefinition_Ws1();
-
-    /**
-     * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MACRO_DEFINITION__WS2 = eINSTANCE.getMacroDefinition_Ws2();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MACRO_DEFINITION__NAME = eINSTANCE.getMacroDefinition_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Ws3</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MACRO_DEFINITION__WS3 = eINSTANCE.getMacroDefinition_Ws3();
-
-    /**
-     * The meta object literal for the '<em><b>Comment1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MACRO_DEFINITION__COMMENT1 = eINSTANCE.getMacroDefinition_Comment1();
-
-    /**
-     * The meta object literal for the '<em><b>Ws4</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MACRO_DEFINITION__WS4 = eINSTANCE.getMacroDefinition_Ws4();
-
-    /**
-     * The meta object literal for the '<em><b>Instructions</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MACRO_DEFINITION__INSTRUCTIONS = eINSTANCE.getMacroDefinition_Instructions();
-
-    /**
-     * The meta object literal for the '<em><b>Ws5</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MACRO_DEFINITION__WS5 = eINSTANCE.getMacroDefinition_Ws5();
-
-    /**
-     * The meta object literal for the '<em><b>Ws6</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MACRO_DEFINITION__WS6 = eINSTANCE.getMacroDefinition_Ws6();
-
-    /**
-     * The meta object literal for the '<em><b>Comment2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MACRO_DEFINITION__COMMENT2 = eINSTANCE.getMacroDefinition_Comment2();
-
-    /**
-     * The meta object literal for the '<em><b>Ws7</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MACRO_DEFINITION__WS7 = eINSTANCE.getMacroDefinition_Ws7();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl <em>Label Line</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLabelLine()
-     * @generated
-     */
-    EClass LABEL_LINE = eINSTANCE.getLabelLine();
-
-    /**
-     * The meta object literal for the '<em><b>Label</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LABEL_LINE__LABEL = eINSTANCE.getLabelLine_Label();
-
-    /**
-     * The meta object literal for the '<em><b>Ws1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LABEL_LINE__WS1 = eINSTANCE.getLabelLine_Ws1();
-
-    /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LABEL_LINE__COMMENT = eINSTANCE.getLabelLine_Comment();
-
-    /**
-     * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LABEL_LINE__WS2 = eINSTANCE.getLabelLine_Ws2();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl <em>Blank Line</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BlankLineImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBlankLine()
-     * @generated
-     */
-    EClass BLANK_LINE = eINSTANCE.getBlankLine();
-
-    /**
-     * The meta object literal for the '<em><b>Blank Line</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BLANK_LINE__BLANK_LINE = eINSTANCE.getBlankLine_BlankLine();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommentLineImpl <em>Comment Line</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CommentLineImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCommentLine()
-     * @generated
-     */
-    EClass COMMENT_LINE = eINSTANCE.getCommentLine();
-
-    /**
-     * The meta object literal for the '<em><b>Starting Space</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COMMENT_LINE__STARTING_SPACE = eINSTANCE.getCommentLine_StartingSpace();
-
-    /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COMMENT_LINE__COMMENT = eINSTANCE.getCommentLine_Comment();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl <em>Instruction Line</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.InstructionLineImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getInstructionLine()
-     * @generated
-     */
-    EClass INSTRUCTION_LINE = eINSTANCE.getInstructionLine();
-
-    /**
-     * The meta object literal for the '<em><b>Label</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference INSTRUCTION_LINE__LABEL = eINSTANCE.getInstructionLine_Label();
-
-    /**
-     * The meta object literal for the '<em><b>Ws1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INSTRUCTION_LINE__WS1 = eINSTANCE.getInstructionLine_Ws1();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference INSTRUCTION_LINE__INSTRUCTION = eINSTANCE.getInstructionLine_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INSTRUCTION_LINE__WS2 = eINSTANCE.getInstructionLine_Ws2();
-
-    /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INSTRUCTION_LINE__COMMENT = eINSTANCE.getInstructionLine_Comment();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelImpl <em>Label</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LabelImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLabel()
-     * @generated
-     */
-    EClass LABEL = eINSTANCE.getLabel();
-
-    /**
-     * The meta object literal for the '<em><b>Name</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LABEL__NAME = eINSTANCE.getLabel_Name();
-
-    /**
-     * The meta object literal for the '<em><b>Point</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LABEL__POINT = eINSTANCE.getLabel_Point();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TstInstructionImpl <em>Tst Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.TstInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getTstInstruction()
-     * @generated
-     */
-    EClass TST_INSTRUCTION = eINSTANCE.getTstInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TST_INSTRUCTION__INSTRUCTION = eINSTANCE.getTstInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TST_INSTRUCTION__WS_OPERAND = eINSTANCE.getTstInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference TST_INSTRUCTION__OPERAND = eINSTANCE.getTstInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.TfrInstructionImpl <em>Tfr Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.TfrInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getTfrInstruction()
-     * @generated
-     */
-    EClass TFR_INSTRUCTION = eINSTANCE.getTfrInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TFR_INSTRUCTION__INSTRUCTION = eINSTANCE.getTfrInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TFR_INSTRUCTION__WS_OPERAND = eINSTANCE.getTfrInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Reg1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TFR_INSTRUCTION__REG1 = eINSTANCE.getTfrInstruction_Reg1();
-
-    /**
-     * The meta object literal for the '<em><b>Reg2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute TFR_INSTRUCTION__REG2 = eINSTANCE.getTfrInstruction_Reg2();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SyncInstructionImpl <em>Sync Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SyncInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSyncInstruction()
-     * @generated
-     */
-    EClass SYNC_INSTRUCTION = eINSTANCE.getSyncInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SYNC_INSTRUCTION__INSTRUCTION = eINSTANCE.getSyncInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.Swi3InstructionImpl <em>Swi3 Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.Swi3InstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSwi3Instruction()
-     * @generated
-     */
-    EClass SWI3_INSTRUCTION = eINSTANCE.getSwi3Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SWI3_INSTRUCTION__INSTRUCTION = eINSTANCE.getSwi3Instruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.Swi2InstructionImpl <em>Swi2 Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.Swi2InstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSwi2Instruction()
-     * @generated
-     */
-    EClass SWI2_INSTRUCTION = eINSTANCE.getSwi2Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SWI2_INSTRUCTION__INSTRUCTION = eINSTANCE.getSwi2Instruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SwiInstructionImpl <em>Swi Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SwiInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSwiInstruction()
-     * @generated
-     */
-    EClass SWI_INSTRUCTION = eINSTANCE.getSwiInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SWI_INSTRUCTION__INSTRUCTION = eINSTANCE.getSwiInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SubdInstructionImpl <em>Subd Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SubdInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubdInstruction()
-     * @generated
-     */
-    EClass SUBD_INSTRUCTION = eINSTANCE.getSubdInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SUBD_INSTRUCTION__INSTRUCTION = eINSTANCE.getSubdInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SUBD_INSTRUCTION__WS_OPERAND = eINSTANCE.getSubdInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SUBD_INSTRUCTION__OPERAND = eINSTANCE.getSubdInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SubInstructionImpl <em>Sub Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SubInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubInstruction()
-     * @generated
-     */
-    EClass SUB_INSTRUCTION = eINSTANCE.getSubInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SUB_INSTRUCTION__INSTRUCTION = eINSTANCE.getSubInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SUB_INSTRUCTION__WS_OPERAND = eINSTANCE.getSubInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SUB_INSTRUCTION__OPERAND = eINSTANCE.getSubInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StInstructionImpl <em>St Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.StInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStInstruction()
-     * @generated
-     */
-    EClass ST_INSTRUCTION = eINSTANCE.getStInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ST_INSTRUCTION__INSTRUCTION = eINSTANCE.getStInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ST_INSTRUCTION__WS_OPERAND = eINSTANCE.getStInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ST_INSTRUCTION__OPERAND = eINSTANCE.getStInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SexInstructionImpl <em>Sex Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SexInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSexInstruction()
-     * @generated
-     */
-    EClass SEX_INSTRUCTION = eINSTANCE.getSexInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SEX_INSTRUCTION__INSTRUCTION = eINSTANCE.getSexInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SbcInstructionImpl <em>Sbc Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SbcInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSbcInstruction()
-     * @generated
-     */
-    EClass SBC_INSTRUCTION = eINSTANCE.getSbcInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SBC_INSTRUCTION__INSTRUCTION = eINSTANCE.getSbcInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SBC_INSTRUCTION__WS_OPERAND = eINSTANCE.getSbcInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SBC_INSTRUCTION__OPERAND = eINSTANCE.getSbcInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RtsInstructionImpl <em>Rts Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RtsInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRtsInstruction()
-     * @generated
-     */
-    EClass RTS_INSTRUCTION = eINSTANCE.getRtsInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RTS_INSTRUCTION__INSTRUCTION = eINSTANCE.getRtsInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RtiInstructionImpl <em>Rti Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RtiInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRtiInstruction()
-     * @generated
-     */
-    EClass RTI_INSTRUCTION = eINSTANCE.getRtiInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RTI_INSTRUCTION__INSTRUCTION = eINSTANCE.getRtiInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RorInstructionImpl <em>Ror Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RorInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRorInstruction()
-     * @generated
-     */
-    EClass ROR_INSTRUCTION = eINSTANCE.getRorInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ROR_INSTRUCTION__INSTRUCTION = eINSTANCE.getRorInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ROR_INSTRUCTION__WS_OPERAND = eINSTANCE.getRorInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ROR_INSTRUCTION__OPERAND = eINSTANCE.getRorInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RolInstructionImpl <em>Rol Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RolInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRolInstruction()
-     * @generated
-     */
-    EClass ROL_INSTRUCTION = eINSTANCE.getRolInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ROL_INSTRUCTION__INSTRUCTION = eINSTANCE.getRolInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ROL_INSTRUCTION__WS_OPERAND = eINSTANCE.getRolInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ROL_INSTRUCTION__OPERAND = eINSTANCE.getRolInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PuluInstructionImpl <em>Pulu Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.PuluInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPuluInstruction()
-     * @generated
-     */
-    EClass PULU_INSTRUCTION = eINSTANCE.getPuluInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PULU_INSTRUCTION__INSTRUCTION = eINSTANCE.getPuluInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PULU_INSTRUCTION__WS_OPERAND = eINSTANCE.getPuluInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PULU_INSTRUCTION__OPERAND = eINSTANCE.getPuluInstruction_Operand();
-
-    /**
-     * The meta object literal for the '<em><b>Registers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PULU_INSTRUCTION__REGISTERS = eINSTANCE.getPuluInstruction_Registers();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PulsInstructionImpl <em>Puls Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.PulsInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPulsInstruction()
-     * @generated
-     */
-    EClass PULS_INSTRUCTION = eINSTANCE.getPulsInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PULS_INSTRUCTION__INSTRUCTION = eINSTANCE.getPulsInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PULS_INSTRUCTION__WS_OPERAND = eINSTANCE.getPulsInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PULS_INSTRUCTION__OPERAND = eINSTANCE.getPulsInstruction_Operand();
-
-    /**
-     * The meta object literal for the '<em><b>Registers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PULS_INSTRUCTION__REGISTERS = eINSTANCE.getPulsInstruction_Registers();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PshuInstructionImpl <em>Pshu Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.PshuInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPshuInstruction()
-     * @generated
-     */
-    EClass PSHU_INSTRUCTION = eINSTANCE.getPshuInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PSHU_INSTRUCTION__INSTRUCTION = eINSTANCE.getPshuInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PSHU_INSTRUCTION__WS_OPERAND = eINSTANCE.getPshuInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PSHU_INSTRUCTION__OPERAND = eINSTANCE.getPshuInstruction_Operand();
-
-    /**
-     * The meta object literal for the '<em><b>Registers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PSHU_INSTRUCTION__REGISTERS = eINSTANCE.getPshuInstruction_Registers();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PshsInstructionImpl <em>Pshs Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.PshsInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPshsInstruction()
-     * @generated
-     */
-    EClass PSHS_INSTRUCTION = eINSTANCE.getPshsInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PSHS_INSTRUCTION__INSTRUCTION = eINSTANCE.getPshsInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PSHS_INSTRUCTION__WS_OPERAND = eINSTANCE.getPshsInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PSHS_INSTRUCTION__OPERAND = eINSTANCE.getPshsInstruction_Operand();
-
-    /**
-     * The meta object literal for the '<em><b>Registers</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PSHS_INSTRUCTION__REGISTERS = eINSTANCE.getPshsInstruction_Registers();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrCCInstructionImpl <em>Or CC Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OrCCInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrCCInstruction()
-     * @generated
-     */
-    EClass OR_CC_INSTRUCTION = eINSTANCE.getOrCCInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OR_CC_INSTRUCTION__INSTRUCTION = eINSTANCE.getOrCCInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OR_CC_INSTRUCTION__WS_OPERAND = eINSTANCE.getOrCCInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OR_CC_INSTRUCTION__OPERAND = eINSTANCE.getOrCCInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrInstructionImpl <em>Or Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OrInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrInstruction()
-     * @generated
-     */
-    EClass OR_INSTRUCTION = eINSTANCE.getOrInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OR_INSTRUCTION__INSTRUCTION = eINSTANCE.getOrInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OR_INSTRUCTION__WS_OPERAND = eINSTANCE.getOrInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OR_INSTRUCTION__OPERAND = eINSTANCE.getOrInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NopInstructionImpl <em>Nop Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.NopInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNopInstruction()
-     * @generated
-     */
-    EClass NOP_INSTRUCTION = eINSTANCE.getNopInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NOP_INSTRUCTION__INSTRUCTION = eINSTANCE.getNopInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NegInstructionImpl <em>Neg Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.NegInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNegInstruction()
-     * @generated
-     */
-    EClass NEG_INSTRUCTION = eINSTANCE.getNegInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NEG_INSTRUCTION__INSTRUCTION = eINSTANCE.getNegInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NEG_INSTRUCTION__WS_OPERAND = eINSTANCE.getNegInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference NEG_INSTRUCTION__OPERAND = eINSTANCE.getNegInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MulInstructionImpl <em>Mul Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.MulInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMulInstruction()
-     * @generated
-     */
-    EClass MUL_INSTRUCTION = eINSTANCE.getMulInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MUL_INSTRUCTION__INSTRUCTION = eINSTANCE.getMulInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LsrInstructionImpl <em>Lsr Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LsrInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLsrInstruction()
-     * @generated
-     */
-    EClass LSR_INSTRUCTION = eINSTANCE.getLsrInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LSR_INSTRUCTION__INSTRUCTION = eINSTANCE.getLsrInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LSR_INSTRUCTION__WS_OPERAND = eINSTANCE.getLsrInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LSR_INSTRUCTION__OPERAND = eINSTANCE.getLsrInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LslInstructionImpl <em>Lsl Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LslInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLslInstruction()
-     * @generated
-     */
-    EClass LSL_INSTRUCTION = eINSTANCE.getLslInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LSL_INSTRUCTION__INSTRUCTION = eINSTANCE.getLslInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LSL_INSTRUCTION__WS_OPERAND = eINSTANCE.getLslInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LSL_INSTRUCTION__OPERAND = eINSTANCE.getLslInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LeaInstructionImpl <em>Lea Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LeaInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeaInstruction()
-     * @generated
-     */
-    EClass LEA_INSTRUCTION = eINSTANCE.getLeaInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LEA_INSTRUCTION__INSTRUCTION = eINSTANCE.getLeaInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LEA_INSTRUCTION__WS_OPERAND = eINSTANCE.getLeaInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LEA_INSTRUCTION__OPERAND = eINSTANCE.getLeaInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LdInstructionImpl <em>Ld Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LdInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLdInstruction()
-     * @generated
-     */
-    EClass LD_INSTRUCTION = eINSTANCE.getLdInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LD_INSTRUCTION__INSTRUCTION = eINSTANCE.getLdInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute LD_INSTRUCTION__WS_OPERAND = eINSTANCE.getLdInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LD_INSTRUCTION__OPERAND = eINSTANCE.getLdInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.JsrInstructionImpl <em>Jsr Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.JsrInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getJsrInstruction()
-     * @generated
-     */
-    EClass JSR_INSTRUCTION = eINSTANCE.getJsrInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute JSR_INSTRUCTION__INSTRUCTION = eINSTANCE.getJsrInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute JSR_INSTRUCTION__WS_OPERAND = eINSTANCE.getJsrInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference JSR_INSTRUCTION__OPERAND = eINSTANCE.getJsrInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.JmpInstructionImpl <em>Jmp Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.JmpInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getJmpInstruction()
-     * @generated
-     */
-    EClass JMP_INSTRUCTION = eINSTANCE.getJmpInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute JMP_INSTRUCTION__INSTRUCTION = eINSTANCE.getJmpInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute JMP_INSTRUCTION__WS_OPERAND = eINSTANCE.getJmpInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference JMP_INSTRUCTION__OPERAND = eINSTANCE.getJmpInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IncInstructionImpl <em>Inc Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IncInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIncInstruction()
-     * @generated
-     */
-    EClass INC_INSTRUCTION = eINSTANCE.getIncInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INC_INSTRUCTION__INSTRUCTION = eINSTANCE.getIncInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute INC_INSTRUCTION__WS_OPERAND = eINSTANCE.getIncInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference INC_INSTRUCTION__OPERAND = eINSTANCE.getIncInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExgInstructionImpl <em>Exg Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExgInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExgInstruction()
-     * @generated
-     */
-    EClass EXG_INSTRUCTION = eINSTANCE.getExgInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXG_INSTRUCTION__INSTRUCTION = eINSTANCE.getExgInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXG_INSTRUCTION__WS_OPERAND = eINSTANCE.getExgInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Reg1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXG_INSTRUCTION__REG1 = eINSTANCE.getExgInstruction_Reg1();
-
-    /**
-     * The meta object literal for the '<em><b>Reg2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXG_INSTRUCTION__REG2 = eINSTANCE.getExgInstruction_Reg2();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EorInstructionImpl <em>Eor Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.EorInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEorInstruction()
-     * @generated
-     */
-    EClass EOR_INSTRUCTION = eINSTANCE.getEorInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EOR_INSTRUCTION__INSTRUCTION = eINSTANCE.getEorInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EOR_INSTRUCTION__WS_OPERAND = eINSTANCE.getEorInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EOR_INSTRUCTION__OPERAND = eINSTANCE.getEorInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DecInstructionImpl <em>Dec Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DecInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecInstruction()
-     * @generated
-     */
-    EClass DEC_INSTRUCTION = eINSTANCE.getDecInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DEC_INSTRUCTION__INSTRUCTION = eINSTANCE.getDecInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DEC_INSTRUCTION__WS_OPERAND = eINSTANCE.getDecInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DEC_INSTRUCTION__OPERAND = eINSTANCE.getDecInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DaaInstructionImpl <em>Daa Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DaaInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDaaInstruction()
-     * @generated
-     */
-    EClass DAA_INSTRUCTION = eINSTANCE.getDaaInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DAA_INSTRUCTION__INSTRUCTION = eINSTANCE.getDaaInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CwaiInstructionImpl <em>Cwai Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CwaiInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCwaiInstruction()
-     * @generated
-     */
-    EClass CWAI_INSTRUCTION = eINSTANCE.getCwaiInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CWAI_INSTRUCTION__INSTRUCTION = eINSTANCE.getCwaiInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CWAI_INSTRUCTION__WS_OPERAND = eINSTANCE.getCwaiInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CWAI_INSTRUCTION__OPERAND = eINSTANCE.getCwaiInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ComInstructionImpl <em>Com Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ComInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getComInstruction()
-     * @generated
-     */
-    EClass COM_INSTRUCTION = eINSTANCE.getComInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COM_INSTRUCTION__INSTRUCTION = eINSTANCE.getComInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COM_INSTRUCTION__WS_OPERAND = eINSTANCE.getComInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference COM_INSTRUCTION__OPERAND = eINSTANCE.getComInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CmpInstructionImpl <em>Cmp Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CmpInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCmpInstruction()
-     * @generated
-     */
-    EClass CMP_INSTRUCTION = eINSTANCE.getCmpInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CMP_INSTRUCTION__INSTRUCTION = eINSTANCE.getCmpInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CMP_INSTRUCTION__WS_OPERAND = eINSTANCE.getCmpInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CMP_INSTRUCTION__OPERAND = eINSTANCE.getCmpInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ClrInstructionImpl <em>Clr Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ClrInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getClrInstruction()
-     * @generated
-     */
-    EClass CLR_INSTRUCTION = eINSTANCE.getClrInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CLR_INSTRUCTION__INSTRUCTION = eINSTANCE.getClrInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CLR_INSTRUCTION__WS_OPERAND = eINSTANCE.getClrInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CLR_INSTRUCTION__OPERAND = eINSTANCE.getClrInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BvsInstructionImpl <em>Bvs Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BvsInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBvsInstruction()
-     * @generated
-     */
-    EClass BVS_INSTRUCTION = eINSTANCE.getBvsInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BVS_INSTRUCTION__INSTRUCTION = eINSTANCE.getBvsInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BVS_INSTRUCTION__WS_OPERAND = eINSTANCE.getBvsInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BVS_INSTRUCTION__OPERAND = eINSTANCE.getBvsInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BvcInstructionImpl <em>Bvc Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BvcInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBvcInstruction()
-     * @generated
-     */
-    EClass BVC_INSTRUCTION = eINSTANCE.getBvcInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BVC_INSTRUCTION__INSTRUCTION = eINSTANCE.getBvcInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BVC_INSTRUCTION__WS_OPERAND = eINSTANCE.getBvcInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BVC_INSTRUCTION__OPERAND = eINSTANCE.getBvcInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BsrInstructionImpl <em>Bsr Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BsrInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBsrInstruction()
-     * @generated
-     */
-    EClass BSR_INSTRUCTION = eINSTANCE.getBsrInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BSR_INSTRUCTION__INSTRUCTION = eINSTANCE.getBsrInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BSR_INSTRUCTION__WS_OPERAND = eINSTANCE.getBsrInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BSR_INSTRUCTION__OPERAND = eINSTANCE.getBsrInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BrnInstructionImpl <em>Brn Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BrnInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBrnInstruction()
-     * @generated
-     */
-    EClass BRN_INSTRUCTION = eINSTANCE.getBrnInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BRN_INSTRUCTION__INSTRUCTION = eINSTANCE.getBrnInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BRN_INSTRUCTION__WS_OPERAND = eINSTANCE.getBrnInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BRN_INSTRUCTION__OPERAND = eINSTANCE.getBrnInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BraInstructionImpl <em>Bra Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BraInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBraInstruction()
-     * @generated
-     */
-    EClass BRA_INSTRUCTION = eINSTANCE.getBraInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BRA_INSTRUCTION__INSTRUCTION = eINSTANCE.getBraInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BRA_INSTRUCTION__WS_OPERAND = eINSTANCE.getBraInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BRA_INSTRUCTION__OPERAND = eINSTANCE.getBraInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BplInstructionImpl <em>Bpl Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BplInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBplInstruction()
-     * @generated
-     */
-    EClass BPL_INSTRUCTION = eINSTANCE.getBplInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BPL_INSTRUCTION__INSTRUCTION = eINSTANCE.getBplInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BPL_INSTRUCTION__WS_OPERAND = eINSTANCE.getBplInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BPL_INSTRUCTION__OPERAND = eINSTANCE.getBplInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BneInstructionImpl <em>Bne Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BneInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBneInstruction()
-     * @generated
-     */
-    EClass BNE_INSTRUCTION = eINSTANCE.getBneInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BNE_INSTRUCTION__INSTRUCTION = eINSTANCE.getBneInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BNE_INSTRUCTION__WS_OPERAND = eINSTANCE.getBneInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BNE_INSTRUCTION__OPERAND = eINSTANCE.getBneInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BmiInstructionImpl <em>Bmi Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BmiInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBmiInstruction()
-     * @generated
-     */
-    EClass BMI_INSTRUCTION = eINSTANCE.getBmiInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BMI_INSTRUCTION__INSTRUCTION = eINSTANCE.getBmiInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BMI_INSTRUCTION__WS_OPERAND = eINSTANCE.getBmiInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BMI_INSTRUCTION__OPERAND = eINSTANCE.getBmiInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BltInstructionImpl <em>Blt Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BltInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBltInstruction()
-     * @generated
-     */
-    EClass BLT_INSTRUCTION = eINSTANCE.getBltInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BLT_INSTRUCTION__INSTRUCTION = eINSTANCE.getBltInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BLT_INSTRUCTION__WS_OPERAND = eINSTANCE.getBltInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BLT_INSTRUCTION__OPERAND = eINSTANCE.getBltInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BlsInstructionImpl <em>Bls Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BlsInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBlsInstruction()
-     * @generated
-     */
-    EClass BLS_INSTRUCTION = eINSTANCE.getBlsInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BLS_INSTRUCTION__INSTRUCTION = eINSTANCE.getBlsInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BLS_INSTRUCTION__WS_OPERAND = eINSTANCE.getBlsInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BLS_INSTRUCTION__OPERAND = eINSTANCE.getBlsInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BloInstructionImpl <em>Blo Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BloInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBloInstruction()
-     * @generated
-     */
-    EClass BLO_INSTRUCTION = eINSTANCE.getBloInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BLO_INSTRUCTION__INSTRUCTION = eINSTANCE.getBloInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BLO_INSTRUCTION__WS_OPERAND = eINSTANCE.getBloInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BLO_INSTRUCTION__OPERAND = eINSTANCE.getBloInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BleInstructionImpl <em>Ble Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BleInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBleInstruction()
-     * @generated
-     */
-    EClass BLE_INSTRUCTION = eINSTANCE.getBleInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BLE_INSTRUCTION__INSTRUCTION = eINSTANCE.getBleInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BLE_INSTRUCTION__WS_OPERAND = eINSTANCE.getBleInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BLE_INSTRUCTION__OPERAND = eINSTANCE.getBleInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BitInstructionImpl <em>Bit Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BitInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBitInstruction()
-     * @generated
-     */
-    EClass BIT_INSTRUCTION = eINSTANCE.getBitInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BIT_INSTRUCTION__INSTRUCTION = eINSTANCE.getBitInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BIT_INSTRUCTION__WS_OPERAND = eINSTANCE.getBitInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BIT_INSTRUCTION__OPERAND = eINSTANCE.getBitInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BhsInstructionImpl <em>Bhs Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BhsInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBhsInstruction()
-     * @generated
-     */
-    EClass BHS_INSTRUCTION = eINSTANCE.getBhsInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BHS_INSTRUCTION__INSTRUCTION = eINSTANCE.getBhsInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BHS_INSTRUCTION__WS_OPERAND = eINSTANCE.getBhsInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BHS_INSTRUCTION__OPERAND = eINSTANCE.getBhsInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BhiInstructionImpl <em>Bhi Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BhiInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBhiInstruction()
-     * @generated
-     */
-    EClass BHI_INSTRUCTION = eINSTANCE.getBhiInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BHI_INSTRUCTION__INSTRUCTION = eINSTANCE.getBhiInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BHI_INSTRUCTION__WS_OPERAND = eINSTANCE.getBhiInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BHI_INSTRUCTION__OPERAND = eINSTANCE.getBhiInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BgtInstructionImpl <em>Bgt Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BgtInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBgtInstruction()
-     * @generated
-     */
-    EClass BGT_INSTRUCTION = eINSTANCE.getBgtInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BGT_INSTRUCTION__INSTRUCTION = eINSTANCE.getBgtInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BGT_INSTRUCTION__WS_OPERAND = eINSTANCE.getBgtInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BGT_INSTRUCTION__OPERAND = eINSTANCE.getBgtInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BgeInstructionImpl <em>Bge Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BgeInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBgeInstruction()
-     * @generated
-     */
-    EClass BGE_INSTRUCTION = eINSTANCE.getBgeInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BGE_INSTRUCTION__INSTRUCTION = eINSTANCE.getBgeInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BGE_INSTRUCTION__WS_OPERAND = eINSTANCE.getBgeInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BGE_INSTRUCTION__OPERAND = eINSTANCE.getBgeInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BeqInstructionImpl <em>Beq Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BeqInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBeqInstruction()
-     * @generated
-     */
-    EClass BEQ_INSTRUCTION = eINSTANCE.getBeqInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BEQ_INSTRUCTION__INSTRUCTION = eINSTANCE.getBeqInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BEQ_INSTRUCTION__WS_OPERAND = eINSTANCE.getBeqInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BEQ_INSTRUCTION__OPERAND = eINSTANCE.getBeqInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BcsInstructionImpl <em>Bcs Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BcsInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBcsInstruction()
-     * @generated
-     */
-    EClass BCS_INSTRUCTION = eINSTANCE.getBcsInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BCS_INSTRUCTION__INSTRUCTION = eINSTANCE.getBcsInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BCS_INSTRUCTION__WS_OPERAND = eINSTANCE.getBcsInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BCS_INSTRUCTION__OPERAND = eINSTANCE.getBcsInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BccInstructionImpl <em>Bcc Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BccInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBccInstruction()
-     * @generated
-     */
-    EClass BCC_INSTRUCTION = eINSTANCE.getBccInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BCC_INSTRUCTION__INSTRUCTION = eINSTANCE.getBccInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BCC_INSTRUCTION__WS_OPERAND = eINSTANCE.getBccInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BCC_INSTRUCTION__OPERAND = eINSTANCE.getBccInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AsrInstructionImpl <em>Asr Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AsrInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAsrInstruction()
-     * @generated
-     */
-    EClass ASR_INSTRUCTION = eINSTANCE.getAsrInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ASR_INSTRUCTION__INSTRUCTION = eINSTANCE.getAsrInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ASR_INSTRUCTION__WS_OPERAND = eINSTANCE.getAsrInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ASR_INSTRUCTION__OPERAND = eINSTANCE.getAsrInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AslInstructionImpl <em>Asl Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AslInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAslInstruction()
-     * @generated
-     */
-    EClass ASL_INSTRUCTION = eINSTANCE.getAslInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ASL_INSTRUCTION__INSTRUCTION = eINSTANCE.getAslInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ASL_INSTRUCTION__WS_OPERAND = eINSTANCE.getAslInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ASL_INSTRUCTION__OPERAND = eINSTANCE.getAslInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndCCInstructionImpl <em>And CC Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AndCCInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAndCCInstruction()
-     * @generated
-     */
-    EClass AND_CC_INSTRUCTION = eINSTANCE.getAndCCInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AND_CC_INSTRUCTION__INSTRUCTION = eINSTANCE.getAndCCInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AND_CC_INSTRUCTION__WS_OPERAND = eINSTANCE.getAndCCInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AND_CC_INSTRUCTION__OPERAND = eINSTANCE.getAndCCInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndInstructionImpl <em>And Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AndInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAndInstruction()
-     * @generated
-     */
-    EClass AND_INSTRUCTION = eINSTANCE.getAndInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AND_INSTRUCTION__INSTRUCTION = eINSTANCE.getAndInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AND_INSTRUCTION__WS_OPERAND = eINSTANCE.getAndInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AND_INSTRUCTION__OPERAND = eINSTANCE.getAndInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdddInstructionImpl <em>Addd Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AdddInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAdddInstruction()
-     * @generated
-     */
-    EClass ADDD_INSTRUCTION = eINSTANCE.getAdddInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ADDD_INSTRUCTION__INSTRUCTION = eINSTANCE.getAdddInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ADDD_INSTRUCTION__WS_OPERAND = eINSTANCE.getAdddInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ADDD_INSTRUCTION__OPERAND = eINSTANCE.getAdddInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AddInstructionImpl <em>Add Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AddInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddInstruction()
-     * @generated
-     */
-    EClass ADD_INSTRUCTION = eINSTANCE.getAddInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ADD_INSTRUCTION__INSTRUCTION = eINSTANCE.getAddInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ADD_INSTRUCTION__WS_OPERAND = eINSTANCE.getAddInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ADD_INSTRUCTION__OPERAND = eINSTANCE.getAddInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdcInstructionImpl <em>Adc Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AdcInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAdcInstruction()
-     * @generated
-     */
-    EClass ADC_INSTRUCTION = eINSTANCE.getAdcInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ADC_INSTRUCTION__INSTRUCTION = eINSTANCE.getAdcInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '<em><b>Ws Operand</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ADC_INSTRUCTION__WS_OPERAND = eINSTANCE.getAdcInstruction_WsOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ADC_INSTRUCTION__OPERAND = eINSTANCE.getAdcInstruction_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AbxInstructionImpl <em>Abx Instruction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AbxInstructionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAbxInstruction()
-     * @generated
-     */
-    EClass ABX_INSTRUCTION = eINSTANCE.getAbxInstruction();
-
-    /**
-     * The meta object literal for the '<em><b>Instruction</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ABX_INSTRUCTION__INSTRUCTION = eINSTANCE.getAbxInstruction_Instruction();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedIndirectOperandImpl <em>Extended Indirect Operand</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedIndirectOperandImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExtendedIndirectOperand()
-     * @generated
-     */
-    EClass EXTENDED_INDIRECT_OPERAND = eINSTANCE.getExtendedIndirectOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDED_INDIRECT_OPERAND__OPERAND = eINSTANCE.getExtendedIndirectOperand_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedOperandImpl <em>Extended Operand</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExtendedOperandImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExtendedOperand()
-     * @generated
-     */
-    EClass EXTENDED_OPERAND = eINSTANCE.getExtendedOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXTENDED_OPERAND__OPERAND = eINSTANCE.getExtendedOperand_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectOperandImpl <em>Direct Operand</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DirectOperandImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectOperand()
-     * @generated
-     */
-    EClass DIRECT_OPERAND = eINSTANCE.getDirectOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DIRECT_OPERAND__OPERAND = eINSTANCE.getDirectOperand_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ImmediatOperandImpl <em>Immediat Operand</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ImmediatOperandImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getImmediatOperand()
-     * @generated
-     */
-    EClass IMMEDIAT_OPERAND = eINSTANCE.getImmediatOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference IMMEDIAT_OPERAND__OPERAND = eINSTANCE.getImmediatOperand_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IndexedOperandImpl <em>Indexed Operand</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IndexedOperandImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIndexedOperand()
-     * @generated
-     */
-    EClass INDEXED_OPERAND = eINSTANCE.getIndexedOperand();
-
-    /**
-     * The meta object literal for the '<em><b>Mode</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference INDEXED_OPERAND__MODE = eINSTANCE.getIndexedOperand_Mode();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedModeImpl <em>Constant Indexed Mode</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedModeImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getConstantIndexedMode()
-     * @generated
-     */
-    EClass CONSTANT_INDEXED_MODE = eINSTANCE.getConstantIndexedMode();
-
-    /**
-     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONSTANT_INDEXED_MODE__DEPLACEMENT = eINSTANCE.getConstantIndexedMode_Deplacement();
-
-    /**
-     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONSTANT_INDEXED_MODE__REGISTER = eINSTANCE.getConstantIndexedMode_Register();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedMovingIndirectModeImpl <em>Constant Indexed Moving Indirect Mode</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ConstantIndexedMovingIndirectModeImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getConstantIndexedMovingIndirectMode()
-     * @generated
-     */
-    EClass CONSTANT_INDEXED_MOVING_INDIRECT_MODE = eINSTANCE.getConstantIndexedMovingIndirectMode();
-
-    /**
-     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference CONSTANT_INDEXED_MOVING_INDIRECT_MODE__DEPLACEMENT = eINSTANCE.getConstantIndexedMovingIndirectMode_Deplacement();
-
-    /**
-     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CONSTANT_INDEXED_MOVING_INDIRECT_MODE__REGISTER = eINSTANCE.getConstantIndexedMovingIndirectMode_Register();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingModeImpl <em>Accumulator Moving Mode</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingModeImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAccumulatorMovingMode()
-     * @generated
-     */
-    EClass ACCUMULATOR_MOVING_MODE = eINSTANCE.getAccumulatorMovingMode();
-
-    /**
-     * The meta object literal for the '<em><b>Deplacement</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ACCUMULATOR_MOVING_MODE__DEPLACEMENT = eINSTANCE.getAccumulatorMovingMode_Deplacement();
-
-    /**
-     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ACCUMULATOR_MOVING_MODE__REGISTER = eINSTANCE.getAccumulatorMovingMode_Register();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingIndirectModeImpl <em>Accumulator Moving Indirect Mode</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AccumulatorMovingIndirectModeImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAccumulatorMovingIndirectMode()
-     * @generated
-     */
-    EClass ACCUMULATOR_MOVING_INDIRECT_MODE = eINSTANCE.getAccumulatorMovingIndirectMode();
-
-    /**
-     * The meta object literal for the '<em><b>Deplacement</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ACCUMULATOR_MOVING_INDIRECT_MODE__DEPLACEMENT = eINSTANCE.getAccumulatorMovingIndirectMode_Deplacement();
-
-    /**
-     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ACCUMULATOR_MOVING_INDIRECT_MODE__REGISTER = eINSTANCE.getAccumulatorMovingIndirectMode_Register();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecModeImpl <em>Auto Inc Dec Mode</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecModeImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAutoIncDecMode()
-     * @generated
-     */
-    EClass AUTO_INC_DEC_MODE = eINSTANCE.getAutoIncDecMode();
-
-    /**
-     * The meta object literal for the '<em><b>Decrement</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AUTO_INC_DEC_MODE__DECREMENT = eINSTANCE.getAutoIncDecMode_Decrement();
-
-    /**
-     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AUTO_INC_DEC_MODE__REGISTER = eINSTANCE.getAutoIncDecMode_Register();
-
-    /**
-     * The meta object literal for the '<em><b>Increment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AUTO_INC_DEC_MODE__INCREMENT = eINSTANCE.getAutoIncDecMode_Increment();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecIndirectModeImpl <em>Auto Inc Dec Indirect Mode</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AutoIncDecIndirectModeImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAutoIncDecIndirectMode()
-     * @generated
-     */
-    EClass AUTO_INC_DEC_INDIRECT_MODE = eINSTANCE.getAutoIncDecIndirectMode();
-
-    /**
-     * The meta object literal for the '<em><b>Decrement</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AUTO_INC_DEC_INDIRECT_MODE__DECREMENT = eINSTANCE.getAutoIncDecIndirectMode_Decrement();
-
-    /**
-     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AUTO_INC_DEC_INDIRECT_MODE__REGISTER = eINSTANCE.getAutoIncDecIndirectMode_Register();
-
-    /**
-     * The meta object literal for the '<em><b>Increment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute AUTO_INC_DEC_INDIRECT_MODE__INCREMENT = eINSTANCE.getAutoIncDecIndirectMode_Increment();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCModeImpl <em>Relatif To PC Mode</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCModeImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelatifToPCMode()
-     * @generated
-     */
-    EClass RELATIF_TO_PC_MODE = eINSTANCE.getRelatifToPCMode();
-
-    /**
-     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RELATIF_TO_PC_MODE__DEPLACEMENT = eINSTANCE.getRelatifToPCMode_Deplacement();
-
-    /**
-     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RELATIF_TO_PC_MODE__REGISTER = eINSTANCE.getRelatifToPCMode_Register();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCIndirectModeImpl <em>Relatif To PC Indirect Mode</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RelatifToPCIndirectModeImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelatifToPCIndirectMode()
-     * @generated
-     */
-    EClass RELATIF_TO_PC_INDIRECT_MODE = eINSTANCE.getRelatifToPCIndirectMode();
-
-    /**
-     * The meta object literal for the '<em><b>Deplacement</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RELATIF_TO_PC_INDIRECT_MODE__DEPLACEMENT = eINSTANCE.getRelatifToPCIndirectMode_Deplacement();
-
-    /**
-     * The meta object literal for the '<em><b>Register</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RELATIF_TO_PC_INDIRECT_MODE__REGISTER = eINSTANCE.getRelatifToPCIndirectMode_Register();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RelativeModeImpl <em>Relative Mode</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RelativeModeImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRelativeMode()
-     * @generated
-     */
-    EClass RELATIVE_MODE = eINSTANCE.getRelativeMode();
-
-    /**
-     * The meta object literal for the '<em><b>Is Pc Relative</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RELATIVE_MODE__IS_PC_RELATIVE = eINSTANCE.getRelativeMode_IsPcRelative();
-
-    /**
-     * The meta object literal for the '<em><b>Offset</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RELATIVE_MODE__OFFSET = eINSTANCE.getRelativeMode_Offset();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl <em>Directive Line</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DirectiveLineImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDirectiveLine()
-     * @generated
-     */
-    EClass DIRECTIVE_LINE = eINSTANCE.getDirectiveLine();
-
-    /**
-     * The meta object literal for the '<em><b>Label</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DIRECTIVE_LINE__LABEL = eINSTANCE.getDirectiveLine_Label();
-
-    /**
-     * The meta object literal for the '<em><b>Ws1</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DIRECTIVE_LINE__WS1 = eINSTANCE.getDirectiveLine_Ws1();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DIRECTIVE_LINE__DIRECTIVE = eINSTANCE.getDirectiveLine_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Ws2</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DIRECTIVE_LINE__WS2 = eINSTANCE.getDirectiveLine_Ws2();
-
-    /**
-     * The meta object literal for the '<em><b>Comment</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DIRECTIVE_LINE__COMMENT = eINSTANCE.getDirectiveLine_Comment();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SetDPDirectiveImpl <em>Set DP Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SetDPDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSetDPDirective()
-     * @generated
-     */
-    EClass SET_DP_DIRECTIVE = eINSTANCE.getSetDPDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SET_DP_DIRECTIVE__DIRECTIVE = eINSTANCE.getSetDPDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SET_DP_DIRECTIVE__OPERAND = eINSTANCE.getSetDPDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl <em>Fcc Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFccDirective()
-     * @generated
-     */
-    EClass FCC_DIRECTIVE = eINSTANCE.getFccDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FCC_DIRECTIVE__DIRECTIVE = eINSTANCE.getFccDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Parameters</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FCC_DIRECTIVE__PARAMETERS = eINSTANCE.getFccDirective_Parameters();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RegDirectiveImpl <em>Reg Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RegDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRegDirective()
-     * @generated
-     */
-    EClass REG_DIRECTIVE = eINSTANCE.getRegDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute REG_DIRECTIVE__DIRECTIVE = eINSTANCE.getRegDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Options</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute REG_DIRECTIVE__OPTIONS = eINSTANCE.getRegDirective_Options();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl <em>Spc Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSpcDirective()
-     * @generated
-     */
-    EClass SPC_DIRECTIVE = eINSTANCE.getSpcDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SPC_DIRECTIVE__DIRECTIVE = eINSTANCE.getSpcDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Space Count</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SPC_DIRECTIVE__SPACE_COUNT = eINSTANCE.getSpcDirective_SpaceCount();
-
-    /**
-     * The meta object literal for the '<em><b>Keep Count</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SPC_DIRECTIVE__KEEP_COUNT = eINSTANCE.getSpcDirective_KeepCount();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NamDirectiveImpl <em>Nam Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.NamDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNamDirective()
-     * @generated
-     */
-    EClass NAM_DIRECTIVE = eINSTANCE.getNamDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute NAM_DIRECTIVE__DIRECTIVE = eINSTANCE.getNamDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference NAM_DIRECTIVE__OPERAND = eINSTANCE.getNamDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.PagDirectiveImpl <em>Pag Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.PagDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getPagDirective()
-     * @generated
-     */
-    EClass PAG_DIRECTIVE = eINSTANCE.getPagDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute PAG_DIRECTIVE__DIRECTIVE = eINSTANCE.getPagDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference PAG_DIRECTIVE__OPERAND = eINSTANCE.getPagDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl <em>Opt Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OptDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOptDirective()
-     * @generated
-     */
-    EClass OPT_DIRECTIVE = eINSTANCE.getOptDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OPT_DIRECTIVE__DIRECTIVE = eINSTANCE.getOptDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Options</b></em>' attribute list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OPT_DIRECTIVE__OPTIONS = eINSTANCE.getOptDirective_Options();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FailDirectiveImpl <em>Fail Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.FailDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFailDirective()
-     * @generated
-     */
-    EClass FAIL_DIRECTIVE = eINSTANCE.getFailDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FAIL_DIRECTIVE__DIRECTIVE = eINSTANCE.getFailDirective_Directive();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SetDirectiveImpl <em>Set Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SetDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSetDirective()
-     * @generated
-     */
-    EClass SET_DIRECTIVE = eINSTANCE.getSetDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SET_DIRECTIVE__DIRECTIVE = eINSTANCE.getSetDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Is Relative To PC</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute SET_DIRECTIVE__IS_RELATIVE_TO_PC = eINSTANCE.getSetDirective_IsRelativeToPC();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SET_DIRECTIVE__OPERAND = eINSTANCE.getSetDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FillDirectiveImpl <em>Fill Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.FillDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFillDirective()
-     * @generated
-     */
-    EClass FILL_DIRECTIVE = eINSTANCE.getFillDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FILL_DIRECTIVE__DIRECTIVE = eINSTANCE.getFillDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FILL_DIRECTIVE__VALUE = eINSTANCE.getFillDirective_Value();
-
-    /**
-     * The meta object literal for the '<em><b>Number</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FILL_DIRECTIVE__NUMBER = eINSTANCE.getFillDirective_Number();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BszDirectiveImpl <em>Bsz Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BszDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBszDirective()
-     * @generated
-     */
-    EClass BSZ_DIRECTIVE = eINSTANCE.getBszDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BSZ_DIRECTIVE__DIRECTIVE = eINSTANCE.getBszDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference BSZ_DIRECTIVE__OPERAND = eINSTANCE.getBszDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FdbDirectiveImpl <em>Fdb Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.FdbDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFdbDirective()
-     * @generated
-     */
-    EClass FDB_DIRECTIVE = eINSTANCE.getFdbDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FDB_DIRECTIVE__DIRECTIVE = eINSTANCE.getFdbDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FDB_DIRECTIVE__OPERAND = eINSTANCE.getFdbDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FcbDirectiveImpl <em>Fcb Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.FcbDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getFcbDirective()
-     * @generated
-     */
-    EClass FCB_DIRECTIVE = eINSTANCE.getFcbDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute FCB_DIRECTIVE__DIRECTIVE = eINSTANCE.getFcbDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference FCB_DIRECTIVE__OPERAND = eINSTANCE.getFcbDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RmbDirectiveImpl <em>Rmb Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RmbDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRmbDirective()
-     * @generated
-     */
-    EClass RMB_DIRECTIVE = eINSTANCE.getRmbDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RMB_DIRECTIVE__DIRECTIVE = eINSTANCE.getRmbDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Is Relative To PC</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute RMB_DIRECTIVE__IS_RELATIVE_TO_PC = eINSTANCE.getRmbDirective_IsRelativeToPC();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RMB_DIRECTIVE__OPERAND = eINSTANCE.getRmbDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EndDirectiveImpl <em>End Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.EndDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEndDirective()
-     * @generated
-     */
-    EClass END_DIRECTIVE = eINSTANCE.getEndDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute END_DIRECTIVE__DIRECTIVE = eINSTANCE.getEndDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference END_DIRECTIVE__OPERAND = eINSTANCE.getEndDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl <em>Org Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OrgDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOrgDirective()
-     * @generated
-     */
-    EClass ORG_DIRECTIVE = eINSTANCE.getOrgDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ORG_DIRECTIVE__DIRECTIVE = eINSTANCE.getOrgDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Is Relative To PC</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute ORG_DIRECTIVE__IS_RELATIVE_TO_PC = eINSTANCE.getOrgDirective_IsRelativeToPC();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ORG_DIRECTIVE__OPERAND = eINSTANCE.getOrgDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl <em>Equ Directive</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.EquDirectiveImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getEquDirective()
-     * @generated
-     */
-    EClass EQU_DIRECTIVE = eINSTANCE.getEquDirective();
-
-    /**
-     * The meta object literal for the '<em><b>Directive</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EQU_DIRECTIVE__DIRECTIVE = eINSTANCE.getEquDirective_Directive();
-
-    /**
-     * The meta object literal for the '<em><b>Ws</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EQU_DIRECTIVE__WS = eINSTANCE.getEquDirective_Ws();
-
-    /**
-     * The meta object literal for the '<em><b>Is Relative To PC</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EQU_DIRECTIVE__IS_RELATIVE_TO_PC = eINSTANCE.getEquDirective_IsRelativeToPC();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EQU_DIRECTIVE__OPERAND = eINSTANCE.getEquDirective_Operand();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ListOfExpressionImpl <em>List Of Expression</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ListOfExpressionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getListOfExpression()
-     * @generated
-     */
-    EClass LIST_OF_EXPRESSION = eINSTANCE.getListOfExpression();
-
-    /**
-     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LIST_OF_EXPRESSION__EXPRESSION = eINSTANCE.getListOfExpression_Expression();
-
-    /**
-     * The meta object literal for the '<em><b>Comma Expressions</b></em>' containment reference list feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LIST_OF_EXPRESSION__COMMA_EXPRESSIONS = eINSTANCE.getListOfExpression_CommaExpressions();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CommaExpressionImpl <em>Comma Expression</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CommaExpressionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCommaExpression()
-     * @generated
-     */
-    EClass COMMA_EXPRESSION = eINSTANCE.getCommaExpression();
-
-    /**
-     * The meta object literal for the '<em><b>Comma</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute COMMA_EXPRESSION__COMMA = eINSTANCE.getCommaExpression_Comma();
-
-    /**
-     * The meta object literal for the '<em><b>Expression</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference COMMA_EXPRESSION__EXPRESSION = eINSTANCE.getCommaExpression_Expression();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl <em>Expression</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ExpressionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getExpression()
-     * @generated
-     */
-    EClass EXPRESSION = eINSTANCE.getExpression();
-
-    /**
-     * The meta object literal for the '<em><b>Operand</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPRESSION__OPERAND = eINSTANCE.getExpression_Operand();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPRESSION__VALUE = eINSTANCE.getExpression_Value();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NumericalValueImpl <em>Numerical Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.NumericalValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNumericalValue()
-     * @generated
-     */
-    EClass NUMERICAL_VALUE = eINSTANCE.getNumericalValue();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference NUMERICAL_VALUE__VALUE = eINSTANCE.getNumericalValue_Value();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierValueImpl <em>Identifier Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.IdentifierValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getIdentifierValue()
-     * @generated
-     */
-    EClass IDENTIFIER_VALUE = eINSTANCE.getIdentifierValue();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute IDENTIFIER_VALUE__VALUE = eINSTANCE.getIdentifierValue_Value();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.StringValueImpl <em>String Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.StringValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getStringValue()
-     * @generated
-     */
-    EClass STRING_VALUE = eINSTANCE.getStringValue();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute STRING_VALUE__VALUE = eINSTANCE.getStringValue_Value();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DecimalValueImpl <em>Decimal Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DecimalValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDecimalValue()
-     * @generated
-     */
-    EClass DECIMAL_VALUE = eINSTANCE.getDecimalValue();
-
-    /**
-     * The meta object literal for the '<em><b>Sign</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DECIMAL_VALUE__SIGN = eINSTANCE.getDecimalValue_Sign();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DECIMAL_VALUE__VALUE = eINSTANCE.getDecimalValue_Value();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.HexaDecimalValueImpl <em>Hexa Decimal Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.HexaDecimalValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getHexaDecimalValue()
-     * @generated
-     */
-    EClass HEXA_DECIMAL_VALUE = eINSTANCE.getHexaDecimalValue();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute HEXA_DECIMAL_VALUE__VALUE = eINSTANCE.getHexaDecimalValue_Value();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OctalValueImpl <em>Octal Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OctalValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOctalValue()
-     * @generated
-     */
-    EClass OCTAL_VALUE = eINSTANCE.getOctalValue();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute OCTAL_VALUE__VALUE = eINSTANCE.getOctalValue_Value();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryValueImpl <em>Binary Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.BinaryValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getBinaryValue()
-     * @generated
-     */
-    EClass BINARY_VALUE = eINSTANCE.getBinaryValue();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute BINARY_VALUE__VALUE = eINSTANCE.getBinaryValue_Value();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.CharacterValueImpl <em>Character Value</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.CharacterValueImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getCharacterValue()
-     * @generated
-     */
-    EClass CHARACTER_VALUE = eINSTANCE.getCharacterValue();
-
-    /**
-     * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute CHARACTER_VALUE__VALUE = eINSTANCE.getCharacterValue_Value();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MultiplicationImpl <em>Multiplication</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.MultiplicationImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getMultiplication()
-     * @generated
-     */
-    EClass MULTIPLICATION = eINSTANCE.getMultiplication();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MULTIPLICATION__LEFT = eINSTANCE.getMultiplication_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Operation</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MULTIPLICATION__OPERATION = eINSTANCE.getMultiplication_Operation();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MULTIPLICATION__RIGHT = eINSTANCE.getMultiplication_Right();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.DivisionImpl <em>Division</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.DivisionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getDivision()
-     * @generated
-     */
-    EClass DIVISION = eINSTANCE.getDivision();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DIVISION__LEFT = eINSTANCE.getDivision_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Opretation</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute DIVISION__OPRETATION = eINSTANCE.getDivision_Opretation();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference DIVISION__RIGHT = eINSTANCE.getDivision_Right();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.ModuloImpl <em>Modulo</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.ModuloImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getModulo()
-     * @generated
-     */
-    EClass MODULO = eINSTANCE.getModulo();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MODULO__LEFT = eINSTANCE.getModulo_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Opretation</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute MODULO__OPRETATION = eINSTANCE.getModulo_Opretation();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference MODULO__RIGHT = eINSTANCE.getModulo_Right();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AdditionImpl <em>Addition</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AdditionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAddition()
-     * @generated
-     */
-    EClass ADDITION = eINSTANCE.getAddition();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ADDITION__LEFT = eINSTANCE.getAddition_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ADDITION__RIGHT = eINSTANCE.getAddition_Right();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SubstractionImpl <em>Substraction</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.SubstractionImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getSubstraction()
-     * @generated
-     */
-    EClass SUBSTRACTION = eINSTANCE.getSubstraction();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SUBSTRACTION__LEFT = eINSTANCE.getSubstraction_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference SUBSTRACTION__RIGHT = eINSTANCE.getSubstraction_Right();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LeftShiftImpl <em>Left Shift</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.LeftShiftImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getLeftShift()
-     * @generated
-     */
-    EClass LEFT_SHIFT = eINSTANCE.getLeftShift();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LEFT_SHIFT__LEFT = eINSTANCE.getLeftShift_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference LEFT_SHIFT__RIGHT = eINSTANCE.getLeftShift_Right();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RightShiftImpl <em>Right Shift</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.RightShiftImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRightShift()
-     * @generated
-     */
-    EClass RIGHT_SHIFT = eINSTANCE.getRightShift();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RIGHT_SHIFT__LEFT = eINSTANCE.getRightShift_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference RIGHT_SHIFT__RIGHT = eINSTANCE.getRightShift_Right();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.AndImpl <em>And</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AndImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAnd()
-     * @generated
-     */
-    EClass AND = eINSTANCE.getAnd();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AND__LEFT = eINSTANCE.getAnd_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference AND__RIGHT = eINSTANCE.getAnd_Right();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OrImpl <em>Or</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.OrImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getOr()
-     * @generated
-     */
-    EClass OR = eINSTANCE.getOr();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OR__LEFT = eINSTANCE.getOr_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference OR__RIGHT = eINSTANCE.getOr_Right();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.XorImpl <em>Xor</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.XorImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getXor()
-     * @generated
-     */
-    EClass XOR = eINSTANCE.getXor();
-
-    /**
-     * The meta object literal for the '<em><b>Left</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference XOR__LEFT = eINSTANCE.getXor_Left();
-
-    /**
-     * The meta object literal for the '<em><b>Right</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference XOR__RIGHT = eINSTANCE.getXor_Right();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.impl.NotImpl <em>Not</em>}' class.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.NotImpl
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getNot()
-     * @generated
-     */
-    EClass NOT = eINSTANCE.getNot();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.AssemblyOption <em>Assembly Option</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblyOption
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getAssemblyOption()
-     * @generated
-     */
-    EEnum ASSEMBLY_OPTION = eINSTANCE.getAssemblyOption();
-
-    /**
-     * The meta object literal for the '{@link org.bpy.electronics.mc6809.assembler.assembler.Register <em>Register</em>}' enum.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @see org.bpy.electronics.mc6809.assembler.assembler.Register
-     * @see org.bpy.electronics.mc6809.assembler.assembler.impl.AssemblerPackageImpl#getRegister()
-     * @generated
-     */
-    EEnum REGISTER = eINSTANCE.getRegister();
-
-  }
 
 } //AssemblerPackage

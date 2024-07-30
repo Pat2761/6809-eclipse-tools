@@ -66,7 +66,7 @@ public class SexInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.SEX_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getSexInstruction();
   }
 
   /**

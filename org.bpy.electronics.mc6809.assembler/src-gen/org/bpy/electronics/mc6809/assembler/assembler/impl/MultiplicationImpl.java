@@ -90,7 +90,7 @@ public class MultiplicationImpl extends ExpressionImpl implements Multiplication
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.MULTIPLICATION;
+    return AssemblerPackage.eINSTANCE.getMultiplication();
   }
 
   /**

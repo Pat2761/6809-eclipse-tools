@@ -101,7 +101,7 @@ public class OrInstructionImpl extends MinimalEObjectImpl.Container implements O
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.OR_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getOrInstruction();
   }
 
   /**

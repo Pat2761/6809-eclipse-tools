@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FillDirectiveImpl#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FillDirectiveImpl#getWs <em>Ws</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FillDirectiveImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FillDirectiveImpl#getNumber <em>Number</em>}</li>
  * </ul>
@@ -52,6 +53,26 @@ public class FillDirectiveImpl extends MinimalEObjectImpl.Container implements F
    * @ordered
    */
   protected String directive = DIRECTIVE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected String ws = WS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
@@ -91,7 +112,7 @@ public class FillDirectiveImpl extends MinimalEObjectImpl.Container implements F
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.FILL_DIRECTIVE;
+    return AssemblerPackage.eINSTANCE.getFillDirective();
   }
 
   /**
@@ -117,6 +138,31 @@ public class FillDirectiveImpl extends MinimalEObjectImpl.Container implements F
     directive = newDirective;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FILL_DIRECTIVE__DIRECTIVE, oldDirective, directive));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getWs()
+  {
+    return ws;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs(String newWs)
+  {
+    String oldWs = ws;
+    ws = newWs;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FILL_DIRECTIVE__WS, oldWs, ws));
   }
 
   /**
@@ -249,6 +295,8 @@ public class FillDirectiveImpl extends MinimalEObjectImpl.Container implements F
     {
       case AssemblerPackage.FILL_DIRECTIVE__DIRECTIVE:
         return getDirective();
+      case AssemblerPackage.FILL_DIRECTIVE__WS:
+        return getWs();
       case AssemblerPackage.FILL_DIRECTIVE__VALUE:
         return getValue();
       case AssemblerPackage.FILL_DIRECTIVE__NUMBER:
@@ -269,6 +317,9 @@ public class FillDirectiveImpl extends MinimalEObjectImpl.Container implements F
     {
       case AssemblerPackage.FILL_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
+        return;
+      case AssemblerPackage.FILL_DIRECTIVE__WS:
+        setWs((String)newValue);
         return;
       case AssemblerPackage.FILL_DIRECTIVE__VALUE:
         setValue((Expression)newValue);
@@ -293,6 +344,9 @@ public class FillDirectiveImpl extends MinimalEObjectImpl.Container implements F
       case AssemblerPackage.FILL_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
+      case AssemblerPackage.FILL_DIRECTIVE__WS:
+        setWs(WS_EDEFAULT);
+        return;
       case AssemblerPackage.FILL_DIRECTIVE__VALUE:
         setValue((Expression)null);
         return;
@@ -315,6 +369,8 @@ public class FillDirectiveImpl extends MinimalEObjectImpl.Container implements F
     {
       case AssemblerPackage.FILL_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
+      case AssemblerPackage.FILL_DIRECTIVE__WS:
+        return WS_EDEFAULT == null ? ws != null : !WS_EDEFAULT.equals(ws);
       case AssemblerPackage.FILL_DIRECTIVE__VALUE:
         return value != null;
       case AssemblerPackage.FILL_DIRECTIVE__NUMBER:
@@ -336,6 +392,8 @@ public class FillDirectiveImpl extends MinimalEObjectImpl.Container implements F
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (directive: ");
     result.append(directive);
+    result.append(", ws: ");
+    result.append(ws);
     result.append(')');
     return result.toString();
   }

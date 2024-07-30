@@ -101,7 +101,7 @@ public class ComInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.COM_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getComInstruction();
   }
 
   /**

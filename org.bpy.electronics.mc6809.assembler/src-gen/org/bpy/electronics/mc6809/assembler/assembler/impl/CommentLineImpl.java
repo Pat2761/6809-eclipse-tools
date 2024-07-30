@@ -87,7 +87,7 @@ public class CommentLineImpl extends MinimalEObjectImpl.Container implements Com
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.COMMENT_LINE;
+    return AssemblerPackage.eINSTANCE.getCommentLine();
   }
 
   /**

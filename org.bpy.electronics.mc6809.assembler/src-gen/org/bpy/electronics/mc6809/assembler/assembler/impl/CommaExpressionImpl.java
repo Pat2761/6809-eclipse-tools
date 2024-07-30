@@ -80,7 +80,7 @@ public class CommaExpressionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.COMMA_EXPRESSION;
+    return AssemblerPackage.eINSTANCE.getCommaExpression();
   }
 
   /**

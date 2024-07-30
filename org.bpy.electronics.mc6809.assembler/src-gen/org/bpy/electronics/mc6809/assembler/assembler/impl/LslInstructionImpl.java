@@ -101,7 +101,7 @@ public class LslInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.LSL_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getLslInstruction();
   }
 
   /**

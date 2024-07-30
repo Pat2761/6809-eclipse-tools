@@ -69,7 +69,7 @@ public class LeftShiftImpl extends ExpressionImpl implements LeftShift
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.LEFT_SHIFT;
+    return AssemblerPackage.eINSTANCE.getLeftShift();
   }
 
   /**

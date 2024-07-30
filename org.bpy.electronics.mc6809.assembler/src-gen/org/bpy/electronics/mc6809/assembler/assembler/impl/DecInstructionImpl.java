@@ -101,7 +101,7 @@ public class DecInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.DEC_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getDecInstruction();
   }
 
   /**

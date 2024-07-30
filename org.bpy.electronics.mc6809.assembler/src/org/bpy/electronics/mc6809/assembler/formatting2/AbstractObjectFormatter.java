@@ -1,6 +1,5 @@
 package org.bpy.electronics.mc6809.assembler.formatting2;
 
-import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
@@ -9,8 +8,6 @@ import org.eclipse.xtext.formatting2.ITextReplacer;
 import org.eclipse.xtext.formatting2.regionaccess.ITextRegionExtensions;
 import org.eclipse.xtext.xbase.lib.ObjectExtensions;
 import org.eclipse.xtext.xbase.lib.Procedures.Procedure1;
-
-import com.google.common.base.Strings;
 
 public abstract class AbstractObjectFormatter {
 

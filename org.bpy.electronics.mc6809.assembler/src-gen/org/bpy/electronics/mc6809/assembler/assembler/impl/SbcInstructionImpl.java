@@ -101,7 +101,7 @@ public class SbcInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.SBC_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getSbcInstruction();
   }
 
   /**

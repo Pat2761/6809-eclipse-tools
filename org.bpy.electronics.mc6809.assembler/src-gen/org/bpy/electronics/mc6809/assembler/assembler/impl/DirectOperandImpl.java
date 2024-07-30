@@ -59,7 +59,7 @@ public class DirectOperandImpl extends MinimalEObjectImpl.Container implements D
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.DIRECT_OPERAND;
+    return AssemblerPackage.eINSTANCE.getDirectOperand();
   }
 
   /**

@@ -101,7 +101,7 @@ public class EorInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.EOR_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getEorInstruction();
   }
 
   /**

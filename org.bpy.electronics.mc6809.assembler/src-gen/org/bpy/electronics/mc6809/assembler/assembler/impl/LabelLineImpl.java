@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl#getLabel <em>Label</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl#getWs1 <em>Ws1</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl#getComment <em>Comment</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.LabelLineImpl#getWs2 <em>Ws2</em>}</li>
  * </ul>
  *
  * @generated
@@ -85,26 +84,6 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
   protected String comment = COMMENT_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getWs2() <em>Ws2</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getWs2()
-   * @generated
-   * @ordered
-   */
-  protected static final String WS2_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getWs2() <em>Ws2</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getWs2()
-   * @generated
-   * @ordered
-   */
-  protected String ws2 = WS2_EDEFAULT;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -122,7 +101,7 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.LABEL_LINE;
+    return AssemblerPackage.eINSTANCE.getLabelLine();
   }
 
   /**
@@ -231,31 +210,6 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
    * @generated
    */
   @Override
-  public String getWs2()
-  {
-    return ws2;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setWs2(String newWs2)
-  {
-    String oldWs2 = ws2;
-    ws2 = newWs2;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.LABEL_LINE__WS2, oldWs2, ws2));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -282,8 +236,6 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
         return getWs1();
       case AssemblerPackage.LABEL_LINE__COMMENT:
         return getComment();
-      case AssemblerPackage.LABEL_LINE__WS2:
-        return getWs2();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -306,9 +258,6 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
         return;
       case AssemblerPackage.LABEL_LINE__COMMENT:
         setComment((String)newValue);
-        return;
-      case AssemblerPackage.LABEL_LINE__WS2:
-        setWs2((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -333,9 +282,6 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
       case AssemblerPackage.LABEL_LINE__COMMENT:
         setComment(COMMENT_EDEFAULT);
         return;
-      case AssemblerPackage.LABEL_LINE__WS2:
-        setWs2(WS2_EDEFAULT);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -356,8 +302,6 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
         return WS1_EDEFAULT == null ? ws1 != null : !WS1_EDEFAULT.equals(ws1);
       case AssemblerPackage.LABEL_LINE__COMMENT:
         return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
-      case AssemblerPackage.LABEL_LINE__WS2:
-        return WS2_EDEFAULT == null ? ws2 != null : !WS2_EDEFAULT.equals(ws2);
     }
     return super.eIsSet(featureID);
   }
@@ -377,8 +321,6 @@ public class LabelLineImpl extends MinimalEObjectImpl.Container implements Label
     result.append(ws1);
     result.append(", comment: ");
     result.append(comment);
-    result.append(", ws2: ");
-    result.append(ws2);
     result.append(')');
     return result.toString();
   }

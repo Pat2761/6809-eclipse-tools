@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.util.EDataTypeEList;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RegDirectiveImpl#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RegDirectiveImpl#getWs <em>Ws</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RegDirectiveImpl#getOptions <em>Options</em>}</li>
  * </ul>
  *
@@ -55,6 +56,26 @@ public class RegDirectiveImpl extends MinimalEObjectImpl.Container implements Re
    * @ordered
    */
   protected String directive = DIRECTIVE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected String ws = WS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getOptions() <em>Options</em>}' attribute list.
@@ -84,7 +105,7 @@ public class RegDirectiveImpl extends MinimalEObjectImpl.Container implements Re
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.REG_DIRECTIVE;
+    return AssemblerPackage.eINSTANCE.getRegDirective();
   }
 
   /**
@@ -118,6 +139,31 @@ public class RegDirectiveImpl extends MinimalEObjectImpl.Container implements Re
    * @generated
    */
   @Override
+  public String getWs()
+  {
+    return ws;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs(String newWs)
+  {
+    String oldWs = ws;
+    ws = newWs;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.REG_DIRECTIVE__WS, oldWs, ws));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
   public EList<Register> getOptions()
   {
     if (options == null)
@@ -139,6 +185,8 @@ public class RegDirectiveImpl extends MinimalEObjectImpl.Container implements Re
     {
       case AssemblerPackage.REG_DIRECTIVE__DIRECTIVE:
         return getDirective();
+      case AssemblerPackage.REG_DIRECTIVE__WS:
+        return getWs();
       case AssemblerPackage.REG_DIRECTIVE__OPTIONS:
         return getOptions();
     }
@@ -158,6 +206,9 @@ public class RegDirectiveImpl extends MinimalEObjectImpl.Container implements Re
     {
       case AssemblerPackage.REG_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
+        return;
+      case AssemblerPackage.REG_DIRECTIVE__WS:
+        setWs((String)newValue);
         return;
       case AssemblerPackage.REG_DIRECTIVE__OPTIONS:
         getOptions().clear();
@@ -180,6 +231,9 @@ public class RegDirectiveImpl extends MinimalEObjectImpl.Container implements Re
       case AssemblerPackage.REG_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
+      case AssemblerPackage.REG_DIRECTIVE__WS:
+        setWs(WS_EDEFAULT);
+        return;
       case AssemblerPackage.REG_DIRECTIVE__OPTIONS:
         getOptions().clear();
         return;
@@ -199,6 +253,8 @@ public class RegDirectiveImpl extends MinimalEObjectImpl.Container implements Re
     {
       case AssemblerPackage.REG_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
+      case AssemblerPackage.REG_DIRECTIVE__WS:
+        return WS_EDEFAULT == null ? ws != null : !WS_EDEFAULT.equals(ws);
       case AssemblerPackage.REG_DIRECTIVE__OPTIONS:
         return options != null && !options.isEmpty();
     }
@@ -218,6 +274,8 @@ public class RegDirectiveImpl extends MinimalEObjectImpl.Container implements Re
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (directive: ");
     result.append(directive);
+    result.append(", ws: ");
+    result.append(ws);
     result.append(", options: ");
     result.append(options);
     result.append(')');

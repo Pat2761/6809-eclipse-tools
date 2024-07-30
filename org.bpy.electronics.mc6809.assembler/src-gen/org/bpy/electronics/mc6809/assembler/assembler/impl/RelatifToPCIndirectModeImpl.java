@@ -80,7 +80,7 @@ public class RelatifToPCIndirectModeImpl extends MinimalEObjectImpl.Container im
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.RELATIF_TO_PC_INDIRECT_MODE;
+    return AssemblerPackage.eINSTANCE.getRelatifToPCIndirectMode();
   }
 
   /**

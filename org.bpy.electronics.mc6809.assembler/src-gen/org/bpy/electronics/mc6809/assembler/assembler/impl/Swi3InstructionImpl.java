@@ -66,7 +66,7 @@ public class Swi3InstructionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.SWI3_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getSwi3Instruction();
   }
 
   /**

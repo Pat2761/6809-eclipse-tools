@@ -101,7 +101,7 @@ public class BltInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BLT_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBltInstruction();
   }
 
   /**

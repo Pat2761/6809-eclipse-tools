@@ -101,7 +101,7 @@ public class BvcInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BVC_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBvcInstruction();
   }
 
   /**

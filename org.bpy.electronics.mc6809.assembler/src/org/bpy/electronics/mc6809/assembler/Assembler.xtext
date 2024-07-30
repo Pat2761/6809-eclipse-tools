@@ -48,7 +48,7 @@ SourceLine:
 OtherKindOfInstructions:
 	label=Label ws1=WS name=IdentifierValue 
 	(ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	ws3=WS? EndOfLine
+	WS? EndOfLine
 ;
 
 /*
@@ -65,7 +65,7 @@ SpecialFunctions:
 MacroDefinition:
 	ws1=WS '.macro' ws2=WS name=IdentifierValue 
 	(ws3=WS (comment1=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	ws4=WS? EndOfLine
+	WS? EndOfLine
 	
 	instructions += InstructionLine*
 	ws5=WS '.endm' (ws6=WS (comment2=ANY_EXCEPT_COMMENT_END_OF_LINE))?
@@ -75,7 +75,7 @@ MacroDefinition:
 LabelLine:
 	label = Label
 	(ws1=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	ws2=WS? EndOfLine	
+	WS? EndOfLine	
 ;
 
 /*
@@ -2027,7 +2027,7 @@ DirectiveLine:
  */
 SetDPDirective:
 	directive = 'SETDP' 
-	(WS (operand=Expression))?
+	(ws=WS (operand=Expression))?
 ;
 
 /*
@@ -2058,8 +2058,7 @@ SetDPDirective:
  */
 FccDirective:
 	directive = 'FCC'
-//	(WS string=STRING)
-	(WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*) 
+	(ws=WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*) 
 ;
 
 /*
@@ -2090,7 +2089,7 @@ FccDirective:
  */
 RegDirective:
 	(directive = 'REG')
-	(WS options+=Register ( ',' options+=Register)*)? 
+	(ws=WS options+=Register ( ',' options+=Register)*)? 
 ;
 
 /*
@@ -2110,7 +2109,7 @@ RegDirective:
  */
 SpcDirective:
 	directive = 'SPC' 
-	(WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
+	(ws=WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
 ;
 
 /*
@@ -2131,7 +2130,7 @@ SpcDirective:
  */
 NamDirective:
 	(directive = 'NAM'|directive = 'TTL') 
-	WS (operand=IdentifierValue)
+	ws=WS (operand=IdentifierValue)
 ;
 
 /*
@@ -2153,7 +2152,7 @@ NamDirective:
  */
 PagDirective:
 	directive = 'PAG' 
-	(WS (operand=Expression))?
+	(ws=WS (operand=Expression))?
 ;
 
 /*
@@ -2191,7 +2190,7 @@ PagDirective:
  */
 OptDirective:
 	directive = 'OPT'
-	(WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)? 
+	(ws=WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)? 
 ;
 
 /*
@@ -2218,7 +2217,7 @@ FailDirective:
  */
 SetDirective:
 	directive = 'SET' 
-	WS ( 
+	ws=WS ( 
 		( isRelativeToPC?='*'? operand=Expression) |
 		( isRelativeToPC?='*' )
 		)
@@ -2232,7 +2231,7 @@ SetDirective:
  */
 FillDirective:
 	directive = 'FILL' 
-	(WS value=Expression ',' number=Expression) 
+	(ws=WS value=Expression ',' number=Expression) 
 ;
 
 /*
@@ -2243,7 +2242,7 @@ FillDirective:
  */
 BszDirective:
 	directive = ('BSZ'|'ZMB') 
-	(WS operand=Expression) 
+	(ws=WS operand=Expression) 
 ;
 
 
@@ -2261,7 +2260,7 @@ BszDirective:
  */
 FdbDirective:
 	directive = 'FDB' 
-	(WS (operand = ListOfExpression))? 
+	(ws=WS (operand = ListOfExpression))? 
 ;
 
 
@@ -2279,7 +2278,7 @@ FdbDirective:
  */
 FcbDirective:
 	directive = 'FCB' 
-	(WS (operand = ListOfExpression))?	
+	(ws=WS (operand = ListOfExpression))?	
 ;
 
 /*
@@ -2296,7 +2295,7 @@ FcbDirective:
  */
 RmbDirective:
 	directive = 'RMB' 
-	(WS (isRelativeToPC?='*'? operand = Expression))?	
+	(ws=WS (isRelativeToPC?='*'? operand = Expression))?	
 ;
 
 /*
@@ -2312,7 +2311,7 @@ RmbDirective:
  */
 EndDirective:
 	directive = 'END' 
-	(WS operand=IdentifierValue)?
+	(ws=WS operand=IdentifierValue)?
 ;
 
 /*
@@ -2324,7 +2323,7 @@ EndDirective:
  */
 OrgDirective:
 	directive = 'ORG' 
-	(WS ( 
+	(ws=WS ( 
 		(isRelativeToPC?='*'? operand=Expression) |
 		(isRelativeToPC?='*' )
 		))?

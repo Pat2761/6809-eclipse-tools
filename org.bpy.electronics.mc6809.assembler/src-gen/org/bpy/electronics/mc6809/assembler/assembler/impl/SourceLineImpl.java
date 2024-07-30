@@ -59,7 +59,7 @@ public class SourceLineImpl extends MinimalEObjectImpl.Container implements Sour
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.SOURCE_LINE;
+    return AssemblerPackage.eINSTANCE.getSourceLine();
   }
 
   /**

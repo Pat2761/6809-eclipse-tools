@@ -4416,10 +4416,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:14592:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // InternalAssembler.g:14592:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalAssembler.g:14766:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // InternalAssembler.g:14766:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // InternalAssembler.g:14592:11: ( '^' )?
+            // InternalAssembler.g:14766:11: ( '^' )?
             int alt1=2;
             int LA1_0 = input.LA(1);
 
@@ -4428,7 +4428,7 @@ public class InternalAssemblerLexer extends Lexer {
             }
             switch (alt1) {
                 case 1 :
-                    // InternalAssembler.g:14592:11: '^'
+                    // InternalAssembler.g:14766:11: '^'
                     {
                     match('^'); 
 
@@ -4446,7 +4446,7 @@ public class InternalAssemblerLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // InternalAssembler.g:14592:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // InternalAssembler.g:14766:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop2:
             do {
                 int alt2=2;
@@ -4495,11 +4495,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_HEXA;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:14594:11: ( '$' ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+ )
-            // InternalAssembler.g:14594:13: '$' ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
+            // InternalAssembler.g:14768:11: ( '$' ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+ )
+            // InternalAssembler.g:14768:13: '$' ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
             {
             match('$'); 
-            // InternalAssembler.g:14594:17: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
+            // InternalAssembler.g:14768:17: ( '0' .. '9' | 'a' .. 'f' | 'A' .. 'F' )+
             int cnt3=0;
             loop3:
             do {
@@ -4553,10 +4553,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_NUMBERS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:14596:14: ( ( '0' .. '9' )+ )
-            // InternalAssembler.g:14596:16: ( '0' .. '9' )+
+            // InternalAssembler.g:14770:14: ( ( '0' .. '9' )+ )
+            // InternalAssembler.g:14770:16: ( '0' .. '9' )+
             {
-            // InternalAssembler.g:14596:16: ( '0' .. '9' )+
+            // InternalAssembler.g:14770:16: ( '0' .. '9' )+
             int cnt4=0;
             loop4:
             do {
@@ -4570,7 +4570,7 @@ public class InternalAssemblerLexer extends Lexer {
 
                 switch (alt4) {
             	case 1 :
-            	    // InternalAssembler.g:14596:17: '0' .. '9'
+            	    // InternalAssembler.g:14770:17: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -4602,8 +4602,8 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_CHARACTER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:14598:16: ( '\\'' ' ' .. '\\u007F' )
-            // InternalAssembler.g:14598:18: '\\'' ' ' .. '\\u007F'
+            // InternalAssembler.g:14772:16: ( '\\'' ' ' .. '\\u007F' )
+            // InternalAssembler.g:14772:18: '\\'' ' ' .. '\\u007F'
             {
             match('\''); 
             matchRange(' ','\u007F'); 
@@ -4623,11 +4623,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:14600:13: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
-            // InternalAssembler.g:14600:15: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+            // InternalAssembler.g:14774:13: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' )
+            // InternalAssembler.g:14774:15: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
             {
             match('\"'); 
-            // InternalAssembler.g:14600:19: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+            // InternalAssembler.g:14774:19: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
             loop5:
             do {
                 int alt5=3;
@@ -4643,7 +4643,7 @@ public class InternalAssemblerLexer extends Lexer {
 
                 switch (alt5) {
             	case 1 :
-            	    // InternalAssembler.g:14600:20: '\\\\' .
+            	    // InternalAssembler.g:14774:20: '\\\\' .
             	    {
             	    match('\\'); 
             	    matchAny(); 
@@ -4651,7 +4651,7 @@ public class InternalAssemblerLexer extends Lexer {
             	    }
             	    break;
             	case 2 :
-            	    // InternalAssembler.g:14600:27: ~ ( ( '\\\\' | '\"' ) )
+            	    // InternalAssembler.g:14774:27: ~ ( ( '\\\\' | '\"' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -4688,11 +4688,11 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_ANY_EXCEPT_COMMENT_END_OF_LINE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:14602:37: ( ';' (~ ( ( '\\n' | '\\r' ) ) )* )
-            // InternalAssembler.g:14602:39: ';' (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalAssembler.g:14776:37: ( ';' (~ ( ( '\\n' | '\\r' ) ) )* )
+            // InternalAssembler.g:14776:39: ';' (~ ( ( '\\n' | '\\r' ) ) )*
             {
             match(';'); 
-            // InternalAssembler.g:14602:43: (~ ( ( '\\n' | '\\r' ) ) )*
+            // InternalAssembler.g:14776:43: (~ ( ( '\\n' | '\\r' ) ) )*
             loop6:
             do {
                 int alt6=2;
@@ -4705,7 +4705,7 @@ public class InternalAssemblerLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // InternalAssembler.g:14602:43: ~ ( ( '\\n' | '\\r' ) )
+            	    // InternalAssembler.g:14776:43: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -4741,10 +4741,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:14604:9: ( ( ' ' | '\\t' )+ )
-            // InternalAssembler.g:14604:11: ( ' ' | '\\t' )+
+            // InternalAssembler.g:14778:9: ( ( ' ' | '\\t' )+ )
+            // InternalAssembler.g:14778:11: ( ' ' | '\\t' )+
             {
-            // InternalAssembler.g:14604:11: ( ' ' | '\\t' )+
+            // InternalAssembler.g:14778:11: ( ' ' | '\\t' )+
             int cnt7=0;
             loop7:
             do {
@@ -4798,10 +4798,10 @@ public class InternalAssemblerLexer extends Lexer {
         try {
             int _type = RULE_CR;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // InternalAssembler.g:14606:9: ( ( '\\r' )? '\\n' )
-            // InternalAssembler.g:14606:11: ( '\\r' )? '\\n'
+            // InternalAssembler.g:14780:9: ( ( '\\r' )? '\\n' )
+            // InternalAssembler.g:14780:11: ( '\\r' )? '\\n'
             {
-            // InternalAssembler.g:14606:11: ( '\\r' )?
+            // InternalAssembler.g:14780:11: ( '\\r' )?
             int alt8=2;
             int LA8_0 = input.LA(1);
 
@@ -4810,7 +4810,7 @@ public class InternalAssemblerLexer extends Lexer {
             }
             switch (alt8) {
                 case 1 :
-                    // InternalAssembler.g:14606:11: '\\r'
+                    // InternalAssembler.g:14780:11: '\\r'
                     {
                     match('\r'); 
 

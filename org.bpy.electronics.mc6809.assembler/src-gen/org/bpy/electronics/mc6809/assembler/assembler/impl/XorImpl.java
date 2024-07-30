@@ -69,7 +69,7 @@ public class XorImpl extends ExpressionImpl implements Xor
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.XOR;
+    return AssemblerPackage.eINSTANCE.getXor();
   }
 
   /**

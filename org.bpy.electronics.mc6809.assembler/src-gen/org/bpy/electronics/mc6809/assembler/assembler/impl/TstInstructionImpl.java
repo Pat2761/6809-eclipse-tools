@@ -101,7 +101,7 @@ public class TstInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.TST_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getTstInstruction();
   }
 
   /**

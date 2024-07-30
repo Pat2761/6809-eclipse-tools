@@ -119,7 +119,7 @@ public class PshuInstructionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.PSHU_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getPshuInstruction();
   }
 
   /**

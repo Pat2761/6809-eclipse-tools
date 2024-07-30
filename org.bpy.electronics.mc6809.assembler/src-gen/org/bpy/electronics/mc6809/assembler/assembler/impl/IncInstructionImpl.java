@@ -101,7 +101,7 @@ public class IncInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.INC_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getIncInstruction();
   }
 
   /**

@@ -80,7 +80,7 @@ public class ConstantIndexedMovingIndirectModeImpl extends MinimalEObjectImpl.Co
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.CONSTANT_INDEXED_MOVING_INDIRECT_MODE;
+    return AssemblerPackage.eINSTANCE.getConstantIndexedMovingIndirectMode();
   }
 
   /**

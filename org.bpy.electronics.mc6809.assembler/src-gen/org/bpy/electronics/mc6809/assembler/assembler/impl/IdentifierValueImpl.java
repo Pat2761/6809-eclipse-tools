@@ -66,7 +66,7 @@ public class IdentifierValueImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.IDENTIFIER_VALUE;
+    return AssemblerPackage.eINSTANCE.getIdentifierValue();
   }
 
   /**

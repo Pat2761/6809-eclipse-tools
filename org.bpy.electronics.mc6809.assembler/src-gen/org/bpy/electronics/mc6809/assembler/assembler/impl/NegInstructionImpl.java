@@ -101,7 +101,7 @@ public class NegInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.NEG_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getNegInstruction();
   }
 
   /**

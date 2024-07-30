@@ -598,8 +598,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_AbxInstruction(ISerializationContext context, AbxInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ABX_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ABX_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getAbxInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getAbxInstruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAbxInstructionAccess().getInstructionABXKeyword_0(), semanticObject.getInstruction());
@@ -720,10 +720,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Addition(ISerializationContext context, Addition semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ADDITION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ADDITION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.ADDITION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.ADDITION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getAddition_Left()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getAddition_Left()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getAddition_Right()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getAddition_Right()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAdditionAccess().getAdditionLeftAction_1_0(), semanticObject.getLeft());
@@ -799,10 +799,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_And(ISerializationContext context, And semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.AND__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.AND__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.AND__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.AND__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getAnd_Left()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getAnd_Left()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getAnd_Right()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getAnd_Right()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getAndAccess().getAndLeftAction_1_0(), semanticObject.getLeft());
@@ -998,8 +998,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_BinaryValue(ISerializationContext context, BinaryValue semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.BINARY_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.BINARY_VALUE__VALUE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getBinaryValue_Value()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getBinaryValue_Value()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getBinaryValueAccess().getValueNUMBERSTerminalRuleCall_1_0(), semanticObject.getValue());
@@ -1185,7 +1185,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     BszDirective returns BszDirective
 	 *
 	 * Constraint:
-	 *     ((directive='BSZ' | directive='ZMB') operand=Expression)
+	 *     ((directive='BSZ' | directive='ZMB') ws=WS operand=Expression)
 	 * </pre>
 	 */
 	protected void sequence_BszDirective(ISerializationContext context, BszDirective semanticObject) {
@@ -1232,8 +1232,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_CharacterValue(ISerializationContext context, CharacterValue semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.CHARACTER_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.CHARACTER_VALUE__VALUE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getCharacterValue_Value()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getCharacterValue_Value()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getCharacterValueAccess().getValueCHARACTERTerminalRuleCall_0(), semanticObject.getValue());
@@ -1396,8 +1396,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_DaaInstruction(ISerializationContext context, DaaInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DAA_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DAA_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getDaaInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getDaaInstruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getDaaInstructionAccess().getInstructionDAAKeyword_0(), semanticObject.getInstruction());
@@ -1452,8 +1452,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_DirectOperand(ISerializationContext context, DirectOperand semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DIRECT_OPERAND__OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DIRECT_OPERAND__OPERAND));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getDirectOperand_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getDirectOperand_Operand()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getDirectOperandAccess().getOperandExpressionParserRuleCall_1_0(), semanticObject.getOperand());
@@ -1529,12 +1529,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Division(ISerializationContext context, Division semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DIVISION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DIVISION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DIVISION__OPRETATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DIVISION__OPRETATION));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.DIVISION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.DIVISION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getDivision_Left()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getDivision_Left()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getDivision_Opretation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getDivision_Opretation()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getDivision_Right()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getDivision_Right()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getDivisionAccess().getDivisionLeftAction_1_0(), semanticObject.getLeft());
@@ -1550,7 +1550,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     EndDirective returns EndDirective
 	 *
 	 * Constraint:
-	 *     (directive='END' operand=IdentifierValue?)
+	 *     (directive='END' (ws=WS operand=IdentifierValue)?)
 	 * </pre>
 	 */
 	protected void sequence_EndDirective(ISerializationContext context, EndDirective semanticObject) {
@@ -1601,14 +1601,14 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_ExgInstruction(ISerializationContext context, ExgInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__INSTRUCTION));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG1));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXG_INSTRUCTION__REG2));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Instruction()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_WsOperand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_WsOperand()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Reg1()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Reg1()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Reg2()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExgInstruction_Reg2()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExgInstructionAccess().getInstructionEXGKeyword_0_0(), semanticObject.getInstruction());
@@ -1630,8 +1630,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Expression(ISerializationContext context, Expression semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__OPERAND));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExpression_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExpression_Operand()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExpressionAccess().getOperandMultiplicationParserRuleCall_0(), semanticObject.getOperand());
@@ -1650,8 +1650,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_ExtendedIndirectOperand(ISerializationContext context, ExtendedIndirectOperand semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXTENDED_INDIRECT_OPERAND__OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXTENDED_INDIRECT_OPERAND__OPERAND));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExtendedIndirectOperand_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExtendedIndirectOperand_Operand()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExtendedIndirectOperandAccess().getOperandExpressionParserRuleCall_1_0(), semanticObject.getOperand());
@@ -1670,8 +1670,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_ExtendedOperand(ISerializationContext context, ExtendedOperand semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXTENDED_OPERAND__OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXTENDED_OPERAND__OPERAND));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExtendedOperand_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExtendedOperand_Operand()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getExtendedOperandAccess().getOperandExpressionParserRuleCall_1_0(), semanticObject.getOperand());
@@ -1690,8 +1690,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_FailDirective(ISerializationContext context, FailDirective semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FAIL_DIRECTIVE__DIRECTIVE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FAIL_DIRECTIVE__DIRECTIVE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getFailDirective_Directive()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getFailDirective_Directive()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getFailDirectiveAccess().getDirectiveFAILKeyword_0(), semanticObject.getDirective());
@@ -1705,7 +1705,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FcbDirective returns FcbDirective
 	 *
 	 * Constraint:
-	 *     (directive='FCB' operand=ListOfExpression?)
+	 *     (directive='FCB' (ws=WS operand=ListOfExpression)?)
 	 * </pre>
 	 */
 	protected void sequence_FcbDirective(ISerializationContext context, FcbDirective semanticObject) {
@@ -1719,7 +1719,13 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FccDirective returns FccDirective
 	 *
 	 * Constraint:
-	 *     (directive='FCC' (parameters+=StringValue | parameters+=Expression) parameters+=StringValue? (parameters+=Expression? parameters+=StringValue?)*)
+	 *     (
+	 *         directive='FCC' 
+	 *         ws=WS 
+	 *         (parameters+=StringValue | parameters+=Expression) 
+	 *         parameters+=StringValue? 
+	 *         (parameters+=Expression? parameters+=StringValue?)*
+	 *     )
 	 * </pre>
 	 */
 	protected void sequence_FccDirective(ISerializationContext context, FccDirective semanticObject) {
@@ -1733,7 +1739,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FdbDirective returns FdbDirective
 	 *
 	 * Constraint:
-	 *     (directive='FDB' operand=ListOfExpression?)
+	 *     (directive='FDB' (ws=WS operand=ListOfExpression)?)
 	 * </pre>
 	 */
 	protected void sequence_FdbDirective(ISerializationContext context, FdbDirective semanticObject) {
@@ -1747,20 +1753,23 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     FillDirective returns FillDirective
 	 *
 	 * Constraint:
-	 *     (directive='FILL' value=Expression number=Expression)
+	 *     (directive='FILL' ws=WS value=Expression number=Expression)
 	 * </pre>
 	 */
 	protected void sequence_FillDirective(ISerializationContext context, FillDirective semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__DIRECTIVE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__DIRECTIVE));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__VALUE));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.FILL_DIRECTIVE__NUMBER));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getFillDirective_Directive()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getFillDirective_Directive()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getFillDirective_Ws()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getFillDirective_Ws()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getFillDirective_Value()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getFillDirective_Value()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getFillDirective_Number()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getFillDirective_Number()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getFillDirectiveAccess().getDirectiveFILLKeyword_0_0(), semanticObject.getDirective());
+		feeder.accept(grammarAccess.getFillDirectiveAccess().getWsWSTerminalRuleCall_1_0_0(), semanticObject.getWs());
 		feeder.accept(grammarAccess.getFillDirectiveAccess().getValueExpressionParserRuleCall_1_1_0(), semanticObject.getValue());
 		feeder.accept(grammarAccess.getFillDirectiveAccess().getNumberExpressionParserRuleCall_1_3_0(), semanticObject.getNumber());
 		feeder.finish();
@@ -1778,8 +1787,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_HexaDecimalValue(ISerializationContext context, HexaDecimalValue semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.HEXA_DECIMAL_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.HEXA_DECIMAL_VALUE__VALUE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getHexaDecimalValue_Value()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getHexaDecimalValue_Value()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getHexaDecimalValueAccess().getValueHEXATerminalRuleCall_0(), semanticObject.getValue());
@@ -1798,8 +1807,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_IdentifierValue(ISerializationContext context, IdentifierValue semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.IDENTIFIER_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.IDENTIFIER_VALUE__VALUE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getIdentifierValue_Value()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getIdentifierValue_Value()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getIdentifierValueAccess().getValueIDTerminalRuleCall_0(), semanticObject.getValue());
@@ -1818,8 +1827,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_ImmediatOperand(ISerializationContext context, ImmediatOperand semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.IMMEDIAT_OPERAND__OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.IMMEDIAT_OPERAND__OPERAND));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getImmediatOperand_Operand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getImmediatOperand_Operand()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getImmediatOperandAccess().getOperandExpressionParserRuleCall_1_0(), semanticObject.getOperand());
@@ -2001,7 +2010,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     LabelLine returns LabelLine
 	 *
 	 * Constraint:
-	 *     (label=Label (ws1=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? ws2=WS?)
+	 *     (label=Label (ws1=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)
 	 * </pre>
 	 */
 	protected void sequence_LabelLine(ISerializationContext context, LabelLine semanticObject) {
@@ -2098,10 +2107,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_LeftShift(ISerializationContext context, LeftShift semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.LEFT_SHIFT__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.LEFT_SHIFT__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.LEFT_SHIFT__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.LEFT_SHIFT__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getLeftShift_Left()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getLeftShift_Left()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getLeftShift_Right()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getLeftShift_Right()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getLeftShiftAccess().getLeftShiftLeftAction_1_0(), semanticObject.getLeft());
@@ -2179,7 +2188,6 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *         ws2=WS 
 	 *         name=IdentifierValue 
 	 *         (ws3=WS comment1=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
-	 *         ws4=WS? 
 	 *         instructions+=InstructionLine* 
 	 *         ws5=WS 
 	 *         (ws6=WS comment2=ANY_EXCEPT_COMMENT_END_OF_LINE)? 
@@ -2237,12 +2245,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Modulo(ISerializationContext context, Modulo semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MODULO__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MODULO__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MODULO__OPRETATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MODULO__OPRETATION));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MODULO__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MODULO__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getModulo_Left()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getModulo_Left()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getModulo_Opretation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getModulo_Opretation()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getModulo_Right()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getModulo_Right()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getModuloAccess().getModuloLeftAction_1_0(), semanticObject.getLeft());
@@ -2263,8 +2271,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_MulInstruction(ISerializationContext context, MulInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MUL_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MUL_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getMulInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getMulInstruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMulInstructionAccess().getInstructionMULKeyword_0(), semanticObject.getInstruction());
@@ -2303,12 +2311,12 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Multiplication(ISerializationContext context, Multiplication semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MULTIPLICATION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MULTIPLICATION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MULTIPLICATION__OPERATION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MULTIPLICATION__OPERATION));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.MULTIPLICATION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.MULTIPLICATION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getMultiplication_Left()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getMultiplication_Left()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getMultiplication_Operation()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getMultiplication_Operation()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getMultiplication_Right()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getMultiplication_Right()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getMultiplicationAccess().getMultiplicationLeftAction_1_0(), semanticObject.getLeft());
@@ -2324,7 +2332,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     NamDirective returns NamDirective
 	 *
 	 * Constraint:
-	 *     ((directive='NAM' | directive='TTL') operand=IdentifierValue)
+	 *     ((directive='NAM' | directive='TTL') ws=WS operand=IdentifierValue)
 	 * </pre>
 	 */
 	protected void sequence_NamDirective(ISerializationContext context, NamDirective semanticObject) {
@@ -2365,8 +2373,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_NopInstruction(ISerializationContext context, NopInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.NOP_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.NOP_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getNopInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getNopInstruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getNopInstructionAccess().getInstructionNOPKeyword_0(), semanticObject.getInstruction());
@@ -2406,8 +2414,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_OctalValue(ISerializationContext context, OctalValue semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.OCTAL_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.OCTAL_VALUE__VALUE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getOctalValue_Value()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getOctalValue_Value()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getOctalValueAccess().getValueNUMBERSTerminalRuleCall_1_0(), semanticObject.getValue());
@@ -2421,7 +2429,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     OptDirective returns OptDirective
 	 *
 	 * Constraint:
-	 *     (directive='OPT' (options+=AssemblyOption options+=AssemblyOption*)?)
+	 *     (directive='OPT' (ws=WS options+=AssemblyOption options+=AssemblyOption*)?)
 	 * </pre>
 	 */
 	protected void sequence_OptDirective(ISerializationContext context, OptDirective semanticObject) {
@@ -2496,10 +2504,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Or(ISerializationContext context, Or semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.OR__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.OR__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.OR__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.OR__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getOr_Left()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getOr_Left()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getOr_Right()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getOr_Right()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getOrAccess().getOrLeftAction_1_0(), semanticObject.getLeft());
@@ -2514,7 +2522,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     OrgDirective returns OrgDirective
 	 *
 	 * Constraint:
-	 *     (directive='ORG' ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*')?)
+	 *     (directive='ORG' (ws=WS ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*'))?)
 	 * </pre>
 	 */
 	protected void sequence_OrgDirective(ISerializationContext context, OrgDirective semanticObject) {
@@ -2528,7 +2536,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     OtherKindOfInstructions returns OtherKindOfInstructions
 	 *
 	 * Constraint:
-	 *     (label=Label ws1=WS name=IdentifierValue (ws2=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)? ws3=WS?)
+	 *     (label=Label ws1=WS name=IdentifierValue (ws2=WS comment=ANY_EXCEPT_COMMENT_END_OF_LINE)?)
 	 * </pre>
 	 */
 	protected void sequence_OtherKindOfInstructions(ISerializationContext context, OtherKindOfInstructions semanticObject) {
@@ -2542,7 +2550,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     PagDirective returns PagDirective
 	 *
 	 * Constraint:
-	 *     (directive='PAG' operand=Expression?)
+	 *     (directive='PAG' (ws=WS operand=Expression)?)
 	 * </pre>
 	 */
 	protected void sequence_PagDirective(ISerializationContext context, PagDirective semanticObject) {
@@ -2622,8 +2630,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Primary(ISerializationContext context, Not semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.EXPRESSION__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.EXPRESSION__VALUE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getExpression_Value()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getExpression_Value()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getPrimaryAccess().getValuePrimaryParserRuleCall_6_2_0(), semanticObject.getValue());
@@ -2693,7 +2701,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     RegDirective returns RegDirective
 	 *
 	 * Constraint:
-	 *     (directive='REG' (options+=Register options+=Register*)?)
+	 *     (directive='REG' (ws=WS options+=Register options+=Register*)?)
 	 * </pre>
 	 */
 	protected void sequence_RegDirective(ISerializationContext context, RegDirective semanticObject) {
@@ -2774,10 +2782,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_RightShift(ISerializationContext context, RightShift semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RIGHT_SHIFT__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RIGHT_SHIFT__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RIGHT_SHIFT__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RIGHT_SHIFT__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getRightShift_Left()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getRightShift_Left()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getRightShift_Right()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getRightShift_Right()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getRightShiftAccess().getRightShiftLeftAction_1_0(), semanticObject.getLeft());
@@ -2792,7 +2800,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     RmbDirective returns RmbDirective
 	 *
 	 * Constraint:
-	 *     (directive='RMB' (isRelativeToPC?='*'? operand=Expression)?)
+	 *     (directive='RMB' (ws=WS isRelativeToPC?='*'? operand=Expression)?)
 	 * </pre>
 	 */
 	protected void sequence_RmbDirective(ISerializationContext context, RmbDirective semanticObject) {
@@ -2855,8 +2863,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_RtiInstruction(ISerializationContext context, RtiInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RTI_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RTI_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getRtiInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getRtiInstruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getRtiInstructionAccess().getInstructionRTIKeyword_0(), semanticObject.getInstruction());
@@ -2875,8 +2883,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_RtsInstruction(ISerializationContext context, RtsInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.RTS_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.RTS_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getRtsInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getRtsInstruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getRtsInstructionAccess().getInstructionRTSKeyword_0(), semanticObject.getInstruction());
@@ -2908,7 +2916,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     SetDPDirective returns SetDPDirective
 	 *
 	 * Constraint:
-	 *     (directive='SETDP' operand=Expression?)
+	 *     (directive='SETDP' (ws=WS operand=Expression)?)
 	 * </pre>
 	 */
 	protected void sequence_SetDPDirective(ISerializationContext context, SetDPDirective semanticObject) {
@@ -2922,7 +2930,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     SetDirective returns SetDirective
 	 *
 	 * Constraint:
-	 *     (directive='SET' ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*'))
+	 *     (directive='SET' ws=WS ((isRelativeToPC?='*'? operand=Expression) | isRelativeToPC?='*'))
 	 * </pre>
 	 */
 	protected void sequence_SetDirective(ISerializationContext context, SetDirective semanticObject) {
@@ -2941,8 +2949,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_SexInstruction(ISerializationContext context, SexInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SEX_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SEX_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getSexInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getSexInstruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSexInstructionAccess().getInstructionSEXKeyword_0(), semanticObject.getInstruction());
@@ -2978,7 +2986,7 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 *     SpcDirective returns SpcDirective
 	 *
 	 * Constraint:
-	 *     (directive='SPC' (spaceCount=Expression keepCount=Expression?)?)
+	 *     (directive='SPC' (ws=WS spaceCount=Expression keepCount=Expression?)?)
 	 * </pre>
 	 */
 	protected void sequence_SpcDirective(ISerializationContext context, SpcDirective semanticObject) {
@@ -2997,8 +3005,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_SpecialFunctions(ISerializationContext context, SpecialFunctions semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SPECIAL_FUNCTIONS__SPECIAL_FUNTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SPECIAL_FUNCTIONS__SPECIAL_FUNTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getSpecialFunctions_SpecialFuntion()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getSpecialFunctions_SpecialFuntion()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSpecialFunctionsAccess().getSpecialFuntionMacroDefinitionParserRuleCall_0(), semanticObject.getSpecialFuntion());
@@ -3043,8 +3051,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_StringValue(ISerializationContext context, StringValue semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.STRING_VALUE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.STRING_VALUE__VALUE));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getStringValue_Value()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getStringValue_Value()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getStringValueAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
@@ -3119,10 +3127,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Substraction(ISerializationContext context, Substraction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SUBSTRACTION__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SUBSTRACTION__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SUBSTRACTION__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SUBSTRACTION__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getSubstraction_Left()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getSubstraction_Left()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getSubstraction_Right()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getSubstraction_Right()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSubstractionAccess().getSubstractionLeftAction_1_0(), semanticObject.getLeft());
@@ -3142,8 +3150,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Swi2Instruction(ISerializationContext context, Swi2Instruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SWI2_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SWI2_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getSwi2Instruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getSwi2Instruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSwi2InstructionAccess().getInstructionSWI2Keyword_0(), semanticObject.getInstruction());
@@ -3162,8 +3170,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Swi3Instruction(ISerializationContext context, Swi3Instruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SWI3_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SWI3_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getSwi3Instruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getSwi3Instruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSwi3InstructionAccess().getInstructionSWI3Keyword_0(), semanticObject.getInstruction());
@@ -3182,8 +3190,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_SwiInstruction(ISerializationContext context, SwiInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SWI_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SWI_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getSwiInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getSwiInstruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSwiInstructionAccess().getInstructionSWIKeyword_0(), semanticObject.getInstruction());
@@ -3202,8 +3210,8 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_SyncInstruction(ISerializationContext context, SyncInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.SYNC_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.SYNC_INSTRUCTION__INSTRUCTION));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getSyncInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getSyncInstruction_Instruction()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getSyncInstructionAccess().getInstructionSYNCKeyword_0(), semanticObject.getInstruction());
@@ -3222,14 +3230,14 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_TfrInstruction(ISerializationContext context, TfrInstruction semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__INSTRUCTION) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__INSTRUCTION));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG1));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG2) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.TFR_INSTRUCTION__REG2));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Instruction()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Instruction()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_WsOperand()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_WsOperand()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Reg1()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Reg1()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Reg2()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getTfrInstruction_Reg2()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getTfrInstructionAccess().getInstructionTFRKeyword_0_0(), semanticObject.getInstruction());
@@ -3293,10 +3301,10 @@ public class AssemblerSemanticSequencer extends AbstractDelegatingSemanticSequen
 	 */
 	protected void sequence_Xor(ISerializationContext context, Xor semanticObject) {
 		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.XOR__LEFT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.XOR__LEFT));
-			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.Literals.XOR__RIGHT) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.Literals.XOR__RIGHT));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getXor_Left()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getXor_Left()));
+			if (transientValues.isValueTransient(semanticObject, AssemblerPackage.eINSTANCE.getXor_Right()) == ValueTransient.YES)
+				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, AssemblerPackage.eINSTANCE.getXor_Right()));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
 		feeder.accept(grammarAccess.getXorAccess().getXorLeftAction_1_0(), semanticObject.getLeft());

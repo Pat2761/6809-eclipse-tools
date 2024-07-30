@@ -119,7 +119,7 @@ public class PulsInstructionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.PULS_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getPulsInstruction();
   }
 
   /**

@@ -101,7 +101,7 @@ public class LeaInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.LEA_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getLeaInstruction();
   }
 
   /**

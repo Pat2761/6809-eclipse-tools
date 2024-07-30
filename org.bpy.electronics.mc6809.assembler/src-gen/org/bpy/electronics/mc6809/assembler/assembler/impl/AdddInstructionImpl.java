@@ -101,7 +101,7 @@ public class AdddInstructionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ADDD_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getAdddInstruction();
   }
 
   /**

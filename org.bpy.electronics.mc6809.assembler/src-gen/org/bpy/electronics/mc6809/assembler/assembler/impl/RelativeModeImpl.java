@@ -80,7 +80,7 @@ public class RelativeModeImpl extends MinimalEObjectImpl.Container implements Re
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.RELATIVE_MODE;
+    return AssemblerPackage.eINSTANCE.getRelativeMode();
   }
 
   /**

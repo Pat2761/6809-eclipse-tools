@@ -80,7 +80,7 @@ public class ConstantIndexedModeImpl extends MinimalEObjectImpl.Container implem
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.CONSTANT_INDEXED_MODE;
+    return AssemblerPackage.eINSTANCE.getConstantIndexedMode();
   }
 
   /**

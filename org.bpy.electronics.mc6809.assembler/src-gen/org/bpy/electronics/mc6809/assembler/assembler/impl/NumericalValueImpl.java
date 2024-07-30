@@ -59,7 +59,7 @@ public class NumericalValueImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.NUMERICAL_VALUE;
+    return AssemblerPackage.eINSTANCE.getNumericalValue();
   }
 
   /**

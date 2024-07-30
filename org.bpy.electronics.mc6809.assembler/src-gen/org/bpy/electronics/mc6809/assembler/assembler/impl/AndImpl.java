@@ -69,7 +69,7 @@ public class AndImpl extends ExpressionImpl implements And
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.AND;
+    return AssemblerPackage.eINSTANCE.getAnd();
   }
 
   /**

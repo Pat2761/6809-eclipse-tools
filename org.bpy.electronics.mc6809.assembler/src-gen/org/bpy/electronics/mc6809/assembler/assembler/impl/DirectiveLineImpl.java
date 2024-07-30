@@ -134,7 +134,7 @@ public class DirectiveLineImpl extends MinimalEObjectImpl.Container implements D
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.DIRECTIVE_LINE;
+    return AssemblerPackage.eINSTANCE.getDirectiveLine();
   }
 
   /**

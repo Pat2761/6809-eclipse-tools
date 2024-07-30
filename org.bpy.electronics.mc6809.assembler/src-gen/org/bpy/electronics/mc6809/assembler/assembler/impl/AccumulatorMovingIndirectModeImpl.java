@@ -87,7 +87,7 @@ public class AccumulatorMovingIndirectModeImpl extends MinimalEObjectImpl.Contai
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ACCUMULATOR_MOVING_INDIRECT_MODE;
+    return AssemblerPackage.eINSTANCE.getAccumulatorMovingIndirectMode();
   }
 
   /**

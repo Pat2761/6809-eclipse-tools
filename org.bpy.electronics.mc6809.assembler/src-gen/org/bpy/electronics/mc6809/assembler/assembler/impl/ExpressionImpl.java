@@ -70,7 +70,7 @@ public class ExpressionImpl extends MinimalEObjectImpl.Container implements Expr
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.EXPRESSION;
+    return AssemblerPackage.eINSTANCE.getExpression();
   }
 
   /**

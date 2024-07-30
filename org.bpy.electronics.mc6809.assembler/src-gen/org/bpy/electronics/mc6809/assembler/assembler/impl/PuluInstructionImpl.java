@@ -119,7 +119,7 @@ public class PuluInstructionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.PULU_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getPuluInstruction();
   }
 
   /**

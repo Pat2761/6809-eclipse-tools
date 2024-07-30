@@ -90,7 +90,7 @@ public class ModuloImpl extends ExpressionImpl implements Modulo
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.MODULO;
+    return AssemblerPackage.eINSTANCE.getModulo();
   }
 
   /**

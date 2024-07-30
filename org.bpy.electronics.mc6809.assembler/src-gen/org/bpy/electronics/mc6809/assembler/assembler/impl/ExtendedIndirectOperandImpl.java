@@ -59,7 +59,7 @@ public class ExtendedIndirectOperandImpl extends MinimalEObjectImpl.Container im
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.EXTENDED_INDIRECT_OPERAND;
+    return AssemblerPackage.eINSTANCE.getExtendedIndirectOperand();
   }
 
   /**

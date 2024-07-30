@@ -101,7 +101,7 @@ public class JmpInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.JMP_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getJmpInstruction();
   }
 
   /**

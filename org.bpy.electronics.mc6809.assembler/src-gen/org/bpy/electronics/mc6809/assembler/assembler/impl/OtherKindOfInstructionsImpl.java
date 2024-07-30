@@ -30,7 +30,6 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getWs2 <em>Ws2</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getComment <em>Comment</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.OtherKindOfInstructionsImpl#getWs3 <em>Ws3</em>}</li>
  * </ul>
  *
  * @generated
@@ -118,26 +117,6 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
   protected String comment = COMMENT_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getWs3() <em>Ws3</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getWs3()
-   * @generated
-   * @ordered
-   */
-  protected static final String WS3_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getWs3() <em>Ws3</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getWs3()
-   * @generated
-   * @ordered
-   */
-  protected String ws3 = WS3_EDEFAULT;
-
-  /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -155,7 +134,7 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.OTHER_KIND_OF_INSTRUCTIONS;
+    return AssemblerPackage.eINSTANCE.getOtherKindOfInstructions();
   }
 
   /**
@@ -339,31 +318,6 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
    * @generated
    */
   @Override
-  public String getWs3()
-  {
-    return ws3;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setWs3(String newWs3)
-  {
-    String oldWs3 = ws3;
-    ws3 = newWs3;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS3, oldWs3, ws3));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
   {
     switch (featureID)
@@ -396,8 +350,6 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
         return getWs2();
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__COMMENT:
         return getComment();
-      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS3:
-        return getWs3();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -426,9 +378,6 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
         return;
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__COMMENT:
         setComment((String)newValue);
-        return;
-      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS3:
-        setWs3((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -459,9 +408,6 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__COMMENT:
         setComment(COMMENT_EDEFAULT);
         return;
-      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS3:
-        setWs3(WS3_EDEFAULT);
-        return;
     }
     super.eUnset(featureID);
   }
@@ -486,8 +432,6 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
         return WS2_EDEFAULT == null ? ws2 != null : !WS2_EDEFAULT.equals(ws2);
       case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__COMMENT:
         return COMMENT_EDEFAULT == null ? comment != null : !COMMENT_EDEFAULT.equals(comment);
-      case AssemblerPackage.OTHER_KIND_OF_INSTRUCTIONS__WS3:
-        return WS3_EDEFAULT == null ? ws3 != null : !WS3_EDEFAULT.equals(ws3);
     }
     return super.eIsSet(featureID);
   }
@@ -509,8 +453,6 @@ public class OtherKindOfInstructionsImpl extends MinimalEObjectImpl.Container im
     result.append(ws2);
     result.append(", comment: ");
     result.append(comment);
-    result.append(", ws3: ");
-    result.append(ws3);
     result.append(')');
     return result.toString();
   }

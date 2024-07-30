@@ -101,7 +101,7 @@ public class BcsInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BCS_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBcsInstruction();
   }
 
   /**

@@ -69,7 +69,7 @@ public class SubstractionImpl extends ExpressionImpl implements Substraction
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.SUBSTRACTION;
+    return AssemblerPackage.eINSTANCE.getSubstraction();
   }
 
   /**

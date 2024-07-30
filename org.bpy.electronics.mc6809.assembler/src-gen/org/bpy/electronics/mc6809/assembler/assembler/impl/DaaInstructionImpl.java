@@ -66,7 +66,7 @@ public class DaaInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.DAA_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getDaaInstruction();
   }
 
   /**

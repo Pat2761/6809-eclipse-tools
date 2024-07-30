@@ -122,7 +122,7 @@ public class EquDirectiveImpl extends MinimalEObjectImpl.Container implements Eq
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.EQU_DIRECTIVE;
+    return AssemblerPackage.eINSTANCE.getEquDirective();
   }
 
   /**

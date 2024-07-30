@@ -90,7 +90,7 @@ public class DivisionImpl extends ExpressionImpl implements Division
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.DIVISION;
+    return AssemblerPackage.eINSTANCE.getDivision();
   }
 
   /**

@@ -19,7 +19,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getWs2 <em>Ws2</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getComment <em>Comment</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getWs3 <em>Ws3</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOtherKindOfInstructions()
@@ -137,27 +136,5 @@ public interface OtherKindOfInstructions extends EObject
    * @generated
    */
   void setComment(String value);
-
-  /**
-   * Returns the value of the '<em><b>Ws3</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Ws3</em>' attribute.
-   * @see #setWs3(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getOtherKindOfInstructions_Ws3()
-   * @model
-   * @generated
-   */
-  String getWs3();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.OtherKindOfInstructions#getWs3 <em>Ws3</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ws3</em>' attribute.
-   * @see #getWs3()
-   * @generated
-   */
-  void setWs3(String value);
 
 } // OtherKindOfInstructions

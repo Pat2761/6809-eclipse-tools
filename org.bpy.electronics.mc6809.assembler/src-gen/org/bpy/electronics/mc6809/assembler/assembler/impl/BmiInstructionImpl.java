@@ -101,7 +101,7 @@ public class BmiInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BMI_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBmiInstruction();
   }
 
   /**

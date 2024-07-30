@@ -35,7 +35,7 @@ public class NotImpl extends ExpressionImpl implements Not
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.NOT;
+    return AssemblerPackage.eINSTANCE.getNot();
   }
 
 } //NotImpl

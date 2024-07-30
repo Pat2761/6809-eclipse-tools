@@ -134,7 +134,7 @@ public class InstructionLineImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.INSTRUCTION_LINE;
+    return AssemblerPackage.eINSTANCE.getInstructionLine();
   }
 
   /**

@@ -66,7 +66,7 @@ public class CharacterValueImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.CHARACTER_VALUE;
+    return AssemblerPackage.eINSTANCE.getCharacterValue();
   }
 
   /**

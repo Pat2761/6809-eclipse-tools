@@ -149,20 +149,19 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cWs2WSTerminalRuleCall_3_0_0 = (RuleCall)cWs2Assignment_3_0.eContents().get(0);
 		private final Assignment cCommentAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
 		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0 = (RuleCall)cCommentAssignment_3_1.eContents().get(0);
-		private final Assignment cWs3Assignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final RuleCall cWs3WSTerminalRuleCall_4_0 = (RuleCall)cWs3Assignment_4.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_4 = (RuleCall)cGroup.eContents().get(4);
 		private final RuleCall cEndOfLineParserRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		
 		//OtherKindOfInstructions:
 		//    label=Label ws1=WS name=IdentifierValue
 		//    (ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    ws3=WS? EndOfLine
+		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//label=Label ws1=WS name=IdentifierValue
 		//(ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//ws3=WS? EndOfLine
+		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
 		//label=Label
@@ -198,11 +197,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//ANY_EXCEPT_COMMENT_END_OF_LINE
 		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_3_1_0; }
 		
-		//ws3=WS?
-		public Assignment getWs3Assignment_4() { return cWs3Assignment_4; }
-		
-		//WS
-		public RuleCall getWs3WSTerminalRuleCall_4_0() { return cWs3WSTerminalRuleCall_4_0; }
+		//WS?
+		public RuleCall getWSTerminalRuleCall_4() { return cWSTerminalRuleCall_4; }
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_5() { return cEndOfLineParserRuleCall_5; }
@@ -241,8 +237,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cWs3WSTerminalRuleCall_4_0_0 = (RuleCall)cWs3Assignment_4_0.eContents().get(0);
 		private final Assignment cComment1Assignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
 		private final RuleCall cComment1ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0 = (RuleCall)cComment1Assignment_4_1.eContents().get(0);
-		private final Assignment cWs4Assignment_5 = (Assignment)cGroup.eContents().get(5);
-		private final RuleCall cWs4WSTerminalRuleCall_5_0 = (RuleCall)cWs4Assignment_5.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_5 = (RuleCall)cGroup.eContents().get(5);
 		private final RuleCall cEndOfLineParserRuleCall_6 = (RuleCall)cGroup.eContents().get(6);
 		private final Assignment cInstructionsAssignment_7 = (Assignment)cGroup.eContents().get(7);
 		private final RuleCall cInstructionsInstructionLineParserRuleCall_7_0 = (RuleCall)cInstructionsAssignment_7.eContents().get(0);
@@ -265,7 +260,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//MacroDefinition:
 		//    ws1=WS '.macro' ws2=WS name=IdentifierValue
 		//    (ws3=WS (comment1=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    ws4=WS? EndOfLine
+		//    WS? EndOfLine
 		//    instructions += InstructionLine*
 		//    ws5=WS '.endm' (ws6=WS (comment2=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//    ws7=WS? EndOfLine
@@ -274,7 +269,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		
 		//ws1=WS '.macro' ws2=WS name=IdentifierValue
 		//(ws3=WS (comment1=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//ws4=WS? EndOfLine
+		//WS? EndOfLine
 		//instructions += InstructionLine*
 		//ws5=WS '.endm' (ws6=WS (comment2=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 		//ws7=WS? EndOfLine
@@ -316,11 +311,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//ANY_EXCEPT_COMMENT_END_OF_LINE
 		public RuleCall getComment1ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0() { return cComment1ANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_4_1_0; }
 		
-		//ws4=WS?
-		public Assignment getWs4Assignment_5() { return cWs4Assignment_5; }
-		
-		//WS
-		public RuleCall getWs4WSTerminalRuleCall_5_0() { return cWs4WSTerminalRuleCall_5_0; }
+		//WS?
+		public RuleCall getWSTerminalRuleCall_5() { return cWSTerminalRuleCall_5; }
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_6() { return cEndOfLineParserRuleCall_6; }
@@ -374,20 +366,19 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final RuleCall cWs1WSTerminalRuleCall_1_0_0 = (RuleCall)cWs1Assignment_1_0.eContents().get(0);
 		private final Assignment cCommentAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_1_1_0 = (RuleCall)cCommentAssignment_1_1.eContents().get(0);
-		private final Assignment cWs2Assignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cWs2WSTerminalRuleCall_2_0 = (RuleCall)cWs2Assignment_2.eContents().get(0);
+		private final RuleCall cWSTerminalRuleCall_2 = (RuleCall)cGroup.eContents().get(2);
 		private final RuleCall cEndOfLineParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
 		//LabelLine:
 		//    label = Label
 		//    (ws1=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//    ws2=WS? EndOfLine
+		//    WS? EndOfLine
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//label = Label
 		//(ws1=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-		//ws2=WS? EndOfLine
+		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
 		//label = Label
@@ -411,11 +402,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//ANY_EXCEPT_COMMENT_END_OF_LINE
 		public RuleCall getCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_1_1_0() { return cCommentANY_EXCEPT_COMMENT_END_OF_LINETerminalRuleCall_1_1_0; }
 		
-		//ws2=WS?
-		public Assignment getWs2Assignment_2() { return cWs2Assignment_2; }
-		
-		//WS
-		public RuleCall getWs2WSTerminalRuleCall_2_0() { return cWs2WSTerminalRuleCall_2_0; }
+		//WS?
+		public RuleCall getWSTerminalRuleCall_2() { return cWSTerminalRuleCall_2; }
 		
 		//EndOfLine
 		public RuleCall getEndOfLineParserRuleCall_3() { return cEndOfLineParserRuleCall_3; }
@@ -8077,7 +8065,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// * Definition of the list possible directives
 		// */
 		//DirectiveLine:
-		//    label = Label ws1=WS
+		//    label=Label ws1=WS
 		//    (
 		//            directive = EquDirective
 		//        |  directive = OrgDirective
@@ -8102,7 +8090,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//label = Label ws1=WS
+		//label=Label ws1=WS
 		//(
 		//        directive = EquDirective
 		//    |  directive = OrgDirective
@@ -8126,7 +8114,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//WS? EndOfLine
 		public Group getGroup() { return cGroup; }
 		
-		//label = Label
+		//label=Label
 		public Assignment getLabelAssignment_0() { return cLabelAssignment_0; }
 		
 		//Label
@@ -8288,7 +8276,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveSETDPKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperandExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		
@@ -8309,12 +8298,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//SetDPDirective:
 		//    directive = 'SETDP'
-		//    (WS (operand=Expression))?
+		//    (ws=WS (operand=Expression))?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'SETDP'
-		//(WS (operand=Expression))?
+		//(ws=WS (operand=Expression))?
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'SETDP'
@@ -8323,11 +8312,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'SETDP'
 		public Keyword getDirectiveSETDPKeyword_0_0() { return cDirectiveSETDPKeyword_0_0; }
 		
-		//(WS (operand=Expression))?
+		//(ws=WS (operand=Expression))?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//(operand=Expression)
 		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
@@ -8341,7 +8333,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveFCCKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cParametersAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final Alternatives cParametersAlternatives_1_1_0 = (Alternatives)cParametersAssignment_1_1.eContents().get(0);
 		private final RuleCall cParametersStringValueParserRuleCall_1_1_0_0 = (RuleCall)cParametersAlternatives_1_1_0.eContents().get(0);
@@ -8381,14 +8374,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//FccDirective:
 		//    directive = 'FCC'
-		////    (WS string=STRING)
-		//    (WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
+		//    (ws=WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//    directive = 'FCC'
-		////    (WS string=STRING)
-		//    (WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
+		//directive = 'FCC'
+		//(ws=WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'FCC'
@@ -8397,12 +8388,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'FCC'
 		public Keyword getDirectiveFCCKeyword_0_0() { return cDirectiveFCCKeyword_0_0; }
 		
-		////    (WS string=STRING)
-		//    (WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
+		//(ws=WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//parameters+=(StringValue | Expression)
 		public Assignment getParametersAssignment_1_1() { return cParametersAssignment_1_1; }
@@ -8440,7 +8433,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveREGKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cOptionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOptionsRegisterEnumRuleCall_1_1_0 = (RuleCall)cOptionsAssignment_1_1.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
@@ -8476,12 +8470,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//RegDirective:
 		//    (directive = 'REG')
-		//    (WS options+=Register ( ',' options+=Register)*)?
+		//    (ws=WS options+=Register ( ',' options+=Register)*)?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//(directive = 'REG')
-		//(WS options+=Register ( ',' options+=Register)*)?
+		//(ws=WS options+=Register ( ',' options+=Register)*)?
 		public Group getGroup() { return cGroup; }
 		
 		//(directive = 'REG')
@@ -8490,11 +8484,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'REG'
 		public Keyword getDirectiveREGKeyword_0_0() { return cDirectiveREGKeyword_0_0; }
 		
-		//(WS options+=Register ( ',' options+=Register)*)?
+		//(ws=WS options+=Register ( ',' options+=Register)*)?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//options+=Register
 		public Assignment getOptionsAssignment_1_1() { return cOptionsAssignment_1_1; }
@@ -8520,7 +8517,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveSPCKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cSpaceCountAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cSpaceCountExpressionParserRuleCall_1_1_0 = (RuleCall)cSpaceCountAssignment_1_1.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
@@ -8545,12 +8543,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//SpcDirective:
 		//    directive = 'SPC'
-		//    (WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
+		//    (ws=WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'SPC'
-		//(WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
+		//(ws=WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'SPC'
@@ -8559,11 +8557,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'SPC'
 		public Keyword getDirectiveSPCKeyword_0_0() { return cDirectiveSPCKeyword_0_0; }
 		
-		//(WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
+		//(ws=WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//(spaceCount=Expression)
 		public Assignment getSpaceCountAssignment_1_1() { return cSpaceCountAssignment_1_1; }
@@ -8591,7 +8592,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cDirectiveNAMKeyword_0_0_0 = (Keyword)cDirectiveAssignment_0_0.eContents().get(0);
 		private final Assignment cDirectiveAssignment_0_1 = (Assignment)cAlternatives_0.eContents().get(1);
 		private final Keyword cDirectiveTTLKeyword_0_1_0 = (Keyword)cDirectiveAssignment_0_1.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cWsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cWsWSTerminalRuleCall_1_0 = (RuleCall)cWsAssignment_1.eContents().get(0);
 		private final Assignment cOperandAssignment_2 = (Assignment)cGroup.eContents().get(2);
 		private final RuleCall cOperandIdentifierValueParserRuleCall_2_0 = (RuleCall)cOperandAssignment_2.eContents().get(0);
 		
@@ -8613,12 +8615,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//NamDirective:
 		//    (directive = 'NAM'|directive = 'TTL')
-		//    WS (operand=IdentifierValue)
+		//    ws=WS (operand=IdentifierValue)
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//(directive = 'NAM'|directive = 'TTL')
-		//WS (operand=IdentifierValue)
+		//ws=WS (operand=IdentifierValue)
 		public Group getGroup() { return cGroup; }
 		
 		//(directive = 'NAM'|directive = 'TTL')
@@ -8636,8 +8638,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'TTL'
 		public Keyword getDirectiveTTLKeyword_0_1_0() { return cDirectiveTTLKeyword_0_1_0; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1() { return cWsAssignment_1; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		public RuleCall getWsWSTerminalRuleCall_1_0() { return cWsWSTerminalRuleCall_1_0; }
 		
 		//(operand=IdentifierValue)
 		public Assignment getOperandAssignment_2() { return cOperandAssignment_2; }
@@ -8651,7 +8656,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectivePAGKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperandExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		
@@ -8674,12 +8680,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//PagDirective:
 		//    directive = 'PAG'
-		//    (WS (operand=Expression))?
+		//    (ws=WS (operand=Expression))?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'PAG'
-		//(WS (operand=Expression))?
+		//(ws=WS (operand=Expression))?
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'PAG'
@@ -8688,11 +8694,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'PAG'
 		public Keyword getDirectivePAGKeyword_0_0() { return cDirectivePAGKeyword_0_0; }
 		
-		//(WS (operand=Expression))?
+		//(ws=WS (operand=Expression))?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//(operand=Expression)
 		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
@@ -8706,7 +8715,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveOPTKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cOptionsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOptionsAssemblyOptionEnumRuleCall_1_1_0 = (RuleCall)cOptionsAssignment_1_1.eContents().get(0);
 		private final Group cGroup_1_2 = (Group)cGroup_1.eContents().get(2);
@@ -8749,12 +8759,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//OptDirective:
 		//    directive = 'OPT'
-		//    (WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
+		//    (ws=WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'OPT'
-		//(WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
+		//(ws=WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'OPT'
@@ -8763,11 +8773,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'OPT'
 		public Keyword getDirectiveOPTKeyword_0_0() { return cDirectiveOPTKeyword_0_0; }
 		
-		//(WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
+		//(ws=WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//options+=AssemblyOption
 		public Assignment getOptionsAssignment_1_1() { return cOptionsAssignment_1_1; }
@@ -8813,7 +8826,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveSETKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
-		private final RuleCall cWSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Assignment cWsAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cWsWSTerminalRuleCall_1_0 = (RuleCall)cWsAssignment_1.eContents().get(0);
 		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
 		private final Group cGroup_2_0 = (Group)cAlternatives_2.eContents().get(0);
 		private final Assignment cIsRelativeToPCAssignment_2_0_0 = (Assignment)cGroup_2_0.eContents().get(0);
@@ -8838,7 +8852,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//SetDirective:
 		//    directive = 'SET'
-		//    WS (
+		//    ws=WS (
 		//        ( isRelativeToPC?='*'? operand=Expression) |
 		//        ( isRelativeToPC?='*' )
 		//        )
@@ -8846,7 +8860,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'SET'
-		//WS (
+		//ws=WS (
 		//    ( isRelativeToPC?='*'? operand=Expression) |
 		//    ( isRelativeToPC?='*' )
 		//    )
@@ -8858,8 +8872,11 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'SET'
 		public Keyword getDirectiveSETKeyword_0_0() { return cDirectiveSETKeyword_0_0; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1() { return cWsAssignment_1; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1() { return cWSTerminalRuleCall_1; }
+		public RuleCall getWsWSTerminalRuleCall_1_0() { return cWsWSTerminalRuleCall_1_0; }
 		
 		//(
 		//       ( isRelativeToPC?='*'? operand=Expression) |
@@ -8894,7 +8911,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveFILLKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cValueAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cValueExpressionParserRuleCall_1_1_0 = (RuleCall)cValueAssignment_1_1.eContents().get(0);
 		private final Keyword cCommaKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
@@ -8909,12 +8927,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//FillDirective:
 		//    directive = 'FILL'
-		//    (WS value=Expression ',' number=Expression)
+		//    (ws=WS value=Expression ',' number=Expression)
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'FILL'
-		//(WS value=Expression ',' number=Expression)
+		//(ws=WS value=Expression ',' number=Expression)
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'FILL'
@@ -8923,11 +8941,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'FILL'
 		public Keyword getDirectiveFILLKeyword_0_0() { return cDirectiveFILLKeyword_0_0; }
 		
-		//(WS value=Expression ',' number=Expression)
+		//(ws=WS value=Expression ',' number=Expression)
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//value=Expression
 		public Assignment getValueAssignment_1_1() { return cValueAssignment_1_1; }
@@ -8952,7 +8973,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Keyword cDirectiveBSZKeyword_0_0_0 = (Keyword)cDirectiveAlternatives_0_0.eContents().get(0);
 		private final Keyword cDirectiveZMBKeyword_0_0_1 = (Keyword)cDirectiveAlternatives_0_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperandExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		
@@ -8964,12 +8986,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//BszDirective:
 		//    directive = ('BSZ'|'ZMB')
-		//    (WS operand=Expression)
+		//    (ws=WS operand=Expression)
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = ('BSZ'|'ZMB')
-		//(WS operand=Expression)
+		//(ws=WS operand=Expression)
 		public Group getGroup() { return cGroup; }
 		
 		//directive = ('BSZ'|'ZMB')
@@ -8984,11 +9006,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'ZMB'
 		public Keyword getDirectiveZMBKeyword_0_0_1() { return cDirectiveZMBKeyword_0_0_1; }
 		
-		//(WS operand=Expression)
+		//(ws=WS operand=Expression)
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//operand=Expression
 		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
@@ -9002,7 +9027,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveFDBKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperandListOfExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		
@@ -9020,12 +9046,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//FdbDirective:
 		//    directive = 'FDB'
-		//    (WS (operand = ListOfExpression))?
+		//    (ws=WS (operand = ListOfExpression))?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'FDB'
-		//(WS (operand = ListOfExpression))?
+		//(ws=WS (operand = ListOfExpression))?
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'FDB'
@@ -9034,11 +9060,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'FDB'
 		public Keyword getDirectiveFDBKeyword_0_0() { return cDirectiveFDBKeyword_0_0; }
 		
-		//(WS (operand = ListOfExpression))?
+		//(ws=WS (operand = ListOfExpression))?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//(operand = ListOfExpression)
 		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
@@ -9052,7 +9081,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveFCBKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperandListOfExpressionParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		
@@ -9070,12 +9100,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//FcbDirective:
 		//    directive = 'FCB'
-		//    (WS (operand = ListOfExpression))?
+		//    (ws=WS (operand = ListOfExpression))?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'FCB'
-		//(WS (operand = ListOfExpression))?
+		//(ws=WS (operand = ListOfExpression))?
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'FCB'
@@ -9084,11 +9114,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'FCB'
 		public Keyword getDirectiveFCBKeyword_0_0() { return cDirectiveFCBKeyword_0_0; }
 		
-		//(WS (operand = ListOfExpression))?
+		//(ws=WS (operand = ListOfExpression))?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//(operand = ListOfExpression)
 		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
@@ -9102,7 +9135,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveRMBKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Group cGroup_1_1 = (Group)cGroup_1.eContents().get(1);
 		private final Assignment cIsRelativeToPCAssignment_1_1_0 = (Assignment)cGroup_1_1.eContents().get(0);
 		private final Keyword cIsRelativeToPCAsteriskKeyword_1_1_0_0 = (Keyword)cIsRelativeToPCAssignment_1_1_0.eContents().get(0);
@@ -9123,12 +9157,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//RmbDirective:
 		//    directive = 'RMB'
-		//    (WS (isRelativeToPC?='*'? operand = Expression))?
+		//    (ws=WS (isRelativeToPC?='*'? operand = Expression))?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'RMB'
-		//(WS (isRelativeToPC?='*'? operand = Expression))?
+		//(ws=WS (isRelativeToPC?='*'? operand = Expression))?
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'RMB'
@@ -9137,11 +9171,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'RMB'
 		public Keyword getDirectiveRMBKeyword_0_0() { return cDirectiveRMBKeyword_0_0; }
 		
-		//(WS (isRelativeToPC?='*'? operand = Expression))?
+		//(ws=WS (isRelativeToPC?='*'? operand = Expression))?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//(isRelativeToPC?='*'? operand = Expression)
 		public Group getGroup_1_1() { return cGroup_1_1; }
@@ -9164,7 +9201,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveENDKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Assignment cOperandAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cOperandIdentifierValueParserRuleCall_1_1_0 = (RuleCall)cOperandAssignment_1_1.eContents().get(0);
 		
@@ -9181,12 +9219,12 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//EndDirective:
 		//    directive = 'END'
-		//    (WS operand=IdentifierValue)?
+		//    (ws=WS operand=IdentifierValue)?
 		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'END'
-		//(WS operand=IdentifierValue)?
+		//(ws=WS operand=IdentifierValue)?
 		public Group getGroup() { return cGroup; }
 		
 		//directive = 'END'
@@ -9195,11 +9233,14 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'END'
 		public Keyword getDirectiveENDKeyword_0_0() { return cDirectiveENDKeyword_0_0; }
 		
-		//(WS operand=IdentifierValue)?
+		//(ws=WS operand=IdentifierValue)?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//operand=IdentifierValue
 		public Assignment getOperandAssignment_1_1() { return cOperandAssignment_1_1; }
@@ -9213,7 +9254,8 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		private final Assignment cDirectiveAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cDirectiveORGKeyword_0_0 = (Keyword)cDirectiveAssignment_0.eContents().get(0);
 		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final RuleCall cWSTerminalRuleCall_1_0 = (RuleCall)cGroup_1.eContents().get(0);
+		private final Assignment cWsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
+		private final RuleCall cWsWSTerminalRuleCall_1_0_0 = (RuleCall)cWsAssignment_1_0.eContents().get(0);
 		private final Alternatives cAlternatives_1_1 = (Alternatives)cGroup_1.eContents().get(1);
 		private final Group cGroup_1_1_0 = (Group)cAlternatives_1_1.eContents().get(0);
 		private final Assignment cIsRelativeToPCAssignment_1_1_0_0 = (Assignment)cGroup_1_1_0.eContents().get(0);
@@ -9232,7 +9274,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		// */
 		//OrgDirective:
 		//    directive = 'ORG'
-		//    (WS (
+		//    (ws=WS (
 		//        (isRelativeToPC?='*'? operand=Expression) |
 		//        (isRelativeToPC?='*' )
 		//        ))?
@@ -9240,7 +9282,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		@Override public ParserRule getRule() { return rule; }
 		
 		//directive = 'ORG'
-		//(WS (
+		//(ws=WS (
 		//    (isRelativeToPC?='*'? operand=Expression) |
 		//    (isRelativeToPC?='*' )
 		//    ))?
@@ -9252,14 +9294,17 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 		//'ORG'
 		public Keyword getDirectiveORGKeyword_0_0() { return cDirectiveORGKeyword_0_0; }
 		
-		//(WS (
+		//(ws=WS (
 		//    (isRelativeToPC?='*'? operand=Expression) |
 		//    (isRelativeToPC?='*' )
 		//    ))?
 		public Group getGroup_1() { return cGroup_1; }
 		
+		//ws=WS
+		public Assignment getWsAssignment_1_0() { return cWsAssignment_1_0; }
+		
 		//WS
-		public RuleCall getWSTerminalRuleCall_1_0() { return cWSTerminalRuleCall_1_0; }
+		public RuleCall getWsWSTerminalRuleCall_1_0_0() { return cWsWSTerminalRuleCall_1_0_0; }
 		
 		//(
 		//       (isRelativeToPC?='*'? operand=Expression) |
@@ -10709,7 +10754,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//OtherKindOfInstructions:
 	//    label=Label ws1=WS name=IdentifierValue
 	//    (ws2=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    ws3=WS? EndOfLine
+	//    WS? EndOfLine
 	//;
 	public OtherKindOfInstructionsElements getOtherKindOfInstructionsAccess() {
 		return pOtherKindOfInstructions;
@@ -10740,7 +10785,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//MacroDefinition:
 	//    ws1=WS '.macro' ws2=WS name=IdentifierValue
 	//    (ws3=WS (comment1=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    ws4=WS? EndOfLine
+	//    WS? EndOfLine
 	//    instructions += InstructionLine*
 	//    ws5=WS '.endm' (ws6=WS (comment2=ANY_EXCEPT_COMMENT_END_OF_LINE))?
 	//    ws7=WS? EndOfLine
@@ -10756,7 +10801,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	//LabelLine:
 	//    label = Label
 	//    (ws1=WS (comment=ANY_EXCEPT_COMMENT_END_OF_LINE))?
-	//    ws2=WS? EndOfLine
+	//    WS? EndOfLine
 	//;
 	public LabelLineElements getLabelLineAccess() {
 		return pLabelLine;
@@ -13269,7 +13314,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// * Definition of the list possible directives
 	// */
 	//DirectiveLine:
-	//    label = Label ws1=WS
+	//    label=Label ws1=WS
 	//    (
 	//            directive = EquDirective
 	//        |  directive = OrgDirective
@@ -13317,7 +13362,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//SetDPDirective:
 	//    directive = 'SETDP'
-	//    (WS (operand=Expression))?
+	//    (ws=WS (operand=Expression))?
 	//;
 	public SetDPDirectiveElements getSetDPDirectiveAccess() {
 		return pSetDPDirective;
@@ -13355,8 +13400,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//FccDirective:
 	//    directive = 'FCC'
-	////    (WS string=STRING)
-	//    (WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
+	//    (ws=WS parameters+=(StringValue | Expression) (',' parameters+=(StringValue | Expression))*)
 	//;
 	public FccDirectiveElements getFccDirectiveAccess() {
 		return pFccDirective;
@@ -13394,7 +13438,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//RegDirective:
 	//    (directive = 'REG')
-	//    (WS options+=Register ( ',' options+=Register)*)?
+	//    (ws=WS options+=Register ( ',' options+=Register)*)?
 	//;
 	public RegDirectiveElements getRegDirectiveAccess() {
 		return pRegDirective;
@@ -13421,7 +13465,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//SpcDirective:
 	//    directive = 'SPC'
-	//    (WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
+	//    (ws=WS (spaceCount=Expression) ( ',' keepCount=Expression)?)?
 	//;
 	public SpcDirectiveElements getSpcDirectiveAccess() {
 		return pSpcDirective;
@@ -13449,7 +13493,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//NamDirective:
 	//    (directive = 'NAM'|directive = 'TTL')
-	//    WS (operand=IdentifierValue)
+	//    ws=WS (operand=IdentifierValue)
 	//;
 	public NamDirectiveElements getNamDirectiveAccess() {
 		return pNamDirective;
@@ -13478,7 +13522,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//PagDirective:
 	//    directive = 'PAG'
-	//    (WS (operand=Expression))?
+	//    (ws=WS (operand=Expression))?
 	//;
 	public PagDirectiveElements getPagDirectiveAccess() {
 		return pPagDirective;
@@ -13523,7 +13567,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//OptDirective:
 	//    directive = 'OPT'
-	//    (WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
+	//    (ws=WS options+=AssemblyOption ( ',' options+=AssemblyOption)*)?
 	//;
 	public OptDirectiveElements getOptDirectiveAccess() {
 		return pOptDirective;
@@ -13564,7 +13608,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//SetDirective:
 	//    directive = 'SET'
-	//    WS (
+	//    ws=WS (
 	//        ( isRelativeToPC?='*'? operand=Expression) |
 	//        ( isRelativeToPC?='*' )
 	//        )
@@ -13585,7 +13629,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//FillDirective:
 	//    directive = 'FILL'
-	//    (WS value=Expression ',' number=Expression)
+	//    (ws=WS value=Expression ',' number=Expression)
 	//;
 	public FillDirectiveElements getFillDirectiveAccess() {
 		return pFillDirective;
@@ -13603,7 +13647,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//BszDirective:
 	//    directive = ('BSZ'|'ZMB')
-	//    (WS operand=Expression)
+	//    (ws=WS operand=Expression)
 	//;
 	public BszDirectiveElements getBszDirectiveAccess() {
 		return pBszDirective;
@@ -13627,7 +13671,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//FdbDirective:
 	//    directive = 'FDB'
-	//    (WS (operand = ListOfExpression))?
+	//    (ws=WS (operand = ListOfExpression))?
 	//;
 	public FdbDirectiveElements getFdbDirectiveAccess() {
 		return pFdbDirective;
@@ -13651,7 +13695,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//FcbDirective:
 	//    directive = 'FCB'
-	//    (WS (operand = ListOfExpression))?
+	//    (ws=WS (operand = ListOfExpression))?
 	//;
 	public FcbDirectiveElements getFcbDirectiveAccess() {
 		return pFcbDirective;
@@ -13675,7 +13719,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//RmbDirective:
 	//    directive = 'RMB'
-	//    (WS (isRelativeToPC?='*'? operand = Expression))?
+	//    (ws=WS (isRelativeToPC?='*'? operand = Expression))?
 	//;
 	public RmbDirectiveElements getRmbDirectiveAccess() {
 		return pRmbDirective;
@@ -13698,7 +13742,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//EndDirective:
 	//    directive = 'END'
-	//    (WS operand=IdentifierValue)?
+	//    (ws=WS operand=IdentifierValue)?
 	//;
 	public EndDirectiveElements getEndDirectiveAccess() {
 		return pEndDirective;
@@ -13717,7 +13761,7 @@ public class AssemblerGrammarAccess extends AbstractElementFinder.AbstractGramma
 	// */
 	//OrgDirective:
 	//    directive = 'ORG'
-	//    (WS (
+	//    (ws=WS (
 	//        (isRelativeToPC?='*'? operand=Expression) |
 	//        (isRelativeToPC?='*' )
 	//        ))?

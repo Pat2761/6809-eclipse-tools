@@ -101,7 +101,7 @@ public class AslInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ASL_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getAslInstruction();
   }
 
   /**

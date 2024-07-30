@@ -130,7 +130,7 @@ public class ExgInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.EXG_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getExgInstruction();
   }
 
   /**

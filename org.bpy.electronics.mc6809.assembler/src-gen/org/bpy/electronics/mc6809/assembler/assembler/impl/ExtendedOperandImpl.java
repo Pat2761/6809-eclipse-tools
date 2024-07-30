@@ -59,7 +59,7 @@ public class ExtendedOperandImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.EXTENDED_OPERAND;
+    return AssemblerPackage.eINSTANCE.getExtendedOperand();
   }
 
   /**

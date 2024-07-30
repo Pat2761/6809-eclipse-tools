@@ -101,7 +101,7 @@ public class AsrInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ASR_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getAsrInstruction();
   }
 
   /**

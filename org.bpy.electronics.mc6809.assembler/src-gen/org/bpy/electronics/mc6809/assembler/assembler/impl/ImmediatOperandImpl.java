@@ -59,7 +59,7 @@ public class ImmediatOperandImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.IMMEDIAT_OPERAND;
+    return AssemblerPackage.eINSTANCE.getImmediatOperand();
   }
 
   /**

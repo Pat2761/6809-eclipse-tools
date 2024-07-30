@@ -32,6 +32,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl#getWs <em>Ws</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FccDirectiveImpl#getParameters <em>Parameters</em>}</li>
  * </ul>
  *
@@ -58,6 +59,26 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
    * @ordered
    */
   protected String directive = DIRECTIVE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected String ws = WS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getParameters() <em>Parameters</em>}' containment reference list.
@@ -87,7 +108,7 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.FCC_DIRECTIVE;
+    return AssemblerPackage.eINSTANCE.getFccDirective();
   }
 
   /**
@@ -113,6 +134,31 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     directive = newDirective;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FCC_DIRECTIVE__DIRECTIVE, oldDirective, directive));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getWs()
+  {
+    return ws;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs(String newWs)
+  {
+    String oldWs = ws;
+    ws = newWs;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FCC_DIRECTIVE__WS, oldWs, ws));
   }
 
   /**
@@ -158,6 +204,8 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     {
       case AssemblerPackage.FCC_DIRECTIVE__DIRECTIVE:
         return getDirective();
+      case AssemblerPackage.FCC_DIRECTIVE__WS:
+        return getWs();
       case AssemblerPackage.FCC_DIRECTIVE__PARAMETERS:
         return getParameters();
     }
@@ -177,6 +225,9 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     {
       case AssemblerPackage.FCC_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
+        return;
+      case AssemblerPackage.FCC_DIRECTIVE__WS:
+        setWs((String)newValue);
         return;
       case AssemblerPackage.FCC_DIRECTIVE__PARAMETERS:
         getParameters().clear();
@@ -199,6 +250,9 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
       case AssemblerPackage.FCC_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
+      case AssemblerPackage.FCC_DIRECTIVE__WS:
+        setWs(WS_EDEFAULT);
+        return;
       case AssemblerPackage.FCC_DIRECTIVE__PARAMETERS:
         getParameters().clear();
         return;
@@ -218,6 +272,8 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     {
       case AssemblerPackage.FCC_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
+      case AssemblerPackage.FCC_DIRECTIVE__WS:
+        return WS_EDEFAULT == null ? ws != null : !WS_EDEFAULT.equals(ws);
       case AssemblerPackage.FCC_DIRECTIVE__PARAMETERS:
         return parameters != null && !parameters.isEmpty();
     }
@@ -237,6 +293,8 @@ public class FccDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (directive: ");
     result.append(directive);
+    result.append(", ws: ");
+    result.append(ws);
     result.append(')');
     return result.toString();
   }

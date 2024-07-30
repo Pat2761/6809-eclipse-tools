@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getWs <em>Ws</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getValue <em>Value</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getNumber <em>Number</em>}</li>
  * </ul>
@@ -46,6 +47,28 @@ public interface FillDirective extends EObject
    * @generated
    */
   void setDirective(String value);
+
+  /**
+   * Returns the value of the '<em><b>Ws</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the value of the '<em>Ws</em>' attribute.
+   * @see #setWs(String)
+   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getFillDirective_Ws()
+   * @model
+   * @generated
+   */
+  String getWs();
+
+  /**
+   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.FillDirective#getWs <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @param value the new value of the '<em>Ws</em>' attribute.
+   * @see #getWs()
+   * @generated
+   */
+  void setWs(String value);
 
   /**
    * Returns the value of the '<em><b>Value</b></em>' containment reference.

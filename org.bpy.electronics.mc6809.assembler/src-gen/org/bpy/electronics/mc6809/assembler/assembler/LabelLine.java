@@ -17,7 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getLabel <em>Label</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs1 <em>Ws1</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getComment <em>Comment</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs2 <em>Ws2</em>}</li>
  * </ul>
  *
  * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getLabelLine()
@@ -91,27 +90,5 @@ public interface LabelLine extends EObject
    * @generated
    */
   void setComment(String value);
-
-  /**
-   * Returns the value of the '<em><b>Ws2</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Ws2</em>' attribute.
-   * @see #setWs2(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getLabelLine_Ws2()
-   * @model
-   * @generated
-   */
-  String getWs2();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.LabelLine#getWs2 <em>Ws2</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ws2</em>' attribute.
-   * @see #getWs2()
-   * @generated
-   */
-  void setWs2(String value);
 
 } // LabelLine

@@ -101,7 +101,7 @@ public class ClrInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.CLR_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getClrInstruction();
   }
 
   /**

@@ -66,7 +66,7 @@ public class BlankLineImpl extends MinimalEObjectImpl.Container implements Blank
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BLANK_LINE;
+    return AssemblerPackage.eINSTANCE.getBlankLine();
   }
 
   /**

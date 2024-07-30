@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RmbDirectiveImpl#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RmbDirectiveImpl#getWs <em>Ws</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RmbDirectiveImpl#isIsRelativeToPC <em>Is Relative To PC</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.RmbDirectiveImpl#getOperand <em>Operand</em>}</li>
  * </ul>
@@ -52,6 +53,26 @@ public class RmbDirectiveImpl extends MinimalEObjectImpl.Container implements Rm
    * @ordered
    */
   protected String directive = DIRECTIVE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected String ws = WS_EDEFAULT;
 
   /**
    * The default value of the '{@link #isIsRelativeToPC() <em>Is Relative To PC</em>}' attribute.
@@ -101,7 +122,7 @@ public class RmbDirectiveImpl extends MinimalEObjectImpl.Container implements Rm
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.RMB_DIRECTIVE;
+    return AssemblerPackage.eINSTANCE.getRmbDirective();
   }
 
   /**
@@ -127,6 +148,31 @@ public class RmbDirectiveImpl extends MinimalEObjectImpl.Container implements Rm
     directive = newDirective;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.RMB_DIRECTIVE__DIRECTIVE, oldDirective, directive));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getWs()
+  {
+    return ws;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs(String newWs)
+  {
+    String oldWs = ws;
+    ws = newWs;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.RMB_DIRECTIVE__WS, oldWs, ws));
   }
 
   /**
@@ -232,6 +278,8 @@ public class RmbDirectiveImpl extends MinimalEObjectImpl.Container implements Rm
     {
       case AssemblerPackage.RMB_DIRECTIVE__DIRECTIVE:
         return getDirective();
+      case AssemblerPackage.RMB_DIRECTIVE__WS:
+        return getWs();
       case AssemblerPackage.RMB_DIRECTIVE__IS_RELATIVE_TO_PC:
         return isIsRelativeToPC();
       case AssemblerPackage.RMB_DIRECTIVE__OPERAND:
@@ -252,6 +300,9 @@ public class RmbDirectiveImpl extends MinimalEObjectImpl.Container implements Rm
     {
       case AssemblerPackage.RMB_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
+        return;
+      case AssemblerPackage.RMB_DIRECTIVE__WS:
+        setWs((String)newValue);
         return;
       case AssemblerPackage.RMB_DIRECTIVE__IS_RELATIVE_TO_PC:
         setIsRelativeToPC((Boolean)newValue);
@@ -276,6 +327,9 @@ public class RmbDirectiveImpl extends MinimalEObjectImpl.Container implements Rm
       case AssemblerPackage.RMB_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
+      case AssemblerPackage.RMB_DIRECTIVE__WS:
+        setWs(WS_EDEFAULT);
+        return;
       case AssemblerPackage.RMB_DIRECTIVE__IS_RELATIVE_TO_PC:
         setIsRelativeToPC(IS_RELATIVE_TO_PC_EDEFAULT);
         return;
@@ -298,6 +352,8 @@ public class RmbDirectiveImpl extends MinimalEObjectImpl.Container implements Rm
     {
       case AssemblerPackage.RMB_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
+      case AssemblerPackage.RMB_DIRECTIVE__WS:
+        return WS_EDEFAULT == null ? ws != null : !WS_EDEFAULT.equals(ws);
       case AssemblerPackage.RMB_DIRECTIVE__IS_RELATIVE_TO_PC:
         return isRelativeToPC != IS_RELATIVE_TO_PC_EDEFAULT;
       case AssemblerPackage.RMB_DIRECTIVE__OPERAND:
@@ -319,6 +375,8 @@ public class RmbDirectiveImpl extends MinimalEObjectImpl.Container implements Rm
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (directive: ");
     result.append(directive);
+    result.append(", ws: ");
+    result.append(ws);
     result.append(", isRelativeToPC: ");
     result.append(isRelativeToPC);
     result.append(')');

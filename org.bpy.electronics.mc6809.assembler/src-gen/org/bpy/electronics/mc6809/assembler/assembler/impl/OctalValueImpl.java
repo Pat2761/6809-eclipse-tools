@@ -66,7 +66,7 @@ public class OctalValueImpl extends MinimalEObjectImpl.Container implements Octa
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.OCTAL_VALUE;
+    return AssemblerPackage.eINSTANCE.getOctalValue();
   }
 
   /**

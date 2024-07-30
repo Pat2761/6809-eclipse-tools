@@ -87,7 +87,7 @@ public class AccumulatorMovingModeImpl extends MinimalEObjectImpl.Container impl
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ACCUMULATOR_MOVING_MODE;
+    return AssemblerPackage.eINSTANCE.getAccumulatorMovingMode();
   }
 
   /**

@@ -78,7 +78,7 @@ public class ListOfExpressionImpl extends MinimalEObjectImpl.Container implement
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.LIST_OF_EXPRESSION;
+    return AssemblerPackage.eINSTANCE.getListOfExpression();
   }
 
   /**

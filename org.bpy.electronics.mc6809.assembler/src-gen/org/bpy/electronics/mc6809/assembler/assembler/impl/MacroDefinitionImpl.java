@@ -37,7 +37,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getWs3 <em>Ws3</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getComment1 <em>Comment1</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getWs4 <em>Ws4</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getInstructions <em>Instructions</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getWs5 <em>Ws5</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.MacroDefinitionImpl#getWs6 <em>Ws6</em>}</li>
@@ -138,26 +137,6 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @ordered
    */
   protected String comment1 = COMMENT1_EDEFAULT;
-
-  /**
-   * The default value of the '{@link #getWs4() <em>Ws4</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getWs4()
-   * @generated
-   * @ordered
-   */
-  protected static final String WS4_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getWs4() <em>Ws4</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getWs4()
-   * @generated
-   * @ordered
-   */
-  protected String ws4 = WS4_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getInstructions() <em>Instructions</em>}' containment reference list.
@@ -267,7 +246,7 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.MACRO_DEFINITION;
+    return AssemblerPackage.eINSTANCE.getMacroDefinition();
   }
 
   /**
@@ -426,31 +405,6 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
    * @generated
    */
   @Override
-  public String getWs4()
-  {
-    return ws4;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public void setWs4(String newWs4)
-  {
-    String oldWs4 = ws4;
-    ws4 = newWs4;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.MACRO_DEFINITION__WS4, oldWs4, ws4));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
   public EList<InstructionLine> getInstructions()
   {
     if (instructions == null)
@@ -598,8 +552,6 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
         return getWs3();
       case AssemblerPackage.MACRO_DEFINITION__COMMENT1:
         return getComment1();
-      case AssemblerPackage.MACRO_DEFINITION__WS4:
-        return getWs4();
       case AssemblerPackage.MACRO_DEFINITION__INSTRUCTIONS:
         return getInstructions();
       case AssemblerPackage.MACRO_DEFINITION__WS5:
@@ -639,9 +591,6 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
         return;
       case AssemblerPackage.MACRO_DEFINITION__COMMENT1:
         setComment1((String)newValue);
-        return;
-      case AssemblerPackage.MACRO_DEFINITION__WS4:
-        setWs4((String)newValue);
         return;
       case AssemblerPackage.MACRO_DEFINITION__INSTRUCTIONS:
         getInstructions().clear();
@@ -688,9 +637,6 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
       case AssemblerPackage.MACRO_DEFINITION__COMMENT1:
         setComment1(COMMENT1_EDEFAULT);
         return;
-      case AssemblerPackage.MACRO_DEFINITION__WS4:
-        setWs4(WS4_EDEFAULT);
-        return;
       case AssemblerPackage.MACRO_DEFINITION__INSTRUCTIONS:
         getInstructions().clear();
         return;
@@ -730,8 +676,6 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
         return WS3_EDEFAULT == null ? ws3 != null : !WS3_EDEFAULT.equals(ws3);
       case AssemblerPackage.MACRO_DEFINITION__COMMENT1:
         return COMMENT1_EDEFAULT == null ? comment1 != null : !COMMENT1_EDEFAULT.equals(comment1);
-      case AssemblerPackage.MACRO_DEFINITION__WS4:
-        return WS4_EDEFAULT == null ? ws4 != null : !WS4_EDEFAULT.equals(ws4);
       case AssemblerPackage.MACRO_DEFINITION__INSTRUCTIONS:
         return instructions != null && !instructions.isEmpty();
       case AssemblerPackage.MACRO_DEFINITION__WS5:
@@ -765,8 +709,6 @@ public class MacroDefinitionImpl extends MinimalEObjectImpl.Container implements
     result.append(ws3);
     result.append(", comment1: ");
     result.append(comment1);
-    result.append(", ws4: ");
-    result.append(ws4);
     result.append(", ws5: ");
     result.append(ws5);
     result.append(", ws6: ");

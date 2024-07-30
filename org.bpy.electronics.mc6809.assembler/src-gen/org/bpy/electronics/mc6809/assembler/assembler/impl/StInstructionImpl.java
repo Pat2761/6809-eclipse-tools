@@ -101,7 +101,7 @@ public class StInstructionImpl extends MinimalEObjectImpl.Container implements S
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ST_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getStInstruction();
   }
 
   /**

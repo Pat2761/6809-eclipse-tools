@@ -101,7 +101,7 @@ public class RolInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.ROL_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getRolInstruction();
   }
 
   /**

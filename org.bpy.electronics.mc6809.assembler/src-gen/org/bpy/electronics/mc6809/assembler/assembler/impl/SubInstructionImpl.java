@@ -101,7 +101,7 @@ public class SubInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.SUB_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getSubInstruction();
   }
 
   /**

@@ -101,7 +101,7 @@ public class BrnInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BRN_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBrnInstruction();
   }
 
   /**

@@ -66,7 +66,7 @@ public class RtiInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.RTI_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getRtiInstruction();
   }
 
   /**

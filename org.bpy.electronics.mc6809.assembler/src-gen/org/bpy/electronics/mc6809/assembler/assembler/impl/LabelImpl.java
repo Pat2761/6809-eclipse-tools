@@ -80,7 +80,7 @@ public class LabelImpl extends MinimalEObjectImpl.Container implements Label
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.LABEL;
+    return AssemblerPackage.eINSTANCE.getLabel();
   }
 
   /**

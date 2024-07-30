@@ -101,7 +101,7 @@ public class BitInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BIT_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBitInstruction();
   }
 
   /**

@@ -101,7 +101,7 @@ public class BgeInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BGE_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBgeInstruction();
   }
 
   /**

@@ -59,7 +59,7 @@ public class IndexedOperandImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.INDEXED_OPERAND;
+    return AssemblerPackage.eINSTANCE.getIndexedOperand();
   }
 
   /**

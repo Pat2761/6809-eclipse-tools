@@ -66,7 +66,7 @@ public class SyncInstructionImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.SYNC_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getSyncInstruction();
   }
 
   /**

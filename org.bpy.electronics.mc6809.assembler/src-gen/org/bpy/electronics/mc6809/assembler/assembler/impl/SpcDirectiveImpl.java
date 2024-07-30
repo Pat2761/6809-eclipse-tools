@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl#getWs <em>Ws</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl#getSpaceCount <em>Space Count</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.SpcDirectiveImpl#getKeepCount <em>Keep Count</em>}</li>
  * </ul>
@@ -52,6 +53,26 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
    * @ordered
    */
   protected String directive = DIRECTIVE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected String ws = WS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getSpaceCount() <em>Space Count</em>}' containment reference.
@@ -91,7 +112,7 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.SPC_DIRECTIVE;
+    return AssemblerPackage.eINSTANCE.getSpcDirective();
   }
 
   /**
@@ -117,6 +138,31 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
     directive = newDirective;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SPC_DIRECTIVE__DIRECTIVE, oldDirective, directive));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getWs()
+  {
+    return ws;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs(String newWs)
+  {
+    String oldWs = ws;
+    ws = newWs;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.SPC_DIRECTIVE__WS, oldWs, ws));
   }
 
   /**
@@ -249,6 +295,8 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
     {
       case AssemblerPackage.SPC_DIRECTIVE__DIRECTIVE:
         return getDirective();
+      case AssemblerPackage.SPC_DIRECTIVE__WS:
+        return getWs();
       case AssemblerPackage.SPC_DIRECTIVE__SPACE_COUNT:
         return getSpaceCount();
       case AssemblerPackage.SPC_DIRECTIVE__KEEP_COUNT:
@@ -269,6 +317,9 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
     {
       case AssemblerPackage.SPC_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
+        return;
+      case AssemblerPackage.SPC_DIRECTIVE__WS:
+        setWs((String)newValue);
         return;
       case AssemblerPackage.SPC_DIRECTIVE__SPACE_COUNT:
         setSpaceCount((Expression)newValue);
@@ -293,6 +344,9 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
       case AssemblerPackage.SPC_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
+      case AssemblerPackage.SPC_DIRECTIVE__WS:
+        setWs(WS_EDEFAULT);
+        return;
       case AssemblerPackage.SPC_DIRECTIVE__SPACE_COUNT:
         setSpaceCount((Expression)null);
         return;
@@ -315,6 +369,8 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
     {
       case AssemblerPackage.SPC_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
+      case AssemblerPackage.SPC_DIRECTIVE__WS:
+        return WS_EDEFAULT == null ? ws != null : !WS_EDEFAULT.equals(ws);
       case AssemblerPackage.SPC_DIRECTIVE__SPACE_COUNT:
         return spaceCount != null;
       case AssemblerPackage.SPC_DIRECTIVE__KEEP_COUNT:
@@ -336,6 +392,8 @@ public class SpcDirectiveImpl extends MinimalEObjectImpl.Container implements Sp
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (directive: ");
     result.append(directive);
+    result.append(", ws: ");
+    result.append(ws);
     result.append(')');
     return result.toString();
   }

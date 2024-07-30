@@ -101,7 +101,7 @@ public class BraInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BRA_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBraInstruction();
   }
 
   /**

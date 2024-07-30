@@ -5,7 +5,8 @@
     updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="8.0" copyrightFields="false" runtimeVersion="2.20">
   <genPackages prefix="Assembler" basePackage="org.bpy.electronics.mc6809.assembler"
-      disposableProviderFactory="true" fileExtensions="as9" ecorePackage="Assembler.ecore#/">
+      disposableProviderFactory="true" loadInitialization="true" literalsInterface="false"
+      fileExtensions="as9" ecorePackage="Assembler.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="Assembler.ecore#//AssemblyOption">
       <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/PAG"/>
       <genEnumLiterals ecoreEnumLiteral="Assembler.ecore#//AssemblyOption/NOP"/>
@@ -40,7 +41,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OtherKindOfInstructions/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OtherKindOfInstructions/ws2"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OtherKindOfInstructions/comment"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OtherKindOfInstructions/ws3"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SpecialFunctions">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SpecialFunctions/specialFuntion"/>
@@ -51,7 +51,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//MacroDefinition/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/ws3"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/comment1"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/ws4"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//MacroDefinition/instructions"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/ws5"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//MacroDefinition/ws6"/>
@@ -62,7 +61,6 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//LabelLine/label"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelLine/ws1"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelLine/comment"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//LabelLine/ws2"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BlankLine">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BlankLine/blankLine"/>
@@ -463,31 +461,38 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SetDPDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SetDPDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SetDPDirective/ws"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SetDPDirective/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//FccDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FccDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FccDirective/ws"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//FccDirective/parameters"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//RegDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RegDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RegDirective/ws"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RegDirective/options"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SpcDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SpcDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SpcDirective/ws"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SpcDirective/spaceCount"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SpcDirective/keepCount"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//NamDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//NamDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//NamDirective/ws"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//NamDirective/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//PagDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PagDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//PagDirective/ws"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//PagDirective/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//OptDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OptDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OptDirective/ws"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OptDirective/options"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//FailDirective">
@@ -495,37 +500,45 @@
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//SetDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SetDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SetDirective/ws"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//SetDirective/isRelativeToPC"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//SetDirective/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//FillDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FillDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FillDirective/ws"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//FillDirective/value"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//FillDirective/number"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//BszDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BszDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//BszDirective/ws"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//BszDirective/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//FdbDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FdbDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FdbDirective/ws"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//FdbDirective/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//FcbDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FcbDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//FcbDirective/ws"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//FcbDirective/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//RmbDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RmbDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RmbDirective/ws"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//RmbDirective/isRelativeToPC"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//RmbDirective/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//EndDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EndDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//EndDirective/ws"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//EndDirective/operand"/>
     </genClasses>
     <genClasses ecoreClass="Assembler.ecore#//OrgDirective">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrgDirective/directive"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrgDirective/ws"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Assembler.ecore#//OrgDirective/isRelativeToPC"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Assembler.ecore#//OrgDirective/operand"/>
     </genClasses>

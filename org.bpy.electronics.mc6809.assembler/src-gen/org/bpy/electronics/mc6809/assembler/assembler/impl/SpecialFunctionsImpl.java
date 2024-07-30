@@ -59,7 +59,7 @@ public class SpecialFunctionsImpl extends MinimalEObjectImpl.Container implement
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.SPECIAL_FUNCTIONS;
+    return AssemblerPackage.eINSTANCE.getSpecialFunctions();
   }
 
   /**

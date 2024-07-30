@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
  * </p>
  * <ul>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FcbDirectiveImpl#getDirective <em>Directive</em>}</li>
+ *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FcbDirectiveImpl#getWs <em>Ws</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.impl.FcbDirectiveImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
@@ -51,6 +52,26 @@ public class FcbDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
    * @ordered
    */
   protected String directive = DIRECTIVE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected static final String WS_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getWs() <em>Ws</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getWs()
+   * @generated
+   * @ordered
+   */
+  protected String ws = WS_EDEFAULT;
 
   /**
    * The cached value of the '{@link #getOperand() <em>Operand</em>}' containment reference.
@@ -80,7 +101,7 @@ public class FcbDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.FCB_DIRECTIVE;
+    return AssemblerPackage.eINSTANCE.getFcbDirective();
   }
 
   /**
@@ -106,6 +127,31 @@ public class FcbDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     directive = newDirective;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FCB_DIRECTIVE__DIRECTIVE, oldDirective, directive));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String getWs()
+  {
+    return ws;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public void setWs(String newWs)
+  {
+    String oldWs = ws;
+    ws = newWs;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, AssemblerPackage.FCB_DIRECTIVE__WS, oldWs, ws));
   }
 
   /**
@@ -186,6 +232,8 @@ public class FcbDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     {
       case AssemblerPackage.FCB_DIRECTIVE__DIRECTIVE:
         return getDirective();
+      case AssemblerPackage.FCB_DIRECTIVE__WS:
+        return getWs();
       case AssemblerPackage.FCB_DIRECTIVE__OPERAND:
         return getOperand();
     }
@@ -204,6 +252,9 @@ public class FcbDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     {
       case AssemblerPackage.FCB_DIRECTIVE__DIRECTIVE:
         setDirective((String)newValue);
+        return;
+      case AssemblerPackage.FCB_DIRECTIVE__WS:
+        setWs((String)newValue);
         return;
       case AssemblerPackage.FCB_DIRECTIVE__OPERAND:
         setOperand((ListOfExpression)newValue);
@@ -225,6 +276,9 @@ public class FcbDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
       case AssemblerPackage.FCB_DIRECTIVE__DIRECTIVE:
         setDirective(DIRECTIVE_EDEFAULT);
         return;
+      case AssemblerPackage.FCB_DIRECTIVE__WS:
+        setWs(WS_EDEFAULT);
+        return;
       case AssemblerPackage.FCB_DIRECTIVE__OPERAND:
         setOperand((ListOfExpression)null);
         return;
@@ -244,6 +298,8 @@ public class FcbDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     {
       case AssemblerPackage.FCB_DIRECTIVE__DIRECTIVE:
         return DIRECTIVE_EDEFAULT == null ? directive != null : !DIRECTIVE_EDEFAULT.equals(directive);
+      case AssemblerPackage.FCB_DIRECTIVE__WS:
+        return WS_EDEFAULT == null ? ws != null : !WS_EDEFAULT.equals(ws);
       case AssemblerPackage.FCB_DIRECTIVE__OPERAND:
         return operand != null;
     }
@@ -263,6 +319,8 @@ public class FcbDirectiveImpl extends MinimalEObjectImpl.Container implements Fc
     StringBuilder result = new StringBuilder(super.toString());
     result.append(" (directive: ");
     result.append(directive);
+    result.append(", ws: ");
+    result.append(ws);
     result.append(')');
     return result.toString();
   }

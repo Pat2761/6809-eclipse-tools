@@ -130,7 +130,7 @@ public class TfrInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.TFR_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getTfrInstruction();
   }
 
   /**

@@ -101,7 +101,7 @@ public class AndInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.AND_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getAndInstruction();
   }
 
   /**

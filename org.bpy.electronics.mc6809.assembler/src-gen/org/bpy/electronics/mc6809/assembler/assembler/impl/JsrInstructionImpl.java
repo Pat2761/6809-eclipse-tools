@@ -101,7 +101,7 @@ public class JsrInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.JSR_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getJsrInstruction();
   }
 
   /**

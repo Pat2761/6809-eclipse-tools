@@ -101,7 +101,7 @@ public class BeqInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BEQ_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBeqInstruction();
   }
 
   /**

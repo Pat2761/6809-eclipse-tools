@@ -108,7 +108,7 @@ public class AutoIncDecIndirectModeImpl extends MinimalEObjectImpl.Container imp
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.AUTO_INC_DEC_INDIRECT_MODE;
+    return AssemblerPackage.eINSTANCE.getAutoIncDecIndirectMode();
   }
 
   /**

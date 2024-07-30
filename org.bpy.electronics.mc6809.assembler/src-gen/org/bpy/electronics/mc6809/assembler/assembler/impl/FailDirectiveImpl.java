@@ -66,7 +66,7 @@ public class FailDirectiveImpl extends MinimalEObjectImpl.Container implements F
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.FAIL_DIRECTIVE;
+    return AssemblerPackage.eINSTANCE.getFailDirective();
   }
 
   /**

@@ -101,7 +101,7 @@ public class LdInstructionImpl extends MinimalEObjectImpl.Container implements L
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.LD_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getLdInstruction();
   }
 
   /**

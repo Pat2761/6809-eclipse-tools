@@ -21,7 +21,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getName <em>Name</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs3 <em>Ws3</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getComment1 <em>Comment1</em>}</li>
- *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs4 <em>Ws4</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getInstructions <em>Instructions</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs5 <em>Ws5</em>}</li>
  *   <li>{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs6 <em>Ws6</em>}</li>
@@ -144,28 +143,6 @@ public interface MacroDefinition extends EObject
    * @generated
    */
   void setComment1(String value);
-
-  /**
-   * Returns the value of the '<em><b>Ws4</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Ws4</em>' attribute.
-   * @see #setWs4(String)
-   * @see org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage#getMacroDefinition_Ws4()
-   * @model
-   * @generated
-   */
-  String getWs4();
-
-  /**
-   * Sets the value of the '{@link org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition#getWs4 <em>Ws4</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Ws4</em>' attribute.
-   * @see #getWs4()
-   * @generated
-   */
-  void setWs4(String value);
 
   /**
    * Returns the value of the '<em><b>Instructions</b></em>' containment reference list.

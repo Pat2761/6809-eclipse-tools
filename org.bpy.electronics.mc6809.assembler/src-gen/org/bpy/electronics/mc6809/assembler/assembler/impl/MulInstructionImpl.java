@@ -66,7 +66,7 @@ public class MulInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.MUL_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getMulInstruction();
   }
 
   /**

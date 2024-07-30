@@ -101,7 +101,7 @@ public class BgtInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BGT_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBgtInstruction();
   }
 
   /**

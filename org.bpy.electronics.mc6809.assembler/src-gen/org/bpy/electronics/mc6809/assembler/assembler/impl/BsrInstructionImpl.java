@@ -101,7 +101,7 @@ public class BsrInstructionImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.BSR_INSTRUCTION;
+    return AssemblerPackage.eINSTANCE.getBsrInstruction();
   }
 
   /**

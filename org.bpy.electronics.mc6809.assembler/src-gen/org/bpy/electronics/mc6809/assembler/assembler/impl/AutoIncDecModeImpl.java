@@ -108,7 +108,7 @@ public class AutoIncDecModeImpl extends MinimalEObjectImpl.Container implements 
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.AUTO_INC_DEC_MODE;
+    return AssemblerPackage.eINSTANCE.getAutoIncDecMode();
   }
 
   /**

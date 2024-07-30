@@ -80,7 +80,7 @@ public class RelatifToPCModeImpl extends MinimalEObjectImpl.Container implements
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.RELATIF_TO_PC_MODE;
+    return AssemblerPackage.eINSTANCE.getRelatifToPCMode();
   }
 
   /**

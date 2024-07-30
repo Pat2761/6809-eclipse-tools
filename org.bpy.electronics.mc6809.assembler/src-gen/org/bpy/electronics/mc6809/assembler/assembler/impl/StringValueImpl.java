@@ -66,7 +66,7 @@ public class StringValueImpl extends MinimalEObjectImpl.Container implements Str
   @Override
   protected EClass eStaticClass()
   {
-    return AssemblerPackage.Literals.STRING_VALUE;
+    return AssemblerPackage.eINSTANCE.getStringValue();
   }
 
   /**
