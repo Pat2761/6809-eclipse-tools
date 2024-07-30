@@ -18,7 +18,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.formatting2.instructions;
 
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.formatting2.AbstractInstructionWithOperand;
 import org.bpy.electronics.mc6809.assembler.formatting2.AssemblerFormatter;
 import org.eclipse.emf.ecore.EAttribute;
@@ -26,15 +27,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 
 /**
- * Format Abx instruction.
+ * Format Jsr instruction.
  * 
  * @author Patrick BRIAND
  *
  */
-public class AbxInstructionFormater extends AbstractInstructionWithOperand {
+public class JsrInstructionFormater extends AbstractInstructionWithOperand {
 
 	/** reference on the instruction */
-	private AbxInstruction abxInstruction;
+	private JsrInstruction jsrInstruction;
 
 	/**
 	 * Constructor of the class.
@@ -43,14 +44,14 @@ public class AbxInstructionFormater extends AbstractInstructionWithOperand {
 	 * @param tabPolicy Tab policy used (Space only, tab only a mixed)
 	 * @param tabSize Size of the tabulation
 	 */
-	public AbxInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
+	public JsrInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
 		super(doc, tabPolicy, tabSize);
 	}
 
 	@Override
 	public void format(AssemblerFormatter assemblerFormatter, EObject instruction, int instructionPosition, int operandPosition) {
 		this.assemblerFormatter = assemblerFormatter;
-		this.abxInstruction = (AbxInstruction)instruction;
+		this.jsrInstruction = (JsrInstruction)instruction;
 		this.instructionPosition = instructionPosition;
 		this.operandPosition = operandPosition;
 		
@@ -59,21 +60,21 @@ public class AbxInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public String getInstructioName() {
-		return abxInstruction.getInstruction();
+		return jsrInstruction.getInstruction();
 	}
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return null;
+		return AssemblerPackage.Literals.JSR_INSTRUCTION__WS_OPERAND;
 	}
 
 	@Override
 	public EObject getInstruction() {
-		return abxInstruction;
+		return jsrInstruction;
 	}
 
 	@Override
 	public EObject getOperand() {
-		return null;
+		return jsrInstruction.getOperand();
 	}
 }

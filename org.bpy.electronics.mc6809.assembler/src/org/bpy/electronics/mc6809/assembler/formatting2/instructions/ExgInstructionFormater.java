@@ -18,7 +18,9 @@
  */
 package org.bpy.electronics.mc6809.assembler.formatting2.instructions;
 
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Register;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.formatting2.AbstractInstructionWithOperand;
 import org.bpy.electronics.mc6809.assembler.formatting2.AssemblerFormatter;
 import org.eclipse.emf.ecore.EAttribute;
@@ -26,15 +28,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 
 /**
- * Format Abx instruction.
+ * Format Exg instruction.
  * 
  * @author Patrick BRIAND
  *
  */
-public class AbxInstructionFormater extends AbstractInstructionWithOperand {
+public class ExgInstructionFormater extends AbstractInstructionWithOperand {
 
 	/** reference on the instruction */
-	private AbxInstruction abxInstruction;
+	private ExgInstruction exgInstruction;
 
 	/**
 	 * Constructor of the class.
@@ -43,33 +45,43 @@ public class AbxInstructionFormater extends AbstractInstructionWithOperand {
 	 * @param tabPolicy Tab policy used (Space only, tab only a mixed)
 	 * @param tabSize Size of the tabulation
 	 */
-	public AbxInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
+	public ExgInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
 		super(doc, tabPolicy, tabSize);
 	}
 
 	@Override
 	public void format(AssemblerFormatter assemblerFormatter, EObject instruction, int instructionPosition, int operandPosition) {
 		this.assemblerFormatter = assemblerFormatter;
-		this.abxInstruction = (AbxInstruction)instruction;
+		this.exgInstruction = (ExgInstruction)instruction;
 		this.instructionPosition = instructionPosition;
 		this.operandPosition = operandPosition;
 		
 		format();
 	}
+	
+	@Override
+	protected void format() {
+		int startWsPosition = instructionPosition + getInstructioName().length();
+		int nbSpacesNeeded = operandPosition-startWsPosition;
+		if (nbSpacesNeeded<1) {
+			nbSpacesNeeded = 1; 
+		}
+		setWhiteSpace(getInstruction(), getSeparatorAttribute(), nbSpacesNeeded);
+	}
 
 	@Override
 	public String getInstructioName() {
-		return abxInstruction.getInstruction();
+		return exgInstruction.getInstruction();
 	}
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return null;
+		return AssemblerPackage.Literals.EXG_INSTRUCTION__WS_OPERAND;
 	}
 
 	@Override
 	public EObject getInstruction() {
-		return abxInstruction;
+		return exgInstruction;
 	}
 
 	@Override

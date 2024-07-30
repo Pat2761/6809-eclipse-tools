@@ -18,7 +18,8 @@
  */
 package org.bpy.electronics.mc6809.assembler.formatting2.instructions;
 
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.formatting2.AbstractInstructionWithOperand;
 import org.bpy.electronics.mc6809.assembler.formatting2.AssemblerFormatter;
 import org.eclipse.emf.ecore.EAttribute;
@@ -26,15 +27,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 
 /**
- * Format Abx instruction.
+ * Format Dec instruction.
  * 
  * @author Patrick BRIAND
  *
  */
-public class AbxInstructionFormater extends AbstractInstructionWithOperand {
+public class DecInstructionFormater extends AbstractInstructionWithOperand {
 
 	/** reference on the instruction */
-	private AbxInstruction abxInstruction;
+	private DecInstruction decInstruction;
 
 	/**
 	 * Constructor of the class.
@@ -43,14 +44,14 @@ public class AbxInstructionFormater extends AbstractInstructionWithOperand {
 	 * @param tabPolicy Tab policy used (Space only, tab only a mixed)
 	 * @param tabSize Size of the tabulation
 	 */
-	public AbxInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
+	public DecInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
 		super(doc, tabPolicy, tabSize);
 	}
 
 	@Override
 	public void format(AssemblerFormatter assemblerFormatter, EObject instruction, int instructionPosition, int operandPosition) {
 		this.assemblerFormatter = assemblerFormatter;
-		this.abxInstruction = (AbxInstruction)instruction;
+		this.decInstruction = (DecInstruction)instruction;
 		this.instructionPosition = instructionPosition;
 		this.operandPosition = operandPosition;
 		
@@ -59,21 +60,21 @@ public class AbxInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public String getInstructioName() {
-		return abxInstruction.getInstruction();
+		return decInstruction.getInstruction();
 	}
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return null;
+		return AssemblerPackage.Literals.DEC_INSTRUCTION__WS_OPERAND;
 	}
 
 	@Override
 	public EObject getInstruction() {
-		return abxInstruction;
+		return decInstruction;
 	}
 
 	@Override
 	public EObject getOperand() {
-		return null;
+		return decInstruction.getOperand();
 	}
 }

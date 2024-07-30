@@ -5,20 +5,146 @@ package org.bpy.electronics.mc6809.assembler.formatting2;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AdddInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AndCCInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AndInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.assembler.BccInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BcsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BeqInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgeInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BgtInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BhsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BitInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BleInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BloInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BlsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BltInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BmiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BneInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BplInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BraInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BrnInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.BvsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.CmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.ComInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
+import org.bpy.electronics.mc6809.assembler.assembler.CwaiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DaaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.DecInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.DirectiveLine;
+import org.bpy.electronics.mc6809.assembler.assembler.EorInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.ExgInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.IncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
+import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Label;
 import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
+import org.bpy.electronics.mc6809.assembler.assembler.LdInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LslInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.LsrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Model;
+import org.bpy.electronics.mc6809.assembler.assembler.MulInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.NegInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.NopInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.OrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PshuInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PulsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.PuluInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RolInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RorInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SbcInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi2Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
 import org.bpy.electronics.mc6809.assembler.formatting2.directives.EquFormatter;
 import org.bpy.electronics.mc6809.assembler.formatting2.directives.FailFormatter;
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AbxInstructionFormater;
 import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AdcInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AddInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AdddInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AndCCInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AndInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AslInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.AsrInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BccInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BcsInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BeqInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BgeInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BgtInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BhiInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BhsInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BitInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BleInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BloInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BlsInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BltInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BmiInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BneInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BplInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BraInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BrnInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BsrInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BvcInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.BvsInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.ClrInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.CmpInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.ComInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.CwaiInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.DaaInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.DecInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.EorInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.ExgInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.IncInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.JmpInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.JsrInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.LdInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.LeaInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.LslInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.LsrInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.MulInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.NegInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.NopInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.OrInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.PshsInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.PshuInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.PulsInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.PuluInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.RolInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.RorInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.RtiInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.RtsInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.SbcInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.SexInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.StInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.SubInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.Swi2InstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.Swi3InstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.SwiInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.SyncInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.TfrInstructionFormater;
+import org.bpy.electronics.mc6809.assembler.formatting2.instructions.TstInstructionFormater;
 import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -128,11 +254,259 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		} else if (line.getInstruction() instanceof AdcInstruction adcInstruction) {
 			AdcInstructionFormater adcFormatter = new AdcInstructionFormater(doc, tabPolicy, tabSize);
 			adcFormatter.format(this, adcInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof AddInstruction addInstruction) {
+			AddInstructionFormater adcFormatter = new AddInstructionFormater(doc, tabPolicy, tabSize);
+			adcFormatter.format(this, addInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof AdddInstruction adddInstruction) {
+			AdddInstructionFormater adddFormatter = new AdddInstructionFormater(doc, tabPolicy, tabSize);
+			adddFormatter.format(this, adddInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof AndInstruction andInstruction) {
+			AndInstructionFormater andFormatter = new AndInstructionFormater(doc, tabPolicy, tabSize);
+			andFormatter.format(this, andInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof AndCCInstruction andccInstruction) {
+			AndCCInstructionFormater andccFormatter = new AndCCInstructionFormater(doc, tabPolicy, tabSize);
+			andccFormatter.format(this, andccInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof AslInstruction aslInstruction) {
+			AslInstructionFormater aslFormatter = new AslInstructionFormater(doc, tabPolicy, tabSize);
+			aslFormatter.format(this, aslInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof AsrInstruction asrInstruction) {
+			AsrInstructionFormater asrFormatter = new AsrInstructionFormater(doc, tabPolicy, tabSize);
+			asrFormatter.format(this, asrInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BitInstruction bitInstruction) {
+			BitInstructionFormater bitFormatter = new BitInstructionFormater(doc, tabPolicy, tabSize);
+			bitFormatter.format(this, bitInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof ClrInstruction clrInstruction) {
+			ClrInstructionFormater clrFormatter = new ClrInstructionFormater(doc, tabPolicy, tabSize);
+			clrFormatter.format(this, clrInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof CmpInstruction cmpInstruction) {
+			CmpInstructionFormater cmpFormatter = new CmpInstructionFormater(doc, tabPolicy, tabSize);
+			cmpFormatter.format(this, cmpInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof ComInstruction comInstruction) {
+			ComInstructionFormater comFormatter = new ComInstructionFormater(doc, tabPolicy, tabSize);
+			comFormatter.format(this, comInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof CwaiInstruction cwaiInstruction) {
+			CwaiInstructionFormater cwaiFormatter = new CwaiInstructionFormater(doc, tabPolicy, tabSize);
+			cwaiFormatter.format(this, cwaiInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof DaaInstruction daaInstruction) {
+			DaaInstructionFormater daaFormatter = new DaaInstructionFormater(doc, tabPolicy, tabSize);
+			daaFormatter.format(this, daaInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof DecInstruction decInstruction) {
+			DecInstructionFormater decFormatter = new DecInstructionFormater(doc, tabPolicy, tabSize);
+			decFormatter.format(this, decInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof ExgInstruction exgInstruction) {
+			ExgInstructionFormater exgFormatter = new ExgInstructionFormater(doc, tabPolicy, tabSize);
+			exgFormatter.format(this, exgInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof IncInstruction incInstruction) {
+			IncInstructionFormater incFormatter = new IncInstructionFormater(doc, tabPolicy, tabSize);
+			incFormatter.format(this, incInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof JmpInstruction jmpInstruction) {
+			JmpInstructionFormater jmpFormatter = new JmpInstructionFormater(doc, tabPolicy, tabSize);
+			jmpFormatter.format(this, jmpInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof JsrInstruction jsrInstruction) {
+			JsrInstructionFormater jsrFormatter = new JsrInstructionFormater(doc, tabPolicy, tabSize);
+			jsrFormatter.format(this, jsrInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof LdInstruction ldInstruction) {
+			LdInstructionFormater ldFormatter = new LdInstructionFormater(doc, tabPolicy, tabSize);
+			ldFormatter.format(this, ldInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof LeaInstruction leaInstruction) {
+			LeaInstructionFormater leaFormatter = new LeaInstructionFormater(doc, tabPolicy, tabSize);
+			leaFormatter.format(this, leaInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof LslInstruction lslInstruction) {
+			LslInstructionFormater lslFormatter = new LslInstructionFormater(doc, tabPolicy, tabSize);
+			lslFormatter.format(this, lslInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof LsrInstruction lsrInstruction) {
+			LsrInstructionFormater lsrFormatter = new LsrInstructionFormater(doc, tabPolicy, tabSize);
+			lsrFormatter.format(this, lsrInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof MulInstruction mulInstruction) {
+			MulInstructionFormater mulFormatter = new MulInstructionFormater(doc, tabPolicy, tabSize);
+			mulFormatter.format(this, mulInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof NegInstruction negInstruction) {
+			NegInstructionFormater negFormatter = new NegInstructionFormater(doc, tabPolicy, tabSize);
+			negFormatter.format(this, negInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof NopInstruction nopInstruction) {
+			NopInstructionFormater nopFormatter = new NopInstructionFormater(doc, tabPolicy, tabSize);
+			nopFormatter.format(this, nopInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof OrInstruction orInstruction) {
+			OrInstructionFormater orFormatter = new OrInstructionFormater(doc, tabPolicy, tabSize);
+			orFormatter.format(this, orInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof PshsInstruction pshsInstruction) {
+			PshsInstructionFormater pshsFormatter = new PshsInstructionFormater(doc, tabPolicy, tabSize);
+			pshsFormatter.format(this, pshsInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof PshuInstruction pshuInstruction) {
+			PshuInstructionFormater pshuFormatter = new PshuInstructionFormater(doc, tabPolicy, tabSize);
+			pshuFormatter.format(this, pshuInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof PulsInstruction pulsInstruction) {
+			PulsInstructionFormater pulsFormatter = new PulsInstructionFormater(doc, tabPolicy, tabSize);
+			pulsFormatter.format(this, pulsInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof PuluInstruction puluInstruction) {
+			PuluInstructionFormater puluFormatter = new PuluInstructionFormater(doc, tabPolicy, tabSize);
+			puluFormatter.format(this, puluInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof RolInstruction rolInstruction) {
+			RolInstructionFormater rolFormatter = new RolInstructionFormater(doc, tabPolicy, tabSize);
+			rolFormatter.format(this, rolInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof RorInstruction rorInstruction) {
+			RorInstructionFormater rorFormatter = new RorInstructionFormater(doc, tabPolicy, tabSize);
+			rorFormatter.format(this, rorInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof RtiInstruction rtiInstruction) {
+			RtiInstructionFormater rtiFormatter = new RtiInstructionFormater(doc, tabPolicy, tabSize);
+			rtiFormatter.format(this, rtiInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof RtsInstruction rtsInstruction) {
+			RtsInstructionFormater rtsFormatter = new RtsInstructionFormater(doc, tabPolicy, tabSize);
+			rtsFormatter.format(this, rtsInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof SbcInstruction sbcInstruction) {
+			SbcInstructionFormater sbcFormatter = new SbcInstructionFormater(doc, tabPolicy, tabSize);
+			sbcFormatter.format(this, sbcInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof SexInstruction sexInstruction) {
+			SexInstructionFormater sexFormatter = new SexInstructionFormater(doc, tabPolicy, tabSize);
+			sexFormatter.format(this, sexInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof StInstruction stInstruction) {
+			StInstructionFormater stFormatter = new StInstructionFormater(doc, tabPolicy, tabSize);
+			stFormatter.format(this, stInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof SubInstruction subInstruction) {
+			SubInstructionFormater subFormatter = new SubInstructionFormater(doc, tabPolicy, tabSize);
+			subFormatter.format(this, subInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof SwiInstruction swiInstruction) {
+			SwiInstructionFormater swiFormatter = new SwiInstructionFormater(doc, tabPolicy, tabSize);
+			swiFormatter.format(this, swiInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof Swi2Instruction swi2Instruction) {
+			Swi2InstructionFormater swi2Formatter = new Swi2InstructionFormater(doc, tabPolicy, tabSize);
+			swi2Formatter.format(this, swi2Instruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof Swi3Instruction swi3Instruction) {
+			Swi3InstructionFormater swi3Formatter = new Swi3InstructionFormater(doc, tabPolicy, tabSize);
+			swi3Formatter.format(this, swi3Instruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof SyncInstruction syncInstruction) {
+			SyncInstructionFormater syncFormatter = new SyncInstructionFormater(doc, tabPolicy, tabSize);
+			syncFormatter.format(this, syncInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof TfrInstruction tfrInstruction) {
+			TfrInstructionFormater tfrFormatter = new TfrInstructionFormater(doc, tabPolicy, tabSize);
+			tfrFormatter.format(this, tfrInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof TstInstruction tstInstruction) {
+			TstInstructionFormater tstFormatter = new TstInstructionFormater(doc, tabPolicy, tabSize);
+			tstFormatter.format(this, tstInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BccInstruction bccInstruction) {
+			BccInstructionFormater bccFormatter = new BccInstructionFormater(doc, tabPolicy, tabSize);
+			bccFormatter.format(this, bccInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BcsInstruction bcsInstruction) {
+			BcsInstructionFormater bcsFormatter = new BcsInstructionFormater(doc, tabPolicy, tabSize);
+			bcsFormatter.format(this, bcsInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BeqInstruction beqInstruction) {
+			BeqInstructionFormater beqFormatter = new BeqInstructionFormater(doc, tabPolicy, tabSize);
+			beqFormatter.format(this, beqInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BgeInstruction bgeInstruction) {
+			BgeInstructionFormater bgeFormatter = new BgeInstructionFormater(doc, tabPolicy, tabSize);
+			bgeFormatter.format(this, bgeInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BgtInstruction bgtInstruction) {
+			BgtInstructionFormater bgtFormatter = new BgtInstructionFormater(doc, tabPolicy, tabSize);
+			bgtFormatter.format(this, bgtInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BhiInstruction bhiInstruction) {
+			BhiInstructionFormater bhiFormatter = new BhiInstructionFormater(doc, tabPolicy, tabSize);
+			bhiFormatter.format(this, bhiInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BhsInstruction bhsInstruction) {
+			BhsInstructionFormater bhsFormatter = new BhsInstructionFormater(doc, tabPolicy, tabSize);
+			bhsFormatter.format(this, bhsInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BleInstruction bleInstruction) {
+			BleInstructionFormater bleFormatter = new BleInstructionFormater(doc, tabPolicy, tabSize);
+			bleFormatter.format(this, bleInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BloInstruction bloInstruction) {
+			BloInstructionFormater bloFormatter = new BloInstructionFormater(doc, tabPolicy, tabSize);
+			bloFormatter.format(this, bloInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BlsInstruction blsInstruction) {
+			BlsInstructionFormater blsFormatter = new BlsInstructionFormater(doc, tabPolicy, tabSize);
+			blsFormatter.format(this, blsInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BltInstruction bltInstruction) {
+			BltInstructionFormater bltFormatter = new BltInstructionFormater(doc, tabPolicy, tabSize);
+			bltFormatter.format(this, bltInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BmiInstruction bmiInstruction) {
+			BmiInstructionFormater bmiFormatter = new BmiInstructionFormater(doc, tabPolicy, tabSize);
+			bmiFormatter.format(this, bmiInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BneInstruction bneInstruction) {
+			BneInstructionFormater bneFormatter = new BneInstructionFormater(doc, tabPolicy, tabSize);
+			bneFormatter.format(this, bneInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BplInstruction bplInstruction) {
+			BplInstructionFormater bplFormatter = new BplInstructionFormater(doc, tabPolicy, tabSize);
+			bplFormatter.format(this, bplInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BraInstruction braInstruction) {
+			BraInstructionFormater braFormatter = new BraInstructionFormater(doc, tabPolicy, tabSize);
+			braFormatter.format(this, braInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BrnInstruction brnInstruction) {
+			BrnInstructionFormater brnFormatter = new BrnInstructionFormater(doc, tabPolicy, tabSize);
+			brnFormatter.format(this, brnInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BsrInstruction bsrInstruction) {
+			BsrInstructionFormater bsrFormatter = new BsrInstructionFormater(doc, tabPolicy, tabSize);
+			bsrFormatter.format(this, bsrInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BvcInstruction bvcInstruction) {
+			BvcInstructionFormater bvcFormatter = new BvcInstructionFormater(doc, tabPolicy, tabSize);
+			bvcFormatter.format(this, bvcInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof BvsInstruction bvsInstruction) {
+			BvsInstructionFormater bvsFormatter = new BvsInstructionFormater(doc, tabPolicy, tabSize);
+			bvsFormatter.format(this, bvsInstruction, instructionPosition, operandPosition);
+
 		}
 
 		if (line.getWs2() != null) {
-			formatCommentPosition(doc, line, AssemblerPackage.Literals.INSTRUCTION_LINE__WS1, AssemblerPackage.Literals.INSTRUCTION_LINE__WS2,
-					AssemblerPackage.Literals.INSTRUCTION_LINE__COMMENT);
+			formatCommentPosition(doc, line, AssemblerPackage.Literals.INSTRUCTION_LINE__WS1, AssemblerPackage.Literals.INSTRUCTION_LINE__WS2);
 		}
 	}
 
@@ -167,41 +541,25 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 
 
 		if (line.getWs2() != null) {
-			formatCommentPosition(doc, line, AssemblerPackage.Literals.DIRECTIVE_LINE__WS1, AssemblerPackage.Literals.DIRECTIVE_LINE__WS2,
-					AssemblerPackage.Literals.DIRECTIVE_LINE__COMMENT);
+			formatCommentPosition(doc, line, AssemblerPackage.Literals.DIRECTIVE_LINE__WS1, AssemblerPackage.Literals.DIRECTIVE_LINE__WS2);
 		}
 	}
 
+	/** 
+	 * Format a line of type label.
+	 * 
+	 * @param labelLine reference on the line
+	 * @param doc reference on the document
+	 */
 	protected void format(LabelLine labelLine, IFormattableDocument doc) {
-		if (labelLine.getComment() != null) {
-			if (PreferenceManager.SPACE_ONLY.equals(tabPolicy)) {
-				formatSpaceOnly(labelLine, doc);
-			} else if (PreferenceManager.TAB_ONLY.equals(tabPolicy)) {
-				formatTabOnly(labelLine, doc);
-			} else {
-				formatMixed(labelLine, doc);
-			}
-		}
-	}
+		setWhiteSpace(doc, labelLine,  AssemblerPackage.Literals.LABEL_LINE__WS1, " ");
 
-	private void formatMixed(LabelLine labelLine, IFormattableDocument doc) {
-	}
+		int nbSpacesNeeded = commentPosition - labelLine.getLabel().getName().getValue().length();
+		String spaces = buildSpaceStringFromPolicy(labelLine.getLabel().getName().getValue().length(), 
+				nbSpacesNeeded-1, 0);
 
-	private void formatTabOnly(LabelLine labelLine, IFormattableDocument doc) {
-	}
-
-	private void formatSpaceOnly(LabelLine labelLine, IFormattableDocument doc) {
-		int labelSize = getLabelSize(labelLine.getLabel());
-
-		// remove the first white space
-		if (labelLine.getWs1() != null) {
-			setWhiteSpace(doc, labelLine, AssemblerPackage.Literals.LABEL_LINE__WS1, " ");
-		}
-
-		// Insert the expected number of space
-		String strPosition = Strings.repeat(" ", commentPosition - labelSize - 2);
-		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = it -> it.setSpace(strPosition);
-		doc.prepend(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__COMMENT), setSpaceFunction);
+		Procedure1<IHiddenRegionFormatter> spacesFunction = it -> it.setSpace(spaces);
+		doc.append(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.Literals.LABEL_LINE__WS1), spacesFunction);
 	}
 
 	/**
@@ -212,82 +570,14 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param doc         reference on the document
 	 */
 	protected void format(CommentLine commentLine, IFormattableDocument doc) {
-		if (commentLine.getStartingSpace() != null) {
+		setWhiteSpace(doc, commentLine,  AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE, " ");
 
-			if (PreferenceManager.SPACE_ONLY.equals(tabPolicy)) {
-				formatSpaceOnly(commentLine, doc);
-			} else if (PreferenceManager.TAB_ONLY.equals(tabPolicy)) {
-				formatTabOnly(commentLine, doc);
-			} else {
-				formatMixed(commentLine, doc);
-			}
-		}
+		String spaces = buildSpaceStringFromPolicy(0, commentPosition-1, 0);
+
+		Procedure1<IHiddenRegionFormatter> spacesFunction = it -> it.setSpace(spaces);
+		doc.append(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE), spacesFunction);
 	}
 
-	/**
-	 * Format comment line in case of tab policy of type mixed.
-	 * 
-	 * @param commentLine reference on the comment line
-	 * @param document    reference on the document
-	 */
-	private void formatMixed(CommentLine commentLine, IFormattableDocument document) {
-		// remove the first white space
-		if (commentLine.getStartingSpace() != null) {
-			setWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE, " ");
-		}
-
-		// Insert the expected number of tab
-		int nbTabs = computeNbTabsForSpaces(commentPosition - 1);
-		int nbSpaceMissing = computeSpaceMissing(commentPosition - 1);
-		StringBuilder strPosition = new StringBuilder(Strings.repeat("\t", nbTabs));
-		if (nbSpaceMissing > 0) {
-			strPosition.append(Strings.repeat(" ", nbSpaceMissing));
-		}
-
-		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = it -> it.setSpace(strPosition.toString());
-		document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT),
-				setSpaceFunction);
-	}
-
-	/**
-	 * Format comment line in case of tab policy of type tab only.
-	 * 
-	 * @param commentLine reference on the comment line
-	 * @param document    reference on the document
-	 */
-	private void formatTabOnly(CommentLine commentLine, IFormattableDocument document) {
-		// remove the first white space
-		if (commentLine.getStartingSpace() != null) {
-			setWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE, " ");
-		}
-
-		// Insert the expected number of tab
-		int nbTabs = computeNbTabsForSpaces(commentPosition - 1);
-		String strPosition = Strings.repeat("\t", nbTabs);
-		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = it -> it.setSpace(strPosition);
-		document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT),
-				setSpaceFunction);
-	}
-
-	/**
-	 * Format the comment line with space only.
-	 * 
-	 * @param commentLine reference on the comment line
-	 * @param document    reference on the document
-	 */
-	private void formatSpaceOnly(CommentLine commentLine, IFormattableDocument document) {
-
-		// remove the first white space
-		if (commentLine.getStartingSpace() != null) {
-			setWhiteSpace(document, commentLine, AssemblerPackage.Literals.COMMENT_LINE__STARTING_SPACE, " ");
-		}
-
-		// Insert the expected number of space
-		String strPosition = Strings.repeat(" ", commentPosition - 1);
-		final Procedure1<IHiddenRegionFormatter> setSpaceFunction = it -> it.setSpace(strPosition);
-		document.prepend(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.Literals.COMMENT_LINE__COMMENT),
-				setSpaceFunction);
-	}
 
 	/**
 	 * Format the comment between the operand and the comment, or between the keyword and
@@ -299,7 +589,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param ws2 EAttribute which define the second space element
 	 * @param comment EAttribute which define the comment element
 	 */
-	private void formatCommentPosition(IFormattableDocument doc, EObject assemblyLine, EAttribute ws1, EAttribute ws2, EAttribute comment) {
+	private void formatCommentPosition(IFormattableDocument doc, EObject assemblyLine, EAttribute ws1, EAttribute ws2) {
 		try {
 			ISemanticRegion lastNodeInstruction = textRegionExtensions.regionFor(assemblyLine).feature(ws2).getPreviousSemanticRegion();
 			ISemanticRegion firstNodeInstruction = this.textRegionExtensions.regionFor(assemblyLine).feature(ws1).getNextSemanticRegion();
@@ -308,9 +598,11 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 
 			int elementReferenceSize;
 			int startPosition = 0;
+			
 			if (firstNodeInstruction == lastNodeInstruction) {
 				elementReferenceSize = firstNodeInstruction.getText().trim().length();
 				nbSpaces = commentPosition - elementReferenceSize - (instructionPosition);
+				startPosition = instructionPosition;
 			} else {
 				elementReferenceSize = getOperandSize(lastNodeInstruction);
 				nbSpaces = commentPosition - elementReferenceSize - (operandPosition);
@@ -333,7 +625,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param ws EAttribute which define the space element
 	 */
 	private void setFirstWhiteSpace(IFormattableDocument doc, EObject line, int labelSize, EAttribute ws) { 
-		String spaceBeforeKeyword = buildSpaceStringFromPolicy(labelSize, instructionPosition - labelSize - 1, 0);
+		String spaceBeforeKeyword = buildSpaceStringFromPolicy(labelSize, instructionPosition - labelSize -1, 0);
 		if (labelSize ==0) {
 			setWhiteSpace(doc, line, ws, " ");
 
@@ -348,11 +640,12 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	/**
 	 * Create a string in function of the tab policy.
 	 * 
-	 * @param labelSize Size of the label
+	 * @param elementSize Size of the label
 	 * @param nbSpacesNeeded number of space needed
+	 * @param startPosition position of the first char of the element before the spaces 
 	 * @return string for create space
 	 */
-	private String buildSpaceStringFromPolicy(int elementSize, int nbSpacesNeeded, int startPosition) {
+	public String buildSpaceStringFromPolicy(int elementSize, int nbSpacesNeeded, int startPosition) {
 
 		if (PreferenceManager.SPACE_ONLY.equals(tabPolicy) ) {
 			return Strings.repeat(" ", nbSpacesNeeded);
@@ -372,21 +665,18 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 				return strBuilder.toString();
 
 			} else {
-				int missingSpaces = (startPosition+elementSize)%tabSize;
-				if (missingSpaces != 0) {
-					strBuilder.append("\t");
-					nbSpacesNeeded -= tabSize - missingSpaces;
-				}	
-
-				while (nbSpacesNeeded>0) {
-					if (nbSpacesNeeded >= tabSize) {
-						strBuilder.append("\t");
-						nbSpacesNeeded -= tabSize;
-					} else {
-						strBuilder.append(" ");
-						nbSpacesNeeded -= 1;
-					}
+				int missingSpaces = 0;
+				if (startPosition == 0) {
+					missingSpaces = (startPosition+elementSize)%tabSize;
+				} else {
+					missingSpaces = (startPosition+elementSize-1)%tabSize;
 				}
+				strBuilder.append("\t");
+				nbSpacesNeeded -= (tabSize - missingSpaces);
+
+				strBuilder.append(Strings.repeat("\t", nbSpacesNeeded/tabSize));
+				strBuilder.append(Strings.repeat(" ", nbSpacesNeeded%tabSize));
+				
 				return strBuilder.toString();
 			}
 		}
@@ -428,26 +718,6 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	}
 
 	/**
-	 * Compute space missing in case of use tab or mixed tab policy.
-	 * 
-	 * @param nbSpaces Number of spaces to generate
-	 * @return nbSpace Number of spaces to generate
-	 */
-	private int computeSpaceMissing(int nbSpaces) {
-		return nbSpaces % tabSize;
-	}
-
-	/**
-	 * Compute the number of tab for a specific number of spaces.
-	 * 
-	 * @param nbSpaces Number of space to create
-	 * @return number of tab needed
-	 */
-	private int computeNbTabsForSpaces(int nbSpaces) {
-		return nbSpaces / tabSize;
-	}
-
-	/**
 	 * Remove a white space.
 	 * 
 	 * @param document        reference on the document
@@ -463,7 +733,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		try {
 			document.addReplacer(replacer);
 		} catch (Exception ex) {
-//			System.out.println("Toto");
+//			Just for avoid unexpected messages
 		}
 	}
 
@@ -471,28 +741,4 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		return textRegionExtensions;
 	}
 
-	// TODO: implement for OtherKindOfInstructions, SpecialFunctions,
-	// MacroDefinition, LabelLine, InstructionLine, Label, TstInstruction,
-	// SubdInstruction, SubInstruction, StInstruction, SbcInstruction,
-	// RorInstruction, RolInstruction, PuluInstruction, PulsInstruction,
-	// PshuInstruction, PshsInstruction, OrCCInstruction, OrInstruction,
-	// NegInstruction, LsrInstruction, LslInstruction, LeaInstruction,
-	// LdInstruction, JsrInstruction, JmpInstruction, IncInstruction,
-	// EorInstruction, DecInstruction, CwaiInstruction, ComInstruction,
-	// CmpInstruction, ClrInstruction, BvsInstruction, BvcInstruction,
-	// BsrInstruction, BrnInstruction, BraInstruction, BplInstruction,
-	// BneInstruction, BmiInstruction, BltInstruction, BlsInstruction,
-	// BloInstruction, BleInstruction, BitInstruction, BhsInstruction,
-	// BhiInstruction, BgtInstruction, BgeInstruction, BeqInstruction,
-	// BcsInstruction, BccInstruction, AsrInstruction, AslInstruction,
-	// AndCCInstruction, AndInstruction, AdddInstruction, AddInstruction,
-	// AdcInstruction, ExtendedIndirectOperand, ExtendedOperand, DirectOperand,
-	// ImmediatOperand, IndexedOperand, ConstantIndexedMode,
-	// ConstantIndexedMovingIndirectMode, RelatifToPCMode, RelatifToPCIndirectMode,
-	// RelativeMode, DirectiveLine, SetDPDirective, FccDirective, SpcDirective,
-	// NamDirective, PagDirective, SetDirective, FillDirective, BszDirective,
-	// FdbDirective, FcbDirective, RmbDirective, EndDirective, OrgDirective,
-	// EquDirective, ListOfExpression, CommaExpression, Expression, Multiplication,
-	// Division, Modulo, Addition, Substraction, LeftShift, RightShift, And, Or,
-	// Xor, Not, NumericalValue
 }

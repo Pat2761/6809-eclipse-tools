@@ -1,5 +1,5 @@
 /*
- * MC6809 Toolkit
+PulsInstructionFormater.java * MC6809 Toolkit
  * Copyright (C) 2023  Patrick BRIAND
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -12,13 +12,14 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You shouor have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 package org.bpy.electronics.mc6809.assembler.formatting2.instructions;
 
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.formatting2.AbstractInstructionWithOperand;
 import org.bpy.electronics.mc6809.assembler.formatting2.AssemblerFormatter;
 import org.eclipse.emf.ecore.EAttribute;
@@ -26,15 +27,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 
 /**
- * Format Abx instruction.
+ * Format Tfr instruction.
  * 
  * @author Patrick BRIAND
  *
  */
-public class AbxInstructionFormater extends AbstractInstructionWithOperand {
+public class TfrInstructionFormater extends AbstractInstructionWithOperand {
 
 	/** reference on the instruction */
-	private AbxInstruction abxInstruction;
+	private TfrInstruction tfrInstruction;
 
 	/**
 	 * Constructor of the class.
@@ -43,14 +44,14 @@ public class AbxInstructionFormater extends AbstractInstructionWithOperand {
 	 * @param tabPolicy Tab policy used (Space only, tab only a mixed)
 	 * @param tabSize Size of the tabulation
 	 */
-	public AbxInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
+	public TfrInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
 		super(doc, tabPolicy, tabSize);
 	}
 
 	@Override
 	public void format(AssemblerFormatter assemblerFormatter, EObject instruction, int instructionPosition, int operandPosition) {
 		this.assemblerFormatter = assemblerFormatter;
-		this.abxInstruction = (AbxInstruction)instruction;
+		this.tfrInstruction = (TfrInstruction)instruction;
 		this.instructionPosition = instructionPosition;
 		this.operandPosition = operandPosition;
 		
@@ -58,18 +59,28 @@ public class AbxInstructionFormater extends AbstractInstructionWithOperand {
 	}
 
 	@Override
+	protected void format() {
+		int startWsPosition = instructionPosition + getInstructioName().length();
+		int nbSpacesNeeded = operandPosition-startWsPosition;
+		if (nbSpacesNeeded<1) {
+			nbSpacesNeeded = 1; 
+		}
+		setWhiteSpace(getInstruction(), getSeparatorAttribute(), nbSpacesNeeded);
+	}
+
+	@Override
 	public String getInstructioName() {
-		return abxInstruction.getInstruction();
+		return tfrInstruction.getInstruction();
 	}
 
 	@Override
 	public EAttribute getSeparatorAttribute() {
-		return null;
+		return AssemblerPackage.Literals.TFR_INSTRUCTION__WS_OPERAND;
 	}
 
 	@Override
 	public EObject getInstruction() {
-		return abxInstruction;
+		return tfrInstruction;
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 /*
- * MC6809 Toolkit
+PulsInstructionFormater.java * MC6809 Toolkit
  * Copyright (C) 2023  Patrick BRIAND
  * 
  * This program is free software: you can redistribute it and/or modify
@@ -12,13 +12,13 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
  *
- * You should have received a copy of the GNU General Public License
+ * You shouor have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
 package org.bpy.electronics.mc6809.assembler.formatting2.instructions;
 
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.RtsInstruction;
 import org.bpy.electronics.mc6809.assembler.formatting2.AbstractInstructionWithOperand;
 import org.bpy.electronics.mc6809.assembler.formatting2.AssemblerFormatter;
 import org.eclipse.emf.ecore.EAttribute;
@@ -26,15 +26,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 
 /**
- * Format Abx instruction.
+ * Format Rts instruction.
  * 
  * @author Patrick BRIAND
  *
  */
-public class AbxInstructionFormater extends AbstractInstructionWithOperand {
+public class RtsInstructionFormater extends AbstractInstructionWithOperand {
 
 	/** reference on the instruction */
-	private AbxInstruction abxInstruction;
+	private RtsInstruction rtsInstruction;
 
 	/**
 	 * Constructor of the class.
@@ -43,14 +43,14 @@ public class AbxInstructionFormater extends AbstractInstructionWithOperand {
 	 * @param tabPolicy Tab policy used (Space only, tab only a mixed)
 	 * @param tabSize Size of the tabulation
 	 */
-	public AbxInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
+	public RtsInstructionFormater(IFormattableDocument doc, String tabPolicy, int tabSize) {
 		super(doc, tabPolicy, tabSize);
 	}
 
 	@Override
 	public void format(AssemblerFormatter assemblerFormatter, EObject instruction, int instructionPosition, int operandPosition) {
 		this.assemblerFormatter = assemblerFormatter;
-		this.abxInstruction = (AbxInstruction)instruction;
+		this.rtsInstruction = (RtsInstruction)instruction;
 		this.instructionPosition = instructionPosition;
 		this.operandPosition = operandPosition;
 		
@@ -59,7 +59,7 @@ public class AbxInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public String getInstructioName() {
-		return abxInstruction.getInstruction();
+		return rtsInstruction.getInstruction();
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class AbxInstructionFormater extends AbstractInstructionWithOperand {
 
 	@Override
 	public EObject getInstruction() {
-		return abxInstruction;
+		return rtsInstruction;
 	}
 
 	@Override

@@ -35,7 +35,7 @@ public abstract class AbstractObjectFormatter {
 
 	protected void format() {
 		int startWsPosition = instructionPosition + getInstructioName().length();
-		int nbSpacesNeeded = operandPosition- startWsPosition;
+		int nbSpacesNeeded = operandPosition-startWsPosition;
 		if (nbSpacesNeeded<1) {
 			nbSpacesNeeded = 1; 
 		}
@@ -52,9 +52,9 @@ public abstract class AbstractObjectFormatter {
 	 * @param line reference on the instruction or directive line
 	 * @param elementAttribut reference on the white space to remove 
 	 */
-	private void setWhiteSpace(EObject line, EAttribute elementAttribut, int nbSpaces) {
+	protected void setWhiteSpace(EObject line, EAttribute elementAttribut, int nbSpaces) {
 	
-		final String spaces = getSpacesNeeded(nbSpaces);
+		final String spaces = assemblerFormatter.buildSpaceStringFromPolicy(getInstructioName().length(),nbSpaces,instructionPosition);
 		
 		IHiddenRegionFormatting hiddenRegion = document.getFormatter().createHiddenRegionFormatting();
 		Procedure1<IHiddenRegionFormatting> spcFunction = it -> it.setSpace(spaces);
@@ -69,37 +69,4 @@ public abstract class AbstractObjectFormatter {
 			//	Nothing to do, just for avoid unexpected messages
 		}
 	}
-	
-	private String getSpacesNeeded(int nbSpaces) {
-		int instructionSize = getInstructioName().length();
-
-		if (PreferenceManager.SPACE_ONLY.equals(tabPolicy)) {
-			return Strings.repeat(" ", nbSpaces);
-
-		} else if (PreferenceManager.TAB_ONLY.equals(tabPolicy)) {
-			int nbTabsNeeded = ((instructionSize%tabSize)==0) ? nbSpaces/tabSize : nbSpaces/tabSize + 1;
-			if (nbTabsNeeded<1) {
-				nbTabsNeeded =1;
-			}
-			return Strings.repeat("\t", nbTabsNeeded);
-
-		} else {
-			StringBuilder strBuilder = new StringBuilder();
-
-			int nbTabsNeeded = ((instructionSize%tabSize)==0) ? nbSpaces/tabSize -1: nbSpaces/tabSize;
-			if (nbTabsNeeded<0) {
-				nbTabsNeeded =0;
-			}
-			strBuilder.append(Strings.repeat("\t", nbTabsNeeded));
-			int tabRepresentation = nbTabsNeeded*tabSize;
-			int nbSpacesMissing = nbSpaces-tabRepresentation;
-			strBuilder.append(Strings.repeat(" ", instructionSize%tabSize) );
-			if (nbSpacesMissing != 0) {
-				strBuilder.append(Strings.repeat(" ", nbSpacesMissing));
-			}
-			return strBuilder.toString();
-		}
-	}
-
-
 }
