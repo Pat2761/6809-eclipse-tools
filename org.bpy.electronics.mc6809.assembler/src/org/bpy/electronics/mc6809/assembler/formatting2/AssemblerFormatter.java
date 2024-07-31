@@ -205,9 +205,6 @@ import com.google.common.base.Strings;
  */
 public class AssemblerFormatter extends AbstractJavaFormatter {
 
-	/** Reference on the preference manager */
-	private PreferenceManager preferenceManager;
-
 	/** Current value of the tab policy */
 	private String tabPolicy;
 
@@ -233,13 +230,13 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param doc   reference on the document
 	 */
 	protected void format(Model model, IFormattableDocument doc) {
-		preferenceManager = PreferenceManager.getInstance();
-		junitPreference = this.preferenceManager.getBooleanPreferenceValue(PreferenceManager.JUNIT_PREFERENCE);
-		tabPolicy = this.preferenceManager.getStringPreferenceValue(PreferenceManager.TAB_POLICY);
-		tabSize = this.preferenceManager.getIntPreferenceValue(PreferenceManager.TAB_SIZE);
-		instructionPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.INSTRUCTION_POSITION);
-		operandPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.OPERAND_POSITION);
-		commentPosition = this.preferenceManager.getIntPreferenceValue(PreferenceManager.COMMENT_POSITION);
+		PreferenceManager preferenceManager = PreferenceManager.getInstance();
+		junitPreference = preferenceManager.getBooleanPreferenceValue(PreferenceManager.JUNIT_PREFERENCE);
+		tabPolicy = preferenceManager.getStringPreferenceValue(PreferenceManager.TAB_POLICY);
+		tabSize = preferenceManager.getIntPreferenceValue(PreferenceManager.TAB_SIZE);
+		instructionPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.INSTRUCTION_POSITION);
+		operandPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.OPERAND_POSITION);
+		commentPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.COMMENT_POSITION);
 
 		System.out.println("--------------------------------------------------------------");
 		System.out.println("Use formatter with following paramaters: ");

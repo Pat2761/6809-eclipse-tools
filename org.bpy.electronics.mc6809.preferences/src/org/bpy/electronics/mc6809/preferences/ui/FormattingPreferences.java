@@ -63,7 +63,6 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 	private Spinner commentPosition;
 	/** Widget for display information message */
 	private RichTextViewer statusViewer;
-	private Button emptyLineBeforeLabel;
 	private Button btnCommentAtInstructionLevel;
 
 	/**
@@ -180,10 +179,6 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		
 		btnCommentAtInstructionLevel.setText("Comment line at instruction level ");
 		
-		emptyLineBeforeLabel = new Button(grpGeneralOptions, SWT.CHECK);
-		emptyLineBeforeLabel.setBounds(20, 48, 308, 20);
-		emptyLineBeforeLabel.setText("Empty line before label");
-		
 		initFields();
 		validateValues();
 		addListener();
@@ -198,7 +193,6 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.INSTRUCTION_POSITION,instructionPosition.getSelection());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.OPERAND_POSITION,operandPosition.getSelection());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_POSITION,commentPosition.getSelection());
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.EMPTY_LINE_BEFORE_LABEL,emptyLineBeforeLabel.getSelection());
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL,btnCommentAtInstructionLevel.getSelection());
 	}
 
@@ -230,7 +224,6 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		commentPosition.setSelection(PreferenceManager.COMMENT_POSITION_DEFAULT_VALUE);
 		
 		btnCommentAtInstructionLevel.setSelection(false);
-		emptyLineBeforeLabel.setSelection(false);
 		
 		validateValues();
 		addListener();
@@ -255,8 +248,6 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 		instructionPosition.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.INSTRUCTION_POSITION));
 		operandPosition.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.OPERAND_POSITION));
 		commentPosition.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.COMMENT_POSITION));
-
-		emptyLineBeforeLabel.setSelection(PreferenceManager.getInstance().getBooleanPreferenceValue(PreferenceManager.EMPTY_LINE_BEFORE_LABEL));
 		btnCommentAtInstructionLevel.setSelection(PreferenceManager.getInstance().getBooleanPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL));
 	}
 
