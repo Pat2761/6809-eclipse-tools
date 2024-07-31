@@ -689,9 +689,16 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	protected void format(CommentLine commentLine, IFormattableDocument doc) {
 		setWhiteSpace(doc, commentLine, AssemblerPackage.eINSTANCE.getCommentLine_StartingSpace(), " ");
 
-		String spaces = buildSpaceStringFromPolicy(0, commentPosition - 1, 0);
-
-		Procedure1<IHiddenRegionFormatter> spacesFunction = it -> it.setSpace(spaces);
+		boolean state = PreferenceManager.getInstance().getBooleanPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL);
+		String spaces  = "";
+		if (state) {
+			spaces = buildSpaceStringFromPolicy(0, instructionPosition - 1, 0);
+		} else {
+			spaces = buildSpaceStringFromPolicy(0, commentPosition - 1, 0);
+		}
+		final String spacesNeeded = spaces;
+		
+		Procedure1<IHiddenRegionFormatter> spacesFunction = it -> it.setSpace(spacesNeeded);
 		doc.append(this.textRegionExtensions.regionFor(commentLine).feature(AssemblerPackage.eINSTANCE.getCommentLine_StartingSpace()),
 				spacesFunction);
 	}

@@ -24,9 +24,6 @@ import java.util.Map;
 import org.bpy.electronics.mc6809.preferences.Activator;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.ui.editors.text.EditorsUI;
-import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 
@@ -62,6 +59,12 @@ public class PreferenceManager {
 	/** Key of the preference which store the comment starting column */
 	public static final String COMMENT_POSITION = "commentPosition";
 	
+	/** key for store empty line before label */
+	public static final String EMPTY_LINE_BEFORE_LABEL = "emptyLineBeforeLabel";
+	/** key for comment line at instruction level */
+	public static final String COMMENT_LINE_AT_INSTRUCTION_LEVEL = "commentLineAtInstructionLevel";
+	
+	
 	/** Define the default value of the Tab policy preference */
 	public static final String TAB_POLICY_DEFAULT_VALUE = SPACE_ONLY;
 	/** Define the default value of the tab size preference */
@@ -72,6 +75,7 @@ public class PreferenceManager {
 	public static final int OPERAND_POSITION_DEFAULT_VALUE = 26;
 	/** Define the default value of the operand size preference */
 	public static final int COMMENT_POSITION_DEFAULT_VALUE = 52;
+	
 	
 	/** Instance of the preference manager singleton */ 
 	public static PreferenceManager eInstance;
@@ -96,6 +100,8 @@ public class PreferenceManager {
 		defaultsValues.put(INSTRUCTION_POSITION,""+  INSTRUCTION_POSITION_DEFAULT_VALUE);
 		defaultsValues.put(OPERAND_POSITION,"" + OPERAND_POSITION_DEFAULT_VALUE);
 		defaultsValues.put(COMMENT_POSITION,"" + COMMENT_POSITION_DEFAULT_VALUE);
+		defaultsValues.put(COMMENT_LINE_AT_INSTRUCTION_LEVEL,"" + false);
+		defaultsValues.put(EMPTY_LINE_BEFORE_LABEL,"" + false);
 	}
 	
 	/**
@@ -192,7 +198,6 @@ public class PreferenceManager {
 			preferences.clear();
 			preferences.flush();
 		} catch (BackingStoreException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -204,7 +209,6 @@ public class PreferenceManager {
 		try {
 			preferences.flush();
 		} catch (BackingStoreException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
