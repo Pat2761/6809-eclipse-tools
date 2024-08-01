@@ -51,7 +51,7 @@ public class TestMacroDefinition {
 					"Macro MyMacro can't be empty");
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -71,7 +71,7 @@ public class TestMacroDefinition {
 			validationTestHelper.assertNoIssues(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -92,7 +92,7 @@ public class TestMacroDefinition {
 			validationTestHelper.assertNoIssues(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -117,7 +117,7 @@ public class TestMacroDefinition {
 					"Macro MyMacro is already defined");
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -140,7 +140,7 @@ public class TestMacroDefinition {
 			validationTestHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -164,7 +164,7 @@ public class TestMacroDefinition {
 					"The instruction Wait1 is not recognized");
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -192,7 +192,7 @@ public class TestMacroDefinition {
 			Assert.assertEquals("4 NOP instructions", 0x8004, engine.getCurrentPcValue());
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -223,7 +223,7 @@ public class TestMacroDefinition {
 
 			// assembled first assembled Macro
 			{
-				AbstractAssemblyLine macro1 = engine.getAssembledLine().get(8);
+				AbstractAssemblyLine macro1 = engine.getAssembledLine().get(4);
 				Assert.assertTrue("Check type of object", macro1 instanceof MacroAssembledElement);
 
 				MacroAssembledElement assembledMacro1 = (MacroAssembledElement)macro1;
@@ -240,9 +240,9 @@ public class TestMacroDefinition {
 				Assert.assertEquals("check operand", "Wait_1", operand);
 			}	
 				
-			// assembled first assembled Macro
+			// assembled second assembled Macro
 			{
-				AbstractAssemblyLine macro1 = engine.getAssembledLine().get(4);
+				AbstractAssemblyLine macro1 = engine.getAssembledLine().get(5);
 				Assert.assertTrue("Check type of object", macro1 instanceof MacroAssembledElement);
 				MacroAssembledElement assembledMacro1 = (MacroAssembledElement)macro1;
 				AbstractAssemblyLine line1 = assembledMacro1.getAssemblyLines().get(1);
@@ -257,7 +257,7 @@ public class TestMacroDefinition {
 			}
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 }

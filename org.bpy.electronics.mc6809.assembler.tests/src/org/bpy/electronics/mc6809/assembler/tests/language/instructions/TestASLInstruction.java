@@ -83,7 +83,7 @@ public class TestASLInstruction {
 				);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -113,7 +113,7 @@ public class TestASLInstruction {
 			assertEquals("Must be an ASL instruction", adcInstruction.getInstruction(), "ASL");
 			assertTrue("Must be a direct addressing mode", adcInstruction.getOperand() instanceof DirectOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -143,7 +143,7 @@ public class TestASLInstruction {
 			assertEquals("Must be an ASL instruction", adcInstruction.getInstruction(), "ASL");
 			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -173,7 +173,7 @@ public class TestASLInstruction {
 			assertEquals("Must be an ASL instruction", adcInstruction.getInstruction(), "ASL");
 			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -203,7 +203,7 @@ public class TestASLInstruction {
 			assertEquals("Must be an ASL instruction", adcInstruction.getInstruction(), "ASL");
 			assertTrue("Must be a extended indirect addressing mode", adcInstruction.getOperand() instanceof ExtendedIndirectOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -241,7 +241,7 @@ public class TestASLInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Constant-Offset Indexed mode", indexedOperand.getMode() instanceof ConstantIndexedMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -280,7 +280,7 @@ public class TestASLInstruction {
 			assertTrue("Must be a Constant-Offset Indexed indirect mode",
 					indexedOperand.getMode() instanceof ConstantIndexedMovingIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -318,7 +318,7 @@ public class TestASLInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed mode", indexedOperand.getMode() instanceof AccumulatorMovingMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -356,7 +356,7 @@ public class TestASLInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed indirect mode", indexedOperand.getMode() instanceof AccumulatorMovingIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -396,7 +396,7 @@ public class TestASLInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed mode", indexedOperand.getMode() instanceof AutoIncDecMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -432,7 +432,7 @@ public class TestASLInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed indirect mode", indexedOperand.getMode() instanceof AutoIncDecIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -467,7 +467,7 @@ public class TestASLInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed mode", indexedOperand.getMode() instanceof RelatifToPCMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -502,7 +502,7 @@ public class TestASLInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed Indirect mode", indexedOperand.getMode() instanceof RelatifToPCIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -526,7 +526,7 @@ public class TestASLInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), InstructionValidator.DUPLICATE_LABEL,
 					"Label Start is already defined");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -561,7 +561,7 @@ public class TestASLInstruction {
 			;
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -586,7 +586,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -610,7 +610,7 @@ public class TestASLInstruction {
 			AssembledASLInstruction line = (AssembledASLInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -635,7 +635,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -660,7 +660,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -693,7 +693,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   78 13 88     START:    ASL   >Const*1000 ", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -719,7 +719,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -744,7 +744,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -769,7 +769,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -795,7 +795,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -829,7 +829,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   68 9F 13 88  START:    ASL   [Const*1000]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -855,7 +855,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -880,7 +880,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -905,7 +905,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -931,7 +931,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -963,7 +963,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   68 86        START:    ASL   A,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -995,7 +995,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A6        START:    ASL   A,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1027,7 +1027,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C6        START:    ASL   A,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1059,7 +1059,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E6        START:    ASL   A,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1091,7 +1091,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   68 85        START:    ASL   B,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1123,7 +1123,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A5        START:    ASL   B,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1155,7 +1155,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C5        START:    ASL   B,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1187,7 +1187,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E5        START:    ASL   B,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1219,7 +1219,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   68 8B        START:    ASL   D,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1251,7 +1251,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 AB        START:    ASL   D,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1283,7 +1283,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 CB        START:    ASL   D,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1315,7 +1315,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 EB        START:    ASL   D,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1347,7 +1347,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   68 96        START:    ASL   [A,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1379,7 +1379,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B6        START:    ASL   [A,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1411,7 +1411,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D6        START:    ASL   [A,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1443,7 +1443,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F6        START:    ASL   [A,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1475,7 +1475,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   68 95        START:    ASL   [B,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1507,7 +1507,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B5        START:    ASL   [B,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1539,7 +1539,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D5        START:    ASL   [B,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1571,7 +1571,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F5        START:    ASL   [B,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1603,7 +1603,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   68 9B        START:    ASL   [D,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1635,7 +1635,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 BB        START:    ASL   [D,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1667,7 +1667,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 DB        START:    ASL   [D,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1699,7 +1699,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 FB        START:    ASL   [D,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1731,7 +1731,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 80        START:    ASL   ,X+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1763,7 +1763,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 81        START:    ASL   ,X++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1795,7 +1795,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A0        START:    ASL   ,Y+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1827,7 +1827,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A1        START:    ASL   ,Y++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1859,7 +1859,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E0        START:    ASL   ,S+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1891,7 +1891,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E1        START:    ASL   ,S++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1923,7 +1923,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C0        START:    ASL   ,U+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1955,7 +1955,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C1        START:    ASL   ,U++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1987,7 +1987,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 82        START:    ASL   ,-X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2019,7 +2019,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 83        START:    ASL   ,--X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2051,7 +2051,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A2        START:    ASL   ,-Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2083,7 +2083,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A3        START:    ASL   ,--Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2115,7 +2115,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E2        START:    ASL   ,-S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2147,7 +2147,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E3        START:    ASL   ,--S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2179,7 +2179,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C2        START:    ASL   ,-U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2211,7 +2211,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C3        START:    ASL   ,--U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2234,7 +2234,7 @@ public class TestASLInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getAslInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2267,7 +2267,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 91        START:    ASL   [,X++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2290,7 +2290,7 @@ public class TestASLInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getAslInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2323,7 +2323,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B1        START:    ASL   [,Y++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2347,7 +2347,7 @@ public class TestASLInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getAslInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2380,7 +2380,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F1        START:    ASL   [,S++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2403,7 +2403,7 @@ public class TestASLInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getAslInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2436,7 +2436,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D1        START:    ASL   [,U++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2460,7 +2460,7 @@ public class TestASLInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getAslInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2493,7 +2493,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 93        START:    ASL   [,--X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2517,7 +2517,7 @@ public class TestASLInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getAslInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2550,7 +2550,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B3        START:    ASL   [,--Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2574,7 +2574,7 @@ public class TestASLInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getAslInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2607,7 +2607,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F3        START:    ASL   [,--S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2631,7 +2631,7 @@ public class TestASLInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getAslInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2664,7 +2664,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D3        START:    ASL   [,--U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2697,7 +2697,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 89 04 D2            ASL   1234,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2730,7 +2730,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 04 D2            ASL   1234,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2763,7 +2763,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C9 04 D2            ASL   1234,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2796,7 +2796,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E9 04 D2            ASL   1234,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2828,7 +2828,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 88 22            ASL   34,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2860,7 +2860,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A8 22            ASL   34,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2892,7 +2892,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C8 22            ASL   34,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2924,7 +2924,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E8 22            ASL   34,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2955,7 +2955,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 84            ASL   ,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2986,7 +2986,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A4            ASL   ,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3017,7 +3017,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C4            ASL   ,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3048,7 +3048,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E4            ASL   ,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3079,7 +3079,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 84            ASL   0,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3110,7 +3110,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A4            ASL   0,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3141,7 +3141,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C4            ASL   0,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3172,7 +3172,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E4            ASL   0,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3203,7 +3203,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 10            ASL   -16,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3234,7 +3234,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 01            ASL   1,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3265,7 +3265,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 0F            ASL   15,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3296,7 +3296,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 30            ASL   -16,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3327,7 +3327,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 21            ASL   1,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3358,7 +3358,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 2F            ASL   15,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3389,7 +3389,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 50            ASL   -16,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3420,7 +3420,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 41            ASL   1,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3451,7 +3451,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 4F            ASL   15,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3482,7 +3482,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 70            ASL   -16,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3513,7 +3513,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 61            ASL   1,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3544,7 +3544,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 6F            ASL   15,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3576,7 +3576,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 88 80            ASL   -128,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3608,7 +3608,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 88 7F            ASL   127,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3640,7 +3640,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A8 80            ASL   -128,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3672,7 +3672,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 A8 7F            ASL   127,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3704,7 +3704,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C8 80            ASL   -128,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3736,7 +3736,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C8 7F            ASL   127,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3768,7 +3768,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E8 80            ASL   -128,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3800,7 +3800,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E8 7F            ASL   127,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3833,7 +3833,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 89 80 00             ASL   -32768,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3866,7 +3866,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 89 7F FF             ASL   32767,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3899,7 +3899,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 80 00             ASL   -32768,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3932,7 +3932,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 7F FF             ASL   32767,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3965,7 +3965,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C9 80 00             ASL   -32768,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3998,7 +3998,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C9 7F FF             ASL   32767,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4031,7 +4031,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E9 80 00             ASL   -32768,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4064,7 +4064,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E9 7F FF             ASL   32767,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4099,7 +4099,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 89 80 00             ASL   -32769,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4134,7 +4134,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 89 7F FF             ASL   32768,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4169,7 +4169,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 80 00             ASL   -32769,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4204,7 +4204,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 7F FF             ASL   32768,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4239,7 +4239,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C9 80 00             ASL   -32769,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4274,7 +4274,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 C9 7F FF             ASL   32768,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4309,7 +4309,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E9 80 00             ASL   -32769,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4344,7 +4344,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 E9 7F FF             ASL   32768,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4377,7 +4377,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 99 04 D2            ASL   [1234,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4410,7 +4410,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B9 04 D2            ASL   [1234,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4443,7 +4443,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D9 04 D2            ASL   [1234,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4476,7 +4476,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F9 04 D2            ASL   [1234,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4508,7 +4508,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 98 22            ASL   [34,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4540,7 +4540,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B8 22            ASL   [34,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4572,7 +4572,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D8 22            ASL   [34,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4604,7 +4604,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F8 22            ASL   [34,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4635,7 +4635,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 94            ASL   [,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4666,7 +4666,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B4            ASL   [,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4697,7 +4697,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D4            ASL   [,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4728,7 +4728,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F4            ASL   [,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4759,7 +4759,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 94            ASL   [0,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4790,7 +4790,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B4            ASL   [0,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4821,7 +4821,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D4            ASL   [0,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4852,7 +4852,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F4            ASL   [0,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4884,7 +4884,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 98 F0            ASL   [-16,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4916,7 +4916,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 98 0F            ASL   [15,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4948,7 +4948,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B8 F0            ASL   [-16,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4980,7 +4980,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B8 0F            ASL   [15,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5012,7 +5012,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D8 F0            ASL   [-16,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5044,7 +5044,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D8 0F            ASL   [15,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5076,7 +5076,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F8 F0            ASL   [-16,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5108,7 +5108,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F8 0F            ASL   [15,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5140,7 +5140,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 98 80            ASL   [-128,X}", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5172,7 +5172,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 98 7F            ASL   [127,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5204,7 +5204,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B8 80            ASL   [-128,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5236,7 +5236,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B8 7F            ASL   [127,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5268,7 +5268,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D8 80            ASL   [-128,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5300,7 +5300,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D8 7F            ASL   [127,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5332,7 +5332,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F8 80            ASL   [-128,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5364,7 +5364,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F8 7F            ASL   [127,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5397,7 +5397,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 99 80 00             ASL   [-32768,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5430,7 +5430,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 99 7F FF             ASL   [32767,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5463,7 +5463,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B9 80 00             ASL   [-32768,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5496,7 +5496,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B9 7F FF             ASL   [32767,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5529,7 +5529,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D9 80 00             ASL   [-32768,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5562,7 +5562,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D9 7F FF             ASL   [32767,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5595,7 +5595,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F9 80 00             ASL   [-32768,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5628,7 +5628,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F9 7F FF             ASL   [32767,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5663,7 +5663,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 99 80 00             ASL   [-32769,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5698,7 +5698,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 99 7F FF             ASL   [32768,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5733,7 +5733,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B9 80 00             ASL   [-32769,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5768,7 +5768,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 B9 7F FF             ASL   [32768,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5803,7 +5803,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D9 80 00             ASL   [-32769,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5838,7 +5838,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 D9 7F FF             ASL   [32768,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5873,7 +5873,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F9 80 00             ASL   [-32769,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5908,7 +5908,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 F9 7F FF             ASL   [32768,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5940,7 +5940,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 8C 00            ASL   0,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5972,7 +5972,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 8C 80            ASL   -128,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6004,7 +6004,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 8C 7F            ASL   127,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6037,7 +6037,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 8D FF 7F            ASL   -129,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6070,7 +6070,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 8D 00 80            ASL   128,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6103,7 +6103,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 8D 80 00            ASL   -32768,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6136,7 +6136,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 8D 7F FF            ASL   32767,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6171,7 +6171,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 8D 80 00            ASL   -32769,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6206,7 +6206,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 8D 7F FF            ASL   32768,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6238,7 +6238,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 9C 00            ASL   [0,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6270,7 +6270,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 9C 80            ASL   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6302,7 +6302,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 9C 7F            ASL   [127,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6335,7 +6335,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 9D FF 7F            ASL   [-129,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6368,7 +6368,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 9D 00 80            ASL   [128,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6401,7 +6401,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 9D 80 00            ASL   [-32768,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6434,7 +6434,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 9D 7F FF            ASL   [32767,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6469,7 +6469,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 9D 80 00            ASL   [-32769,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6504,7 +6504,7 @@ public class TestASLInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	68 9D 7F FF            ASL   [32768,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 }

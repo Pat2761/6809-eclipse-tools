@@ -78,7 +78,7 @@ public class TestRegDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an REG directive line", directiveLine.getDirective() instanceof RegDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -100,7 +100,7 @@ public class TestRegDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.MISSING_LABEL,
 					"No label defined for REG directive");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -122,7 +122,7 @@ public class TestRegDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getRegDirective(), DirectiveValidator.MISSING_OPTION,
 					"no register defined in the REG Directive");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -144,7 +144,7 @@ public class TestRegDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getRegDirective(), DirectiveValidator.DUPLICATE_OPTION,
 					"Register A is duplicate in the REG Directive");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -166,7 +166,7 @@ public class TestRegDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.MISSING_LABEL,
 					"No label defined for REG directive");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -190,7 +190,7 @@ public class TestRegDirective {
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Address", 0xC000, engine.getCurrentPcValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -212,7 +212,7 @@ public class TestRegDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getRegDirective(), DirectiveValidator.DUPLICATE_OPTION,
 					"D register overwrite the A register in the REG Directive");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -234,7 +234,7 @@ public class TestRegDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getRegDirective(), DirectiveValidator.DUPLICATE_OPTION,
 					"D register overwrite the B register in the REG Directive");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -257,7 +257,7 @@ public class TestRegDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), InstructionValidator.DUPLICATE_LABEL,
 					"The label Lab1 for an REG directive is already defined");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -281,7 +281,7 @@ public class TestRegDirective {
 			AssembledRegDirectiveLine line = (AssembledRegDirectiveLine) engine.getAssembledLine(1);
 			Assert.assertEquals("Check REG value", 0x14, engine.getEquSetLabelValue(line.getLabel()).intValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -333,7 +333,7 @@ public class TestRegDirective {
 			Assert.assertEquals("Check value PC", 128, regLinePC.getValue());
 			Assert.assertEquals("Check memorization", 128, EquSetManager.getInstance().getValue("L_PC").intValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 }

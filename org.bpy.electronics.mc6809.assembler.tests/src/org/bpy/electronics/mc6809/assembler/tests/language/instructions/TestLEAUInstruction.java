@@ -85,7 +85,7 @@ public class TestLEAUInstruction {
 			assertEquals("Must be an LEAU instruction", adcInstruction.getInstruction(), "LEAU");
 			assertTrue("Must be a extended indirect addressing mode", adcInstruction.getOperand() instanceof ExtendedIndirectOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -123,7 +123,7 @@ public class TestLEAUInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Constant-Offset Indexed mode", indexedOperand.getMode() instanceof ConstantIndexedMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -162,7 +162,7 @@ public class TestLEAUInstruction {
 			assertTrue("Must be a Constant-Offset Indexed indirect mode",
 					indexedOperand.getMode() instanceof ConstantIndexedMovingIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -200,7 +200,7 @@ public class TestLEAUInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed mode", indexedOperand.getMode() instanceof AccumulatorMovingMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -238,7 +238,7 @@ public class TestLEAUInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed indirect mode", indexedOperand.getMode() instanceof AccumulatorMovingIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -278,7 +278,7 @@ public class TestLEAUInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed mode", indexedOperand.getMode() instanceof AutoIncDecMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -314,7 +314,7 @@ public class TestLEAUInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed indirect mode", indexedOperand.getMode() instanceof AutoIncDecIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -349,7 +349,7 @@ public class TestLEAUInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed mode", indexedOperand.getMode() instanceof RelatifToPCMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -384,7 +384,7 @@ public class TestLEAUInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed Indirect mode", indexedOperand.getMode() instanceof RelatifToPCIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -408,7 +408,7 @@ public class TestLEAUInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), InstructionValidator.DUPLICATE_LABEL,
 					"Label Start is already defined");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -432,7 +432,7 @@ public class TestLEAUInstruction {
 					"Immediate mode is not valid for the LEAU instruction");
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -456,7 +456,7 @@ public class TestLEAUInstruction {
 					"Direct mode is not valid for the LEAU instruction");
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -480,7 +480,7 @@ public class TestLEAUInstruction {
 					"Extended mode is not valid for the LEAU instruction");
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -514,7 +514,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9F 13 88  START:    LEAU   [Const*1000]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -540,7 +540,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -565,7 +565,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -590,7 +590,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -616,7 +616,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -648,7 +648,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 86        START:    LEAU   A,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -680,7 +680,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A6        START:    LEAU   A,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -712,7 +712,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C6        START:    LEAU   A,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -744,7 +744,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E6        START:    LEAU   A,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -776,7 +776,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 85        START:    LEAU   B,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -808,7 +808,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A5        START:    LEAU   B,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -840,7 +840,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C5        START:    LEAU   B,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -872,7 +872,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E5        START:    LEAU   B,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -904,7 +904,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 8B        START:    LEAU   D,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -936,7 +936,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 AB        START:    LEAU   D,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -968,7 +968,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 CB        START:    LEAU   D,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1000,7 +1000,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 EB        START:    LEAU   D,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1032,7 +1032,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 96        START:    LEAU   [A,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1064,7 +1064,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B6        START:    LEAU   [A,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1096,7 +1096,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D6        START:    LEAU   [A,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1128,7 +1128,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F6        START:    LEAU   [A,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1160,7 +1160,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 95        START:    LEAU   [B,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1192,7 +1192,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B5        START:    LEAU   [B,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1224,7 +1224,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D5        START:    LEAU   [B,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1256,7 +1256,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F5        START:    LEAU   [B,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1288,7 +1288,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9B        START:    LEAU   [D,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1320,7 +1320,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 BB        START:    LEAU   [D,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1352,7 +1352,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 DB        START:    LEAU   [D,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1384,7 +1384,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 FB        START:    LEAU   [D,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1416,7 +1416,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 80        START:    LEAU   ,X+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1448,7 +1448,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 81        START:    LEAU   ,X++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1480,7 +1480,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A0        START:    LEAU   ,Y+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1512,7 +1512,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A1        START:    LEAU   ,Y++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1544,7 +1544,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E0        START:    LEAU   ,S+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1576,7 +1576,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E1        START:    LEAU   ,S++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1608,7 +1608,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C0        START:    LEAU   ,U+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1640,7 +1640,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C1        START:    LEAU   ,U++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1672,7 +1672,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 82        START:    LEAU   ,-X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1704,7 +1704,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 83        START:    LEAU   ,--X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1736,7 +1736,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A2        START:    LEAU   ,-Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1768,7 +1768,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A3        START:    LEAU   ,--Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1800,7 +1800,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E2        START:    LEAU   ,-S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1832,7 +1832,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E3        START:    LEAU   ,--S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1864,7 +1864,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C2        START:    LEAU   ,-U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1896,7 +1896,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C3        START:    LEAU   ,--U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1919,7 +1919,7 @@ public class TestLEAUInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1952,7 +1952,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 91        START:    LEAU   [,X++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1975,7 +1975,7 @@ public class TestLEAUInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2008,7 +2008,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B1        START:    LEAU   [,Y++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2032,7 +2032,7 @@ public class TestLEAUInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2065,7 +2065,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F1        START:    LEAU   [,S++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2088,7 +2088,7 @@ public class TestLEAUInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2121,7 +2121,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D1        START:    LEAU   [,U++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2145,7 +2145,7 @@ public class TestLEAUInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2178,7 +2178,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 93        START:    LEAU   [,--X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2202,7 +2202,7 @@ public class TestLEAUInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2235,7 +2235,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B3        START:    LEAU   [,--Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2259,7 +2259,7 @@ public class TestLEAUInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2292,7 +2292,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F3        START:    LEAU   [,--S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2316,7 +2316,7 @@ public class TestLEAUInstruction {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getLeaInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2349,7 +2349,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D3        START:    LEAU   [,--U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2382,7 +2382,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 89 04 D2            LEAU   1234,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2415,7 +2415,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	67 A9 04 D2            LEAU   1234,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2448,7 +2448,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C9 04 D2            LEAU   1234,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2481,7 +2481,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E9 04 D2            LEAU   1234,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2513,7 +2513,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 88 22            LEAU   34,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2545,7 +2545,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A8 22            LEAU   34,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2577,7 +2577,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C8 22            LEAU   34,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2609,7 +2609,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E8 22            LEAU   34,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2640,7 +2640,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 84            LEAU   ,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2671,7 +2671,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A4            LEAU   ,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2702,7 +2702,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C4            LEAU   ,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2733,7 +2733,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E4            LEAU   ,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2764,7 +2764,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 84            LEAU   0,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2795,7 +2795,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A4            LEAU   0,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2826,7 +2826,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C4            LEAU   0,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2857,7 +2857,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E4            LEAU   0,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2888,7 +2888,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 10            LEAU   -16,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2919,7 +2919,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 01            LEAU   1,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2950,7 +2950,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 0F            LEAU   15,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2981,7 +2981,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 30            LEAU   -16,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3012,7 +3012,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 21            LEAU   1,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3043,7 +3043,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 2F            LEAU   15,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3074,7 +3074,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 50            LEAU   -16,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3105,7 +3105,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 41            LEAU   1,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3136,7 +3136,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 4F            LEAU   15,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3167,7 +3167,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 70            LEAU   -16,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3198,7 +3198,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 61            LEAU   1,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3229,7 +3229,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 6F            LEAU   15,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3261,7 +3261,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 88 80            LEAU   -128,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3293,7 +3293,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 88 7F            LEAU   127,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3325,7 +3325,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A8 80            LEAU   -128,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3357,7 +3357,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 A8 7F            LEAU   127,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3389,7 +3389,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C8 80            LEAU   -128,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3421,7 +3421,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C8 7F            LEAU   127,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3453,7 +3453,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E8 80            LEAU   -128,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3485,7 +3485,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E8 7F            LEAU   127,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3518,7 +3518,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 89 80 00             LEAU   -32768,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3551,7 +3551,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 89 7F FF             LEAU   32767,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3584,7 +3584,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	67 A9 80 00             LEAU   -32768,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3617,7 +3617,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	67 A9 7F FF             LEAU   32767,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3650,7 +3650,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C9 80 00             LEAU   -32768,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3683,7 +3683,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C9 7F FF             LEAU   32767,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3716,7 +3716,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E9 80 00             LEAU   -32768,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3749,7 +3749,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E9 7F FF             LEAU   32767,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3784,7 +3784,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 89 80 00             LEAU   -32769,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3819,7 +3819,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 89 7F FF             LEAU   32768,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3854,7 +3854,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	67 A9 80 00             LEAU   -32769,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3889,7 +3889,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	67 A9 7F FF             LEAU   32768,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3924,7 +3924,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C9 80 00             LEAU   -32769,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3959,7 +3959,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 C9 7F FF             LEAU   32768,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3994,7 +3994,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E9 80 00             LEAU   -32769,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4029,7 +4029,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 E9 7F FF             LEAU   32768,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4062,7 +4062,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 99 04 D2            LEAU   [1234,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4095,7 +4095,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B9 04 D2            LEAU   [1234,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4128,7 +4128,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D9 04 D2            LEAU   [1234,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4161,7 +4161,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F9 04 D2            LEAU   [1234,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4193,7 +4193,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 98 22            LEAU   [34,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4225,7 +4225,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B8 22            LEAU   [34,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4257,7 +4257,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D8 22            LEAU   [34,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4289,7 +4289,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F8 22            LEAU   [34,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4320,7 +4320,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 94            LEAU   [,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4351,7 +4351,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B4            LEAU   [,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4382,7 +4382,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D4            LEAU   [,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4413,7 +4413,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F4            LEAU   [,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4444,7 +4444,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 94            LEAU   [0,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4475,7 +4475,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B4            LEAU   [0,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4506,7 +4506,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D4            LEAU   [0,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4537,7 +4537,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F4            LEAU   [0,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4569,7 +4569,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 98 F0            LEAU   [-16,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4601,7 +4601,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 98 0F            LEAU   [15,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4633,7 +4633,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B8 F0            LEAU   [-16,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4665,7 +4665,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B8 0F            LEAU   [15,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4697,7 +4697,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D8 F0            LEAU   [-16,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4729,7 +4729,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D8 0F            LEAU   [15,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4761,7 +4761,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F8 F0            LEAU   [-16,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4793,7 +4793,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F8 0F            LEAU   [15,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4825,7 +4825,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 98 80            LEAU   [-128,X}", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4857,7 +4857,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 98 7F            LEAU   [127,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4889,7 +4889,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B8 80            LEAU   [-128,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4921,7 +4921,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B8 7F            LEAU   [127,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4953,7 +4953,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D8 80            LEAU   [-128,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4985,7 +4985,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D8 7F            LEAU   [127,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5017,7 +5017,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F8 80            LEAU   [-128,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5049,7 +5049,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F8 7F            LEAU   [127,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5082,7 +5082,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 99 80 00             LEAU   [-32768,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5115,7 +5115,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 99 7F FF             LEAU   [32767,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5148,7 +5148,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B9 80 00             LEAU   [-32768,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5181,7 +5181,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B9 7F FF             LEAU   [32767,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5214,7 +5214,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D9 80 00             LEAU   [-32768,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5247,7 +5247,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D9 7F FF             LEAU   [32767,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5280,7 +5280,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F9 80 00             LEAU   [-32768,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5313,7 +5313,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F9 7F FF             LEAU   [32767,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5348,7 +5348,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 99 80 00             LEAU   [-32769,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5383,7 +5383,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 99 7F FF             LEAU   [32768,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5418,7 +5418,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B9 80 00             LEAU   [-32769,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5453,7 +5453,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 B9 7F FF             LEAU   [32768,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5488,7 +5488,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D9 80 00             LEAU   [-32769,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5523,7 +5523,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 D9 7F FF             LEAU   [32768,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5558,7 +5558,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F9 80 00             LEAU   [-32769,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5593,7 +5593,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 F9 7F FF             LEAU   [32768,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5625,7 +5625,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 8C 00            LEAU   0,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5657,7 +5657,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 8C 80            LEAU   -128,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5689,7 +5689,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 8C 7F            LEAU   127,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5722,7 +5722,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 8D FF 7F            LEAU   -129,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5755,7 +5755,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 8D 00 80            LEAU   128,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5788,7 +5788,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 8D 80 00            LEAU   -32768,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5821,7 +5821,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 8D 7F FF            LEAU   32767,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5856,7 +5856,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 8D 80 00            LEAU   -32769,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5891,7 +5891,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 8D 7F FF            LEAU   32768,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5923,7 +5923,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9C 00            LEAU   [0,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5955,7 +5955,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9C 80            LEAU   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5987,7 +5987,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9C 7F            LEAU   [127,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6020,7 +6020,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9D FF 7F            LEAU   [-129,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6053,7 +6053,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9D 00 80            LEAU   [128,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6086,7 +6086,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9D 80 00            LEAU   [-32768,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6119,7 +6119,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9D 7F FF            LEAU   [32767,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6154,7 +6154,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9D 80 00            LEAU   [-32769,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6189,7 +6189,7 @@ public class TestLEAUInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   33 9D 7F FF            LEAU   [32768,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 }

@@ -90,7 +90,7 @@ public class TestSTYInstruction {
 			assertEquals("Must be an STY instruction", adcInstruction.getInstruction(), "STY");
 			assertTrue("Must be a direct addressing mode", adcInstruction.getOperand() instanceof DirectOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -120,7 +120,7 @@ public class TestSTYInstruction {
 			assertEquals("Must be an STY instruction", adcInstruction.getInstruction(), "STY");
 			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -150,7 +150,7 @@ public class TestSTYInstruction {
 			assertEquals("Must be an STY instruction", adcInstruction.getInstruction(), "STY");
 			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -180,7 +180,7 @@ public class TestSTYInstruction {
 			assertEquals("Must be an STY instruction", adcInstruction.getInstruction(), "STY");
 			assertTrue("Must be a extended indirect addressing mode", adcInstruction.getOperand() instanceof ExtendedIndirectOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -218,7 +218,7 @@ public class TestSTYInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Constant-Offset Indexed mode", indexedOperand.getMode() instanceof ConstantIndexedMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -257,7 +257,7 @@ public class TestSTYInstruction {
 			assertTrue("Must be a Constant-Offset Indexed indirect mode",
 					indexedOperand.getMode() instanceof ConstantIndexedMovingIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -295,7 +295,7 @@ public class TestSTYInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed mode", indexedOperand.getMode() instanceof AccumulatorMovingMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -333,7 +333,7 @@ public class TestSTYInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed indirect mode", indexedOperand.getMode() instanceof AccumulatorMovingIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -373,7 +373,7 @@ public class TestSTYInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed mode", indexedOperand.getMode() instanceof AutoIncDecMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -409,7 +409,7 @@ public class TestSTYInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed indirect mode", indexedOperand.getMode() instanceof AutoIncDecIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -444,7 +444,7 @@ public class TestSTYInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed mode", indexedOperand.getMode() instanceof RelatifToPCMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -479,7 +479,7 @@ public class TestSTYInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed Indirect mode", indexedOperand.getMode() instanceof RelatifToPCIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -503,7 +503,7 @@ public class TestSTYInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), InstructionValidator.DUPLICATE_LABEL,
 					"Label Start is already defined");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -538,7 +538,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; Illegal", line.getComment());	
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -572,7 +572,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check comment", "; 8000   109F 0A        START:    STY   <Const*2 ", line.getComment());
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -597,7 +597,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -621,7 +621,7 @@ public class TestSTYInstruction {
 			AssembledSTYInstruction line = (AssembledSTYInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -646,7 +646,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -671,7 +671,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -705,7 +705,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   10BF 13 88     START:    STY   >Const*1000 ", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -731,7 +731,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -756,7 +756,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -781,7 +781,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -807,7 +807,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -842,7 +842,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   10A3 9F 13 88  START:    STY   [Const*1000]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -868,7 +868,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -893,7 +893,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -918,7 +918,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -944,7 +944,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -977,7 +977,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 86        START:    STY   A,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1010,7 +1010,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A6        START:    STY   A,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1043,7 +1043,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C6        START:    STY   A,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1076,7 +1076,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E6        START:    STY   A,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1109,7 +1109,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 85        START:    STY   B,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1142,7 +1142,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A5        START:    STY   B,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1175,7 +1175,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C5        START:    STY   B,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1208,7 +1208,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E5        START:    STY   B,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1241,7 +1241,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 8B        START:    STY   D,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1274,7 +1274,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF AB        START:    STY   D,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1307,7 +1307,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF CB        START:    STY   D,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1340,7 +1340,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF EB        START:    STY   D,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1373,7 +1373,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 96        START:    STY   [A,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1406,7 +1406,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B6        START:    STY   [A,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1439,7 +1439,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D6        START:    STY   [A,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1472,7 +1472,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F6        START:    STY   [A,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1505,7 +1505,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 95        START:    STY   [B,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1538,7 +1538,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B5        START:    STY   [B,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1571,7 +1571,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D5        START:    STY   [B,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1604,7 +1604,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F5        START:    STY   [B,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1637,7 +1637,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 9B        START:    STY   [D,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1670,7 +1670,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF BB        START:    STY   [D,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1703,7 +1703,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF DB        START:    STY   [D,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1736,7 +1736,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF FB        START:    STY   [D,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1769,7 +1769,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 80        START:    STY   ,X+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1802,7 +1802,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 81        START:    STY   ,X++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1835,7 +1835,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A0        START:    STY   ,Y+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1868,7 +1868,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A1        START:    STY   ,Y++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1901,7 +1901,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E0        START:    STY   ,S+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1934,7 +1934,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E1        START:    STY   ,S++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1967,7 +1967,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C0        START:    STY   ,U+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2000,7 +2000,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C1        START:    STY   ,U++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2033,7 +2033,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 82        START:    STY   ,-X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2066,7 +2066,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 83        START:    STY   ,--X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2099,7 +2099,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A2        START:    STY   ,-Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2132,7 +2132,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A3        START:    STY   ,--Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2165,7 +2165,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E2        START:    STY   ,-S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2198,7 +2198,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E3        START:    STY   ,--S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2231,7 +2231,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C2        START:    STY   ,-U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2264,7 +2264,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C3        START:    STY   ,--U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2287,7 +2287,7 @@ public class TestSTYInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2321,7 +2321,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 91        START:    STY   [,X++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2344,7 +2344,7 @@ public class TestSTYInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2378,7 +2378,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B1        START:    STY   [,Y++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2402,7 +2402,7 @@ public class TestSTYInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2436,7 +2436,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F1        START:    STY   [,S++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2459,7 +2459,7 @@ public class TestSTYInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2493,7 +2493,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D1        START:    STY   [,U++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2517,7 +2517,7 @@ public class TestSTYInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2551,7 +2551,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 93        START:    STY   [,--X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2575,7 +2575,7 @@ public class TestSTYInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2609,7 +2609,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B3        START:    STY   [,--Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2633,7 +2633,7 @@ public class TestSTYInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2667,7 +2667,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F3        START:    STY   [,--S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2691,7 +2691,7 @@ public class TestSTYInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getStInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2725,7 +2725,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D3        START:    STY   [,--U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2759,7 +2759,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 89 04 D2            STY   1234,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2793,7 +2793,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 04 D2            STY   1234,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2827,7 +2827,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C9 04 D2            STY   1234,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2861,7 +2861,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E9 04 D2            STY   1234,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2894,7 +2894,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 88 22            STY   34,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2927,7 +2927,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A8 22            STY   34,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2960,7 +2960,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C8 22            STY   34,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2993,7 +2993,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E8 22            STY   34,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3025,7 +3025,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 84            STY   ,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3057,7 +3057,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A4            STY   ,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3089,7 +3089,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C4            STY   ,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3121,7 +3121,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E4            STY   ,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3153,7 +3153,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 84            STY   0,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3185,7 +3185,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A4            STY   0,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3217,7 +3217,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C4            STY   0,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3249,7 +3249,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E4            STY   0,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3281,7 +3281,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 10            STY   -16,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3313,7 +3313,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 01            STY   1,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3345,7 +3345,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 0F            STY   15,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3377,7 +3377,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 30            STY   -16,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3409,7 +3409,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 21            STY   1,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3441,7 +3441,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 2F            STY   15,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3473,7 +3473,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 50            STY   -16,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3505,7 +3505,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 41            STY   1,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3537,7 +3537,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 4F            STY   15,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3569,7 +3569,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 70            STY   -16,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3601,7 +3601,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 61            STY   1,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3633,7 +3633,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 6F            STY   15,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3666,7 +3666,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 88 80            STY   -128,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3699,7 +3699,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 88 7F            STY   127,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3732,7 +3732,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A8 80            STY   -128,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3765,7 +3765,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF A8 7F            STY   127,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3798,7 +3798,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C8 80            STY   -128,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3831,7 +3831,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C8 7F            STY   127,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3864,7 +3864,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E8 80            STY   -128,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3897,7 +3897,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E8 7F            STY   127,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3931,7 +3931,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 89 80 00             STY   -32768,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3965,7 +3965,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 89 7F FF             STY   32767,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3999,7 +3999,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 80 00             STY   -32768,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4033,7 +4033,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 7F FF             STY   32767,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4067,7 +4067,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C9 80 00             STY   -32768,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4101,7 +4101,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C9 7F FF             STY   32767,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4135,7 +4135,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E9 80 00             STY   -32768,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4169,7 +4169,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E9 7F FF             STY   32767,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4205,7 +4205,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 89 80 00             STY   -32769,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4241,7 +4241,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 89 7F FF             STY   32768,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4277,7 +4277,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 80 00             STY   -32769,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4313,7 +4313,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 7F FF             STY   32768,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4349,7 +4349,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C9 80 00             STY   -32769,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4385,7 +4385,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF C9 7F FF             STY   32768,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4421,7 +4421,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E9 80 00             STY   -32769,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4457,7 +4457,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF E9 7F FF             STY   32768,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4491,7 +4491,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 99 04 D2            STY   [1234,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4525,7 +4525,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B9 04 D2            STY   [1234,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4559,7 +4559,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D9 04 D2            STY   [1234,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4593,7 +4593,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F9 04 D2            STY   [1234,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4626,7 +4626,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 98 22            STY   [34,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4659,7 +4659,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B8 22            STY   [34,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4692,7 +4692,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D8 22            STY   [34,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4725,7 +4725,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F8 22            STY   [34,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4757,7 +4757,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 94            STY   [,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4789,7 +4789,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B4            STY   [,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4821,7 +4821,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D4            STY   [,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4853,7 +4853,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F4            STY   [,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4885,7 +4885,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 94            STY   [0,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4917,7 +4917,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B4            STY   [0,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4949,7 +4949,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D4            STY   [0,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4981,7 +4981,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F4            STY   [0,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5014,7 +5014,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 98 F0            STY   [-16,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5047,7 +5047,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 98 0F            STY   [15,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5080,7 +5080,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B8 F0            STY   [-16,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5113,7 +5113,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B8 0F            STY   [15,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5146,7 +5146,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D8 F0            STY   [-16,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5179,7 +5179,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D8 0F            STY   [15,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5212,7 +5212,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F8 F0            STY   [-16,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5245,7 +5245,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F8 0F            STY   [15,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5278,7 +5278,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 98 80            STY   [-128,X}", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5311,7 +5311,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 98 7F            STY   [127,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5344,7 +5344,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B8 80            STY   [-128,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5377,7 +5377,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B8 7F            STY   [127,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5410,7 +5410,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D8 80            STY   [-128,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5443,7 +5443,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D8 7F            STY   [127,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5476,7 +5476,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F8 80            STY   [-128,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5509,7 +5509,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F8 7F            STY   [127,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5543,7 +5543,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 99 80 00             STY   [-32768,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5577,7 +5577,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 99 7F FF             STY   [32767,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5611,7 +5611,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B9 80 00             STY   [-32768,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5645,7 +5645,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B9 7F FF             STY   [32767,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5679,7 +5679,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D9 80 00             STY   [-32768,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5713,7 +5713,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D9 7F FF             STY   [32767,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5747,7 +5747,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F9 80 00             STY   [-32768,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5781,7 +5781,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F9 7F FF             STY   [32767,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5817,7 +5817,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 99 80 00             STY   [-32769,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5853,7 +5853,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 99 7F FF             STY   [32768,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5889,7 +5889,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B9 80 00             STY   [-32769,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5925,7 +5925,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF B9 7F FF             STY   [32768,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5961,7 +5961,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D9 80 00             STY   [-32769,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5997,7 +5997,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF D9 7F FF             STY   [32768,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6033,7 +6033,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F9 80 00             STY   [-32769,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6069,7 +6069,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF F9 7F FF             STY   [32768,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6102,7 +6102,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 8C 00            STY   0,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6135,7 +6135,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 8C 80            STY   -128,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6168,7 +6168,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 8C 7F            STY   127,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6202,7 +6202,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 8D FF 7F            STY   -129,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6236,7 +6236,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 8D 00 80            STY   128,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6270,7 +6270,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 8D 80 00            STY   -32768,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6304,7 +6304,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 8D 7F FF            STY   32767,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6340,7 +6340,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 8D 80 00            STY   -32769,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6376,7 +6376,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 8D 7F FF            STY   32768,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6409,7 +6409,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 9C 00            STY   [0,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6442,7 +6442,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 9C 80            STY   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6475,7 +6475,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 9C 7F            STY   [127,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6509,7 +6509,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 9D FF 7F            STY   [-129,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6543,7 +6543,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 9D 00 80            STY   [128,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6577,7 +6577,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 9D 80 00            STY   [-32768,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6611,7 +6611,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 9D 7F FF            STY   [32767,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6647,7 +6647,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 9D 80 00            STY   [-32769,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6683,7 +6683,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 9D 7F FF            STY   [32768,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 }

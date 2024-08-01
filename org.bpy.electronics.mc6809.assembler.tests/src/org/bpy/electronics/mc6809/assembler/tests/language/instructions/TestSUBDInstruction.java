@@ -80,7 +80,7 @@ public class TestSUBDInstruction {
 			validationTestHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			SourceLine line = result.getSourceLines().get(2);
+			SourceLine line = result.getSourceLines().get(1);
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
@@ -90,7 +90,7 @@ public class TestSUBDInstruction {
 			assertEquals("Must be an SUBD instruction", adcInstruction.getInstruction(), "SUBD");
 			assertTrue("Must be an immediate addressing mode", adcInstruction.getOperand() instanceof ImmediatOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -120,7 +120,7 @@ public class TestSUBDInstruction {
 			assertEquals("Must be an SUBD instruction", adcInstruction.getInstruction(), "SUBD");
 			assertTrue("Must be a direct addressing mode", adcInstruction.getOperand() instanceof DirectOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -150,7 +150,7 @@ public class TestSUBDInstruction {
 			assertEquals("Must be an SUBD instruction", adcInstruction.getInstruction(), "SUBD");
 			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -180,7 +180,7 @@ public class TestSUBDInstruction {
 			assertEquals("Must be an SUBD instruction", adcInstruction.getInstruction(), "SUBD");
 			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -210,7 +210,7 @@ public class TestSUBDInstruction {
 			assertEquals("Must be an SUBD instruction", adcInstruction.getInstruction(), "SUBD");
 			assertTrue("Must be a extended indirect addressing mode", adcInstruction.getOperand() instanceof ExtendedIndirectOperand);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -248,7 +248,7 @@ public class TestSUBDInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Constant-Offset Indexed mode", indexedOperand.getMode() instanceof ConstantIndexedMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -287,7 +287,7 @@ public class TestSUBDInstruction {
 			assertTrue("Must be a Constant-Offset Indexed indirect mode",
 					indexedOperand.getMode() instanceof ConstantIndexedMovingIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -325,7 +325,7 @@ public class TestSUBDInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed mode", indexedOperand.getMode() instanceof AccumulatorMovingMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -363,7 +363,7 @@ public class TestSUBDInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed indirect mode", indexedOperand.getMode() instanceof AccumulatorMovingIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -403,7 +403,7 @@ public class TestSUBDInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed mode", indexedOperand.getMode() instanceof AutoIncDecMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -439,7 +439,7 @@ public class TestSUBDInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed indirect mode", indexedOperand.getMode() instanceof AutoIncDecIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -474,7 +474,7 @@ public class TestSUBDInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed mode", indexedOperand.getMode() instanceof RelatifToPCMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -509,7 +509,7 @@ public class TestSUBDInstruction {
 			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed Indirect mode", indexedOperand.getMode() instanceof RelatifToPCIndirectMode);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -533,7 +533,7 @@ public class TestSUBDInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), InstructionValidator.DUPLICATE_LABEL,
 					"Label Start is already defined");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -566,7 +566,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   83 00 07        START:    SUBD", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -591,7 +591,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -616,7 +616,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -641,7 +641,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -667,7 +667,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -694,7 +694,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -727,7 +727,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check comment", "; 8000   93 0A        START:    SUBD   <Const*2 ", line.getComment());
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -752,7 +752,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -776,7 +776,7 @@ public class TestSUBDInstruction {
 			AssembledSUBDInstruction line = (AssembledSUBDInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -801,7 +801,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -826,7 +826,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[0]);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -859,7 +859,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   B3 13 88     START:    SUBD   >Const*1000 ", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -885,7 +885,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -910,7 +910,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -935,7 +935,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -961,7 +961,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -995,7 +995,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 9F 13 88  START:    SUBD   [Const*1000]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1021,7 +1021,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1046,7 +1046,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1071,7 +1071,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1097,7 +1097,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1129,7 +1129,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 86        START:    SUBD   A,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1161,7 +1161,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A6        START:    SUBD   A,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1193,7 +1193,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C6        START:    SUBD   A,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1225,7 +1225,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E6        START:    SUBD   A,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1257,7 +1257,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 85        START:    SUBD   B,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1289,7 +1289,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A5        START:    SUBD   B,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1321,7 +1321,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C5        START:    SUBD   B,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1353,7 +1353,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E5        START:    SUBD   B,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1385,7 +1385,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 8B        START:    SUBD   D,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1417,7 +1417,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 AB        START:    SUBD   D,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1449,7 +1449,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 CB        START:    SUBD   D,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1481,7 +1481,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 EB        START:    SUBD   D,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1513,7 +1513,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 96        START:    SUBD   [A,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1545,7 +1545,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B6        START:    SUBD   [A,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1577,7 +1577,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D6        START:    SUBD   [A,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1609,7 +1609,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F6        START:    SUBD   [A,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1641,7 +1641,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 95        START:    SUBD   [B,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1673,7 +1673,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B5        START:    SUBD   [B,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1705,7 +1705,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D5        START:    SUBD   [B,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1737,7 +1737,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F5        START:    SUBD   [B,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1769,7 +1769,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   AB 9B        START:    SUBD   [D,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1801,7 +1801,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 BB        START:    SUBD   [D,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1833,7 +1833,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 DB        START:    SUBD   [D,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1865,7 +1865,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 FB        START:    SUBD   [D,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1897,7 +1897,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 80        START:    SUBD   ,X+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1929,7 +1929,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 81        START:    SUBD   ,X++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1961,7 +1961,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A0        START:    SUBD   ,Y+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -1993,7 +1993,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A1        START:    SUBD   ,Y++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2025,7 +2025,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E0        START:    SUBD   ,S+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2057,7 +2057,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E1        START:    SUBD   ,S++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2089,7 +2089,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C0        START:    SUBD   ,U+", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2121,7 +2121,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C1        START:    SUBD   ,U++", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2153,7 +2153,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 82        START:    SUBD   ,-X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2185,7 +2185,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 83        START:    SUBD   ,--X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2217,7 +2217,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A2        START:    SUBD   ,-Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2249,7 +2249,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A3        START:    SUBD   ,--Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2281,7 +2281,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E2        START:    SUBD   ,-S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2313,7 +2313,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E3        START:    SUBD   ,--S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2345,7 +2345,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C2        START:    SUBD   ,-U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2377,7 +2377,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C3        START:    SUBD   ,--U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2400,7 +2400,7 @@ public class TestSUBDInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2433,7 +2433,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 91        START:    SUBD   [,X++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2456,7 +2456,7 @@ public class TestSUBDInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2489,7 +2489,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B1        START:    SUBD   [,Y++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2513,7 +2513,7 @@ public class TestSUBDInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2546,7 +2546,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F1        START:    SUBD   [,S++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2569,7 +2569,7 @@ public class TestSUBDInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2602,7 +2602,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D1        START:    SUBD   [,U++]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2626,7 +2626,7 @@ public class TestSUBDInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2659,7 +2659,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 93        START:    SUBD   [,--X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2683,7 +2683,7 @@ public class TestSUBDInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2716,7 +2716,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B3        START:    SUBD   [,--Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2740,7 +2740,7 @@ public class TestSUBDInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2773,7 +2773,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F3        START:    SUBD   [,--S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2797,7 +2797,7 @@ public class TestSUBDInstruction {
 			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getSubdInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2830,7 +2830,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D3        START:    SUBD   [,--U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2863,7 +2863,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 89 04 D2            SUBD   1234,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2896,7 +2896,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 04 D2            SUBD   1234,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2929,7 +2929,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C9 04 D2            SUBD   1234,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2962,7 +2962,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E9 04 D2            SUBD   1234,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -2994,7 +2994,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 88 22            SUBD   34,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3026,7 +3026,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A8 22            SUBD   34,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3058,7 +3058,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C8 22            SUBD   34,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3090,7 +3090,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E8 22            SUBD   34,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3121,7 +3121,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 84            SUBD   ,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3152,7 +3152,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A4            SUBD   ,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3183,7 +3183,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C4            SUBD   ,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3214,7 +3214,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E4            SUBD   ,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3245,7 +3245,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 84            SUBD   0,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3276,7 +3276,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A4            SUBD   0,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3307,7 +3307,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C4            SUBD   0,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3338,7 +3338,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E4            SUBD   0,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3369,7 +3369,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 10            SUBD   -16,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3400,7 +3400,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 01            SUBD   1,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3431,7 +3431,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 0F            SUBD   15,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3462,7 +3462,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 30            SUBD   -16,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3493,7 +3493,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 21            SUBD   1,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3524,7 +3524,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 2F            SUBD   15,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3555,7 +3555,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 50            SUBD   -16,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3586,7 +3586,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 41            SUBD   1,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3617,7 +3617,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 4F            SUBD   15,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3648,7 +3648,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 70            SUBD   -16,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3679,7 +3679,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 61            SUBD   1,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3710,7 +3710,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 6F            SUBD   15,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3742,7 +3742,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 88 80            SUBD   -128,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3774,7 +3774,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 88 7F            SUBD   127,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3806,7 +3806,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A8 80            SUBD   -128,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3838,7 +3838,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 A8 7F            SUBD   127,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3870,7 +3870,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C8 80            SUBD   -128,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3902,7 +3902,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C8 7F            SUBD   127,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3934,7 +3934,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E8 80            SUBD   -128,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3966,7 +3966,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E8 7F            SUBD   127,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -3999,7 +3999,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 89 80 00             SUBD   -32768,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4032,7 +4032,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 89 7F FF             SUBD   32767,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4065,7 +4065,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 80 00             SUBD   -32768,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4098,7 +4098,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 7F FF             SUBD   32767,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4131,7 +4131,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C9 80 00             SUBD   -32768,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4164,7 +4164,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C9 7F FF             SUBD   32767,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4197,7 +4197,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E9 80 00             SUBD   -32768,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4230,7 +4230,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E9 7F FF             SUBD   32767,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4265,7 +4265,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 89 80 00             SUBD   -32769,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4300,7 +4300,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 89 7F FF             SUBD   32768,X", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4335,7 +4335,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 80 00             SUBD   -32769,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4370,7 +4370,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	AB A9 7F FF             SUBD   32768,Y", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4405,7 +4405,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C9 80 00             SUBD   -32769,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4440,7 +4440,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 C9 7F FF             SUBD   32768,U", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4475,7 +4475,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E9 80 00             SUBD   -32769,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4510,7 +4510,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 E9 7F FF             SUBD   32768,S", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4543,7 +4543,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 99 04 D2            SUBD   [1234,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4576,7 +4576,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B9 04 D2            SUBD   [1234,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4609,7 +4609,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D9 04 D2            SUBD   [1234,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4642,7 +4642,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F9 04 D2            SUBD   [1234,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4674,7 +4674,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 98 22            SUBD   [34,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4706,7 +4706,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B8 22            SUBD   [34,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4738,7 +4738,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D8 22            SUBD   [34,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4770,7 +4770,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F8 22            SUBD   [34,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4801,7 +4801,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 94            SUBD   [,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4832,7 +4832,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B4            SUBD   [,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4863,7 +4863,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D4            SUBD   [,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4894,7 +4894,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F4            SUBD   [,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4925,7 +4925,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 94            SUBD   [0,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4956,7 +4956,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B4            SUBD   [0,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -4987,7 +4987,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D4            SUBD   [0,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5018,7 +5018,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F4            SUBD   [0,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5050,7 +5050,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 98 F0            SUBD   [-16,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5082,7 +5082,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 98 0F            SUBD   [15,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5114,7 +5114,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B8 F0            SUBD   [-16,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5146,7 +5146,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B8 0F            SUBD   [15,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5178,7 +5178,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D8 F0            SUBD   [-16,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5210,7 +5210,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D8 0F            SUBD   [15,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5242,7 +5242,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F8 F0            SUBD   [-16,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5274,7 +5274,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F8 0F            SUBD   [15,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5306,7 +5306,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 98 80            SUBD   [-128,X}", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5338,7 +5338,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 98 7F            SUBD   [127,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5370,7 +5370,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B8 80            SUBD   [-128,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5402,7 +5402,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B8 7F            SUBD   [127,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5434,7 +5434,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D8 80            SUBD   [-128,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5466,7 +5466,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D8 7F            SUBD   [127,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5498,7 +5498,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F8 80            SUBD   [-128,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5530,7 +5530,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F8 7F            SUBD   [127,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5563,7 +5563,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 99 80 00             SUBD   [-32768,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5596,7 +5596,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 99 7F FF             SUBD   [32767,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5629,7 +5629,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B9 80 00             SUBD   [-32768,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5662,7 +5662,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B9 7F FF             SUBD   [32767,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5695,7 +5695,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D9 80 00             SUBD   [-32768,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5728,7 +5728,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D9 7F FF             SUBD   [32767,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5761,7 +5761,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F9 80 00             SUBD   [-32768,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5794,7 +5794,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F9 7F FF             SUBD   [32767,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5829,7 +5829,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 99 80 00             SUBD   [-32769,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5864,7 +5864,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 99 7F FF             SUBD   [32768,X]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5899,7 +5899,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B9 80 00             SUBD   [-32769,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5934,7 +5934,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 B9 7F FF             SUBD   [32768,Y]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -5969,7 +5969,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D9 80 00             SUBD   [-32769,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6004,7 +6004,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 D9 7F FF             SUBD   [32768,U]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6039,7 +6039,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F9 80 00             SUBD   [-32769,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6074,7 +6074,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 F9 7F FF             SUBD   [32768,S]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6106,7 +6106,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 8C 00            SUBD   0,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6138,7 +6138,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 8C 80            SUBD   -128,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6170,7 +6170,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 8C 7F            SUBD   127,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6203,7 +6203,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 8D FF 7F            SUBD   -129,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6236,7 +6236,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 8D 00 80            SUBD   128,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6269,7 +6269,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 8D 80 00            SUBD   -32768,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6302,7 +6302,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 8D 7F FF            SUBD   32767,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6337,7 +6337,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 8D 80 00            SUBD   -32769,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6372,7 +6372,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 8D 7F FF            SUBD   32768,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6404,7 +6404,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 9C 00            SUBD   [0,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6436,7 +6436,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 9C 80            SUBD   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6468,7 +6468,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 9C 7F            SUBD   [127,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6501,7 +6501,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 9D FF 7F            SUBD   [-129,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6534,7 +6534,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 9D 00 80            SUBD   [128,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6567,7 +6567,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 9D 80 00            SUBD   [-32768,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6600,7 +6600,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 9D 7F FF            SUBD   [32767,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6635,7 +6635,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 9D 80 00            SUBD   [-32769,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6670,7 +6670,7 @@ public class TestSUBDInstruction {
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	A3 9D 7F FF            SUBD   [32768,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 }

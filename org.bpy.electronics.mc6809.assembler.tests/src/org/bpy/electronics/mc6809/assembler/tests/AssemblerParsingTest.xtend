@@ -9,6 +9,7 @@ import org.bpy.electronics.mc6809.assembler.tests.language.directives.*
 import org.bpy.electronics.mc6809.assembler.tests.language.CheckNumberValidation
 import org.bpy.electronics.mc6809.assembler.tests.language.instructions.*
 import org.bpy.electronics.mc6809.assembler.tests.language.specialFunctions.TestMacroDefinition
+import org.bpy.electronics.mc6809.assembler.tests.formatter.TestCommentLineFormatter
 
 @RunWith(Suite)
 @Suite.SuiteClasses( 
@@ -42,6 +43,7 @@ import org.bpy.electronics.mc6809.assembler.tests.language.specialFunctions.Test
 	 
 	 /* Instructions  */
 	 TestADCAInstruction,
+	 TestADCBInstruction,
 	 TestADDAInstruction,
 	 TestADDBInstruction,
 	 TestADDDInstruction,
@@ -103,6 +105,7 @@ import org.bpy.electronics.mc6809.assembler.tests.language.specialFunctions.Test
 	 TestCMPSInstruction,
 	 TestCMPUInstruction,
 	 TestCMPXInstruction,
+	 TestCMPYInstruction,
 	 TestCOMAInstruction,
 	 TestCOMBInstruction,
 	 TestCOMInstruction,
@@ -179,12 +182,12 @@ import org.bpy.electronics.mc6809.assembler.tests.language.specialFunctions.Test
 	 // -----------------------------------------------	
 	 // Test the special functions 
 	 // -----------------------------------------------	
-	 TestMacroDefinition
+	 TestMacroDefinition,
 	 
 	 // -----------------------------------------------	
 	 // Test the formatter 
 	 // -----------------------------------------------	
-//	 TestAbxInstructionFormatter	
+	 TestCommentLineFormatter	
 	 /* Examples  */
 //	 SorekSamples
 	

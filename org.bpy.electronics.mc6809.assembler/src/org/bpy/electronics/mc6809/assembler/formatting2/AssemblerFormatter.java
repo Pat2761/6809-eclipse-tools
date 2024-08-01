@@ -3,6 +3,9 @@
  */
 package org.bpy.electronics.mc6809.assembler.formatting2;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
@@ -87,7 +90,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SexInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpcDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions;
 import org.bpy.electronics.mc6809.assembler.assembler.StInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SubdInstruction;
@@ -97,7 +99,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.data.others.MacroDeclarationElement;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.formatting2.directives.BszFormatter;
 import org.bpy.electronics.mc6809.assembler.formatting2.directives.EndFormatter;
 import org.bpy.electronics.mc6809.assembler.formatting2.directives.EquFormatter;
@@ -205,6 +207,9 @@ import com.google.common.base.Strings;
  */
 public class AssemblerFormatter extends AbstractJavaFormatter {
 
+	/** Logger of the class */
+	private static Logger logger =  Logger.getLogger(AssemblerFormatter.class.getSimpleName());
+	
 	/** Current value of the tab policy */
 	private String tabPolicy;
 
@@ -220,9 +225,6 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	/** Current column value of the comment */
 	private int commentPosition;
 
-	/** Just use for a workaround on JUnit test of the formatter */
-	private boolean junitPreference;
-
 	/**
 	 * Entry for format all document.
 	 * 
@@ -231,33 +233,34 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 */
 	protected void format(Model model, IFormattableDocument doc) {
 		PreferenceManager preferenceManager = PreferenceManager.getInstance();
-		junitPreference = preferenceManager.getBooleanPreferenceValue(PreferenceManager.JUNIT_PREFERENCE);
 		tabPolicy = preferenceManager.getStringPreferenceValue(PreferenceManager.TAB_POLICY);
 		tabSize = preferenceManager.getIntPreferenceValue(PreferenceManager.TAB_SIZE);
 		instructionPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.INSTRUCTION_POSITION);
 		operandPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.OPERAND_POSITION);
 		commentPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.COMMENT_POSITION);
 
-		System.out.println("--------------------------------------------------------------");
-		System.out.println("Use formatter with following paramaters: ");
-		System.out.print("Tab policy = " + tabPolicy);
-		System.out.print(": Tab size = " + tabSize);
-		System.out.print(": Instruction position = " + instructionPosition);
-		System.out.print(": Operand position " + operandPosition);
-		System.out.println(": Comment position " + commentPosition);
+		logger.log(Level.INFO, "--------------------------------------------------------------");
+		logger.log(Level.INFO, "Use formatter with following paramaters: ");
+		logger.log(Level.INFO, "Tab policy = {0}", tabPolicy);
+		logger.log(Level.INFO, ": Tab size = {0}", tabSize);
+		logger.log(Level.INFO, ": Instruction position {0}", instructionPosition);
+		logger.log(Level.INFO, ": Operand position{0}",operandPosition);
+		logger.log(Level.INFO, ": Comment position {0}",commentPosition);
+		logger.log(Level.INFO, ": Comment line at instruction level: {0}",preferenceManager.getBooleanPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL));
 
 		for (SourceLine sourceLine : model.getSourceLines()) {
 			doc.format(sourceLine);
 		}
+		logger.log(Level.INFO, "--------------------------------------------------------------");
 	}
 
 	/**
+	 * Format a macro definition.
 	 * 
-	 * @param line
-	 * @param doc
+	 * @param line reference on the line to format
+	 * @param doc reference on the document
 	 */
 	protected void format(MacroDefinition line, IFormattableDocument doc) {
-		setWhiteSpace(doc, line, AssemblerPackage.eINSTANCE.getMacroDefinition_Ws1(), " ");
 		setFirstWhiteSpace(doc, line, 0, AssemblerPackage.eINSTANCE.getMacroDefinition_Ws1());
 
 		MacroDefinitionStart start = new MacroDefinitionStart(doc, tabPolicy, tabSize);
@@ -272,7 +275,6 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 			format(instruction, doc);
 		}
 		
-		setWhiteSpace(doc, line, AssemblerPackage.eINSTANCE.getMacroDefinition_Ws5(), " ");
 		setFirstWhiteSpace(doc, line, 0, AssemblerPackage.eINSTANCE.getMacroDefinition_Ws5());
 
 		if (line.getWs6() != null) {
@@ -365,6 +367,10 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		} else if (line.getInstruction() instanceof DecInstruction decInstruction) {
 			DecInstructionFormater decFormatter = new DecInstructionFormater(doc, tabPolicy, tabSize);
 			decFormatter.format(this, decInstruction, instructionPosition, operandPosition);
+
+		} else if (line.getInstruction() instanceof EorInstruction eorInstruction) {
+			EorInstructionFormater eorFormatter = new EorInstructionFormater(doc, tabPolicy, tabSize);
+			eorFormatter.format(this, eorInstruction, instructionPosition, operandPosition);
 
 		} else if (line.getInstruction() instanceof ExgInstruction exgInstruction) {
 			ExgInstructionFormater exgFormatter = new ExgInstructionFormater(doc, tabPolicy, tabSize);
@@ -669,11 +675,12 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	protected void format(LabelLine labelLine, IFormattableDocument doc) {
 		setWhiteSpace(doc, labelLine, AssemblerPackage.eINSTANCE.getLabelLine_Ws1(), " ");
 
-		int nbSpacesNeeded = commentPosition - labelLine.getLabel().getName().getValue().length();
-		String spaces = buildSpaceStringFromPolicy(labelLine.getLabel().getName().getValue().length(), nbSpacesNeeded - 1, 0);
+		int labelLength = getLabelSize(labelLine.getLabel());
+		int nbSpacesNeeded = commentPosition - labelLength-1;
+		String spaces = buildSpaceStringFromPolicy(labelLength, nbSpacesNeeded - 1, 0);
 
 		Procedure1<IHiddenRegionFormatter> spacesFunction = it -> it.setSpace(spaces);
-		doc.append(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.eINSTANCE.getLabelLine_Ws1()), spacesFunction);
+		doc.prepend(this.textRegionExtensions.regionFor(labelLine).feature(AssemblerPackage.eINSTANCE.getLabelLine_Comment()), spacesFunction);
 	}
 
 	/**
@@ -746,7 +753,13 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param ws        EAttribute which define the space element
 	 */
 	private void setFirstWhiteSpace(IFormattableDocument doc, EObject line, int labelSize, EAttribute ws) {
-		String spaceBeforeKeyword = buildSpaceStringFromPolicy(labelSize, instructionPosition - labelSize - 1, 0);
+		ISemanticRegion node = textRegionExtensions.regionFor(line).feature(ws).getPreviousSemanticRegion();
+		int offset = 0;
+		if (node == null) {
+			offset=-1;
+		}
+		
+		String spaceBeforeKeyword = buildSpaceStringFromPolicy(labelSize, instructionPosition - labelSize - 1 + offset, 0);
 		if (labelSize == 0) {
 			setWhiteSpace(doc, line, ws, " ");
 

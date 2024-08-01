@@ -36,4 +36,7 @@ public abstract class AbstractTestFormatter {
 		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_SIZE, size);
 	}
 
+	protected void setCommentLineAtInstructionLevel(boolean state) {
+		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL, state);
+	}
 }

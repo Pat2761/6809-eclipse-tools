@@ -81,7 +81,7 @@ public class TestOrgDirective {
 			Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective));
 			Assert.assertEquals("Operand must be equals to 8000", 0x8000, ExpressionParser.parse(orgDirective));
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -111,7 +111,7 @@ public class TestOrgDirective {
 		 	Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective));	
 			Assert.assertEquals("Operand must be equals to 0", 0, ExpressionParser.parse(orgDirective));		
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -149,7 +149,7 @@ public class TestOrgDirective {
 			Assert.assertNull("Label must be null", CommandUtil.getLabel(orgDirective));
 			Assert.assertEquals("Operand must be equals to $4000", 0x4000, ExpressionParser.parse(orgDirective));
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -183,7 +183,7 @@ public class TestOrgDirective {
 			DirectiveLine directiveLine1 = (DirectiveLine) line1.getLineContent();
 			Assert.assertTrue("Must be an ORG directive line", directiveLine1.getDirective() instanceof OrgDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -209,7 +209,7 @@ public class TestOrgDirective {
 			DirectiveLine directiveLine1 = (DirectiveLine) line1.getLineContent();
 			Assert.assertTrue("Must be an ORG directive line", directiveLine1.getDirective() instanceof OrgDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -230,7 +230,7 @@ public class TestOrgDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), DirectiveValidator.INVALID_RANGE,
 					"ORG value can't be negative");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -251,7 +251,7 @@ public class TestOrgDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -272,7 +272,7 @@ public class TestOrgDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -294,7 +294,7 @@ public class TestOrgDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), DirectiveValidator.INVALID_RANGE,
 					"ORG value maximum value is $FFFF");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -315,7 +315,7 @@ public class TestOrgDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -338,7 +338,7 @@ public class TestOrgDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -359,7 +359,7 @@ public class TestOrgDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -383,7 +383,7 @@ public class TestOrgDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -411,7 +411,7 @@ public class TestOrgDirective {
 
 			Assert.assertEquals("Check current PC position", 0, assemblerEngine.getCurrentPcValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -439,7 +439,7 @@ public class TestOrgDirective {
 
 			Assert.assertEquals("Check current PC position", 0x8000, assemblerEngine.getCurrentPcValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -467,7 +467,7 @@ public class TestOrgDirective {
 			Assert.assertEquals("PC must be set to 8000", 0x8000, orgDirective.getPcAddress());
 			Assert.assertEquals("Line number must be 3", 3, orgDirective.getLineNumber());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -491,7 +491,7 @@ public class TestOrgDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getOrgDirective(), InstructionValidator.EXPRESSION_ERROR,
 					"Can't find Deux definition");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -516,7 +516,7 @@ public class TestOrgDirective {
 					AssemblerValidator.INVALID_FIGURE, 111, 8,
 					Severity.ERROR, "2 is invalid in binary value");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -539,7 +539,7 @@ public class TestOrgDirective {
 					AssemblerValidator.INVALID_FIGURE, 67, 3,
 					Severity.ERROR, "8 is invalid in octal value");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 

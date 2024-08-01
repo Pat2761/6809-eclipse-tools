@@ -72,7 +72,7 @@ public class TestOptDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an OPT directive line", directiveLine.getDirective() instanceof OptDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -99,7 +99,7 @@ public class TestOptDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an OPT directive line", directiveLine.getDirective() instanceof OptDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -126,7 +126,7 @@ public class TestOptDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an OPT directive line", directiveLine.getDirective() instanceof OptDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -153,7 +153,7 @@ public class TestOptDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an OPT directive line", directiveLine.getDirective() instanceof OptDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -180,7 +180,7 @@ public class TestOptDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an OPT directive line", directiveLine.getDirective() instanceof OptDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -207,7 +207,7 @@ public class TestOptDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an OPT directive line", directiveLine.getDirective() instanceof OptDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -230,7 +230,7 @@ public class TestOptDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.DUPLICATE_OPTION,
 					"Duplicate option CON");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -254,7 +254,7 @@ public class TestOptDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL,
 					"No label may be set for OPT directive");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -278,7 +278,7 @@ public class TestOptDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.INCONSISTENCY_ERROR,
 					"The OPT directive does not contain at the same time the PAG and NOP options");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -301,7 +301,7 @@ public class TestOptDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.INCONSISTENCY_ERROR,
 					"The OPT directive does not contain at the same time the CON and NOC options");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -324,7 +324,7 @@ public class TestOptDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.INCONSISTENCY_ERROR,
 					"The OPT directive does not contain at the same time the MAC and NOM options");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -347,7 +347,7 @@ public class TestOptDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getOptDirective(), DirectiveValidator.INCONSISTENCY_ERROR,
 					"The OPT directive does not contain at the same time the EXP and NOE options");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -376,7 +376,7 @@ public class TestOptDirective {
 			Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
 			Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -405,7 +405,7 @@ public class TestOptDirective {
 			Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
 			Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -434,7 +434,7 @@ public class TestOptDirective {
 			Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
 			Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -463,7 +463,7 @@ public class TestOptDirective {
 			Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
 			Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -492,7 +492,7 @@ public class TestOptDirective {
 			Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
 			Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -521,7 +521,7 @@ public class TestOptDirective {
 			Assert.assertTrue("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
 			Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -550,7 +550,7 @@ public class TestOptDirective {
 			Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
 			Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -579,7 +579,7 @@ public class TestOptDirective {
 			Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
 			Assert.assertTrue("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -608,7 +608,7 @@ public class TestOptDirective {
 			Assert.assertFalse("Suppress printing of macro calls ", optLine.isSuppressPrintingOfMacroCalls());
 			Assert.assertFalse("Print macro expansion lines", optLine.isPrintMacroExpansionLines());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -632,7 +632,7 @@ public class TestOptDirective {
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC after OPT instruction", 0x4000, engine.getCurrentPcValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 

@@ -73,7 +73,7 @@ public class TestPagDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an PAG directive line", directiveLine.getDirective() instanceof PagDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -100,7 +100,7 @@ public class TestPagDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an PAG directive line", directiveLine.getDirective() instanceof PagDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -127,7 +127,7 @@ public class TestPagDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an PAG directive line", directiveLine.getDirective() instanceof PagDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -154,7 +154,7 @@ public class TestPagDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an PAG directive line", directiveLine.getDirective() instanceof PagDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -181,7 +181,7 @@ public class TestPagDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an PAG directive line", directiveLine.getDirective() instanceof PagDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -204,7 +204,7 @@ public class TestPagDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE,
 					"PAG value can't be negative");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -228,7 +228,7 @@ public class TestPagDirective {
 			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE,
 					"Null page value is suspicious");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -250,7 +250,7 @@ public class TestPagDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -274,7 +274,7 @@ public class TestPagDirective {
 			validationHelper.assertWarning(result, AssemblerPackage.eINSTANCE.getPagDirective(), DirectiveValidator.INVALID_RANGE,
 					"PAG value superior to 9 is suspicious");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -296,7 +296,7 @@ public class TestPagDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL,
 					"No label may be set for PAG directive");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -318,7 +318,7 @@ public class TestPagDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.UNEXPECTED_LABEL,
 					"No label may be set for PAG directive");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -343,7 +343,7 @@ public class TestPagDirective {
 			Assert.assertEquals("Check PC after PAG instruction", 0x2000, engine.getCurrentPcValue());
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -367,7 +367,7 @@ public class TestPagDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getPagDirective(), InstructionValidator.EXPRESSION_ERROR,
 					"Can't find Deux definition");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -392,7 +392,7 @@ public class TestPagDirective {
 					AssemblerValidator.INVALID_FIGURE, 111, 8,
 					Severity.ERROR, "2 is invalid in binary value");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -417,7 +417,7 @@ public class TestPagDirective {
 					AssemblerValidator.INVALID_FIGURE, 111, 3,
 					Severity.ERROR, "8 is invalid in octal value");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 

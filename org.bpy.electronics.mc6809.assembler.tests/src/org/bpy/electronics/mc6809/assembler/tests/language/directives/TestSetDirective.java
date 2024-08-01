@@ -73,7 +73,7 @@ public class TestSetDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an SET directive line", directiveLine.getDirective() instanceof SetDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -101,7 +101,7 @@ public class TestSetDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an SET directive line", directiveLine.getDirective() instanceof SetDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -129,7 +129,7 @@ public class TestSetDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an SET directive line", directiveLine.getDirective() instanceof SetDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -156,7 +156,7 @@ public class TestSetDirective {
 			DirectiveLine directiveLine = (DirectiveLine) line.getLineContent();
 			Assert.assertTrue("Must be an SET directive line", directiveLine.getDirective() instanceof SetDirective);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -176,7 +176,7 @@ public class TestSetDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -197,7 +197,7 @@ public class TestSetDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), DirectiveValidator.INVALID_RANGE,
 					"SET value can't exceed 65535 (16 bits value)");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -218,7 +218,7 @@ public class TestSetDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), DirectiveValidator.INVALID_RANGE,
 					"SET value can't be lower than -32768 (16 bits value)");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -238,7 +238,7 @@ public class TestSetDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -260,7 +260,7 @@ public class TestSetDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), DirectiveValidator.MISSING_LABEL,
 					"No label defined for SET directive");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -283,7 +283,7 @@ public class TestSetDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), InstructionValidator.DUPLICATE_LABEL,
 					"The label MySET for an SET directive is already defined");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -305,7 +305,7 @@ public class TestSetDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -327,7 +327,7 @@ public class TestSetDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), InstructionValidator.EXPRESSION_ERROR,
 					"Can't find Deux definition");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -349,7 +349,7 @@ public class TestSetDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), InstructionValidator.EXPRESSION_ERROR,
 					"Division by 0 is not allow, the result of the expression will be false");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -371,7 +371,7 @@ public class TestSetDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), InstructionValidator.EXPRESSION_ERROR,
 					"Division by 0 is not allow, the result of the expression will be false");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -395,7 +395,7 @@ public class TestSetDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getSetDirective(), InstructionValidator.EXPRESSION_ERROR,
 					"Can't find Deux definition");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -419,7 +419,7 @@ public class TestSetDirective {
 			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getBinaryValue(), AssemblerValidator.INVALID_FIGURE, 111, 8,
 					Severity.ERROR, "2 is invalid in binary value");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -443,7 +443,7 @@ public class TestSetDirective {
 			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getOctalValue(), AssemblerValidator.INVALID_FIGURE, 111, 3,
 					Severity.ERROR, "8 is invalid in octal value");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 	
@@ -464,7 +464,7 @@ public class TestSetDirective {
 			
 			Assert.assertEquals("Check the value",128 ,EquSetManager.getInstance().getValue("SetVal").intValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 	
@@ -485,7 +485,7 @@ public class TestSetDirective {
 			
 			Assert.assertEquals("Check the value",256 ,EquSetManager.getInstance().getValue("SetVal").intValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 	
@@ -506,7 +506,7 @@ public class TestSetDirective {
 			
 			Assert.assertEquals("Check the value",256 ,EquSetManager.getInstance().getValue("SetVal").intValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 	
@@ -530,7 +530,7 @@ public class TestSetDirective {
 			Assert.assertEquals("Check the value EquVal1",20 ,EquSetManager.getInstance().getValue("EquVal1").intValue());
 			Assert.assertEquals("Check the value EquVal2",40 ,EquSetManager.getInstance().getValue("EquVal2").intValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 }

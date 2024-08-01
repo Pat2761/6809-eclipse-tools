@@ -69,7 +69,7 @@ public class TestABXInstruction {
 			InstructionLine instructionLine = (InstructionLine)line.getLineContent();
 			Assert.assertTrue("Must be an ABX directive line", instructionLine.getInstruction() instanceof AbxInstruction);
 		} catch (Exception e) {
-			Assert.assertTrue("Exception",true);
+			Assert.assertTrue("Exception",false);
 		} 
 	}
 	

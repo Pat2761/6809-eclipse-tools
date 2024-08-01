@@ -60,7 +60,7 @@ public class MacroDefinitionStart extends AbstractInstructionWithOperand {
 
 	@Override
 	public String getInstructioName() {
-		return macroDefinition.getName().getValue();
+		return ".macro";
 	}
 
 	@Override

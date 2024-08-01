@@ -80,7 +80,7 @@ public class TestRmbDirective {
 			Assert.assertNull("Label must be null", CommandUtil.getLabel(rmbDirective));
 			Assert.assertEquals("Operand must be equals to 12", 12, ExpressionParser.parse(rmbDirective));
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -118,7 +118,7 @@ public class TestRmbDirective {
 			Assert.assertEquals("Label must be RmbLabel", "RmbLabel", CommandUtil.getLabel(rmbDirective));
 			Assert.assertEquals("Operand must be equals to $2000", 0x2000, ExpressionParser.parse(rmbDirective));
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -139,7 +139,7 @@ public class TestRmbDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -160,7 +160,7 @@ public class TestRmbDirective {
 			validationHelper.assertNoErrors(result);
 
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -182,7 +182,7 @@ public class TestRmbDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getRmbDirective(), DirectiveValidator.INVALID_RANGE,
 					"RMB value maximum value is $FFFF");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -204,7 +204,7 @@ public class TestRmbDirective {
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getDirectiveLine(), InstructionValidator.DUPLICATE_LABEL,
 					"Label Label1 is already defined");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -230,7 +230,7 @@ public class TestRmbDirective {
 
 			Assert.assertEquals("Check Impact on PC", 0x8020, engine.getCurrentPcValue());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -252,7 +252,7 @@ public class TestRmbDirective {
 			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getRmbDirective(), InstructionValidator.EXPRESSION_ERROR, 110,
 					7, Severity.ERROR, "Can't find Deux definition");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -275,7 +275,7 @@ public class TestRmbDirective {
 			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getBinaryValue(), AssemblerValidator.INVALID_FIGURE, 111, 8,
 					Severity.ERROR, "2 is invalid in binary value");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -298,7 +298,7 @@ public class TestRmbDirective {
 			validationHelper.assertIssue(result.eResource(), AssemblerPackage.eINSTANCE.getOctalValue(), AssemblerValidator.INVALID_FIGURE, 111, 3,
 					Severity.ERROR, "8 is invalid in octal value");
 		} catch (Exception e) {
-			Assert.assertTrue("Exception", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 }
