@@ -239,19 +239,19 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 		operandPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.OPERAND_POSITION);
 		commentPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.COMMENT_POSITION);
 
-		logger.log(Level.INFO, "--------------------------------------------------------------");
-		logger.log(Level.INFO, "Use formatter with following paramaters: ");
-		logger.log(Level.INFO, "Tab policy = {0}", tabPolicy);
-		logger.log(Level.INFO, ": Tab size = {0}", tabSize);
-		logger.log(Level.INFO, ": Instruction position {0}", instructionPosition);
-		logger.log(Level.INFO, ": Operand position{0}",operandPosition);
-		logger.log(Level.INFO, ": Comment position {0}",commentPosition);
-		logger.log(Level.INFO, ": Comment line at instruction level: {0}",preferenceManager.getBooleanPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL));
+//		logger.log(Level.INFO, "--------------------------------------------------------------");
+//		logger.log(Level.INFO, "Use formatter with following paramaters: ");
+//		logger.log(Level.INFO, "Tab policy = {0}", tabPolicy);
+//		logger.log(Level.INFO, ": Tab size = {0}", tabSize);
+//		logger.log(Level.INFO, ": Instruction position {0}", instructionPosition);
+//		logger.log(Level.INFO, ": Operand position{0}",operandPosition);
+//		logger.log(Level.INFO, ": Comment position {0}",commentPosition);
+//		logger.log(Level.INFO, ": Comment line at instruction level: {0}",preferenceManager.getBooleanPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL));
 
 		for (SourceLine sourceLine : model.getSourceLines()) {
 			doc.format(sourceLine);
 		}
-		logger.log(Level.INFO, "--------------------------------------------------------------");
+//		logger.log(Level.INFO, "--------------------------------------------------------------");
 	}
 
 	/**
@@ -753,7 +753,12 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @param ws        EAttribute which define the space element
 	 */
 	private void setFirstWhiteSpace(IFormattableDocument doc, EObject line, int labelSize, EAttribute ws) {
-		ISemanticRegion node = textRegionExtensions.regionFor(line).feature(ws).getPreviousSemanticRegion();
+		ISemanticRegion node = null;
+		try {
+			node = textRegionExtensions.regionFor(line).feature(ws).getPreviousSemanticRegion();
+		} catch (NullPointerException ex) {
+			
+		}
 		int offset = 0;
 		if (node == null) {
 			offset=-1;

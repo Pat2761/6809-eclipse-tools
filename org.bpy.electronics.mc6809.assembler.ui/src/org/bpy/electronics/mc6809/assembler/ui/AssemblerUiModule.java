@@ -3,14 +3,13 @@
  */
 package org.bpy.electronics.mc6809.assembler.ui;
 
-import org.bpy.electronics.mc6809.assembler.ui.outline.FilterDirectiveContribution;
-import org.bpy.electronics.mc6809.assembler.ui.outline.FilterMacroContribution;
-import org.bpy.electronics.mc6809.assembler.ui.outline.FilterOtherContribution;
+import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerHighlightingConfiguration;
+import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerSemanticHighLighting;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
-import org.eclipse.xtext.ui.editor.outline.actions.IOutlineContribution;
+import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 
 import com.google.inject.Binder;
-import com.google.inject.name.Names;
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -23,7 +22,25 @@ public class AssemblerUiModule extends AbstractAssemblerUiModule {
 	public AssemblerUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
-	
+
+	/**
+	 * Bind the class which manage the high lighting configuration.
+	 * 
+	 * @return the class which manage the high lighting configuration.
+	 */
+	public Class<? extends IHighlightingConfiguration> bindIHighlightingConfiguration () {
+	     return AssemblerHighlightingConfiguration.class;
+	}
+
+	/**
+	 * Bind the class which manage the semantic high lighting configuration.
+	 * 
+	 * @return the class which manage the semantic high lighting configuration.
+	 */
+	public Class<? extends ISemanticHighlightingCalculator> bindISemanticHighlightingCalculator(){
+		 return AssemblerSemanticHighLighting.class;
+	}
+
 	public void configureFilterOperationsContribution(Binder binder) {
 //		  binder.bind(IOutlineContribution.class).annotatedWith(
 //			      Names.named("FilterOperationsContribution"))
