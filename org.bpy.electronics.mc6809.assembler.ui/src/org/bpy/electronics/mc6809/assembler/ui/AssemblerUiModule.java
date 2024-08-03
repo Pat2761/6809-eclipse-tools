@@ -5,9 +5,15 @@ package org.bpy.electronics.mc6809.assembler.ui;
 
 import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerHighlightingConfiguration;
 import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerSemanticHighLighting;
+import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.preferences.IPreferenceValuesProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.preferences.EclipsePreferencesProvider;
+import org.eclipse.xtext.ui.resource.IResourceSetProvider;
+import org.eclipse.xtext.ui.resource.XtextResourceSetProvider;
 
 import com.google.inject.Binder;
 
@@ -18,10 +24,37 @@ public class AssemblerUiModule extends AbstractAssemblerUiModule {
 
 	/** Plugin identifier */
 	public static final String PLUGIN_ID = "org.bpy.electronics.mc6809.assembler.ui";
+	private final AbstractUIPlugin plugin;
 	
 	public AssemblerUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
+		this.plugin = plugin;
 	}
+
+	//*  BPY Ajout
+	@Override
+	public void configure(Binder binder) {
+		binder.bind(AbstractUIPlugin.class).toInstance(plugin);
+		super.configure(binder);
+	}
+
+	@Override
+	public IPreferenceStore bindIPreferenceStore() {
+		return plugin.getPreferenceStore();
+	}
+	@Override
+	public Class<? extends IResourceSetProvider> bindIResourceSetProvider() {
+		return XtextResourceSetProvider.class;
+	}
+	/**
+	 * @since 2.4
+	 */
+	@Override
+	public Class<? extends IPreferenceValuesProvider> bindIPreferenceValuesProvider() {
+		return EclipsePreferencesProvider.class;
+	}
+	//*  BPY Ajout
+
 
 	/**
 	 * Bind the class which manage the high lighting configuration.
