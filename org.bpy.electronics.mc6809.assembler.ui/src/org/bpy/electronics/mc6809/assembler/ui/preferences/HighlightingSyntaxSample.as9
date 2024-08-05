@@ -1,0 +1,31 @@
+;--------------------------------------------------------
+; Commentaire d'entête
+; -------------------------------------------------------
+Start:            ORG               $8000             ; test
+
+Val1              EQU               1                 ; vaut 1
+						FCC					"A string"        ; a string
+
+                                                      ; macro definition
+                  .macro            MACRO             ; une macro
+                  LDA               #$25              ; 
+LoopMac:          DECA                                ;
+                  BNE               LoopMac           ; Loop
+                  .endm                               ; end of macro
+
+Nop1              NOP
+Nop2:             NOP                                 ; Nop
+                  NOP                                 ; pas NOP
+
+CalMac            MACRO                               ; call macro
+CalMac1:          MACRO
+                  MACRO                               ; call Mac 																
+
+                  LDA               #Val1             ; A=1	
+                  BNE               Nop1              ; a branch
+                  BSR               Nop2              ; Jsr
+
+
+;--------------------------------------------------------
+; end of file
+;--------------------------------------------------------

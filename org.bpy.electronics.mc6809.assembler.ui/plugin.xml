@@ -83,20 +83,20 @@
 			name="Assembler">
 			<keywordReference id="org.bpy.electronics.mc6809.assembler.ui.keyword_Assembler"/>
 		</page>
-<!--		<page
+		<page
 			category="org.bpy.electronics.mc6809.assembler.Assembler"
 			class="org.bpy.electronics.mc6809.assembler.ui.AssemblerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.syntaxcoloring.SyntaxColoringPreferencePage"
 			id="org.bpy.electronics.mc6809.assembler.Assembler.coloring"
 			name="Syntax Coloring">
 			<keywordReference id="org.bpy.electronics.mc6809.assembler.ui.keyword_Assembler"/>
-		</page>-->
-		<page
+		</page>
+<!--		<page
 			category="org.bpy.electronics.mc6809.assembler.Assembler"
 			class="org.bpy.electronics.mc6809.assembler.ui.AssemblerExecutableExtensionFactory:org.bpy.electronics.mc6809.assembler.ui.preferences.SyntaxImprovedColoringPreferencePage"
-			id="org.bpy.electronics.mc6809.assembler.Assembler.coloring"
+			id="org.bpy.electronics.mc6809.assembler.Assembler.coloring2"
 			name="Syntax Coloring">
 			<keywordReference id="org.bpy.electronics.mc6809.assembler.ui.keyword_Assembler"/>
-		</page>
+		</page>  -->
 		<page
 			category="org.bpy.electronics.mc6809.assembler.Assembler"
 			class="org.bpy.electronics.mc6809.assembler.ui.AssemblerExecutableExtensionFactory:org.eclipse.xtext.ui.editor.templates.XtextTemplatePreferencePage"

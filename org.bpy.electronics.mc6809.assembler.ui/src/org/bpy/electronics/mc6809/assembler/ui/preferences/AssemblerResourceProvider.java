@@ -17,7 +17,7 @@ public class AssemblerResourceProvider implements IEditedResourceProvider {
 	@Override
 	public XtextResource createResource() {
 		ResourceSet resourceSet = resourceSetProvider.get(null);
-		URI uri = URI.createURI("synthetic:/mail." + ext.getPrimaryFileExtension());
+		URI uri = URI.createURI("HighlightingSyntaxSample." + ext.getPrimaryFileExtension());
 		XtextResource result = (XtextResource) resourceSet.createResource(uri);
 		resourceSet.getResources().add(result);
 		return result;

@@ -5,17 +5,22 @@ package org.bpy.electronics.mc6809.assembler.ui;
 
 import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerHighlightingConfiguration;
 import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerSemanticHighLighting;
+import org.bpy.electronics.mc6809.assembler.ui.internal.AssemblerActivator;
+import org.bpy.electronics.mc6809.assembler.ui.preferences.AssemblerResourceSetProvider;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.preferences.IPreferenceValuesProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
+import org.eclipse.xtext.ui.editor.syntaxcoloring.PreferenceStoreAccessor;
 import org.eclipse.xtext.ui.preferences.EclipsePreferencesProvider;
 import org.eclipse.xtext.ui.resource.IResourceSetProvider;
 import org.eclipse.xtext.ui.resource.XtextResourceSetProvider;
 
 import com.google.inject.Binder;
+import com.google.inject.Injector;
+import com.google.inject.Provider;
 
 /**
  * Use this class to register components to be used within the Eclipse IDE.
@@ -31,31 +36,12 @@ public class AssemblerUiModule extends AbstractAssemblerUiModule {
 		this.plugin = plugin;
 	}
 
-	//*  BPY Ajout
-	@Override
-	public void configure(Binder binder) {
-		binder.bind(AbstractUIPlugin.class).toInstance(plugin);
-		super.configure(binder);
-	}
-
-	@Override
-	public IPreferenceStore bindIPreferenceStore() {
-		return plugin.getPreferenceStore();
-	}
-	@Override
-	public Class<? extends IResourceSetProvider> bindIResourceSetProvider() {
-		return XtextResourceSetProvider.class;
-	}
-	/**
-	 * @since 2.4
-	 */
-	@Override
-	public Class<? extends IPreferenceValuesProvider> bindIPreferenceValuesProvider() {
-		return EclipsePreferencesProvider.class;
-	}
-	//*  BPY Ajout
-
-
+//	@Override
+//	public void configure(Binder binder) {
+//		super.configure(binder);
+//		binder.bind(AbstractUIPlugin.class).toInstance(gin);
+//	}
+	
 	/**
 	 * Bind the class which manage the high lighting configuration.
 	 * 

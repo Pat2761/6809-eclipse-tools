@@ -86,12 +86,13 @@ public class PreferenceManager {
 	/** Memorize the preference instance */
 	private Preferences preferences;
 	
+	
 	/** 
 	 * Constructor of the preference manager.
 	 * Initialize field of the object
 	 */
 	private PreferenceManager() {
-		IEclipsePreferences node = (IEclipsePreferences) InstanceScope.INSTANCE.getNode(Activator.PLUGIN_ID);
+		IEclipsePreferences node = InstanceScope.INSTANCE.getNode(Activator.PLUGIN_ID);
 		preferences = node.node(ASSEMBLER_PREFERENCE_NODE);
 		defaultsValues = new HashMap<>();
 		
@@ -102,6 +103,9 @@ public class PreferenceManager {
 		defaultsValues.put(COMMENT_POSITION,"" + COMMENT_POSITION_DEFAULT_VALUE);
 		defaultsValues.put(COMMENT_LINE_AT_INSTRUCTION_LEVEL,"" + false);
 		defaultsValues.put(EMPTY_LINE_BEFORE_LABEL,"" + false);
+
+		IEclipsePreferences node2 = InstanceScope.INSTANCE.getNode("org.bpy.electronics.mc6809.assembler.Assembler");
+			System.out.println("");
 	}
 	
 	/**
