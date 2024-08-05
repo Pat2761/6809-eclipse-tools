@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.NamDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Used to store information about NAM directive
@@ -45,14 +46,14 @@ public class AssembledNamDirectiveLine extends AbstractAssembledDirectiveLine {
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(NamDirective directive, int currentPcValue, int lineNumber) {
+	public void parsePass1(EObject directive, int currentPcValue, int lineNumber) {
+		this.directive = (NamDirective) directive;
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
-		this.label = CommandUtil.getLabel(directive);
-		this.comment = CommandUtil.getComment(directive);
-		this.directive = directive;
+		this.label = CommandUtil.getLabel(this.directive);
+		this.comment = CommandUtil.getComment(this.directive);
 		
-		value = directive.getOperand().getValue();
+		value = this.directive.getOperand().getValue();
 	}
 
 	public NamDirective getDirective() {

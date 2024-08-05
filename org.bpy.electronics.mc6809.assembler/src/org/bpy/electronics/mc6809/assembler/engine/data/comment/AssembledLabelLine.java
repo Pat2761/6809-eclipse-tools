@@ -18,9 +18,9 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.comment;
 
-import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.eclipse.emf.ecore.EObject;
 
 public class AssembledLabelLine extends AbstractAssemblyLine {
 	
@@ -43,11 +43,11 @@ public class AssembledLabelLine extends AbstractAssemblyLine {
 		this.label = label;
 	}
 
-	public void parse(LabelLine labelLine, int currentPcValue, int lineNumber) {
+	public void parsePass1(EObject labelLine, int currentPcValue, int lineNumber) {
 		this.lineNumber = lineNumber;
 		pcAddress = currentPcValue;
-		comment = labelLine.getComment();
-		label = labelLine.getLabel().getName().getValue();
+		comment = ((LabelLine)labelLine).getComment();
+		label = ((LabelLine)labelLine).getLabel().getName().getValue();
 	}
 
 	@Override

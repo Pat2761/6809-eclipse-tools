@@ -21,6 +21,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblyOption;
 import org.bpy.electronics.mc6809.assembler.assembler.OptDirective;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Used to store information about OPT directive
@@ -47,23 +48,23 @@ public class AssembledOptDirectiveLine extends AbstractAssembledDirectiveLine {
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(OptDirective directive, int currentPcValue, int lineNumber) {
+	public void parsePass1(EObject directive, int currentPcValue, int lineNumber) {
+		this.directive = (OptDirective) directive;
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
-		this.label = CommandUtil.getLabel(directive);
-		this.comment = CommandUtil.getComment(directive);
-		this.directive = directive;
+		this.label = CommandUtil.getLabel(this.directive);
+		this.comment = CommandUtil.getComment(this.directive);
 
-		if (directive.getOptions() == null) {
+		if (this.directive.getOptions() == null) {
 			values = new String[4];
 			values[0] = "NOP";
 			values[1] = "NOC";
 			values[2] = "MAC";
 			values[3] = "NOE";
 		} else {
-			values = new String[directive.getOptions().size()];
+			values = new String[this.directive.getOptions().size()];
 			int i=0;
-			for (AssemblyOption option : directive.getOptions()) {
+			for (AssemblyOption option : this.directive.getOptions()) {
 				values[i++]  = option.getLiteral();
 			}
 		}

@@ -21,6 +21,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 import org.bpy.electronics.mc6809.assembler.assembler.ClrInstruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Allow to parse an CLRA Instruction
@@ -40,10 +41,10 @@ public class AssembledCLRBInstruction extends AbstractInstructionAssemblyLine {
 	 * @param currentPcValue state of the current PC
 	 * @param lineNumber line number in assembly file
 	 */
-	public void parse(ClrInstruction instruction, int currentPcValue, int lineNumber) {
-		this.label = CommandUtil.getLabel(instruction);
-		this.comment = CommandUtil.getComment(instruction);
-		this.instruction = instruction;
+	public void parsePass1(EObject instruction, int currentPcValue, int lineNumber) {
+		this.instruction = (ClrInstruction) instruction;
+		this.label = CommandUtil.getLabel(this.instruction);
+		this.comment = CommandUtil.getComment(this.instruction);
 		super.parse(currentPcValue, lineNumber);
 	}
 

@@ -112,7 +112,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	 * @return reference on the instruction operand
 	 */
 	public abstract Object getInstructionOperand();
-
+	
 	@Override
 	public int getPcIncrement() {
 		return opcodeBytes.length + operandBytes.length;

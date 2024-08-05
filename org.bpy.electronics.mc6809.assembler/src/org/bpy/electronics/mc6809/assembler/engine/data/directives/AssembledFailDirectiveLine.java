@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.FailDirective;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Store the Fail directive description
@@ -36,10 +37,10 @@ public class AssembledFailDirectiveLine  extends AbstractAssembledDirectiveLine 
 		return 0;
 	}
 
-	public void parse(FailDirective failDirective, int currentPcValue, int lineNumber) {
+	public void parsePass1(EObject failDirective, int currentPcValue, int lineNumber) {
 		this.lineNumber = lineNumber;
 		this.pcAddress = currentPcValue;
-		this.failDirective = failDirective;
+		this.failDirective = (FailDirective) failDirective;
 	}
 
 	/**

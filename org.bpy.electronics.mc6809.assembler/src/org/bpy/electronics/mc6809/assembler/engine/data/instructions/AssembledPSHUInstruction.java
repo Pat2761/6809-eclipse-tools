@@ -50,10 +50,10 @@ public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
 	 * @param currentPcValue state of the current PC
 	 * @param lineNumber line number in assembly file
 	 */
-	public void parse(PshuInstruction instruction, int currentPcValue, int lineNumber) {
-		this.label = CommandUtil.getLabel(instruction);
-		this.comment = CommandUtil.getComment(instruction);
-		this.instruction = instruction;
+	public void parsePass1(EObject instruction, int currentPcValue, int lineNumber) {
+		this.instruction = (PshuInstruction) instruction;
+		this.label = CommandUtil.getLabel(this.instruction);
+		this.comment = CommandUtil.getComment(this.instruction);
 		super.parse(currentPcValue, lineNumber);
 	}
 

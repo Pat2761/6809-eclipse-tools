@@ -39,6 +39,7 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Allow to parse an STX instruction
@@ -93,11 +94,10 @@ public class AssembledSTXInstruction extends AbstractInstructionAssemblyLine {
 	 * @param currentPcValue state of the current PC
 	 * @param lineNumber line number in assembly file
 	 */
-	public void parse(StInstruction instruction, int currentPcValue, int lineNumber) {
-		
-		this.label = CommandUtil.getLabel(instruction);
-		this.comment = CommandUtil.getComment(instruction);
-		this.instruction = instruction;
+	public void parsePass1(EObject instruction, int currentPcValue, int lineNumber) {
+		this.instruction = (StInstruction) instruction;
+		this.label = CommandUtil.getLabel(this.instruction);
+		this.comment = CommandUtil.getComment(this.instruction);
 		super.parse(currentPcValue, lineNumber);
 	}
 	

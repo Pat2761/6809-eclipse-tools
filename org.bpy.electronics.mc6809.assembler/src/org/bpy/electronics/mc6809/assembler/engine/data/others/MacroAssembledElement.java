@@ -46,6 +46,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.assembler.RelativeMode;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 
 /**
@@ -91,9 +92,9 @@ public class MacroAssembledElement extends AbstractAssemblyLine {
 	 * @param macroDefinition reference on the macro definition
 	 * @param callCounter number of use
 	 */
-	public void parse(MacroDefinition macroDefinition, int callCounter) {
+	public void parsePass1(EObject macroDefinition, int callCounter) {
 		
-		this.macroDefinition = macroDefinition;
+		this.macroDefinition = (MacroDefinition) macroDefinition;
 
 		updateLabelDefinition(callCounter);
 		updateLabelUsage();
@@ -215,5 +216,11 @@ public class MacroAssembledElement extends AbstractAssemblyLine {
 			size += assemblyLine.getPcIncrement();
 		}
 		return size;
+	}
+
+	@Override
+	public void parsePass1(EObject instruction, int currentPcValue, int lineNumber) {
+		// TODO Auto-generated method stub
+		
 	}
 }

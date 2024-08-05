@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.comment;
 
 import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.eclipse.emf.ecore.EObject;
 
 public class AssembledCommentLine extends AbstractAssemblyLine {
 	
@@ -42,11 +43,11 @@ public class AssembledCommentLine extends AbstractAssemblyLine {
 		this.isSpaceBefore = isSpaceBefore;
 	}
 
-	public void parse(CommentLine commentLine, int currentPcValue, int lineNumber) {
+	public void parsePass1(EObject commentLine, int currentPcValue, int lineNumber) {
 		this.lineNumber = lineNumber;
 		pcAddress = currentPcValue;
-		comment = commentLine.getComment();
-		isSpaceBefore =commentLine.getStartingSpace()!= null;
+		comment = ((CommentLine)commentLine).getComment();
+		isSpaceBefore = ((CommentLine)commentLine).getStartingSpace()!= null;
 	}
 
 	@Override

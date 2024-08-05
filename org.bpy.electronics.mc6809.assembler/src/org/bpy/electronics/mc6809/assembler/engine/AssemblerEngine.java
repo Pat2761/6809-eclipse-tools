@@ -362,7 +362,7 @@ public class AssemblerEngine {
 			MacroDefinition macroDefinition = macroDefinitions.get(instructionName);
 
 			MacroAssembledElement assembledMacro = new MacroAssembledElement();
-			assembledMacro.parse(macroDefinition, callCounter);
+			assembledMacro.parsePass1(macroDefinition, callCounter);
 			assembledMacro.setPcAddress(currentPcValue);
 			if (otherInstruction.getLabel().getName() != null) {
 				assembledMacro.setLabel(otherInstruction.getLabel().getName().getValue());
@@ -427,7 +427,7 @@ public class AssemblerEngine {
 			}
 			
 			MacroDeclarationElement macroDeclarationElement = new MacroDeclarationElement();
-			macroDeclarationElement.parse(macroDefinition,currentPcValue,lineNumber);
+			macroDeclarationElement.parsePass1(macroDefinition,currentPcValue,lineNumber);
 			assemblyLines.add(macroDeclarationElement);
 			macroDefinitions.put(macroName, macroDefinition);
 		}
@@ -1503,11 +1503,11 @@ public class AssemblerEngine {
 
 		if ("BVS".equals(instruction.getInstruction())) {
 			line = new AssembledBVSInstruction();
-			((AssembledBVSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBVSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBVS".equals(instruction.getInstruction())) {
 			line = new AssembledLBVSInstruction();
-			((AssembledLBVSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBVSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1533,11 +1533,11 @@ public class AssemblerEngine {
 
 		if ("BVC".equals(instruction.getInstruction())) {
 			line = new AssembledBVCInstruction();
-			((AssembledBVCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBVCInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBVC".equals(instruction.getInstruction())) {
 			line = new AssembledLBVCInstruction();
-			((AssembledLBVCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBVCInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1563,11 +1563,11 @@ public class AssemblerEngine {
 
 		if ("BSR".equals(instruction.getInstruction())) {
 			line = new AssembledBSRInstruction();
-			((AssembledBSRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBSRInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBSR".equals(instruction.getInstruction())) {
 			line = new AssembledLBSRInstruction();
-			((AssembledLBSRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBSRInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 3;
 		} else {
 			// not possible
@@ -1593,11 +1593,11 @@ public class AssemblerEngine {
 
 		if ("BRN".equals(instruction.getInstruction())) {
 			line = new AssembledBRNInstruction();
-			((AssembledBRNInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBRNInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBRN".equals(instruction.getInstruction())) {
 			line = new AssembledLBRNInstruction();
-			((AssembledLBRNInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBRNInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1623,11 +1623,11 @@ public class AssemblerEngine {
 
 		if ("BRA".equals(instruction.getInstruction())) {
 			line = new AssembledBRAInstruction();
-			((AssembledBRAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBRAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBRA".equals(instruction.getInstruction())) {
 			line = new AssembledLBRAInstruction();
-			((AssembledLBRAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBRAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 3;
 		} else {
 			// not possible
@@ -1653,11 +1653,11 @@ public class AssemblerEngine {
 
 		if ("BPL".equals(instruction.getInstruction())) {
 			line = new AssembledBPLInstruction();
-			((AssembledBPLInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBPLInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBPL".equals(instruction.getInstruction())) {
 			line = new AssembledLBPLInstruction();
-			((AssembledLBPLInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBPLInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1683,11 +1683,11 @@ public class AssemblerEngine {
 
 		if ("BNE".equals(instruction.getInstruction())) {
 			line = new AssembledBNEInstruction();
-			((AssembledBNEInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBNEInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBNE".equals(instruction.getInstruction())) {
 			line = new AssembledLBNEInstruction();
-			((AssembledLBNEInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBNEInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1713,11 +1713,11 @@ public class AssemblerEngine {
 
 		if ("BMI".equals(instruction.getInstruction())) {
 			line = new AssembledBMIInstruction();
-			((AssembledBMIInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBMIInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBMI".equals(instruction.getInstruction())) {
 			line = new AssembledLBMIInstruction();
-			((AssembledLBMIInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBMIInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1743,11 +1743,11 @@ public class AssemblerEngine {
 
 		if ("BLT".equals(instruction.getInstruction())) {
 			line = new AssembledBLTInstruction();
-			((AssembledBLTInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBLTInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBLT".equals(instruction.getInstruction())) {
 			line = new AssembledLBLTInstruction();
-			((AssembledLBLTInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBLTInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1773,11 +1773,11 @@ public class AssemblerEngine {
 
 		if ("BLS".equals(instruction.getInstruction())) {
 			line = new AssembledBLSInstruction();
-			((AssembledBLSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBLSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBLS".equals(instruction.getInstruction())) {
 			line = new AssembledLBLSInstruction();
-			((AssembledLBLSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBLSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1803,11 +1803,11 @@ public class AssemblerEngine {
 
 		if ("BLO".equals(instruction.getInstruction())) {
 			line = new AssembledBLOInstruction();
-			((AssembledBLOInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBLOInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBLO".equals(instruction.getInstruction())) {
 			line = new AssembledLBLOInstruction();
-			((AssembledLBLOInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBLOInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1833,11 +1833,11 @@ public class AssemblerEngine {
 
 		if ("BLE".equals(instruction.getInstruction())) {
 			line = new AssembledBLEInstruction();
-			((AssembledBLEInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBLEInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBLE".equals(instruction.getInstruction())) {
 			line = new AssembledLBLEInstruction();
-			((AssembledLBLEInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBLEInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1863,11 +1863,11 @@ public class AssemblerEngine {
 
 		if ("BHS".equals(instruction.getInstruction())) {
 			line = new AssembledBHSInstruction();
-			((AssembledBHSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBHSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBHS".equals(instruction.getInstruction())) {
 			line = new AssembledLBHSInstruction();
-			((AssembledLBHSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBHSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1893,11 +1893,11 @@ public class AssemblerEngine {
 
 		if ("BHI".equals(instruction.getInstruction())) {
 			line = new AssembledBHIInstruction();
-			((AssembledBHIInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBHIInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBHI".equals(instruction.getInstruction())) {
 			line = new AssembledLBHIInstruction();
-			((AssembledLBHIInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBHIInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1923,11 +1923,11 @@ public class AssemblerEngine {
 
 		if ("BGT".equals(instruction.getInstruction())) {
 			line = new AssembledBGTInstruction();
-			((AssembledBGTInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBGTInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBGT".equals(instruction.getInstruction())) {
 			line = new AssembledLBGTInstruction();
-			((AssembledLBGTInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBGTInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1953,11 +1953,11 @@ public class AssemblerEngine {
 
 		if ("BGE".equals(instruction.getInstruction())) {
 			line = new AssembledBGEInstruction();
-			((AssembledBGEInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBGEInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBGE".equals(instruction.getInstruction())) {
 			line = new AssembledLBGEInstruction();
-			((AssembledLBGEInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBGEInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -1983,11 +1983,11 @@ public class AssemblerEngine {
 
 		if ("BEQ".equals(instruction.getInstruction())) {
 			line = new AssembledBEQInstruction();
-			((AssembledBEQInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBEQInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBEQ".equals(instruction.getInstruction())) {
 			line = new AssembledLBEQInstruction();
-			((AssembledLBEQInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBEQInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -2013,11 +2013,11 @@ public class AssemblerEngine {
 
 		if ("BCS".equals(instruction.getInstruction())) {
 			line = new AssembledBCSInstruction();
-			((AssembledBCSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBCSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBCS".equals(instruction.getInstruction())) {
 			line = new AssembledLBCSInstruction();
-			((AssembledLBCSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBCSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -2043,11 +2043,11 @@ public class AssemblerEngine {
 
 		if ("BCC".equals(instruction.getInstruction())) {
 			line = new AssembledBCCInstruction();
-			((AssembledBCCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBCCInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 2;
 		} else if ("LBCC".equals(instruction.getInstruction())) {
 			line = new AssembledLBCCInstruction();
-			((AssembledLBCCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLBCCInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 			currentPcValue += 4;
 		} else {
 			// not possible
@@ -2073,13 +2073,13 @@ public class AssemblerEngine {
 
 		if ("TSTA".equals(instruction.getInstruction())) {
 			line = new AssembledTSTAInstruction();
-			((AssembledTSTAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledTSTAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("TSTB".equals(instruction.getInstruction())) {
 			line = new AssembledTSTBInstruction();
-			((AssembledTSTBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledTSTBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			line = new AssembledTSTInstruction();
-			((AssembledTSTInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledTSTInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);
@@ -2098,7 +2098,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(TfrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledTFRInstruction();
-    	((AssembledTFRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledTFRInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2116,7 +2116,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(SyncInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledSYNCInstruction();
-    	((AssembledSYNCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledSYNCInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2134,7 +2134,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(Swi3Instruction instruction) {
 		AbstractAssemblyLine line=new AssembledSWI3Instruction();
-    	((AssembledSWI3Instruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledSWI3Instruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2152,7 +2152,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(Swi2Instruction instruction) {
 		AbstractAssemblyLine line=new AssembledSWI2Instruction();
-    	((AssembledSWI2Instruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledSWI2Instruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2170,7 +2170,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(SwiInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledSWIInstruction();
-    	((AssembledSWIInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledSWIInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2188,7 +2188,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(SubdInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledSUBDInstruction();
-    	((AssembledSUBDInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledSUBDInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2209,10 +2209,10 @@ public class AssemblerEngine {
 
 		if ("SUBA".equals(instruction.getInstruction())) {
 			line = new AssembledSUBAInstruction();
-			((AssembledSUBAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSUBAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("SUBB".equals(instruction.getInstruction())) {
 			line = new AssembledSUBBInstruction();
-			((AssembledSUBBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSUBBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			// not possible
 		}
@@ -2236,25 +2236,25 @@ public class AssemblerEngine {
 
 		if ("STA".equals(instruction.getInstruction())) {
 			line = new AssembledSTAInstruction();
-			((AssembledSTAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSTAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("STB".equals(instruction.getInstruction())) {
 			line = new AssembledSTBInstruction();
-			((AssembledSTBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSTBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("STD".equals(instruction.getInstruction())) {
 			line = new AssembledSTDInstruction();
-			((AssembledSTDInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSTDInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("STS".equals(instruction.getInstruction())) {
 			line = new AssembledSTSInstruction();
-			((AssembledSTSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSTSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("STU".equals(instruction.getInstruction())) {
 			line = new AssembledSTUInstruction();
-			((AssembledSTUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSTUInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("STX".equals(instruction.getInstruction())) {
 			line = new AssembledSTXInstruction();
-			((AssembledSTXInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSTXInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("STY".equals(instruction.getInstruction())) {
 			line = new AssembledSTYInstruction();
-			((AssembledSTYInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSTYInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			// nothing to do
 		}
@@ -2275,7 +2275,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(SexInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledSEXInstruction();
-    	((AssembledSEXInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledSEXInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2296,10 +2296,10 @@ public class AssemblerEngine {
 
 		if ("SBCA".equals(instruction.getInstruction())) {
 			line = new AssembledSBCAInstruction();
-			((AssembledSBCAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSBCAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("SBCB".equals(instruction.getInstruction())) {
 			line = new AssembledSBCBInstruction();
-			((AssembledSBCBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledSBCBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			// not possible 
 		}
@@ -2320,7 +2320,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(RtsInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledRTSInstruction();
-    	((AssembledRTSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledRTSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2338,7 +2338,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(RtiInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledRTIInstruction();
-    	((AssembledRTIInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledRTIInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2359,13 +2359,13 @@ public class AssemblerEngine {
 
 		if ("RORA".equals(instruction.getInstruction())) {
 			line = new AssembledRORAInstruction();
-			((AssembledRORAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledRORAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("RORB".equals(instruction.getInstruction())) {
 			line = new AssembledRORBInstruction();
-			((AssembledRORBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledRORBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("ROR".equals(instruction.getInstruction())) {
 			line = new AssembledRORInstruction();
-			((AssembledRORInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledRORInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			// not possible 
 		}
@@ -2389,13 +2389,13 @@ public class AssemblerEngine {
 
 		if ("ROLA".equals(instruction.getInstruction())) {
 			line = new AssembledROLAInstruction();
-			((AssembledROLAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledROLAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("ROLB".equals(instruction.getInstruction())) {
 			line = new AssembledROLBInstruction();
-			((AssembledROLBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledROLBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("ROL".equals(instruction.getInstruction())) {
 			line = new AssembledROLInstruction();
-			((AssembledROLInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledROLInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			// not possible 
 		}
@@ -2416,7 +2416,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(PuluInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledPULUInstruction();
-    	((AssembledPULUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledPULUInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2434,7 +2434,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(PulsInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledPULSInstruction();
-    	((AssembledPULSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledPULSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2452,7 +2452,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(PshuInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledPSHUInstruction();
-    	((AssembledPSHUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledPSHUInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2470,7 +2470,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(PshsInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledPSHSInstruction();
-    	((AssembledPSHSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledPSHSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2488,7 +2488,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(OrCCInstruction instruction) {
 		AssembledORCCInstruction line = new AssembledORCCInstruction();
-		line.parse(instruction, currentPcValue, lineNumber);
+		line.parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2509,10 +2509,10 @@ public class AssemblerEngine {
 
 		if ("ORA".equals(instruction.getInstruction())) {
 			line = new AssembledORAInstruction();
-			((AssembledORAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledORAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("ORB".equals(instruction.getInstruction())) {
 			line = new AssembledORBInstruction();
-			((AssembledORBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledORBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			// not possible 
 		}
@@ -2533,7 +2533,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(NopInstruction instruction) {
 		AssembledNOPInstruction line = new AssembledNOPInstruction();
-		line.parse(instruction, currentPcValue, lineNumber);
+		line.parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2554,13 +2554,13 @@ public class AssemblerEngine {
 
 		if ("NEGA".equals(instruction.getInstruction())) {
 			line = new AssembledNEGAInstruction();
-			((AssembledNEGAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledNEGAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("NEGB".equals(instruction.getInstruction())) {
 			line = new AssembledNEGBInstruction();
-			((AssembledNEGBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledNEGBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("NEG".equals(instruction.getInstruction())) {
 			line = new AssembledNEGInstruction();
-			((AssembledNEGInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledNEGInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			// not possible 
 		}
@@ -2581,7 +2581,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(MulInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledMULInstruction();
-    	((AssembledMULInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledMULInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2602,13 +2602,13 @@ public class AssemblerEngine {
 
 		if ("LSRA".equals(instruction.getInstruction())) {
 			line = new AssembledLSRAInstruction();
-			((AssembledLSRAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLSRAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LSRB".equals(instruction.getInstruction())) {
 			line = new AssembledLSRBInstruction();
-			((AssembledLSRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLSRBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LSR".equals(instruction.getInstruction())) {
 			line = new AssembledLSRInstruction();
-			((AssembledLSRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLSRInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			// not possible 
 		}
@@ -2632,13 +2632,13 @@ public class AssemblerEngine {
 
 		if ("LSLA".equals(instruction.getInstruction())) {
 			line = new AssembledLSLAInstruction();
-			((AssembledLSLAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLSLAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LSLB".equals(instruction.getInstruction())) {
 			line = new AssembledLSLBInstruction();
-			((AssembledLSLBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLSLBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LSL".equals(instruction.getInstruction())) {
 			line = new AssembledLSLInstruction();
-			((AssembledLSLInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLSLInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			// not possible 
 		}
@@ -2662,16 +2662,16 @@ public class AssemblerEngine {
 
 		if ("LEAS".equals(instruction.getInstruction())) {
 			line = new AssembledLEASInstruction();
-			((AssembledLEASInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLEASInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LEAU".equals(instruction.getInstruction())) {
 			line = new AssembledLEAUInstruction();
-			((AssembledLEAUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLEAUInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LEAX".equals(instruction.getInstruction())) {
 			line = new AssembledLEAXInstruction();
-			((AssembledLEAXInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLEAXInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LEAY".equals(instruction.getInstruction())) {
 			line = new AssembledLEAYInstruction();
-			((AssembledLEAYInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLEAYInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			// not possible 
 		}
@@ -2690,25 +2690,25 @@ public class AssemblerEngine {
 
 		if ("LDA".equals(instruction.getInstruction())) {
 			line = new AssembledLDAInstruction();
-			((AssembledLDAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLDAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LDB".equals(instruction.getInstruction())) {
 			line = new AssembledLDBInstruction();
-			((AssembledLDBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLDBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LDD".equals(instruction.getInstruction())) {
 			line = new AssembledLDDInstruction();
-			((AssembledLDDInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLDDInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LDS".equals(instruction.getInstruction())) {
 			line = new AssembledLDSInstruction();
-			((AssembledLDSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLDSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LDU".equals(instruction.getInstruction())) {
 			line = new AssembledLDUInstruction();
-			((AssembledLDUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLDUInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LDX".equals(instruction.getInstruction())) {
 			line = new AssembledLDXInstruction();
-			((AssembledLDXInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLDXInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("LDY".equals(instruction.getInstruction())) {
 			line = new AssembledLDYInstruction();
-			((AssembledLDYInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledLDYInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 		}
 
@@ -2728,7 +2728,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(JsrInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledJSRInstruction();
-    	((AssembledJSRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledJSRInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2745,7 +2745,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(JmpInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledJMPInstruction();
-    	((AssembledJMPInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledJMPInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2765,13 +2765,13 @@ public class AssemblerEngine {
 
 		if ("INCA".equals(instruction.getInstruction())) {
 			line = new AssembledINCAInstruction();
-			((AssembledINCAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledINCAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("INCB".equals(instruction.getInstruction())) {
 			line = new AssembledINCBInstruction();
-			((AssembledINCBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledINCBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			line = new AssembledINCInstruction();
-			((AssembledINCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledINCInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);
@@ -2790,7 +2790,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(ExgInstruction instruction) {
 		AbstractAssemblyLine line=new AssembledEXGInstruction();
-    	((AssembledEXGInstruction) line).parse(instruction, currentPcValue, lineNumber);
+    	((AssembledEXGInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2811,10 +2811,10 @@ public class AssemblerEngine {
 
 		if ("EORA".equals(instruction.getInstruction())) {
 			line = new AssembledEORAInstruction();
-			((AssembledEORAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledEORAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("EORB".equals(instruction.getInstruction())) {
 			line = new AssembledEORBInstruction();
-			((AssembledEORBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledEORBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);
@@ -2836,13 +2836,13 @@ public class AssemblerEngine {
 
 		if ("DECA".equals(instruction.getInstruction())) {
 			line = new AssembledDECAInstruction();
-			((AssembledDECAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledDECAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("DECB".equals(instruction.getInstruction())) {
 			line = new AssembledDECBInstruction();
-			((AssembledDECBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledDECBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			line = new AssembledDECInstruction();
-			((AssembledDECInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledDECInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);
@@ -2856,7 +2856,7 @@ public class AssemblerEngine {
 
 	private void parse(DaaInstruction instruction) {
 		AbstractAssemblyLine line = new AssembledDAAInstruction();
-		((AssembledDAAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		((AssembledDAAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2874,7 +2874,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(CwaiInstruction instruction) {
 		AbstractAssemblyLine line = new AssembledCWAIInstruction();
-		((AssembledCWAIInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		((AssembledCWAIInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2895,13 +2895,13 @@ public class AssemblerEngine {
 
 		if ("COMA".equals(instruction.getInstruction())) {
 			line = new AssembledCOMAInstruction();
-			((AssembledCOMAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCOMAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("COMB".equals(instruction.getInstruction())) {
 			line = new AssembledCOMBInstruction();
-			((AssembledCOMBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCOMBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			line = new AssembledCOMInstruction();
-			((AssembledCOMInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCOMInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);
@@ -2923,25 +2923,25 @@ public class AssemblerEngine {
 
 		if ("CMPA".equals(instruction.getInstruction())) {
 			line = new AssembledCMPAInstruction();
-			((AssembledCMPAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCMPAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("CMPB".equals(instruction.getInstruction())) {
 			line = new AssembledCMPBInstruction();
-			((AssembledCMPBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCMPBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("CMPD".equals(instruction.getInstruction())) {
 			line = new AssembledCMPDInstruction();
-			((AssembledCMPDInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCMPDInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("CMPS".equals(instruction.getInstruction())) {
 			line = new AssembledCMPSInstruction();
-			((AssembledCMPSInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCMPSInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("CMPU".equals(instruction.getInstruction())) {
 			line = new AssembledCMPUInstruction();
-			((AssembledCMPUInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCMPUInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("CMPX".equals(instruction.getInstruction())) {
 			line = new AssembledCMPXInstruction();
-			((AssembledCMPXInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCMPXInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("CMPY".equals(instruction.getInstruction())) {
 			line = new AssembledCMPYInstruction();
-			((AssembledCMPYInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCMPYInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);
@@ -2963,13 +2963,13 @@ public class AssemblerEngine {
 
 		if ("CLRA".equals(instruction.getInstruction())) {
 			line = new AssembledCLRAInstruction();
-			((AssembledCLRAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCLRAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("CLRB".equals(instruction.getInstruction())) {
 			line = new AssembledCLRBInstruction();
-			((AssembledCLRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCLRBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			line = new AssembledCLRInstruction();
-			((AssembledCLRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledCLRInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);
@@ -2991,10 +2991,10 @@ public class AssemblerEngine {
 
 		if ("BITA".equals(instruction.getInstruction())) {
 			line = new AssembledBITAInstruction();
-			((AssembledBITAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBITAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("BITB".equals(instruction.getInstruction())) {
 			line = new AssembledBITBInstruction();
-			((AssembledBITBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledBITBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 		}
 
@@ -3017,13 +3017,13 @@ public class AssemblerEngine {
 
 		if ("ASRA".equals(instruction.getInstruction())) {
 			line = new AssembledASRAInstruction();
-			((AssembledASRAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledASRAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("ASRB".equals(instruction.getInstruction())) {
 			line = new AssembledASRBInstruction();
-			((AssembledASRBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledASRBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			line = new AssembledASRInstruction();
-			((AssembledASRInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledASRInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);
@@ -3045,13 +3045,13 @@ public class AssemblerEngine {
 
 		if ("ASLA".equals(instruction.getInstruction())) {
 			line = new AssembledASLAInstruction();
-			((AssembledASLAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledASLAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("ASLB".equals(instruction.getInstruction())) {
 			line = new AssembledASLBInstruction();
-			((AssembledASLBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledASLBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			line = new AssembledASLInstruction();
-			((AssembledASLInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledASLInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		}
 
 		assemblyLines.add(line);
@@ -3070,7 +3070,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(AndCCInstruction instruction) {
 		AbstractAssemblyLine line = new AssembledANDCCInstruction();
-		((AssembledANDCCInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		((AssembledANDCCInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -3091,10 +3091,10 @@ public class AssemblerEngine {
 
 		if ("ANDA".equals(instruction.getInstruction())) {
 			line = new AssembledANDAInstruction();
-			((AssembledANDAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledANDAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("ANDB".equals(instruction.getInstruction())) {
 			line = new AssembledANDBInstruction();
-			((AssembledANDBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledANDBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			line = null;
 		}
@@ -3111,7 +3111,7 @@ public class AssemblerEngine {
 	private void parse(AdddInstruction instruction) {
 
 		AbstractAssemblyLine line = new AssembledADDDInstruction();
-		((AssembledADDDInstruction) line).parse(instruction, currentPcValue, lineNumber);
+		((AssembledADDDInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -3127,10 +3127,10 @@ public class AssemblerEngine {
 
 		if ("ADDA".equals(instruction.getInstruction())) {
 			line = new AssembledADDAInstruction();
-			((AssembledADDAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledADDAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("ADDB".equals(instruction.getInstruction())) {
 			line = new AssembledADDBInstruction();
-			((AssembledADDBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledADDBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			line = null;
 		}
@@ -3154,10 +3154,10 @@ public class AssemblerEngine {
 
 		if ("ADCA".equals(instruction.getInstruction())) {
 			line = new AssembledADCAInstruction();
-			((AssembledADCAInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledADCAInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else if ("ADCB".equals(instruction.getInstruction())) {
 			line = new AssembledADCBInstruction();
-			((AssembledADCBInstruction) line).parse(instruction, currentPcValue, lineNumber);
+			((AssembledADCBInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
 		} else {
 			line = null;
 		}
@@ -3178,7 +3178,7 @@ public class AssemblerEngine {
 	 */
 	private void parse(AbxInstruction instruction) {
 		AssembledABXInstruction line = new AssembledABXInstruction();
-		line.parse(instruction, currentPcValue, lineNumber);
+		line.parsePass1(instruction, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
 		currentPcValue += line.getPcIncrement();
@@ -3195,7 +3195,7 @@ public class AssemblerEngine {
 	 */
 	private void parseBlankLine(BlankLine blankLine) {
 		AssembledBlankLine line = new AssembledBlankLine();
-		line.parse(blankLine, currentPcValue, lineNumber);
+		line.parsePass1(blankLine, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(blankLine, line);
 	}
@@ -3207,7 +3207,7 @@ public class AssemblerEngine {
 	 */
 	private void parseCommentLine(CommentLine commentLine) {
 		AssembledCommentLine assembledCommentLine = new AssembledCommentLine();
-		assembledCommentLine.parse(commentLine, currentPcValue, lineNumber);
+		assembledCommentLine.parsePass1(commentLine, currentPcValue, lineNumber);
 		assemblyLines.add(assembledCommentLine);
 		assembledLinesMap.put(commentLine, assembledCommentLine);
 	}
@@ -3219,7 +3219,7 @@ public class AssemblerEngine {
 	 */
 	private void parseLabelLine(LabelLine labelLine) {
 		AssembledLabelLine assembledLabelLine = new AssembledLabelLine();
-		assembledLabelLine.parse(labelLine, currentPcValue, lineNumber);
+		assembledLabelLine.parsePass1(labelLine, currentPcValue, lineNumber);
 		assemblyLines.add(assembledLabelLine);
 		
 		registerLabelPosition(assembledLabelLine, 
@@ -3305,7 +3305,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(FailDirective failDirective) {
 		AssembledFailDirectiveLine line = new AssembledFailDirectiveLine();
-		line.parse(failDirective, currentPcValue, lineNumber);
+		line.parsePass1(failDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(failDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3322,7 +3322,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(SetDPDirective setdpDirective) {
 		AssembledSetDPDirectiveLine line = new AssembledSetDPDirectiveLine();
-		line.parse(setdpDirective, currentPcValue, lineNumber);
+		line.parsePass1(setdpDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(setdpDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3341,7 +3341,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(RmbDirective rmbDirective) {
 		AssembledRmbDirectiveLine line = new AssembledRmbDirectiveLine();
-		line.parse(rmbDirective, currentPcValue, lineNumber);
+		line.parsePass1(rmbDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(rmbDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3358,7 +3358,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(FccDirective fccDirective) {
 		AssembledFccDirectiveLine line = new AssembledFccDirectiveLine();
-		line.parse(fccDirective, currentPcValue, lineNumber);
+		line.parsePass1(fccDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(fccDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3375,7 +3375,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(FdbDirective fdbDirective) {
 		AssembledFdbDirectiveLine line = new AssembledFdbDirectiveLine();
-		line.parse(fdbDirective, currentPcValue, lineNumber);
+		line.parsePass1(fdbDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(fdbDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3392,7 +3392,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(FcbDirective fcbDirective) {
 		AssembledFcbDirectiveLine line = new AssembledFcbDirectiveLine();
-		line.parse(fcbDirective, currentPcValue, lineNumber);
+		line.parsePass1(fcbDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(fcbDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3409,7 +3409,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(RegDirective regDirective) {
 		AssembledRegDirectiveLine line = new AssembledRegDirectiveLine();
-		line.parse(regDirective, currentPcValue, lineNumber);
+		line.parsePass1(regDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(regDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3422,7 +3422,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(SpcDirective spcDirective) {
 		AssembledSpcDirectiveLine line = new AssembledSpcDirectiveLine();
-		line.parse(spcDirective, currentPcValue, lineNumber);
+		line.parsePass1(spcDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(spcDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3435,7 +3435,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(NamDirective namDirective) {
 		AssembledNamDirectiveLine line = new AssembledNamDirectiveLine();
-		line.parse(namDirective, currentPcValue, lineNumber);
+		line.parsePass1(namDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(namDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3448,7 +3448,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(PagDirective pagDirective) {
 		AssembledPagDirectiveLine line = new AssembledPagDirectiveLine();
-		line.parse(pagDirective, currentPcValue, lineNumber);
+		line.parsePass1(pagDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(pagDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3461,7 +3461,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(OptDirective optDirective) {
 		AssembledOptDirectiveLine line = new AssembledOptDirectiveLine();
-		line.parse(optDirective, currentPcValue, lineNumber);
+		line.parsePass1(optDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(optDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3474,7 +3474,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(FillDirective fillDirective) {
 		AssembledFillDirectiveLine line = new AssembledFillDirectiveLine();
-		line.parse(fillDirective, currentPcValue, lineNumber);
+		line.parsePass1(fillDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(fillDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3491,7 +3491,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(EndDirective endDirective) {
 		AssembledEndDirectiveLine line = new AssembledEndDirectiveLine();
-		line.parse(endDirective, currentPcValue, lineNumber);
+		line.parsePass1(endDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(endDirective, line);
 
@@ -3521,7 +3521,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(BszDirective bszDirective) {
 		AssembledBszDirectiveLine line = new AssembledBszDirectiveLine();
-		line.parse(bszDirective, currentPcValue, lineNumber);
+		line.parsePass1(bszDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(bszDirective, line);
 		currentPcValue += line.getPcIncrement();
@@ -3539,7 +3539,7 @@ public class AssemblerEngine {
 	 */
 	private void parseDirective(SetDirective setDirective) {
 		AssembledSetDirectiveLine line = new AssembledSetDirectiveLine();
-		line.parse(setDirective, currentPcValue, lineNumber);
+		line.parsePass1(setDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(setDirective, line);
 		EquSetManager.getInstance().setValue(setDirective, line.getLabel(),  line.getValue().intValue());
@@ -3559,7 +3559,7 @@ public class AssemblerEngine {
 		EquSetManager titi = EquSetManager.getInstance();
 		
 		AssembledEquDirectiveLine line = new AssembledEquDirectiveLine();
-		line.parse(equDirective, currentPcValue, lineNumber);
+		line.parsePass1(equDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(equDirective, line);
 	}
@@ -3581,7 +3581,7 @@ public class AssemblerEngine {
 		}
 		
 		AssembledOrgDirectiveLine line = new AssembledOrgDirectiveLine();
-		line.parse(directive, currentPcValue, lineNumber);
+		line.parsePass1(directive, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(directive, line);
 

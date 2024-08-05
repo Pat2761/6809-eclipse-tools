@@ -18,12 +18,14 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
 
 public abstract class AbstractAssemblyLine {
-
+	
 	protected int lineNumber;
 	protected int pcAddress;
 	protected SourceLine sourceLine;
@@ -31,7 +33,9 @@ public abstract class AbstractAssemblyLine {
 	protected String comment;
 
 	public abstract int getPcIncrement();
-	
+	public abstract void parsePass1(EObject instruction, int currentPcValue, int lineNumber);
+//	public abstract void parsePass2(AbxInstruction instruction, int currentPcValue, int lineNumber);
+
 	public String getComment() {
 		return comment;
 	}

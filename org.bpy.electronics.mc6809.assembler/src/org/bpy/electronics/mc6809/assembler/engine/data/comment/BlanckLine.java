@@ -19,12 +19,19 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.comment;
 
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.eclipse.emf.ecore.EObject;
 
 public class BlanckLine extends AbstractAssemblyLine {
 
 	@Override
 	public int getPcIncrement() {
 		return 0;
+	}
+
+	@Override
+	public void parsePass1(EObject instruction, int currentPcValue, int lineNumber) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

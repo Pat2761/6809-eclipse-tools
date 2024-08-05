@@ -18,12 +18,12 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.comment;
 
-import org.bpy.electronics.mc6809.assembler.assembler.BlankLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.eclipse.emf.ecore.EObject;
 
 public class AssembledBlankLine extends AbstractAssemblyLine {
 	
-	public void parse(BlankLine blankLine, int currentPcValue, int lineNumber) {
+	public void parsePass1(EObject blankLine, int currentPcValue, int lineNumber) {
 		this.lineNumber = lineNumber;
 		pcAddress = currentPcValue;
 	}

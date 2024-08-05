@@ -25,6 +25,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Used to store information about SET directive
@@ -51,15 +52,15 @@ public class AssembledSetDirectiveLine extends AbstractAssembledDirectiveLine {
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(SetDirective directive, int currentPcValue, int lineNumber) {
+	public void parsePass1(EObject directive, int currentPcValue, int lineNumber) {
+		this.directive = (SetDirective) directive;
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
-		this.label = CommandUtil.getLabel(directive);
-		this.comment = CommandUtil.getComment(directive);
-		this.directive = directive;
+		this.label = CommandUtil.getLabel(this.directive);
+		this.comment = CommandUtil.getComment(this.directive);
 		
 		try {
-			this.value = ExpressionParser.parse(directive);
+			this.value = ExpressionParser.parse(this.directive);
 		} catch (UnresolvedException e) {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 

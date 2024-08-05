@@ -2,6 +2,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.others;
 
 import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.eclipse.emf.ecore.EObject;
 
 public class MacroDeclarationElement extends AbstractAssemblyLine {
 
@@ -10,10 +11,10 @@ public class MacroDeclarationElement extends AbstractAssemblyLine {
 	private String endComment;
 
 
-	public void parse(MacroDefinition macroDefinition, int currentPcValue, int lineNumber) {
-		this.macroDefinition  = macroDefinition;
-		macroComment = macroDefinition.getComment1();
-		endComment =  macroDefinition.getComment2();
+	public void parsePass1(EObject macroDefinition, int currentPcValue, int lineNumber) {
+		this.macroDefinition  = (MacroDefinition) macroDefinition;
+		macroComment = this.macroDefinition.getComment1();
+		endComment =  this.macroDefinition.getComment2();
 		
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;

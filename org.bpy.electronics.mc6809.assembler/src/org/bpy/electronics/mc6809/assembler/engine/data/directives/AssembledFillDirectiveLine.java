@@ -26,6 +26,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Used to store information about FILL directive
@@ -50,18 +51,17 @@ public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(FillDirective directive, int currentPcValue, int lineNumber) {
+	public void parsePass1(EObject directive, int currentPcValue, int lineNumber) {
+		this.directive = (FillDirective) directive;
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
-		this.label = CommandUtil.getLabel(directive);
-		this.comment = CommandUtil.getComment(directive);
-		this.directive = directive;
-		
+		this.label = CommandUtil.getLabel(this.directive);
+		this.comment = CommandUtil.getComment(this.directive);
 		
 		int nbBytes;
 		try {
-			nbBytes = ExpressionParser.resolveExpression(directive.getNumber().getOperand(), directive, AssemblerPackage.eINSTANCE.getFillDirective_Number());
-			int value = ExpressionParser.resolveExpression(directive.getValue().getOperand(), directive, AssemblerPackage.eINSTANCE.getFillDirective_Value());
+			nbBytes = ExpressionParser.resolveExpression(this.directive.getNumber().getOperand(), this.directive, AssemblerPackage.eINSTANCE.getFillDirective_Number());
+			int value = ExpressionParser.resolveExpression(this.directive.getValue().getOperand(), this.directive, AssemblerPackage.eINSTANCE.getFillDirective_Value());
 			if (nbBytes < 0) {
 				nbBytes = 0;
 			}

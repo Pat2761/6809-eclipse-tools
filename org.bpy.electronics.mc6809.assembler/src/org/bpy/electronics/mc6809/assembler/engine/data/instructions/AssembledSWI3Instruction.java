@@ -21,6 +21,7 @@ package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 import org.bpy.electronics.mc6809.assembler.assembler.Swi3Instruction;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Allow to pars an SWI3 Instruction
@@ -40,10 +41,10 @@ public class AssembledSWI3Instruction extends AbstractInstructionAssemblyLine {
 	 * @param currentPcValue state of the current PC
 	 * @param lineNumber line number in assembly file
 	 */
-	public void parse(Swi3Instruction instruction, int currentPcValue, int lineNumber) {
-		this.label = CommandUtil.getLabel(instruction);
-		this.comment = CommandUtil.getComment(instruction);
-		this.instruction = instruction;
+	public void parsePass1(EObject instruction, int currentPcValue, int lineNumber) {
+		this.instruction = (Swi3Instruction) instruction;
+		this.label = CommandUtil.getLabel(this.instruction);
+		this.comment = CommandUtil.getComment(this.instruction);
 		super.parse(currentPcValue, lineNumber);
 	}
 

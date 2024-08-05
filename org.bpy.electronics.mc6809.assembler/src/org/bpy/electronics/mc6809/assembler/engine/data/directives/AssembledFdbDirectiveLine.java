@@ -27,6 +27,7 @@ import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
+import org.eclipse.emf.ecore.EObject;
 
 /**
  * Used to store information about FDB directive
@@ -51,16 +52,16 @@ public class AssembledFdbDirectiveLine extends AbstractAssembledDirectiveLine {
 	 * @param currentPcValu;e value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(FdbDirective directive, int currentPcValue, int lineNumber) {
+	public void parsePass1(EObject directive, int currentPcValue, int lineNumber) {
+		this.directive = (FdbDirective) directive;
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
-		this.label = CommandUtil.getLabel(directive);
-		this.comment = CommandUtil.getComment(directive);
-		this.directive = directive;
+		this.label = CommandUtil.getLabel(this.directive);
+		this.comment = CommandUtil.getComment(this.directive);
 
 		List<Integer> listValues;
 		try {
-			listValues = ExpressionParser.parse(directive);
+			listValues = ExpressionParser.parse(this.directive);
 			values = new int[listValues.size()];
 			for (int i=0; i<listValues.size(); i++) {
 				values[i] = listValues.get(i);	

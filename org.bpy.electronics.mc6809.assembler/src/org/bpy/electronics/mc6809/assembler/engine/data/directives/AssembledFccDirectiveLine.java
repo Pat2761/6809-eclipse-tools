@@ -57,16 +57,16 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 	 * @param currentPcValu;e value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
-	public void parse(FccDirective directive, int currentPcValue, int lineNumber) {
+	public void parsePass1(EObject directive, int currentPcValue, int lineNumber) {
+		this.directive = (FccDirective) directive;
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
-		this.label = CommandUtil.getLabel(directive);
-		this.comment = CommandUtil.getComment(directive);
-		this.directive = directive;
+		this.label = CommandUtil.getLabel(this.directive);
+		this.comment = CommandUtil.getComment(this.directive);
 
 		// Parse the values
 		List<Byte> parseValues = new ArrayList<>(); 
-		for (EObject parameter : directive.getParameters()) {
+		for (EObject parameter : this.directive.getParameters()) {
 			if (parameter instanceof StringValue stringValue) {
 				byte[] bytes = stringValue.getValue().getBytes();
 				for (int i=0; i<bytes.length; i++) {
