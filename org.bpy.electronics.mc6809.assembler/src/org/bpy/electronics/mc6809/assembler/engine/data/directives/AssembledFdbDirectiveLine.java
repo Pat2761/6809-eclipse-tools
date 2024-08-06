@@ -18,6 +18,7 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.bpy.electronics.mc6809.assembler.assembler.FdbDirective;
@@ -30,7 +31,9 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about FDB directive
+ * Used to store information about FDB directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledFdbDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -59,6 +62,16 @@ public class AssembledFdbDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.label = CommandUtil.getLabel(this.directive);
 		this.comment = CommandUtil.getComment(this.directive);
 
+		int size = 1;
+		if (this.directive.getOperand().getCommaExpressions() != null) {
+			size += this.directive.getOperand().getCommaExpressions().size();
+		}
+		values = new int[size];	
+		Arrays.fill(values, 0);
+	}
+
+	@Override
+	public void parsePass2() {
 		List<Integer> listValues;
 		try {
 			listValues = ExpressionParser.parse(this.directive);
@@ -76,20 +89,29 @@ public class AssembledFdbDirectiveLine extends AbstractAssembledDirectiveLine {
 		}
 	}
 
-	@Override
-	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public FdbDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(FdbDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get values
+	 *  
+	 * @return values
+	 */
 	public int[] getValues() {
 		return values;
 	}

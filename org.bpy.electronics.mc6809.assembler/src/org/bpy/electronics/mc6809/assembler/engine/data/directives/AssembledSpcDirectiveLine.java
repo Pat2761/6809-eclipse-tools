@@ -28,7 +28,9 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about SPC directive
+ * Used to store information about SPC directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -59,7 +61,10 @@ public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(this.directive);
 		this.comment = CommandUtil.getComment(this.directive);
-		
+	}
+
+	@Override
+	public void parsePass2() {
 		try {
 			keepCount = ExpressionParser.getKeepCount(this.directive);
 		} catch (UnresolvedException e) {
@@ -81,24 +86,38 @@ public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 		}
 	}
 
-	@Override
-	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public SpcDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(SpcDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get space count value.
+	 * 
+	 * @return space count value
+	 */
 	public int getSpaceCountValue() {
 		return spaceCount;
 	}
 
+	/**
+	 * Get the keep count value
+	 * 
+	 * @return keep count value
+	 */
 	public int getkeepCountValue() {
 		return keepCount;
 	}

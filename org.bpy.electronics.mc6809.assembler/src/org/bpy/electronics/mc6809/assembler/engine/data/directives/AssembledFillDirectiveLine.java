@@ -29,7 +29,9 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about FILL directive
+ * Used to store information about FILL directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -37,8 +39,9 @@ public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 	private FillDirective directive;
 	/** Integer value defined by the EQU directive */ 
 	private int[] values;	
+
 	/**
-	 * Constructor of the class
+	 * Constructor of the class.
 	 */
 	public AssembledFillDirectiveLine() {
 		// nothing to do
@@ -46,6 +49,7 @@ public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/**
 	 * Extract information from the edited line.
+	 * This instruction doesn't support forward address reference.
 	 * 
 	 * @param directive reference to the Xtext description of the BSZ directive
 	 * @param currentPcValue value on the PC counter
@@ -80,18 +84,32 @@ public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// nothing to do here
 	}
 
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public FillDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(FillDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get values
+	 *  
+	 * @return values
+	 */
 	public int[] getValues() {
 		return values;
 	}

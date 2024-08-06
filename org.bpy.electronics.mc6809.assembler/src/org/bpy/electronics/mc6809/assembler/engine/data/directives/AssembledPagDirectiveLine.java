@@ -28,7 +28,9 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about PAG directive
+ * Used to store information about PAG directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledPagDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -46,7 +48,7 @@ public class AssembledPagDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/**
 	 * Extract information from the edited line.
-	 * 
+    * 
 	 * @param directive reference to the Xtext description of the PAG directive
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
@@ -58,6 +60,10 @@ public class AssembledPagDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.label = CommandUtil.getLabel(this.directive);
 		this.comment = CommandUtil.getComment(this.directive);
 		
+	}
+
+	@Override
+	public void parsePass2() {
 		if (this.directive.getOperand() == null) {
 			value = 0;
 		} else {
@@ -73,24 +79,38 @@ public class AssembledPagDirectiveLine extends AbstractAssembledDirectiveLine {
 		}	
 	}
 
-	@Override
-	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public PagDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(PagDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get value.
+	 *  
+	 * @return value
+	 */
 	public int getValue() {
 		return value;
 	}
 
+	/**
+	 * Set value.
+	 *  
+	 * @param value value
+	 */
 	public void setValue(int value) {
 		this.value = value;
 	}

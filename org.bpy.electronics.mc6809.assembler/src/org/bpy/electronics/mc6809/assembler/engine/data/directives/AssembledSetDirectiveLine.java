@@ -28,7 +28,9 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about SET directive
+ * Used to store information about SET directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledSetDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -47,6 +49,7 @@ public class AssembledSetDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/**
 	 * Extract information from the edited line.
+	 * This directive doesn't support forward address definition.
 	 * 
 	 * @param directive reference to the Xtext description of the SET directive
 	 * @param currentPcValue value on the PC counter
@@ -72,18 +75,32 @@ public class AssembledSetDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public SetDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(SetDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get value.
+	 *  
+	 * @return value
+	 */
 	public Integer getValue() {
 		return value;
 	}
@@ -91,9 +108,5 @@ public class AssembledSetDirectiveLine extends AbstractAssembledDirectiveLine {
 	@Override
 	public int getPcIncrement() {
 		return 0;
-	}
-
-	public void setValue(Integer value) {
-		this.value = value;
 	}
 }

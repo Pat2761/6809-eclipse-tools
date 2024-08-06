@@ -22,27 +22,38 @@ import org.bpy.electronics.mc6809.assembler.assembler.CommentLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.eclipse.emf.ecore.EObject;
 
+/**
+ * Assemble a comment line.
+ * 
+ * @author Patrick BRIAND
+ *
+ */
 public class AssembledCommentLine extends AbstractAssemblyLine {
 	
-	private String comment;
+	/** Memorize if space is defined before comment */
 	private boolean isSpaceBefore;
-	
-	public String getComment() {
-		return comment;
-	}
-	
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
 	
 	public boolean isSpaceBefore() {
 		return isSpaceBefore;
 	}
-	
+
+	/** 
+	 * Set space defined before the comment.
+	 * 
+	 * @param isSpaceBefore <b>true</b> if space exist before the comment, <b>false<</b> otherwise
+	 */
 	public void setSpaceBefore(boolean isSpaceBefore) {
 		this.isSpaceBefore = isSpaceBefore;
 	}
 
+	/**
+	 * Parse a comment line.
+	 * 
+	 * @param commentLine reference to a comment line
+	 * @param currentPcValue current valuer of the PC
+	 * @param lineNumber line number
+	 */
+	@Override
 	public void parsePass1(EObject commentLine, int currentPcValue, int lineNumber) {
 		this.lineNumber = lineNumber;
 		pcAddress = currentPcValue;
@@ -52,8 +63,7 @@ public class AssembledCommentLine extends AbstractAssemblyLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
 	@Override

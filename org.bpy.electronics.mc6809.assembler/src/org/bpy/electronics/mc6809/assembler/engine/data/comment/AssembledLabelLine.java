@@ -22,27 +22,21 @@ import org.bpy.electronics.mc6809.assembler.assembler.LabelLine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.eclipse.emf.ecore.EObject;
 
+/**
+ * assemble a label line
+ * 
+ * @author Patrick BRIAND
+ *
+ */
 public class AssembledLabelLine extends AbstractAssemblyLine {
 	
-	private String comment;
-	private String label;
-	
-	public String getComment() {
-		return comment;
-	}
-	
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-	
-	public String getLabel() {
-		return label;
-	}
-
-	public void setLabel(String label) {
-		this.label = label;
-	}
-
+	/**
+	 * Parse a label line.
+	 * 
+	 * @param commentLine reference to a comment line
+	 * @param currentPcValue current valuer of the PC
+	 * @param lineNumber line number
+	 */
 	public void parsePass1(EObject labelLine, int currentPcValue, int lineNumber) {
 		this.lineNumber = lineNumber;
 		pcAddress = currentPcValue;
@@ -50,10 +44,9 @@ public class AssembledLabelLine extends AbstractAssemblyLine {
 		label = ((LabelLine)labelLine).getLabel().getName().getValue();
 	}
 
-@Override
+	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// nothing to do here
 	}
 
 	@Override

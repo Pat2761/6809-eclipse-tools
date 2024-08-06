@@ -28,7 +28,9 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about RMB directive
+ * Used to store information about RMB directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledRmbDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -46,6 +48,7 @@ public class AssembledRmbDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/**
 	 * Extract information from the edited line.
+	 * This directive doesn't support forward address definition.
 	 * 
 	 * @param directive reference to the Xtext description of the BSZ directive
 	 * @param currentPcValue value on the PC counter
@@ -71,14 +74,23 @@ public class AssembledRmbDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public RmbDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(RmbDirective directive) {
 		this.directive = directive;
 	}
@@ -88,6 +100,11 @@ public class AssembledRmbDirectiveLine extends AbstractAssembledDirectiveLine {
 		return nbBytesReserved;
 	}
 
+	/**
+	 * Get value.
+	 *  
+	 * @return value
+	 */
 	public int getNbBytesReserved() {
 		return nbBytesReserved;
 	}

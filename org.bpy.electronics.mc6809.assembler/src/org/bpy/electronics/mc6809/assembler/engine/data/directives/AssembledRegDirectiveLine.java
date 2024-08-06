@@ -24,7 +24,9 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about REG directive
+ * Used to store information about REG directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledRegDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -59,22 +61,41 @@ public class AssembledRegDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public RegDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(RegDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get value.
+	 *  
+	 * @return value
+	 */
 	public int getValue() {
 		return value;
 	}
 
+	/**
+	 * Set value.
+	 *  
+	 * @param value value
+	 */
 	public void setValue(int value) {
 		this.value = value;
 	}
@@ -83,5 +104,4 @@ public class AssembledRegDirectiveLine extends AbstractAssembledDirectiveLine {
 	public int getPcIncrement() {
 		return 0;
 	}
-
 }

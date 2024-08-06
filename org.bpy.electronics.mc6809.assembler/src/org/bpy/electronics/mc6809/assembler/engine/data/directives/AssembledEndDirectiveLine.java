@@ -18,20 +18,27 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.EndDirective;
+import org.bpy.electronics.mc6809.assembler.engine.exception.UnresolvedException;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
  * Used to store information about END directive
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledEndDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/** reference to the END directive in the edited file */
 	private EndDirective directive;
-	/** Integer value defined by the END directive */ 
-	private int value;	
-	private String target;
+	/** Target value */
+	private int targetAddress;
 	
 	/**
 	 * Constructor of the class
@@ -43,43 +50,54 @@ public class AssembledEndDirectiveLine extends AbstractAssembledDirectiveLine {
 	/**
 	 * Extract information from the edited line.
 	 * 
-	 * @param directive reference to the Xtext description of the BSZ directive
+	 * @param directive reference to the Xtext description of the END directive
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
+	@Override
 	public void parsePass1(EObject directive, int currentPcValue, int lineNumber) {
 		this.directive = (EndDirective) directive;
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(this.directive);
 		this.comment = CommandUtil.getComment(this.directive);
-		try {
-			this.target = this.directive.getOperand().getValue();
-		} catch (NullPointerException ex) {
-			this.target = null;
-		}
 	}
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		targetAddress = 0;
+		if (directive.getOperand() != null) {
+			try {
+				this.targetAddress = ExpressionParser.parseIdentifer(directive, 
+						AssemblerPackage.eINSTANCE.getEndDirective_Operand(), directive.getOperand());
+			} catch (UnresolvedException e) {
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						e.getDescriptor().getMessage(), 
+						e.getDescriptor().getReference(), 
+						InstructionValidator.EXPRESSION_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(this.directive, errorDescription);
+				
+				targetAddress = 0;
+			}
+		}
 	}
 
+	/**
+	 * Get the reference on the the directive.
+	 * 
+	 * @return reference on the directive
+	 */
 	public EndDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * Set the reference on the directive.
+	 * 
+	 * @param directive reference on the directive
+	 */
 	public void setDirective(EndDirective directive) {
 		this.directive = directive;
-	}
-
-	public int getValue() {
-		return value;
-	}
-
-	public void setValue(int value) {
-		this.value = value;
 	}
 
 	@Override
@@ -87,7 +105,12 @@ public class AssembledEndDirectiveLine extends AbstractAssembledDirectiveLine {
 		return 0;
 	}
 
-	public String getTarget() {
-		return target;
+	/**
+	 * Return address defined by the directive.
+	 * 
+	 * @return address defined by the directive
+	 */
+	public int getTargetAddress() {
+		return targetAddress;
 	}
 }

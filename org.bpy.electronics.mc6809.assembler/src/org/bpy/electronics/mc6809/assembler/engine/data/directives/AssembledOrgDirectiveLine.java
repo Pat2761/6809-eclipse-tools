@@ -28,8 +28,10 @@ import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
-/*
+/**
  * Used to store information about ORG directive
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -47,6 +49,7 @@ public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/**
 	 * Extract information from the edited line.
+	 * This directive doesn't support forward address definition.
 	 * 
 	 * @param directive reference to the Xtext description of the ORG directive
 	 * @param currentPcValue value on the PC counter
@@ -72,14 +75,23 @@ public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do
 	}
 
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public OrgDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(OrgDirective directive) {
 		this.directive = directive;
 	}
@@ -89,6 +101,11 @@ public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 		return 0;
 	}
 	
+	/**
+	 * Get value.
+	 *  
+	 * @return value
+	 */
 	public int getValue() {
 		return value;
 	}

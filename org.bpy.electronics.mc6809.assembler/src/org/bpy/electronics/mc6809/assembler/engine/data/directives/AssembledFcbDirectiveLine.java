@@ -18,6 +18,7 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.bpy.electronics.mc6809.assembler.assembler.FcbDirective;
@@ -31,6 +32,8 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * Used to store information about FCB directive
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledFcbDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -59,15 +62,24 @@ public class AssembledFcbDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.label = CommandUtil.getLabel(this.directive);
 		this.comment = CommandUtil.getComment(this.directive);
 
+		int size = 1;
+		if (this.directive.getOperand().getCommaExpressions() != null) {
+			size += this.directive.getOperand().getCommaExpressions().size();
+		}
+		values = new int[size];	
+		Arrays.fill(values, 0);
+	}
+
+	@Override
+	public void parsePass2() {
 		List<Integer> listValues;
+		
 		try {
 			listValues = ExpressionParser.parse(this.directive);
-			values = new int[listValues.size()];
 			for (int i=0; i<listValues.size(); i++) {
 				values[i] = listValues.get(i);	
 			}
 		} catch (UnresolvedException e) {
-			values = new int[0];
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
 					e.getDescriptor().getMessage(), 
 					e.getDescriptor().getReference(), 
@@ -76,20 +88,29 @@ public class AssembledFcbDirectiveLine extends AbstractAssembledDirectiveLine {
 		}
 	}
 
-	@Override
-	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public FcbDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * Set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(FcbDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get define values.
+	 * 
+	 * @return define values
+	 */
 	public int[] getValues() {
 		return values;
 	}

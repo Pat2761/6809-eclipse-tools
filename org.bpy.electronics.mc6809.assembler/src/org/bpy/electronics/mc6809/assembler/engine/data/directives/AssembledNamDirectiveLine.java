@@ -23,7 +23,9 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about NAM directive
+ * Used to store information about NAM directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledNamDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -58,18 +60,32 @@ public class AssembledNamDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public NamDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(NamDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get value.
+	 *  
+	 * @return value
+	 */
 	public String getValue() {
 		return value;
 	}

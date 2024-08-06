@@ -37,6 +37,14 @@ public class AssembledFailDirectiveLine  extends AbstractAssembledDirectiveLine 
 		return 0;
 	}
 
+	/**
+	 * Extract information from the Fail line.
+	 * 
+	 * @param directive reference to the Xtext description of the FAIL directive
+	 * @param currentPcValue value on the PC counter
+	 * @param lineNumber line number in the source file 
+	 */
+	@Override
 	public void parsePass1(EObject failDirective, int currentPcValue, int lineNumber) {
 		this.lineNumber = lineNumber;
 		this.pcAddress = currentPcValue;
@@ -45,8 +53,7 @@ public class AssembledFailDirectiveLine  extends AbstractAssembledDirectiveLine 
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// nothing to do here
 	}
 
 	/**
@@ -57,5 +64,4 @@ public class AssembledFailDirectiveLine  extends AbstractAssembledDirectiveLine 
 	public FailDirective getDirective() {
 		return failDirective;
 	}
-
 }

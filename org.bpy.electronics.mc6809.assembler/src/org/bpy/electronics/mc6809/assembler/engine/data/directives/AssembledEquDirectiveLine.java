@@ -29,7 +29,9 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about EQU directive
+ * Used to store information about EQU directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -52,6 +54,7 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
+	@Override
 	public void parsePass1(EObject directive, int currentPcValue, int lineNumber) {
 		this.directive = (EquDirective) directive;
 		this.pcAddress = currentPcValue;
@@ -72,18 +75,32 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
+	/**
+	 * Get the reference on the the directive.
+	 * 
+	 * @return reference on the directive
+	 */
 	public EquDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * Set the reference on the directive.
+	 * 
+	 * @param directive reference on the directive
+	 */
 	public void setDirective(EquDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get the value defined by this directive.
+	 * 
+	 * @return Equ value
+	 */
 	public int getValue() {
 		return value;
 	}
@@ -93,6 +110,11 @@ public class AssembledEquDirectiveLine extends AbstractAssembledDirectiveLine {
 		return 0;
 	}
 
+	/**
+	 * Set the value defined by this directive.
+	 * 
+	 * @param value value of the EQU
+	 */
 	public void setValue(Integer value) {
 		this.value = value;
 	}

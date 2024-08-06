@@ -19,6 +19,7 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
@@ -32,10 +33,13 @@ import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerWarningDescription;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about FCC directive
+ * Used to store information about FCC directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -64,6 +68,31 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.label = CommandUtil.getLabel(this.directive);
 		this.comment = CommandUtil.getComment(this.directive);
 
+		reserveMemorySpace(this.directive.getParameters());
+	}
+
+	/**
+	 * Compute and allocate space for store data defined in the operand.
+	 * 
+	 * @param parameters list of parameters
+	 */
+	private void reserveMemorySpace(EList<EObject> parameters) {
+		int size = 0;
+		
+		for (EObject parameter : parameters) {
+			if (parameter instanceof StringValue stringValue) {
+				size += stringValue.getValue().length();
+			} else if (parameter instanceof Expression) {
+				size++;
+			}
+		}
+		
+		values = new int[size];
+		Arrays.fill(values, 0);
+	}
+
+	@Override
+	public void parsePass2() {
 		// Parse the values
 		List<Byte> parseValues = new ArrayList<>(); 
 		for (EObject parameter : this.directive.getParameters()) {
@@ -91,32 +120,38 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 							InstructionValidator.EXPRESSION_ERROR);
 					AssemblerErrorManager.getInstance().addProblem(directive, errorDescription);
 				}
-			} else {
-				
 			}
 		}
-		values = new int[parseValues.size()];
 		int i=0;
 		for (int value : parseValues) {
 			values[i] = value;
-			i++;;
+			i++;
 		}
 	}
 
-	@Override
-	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public FccDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(FccDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get defined values.
+	 *  
+	 * @return values
+	 */
 	public int[] getValues() {
 		return values;
 	}

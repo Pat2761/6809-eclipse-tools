@@ -472,6 +472,16 @@ public class DirectiveValidator extends AbstractAssemblerValidator {
 	 * @param endDirective reference on the END directive
 	 */
 	public void checkEndConstraints(EndDirective endDirective) {
+		List<AssemblerProblemManagerDescription> errors = AssemblerErrorManager.getInstance().getProblems(endDirective);
+		for (AssemblerProblemManagerDescription error : errors) {
+			error(error.getMessage(), error.getFeature(), error.getIssueData());
+		}
+
+		// Management of warnings after code analyse 
+		List<AssemblerProblemManagerDescription> warnings = AssemblerErrorManager.getInstance().getWarnings(endDirective);
+		for (AssemblerProblemManagerDescription warning : warnings) {
+			warning(warning.getMessage(), warning.getFeature(), warning.getIssueData());
+		}
 	}
 	
 	/**   

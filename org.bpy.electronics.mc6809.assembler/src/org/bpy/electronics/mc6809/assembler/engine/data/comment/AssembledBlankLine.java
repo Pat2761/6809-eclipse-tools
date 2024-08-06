@@ -21,8 +21,15 @@ package org.bpy.electronics.mc6809.assembler.engine.data.comment;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.eclipse.emf.ecore.EObject;
 
+/**
+ * Assemble blank line (nothing to do)
+ * 
+ * @author Patrick BRIAND
+ *
+ */
 public class AssembledBlankLine extends AbstractAssemblyLine {
 	
+	@Override
 	public void parsePass1(EObject blankLine, int currentPcValue, int lineNumber) {
 		this.lineNumber = lineNumber;
 		pcAddress = currentPcValue;
@@ -30,8 +37,7 @@ public class AssembledBlankLine extends AbstractAssemblyLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
 	@Override

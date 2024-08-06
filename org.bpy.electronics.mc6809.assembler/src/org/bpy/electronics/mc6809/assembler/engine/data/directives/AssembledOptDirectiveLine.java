@@ -24,7 +24,9 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about OPT directive
+ * Used to store information about OPT directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledOptDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -72,22 +74,41 @@ public class AssembledOptDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public OptDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(OptDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get values
+	 *  
+	 * @return values
+	 */
 	public String[] getValues() {
 		return values;
 	}
 	
+	/**
+	 * Check if PAG option is defined
+	 * 
+	 * @return <b>true</b> if PAG option is defined, <b>false</b> otherwise
+	 */
 	public boolean isEnablePagination() {
 		for (String value : values) {
 			if ("PAG".equals(value)) {
@@ -97,6 +118,11 @@ public class AssembledOptDirectiveLine extends AbstractAssembledDirectiveLine {
 		return false;
 	}
 
+	/**
+	 * Check if CON option is defined
+	 * 
+	 * @return <b>true</b> if CON option is defined, <b>false</b> otherwise
+	 */
 	public boolean isConditionallySkippedCode() {
 		for (String value : values) {
 			if ("CON".equals(value)) {
@@ -106,6 +132,11 @@ public class AssembledOptDirectiveLine extends AbstractAssembledDirectiveLine {
 		return false;
 	}
 
+	/**
+	 * Check if NOM option is defined
+	 * 
+	 * @return <b>true</b> if NOM option is defined, <b>false</b> otherwise
+	 */
 	public boolean isSuppressPrintingOfMacroCalls() {
 		for (String value : values) {
 			if ("NOM".equals(value)) {
@@ -115,6 +146,11 @@ public class AssembledOptDirectiveLine extends AbstractAssembledDirectiveLine {
 		return false;
 	}
 
+	/**
+	 * Check if EXP option is defined
+	 * 
+	 * @return <b>true</b> if EXP option is defined, <b>false</b> otherwise
+	 */
 	public boolean isPrintMacroExpansionLines() {
 		for (String value : values) {
 			if ("EXP".equals(value)) {
@@ -128,5 +164,4 @@ public class AssembledOptDirectiveLine extends AbstractAssembledDirectiveLine {
 	public int getPcIncrement() {
 		return 0;
 	}
-
 }

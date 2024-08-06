@@ -28,7 +28,9 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about BSZ directive
+ * Used to store information about BSZ directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledBszDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -47,11 +49,13 @@ public class AssembledBszDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	/**
 	 * Extract information from the edited line.
+	 * The expression can only refer the identifier of type EQU or SET
 	 * 
 	 * @param directive reference to the Xtext description of the BSZ directive
 	 * @param currentPcValue value on the PC counter
 	 * @param lineNumber line number in the source file 
 	 */
+	@Override
 	public void parsePass1(EObject directive, int currentPcValue, int lineNumber) {
 		this.directive = (BszDirective)directive;
 		this.pcAddress = currentPcValue;
@@ -80,22 +84,41 @@ public class AssembledBszDirectiveLine extends AbstractAssembledDirectiveLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
+	/** 
+	 * return the number of bytes reserved.
+	 * 
+	 * @return number of bytes reserved
+	 */
 	public int getNbBytes() {
 		return nbBytes;
 	}
 
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public BszDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(BszDirective directive) {
 		this.directive = directive;
 	}
 
+	/**
+	 * Get values
+	 *  
+	 * @return values
+	 */
 	public int[] getValues() {
 		return values;
 	}

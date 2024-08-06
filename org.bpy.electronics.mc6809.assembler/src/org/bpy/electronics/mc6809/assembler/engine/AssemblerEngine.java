@@ -3499,23 +3499,6 @@ public class AssemblerEngine {
 		line.parsePass1(endDirective, currentPcValue, lineNumber);
 		assemblyLines.add(line);
 		assembledLinesMap.put(endDirective, line);
-
-		if (line.getTarget() == null) {
-			line.setValue(0);
-		} else {
-			AbstractAssemblyLine referencedLine = labelsPositionObject.get(line.getTarget());
-			if (referencedLine == null) {
-	
-				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription(
-						"The label " + line.getTarget() + " Can't be found", 
-						AssemblerPackage.eINSTANCE.getDirectiveLine_Label(),
-						InstructionValidator.DUPLICATE_LABEL);
-				AssemblerErrorManager.getInstance().addProblem(line.getDirective().eContainer(), problemDescription );
-				line.setValue(0);
-			} else {
-				line.setValue(referencedLine.getPcAddress());
-			}
-		}
 	}
 
 	/**

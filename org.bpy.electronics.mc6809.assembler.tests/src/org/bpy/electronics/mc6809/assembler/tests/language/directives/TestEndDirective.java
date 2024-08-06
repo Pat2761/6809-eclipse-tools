@@ -98,7 +98,7 @@ public class TestEndDirective {
 			Assert.assertEquals("Check line number", 5, endLine.getLineNumber());
 			Assert.assertNull("Check label", endLine.getLabel());
 			Assert.assertEquals("Check comment", "; That's all folk", endLine.getComment());
-			Assert.assertEquals("Check start value", 0x800A, endLine.getValue());
+			Assert.assertEquals("Check start value", 0x800A, endLine.getTargetAddress());
 		} catch (Exception e) {
 			Assert.assertTrue("Exption detected", true);
 		}
@@ -130,7 +130,7 @@ public class TestEndDirective {
 			Assert.assertEquals("Check line number", 5, endLine.getLineNumber());
 			Assert.assertNull("Check label", endLine.getLabel());
 			Assert.assertNull("Check comment",  endLine.getComment());
-			Assert.assertEquals("Check start value", 0, endLine.getValue());
+			Assert.assertEquals("Check start value", 0, endLine.getTargetAddress());
 		} catch (Exception e) {
 			Assert.assertTrue("Exption detected", true);
 		}

@@ -28,7 +28,9 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Used to store information about SETDP directive
+ * Used to store information about SETDP directive.
+ * 
+ * @author Patrick BRIAND
  */
 public class AssembledSetDPDirectiveLine extends AbstractAssembledDirectiveLine {
 
@@ -46,6 +48,7 @@ public class AssembledSetDPDirectiveLine extends AbstractAssembledDirectiveLine 
 
 	/**
 	 * Extract information from the edited line.
+	 * This directive doesn't support forward address definition.
 	 * 
 	 * @param directive reference to the Xtext description of the BSZ directive
 	 * @param currentPcValue value on the PC counter
@@ -57,7 +60,7 @@ public class AssembledSetDPDirectiveLine extends AbstractAssembledDirectiveLine 
 		this.lineNumber = lineNumber;
 		this.label = CommandUtil.getLabel(this.directive);
 		this.comment = CommandUtil.getComment(this.directive);
-		
+
 		try {
 			value = ExpressionParser.parse(this.directive);
 		} catch (UnresolvedException e) {
@@ -71,14 +74,23 @@ public class AssembledSetDPDirectiveLine extends AbstractAssembledDirectiveLine 
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// nothing to do here
 	}
 
+	/**
+	 * Return the reference on the directive line.
+	 * 
+	 * @return reference on the directive line.
+	 */
 	public SetDPDirective getDirective() {
 		return directive;
 	}
 
+	/**
+	 * set the reference on the directive line.
+	 * 
+	 * @param directive reference on the directive line.
+	 */
 	public void setDirective(SetDPDirective directive) {
 		this.directive = directive;
 	}
@@ -88,6 +100,11 @@ public class AssembledSetDPDirectiveLine extends AbstractAssembledDirectiveLine 
 		return 0;
 	}
 
+	/**
+	 * Get value.
+	 *  
+	 * @return value
+	 */
 	public int getValue() {
 		return value;
 	}
