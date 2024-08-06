@@ -26,8 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Allow to parse an INCA Instruction
  * 
- * @author briand
- *
+ * @author Patrick BRIAND
  */
 public class AssembledINCAInstruction extends AbstractInstructionAssemblyLine {
 
@@ -50,8 +49,7 @@ public class AssembledINCAInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
 	/**

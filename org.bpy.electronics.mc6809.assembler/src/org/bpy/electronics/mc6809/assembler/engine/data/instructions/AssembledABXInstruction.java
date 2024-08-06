@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Allow to pars an ABX Instruction
  * 
- * @author briand
+ * @author Patrick BRIAND
  *
  */
 public class AssembledABXInstruction extends AbstractInstructionAssemblyLine {
@@ -50,6 +50,7 @@ public class AssembledABXInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public void parsePass2() {
+		// nothing to do here
 	}
 
 	/**

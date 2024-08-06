@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Allow to pars an LSLA Instruction
  * 
- * @author briand
+ * @author Patrick BRIAND
  *
  */
 public class AssembledLSLAInstruction extends AbstractInstructionAssemblyLine {
@@ -50,8 +50,7 @@ public class AssembledLSLAInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
 	/**

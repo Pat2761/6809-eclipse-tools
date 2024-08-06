@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Allow to parse an DECA Instruction
  * 
- * @author briand
+ * @author Patrick BRIAND
  *
  */
 public class AssembledDECAInstruction extends AbstractInstructionAssemblyLine {
@@ -50,8 +50,7 @@ public class AssembledDECAInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
 	/**

@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Allow to parse an INCB Instruction
  * 
- * @author briand
+ * @author Patrick BRIAND
  *
  */
 public class AssembledINCBInstruction extends AbstractInstructionAssemblyLine {
@@ -50,8 +50,7 @@ public class AssembledINCBInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// Nothing to do here
 	}
 
 	/**

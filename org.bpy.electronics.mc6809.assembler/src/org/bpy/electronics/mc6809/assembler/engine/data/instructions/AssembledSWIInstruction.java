@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Allow to pars an SWI Instruction
  * 
- * @author briand
+ * @author Patrick BRIAND
  *
  */
 public class AssembledSWIInstruction extends AbstractInstructionAssemblyLine {
@@ -50,8 +50,7 @@ public class AssembledSWIInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		// nothing to do here
 	}
 
 	/**
