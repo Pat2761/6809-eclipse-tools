@@ -50,6 +50,12 @@ public class AssembledLabelLine extends AbstractAssemblyLine {
 		label = ((LabelLine)labelLine).getLabel().getName().getValue();
 	}
 
+@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	@Override
 	public int getPcIncrement() {
 		return 0;

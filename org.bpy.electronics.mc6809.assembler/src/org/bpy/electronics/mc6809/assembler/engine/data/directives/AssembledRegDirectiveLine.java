@@ -19,7 +19,6 @@
 package org.bpy.electronics.mc6809.assembler.engine.data.directives;
 
 import org.bpy.electronics.mc6809.assembler.assembler.RegDirective;
-import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
@@ -56,6 +55,12 @@ public class AssembledRegDirectiveLine extends AbstractAssembledDirectiveLine {
 		this.comment = CommandUtil.getComment(this.directive);
 	
 		value = EquSetManager.getInstance().getValue(label);
+	}
+
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public RegDirective getDirective() {

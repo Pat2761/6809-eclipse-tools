@@ -70,6 +70,12 @@ public class AssembledOrgDirectiveLine extends AbstractAssembledDirectiveLine {
 		}
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public OrgDirective getDirective() {
 		return directive;
 	}

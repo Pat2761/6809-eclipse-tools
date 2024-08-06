@@ -29,6 +29,12 @@ public class AssembledBlankLine extends AbstractAssemblyLine {
 	}
 
 	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public int getPcIncrement() {
 		return 0;
 	}

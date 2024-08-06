@@ -18,8 +18,6 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.exception;
 
-import org.eclipse.emf.ecore.EReference;
-
 /**
  * Exception in case of expression parser error.
  * 

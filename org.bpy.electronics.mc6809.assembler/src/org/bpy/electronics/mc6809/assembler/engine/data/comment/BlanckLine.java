@@ -34,4 +34,9 @@ public class BlanckLine extends AbstractAssemblyLine {
 		
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
 }

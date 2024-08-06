@@ -57,6 +57,12 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 		super.parse(currentPcValue, lineNumber);
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Return the reference on the editor instruction line.
 	 * 

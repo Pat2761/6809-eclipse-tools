@@ -56,6 +56,12 @@ public class AssembledNamDirectiveLine extends AbstractAssembledDirectiveLine {
 		value = this.directive.getOperand().getValue();
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public NamDirective getDirective() {
 		return directive;
 	}

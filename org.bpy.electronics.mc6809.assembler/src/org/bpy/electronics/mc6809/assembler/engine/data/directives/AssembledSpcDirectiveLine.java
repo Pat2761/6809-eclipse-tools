@@ -81,6 +81,12 @@ public class AssembledSpcDirectiveLine extends AbstractAssembledDirectiveLine {
 		}
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public SpcDirective getDirective() {
 		return directive;
 	}

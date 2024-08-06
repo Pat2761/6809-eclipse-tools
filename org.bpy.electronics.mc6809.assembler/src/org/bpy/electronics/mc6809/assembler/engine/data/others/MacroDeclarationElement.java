@@ -21,6 +21,11 @@ public class MacroDeclarationElement extends AbstractAssemblyLine {
 		
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	public String getMacroComment() {
 		return macroComment;

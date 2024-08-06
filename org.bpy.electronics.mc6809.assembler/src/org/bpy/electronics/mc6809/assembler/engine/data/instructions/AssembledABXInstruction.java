@@ -48,6 +48,10 @@ public class AssembledABXInstruction extends AbstractInstructionAssemblyLine {
 		super.parse(currentPcValue, lineNumber);
 	}
 
+	@Override
+	public void parsePass2() {
+	}
+
 	/**
 	 * Return the reference on the editor instruction line.
 	 * 

@@ -100,6 +100,12 @@ public class MacroAssembledElement extends AbstractAssemblyLine {
 		updateLabelUsage();
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Update the reference to internal labels
 	 */

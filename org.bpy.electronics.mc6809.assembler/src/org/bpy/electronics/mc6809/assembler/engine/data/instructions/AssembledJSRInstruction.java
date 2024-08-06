@@ -103,6 +103,12 @@ public class AssembledJSRInstruction extends AbstractJmpJsrInstruction {
 	}
 
 	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
 	public Object getInstructionOperand() {
 		return instruction.getOperand();
 	}

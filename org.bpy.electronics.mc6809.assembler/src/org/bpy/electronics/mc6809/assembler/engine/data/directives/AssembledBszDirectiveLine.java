@@ -78,6 +78,12 @@ public class AssembledBszDirectiveLine extends AbstractAssembledDirectiveLine {
 		}
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public int getNbBytes() {
 		return nbBytes;
 	}

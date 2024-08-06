@@ -73,6 +73,12 @@ public class AssembledPagDirectiveLine extends AbstractAssembledDirectiveLine {
 		}	
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public PagDirective getDirective() {
 		return directive;
 	}

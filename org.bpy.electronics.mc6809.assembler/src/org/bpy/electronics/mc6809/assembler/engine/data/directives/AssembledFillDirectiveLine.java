@@ -78,6 +78,12 @@ public class AssembledFillDirectiveLine extends AbstractAssembledDirectiveLine {
 		}
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public FillDirective getDirective() {
 		return directive;
 	}

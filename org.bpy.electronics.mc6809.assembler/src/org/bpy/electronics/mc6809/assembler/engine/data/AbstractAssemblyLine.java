@@ -18,7 +18,6 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data;
 
-import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.Register;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.eclipse.emf.common.util.EList;
@@ -34,7 +33,7 @@ public abstract class AbstractAssemblyLine {
 
 	public abstract int getPcIncrement();
 	public abstract void parsePass1(EObject instruction, int currentPcValue, int lineNumber);
-//	public abstract void parsePass2(AbxInstruction instruction, int currentPcValue, int lineNumber);
+ 	public abstract void parsePass2();
 
 	public String getComment() {
 		return comment;

@@ -103,6 +103,12 @@ public class AssembledFccDirectiveLine extends AbstractAssembledDirectiveLine {
 		}
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	public FccDirective getDirective() {
 		return directive;
 	}

@@ -20,7 +20,6 @@ package org.bpy.electronics.mc6809.assembler.engine.data;
 
 import java.util.Map;
 
-import org.bpy.electronics.mc6809.assembler.AssemblerStandaloneSetup;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
@@ -45,10 +44,7 @@ import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.xtext.xbase.lib.Extension;
-import org.eclipse.xtext.xtext.generator.grammarAccess.GrammarAccessExtensions;
 
-import com.google.inject.Inject;
 
 /**
  * Abstract class which defined the common attributes of an instruction
@@ -98,10 +94,6 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	public abstract void setCyclesNumber(AddressingMode mode);
 	
 	public AbstractInstructionAssemblyLine() {
-		
-//		com.google.inject.Injector injector = new AssemblerStandaloneSetup().createInjectorAndDoEMFRegistration();
-//		injector.injectMembers(this);
-
 		opcodeBytes = new int[0];
 		operandBytes = new int[0];
 	}
@@ -588,13 +580,9 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		} 
 	}
 
-//	@Inject @Extension GrammarAccessExtensions _grammarAccessExtensions;
-
 	protected String getOperand(EObject operand) {
 		if (operand instanceof ImmediatOperand) {
-			ImmediatOperand immediatOperand = (ImmediatOperand)operand;
 			return "immediat";
-//			return _grammarAccessExtensions.grammarFragmentToString(operand, "");
 		}
 		return "";
 	}

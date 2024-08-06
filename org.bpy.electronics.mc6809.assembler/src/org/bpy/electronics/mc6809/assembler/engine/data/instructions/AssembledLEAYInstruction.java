@@ -98,6 +98,12 @@ public class AssembledLEAYInstruction extends AbstractInstructionAssemblyLine {
 		this.comment = CommandUtil.getComment(this.instruction);
 		super.parse(currentPcValue, lineNumber);
 	}
+
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 	@Override
 	public Object getInstructionOperand() {

@@ -43,6 +43,12 @@ public class AssembledFailDirectiveLine  extends AbstractAssembledDirectiveLine 
 		this.failDirective = (FailDirective) failDirective;
 	}
 
+	@Override
+	public void parsePass2() {
+		// TODO Auto-generated method stub
+		
+	}
+
 	/**
 	 * Get reference on the fail directive.
 	 * 
