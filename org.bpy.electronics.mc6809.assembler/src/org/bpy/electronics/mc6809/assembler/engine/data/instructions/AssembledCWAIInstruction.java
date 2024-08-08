@@ -90,8 +90,12 @@ public class AssembledCWAIInstruction extends AbstractInstructionAssemblyLine {
 		this.pcAddress = currentPcValue;
 		this.lineNumber = lineNumber;
 		assembleInstruction();
-		operandBytes = new int[1];
-		operandBytes[0]=0;
+		if (addressingMode == AddressingMode.IMMEDIATE) {
+			operandBytes = new int[1];
+			operandBytes[0]=0;
+		} else {
+			operandBytes = new int[0];
+		}
 	}
 
 	@Override

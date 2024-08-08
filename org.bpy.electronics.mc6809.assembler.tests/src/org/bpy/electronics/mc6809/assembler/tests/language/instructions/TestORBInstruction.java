@@ -41,6 +41,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORBInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledORBInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -450,8 +451,8 @@ public class TestORBInstruction {
 	public void testORBRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	ORB		  	0,PC\n");
 		strBuilder.append("	       	ORB		  	,PC\n");
 		strBuilder.append("	       	ORB		  	Const,PC\n");
@@ -485,8 +486,8 @@ public class TestORBInstruction {
 	public void testORBRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	ORB		  	[0,PC]\n");
 		strBuilder.append("	       	ORB		  	[,PC]\n");
 		strBuilder.append("	       	ORB		  	[Const,PC]\n");
@@ -6075,7 +6076,6 @@ public class TestORBInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
-
 	/**
 	 * Check Assembled ORB Indexed relatif to PC Mode instruction
 	 */
@@ -6083,8 +6083,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	0,PCR  ; 8000   	EA 8C 00            ORB   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ORB		  	$8003,PCR  ; 8000    EA 8C 00            ORB   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6102,7 +6102,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 8C 00            ORB   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 8C 00            ORB   $8003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6115,8 +6115,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	-128,PCR  ; 8000   	EA 8C 80            ORB   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ORB		  	$7F83,PCR  ; 8000    EA 8C 80            ORB   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6134,7 +6134,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 8C 80            ORB   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 8C 80            ORB   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6147,8 +6147,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	127,PCR  ; 8000   	EA 8C 7F            ORB   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ORB		  	$8082,PCR  ; 8000    EA 8C 7F            ORB   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6166,7 +6166,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 8C 7F            ORB   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 8C 7F            ORB   $8082,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6179,8 +6179,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	-129,PCR  ; 8000   	EA 8D FF 7F            ORB   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ORB		  	$7F82,PCR  ; 8000   	A9 8D FF 7F            ORB   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6197,9 +6197,9 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 8D FF 7F            ORB   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D FF 7F            ORB   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6212,8 +6212,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	128,PCR  ; 8000   	EA 8D 00 80            ORB   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ORB		  	$8084,PCR  ; 8000   	A9 8D 00 80            ORB   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6232,7 +6232,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 8D 00 80            ORB   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 00 80            ORB   $8084,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6245,8 +6245,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	-32768,PCR  ; 8000   	EA 8D 80 00            ORB   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ORB		  	$0004,PCR  ; 8000   	A9 8D 80 00            ORB   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6265,7 +6265,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 8D 80 00            ORB   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            ORB   $0004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6278,8 +6278,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	32767,PCR  ; 8000   	EA 8D 7F FF            ORB   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ORB		  	$C003,PCR  ; 4000    EA 8D 7F FF            ORB   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6288,7 +6288,7 @@ public class TestORBInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledORBInstruction line = (AssembledORBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6298,7 +6298,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 8D 7F FF            ORB   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    EA 8D 7F FF            ORB   $C003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6311,8 +6311,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	-32769,PCR  ; 8000   	EA 8D 80 00            ORB   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	ORB		  	$0003,PCR  ; 8000    EA 8D 80 00            ORB   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6333,7 +6333,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 8D 80 00            ORB   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 8D 80 00            ORB   $0003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6346,8 +6346,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	32768,PCR  ; 8000   	EA 8D 7F FF            ORB   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ORB		  	$C004,PCR  ; 4000    EA 8D 7F FF            ORB   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6358,7 +6358,7 @@ public class TestORBInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledORBInstruction line = (AssembledORBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6368,7 +6368,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 8D 7F FF            ORB   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    EA 8D 7F FF            ORB   $C004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6382,7 +6382,7 @@ public class TestORBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	[0,PCR]  ; 8000   	EA 9C 00            ORB   [0,PCR]\n");
+		strBuilder.append("Start      	ORB		  	   [$8003,PCR]  ; 8000    EA 9C 00            ORB   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6400,7 +6400,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 9C 00            ORB   [0,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 9C 00            ORB   [0,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6414,7 +6414,7 @@ public class TestORBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	[-128,PCR]  ; 8000   	EA 9C 80            ORB   [-128,PCR]\n");
+		strBuilder.append("Start      ORB		  	   [$7F83,PCR]  ; 8000    EA 9C 80            ORB   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6432,7 +6432,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 9C 80            ORB   [-128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 9C 80            ORB   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6446,7 +6446,7 @@ public class TestORBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	[127,PCR]  ; 8000   	EA 9C 7F            ORB   [127,PCR]\n");
+		strBuilder.append("Start      	ORB		  	   [$8082,PCR]  ; 8000    EA 9C 7F            ORB   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6464,7 +6464,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 9C 7F            ORB   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 9C 7F            ORB   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6478,7 +6478,7 @@ public class TestORBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	[-129,PCR]  ; 8000   	EA 9D FF 7F            ORB   [-129,PCR]\n");
+		strBuilder.append("Start      	ORB		  	   [$7F82,PCR]  ; 8000    EA 9D FF 7E            ORB   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6495,9 +6495,9 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 9D FF 7F            ORB   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 9D FF 7E            ORB   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6511,7 +6511,7 @@ public class TestORBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	[128,PCR]  ; 8000   	EA 9D 00 80            ORB   [128,PCR]\n");
+		strBuilder.append("Start      	ORB		  		[$8084,PCR]  ; 8000    EA 9D 00 80            ORB   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6530,7 +6530,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 9D 00 80            ORB   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 9D 00 80            ORB   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6544,7 +6544,7 @@ public class TestORBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	[-32768,PCR]  ; 8000   	EA 9D 80 00            ORB   [-32768,PCR]\n");
+		strBuilder.append("Start      	ORB		  	[$0004,PCR]  ; 8000    EA 9D 80 00            ORB   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6563,7 +6563,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 9D 80 00            ORB   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 9D 80 00            ORB   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6576,8 +6576,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	[32767,PCR]  ; 8000   	EA 9D 7F FF            ORB   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ORB		  	[$C003,PCR]  ; 8000    EA 9D 7F FF            ORB   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6586,7 +6586,7 @@ public class TestORBInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledORBInstruction line = (AssembledORBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6596,7 +6596,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 9D 7F FF            ORB   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 9D 7F FF            ORB   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6609,8 +6609,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	[-32769,PCR]  ; 8000   	EA 9D 80 00            ORB   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ORB		  	[$0003,PCR]  ; 8000    EA 9D 80 00            ORB   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6631,7 +6631,7 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 9D 80 00            ORB   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    EA 9D 80 00            ORB   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6644,8 +6644,8 @@ public class TestORBInstruction {
 	public void testORBIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	ORB		  	[32768,PCR]  ; 8000   	EA 9D 7F FF            ORB   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	ORB		  	[$C004,PCR]  ; 4000    EA 9D 7F FF            ORB   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6656,7 +6656,7 @@ public class TestORBInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledORBInstruction line = (AssembledORBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6666,9 +6666,10 @@ public class TestORBInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EA 9D 7F FF            ORB   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    EA 9D 7F FF            ORB   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
 	}
+
 }

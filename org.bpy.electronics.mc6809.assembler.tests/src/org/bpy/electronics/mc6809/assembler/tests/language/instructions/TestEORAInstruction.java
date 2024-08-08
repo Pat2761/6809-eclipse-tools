@@ -42,7 +42,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledEORAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
@@ -450,8 +449,8 @@ public class TestEORAInstruction {
 	public void testEORARelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	EORA		  	0,PC\n");
 		strBuilder.append("	       	EORA		  	,PC\n");
 		strBuilder.append("	       	EORA		  	Const,PC\n");
@@ -485,8 +484,8 @@ public class TestEORAInstruction {
 	public void testEORARelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	EORA		  	[0,PC]\n");
 		strBuilder.append("	       	EORA		  	[,PC]\n");
 		strBuilder.append("	       	EORA		  	[Const,PC]\n");
@@ -6075,7 +6074,6 @@ public class TestEORAInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
-
 	/**
 	 * Check Assembled EORA Indexed relatif to PC Mode instruction
 	 */
@@ -6083,8 +6081,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	0,PCR  ; 8000   	A8 8C 00            EORA   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	EORA		  	$8003,PCR  ; 8000    A8 8C 00            EORA   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6102,7 +6100,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 8C 00            EORA   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 8C 00            EORA   $8003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6115,8 +6113,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	-128,PCR  ; 8000   	A8 8C 80            EORA   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	EORA		  	$7F83,PCR  ; 8000    A8 8C 80            EORA   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6134,7 +6132,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 8C 80            EORA   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 8C 80            EORA   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6147,8 +6145,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	127,PCR  ; 8000   	A8 8C 7F            EORA   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	EORA		  	$8082,PCR  ; 8000    A8 8C 7F            EORA   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6166,7 +6164,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 8C 7F            EORA   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 8C 7F            EORA   $8082,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6179,8 +6177,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	-129,PCR  ; 8000   	A8 8D FF 7F            EORA   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	EORA		  	$7F82,PCR  ; 8000   	A9 8D FF 7F            EORA   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6197,9 +6195,9 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 8D FF 7F            EORA   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D FF 7F            EORA   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6212,8 +6210,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	128,PCR  ; 8000   	A8 8D 00 80            EORA   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	EORA		  	$8084,PCR  ; 8000   	A9 8D 00 80            EORA   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6232,7 +6230,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 8D 00 80            EORA   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 00 80            EORA   $8084,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6245,8 +6243,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	-32768,PCR  ; 8000   	A8 8D 80 00            EORA   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	EORA		  	$0004,PCR  ; 8000   	A9 8D 80 00            EORA   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6265,7 +6263,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 8D 80 00            EORA   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            EORA   $0004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6278,8 +6276,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	32767,PCR  ; 8000   	A8 8D 7F FF            EORA   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	EORA		  	$C003,PCR  ; 4000    A8 8D 7F FF            EORA   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6288,7 +6286,7 @@ public class TestEORAInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledEORAInstruction line = (AssembledEORAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6298,7 +6296,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 8D 7F FF            EORA   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    A8 8D 7F FF            EORA   $C003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6311,8 +6309,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	-32769,PCR  ; 8000   	A8 8D 80 00            EORA   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	EORA		  	$0003,PCR  ; 8000    A8 8D 80 00            EORA   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6333,7 +6331,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 8D 80 00            EORA   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 8D 80 00            EORA   $0003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6346,8 +6344,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	32768,PCR  ; 8000   	A8 8D 7F FF            EORA   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	EORA		  	$C004,PCR  ; 4000    A8 8D 7F FF            EORA   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6358,7 +6356,7 @@ public class TestEORAInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledEORAInstruction line = (AssembledEORAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6368,7 +6366,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 8D 7F FF            EORA   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    A8 8D 7F FF            EORA   $C004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6382,7 +6380,7 @@ public class TestEORAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	[0,PCR]  ; 8000   	A8 9C 00            EORA   [0,PCR]\n");
+		strBuilder.append("Start      	EORA		  	   [$8003,PCR]  ; 8000    A8 9C 00            EORA   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6400,7 +6398,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 9C 00            EORA   [0,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 9C 00            EORA   [0,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6414,7 +6412,7 @@ public class TestEORAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	[-128,PCR]  ; 8000   	A8 9C 80            EORA   [-128,PCR]\n");
+		strBuilder.append("Start      EORA		  	   [$7F83,PCR]  ; 8000    A8 9C 80            EORA   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6432,7 +6430,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 9C 80            EORA   [-128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 9C 80            EORA   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6446,7 +6444,7 @@ public class TestEORAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	[127,PCR]  ; 8000   	A8 9C 7F            EORA   [127,PCR]\n");
+		strBuilder.append("Start      	EORA		  	   [$8082,PCR]  ; 8000    A8 9C 7F            EORA   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6464,7 +6462,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 9C 7F            EORA   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 9C 7F            EORA   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6478,7 +6476,7 @@ public class TestEORAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	[-129,PCR]  ; 8000   	A8 9D FF 7F            EORA   [-129,PCR]\n");
+		strBuilder.append("Start      	EORA		  	   [$7F82,PCR]  ; 8000    A8 9D FF 7E            EORA   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6495,9 +6493,9 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 9D FF 7F            EORA   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 9D FF 7E            EORA   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6511,7 +6509,7 @@ public class TestEORAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	[128,PCR]  ; 8000   	A8 9D 00 80            EORA   [128,PCR]\n");
+		strBuilder.append("Start      	EORA		  		[$8084,PCR]  ; 8000    A8 9D 00 80            EORA   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6530,7 +6528,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 9D 00 80            EORA   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 9D 00 80            EORA   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6544,7 +6542,7 @@ public class TestEORAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	[-32768,PCR]  ; 8000   	A8 9D 80 00            EORA   [-32768,PCR]\n");
+		strBuilder.append("Start      	EORA		  	[$0004,PCR]  ; 8000    A8 9D 80 00            EORA   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6563,7 +6561,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 9D 80 00            EORA   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 9D 80 00            EORA   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6576,8 +6574,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	[32767,PCR]  ; 8000   	A8 9D 7F FF            EORA   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	EORA		  	[$C003,PCR]  ; 8000    A8 9D 7F FF            EORA   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6586,7 +6584,7 @@ public class TestEORAInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledEORAInstruction line = (AssembledEORAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6596,7 +6594,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 9D 7F FF            EORA   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 9D 7F FF            EORA   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6609,8 +6607,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	[-32769,PCR]  ; 8000   	A8 9D 80 00            EORA   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	EORA		  	[$0003,PCR]  ; 8000    A8 9D 80 00            EORA   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6631,7 +6629,7 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 9D 80 00            EORA   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A8 9D 80 00            EORA   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6644,8 +6642,8 @@ public class TestEORAInstruction {
 	public void testEORAIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	EORA		  	[32768,PCR]  ; 8000   	A8 9D 7F FF            EORA   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	EORA		  	[$C004,PCR]  ; 4000    A8 9D 7F FF            EORA   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6656,7 +6654,7 @@ public class TestEORAInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledEORAInstruction line = (AssembledEORAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6666,9 +6664,10 @@ public class TestEORAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A8 9D 7F FF            EORA   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    A8 9D 7F FF            EORA   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
 	}
+
 }

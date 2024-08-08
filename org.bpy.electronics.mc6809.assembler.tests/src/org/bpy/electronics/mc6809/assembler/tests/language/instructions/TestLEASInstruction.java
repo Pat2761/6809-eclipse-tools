@@ -45,11 +45,8 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEASInstruction;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLEASInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.LeaInstruction;
 import org.eclipse.xtext.xbase.lib.Extension;
 
 @RunWith(XtextRunner.class)
@@ -325,8 +322,8 @@ public class TestLEASInstruction {
 	public void testLEASRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	LEAS		  	0,PC\n");
 		strBuilder.append("	       	LEAS		  	,PC\n");
 		strBuilder.append("	       	LEAS		  	Const,PC\n");
@@ -360,8 +357,8 @@ public class TestLEASInstruction {
 	public void testLEASRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	LEAS		  	[0,PC]\n");
 		strBuilder.append("	       	LEAS		  	[,PC]\n");
 		strBuilder.append("	       	LEAS		  	[Const,PC]\n");
@@ -5596,7 +5593,6 @@ public class TestLEASInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
-
 	/**
 	 * Check Assembled LEAS Indexed relatif to PC Mode instruction
 	 */
@@ -5604,8 +5600,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	0,PCR  ; 8000   	32 8C 00            LEAS   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LEAS		  	$8003,PCR  ; 8000    A1 8C 00            LEAS   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5623,7 +5619,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 8C 00            LEAS   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 8C 00            LEAS   $8003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5636,8 +5632,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	-128,PCR  ; 8000   	32 8C 80            LEAS   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LEAS		  	$7F83,PCR  ; 8000    A1 8C 80            LEAS   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5655,7 +5651,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 8C 80            LEAS   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 8C 80            LEAS   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5668,8 +5664,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	127,PCR  ; 8000   	32 8C 7F            LEAS   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LEAS		  	$8082,PCR  ; 8000    A1 8C 7F            LEAS   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5687,7 +5683,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 8C 7F            LEAS   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 8C 7F            LEAS   $8082,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5700,8 +5696,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	-129,PCR  ; 8000   	32 8D FF 7F            LEAS   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LEAS		  	$7F82,PCR  ; 8000   	A9 8D FF 7F            LEAS   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5718,9 +5714,9 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 8D FF 7F            LEAS   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D FF 7F            LEAS   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5733,8 +5729,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	128,PCR  ; 8000   	32 8D 00 80            LEAS   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LEAS		  	$8084,PCR  ; 8000   	A9 8D 00 80            LEAS   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5753,7 +5749,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 8D 00 80            LEAS   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 00 80            LEAS   $8084,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5766,8 +5762,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	-32768,PCR  ; 8000   	32 8D 80 00            LEAS   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LEAS		  	$0004,PCR  ; 8000   	A9 8D 80 00            LEAS   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5786,7 +5782,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 8D 80 00            LEAS   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            LEAS   $0004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5799,8 +5795,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	32767,PCR  ; 8000   	32 8D 7F FF            LEAS   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	LEAS		  	$C003,PCR  ; 4000    32 8D 7F FF            LEAS   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5809,7 +5805,7 @@ public class TestLEASInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -5819,7 +5815,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 8D 7F FF            LEAS   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    32 8D 7F FF            LEAS   $C003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5832,8 +5828,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	-32769,PCR  ; 8000   	32 8D 80 00            LEAS   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	LEAS		  	$0003,PCR  ; 8000    A1 8D 80 00            LEAS   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5854,7 +5850,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 8D 80 00            LEAS   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 8D 80 00            LEAS   $0003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5867,8 +5863,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	32768,PCR  ; 8000   	32 8D 7F FF            LEAS   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	LEAS		  	$C004,PCR  ; 4000    32 8D 7F FF            LEAS   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5879,7 +5875,7 @@ public class TestLEASInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -5889,7 +5885,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 8D 7F FF            LEAS   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    32 8D 7F FF            LEAS   $C004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5903,7 +5899,7 @@ public class TestLEASInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	[0,PCR]  ; 8000   	32 9C 00            LEAS   [0,PCR]\n");
+		strBuilder.append("Start      	LEAS		  	   [$8003,PCR]  ; 8000    A1 9C 00            LEAS   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5921,7 +5917,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 9C 00            LEAS   [0,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 9C 00            LEAS   [0,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5935,7 +5931,7 @@ public class TestLEASInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	[-128,PCR]  ; 8000   	32 9C 80            LEAS   [-128,PCR]\n");
+		strBuilder.append("Start      LEAS		  	   [$7F83,PCR]  ; 8000    A1 9C 80            LEAS   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5953,7 +5949,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 9C 80            LEAS   [-128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 9C 80            LEAS   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5967,7 +5963,7 @@ public class TestLEASInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	[127,PCR]  ; 8000   	32 9C 7F            LEAS   [127,PCR]\n");
+		strBuilder.append("Start      	LEAS		  	   [$8082,PCR]  ; 8000    A1 9C 7F            LEAS   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5985,7 +5981,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 9C 7F            LEAS   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 9C 7F            LEAS   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5999,7 +5995,7 @@ public class TestLEASInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	[-129,PCR]  ; 8000   	32 9D FF 7F            LEAS   [-129,PCR]\n");
+		strBuilder.append("Start      	LEAS		  	   [$7F82,PCR]  ; 8000    A1 9D FF 7E            LEAS   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6016,9 +6012,9 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 9D FF 7F            LEAS   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 9D FF 7E            LEAS   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6032,7 +6028,7 @@ public class TestLEASInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	[128,PCR]  ; 8000   	32 9D 00 80            LEAS   [128,PCR]\n");
+		strBuilder.append("Start      	LEAS		  		[$8084,PCR]  ; 8000    A1 9D 00 80            LEAS   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6051,7 +6047,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 9D 00 80            LEAS   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 9D 00 80            LEAS   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6065,7 +6061,7 @@ public class TestLEASInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	[-32768,PCR]  ; 8000   	32 9D 80 00            LEAS   [-32768,PCR]\n");
+		strBuilder.append("Start      	LEAS		  	[$0004,PCR]  ; 8000    A1 9D 80 00            LEAS   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6084,7 +6080,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 9D 80 00            LEAS   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 9D 80 00            LEAS   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6097,8 +6093,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	[32767,PCR]  ; 8000   	32 9D 7F FF            LEAS   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	LEAS		  	[$C003,PCR]  ; 8000    A1 9D 7F FF            LEAS   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6107,7 +6103,7 @@ public class TestLEASInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6117,7 +6113,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 9D 7F FF            LEAS   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 9D 7F FF            LEAS   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6130,8 +6126,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	[-32769,PCR]  ; 8000   	32 9D 80 00            LEAS   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LEAS		  	[$0003,PCR]  ; 8000    A1 9D 80 00            LEAS   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6152,7 +6148,7 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 9D 80 00            LEAS   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A1 9D 80 00            LEAS   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6165,8 +6161,8 @@ public class TestLEASInstruction {
 	public void testLEASIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	LEAS		  	[32768,PCR]  ; 8000   	32 9D 7F FF            LEAS   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	LEAS		  	[$C004,PCR]  ; 4000    32 9D 7F FF            LEAS   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6177,7 +6173,7 @@ public class TestLEASInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledLEASInstruction line = (AssembledLEASInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6187,9 +6183,10 @@ public class TestLEASInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	32 9D 7F FF            LEAS   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    32 9D 7F FF            LEAS   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
 	}
+
 }

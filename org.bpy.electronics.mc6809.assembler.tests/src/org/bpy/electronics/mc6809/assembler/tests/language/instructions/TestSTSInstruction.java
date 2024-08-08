@@ -40,6 +40,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTSInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTSInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -420,7 +421,7 @@ public class TestSTSInstruction {
 	public void testSTSRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	STS			  	0,PC\n");
 		strBuilder.append("	       	STS			  	,PC\n");
@@ -455,7 +456,7 @@ public class TestSTSInstruction {
 	public void testSTSRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	STS			  	[0,PC]\n");
 		strBuilder.append("	       	STS			  	[,PC]\n");
@@ -820,7 +821,7 @@ public class TestSTSInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	STS			  	[Const*1000]  ; 8000   10A3 9F 13 88  START:    STS   [Const*1000]\n");
+		strBuilder.append("Start      	STS			  	[Const*1000]  ; 8000   10EF 9F 13 88  START:    STS   [Const*1000]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -840,7 +841,7 @@ public class TestSTSInstruction {
 			Assert.assertEquals("Check operand", 0x13, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x88, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   10A3 9F 13 88  START:    STS   [Const*1000]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   10EF 9F 13 88  START:    STS   [Const*1000]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6071,17 +6072,15 @@ public class TestSTSInstruction {
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
-	}
-
-	/**
+	}	/**
 	 * Check Assembled STS Indexed relatif to PC Mode instruction
 	 */
 	@Test
 	public void testSTSIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	0,PCR  ; 8000   	10EF 8C 00            STS   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STS		  	$8004,PCR  ; 8000   	10EF 8C 00            STS   0,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6114,7 +6113,7 @@ public class TestSTSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	-128,PCR  ; 8000   	10EF 8C 80            STS   -128,PCR\n");
+		strBuilder.append("Start      	STS		  		$7F84,PCR  ; 8000   	10EF 8C 80            STS   -128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6146,8 +6145,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	127,PCR  ; 8000   	10EF 8C 7F            STS   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STS		  	$8083,PCR  ; 8000   	10EF 8C 7F            STS   127,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6179,8 +6178,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	-129,PCR  ; 8000   	10EF 8D FF 7F            STS   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STS		  	$7F83,PCR  ; 8000   	10EF 8D FF 7F            STS   -129,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6198,7 +6197,7 @@ public class TestSTSInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10EF 8D FF 7F            STS   -129,PCR", line.getComment());
 		} catch (Exception e) {
@@ -6213,8 +6212,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	128,PCR  ; 8000   	10EF 8D 00 80            STS   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STS		  	$8085,PCR  ; 8000   	10EF 8D 00 80            STS   128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6247,8 +6246,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	-32768,PCR  ; 8000   	10EF 8D 80 00            STS   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STS		  	$0005,PCR  ; 8000   	10EF 8D 80 00            STS   -32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6281,8 +6280,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	32767,PCR  ; 8000   	10EF 8D 7F FF            STS   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	STS		  	$C004,PCR  ; 8000   	10EF 8D 7F FF            STS   32767,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6291,7 +6290,7 @@ public class TestSTSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledSTSInstruction line = (AssembledSTSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6315,8 +6314,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	-32769,PCR  ; 8000   	10EF 8D 80 00            STS   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	STS		  	$0004,PCR  ; 8000   	10EF 8D 80 00            STS   -32769,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6351,8 +6350,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	32768,PCR  ; 8000   	10EF 8D 7F FF            STS   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	STS		  	$C005,PCR  ; 8000   	10EF 8D 7F FF            STS   32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6363,7 +6362,7 @@ public class TestSTSInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledSTSInstruction line = (AssembledSTSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6388,7 +6387,7 @@ public class TestSTSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	[0,PCR]  ; 8000   	10EF 9C 00            STS   [0,PCR]\n");
+		strBuilder.append("Start      	STS		  	   [$8004,PCR]  ; 8000   	10EF 9C 00            STS   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6421,7 +6420,7 @@ public class TestSTSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	[-128,PCR]  ; 8000   	10EF 9C 80            STS   [-128,PCR]\n");
+		strBuilder.append("Start      	STS		  	[$7F84,PCR]  ; 8000   	10EF 9C 80            STS   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6453,8 +6452,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifIndirectToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	[127,PCR]  ; 8000   	10EF 9C 7F            STS   [127,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STS		  	[$8083,PCR]  ; 8000   	10EF 9C 7F            STS   [127,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6486,8 +6485,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifIndirectToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	[-129,PCR]  ; 8000   	10EF 9D FF 7F            STS   [-129,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STS		  	[$7F83,PCR]  ; 8000   	10EF 9D FF 7F            STS   [-129,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6505,7 +6504,7 @@ public class TestSTSInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10EF 9D FF 7F            STS   [-129,PCR]", line.getComment());
 		} catch (Exception e) {
@@ -6520,8 +6519,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifIndirectToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	[128,PCR]  ; 8000   	10EF 9D 00 80            STS   [128,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STS		  	[$8085,PCR]  ; 8000   	10EF 9D 00 80            STS   [128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6555,7 +6554,7 @@ public class TestSTSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	[-32768,PCR]  ; 8000   	10EF 9D 80 00            STS   [-32768,PCR]\n");
+		strBuilder.append("Start      	STS		  	[$0005,PCR]  ; 8000   	10EF 9D 80 00            STS   [-32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6588,8 +6587,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	[32767,PCR]  ; 8000   	10EF 9D 7F FF            STS   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	STS		  	[$C004,PCR]  ; 8000   	10EF 9D 7F FF            STS   [32767,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6598,7 +6597,7 @@ public class TestSTSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledSTSInstruction line = (AssembledSTSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6622,8 +6621,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	[-32769,PCR]  ; 8000   	10EF 9D 80 00            STS   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STS		  	[$0004,PCR]  ; 8000   	10EF 9D 80 00            STS   [-32769,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6658,8 +6657,8 @@ public class TestSTSInstruction {
 	public void testSTSIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	STS		  	[32768,PCR]  ; 8000   	10EF 9D 7F FF            STS   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	STS		  	[$C005,PCR]  ; 8000   	10EF 9D 7F FF            STS   [32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6670,7 +6669,7 @@ public class TestSTSInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledSTSInstruction line = (AssembledSTSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6686,4 +6685,5 @@ public class TestSTSInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
+
 }

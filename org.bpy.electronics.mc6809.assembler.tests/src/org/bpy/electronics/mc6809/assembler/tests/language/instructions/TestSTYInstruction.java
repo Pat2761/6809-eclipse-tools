@@ -40,6 +40,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTYInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledSTYInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -420,7 +421,7 @@ public class TestSTYInstruction {
 	public void testSTYRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	STY			  	0,PC\n");
 		strBuilder.append("	       	STY			  	,PC\n");
@@ -455,7 +456,7 @@ public class TestSTYInstruction {
 	public void testSTYRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	STY			  	[0,PC]\n");
 		strBuilder.append("	       	STY			  	[,PC]\n");
@@ -820,7 +821,7 @@ public class TestSTYInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	STY			  	[Const*1000]  ; 8000   10A3 9F 13 88  START:    STY   [Const*1000]\n");
+		strBuilder.append("Start      	STY			  	[Const*1000]  ; 8000   10AF 9F 13 88  START:    STY   [Const*1000]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -840,7 +841,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand", 0x13, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x88, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   10A3 9F 13 88  START:    STY   [Const*1000]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   10AF 9F 13 88  START:    STY   [Const*1000]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6072,7 +6073,6 @@ public class TestSTYInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
-
 	/**
 	 * Check Assembled STY Indexed relatif to PC Mode instruction
 	 */
@@ -6080,8 +6080,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	0,PCR  ; 8000   	10AF 8C 00            STY   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STY		  	$8004,PCR  ; 8000   	10AF 8C 00            STY   0,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6114,7 +6114,7 @@ public class TestSTYInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	-128,PCR  ; 8000   	10AF 8C 80            STY   -128,PCR\n");
+		strBuilder.append("Start      	STY		  		$7F84,PCR  ; 8000   	10AF 8C 80            STY   -128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6146,8 +6146,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	127,PCR  ; 8000   	10AF 8C 7F            STY   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STY		  	$8083,PCR  ; 8000   	10AF 8C 7F            STY   127,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6179,8 +6179,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	-129,PCR  ; 8000   	10AF 8D FF 7F            STY   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STY		  	$7F83,PCR  ; 8000   	10AF 8D FF 7F            STY   -129,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6198,7 +6198,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 8D FF 7F            STY   -129,PCR", line.getComment());
 		} catch (Exception e) {
@@ -6213,8 +6213,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	128,PCR  ; 8000   	10AF 8D 00 80            STY   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STY		  	$8085,PCR  ; 8000   	10AF 8D 00 80            STY   128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6247,8 +6247,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	-32768,PCR  ; 8000   	10AF 8D 80 00            STY   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STY		  	$0005,PCR  ; 8000   	10AF 8D 80 00            STY   -32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6281,8 +6281,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	32767,PCR  ; 8000   	10AF 8D 7F FF            STY   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	STY		  	$C004,PCR  ; 8000   	10AF 8D 7F FF            STY   32767,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6291,7 +6291,7 @@ public class TestSTYInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledSTYInstruction line = (AssembledSTYInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6315,8 +6315,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	-32769,PCR  ; 8000   	10AF 8D 80 00            STY   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	STY		  	$0004,PCR  ; 8000   	10AF 8D 80 00            STY   -32769,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6351,8 +6351,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	32768,PCR  ; 8000   	10AF 8D 7F FF            STY   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	STY		  	$C005,PCR  ; 8000   	10AF 8D 7F FF            STY   32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6363,7 +6363,7 @@ public class TestSTYInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledSTYInstruction line = (AssembledSTYInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6388,7 +6388,7 @@ public class TestSTYInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	[0,PCR]  ; 8000   	10AF 9C 00            STY   [0,PCR]\n");
+		strBuilder.append("Start      	STY		  	   [$8004,PCR]  ; 8000   	10AF 9C 00            STY   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6421,7 +6421,7 @@ public class TestSTYInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	[-128,PCR]  ; 8000   	10AF 9C 80            STY   [-128,PCR]\n");
+		strBuilder.append("Start      	STY		  	[$7F84,PCR]  ; 8000   	10AF 9C 80            STY   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6453,8 +6453,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifIndirectToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	[127,PCR]  ; 8000   	10AF 9C 7F            STY   [127,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STY		  	[$8083,PCR]  ; 8000   	10AF 9C 7F            STY   [127,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6486,8 +6486,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifIndirectToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	[-129,PCR]  ; 8000   	10AF 9D FF 7F            STY   [-129,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STY		  	[$7F83,PCR]  ; 8000   	10AF 9D FF 7F            STY   [-129,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6505,7 +6505,7 @@ public class TestSTYInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10AF 9D FF 7F            STY   [-129,PCR]", line.getComment());
 		} catch (Exception e) {
@@ -6520,8 +6520,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifIndirectToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	[128,PCR]  ; 8000   	10AF 9D 00 80            STY   [128,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STY		  	[$8085,PCR]  ; 8000   	10AF 9D 00 80            STY   [128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6555,7 +6555,7 @@ public class TestSTYInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	[-32768,PCR]  ; 8000   	10AF 9D 80 00            STY   [-32768,PCR]\n");
+		strBuilder.append("Start      	STY		  	[$0005,PCR]  ; 8000   	10AF 9D 80 00            STY   [-32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6588,8 +6588,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	[32767,PCR]  ; 8000   	10AF 9D 7F FF            STY   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	STY		  	[$C004,PCR]  ; 8000   	10AF 9D 7F FF            STY   [32767,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6598,7 +6598,7 @@ public class TestSTYInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledSTYInstruction line = (AssembledSTYInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6622,8 +6622,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	[-32769,PCR]  ; 8000   	10AF 9D 80 00            STY   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	STY		  	[$0004,PCR]  ; 8000   	10AF 9D 80 00            STY   [-32769,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6658,8 +6658,8 @@ public class TestSTYInstruction {
 	public void testSTYIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	STY		  	[32768,PCR]  ; 8000   	10AF 9D 7F FF            STY   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	STY		  	[$C005,PCR]  ; 8000   	10AF 9D 7F FF            STY   [32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6670,7 +6670,7 @@ public class TestSTYInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledSTYInstruction line = (AssembledSTYInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);

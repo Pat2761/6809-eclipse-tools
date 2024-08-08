@@ -50,7 +50,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPSInstruction;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 @RunWith(XtextRunner.class)
@@ -448,7 +447,7 @@ public class TestCMPSInstruction {
 	public void testCMPSRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	CMPS			  	0,PC\n");
 		strBuilder.append("	       	CMPS			  	,PC\n");
@@ -483,7 +482,7 @@ public class TestCMPSInstruction {
 	public void testCMPSRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	CMPS			  	[0,PC]\n");
 		strBuilder.append("	       	CMPS			  	[,PC]\n");
@@ -6229,7 +6228,6 @@ public class TestCMPSInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
-
 	/**
 	 * Check Assembled CMPS Indexed relatif to PC Mode instruction
 	 */
@@ -6237,8 +6235,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	0,PCR  ; 8000   	11AC 8C 00            CMPS   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPS		  	$8004,PCR  ; 8000   	10AC 8C 00            CMPS   0,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6257,7 +6255,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 8C 00            CMPS   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 8C 00            CMPS   0,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6271,7 +6269,7 @@ public class TestCMPSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	-128,PCR  ; 8000   	11AC 8C 80            CMPS   -128,PCR\n");
+		strBuilder.append("Start      	CMPS		  		$7F84,PCR  ; 8000   	10AC 8C 80            CMPS   -128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6290,7 +6288,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 8C 80            CMPS   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 8C 80            CMPS   -128,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6303,8 +6301,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	127,PCR  ; 8000   	11AC 8C 7F            CMPS   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPS		  	$8083,PCR  ; 8000   	10AC 8C 7F            CMPS   127,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6323,7 +6321,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 8C 7F            CMPS   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 8C 7F            CMPS   127,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6336,8 +6334,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	-129,PCR  ; 8000   	11AC 8D FF 7F            CMPS   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPS		  	$7F83,PCR  ; 8000   	10AC 8D FF 7F            CMPS   -129,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6355,9 +6353,9 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 8D FF 7F            CMPS   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 8D FF 7F            CMPS   -129,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6370,8 +6368,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	128,PCR  ; 8000   	11AC 8D 00 80            CMPS   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPS		  	$8085,PCR  ; 8000   	10AC 8D 00 80            CMPS   128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6391,7 +6389,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 8D 00 80            CMPS   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 8D 00 80            CMPS   128,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6404,8 +6402,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	-32768,PCR  ; 8000   	11AC 8D 80 00            CMPS   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPS		  	$0005,PCR  ; 8000   	10AC 8D 80 00            CMPS   -32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6425,7 +6423,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 8D 80 00            CMPS   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 8D 80 00            CMPS   -32768,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6438,8 +6436,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	32767,PCR  ; 8000   	11AC 8D 7F FF            CMPS   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	CMPS		  	$C004,PCR  ; 8000   	10AC 8D 7F FF            CMPS   32767,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6448,7 +6446,7 @@ public class TestCMPSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPSInstruction line = (AssembledCMPSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6459,7 +6457,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 8D 7F FF            CMPS   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 8D 7F FF            CMPS   32767,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6472,8 +6470,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	-32769,PCR  ; 8000   	11AC 8D 80 00            CMPS   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	CMPS		  	$0004,PCR  ; 8000   	10AC 8D 80 00            CMPS   -32769,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6495,7 +6493,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 8D 80 00            CMPS   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 8D 80 00            CMPS   -32769,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6508,8 +6506,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	32768,PCR  ; 8000   	11AC 8D 7F FF            CMPS   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	CMPS		  	$C005,PCR  ; 8000   	10AC 8D 7F FF            CMPS   32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6520,7 +6518,7 @@ public class TestCMPSInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPSInstruction line = (AssembledCMPSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6531,7 +6529,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 8D 7F FF            CMPS   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 8D 7F FF            CMPS   32768,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6545,7 +6543,7 @@ public class TestCMPSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	[0,PCR]  ; 8000   	11AC 9C 00            CMPS   [0,PCR]\n");
+		strBuilder.append("Start      	CMPS		  	   [$8004,PCR]  ; 8000   	10AC 9C 00            CMPS   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6564,7 +6562,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 9C 00            CMPS   [0,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 9C 00            CMPS   [0,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6578,7 +6576,7 @@ public class TestCMPSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	[-128,PCR]  ; 8000   	11AC 9C 80            CMPS   [-128,PCR]\n");
+		strBuilder.append("Start      	CMPS		  	[$7F84,PCR]  ; 8000   	10AC 9C 80            CMPS   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6597,7 +6595,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 9C 80            CMPS   [-128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 9C 80            CMPS   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6610,8 +6608,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifIndirectToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	[127,PCR]  ; 8000   	11AC 9C 7F            CMPS   [127,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPS		  	[$8083,PCR]  ; 8000   	10AC 9C 7F            CMPS   [127,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6630,7 +6628,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 9C 7F            CMPS   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 9C 7F            CMPS   [127,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6643,8 +6641,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifIndirectToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	[-129,PCR]  ; 8000   	11AC 9D FF 7F            CMPS   [-129,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPS		  	[$7F83,PCR]  ; 8000   	10AC 9D FF 7F            CMPS   [-129,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6662,9 +6660,9 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 9D FF 7F            CMPS   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 9D FF 7F            CMPS   [-129,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6677,8 +6675,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifIndirectToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	[128,PCR]  ; 8000   	11AC 9D 00 80            CMPS   [128,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPS		  	[$8085,PCR]  ; 8000   	10AC 9D 00 80            CMPS   [128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6698,7 +6696,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 9D 00 80            CMPS   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 9D 00 80            CMPS   [128,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6712,7 +6710,7 @@ public class TestCMPSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	[-32768,PCR]  ; 8000   	11AC 9D 80 00            CMPS   [-32768,PCR]\n");
+		strBuilder.append("Start      	CMPS		  	[$0005,PCR]  ; 8000   	10AC 9D 80 00            CMPS   [-32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6732,7 +6730,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 9D 80 00            CMPS   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 9D 80 00            CMPS   [-32768,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6745,8 +6743,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	[32767,PCR]  ; 8000   	11AC 9D 7F FF            CMPS   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	CMPS		  	[$C004,PCR]  ; 8000   	10AC 9D 7F FF            CMPS   [32767,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6755,7 +6753,7 @@ public class TestCMPSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPSInstruction line = (AssembledCMPSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6766,7 +6764,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 9D 7F FF            CMPS   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 9D 7F FF            CMPS   [32767,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6779,8 +6777,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	[-32769,PCR]  ; 8000   	11AC 9D 80 00            CMPS   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPS		  	[$0004,PCR]  ; 8000   	10AC 9D 80 00            CMPS   [-32769,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6802,7 +6800,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 9D 80 00            CMPS   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 9D 80 00            CMPS   [-32769,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6815,8 +6813,8 @@ public class TestCMPSInstruction {
 	public void testCMPSIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	CMPS		  	[32768,PCR]  ; 8000   	11AC 9D 7F FF            CMPS   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	CMPS		  	[$C005,PCR]  ; 8000   	10AC 9D 7F FF            CMPS   [32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6827,7 +6825,7 @@ public class TestCMPSInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPSInstruction line = (AssembledCMPSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6838,7 +6836,7 @@ public class TestCMPSInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	11AC 9D 7F FF            CMPS   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	10AC 9D 7F FF            CMPS   [32768,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}

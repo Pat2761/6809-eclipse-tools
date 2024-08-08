@@ -50,7 +50,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledCMPUInstruction;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 @RunWith(XtextRunner.class)
@@ -448,7 +447,7 @@ public class TestCMPUInstruction {
 	public void testCMPURelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	CMPU			  	0,PC\n");
 		strBuilder.append("	       	CMPU			  	,PC\n");
@@ -483,7 +482,7 @@ public class TestCMPUInstruction {
 	public void testCMPURelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	CMPU			  	[0,PC]\n");
 		strBuilder.append("	       	CMPU			  	[,PC]\n");
@@ -6231,7 +6230,6 @@ public class TestCMPUInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
-
 	/**
 	 * Check Assembled CMPU Indexed relatif to PC Mode instruction
 	 */
@@ -6239,8 +6237,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	0,PCR  ; 8000   	10A3 8C 00            CMPU   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPU		  	$8004,PCR  ; 8000   	10A3 8C 00            CMPU   0,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6273,7 +6271,7 @@ public class TestCMPUInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	-128,PCR  ; 8000   	10A3 8C 80            CMPU   -128,PCR\n");
+		strBuilder.append("Start      	CMPU		  		$7F84,PCR  ; 8000   	10A3 8C 80            CMPU   -128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6305,8 +6303,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	127,PCR  ; 8000   	10A3 8C 7F            CMPU   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPU		  	$8083,PCR  ; 8000   	10A3 8C 7F            CMPU   127,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6338,8 +6336,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	-129,PCR  ; 8000   	10A3 8D FF 7F            CMPU   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPU		  	$7F83,PCR  ; 8000   	10A3 8D FF 7F            CMPU   -129,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6357,7 +6355,7 @@ public class TestCMPUInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10A3 8D FF 7F            CMPU   -129,PCR", line.getComment());
 		} catch (Exception e) {
@@ -6372,8 +6370,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	128,PCR  ; 8000   	10A3 8D 00 80            CMPU   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPU		  	$8085,PCR  ; 8000   	10A3 8D 00 80            CMPU   128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6406,8 +6404,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	-32768,PCR  ; 8000   	10A3 8D 80 00            CMPU   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPU		  	$0005,PCR  ; 8000   	10A3 8D 80 00            CMPU   -32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6440,8 +6438,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	32767,PCR  ; 8000   	10A3 8D 7F FF            CMPU   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	CMPU		  	$C004,PCR  ; 8000   	10A3 8D 7F FF            CMPU   32767,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6450,7 +6448,7 @@ public class TestCMPUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPUInstruction line = (AssembledCMPUInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6474,8 +6472,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	-32769,PCR  ; 8000   	10A3 8D 80 00            CMPU   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	CMPU		  	$0004,PCR  ; 8000   	10A3 8D 80 00            CMPU   -32769,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6510,8 +6508,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	32768,PCR  ; 8000   	10A3 8D 7F FF            CMPU   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	CMPU		  	$C005,PCR  ; 8000   	10A3 8D 7F FF            CMPU   32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6522,7 +6520,7 @@ public class TestCMPUInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPUInstruction line = (AssembledCMPUInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6547,7 +6545,7 @@ public class TestCMPUInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	[0,PCR]  ; 8000   	10A3 9C 00            CMPU   [0,PCR]\n");
+		strBuilder.append("Start      	CMPU		  	   [$8004,PCR]  ; 8000   	10A3 9C 00            CMPU   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6580,7 +6578,7 @@ public class TestCMPUInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	[-128,PCR]  ; 8000   	10A3 9C 80            CMPU   [-128,PCR]\n");
+		strBuilder.append("Start      	CMPU		  	[$7F84,PCR]  ; 8000   	10A3 9C 80            CMPU   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6612,8 +6610,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifIndirectToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	[127,PCR]  ; 8000   	10A3 9C 7F            CMPU   [127,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPU		  	[$8083,PCR]  ; 8000   	10A3 9C 7F            CMPU   [127,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6645,8 +6643,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifIndirectToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	[-129,PCR]  ; 8000   	10A3 9D FF 7F            CMPU   [-129,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPU		  	[$7F83,PCR]  ; 8000   	10A3 9D FF 7F            CMPU   [-129,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6664,7 +6662,7 @@ public class TestCMPUInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10A3 9D FF 7F            CMPU   [-129,PCR]", line.getComment());
 		} catch (Exception e) {
@@ -6679,8 +6677,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifIndirectToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	[128,PCR]  ; 8000   	10A3 9D 00 80            CMPU   [128,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPU		  	[$8085,PCR]  ; 8000   	10A3 9D 00 80            CMPU   [128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6714,7 +6712,7 @@ public class TestCMPUInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	[-32768,PCR]  ; 8000   	10A3 9D 80 00            CMPU   [-32768,PCR]\n");
+		strBuilder.append("Start      	CMPU		  	[$0005,PCR]  ; 8000   	10A3 9D 80 00            CMPU   [-32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6747,8 +6745,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	[32767,PCR]  ; 8000   	10A3 9D 7F FF            CMPU   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	CMPU		  	[$C004,PCR]  ; 8000   	10A3 9D 7F FF            CMPU   [32767,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6757,7 +6755,7 @@ public class TestCMPUInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPUInstruction line = (AssembledCMPUInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6781,8 +6779,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	[-32769,PCR]  ; 8000   	10A3 9D 80 00            CMPU   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPU		  	[$0004,PCR]  ; 8000   	10A3 9D 80 00            CMPU   [-32769,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6817,8 +6815,8 @@ public class TestCMPUInstruction {
 	public void testCMPUIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	CMPU		  	[32768,PCR]  ; 8000   	10A3 9D 7F FF            CMPU   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	CMPU		  	[$C005,PCR]  ; 8000   	10A3 9D 7F FF            CMPU   [32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6829,7 +6827,7 @@ public class TestCMPUInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPUInstruction line = (AssembledCMPUInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);

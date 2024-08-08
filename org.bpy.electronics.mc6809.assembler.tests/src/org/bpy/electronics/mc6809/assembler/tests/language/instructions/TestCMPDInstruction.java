@@ -448,7 +448,7 @@ public class TestCMPDInstruction {
 	public void testCMPDRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	CMPD			  	0,PC\n");
 		strBuilder.append("	       	CMPD			  	,PC\n");
@@ -483,7 +483,7 @@ public class TestCMPDInstruction {
 	public void testCMPDRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	CMPD			  	[0,PC]\n");
 		strBuilder.append("	       	CMPD			  	[,PC]\n");
@@ -6239,8 +6239,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	0,PCR  ; 8000   	10A3 8C 00            CMPD   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPD		  	$8004,PCR  ; 8000   	10A3 8C 00            CMPD   0,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6273,7 +6273,7 @@ public class TestCMPDInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	-128,PCR  ; 8000   	10A3 8C 80            CMPD   -128,PCR\n");
+		strBuilder.append("Start      	CMPD		  		$7F84,PCR  ; 8000   	10A3 8C 80            CMPD   -128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6305,8 +6305,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	127,PCR  ; 8000   	10A3 8C 7F            CMPD   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPD		  	$8083,PCR  ; 8000   	10A3 8C 7F            CMPD   127,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6338,8 +6338,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	-129,PCR  ; 8000   	10A3 8D FF 7F            CMPD   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPD		  	$7F83,PCR  ; 8000   	10A3 8D FF 7F            CMPD   -129,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6357,7 +6357,7 @@ public class TestCMPDInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10A3 8D FF 7F            CMPD   -129,PCR", line.getComment());
 		} catch (Exception e) {
@@ -6372,8 +6372,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	128,PCR  ; 8000   	10A3 8D 00 80            CMPD   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPD		  	$8085,PCR  ; 8000   	10A3 8D 00 80            CMPD   128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6406,8 +6406,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	-32768,PCR  ; 8000   	10A3 8D 80 00            CMPD   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPD		  	$0005,PCR  ; 8000   	10A3 8D 80 00            CMPD   -32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6440,8 +6440,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	32767,PCR  ; 8000   	10A3 8D 7F FF            CMPD   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	CMPD		  	$C004,PCR  ; 8000   	10A3 8D 7F FF            CMPD   32767,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6450,7 +6450,7 @@ public class TestCMPDInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPDInstruction line = (AssembledCMPDInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6474,8 +6474,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	-32769,PCR  ; 8000   	10A3 8D 80 00            CMPD   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	CMPD		  	$0004,PCR  ; 8000   	10A3 8D 80 00            CMPD   -32769,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6510,8 +6510,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	32768,PCR  ; 8000   	10A3 8D 7F FF            CMPD   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	CMPD		  	$C005,PCR  ; 8000   	10A3 8D 7F FF            CMPD   32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6522,7 +6522,7 @@ public class TestCMPDInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPDInstruction line = (AssembledCMPDInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6547,7 +6547,7 @@ public class TestCMPDInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	[0,PCR]  ; 8000   	10A3 9C 00            CMPD   [0,PCR]\n");
+		strBuilder.append("Start      	CMPD		  	   [$8004,PCR]  ; 8000   	10A3 9C 00            CMPD   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6580,7 +6580,7 @@ public class TestCMPDInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	[-128,PCR]  ; 8000   	10A3 9C 80            CMPD   [-128,PCR]\n");
+		strBuilder.append("Start      	CMPD		  	[$7F84,PCR]  ; 8000   	10A3 9C 80            CMPD   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6612,8 +6612,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifIndirectToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	[127,PCR]  ; 8000   	10A3 9C 7F            CMPD   [127,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPD		  	[$8083,PCR]  ; 8000   	10A3 9C 7F            CMPD   [127,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6645,8 +6645,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifIndirectToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	[-129,PCR]  ; 8000   	10A3 9D FF 7F            CMPD   [-129,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPD		  	[$7F83,PCR]  ; 8000   	10A3 9D FF 7F            CMPD   [-129,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6664,7 +6664,7 @@ public class TestCMPDInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10A3 9D FF 7F            CMPD   [-129,PCR]", line.getComment());
 		} catch (Exception e) {
@@ -6679,8 +6679,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifIndirectToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	[128,PCR]  ; 8000   	10A3 9D 00 80            CMPD   [128,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPD		  	[$8085,PCR]  ; 8000   	10A3 9D 00 80            CMPD   [128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6714,7 +6714,7 @@ public class TestCMPDInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	[-32768,PCR]  ; 8000   	10A3 9D 80 00            CMPD   [-32768,PCR]\n");
+		strBuilder.append("Start      	CMPD		  	[$0005,PCR]  ; 8000   	10A3 9D 80 00            CMPD   [-32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6747,8 +6747,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	[32767,PCR]  ; 8000   	10A3 9D 7F FF            CMPD   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	CMPD		  	[$C004,PCR]  ; 8000   	10A3 9D 7F FF            CMPD   [32767,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6757,7 +6757,7 @@ public class TestCMPDInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPDInstruction line = (AssembledCMPDInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6781,8 +6781,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	[-32769,PCR]  ; 8000   	10A3 9D 80 00            CMPD   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	CMPD		  	[$0004,PCR]  ; 8000   	10A3 9D 80 00            CMPD   [-32769,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6817,8 +6817,8 @@ public class TestCMPDInstruction {
 	public void testCMPDIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	CMPD		  	[32768,PCR]  ; 8000   	10A3 9D 7F FF            CMPD   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	CMPD		  	[$C005,PCR]  ; 8000   	10A3 9D 7F FF            CMPD   [32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6829,7 +6829,7 @@ public class TestCMPDInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledCMPDInstruction line = (AssembledCMPDInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);

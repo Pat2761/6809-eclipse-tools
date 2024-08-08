@@ -63,7 +63,7 @@ public class AssembledPULSInstruction extends AbstractInstructionAssemblyLine {
 
 	@Override
 	public void parsePass2() {
-		setOpcode(addressingMode);
+		setOperand(addressingMode);
 	}
 
 	/**

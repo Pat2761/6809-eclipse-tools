@@ -41,6 +41,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDSInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledLDSInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -450,7 +451,7 @@ public class TestLDSInstruction {
 	public void testLDSRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	LDS			  	0,PC\n");
 		strBuilder.append("	       	LDS			  	,PC\n");
@@ -485,7 +486,7 @@ public class TestLDSInstruction {
 	public void testLDSRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const		EQU          	5    \n");
 		strBuilder.append("	       	LDS			  	[0,PC]\n");
 		strBuilder.append("	       	LDS			  	[,PC]\n");
@@ -979,7 +980,7 @@ public class TestLDSInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	LDS			  	[Const*1000]  ; 8000   10A3 9F 13 88  START:    LDS   [Const*1000]\n");
+		strBuilder.append("Start      	LDS			  	[Const*1000]  ; 8000   10EE 9F 13 88  START:    LDS   [Const*1000]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -999,7 +1000,7 @@ public class TestLDSInstruction {
 			Assert.assertEquals("Check operand", 0x13, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x88, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   10A3 9F 13 88  START:    LDS   [Const*1000]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   10EE 9F 13 88  START:    LDS   [Const*1000]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6231,7 +6232,6 @@ public class TestLDSInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
-
 	/**
 	 * Check Assembled LDS Indexed relatif to PC Mode instruction
 	 */
@@ -6239,8 +6239,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	0,PCR  ; 8000   	10EE 8C 00            LDS   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LDS		  	$8004,PCR  ; 8000   	10EE 8C 00            LDS   0,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6273,7 +6273,7 @@ public class TestLDSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	-128,PCR  ; 8000   	10EE 8C 80            LDS   -128,PCR\n");
+		strBuilder.append("Start      	LDS		  		$7F84,PCR  ; 8000   	10EE 8C 80            LDS   -128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6305,8 +6305,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	127,PCR  ; 8000   	10EE 8C 7F            LDS   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LDS		  	$8083,PCR  ; 8000   	10EE 8C 7F            LDS   127,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6338,8 +6338,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	-129,PCR  ; 8000   	10EE 8D FF 7F            LDS   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LDS		  	$7F83,PCR  ; 8000   	10EE 8D FF 7F            LDS   -129,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6357,7 +6357,7 @@ public class TestLDSInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10EE 8D FF 7F            LDS   -129,PCR", line.getComment());
 		} catch (Exception e) {
@@ -6372,8 +6372,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	128,PCR  ; 8000   	10EE 8D 00 80            LDS   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LDS		  	$8085,PCR  ; 8000   	10EE 8D 00 80            LDS   128,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6406,8 +6406,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	-32768,PCR  ; 8000   	10EE 8D 80 00            LDS   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LDS		  	$0005,PCR  ; 8000   	10EE 8D 80 00            LDS   -32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6440,8 +6440,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	32767,PCR  ; 8000   	10EE 8D 7F FF            LDS   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	LDS		  	$C004,PCR  ; 8000   	10EE 8D 7F FF            LDS   32767,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6450,7 +6450,7 @@ public class TestLDSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledLDSInstruction line = (AssembledLDSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6474,8 +6474,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	-32769,PCR  ; 8000   	10EE 8D 80 00            LDS   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	LDS		  	$0004,PCR  ; 8000   	10EE 8D 80 00            LDS   -32769,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6510,8 +6510,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	32768,PCR  ; 8000   	10EE 8D 7F FF            LDS   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	LDS		  	$C005,PCR  ; 8000   	10EE 8D 7F FF            LDS   32768,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6522,7 +6522,7 @@ public class TestLDSInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledLDSInstruction line = (AssembledLDSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6547,7 +6547,7 @@ public class TestLDSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	[0,PCR]  ; 8000   	10EE 9C 00            LDS   [0,PCR]\n");
+		strBuilder.append("Start      	LDS		  	   [$8004,PCR]  ; 8000   	10EE 9C 00            LDS   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6580,7 +6580,7 @@ public class TestLDSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	[-128,PCR]  ; 8000   	10EE 9C 80            LDS   [-128,PCR]\n");
+		strBuilder.append("Start      	LDS		  	[$7F84,PCR]  ; 8000   	10EE 9C 80            LDS   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6612,8 +6612,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifIndirectToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	[127,PCR]  ; 8000   	10EE 9C 7F            LDS   [127,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LDS		  	[$8083,PCR]  ; 8000   	10EE 9C 7F            LDS   [127,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6645,8 +6645,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifIndirectToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	[-129,PCR]  ; 8000   	10EE 9D FF 7F            LDS   [-129,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LDS		  	[$7F83,PCR]  ; 8000   	10EE 9D FF 7F            LDS   [-129,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6664,7 +6664,7 @@ public class TestLDSInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
 			Assert.assertEquals("Check comment", "; 8000   	10EE 9D FF 7F            LDS   [-129,PCR]", line.getComment());
 		} catch (Exception e) {
@@ -6679,8 +6679,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifIndirectToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	[128,PCR]  ; 8000   	10EE 9D 00 80            LDS   [128,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LDS		  	[$8085,PCR]  ; 8000   	10EE 9D 00 80            LDS   [128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6714,7 +6714,7 @@ public class TestLDSInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	[-32768,PCR]  ; 8000   	10EE 9D 80 00            LDS   [-32768,PCR]\n");
+		strBuilder.append("Start      	LDS		  	[$0005,PCR]  ; 8000   	10EE 9D 80 00            LDS   [-32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6747,8 +6747,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	[32767,PCR]  ; 8000   	10EE 9D 7F FF            LDS   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	LDS		  	[$C004,PCR]  ; 8000   	10EE 9D 7F FF            LDS   [32767,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6757,7 +6757,7 @@ public class TestLDSInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledLDSInstruction line = (AssembledLDSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);
@@ -6781,8 +6781,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	[-32769,PCR]  ; 8000   	10EE 9D 80 00            LDS   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	LDS		  	[$0004,PCR]  ; 8000   	10EE 9D 80 00            LDS   [-32769,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6817,8 +6817,8 @@ public class TestLDSInstruction {
 	public void testLDSIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	LDS		  	[32768,PCR]  ; 8000   	10EE 9D 7F FF            LDS   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	LDS		  	[$C005,PCR]  ; 8000   	10EE 9D 7F FF            LDS   [32768,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6829,7 +6829,7 @@ public class TestLDSInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8005, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4005, engine.getCurrentPcValue());
 
 			AssembledLDSInstruction line = (AssembledLDSInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 2, line.getOpcode().length);

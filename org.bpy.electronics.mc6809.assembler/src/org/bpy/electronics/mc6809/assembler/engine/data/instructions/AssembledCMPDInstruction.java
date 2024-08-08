@@ -97,13 +97,28 @@ public class AssembledCMPDInstruction extends AbstractInstructionAssemblyLine {
 		this.instruction = (CmpInstruction) instruction;
 		this.label = CommandUtil.getLabel(this.instruction);
 		this.comment = CommandUtil.getComment(this.instruction);
-		super.parse(currentPcValue, lineNumber);
+		this.pcAddress = currentPcValue;
+		this.lineNumber = lineNumber;
+		assembleInstruction();
+		createOperandSpace();
 	}
+	
+	/** 
+	 * Reserved memory byte for the instruction.
+	 * 
+	 */
+	@Override
+	protected void createOperandSpace() {
+		if (addressingMode == AddressingMode.IMMEDIATE) {
+			operandBytes = new int[2];
+		} else {
+			super.createOperandSpace();
+		}
+ 	}
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		setOperand(addressingMode);
 	}
 	
 	@Override
