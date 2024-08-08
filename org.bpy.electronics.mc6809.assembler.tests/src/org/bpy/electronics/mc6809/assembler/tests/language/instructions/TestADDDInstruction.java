@@ -41,6 +41,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDDInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDDInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -450,7 +451,7 @@ public class TestADDDInstruction {
 	public void testADDDRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const	EQU          	5    \n");
 		strBuilder.append("	       	ADDD		  	0,PC\n");
 		strBuilder.append("	       	ADDD		  	,PC\n");
@@ -485,7 +486,7 @@ public class TestADDDInstruction {
 	public void testADDDRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("	       	ORG    			$0000\n");
 		strBuilder.append("Const	EQU          	5    \n");
 		strBuilder.append("	       	ADDD		  	[0,PC]\n");
 		strBuilder.append("	       	ADDD		  	[,PC]\n");
@@ -6089,8 +6090,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	0,PCR  ; 8000   	E3 8C 00            ADDD   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDD		  	$8003,PCR  ; 8000   	E3 8C 00            ADDD   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6108,7 +6109,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 8C 00            ADDD   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 8C 00            ADDD   $8003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6121,8 +6122,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	-128,PCR  ; 8000   	E3 8C 80            ADDD   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDD		  	$7F83,PCR  ; 8000   	E3 8C 80            ADDD   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6140,7 +6141,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 8C 80            ADDD   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 8C 80            ADDD   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6153,8 +6154,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	127,PCR  ; 8000   	E3 8C 7F            ADDD   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDD		  	$8082,PCR  ; 8000   	E3 8C 7F            ADDD   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6172,7 +6173,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 8C 7F            ADDD   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 8C 7F            ADDD   $8082,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6185,8 +6186,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	-129,PCR  ; 8000   	E3 8D FF 7F            ADDD   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDD		  	$7F82,PCR  ; 8000   	E3 8D FF 7F            ADDD   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6203,9 +6204,9 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 8D FF 7F            ADDD   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 8D FF 7F            ADDD   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6218,8 +6219,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	128,PCR  ; 8000   	E3 8D 00 80            ADDD   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDD		  	$8084,PCR  ; 8000   	E3 8D 00 80            ADDD   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6238,7 +6239,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 8D 00 80            ADDD   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 8D 00 80            ADDD   $8084,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6251,8 +6252,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	-32768,PCR  ; 8000   	E3 8D 80 00            ADDD   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDD		  	$0004,PCR  ; 8000   	E3 8D 80 00            ADDD   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6271,7 +6272,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 8D 80 00            ADDD   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 8D 80 00            ADDD   $0004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6284,8 +6285,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	32767,PCR  ; 8000   	E3 8D 7F FF            ADDD   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ADDD		  	$C003,PCR  ; 4000   	A9 8D 7F FF            ADDD   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6294,7 +6295,7 @@ public class TestADDDInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDDInstruction line = (AssembledADDDInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6304,7 +6305,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 8D 7F FF            ADDD   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	A9 8D 7F FF            ADDD   $C003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6317,8 +6318,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	-32769,PCR  ; 8000   	E3 8D 80 00            ADDD   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	ADDD		  	$0003,PCR  ; 8000   	E3 8D 80 00            ADDD   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6339,7 +6340,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 8D 80 00            ADDD   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 8D 80 00            ADDD   $0003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6352,8 +6353,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	32768,PCR  ; 8000   	E3 8D 7F FF            ADDD   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ADDD		  	$C004,PCR  ; 4000   	A9 8D 7F FF            ADDD   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6364,7 +6365,7 @@ public class TestADDDInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDDInstruction line = (AssembledADDDInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6374,7 +6375,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 8D 7F FF            ADDD   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	A9 8D 7F FF            ADDD   $C004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6388,7 +6389,7 @@ public class TestADDDInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	[0,PCR]  ; 8000   	E3 9C 00            ADDD   [0,PCR]\n");
+		strBuilder.append("Start      	ADDD		  	   [$8003,PCR]  ; 8000   	E3 9C 00            ADDD   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6420,7 +6421,7 @@ public class TestADDDInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	[-128,PCR]  ; 8000   	E3 9C 80            ADDD   [-128,PCR]\n");
+		strBuilder.append("Start      ADDD		  	   [$7F83,PCR]  ; 8000   	E3 9C 80            ADDD   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6452,7 +6453,7 @@ public class TestADDDInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	[127,PCR]  ; 8000   	E3 9C 7F            ADDD   [127,PCR]\n");
+		strBuilder.append("Start      	ADDD		  	   [$8082,PCR]  ; 8000   	E3 9C 7F            ADDD   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6470,7 +6471,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 9C 7F            ADDD   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 9C 7F            ADDD   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6484,7 +6485,7 @@ public class TestADDDInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	[-129,PCR]  ; 8000   	E3 9D FF 7F            ADDD   [-129,PCR]\n");
+		strBuilder.append("Start      	ADDD		  	   [$7F82,PCR]  ; 8000   	E3 9D FF 7E            ADDD   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6501,9 +6502,9 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 9D FF 7F            ADDD   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 9D FF 7E            ADDD   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6517,7 +6518,7 @@ public class TestADDDInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	[128,PCR]  ; 8000   	E3 9D 00 80            ADDD   [128,PCR]\n");
+		strBuilder.append("Start      	ADDD		  		[$8084,PCR]  ; 8000   	E3 9D 00 80            ADDD   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6536,7 +6537,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 9D 00 80            ADDD   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 9D 00 80            ADDD   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6550,7 +6551,7 @@ public class TestADDDInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	[-32768,PCR]  ; 8000   	E3 9D 80 00            ADDD   [-32768,PCR]\n");
+		strBuilder.append("Start      	ADDD		  	[$0004,PCR]  ; 8000   	E3 9D 80 00            ADDD   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6569,7 +6570,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 9D 80 00            ADDD   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 9D 80 00            ADDD   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6582,8 +6583,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	[32767,PCR]  ; 8000   	E3 9D 7F FF            ADDD   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ADDD		  	[$C003,PCR]  ; 8000   	E3 9D 7F FF            ADDD   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6592,7 +6593,7 @@ public class TestADDDInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDDInstruction line = (AssembledADDDInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6602,7 +6603,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 9D 7F FF            ADDD   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 9D 7F FF            ADDD   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6615,8 +6616,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	[-32769,PCR]  ; 8000   	E3 9D 80 00            ADDD   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDD		  	[$0003,PCR]  ; 8000   	E3 9D 80 00            ADDD   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6637,7 +6638,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 9D 80 00            ADDD   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	E3 9D 80 00            ADDD   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6650,8 +6651,8 @@ public class TestADDDInstruction {
 	public void testADDDIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	ADDD		  	[32768,PCR]  ; 8000   	E3 9D 7F FF            ADDD   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	ADDD		  	[$C004,PCR]  ; 4000   	E3 9D 7F FF            ADDD   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6662,7 +6663,7 @@ public class TestADDDInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDDInstruction line = (AssembledADDDInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6672,7 +6673,7 @@ public class TestADDDInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	E3 9D 7F FF            ADDD   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	E3 9D 7F FF            ADDD   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}

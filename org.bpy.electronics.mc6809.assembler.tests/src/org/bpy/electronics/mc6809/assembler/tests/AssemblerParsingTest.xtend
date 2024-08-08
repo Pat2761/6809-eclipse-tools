@@ -42,6 +42,7 @@ import org.bpy.electronics.mc6809.assembler.tests.formatter.TestCommentLineForma
 	 TestSetDPDirective,
 	 
 	 /* Instructions  */
+	 TestABXInstruction,
 	 TestADCAInstruction,
 	 TestADCBInstruction,
 	 TestADDAInstruction,

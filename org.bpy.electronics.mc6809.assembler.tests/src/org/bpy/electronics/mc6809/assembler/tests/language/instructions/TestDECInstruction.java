@@ -41,7 +41,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledDECInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
@@ -443,8 +442,8 @@ public class TestDECInstruction {
 	public void testDECRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	DEC		  	0,PC\n");
 		strBuilder.append("	       	DEC		  	,PC\n");
 		strBuilder.append("	       	DEC		  	Const,PC\n");
@@ -478,8 +477,8 @@ public class TestDECInstruction {
 	public void testDECRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const	   EQU         5    \n");
 		strBuilder.append("	       	DEC		  	[0,PC]\n");
 		strBuilder.append("	       	DEC		  	[,PC]\n");
 		strBuilder.append("	       	DEC		  	[Const,PC]\n");
@@ -5911,7 +5910,6 @@ public class TestDECInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
-
 	/**
 	 * Check Assembled DEC Indexed relatif to PC Mode instruction
 	 */
@@ -5919,8 +5917,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	0,PCR  ; 8000   	6A 8C 00            DEC   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	DEC		  	$8003,PCR  ; 8000    6A 8C 00            DEC   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5938,7 +5936,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 8C 00            DEC   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 8C 00            DEC   $8003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5951,8 +5949,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	-128,PCR  ; 8000   	6A 8C 80            DEC   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	DEC		  	$7F83,PCR  ; 8000    6A 8C 80            DEC   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5970,7 +5968,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 8C 80            DEC   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 8C 80            DEC   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5983,8 +5981,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	127,PCR  ; 8000   	6A 8C 7F            DEC   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	DEC		  	$8082,PCR  ; 8000    6A 8C 7F            DEC   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6002,7 +6000,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 8C 7F            DEC   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 8C 7F            DEC   $8082,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6015,8 +6013,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	-129,PCR  ; 8000   	6A 8D FF 7F            DEC   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	DEC		  	$7F82,PCR  ; 8000   	A9 8D FF 7F            DEC   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6033,9 +6031,9 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 8D FF 7F            DEC   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D FF 7F            DEC   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6048,8 +6046,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	128,PCR  ; 8000   	6A 8D 00 80            DEC   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	DEC		  	$8084,PCR  ; 8000   	A9 8D 00 80            DEC   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6068,7 +6066,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 8D 00 80            DEC   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 00 80            DEC   $8084,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6081,8 +6079,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	-32768,PCR  ; 8000   	6A 8D 80 00            DEC   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	DEC		  	$0004,PCR  ; 8000   	A9 8D 80 00            DEC   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6101,7 +6099,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 8D 80 00            DEC   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            DEC   $0004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6114,8 +6112,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	32767,PCR  ; 8000   	6A 8D 7F FF            DEC   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	DEC		  	$C003,PCR  ; 4000    6A 8D 7F FF            DEC   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6124,7 +6122,7 @@ public class TestDECInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledDECInstruction line = (AssembledDECInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6134,7 +6132,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 8D 7F FF            DEC   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    6A 8D 7F FF            DEC   $C003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6147,8 +6145,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	-32769,PCR  ; 8000   	6A 8D 80 00            DEC   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	DEC		  	$0003,PCR  ; 8000    6A 8D 80 00            DEC   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6169,7 +6167,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 8D 80 00            DEC   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 8D 80 00            DEC   $0003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6182,8 +6180,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	32768,PCR  ; 8000   	6A 8D 7F FF            DEC   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	DEC		  	$C004,PCR  ; 4000    6A 8D 7F FF            DEC   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6194,7 +6192,7 @@ public class TestDECInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledDECInstruction line = (AssembledDECInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6204,7 +6202,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 8D 7F FF            DEC   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    6A 8D 7F FF            DEC   $C004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6218,7 +6216,7 @@ public class TestDECInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	[0,PCR]  ; 8000   	6A 9C 00            DEC   [0,PCR]\n");
+		strBuilder.append("Start      	DEC		  	   [$8003,PCR]  ; 8000    6A 9C 00            DEC   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6236,7 +6234,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 9C 00            DEC   [0,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 9C 00            DEC   [0,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6250,7 +6248,7 @@ public class TestDECInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	[-128,PCR]  ; 8000   	6A 9C 80            DEC   [-128,PCR]\n");
+		strBuilder.append("Start      DEC		  	   [$7F83,PCR]  ; 8000    6A 9C 80            DEC   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6268,7 +6266,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 9C 80            DEC   [-128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 9C 80            DEC   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6282,7 +6280,7 @@ public class TestDECInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	[127,PCR]  ; 8000   	6A 9C 7F            DEC   [127,PCR]\n");
+		strBuilder.append("Start      	DEC		  	   [$8082,PCR]  ; 8000    6A 9C 7F            DEC   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6300,7 +6298,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 9C 7F            DEC   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 9C 7F            DEC   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6314,7 +6312,7 @@ public class TestDECInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	[-129,PCR]  ; 8000   	6A 9D FF 7F            DEC   [-129,PCR]\n");
+		strBuilder.append("Start      	DEC		  	   [$7F82,PCR]  ; 8000    6A 9D FF 7E            DEC   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6331,9 +6329,9 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 9D FF 7F            DEC   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 9D FF 7E            DEC   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6347,7 +6345,7 @@ public class TestDECInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	[128,PCR]  ; 8000   	6A 9D 00 80            DEC   [128,PCR]\n");
+		strBuilder.append("Start      	DEC		  		[$8084,PCR]  ; 8000    6A 9D 00 80            DEC   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6366,7 +6364,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 9D 00 80            DEC   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 9D 00 80            DEC   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6380,7 +6378,7 @@ public class TestDECInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	[-32768,PCR]  ; 8000   	6A 9D 80 00            DEC   [-32768,PCR]\n");
+		strBuilder.append("Start      	DEC		  	[$0004,PCR]  ; 8000    6A 9D 80 00            DEC   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6399,7 +6397,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 9D 80 00            DEC   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 9D 80 00            DEC   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6412,8 +6410,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	[32767,PCR]  ; 8000   	6A 9D 7F FF            DEC   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	DEC		  	[$C003,PCR]  ; 8000    6A 9D 7F FF            DEC   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6422,7 +6420,7 @@ public class TestDECInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledDECInstruction line = (AssembledDECInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6432,7 +6430,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 9D 7F FF            DEC   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 9D 7F FF            DEC   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6445,8 +6443,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	[-32769,PCR]  ; 8000   	6A 9D 80 00            DEC   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	DEC		  	[$0003,PCR]  ; 8000    6A 9D 80 00            DEC   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6467,7 +6465,7 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 9D 80 00            DEC   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6A 9D 80 00            DEC   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6480,8 +6478,8 @@ public class TestDECInstruction {
 	public void testDECIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	DEC		  	[32768,PCR]  ; 8000   	6A 9D 7F FF            DEC   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	DEC		  	[$C004,PCR]  ; 4000    6A 9D 7F FF            DEC   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6492,7 +6490,7 @@ public class TestDECInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledDECInstruction line = (AssembledDECInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6502,9 +6500,10 @@ public class TestDECInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6A 9D 7F FF            DEC   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    6A 9D 7F FF            DEC   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
 	}
+
 }

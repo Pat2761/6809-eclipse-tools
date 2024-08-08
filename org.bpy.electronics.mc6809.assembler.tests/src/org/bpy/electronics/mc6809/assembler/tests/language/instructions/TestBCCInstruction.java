@@ -195,9 +195,9 @@ public class TestBCCInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	        	ORG     $8000\n");
-		strBuilder.append("Jump	    	LDA		#25\n");
+		strBuilder.append("Jump	    	LDA	  #25\n");
 		strBuilder.append("				NOP\n");
-		strBuilder.append("MyBanch		BCC		Jump		; Jump=24FB\n");
+		strBuilder.append("MyBanch		BCC	  Jump		; Jump=24FB\n");
 
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());

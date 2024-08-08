@@ -40,6 +40,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledNEGInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
 import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
@@ -443,8 +444,8 @@ public class TestNEGInstruction {
 	public void testNEGRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	NEG		  	0,PC\n");
 		strBuilder.append("	       	NEG		  	,PC\n");
 		strBuilder.append("	       	NEG		  	Const,PC\n");
@@ -478,8 +479,8 @@ public class TestNEGInstruction {
 	public void testNEGRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	NEG		  	[0,PC]\n");
 		strBuilder.append("	       	NEG		  	[,PC]\n");
 		strBuilder.append("	       	NEG		  	[Const,PC]\n");
@@ -5909,7 +5910,6 @@ public class TestNEGInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
-
 	/**
 	 * Check Assembled NEG Indexed relatif to PC Mode instruction
 	 */
@@ -5917,8 +5917,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	0,PCR  ; 8000   	60 8C 00            NEG   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	NEG		  	$8003,PCR  ; 8000    60 8C 00            NEG   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5936,7 +5936,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 8C 00            NEG   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 8C 00            NEG   $8003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5949,8 +5949,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	-128,PCR  ; 8000   	60 8C 80            NEG   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	NEG		  	$7F83,PCR  ; 8000    60 8C 80            NEG   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5968,7 +5968,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 8C 80            NEG   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 8C 80            NEG   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5981,8 +5981,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	127,PCR  ; 8000   	60 8C 7F            NEG   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	NEG		  	$8082,PCR  ; 8000    60 8C 7F            NEG   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6000,7 +6000,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 8C 7F            NEG   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 8C 7F            NEG   $8082,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6013,8 +6013,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	-129,PCR  ; 8000   	60 8D FF 7F            NEG   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	NEG		  	$7F82,PCR  ; 8000   	A9 8D FF 7F            NEG   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6031,9 +6031,9 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 8D FF 7F            NEG   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D FF 7F            NEG   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6046,8 +6046,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	128,PCR  ; 8000   	60 8D 00 80            NEG   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	NEG		  	$8084,PCR  ; 8000   	A9 8D 00 80            NEG   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6066,7 +6066,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 8D 00 80            NEG   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 00 80            NEG   $8084,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6079,8 +6079,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	-32768,PCR  ; 8000   	60 8D 80 00            NEG   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	NEG		  	$0004,PCR  ; 8000   	A9 8D 80 00            NEG   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6099,7 +6099,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 8D 80 00            NEG   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            NEG   $0004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6112,8 +6112,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	32767,PCR  ; 8000   	60 8D 7F FF            NEG   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	NEG		  	$C003,PCR  ; 4000    60 8D 7F FF            NEG   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6122,7 +6122,7 @@ public class TestNEGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledNEGInstruction line = (AssembledNEGInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6132,7 +6132,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 8D 7F FF            NEG   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    60 8D 7F FF            NEG   $C003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6145,8 +6145,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	-32769,PCR  ; 8000   	60 8D 80 00            NEG   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	NEG		  	$0003,PCR  ; 8000    60 8D 80 00            NEG   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6167,7 +6167,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 8D 80 00            NEG   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 8D 80 00            NEG   $0003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6180,8 +6180,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	32768,PCR  ; 8000   	60 8D 7F FF            NEG   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	NEG		  	$C004,PCR  ; 4000    60 8D 7F FF            NEG   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6192,7 +6192,7 @@ public class TestNEGInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledNEGInstruction line = (AssembledNEGInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6202,7 +6202,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 8D 7F FF            NEG   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    60 8D 7F FF            NEG   $C004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6216,7 +6216,7 @@ public class TestNEGInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	[0,PCR]  ; 8000   	60 9C 00            NEG   [0,PCR]\n");
+		strBuilder.append("Start      	NEG		  	   [$8003,PCR]  ; 8000    60 9C 00            NEG   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6234,7 +6234,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 9C 00            NEG   [0,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 9C 00            NEG   [0,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6248,7 +6248,7 @@ public class TestNEGInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	[-128,PCR]  ; 8000   	60 9C 80            NEG   [-128,PCR]\n");
+		strBuilder.append("Start      NEG		  	   [$7F83,PCR]  ; 8000    60 9C 80            NEG   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6266,7 +6266,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 9C 80            NEG   [-128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 9C 80            NEG   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6280,7 +6280,7 @@ public class TestNEGInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	[127,PCR]  ; 8000   	60 9C 7F            NEG   [127,PCR]\n");
+		strBuilder.append("Start      	NEG		  	   [$8082,PCR]  ; 8000    60 9C 7F            NEG   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6298,7 +6298,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 9C 7F            NEG   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 9C 7F            NEG   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6312,7 +6312,7 @@ public class TestNEGInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	[-129,PCR]  ; 8000   	60 9D FF 7F            NEG   [-129,PCR]\n");
+		strBuilder.append("Start      	NEG		  	   [$7F82,PCR]  ; 8000    60 9D FF 7E            NEG   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6329,9 +6329,9 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 9D FF 7F            NEG   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 9D FF 7E            NEG   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6345,7 +6345,7 @@ public class TestNEGInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	[128,PCR]  ; 8000   	60 9D 00 80            NEG   [128,PCR]\n");
+		strBuilder.append("Start      	NEG		  		[$8084,PCR]  ; 8000    60 9D 00 80            NEG   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6364,7 +6364,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 9D 00 80            NEG   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 9D 00 80            NEG   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6378,7 +6378,7 @@ public class TestNEGInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	[-32768,PCR]  ; 8000   	60 9D 80 00            NEG   [-32768,PCR]\n");
+		strBuilder.append("Start      	NEG		  	[$0004,PCR]  ; 8000    60 9D 80 00            NEG   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6397,7 +6397,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 9D 80 00            NEG   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 9D 80 00            NEG   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6410,8 +6410,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	[32767,PCR]  ; 8000   	60 9D 7F FF            NEG   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	NEG		  	[$C003,PCR]  ; 8000    60 9D 7F FF            NEG   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6420,7 +6420,7 @@ public class TestNEGInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledNEGInstruction line = (AssembledNEGInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6430,7 +6430,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 9D 7F FF            NEG   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 9D 7F FF            NEG   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6443,8 +6443,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	[-32769,PCR]  ; 8000   	60 9D 80 00            NEG   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	NEG		  	[$0003,PCR]  ; 8000    60 9D 80 00            NEG   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6465,7 +6465,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 9D 80 00            NEG   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    60 9D 80 00            NEG   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6478,8 +6478,8 @@ public class TestNEGInstruction {
 	public void testNEGIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	NEG		  	[32768,PCR]  ; 8000   	60 9D 7F FF            NEG   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	NEG		  	[$C004,PCR]  ; 4000    60 9D 7F FF            NEG   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6490,7 +6490,7 @@ public class TestNEGInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledNEGInstruction line = (AssembledNEGInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6500,7 +6500,7 @@ public class TestNEGInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	60 9D 7F FF            NEG   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    60 9D 7F FF            NEG   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}

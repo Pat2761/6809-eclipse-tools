@@ -2732,8 +2732,9 @@ public class AssemblerEngine {
 	 * @param instruction reference of the instruction
 	 */
 	private void parse(JsrInstruction instruction) {
-		AbstractAssemblyLine line=new AssembledJSRInstruction();
-    	((AssembledJSRInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
+		AssembledJSRInstruction line=new AssembledJSRInstruction();
+    	line.parsePass1(instruction, currentPcValue, lineNumber);
+		currentPcValue += line.getPcIncrement();
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);
@@ -2749,8 +2750,9 @@ public class AssemblerEngine {
 	 * @param instruction reference of the instruction
 	 */
 	private void parse(JmpInstruction instruction) {
-		AbstractAssemblyLine line=new AssembledJMPInstruction();
-    	((AssembledJMPInstruction) line).parsePass1(instruction, currentPcValue, lineNumber);
+		AssembledJMPInstruction line=new AssembledJMPInstruction();
+    	line.parsePass1(instruction, currentPcValue, lineNumber);
+		currentPcValue += line.getPcIncrement();
 
 		assemblyLines.add(line);
 		assembledLinesMap.put(instruction, line);

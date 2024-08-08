@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Allow to parse an EXG Instruction
  * 
- * @author briand
+ * @author Patrick BRIAND
  *
  */
 public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
@@ -50,13 +50,16 @@ public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
 		this.instruction = (ExgInstruction) instruction;
 		this.label = CommandUtil.getLabel(this.instruction);
 		this.comment = CommandUtil.getComment(this.instruction);
-		super.parse(currentPcValue, lineNumber);
+		this.pcAddress = currentPcValue;
+		this.lineNumber = lineNumber;
+		assembleInstruction();
+		operandBytes = new int[1];
+		operandBytes[0]=0;
 	}
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		setOperand(addressingMode);
 	}
 
 	/**

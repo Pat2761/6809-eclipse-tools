@@ -42,7 +42,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledBITAInstruction;
 import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
@@ -63,7 +62,7 @@ public class TestBITAInstruction {
 	ParseHelper<Model> parseHelper;
 	@Inject
 	@Extension
-	private ValidationTestHelper validationTestHelper;
+	private ValidationTestHelper validationHelper;
 
 	/**
 	 * Check BITA immediat
@@ -77,7 +76,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(1);
@@ -107,7 +106,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(2);
@@ -137,7 +136,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(2);
@@ -167,7 +166,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(2);
@@ -197,7 +196,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(2);
@@ -233,7 +232,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(3);
@@ -271,7 +270,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(3);
@@ -310,7 +309,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(3);
@@ -348,7 +347,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(3);
@@ -388,7 +387,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(3);
@@ -424,7 +423,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(3);
@@ -450,8 +449,8 @@ public class TestBITAInstruction {
 	public void testBITARelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	BITA		  	0,PC\n");
 		strBuilder.append("	       	BITA		  	,PC\n");
 		strBuilder.append("	       	BITA		  	Const,PC\n");
@@ -459,7 +458,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(3);
@@ -485,8 +484,8 @@ public class TestBITAInstruction {
 	public void testBITARelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const		EQU         5    \n");
 		strBuilder.append("	       	BITA		  	[0,PC]\n");
 		strBuilder.append("	       	BITA		  	[,PC]\n");
 		strBuilder.append("	       	BITA		  	[Const,PC]\n");
@@ -494,7 +493,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			SourceLine line = result.getSourceLines().get(3);
@@ -530,7 +529,7 @@ public class TestBITAInstruction {
 
 			Assert.assertNotNull(result);
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), InstructionValidator.DUPLICATE_LABEL,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getInstructionLine(), InstructionValidator.DUPLICATE_LABEL,
 					"Label Start is already defined");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -551,7 +550,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -585,7 +584,7 @@ public class TestBITAInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
@@ -608,7 +607,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -632,7 +631,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -657,7 +656,7 @@ public class TestBITAInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
@@ -682,7 +681,7 @@ public class TestBITAInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 256 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -708,7 +707,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -743,7 +742,7 @@ public class TestBITAInstruction {
 
 			Assert.assertNotNull(result);
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -129 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
@@ -767,7 +766,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -791,7 +790,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -816,7 +815,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 128 is greater than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -842,7 +841,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -876,7 +875,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
@@ -900,7 +899,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -925,7 +924,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -952,7 +951,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
@@ -977,7 +976,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1012,7 +1011,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value -32769 is below the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
@@ -1036,7 +1035,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1061,7 +1060,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1088,7 +1087,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(), InstructionValidator.OVERFLOW_ERROR,
 					"The value 65536 is greater than the possible limit, data may be lost");
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
@@ -1113,7 +1112,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1145,7 +1144,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1177,7 +1176,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1209,7 +1208,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1241,7 +1240,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1273,7 +1272,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1305,7 +1304,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1337,7 +1336,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1369,7 +1368,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1401,7 +1400,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1433,7 +1432,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1465,7 +1464,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1497,7 +1496,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1529,7 +1528,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1561,7 +1560,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1593,7 +1592,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1625,7 +1624,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1657,7 +1656,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1689,7 +1688,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1721,7 +1720,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1753,7 +1752,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1785,7 +1784,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1817,7 +1816,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1849,7 +1848,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1881,7 +1880,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1913,7 +1912,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1945,7 +1944,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -1977,7 +1976,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2009,7 +2008,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2041,7 +2040,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2073,7 +2072,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2105,7 +2104,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2137,7 +2136,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2169,7 +2168,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2201,7 +2200,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2233,7 +2232,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2265,7 +2264,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2297,7 +2296,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2329,7 +2328,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2361,7 +2360,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2395,7 +2394,7 @@ public class TestBITAInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -2417,7 +2416,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2451,7 +2450,7 @@ public class TestBITAInstruction {
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -2473,7 +2472,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2508,7 +2507,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -2530,7 +2529,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2564,7 +2563,7 @@ public class TestBITAInstruction {
 
 			Assert.assertNotNull(result);
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.ILLEGAL_INCREMENT, "Cannot use post increment with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -2586,7 +2585,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2621,7 +2620,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -2643,7 +2642,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2678,7 +2677,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -2700,7 +2699,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2735,7 +2734,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -2757,7 +2756,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2792,7 +2791,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.ILLEGAL_DECREMENT, "Cannot use pre decrement with 1 for indirect mode");
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -2814,7 +2813,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2845,7 +2844,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2878,7 +2877,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2911,7 +2910,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2944,7 +2943,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -2977,7 +2976,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3009,7 +3008,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3041,7 +3040,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3073,7 +3072,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3105,7 +3104,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3136,7 +3135,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3167,7 +3166,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3198,7 +3197,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3229,7 +3228,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3260,7 +3259,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3291,7 +3290,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3322,7 +3321,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3353,7 +3352,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3384,7 +3383,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3415,7 +3414,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3446,7 +3445,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3477,7 +3476,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3508,7 +3507,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3539,7 +3538,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3570,7 +3569,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3601,7 +3600,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3632,7 +3631,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3663,7 +3662,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3694,7 +3693,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3725,7 +3724,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3757,7 +3756,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3789,7 +3788,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3821,7 +3820,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3853,7 +3852,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3885,7 +3884,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3917,7 +3916,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3949,7 +3948,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -3981,7 +3980,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4014,7 +4013,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4047,7 +4046,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4080,7 +4079,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4113,7 +4112,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4146,7 +4145,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4179,7 +4178,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4212,7 +4211,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4247,7 +4246,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4282,7 +4281,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4317,7 +4316,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4352,7 +4351,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4387,7 +4386,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4422,7 +4421,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4457,7 +4456,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4492,7 +4491,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4525,7 +4524,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4558,7 +4557,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4591,7 +4590,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4624,7 +4623,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4657,7 +4656,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4689,7 +4688,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4721,7 +4720,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4753,7 +4752,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4785,7 +4784,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4816,7 +4815,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4847,7 +4846,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4878,7 +4877,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4909,7 +4908,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4940,7 +4939,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -4971,7 +4970,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5002,7 +5001,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5033,7 +5032,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5065,7 +5064,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5097,7 +5096,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5129,7 +5128,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5161,7 +5160,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5193,7 +5192,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5225,7 +5224,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5257,7 +5256,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5289,7 +5288,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5321,7 +5320,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5353,7 +5352,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5385,7 +5384,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5417,7 +5416,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5449,7 +5448,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5481,7 +5480,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5513,7 +5512,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5545,7 +5544,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5578,7 +5577,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5611,7 +5610,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5644,7 +5643,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5677,7 +5676,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5710,7 +5709,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5743,7 +5742,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5776,7 +5775,7 @@ public class TestBITAInstruction {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5811,7 +5810,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5846,7 +5845,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5881,7 +5880,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5916,7 +5915,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5951,7 +5950,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -5986,7 +5985,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6021,7 +6020,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value -32769 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6056,7 +6055,7 @@ public class TestBITAInstruction {
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "Overflow detected for value 32768 , data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6075,7 +6074,6 @@ public class TestBITAInstruction {
 			Assert.assertTrue("Exception", false);
 		}
 	}
-
 	/**
 	 * Check Assembled BITA Indexed relatif to PC Mode instruction
 	 */
@@ -6083,13 +6081,13 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	0,PCR  ; 8000   	A5 8C 00            BITA   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	BITA		  	$8003,PCR  ; 8000    A5 8C 00            BITA   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6102,7 +6100,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 8C 00            BITA   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 8C 00            BITA   $8003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6115,13 +6113,13 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	-128,PCR  ; 8000   	A5 8C 80            BITA   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	BITA		  	$7F83,PCR  ; 8000    A5 8C 80            BITA   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6134,7 +6132,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 8C 80            BITA   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 8C 80            BITA   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6147,13 +6145,13 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	127,PCR  ; 8000   	A5 8C 7F            BITA   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	BITA		  	$8082,PCR  ; 8000    A5 8C 7F            BITA   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6166,7 +6164,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 8C 7F            BITA   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 8C 7F            BITA   $8082,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6179,13 +6177,13 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	-129,PCR  ; 8000   	A5 8D FF 7F            BITA   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	BITA		  	$7F82,PCR  ; 8000   	A9 8D FF 7F            BITA   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6197,9 +6195,9 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 8D FF 7F            BITA   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D FF 7F            BITA   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6212,13 +6210,13 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	128,PCR  ; 8000   	A5 8D 00 80            BITA   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	BITA		  	$8084,PCR  ; 8000   	A9 8D 00 80            BITA   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6232,7 +6230,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 8D 00 80            BITA   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 00 80            BITA   $8084,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6245,13 +6243,13 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	-32768,PCR  ; 8000   	A5 8D 80 00            BITA   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	BITA		  	$0004,PCR  ; 8000   	A9 8D 80 00            BITA   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6265,7 +6263,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 8D 80 00            BITA   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            BITA   $0004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6278,17 +6276,17 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	32767,PCR  ; 8000   	A5 8D 7F FF            BITA   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	BITA		  	$C003,PCR  ; 4000    A5 8D 7F FF            BITA   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6298,7 +6296,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 8D 7F FF            BITA   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    A5 8D 7F FF            BITA   $C003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6311,15 +6309,15 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	-32769,PCR  ; 8000   	A5 8D 80 00            BITA   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	BITA		  	$0003,PCR  ; 8000    A5 8D 80 00            BITA   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6333,7 +6331,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 8D 80 00            BITA   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 8D 80 00            BITA   $0003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6346,19 +6344,19 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	32768,PCR  ; 8000   	A5 8D 7F FF            BITA   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	BITA		  	$C004,PCR  ; 4000    A5 8D 7F FF            BITA   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6368,7 +6366,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 8D 7F FF            BITA   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    A5 8D 7F FF            BITA   $C004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6382,12 +6380,12 @@ public class TestBITAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	[0,PCR]  ; 8000   	A5 9C 00            BITA   [0,PCR]\n");
+		strBuilder.append("Start      	BITA		  	   [$8003,PCR]  ; 8000    A5 9C 00            BITA   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6400,7 +6398,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 9C 00            BITA   [0,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 9C 00            BITA   [0,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6414,12 +6412,12 @@ public class TestBITAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	[-128,PCR]  ; 8000   	A5 9C 80            BITA   [-128,PCR]\n");
+		strBuilder.append("Start      BITA		  	   [$7F83,PCR]  ; 8000    A5 9C 80            BITA   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6432,7 +6430,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 9C 80            BITA   [-128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 9C 80            BITA   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6446,12 +6444,12 @@ public class TestBITAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	[127,PCR]  ; 8000   	A5 9C 7F            BITA   [127,PCR]\n");
+		strBuilder.append("Start      	BITA		  	   [$8082,PCR]  ; 8000    A5 9C 7F            BITA   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6464,7 +6462,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 9C 7F            BITA   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 9C 7F            BITA   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6478,12 +6476,12 @@ public class TestBITAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	[-129,PCR]  ; 8000   	A5 9D FF 7F            BITA   [-129,PCR]\n");
+		strBuilder.append("Start      	BITA		  	   [$7F82,PCR]  ; 8000    A5 9D FF 7E            BITA   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6495,9 +6493,9 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 9D FF 7F            BITA   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 9D FF 7E            BITA   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6511,12 +6509,12 @@ public class TestBITAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	[128,PCR]  ; 8000   	A5 9D 00 80            BITA   [128,PCR]\n");
+		strBuilder.append("Start      	BITA		  		[$8084,PCR]  ; 8000    A5 9D 00 80            BITA   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6530,7 +6528,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 9D 00 80            BITA   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 9D 00 80            BITA   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6544,12 +6542,12 @@ public class TestBITAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	[-32768,PCR]  ; 8000   	A5 9D 80 00            BITA   [-32768,PCR]\n");
+		strBuilder.append("Start      	BITA		  	[$0004,PCR]  ; 8000    A5 9D 80 00            BITA   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6563,7 +6561,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 9D 80 00            BITA   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 9D 80 00            BITA   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6576,17 +6574,17 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	[32767,PCR]  ; 8000   	A5 9D 7F FF            BITA   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	BITA		  	[$C003,PCR]  ; 8000    A5 9D 7F FF            BITA   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			validationTestHelper.assertNoErrors(result);
+			validationHelper.assertNoErrors(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6596,7 +6594,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 9D 7F FF            BITA   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 9D 7F FF            BITA   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6609,15 +6607,15 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	[-32769,PCR]  ; 8000   	A5 9D 80 00            BITA   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	BITA		  	[$0003,PCR]  ; 8000    A5 9D 80 00            BITA   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
@@ -6631,7 +6629,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 9D 80 00            BITA   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    A5 9D 80 00            BITA   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6644,19 +6642,19 @@ public class TestBITAInstruction {
 	public void testBITAIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	BITA		  	[32768,PCR]  ; 8000   	A5 9D 7F FF            BITA   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	BITA		  	[$C004,PCR]  ; 4000    A5 9D 7F FF            BITA   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
-			validationTestHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
+			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getBitInstruction(),
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledBITAInstruction line = (AssembledBITAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6666,7 +6664,7 @@ public class TestBITAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A5 9D 7F FF            BITA   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    A5 9D 7F FF            BITA   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}

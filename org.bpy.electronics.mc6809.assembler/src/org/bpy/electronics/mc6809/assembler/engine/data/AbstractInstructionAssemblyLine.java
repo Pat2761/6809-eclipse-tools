@@ -156,7 +156,6 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	protected void assembleInstruction() {
 		resolveAddressingMode(getInstructionOperand());
 		setOpcode(addressingMode);
-		setOperand(addressingMode);
 		setCyclesNumber(addressingMode);
 	}
 
@@ -196,7 +195,113 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 			}
 		}
 	}
+
+	protected void createOperandSpace() {
+		switch (addressingMode) {
+			case DIRECT:
+				operandBytes = new int[1];
+				break;
+				
+			case EXTENDED: 
+				operandBytes = new int[2];
+				break;
+				
+			case EXTENDED_INDIRECT:	
+				operandBytes = new int[2];
+				break;
+				
+			case INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE:
+				operandBytes = new int[1];
+				
+			case INDEXED_ACCUMULATOR_MOVING_MODE:
+				operandBytes = new int[1];
+				break;
+				
+			case INDEXED_AUTO_DEC_INC_INDIRECT_MODE:
+				operandBytes = new int[1];
+				break;
+
+			case INDEXED_AUTO_DEC_INC_MODE: 
+				operandBytes = new int[1];
+			   break;
+			   
+			case INDEXED_CONSTANT_INDIRECT_MODE:
+			{
+				ConstantIndexedMovingIndirectMode mode = (ConstantIndexedMovingIndirectMode)((IndexedOperand)getInstructionOperand()).getMode();
+				operandBytes = new int[getSizeOfOperandWithConstantMove(mode.getDeplacement(), true)];
+				break;
+			}
+			
+			case INDEXED_CONSTANT_MODE:
+			{	
+				ConstantIndexedMode mode = (ConstantIndexedMode) ((IndexedOperand)getInstructionOperand()).getMode();
+				operandBytes = new int[getSizeOfOperandWithConstantMove(mode.getDeplacement(), false)];
+				break;
+			}
+			
+			case INDEXED_RELATIF_TO_PC:
+			{	
+				NumericalValue deplacement = ((RelatifToPCMode)((IndexedOperand)getInstructionOperand()).getMode()).getDeplacement();
+				operandBytes = new int[getSizeOfOperandWithReLatifToPCMode(deplacement, true)];
+				break;
+			}
+			
+			case INDEXED_RELATIF_TO_PC_INDIRECT_MODE: 
+			{
+				NumericalValue deplacement = ((RelatifToPCIndirectMode)((IndexedOperand)getInstructionOperand()).getMode()).getDeplacement();
+				operandBytes = new int[getSizeOfOperandWithReLatifToPCMode(deplacement, true)];
+				break;
+			}	
+		}
+	}
 	
+	private int getSizeOfOperandWithReLatifToPCMode(NumericalValue deplacement, boolean b) {
+		int offset;
+		if (deplacement != null) { 
+			try {
+				offset = ExpressionParser.parse(deplacement);
+				offset = offset-(pcAddress+opcodeBytes.length+2);
+			} catch (UnresolvedException e) {
+				offset = 2;
+			}
+		} else {
+			offset = 2;
+		}
+
+		if (offset > -129 && offset < 128) {
+			return 2;
+		} else {
+			return 3;
+		}
+	}
+
+	private int getSizeOfOperandWithConstantMove(NumericalValue deplacement, boolean indirect) {
+		if (deplacement != null) { 
+			try {
+				int offset = ExpressionParser.parse(deplacement);
+				if (offset == 0) {
+					return 1;
+				} else if (offset>-17 && offset<16) {
+					if (indirect) {
+						return 2;
+					} else {
+						return 1;
+					}
+				} else if (offset > -129 && offset<128) {
+					return 2;
+				} else  if (offset >-32769 && offset<32768) {
+					return 3;
+				} else {
+					return 3;
+				}
+				
+			} catch (UnresolvedException e) {
+				return 3;
+			}
+		}
+		return 1;
+	}
+
 	protected void setImmediateOperand(EObject instruction,ImmediatOperand immediatOperand, EReference eReference, int min, int max) {
 		int value;
 		try {
@@ -209,8 +314,11 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 				
 			}
 		} catch (UnresolvedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					e.getDescriptor().getMessage(), 
+					e.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 		}
 	}
 
@@ -220,8 +328,11 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 			value = ExpressionParser.parse(directOperand, eReference, instruction);
 			operandBytes = new int[] {value};
 		} catch (UnresolvedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					e.getDescriptor().getMessage(), 
+					e.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 		} 
 	}
 
@@ -231,15 +342,18 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 			value = ExpressionParser.parse(extendedOperand, eReference, instruction);
 			operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF};
 		} catch (UnresolvedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					e.getDescriptor().getMessage(), 
+					e.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 		} 
 	}
 
 	protected void setExtendedOperand(EObject instruction, ExtendedOperand extendedOperand,Map<String, AbstractAssemblyLine> labelsPositionObject, EReference eReference) {
-		int value;
-		value = ExpressionParser.parse(extendedOperand, eReference, labelsPositionObject, instruction);
-		operandBytes = new int[] {(value&0xFF00)>>8, value&0xFF}; 
+		int value = ExpressionParser.parse(extendedOperand, eReference, labelsPositionObject, instruction);
+		operandBytes[0] = (value&0xFF00)>>8;
+		operandBytes[1] = value&0xFF; 
 	}
 
 	protected void setIndexedAccumulatorMovingMode(AccumulatorMovingMode operand) {
@@ -355,62 +469,32 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	}
 
 	protected void setIndexedConstantMode(EObject instruction, ConstantIndexedMode mode, EStructuralFeature eReference) {
-		int postByte = 0;
 		int offset = 0;
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
 			try {
 				offset = ExpressionParser.parse(deplacement);
 			} catch (UnresolvedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						e.getDescriptor().getMessage(), 
+						e.getDescriptor().getReference(), 
+						InstructionValidator.EXPRESSION_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			}
 		}
 		
 		if ((deplacement == null) || (offset == 0)) {
-			switch (mode.getRegister()) {
-				case "X" : postByte |= 0x84; break;
-				case "Y" : postByte |= 0xA4; break;
-				case "U" : postByte |= 0xC4; break;
-				case "S" : postByte |= 0xE4; break;
-			}
-			operandBytes = new int[] {postByte&0xFF};
+			setIndexedConstantMode1(mode);
 
 		} else {
 			if (offset>-17 && offset<16) {
-
-				switch (mode.getRegister()) {
-					case "X" : postByte |= 0x00; break;
-					case "Y" : postByte |= 0x20; break;
-					case "U" : postByte |= 0x40; break;
-					case "S" : postByte |= 0x60; break;
-				}	
-				if (offset <0) {
-					postByte |= 0x10;
-					offset = offset&0x0F; 
-				}
-				postByte |= offset;
-				operandBytes = new int[] {postByte&0xFF};
+				setIndexedConstantMode2(mode, offset);
 				 
 			} else if (offset>-129 && offset<128) {
-				
-				switch (mode.getRegister()) {
-					case "X" : postByte |= 0x88; break;
-					case "Y" : postByte |= 0xA8; break;
-					case "U" : postByte |= 0xC8; break;
-					case "S" : postByte |= 0xE8; break;
-				}	
-				operandBytes = new int[] {postByte&0xFF, offset&0xFF };
+				setIndexedConstantMode3(mode, offset);
 				
 			} else  if (offset >-32769 && offset<32768){
-			
-				switch (mode.getRegister()) {
-					case "X" : postByte |= 0x89; break;
-					case "Y" : postByte |= 0xA9; break;
-					case "U" : postByte |= 0xC9; break;
-					case "S" : postByte |= 0xE9; break;
-				}	
-				operandBytes = new int[] {postByte&0xFF, (offset&0xFF00) >> 8, offset&0xFF };
+				setIndexedConstantMode4(mode, offset);
 			
 			} else {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -418,60 +502,147 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 						eReference, 
 						InstructionValidator.OVERFLOW_ERROR);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
-				
-				switch (mode.getRegister()) {
-					case "X" : postByte |= 0x89; break;
-					case "Y" : postByte |= 0xA9; break;
-					case "U" : postByte |= 0xC9; break;
-					case "S" : postByte |= 0xE9; break;
-				}	
+
 				if (offset<-32768) {
-					operandBytes = new int[] {postByte&0xFF, 0x80, 0x00 };
+					setIndexedConstantMode4(mode, -32768);
 				} else {
-					operandBytes = new int[] {postByte&0xFF, 0x7F, 0xFF };
+					setIndexedConstantMode4(mode, 32767);
 				}
 			}
 		}
 	}
 
-	protected void setIndexedConstantIndirectMode(EObject instruction, ConstantIndexedMovingIndirectMode mode, EStructuralFeature eReference) {
+	private void setIndexedConstantMode1(ConstantIndexedMode mode) {
 		int postByte = 0;
+		if (opcodeBytes.length == 3) {
+			setIndexedConstantMode4(mode,0);
+		} else {
+			switch (mode.getRegister()) {
+			case "X":
+				postByte |= 0x84;
+				break;
+			case "Y":
+				postByte |= 0xA4;
+				break;
+			case "U":
+				postByte |= 0xC4;
+				break;
+			case "S":
+				postByte |= 0xE4;
+				break;
+			default:
+				// not possible by grammar rule
+				break;
+			}
+			operandBytes[0] = postByte & 0xFF;
+		}
+	}
+
+	private void setIndexedConstantMode2(ConstantIndexedMode mode, int offset) {
+		int postByte = 0;
+		if (opcodeBytes.length == 3) {
+			setIndexedConstantMode4(mode, 0);
+		} else {
+			switch (mode.getRegister()) {
+			case "X":
+				postByte |= 0x00;
+				break;
+			case "Y":
+				postByte |= 0x20;
+				break;
+			case "U":
+				postByte |= 0x40;
+				break;
+			case "S":
+				postByte |= 0x60;
+				break;
+			default:
+				// not possible by grammar rule
+				break;
+			}
+			if (offset < 0) {
+				postByte |= 0x10;
+				offset = offset & 0x0F;
+			}
+			postByte |= offset;
+			operandBytes[0] = postByte & 0xFF;
+		}
+	}
+
+	private void setIndexedConstantMode3(ConstantIndexedMode mode, int offset) {
+		int postByte = 0;
+		if (opcodeBytes.length == 3) {
+			setIndexedConstantMode4(mode, 0);
+		} else {
+			switch (mode.getRegister()) {
+			case "X":
+				postByte |= 0x88;
+				break;
+			case "Y":
+				postByte |= 0xA8;
+				break;
+			case "U":
+				postByte |= 0xC8;
+				break;
+			case "S":
+				postByte |= 0xE8;
+				break;
+			default:
+				// not possible by grammar rule
+				break;
+			}
+			operandBytes[0] = postByte & 0xFF;
+			operandBytes[1] = offset & 0xFF;
+		}
+	}
+
+	private void setIndexedConstantMode4(ConstantIndexedMode mode, int offset) {
+		int postByte = 0;
+		switch (mode.getRegister()) {
+			case "X":
+				postByte |= 0x89;
+				break;
+			case "Y":
+				postByte |= 0xA9;
+				break;
+			case "U":
+				postByte |= 0xC9;
+				break;
+			case "S":
+				postByte |= 0xE9;
+				break;
+			default:
+				// not possible by grammar rule
+				break;
+		}
+		operandBytes[0] = postByte & 0xFF;
+		operandBytes[1] = (offset & 0xFF00) >> 8;
+		operandBytes[2] = offset & 0xFF;
+	}
+
+	protected void setIndexedConstantIndirectMode(EObject instruction, ConstantIndexedMovingIndirectMode mode, EStructuralFeature eReference) {
 		int offset = 0;
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
 			try {
 				offset = ExpressionParser.parse(deplacement);
 			} catch (UnresolvedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						e.getDescriptor().getMessage(), 
+						e.getDescriptor().getReference(), 
+						InstructionValidator.EXPRESSION_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			}
 		}
 		
 		if ((deplacement == null) || (offset == 0)) {
-			switch (mode.getRegister()) {
-				case "X" : postByte |= 0x94; break;
-				case "Y" : postByte |= 0xB4; break;
-				case "U" : postByte |= 0xD4; break;
-				case "S" : postByte |= 0xF4; break;
-			}
-			operandBytes = new int[] {postByte&0xFF};
+			setIndexedConstantMode1(mode);
 		} else {
 			if (offset > -129 && offset<128) {
-				switch (mode.getRegister()) {
-					case "X" : postByte |= 0x98; break;
-					case "Y" : postByte |= 0xB8; break;
-					case "U" : postByte |= 0xD8; break;
-					case "S" : postByte |= 0xF8; break;
-				}	
-				operandBytes = new int[] {postByte&0xFF, offset&0xFF };
+				setIndexedConstantMode3(mode, offset);
+
 			} else  if (offset >-32769 && offset<32768){
-				switch (mode.getRegister()) {
-					case "X" : postByte |= 0x99; break;
-					case "Y" : postByte |= 0xB9; break;
-					case "U" : postByte |= 0xD9; break;
-					case "S" : postByte |= 0xF9; break;
-				}	
-				operandBytes = new int[] {postByte&0xFF, (offset&0xFF00)>>8, offset&0xFF };
+				setIndexedConstantMode4(mode, offset);
 				
 			} else {
 				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -480,39 +651,112 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 						InstructionValidator.OVERFLOW_ERROR);
 				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 				
-				switch (mode.getRegister()) {
-					case "X" : postByte |= 0x99; break;
-					case "Y" : postByte |= 0xB9; break;
-					case "U" : postByte |= 0xD9; break;
-					case "S" : postByte |= 0xF9; break;
-				}	
 				if (offset<-32768) {
-					operandBytes = new int[] {postByte&0xFF, 0x80, 0x00 };
+					setIndexedConstantMode4(mode, -32768);
 				} else {
-					operandBytes = new int[] {postByte&0xFF, 0x7F, 0xFF };
+					setIndexedConstantMode4(mode, 32767);
 				}
 			}
 		}
 	}
 
+	private void setIndexedConstantMode1(ConstantIndexedMovingIndirectMode mode) {
+		int postByte = 0;
+		if (opcodeBytes.length == 3) {
+			setIndexedConstantMode4(mode, 0);
+		} else {
+			switch (mode.getRegister()) {
+			case "X":
+				postByte |= 0x94;
+				break;
+			case "Y":
+				postByte |= 0xB4;
+				break;
+			case "U":
+				postByte |= 0xD4;
+				break;
+			case "S":
+				postByte |= 0xF4;
+				break;
+			default:
+				// not possible by grammar rule
+				break;
+			}
+			operandBytes[0] = postByte&0xFF;
+		}
+	}
+
+	private void setIndexedConstantMode3(ConstantIndexedMovingIndirectMode mode, int offset) {
+		int postByte = 0;
+		if (opcodeBytes.length == 3) {
+			setIndexedConstantMode4(mode, 0);
+		} else {
+			switch (mode.getRegister()) {
+			case "X":
+				postByte |= 0x98;
+				break;
+			case "Y":
+				postByte |= 0xB8;
+				break;
+			case "U":
+				postByte |= 0xD8;
+				break;
+			case "S":
+				postByte |= 0xF8;
+				break;
+			default:
+				// not possible by grammar rule
+				break;
+			}
+			operandBytes[0] = postByte & 0xFF;
+			operandBytes[1] = offset & 0xFF;
+		}
+	}
+
+	private void setIndexedConstantMode4(ConstantIndexedMovingIndirectMode mode, int offset) {
+		int postByte = 0;
+		switch (mode.getRegister()) {
+			case "X":
+				postByte |= 0x99;
+				break;
+			case "Y":
+				postByte |= 0xB9;
+				break;
+			case "U":
+				postByte |= 0xD9;
+				break;
+			case "S":
+				postByte |= 0xF9;
+				break;
+			default:
+				// not possible by grammar rule
+				break;
+		}
+		operandBytes[0] = postByte & 0xFF;
+		operandBytes[1] = (offset & 0xFF00) >> 8;
+		operandBytes[2] = offset & 0xFF;
+	}
+
 	protected void setRelatifToPCMode(EObject instruction, RelatifToPCMode mode, EReference eReference) {
-		int offset = 0;
+		int offset = operandBytes.length;
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
 			try {
 				offset = ExpressionParser.parse(deplacement);
+				offset = offset-(pcAddress+opcodeBytes.length+operandBytes.length);
 			} catch (UnresolvedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						e.getDescriptor().getMessage(), 
+						e.getDescriptor().getReference(), 
+						InstructionValidator.EXPRESSION_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			}
-		} else {
-			offset = 0;
 		}
 		
 		if (offset > -129 && offset < 128) {
-			operandBytes = new int[] {0x8C, offset&0xFF };
+			setShortOperandRelatifToPC(0x8C, 0x8D, offset);
 		} else if (offset > -32769 && offset< 32768){
-			operandBytes = new int[] {0x8D, (offset&0xFF00) >> 8, offset&0xFF };
+			setLongOperandRelatifToPC(0x8D, offset);
 		} else if (offset < -32768) {
 			
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -520,7 +764,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 					eReference, 
 					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
-			operandBytes = new int[] {0x8D, 0x80, 0x00 };
+			setLongOperandRelatifToPC(0x8D, 0x8000);
 
 		} else {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -528,28 +772,30 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 					eReference, 
 					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
-			operandBytes = new int[] {0x8D, 0x7F, 0xFF };
+			setLongOperandRelatifToPC(0x8D, 0x7FFF);
 		}
 	}
 
 	protected void setRelatifToPCIndirectMode(EObject instruction, RelatifToPCIndirectMode mode, EReference eReference) {
-		int offset = 0;
+		int offset = operandBytes.length;
 		NumericalValue deplacement = mode.getDeplacement();
 		if (deplacement != null) { 
 			try {
 				offset = ExpressionParser.parse(deplacement);
+				offset = offset-(pcAddress+opcodeBytes.length+operandBytes.length);
 			} catch (UnresolvedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+						e.getDescriptor().getMessage(), 
+						e.getDescriptor().getReference(), 
+						InstructionValidator.EXPRESSION_ERROR);
+				AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 			}
-		} else {
-			offset = 0;
 		}
 		
 		if (offset > -129 && offset < 128) {
-			operandBytes = new int[] {0x9C, offset&0xFF };
+			setShortOperandRelatifToPC(0x9C, 0x9D, offset);
 		} else if (offset > -32769 && offset< 32768){
-			operandBytes = new int[] {0x9D, (offset&0xFF00) >> 8, offset&0xFF };
+			setLongOperandRelatifToPC(0x9D, offset);
 		} else if (offset < -32768) {
 		
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -557,7 +803,7 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 					eReference, 
 					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
-			operandBytes = new int[] {0x9D, 0x80, 0x00 };
+			setLongOperandRelatifToPC(0x9D, 0x8000);
 
 		} else {
 			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
@@ -565,9 +811,25 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 					eReference, 
 					InstructionValidator.OVERFLOW_ERROR);
 			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
-			operandBytes = new int[] {0x9D, 0x7F, 0xFF };
+			setLongOperandRelatifToPC(0x9D, 0x7FFF);
 		}
 	}
+
+	private void setShortOperandRelatifToPC(int shortCode, int longCode, int offset) {
+		if (operandBytes.length == 3) {
+			setLongOperandRelatifToPC(longCode, offset);
+		} else {
+			operandBytes[0] = shortCode;
+			operandBytes[1] = offset&0xFF;
+		}
+	}
+
+	private void setLongOperandRelatifToPC(int longCode, int offset) {
+		operandBytes[0] = longCode;
+		operandBytes[1] = (offset&0xFF00) >> 8;
+		operandBytes[2] = offset&0xFF;
+	}
+
 
 	protected void setExtendedIndirectOperand(EObject instruction, ExtendedIndirectOperand operand, EReference eReference) {
 		int value;
@@ -575,8 +837,11 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 			value = ExpressionParser.parse(operand, eReference, instruction);
 			operandBytes = new int[] {value/256, value%256};
 		} catch (UnresolvedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			AssemblerErrorDescription errorDescription = new AssemblerErrorDescription(
+					e.getDescriptor().getMessage(), 
+					e.getDescriptor().getReference(), 
+					InstructionValidator.EXPRESSION_ERROR);
+			AssemblerErrorManager.getInstance().addProblem(instruction, errorDescription);
 		} 
 	}
 
@@ -586,5 +851,4 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 		}
 		return "";
 	}
-
 }

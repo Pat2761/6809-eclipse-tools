@@ -50,7 +50,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledANDAInstruction;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 @RunWith(XtextRunner.class)
@@ -67,7 +66,7 @@ public class TestANDAInstruction {
 	 * Check ANDA immediat
 	 */
 	@Test
-	public void testANDAImemdiatAddressingMode() {
+	public void testANDAImemdiatAndressingMode() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("			ORG    		$8000\n");
 		strBuilder.append("			ANDA		#124\n");
@@ -82,11 +81,11 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be an immediate addressing mode", adcInstruction.getOperand() instanceof ImmediatOperand);
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be an immediate andressing mode", andInstruction.getOperand() instanceof ImmediatOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -96,7 +95,7 @@ public class TestANDAInstruction {
 	 * Check ANDA direct mode
 	 */
 	@Test
-	public void testANDADirectAddressingMode() {
+	public void testANDADirectAndressingMode() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
 		strBuilder.append("	       ORG    		$8000\n");
@@ -112,11 +111,11 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a direct addressing mode", adcInstruction.getOperand() instanceof DirectOperand);
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a direct andressing mode", andInstruction.getOperand() instanceof DirectOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -126,7 +125,7 @@ public class TestANDAInstruction {
 	 * Check ANDA extended mode
 	 */
 	@Test
-	public void testANDAExtendedAddressingMode1() {
+	public void testANDAExtendedAndressingMode1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
 		strBuilder.append("	       ORG    		$8000\n");
@@ -142,11 +141,11 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a extended andressing mode", andInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -156,7 +155,7 @@ public class TestANDAInstruction {
 	 * Check ANDA extended mode
 	 */
 	@Test
-	public void testANDAExtendedAddressingMode2() {
+	public void testANDAExtendedAndressingMode2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
 		strBuilder.append("	       ORG    		$8000\n");
@@ -172,11 +171,11 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a extended andressing mode", andInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -186,7 +185,7 @@ public class TestANDAInstruction {
 	 * Check ANDA extended indirect mode
 	 */
 	@Test
-	public void testANDAExtendedIndirectAddressingMode1() {
+	public void testANDAExtendedIndirectAndressingMode1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("	       ORG    		$8000\n");
@@ -202,11 +201,11 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a extended indirect addressing mode", adcInstruction.getOperand() instanceof ExtendedIndirectOperand);
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a extended indirect andressing mode", andInstruction.getOperand() instanceof ExtendedIndirectOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -219,9 +218,9 @@ public class TestANDAInstruction {
 	public void testANDAConstantOffsetIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	      ORG  			$8000\n");
-		strBuilder.append("Const	EQU        	5    \n");
-		strBuilder.append("	      ANDA		  	Const,X\n");
+		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ANDA		  	Const,X\n");
 		strBuilder.append("			ANDA		  	,X\n");
 		strBuilder.append("			ANDA		  	$9,U\n");
 		strBuilder.append("			ANDA		  	$9,S\n");
@@ -238,12 +237,12 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", andInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) andInstruction.getOperand();
 			assertTrue("Must be a Constant-Offset Indexed mode", indexedOperand.getMode() instanceof ConstantIndexedMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -257,9 +256,9 @@ public class TestANDAInstruction {
 	public void testANDAConstantOffsetIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	      ORG  			$8000\n");
-		strBuilder.append("Const	EQU        	5    \n");
-		strBuilder.append("	      ANDA		  	[Const,X]\n");
+		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ANDA		  	[Const,X]\n");
 		strBuilder.append("			ANDA		  	[,X]\n");
 		strBuilder.append("			ANDA		  	[$9,U]\n");
 		strBuilder.append("			ANDA		  	[$9,S]\n");
@@ -276,12 +275,12 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", andInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) andInstruction.getOperand();
 			assertTrue("Must be a Constant-Offset Indexed indirect mode",
 					indexedOperand.getMode() instanceof ConstantIndexedMovingIndirectMode);
 		} catch (Exception e) {
@@ -296,9 +295,9 @@ public class TestANDAInstruction {
 	public void testANDAAccumulatorIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	      ORG  			$8000\n");
-		strBuilder.append("Const	EQU        	5    \n");
-		strBuilder.append("	      ANDA		  	A,X\n");
+		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ANDA		  	A,X\n");
 		strBuilder.append("			ANDA		  	B,X\n");
 		strBuilder.append("			ANDA		  	D,U\n");
 		strBuilder.append("			ANDA		  	A,S\n");
@@ -315,12 +314,12 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", andInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) andInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed mode", indexedOperand.getMode() instanceof AccumulatorMovingMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -353,12 +352,12 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", andInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) andInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed indirect mode", indexedOperand.getMode() instanceof AccumulatorMovingIndirectMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -393,12 +392,12 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", andInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) andInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed mode", indexedOperand.getMode() instanceof AutoIncDecMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -429,12 +428,12 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", andInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) andInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed indirect mode", indexedOperand.getMode() instanceof AutoIncDecIndirectMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -448,8 +447,8 @@ public class TestANDAInstruction {
 	public void testANDARelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const	   EQU         5    \n");
 		strBuilder.append("	       	ANDA		  	0,PC\n");
 		strBuilder.append("	       	ANDA		  	,PC\n");
 		strBuilder.append("	       	ANDA		  	Const,PC\n");
@@ -464,12 +463,12 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", andInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) andInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed mode", indexedOperand.getMode() instanceof RelatifToPCMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -483,9 +482,9 @@ public class TestANDAInstruction {
 	public void testANDARelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
-		strBuilder.append("	       	ANDA		  	[0,PC]\n");
+		strBuilder.append("	       	ORG    		$8000\n");
+		strBuilder.append("Const		EQU          	$9000    \n");
+		strBuilder.append("	       	ANDA		  	[$8000,PC]\n");
 		strBuilder.append("	       	ANDA		  	[,PC]\n");
 		strBuilder.append("	       	ANDA		  	[Const,PC]\n");
 		try {
@@ -499,12 +498,12 @@ public class TestANDAInstruction {
 			Assert.assertTrue("Must be an Instruction line", line.getLineContent() instanceof InstructionLine);
 
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
-			Assert.assertTrue("Must be an AND directive line", instructionLine.getInstruction() instanceof AndInstruction);
+			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AndInstruction);
 
-			AndInstruction adcInstruction = (AndInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ANDA instruction", adcInstruction.getInstruction(), "ANDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AndInstruction andInstruction = (AndInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ANDA instruction", andInstruction.getInstruction(), "ANDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", andInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) andInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed Indirect mode", indexedOperand.getMode() instanceof RelatifToPCIndirectMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -701,7 +700,7 @@ public class TestANDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ANDA		  	<Const*2  ; 8000   94 0A        START:    ANDA   <Const*2 \n");
+		strBuilder.append("Start      	ANDA		    	<Const*2  ; 8000   94 0A        START:    ANDA   <Const*2 \n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -718,9 +717,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x0A, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			;
 			Assert.assertEquals("Check comment", "; 8000   94 0A        START:    ANDA   <Const*2 ", line.getComment());
-			;
 
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -2871,7 +2868,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	1234,Y  ; 8000   	AB A9 04 D2            ANDA   1234,Y\n");
+		strBuilder.append("Start      	ANDA		  	1234,Y  ; 8000   	A4 A9 04 D2            ANDA   1234,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2890,7 +2887,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	AB A9 04 D2            ANDA   1234,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 A9 04 D2            ANDA   1234,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3687,7 +3684,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	15,S  ; 8000   	A4 6F            ANDA   15,S\n");
+		strBuilder.append("Start      	ANDA		  	   15,S  ; 8000   	A4 6F            ANDA   15,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4040,7 +4037,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	-32768,Y  ; 8000   	AB A9 80 00             ANDA   -32768,Y\n");
+		strBuilder.append("Start      	ANDA		  	-32768,Y  ; 8000   	A4 A9 80 00             ANDA   -32768,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4059,7 +4056,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	AB A9 80 00             ANDA   -32768,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 A9 80 00             ANDA   -32768,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4073,7 +4070,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  32767,Y  ; 8000   	AB A9 7F FF             ANDA   32767,Y\n");
+		strBuilder.append("Start      	ANDA		  32767,Y  ; 8000   	A4 A9 7F FF             ANDA   32767,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4092,7 +4089,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	AB A9 7F FF             ANDA   32767,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 A9 7F FF             ANDA   32767,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4308,7 +4305,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	-32769,Y  ; 8000   	AB A9 80 00             ANDA   -32769,Y\n");
+		strBuilder.append("Start      	ANDA		  	-32769,Y  ; 8000   	A4 A9 80 00             ANDA   -32769,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4329,7 +4326,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	AB A9 80 00             ANDA   -32769,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 A9 80 00             ANDA   -32769,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4343,7 +4340,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  32768,Y  ; 8000   	AB A9 7F FF             ANDA   32768,Y\n");
+		strBuilder.append("Start      	ANDA		  32768,Y  ; 8000   	A4 A9 7F FF             ANDA   32768,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4364,7 +4361,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	AB A9 7F FF             ANDA   32768,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 A9 7F FF             ANDA   32768,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4517,7 +4514,7 @@ public class TestANDAInstruction {
 	public void testANDAIndexedConstantIndirectMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
+		strBuilder.append("			   	ORG    		$8000\n");
 		strBuilder.append("Start      	ANDA		  	[1234,X]  ; 8000   	A4 99 04 D2            ANDA   [1234,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -6081,8 +6078,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	0,PCR  ; 8000   	A4 8C 00            ANDA   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ANDA		  	$8003,PCR  ; 8000   	A4 8C 00            ANDA   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6100,7 +6097,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 8C 00            ANDA   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 8C 00            ANDA   $8003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6113,8 +6110,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	-128,PCR  ; 8000   	A4 8C 80            ANDA   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ANDA		  	$7F83,PCR  ; 8000   	A4 8C 80            ANDA   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6132,7 +6129,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 8C 80            ANDA   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 8C 80            ANDA   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6145,8 +6142,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	127,PCR  ; 8000   	A4 8C 7F            ANDA   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ANDA		  	$8082,PCR  ; 8000   	A4 8C 7F            ANDA   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6164,7 +6161,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 8C 7F            ANDA   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 8C 7F            ANDA   $8082,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6177,8 +6174,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	-129,PCR  ; 8000   	A4 8D FF 7F            ANDA   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ANDA		  	$7F82,PCR  ; 8000   	A4 8D FF 7F            ANDA   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6195,9 +6192,9 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 8D FF 7F            ANDA   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 8D FF 7F            ANDA   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6210,8 +6207,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	128,PCR  ; 8000   	A4 8D 00 80            ANDA   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ANDA		  	$8084,PCR  ; 8000   	A4 8D 00 80            ANDA   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6230,7 +6227,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 8D 00 80            ANDA   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 8D 00 80            ANDA   $8084,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6243,8 +6240,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	-32768,PCR  ; 8000   	A4 8D 80 00            ANDA   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ANDA		  	$0004,PCR  ; 8000   	A4 8D 80 00            ANDA   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6263,7 +6260,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 8D 80 00            ANDA   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 8D 80 00            ANDA   $0004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6276,8 +6273,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	32767,PCR  ; 8000   	A4 8D 7F FF            ANDA   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ANDA		  	$C003,PCR  ; 4000   	A9 8D 7F FF            ANDA   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6286,7 +6283,7 @@ public class TestANDAInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledANDAInstruction line = (AssembledANDAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6296,7 +6293,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 8D 7F FF            ANDA   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	A9 8D 7F FF            ANDA   $C003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6309,8 +6306,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	-32769,PCR  ; 8000   	A4 8D 80 00            ANDA   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	ANDA		  	$0003,PCR  ; 8000   	A4 8D 80 00            ANDA   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6331,7 +6328,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 8D 80 00            ANDA   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 8D 80 00            ANDA   $0003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6344,8 +6341,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	32768,PCR  ; 8000   	A4 8D 7F FF            ANDA   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ANDA		  	$C004,PCR  ; 4000   	A9 8D 7F FF            ANDA   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6356,7 +6353,7 @@ public class TestANDAInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledANDAInstruction line = (AssembledANDAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6366,7 +6363,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 8D 7F FF            ANDA   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	A9 8D 7F FF            ANDA   $C004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6380,7 +6377,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	[0,PCR]  ; 8000   	A4 9C 00            ANDA   [0,PCR]\n");
+		strBuilder.append("Start      	ANDA		  	   [$8003,PCR]  ; 8000   	A4 9C 00            ANDA   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6412,7 +6409,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	[-128,PCR]  ; 8000   	A4 9C 80            ANDA   [-128,PCR]\n");
+		strBuilder.append("Start      ANDA		  	   [$7F83,PCR]  ; 8000   	A4 9C 80            ANDA   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6444,7 +6441,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	[127,PCR]  ; 8000   	A4 9C 7F            ANDA   [127,PCR]\n");
+		strBuilder.append("Start      	ANDA		  	   [$8082,PCR]  ; 8000   	A4 9C 7F            ANDA   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6462,7 +6459,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 9C 7F            ANDA   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 9C 7F            ANDA   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6476,7 +6473,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	[-129,PCR]  ; 8000   	A4 9D FF 7F            ANDA   [-129,PCR]\n");
+		strBuilder.append("Start      	ANDA		  	   [$7F82,PCR]  ; 8000   	A4 9D FF 7E            ANDA   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6493,9 +6490,9 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 9D FF 7F            ANDA   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 9D FF 7E            ANDA   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6509,7 +6506,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	[128,PCR]  ; 8000   	A4 9D 00 80            ANDA   [128,PCR]\n");
+		strBuilder.append("Start      	ANDA		  		[$8084,PCR]  ; 8000   	A4 9D 00 80            ANDA   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6528,7 +6525,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 9D 00 80            ANDA   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 9D 00 80            ANDA   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6542,7 +6539,7 @@ public class TestANDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	[-32768,PCR]  ; 8000   	A4 9D 80 00            ANDA   [-32768,PCR]\n");
+		strBuilder.append("Start      	ANDA		  	[$0004,PCR]  ; 8000   	A4 9D 80 00            ANDA   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6561,7 +6558,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 9D 80 00            ANDA   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 9D 80 00            ANDA   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6574,8 +6571,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	[32767,PCR]  ; 8000   	A4 9D 7F FF            ANDA   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ANDA		  	[$C003,PCR]  ; 8000   	A4 9D 7F FF            ANDA   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6584,7 +6581,7 @@ public class TestANDAInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledANDAInstruction line = (AssembledANDAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6594,7 +6591,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 9D 7F FF            ANDA   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 9D 7F FF            ANDA   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6607,8 +6604,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	[-32769,PCR]  ; 8000   	A4 9D 80 00            ANDA   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ANDA		  	[$0003,PCR]  ; 8000   	A4 9D 80 00            ANDA   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6629,7 +6626,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 9D 80 00            ANDA   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A4 9D 80 00            ANDA   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6642,8 +6639,8 @@ public class TestANDAInstruction {
 	public void testANDAIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	ANDA		  	[32768,PCR]  ; 8000   	A4 9D 7F FF            ANDA   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	ANDA		  	[$C004,PCR]  ; 4000   	A4 9D 7F FF            ANDA   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6654,7 +6651,7 @@ public class TestANDAInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledANDAInstruction line = (AssembledANDAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6664,7 +6661,7 @@ public class TestANDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A4 9D 7F FF            ANDA   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	A4 9D 7F FF            ANDA   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}

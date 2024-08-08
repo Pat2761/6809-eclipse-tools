@@ -35,7 +35,7 @@ import org.eclipse.emf.ecore.EObject;
 /**
  * Allow to parse an PSHS Instruction
  * 
- * @author briand
+ * @author Patrick BRIAND
  *
  */
 public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
@@ -54,13 +54,16 @@ public class AssembledPSHUInstruction extends AbstractInstructionAssemblyLine {
 		this.instruction = (PshuInstruction) instruction;
 		this.label = CommandUtil.getLabel(this.instruction);
 		this.comment = CommandUtil.getComment(this.instruction);
-		super.parse(currentPcValue, lineNumber);
+		this.pcAddress = currentPcValue;
+		this.lineNumber = lineNumber;
+		assembleInstruction();
+		operandBytes = new int[1];
+		operandBytes[0]=0;
 	}
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		setOpcode(addressingMode);
 	}
 
 	/**

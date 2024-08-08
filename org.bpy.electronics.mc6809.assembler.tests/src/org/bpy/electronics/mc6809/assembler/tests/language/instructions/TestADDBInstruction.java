@@ -18,42 +18,39 @@
  */
 package org.bpy.electronics.mc6809.assembler.tests.language.instructions;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
-import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
-import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
-import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
-import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
-import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
-import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
-import org.bpy.electronics.mc6809.assembler.assembler.Model;
-import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
-import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
-import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDBInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
-import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
-import org.eclipse.xtext.testing.InjectWith;
+import org.junit.runner.RunWith;
 import org.eclipse.xtext.testing.XtextRunner;
+import org.eclipse.xtext.testing.InjectWith;
+import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import com.google.inject.Inject;
 import org.eclipse.xtext.testing.util.ParseHelper;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.eclipse.xtext.testing.validation.ValidationTestHelper;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.junit.Assert;
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
+import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
+import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDBInstruction;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
@@ -86,9 +83,9 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be an immediate addressing mode", adcInstruction.getOperand() instanceof ImmediatOperand);
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be an immediate addressing mode", addInstruction.getOperand() instanceof ImmediatOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -116,9 +113,9 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a direct addressing mode", adcInstruction.getOperand() instanceof DirectOperand);
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a direct addressing mode", addInstruction.getOperand() instanceof DirectOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -146,9 +143,9 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a extended addressing mode", addInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -176,9 +173,9 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a extended addressing mode", addInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -206,9 +203,9 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a extended indirect addressing mode", adcInstruction.getOperand() instanceof ExtendedIndirectOperand);
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a extended indirect addressing mode", addInstruction.getOperand() instanceof ExtendedIndirectOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -221,9 +218,9 @@ public class TestADDBInstruction {
 	public void testADDBConstantOffsetIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	      ORG  			$8000\n");
-		strBuilder.append("Const	EQU        	5    \n");
-		strBuilder.append("	      ADDB		  	Const,X\n");
+		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ADDB		  	Const,X\n");
 		strBuilder.append("			ADDB		  	,X\n");
 		strBuilder.append("			ADDB		  	$9,U\n");
 		strBuilder.append("			ADDB		  	$9,S\n");
@@ -242,10 +239,10 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Constant-Offset Indexed mode", indexedOperand.getMode() instanceof ConstantIndexedMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -259,9 +256,9 @@ public class TestADDBInstruction {
 	public void testADDBConstantOffsetIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	      ORG  			$8000\n");
-		strBuilder.append("Const	EQU        	5    \n");
-		strBuilder.append("	      ADDB		  	[Const,X]\n");
+		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ADDB		  	[Const,X]\n");
 		strBuilder.append("			ADDB		  	[,X]\n");
 		strBuilder.append("			ADDB		  	[$9,U]\n");
 		strBuilder.append("			ADDB		  	[$9,S]\n");
@@ -280,10 +277,10 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Constant-Offset Indexed indirect mode",
 					indexedOperand.getMode() instanceof ConstantIndexedMovingIndirectMode);
 		} catch (Exception e) {
@@ -298,9 +295,9 @@ public class TestADDBInstruction {
 	public void testADDBAccumulatorIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	      ORG  			$8000\n");
-		strBuilder.append("Const	EQU        	5    \n");
-		strBuilder.append("	      ADDB		  	A,X\n");
+		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ADDB		  	A,X\n");
 		strBuilder.append("			ADDB		  	B,X\n");
 		strBuilder.append("			ADDB		  	D,U\n");
 		strBuilder.append("			ADDB		  	A,S\n");
@@ -319,10 +316,10 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed mode", indexedOperand.getMode() instanceof AccumulatorMovingMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -357,10 +354,10 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed indirect mode", indexedOperand.getMode() instanceof AccumulatorMovingIndirectMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -397,10 +394,10 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed mode", indexedOperand.getMode() instanceof AutoIncDecMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -433,10 +430,10 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed indirect mode", indexedOperand.getMode() instanceof AutoIncDecIndirectMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -450,8 +447,8 @@ public class TestADDBInstruction {
 	public void testADDBRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const	   EQU         5    \n");
 		strBuilder.append("	       	ADDB		  	0,PC\n");
 		strBuilder.append("	       	ADDB		  	,PC\n");
 		strBuilder.append("	       	ADDB		  	Const,PC\n");
@@ -468,10 +465,10 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed mode", indexedOperand.getMode() instanceof RelatifToPCMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -485,9 +482,9 @@ public class TestADDBInstruction {
 	public void testADDBRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
-		strBuilder.append("	       	ADDB		  	[0,PC]\n");
+		strBuilder.append("	       	ORG    		$8000\n");
+		strBuilder.append("Const		EQU          	$9000    \n");
+		strBuilder.append("	       	ADDB		  	[$8000,PC]\n");
 		strBuilder.append("	       	ADDB		  	[,PC]\n");
 		strBuilder.append("	       	ADDB		  	[Const,PC]\n");
 		try {
@@ -503,10 +500,10 @@ public class TestADDBInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDB instruction", adcInstruction.getInstruction(), "ADDB");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDB instruction", addInstruction.getInstruction(), "ADDB");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed Indirect mode", indexedOperand.getMode() instanceof RelatifToPCIndirectMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -837,7 +834,7 @@ public class TestADDBInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDB		  	>Const*1000  ; 8000   FB 13 88     START:    ADDB   >Const*1000 \n");
+		strBuilder.append("Start      	ADDB		  	   >Const*1000  ; 8000   FB 13 88     START:    ADDB   >Const*1000 \n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2873,7 +2870,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	1234,Y  ; 8000   	AB A9 04 D2            ADDB   1234,Y\n");
+		strBuilder.append("Start      	ADDB		  	1234,Y  ; 8000   	EB A9 04 D2            ADDB   1234,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2892,7 +2889,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	AB A9 04 D2            ADDB   1234,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB A9 04 D2            ADDB   1234,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3689,7 +3686,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	15,S  ; 8000   	EB 6F            ADDB   15,S\n");
+		strBuilder.append("Start      	ADDB		  	   15,S  ; 8000   	EB 6F            ADDB   15,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4042,7 +4039,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	-32768,Y  ; 8000   	AB A9 80 00             ADDB   -32768,Y\n");
+		strBuilder.append("Start      	ADDB		  	-32768,Y  ; 8000   	EB A9 80 00             ADDB   -32768,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4061,7 +4058,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	AB A9 80 00             ADDB   -32768,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB A9 80 00             ADDB   -32768,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4075,7 +4072,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  32767,Y  ; 8000   	AB A9 7F FF             ADDB   32767,Y\n");
+		strBuilder.append("Start      	ADDB		  32767,Y  ; 8000   	EB A9 7F FF             ADDB   32767,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4094,7 +4091,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	AB A9 7F FF             ADDB   32767,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB A9 7F FF             ADDB   32767,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4310,7 +4307,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	-32769,Y  ; 8000   	AB A9 80 00             ADDB   -32769,Y\n");
+		strBuilder.append("Start      	ADDB		  	-32769,Y  ; 8000   	EB A9 80 00             ADDB   -32769,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4331,7 +4328,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	AB A9 80 00             ADDB   -32769,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB A9 80 00             ADDB   -32769,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4345,7 +4342,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  32768,Y  ; 8000   	AB A9 7F FF             ADDB   32768,Y\n");
+		strBuilder.append("Start      	ADDB		  32768,Y  ; 8000   	EB A9 7F FF             ADDB   32768,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4366,7 +4363,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	AB A9 7F FF             ADDB   32768,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB A9 7F FF             ADDB   32768,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4519,7 +4516,7 @@ public class TestADDBInstruction {
 	public void testADDBIndexedConstantIndirectMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
+		strBuilder.append("			   	ORG    		$8000\n");
 		strBuilder.append("Start      	ADDB		  	[1234,X]  ; 8000   	EB 99 04 D2            ADDB   [1234,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
@@ -6083,8 +6080,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	0,PCR  ; 8000   	EB 8C 00            ADDB   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDB		  	$8003,PCR  ; 8000   	EB 8C 00            ADDB   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6102,7 +6099,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 8C 00            ADDB   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 8C 00            ADDB   $8003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6115,8 +6112,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	-128,PCR  ; 8000   	EB 8C 80            ADDB   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDB		  	$7F83,PCR  ; 8000   	EB 8C 80            ADDB   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6134,7 +6131,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 8C 80            ADDB   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 8C 80            ADDB   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6147,8 +6144,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	127,PCR  ; 8000   	EB 8C 7F            ADDB   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDB		  	$8082,PCR  ; 8000   	EB 8C 7F            ADDB   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6166,7 +6163,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 8C 7F            ADDB   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 8C 7F            ADDB   $8082,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6179,8 +6176,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	-129,PCR  ; 8000   	EB 8D FF 7F            ADDB   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDB		  	$7F82,PCR  ; 8000   	EB 8D FF 7F            ADDB   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6197,9 +6194,9 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 8D FF 7F            ADDB   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 8D FF 7F            ADDB   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6212,8 +6209,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	128,PCR  ; 8000   	EB 8D 00 80            ADDB   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDB		  	$8084,PCR  ; 8000   	EB 8D 00 80            ADDB   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6232,7 +6229,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 8D 00 80            ADDB   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 8D 00 80            ADDB   $8084,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6245,8 +6242,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	-32768,PCR  ; 8000   	EB 8D 80 00            ADDB   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDB		  	$0004,PCR  ; 8000   	EB 8D 80 00            ADDB   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6265,7 +6262,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 8D 80 00            ADDB   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 8D 80 00            ADDB   $0004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6278,8 +6275,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	32767,PCR  ; 8000   	EB 8D 7F FF            ADDB   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ADDB		  	$C003,PCR  ; 4000   	A9 8D 7F FF            ADDB   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6288,7 +6285,7 @@ public class TestADDBInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDBInstruction line = (AssembledADDBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6298,7 +6295,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 8D 7F FF            ADDB   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	A9 8D 7F FF            ADDB   $C003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6311,8 +6308,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	-32769,PCR  ; 8000   	EB 8D 80 00            ADDB   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	ADDB		  	$0003,PCR  ; 8000   	EB 8D 80 00            ADDB   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6333,7 +6330,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 8D 80 00            ADDB   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 8D 80 00            ADDB   $0003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6346,8 +6343,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	32768,PCR  ; 8000   	EB 8D 7F FF            ADDB   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ADDB		  	$C004,PCR  ; 4000   	A9 8D 7F FF            ADDB   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6358,7 +6355,7 @@ public class TestADDBInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDBInstruction line = (AssembledADDBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6368,7 +6365,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 8D 7F FF            ADDB   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	A9 8D 7F FF            ADDB   $C004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6382,7 +6379,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	[0,PCR]  ; 8000   	EB 9C 00            ADDB   [0,PCR]\n");
+		strBuilder.append("Start      	ADDB		  	   [$8003,PCR]  ; 8000   	EB 9C 00            ADDB   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6414,7 +6411,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	[-128,PCR]  ; 8000   	EB 9C 80            ADDB   [-128,PCR]\n");
+		strBuilder.append("Start      ADDB		  	   [$7F83,PCR]  ; 8000   	EB 9C 80            ADDB   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6446,7 +6443,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	[127,PCR]  ; 8000   	EB 9C 7F            ADDB   [127,PCR]\n");
+		strBuilder.append("Start      	ADDB		  	   [$8082,PCR]  ; 8000   	EB 9C 7F            ADDB   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6464,7 +6461,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 9C 7F            ADDB   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 9C 7F            ADDB   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6478,7 +6475,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	[-129,PCR]  ; 8000   	EB 9D FF 7F            ADDB   [-129,PCR]\n");
+		strBuilder.append("Start      	ADDB		  	   [$7F82,PCR]  ; 8000   	EB 9D FF 7E            ADDB   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6495,9 +6492,9 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 9D FF 7F            ADDB   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 9D FF 7E            ADDB   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6511,7 +6508,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	[128,PCR]  ; 8000   	EB 9D 00 80            ADDB   [128,PCR]\n");
+		strBuilder.append("Start      	ADDB		  		[$8084,PCR]  ; 8000   	EB 9D 00 80            ADDB   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6530,7 +6527,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 9D 00 80            ADDB   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 9D 00 80            ADDB   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6544,7 +6541,7 @@ public class TestADDBInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	[-32768,PCR]  ; 8000   	EB 9D 80 00            ADDB   [-32768,PCR]\n");
+		strBuilder.append("Start      	ADDB		  	[$0004,PCR]  ; 8000   	EB 9D 80 00            ADDB   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6563,7 +6560,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 9D 80 00            ADDB   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 9D 80 00            ADDB   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6576,8 +6573,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	[32767,PCR]  ; 8000   	EB 9D 7F FF            ADDB   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ADDB		  	[$C003,PCR]  ; 8000   	EB 9D 7F FF            ADDB   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6586,7 +6583,7 @@ public class TestADDBInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDBInstruction line = (AssembledADDBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6596,7 +6593,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 9D 7F FF            ADDB   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 9D 7F FF            ADDB   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6609,8 +6606,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	[-32769,PCR]  ; 8000   	EB 9D 80 00            ADDB   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDB		  	[$0003,PCR]  ; 8000   	EB 9D 80 00            ADDB   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6631,7 +6628,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 9D 80 00            ADDB   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	EB 9D 80 00            ADDB   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6644,8 +6641,8 @@ public class TestADDBInstruction {
 	public void testADDBIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	ADDB		  	[32768,PCR]  ; 8000   	EB 9D 7F FF            ADDB   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	ADDB		  	[$C004,PCR]  ; 4000   	EB 9D 7F FF            ADDB   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6656,7 +6653,7 @@ public class TestADDBInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDBInstruction line = (AssembledADDBInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6666,7 +6663,7 @@ public class TestADDBInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	EB 9D 7F FF            ADDB   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	EB 9D 7F FF            ADDB   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}

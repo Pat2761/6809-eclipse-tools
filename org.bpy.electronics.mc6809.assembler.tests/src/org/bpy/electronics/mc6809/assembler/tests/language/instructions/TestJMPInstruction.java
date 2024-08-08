@@ -49,7 +49,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledJMPInstruction;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
 import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 @RunWith(XtextRunner.class)
@@ -458,8 +457,8 @@ public class TestJMPInstruction {
 	public void testJMPRelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	   	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const	   EQU          5    \n");
 		strBuilder.append("	       	JMP		  	0,PC\n");
 		strBuilder.append("	       	JMP		  	,PC\n");
 		strBuilder.append("	       	JMP		  	Const,PC\n");
@@ -494,8 +493,8 @@ public class TestJMPInstruction {
 	public void testJMPRelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	   	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const	   EQU      	5    \n");
 		strBuilder.append("	       	JMP		  	[0,PC]\n");
 		strBuilder.append("	       	JMP		  	[,PC]\n");
 		strBuilder.append("	       	JMP		  	[Const,PC]\n");
@@ -6019,28 +6018,28 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	0,PCR  ; 8000   	6E 8C 00            JMP   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	JMP		  	$8003,PCR  ; 8000    6E 8C 00            JMP   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 8C 00            JMP   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 8C 00            JMP   $8003,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6051,28 +6050,28 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	-128,PCR  ; 8000   	6E 8C 80            JMP   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	JMP		  	$7F83,PCR  ; 8000    6E 8C 80            JMP   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 8C 80            JMP   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 8C 80            JMP   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6083,28 +6082,28 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	127,PCR  ; 8000   	6E 8C 7F            JMP   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	JMP		  	$8082,PCR  ; 8000    6E 8C 7F            JMP   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 8C 7F            JMP   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 8C 7F            JMP   $8082,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6115,29 +6114,29 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	-129,PCR  ; 8000   	6E 8D FF 7F            JMP   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	JMP		  	$7F82,PCR  ; 8000   	A9 8D FF 7F            JMP   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 8D FF 7F            JMP   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D FF 7F            JMP   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6148,29 +6147,29 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	128,PCR  ; 8000   	6E 8D 00 80            JMP   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	JMP		  	$8084,PCR  ; 8000   	A9 8D 00 80            JMP   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 8D 00 80            JMP   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 00 80            JMP   $8084,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6181,30 +6180,29 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	-32768,PCR  ; 8000   	6E 8D 80 00            JMP   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	JMP		  	$0004,PCR  ; 8000   	A9 8D 80 00            JMP   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 8D 80 00            JMP   -32768,PCR",
-					line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            JMP   $0004,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6215,29 +6213,29 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	32767,PCR  ; 8000   	6E 8D 7F FF            JMP   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	JMP		  	$C003,PCR  ; 4000    6E 8D 7F FF            JMP   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 8D 7F FF            JMP   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    6E 8D 7F FF            JMP   $C003,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6248,8 +6246,8 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	-32769,PCR  ; 8000   	6E 8D 80 00            JMP   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	JMP		  	$0003,PCR  ; 8000    6E 8D 80 00            JMP   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6257,24 +6255,22 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					InstructionValidator.OVERFLOW_ERROR,
-					"The value -32769 is out than the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 8D 80 00            JMP   -32769,PCR",
-					line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 8D 80 00            JMP   $0003,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6285,8 +6281,8 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	32768,PCR  ; 8000   	6E 8D 7F FF            JMP   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	JMP		  	$C004,PCR  ; 4000    6E 8D 7F FF            JMP   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6294,23 +6290,22 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					InstructionValidator.OVERFLOW_ERROR,
-					"The value 32768 is out than the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 8D 7F FF            JMP   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    6E 8D 7F FF            JMP   $C004,PCR", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6321,28 +6316,28 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifIndirectToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	[0,PCR]  ; 8000   	6E 9C 00            JMP   [0,PCR]\n");
+		strBuilder.append("			   	ORG    			$8000\n");
+		strBuilder.append("Start      	JMP		  	   [$8003,PCR]  ; 8000    6E 9C 00            JMP   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 9C 00            JMP   [0,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 9C 00            JMP   [0,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6353,28 +6348,28 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifIndirectToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	[-128,PCR]  ; 8000   	6E 9C 80            JMP   [-128,PCR]\n");
+		strBuilder.append("		  	 	ORG    			$8000\n");
+		strBuilder.append("Start      JMP		  	   [$7F83,PCR]  ; 8000    6E 9C 80            JMP   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 9C 80            JMP   [-128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 9C 80            JMP   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6385,28 +6380,28 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifIndirectToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	[127,PCR]  ; 8000   	6E 9C 7F            JMP   [127,PCR]\n");
+		strBuilder.append("			   	ORG    			$8000\n");
+		strBuilder.append("Start      	JMP		  	   [$8082,PCR]  ; 8000    6E 9C 7F            JMP   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8003, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 2, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 9C 7F            JMP   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 9C 7F            JMP   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6417,30 +6412,29 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifIndirectToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	[-129,PCR]  ; 8000   	6E 9D FF 7F            JMP   [-129,PCR]\n");
+		strBuilder.append("			   	ORG    			$8000\n");
+		strBuilder.append("Start      	JMP		  	   [$7F82,PCR]  ; 8000    6E 9D FF 7E            JMP   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 9D FF 7F            JMP   [-129,PCR]",
-					line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 9D FF 7E            JMP   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6451,29 +6445,29 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifIndirectToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	JMP		  	[128,PCR]  ; 8000   	6E 9D 00 80            JMP   [128,PCR]\n");
+		strBuilder.append("			   	ORG    			$8000\n");
+		strBuilder.append("Start      	JMP		  		[$8084,PCR]  ; 8000    6E 9D 00 80            JMP   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 9D 00 80            JMP   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 9D 00 80            JMP   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6484,31 +6478,29 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifIndirectToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append(
-				"Start      	JMP		  	[-32768,PCR]  ; 8000   	6E 9D 80 00            JMP   [-32768,PCR]\n");
+		strBuilder.append("		 	  	ORG    			$8000\n");
+		strBuilder.append("Start      	JMP		  	[$0004,PCR]  ; 8000    6E 9D 80 00            JMP   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 9D 80 00            JMP   [-32768,PCR]",
-					line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 9D 80 00            JMP   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6519,31 +6511,29 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append(
-				"Start      	JMP		  	[32767,PCR]  ; 8000   	6E 9D 7F FF            JMP   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	JMP		  	[$C003,PCR]  ; 8000    6E 9D 7F FF            JMP   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
 			Assert.assertNotNull(result);
-			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 			validationHelper.assertNoErrors(result);
+			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 9D 7F FF            JMP   [32767,PCR]",
-					line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 9D 7F FF            JMP   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6554,9 +6544,8 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append(
-				"Start      	JMP		  	[-32769,PCR]  ; 8000   	6E 9D 80 00            JMP   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	JMP		  	[$0003,PCR]  ; 8000    6E 9D 80 00            JMP   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6564,24 +6553,22 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					InstructionValidator.OVERFLOW_ERROR,
-					"The value -32769 is out than the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value -32769 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
 			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 9D 80 00            JMP   [-32769,PCR]",
-					line.getComment());
+			Assert.assertEquals("Check comment", "; 8000    6E 9D 80 00            JMP   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 
@@ -6592,9 +6579,8 @@ public class TestJMPInstruction {
 	public void testJMPIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append(
-				"Start      	JMP		  	[32768,PCR]  ; 8000   	6E 9D 7F FF            JMP   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	JMP		  	[$C004,PCR]  ; 4000    6E 9D 7F FF            JMP   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6602,24 +6588,22 @@ public class TestJMPInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			validationHelper.assertError(result, AssemblerPackage.eINSTANCE.getJmpInstruction(),
-					InstructionValidator.OVERFLOW_ERROR,
-					"The value 32768 is out than the possible limit, data may be lost");
+					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledJMPInstruction line = (AssembledJMPInstruction) engine.getAssembledLine(2);
-			Assert.assertEquals("Check opcode size ", 1, line.getOpcode().length);
-			Assert.assertEquals("Check opcode", 0x6E, line.getOpcode()[0]);
+			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
+			Assert.assertEquals("Check getOpcode()", 0x6E, line.getOpcode()[0]);
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	6E 9D 7F FF            JMP   [32768,PCR]",
-					line.getComment());
+			Assert.assertEquals("Check comment", "; 4000    6E 9D 7F FF            JMP   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
-			Assert.assertTrue("Exception detected", true);
+			Assert.assertTrue("Exception", false);
 		}
 	}
 }

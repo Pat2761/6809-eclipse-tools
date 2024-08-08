@@ -94,21 +94,30 @@ public class AssembledADDAInstruction extends AbstractInstructionAssemblyLine {
 	 */
 	public void parsePass1(EObject instruction, int currentPcValue, int lineNumber) {
 		this.instruction = (AddInstruction) instruction;
-		
 		this.label = CommandUtil.getLabel(this.instruction);
 		this.comment = CommandUtil.getComment(this.instruction);
-		super.parse(currentPcValue, lineNumber);
+		this.pcAddress = currentPcValue;
+		this.lineNumber = lineNumber;
+		assembleInstruction();
+		createOperandSpace();
 	}
+
+	/** 
+	 * Reserved memory byte for the instruction.
+	 * 
+	 */
+	@Override
+	protected void createOperandSpace() {
+		if (addressingMode == AddressingMode.IMMEDIATE) {
+			operandBytes = new int[1];
+		} else {
+			super.createOperandSpace();
+		}
+ 	}
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	public Object getInstructionOperand() {
-		return instruction.getOperand();
+		setOperand(addressingMode);
 	}
 
 	/**
@@ -194,5 +203,10 @@ public class AssembledADDAInstruction extends AbstractInstructionAssemblyLine {
 	@Override
 	public String getOperandString() {
 		return getOperand(instruction.getOperand());
+	}
+
+	@Override
+	public Object getInstructionOperand() {
+		return instruction.getOperand();
 	}
 }

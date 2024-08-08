@@ -18,42 +18,39 @@
  */
 package org.bpy.electronics.mc6809.assembler.tests.language.instructions;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
-import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
-import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
-import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
-import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
-import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
-import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
-import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
-import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
-import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
-import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
-import org.bpy.electronics.mc6809.assembler.assembler.Model;
-import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
-import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
-import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
-import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDAInstruction;
-import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
-import org.bpy.electronics.mc6809.assembler.util.ExpressionParser;
-import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
-import org.eclipse.xtext.testing.InjectWith;
+import org.junit.runner.RunWith;
 import org.eclipse.xtext.testing.XtextRunner;
+import org.eclipse.xtext.testing.InjectWith;
+import org.bpy.electronics.mc6809.assembler.tests.AssemblerInjectorProvider;
+import com.google.inject.Inject;
 import org.eclipse.xtext.testing.util.ParseHelper;
+import org.bpy.electronics.mc6809.assembler.assembler.Model;
 import org.eclipse.xtext.testing.validation.ValidationTestHelper;
 import org.eclipse.xtext.xbase.lib.Extension;
 import org.junit.Assert;
+import org.bpy.electronics.mc6809.assembler.assembler.InstructionLine;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import com.google.inject.Inject;
+import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import org.bpy.electronics.mc6809.assembler.assembler.ImmediatOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.DirectOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ExtendedIndirectOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMode;
+import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecMode;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
+import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
+import org.bpy.electronics.mc6809.assembler.assembler.ConstantIndexedMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AutoIncDecIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AccumulatorMovingIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.instructions.AssembledADDAInstruction;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 
 @RunWith(XtextRunner.class)
 @InjectWith(AssemblerInjectorProvider.class)
@@ -86,9 +83,9 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be an immediate addressing mode", adcInstruction.getOperand() instanceof ImmediatOperand);
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be an immediate addressing mode", addInstruction.getOperand() instanceof ImmediatOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -116,9 +113,9 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a direct addressing mode", adcInstruction.getOperand() instanceof DirectOperand);
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a direct addressing mode", addInstruction.getOperand() instanceof DirectOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -146,9 +143,9 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a extended addressing mode", addInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -176,9 +173,9 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a extended addressing mode", adcInstruction.getOperand() instanceof ExtendedOperand);
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a extended addressing mode", addInstruction.getOperand() instanceof ExtendedOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -206,9 +203,9 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a extended indirect addressing mode", adcInstruction.getOperand() instanceof ExtendedIndirectOperand);
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a extended indirect addressing mode", addInstruction.getOperand() instanceof ExtendedIndirectOperand);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -221,9 +218,9 @@ public class TestADDAInstruction {
 	public void testADDAConstantOffsetIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	      ORG  			$8000\n");
-		strBuilder.append("Const	EQU        	5    \n");
-		strBuilder.append("	      ADDA		  	Const,X\n");
+		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ADDA		  	Const,X\n");
 		strBuilder.append("			ADDA		  	,X\n");
 		strBuilder.append("			ADDA		  	$9,U\n");
 		strBuilder.append("			ADDA		  	$9,S\n");
@@ -242,10 +239,10 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Constant-Offset Indexed mode", indexedOperand.getMode() instanceof ConstantIndexedMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -259,9 +256,9 @@ public class TestADDAInstruction {
 	public void testADDAConstantOffsetIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	      ORG  			$8000\n");
-		strBuilder.append("Const	EQU        	5    \n");
-		strBuilder.append("	      ADDA		  	[Const,X]\n");
+		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ADDA		  	[Const,X]\n");
 		strBuilder.append("			ADDA		  	[,X]\n");
 		strBuilder.append("			ADDA		  	[$9,U]\n");
 		strBuilder.append("			ADDA		  	[$9,S]\n");
@@ -280,10 +277,10 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Constant-Offset Indexed indirect mode",
 					indexedOperand.getMode() instanceof ConstantIndexedMovingIndirectMode);
 		} catch (Exception e) {
@@ -298,9 +295,9 @@ public class TestADDAInstruction {
 	public void testADDAAccumulatorIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	      ORG  			$8000\n");
-		strBuilder.append("Const	EQU        	5    \n");
-		strBuilder.append("	      ADDA		  	A,X\n");
+		strBuilder.append("	       	ORG    			$8000\n");
+		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ADDA		  	A,X\n");
 		strBuilder.append("			ADDA		  	B,X\n");
 		strBuilder.append("			ADDA		  	D,U\n");
 		strBuilder.append("			ADDA		  	A,S\n");
@@ -319,10 +316,10 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed mode", indexedOperand.getMode() instanceof AccumulatorMovingMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -357,10 +354,10 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Accumulator Indexed indirect mode", indexedOperand.getMode() instanceof AccumulatorMovingIndirectMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -397,10 +394,10 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed mode", indexedOperand.getMode() instanceof AutoIncDecMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -433,10 +430,10 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Auto-Increment Indexed indirect mode", indexedOperand.getMode() instanceof AutoIncDecIndirectMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -450,8 +447,8 @@ public class TestADDAInstruction {
 	public void testADDARelativePCIndexed() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("		; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
+		strBuilder.append("	       	ORG    		$0000\n");
+		strBuilder.append("Const	   EQU         5    \n");
 		strBuilder.append("	       	ADDA		  	0,PC\n");
 		strBuilder.append("	       	ADDA		  	,PC\n");
 		strBuilder.append("	       	ADDA		  	Const,PC\n");
@@ -468,10 +465,10 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed mode", indexedOperand.getMode() instanceof RelatifToPCMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -485,9 +482,9 @@ public class TestADDAInstruction {
 	public void testADDARelativePCIndexedIndirect() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("	       	ORG    			$8000\n");
-		strBuilder.append("Const	EQU          	5    \n");
-		strBuilder.append("	       	ADDA		  	[0,PC]\n");
+		strBuilder.append("	       	ORG    		$8000\n");
+		strBuilder.append("Const		EQU          	$9000    \n");
+		strBuilder.append("	       	ADDA		  	[$8000,PC]\n");
 		strBuilder.append("	       	ADDA		  	[,PC]\n");
 		strBuilder.append("	       	ADDA		  	[Const,PC]\n");
 		try {
@@ -503,10 +500,10 @@ public class TestADDAInstruction {
 			InstructionLine instructionLine = (InstructionLine) line.getLineContent();
 			Assert.assertTrue("Must be an ADD directive line", instructionLine.getInstruction() instanceof AddInstruction);
 
-			AddInstruction adcInstruction = (AddInstruction) instructionLine.getInstruction();
-			assertEquals("Must be an ADDA instruction", adcInstruction.getInstruction(), "ADDA");
-			assertTrue("Must be a Constant-Offset Indexed mode", adcInstruction.getOperand() instanceof IndexedOperand);
-			IndexedOperand indexedOperand = (IndexedOperand) adcInstruction.getOperand();
+			AddInstruction addInstruction = (AddInstruction) instructionLine.getInstruction();
+			assertEquals("Must be an ADDA instruction", addInstruction.getInstruction(), "ADDA");
+			assertTrue("Must be a Constant-Offset Indexed mode", addInstruction.getOperand() instanceof IndexedOperand);
+			IndexedOperand indexedOperand = (IndexedOperand) addInstruction.getOperand();
 			assertTrue("Must be a Relative to Indexed Indirect mode", indexedOperand.getMode() instanceof RelatifToPCIndirectMode);
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
@@ -1140,7 +1137,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	A,Y  ; 8000   	A9 A6        START:    ADDA   A,Y\n");
+		strBuilder.append("Start      	ADDA		  	A,Y  ; 8000   	AB A6        START:    ADDA   A,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1157,7 +1154,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xA6, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A6        START:    ADDA   A,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A6        START:    ADDA   A,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1172,7 +1169,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	A,U  ; 8000   	A9 C6        START:    ADDA   A,U\n");
+		strBuilder.append("Start      	ADDA		  	A,U  ; 8000   	AB C6        START:    ADDA   A,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1189,7 +1186,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xC6, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C6        START:    ADDA   A,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C6        START:    ADDA   A,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1204,7 +1201,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	A,S  ; 8000   	A9 E6        START:    ADDA   A,S\n");
+		strBuilder.append("Start      	ADDA		  	A,S  ; 8000   	AB E6        START:    ADDA   A,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1221,7 +1218,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xE6, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E6        START:    ADDA   A,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E6        START:    ADDA   A,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1268,7 +1265,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	B,Y  ; 8000   	A9 A5        START:    ADDA   B,Y\n");
+		strBuilder.append("Start      	ADDA		  	B,Y  ; 8000   	AB A5        START:    ADDA   B,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1285,7 +1282,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xA5, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A5        START:    ADDA   B,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A5        START:    ADDA   B,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1300,7 +1297,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	B,U  ; 8000   	A9 C5        START:    ADDA   B,U\n");
+		strBuilder.append("Start      	ADDA		  	B,U  ; 8000   	AB C5        START:    ADDA   B,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1317,7 +1314,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xC5, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C5        START:    ADDA   B,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C5        START:    ADDA   B,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1332,7 +1329,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	B,S  ; 8000   	A9 E5        START:    ADDA   B,S\n");
+		strBuilder.append("Start      	ADDA		  	B,S  ; 8000   	AB E5        START:    ADDA   B,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1349,7 +1346,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xE5, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E5        START:    ADDA   B,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E5        START:    ADDA   B,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1396,7 +1393,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	D,Y  ; 8000   	A9 AB        START:    ADDA   D,Y\n");
+		strBuilder.append("Start      	ADDA		  	D,Y  ; 8000   	AB AB        START:    ADDA   D,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1413,7 +1410,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xAB, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 AB        START:    ADDA   D,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB AB        START:    ADDA   D,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1428,7 +1425,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	D,U  ; 8000   	A9 CB        START:    ADDA   D,U\n");
+		strBuilder.append("Start      	ADDA		  	D,U  ; 8000   	AB CB        START:    ADDA   D,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1445,7 +1442,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xCB, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 CB        START:    ADDA   D,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB CB        START:    ADDA   D,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1460,7 +1457,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	D,S  ; 8000   	A9 EB        START:    ADDA   D,S\n");
+		strBuilder.append("Start      	ADDA		  	D,S  ; 8000   	AB EB        START:    ADDA   D,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1477,7 +1474,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xEB, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 EB        START:    ADDA   D,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB EB        START:    ADDA   D,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1524,7 +1521,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[A,Y]  ; 8000   	A9 B6        START:    ADDA   [A,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[A,Y]  ; 8000   	AB B6        START:    ADDA   [A,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1541,7 +1538,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xB6, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B6        START:    ADDA   [A,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B6        START:    ADDA   [A,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1556,7 +1553,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[A,U]  ; 8000   	A9 D6        START:    ADDA   [A,U]\n");
+		strBuilder.append("Start      	ADDA		  	[A,U]  ; 8000   	AB D6        START:    ADDA   [A,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1573,7 +1570,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xD6, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D6        START:    ADDA   [A,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D6        START:    ADDA   [A,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1588,7 +1585,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[A,S]  ; 8000   	A9 F6        START:    ADDA   [A,S]\n");
+		strBuilder.append("Start      	ADDA		  	[A,S]  ; 8000   	AB F6        START:    ADDA   [A,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1605,7 +1602,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xF6, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F6        START:    ADDA   [A,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F6        START:    ADDA   [A,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1652,7 +1649,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[B,Y]  ; 8000   	A9 B5        START:    ADDA   [B,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[B,Y]  ; 8000   	AB B5        START:    ADDA   [B,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1669,7 +1666,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xB5, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B5        START:    ADDA   [B,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B5        START:    ADDA   [B,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1684,7 +1681,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[B,U]  ; 8000   	A9 D5        START:    ADDA   [B,U]\n");
+		strBuilder.append("Start      	ADDA		  	[B,U]  ; 8000   	AB D5        START:    ADDA   [B,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1701,7 +1698,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xD5, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D5        START:    ADDA   [B,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D5        START:    ADDA   [B,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1716,7 +1713,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[B,S]  ; 8000   	A9 F5        START:    ADDA   [B,S]\n");
+		strBuilder.append("Start      	ADDA		  	[B,S]  ; 8000   	AB F5        START:    ADDA   [B,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1733,7 +1730,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xF5, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F5        START:    ADDA   [B,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F5        START:    ADDA   [B,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1780,7 +1777,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[D,Y]  ; 8000   	A9 BB        START:    ADDA   [D,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[D,Y]  ; 8000   	AB BB        START:    ADDA   [D,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1797,7 +1794,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xBB, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 BB        START:    ADDA   [D,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB BB        START:    ADDA   [D,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1812,7 +1809,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[D,U]  ; 8000   	A9 DB        START:    ADDA   [D,U]\n");
+		strBuilder.append("Start      	ADDA		  	[D,U]  ; 8000   	AB DB        START:    ADDA   [D,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1829,7 +1826,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xDB, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 DB        START:    ADDA   [D,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB DB        START:    ADDA   [D,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1844,7 +1841,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[D,S]  ; 8000   	A9 FB        START:    ADDA   [D,S]\n");
+		strBuilder.append("Start      	ADDA		  	[D,S]  ; 8000   	AB FB        START:    ADDA   [D,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1861,7 +1858,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xFB, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 FB        START:    ADDA   [D,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB FB        START:    ADDA   [D,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1876,7 +1873,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,X+  ; 8000   	A9 80        START:    ADDA   ,X+\n");
+		strBuilder.append("Start      	ADDA		  	,X+  ; 8000   	AB 80        START:    ADDA   ,X+\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1893,7 +1890,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 80        START:    ADDA   ,X+", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 80        START:    ADDA   ,X+", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1908,7 +1905,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,X++  ; 8000   	A9 81        START:    ADDA   ,X++\n");
+		strBuilder.append("Start      	ADDA		  	,X++  ; 8000   	AB 81        START:    ADDA   ,X++\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1925,7 +1922,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x81, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 81        START:    ADDA   ,X++", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 81        START:    ADDA   ,X++", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1940,7 +1937,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,Y+  ; 8000   	A9 A0        START:    ADDA   ,Y+\n");
+		strBuilder.append("Start      	ADDA		  	,Y+  ; 8000   	AB A0        START:    ADDA   ,Y+\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1957,7 +1954,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xA0, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A0        START:    ADDA   ,Y+", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A0        START:    ADDA   ,Y+", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -1972,7 +1969,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,Y++  ; 8000   	A9 A1        START:    ADDA   ,Y++\n");
+		strBuilder.append("Start      	ADDA		  	,Y++  ; 8000   	AB A1        START:    ADDA   ,Y++\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -1989,7 +1986,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xA1, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A1        START:    ADDA   ,Y++", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A1        START:    ADDA   ,Y++", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2004,7 +2001,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,S+  ; 8000   	A9 E0        START:    ADDA   ,S+\n");
+		strBuilder.append("Start      	ADDA		  	,S+  ; 8000   	AB E0        START:    ADDA   ,S+\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2021,7 +2018,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xE0, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E0        START:    ADDA   ,S+", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E0        START:    ADDA   ,S+", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2036,7 +2033,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,S++  ; 8000   	A9 E1        START:    ADDA   ,S++\n");
+		strBuilder.append("Start      	ADDA		  	,S++  ; 8000   	AB E1        START:    ADDA   ,S++\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2053,7 +2050,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xE1, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E1        START:    ADDA   ,S++", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E1        START:    ADDA   ,S++", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2068,7 +2065,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,U+  ; 8000   	A9 C0        START:    ADDA   ,U+\n");
+		strBuilder.append("Start      	ADDA		  	,U+  ; 8000   	AB C0        START:    ADDA   ,U+\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2085,7 +2082,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xC0, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C0        START:    ADDA   ,U+", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C0        START:    ADDA   ,U+", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2100,7 +2097,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,U++  ; 8000   	A9 C1        START:    ADDA   ,U++\n");
+		strBuilder.append("Start      	ADDA		  	,U++  ; 8000   	AB C1        START:    ADDA   ,U++\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2117,7 +2114,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xC1, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C1        START:    ADDA   ,U++", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C1        START:    ADDA   ,U++", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2132,7 +2129,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,-X  ; 8000   	A9 82        START:    ADDA   ,-X\n");
+		strBuilder.append("Start      	ADDA		  	,-X  ; 8000   	AB 82        START:    ADDA   ,-X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2149,7 +2146,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x82, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 82        START:    ADDA   ,-X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 82        START:    ADDA   ,-X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2164,7 +2161,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,--X  ; 8000   	A9 83        START:    ADDA   ,--X\n");
+		strBuilder.append("Start      	ADDA		  	,--X  ; 8000   	AB 83        START:    ADDA   ,--X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2181,7 +2178,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x83, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 83        START:    ADDA   ,--X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 83        START:    ADDA   ,--X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2196,7 +2193,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,-Y  ; 8000   	A9 A2        START:    ADDA   ,-Y\n");
+		strBuilder.append("Start      	ADDA		  	,-Y  ; 8000   	AB A2        START:    ADDA   ,-Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2213,7 +2210,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xA2, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A2        START:    ADDA   ,-Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A2        START:    ADDA   ,-Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2228,7 +2225,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,--Y  ; 8000   	A9 A3        START:    ADDA   ,--Y\n");
+		strBuilder.append("Start      	ADDA		  	,--Y  ; 8000   	AB A3        START:    ADDA   ,--Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2245,7 +2242,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xA3, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A3        START:    ADDA   ,--Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A3        START:    ADDA   ,--Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2260,7 +2257,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,-S  ; 8000   	A9 E2        START:    ADDA   ,-S\n");
+		strBuilder.append("Start      	ADDA		  	,-S  ; 8000   	AB E2        START:    ADDA   ,-S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2277,7 +2274,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xE2, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E2        START:    ADDA   ,-S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E2        START:    ADDA   ,-S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2292,7 +2289,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,--S  ; 8000   	A9 E3        START:    ADDA   ,--S\n");
+		strBuilder.append("Start      	ADDA		  	,--S  ; 8000   	AB E3        START:    ADDA   ,--S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2309,7 +2306,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xE3, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E3        START:    ADDA   ,--S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E3        START:    ADDA   ,--S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2324,7 +2321,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,-U  ; 8000   	A9 C2        START:    ADDA   ,-U\n");
+		strBuilder.append("Start      	ADDA		  	,-U  ; 8000   	AB C2        START:    ADDA   ,-U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2341,7 +2338,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xC2, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C2        START:    ADDA   ,-U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C2        START:    ADDA   ,-U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2356,7 +2353,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	,--U  ; 8000   	A9 C3        START:    ADDA   ,--U\n");
+		strBuilder.append("Start      	ADDA		  	,--U  ; 8000   	AB C3        START:    ADDA   ,--U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2373,7 +2370,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xC3, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C3        START:    ADDA   ,--U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C3        START:    ADDA   ,--U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2389,7 +2386,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,X+]  ; 8000   	A9 80        START:    ADDA   ,X+\n");
+		strBuilder.append("Start      	ADDA		  	[,X+]  ; 8000   	AB 80        START:    ADDA   ,X+\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2412,7 +2409,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,X++]  ; 8000   	A9 91        START:    ADDA   [,X++]\n");
+		strBuilder.append("Start      	ADDA		  	[,X++]  ; 8000   	AB 91        START:    ADDA   [,X++]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2429,7 +2426,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x91, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 91        START:    ADDA   [,X++]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 91        START:    ADDA   [,X++]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2445,7 +2442,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,Y+]  ; 8000   	A9 A0        START:    ADDA   ,Y+\n");
+		strBuilder.append("Start      	ADDA		  	[,Y+]  ; 8000   	AB A0        START:    ADDA   ,Y+\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2468,7 +2465,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,Y++]  ; 8000   	A9 B1        START:    ADDA   [,Y++]\n");
+		strBuilder.append("Start      	ADDA		  	[,Y++]  ; 8000   	AB B1        START:    ADDA   [,Y++]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2485,7 +2482,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xB1, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B1        START:    ADDA   [,Y++]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B1        START:    ADDA   [,Y++]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2501,7 +2498,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,S+]  ; 8000   	A9 E0        START:    ADDA   [,S+]\n");
+		strBuilder.append("Start      	ADDA		  	[,S+]  ; 8000   	AB E0        START:    ADDA   [,S+]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2525,7 +2522,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,S++]  ; 8000   	A9 F1        START:    ADDA   [,S++]\n");
+		strBuilder.append("Start      	ADDA		  	[,S++]  ; 8000   	AB F1        START:    ADDA   [,S++]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2542,7 +2539,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xF1, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F1        START:    ADDA   [,S++]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F1        START:    ADDA   [,S++]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2558,7 +2555,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,U+]  ; 8000   	A9 C0        START:    ADDA   [,U+]\n");
+		strBuilder.append("Start      	ADDA		  	[,U+]  ; 8000   	AB C0        START:    ADDA   [,U+]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2581,7 +2578,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,U++]  ; 8000   	A9 D1        START:    ADDA   [,U++]\n");
+		strBuilder.append("Start      	ADDA		  	[,U++]  ; 8000   	AB D1        START:    ADDA   [,U++]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2598,7 +2595,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xD1, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D1        START:    ADDA   [,U++]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D1        START:    ADDA   [,U++]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2614,7 +2611,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,-X]  ; 8000   	A9 82        START:    ADDA   [,-X]\n");
+		strBuilder.append("Start      	ADDA		  	[,-X]  ; 8000   	AB 82        START:    ADDA   [,-X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2638,7 +2635,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,--X]  ; 8000   	A9 93        START:    ADDA   [,--X]\n");
+		strBuilder.append("Start      	ADDA		  	[,--X]  ; 8000   	AB 93        START:    ADDA   [,--X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2655,7 +2652,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x93, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 93        START:    ADDA   [,--X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 93        START:    ADDA   [,--X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2671,7 +2668,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,-Y]  ; 8000   	A9 A2        START:    ADDA   [,-Y]\n");
+		strBuilder.append("Start      	ADDA		  	[,-Y]  ; 8000   	AB A2        START:    ADDA   [,-Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2695,7 +2692,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,--Y]  ; 8000   	A9 B3        START:    ADDA   [,--Y]\n");
+		strBuilder.append("Start      	ADDA		  	[,--Y]  ; 8000   	AB B3        START:    ADDA   [,--Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2712,7 +2709,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xB3, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B3        START:    ADDA   [,--Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B3        START:    ADDA   [,--Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2728,7 +2725,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,-S]  ; 8000   	A9 E2        START:    ADDA   [,-S]\n");
+		strBuilder.append("Start      	ADDA		  	[,-S]  ; 8000   	AB E2        START:    ADDA   [,-S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2752,7 +2749,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,--S]  ; 8000   	A9 F3        START:    ADDA   [,--S]\n");
+		strBuilder.append("Start      	ADDA		  	[,--S]  ; 8000   	AB F3        START:    ADDA   [,--S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2769,7 +2766,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xF3, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F3        START:    ADDA   [,--S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F3        START:    ADDA   [,--S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2785,7 +2782,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,-U]  ; 8000   	A9 C2        START:    ADDA   [,-U]\n");
+		strBuilder.append("Start      	ADDA		  	[,-U]  ; 8000   	AB C2        START:    ADDA   [,-U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2809,7 +2806,7 @@ public class TestADDAInstruction {
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
 		strBuilder.append("Const	   	EQU          	5\n");
-		strBuilder.append("Start      	ADDA		  	[,--U]  ; 8000   	A9 D3        START:    ADDA   [,--U]\n");
+		strBuilder.append("Start      	ADDA		  	[,--U]  ; 8000   	AB D3        START:    ADDA   [,--U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2826,7 +2823,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xD3, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D3        START:    ADDA   [,--U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D3        START:    ADDA   [,--U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2840,7 +2837,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	1234,X  ; 8000   	A9 89 04 D2            ADDA   1234,X\n");
+		strBuilder.append("Start      	ADDA		  	1234,X  ; 8000   	AB 89 04 D2            ADDA   1234,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2859,7 +2856,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 89 04 D2            ADDA   1234,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 89 04 D2            ADDA   1234,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2906,7 +2903,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	1234,U  ; 8000   	A9 C9 04 D2            ADDA   1234,U\n");
+		strBuilder.append("Start      	ADDA		  	1234,U  ; 8000   	AB C9 04 D2            ADDA   1234,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2925,7 +2922,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C9 04 D2            ADDA   1234,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C9 04 D2            ADDA   1234,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2939,7 +2936,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	1234,S  ; 8000   	A9 E9 04 D2            ADDA   1234,S\n");
+		strBuilder.append("Start      	ADDA		  	1234,S  ; 8000   	AB E9 04 D2            ADDA   1234,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2958,7 +2955,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E9 04 D2            ADDA   1234,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E9 04 D2            ADDA   1234,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -2972,7 +2969,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	34,X  ; 8000   	A9 88 22            ADDA   34,X\n");
+		strBuilder.append("Start      	ADDA		  	34,X  ; 8000   	AB 88 22            ADDA   34,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -2990,7 +2987,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x88, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 88 22            ADDA   34,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 88 22            ADDA   34,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3004,7 +3001,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	34,Y  ; 8000   	A9 A8 22            ADDA   34,Y\n");
+		strBuilder.append("Start      	ADDA		  	34,Y  ; 8000   	AB A8 22            ADDA   34,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3022,7 +3019,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xA8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A8 22            ADDA   34,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A8 22            ADDA   34,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3036,7 +3033,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	34,U  ; 8000   	A9 C8 22            ADDA   34,U\n");
+		strBuilder.append("Start      	ADDA		  	34,U  ; 8000   	AB C8 22            ADDA   34,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3054,7 +3051,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xC8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C8 22            ADDA   34,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C8 22            ADDA   34,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3068,7 +3065,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	34,S  ; 8000   	A9 E8 22            ADDA   34,S\n");
+		strBuilder.append("Start      	ADDA		  	34,S  ; 8000   	AB E8 22            ADDA   34,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3086,7 +3083,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xE8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E8 22            ADDA   34,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E8 22            ADDA   34,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3100,7 +3097,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	,X  ; 8000   	A9 84            ADDA   ,X\n");
+		strBuilder.append("Start      	ADDA		  	,X  ; 8000   	AB 84            ADDA   ,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3117,7 +3114,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x84, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 84            ADDA   ,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 84            ADDA   ,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3131,7 +3128,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	,Y  ; 8000   	A9 A4            ADDA   ,Y\n");
+		strBuilder.append("Start      	ADDA		  	,Y  ; 8000   	AB A4            ADDA   ,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3148,7 +3145,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xA4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A4            ADDA   ,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A4            ADDA   ,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3162,7 +3159,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	,U  ; 8000   	A9 C4            ADDA   ,U\n");
+		strBuilder.append("Start      	ADDA		  	,U  ; 8000   	AB C4            ADDA   ,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3179,7 +3176,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xC4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C4            ADDA   ,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C4            ADDA   ,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3193,7 +3190,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	,S  ; 8000   	A9 E4            ADDA   ,S\n");
+		strBuilder.append("Start      	ADDA		  	,S  ; 8000   	AB E4            ADDA   ,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3210,7 +3207,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xE4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E4            ADDA   ,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E4            ADDA   ,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3224,7 +3221,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	0,X  ; 8000   	A9 84            ADDA   0,X\n");
+		strBuilder.append("Start      	ADDA		  	0,X  ; 8000   	AB 84            ADDA   0,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3241,7 +3238,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x84, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 84            ADDA   0,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 84            ADDA   0,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3255,7 +3252,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	0,Y  ; 8000   	A9 A4            ADDA   0,Y\n");
+		strBuilder.append("Start      	ADDA		  	0,Y  ; 8000   	AB A4            ADDA   0,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3272,7 +3269,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xA4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A4            ADDA   0,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A4            ADDA   0,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3286,7 +3283,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	0,U  ; 8000   	A9 C4            ADDA   0,U\n");
+		strBuilder.append("Start      	ADDA		  	0,U  ; 8000   	AB C4            ADDA   0,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3303,7 +3300,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xC4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C4            ADDA   0,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C4            ADDA   0,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3317,7 +3314,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	0,S  ; 8000   	A9 E4            ADDA   0,S\n");
+		strBuilder.append("Start      	ADDA		  	0,S  ; 8000   	AB E4            ADDA   0,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3334,7 +3331,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xE4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E4            ADDA   0,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E4            ADDA   0,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3348,7 +3345,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-16,X  ; 8000   	A9 10            ADDA   -16,X\n");
+		strBuilder.append("Start      	ADDA		  	-16,X  ; 8000   	AB 10            ADDA   -16,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3365,7 +3362,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x10, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 10            ADDA   -16,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 10            ADDA   -16,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3379,7 +3376,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	1,X  ; 8000   	A9 01            ADDA   1,X\n");
+		strBuilder.append("Start      	ADDA		  	1,X  ; 8000   	AB 01            ADDA   1,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3396,7 +3393,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x01, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 01            ADDA   1,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 01            ADDA   1,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3410,7 +3407,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	15,X  ; 8000   	A9 0F            ADDA   15,X\n");
+		strBuilder.append("Start      	ADDA		  	15,X  ; 8000   	AB 0F            ADDA   15,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3427,7 +3424,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x0F, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 0F            ADDA   15,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 0F            ADDA   15,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3441,7 +3438,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-16,Y  ; 8000   	A9 30            ADDA   -16,Y\n");
+		strBuilder.append("Start      	ADDA		  	-16,Y  ; 8000   	AB 30            ADDA   -16,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3458,7 +3455,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x30, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 30            ADDA   -16,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 30            ADDA   -16,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3472,7 +3469,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	1,Y  ; 8000   	A9 21            ADDA   1,Y\n");
+		strBuilder.append("Start      	ADDA		  	1,Y  ; 8000   	AB 21            ADDA   1,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3489,7 +3486,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x21, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 21            ADDA   1,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 21            ADDA   1,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3503,7 +3500,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	15,Y  ; 8000   	A9 2F            ADDA   15,Y\n");
+		strBuilder.append("Start      	ADDA		  	15,Y  ; 8000   	AB 2F            ADDA   15,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3520,7 +3517,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x2F, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 2F            ADDA   15,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 2F            ADDA   15,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3534,7 +3531,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-16,U  ; 8000   	A9 50            ADDA   -16,U\n");
+		strBuilder.append("Start      	ADDA		  	-16,U  ; 8000   	AB 50            ADDA   -16,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3551,7 +3548,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x50, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 50            ADDA   -16,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 50            ADDA   -16,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3565,7 +3562,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	1,U  ; 8000   	A9 41            ADDA   1,U\n");
+		strBuilder.append("Start      	ADDA		  	1,U  ; 8000   	AB 41            ADDA   1,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3582,7 +3579,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x41, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 41            ADDA   1,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 41            ADDA   1,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3596,7 +3593,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	15,U  ; 8000   	A9 4F            ADDA   15,U\n");
+		strBuilder.append("Start      	ADDA		  	15,U  ; 8000   	AB 4F            ADDA   15,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3613,7 +3610,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x4F, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 4F            ADDA   15,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 4F            ADDA   15,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3627,7 +3624,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-16,S  ; 8000   	A9 70            ADDA   -16,S\n");
+		strBuilder.append("Start      	ADDA		  	-16,S  ; 8000   	AB 70            ADDA   -16,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3644,7 +3641,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x70, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 70            ADDA   -16,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 70            ADDA   -16,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3658,7 +3655,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	1,S  ; 8000   	A9 61            ADDA   1,S\n");
+		strBuilder.append("Start      	ADDA		  	1,S  ; 8000   	AB 61            ADDA   1,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3675,7 +3672,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x61, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 61            ADDA   1,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 61            ADDA   1,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3689,7 +3686,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	15,S  ; 8000   	A9 6F            ADDA   15,S\n");
+		strBuilder.append("Start      	ADDA		  	   15,S  ; 8000   	AB 6F            ADDA   15,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3706,7 +3703,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x6F, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 6F            ADDA   15,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 6F            ADDA   15,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3720,7 +3717,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-128,X  ; 8000   	A9 88 80            ADDA   -128,X\n");
+		strBuilder.append("Start      	ADDA		  	-128,X  ; 8000   	AB 88 80            ADDA   -128,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3738,7 +3735,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x88, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 88 80            ADDA   -128,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 88 80            ADDA   -128,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3752,7 +3749,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	127,X  ; 8000   	A9 88 7F            ADDA   127,X\n");
+		strBuilder.append("Start      	ADDA		  	127,X  ; 8000   	AB 88 7F            ADDA   127,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3770,7 +3767,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x88, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 88 7F            ADDA   127,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 88 7F            ADDA   127,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3784,7 +3781,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-128,Y  ; 8000   	A9 A8 80            ADDA   -128,Y\n");
+		strBuilder.append("Start      	ADDA		  	-128,Y  ; 8000   	AB A8 80            ADDA   -128,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3802,7 +3799,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xA8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A8 80            ADDA   -128,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A8 80            ADDA   -128,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3816,7 +3813,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	127,Y  ; 8000   	A9 A8 7F            ADDA   127,Y\n");
+		strBuilder.append("Start      	ADDA		  	127,Y  ; 8000   	AB A8 7F            ADDA   127,Y\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3834,7 +3831,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xA8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 A8 7F            ADDA   127,Y", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB A8 7F            ADDA   127,Y", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3848,7 +3845,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-128,U  ; 8000   	A9 C8 80            ADDA   -128,U\n");
+		strBuilder.append("Start      	ADDA		  	-128,U  ; 8000   	AB C8 80            ADDA   -128,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3866,7 +3863,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xC8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C8 80            ADDA   -128,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C8 80            ADDA   -128,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3880,7 +3877,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	127,U  ; 8000   	A9 C8 7F            ADDA   127,U\n");
+		strBuilder.append("Start      	ADDA		  	127,U  ; 8000   	AB C8 7F            ADDA   127,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3898,7 +3895,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xC8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C8 7F            ADDA   127,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C8 7F            ADDA   127,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3912,7 +3909,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-128,S  ; 8000   	A9 E8 80            ADDA   -128,S\n");
+		strBuilder.append("Start      	ADDA		  	-128,S  ; 8000   	AB E8 80            ADDA   -128,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3930,7 +3927,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xE8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E8 80            ADDA   -128,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E8 80            ADDA   -128,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3944,7 +3941,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	127,S  ; 8000   	A9 E8 7F            ADDA   127,S\n");
+		strBuilder.append("Start      	ADDA		  	127,S  ; 8000   	AB E8 7F            ADDA   127,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3962,7 +3959,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xE8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E8 7F            ADDA   127,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E8 7F            ADDA   127,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -3976,7 +3973,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-32768,X  ; 8000   	A9 89 80 00             ADDA   -32768,X\n");
+		strBuilder.append("Start      	ADDA		  	-32768,X  ; 8000   	AB 89 80 00             ADDA   -32768,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -3995,7 +3992,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 89 80 00             ADDA   -32768,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 89 80 00             ADDA   -32768,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4009,7 +4006,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  32767,X  ; 8000   	A9 89 7F FF             ADDA   32767,X\n");
+		strBuilder.append("Start      	ADDA		  32767,X  ; 8000   	AB 89 7F FF             ADDA   32767,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4028,7 +4025,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 89 7F FF             ADDA   32767,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 89 7F FF             ADDA   32767,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4108,7 +4105,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-32768,U  ; 8000   	A9 C9 80 00             ADDA   -32768,U\n");
+		strBuilder.append("Start      	ADDA		  	-32768,U  ; 8000   	AB C9 80 00             ADDA   -32768,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4127,7 +4124,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C9 80 00             ADDA   -32768,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C9 80 00             ADDA   -32768,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4141,7 +4138,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  32767,U  ; 8000   	A9 C9 7F FF             ADDA   32767,U\n");
+		strBuilder.append("Start      	ADDA		  32767,U  ; 8000   	AB C9 7F FF             ADDA   32767,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4160,7 +4157,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C9 7F FF             ADDA   32767,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C9 7F FF             ADDA   32767,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4174,7 +4171,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-32768,S  ; 8000   	A9 E9 80 00             ADDA   -32768,S\n");
+		strBuilder.append("Start      	ADDA		  	-32768,S  ; 8000   	AB E9 80 00             ADDA   -32768,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4193,7 +4190,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E9 80 00             ADDA   -32768,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E9 80 00             ADDA   -32768,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4207,7 +4204,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  32767,S  ; 8000   	A9 E9 7F FF             ADDA   32767,S\n");
+		strBuilder.append("Start      	ADDA		  32767,S  ; 8000   	AB E9 7F FF             ADDA   32767,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4226,7 +4223,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E9 7F FF             ADDA   32767,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E9 7F FF             ADDA   32767,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4240,7 +4237,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-32769,X  ; 8000   	A9 89 80 00             ADDA   -32769,X\n");
+		strBuilder.append("Start      	ADDA		  	-32769,X  ; 8000   	AB 89 80 00             ADDA   -32769,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4261,7 +4258,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 89 80 00             ADDA   -32769,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 89 80 00             ADDA   -32769,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4275,7 +4272,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  32768,X  ; 8000   	A9 89 7F FF             ADDA   32768,X\n");
+		strBuilder.append("Start      	ADDA		  32768,X  ; 8000   	AB 89 7F FF             ADDA   32768,X\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4296,7 +4293,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 89 7F FF             ADDA   32768,X", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 89 7F FF             ADDA   32768,X", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4380,7 +4377,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-32769,U  ; 8000   	A9 C9 80 00             ADDA   -32769,U\n");
+		strBuilder.append("Start      	ADDA		  	-32769,U  ; 8000   	AB C9 80 00             ADDA   -32769,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4401,7 +4398,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C9 80 00             ADDA   -32769,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C9 80 00             ADDA   -32769,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4415,7 +4412,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  32768,U  ; 8000   	A9 C9 7F FF             ADDA   32768,U\n");
+		strBuilder.append("Start      	ADDA		  32768,U  ; 8000   	AB C9 7F FF             ADDA   32768,U\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4436,7 +4433,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 C9 7F FF             ADDA   32768,U", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB C9 7F FF             ADDA   32768,U", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4450,7 +4447,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-32769,S  ; 8000   	A9 E9 80 00             ADDA   -32769,S\n");
+		strBuilder.append("Start      	ADDA		  	-32769,S  ; 8000   	AB E9 80 00             ADDA   -32769,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4471,7 +4468,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E9 80 00             ADDA   -32769,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E9 80 00             ADDA   -32769,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4485,7 +4482,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  32768,S  ; 8000   	A9 E9 7F FF             ADDA   32768,S\n");
+		strBuilder.append("Start      	ADDA		  32768,S  ; 8000   	AB E9 7F FF             ADDA   32768,S\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4506,7 +4503,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 E9 7F FF             ADDA   32768,S", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB E9 7F FF             ADDA   32768,S", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4519,8 +4516,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedConstantIndirectMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[1234,X]  ; 8000   	A9 99 04 D2            ADDA   [1234,X]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDA		  	[1234,X]  ; 8000   	AB 99 04 D2            ADDA   [1234,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4539,7 +4536,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 99 04 D2            ADDA   [1234,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 99 04 D2            ADDA   [1234,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4553,7 +4550,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[1234,Y]  ; 8000   	A9 B9 04 D2            ADDA   [1234,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[1234,Y]  ; 8000   	AB B9 04 D2            ADDA   [1234,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4572,7 +4569,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B9 04 D2            ADDA   [1234,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B9 04 D2            ADDA   [1234,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4586,7 +4583,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[1234,U]  ; 8000   	A9 D9 04 D2            ADDA   [1234,U]\n");
+		strBuilder.append("Start      	ADDA		  	[1234,U]  ; 8000   	AB D9 04 D2            ADDA   [1234,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4605,7 +4602,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D9 04 D2            ADDA   [1234,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D9 04 D2            ADDA   [1234,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4619,7 +4616,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[1234,S]  ; 8000   	A9 F9 04 D2            ADDA   [1234,S]\n");
+		strBuilder.append("Start      	ADDA		  	[1234,S]  ; 8000   	AB F9 04 D2            ADDA   [1234,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4638,7 +4635,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x04, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xD2, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F9 04 D2            ADDA   [1234,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F9 04 D2            ADDA   [1234,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4652,7 +4649,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[34,X]  ; 8000   	A9 98 22            ADDA   [34,X]\n");
+		strBuilder.append("Start      	ADDA		  	[34,X]  ; 8000   	AB 98 22            ADDA   [34,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4670,7 +4667,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 98 22            ADDA   [34,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 98 22            ADDA   [34,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4684,7 +4681,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[34,Y]  ; 8000   	A9 B8 22            ADDA   [34,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[34,Y]  ; 8000   	AB B8 22            ADDA   [34,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4702,7 +4699,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B8 22            ADDA   [34,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B8 22            ADDA   [34,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4716,7 +4713,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[34,U]  ; 8000   	A9 D8 22            ADDA   [34,U]\n");
+		strBuilder.append("Start      	ADDA		  	[34,U]  ; 8000   	AB D8 22            ADDA   [34,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4734,7 +4731,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D8 22            ADDA   [34,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D8 22            ADDA   [34,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4748,7 +4745,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[34,S]  ; 8000   	A9 F8 22            ADDA   [34,S]\n");
+		strBuilder.append("Start      	ADDA		  	[34,S]  ; 8000   	AB F8 22            ADDA   [34,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4766,7 +4763,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x22, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F8 22            ADDA   [34,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F8 22            ADDA   [34,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4780,7 +4777,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[,X]  ; 8000   	A9 94            ADDA   [,X]\n");
+		strBuilder.append("Start      	ADDA		  	[,X]  ; 8000   	AB 94            ADDA   [,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4797,7 +4794,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x94, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 94            ADDA   [,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 94            ADDA   [,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4811,7 +4808,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[,Y]  ; 8000   	A9 B4            ADDA   [,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[,Y]  ; 8000   	AB B4            ADDA   [,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4828,7 +4825,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xB4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B4            ADDA   [,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B4            ADDA   [,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4842,7 +4839,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[,U]  ; 8000   	A9 D4            ADDA   [,U]\n");
+		strBuilder.append("Start      	ADDA		  	[,U]  ; 8000   	AB D4            ADDA   [,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4859,7 +4856,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xD4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D4            ADDA   [,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D4            ADDA   [,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4873,7 +4870,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[,S]  ; 8000   	A9 F4            ADDA   [,S]\n");
+		strBuilder.append("Start      	ADDA		  	[,S]  ; 8000   	AB F4            ADDA   [,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4890,7 +4887,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xF4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F4            ADDA   [,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F4            ADDA   [,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4904,7 +4901,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[0,X]  ; 8000   	A9 94            ADDA   [0,X]\n");
+		strBuilder.append("Start      	ADDA		  	[0,X]  ; 8000   	AB 94            ADDA   [0,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4921,7 +4918,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x94, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 94            ADDA   [0,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 94            ADDA   [0,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4935,7 +4932,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[0,Y]  ; 8000   	A9 B4            ADDA   [0,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[0,Y]  ; 8000   	AB B4            ADDA   [0,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4952,7 +4949,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xB4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B4            ADDA   [0,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B4            ADDA   [0,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4966,7 +4963,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[0,U]  ; 8000   	A9 D4            ADDA   [0,U]\n");
+		strBuilder.append("Start      	ADDA		  	[0,U]  ; 8000   	AB D4            ADDA   [0,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -4983,7 +4980,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xD4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D4            ADDA   [0,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D4            ADDA   [0,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -4997,7 +4994,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[0,S]  ; 8000   	A9 F4            ADDA   [0,S]\n");
+		strBuilder.append("Start      	ADDA		  	[0,S]  ; 8000   	AB F4            ADDA   [0,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5014,7 +5011,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 1, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0xF4, line.getOperand()[0]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F4            ADDA   [0,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F4            ADDA   [0,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5028,7 +5025,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-16,X]  ; 8000   	A9 98 F0            ADDA   [-16,X]\n");
+		strBuilder.append("Start      	ADDA		  	[-16,X]  ; 8000   	AB 98 F0            ADDA   [-16,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5046,7 +5043,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 98 F0            ADDA   [-16,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 98 F0            ADDA   [-16,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5060,7 +5057,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[15,X]  ; 8000   	A9 98 0F            ADDA   [15,X]\n");
+		strBuilder.append("Start      	ADDA		  	[15,X]  ; 8000   	AB 98 0F            ADDA   [15,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5078,7 +5075,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 98 0F            ADDA   [15,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 98 0F            ADDA   [15,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5092,7 +5089,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-16,Y]  ; 8000   	A9 B8 F0            ADDA   [-16,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[-16,Y]  ; 8000   	AB B8 F0            ADDA   [-16,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5110,7 +5107,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B8 F0            ADDA   [-16,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B8 F0            ADDA   [-16,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5124,7 +5121,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[15,Y]  ; 8000   	A9 B8 0F            ADDA   [15,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[15,Y]  ; 8000   	AB B8 0F            ADDA   [15,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5142,7 +5139,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B8 0F            ADDA   [15,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B8 0F            ADDA   [15,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5156,7 +5153,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-16,U]  ; 8000   	A9 D8 F0            ADDA   [-16,U]\n");
+		strBuilder.append("Start      	ADDA		  	[-16,U]  ; 8000   	AB D8 F0            ADDA   [-16,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5174,7 +5171,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D8 F0            ADDA   [-16,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D8 F0            ADDA   [-16,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5188,7 +5185,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[15,U]  ; 8000   	A9 D8 0F            ADDA   [15,U]\n");
+		strBuilder.append("Start      	ADDA		  	[15,U]  ; 8000   	AB D8 0F            ADDA   [15,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5206,7 +5203,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D8 0F            ADDA   [15,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D8 0F            ADDA   [15,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5220,7 +5217,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-16,S]  ; 8000   	A9 F8 F0            ADDA   [-16,S]\n");
+		strBuilder.append("Start      	ADDA		  	[-16,S]  ; 8000   	AB F8 F0            ADDA   [-16,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5238,7 +5235,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xF0, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F8 F0            ADDA   [-16,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F8 F0            ADDA   [-16,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5252,7 +5249,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[15,S]  ; 8000   	A9 F8 0F            ADDA   [15,S]\n");
+		strBuilder.append("Start      	ADDA		  	[15,S]  ; 8000   	AB F8 0F            ADDA   [15,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5270,7 +5267,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x0F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F8 0F            ADDA   [15,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F8 0F            ADDA   [15,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5284,7 +5281,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-128,X]  ; 8000   	A9 98 80            ADDA   [-128,X}\n");
+		strBuilder.append("Start      	ADDA		  	[-128,X]  ; 8000   	AB 98 80            ADDA   [-128,X}\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5302,7 +5299,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 98 80            ADDA   [-128,X}", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 98 80            ADDA   [-128,X}", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5316,7 +5313,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[127,X]  ; 8000   	A9 98 7F            ADDA   [127,X]\n");
+		strBuilder.append("Start      	ADDA		  	[127,X]  ; 8000   	AB 98 7F            ADDA   [127,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5334,7 +5331,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x98, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 98 7F            ADDA   [127,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 98 7F            ADDA   [127,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5348,7 +5345,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-128,Y]  ; 8000   	A9 B8 80            ADDA   [-128,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[-128,Y]  ; 8000   	AB B8 80            ADDA   [-128,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5366,7 +5363,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B8 80            ADDA   [-128,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B8 80            ADDA   [-128,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5380,7 +5377,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[127,Y]  ; 8000   	A9 B8 7F            ADDA   [127,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[127,Y]  ; 8000   	AB B8 7F            ADDA   [127,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5398,7 +5395,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xB8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B8 7F            ADDA   [127,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B8 7F            ADDA   [127,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5412,7 +5409,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-128,U]  ; 8000   	A9 D8 80            ADDA   [-128,U]\n");
+		strBuilder.append("Start      	ADDA		  	[-128,U]  ; 8000   	AB D8 80            ADDA   [-128,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5430,7 +5427,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D8 80            ADDA   [-128,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D8 80            ADDA   [-128,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5444,7 +5441,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[127,U]  ; 8000   	A9 D8 7F            ADDA   [127,U]\n");
+		strBuilder.append("Start      	ADDA		  	[127,U]  ; 8000   	AB D8 7F            ADDA   [127,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5462,7 +5459,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xD8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D8 7F            ADDA   [127,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D8 7F            ADDA   [127,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5476,7 +5473,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-128,S]  ; 8000   	A9 F8 80            ADDA   [-128,S]\n");
+		strBuilder.append("Start      	ADDA		  	[-128,S]  ; 8000   	AB F8 80            ADDA   [-128,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5494,7 +5491,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F8 80            ADDA   [-128,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F8 80            ADDA   [-128,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5508,7 +5505,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[127,S]  ; 8000   	A9 F8 7F            ADDA   [127,S]\n");
+		strBuilder.append("Start      	ADDA		  	[127,S]  ; 8000   	AB F8 7F            ADDA   [127,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5526,7 +5523,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0xF8, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F8 7F            ADDA   [127,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F8 7F            ADDA   [127,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5540,7 +5537,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-32768,X]  ; 8000   	A9 99 80 00             ADDA   [-32768,X]\n");
+		strBuilder.append("Start      	ADDA		  	[-32768,X]  ; 8000   	AB 99 80 00             ADDA   [-32768,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5559,7 +5556,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 99 80 00             ADDA   [-32768,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 99 80 00             ADDA   [-32768,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5573,7 +5570,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  [32767,X]  ; 8000   	A9 99 7F FF             ADDA   [32767,X]\n");
+		strBuilder.append("Start      	ADDA		  [32767,X]  ; 8000   	AB 99 7F FF             ADDA   [32767,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5592,7 +5589,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 99 7F FF             ADDA   [32767,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 99 7F FF             ADDA   [32767,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5606,7 +5603,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-32768,Y]  ; 8000   	A9 B9 80 00             ADDA   [-32768,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[-32768,Y]  ; 8000   	AB B9 80 00             ADDA   [-32768,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5625,7 +5622,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B9 80 00             ADDA   [-32768,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B9 80 00             ADDA   [-32768,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5639,7 +5636,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  [32767,Y]  ; 8000   	A9 B9 7F FF             ADDA   [32767,Y]\n");
+		strBuilder.append("Start      	ADDA		  [32767,Y]  ; 8000   	AB B9 7F FF             ADDA   [32767,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5658,7 +5655,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B9 7F FF             ADDA   [32767,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B9 7F FF             ADDA   [32767,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5672,7 +5669,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-32768,U]  ; 8000   	A9 D9 80 00             ADDA   [-32768,U]\n");
+		strBuilder.append("Start      	ADDA		  	[-32768,U]  ; 8000   	AB D9 80 00             ADDA   [-32768,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5691,7 +5688,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D9 80 00             ADDA   [-32768,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D9 80 00             ADDA   [-32768,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5705,7 +5702,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  [32767,U]  ; 8000   	A9 D9 7F FF             ADDA   [32767,U]\n");
+		strBuilder.append("Start      	ADDA		  [32767,U]  ; 8000   	AB D9 7F FF             ADDA   [32767,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5724,7 +5721,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D9 7F FF             ADDA   [32767,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D9 7F FF             ADDA   [32767,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5738,7 +5735,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-32768,S]  ; 8000   	A9 F9 80 00             ADDA   [-32768,S]\n");
+		strBuilder.append("Start      	ADDA		  	[-32768,S]  ; 8000   	AB F9 80 00             ADDA   [-32768,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5757,7 +5754,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F9 80 00             ADDA   [-32768,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F9 80 00             ADDA   [-32768,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5771,7 +5768,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  [32767,S]  ; 8000   	A9 F9 7F FF             ADDA   [32767,S]\n");
+		strBuilder.append("Start      	ADDA		  [32767,S]  ; 8000   	AB F9 7F FF             ADDA   [32767,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5790,7 +5787,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F9 7F FF             ADDA   [32767,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F9 7F FF             ADDA   [32767,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5804,7 +5801,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-32769,X]  ; 8000   	A9 99 80 00             ADDA   [-32769,X]\n");
+		strBuilder.append("Start      	ADDA		  	[-32769,X]  ; 8000   	AB 99 80 00             ADDA   [-32769,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5825,7 +5822,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 99 80 00             ADDA   [-32769,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 99 80 00             ADDA   [-32769,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5839,7 +5836,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  [32768,X]  ; 8000   	A9 99 7F FF             ADDA   [32768,X]\n");
+		strBuilder.append("Start      	ADDA		  [32768,X]  ; 8000   	AB 99 7F FF             ADDA   [32768,X]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5860,7 +5857,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 99 7F FF             ADDA   [32768,X]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 99 7F FF             ADDA   [32768,X]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5874,7 +5871,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-32769,Y]  ; 8000   	A9 B9 80 00             ADDA   [-32769,Y]\n");
+		strBuilder.append("Start      	ADDA		  	[-32769,Y]  ; 8000   	AB B9 80 00             ADDA   [-32769,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5895,7 +5892,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B9 80 00             ADDA   [-32769,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B9 80 00             ADDA   [-32769,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5909,7 +5906,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  [32768,Y]  ; 8000   	A9 B9 7F FF             ADDA   [32768,Y]\n");
+		strBuilder.append("Start      	ADDA		  [32768,Y]  ; 8000   	AB B9 7F FF             ADDA   [32768,Y]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5930,7 +5927,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 B9 7F FF             ADDA   [32768,Y]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB B9 7F FF             ADDA   [32768,Y]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5944,7 +5941,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-32769,U]  ; 8000   	A9 D9 80 00             ADDA   [-32769,U]\n");
+		strBuilder.append("Start      	ADDA		  	[-32769,U]  ; 8000   	AB D9 80 00             ADDA   [-32769,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -5965,7 +5962,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D9 80 00             ADDA   [-32769,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D9 80 00             ADDA   [-32769,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -5979,7 +5976,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  [32768,U]  ; 8000   	A9 D9 7F FF             ADDA   [32768,U]\n");
+		strBuilder.append("Start      	ADDA		  [32768,U]  ; 8000   	AB D9 7F FF             ADDA   [32768,U]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6000,7 +5997,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 D9 7F FF             ADDA   [32768,U]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB D9 7F FF             ADDA   [32768,U]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6014,7 +6011,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-32769,S]  ; 8000   	A9 F9 80 00             ADDA   [-32769,S]\n");
+		strBuilder.append("Start      	ADDA		  	[-32769,S]  ; 8000   	AB F9 80 00             ADDA   [-32769,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6035,7 +6032,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F9 80 00             ADDA   [-32769,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F9 80 00             ADDA   [-32769,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6049,7 +6046,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  [32768,S]  ; 8000   	A9 F9 7F FF             ADDA   [32768,S]\n");
+		strBuilder.append("Start      	ADDA		  [32768,S]  ; 8000   	AB F9 7F FF             ADDA   [32768,S]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6070,7 +6067,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 F9 7F FF             ADDA   [32768,S]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB F9 7F FF             ADDA   [32768,S]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6083,8 +6080,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifToPCMove1() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	0,PCR  ; 8000   	A9 8C 00            ADDA   0,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDA		  	$8003,PCR  ; 8000   	AB 8C 00            ADDA   $8003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6102,7 +6099,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 8C 00            ADDA   0,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 8C 00            ADDA   $8003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6115,8 +6112,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifToPCMove2() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-128,PCR  ; 8000   	A9 8C 80            ADDA   -128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDA		  	$7F83,PCR  ; 8000   	AB 8C 80            ADDA   $7F83,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6134,7 +6131,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 8C 80            ADDA   -128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 8C 80            ADDA   $7F83,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6147,8 +6144,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifToPCMove3() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	127,PCR  ; 8000   	A9 8C 7F            ADDA   127,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDA		  	$8082,PCR  ; 8000   	AB 8C 7F            ADDA   $8082,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6166,7 +6163,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x8C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 8C 7F            ADDA   127,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 8C 7F            ADDA   $8082,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6179,8 +6176,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifToPCMove4() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-129,PCR  ; 8000   	A9 8D FF 7F            ADDA   -129,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDA		  	$7F82,PCR  ; 8000   	AB 8D FF 7F            ADDA   $7F82,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6197,9 +6194,9 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x8D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 8D FF 7F            ADDA   -129,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 8D FF 7F            ADDA   $7F82,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6212,8 +6209,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifToPCMove5() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	128,PCR  ; 8000   	A9 8D 00 80            ADDA   128,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDA		  	$8084,PCR  ; 8000   	AB 8D 00 80            ADDA   $8084,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6232,7 +6229,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 8D 00 80            ADDA   128,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 8D 00 80            ADDA   $8084,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6245,8 +6242,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifToPCMove6() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-32768,PCR  ; 8000   	A9 8D 80 00            ADDA   -32768,PCR\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDA		  	$0004,PCR  ; 8000   	AB 8D 80 00            ADDA   $0004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6265,7 +6262,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            ADDA   -32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 8D 80 00            ADDA   $0004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6278,8 +6275,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	32767,PCR  ; 8000   	A9 8D 7F FF            ADDA   32767,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ADDA		  	$C003,PCR  ; 4000   	A9 8D 7F FF            ADDA   $C003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6288,7 +6285,7 @@ public class TestADDAInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDAInstruction line = (AssembledADDAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6298,7 +6295,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 8D 7F FF            ADDA   32767,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	A9 8D 7F FF            ADDA   $C003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6311,8 +6308,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("		   		ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	-32769,PCR  ; 8000   	A9 8D 80 00            ADDA   -32769,PCR\n");
+		strBuilder.append("		   		ORG    		$8000\n");
+		strBuilder.append("Start      	ADDA		  	$0003,PCR  ; 8000   	AB 8D 80 00            ADDA   $0003,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6333,7 +6330,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 8D 80 00            ADDA   -32769,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 8D 80 00            ADDA   $0003,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6346,8 +6343,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	32768,PCR  ; 8000   	A9 8D 7F FF            ADDA   32768,PCR\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ADDA		  	$C004,PCR  ; 4000   	A9 8D 7F FF            ADDA   $C004,PCR\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6358,7 +6355,7 @@ public class TestADDAInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDAInstruction line = (AssembledADDAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6368,7 +6365,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 8D 7F FF            ADDA   32768,PCR", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	A9 8D 7F FF            ADDA   $C004,PCR", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6382,7 +6379,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[0,PCR]  ; 8000   	A9 9C 00            ADDA   [0,PCR]\n");
+		strBuilder.append("Start      	ADDA		  	   [$8003,PCR]  ; 8000   	AB 9C 00            ADDA   [0,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6400,7 +6397,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 9C 00            ADDA   [0,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 9C 00            ADDA   [0,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6414,7 +6411,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		  	 	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-128,PCR]  ; 8000   	A9 9C 80            ADDA   [-128,PCR]\n");
+		strBuilder.append("Start      ADDA		  	   [$7F83,PCR]  ; 8000   	AB 9C 80            ADDA   [-128,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6432,7 +6429,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 9C 80            ADDA   [-128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 9C 80            ADDA   [-128,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6446,7 +6443,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[127,PCR]  ; 8000   	A9 9C 7F            ADDA   [127,PCR]\n");
+		strBuilder.append("Start      	ADDA		  	   [$8082,PCR]  ; 8000   	AB 9C 7F            ADDA   [$8082,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6464,7 +6461,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x9C, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 9C 7F            ADDA   [127,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 9C 7F            ADDA   [$8082,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6478,7 +6475,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-129,PCR]  ; 8000   	A9 9D FF 7F            ADDA   [-129,PCR]\n");
+		strBuilder.append("Start      	ADDA		  	   [$7F82,PCR]  ; 8000   	AB 9D FF 7E            ADDA   [$7F83,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6495,9 +6492,9 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand size ", 3, line.getOperand().length);
 			Assert.assertEquals("Check operand", 0x9D, line.getOperand()[0]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[1]);
-			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[2]);
+			Assert.assertEquals("Check operand", 0x7E, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 9D FF 7F            ADDA   [-129,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 9D FF 7E            ADDA   [$7F83,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6511,7 +6508,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[128,PCR]  ; 8000   	A9 9D 00 80            ADDA   [128,PCR]\n");
+		strBuilder.append("Start      	ADDA		  		[$8084,PCR]  ; 8000   	AB 9D 00 80            ADDA   [$8084,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6530,7 +6527,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 9D 00 80            ADDA   [128,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 9D 00 80            ADDA   [$8084,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6544,7 +6541,7 @@ public class TestADDAInstruction {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
 		strBuilder.append("		 	  	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-32768,PCR]  ; 8000   	A9 9D 80 00            ADDA   [-32768,PCR]\n");
+		strBuilder.append("Start      	ADDA		  	[$0004,PCR]  ; 8000   	AB 9D 80 00            ADDA   [$0004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6563,7 +6560,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 9D 80 00            ADDA   [-32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 9D 80 00            ADDA   [$0004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6576,8 +6573,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifIndirectToPCMove7() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[32767,PCR]  ; 8000   	A9 9D 7F FF            ADDA   [32767,PCR]\n");
+		strBuilder.append("			   	ORG    		$4000\n");
+		strBuilder.append("Start      	ADDA		  	[$C003,PCR]  ; 8000   	AB 9D 7F FF            ADDA   [$C003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6586,7 +6583,7 @@ public class TestADDAInstruction {
 			Assert.assertTrue("No errors found", result.eResource().getErrors().isEmpty());
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDAInstruction line = (AssembledADDAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6596,7 +6593,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 9D 7F FF            ADDA   [32767,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 9D 7F FF            ADDA   [$C003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6609,8 +6606,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifIndirectToPCMove8() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("			   	ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[-32769,PCR]  ; 8000   	A9 9D 80 00            ADDA   [-32769,PCR]\n");
+		strBuilder.append("			   	ORG    		$8000\n");
+		strBuilder.append("Start      	ADDA		  	[$0003,PCR]  ; 8000   	AB 9D 80 00            ADDA   [$0003,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6631,7 +6628,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x80, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0x00, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 9D 80 00            ADDA   [-32769,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 8000   	AB 9D 80 00            ADDA   [$0003,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}
@@ -6644,8 +6641,8 @@ public class TestADDAInstruction {
 	public void testADDAIndexedRelatifIndirectToPCMove9() {
 		StringBuilder strBuilder = new StringBuilder();
 		strBuilder.append("; -----------------------------------------\n");
-		strBuilder.append("					ORG    			$8000\n");
-		strBuilder.append("Start      	ADDA		  	[32768,PCR]  ; 8000   	A9 9D 7F FF            ADDA   [32768,PCR]\n");
+		strBuilder.append("					ORG    		$4000\n");
+		strBuilder.append("Start      	ADDA		  	[$C004,PCR]  ; 4000   	AB 9D 7F FF            ADDA   [$C004,PCR]\n");
 		try {
 			Model result = parseHelper.parse(strBuilder.toString());
 
@@ -6656,7 +6653,7 @@ public class TestADDAInstruction {
 					InstructionValidator.OVERFLOW_ERROR, "The value 32768 is out than the possible limit, data may be lost");
 
 			AssemblerEngine engine = AssemblerEngine.getInstance();
-			Assert.assertEquals("Check PC Counter after the instruction", 0x8004, engine.getCurrentPcValue());
+			Assert.assertEquals("Check PC Counter after the instruction", 0x4004, engine.getCurrentPcValue());
 
 			AssembledADDAInstruction line = (AssembledADDAInstruction) engine.getAssembledLine(2);
 			Assert.assertEquals("Check getOpcode() size ", 1, line.getOpcode().length);
@@ -6666,7 +6663,7 @@ public class TestADDAInstruction {
 			Assert.assertEquals("Check operand", 0x7F, line.getOperand()[1]);
 			Assert.assertEquals("Check operand", 0xFF, line.getOperand()[2]);
 			Assert.assertEquals("Check Label", "Start", line.getLabel());
-			Assert.assertEquals("Check comment", "; 8000   	A9 9D 7F FF            ADDA   [32768,PCR]", line.getComment());
+			Assert.assertEquals("Check comment", "; 4000   	AB 9D 7F FF            ADDA   [$C004,PCR]", line.getComment());
 		} catch (Exception e) {
 			Assert.assertTrue("Exception", false);
 		}

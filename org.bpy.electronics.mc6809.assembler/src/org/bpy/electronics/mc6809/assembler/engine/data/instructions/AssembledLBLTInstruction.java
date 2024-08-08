@@ -18,8 +18,14 @@
  */
 package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
 
+import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.assembler.BltInstruction;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
+import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorManager;
+import org.bpy.electronics.mc6809.assembler.validation.InstructionValidator;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -44,13 +50,28 @@ public class AssembledLBLTInstruction extends AbstractRelativeBranchInstruction 
 		this.instruction = (BltInstruction) instruction;
 		this.label = CommandUtil.getLabel(this.instruction);
 		this.comment = CommandUtil.getComment(this.instruction);
-		super.parse(currentPcValue, lineNumber);
+		this.pcAddress = currentPcValue;
+		this.lineNumber = lineNumber;
+		addressingMode = AddressingMode.RELATIVE;
+		operandBytes = new int[2];
+		parse(currentPcValue, lineNumber);
 	}
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+
+		String label = instruction.getOperand().getOffset().getValue();
+		if (label != null) {
+
+			AbstractAssemblyLine targetLine = AssemblerEngine.getInstance().getLabelsPositionObject().get(label);
+			if (targetLine != null) {
+				computeOperand(targetLine.getPcAddress(), WORD_MODE, AssemblerPackage.eINSTANCE.getBltInstruction_Operand());
+			} else {
+				AssemblerErrorDescription problemDescription = new AssemblerErrorDescription("Label " + label + " isn't defined",
+						AssemblerPackage.eINSTANCE.getBltInstruction_Operand(), InstructionValidator.MISSING_LABEL);
+				AssemblerErrorManager.getInstance().addProblem(instruction, problemDescription);
+			}
+		}
 	}
 
 	/**

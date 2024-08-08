@@ -34,9 +34,9 @@ public abstract class AbstractRelativeBranchInstruction extends AbstractInstruct
 						InstructionValidator.OVERFLOW_ERROR);
 				AssemblerErrorManager.getInstance().addProblem(getLocalInstruction(), problemDescription );
 				opcodeBytes[0] = 0x3F;
-				operandBytes = new int[] {0xFF};
+				operandBytes[0] = 0xFF;
 			} else {
-				operandBytes = new int[] {offset & 0xFF};
+				operandBytes[0] = offset & 0xFF;
 			}
 			
 		} else {
@@ -47,7 +47,8 @@ public abstract class AbstractRelativeBranchInstruction extends AbstractInstruct
 						InstructionValidator.RELATIVE_SHORT_BRANCH);
 				AssemblerErrorManager.getInstance().addWarning(getLocalInstruction(), warningDescription );
 			}
-			operandBytes = new int[] {(offset>>8) & 0xFF  , offset & 0xFF};
+			operandBytes[0]= (offset>>8) & 0xFF; 
+			operandBytes[1]= offset & 0xFF;
 		}
 	}
 }

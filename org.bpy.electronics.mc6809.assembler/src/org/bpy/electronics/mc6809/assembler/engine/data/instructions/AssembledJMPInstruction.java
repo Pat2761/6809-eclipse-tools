@@ -35,6 +35,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.IndexedOperand;
 import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCIndirectMode;
 import org.bpy.electronics.mc6809.assembler.assembler.RelatifToPCMode;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.bpy.electronics.mc6809.assembler.validation.AssemblerErrorDescription;
@@ -101,12 +102,25 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 		this.label = CommandUtil.getLabel(this.instruction);
 		this.comment = CommandUtil.getComment(this.instruction);
 		super.parse(currentPcValue, lineNumber);
+		createOperandSpace();
 	}
+	
+	/** 
+	 * Reserved memory byte for the instruction.
+	 * 
+	 */
+	@Override
+	protected void createOperandSpace() {
+		if (addressingMode == AddressingMode.IMMEDIATE) {
+			operandBytes = new int[0];
+		} else {
+			super.createOperandSpace();
+		}
+ 	}
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		computeOperand(AssemblerEngine.getInstance().getLabelsPositionObject());
 	}
 	
 	@Override

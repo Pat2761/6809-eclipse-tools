@@ -26,19 +26,32 @@ package org.bpy.electronics.mc6809.assembler.engine.data.instructions;
  */
 public enum AddressingMode {
 
-	/** Inherent mode */
+	/** Example  : NOP */
 	INHERENT,
+	/** *example : LDA #25 */
 	IMMEDIATE,
+	/** example : LDA $1254 */
 	EXTENDED,
+	/** *example : LDA S25 */
 	DIRECT,
+	/** example : LDA +,X */
 	INDEXED_AUTO_DEC_INC_MODE,
+	/** example : LDA 25,X */
 	INDEXED_CONSTANT_MODE,
+	/** example : LDA A,X */
 	INDEXED_ACCUMULATOR_MOVING_MODE,
+	/** example : LDA 25,PCR */
 	INDEXED_RELATIF_TO_PC,
+	/** example : LDA [25,X] */
 	INDEXED_CONSTANT_INDIRECT_MODE,
+	/** example : LDA [+,X] */
 	INDEXED_AUTO_DEC_INC_INDIRECT_MODE,
+	/** example : LDA [A,X] */
 	INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE,
+	/** example : [LDA 25,PCR] */
 	INDEXED_RELATIF_TO_PC_INDIRECT_MODE,
+	/** example : [LDA $1254] */
 	EXTENDED_INDIRECT,
+	/** example : BCC  label */
 	RELATIVE
 }

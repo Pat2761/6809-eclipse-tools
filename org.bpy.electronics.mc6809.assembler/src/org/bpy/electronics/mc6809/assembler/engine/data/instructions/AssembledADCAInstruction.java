@@ -40,10 +40,10 @@ import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * Allow to pasre an ADCA instruction
+ * Allow to parse an ADCA instruction
  * 
  * 
- * @author briand
+ * @author Patrick BRIAND
  *
  */
 public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
@@ -97,13 +97,28 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 		this.instruction = (AdcInstruction) instruction;
 		this.label = CommandUtil.getLabel(this.instruction);
 		this.comment = CommandUtil.getComment(this.instruction);
-		super.parse(currentPcValue, lineNumber);
+		this.pcAddress = currentPcValue;
+		this.lineNumber = lineNumber;
+		assembleInstruction();
+		createOperandSpace();
 	}
+	
+	/** 
+	 * Reserved memory byte for the instruction.
+	 * 
+	 */
+	@Override
+	protected void createOperandSpace() {
+		if (addressingMode == AddressingMode.IMMEDIATE) {
+			operandBytes = new int[1];
+		} else {
+			super.createOperandSpace();
+		}
+ 	}
 
 	@Override
 	public void parsePass2() {
-		// TODO Auto-generated method stub
-		
+		setOperand(addressingMode);
 	}
 	
 	@Override
@@ -124,7 +139,7 @@ public class AssembledADCAInstruction extends AbstractInstructionAssemblyLine {
 	public void setOpcode(AddressingMode mode) {
 		opcodeBytes = OP_CODE.get(mode);
 	}
-
+	
 	@Override
 	public void setOperand(AddressingMode mode) {
 		switch (mode) {
