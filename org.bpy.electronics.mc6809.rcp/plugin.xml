@@ -639,6 +639,13 @@
             id="org.bpy.electronics.mc6809.rcp.newproject"
             name="6809 Project">
       </wizard>
+      <wizard
+            category="org.bpy.electronics.mc6809.rcp.assembler"
+            class="org.bpy.electronics.mc6809.rcp.wizards.NewAssemblerFile"
+            icon="icons/asmfile16.png"
+            id="org.bpy.electronics.mc6809.rcp.newFile"
+            name="Asssembly file">
+      </wizard>
    </extension>
    <extension
          id="org.bpy.electronics.mc6809.assemblerNature"

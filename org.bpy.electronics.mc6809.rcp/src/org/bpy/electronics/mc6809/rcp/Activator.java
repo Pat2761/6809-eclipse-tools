@@ -60,4 +60,15 @@ public class Activator extends AbstractUIPlugin {
 	    return imageDescriptor.createImage();
 	  }
 
+	  /**
+	   * Create an image descriptor from a file path 
+	   * 
+	   * @param imagePath image file path
+	   * 
+	   * @return image reference, <b>null</b> if not found
+	   */
+	  public static ImageDescriptor getImageDescriptor(String imagePath) {
+	    return AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, imagePath);
+	  }
+
 }

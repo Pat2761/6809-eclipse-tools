@@ -16,43 +16,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-package org.bpy.electronics.mc6809.rcp.builder;
+package org.bpy.electronics.mc6809.rcp.wizards;
 
 import org.eclipse.core.resources.IProject;
-import org.eclipse.core.resources.IProjectNature;
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.widgets.Composite;
 
 /**
- * define an assembler project nature.
- * 
+ * Page for define the name and the project for the new file.
+ *   
  * @author Patrick BRIAND
  *
  */
-public class AssemblerProjectNature implements IProjectNature {
+public class NewAssemblerFilePage extends WizardPage {
 
-	/** Reference on the project */
-	private IProject project;
-
-	/** Nature ID */
-	public static final String NATURE_ID = "org.bpy.electronics.mc6809.assemblerNature"; //$NON-NLS-1$
-
-	@Override
-	public void configure() throws CoreException {
-		// nothing to do here
+	public NewAssemblerFilePage(IProject currentProject) {
+		super("NewAssemblerFilePage");
+		setTitle("New assembler file");
+		setDescription("Allow to add a new file assembler file in the project");
 	}
 
 	@Override
-	public void deconfigure() throws CoreException {
-		// nothing to do here
+	public void createControl(Composite parent) {
+		Composite container = new Composite(parent, SWT.NONE);
+
+		setControl(container);
 	}
 
-	@Override
-	public IProject getProject() {
-		return project;
-	}
-
-	@Override
-	public void setProject(IProject project) {
-		this.project = project;
-	}
 }

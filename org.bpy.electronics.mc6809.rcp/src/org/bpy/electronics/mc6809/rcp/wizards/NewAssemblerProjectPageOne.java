@@ -1,11 +1,25 @@
+/*
+ * MC6809 Toolkit
+ * Copyright (C) 2023  Patrick BRIAND
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
 package org.bpy.electronics.mc6809.rcp.wizards;
-
-import java.io.File;
-import java.io.IOException;
 
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
-import org.eclipse.core.resources.IResourceStatus;
 import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
@@ -14,7 +28,6 @@ import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.internal.win32.OS;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Label;
@@ -24,14 +37,29 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 
+/**
+ * First page of wizard which allows ti define a new project in the workspace.
+ * 
+ * @author Patrick BRIAND
+ *
+ */
 public class NewAssemblerProjectPageOne extends WizardPage implements ModifyListener {
 
-	private Text text;
-	private String projectName;
-	private Button btnCreateEmptyFile;
+	/** Reference to the Text widget for define the project name */
+	private Text projectNameWidget;
+	/** Reference to the Text widget for define the file name */
 	private Text fileNameWidget;
+	/** Button which allow to vreate an assembly file */
+	private Button btnCreateEmptyFile;
+
+	/** Project name */
+	private String projectName;
+	/** File name */
 	private String fileName;
 
+	/**
+	 * Constructor of the class.
+	 */
 	public NewAssemblerProjectPageOne() {
 		super("NewAssemblerProjectPageOne");
 		setTitle("New Assembler 6809 project");
@@ -50,11 +78,11 @@ public class NewAssemblerProjectPageOne extends WizardPage implements ModifyList
 		lblNewLabel.setText("Project name:");
 		new Label(container, SWT.NONE);
 
-		text = new Text(container, SWT.BORDER);
-		text.setToolTipText("You have to define here a valid project name");
-		text.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
-		text.addModifyListener(this);
-		text.setText("");
+		projectNameWidget = new Text(container, SWT.BORDER);
+		projectNameWidget.setToolTipText("You have to define here a valid project name");
+		projectNameWidget.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
+		projectNameWidget.addModifyListener(this);
+		projectNameWidget.setText("");
 
 		Button btnNewButton = new Button(container, SWT.NONE);
 		btnNewButton.setText("Browse");
@@ -64,10 +92,8 @@ public class NewAssemblerProjectPageOne extends WizardPage implements ModifyList
 		btnCreateEmptyFile.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (btnCreateEmptyFile.getSelection()) {
-					if (fileNameWidget.getText().isBlank()) {
+				if (btnCreateEmptyFile.getSelection() && fileNameWidget.getText().isBlank()) {
 						fileNameWidget.setText(projectName);
-					}
 				}
 				fileNameWidget.setEnabled(btnCreateEmptyFile.getSelection());
 			}
@@ -91,21 +117,21 @@ public class NewAssemblerProjectPageOne extends WizardPage implements ModifyList
 	public void modifyText(ModifyEvent e) {
 		
 		// no blank value
-		if (text.getText().isBlank()) {
+		if (projectNameWidget.getText().isBlank()) {
 			setPageComplete(false);
 			setMessage("File name can't be empty", ERROR);
 			return;
 		}
 
 		// Valid file name
-		if (!isFilenameValid(text.getText())) {
+		if (!isFilenameValid(projectNameWidget.getText())) {
 			setPageComplete(false);
 			setMessage("File name must be a valid file name", ERROR);
 			return;
 		}
 		
 		// Check if already exist
-		if (isProjectAlreadyExist(text.getText())) {
+		if (isProjectAlreadyExist(projectNameWidget.getText())) {
 			setPageComplete(false);
 			setMessage("Project already exist in the workpace", ERROR);
 			return;
@@ -126,11 +152,17 @@ public class NewAssemblerProjectPageOne extends WizardPage implements ModifyList
 		}
 		
 		fileName = fileNameWidget.getText();
-		projectName = text.getText();
+		projectName = projectNameWidget.getText();
 		setPageComplete(true);
 		setMessage("");
 	}
 
+	/**
+	 * Check if the project exist.
+	 * 
+	 * @param fileName name of the project
+	 * @return <b>true</b> if the project name is already use, <b>false</b> otherwise
+	 */
 	private boolean isProjectAlreadyExist(String fileName) {
 		IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 
@@ -142,6 +174,12 @@ public class NewAssemblerProjectPageOne extends WizardPage implements ModifyList
 		return false;
 	}
 
+	/**
+	 * Check if the file name is valid.
+	 * 
+	 * @param fileName name of test
+	 * @return <b>true</b> if the file name is valid, <b>false</b> otherwise
+	 */
 	public boolean isFilenameValid(String fileName) {
 		if (fileName.contains("/") || fileName.contains("\\")) {
 			return false;
@@ -149,13 +187,23 @@ public class NewAssemblerProjectPageOne extends WizardPage implements ModifyList
 		
 		IWorkspace workspace = ResourcesPlugin.getWorkspace();
 		IStatus status = workspace.validatePath("/" + fileName, IResource.PROJECT);
-		return (status.getCode() == IResourceStatus.OK);
+		return (status.getCode() == IStatus.OK);
 	}
 
+	/**
+	 * Get the project name.
+	 * 
+	 * @return project name
+	 */
 	public String getProjectName() {
 		return projectName;
 	}
 
+	/**
+	 * Get the file name.
+	 * 
+	 * @return file name
+	 */
 	public String getFileName() {
 		return fileName;
 	}
