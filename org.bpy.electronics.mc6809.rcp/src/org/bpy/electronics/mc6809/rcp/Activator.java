@@ -2,6 +2,8 @@ package org.bpy.electronics.mc6809.rcp;
 
 import java.util.logging.Logger;
 
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
@@ -45,5 +47,17 @@ public class Activator extends AbstractUIPlugin {
 	public static Activator getDefault() {
 		return plugin;
 	}
+
+	/**
+	   * Create an image from a file path 
+	   * 
+	   * @param imagePath image file path
+	   * 
+	   * @return image reference, <b>null</b> if not found
+	   */
+	  public static Image getImage(String imagePath) {
+	    ImageDescriptor imageDescriptor = AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID, imagePath);
+	    return imageDescriptor.createImage();
+	  }
 
 }

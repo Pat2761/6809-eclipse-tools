@@ -15,8 +15,9 @@
          point="org.eclipse.ui.perspectives">
       <perspective
             class="org.bpy.electronics.mc6809.rcp.Perspective"
-            name="6809"
-            id="org.bpy.electronics.mc6809.rcp.perspective">
+            icon="icons/motorola.jpg"
+            id="org.bpy.electronics.mc6809.rcp.perspective"
+            name="6809">
       </perspective>
    </extension>
    <extension
@@ -624,6 +625,40 @@
             name="Assembly"
             restorable="true">
       </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <category
+            id="org.bpy.electronics.mc6809.rcp.assembler"
+            name="Assembler">
+      </category>
+      <wizard
+            category="org.bpy.electronics.mc6809.rcp.assembler"
+            class="org.bpy.electronics.mc6809.rcp.wizards.NewAssemblerProject"
+            icon="icons/motorola.jpg"
+            id="org.bpy.electronics.mc6809.rcp.newproject"
+            name="6809 Project">
+      </wizard>
+   </extension>
+   <extension
+         id="org.bpy.electronics.mc6809.assemblerNature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="org.bpy.electronics.mc6809.rcp.builder.AssemblerProjectNature">
+         </run>
+      </runtime>
+      <builder
+            id="org.bpy.electronics.mc6809.assemblerNature">
+      </builder>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.projectNatureImages">
+      <image
+            icon="icons/motorola16.jpg"
+            id="org.bpy.electronics.mc6809.rcp.project.image"
+            natureId="org.bpy.electronics.mc6809.assemblerNature">
+      </image>
    </extension>
 
 </plugin>
