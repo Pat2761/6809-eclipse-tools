@@ -786,7 +786,10 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 * @return string for create space
 	 */
 	public String buildSpaceStringFromPolicy(int elementSize, int nbSpacesNeeded, int startPosition) {
-
+		if (nbSpacesNeeded<1) {
+			nbSpacesNeeded=1;
+		}
+		
 		if (PreferenceManager.SPACE_ONLY.equals(tabPolicy)) {
 			return Strings.repeat(" ", nbSpacesNeeded);
 
