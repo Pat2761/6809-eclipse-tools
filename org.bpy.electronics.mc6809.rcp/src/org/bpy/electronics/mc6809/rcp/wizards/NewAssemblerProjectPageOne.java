@@ -151,7 +151,9 @@ public class NewAssemblerProjectPageOne extends WizardPage implements ModifyList
 			return;
 		}
 		
-		fileName = fileNameWidget.getText();
+		if (btnCreateEmptyFile.getSelection()) {
+			fileName = fileNameWidget.getText();
+		}	
 		projectName = projectNameWidget.getText();
 		setPageComplete(true);
 		setMessage("");

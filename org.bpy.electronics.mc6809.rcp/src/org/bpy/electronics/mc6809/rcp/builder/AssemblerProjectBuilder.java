@@ -95,7 +95,7 @@ public class AssemblerProjectBuilder {
 
 			createBinFolder();
 			if (optionalFileName != null) {
-				FileBuilder fileBuilder = new FileBuilder();
+				AssemblerFileBuilder fileBuilder = new AssemblerFileBuilder();
 				fileBuilder.createAssemblyFile(project, optionalFileName);
 			}
 

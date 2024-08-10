@@ -19,7 +19,7 @@
 package org.bpy.electronics.mc6809.rcp.wizards;
 
 import org.bpy.electronics.mc6809.rcp.Activator;
-import org.bpy.electronics.mc6809.rcp.builder.FileBuilder;
+import org.bpy.electronics.mc6809.rcp.builder.AssemblerFileBuilder;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -71,8 +71,10 @@ public class NewAssemblerFile extends BasicNewResourceWizard implements INewWiza
 
 	@Override
 	public boolean performFinish() {
-		FileBuilder fileBuilder = new FileBuilder();
-		fileBuilder.createAssemblyFile((IProject)getSelection(), mainPage.getFileName());
+		AssemblerFileBuilder fileBuilder = new AssemblerFileBuilder();
+		if (selection.getFirstElement() instanceof IProject project) {
+			fileBuilder.createAssemblyFile(project, mainPage.getFileName());
+		}
 
 		return true;
 	}

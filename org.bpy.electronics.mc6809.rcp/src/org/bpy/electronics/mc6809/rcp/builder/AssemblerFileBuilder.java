@@ -19,10 +19,10 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.ide.IDE;
 
-public class FileBuilder {
+public class AssemblerFileBuilder {
 
 	/** Logger of the class */
-	private static final Logger logger = Logger.getLogger(FileBuilder.class.getSimpleName());
+	private static final Logger logger = Logger.getLogger(AssemblerFileBuilder.class.getSimpleName());
 
 	public static final StringBuilder TEMPLATE = new StringBuilder();
 
@@ -50,7 +50,7 @@ public class FileBuilder {
 	 * @param optionalFileName name of the optional assembly file
 	 */
 	public void createAssemblyFile(IProject project, String optionalFileName) {
-		IFile as9File = project.getFile(optionalFileName + ".as9");
+		IFile as9File = project.getFile(optionalFileName);
 		try {
 			
 			InputStream targetStream = new ByteArrayInputStream(TEMPLATE.toString().getBytes());
