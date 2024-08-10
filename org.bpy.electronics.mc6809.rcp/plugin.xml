@@ -20,7 +20,7 @@
             name="6809">
       </perspective>
    </extension>
-   <extension
+ <!--  <extension
          point="org.eclipse.ui.perspectiveExtensions">
       <perspectiveExtension
             targetID="org.bpy.electronics.mc6809.rcp.perspective">
@@ -61,9 +61,6 @@
                relative="org.eclipse.ui.console.ConsoleView"
                visible="true">
          </view>
-         <newWizardShortcut
-               id="org.bpy.score.rcp.new.custom">
-         </newWizardShortcut>
          <view
                closeable="true"
                id="org.eclipse.ui.views.PropertySheet"
@@ -81,8 +78,11 @@
                relative="org.eclipse.ui.console.ConsoleView"
                visible="true">
          </view>
+         <newWizardShortcut
+               id="org.bpy.electronics.mc6809.rcp.newproject">
+         </newWizardShortcut>
       </perspectiveExtension>
-   </extension>
+   </extension> -->
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
@@ -286,7 +286,7 @@
             <menu
                   label="Perspective">
                <command
-                     commandId="org.bpy.electronics.mc6809.rcp.command.openperspective"
+                     commandId="org.eclipse.ui.perspectives.showPerspective"
                      label="Open perspective"
                      style="push">
                </command>
@@ -295,17 +295,17 @@
                      visible="true">
                </separator>
                <command
-                     commandId="org.bpy.electronics.mc6809.rcp.command.resetperspective"
+                     commandId="org.eclipse.ui.window.resetPerspective"
                      label="Reset perspective"
                      style="push">
                </command>
                <command
-                     commandId="org.bpy.electronics.mc6809.rcp.command.closeperspective"
+                     commandId="org.eclipse.ui.window.closePerspective"
                      label="Close perspective"
                      style="push">
                </command>
                <command
-                     commandId="org.bpy.electronics.mc6809.rcp.command.closeallperspectives"
+                     commandId="org.eclipse.ui.window.closeAllPerspectives"
                      label="Close all perspectives"
                      style="push">
                </command>
@@ -635,6 +635,7 @@
       <wizard
             category="org.bpy.electronics.mc6809.rcp.assembler"
             class="org.bpy.electronics.mc6809.rcp.wizards.NewAssemblerProject"
+            finalPerspective="org.bpy.electronics.mc6809.rcp.perspective"
             icon="icons/motorola.jpg"
             id="org.bpy.electronics.mc6809.rcp.newproject"
             name="6809 Project">
@@ -642,6 +643,7 @@
       <wizard
             category="org.bpy.electronics.mc6809.rcp.assembler"
             class="org.bpy.electronics.mc6809.rcp.wizards.NewAssemblerFile"
+            finalPerspective="org.bpy.electronics.mc6809.rcp.perspective"
             icon="icons/asmfile16.png"
             id="org.bpy.electronics.mc6809.rcp.newFile"
             name="Asssembly file">

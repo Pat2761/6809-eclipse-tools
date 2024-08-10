@@ -46,7 +46,6 @@ public class ApplicationWorkbenchAdvisor extends WorkbenchAdvisor {
 
 	@Override
 	public IAdaptable getDefaultPageInput() {
-	
 		return ResourcesPlugin.getWorkspace().getRoot();
 	}
 }
