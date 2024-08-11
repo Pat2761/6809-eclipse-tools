@@ -21,11 +21,15 @@ package org.bpy.electronics.mc6809.preferences.core;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bpy.electronics.mc6809.preferences.Activator;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
 import org.eclipse.core.runtime.preferences.InstanceScope;
+import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.ui.editors.text.EditorsUI;
+import org.eclipse.ui.texteditor.AbstractDecoratedTextEditorPreferenceConstants;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
+
+import org.bpy.electronics.mc6809.preferences.Activator;
 
 /**
  * This class manage the all preferences linked to this application
@@ -34,6 +38,7 @@ import org.osgi.service.prefs.Preferences;
  *
  */
 public class PreferenceManager {
+
 	/** Name of node which store the preferences */
 	public static final String ASSEMBLER_PREFERENCE_NODE = "assemblerPreferenceNode";
 	
@@ -78,13 +83,15 @@ public class PreferenceManager {
 	
 	
 	/** Instance of the preference manager singleton */ 
-	public static PreferenceManager eInstance;
+	private static PreferenceManager eInstance;
 
 	/** Store the default values */
 	private Map<String,String> defaultsValues;
 
 	/** Memorize the preference instance */
 	private Preferences preferences;
+
+	private IPreferenceStore store;
 	
 	
 	/** 
@@ -104,8 +111,7 @@ public class PreferenceManager {
 		defaultsValues.put(COMMENT_LINE_AT_INSTRUCTION_LEVEL,"" + false);
 		defaultsValues.put(EMPTY_LINE_BEFORE_LABEL,"" + false);
 
-		IEclipsePreferences node2 = InstanceScope.INSTANCE.getNode("org.bpy.electronics.mc6809.assembler.Assembler");
-			System.out.println("");
+		store = EditorsUI.getPreferenceStore();	
 	}
 	
 	/**
@@ -121,79 +127,119 @@ public class PreferenceManager {
 	}
 
 	/**
-	 * Get String value of the preference.
+	 * Get the system tab size.
 	 * 
-	 * @param key Key which define the reference
-	 * 
-	 * @return Value of the preference, default value if the preference isn't defined
+	 * @return value of the tab size
 	 */
-	public String getStringPreferenceValue(String key) {
-		return preferences.get(key,defaultsValues.get(key)); 
+	public int getEditorTabSize() {
+		return store.getInt(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_TAB_WIDTH);
 	}
 
 	/**
-	 * Get Integer value of the preference.
+	 * Set the system tab size.
 	 * 
-	 * @param key Key which define the reference
-	 * 
-	 * @return Value of the preference, default value if the preference isn't defined
+	 * @param tabSize value of the tab size
 	 */
-	public int getIntPreferenceValue(String key) {
-		String intValue = preferences.get(key, defaultsValues.get(key));
-		try {
-			return Integer.parseInt(intValue);
-		} catch (NumberFormatException ex) {
-			return 0;
-		}
-	}
-
-	/**
-	 * Get boolean value of the preference.
-	 * 
-	 * @param key Key which define the reference
-	 * 
-	 * @return Value of the preference, default value if the preference isn't defined
-	 */
-	public boolean getBooleanPreferenceValue(String key) {
-		String booleanValue = preferences.get(key, defaultsValues.get(key));
-		try {
-			return Boolean.parseBoolean(booleanValue);
-		} catch (NumberFormatException ex) {
-			return false;
-		}
-	}
-
-	/**
-	 * Set String value of the preference.
-	 * 
-	 * @param key Key which define the reference
-	 */
-	public void setPreferenceValue(String key, String value) {
-		preferences.put(key, value);
+	public void setEditorTabSize(int tabSize) {
+		store.setValue(AbstractDecoratedTextEditorPreferenceConstants.EDITOR_TAB_WIDTH, tabSize);
 		savePreference();
 	}
 
 	/**
-	 * Set integer value of the preference.
+	 * Get the tab policy used in the workspace.
 	 * 
-	 * @param key Key which define the reference
+	 * @return tab policy value
 	 */
-	public void setPreferenceValue(String key, int value) {
-		preferences.put(key, ""+value);
+	public String getTabPolicy() {
+		return preferences.get(TAB_POLICY, TAB_POLICY_DEFAULT_VALUE);
+	}
+	
+	/**
+	 * Set the new tab policy.
+	 * 
+	 * @param tabPolicy tab policy value (SPACE_ONLY, TAB_ONLY, MIXED).
+	 */
+	public void setTabPolicy(String tabPolicy) {
+		preferences.put(TAB_POLICY, tabPolicy);
 		savePreference();
 	}
 
 	/**
-	 * Set boolean value of the preference.
-	 * 
-	 * @param key Key which define the reference
-	 * @param value boolean value
+	 * Get the column position number of the instruction.
+	 *  
+	 * @return column position number of the instruction.
 	 */
-	public void setPreferenceValue(String key, boolean value) {
-		preferences.put(key, "" + value);
+	public int getInstructionPosition() {
+		return preferences.getInt(INSTRUCTION_POSITION, INSTRUCTION_POSITION_DEFAULT_VALUE);
+	}
+
+	/**
+	 * Set the column position number of the instruction.
+	 *  
+	 * @param column position number of the instruction.
+	 */
+	public void setInstructionPosition(int position) {
+		preferences.putInt(INSTRUCTION_POSITION, position);
 		savePreference();
 	}
 
+	/**
+	 * Get the column position number of the operand.
+	 *  
+	 * @return column position number of the operand.
+	 */
+	public int getOperandPosition() {
+		return preferences.getInt(OPERAND_POSITION, OPERAND_POSITION_DEFAULT_VALUE);
+	}
+
+	/**
+	 * Set the column position number of the operand.
+	 *  
+	 * @param column position number of the operand.
+	 */
+	public void setOperandPosition(int position) {
+		preferences.putInt(OPERAND_POSITION, position);
+		savePreference();
+	}
+
+	/**
+	 * Get the column position number of the comment.
+	 *  
+	 * @return column position number of the comment.
+	 */
+	public int getCommentPosition() {
+		return preferences.getInt(COMMENT_POSITION, COMMENT_POSITION_DEFAULT_VALUE);
+	}
+
+	/**
+	 * Set the column position number of the comment.
+	 *  
+	 * @param column position number of the comment.
+	 */
+	public void setCommentPosition(int position) {
+		preferences.putInt(COMMENT_POSITION, position);
+		savePreference();
+	}
+
+	/**
+	 * Get if comment it at the same column than instruction.
+	 *  
+	 * @return column position number of the instruction.
+	 */
+	public boolean getCommentLineAtInstructionPosition() {
+		return preferences.getBoolean(COMMENT_LINE_AT_INSTRUCTION_LEVEL, false);
+	}
+
+	/**
+	 * Get set comment line at the same column than instruction.
+	 *  
+	 * @return column line position number of the instruction.
+	 */
+	public void setCommentLineAtInstructionPosition(boolean state) {
+		preferences.putBoolean(COMMENT_LINE_AT_INSTRUCTION_LEVEL, state);
+		savePreference();
+	}
+	
 	/**
 	 * Reset the preference values
 	 */

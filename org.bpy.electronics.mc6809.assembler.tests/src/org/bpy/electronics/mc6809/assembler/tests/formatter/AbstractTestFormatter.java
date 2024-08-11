@@ -8,35 +8,35 @@ public abstract class AbstractTestFormatter {
 
 	@Before
 	public void setJunitPreferences() {
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.JUNIT_PREFERENCE, true);
+///		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.JUNIT_PREFERENCE, true);
 	}
 	
 	@After 
 	public void unsetJunitPreferences() {
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.JUNIT_PREFERENCE, false);
+//		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.JUNIT_PREFERENCE, false);
 	}
 	
 	protected void setTabPolicy(String policy){
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_POLICY, policy);
+		PreferenceManager.getInstance().setTabPolicy(policy);
 	}
 
 	protected void setInstructionPosition(int position){
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.INSTRUCTION_POSITION, position);
+		PreferenceManager.getInstance().setInstructionPosition(position);
 	}
 	
 	protected void setOperandPosition(int position){
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.OPERAND_POSITION, position);
+		PreferenceManager.getInstance().setOperandPosition(position);
 	}
 	
 	protected void setCommentPosition(int position) {
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_POSITION, position);
+		PreferenceManager.getInstance().setCommentPosition(position);
 	}
 
 	protected void setTabSize(int size) {
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_SIZE, size);
+		PreferenceManager.getInstance().setEditorTabSize(size);
 	}
 
 	protected void setCommentLineAtInstructionLevel(boolean state) {
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL, state);
+		PreferenceManager.getInstance().setCommentLineAtInstructionPosition(state);
 	}
 }

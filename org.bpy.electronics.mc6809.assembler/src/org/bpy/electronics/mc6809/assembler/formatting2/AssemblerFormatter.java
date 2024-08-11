@@ -3,9 +3,6 @@
  */
 package org.bpy.electronics.mc6809.assembler.formatting2;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.bpy.electronics.mc6809.assembler.assembler.AbxInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AdcInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.AddInstruction;
@@ -99,7 +96,6 @@ import org.bpy.electronics.mc6809.assembler.assembler.SwiInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.SyncInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TfrInstruction;
 import org.bpy.electronics.mc6809.assembler.assembler.TstInstruction;
-import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
 import org.bpy.electronics.mc6809.assembler.formatting2.directives.BszFormatter;
 import org.bpy.electronics.mc6809.assembler.formatting2.directives.EndFormatter;
 import org.bpy.electronics.mc6809.assembler.formatting2.directives.EquFormatter;
@@ -207,9 +203,6 @@ import com.google.common.base.Strings;
  */
 public class AssemblerFormatter extends AbstractJavaFormatter {
 
-	/** Logger of the class */
-	private static Logger logger =  Logger.getLogger(AssemblerFormatter.class.getSimpleName());
-	
 	/** Current value of the tab policy */
 	private String tabPolicy;
 
@@ -233,11 +226,11 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	 */
 	protected void format(Model model, IFormattableDocument doc) {
 		PreferenceManager preferenceManager = PreferenceManager.getInstance();
-		tabPolicy = preferenceManager.getStringPreferenceValue(PreferenceManager.TAB_POLICY);
-		tabSize = preferenceManager.getIntPreferenceValue(PreferenceManager.TAB_SIZE);
-		instructionPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.INSTRUCTION_POSITION);
-		operandPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.OPERAND_POSITION);
-		commentPosition = preferenceManager.getIntPreferenceValue(PreferenceManager.COMMENT_POSITION);
+		tabPolicy = preferenceManager.getTabPolicy();
+		tabSize = preferenceManager.getEditorTabSize();
+		instructionPosition = preferenceManager.getInstructionPosition();
+		operandPosition = preferenceManager.getOperandPosition();
+		commentPosition = preferenceManager.getCommentPosition();
 
 //		logger.log(Level.INFO, "--------------------------------------------------------------");
 //		logger.log(Level.INFO, "Use formatter with following paramaters: ");
@@ -693,7 +686,7 @@ public class AssemblerFormatter extends AbstractJavaFormatter {
 	protected void format(CommentLine commentLine, IFormattableDocument doc) {
 		setWhiteSpace(doc, commentLine, AssemblerPackage.eINSTANCE.getCommentLine_StartingSpace(), " ");
 
-		boolean state = PreferenceManager.getInstance().getBooleanPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL);
+		boolean state = PreferenceManager.getInstance().getCommentLineAtInstructionPosition();
 		String spaces  = "";
 		if (state) {
 			spaces = buildSpaceStringFromPolicy(0, instructionPosition - 1, 0);

@@ -229,8 +229,11 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private void manageRmbDirective(RmbDirective rmbDirective) {
 		StringBuilder  strBuilder = new StringBuilder("Reseve ");
-		strBuilder.append(serializer.serialize(rmbDirective.getOperand()));
-		strBuilder.append(" memory bytes");
+		
+		if (rmbDirective.getOperand() != null) {
+			strBuilder.append(serializer.serialize(rmbDirective.getOperand()));
+			strBuilder.append(" memory bytes");
+		}
 		IconManager iconManager = IconManager.getInstance();
 		createEObjectNode(dataNode, rmbDirective, iconManager.getIcon(IconManager.DATA_ICON), strBuilder.toString(), true);
 	}
@@ -242,11 +245,13 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private void manageFccDirective(FccDirective fccDirective) {
 		StringBuilder  strBuilder = new StringBuilder("Force constant String ");
-		for (EObject parameter : fccDirective.getParameters()) {
-			if (!strBuilder.isEmpty()) {
-				strBuilder.append(",");
+		if (fccDirective.getParameters() != null) {
+			for (EObject parameter : fccDirective.getParameters()) {
+				if (!strBuilder.isEmpty()) {
+					strBuilder.append(",");
+				}
+				strBuilder.append(serializer.serialize(parameter));
 			}
-			strBuilder.append(serializer.serialize(parameter));
 		}
 		
 		IconManager iconManager = IconManager.getInstance();
@@ -261,7 +266,9 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private void manageFdbDirective(FdbDirective fdbDirective) {
 		StringBuilder  strBuilder = new StringBuilder("Force constant Word ");
-		strBuilder.append(serializer.serialize(fdbDirective.getOperand()));
+		if (fdbDirective.getOperand() != null) {
+			strBuilder.append(serializer.serialize(fdbDirective.getOperand()));
+		}	
 		
 		IconManager iconManager = IconManager.getInstance();
 		createEObjectNode(dataNode, fdbDirective, iconManager.getIcon(IconManager.DATA_ICON), strBuilder.toString(), true);
@@ -274,7 +281,9 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private void manageFcbDirective(FcbDirective fcbDirective) {
 		StringBuilder  strBuilder = new StringBuilder("Force constant Byte ");
-		strBuilder.append(serializer.serialize(fcbDirective.getOperand()));
+		if (fcbDirective.getOperand() != null) {
+			strBuilder.append(serializer.serialize(fcbDirective.getOperand()));
+		}
 
 		IconManager iconManager = IconManager.getInstance();
 		createEObjectNode(dataNode, fcbDirective, iconManager.getIcon(IconManager.CONSTANT_ICON), strBuilder.toString(), true);
@@ -287,8 +296,10 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private void manageBszDirective(BszDirective bszDirective) {
 		StringBuilder  strBuilder = new StringBuilder("Set ");
-		strBuilder.append(serializer.serialize(bszDirective.getOperand()));
-		strBuilder.append(" bytes to 0");
+		if (bszDirective.getOperand() != null) {
+			strBuilder.append(serializer.serialize(bszDirective.getOperand()));
+			strBuilder.append(" bytes to 0");
+		}
 
 		IconManager iconManager = IconManager.getInstance();
 		createEObjectNode(dataNode, bszDirective, iconManager.getIcon(IconManager.DATA_ICON), strBuilder.toString(), true);
@@ -301,9 +312,11 @@ public class AssemblerOutlineTreeProvider extends DefaultOutlineTreeProvider {
 	 */
 	private void manageFillDirective(FillDirective fillDirective) {
 		StringBuilder  strBuilder = new StringBuilder("Fill ");
-		strBuilder.append(serializer.serialize(fillDirective.getNumber()));
-		strBuilder.append(" bytes with ");
-		strBuilder.append(serializer.serialize(fillDirective.getValue()));
+		if (fillDirective.getNumber() != null) {
+			strBuilder.append(serializer.serialize(fillDirective.getNumber()));
+			strBuilder.append(" bytes with ");
+			strBuilder.append(serializer.serialize(fillDirective.getValue()));
+		}
 	
 		IconManager iconManager = IconManager.getInstance();
 		createEObjectNode(dataNode, fillDirective, iconManager.getIcon(IconManager.DATA_ICON), strBuilder.toString(), true);

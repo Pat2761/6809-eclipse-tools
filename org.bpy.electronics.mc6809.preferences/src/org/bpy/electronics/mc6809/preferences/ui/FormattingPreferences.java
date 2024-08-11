@@ -188,12 +188,12 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 
 	@Override
 	protected void performApply() {
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_POLICY, tabPolicy.getText());
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_SIZE, tabSize.getSelection());
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.INSTRUCTION_POSITION,instructionPosition.getSelection());
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.OPERAND_POSITION,operandPosition.getSelection());
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_POSITION,commentPosition.getSelection());
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL,btnCommentAtInstructionLevel.getSelection());
+		PreferenceManager.getInstance().setTabPolicy(tabPolicy.getText());
+		PreferenceManager.getInstance().setEditorTabSize(tabSize.getSelection());
+		PreferenceManager.getInstance().setInstructionPosition(instructionPosition.getSelection());
+		PreferenceManager.getInstance().setOperandPosition(operandPosition.getSelection());
+		PreferenceManager.getInstance().setCommentPosition(commentPosition.getSelection());
+		PreferenceManager.getInstance().setCommentLineAtInstructionPosition(btnCommentAtInstructionLevel.getSelection());
 	}
 
 	@Override
@@ -204,25 +204,18 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 
 	@Override
 	protected void performDefaults() {
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_POLICY,
-				PreferenceManager.TAB_POLICY_DEFAULT_VALUE);
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.TAB_SIZE,
-				PreferenceManager.TAB_SIZE_DEFAULT_VALUE);
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.INSTRUCTION_POSITION,
-				PreferenceManager.INSTRUCTION_POSITION_DEFAULT_VALUE);
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.OPERAND_POSITION,
-				PreferenceManager.OPERAND_POSITION_DEFAULT_VALUE);
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_POSITION,
-				PreferenceManager.COMMENT_POSITION_DEFAULT_VALUE);
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL,
-				false);
-		PreferenceManager.getInstance().setPreferenceValue(PreferenceManager.EMPTY_LINE_BEFORE_LABEL,
-				false);
+		PreferenceManager.getInstance().setTabPolicy(PreferenceManager.TAB_POLICY_DEFAULT_VALUE);
+		PreferenceManager.getInstance().setEditorTabSize(PreferenceManager.TAB_SIZE_DEFAULT_VALUE);
+		PreferenceManager.getInstance().setInstructionPosition(PreferenceManager.INSTRUCTION_POSITION_DEFAULT_VALUE);
+		PreferenceManager.getInstance().setOperandPosition(PreferenceManager.OPERAND_POSITION_DEFAULT_VALUE);
+		PreferenceManager.getInstance().setCommentPosition(PreferenceManager.COMMENT_POSITION_DEFAULT_VALUE);
+		PreferenceManager.getInstance().setCommentLineAtInstructionPosition(false);
 
+		tabPolicy.select(0);
+		tabSize.setSelection(PreferenceManager.TAB_SIZE_DEFAULT_VALUE);
 		instructionPosition.setSelection(PreferenceManager.INSTRUCTION_POSITION_DEFAULT_VALUE);
 		operandPosition.setSelection(PreferenceManager.OPERAND_POSITION_DEFAULT_VALUE);
 		commentPosition.setSelection(PreferenceManager.COMMENT_POSITION_DEFAULT_VALUE);
-		
 		btnCommentAtInstructionLevel.setSelection(false);
 		
 		validateValues();
@@ -242,13 +235,13 @@ public class FormattingPreferences extends PreferencePage implements IWorkbenchP
 	 * 
 	 */
 	private void initFields() {
-		tabPolicy.setText(PreferenceManager.getInstance().getStringPreferenceValue(PreferenceManager.TAB_POLICY));
-		tabSize.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.TAB_SIZE));
+		tabPolicy.setText(PreferenceManager.getInstance().getTabPolicy());
+		tabSize.setSelection(PreferenceManager.getInstance().getEditorTabSize());
 
-		instructionPosition.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.INSTRUCTION_POSITION));
-		operandPosition.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.OPERAND_POSITION));
-		commentPosition.setSelection(PreferenceManager.getInstance().getIntPreferenceValue(PreferenceManager.COMMENT_POSITION));
-		btnCommentAtInstructionLevel.setSelection(PreferenceManager.getInstance().getBooleanPreferenceValue(PreferenceManager.COMMENT_LINE_AT_INSTRUCTION_LEVEL));
+		instructionPosition.setSelection(PreferenceManager.getInstance().getInstructionPosition());
+		operandPosition.setSelection(PreferenceManager.getInstance().getOperandPosition());
+		commentPosition.setSelection(PreferenceManager.getInstance().getCommentPosition());
+		btnCommentAtInstructionLevel.setSelection(PreferenceManager.getInstance().getCommentLineAtInstructionPosition());
 	}
 
 	public void validateValues() {
