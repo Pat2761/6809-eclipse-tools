@@ -87,6 +87,13 @@ public class AssembledORBInstruction extends AbstractInstructionAssemblyLine {
 	private OrInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledORBInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

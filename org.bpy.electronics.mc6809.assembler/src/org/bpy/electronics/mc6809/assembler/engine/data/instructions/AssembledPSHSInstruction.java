@@ -44,6 +44,13 @@ public class AssembledPSHSInstruction extends AbstractInstructionAssemblyLine {
 	private PshsInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledPSHSInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

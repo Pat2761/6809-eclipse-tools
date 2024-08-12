@@ -35,6 +35,13 @@ public class AssembledSWI2Instruction extends AbstractInstructionAssemblyLine {
 	private Swi2Instruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledSWI2Instruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

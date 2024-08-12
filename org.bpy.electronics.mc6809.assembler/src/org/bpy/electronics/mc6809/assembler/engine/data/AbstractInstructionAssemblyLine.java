@@ -70,6 +70,11 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	 */
 	public abstract String getInstructionName();
 	
+	/**
+	 * Get string representation of the operand.
+	 *  
+	 * @return string representation of the operand
+	 */
 	public abstract String getOperandString();
 	
 	/**
@@ -93,7 +98,10 @@ public abstract class AbstractInstructionAssemblyLine extends AbstractAssemblyLi
 	 */
 	public abstract void setCyclesNumber(AddressingMode mode);
 	
-	public AbstractInstructionAssemblyLine() {
+	/**
+	 * Constructor of the class.
+	 */
+	protected AbstractInstructionAssemblyLine() {
 		opcodeBytes = new int[0];
 		operandBytes = new int[0];
 	}

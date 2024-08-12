@@ -34,6 +34,9 @@ public class AssembledABXInstruction extends AbstractInstructionAssemblyLine {
 	/** Reference on the instruction */
 	private AbxInstruction instruction;
 	
+	/**
+	 * Constructor of the class.
+	 */
 	public AssembledABXInstruction() {
 		super();
 	}

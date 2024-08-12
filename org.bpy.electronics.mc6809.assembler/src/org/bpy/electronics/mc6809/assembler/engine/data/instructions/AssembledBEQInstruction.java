@@ -40,6 +40,13 @@ public class AssembledBEQInstruction extends AbstractRelativeBranchInstruction {
 	private BeqInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledBEQInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

@@ -71,6 +71,7 @@ public class MacroAssembledElement extends AbstractAssemblyLine {
 	 * Constructor of the class.
 	 */
 	public MacroAssembledElement() {
+		super();
 		assemblyLines = new ArrayList<>();
 		instructionLines = new ArrayList<>();
 		internalLabels = new HashMap<>();

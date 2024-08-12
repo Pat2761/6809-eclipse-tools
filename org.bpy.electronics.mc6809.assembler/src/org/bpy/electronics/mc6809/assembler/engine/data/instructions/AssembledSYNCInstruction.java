@@ -35,6 +35,13 @@ public class AssembledSYNCInstruction extends AbstractInstructionAssemblyLine {
 	private SyncInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledSYNCInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

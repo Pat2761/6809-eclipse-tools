@@ -87,6 +87,13 @@ public class AssembledSUBBInstruction extends AbstractInstructionAssemblyLine {
 	private SubInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledSUBBInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

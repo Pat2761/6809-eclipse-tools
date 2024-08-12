@@ -91,6 +91,13 @@ public class AssembledJMPInstruction extends AbstractJmpJsrInstruction {
 	private JmpInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledJMPInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

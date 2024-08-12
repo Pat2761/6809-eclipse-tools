@@ -40,6 +40,13 @@ public class AssembledBGTInstruction extends AbstractRelativeBranchInstruction {
 	private BgtInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledBGTInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

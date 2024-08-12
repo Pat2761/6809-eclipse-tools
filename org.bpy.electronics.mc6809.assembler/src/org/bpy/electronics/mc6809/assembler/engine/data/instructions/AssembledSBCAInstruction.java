@@ -87,6 +87,13 @@ public class AssembledSBCAInstruction extends AbstractInstructionAssemblyLine {
 	private SbcInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledSBCAInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

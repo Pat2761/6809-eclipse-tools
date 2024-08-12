@@ -86,6 +86,13 @@ public class AssembledADDDInstruction extends AbstractInstructionAssemblyLine {
 	private AdddInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledADDDInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

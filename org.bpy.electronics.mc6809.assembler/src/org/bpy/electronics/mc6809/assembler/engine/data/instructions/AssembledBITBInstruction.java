@@ -87,6 +87,13 @@ public class AssembledBITBInstruction extends AbstractInstructionAssemblyLine {
 	private BitInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledBITBInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

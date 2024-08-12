@@ -35,6 +35,13 @@ public class AssembledCLRAInstruction extends AbstractInstructionAssemblyLine {
 	private ClrInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledCLRAInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

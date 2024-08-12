@@ -77,6 +77,13 @@ public class AssembledADCBInstruction extends AbstractInstructionAssemblyLine {
 
 	/** reference on the instruction */
 	private AdcInstruction instruction;
+
+	/**
+	 * Constructor of the class.
+	 */
+	public AssembledADCBInstruction() {
+		super();
+	}
 	
 	/**
 	 * Allow to parse the instruction and define its parameters.

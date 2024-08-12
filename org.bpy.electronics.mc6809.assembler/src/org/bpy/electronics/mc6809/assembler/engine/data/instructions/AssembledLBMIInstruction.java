@@ -40,6 +40,13 @@ public class AssembledLBMIInstruction extends AbstractRelativeBranchInstruction 
 	private BmiInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledLBMIInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

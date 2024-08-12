@@ -35,6 +35,13 @@ public class AssembledINCBInstruction extends AbstractInstructionAssemblyLine {
 	private IncInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledINCBInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

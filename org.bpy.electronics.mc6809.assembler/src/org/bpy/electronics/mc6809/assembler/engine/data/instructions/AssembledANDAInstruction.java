@@ -87,6 +87,13 @@ public class AssembledANDAInstruction extends AbstractInstructionAssemblyLine {
 	private AndInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledANDAInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

@@ -78,6 +78,13 @@ public class AssembledORCCInstruction extends AbstractInstructionAssemblyLine {
 	private OrCCInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledORCCInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

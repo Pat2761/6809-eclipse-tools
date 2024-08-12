@@ -10,7 +10,10 @@ public class MacroDeclarationElement extends AbstractAssemblyLine {
 	private String macroComment;
 	private String endComment;
 
-
+	public MacroDeclarationElement() {
+		super();
+	}
+	
 	public void parsePass1(EObject macroDefinition, int currentPcValue, int lineNumber) {
 		this.macroDefinition  = (MacroDefinition) macroDefinition;
 		macroComment = this.macroDefinition.getComment1();

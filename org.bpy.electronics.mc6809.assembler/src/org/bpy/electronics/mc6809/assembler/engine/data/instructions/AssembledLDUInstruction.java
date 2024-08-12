@@ -86,6 +86,13 @@ public class AssembledLDUInstruction extends AbstractInstructionAssemblyLine {
 	private LdInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledLDUInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

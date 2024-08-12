@@ -89,6 +89,13 @@ public class AssembledCOMInstruction extends AbstractInstructionAssemblyLine {
 	private ComInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledCOMInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

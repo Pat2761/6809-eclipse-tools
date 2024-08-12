@@ -40,6 +40,13 @@ public class AssembledLBLOInstruction extends AbstractRelativeBranchInstruction 
 	private BloInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledLBLOInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

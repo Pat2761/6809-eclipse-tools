@@ -40,6 +40,13 @@ public class AssembledBLSInstruction extends AbstractRelativeBranchInstruction {
 	private BlsInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledBLSInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

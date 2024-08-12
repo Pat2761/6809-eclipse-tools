@@ -35,6 +35,13 @@ public class AssembledRORBInstruction extends AbstractInstructionAssemblyLine {
 	private RorInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledRORBInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

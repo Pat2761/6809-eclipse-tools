@@ -87,6 +87,13 @@ public class AssembledCMPBInstruction extends AbstractInstructionAssemblyLine {
 	private CmpInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledCMPBInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

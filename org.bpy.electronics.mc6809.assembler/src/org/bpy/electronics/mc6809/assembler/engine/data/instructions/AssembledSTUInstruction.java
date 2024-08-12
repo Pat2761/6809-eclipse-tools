@@ -88,6 +88,13 @@ public class AssembledSTUInstruction extends AbstractInstructionAssemblyLine {
 	private StInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledSTUInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

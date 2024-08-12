@@ -35,6 +35,13 @@ public class AssembledRTSInstruction extends AbstractInstructionAssemblyLine {
 	private RtsInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledRTSInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

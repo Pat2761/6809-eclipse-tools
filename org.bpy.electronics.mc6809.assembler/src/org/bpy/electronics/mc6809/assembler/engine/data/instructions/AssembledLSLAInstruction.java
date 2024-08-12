@@ -35,6 +35,13 @@ public class AssembledLSLAInstruction extends AbstractInstructionAssemblyLine {
 	private LslInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledLSLAInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

@@ -35,6 +35,13 @@ public class AssembledASRAInstruction extends AbstractInstructionAssemblyLine {
 	private AsrInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledASRAInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

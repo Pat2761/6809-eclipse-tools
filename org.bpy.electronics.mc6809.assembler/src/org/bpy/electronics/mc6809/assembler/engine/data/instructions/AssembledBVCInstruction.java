@@ -40,6 +40,13 @@ public class AssembledBVCInstruction extends AbstractRelativeBranchInstruction {
 	private BvcInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledBVCInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

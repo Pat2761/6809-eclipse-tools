@@ -35,6 +35,13 @@ public class AssembledNOPInstruction extends AbstractInstructionAssemblyLine {
 	private NopInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledNOPInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

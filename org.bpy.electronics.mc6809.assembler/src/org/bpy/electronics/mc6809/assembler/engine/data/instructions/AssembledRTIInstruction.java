@@ -35,6 +35,13 @@ public class AssembledRTIInstruction extends AbstractInstructionAssemblyLine {
 	private RtiInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledRTIInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

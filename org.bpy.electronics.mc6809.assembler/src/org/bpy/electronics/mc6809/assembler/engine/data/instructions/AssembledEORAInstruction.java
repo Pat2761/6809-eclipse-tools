@@ -87,6 +87,13 @@ public class AssembledEORAInstruction extends AbstractInstructionAssemblyLine {
 	private EorInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledEORAInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

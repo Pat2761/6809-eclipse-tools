@@ -77,6 +77,13 @@ public class AssembledCWAIInstruction extends AbstractInstructionAssemblyLine {
 	private CwaiInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledCWAIInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

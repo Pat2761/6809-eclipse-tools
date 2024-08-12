@@ -35,6 +35,13 @@ public class AssembledASLBInstruction extends AbstractInstructionAssemblyLine {
 	private AslInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledASLBInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

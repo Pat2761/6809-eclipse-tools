@@ -89,6 +89,13 @@ public class AssembledNEGInstruction extends AbstractInstructionAssemblyLine {
 	private NegInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledNEGInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

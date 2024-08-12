@@ -44,6 +44,13 @@ public class AssembledPULUInstruction extends AbstractInstructionAssemblyLine {
 	private PuluInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledPULUInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

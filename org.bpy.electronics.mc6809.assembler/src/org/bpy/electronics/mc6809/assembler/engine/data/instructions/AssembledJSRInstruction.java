@@ -89,6 +89,9 @@ public class AssembledJSRInstruction extends AbstractJmpJsrInstruction {
 	/** reference on the instruction */
 	private JsrInstruction instruction;
 
+	/**
+	 * Constructor of the class.
+	 */
 	public AssembledJSRInstruction() {
 		super();
 	}

@@ -86,6 +86,13 @@ public class AssembledLEASInstruction extends AbstractInstructionAssemblyLine {
 	private LeaInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledLEASInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

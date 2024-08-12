@@ -40,6 +40,13 @@ public class AssembledLBSRInstruction extends AbstractRelativeBranchInstruction 
 	private BsrInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledLBSRInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line

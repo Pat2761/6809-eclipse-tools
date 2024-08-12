@@ -40,6 +40,13 @@ public class AssembledEXGInstruction extends AbstractInstructionAssemblyLine {
 	private ExgInstruction instruction;
 	
 	/**
+	 * Constructor of the class.
+	 */
+	public AssembledEXGInstruction() {
+		super();
+	}
+	
+	/**
 	 * Allow to parse the instruction and define its parameters.
 	 * 
 	 * @param instruction reference on the EMF instruction line
