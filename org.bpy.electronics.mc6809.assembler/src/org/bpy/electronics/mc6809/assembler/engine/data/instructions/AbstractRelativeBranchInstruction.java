@@ -14,6 +14,10 @@ public abstract class AbstractRelativeBranchInstruction extends AbstractInstruct
 	
 	abstract protected Object getLocalInstruction();
 	
+	public AbstractRelativeBranchInstruction() {
+		super();
+	}
+	
 	public void computeOperand(int targetPcAddress, int mode, EStructuralFeature eReference) {
 		int offset;
 		int currentAddress = pcAddress+2;

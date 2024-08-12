@@ -212,6 +212,15 @@ public class EquSetManager {
 		return eInstance;
 	}
 
+	/**
+	 * Get the container of constants
+	 * 
+	 * @return Container of constants
+	 */
+	public Map<String, List<EquDefinitionContainer>> getEquContainer() {
+		return equContainer;
+	}
+	
 	/** 
 	 * Initialize fields
 	 */

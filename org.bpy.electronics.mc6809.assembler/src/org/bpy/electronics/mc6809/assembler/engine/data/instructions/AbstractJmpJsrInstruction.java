@@ -4,6 +4,10 @@ import org.bpy.electronics.mc6809.assembler.engine.data.AbstractInstructionAssem
 
 public abstract class AbstractJmpJsrInstruction extends AbstractInstructionAssemblyLine {
 
+	public AbstractJmpJsrInstruction() {
+		super();
+	}
+	
 	@Override
 	protected void assembleInstruction() {
 		resolveAddressingMode(getInstructionOperand());

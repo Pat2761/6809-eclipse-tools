@@ -8,6 +8,7 @@ import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerHighlightin
 import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerSemanticHighLighting;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
+import org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 
 import com.google.inject.Binder;

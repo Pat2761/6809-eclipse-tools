@@ -3,10 +3,121 @@
  */
 package org.bpy.electronics.mc6809.assembler.ui.contentassist;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import org.bpy.electronics.mc6809.assembler.assembler.EquDirective;
+import org.bpy.electronics.mc6809.assembler.assembler.Expression;
+import org.bpy.electronics.mc6809.assembler.assembler.JmpInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.JsrInstruction;
+import org.bpy.electronics.mc6809.assembler.assembler.impl.JmpInstructionImpl;
+import org.bpy.electronics.mc6809.assembler.assembler.impl.JsrInstructionImpl;
+import org.bpy.electronics.mc6809.assembler.engine.AssemblerEngine;
+import org.bpy.electronics.mc6809.assembler.engine.EquSetManager;
+import org.bpy.electronics.mc6809.assembler.engine.EquSetManager.EquDefinitionContainer;
+import org.bpy.electronics.mc6809.assembler.engine.data.AbstractAssemblyLine;
+import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.xtext.Assignment;
+import org.eclipse.xtext.RuleCall;
+import org.eclipse.xtext.ui.editor.contentassist.AbstractContentProposalProvider;
+import org.eclipse.xtext.ui.editor.contentassist.ContentAssistContext;
+import org.eclipse.xtext.ui.editor.contentassist.ICompletionProposalAcceptor;
 
 /**
- * See https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#content-assist
+ * See
+ * https://www.eclipse.org/Xtext/documentation/310_eclipse_support.html#content-assist
  * on how to customize the content assistant.
  */
 public class AssemblerProposalProvider extends AbstractAssemblerProposalProvider {
+
+	@Override
+	public void completeRelativeMode_Offset(EObject model, Assignment assignment, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+		
+		setProposalForLabelDefintions(model, acceptor, context);
+	}
+	
+	@Override
+	public void complete_IdentifierValue(EObject model, RuleCall ruleCall, ContentAssistContext context,
+			ICompletionProposalAcceptor acceptor) {
+
+		if (isUsedByClass(model, Expression.class)) {
+			setProposalForConstantDefintions(model, acceptor, context);
+
+		} else if ((isUsedByClass(model, JmpInstructionImpl.class)) || 
+				     (isUsedByClass(model, JsrInstructionImpl.class))) {
+			setProposalForLabelDefintions(model, acceptor, context);
+		}
+	}
+
+	private void setProposalForLabelDefintions(EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
+		List<String> labels = getSortedLabels();
+		for (String label : labels) {
+			acceptor.accept(
+					createCompletionProposal(label,
+							"Branch to " + label , null, context));
+		}
+	}
+
+	private void setProposalForConstantDefintions(EObject model, ICompletionProposalAcceptor acceptor, ContentAssistContext context) {
+		Map<String, List<EquDefinitionContainer>> csts = EquSetManager.getInstance().getEquContainer();
+		List<EquDefinitionContainer> containers = createListOfValidConstants(model, csts);
+		for (EquDefinitionContainer container : containers) {
+			
+			String msg = "";
+			String label = "";
+			
+			if (container.getDirective() instanceof EquDirective directive) {
+				label = CommandUtil.getLabel(directive);
+							msg = "EQU " + label + " " + container.getValue() + " " + CommandUtil.getComment(directive); 
+			} else {
+				break;
+			}
+			
+			acceptor.accept(
+					createCompletionProposal(label,msg , null, context));
+		}
+	}
+
+	private List<EquDefinitionContainer> createListOfValidConstants(EObject model, Map<String, List<EquDefinitionContainer>> csts) {
+		List<EquDefinitionContainer> containers = new ArrayList<>();
+		for (Entry<String, List<EquDefinitionContainer>> cst : csts.entrySet()) {
+		   containers.add(cst.getValue().get(0));
+		}
+		return containers;
+	}
+
+	private List<String> getSortedLabels() {
+		Map<String, AbstractAssemblyLine> labelsPosition = AssemblerEngine.getInstance().getLabelsPositionObject();
+		List<String> labels = new ArrayList<>(labelsPosition.keySet());
+		Collections.sort(labels);
+
+		return labels;
+	}
+
+	/**
+	 * Check if the current object is used by the class defined in parameter.
+	 * 
+	 * @param eObject reference on the object to test
+	 * @param classz Class to test
+	 * 
+	 * @return <b>true</b> is the object is used by the class, <b>false</b> otherwise
+	 */
+	private boolean isUsedByClass(EObject eObject, Class<?> classz) {
+		if (eObject != null) {
+			if (eObject.getClass().equals(classz)) {
+				return true;
+			} else {
+				return isUsedByClass(eObject.eContainer(),classz);
+			}
+		} else {
+			return false;
+		}
+	}
+
+
 }
