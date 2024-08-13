@@ -20,6 +20,7 @@ package org.bpy.electronics.mc6809.assembler.ui.outline;
 
 import org.bpy.electronics.mc6809.assembler.assembler.AssemblerPackage;
 import org.bpy.electronics.mc6809.assembler.ui.AssemblerUiModule;
+import org.bpy.electronics.mc6809.assembler.ui.IconManager;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;

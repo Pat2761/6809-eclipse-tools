@@ -58,6 +58,7 @@ public class AssembledASLInstruction extends AbstractInstructionAssemblyLine {
 	private static final EnumMap<AddressingMode,Integer> CYCLES = new EnumMap<>(AddressingMode.class);
 	
 	static {
+		OP_CODE.put(AddressingMode.INHERENT, new int[] { 0x3F});
 		OP_CODE.put(AddressingMode.IMMEDIATE, new int[] {0x3F});
 		OP_CODE.put(AddressingMode.DIRECT, new int[] {0x08});
 		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, new int[] {0x68});

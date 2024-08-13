@@ -55,6 +55,7 @@ public class AssembledCMPXInstruction extends AbstractInstructionAssemblyLine {
 	private static final EnumMap<AddressingMode,Integer> CYCLES = new EnumMap<>(AddressingMode.class);
 	
 	static {
+		OP_CODE.put(AddressingMode.INHERENT, new int[] { 0x3F});
 		OP_CODE.put(AddressingMode.IMMEDIATE, new int[] {0x8C});
 		OP_CODE.put(AddressingMode.DIRECT, new int[] {0x9C});
 		OP_CODE.put(AddressingMode.INDEXED_ACCUMULATOR_MOVING_INDIRECT_MODE, new int[] {0xAC});

@@ -38,6 +38,7 @@ import org.bpy.electronics.mc6809.assembler.assembler.RmbDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SetDirective;
 import org.bpy.electronics.mc6809.assembler.assembler.SourceLine;
 import org.bpy.electronics.mc6809.assembler.assembler.SpecialFunctions;
+import org.bpy.electronics.mc6809.assembler.ui.IconManager;
 import org.bpy.electronics.mc6809.assembler.util.CommandUtil;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.swt.graphics.Image;
