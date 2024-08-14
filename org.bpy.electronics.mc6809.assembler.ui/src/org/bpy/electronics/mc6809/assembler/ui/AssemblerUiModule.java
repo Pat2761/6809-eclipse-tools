@@ -4,11 +4,12 @@
 package org.bpy.electronics.mc6809.assembler.ui;
 
 import org.bpy.electronics.mc6809.assembler.ui.autoedit.AssemblerAutoEditStrategyProvider;
+import org.bpy.electronics.mc6809.assembler.ui.folding.AssemblerFoldingRegionProvider;
 import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerHighlightingConfiguration;
 import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerSemanticHighLighting;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
-import org.eclipse.xtext.ui.editor.contentassist.IContentProposalProvider;
+import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 
 import com.google.inject.Binder;
@@ -25,12 +26,10 @@ public class AssemblerUiModule extends AbstractAssemblerUiModule {
 		super(plugin);
 	}
 
-//	@Override
-//	public void configure(Binder binder) {
-//		super.configure(binder);
-//		binder.bind(AbstractUIPlugin.class).toInstance(gin);
-//	}
-	
+	public Class<? extends IFoldingRegionProvider> bindIFoldingRegionProvider() {
+	    return AssemblerFoldingRegionProvider.class;
+	}
+
 	/**
 	 * Bind the class which manage the high lighting configuration.
 	 * 
