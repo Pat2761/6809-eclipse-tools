@@ -64,6 +64,14 @@ public class PreferenceManager {
 	/** Key of the preference which store the comment starting column */
 	public static final String COMMENT_POSITION = "commentPosition";
 	
+	
+	/** Key of the preference which store the enable preference folding */
+	public static final String ENABLE_FOLDING = "enableFolding";
+	/** Key of the preference which store the enable comment folding preference */
+	public static final String COMMENT_FOLDING_A_INIT = "CommentFoldingAtInit";
+	/** Key of the preference which store the operand starting column */
+	public static final String MACRO_FOLDING_A_INIT = "macroFoldingAtInit";
+	
 	/** key for store empty line before label */
 	public static final String EMPTY_LINE_BEFORE_LABEL = "emptyLineBeforeLabel";
 	/** key for comment line at instruction level */
@@ -81,6 +89,12 @@ public class PreferenceManager {
 	/** Define the default value of the operand size preference */
 	public static final int COMMENT_POSITION_DEFAULT_VALUE = 52;
 	
+	/** Default value of the preference which store the enable preference folding */
+	public static final boolean ENABLE_FOLDING_DEFAULT_VALUE = true;
+	/** Default value the preference which store the enable comment folding preference */
+	public static final boolean COMMENT_FOLDING_A_INIT_DEFAULT_VALUE = true;
+	/** Default value the preference which store the operand starting column */
+	public static final boolean MACRO_FOLDING_A_INIT_DEFAULT_VALUE = true;
 	
 	/** Instance of the preference manager singleton */ 
 	private static PreferenceManager eInstance;
@@ -91,6 +105,7 @@ public class PreferenceManager {
 	/** Memorize the preference instance */
 	private Preferences preferences;
 
+	/** Reference on the preference store */
 	private IPreferenceStore store;
 	
 	
@@ -110,7 +125,11 @@ public class PreferenceManager {
 		defaultsValues.put(COMMENT_POSITION,"" + COMMENT_POSITION_DEFAULT_VALUE);
 		defaultsValues.put(COMMENT_LINE_AT_INSTRUCTION_LEVEL,"" + false);
 		defaultsValues.put(EMPTY_LINE_BEFORE_LABEL,"" + false);
-
+		defaultsValues.put(MACRO_FOLDING_A_INIT, "" + MACRO_FOLDING_A_INIT_DEFAULT_VALUE);
+		defaultsValues.put(COMMENT_FOLDING_A_INIT, "" + COMMENT_FOLDING_A_INIT_DEFAULT_VALUE);
+		defaultsValues.put(ENABLE_FOLDING, "" + ENABLE_FOLDING_DEFAULT_VALUE);
+		
+		
 		store = EditorsUI.getPreferenceStore();	
 	}
 	
@@ -237,6 +256,63 @@ public class PreferenceManager {
 	 */
 	public void setCommentLineAtInstructionPosition(boolean state) {
 		preferences.putBoolean(COMMENT_LINE_AT_INSTRUCTION_LEVEL, state);
+		savePreference();
+	}
+	
+	/**
+	 * check preference for allow folding.
+	 *  
+	 * @return <b>true</b> folding is allow, <b>false</b> otherwise.
+	 */
+	public boolean getEnableFolding( ) {
+		return preferences.getBoolean(ENABLE_FOLDING, ENABLE_FOLDING_DEFAULT_VALUE);
+	}
+
+	/**
+	 * Set preference for allow folding.
+	 *  
+	 * @param state <b>true</b> folding is allow, <b>false</b> otherwise.
+	 */
+	public void setEnableFolding(boolean state ) {
+		preferences.putBoolean(ENABLE_FOLDING,state);
+		savePreference();
+	}
+	
+	/**
+	 * check preference for allow comment folding.
+	 *  
+	 * @return <b>true</b> comment folding is allow, <b>false</b> otherwise.
+	 */
+	public boolean getCommentFolding( ) {
+		return preferences.getBoolean(COMMENT_FOLDING_A_INIT, COMMENT_FOLDING_A_INIT_DEFAULT_VALUE);
+	}
+
+	/**
+	 * Set preference for allow comment folding.
+	 *  
+	 * @param state <b>true</b> comment folding is allow, <b>false</b> otherwise.
+	 */
+	public void setCommentFolding(boolean state ) {
+		preferences.putBoolean(COMMENT_FOLDING_A_INIT,state);
+		savePreference();
+	}
+	
+	/**
+	 * check preference for allow macro folding.
+	 *  
+	 * @return <b>true</b> macro folding is allow, <b>false</b> otherwise.
+	 */
+	public boolean getMacroFolding( ) {
+		return preferences.getBoolean(MACRO_FOLDING_A_INIT, MACRO_FOLDING_A_INIT_DEFAULT_VALUE);
+	}
+
+	/**
+	 * Set preference for allow macro folding.
+	 *  
+	 * @param state <b>true</b> macro folding is allow, <b>false</b> otherwise.
+	 */
+	public void setMacroFolding(boolean state ) {
+		preferences.putBoolean(MACRO_FOLDING_A_INIT,state);
 		savePreference();
 	}
 	

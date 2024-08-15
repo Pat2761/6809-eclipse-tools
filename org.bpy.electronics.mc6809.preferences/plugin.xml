@@ -15,6 +15,12 @@
             id="org.bpy.electronics.mc6809.rcp.preference.formatting"
             name="Formatter">
       </page>
+      <page
+            category="org.bpy.electronics.mc6809.assembler.Assembler"
+            class="org.bpy.electronics.mc6809.preferences.ui.FoldingPreferencePage"
+            id="org.bpy.electronics.mc6809.preferences.folding"
+            name="Folding">
+      </page>
    </extension>
 
 </plugin>

@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 
 import org.bpy.electronics.mc6809.assembler.assembler.MacroDefinition;
+import org.bpy.electronics.mc6809.preferences.core.PreferenceManager;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.xtext.resource.ILocationInFileProvider;
@@ -56,9 +57,16 @@ public class AssemblerFoldingRegionProvider  extends DefaultFoldingRegionProvide
 	protected Collection<FoldedPosition> doGetFoldingRegions(IXtextDocument xtextDocument, XtextResource xtextResource) {
 		Collection<FoldedPosition> result = Sets.newLinkedHashSet();
 		IFoldingRegionAcceptor<ITextRegion> foldingRegionAcceptor = createAcceptor(xtextDocument, result);
-		computeObjectFolding(xtextResource, foldingRegionAcceptor);
+		if (PreferenceManager.getInstance().getEnableFolding()) {
 
-		result.addAll(getCommentRegionsFolding(xtextDocument));
+			if (PreferenceManager.getInstance().getMacroFolding()) {
+				computeObjectFolding(xtextResource, foldingRegionAcceptor);
+			}	
+	
+			if (PreferenceManager.getInstance().getCommentFolding()) {
+				result.addAll(getCommentRegionsFolding(xtextDocument));
+			}
+		}
 		return result;
 	}
 	
@@ -115,8 +123,9 @@ public class AssemblerFoldingRegionProvider  extends DefaultFoldingRegionProvide
 		int contentStart = 0;
 		int contentLength = xtextDocument.getLineLength(startLine);
 		int length = xtextDocument.getLineOffset(endLine)-offset;
-		
-		return new DefaultFoldedPosition(offset, length, contentStart, contentLength);
+		DefaultFoldedPosition defaultFolderPosition = new DefaultFoldedPosition(offset, length, contentStart, contentLength);
+		defaultFolderPosition.setInitiallyFolded(true);
+		return defaultFolderPosition;
 	}
 
 	/**
