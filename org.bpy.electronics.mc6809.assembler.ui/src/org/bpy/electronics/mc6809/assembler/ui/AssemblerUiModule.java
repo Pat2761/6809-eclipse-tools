@@ -7,9 +7,11 @@ import org.bpy.electronics.mc6809.assembler.ui.autoedit.AssemblerAutoEditStrateg
 import org.bpy.electronics.mc6809.assembler.ui.folding.AssemblerFoldingRegionProvider;
 import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerHighlightingConfiguration;
 import org.bpy.electronics.mc6809.assembler.ui.highlighting.AssemblerSemanticHighLighting;
+import org.bpy.electronics.mc6809.assembler.ui.hover.AssemblerHoverProvider;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ide.editor.syntaxcoloring.ISemanticHighlightingCalculator;
 import org.eclipse.xtext.ui.editor.folding.IFoldingRegionProvider;
+import org.eclipse.xtext.ui.editor.hover.IEObjectHoverProvider;
 import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfiguration;
 
 import com.google.inject.Binder;
@@ -22,13 +24,33 @@ public class AssemblerUiModule extends AbstractAssemblerUiModule {
 	/** Plugin identifier */
 	public static final String PLUGIN_ID = "org.bpy.electronics.mc6809.assembler.ui";
 	
+	/**
+	 * Construrctor of the class.
+	 * 
+	 * @param plugin
+	 */
 	public AssemblerUiModule(AbstractUIPlugin plugin) {
 		super(plugin);
 	}
 
+	/**
+	 * define folding behavior.
+	 * 
+	 * @return custom class for the folding behavior.
+	 */
 	public Class<? extends IFoldingRegionProvider> bindIFoldingRegionProvider() {
 	    return AssemblerFoldingRegionProvider.class;
 	}
+
+	/**
+	 * define hover behavior.
+	 * 
+	 * @return custom class for the hover behavior.
+	 */
+	public Class<? extends IEObjectHoverProvider> bindIEObjectHoverProvider() {
+		return AssemblerHoverProvider.class;
+	}
+
 
 	/**
 	 * Bind the class which manage the high lighting configuration.
